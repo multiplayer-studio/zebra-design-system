@@ -3,17 +3,17 @@
 **Figma ID:** `2162:51`
 **Source Page:** Radio
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `label`: Enum ["true", "false"] (Default: `false`)
 - `checked`: Enum ["false", "true"] (Default: `false`)
 - `state`: Enum ["default", "hover", "focus", "disabled", "error"] (Default: `default`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `label=false, checked=false, state=default`
+### Variant: `label=false, checked=false, state=default`
 - **Node:** `label=false, checked=false, state=default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
@@ -33,7 +33,7 @@ The LLM must expose these as props/parameters in the target language:
             - **Node:** `Ellipse 2 (Stroke)` (VECTOR)
               - **Fill:** `var(--color/border/bold)`
 
-#### Variant: `label=true, checked=false, state=default`
+### Variant: `label=true, checked=false, state=default`
 - **Node:** `label=true, checked=false, state=default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: HUG, H: FIXED
@@ -61,7 +61,7 @@ The LLM must expose these as props/parameters in the target language:
     - **Node:** `Label` (TEXT)
       - **Fill:** `var(--color/foreground/primary)`
 
-#### Variant: `label=false, checked=true, state=default`
+### Variant: `label=false, checked=true, state=default`
 - **Node:** `label=false, checked=true, state=default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
@@ -83,14 +83,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Radio A single-select form control used within a group to present mutually exclusive options. Selecting one radio automatically deselects all others in the same group. Supports checked and unchecked states with an optional text label. Features a 48×48px invisible touch target for accessibility, independent of the visual element size.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -107,7 +107,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -119,7 +119,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -130,7 +130,7 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Touch target The invisible 48×48px interaction region that extends beyond the visual radio control. Non-visual**
 2. **Control The circular visual container (20×20px). Displays the selected or unselected state via fill and border.**
@@ -140,7 +140,7 @@ Anatomy
 
 
 
-How to use
+### How to use
 
 - **Do:** Use radio buttons when users must select exactly one option from a group. Always present at least two options — a single radio button is never correct.
 - **Don't:** Use radio buttons for multi-select scenarios or when no selection is a valid default. If none is valid, consider pre-selecting a sensible default or using checkboxes instead.
@@ -148,7 +148,7 @@ How to use
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 Focus visibility: Focus ring must be clearly visible with a minimum 3:1 contrast ratio against adjacent colours and must not be obscured by other elements. (WCAG 2.4.11–2.4.12 AAA)
 Keyboard: Tab to move between groups, arrow keys to navigate within a group and select an option.

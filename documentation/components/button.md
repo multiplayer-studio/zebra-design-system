@@ -3,7 +3,7 @@
 **Figma ID:** `2004:111`
 **Source Page:** Button
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `label`: TEXT (Default: `button`)
@@ -12,10 +12,10 @@ The LLM must expose these as props/parameters in the target language:
 - `type`: Enum ["primary", "gradient", "outlined", "outlinedSubtle", "ghost"] (Default: `primary`)
 - `state`: Enum ["default", "hover", "pressed", "focus", "disabled"] (Default: `default`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `type=primary, state=default`
+### Variant: `type=primary, state=default`
 - **Node:** `type=primary, state=default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: HUG, H: FIXED
@@ -52,7 +52,7 @@ The LLM must expose these as props/parameters in the target language:
             - **Node:** `Icon: false` (VECTOR)
               - **Fill:** `var(--color/pure/white)`
 
-#### Variant: `type=outlinedSubtle, state=default`
+### Variant: `type=outlinedSubtle, state=default`
 - **Node:** `type=outlinedSubtle, state=default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: HUG, H: FIXED
@@ -89,7 +89,7 @@ The LLM must expose these as props/parameters in the target language:
             - **Node:** `Icon: false` (VECTOR)
               - **Fill:** `var(--color/foreground/primary)`
 
-#### Variant: `type=gradient, state=default`
+### Variant: `type=gradient, state=default`
 - **Node:** `type=gradient, state=default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: HUG, H: FIXED
@@ -130,14 +130,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Buttons A clickable element that triggers user-initiated actions  like submitting forms, confirming dialogs, or initiating flows.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -159,7 +159,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -171,7 +171,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -182,7 +182,7 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Container Outer boundary defining the tap/click target, padding, background, border, and border-radius.**
 2. **Leading icon 20×20px slot before the label.**
@@ -192,7 +192,7 @@ Anatomy
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 Focus visibility: The focus ring must be clearly visible with a minimum 3:1 contrast ratio against adjacent colors and must not be obscured by other elements
 Target size: The interactive area must be at least 48×48px to meet touch target requirements

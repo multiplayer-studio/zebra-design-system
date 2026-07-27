@@ -3,7 +3,7 @@
 **Figma ID:** `3964:577`
 **Source Page:** Text Area
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `placeholder`: TEXT (Default: `Placeholder`)
@@ -12,10 +12,10 @@ The LLM must expose these as props/parameters in the target language:
 - `state`: Enum ["default", "active", "disabled", "error"] (Default: `default`)
 - `filled`: Enum ["false", "true"] (Default: `false`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `state=default, filled=false`
+### Variant: `state=default, filled=false`
 - **Node:** `state=default, filled=false` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FILL, H: HUG
@@ -48,7 +48,7 @@ The LLM must expose these as props/parameters in the target language:
             - **Node:** `Placeholder text` (TEXT)
               - **Fill:** `var(--color/foreground/disabled)`
 
-#### Variant: `state=default, filled=true`
+### Variant: `state=default, filled=true`
 - **Node:** `state=default, filled=true` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FILL, H: HUG
@@ -71,7 +71,7 @@ The LLM must expose these as props/parameters in the target language:
               - **Fill:** `var(--color/foreground/primary)`
             - **Node:** `Cursor` (VECTOR)
 
-#### Variant: `state=active, filled=false`
+### Variant: `state=active, filled=false`
 - **Node:** `state=active, filled=false` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FILL, H: HUG

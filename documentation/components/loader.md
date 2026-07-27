@@ -3,20 +3,20 @@
 **Figma ID:** `2925:2427`
 **Source Page:** Loader
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `type`: Enum ["static", "animated"] (Default: `static`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `type=static`
+### Variant: `type=static`
 - **Node:** `type=static` (COMPONENT)
   - *Children:*
     - **Node:** `Ellipse 175` (ELLIPSE)
 
-#### Variant: `type=animated`
+### Variant: `type=animated`
 - **Node:** `type=animated` (COMPONENT)
   - *Children:*
     - **Node:** `_Animated Loader` (INSTANCE)
@@ -26,14 +26,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Loader A Loader communicates that a process is in progress and the system is working. It is a general-purpose indeterminate progress indicator used for operations like page loads, data fetching, and form submissions. Unlike the Activity Indicator, which signals companion AI state, the Loader has no interactive states and is purely informational.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -43,7 +43,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -55,7 +55,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -64,14 +64,14 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Container The outermost boundary of the loader. Sets the overall size, centers the spinner visually, and provides the layout anchor for positioning in a parent view.**
 2. **Track The full circular ring forming the background of the spinner. Always fully visible; color is set via a angular gradient from color/status/info/bold to color/status/info/subtle.**
 
 
 
-How to use
+### How to use
 
 - **Do:** Use short, verb led labels that describes the outcome: “Save changes”, “Continue”, “Add item”, “Skip step”
 - **Don't:** Use short, verb led labels that describes the outcome: “Save changes”, “Continue”, “Add item”, “Skip step”
@@ -79,7 +79,7 @@ How to use
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 Role and live region: Use role="status" for indeterminate loaders. Pair with aria-live="polite" so that screen readers announce the loading state without interrupting the user's current context.
 Accessible name: Always provide an aria-label or an associated visually-hidden element. Examples: "Loading", "Saving your changes", "Fetching results". 

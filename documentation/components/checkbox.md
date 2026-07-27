@@ -3,7 +3,7 @@
 **Figma ID:** `2175:530`
 **Source Page:** Checkboxes
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `label`: Enum ["false", "true"] (Default: `false`)
@@ -11,10 +11,10 @@ The LLM must expose these as props/parameters in the target language:
 - `indeterminate`: Enum ["false", "true"] (Default: `false`)
 - `state`: Enum ["default", "hover", "focus", "disabled", "error"] (Default: `default`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `label=false, checked=false, indeterminate=false, state=default`
+### Variant: `label=false, checked=false, indeterminate=false, state=default`
 - **Node:** `label=false, checked=false, indeterminate=false, state=default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
@@ -32,7 +32,7 @@ The LLM must expose these as props/parameters in the target language:
             - **Node:** `Icon: false` (VECTOR)
               - **Fill:** `var(--color/border/bold)`
 
-#### Variant: `label=true, checked=false, indeterminate=false, state=default`
+### Variant: `label=true, checked=false, indeterminate=false, state=default`
 - **Node:** `label=true, checked=false, indeterminate=false, state=default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: HUG, H: FIXED
@@ -58,7 +58,7 @@ The LLM must expose these as props/parameters in the target language:
     - **Node:** `Label` (TEXT)
       - **Fill:** `var(--color/foreground/primary)`
 
-#### Variant: `label=false, checked=true, indeterminate=false, state=default`
+### Variant: `label=false, checked=true, indeterminate=false, state=default`
 - **Node:** `label=false, checked=true, indeterminate=false, state=default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
@@ -82,14 +82,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Checkbox A binary form control for selecting one or more independent options. Each checkbox operates autonomously, toggling one does not affect others. Supports checked, unchecked, and indeterminate states with an optional text label.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -108,7 +108,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -120,7 +120,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -131,7 +131,7 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Touch target The invisible 48×48px interaction region that extends beyond the visual checkbox. Non-visual; ensures the component meets WCAG 2.5.5 AAA touch target requirements.**
 2. **Control The visual checkbox container (20×20px). Displays the checked, unchecked, or indeterminate state via fill, border, and icon.**
@@ -141,7 +141,7 @@ Anatomy
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 Touch target: The 48×48px invisible touch region must be preserved in implementation. Do not reduce the interactive area to match the visual size.
 Focus visibility: Focus ring must be clearly visible with a minimum 3:1 contrast ratio against adjacent colors and must not be obscured by other elements. 

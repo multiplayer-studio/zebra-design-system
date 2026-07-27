@@ -3,7 +3,7 @@
 **Figma ID:** `2739:2567`
 **Source Page:** Icon button
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `showBadge`: BOOLEAN (Default: `false`)
@@ -11,10 +11,10 @@ The LLM must expose these as props/parameters in the target language:
 - `state`: Enum ["default", "hover", "pressed", "focus", "disabled"] (Default: `default`)
 - `size`: Enum ["small"] (Default: `small`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `type=primary, state=default, size=small`
+### Variant: `type=primary, state=default, size=small`
 - **Node:** `type=primary, state=default, size=small` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
@@ -41,7 +41,7 @@ The LLM must expose these as props/parameters in the target language:
         - **Node:** `99+` (TEXT)
           - **Fill:** `var(--color/foreground/inverse)`
 
-#### Variant: `type=subtle, state=default, size=small`
+### Variant: `type=subtle, state=default, size=small`
 - **Node:** `type=subtle, state=default, size=small` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
@@ -68,7 +68,7 @@ The LLM must expose these as props/parameters in the target language:
         - **Node:** `99+` (TEXT)
           - **Fill:** `var(--color/foreground/inverse)`
 
-#### Variant: `type=outline, state=default, size=small`
+### Variant: `type=outline, state=default, size=small`
 - **Node:** `type=outline, state=default, size=small` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
@@ -99,14 +99,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Icon button A compact, icon only button that triggers a discrete action without a visible text label. Use it in toolbars, cards, or space constrained layouts where the icon alone clearly communicates the action. When the action needs a visible label, use the Button component instead.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -127,7 +127,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -139,7 +139,7 @@ Behavior
 
 
 
-Content & slot
+### Content & slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -150,7 +150,7 @@ Content & slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Container 48x48px boundary that defines the touch target, padding, background fill, border, and border-radius. Absorbs pointer interactions across the full area.**
 2. **Focus ring 2px solid ring with 2px offset. Visible on keyboard focus; does not affect layout or spacing.**
@@ -161,7 +161,7 @@ Anatomy
 
 
 
-How to use
+### How to use
 
 - **Do:** Use short, verb led labels that describes the outcome: “Save changes”, “Continue”, “Add item”, “Skip step”
 - **Don't:** Use short, verb led labels that describes the outcome: “Save changes”, “Continue”, “Add item”, “Skip step”
@@ -169,7 +169,7 @@ How to use
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 ARIA role: Renders as a native <button> element with role="button". Do not use a <div> or <span> with a click handler.
 Accessible name: aria-label is required on every icon button. Use a concise action phrase describing the outcome, not the icon shape. Example: use "Close dialog" not "X icon". Update aria-label dynamically if the action or context changes (e.g. toggling between "Mute" and "Unmute").

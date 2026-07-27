@@ -3,16 +3,16 @@
 **Figma ID:** `3252:2703`
 **Source Page:** Logos
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `style`: Enum ["bold", "subtle"] (Default: `bold`)
 - `shape`: Enum ["default", "round"] (Default: `default`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `style=bold, shape=default`
+### Variant: `style=bold, shape=default`
 - **Node:** `style=bold, shape=default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
@@ -24,7 +24,7 @@ The LLM must expose these as props/parameters in the target language:
       - *Children:*
         - **Node:** `Vector` (VECTOR)
 
-#### Variant: `style=bold, shape=round`
+### Variant: `style=bold, shape=round`
 - **Node:** `style=bold, shape=round` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
@@ -36,7 +36,7 @@ The LLM must expose these as props/parameters in the target language:
       - *Children:*
         - **Node:** `Vector` (VECTOR)
 
-#### Variant: `style=subtle, shape=default`
+### Variant: `style=subtle, shape=default`
 - **Node:** `style=subtle, shape=default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED

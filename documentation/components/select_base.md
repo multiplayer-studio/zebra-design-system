@@ -3,7 +3,7 @@
 **Figma ID:** `2862:211`
 **Source Page:** Select
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `leadingIcon`: BOOLEAN (Default: `true`)
@@ -13,10 +13,10 @@ The LLM must expose these as props/parameters in the target language:
 - `state`: Enum ["default", "hover", "focus", "disabled", "error", "active"] (Default: `default`)
 - `selected`: Enum ["false", "true"] (Default: `false`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `style=subtle, state=default, selected=false`
+### Variant: `style=subtle, state=default, selected=false`
 - **Node:** `style=subtle, state=default, selected=false` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
@@ -52,7 +52,7 @@ The LLM must expose these as props/parameters in the target language:
             - **Node:** `Icon: false` (VECTOR)
               - **Fill:** `var(--color/foreground/primary)`
 
-#### Variant: `style=bold, state=default, selected=false`
+### Variant: `style=bold, state=default, selected=false`
 - **Node:** `style=bold, state=default, selected=false` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
@@ -89,7 +89,7 @@ The LLM must expose these as props/parameters in the target language:
             - **Node:** `Icon: false` (VECTOR)
               - **Fill:** `var(--color/foreground/primary)`
 
-#### Variant: `style=subtle, state=default, selected=true`
+### Variant: `style=subtle, state=default, selected=true`
 - **Node:** `style=subtle, state=default, selected=true` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED

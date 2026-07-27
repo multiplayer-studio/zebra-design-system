@@ -3,16 +3,16 @@
 **Figma ID:** `3819:69`
 **Source Page:** Carousel
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `indicator`: BOOLEAN (Default: `true`)
 - `type`: Enum ["media", "product", "task", "Video"] (Default: `product`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `type=product`
+### Variant: `type=product`
 - **Node:** `type=product` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: FILL, H: HUG
@@ -212,7 +212,7 @@ The LLM must expose these as props/parameters in the target language:
                 - **Node:** `Ellipse 1` (ELLIPSE)
                   - **Fill:** `var(--color/background/disabled)`
 
-#### Variant: `type=media`
+### Variant: `type=media`
 - **Node:** `type=media` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: FILL, H: HUG
@@ -322,7 +322,7 @@ The LLM must expose these as props/parameters in the target language:
                 - **Node:** `Ellipse 1` (ELLIPSE)
                   - **Fill:** `var(--color/background/disabled)`
 
-#### Variant: `type=Video`
+### Variant: `type=Video`
 - **Node:** `type=Video` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: FILL, H: HUG
@@ -601,14 +601,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Carousel The Carousel is a horizontally scrollable card track for presenting a collection of related content items as a browsable sequence. It uses Card Base as the card container and supports four predefined content types: product, media, video, and task. Each type pre-populates the card slots with the appropriate content configuration. A Dot Indicator below the track communicates the current scroll position and the total number of cards.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -622,7 +622,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -634,7 +634,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -645,7 +645,7 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Track The horizontally scrollable container holding the card row. Clips cards outside the visible area and snaps to card boundaries on swipe.**
 2. **Card An individual Card Base instance within the track. Its slot is pre-populated with content matching the carousel type property.**
@@ -656,7 +656,7 @@ Anatomy
 
 
 
-How to use
+### How to use
 
 - **Do:** Use concise, noun-based labels for filter and choice chips. The label should describe the attribute or category being toggled. Examples: "Priority", "Unread", "In stock".
 - **Don't:** Don't use a chip as the primary or sole action on a screen. When a single action needs prominence, use Button instead. Chips are suited to grouped, repeated, or selection-based interactions.
@@ -664,7 +664,7 @@ How to use
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 Each card within the carousel track should be individually focusable and carry a meaningful accessible name. 
 The Dot Indicator should communicate pagination state to assistive technology, with each dot labelled with its position, for example "Card 2 of 4". 

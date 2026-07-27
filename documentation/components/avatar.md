@@ -3,7 +3,7 @@
 **Figma ID:** `3895:4119`
 **Source Page:** Avatar
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `showIcon`: BOOLEAN (Default: `true`)
@@ -12,10 +12,10 @@ The LLM must expose these as props/parameters in the target language:
 - `color`: Enum ["purple", "orange", "green", "violet", "blue", "subtle"] (Default: `purple`)
 - `showImage`: Enum ["false", "true"] (Default: `false`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `size=large, color=purple, showImage=false`
+### Variant: `size=large, color=purple, showImage=false`
 - **Node:** `size=large, color=purple, showImage=false` (COMPONENT)
   - *Children:*
     - **Node:** `Container` (FRAME)
@@ -44,7 +44,7 @@ The LLM must expose these as props/parameters in the target language:
                 - **Node:** `Icon: false` (VECTOR)
                   - **Fill:** `var(--color/foreground/positive)`
 
-#### Variant: `size=medium, color=purple, showImage=false`
+### Variant: `size=medium, color=purple, showImage=false`
 - **Node:** `size=medium, color=purple, showImage=false` (COMPONENT)
   - *Children:*
     - **Node:** `Container` (FRAME)
@@ -73,7 +73,7 @@ The LLM must expose these as props/parameters in the target language:
                 - **Node:** `Icon: false` (VECTOR)
                   - **Fill:** `var(--color/foreground/positive)`
 
-#### Variant: `size=small, color=purple, showImage=false`
+### Variant: `size=small, color=purple, showImage=false`
 - **Node:** `size=small, color=purple, showImage=false` (COMPONENT)
   - *Children:*
     - **Node:** `Container` (FRAME)
@@ -106,14 +106,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Avatar The Avatar is a circular user identity element that represents a person or entity within the Zebra Companion interface. It displays either a profile photo or generated initials on a color-coded background, offering a consistent way to surface user presence across messages, lists, and headers. A status icon badge at the lower-right of the avatar communicates the user's current availability state.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -127,7 +127,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -139,7 +139,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -150,7 +150,7 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Container The circular surface that clips the avatar content. Applies the color-coded background for the initials variant.**
 2. **Initials The user initials text displayed within the container when showImage is false.**
@@ -160,7 +160,7 @@ Anatomy
 
 
 
-How to use
+### How to use
 
 - **Do:** Use concise, noun-based labels for filter and choice chips. The label should describe the attribute or category being toggled. Examples: "Priority", "Unread", "In stock".
 - **Don't:** Don't use a chip as the primary or sole action on a screen. When a single action needs prominence, use Button instead. Chips are suited to grouped, repeated, or selection-based interactions.
@@ -168,7 +168,7 @@ How to use
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 The avatar should carry an accessible name identifying the user it represents, provided via aria-label. 
 When the avatar is interactive, such as navigating to a profile, apply role="button" or role="link". 

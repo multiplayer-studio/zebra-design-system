@@ -3,17 +3,17 @@
 **Figma ID:** `3955:1150`
 **Source Page:** List Item
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `subText`: BOOLEAN (Default: `true`)
 - `link`: BOOLEAN (Default: `true`)
 - `Property 1`: Enum ["Default", "Variant2"] (Default: `Default`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `Property 1=Default`
+### Variant: `Property 1=Default`
 - **Node:** `Property 1=Default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG
@@ -63,7 +63,7 @@ The LLM must expose these as props/parameters in the target language:
             - **Node:** `link to find the form` (TEXT)
               - **Fill:** `var(--color/foreground/brand)`
 
-#### Variant: `Property 1=Variant2`
+### Variant: `Property 1=Variant2`
 - **Node:** `Property 1=Variant2` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG

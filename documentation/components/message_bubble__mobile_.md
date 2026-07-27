@@ -3,7 +3,7 @@
 **Figma ID:** `2813:258`
 **Source Page:** Message
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `showFooter`: BOOLEAN (Default: `true`)
@@ -11,10 +11,10 @@ The LLM must expose these as props/parameters in the target language:
 - `type`: Enum ["companion", "user"] (Default: `user`)
 - `state`: Enum ["default", "pressed"] (Default: `default`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `type=user, state=default`
+### Variant: `type=user, state=default`
 - **Node:** `type=user, state=default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: MAX, Align: undefined)
   - **Sizing:** W: FILL, H: HUG
@@ -37,7 +37,7 @@ The LLM must expose these as props/parameters in the target language:
             - **Node:** `I want to book some PTO` (TEXT)
               - **Fill:** `var(--color/foreground/primary)`
 
-#### Variant: `type=user, state=pressed`
+### Variant: `type=user, state=pressed`
 - **Node:** `type=user, state=pressed` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: MAX, Align: undefined)
   - **Sizing:** W: FILL, H: HUG
@@ -60,7 +60,7 @@ The LLM must expose these as props/parameters in the target language:
             - **Node:** `I want to book some PTO` (TEXT)
               - **Fill:** `var(--color/foreground/primary)`
 
-#### Variant: `type=companion, state=default`
+### Variant: `type=companion, state=default`
 - **Node:** `type=companion, state=default` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FILL, H: HUG

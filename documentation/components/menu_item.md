@@ -3,7 +3,7 @@
 **Figma ID:** `3248:24`
 **Source Page:** Popover
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `Label`: TEXT (Default: `Menu item label`)
@@ -12,10 +12,10 @@ The LLM must expose these as props/parameters in the target language:
 - `type`: Enum ["default", "inverse"] (Default: `default`)
 - `companion`: Enum ["false", "true"] (Default: `false`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `state=default, type=default, companion=false`
+### Variant: `state=default, type=default, companion=false`
 - **Node:** `state=default, type=default, companion=false` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: FILL, H: FIXED
@@ -35,7 +35,7 @@ The LLM must expose these as props/parameters in the target language:
     - **Node:** `Label` (TEXT)
       - **Fill:** `var(--color/foreground/primary)`
 
-#### Variant: `state=hover, type=default, companion=false`
+### Variant: `state=hover, type=default, companion=false`
 - **Node:** `state=hover, type=default, companion=false` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: FILL, H: FIXED
@@ -56,7 +56,7 @@ The LLM must expose these as props/parameters in the target language:
     - **Node:** `Label` (TEXT)
       - **Fill:** `var(--color/foreground/primary)`
 
-#### Variant: `state=default, type=default, companion=true`
+### Variant: `state=default, type=default, companion=true`
 - **Node:** `state=default, type=default, companion=true` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: FILL, H: FIXED
@@ -80,14 +80,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Menu Item The Menu Item is the individual interactive row used inside a Popover. Each item represents a single action or navigation destination. Menu Items come in two visual types to match their container surface, and a companion variant that visually connects the action to the AI context in the Companion interface.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -101,7 +101,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -112,7 +112,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -122,7 +122,7 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Item container The full-width interactive area of the Menu Item. Defines the tap target, background fill, padding, and height.**
 2. **Leading icon Optional icon rendered before the label. Fixed size; only the icon name is configurable. Use to reinforce the action type or category.**
@@ -131,7 +131,7 @@ Anatomy
 
 
 
-How to use
+### How to use
 
 - **Do:** Use concise, noun-based labels for filter and choice chips. The label should describe the attribute or category being toggled. Examples: "Priority", "Unread", "In stock".
 - **Don't:** Don't use a chip as the primary or sole action on a screen. When a single action needs prominence, use Button instead. Chips are suited to grouped, repeated, or selection-based interactions.
@@ -139,7 +139,7 @@ How to use
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 ARIA: Each Menu Item uses role="menuitem" inside a role="menu" container. Do not use role="button" or role="option" for items inside a Popover.
 Keyboard interaction: Arrow Down moves focus to the next item. Arrow Up moves focus to the previous item. Enter or Space activates the focused item. Tab exits the menu without activating an item. Escape closes the Popover and returns focus to the trigger.

@@ -3,15 +3,15 @@
 **Figma ID:** `4038:2273`
 **Source Page:** Utitlities
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `direction`: Enum ["top", "left", "right", "bottom"] (Default: `top`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `direction=top`
+### Variant: `direction=top`
 - **Node:** `direction=top` (COMPONENT)
   - *Children:*
     - **Node:** `Line 102` (LINE)
@@ -25,7 +25,7 @@ The LLM must expose these as props/parameters in the target language:
         - **Node:** `1` (TEXT)
           - **Fill:** `var(--color/foreground/inverse)`
 
-#### Variant: `direction=bottom`
+### Variant: `direction=bottom`
 - **Node:** `direction=bottom` (COMPONENT)
   - *Children:*
     - **Node:** `Line 102` (LINE)
@@ -39,7 +39,7 @@ The LLM must expose these as props/parameters in the target language:
         - **Node:** `1` (TEXT)
           - **Fill:** `var(--color/foreground/inverse)`
 
-#### Variant: `direction=left`
+### Variant: `direction=left`
 - **Node:** `direction=left` (COMPONENT)
   - *Children:*
     - **Node:** `Line 102` (LINE)

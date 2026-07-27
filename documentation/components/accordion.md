@@ -3,17 +3,17 @@
 **Figma ID:** `3495:136`
 **Source Page:** Accordion
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `Content`: SLOT (Default: `[object Object]`)
 - `label`: TEXT (Default: `Accordion label`)
 - `open`: Enum ["false", "true"] (Default: `false`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `open=false`
+### Variant: `open=false`
 - **Node:** `open=false` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG
@@ -39,7 +39,7 @@ The LLM must expose these as props/parameters in the target language:
                 - **Node:** `Icon: false` (VECTOR)
                   - **Fill:** `var(--color/foreground/secondary)`
 
-#### Variant: `open=true`
+### Variant: `open=true`
 - **Node:** `open=true` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG
@@ -74,14 +74,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Accordion The Accordion is a vertically stacked, disclosure-based component used to organize and progressively reveal content within a limited space. It allows users to expand and collapse sections independently or in sequence, making it ideal for grouping related information without overwhelming the interface.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -93,7 +93,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -105,7 +105,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -116,7 +116,7 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Wrapper The outer wrapper of the accordion item that defines layout, spacing, and boundaries. It contains both the header (trigger region) and the expandable content area.**
 2. **Label The primary text element within the header that communicates the purpose of the accordion item. It forms part of the interactive trigger and should remain concise and scannable.**
@@ -126,7 +126,7 @@ Anatomy
 
 
 
-How to use
+### How to use
 
 - **Do:** Use the check interaction type for single-selection lists where one item remains active at a time, such as selecting a default option or a preferred setting.
 - **Don't:** Don't mix interaction types within the same list. Consistent interaction behaviour ensures users can predict how selection works across the interface.
@@ -134,7 +134,7 @@ How to use
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 The accordion container should use role="region" or a semantic container (<div>, <section>) when the structure is purely presentational. Do not assign an ARIA role unless the accordion is part of a composite widget pattern.
 Each accordion trigger must reference its content panel using aria-controls="{panel-id}", and each panel must have a matching id attribute.

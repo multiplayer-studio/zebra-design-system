@@ -3,16 +3,16 @@
 **Figma ID:** `2920:457`
 **Source Page:** Tag
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `status`: Enum ["positive", "negative", "neutral"] (Default: `positive`)
 - `type`: Enum ["bold", "subtle"] (Default: `bold`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `status=positive, type=bold`
+### Variant: `status=positive, type=bold`
 - **Node:** `status=positive, type=bold` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: HUG, H: FIXED
@@ -23,7 +23,7 @@ The LLM must expose these as props/parameters in the target language:
     - **Node:** `Tag Label` (TEXT)
       - **Fill:** `var(--color/foreground/inverse)`
 
-#### Variant: `status=negative, type=bold`
+### Variant: `status=negative, type=bold`
 - **Node:** `status=negative, type=bold` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: HUG, H: FIXED
@@ -34,7 +34,7 @@ The LLM must expose these as props/parameters in the target language:
     - **Node:** `Tag Label` (TEXT)
       - **Fill:** `var(--color/foreground/inverse)`
 
-#### Variant: `status=neutral, type=bold`
+### Variant: `status=neutral, type=bold`
 - **Node:** `status=neutral, type=bold` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: HUG, H: FIXED
@@ -49,14 +49,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Tag A simple, non-interactive labelling element used to communicate status, categorize content, or display metadata within the companion system. Unlike Chip, Tag carries no click, focus, or toggle behavior. It appears on content cards, list items, and inside companion generated responses to communicate state at a glance.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -69,7 +69,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -81,7 +81,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -92,7 +92,7 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Container Pill-shaped boundary that defines the tag size, background fill, and border-radius. Width scales with label length. Height is fixed.**
 2. **Label Single-line text content. Does not wrap or truncate. Keep labels to one to three words to control tag width.**
@@ -100,7 +100,7 @@ Anatomy
 
 
 
-How to use
+### How to use
 
 - **Do:** Use concise, noun-based labels for filter and choice chips. The label should describe the attribute or category being toggled. Examples: "Priority", "Unread", "In stock".
 - **Don't:** Don't use a chip as the primary or sole action on a screen. When a single action needs prominence, use Button instead. Chips are suited to grouped, repeated, or selection-based interactions.
@@ -108,7 +108,7 @@ How to use
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 ARIA roles: When rendering a list of tags, wrap them in a container with role="list" and give each tag role="listitem". For a purely presentational tag with no list context, use role="presentation" or omit the ARIA role and rely on surrounding context.
 Screen reader behavior: Tag labels are read as plain text. The status is communicated through the label itself, so labels must be meaningful on their own. Avoid labels like "Yes", "No", or "Active" without surrounding context that clarifies what the status refers to.

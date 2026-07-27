@@ -3,7 +3,7 @@
 **Figma ID:** `3829:966`
 **Source Page:** Link
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `trailingIcon`: BOOLEAN (Default: `true`)
@@ -13,10 +13,10 @@ The LLM must expose these as props/parameters in the target language:
 - `size`: Enum ["medium", "small"] (Default: `small`)
 - `state`: Enum ["hover", "focus", "default"] (Default: `default`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `type=inline, underline=false, size=small, state=default`
+### Variant: `type=inline, underline=false, size=small, state=default`
 - **Node:** `type=inline, underline=false, size=small, state=default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: HUG, H: HUG
@@ -26,7 +26,7 @@ The LLM must expose these as props/parameters in the target language:
     - **Node:** `link to find the form` (TEXT)
       - **Fill:** `var(--color/foreground/brand)`
 
-#### Variant: `type=inline, underline=false, size=medium, state=default`
+### Variant: `type=inline, underline=false, size=medium, state=default`
 - **Node:** `type=inline, underline=false, size=medium, state=default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: HUG, H: HUG
@@ -36,7 +36,7 @@ The LLM must expose these as props/parameters in the target language:
     - **Node:** `link to find the form` (TEXT)
       - **Fill:** `var(--color/foreground/brand)`
 
-#### Variant: `type=inline, underline=true, size=small, state=default`
+### Variant: `type=inline, underline=true, size=small, state=default`
 - **Node:** `type=inline, underline=true, size=small, state=default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: HUG, H: HUG
@@ -50,14 +50,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Link The Link component is an inline navigational element used to direct users to related content, external resources, or page-level actions. It comes in two forms: inline links are embedded within body text and inherit the surrounding typographic scale, while solid links are stand-alone elements with a contained, button-like boundary. Both forms support optional underline decoration and two size variants.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -74,7 +74,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -85,7 +85,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -96,7 +96,7 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Link container The outer boundary of the link. For inline links, this is the inline text box. For solid links, this includes background padding and corner radius.**
 2. **Label The visible link text. Single-line for solid links. Inline links may wrap with the surrounding text flow.**
@@ -107,7 +107,7 @@ Anatomy
 
 
 
-How to use
+### How to use
 
 - **Do:** Use concise, noun-based labels for filter and choice chips. The label should describe the attribute or category being toggled. Examples: "Priority", "Unread", "In stock".
 - **Don't:** Don't use a chip as the primary or sole action on a screen. When a single action needs prominence, use Button instead. Chips are suited to grouped, repeated, or selection-based interactions.
@@ -115,7 +115,7 @@ How to use
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 ARIA: Links use the native anchor element or role="link". Do not use role="button" for links, even when styled as a solid link with a contained boundary. If an element triggers an action rather than navigation, use a button instead.
 Keyboard interaction: Tab moves focus to the link. Enter activates it. Links should not be activated with Space, which is reserved for buttons.

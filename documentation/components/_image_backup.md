@@ -3,17 +3,17 @@
 **Figma ID:** `4559:6235`
 **Source Page:** Card
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `showImage`: BOOLEAN (Default: `true`)
 - `status`: Enum ["default", "loading"] (Default: `default`)
 - `rounded`: Enum ["true", "false"] (Default: `true`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `status=default, rounded=true`
+### Variant: `status=default, rounded=true`
 - **Node:** `status=default, rounded=true` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: FILL, H: FIXED
@@ -26,7 +26,7 @@ The LLM must expose these as props/parameters in the target language:
       - *Children:*
         - **Node:** `Ellipse 175` (ELLIPSE)
 
-#### Variant: `status=loading, rounded=true`
+### Variant: `status=loading, rounded=true`
 - **Node:** `status=loading, rounded=true` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
@@ -39,7 +39,7 @@ The LLM must expose these as props/parameters in the target language:
       - *Children:*
         - **Node:** `Ellipse 175` (ELLIPSE)
 
-#### Variant: `status=default, rounded=false`
+### Variant: `status=default, rounded=false`
 - **Node:** `status=default, rounded=false` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED

@@ -3,7 +3,7 @@
 **Figma ID:** `3945:601`
 **Source Page:** List Item
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `contentType`: INSTANCE_SWAP (Default: `3955:883`)
@@ -11,10 +11,10 @@ The LLM must expose these as props/parameters in the target language:
 - `state`: Enum ["default", "selected", "disabled", "hover"] (Default: `default`)
 - `interactionType`: Enum ["checkbox", "check", "fill"] (Default: `check`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `state=default, interactionType=check`
+### Variant: `state=default, interactionType=check`
 - **Node:** `state=default, interactionType=check` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FILL, H: HUG
@@ -70,7 +70,7 @@ The LLM must expose these as props/parameters in the target language:
                 - **Node:** `Icon: false` (VECTOR)
                   - **Fill:** `var(--color/foreground/brand)`
 
-#### Variant: `state=default, interactionType=checkbox`
+### Variant: `state=default, interactionType=checkbox`
 - **Node:** `state=default, interactionType=checkbox` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FILL, H: HUG
@@ -127,7 +127,7 @@ The LLM must expose these as props/parameters in the target language:
                 - **Node:** `Icon: false` (VECTOR)
                   - **Fill:** `var(--color/border/bold)`
 
-#### Variant: `state=hover, interactionType=check`
+### Variant: `state=hover, interactionType=check`
 - **Node:** `state=hover, interactionType=check` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FILL, H: HUG
@@ -187,14 +187,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 List Item The List Item is a flexible row-level component used to present structured content within a list. It supports three content types, Simple, File, and Compound, and can be configured with different interaction modes to suit single selection, menu navigation, and multi-select or to-do patterns.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -223,7 +223,7 @@ Content types
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -235,7 +235,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -246,7 +246,7 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Row surface The full-width container that forms the interactive tap target of the list item.**
 2. **Content area Holds the active content type: Simple (label), File (file name and size), or Compound (title, description, and action link).**
@@ -257,7 +257,7 @@ Anatomy
 
 
 
-How to use
+### How to use
 
 - **Do:** Use the check interaction type for single-selection lists where one item remains active at a time, such as selecting a default option or a preferred setting.
 - **Don't:** Don't mix interaction types within the same list. Consistent interaction behaviour ensures users can predict how selection works across the interface.
@@ -265,7 +265,7 @@ How to use
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 The list container should use role="listbox" when items are selectable, or role="list" for non-interactive lists. 
 Each list item should use role="option" when interactionType is check or fill, and role="checkbox" when interactionType is checkbox. 

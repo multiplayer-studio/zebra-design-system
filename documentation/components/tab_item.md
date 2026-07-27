@@ -3,7 +3,7 @@
 **Figma ID:** `2902:329`
 **Source Page:** Tabs
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `showBadge`: BOOLEAN (Default: `true`)
@@ -11,10 +11,10 @@ The LLM must expose these as props/parameters in the target language:
 - `Label`: TEXT (Default: `Tab Item`)
 - `state`: Enum ["default", "active", "hover", "disabled"] (Default: `default`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `state=default`
+### Variant: `state=default`
 - **Node:** `state=default` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: HUG, H: FIXED
@@ -49,7 +49,7 @@ The LLM must expose these as props/parameters in the target language:
             - **Node:** `99+` (TEXT)
               - **Fill:** `var(--color/foreground/inverse)`
 
-#### Variant: `state=active`
+### Variant: `state=active`
 - **Node:** `state=active` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: HUG, H: FIXED
@@ -84,7 +84,7 @@ The LLM must expose these as props/parameters in the target language:
             - **Node:** `99+` (TEXT)
               - **Fill:** `var(--color/foreground/inverse)`
 
-#### Variant: `state=hover`
+### Variant: `state=hover`
 - **Node:** `state=hover` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: HUG, H: FIXED

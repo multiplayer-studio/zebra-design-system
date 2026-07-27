@@ -3,7 +3,7 @@
 **Figma ID:** `3266:468`
 **Source Page:** Chip
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `leadingIcon`: INSTANCE_SWAP (Default: `2655:1690`)
@@ -12,10 +12,10 @@ The LLM must expose these as props/parameters in the target language:
 - `action`: Enum ["prompt", "companion", "utility"] (Default: `prompt`)
 - `state`: Enum ["default", "pressed", "hover", "focus", "disabled"] (Default: `default`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `action=prompt, state=default`
+### Variant: `action=prompt, state=default`
 - **Node:** `action=prompt, state=default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: HUG, H: FIXED
@@ -42,7 +42,7 @@ The LLM must expose these as props/parameters in the target language:
         - **Node:** `Suggested prompt/action` (TEXT)
           - **Fill:** `var(--color/foreground/primary)`
 
-#### Variant: `action=companion, state=default`
+### Variant: `action=companion, state=default`
 - **Node:** `action=companion, state=default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: HUG, H: FIXED
@@ -69,7 +69,7 @@ The LLM must expose these as props/parameters in the target language:
         - **Node:** `Suggested prompt/action` (TEXT)
           - **Fill:** `var(--color/foreground/inverse)`
 
-#### Variant: `action=utility, state=default`
+### Variant: `action=utility, state=default`
 - **Node:** `action=utility, state=default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: HUG, H: FIXED
@@ -100,14 +100,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Chip Chips in the Zebra Companion system function as action triggers. Activating a chip fires an action, submits a suggested prompt to the Companion, or executing a contextual command. Chips appear in three usage contexts: as prompt suggestions in a Companion conversation, as Companion action picks for AI-driven interactions, and as utility triggers for quick access features. On mobile, a long press on an element can reveal an additional set of chips actions in an overlay.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -123,7 +123,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -137,7 +137,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -147,7 +147,7 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Container Pill-shaped outer boundary that defines the tap or click target, padding, background fill, border, and border-radius. Scales horizontally with label length.**
 2. **Label Single-line text content. Non-wrapping; truncates with an ellipsis when it reaches the container width.**
@@ -157,7 +157,7 @@ Anatomy
 
 
 
-How to use
+### How to use
 
 - **Do:** Use concise, noun-based labels for filter and choice chips. The label should describe the attribute or category being toggled. Examples: "Priority", "Unread", "In stock".
 - **Don't:** Don't use a chip as the primary or sole action on a screen. When a single action needs prominence, use Button instead. Chips are suited to grouped, repeated, or selection-based interactions.
@@ -165,7 +165,7 @@ How to use
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 ARIA roles: All chips use role="button" because they function as triggers, not selection elements. Do not use role="option" or role="listbox" for chips in this system
 Keyboard interaction: Space or Enter activates a chip. There is no toggle or selection state to manage with these chip types.

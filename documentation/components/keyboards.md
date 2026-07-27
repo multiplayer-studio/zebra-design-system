@@ -3,15 +3,15 @@
 **Figma ID:** `5930:2487`
 **Source Page:** Prompt Input
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `Language`: Enum ["English", "German", "Spanish"] (Default: `English`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `Language=English`
+### Variant: `Language=English`
 - **Node:** `Language=English` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: SPACE_BETWEEN, Align: CENTER)
   - **Sizing:** W: FILL, H: FIXED
@@ -340,7 +340,7 @@ The LLM must expose these as props/parameters in the target language:
                     - **Node:** `Vector` (VECTOR)
                       - **Fill:** `var(--color/foreground/inverse)`
 
-#### Variant: `Language=German`
+### Variant: `Language=German`
 - **Node:** `Language=German` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: SPACE_BETWEEN, Align: CENTER)
   - **Sizing:** W: FILL, H: FIXED
@@ -669,7 +669,7 @@ The LLM must expose these as props/parameters in the target language:
                     - **Node:** `Vector` (VECTOR)
                       - **Fill:** `var(--color/foreground/inverse)`
 
-#### Variant: `Language=Spanish`
+### Variant: `Language=Spanish`
 - **Node:** `Language=Spanish` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: SPACE_BETWEEN, Align: CENTER)
   - **Sizing:** W: FILL, H: FIXED

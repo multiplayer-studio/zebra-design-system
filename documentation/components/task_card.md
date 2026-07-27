@@ -3,16 +3,16 @@
 **Figma ID:** `3826:2445`
 **Source Page:** Card
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `showAvatar`: BOOLEAN (Default: `true`)
 - `status`: Enum ["default", "loading"] (Default: `default`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `status=default`
+### Variant: `status=default`
 - **Node:** `status=default` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG
@@ -103,7 +103,7 @@ The LLM must expose these as props/parameters in the target language:
                     - **Node:** `Icon: false` (VECTOR)
                       - **Fill:** `var(--color/foreground/primary)`
 
-#### Variant: `status=loading`
+### Variant: `status=loading`
 - **Node:** `status=loading` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG
@@ -217,14 +217,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Task card Task Card is a predefined content configuration for the Card component, not a standalone component. It provides a structured layout for representing an actionable work item or task. Task Card is designed for task management contexts within the Zebra Companion experience and inherits Card Base properties.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -238,7 +238,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -250,7 +250,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -261,7 +261,7 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Card surface The Card Base container hosting the Task Card content configuration.**
 2. **Status badge A Tag component at the top of the card indicating the current task state, such as Complete, In Progress, or Overdue.**
@@ -272,7 +272,7 @@ Anatomy
 
 
 
-How to use
+### How to use
 
 - **Do:** Use concise, noun-based labels for filter and choice chips. The label should describe the attribute or category being toggled. Examples: "Priority", "Unread", "In stock".
 - **Don't:** Don't use a chip as the primary or sole action on a screen. When a single action needs prominence, use Button instead. Chips are suited to grouped, repeated, or selection-based interactions.
@@ -280,7 +280,7 @@ How to use
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 Task Card inherits interactive card semantics from Card Base. Apply role="button" to the full card surface when it opens the task detail. 
 The accessible name should reference the task description using aria-labelledby. 

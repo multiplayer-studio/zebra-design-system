@@ -3,16 +3,16 @@
 **Figma ID:** `3266:646`
 **Source Page:** Option Stack
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `Slot`: SLOT (Default: `[object Object]`)
 - `carousel`: Enum ["false", "true"] (Default: `false`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `carousel=false`
+### Variant: `carousel=false`
 - **Node:** `carousel=false` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: FIXED, H: HUG
@@ -107,7 +107,7 @@ The LLM must expose these as props/parameters in the target language:
                     - **Node:** `Suggested prompt/action` (TEXT)
                       - **Fill:** `var(--color/foreground/inverse)`
 
-#### Variant: `carousel=true`
+### Variant: `carousel=true`
 - **Node:** `carousel=true` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: FIXED, H: HUG
@@ -255,14 +255,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Option Stack The Option Stack is a horizontally scrollable container that groups contextual Chip components into a single row, making them available as quick-access action triggers. Chips within the stack can submit companion prompts, execute long-press contextual commands, or surface utility actions. The carousel property adds leading and trailing navigation icon buttons when the chip set overflows the available width, allowing the user to scroll through additional options without leaving the current context.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -273,7 +273,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -285,7 +285,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -296,7 +296,7 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Container The horizontal wrapper that clips and positions the chip instances.**
 2. **Chip slot The inner slot that holds all Chip components, arranged in a horizontal row within the container.**
@@ -306,7 +306,7 @@ Anatomy
 
 
 
-How to use
+### How to use
 
 - **Do:** Use concise, noun-based labels for filter and choice chips. The label should describe the attribute or category being toggled. Examples: "Priority", "Unread", "In stock".
 - **Don't:** Don't use a chip as the primary or sole action on a screen. When a single action needs prominence, use Button instead. Chips are suited to grouped, repeated, or selection-based interactions.
@@ -314,7 +314,7 @@ How to use
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 Each Chip within the Option Stack carries role="button" and must have a descriptive accessible label reflecting its action. 
 The Option Stack container itself does not carry an interactive role. 

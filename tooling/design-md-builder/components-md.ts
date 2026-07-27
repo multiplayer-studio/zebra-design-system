@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * Figma Design System to Markdown Extractor (H3 Hierarchy Edition)
+ * Figma Design System to Markdown Extractor (Smart Guideline Edition)
  * ============================================================================
  * 
  * WHAT IT DOES:
@@ -9,8 +9,8 @@
  * 3. Fetches the complete document tree.
  * 4. SMART LIST DETECTION: Automatically detects numbered grids and formats them.
  * 5. DO/DON'T GUIDELINE DETECTION: Inspects grid data for guidelines.
- * 6. HIERARCHY FIX: Uses H3 (###) for component sections (Properties, Blueprint, 
- *    Metadata) so they cleanly nest under the main Component H1/H2 header.
+ * 6. METADATA HEADING INTERCEPTOR: Automatically detects specific section titles 
+ *    ("Anatomy", "Behaviour", etc.) in the Figma design and converts them to H3s.
  * 7. EXPORTABLE: Can be run independently or imported by design-md.ts.
  * 
  * RUN COMMAND:
@@ -344,14 +344,37 @@ function extractNodesNormally(node: FigmaNode): string[] {
 function compileMetadata(node: FigmaNode): string {
   const blocks = extractNodesNormally(node);
   const validBlocks = blocks.filter(b => b.trim().length > 0);
-  return validBlocks.join('\n\n');
+
+  // --- NEW: METADATA HEADING INTERCEPTOR ---
+  const targetHeadings = [
+    "property breakdown", 
+    "behaviour", 
+    "behavior", 
+    "content & slot", 
+    "anatomy", 
+    "how to use", 
+    "accessibility and content guidelines"
+  ];
+
+  const processedBlocks = validBlocks.map(block => {
+    // Strip bold asterisks for clean comparison
+    const cleanBlock = block.replace(/\*/g, '').trim().toLowerCase();
+    
+    if (targetHeadings.includes(cleanBlock)) {
+      // Force it to an H3 heading, using the stripped text for a clean look
+      return `### ${block.replace(/\*/g, '').trim()}`;
+    }
+    return block;
+  });
+
+  return processedBlocks.join('\n\n');
 }
 
 function extractVisualBlueprint(componentSet: FigmaNode): string {
   if (!componentSet.children || componentSet.children.length === 0) return '';
   
-  // Changed from ## to ###
-  let bp = `### 🏗️ Visual Blueprint (Strict AST)\n`;
+  // Reverted to H2 for main section
+  let bp = `## 🏗️ Visual Blueprint (Strict AST)\n`;
   bp += `*The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*\n\n`;
 
   const resolveProp = (propName: string, node: FigmaNode, fallbackValue: any) => {
@@ -400,8 +423,8 @@ function extractVisualBlueprint(componentSet: FigmaNode): string {
   const variantsToExtract = componentSet.children.slice(0, 3);
   
   for (const variant of variantsToExtract) {
-    // Changed from ### to #### to maintain proper nesting
-    bp += `#### Variant: \`${variant.name}\`\n`;
+    // Reverted to H3 to nest cleanly under Visual Blueprint (H2)
+    bp += `### Variant: \`${variant.name}\`\n`;
     bp += extractStructure(variant);
     bp += `\n`;
   }
@@ -458,12 +481,12 @@ function generateMarkdownContent(context: ComponentSetContext): string {
   const { pageName, node, metadataText } = context;
   const props = node.componentPropertyDefinitions || {};
   
-  let md = `# Component: ${node.name}\n\n`;
+  let md = `# Component: ${node.name}\n\n`; // H1
   md += `**Figma ID:** \`${node.id}\`\n`;
   md += `**Source Page:** ${pageName}\n\n`;
   
-  // Changed from ## to ###
-  md += `### Properties (Variants)\n`;
+  // Reverted to H2
+  md += `## Properties (Variants)\n`;
   md += `The LLM must expose these as props/parameters in the target language:\n\n`;
   
   const propKeys = Object.keys(props);
@@ -489,8 +512,8 @@ function generateMarkdownContent(context: ComponentSetContext): string {
   md += `\n---\n\n`;
 
   if (metadataText) {
-    // Changed from ## to ###
-    md += `### Design Metadata & Intent\n`;
+    // Reverted to H2
+    md += `## Design Metadata & Intent\n`;
     md += `*The following rules and descriptions were extracted directly from the Figma design system specifications.*\n\n`;
     md += `${metadataText}\n\n`;
   }

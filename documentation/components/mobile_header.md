@@ -3,17 +3,17 @@
 **Figma ID:** `3348:386`
 **Source Page:** Mobile header
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `Ttile text`: TEXT (Default: `Header `)
 - `showTitle`: BOOLEAN (Default: `false`)
 - `control`: Enum ["avatar", "settings"] (Default: `avatar`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `control=avatar`
+### Variant: `control=avatar`
 - **Node:** `control=avatar` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: SPACE_BETWEEN, Align: CENTER)
   - **Sizing:** W: FIXED, H: HUG
@@ -80,7 +80,7 @@ The LLM must expose these as props/parameters in the target language:
                     - **Node:** `Icon: false` (VECTOR)
                       - **Fill:** `var(--color/foreground/positive)`
 
-#### Variant: `control=settings`
+### Variant: `control=settings`
 - **Node:** `control=settings` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: SPACE_BETWEEN, Align: CENTER)
   - **Sizing:** W: FIXED, H: HUG
@@ -149,14 +149,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Mobile Header The Mobile Header is the fixed top navigation bar for mobile screens within the Zebra Companion experience. It provides a persistent hamburger menu icon button on the leading edge for opening the side navigation, and a contextual control on the trailing edge determined by the control property. The control property switches the trailing slot between a user avatar, shown in authenticated contexts where the profile is accessible, and a settings icon button, shown when application settings are a primary entry point from the header.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -171,7 +171,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -184,7 +184,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -195,7 +195,7 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 
 | 1. | Header bar The full-width fixed surface at the top of the mobile screen, anchored to the top of the viewport. |
@@ -208,7 +208,7 @@ Anatomy
 
 
 
-How to use
+### How to use
 
 - **Do:** Use concise, noun-based labels for filter and choice chips. The label should describe the attribute or category being toggled. Examples: "Priority", "Unread", "In stock".
 - **Don't:** Don't use a chip as the primary or sole action on a screen. When a single action needs prominence, use Button instead. Chips are suited to grouped, repeated, or selection-based interactions.
@@ -216,7 +216,7 @@ How to use
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 The Mobile Header should use role="banner" at the page level. 
 The hamburger menu button must carry aria-label="Open navigation menu" or equivalent. 

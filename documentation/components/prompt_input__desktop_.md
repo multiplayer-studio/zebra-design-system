@@ -3,7 +3,7 @@
 **Figma ID:** `4136:21989`
 **Source Page:** Prompt Input
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `Slot Input Controls`: SLOT (Default: `[object Object]`)
@@ -11,10 +11,10 @@ The LLM must expose these as props/parameters in the target language:
 - `suggestions`: BOOLEAN (Default: `true`)
 - `state`: Enum ["Default", "active", "typing", "multiline", "listening", "activeListening", "transcribing", "stop", "landing"] (Default: `Default`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `state=Default`
+### Variant: `state=Default`
 - **Node:** `state=Default` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FILL, H: HUG
@@ -147,7 +147,7 @@ The LLM must expose these as props/parameters in the target language:
                         - **Node:** `99+` (TEXT)
                           - **Fill:** `var(--color/foreground/inverse)`
 
-#### Variant: `state=landing`
+### Variant: `state=landing`
 - **Node:** `state=landing` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FILL, H: HUG
@@ -393,7 +393,7 @@ The LLM must expose these as props/parameters in the target language:
     - **Node:** `Companion is an AI system. Please verify all critical information with your supervisor` (TEXT)
       - **Fill:** `var(--color/foreground/disabled)`
 
-#### Variant: `state=active`
+### Variant: `state=active`
 - **Node:** `state=active` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FILL, H: HUG

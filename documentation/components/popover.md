@@ -3,17 +3,17 @@
 **Figma ID:** `3248:366`
 **Source Page:** Popover
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `Slot Popover Content`: SLOT (Default: `[object Object]`)
 - `Slot Popover Content2`: SLOT (Default: `[object Object]`)
 - `type`: Enum ["default", "inverse"] (Default: `default`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `type=default`
+### Variant: `type=default`
 - **Node:** `type=default` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG
@@ -82,7 +82,7 @@ The LLM must expose these as props/parameters in the target language:
             - **Node:** `Label` (TEXT)
               - **Fill:** `var(--color/foreground/primary)`
 
-#### Variant: `type=inverse`
+### Variant: `type=inverse`
 - **Node:** `type=inverse` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG
@@ -154,14 +154,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Popover The Popover is a floating surface that appears contextually above the page, anchored to a trigger element. It acts as a container for Menu Items and other contextual actions. It comes in two visual variants: default for light contexts and inverse for dark overlays or Companion surfaces. The Popover is dismissed by selecting a Menu Item, clicking outside its boundary, or pressing Escape.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -171,7 +171,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -182,7 +182,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -191,7 +191,7 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Popover surface The floating container with background fill, corner radius, and drop shadow. Renders above the page content at the appropriate elevation level.**
 2. **Content slot The internal area that houses Menu Items. Stacks items vertically and expands to fit the number of items placed inside.**
@@ -199,7 +199,7 @@ Anatomy
 
 
 
-How to use
+### How to use
 
 - **Do:** Use concise, noun-based labels for filter and choice chips. The label should describe the attribute or category being toggled. Examples: "Priority", "Unread", "In stock".
 - **Don't:** Don't use a chip as the primary or sole action on a screen. When a single action needs prominence, use Button instead. Chips are suited to grouped, repeated, or selection-based interactions.
@@ -207,7 +207,7 @@ How to use
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 ARIA: When the Popover contains Menu Items, the container uses role="menu" and each item uses role="menuitem". The trigger element that opens the Popover must carry aria-haspopup="menu" and aria-expanded, updated to reflect the open or closed state.
 Focus management: When the Popover opens, focus moves to the first Menu Item, reuse the hover effect as focus in this case. When it closes, focus returns to the trigger element that opened it. Do not leave focus stranded in the background.

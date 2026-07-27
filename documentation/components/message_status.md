@@ -3,15 +3,15 @@
 **Figma ID:** `2559:115`
 **Source Page:** Message
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `state`: Enum ["default", "processing", "idle"] (Default: `default`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `state=default`
+### Variant: `state=default`
 - **Node:** `state=default` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: HUG, H: HUG
@@ -29,7 +29,7 @@ The LLM must expose these as props/parameters in the target language:
             - **Node:** `Icon: false` (VECTOR)
               - **Fill:** `var(--color/foreground/primary)`
 
-#### Variant: `state=processing`
+### Variant: `state=processing`
 - **Node:** `state=processing` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: HUG, H: HUG
@@ -47,7 +47,7 @@ The LLM must expose these as props/parameters in the target language:
     - **Node:** `Thinking...` (TEXT)
       - **Fill:** `var(--color/foreground/brand)`
 
-#### Variant: `state=idle`
+### Variant: `state=idle`
 - **Node:** `state=idle` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: HUG, H: HUG

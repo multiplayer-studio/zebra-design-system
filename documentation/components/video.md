@@ -3,16 +3,16 @@
 **Figma ID:** `4559:6002`
 **Source Page:** Card
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `showImage`: BOOLEAN (Default: `true`)
 - `status`: Enum ["default", "loading"] (Default: `default`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `status=default`
+### Variant: `status=default`
 - **Node:** `status=default` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: FILL, H: FIXED
@@ -81,7 +81,7 @@ The LLM must expose these as props/parameters in the target language:
       - *Children:*
         - **Node:** `Ellipse 175` (ELLIPSE)
 
-#### Variant: `status=loading`
+### Variant: `status=loading`
 - **Node:** `status=loading` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED

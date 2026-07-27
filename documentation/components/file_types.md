@@ -3,15 +3,15 @@
 **Figma ID:** `3953:378`
 **Source Page:** List Item
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `type`: Enum ["any", "sheet", "document", "image"] (Default: `any`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `type=any`
+### Variant: `type=any`
 - **Node:** `type=any` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
@@ -48,7 +48,7 @@ The LLM must expose these as props/parameters in the target language:
         - **Node:** `File size` (TEXT)
           - **Fill:** `var(--color/foreground/secondary)`
 
-#### Variant: `type=document`
+### Variant: `type=document`
 - **Node:** `type=document` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
@@ -85,7 +85,7 @@ The LLM must expose these as props/parameters in the target language:
         - **Node:** `File size` (TEXT)
           - **Fill:** `var(--color/foreground/secondary)`
 
-#### Variant: `type=sheet`
+### Variant: `type=sheet`
 - **Node:** `type=sheet` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED

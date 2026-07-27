@@ -3,16 +3,16 @@
 **Figma ID:** `2595:163`
 **Source Page:** Switch
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `state`: Enum ["default", "hover", "pressed", "focus", "disabled"] (Default: `default`)
 - `selected`: Enum ["False", "True"] (Default: `False`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `state=default, selected=False`
+### Variant: `state=default, selected=False`
 - **Node:** `state=default, selected=False` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
@@ -41,7 +41,7 @@ The LLM must expose these as props/parameters in the target language:
                 - **Node:** `Thumb` (ELLIPSE)
                   - **Fill:** `var(--color/background/primary)`
 
-#### Variant: `state=default, selected=True`
+### Variant: `state=default, selected=True`
 - **Node:** `state=default, selected=True` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: MAX, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
@@ -70,7 +70,7 @@ The LLM must expose these as props/parameters in the target language:
                 - **Node:** `Thumb` (ELLIPSE)
                   - **Fill:** `var(--color/background/primary)`
 
-#### Variant: `state=hover, selected=False`
+### Variant: `state=hover, selected=False`
 - **Node:** `state=hover, selected=False` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
@@ -103,14 +103,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Switch A binary toggle control for enabling or disabling a setting with immediate effect. Unlike checkboxes or radio buttons, the switch applies its change instantly, no form submission required. Supports selected and unselected states across state interactions.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -125,7 +125,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -137,7 +137,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -148,7 +148,7 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Handle Touch target The entire switch is the interactive zone, but added to that is invisible area around the handle.**
 2. **Track The pill-shaped container that holds the handle. Color shifts between neutral (off) and brand (on) to reinforce the selected state.**
@@ -157,7 +157,7 @@ Anatomy
 
 
 
-How to use
+### How to use
 
 - **Do:** Use a switch for binary settings that take effect immediately — enabling notifications, toggling dark mode, activating a feature. The change should be instant and easily reversible.
 - **Don't:** Use a switch in place of a checkbox for form inputs that require submission. Switches are for immediate, persistent settings — not for selections confirmed by a submit action.
@@ -165,7 +165,7 @@ How to use
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 Touch target: The full component (track + handle) is the touch target. Do not restrict interaction to the handle alone in implementation.
 Focus visibility: Focus ring must be clearly visible with a minimum 3:1 contrast ratio against adjacent colors. Rendered around the track not the handle. (WCAG 2.4.11–2.4.12 AAA)

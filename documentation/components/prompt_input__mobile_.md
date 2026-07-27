@@ -3,16 +3,16 @@
 **Figma ID:** `4136:21543`
 **Source Page:** Prompt Input
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `state`: Enum ["Default", "active", "stop", "listening", "activeListening", "transcribing", "typing", "multiline", "landing"] (Default: `Default`)
 - `ShowKeyboard`: Enum ["False", "True"] (Default: `False`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `state=Default, ShowKeyboard=False`
+### Variant: `state=Default, ShowKeyboard=False`
 - **Node:** `state=Default, ShowKeyboard=False` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: MAX, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG
@@ -145,7 +145,7 @@ The LLM must expose these as props/parameters in the target language:
                         - **Node:** `99+` (TEXT)
                           - **Fill:** `var(--color/foreground/inverse)`
 
-#### Variant: `state=landing, ShowKeyboard=False`
+### Variant: `state=landing, ShowKeyboard=False`
 - **Node:** `state=landing, ShowKeyboard=False` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: MAX, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG
@@ -280,7 +280,7 @@ The LLM must expose these as props/parameters in the target language:
     - **Node:** `Companion is an AI system. Please verify all critical information with your supervisor` (TEXT)
       - **Fill:** `var(--color/foreground/disabled)`
 
-#### Variant: `state=active, ShowKeyboard=False`
+### Variant: `state=active, ShowKeyboard=False`
 - **Node:** `state=active, ShowKeyboard=False` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: MAX, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG

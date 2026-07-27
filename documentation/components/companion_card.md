@@ -3,17 +3,17 @@
 **Figma ID:** `3733:2973`
 **Source Page:** Card
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `Slot`: SLOT (Default: `[object Object]`)
 - `label`: TEXT (Default: `Title`)
 - `state`: Enum ["Default", "hover", "selected"] (Default: `Default`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `state=Default`
+### Variant: `state=Default`
 - **Node:** `state=Default` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG
@@ -47,7 +47,7 @@ The LLM must expose these as props/parameters in the target language:
       - **Fill:** `var(--color/status/info/subtle)`
       - *Children:*
 
-#### Variant: `state=hover`
+### Variant: `state=hover`
 - **Node:** `state=hover` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG
@@ -81,7 +81,7 @@ The LLM must expose these as props/parameters in the target language:
       - **Fill:** `var(--color/status/info/subtle)`
       - *Children:*
 
-#### Variant: `state=selected`
+### Variant: `state=selected`
 - **Node:** `state=selected` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG

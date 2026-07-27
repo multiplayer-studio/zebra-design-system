@@ -3,15 +3,15 @@
 **Figma ID:** `2866:224`
 **Source Page:** Acitivity Indicator
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `instance`: Enum ["1", "2", "3", "4"] (Default: `1`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `instance=1`
+### Variant: `instance=1`
 - **Node:** `instance=1` (COMPONENT)
   - *Children:*
     - **Node:** `Mask Group` (GROUP)
@@ -35,7 +35,7 @@ The LLM must expose these as props/parameters in the target language:
     - **Node:** `Mic` (VECTOR)
       - **Fill:** `var(--color/background/gradient/start)`
 
-#### Variant: `instance=2`
+### Variant: `instance=2`
 - **Node:** `instance=2` (COMPONENT)
   - *Children:*
     - **Node:** `Mask Group` (GROUP)
@@ -59,7 +59,7 @@ The LLM must expose these as props/parameters in the target language:
     - **Node:** `Mic` (VECTOR)
       - **Fill:** `var(--color/background/gradient/start)`
 
-#### Variant: `instance=3`
+### Variant: `instance=3`
 - **Node:** `instance=3` (COMPONENT)
   - *Children:*
     - **Node:** `Mask Group` (GROUP)

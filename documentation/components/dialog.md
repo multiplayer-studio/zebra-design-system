@@ -3,7 +3,7 @@
 **Figma ID:** `3560:544`
 **Source Page:** Dialog
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `body`: TEXT (Default: `Are you sure you want to delete this conversation?`)
@@ -12,10 +12,10 @@ The LLM must expose these as props/parameters in the target language:
 - `showTitle`: BOOLEAN (Default: `true`)
 - `purpose`: Enum ["information", "companion", "confirmation"] (Default: `information`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `purpose=information`
+### Variant: `purpose=information`
 - **Node:** `purpose=information` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: HUG, H: HUG
@@ -85,7 +85,7 @@ The LLM must expose these as props/parameters in the target language:
                             - **Node:** `Icon: false` (VECTOR)
                               - **Fill:** `var(--color/pure/white)`
 
-#### Variant: `purpose=confirmation`
+### Variant: `purpose=confirmation`
 - **Node:** `purpose=confirmation` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: HUG, H: HUG
@@ -199,7 +199,7 @@ The LLM must expose these as props/parameters in the target language:
                             - **Node:** `Icon: false` (VECTOR)
                               - **Fill:** `var(--color/pure/white)`
 
-#### Variant: `purpose=companion`
+### Variant: `purpose=companion`
 - **Node:** `purpose=companion` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: HUG, H: HUG
@@ -316,14 +316,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Dialog The Dialog is a modal surface used to communicate important information or prompt a user decision that requires acknowledgement before continuing. It renders centered over a Scrim that blocks all background interaction. Three purpose variants cover distinct use cases: information, for non-blocking updates; confirmation, for decisions requiring an explicit response; and companion, for AI-driven prompts and contextual choices within the Companion interface.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -337,7 +337,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -349,7 +349,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -360,7 +360,7 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Dialog surface The elevated container with background fill, corner radius, and drop shadow. Renders centered in the viewport above the Scrim.**
 2. **Header Contains the dialog title and optional dismiss button. Anchored to the top of the surface.**
@@ -371,7 +371,7 @@ Anatomy
 
 
 
-How to use
+### How to use
 
 - **Do:** Use concise, noun-based labels for filter and choice chips. The label should describe the attribute or category being toggled. Examples: "Priority", "Unread", "In stock".
 - **Don't:** Don't use a chip as the primary or sole action on a screen. When a single action needs prominence, use Button instead. Chips are suited to grouped, repeated, or selection-based interactions.
@@ -379,7 +379,7 @@ How to use
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 ARIA: The dialog uses role="dialog". Reference the heading with aria-labelledby and the body copy with aria-describedby where applicable. Set aria-modal="true" to signal that background content is inert.
 Focus trap: While the dialog is open, keyboard focus must remain inside it. Tab and Shift+Tab must cycle only through focusable elements within the dialog. Focus must not reach background content.

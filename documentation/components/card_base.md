@@ -3,7 +3,7 @@
 **Figma ID:** `3676:41`
 **Source Page:** Card
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `Slot`: SLOT (Default: `[object Object]`)
@@ -11,10 +11,10 @@ The LLM must expose these as props/parameters in the target language:
 - `padded`: Enum ["true", "false"] (Default: `true`)
 - `state`: Enum ["Default", "hover", "selected"] (Default: `Default`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `type=filled, padded=true, state=Default`
+### Variant: `type=filled, padded=true, state=Default`
 - **Node:** `type=filled, padded=true, state=Default` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG
@@ -29,7 +29,7 @@ The LLM must expose these as props/parameters in the target language:
       - **Gap:** var(--spacing/none)
       - *Children:*
 
-#### Variant: `type=outline, padded=true, state=Default`
+### Variant: `type=outline, padded=true, state=Default`
 - **Node:** `type=outline, padded=true, state=Default` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG
@@ -44,7 +44,7 @@ The LLM must expose these as props/parameters in the target language:
       - **Gap:** var(--spacing/none)
       - *Children:*
 
-#### Variant: `type=filled, padded=false, state=Default`
+### Variant: `type=filled, padded=false, state=Default`
 - **Node:** `type=filled, padded=false, state=Default` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG

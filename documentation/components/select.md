@@ -3,7 +3,7 @@
 **Figma ID:** `2862:446`
 **Source Page:** Select
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `label`: BOOLEAN (Default: `true`)
@@ -13,10 +13,10 @@ The LLM must expose these as props/parameters in the target language:
 - `errorText`: TEXT (Default: `Error message`)
 - `error`: Enum ["false", "true"] (Default: `false`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `error=false`
+### Variant: `error=false`
 - **Node:** `error=false` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG
@@ -80,7 +80,7 @@ The LLM must expose these as props/parameters in the target language:
             - **Node:** `Helper text` (TEXT)
               - **Fill:** `var(--color/foreground/secondary)`
 
-#### Variant: `error=true`
+### Variant: `error=true`
 - **Node:** `error=true` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG

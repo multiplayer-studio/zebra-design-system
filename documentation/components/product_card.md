@@ -3,15 +3,15 @@
 **Figma ID:** `3670:459`
 **Source Page:** Card
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `state`: Enum ["default", "loading"] (Default: `default`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `state=default`
+### Variant: `state=default`
 - **Node:** `state=default` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG
@@ -54,7 +54,7 @@ The LLM must expose these as props/parameters in the target language:
         - **Node:** `Cost` (TEXT)
           - **Fill:** `var(--color/foreground/primary)`
 
-#### Variant: `state=loading`
+### Variant: `state=loading`
 - **Node:** `state=loading` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: undefined, Align: undefined)
   - **Sizing:** W: FIXED, H: HUG
@@ -132,14 +132,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Product card Product Card is a predefined content configuration for the Card component, not a standalone component. It provides a ready to use layout for surfacing product information, combining a media element, product title, supporting description, and pricing in a consistent structure.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -153,7 +153,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -165,7 +165,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -175,7 +175,7 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Card surface The Card Base container hosting the Product Card content configuration.**
 2. **Product media The product image rendered via an embedded Media component at the top of the card.**
@@ -186,7 +186,7 @@ Anatomy
 
 
 
-How to use
+### How to use
 
 - **Do:** Use concise, noun-based labels for filter and choice chips. The label should describe the attribute or category being toggled. Examples: "Priority", "Unread", "In stock".
 - **Don't:** Don't use a chip as the primary or sole action on a screen. When a single action needs prominence, use Button instead. Chips are suited to grouped, repeated, or selection-based interactions.
@@ -194,7 +194,7 @@ How to use
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 Product Card inherits interactive card semantics from Card Base. 
 The full card surface is the tap target; apply role="button" or role="link" depending on the navigation pattern. 

@@ -3,16 +3,16 @@
 **Figma ID:** `3644:14`
 **Source Page:** Drawer
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `Slot Content`: SLOT (Default: `[object Object]`)
 - `type`: Enum ["sideDrawer", "bottomSheet"] (Default: `sideDrawer`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `type=sideDrawer`
+### Variant: `type=sideDrawer`
 - **Node:** `type=sideDrawer` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: undefined, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
@@ -45,7 +45,7 @@ The LLM must expose these as props/parameters in the target language:
             - **Node:** `Bar` (RECTANGLE)
               - **Fill:** `var(--color/border/bold)`
 
-#### Variant: `type=bottomSheet`
+### Variant: `type=bottomSheet`
 - **Node:** `type=bottomSheet` (COMPONENT)
   - **Layout:** Flex HORIZONTAL (Justify: CENTER, Align: MAX)
   - **Sizing:** W: FIXED, H: FIXED
@@ -81,14 +81,14 @@ The LLM must expose these as props/parameters in the target language:
 
 ---
 
-### Design Metadata & Intent
+## Design Metadata & Intent
 *The following rules and descriptions were extracted directly from the Figma design system specifications.*
 
 COMPONENT METADATA
 
 Drawer The Drawer is a panel overlay component that enters the screen from a directional edge to present supplementary content, navigation, or contextual actions. The type property determines whether the panel slides in from the left as a side drawer or rises from the bottom as a bottom sheet. Both variants include a Scrim to block background interaction, a draggable Handle for dismiss affordance, and an open content slot that accepts any component or layout.
 
-Property breakdown
+### Property breakdown
 
 
 | PROPERTY | TYPE | DEFAULT | DESCRIPTION |
@@ -102,7 +102,7 @@ Property breakdown
 
 
 
-Behavior
+### Behavior
 
 
 | TYPE | DESCRIPTION |
@@ -114,7 +114,7 @@ Behavior
 
 
 
-Content & Slot
+### Content & Slot
 
 
 | PROPERTY | TYPE | DESCRIPTION |
@@ -125,7 +125,7 @@ Content & Slot
 
 
 
-Anatomy
+### Anatomy
 
 1. **Scrim The full-screen overlay rendered behind the drawer panel. Dims the background and blocks all interaction with the content below.**
 2. **Drawer panel The surface container that slides into view. Hosts the handle and the open content slot.**
@@ -134,7 +134,7 @@ Anatomy
 
 
 
-How to use
+### How to use
 
 - **Do:** Use concise, noun-based labels for filter and choice chips. The label should describe the attribute or category being toggled. Examples: "Priority", "Unread", "In stock".
 - **Don't:** Don't use a chip as the primary or sole action on a screen. When a single action needs prominence, use Button instead. Chips are suited to grouped, repeated, or selection-based interactions.
@@ -142,7 +142,7 @@ How to use
 
 
 
-Accessibility and content guidelines
+### Accessibility and content guidelines
 
 The drawer container should use role="dialog" with aria-modal="true" to communicate that it is a modal overlay. 
 When the drawer opens, focus must move into the panel. 

@@ -3,15 +3,15 @@
 **Figma ID:** `3945:842`
 **Source Page:** List Item
 
-### Properties (Variants)
+## Properties (Variants)
 The LLM must expose these as props/parameters in the target language:
 
 - `type`: Enum ["default", "fill"] (Default: `default`)
 
-### 🏗️ Visual Blueprint (Strict AST)
+## 🏗️ Visual Blueprint (Strict AST)
 *The LLM MUST strictly adhere to the following DOM structure and CSS properties. Map all token names to the target framework.*
 
-#### Variant: `type=default`
+### Variant: `type=default`
 - **Node:** `type=default` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
@@ -31,7 +31,7 @@ The LLM must expose these as props/parameters in the target language:
                 - **Node:** `Icon: false` (VECTOR)
                   - **Fill:** `var(--color/foreground/secondary)`
 
-#### Variant: `type=fill`
+### Variant: `type=fill`
 - **Node:** `type=fill` (COMPONENT)
   - **Layout:** Flex VERTICAL (Justify: CENTER, Align: CENTER)
   - **Sizing:** W: FIXED, H: FIXED
