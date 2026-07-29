@@ -397,62 +397,62 @@ The UI must evoke confidence, focus, and clarity. It should feel completely fric
 
 *Theme-agnostic semantic color variables. Automatically injected from Figma.*
 
-- **Background:**
-  - **Brand (`color.background.brand`)**
-  - **Brand Hover (`color.background.brand-hover`)**
-  - **Brand Pressed (`color.background.brand-pressed`)**
-  - **Disabled (`color.background.disabled`)**
+- **Background:** slap me mad man
+  - **Brand (`color.background.brand`):**
+  - **Brand Hover (`color.background.brand-hover`):**
+  - **Brand Pressed (`color.background.brand-pressed`):**
+  - **Disabled (`color.background.disabled`):**
   - **Gradient:**
-    - **End (`color.background.gradient.end`)**
-    - **Start (`color.background.gradient.start`)**
-  - **Hover (`color.background.hover`)**
-  - **Inverse (`color.background.inverse`)**
-  - **Overlay (`color.background.overlay`)**
-  - **Primary (`color.background.primary`)**
-  - **Scrim Cool 100 (`color.background.scrim-cool-100`)**
-  - **Secondary (`color.background.secondary`)**
-  - **Subtle (`color.background.subtle`)**
+    - **End (`color.background.gradient.end`):**
+    - **Start (`color.background.gradient.start`):**
+  - **Hover (`color.background.hover`):**
+  - **Inverse (`color.background.inverse`):**
+  - **Overlay (`color.background.overlay`):**
+  - **Primary (`color.background.primary`):**
+  - **Scrim Cool 100 (`color.background.scrim-cool-100`):**
+  - **Secondary (`color.background.secondary`):**
+  - **Subtle (`color.background.subtle`):**
 - **Border:**
-  - **Bold (`color.border.bold`)**
-  - **Brand (`color.border.brand`)**
+  - **Bold (`color.border.bold`):**
+  - **Brand (`color.border.brand`):**
   - **Gradient:**
-    - **End (`color.border.gradient.end`)**
-    - **Start (`color.border.gradient.start`)**
-  - **Primary (`color.border.primary`)**
-  - **Subtle (`color.border.subtle`)**
+    - **End (`color.border.gradient.end`):**
+    - **Start (`color.border.gradient.start`):**
+  - **Primary (`color.border.primary`):**
+  - **Subtle (`color.border.subtle`):**
 - **Foreground:**
-  - **Brand (`color.foreground.brand`)**
-  - **Disabled (`color.foreground.disabled`)**
+  - **Brand (`color.foreground.brand`):**
+  - **Disabled (`color.foreground.disabled`):**
   - **Gradient:**
-    - **End (`color.foreground.gradient.end`)**
-    - **Start (`color.foreground.gradient.start`)**
-  - **Info (`color.foreground.info`)**
-  - **Inverse (`color.foreground.inverse`)**
-  - **Negative (`color.foreground.negative`)**
-  - **Positive (`color.foreground.positive`)**
-  - **Primary (`color.foreground.primary`)**
-  - **Secondary (`color.foreground.secondary`)**
-  - **Warning (`color.foreground.warning`)**
+    - **End (`color.foreground.gradient.end`):**
+    - **Start (`color.foreground.gradient.start`):**
+  - **Info (`color.foreground.info`):**
+  - **Inverse (`color.foreground.inverse`):**
+  - **Negative (`color.foreground.negative`):**
+  - **Positive (`color.foreground.positive`):**
+  - **Primary (`color.foreground.primary`):**
+  - **Secondary (`color.foreground.secondary`):**
+  - **Warning (`color.foreground.warning`):**
 - **Status:**
   - **Default:**
-    - **Bold (`color.status.default.bold`)**
-    - **Subtle (`color.status.default.subtle`)**
+    - **Bold (`color.status.default.bold`):**
+    - **Subtle (`color.status.default.subtle`):**
   - **Info:**
-    - **Bold (`color.status.info.bold`)**
-    - **Subtle (`color.status.info.subtle`)**
+    - **Bold (`color.status.info.bold`):**
+    - **Subtle (`color.status.info.subtle`):**
   - **Negative:**
-    - **Bold (`color.status.negative.bold`)**
-    - **Subtle (`color.status.negative.subtle`)**
+    - **Bold (`color.status.negative.bold`):**
+    - **Subtle (`color.status.negative.subtle`):**
   - **Positive:**
-    - **Bold (`color.status.positive.bold`)**
-    - **Subtle (`color.status.positive.subtle`)**
+    - **Bold (`color.status.positive.bold`):**
+    - **Subtle (`color.status.positive.subtle`):**
   - **Warning:**
-    - **Bold (`color.status.warning.bold`)**
-    - **Subtle (`color.status.warning.subtle`)**
+    - **Bold (`color.status.warning.bold`):**
+    - **Subtle (`color.status.warning.subtle`):**
 - **Surface:**
-  - **Inverse (`color.surface.inverse`)**
-  - **Primary (`color.surface.primary`)**
-  - **Subtle (`color.surface.subtle`)**
+  - **Inverse (`color.surface.inverse`):**
+  - **Primary (`color.surface.primary`):**
+  - **Subtle (`color.surface.subtle`):**
 
 ## Typography
 
@@ -460,114 +460,114 @@ The UI must evoke confidence, focus, and clarity. It should feel completely fric
 
 - **Body:**
   - **Large:**
-    - **Font Family (`type.body.large.font-family`)**
-    - **Font Size (`type.body.large.font-size`)**
-    - **Font Weight (`type.body.large.font-weight`)**
-    - **Line Height (`type.body.large.line-height`)**
+    - **Font Family (`type.body.large.font-family`):**
+    - **Font Size (`type.body.large.font-size`):**
+    - **Font Weight (`type.body.large.font-weight`):**
+    - **Line Height (`type.body.large.line-height`):**
   - **Medium:**
-    - **Font Family (`type.body.medium.font-family`)**
-    - **Font Size (`type.body.medium.font-size`)**
-    - **Font Weight (`type.body.medium.font-weight`)**
-    - **Line Height (`type.body.medium.line-height`)**
+    - **Font Family (`type.body.medium.font-family`):**
+    - **Font Size (`type.body.medium.font-size`):**
+    - **Font Weight (`type.body.medium.font-weight`):**
+    - **Line Height (`type.body.medium.line-height`):**
   - **Small:**
-    - **Font Family (`type.body.small.font-family`)**
-    - **Font Size (`type.body.small.font-size`)**
-    - **Font Weight (`type.body.small.font-weight`)**
-    - **Line Height (`type.body.small.line-height`)**
+    - **Font Family (`type.body.small.font-family`):**
+    - **Font Size (`type.body.small.font-size`):**
+    - **Font Weight (`type.body.small.font-weight`):**
+    - **Line Height (`type.body.small.line-height`):**
   - **X Small:**
-    - **Font Family (`type.body.x-small.font-family`)**
-    - **Font Size (`type.body.x-small.font-size`)**
-    - **Font Weight (`type.body.x-small.font-weight`)**
-    - **Line Height (`type.body.x-small.line-height`)**
+    - **Font Family (`type.body.x-small.font-family`):**
+    - **Font Size (`type.body.x-small.font-size`):**
+    - **Font Weight (`type.body.x-small.font-weight`):**
+    - **Line Height (`type.body.x-small.line-height`):**
 - **Display:**
   - **Large:**
-    - **Font Family (`type.display.large.font-family`)**
-    - **Font Size (`type.display.large.font-size`)**
-    - **Font Weight (`type.display.large.font-weight`)**
-    - **Line Height (`type.display.large.line-height`)**
+    - **Font Family (`type.display.large.font-family`):**
+    - **Font Size (`type.display.large.font-size`):**
+    - **Font Weight (`type.display.large.font-weight`):**
+    - **Line Height (`type.display.large.line-height`):**
   - **Small:**
-    - **Font Family (`type.display.small.font-family`)**
-    - **Font Size (`type.display.small.font-size`)**
-    - **Font Weight (`type.display.small.font-weight`)**
-    - **Line Height (`type.display.small.line-height`)**
+    - **Font Family (`type.display.small.font-family`):**
+    - **Font Size (`type.display.small.font-size`):**
+    - **Font Weight (`type.display.small.font-weight`):**
+    - **Line Height (`type.display.small.line-height`):**
 - **Heading:**
   - **Large:**
-    - **Font Family (`type.heading.large.font-family`)**
-    - **Font Size (`type.heading.large.font-size`)**
-    - **Font Weight (`type.heading.large.font-weight`)**
-    - **Line Height (`type.heading.large.line-height`)**
+    - **Font Family (`type.heading.large.font-family`):**
+    - **Font Size (`type.heading.large.font-size`):**
+    - **Font Weight (`type.heading.large.font-weight`):**
+    - **Line Height (`type.heading.large.line-height`):**
   - **Medium:**
-    - **Font Family (`type.heading.medium.font-family`)**
-    - **Font Size (`type.heading.medium.font-size`)**
-    - **Font Weight (`type.heading.medium.font-weight`)**
-    - **Line Height (`type.heading.medium.line-height`)**
+    - **Font Family (`type.heading.medium.font-family`):**
+    - **Font Size (`type.heading.medium.font-size`):**
+    - **Font Weight (`type.heading.medium.font-weight`):**
+    - **Line Height (`type.heading.medium.line-height`):**
   - **Small:**
-    - **Font Family (`type.heading.small.font-family`)**
-    - **Font Size (`type.heading.small.font-size`)**
-    - **Font Weight (`type.heading.small.font-weight`)**
-    - **Line Height (`type.heading.small.line-height`)**
+    - **Font Family (`type.heading.small.font-family`):**
+    - **Font Size (`type.heading.small.font-size`):**
+    - **Font Weight (`type.heading.small.font-weight`):**
+    - **Line Height (`type.heading.small.line-height`):**
 - **Label:**
   - **Indicator:**
-    - **Font Family (`type.label.indicator.font-family`)**
-    - **Font Size (`type.label.indicator.font-size`)**
-    - **Font Weight (`type.label.indicator.font-weight`)**
-    - **Line Height (`type.label.indicator.line-height`)**
+    - **Font Family (`type.label.indicator.font-family`):**
+    - **Font Size (`type.label.indicator.font-size`):**
+    - **Font Weight (`type.label.indicator.font-weight`):**
+    - **Line Height (`type.label.indicator.line-height`):**
   - **Large:**
-    - **Font Family (`type.label.large.font-family`)**
-    - **Font Size (`type.label.large.font-size`)**
-    - **Font Weight (`type.label.large.font-weight`)**
-    - **Line Height (`type.label.large.line-height`)**
+    - **Font Family (`type.label.large.font-family`):**
+    - **Font Size (`type.label.large.font-size`):**
+    - **Font Weight (`type.label.large.font-weight`):**
+    - **Line Height (`type.label.large.line-height`):**
   - **Medium:**
-    - **Font Family (`type.label.medium.font-family`)**
-    - **Font Size (`type.label.medium.font-size`)**
-    - **Font Weight (`type.label.medium.font-weight`)**
-    - **Line Height (`type.label.medium.line-height`)**
+    - **Font Family (`type.label.medium.font-family`):**
+    - **Font Size (`type.label.medium.font-size`):**
+    - **Font Weight (`type.label.medium.font-weight`):**
+    - **Line Height (`type.label.medium.line-height`):**
   - **Small:**
-    - **Font Family (`type.label.small.font-family`)**
-    - **Font Size (`type.label.small.font-size`)**
-    - **Font Weight (`type.label.small.font-weight`)**
-    - **Line Height (`type.label.small.line-height`)**
+    - **Font Family (`type.label.small.font-family`):**
+    - **Font Size (`type.label.small.font-size`):**
+    - **Font Weight (`type.label.small.font-weight`):**
+    - **Line Height (`type.label.small.line-height`):**
 - **Title:**
   - **Large:**
-    - **Font Family (`type.title.large.font-family`)**
-    - **Font Size (`type.title.large.font-size`)**
-    - **Font Weight (`type.title.large.font-weight`)**
-    - **Line Height (`type.title.large.line-height`)**
+    - **Font Family (`type.title.large.font-family`):**
+    - **Font Size (`type.title.large.font-size`):**
+    - **Font Weight (`type.title.large.font-weight`):**
+    - **Line Height (`type.title.large.line-height`):**
   - **Medium:**
-    - **Font Family (`type.title.medium.font-family`)**
-    - **Font Size (`type.title.medium.font-size`)**
-    - **Font Weight (`type.title.medium.font-weight`)**
-    - **Line Height (`type.title.medium.line-height`)**
+    - **Font Family (`type.title.medium.font-family`):**
+    - **Font Size (`type.title.medium.font-size`):**
+    - **Font Weight (`type.title.medium.font-weight`):**
+    - **Line Height (`type.title.medium.line-height`):**
   - **Small:**
-    - **Font Family (`type.title.small.font-family`)**
-    - **Font Size (`type.title.small.font-size`)**
-    - **Font Weight (`type.title.small.font-weight`)**
-    - **Line Height (`type.title.small.line-height`)**
+    - **Font Family (`type.title.small.font-family`):**
+    - **Font Size (`type.title.small.font-size`):**
+    - **Font Weight (`type.title.small.font-weight`):**
+    - **Line Height (`type.title.small.line-height`):**
 
 ## Layout & Spacing
 
 *Structural sizing and spacing variables. Automatically injected from Figma.*
 
-- **Target (`size.target`)**
-- **10xl (`spacing.10xl`)**
-- **2xl (`spacing.2xl`)**
-- **3xl (`spacing.3xl`)**
-- **4xl (`spacing.4xl`)**
-- **5xl (`spacing.5xl`)**
-- **6xl (`spacing.6xl`)**
-- **7xl (`spacing.7xl`)**
-- **8xl (`spacing.8xl`)**
-- **9xl (`spacing.9xl`)**
-- **Large (`spacing.large`)**
-- **Medium (`spacing.medium`)**
-- **Minimum (`spacing.minimum`)**
+- **Target (`size.target`):**
+- **10xl (`spacing.10xl`):**
+- **2xl (`spacing.2xl`):**
+- **3xl (`spacing.3xl`):**
+- **4xl (`spacing.4xl`):**
+- **5xl (`spacing.5xl`):**
+- **6xl (`spacing.6xl`):**
+- **7xl (`spacing.7xl`):**
+- **8xl (`spacing.8xl`):**
+- **9xl (`spacing.9xl`):**
+- **Large (`spacing.large`):**
+- **Medium (`spacing.medium`):**
+- **Minimum (`spacing.minimum`):**
 - **Negative:**
-  - **Lg (`spacing.negative.lg`)**
-  - **Md (`spacing.negative.md`)**
-  - **Sm (`spacing.negative.sm`)**
-- **None (`spacing.none`)**
-- **Small (`spacing.small`)**
-- **Xl (`spacing.xl`)**
+  - **Lg (`spacing.negative.lg`):**
+  - **Md (`spacing.negative.md`):**
+  - **Sm (`spacing.negative.sm`):**
+- **None (`spacing.none`):**
+- **Small (`spacing.small`):**
+- **Xl (`spacing.xl`):**
 
 ## Elevation & Depth
 
@@ -577,15 +577,15 @@ The UI must evoke confidence, focus, and clarity. It should feel completely fric
 
 *Corner radii variables mapped to their structural semantics. Automatically injected from Figma.*
 
-- **2xl (`radius.2xl`)**
-- **3xl (`radius.3xl`)**
-- **Full (`radius.full`)**
-- **Large (`radius.large`)**
-- **Medium (`radius.medium`)**
-- **Minimum (`radius.minimum`)**
-- **None (`radius.none`)**
-- **Small (`radius.small`)**
-- **Xl (`radius.xl`)**
+- **2xl (`radius.2xl`):**
+- **3xl (`radius.3xl`):**
+- **Full (`radius.full`):**
+- **Large (`radius.large`):**
+- **Medium (`radius.medium`):**
+- **Minimum (`radius.minimum`):**
+- **None (`radius.none`):**
+- **Small (`radius.small`):**
+- **Xl (`radius.xl`):**
 
 ## Components
 
