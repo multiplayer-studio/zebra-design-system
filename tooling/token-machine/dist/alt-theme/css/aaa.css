@@ -1,0 +1,23 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --color-background: #000000;
+  --color-text: #ffffff;
+  --color-primary: #d8b4fe;
+  --spacing-xs: 2px;
+  --spacing-sm: 4px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --radius-none: 0px;
+  --radius-minimal: 0px;
+  --radius-rounded: 0px;
+  --radius-large: 0px;
+  --radius-xl: 0px;
+  --radius-full: 0px;
+  --font-body-family: Georgia, serif;
+  --font-body-size: 16px;
+  --font-heading-family: Georgia, serif;
+  --font-heading-size: 20px;
+}
