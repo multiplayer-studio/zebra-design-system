@@ -1,0 +1,30 @@
+{
+  "name": "@zebra-design-system-tokens/tokens",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "./dist/default/js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./alt-theme": {
+      "import": "./dist/alt-theme/js/index.js",
+      "require": "./dist/alt-theme/js/index.js",
+      "types": "./dist/alt-theme/js/index.d.ts",
+      "default": "./dist/alt-theme/js/index.js"
+    },
+    ".": {
+      "import": "./dist/default/js/index.js",
+      "require": "./dist/default/js/index.js",
+      "types": "./dist/default/js/index.d.ts",
+      "default": "./dist/default/js/index.js"
+    },
+    "./css/*": "./dist/*/css/*"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "token-machine",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsx build-platform-tokens.ts"
+  },
+  "devDependencies": {
+    "style-dictionary": "^5.5.0",
+    "tsx": "^4.23.5",
+    "typescript": "^7.0.2"
+  }
+}
