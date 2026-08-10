@@ -2,7 +2,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 // --- Types & Interfaces ---
-
 interface FigmaColor {
   r: number;
   g: number;
@@ -43,7 +42,6 @@ interface FigmaVariablesResponse {
 }
 
 // --- Configuration ---
-
 const FIGMA_FILE_KEY = process.env.FIGMA_FILE_KEY;
 const FIGMA_TOKEN = process.env.FIGMA_PERSONAL_ACCESS_TOKEN;
 const TOKENS_DIR = path.join(process.cwd(), 'tokens');
@@ -54,7 +52,6 @@ if (!FIGMA_FILE_KEY || !FIGMA_TOKEN) {
 }
 
 // --- Type Guards ---
-
 function isAlias(value: any): value is FigmaVariableAlias {
   return typeof value === 'object' && value !== null && value.type === 'VARIABLE_ALIAS';
 }
@@ -64,11 +61,10 @@ function isColor(value: any): value is FigmaColor {
 }
 
 // --- Utility Functions ---
-
 function mapFigmaTypeToW3C(figmaType: FigmaVariable['resolvedType']): string {
   const typeMap: Record<FigmaVariable['resolvedType'], string> = {
     'COLOR': 'color',
-    'FLOAT': 'number', // Can be 'dimension' based on context, defaulting to number
+    'FLOAT': 'number',
     'STRING': 'string',
     'BOOLEAN': 'boolean'
   };
@@ -79,6 +75,7 @@ function parseFigmaColor(color: FigmaColor): string {
   const r = Math.round(color.r * 255);
   const g = Math.round(color.g * 255);
   const b = Math.round(color.b * 255);
+
   if (color.a === 1) {
     return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
   }
@@ -106,7 +103,6 @@ function resolveValue(value: FigmaVariableValue, figmaType: FigmaVariable['resol
   if (isAlias(value)) {
     const aliasedVar = varMap[value.id];
     if (!aliasedVar) return value.id; 
-    // Format as W3C Alias: {color.primitives.white}
     return `{${aliasedVar.name.replace(/\//g, '.')}}`;
   }
 
@@ -114,7 +110,6 @@ function resolveValue(value: FigmaVariableValue, figmaType: FigmaVariable['resol
     return parseFigmaColor(value);
   }
   
-  // Return primitive types directly (string, number, boolean)
   return value as string | number | boolean;
 }
 
@@ -122,7 +117,6 @@ function hoistTypes(obj: any): any {
   if (typeof obj !== 'object' || obj === null || obj.$value !== undefined) {
     return obj;
   }
-  console.log("obj before hoist: ", obj)
 
   const keys = Object.keys(obj);
   let sharedType: string | null = null;
@@ -131,9 +125,7 @@ function hoistTypes(obj: any): any {
   for (const key of keys) {
     if (key === '$type') continue;
     
-    // Recursively hoist children first
     hoistTypes(obj[key]);
-
     const childType = obj[key].$type;
     
     if (!childType) {
@@ -147,15 +139,12 @@ function hoistTypes(obj: any): any {
 
   if (allShareType && sharedType !== null && keys.length > 0) {
     obj.$type = sharedType;
-    // Remove $type from children now that it is hoisted
     for (const key of keys) {
       if (obj[key] && obj[key].$type) {
         delete obj[key].$type;
       }
     }
   }
-  
-  console.log("obj after hoist: ", obj)
   
   return obj;
 }
@@ -172,7 +161,6 @@ function writeJSON(filePath: string, data: Record<string, any>): void {
 }
 
 // --- Main Execution ---
-
 async function fetchAndParseTokens(): Promise<void> {
   console.log(`Fetching variables from Figma file: ${FIGMA_FILE_KEY}...`);
 
@@ -193,13 +181,20 @@ async function fetchAndParseTokens(): Promise<void> {
       return acc;
     }, {} as Record<string, FigmaVariable>);
 
+    console.log(variables);
+
     const collections = Object.values(variableCollections);
+
+    //console.log(collections);
+    
     const primitivesCol = collections.find(c => c.name === 'primitives');
     const semanticsCol = collections.find(c => c.name === 'semantics');
     const paletteCol = collections.find(c => c.name === 'palette');
-    const extensions = collections.filter(c => !['primitives', 'semantics', 'palette'].includes(c.name));
+    const extensions = collections.filter(c => c.isExtension === true);
 
-    // 1. Process Primitives
+    console.log(extensions[0]);
+
+    // 1. Process Global Primitives
     if (primitivesCol) {
       const tokens: Record<string, any> = {};
       const modeId = primitivesCol.modes[0].modeId; 
@@ -213,7 +208,7 @@ async function fetchAndParseTokens(): Promise<void> {
       writeJSON(path.join(TOKENS_DIR, 'primitives.json'), tokens);
     }
 
-    // 2. Process Semantics
+    // 2. Process Global Semantics
     if (semanticsCol) {
       const tokens: Record<string, any> = {};
       const modeId = semanticsCol.modes[0].modeId; 
@@ -244,21 +239,19 @@ async function fetchAndParseTokens(): Promise<void> {
 
     // 4. Process Extensions (Alt Themes)
     extensions.forEach(extCol => {
-      // Safety check to ensure Figma provided the overrides object
       const overrides = extCol.variableOverrides || {};
+      const firstModeId = extCol.modes[0]?.modeId; // Used to prevent duplicate primitive/semantic writes
+
+      const themePrimitives: Record<string, any> = {};
+      const themeSemantics: Record<string, any> = {};
 
       extCol.modes.forEach(mode => {
-        const tokens: Record<string, any> = {};
+        const themePalette: Record<string, any> = {};
         
-        // In the REST API, extended modes store their values in `variableOverrides` 
-        // on the collection object itself, mapped by the base Variable ID.
         Object.entries(overrides).forEach(([variableId, modeValues]) => {
-          
-          // Check if this specific variable has an override for the current mode
           if (mode.modeId in modeValues) {
             const rawValue = modeValues[mode.modeId];
             
-            // We need to look up the original variable to get its name and type
             const baseVar = varMap[variableId];
             if (!baseVar) return;
 
@@ -266,22 +259,40 @@ async function fetchAndParseTokens(): Promise<void> {
             const resolvedVal = resolveValue(rawValue, baseVar.resolvedType, varMap);
             
             if (resolvedVal !== undefined) {
-              setNestedToken(tokens, baseVar.name, resolvedVal, w3cType);
+              // Route overrides to the correct scope based on the original variable's source collection
+              if (primitivesCol && baseVar.variableCollectionId === primitivesCol.id) {
+                if (mode.modeId === firstModeId) {
+                  setNestedToken(themePrimitives, baseVar.name, resolvedVal, w3cType);
+                }
+              } else if (semanticsCol && baseVar.variableCollectionId === semanticsCol.id) {
+                if (mode.modeId === firstModeId) {
+                  setNestedToken(themeSemantics, baseVar.name, resolvedVal, w3cType);
+                }
+              } else {
+                // Palette overrides or unrelated collections go into the mode file
+                setNestedToken(themePalette, baseVar.name, resolvedVal, w3cType);
+              }
             }
           }
         });
 
-        if (Object.keys(tokens).length > 0) {
-          writeJSON(path.join(TOKENS_DIR, extCol.name, `${mode.name}.json`), tokens);
+        if (Object.keys(themePalette).length > 0) {
+          writeJSON(path.join(TOKENS_DIR, extCol.name, `${mode.name}.json`), themePalette);
         } else {
-          console.log(`⚠️ Skipped ${extCol.name}/${mode.name}.json (No overrides defined for this mode)`);
+          console.log(`⚠️ Skipped ${extCol.name}/${mode.name}.json (No palette overrides defined for this mode)`);
         }
       });
+
+      // ✅ CASCADING APPROACH: Only write theme-scoped primitives and semantics if overrides actually exist
+      if (Object.keys(themePrimitives).length > 0) {
+        writeJSON(path.join(TOKENS_DIR, extCol.name, 'primitives.json'), themePrimitives);
+      }
+      if (Object.keys(themeSemantics).length > 0) {
+        writeJSON(path.join(TOKENS_DIR, extCol.name, 'semantics.json'), themeSemantics);
+      }
     });
 
-
     console.log("🚀 Token extraction complete!");
-
   } catch (error) {
     console.error("❌ Failed to fetch tokens:", error);
   }

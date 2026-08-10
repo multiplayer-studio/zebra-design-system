@@ -1,0 +1,962 @@
+{
+  "semantics": {
+    "surface": {
+      "page": {
+        "$type": "color",
+        "$value": "{palette.fill.canvas}",
+        "$description": "Base page/app background."
+      },
+      "section": {
+        "$type": "color",
+        "$value": "{palette.fill.default}",
+        "$description": "Background for content sections sitting on the page."
+      },
+      "card": {
+        "$type": "color",
+        "$value": "{palette.fill.elevated}",
+        "$description": "Background for elevated card components."
+      },
+      "dialog": {
+        "$type": "color",
+        "$value": "{palette.fill.overlay}",
+        "$description": "Background for modal dialogs."
+      },
+      "sheet": {
+        "$type": "color",
+        "$value": "{palette.fill.overlay}",
+        "$description": "Background for sheet/drawer panels."
+      },
+      "popover": {
+        "$type": "color",
+        "$value": "{palette.fill.overlay}",
+        "$description": "Background for popover components."
+      },
+      "menu": {
+        "$type": "color",
+        "$value": "{palette.fill.overlay}",
+        "$description": "Background for menu/dropdown components."
+      },
+      "tooltip": {
+        "$type": "color",
+        "$value": "{palette.fill.inverse}",
+        "$description": "Background for tooltips (inverse-toned)."
+      },
+      "brand": {
+        "$type": "color",
+        "$value": "{palette.brand.subtle}",
+        "$description": "Brand-tinted surface background."
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{palette.fill.inverse}",
+        "$description": "Inverse (dark-in-light-theme) surface background."
+      },
+      "success": {
+        "$type": "color",
+        "$value": "{palette.status.success.subtler}",
+        "$description": "Success-tinted surface background."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{palette.status.warning.subtler}",
+        "$description": "Warning-tinted surface background."
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{palette.status.error.subtler}",
+        "$description": "Error-tinted surface background."
+      },
+      "info": {
+        "$type": "color",
+        "$value": "{palette.status.info.subtler}",
+        "$description": "Info-tinted surface background."
+      }
+    },
+    "foreground": {
+      "primary": {
+        "$type": "color",
+        "$value": "{palette.ink.high}",
+        "$description": "Highest-emphasis text/icon color."
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{palette.ink.medium}",
+        "$description": "Medium-emphasis text/icon color."
+      },
+      "tertiary": {
+        "$type": "color",
+        "$value": "{palette.ink.low}",
+        "$description": "Low-emphasis text/icon color."
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{palette.ink.disabled}",
+        "$description": "Text/icon color for disabled elements."
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{palette.ink.inverse}",
+        "$description": "Text/icon color for use on inverse/dark surfaces."
+      },
+      "link": {
+        "$type": "color",
+        "$value": "{palette.ink.link}",
+        "$description": "Hyperlink text color."
+      },
+      "success": {
+        "$type": "color",
+        "$value": "{palette.status.success.default}",
+        "$description": "Text/icon color conveying success."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{palette.status.warning.default}",
+        "$description": "Text/icon color conveying warning."
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{palette.status.error.default}",
+        "$description": "Text/icon color conveying error."
+      },
+      "info": {
+        "$type": "color",
+        "$value": "{palette.status.info.default}",
+        "$description": "Text/icon color conveying info."
+      }
+    },
+    "border": {
+      "default": {
+        "$type": "color",
+        "$value": "{palette.line.default}",
+        "$description": "Standard border color for containers and dividers."
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{palette.line.subtle}",
+        "$description": "Low-emphasis border, e.g. subtle dividers."
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{palette.line.strong}",
+        "$description": "High-emphasis border, e.g. active/focused containers."
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "{palette.brand.primary}",
+        "$description": "Focus indicator border color."
+      },
+      "success": {
+        "$type": "color",
+        "$value": "{palette.status.success.default}",
+        "$description": "Border color for success-state containers/inputs."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{palette.status.warning.default}",
+        "$description": "Border color for warning-state containers/inputs."
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{palette.status.error.default}",
+        "$description": "Border color for error-state containers/inputs."
+      },
+      "info": {
+        "$type": "color",
+        "$value": "{palette.status.info.default}",
+        "$description": "Border color for info-state containers/inputs."
+      }
+    },
+    "interactive": {
+      "primary": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.primary}",
+            "$description": "Primary action background, default state."
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{palette.brand.primary}",
+            "$description": "Primary action background, focused state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.fill.disabled}",
+            "$description": "Primary action background, disabled state."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.brand.primaryhover}",
+            "$description": "Primary action background, hover state."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.brand.primarypressed}",
+            "$description": "Primary action background, pressed state."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{palette.brand.primarypressed}",
+            "$description": "Primary action background, selected state."
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.onprimary}",
+            "$description": "Primary action foreground, default state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.ink.disabled}",
+            "$description": "Primary action foreground, disabled state."
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.primary}",
+            "$description": "Primary action border, default state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.line.subtle}",
+            "$description": "Primary action border, disabled state."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.brand.primaryhover}",
+            "$description": "Primary action border, hover state."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.brand.primarypressed}",
+            "$description": "Primary action border, pressed state."
+          }
+        }
+      },
+      "secondary": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.secondary}",
+            "$description": "Secondary action background, default state."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.brand.secondaryhover}",
+            "$description": "Secondary action background, hover state."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.brand.secondarypressed}",
+            "$description": "Secondary action background, pressed state."
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{palette.brand.secondary}",
+            "$description": "Secondary action background, focused state."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{palette.brand.secondarypressed}",
+            "$description": "Secondary action background, selected state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.fill.disabled}",
+            "$description": "Secondary action background, disabled state."
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.onsecondary}",
+            "$description": "Secondary action foreground, default state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.ink.disabled}",
+            "$description": "Secondary action foreground, disabled state."
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.secondary}",
+            "$description": "Secondary action border, default state."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.brand.secondaryhover}",
+            "$description": "Secondary action border, hover state."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.brand.secondarypressed}",
+            "$description": "Secondary action border, pressed state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.line.subtle}",
+            "$description": "Secondary action border, disabled state."
+          }
+        }
+      },
+      "ghost": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.fill.transparent}",
+            "$description": "Ghost action background, default state."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.brand.subtle}",
+            "$description": "Ghost action background, hover state."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.brand.muted}",
+            "$description": "Ghost action background, pressed state."
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{palette.fill.transparent}",
+            "$description": "Ghost action background, focused state."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{palette.brand.muted}",
+            "$description": "Ghost action background, selected state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.fill.disabled}",
+            "$description": "Ghost action background, disabled state."
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.ink.brand}",
+            "$description": "Ghost action foreground, default state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.ink.disabled}",
+            "$description": "Ghost action foreground, disabled state."
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.primary}",
+            "$description": "Ghost action border, default state."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.brand.primaryhover}",
+            "$description": "Ghost action border, hover state."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.brand.primarypressed}",
+            "$description": "Ghost action border, pressed state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.line.subtle}",
+            "$description": "Ghost action border, disabled state."
+          }
+        }
+      },
+      "destructive": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.status.error.default}",
+            "$description": "Destructive action background, default state."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.status.error.hover}",
+            "$description": "Destructive action background, hover state."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.status.error.pressed}",
+            "$description": "Destructive action background, pressed state."
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{palette.status.error.default}",
+            "$description": "Destructive action background, focused state."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{palette.status.error.pressed}",
+            "$description": "Destructive action background, selected state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.fill.disabled}",
+            "$description": "Destructive action background, disabled state."
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.onprimary}",
+            "$description": "Destructive action foreground, default state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.ink.disabled}",
+            "$description": "Destructive action foreground, disabled state."
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.status.error.default}",
+            "$description": "Destructive action border, default state."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.status.error.subtle}",
+            "$description": "Destructive action border, hover state."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.status.error.strong}",
+            "$description": "Destructive action border, pressed state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.line.subtle}",
+            "$description": "Destructive action border, disabled state."
+          }
+        }
+      },
+      "inverse": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.fill.inverse}",
+            "$description": "Inverse action background, default state."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.fill.inversehover}",
+            "$description": "Inverse action background, hover state."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.fill.inversepressed}",
+            "$description": "Inverse action background, pressed state."
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{palette.fill.inverse}",
+            "$description": "Inverse action background, focused state."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{palette.fill.inversepressed}",
+            "$description": "Inverse action background, selected state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.fill.disabled}",
+            "$description": "Inverse action background, disabled state."
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.ink.inverse}",
+            "$description": "Inverse action foreground, default state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.ink.disabled}",
+            "$description": "Inverse action foreground, disabled state."
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.fill.inverse}",
+            "$description": "Inverse action border, default state."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.fill.inversehover}",
+            "$description": "Inverse action border, hover state."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.fill.inversepressed}",
+            "$description": "Inverse action border, pressed state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.line.subtle}",
+            "$description": "Inverse action border, disabled state."
+          }
+        }
+      },
+      "neutral": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.fill.transparent}",
+            "$description": "Neutral action background, default state."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.fill.canvas}",
+            "$description": "Neutral action background, hover state."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.fill.sunken}",
+            "$description": "Neutral action background, pressed state."
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{palette.fill.transparent}",
+            "$description": "Neutral action background, focused state."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{palette.fill.sunken}",
+            "$description": "Neutral action background, selected state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.fill.transparent}",
+            "$description": "Neutral action background, disabled state."
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.line.default}",
+            "$description": "Neutral action border, default state."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.line.strong}",
+            "$description": "Neutral action border, hover state."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.line.strong}",
+            "$description": "Neutral action border, pressed state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.line.subtle}",
+            "$description": "Neutral action border, disabled state."
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.ink.high}",
+            "$description": "Neutral action foreground, default state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.ink.disabled}",
+            "$description": "Neutral action foreground, disabled state."
+          }
+        }
+      },
+      "positive": {
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.status.success.default}",
+            "$description": "Positive action border, default state."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.status.success.default}",
+            "$description": "Positive action border, hover state."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.status.success.stronger}",
+            "$description": "Positive action border, pressed state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.line.subtle}",
+            "$description": "Positive action border, disabled state."
+          }
+        },
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.status.success.default}",
+            "$description": "Positive action background, default state."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.status.success.hover}",
+            "$description": "Positive action background, hover state."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.status.success.pressed}",
+            "$description": "Positive action background, pressed state."
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{palette.status.success.default}",
+            "$description": "Positive action background, focused state."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{palette.status.success.pressed}",
+            "$description": "Positive action background, selected state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.fill.disabled}",
+            "$description": "Positive action background, disabled state."
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.onprimary}",
+            "$description": "Positive action foreground, default state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.ink.disabled}",
+            "$description": "Positive action foreground, disabled state."
+          }
+        }
+      },
+      "subtle": {
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.primary}",
+            "$description": "Subtle action border, default state."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.brand.primaryhover}",
+            "$description": "Subtle action border, hover state."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.brand.primarypressed}",
+            "$description": "Subtle action border, pressed state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.line.subtle}",
+            "$description": "Subtle action border, disabled state."
+          }
+        },
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.subtle}",
+            "$description": "Subtle action background, default state."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.brand.muted}",
+            "$description": "Subtle action background, hover state."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.brand.primaryhover}",
+            "$description": "Subtle action background, pressed state."
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{palette.brand.subtle}",
+            "$description": "Subtle action background, focused state."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{palette.brand.primaryhover}",
+            "$description": "Subtle action background, selected state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.fill.disabled}",
+            "$description": "Subtle action background, disabled state."
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.ink.link}",
+            "$description": "Subtle action foreground, default state."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.ink.disabled}",
+            "$description": "Subtle action foreground, disabled state."
+          }
+        }
+      }
+    },
+    "overlay": {
+      "scrim": {
+        "$type": "color",
+        "$value": "{palette.fill.scrim}",
+        "$description": "Translucent backdrop behind modals/sheets."
+      },
+      "modal": {
+        "$type": "color",
+        "$value": "{palette.fill.overlay}",
+        "$description": "Modal panel surface color."
+      }
+    },
+    "feedback": {
+      "success": {
+        "background": {
+          "$type": "color",
+          "$value": "{palette.status.success.subtler}",
+          "$description": "Background color for success feedback messages (banners, toasts, alerts)."
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{palette.status.success.default}",
+          "$description": "Text color for success feedback messages (banners, toasts, alerts)."
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{palette.status.success.default}",
+          "$description": "Icon color for success feedback messages (banners, toasts, alerts)."
+        }
+      },
+      "warning": {
+        "background": {
+          "$type": "color",
+          "$value": "{palette.status.warning.subtler}",
+          "$description": "Background color for warning feedback messages (banners, toasts, alerts)."
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{palette.status.warning.default}",
+          "$description": "Text color for warning feedback messages (banners, toasts, alerts)."
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{palette.status.warning.default}",
+          "$description": "Icon color for warning feedback messages (banners, toasts, alerts)."
+        }
+      },
+      "error": {
+        "background": {
+          "$type": "color",
+          "$value": "{palette.status.error.subtler}",
+          "$description": "Background color for error feedback messages (banners, toasts, alerts)."
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{palette.status.error.default}",
+          "$description": "Text color for error feedback messages (banners, toasts, alerts)."
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{palette.status.error.default}",
+          "$description": "Icon color for error feedback messages (banners, toasts, alerts)."
+        }
+      },
+      "info": {
+        "background": {
+          "$type": "color",
+          "$value": "{palette.status.info.subtler}",
+          "$description": "Background color for info feedback messages (banners, toasts, alerts)."
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{palette.status.info.default}",
+          "$description": "Text color for info feedback messages (banners, toasts, alerts)."
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{palette.status.info.default}",
+          "$description": "Icon color for info feedback messages (banners, toasts, alerts)."
+        }
+      }
+    },
+    "navigation": {
+      "background": {
+        "$type": "color",
+        "$value": "{palette.fill.default}",
+        "$description": "Background color for navigation surfaces (nav bars, sidebars)."
+      },
+      "item": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.ink.medium}",
+          "$description": "Default (unselected) navigation item text/icon color."
+        },
+        "active": {
+          "$type": "color",
+          "$value": "{palette.brand.primary}",
+          "$description": "Navigation item color for the current/active route."
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{palette.ink.high}",
+          "$description": "Navigation item color on hover."
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{palette.brand.primary}",
+          "$description": "Navigation item color when selected."
+        }
+      }
+    },
+    "focus": {
+      "ring": {
+        "$type": "color",
+        "$value": "{palette.brand.primaryhover}",
+        "$description": "Focus ring glow/halo color."
+      },
+      "outline": {
+        "$type": "color",
+        "$value": "{palette.brand.primary}",
+        "$description": "Focus outline stroke color."
+      }
+    },
+    "contrast": {
+      "high": {
+        "$type": "color",
+        "$value": "{palette.ink.high}",
+        "$description": "Highest-contrast text/icon color, alias of foreground/primary."
+      },
+      "low": {
+        "$type": "color",
+        "$value": "{palette.ink.low}",
+        "$description": "Lowest-contrast text/icon color, alias of foreground/tertiary."
+      }
+    },
+    "chart": {
+      "grid": {
+        "$type": "color",
+        "$value": "{palette.line.subtle}",
+        "$description": "Chart gridline color."
+      },
+      "axis": {
+        "$type": "color",
+        "$value": "{palette.line.strong}",
+        "$description": "Chart axis line/label color."
+      },
+      "reference": {
+        "$type": "color",
+        "$value": "{palette.line.stronger}",
+        "$description": "Chart reference/target line color."
+      },
+      "positive": {
+        "$type": "color",
+        "$value": "{palette.status.success.default}",
+        "$description": "Chart color for positive deltas/trends."
+      },
+      "negative": {
+        "$type": "color",
+        "$value": "{palette.status.error.default}",
+        "$description": "Chart color for negative deltas/trends."
+      },
+      "neutral": {
+        "$type": "color",
+        "$value": "{palette.data.neutral}",
+        "$description": "Chart color for flat/no-change values."
+      },
+      "series": {
+        "1": {
+          "$type": "color",
+          "$value": "{palette.data.1}",
+          "$description": "Chart categorical series color, source: color/brand/main/60"
+        },
+        "2": {
+          "$type": "color",
+          "$value": "{palette.data.2}",
+          "$description": "Chart categorical series color, source: color/brand/alternative/60"
+        },
+        "3": {
+          "$type": "color",
+          "$value": "{palette.data.3}",
+          "$description": "Chart categorical series color, source: color/accent/5/60"
+        },
+        "4": {
+          "$type": "color",
+          "$value": "{palette.data.4}",
+          "$description": "Chart categorical series color, source: color/accent/1/60"
+        },
+        "5": {
+          "$type": "color",
+          "$value": "{palette.data.5}",
+          "$description": "Chart categorical series color, source: color/accent/4/60"
+        },
+        "6": {
+          "$type": "color",
+          "$value": "{palette.data.6}",
+          "$description": "Chart categorical series color, source: color/accent/3/60"
+        },
+        "7": {
+          "$type": "color",
+          "$value": "{palette.data.7}",
+          "$description": "Chart categorical series color, source: color/accent/2/40"
+        },
+        "8": {
+          "$type": "color",
+          "$value": "{palette.data.8}",
+          "$description": "Chart categorical series color, source: color/extend/3/60"
+        },
+        "9": {
+          "$type": "color",
+          "$value": "{palette.data.9}",
+          "$description": "Chart categorical series color, source: color/extend/4/60"
+        },
+        "10": {
+          "$type": "color",
+          "$value": "{palette.data.10}",
+          "$description": "Chart categorical series color, source: color/extend/2/60"
+        },
+        "11": {
+          "$type": "color",
+          "$value": "{palette.data.11}",
+          "$description": "Chart categorical series color, source: color/system/negative/50"
+        },
+        "12": {
+          "$type": "color",
+          "$value": "{palette.data.12}",
+          "$description": "Chart categorical series color, source: color/extend/1/50"
+        }
+      }
+    },
+    "selection": {
+      "background": {
+        "$type": "color",
+        "$value": "{palette.fill.selection}",
+        "$description": "Background color for selected text/items."
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{palette.line.selection}",
+        "$description": "Border/outline color for selected items."
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{palette.ink.selection}",
+        "$description": "Text color within a selection highlight."
+      }
+    }
+  }
+}

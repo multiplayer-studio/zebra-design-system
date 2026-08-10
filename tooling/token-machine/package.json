@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "convert": "tsx --env-file=../../.env convert-tokens.ts",
+    "fetch-raw": "tsx --env-file=../../.env fetch-tokens-raw.ts",
+    "fetch": "tsx --env-file=../../.env fetch-tokens.ts",
     "build": "tsx build-platform-tokens.ts"
   },
   "devDependencies": {
