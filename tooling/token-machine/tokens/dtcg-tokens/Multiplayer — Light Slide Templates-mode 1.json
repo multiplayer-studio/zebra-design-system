@@ -1,0 +1,10 @@
+{
+  "Multiplayer — Light Slide Templates": {
+    "spacing": {
+      "xs": {
+        "$type": "number",
+        "$value": 4
+      }
+    }
+  }
+}

@@ -53,22 +53,22 @@
       },
       "success": {
         "$type": "color",
-        "$value": "{palette.status.success.subtler}",
+        "$value": "{palette.status.success.faint}",
         "$description": "Success-tinted surface background."
       },
       "warning": {
         "$type": "color",
-        "$value": "{palette.status.warning.subtler}",
+        "$value": "{palette.status.warning.faint}",
         "$description": "Warning-tinted surface background."
       },
       "error": {
         "$type": "color",
-        "$value": "{palette.status.error.subtler}",
+        "$value": "{palette.status.error.faint}",
         "$description": "Error-tinted surface background."
       },
       "info": {
         "$type": "color",
-        "$value": "{palette.status.info.subtler}",
+        "$value": "{palette.status.info.faint}",
         "$description": "Info-tinted surface background."
       }
     },
@@ -198,6 +198,22 @@
             "$type": "color",
             "$value": "{palette.brand.primarypressed}",
             "$description": "Primary action background, selected state."
+          },
+          "loading": {
+            "$type": "color",
+            "$value": "{palette.brand.primary}"
+          },
+          "visited": {
+            "$type": "color",
+            "$value": "{palette.brand.primary}"
+          },
+          "dragged": {
+            "$type": "color",
+            "$value": "{palette.brand.primary}"
+          },
+          "droptarget": {
+            "$type": "color",
+            "$value": "{palette.brand.subtle}"
           }
         },
         "foreground": {
@@ -232,6 +248,10 @@
             "$type": "color",
             "$value": "{palette.brand.primarypressed}",
             "$description": "Primary action border, pressed state."
+          },
+          "droptarget": {
+            "$type": "color",
+            "$value": "{palette.brand.subtle}"
           }
         }
       },
@@ -266,6 +286,22 @@
             "$type": "color",
             "$value": "{palette.fill.disabled}",
             "$description": "Secondary action background, disabled state."
+          },
+          "loading": {
+            "$type": "color",
+            "$value": "{palette.brand.secondary}"
+          },
+          "visited": {
+            "$type": "color",
+            "$value": "{palette.brand.secondary}"
+          },
+          "dragged": {
+            "$type": "color",
+            "$value": "{palette.brand.secondary}"
+          },
+          "droptarget": {
+            "$type": "color",
+            "$value": "{palette.brand.secondarysubtle}"
           }
         },
         "foreground": {
@@ -300,6 +336,10 @@
             "$type": "color",
             "$value": "{palette.line.subtle}",
             "$description": "Secondary action border, disabled state."
+          },
+          "droptarget": {
+            "$type": "color",
+            "$value": "{palette.brand.secondarysubtle}"
           }
         }
       },
@@ -334,6 +374,22 @@
             "$type": "color",
             "$value": "{palette.fill.disabled}",
             "$description": "Ghost action background, disabled state."
+          },
+          "loading": {
+            "$type": "color",
+            "$value": "{palette.fill.transparent}"
+          },
+          "visited": {
+            "$type": "color",
+            "$value": "{palette.fill.transparent}"
+          },
+          "dragged": {
+            "$type": "color",
+            "$value": "{palette.fill.transparent}"
+          },
+          "droptarget": {
+            "$type": "color",
+            "$value": "{palette.brand.subtle}"
           }
         },
         "foreground": {
@@ -402,6 +458,22 @@
             "$type": "color",
             "$value": "{palette.fill.disabled}",
             "$description": "Destructive action background, disabled state."
+          },
+          "loading": {
+            "$type": "color",
+            "$value": "{palette.status.error.default}"
+          },
+          "visited": {
+            "$type": "color",
+            "$value": "{palette.status.error.default}"
+          },
+          "dragged": {
+            "$type": "color",
+            "$value": "{palette.status.error.default}"
+          },
+          "droptarget": {
+            "$type": "color",
+            "$value": "{palette.status.error.faint}"
           }
         },
         "foreground": {
@@ -470,6 +542,22 @@
             "$type": "color",
             "$value": "{palette.fill.disabled}",
             "$description": "Inverse action background, disabled state."
+          },
+          "loading": {
+            "$type": "color",
+            "$value": "{palette.fill.inverse}"
+          },
+          "visited": {
+            "$type": "color",
+            "$value": "{palette.fill.inverse}"
+          },
+          "dragged": {
+            "$type": "color",
+            "$value": "{palette.fill.inverse}"
+          },
+          "droptarget": {
+            "$type": "color",
+            "$value": "{palette.fill.inversehover}"
           }
         },
         "foreground": {
@@ -511,7 +599,7 @@
         "background": {
           "default": {
             "$type": "color",
-            "$value": "{palette.fill.transparent}",
+            "$value": "{palette.fill.default}",
             "$description": "Neutral action background, default state."
           },
           "hover": {
@@ -526,7 +614,7 @@
           },
           "focused": {
             "$type": "color",
-            "$value": "{palette.fill.transparent}",
+            "$value": "{palette.fill.default}",
             "$description": "Neutral action background, focused state."
           },
           "selected": {
@@ -536,8 +624,24 @@
           },
           "disabled": {
             "$type": "color",
-            "$value": "{palette.fill.transparent}",
+            "$value": "{palette.fill.disabled}",
             "$description": "Neutral action background, disabled state."
+          },
+          "loading": {
+            "$type": "color",
+            "$value": "{palette.fill.transparent}"
+          },
+          "visited": {
+            "$type": "color",
+            "$value": "{palette.fill.transparent}"
+          },
+          "dragged": {
+            "$type": "color",
+            "$value": "{palette.fill.transparent}"
+          },
+          "droptarget": {
+            "$type": "color",
+            "$value": "{palette.fill.canvas}"
           }
         },
         "border": {
@@ -560,6 +664,10 @@
             "$type": "color",
             "$value": "{palette.line.subtle}",
             "$description": "Neutral action border, disabled state."
+          },
+          "droptarget": {
+            "$type": "color",
+            "$value": "{palette.line.default}"
           }
         },
         "foreground": {
@@ -589,13 +697,17 @@
           },
           "pressed": {
             "$type": "color",
-            "$value": "{palette.status.success.stronger}",
+            "$value": "{palette.status.success.deep}",
             "$description": "Positive action border, pressed state."
           },
           "disabled": {
             "$type": "color",
             "$value": "{palette.line.subtle}",
             "$description": "Positive action border, disabled state."
+          },
+          "droptarget": {
+            "$type": "color",
+            "$value": "{palette.status.success.faint}"
           }
         },
         "background": {
@@ -628,6 +740,22 @@
             "$type": "color",
             "$value": "{palette.fill.disabled}",
             "$description": "Positive action background, disabled state."
+          },
+          "loading": {
+            "$type": "color",
+            "$value": "{palette.status.success.default}"
+          },
+          "visited": {
+            "$type": "color",
+            "$value": "{palette.status.success.default}"
+          },
+          "dragged": {
+            "$type": "color",
+            "$value": "{palette.status.success.default}"
+          },
+          "droptarget": {
+            "$type": "color",
+            "$value": "{palette.status.success.faint}"
           }
         },
         "foreground": {
@@ -664,6 +792,10 @@
             "$type": "color",
             "$value": "{palette.line.subtle}",
             "$description": "Subtle action border, disabled state."
+          },
+          "droptarget": {
+            "$type": "color",
+            "$value": "{palette.brand.subtle}"
           }
         },
         "background": {
@@ -696,6 +828,22 @@
             "$type": "color",
             "$value": "{palette.fill.disabled}",
             "$description": "Subtle action background, disabled state."
+          },
+          "loading": {
+            "$type": "color",
+            "$value": "{palette.brand.subtle}"
+          },
+          "visited": {
+            "$type": "color",
+            "$value": "{palette.brand.subtle}"
+          },
+          "dragged": {
+            "$type": "color",
+            "$value": "{palette.brand.subtle}"
+          },
+          "droptarget": {
+            "$type": "color",
+            "$value": "{palette.brand.muted}"
           }
         },
         "foreground": {
@@ -722,13 +870,17 @@
         "$type": "color",
         "$value": "{palette.fill.overlay}",
         "$description": "Modal panel surface color."
+      },
+      "backdrop": {
+        "$type": "color",
+        "$value": "{palette.fill.scrim}"
       }
     },
     "feedback": {
       "success": {
         "background": {
           "$type": "color",
-          "$value": "{palette.status.success.subtler}",
+          "$value": "{palette.status.success.faint}",
           "$description": "Background color for success feedback messages (banners, toasts, alerts)."
         },
         "text": {
@@ -745,7 +897,7 @@
       "warning": {
         "background": {
           "$type": "color",
-          "$value": "{palette.status.warning.subtler}",
+          "$value": "{palette.status.warning.faint}",
           "$description": "Background color for warning feedback messages (banners, toasts, alerts)."
         },
         "text": {
@@ -762,7 +914,7 @@
       "error": {
         "background": {
           "$type": "color",
-          "$value": "{palette.status.error.subtler}",
+          "$value": "{palette.status.error.faint}",
           "$description": "Background color for error feedback messages (banners, toasts, alerts)."
         },
         "text": {
@@ -779,7 +931,7 @@
       "info": {
         "background": {
           "$type": "color",
-          "$value": "{palette.status.info.subtler}",
+          "$value": "{palette.status.info.faint}",
           "$description": "Background color for info feedback messages (banners, toasts, alerts)."
         },
         "text": {
@@ -848,36 +1000,6 @@
       }
     },
     "chart": {
-      "grid": {
-        "$type": "color",
-        "$value": "{palette.line.subtle}",
-        "$description": "Chart gridline color."
-      },
-      "axis": {
-        "$type": "color",
-        "$value": "{palette.line.strong}",
-        "$description": "Chart axis line/label color."
-      },
-      "reference": {
-        "$type": "color",
-        "$value": "{palette.line.stronger}",
-        "$description": "Chart reference/target line color."
-      },
-      "positive": {
-        "$type": "color",
-        "$value": "{palette.status.success.default}",
-        "$description": "Chart color for positive deltas/trends."
-      },
-      "negative": {
-        "$type": "color",
-        "$value": "{palette.status.error.default}",
-        "$description": "Chart color for negative deltas/trends."
-      },
-      "neutral": {
-        "$type": "color",
-        "$value": "{palette.data.neutral}",
-        "$description": "Chart color for flat/no-change values."
-      },
       "series": {
         "1": {
           "$type": "color",
@@ -939,6 +1061,36 @@
           "$value": "{palette.data.12}",
           "$description": "Chart categorical series color, source: color/extend/1/50"
         }
+      },
+      "grid": {
+        "$type": "color",
+        "$value": "{palette.line.subtle}",
+        "$description": "Chart gridline color."
+      },
+      "axis": {
+        "$type": "color",
+        "$value": "{palette.line.strong}",
+        "$description": "Chart axis line/label color."
+      },
+      "reference": {
+        "$type": "color",
+        "$value": "{palette.line.stronger}",
+        "$description": "Chart reference/target line color."
+      },
+      "positive": {
+        "$type": "color",
+        "$value": "{palette.status.success.default}",
+        "$description": "Chart color for positive deltas/trends."
+      },
+      "negative": {
+        "$type": "color",
+        "$value": "{palette.status.error.default}",
+        "$description": "Chart color for negative deltas/trends."
+      },
+      "neutral": {
+        "$type": "color",
+        "$value": "{palette.data.neutral}",
+        "$description": "Chart color for flat/no-change values."
       }
     },
     "selection": {

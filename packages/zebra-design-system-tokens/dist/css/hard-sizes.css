@@ -1,9 +1,9 @@
 /**
- * Target Theme - Size Variables
+ * Hard Theme - Size Variables
  * This file is auto-generated. Do not edit directly.
  */
 
-:root, .target-theme {
+:root, .hard-theme {
   --space-page: 16;
   --space-section: 24;
   --space-card: 16;
@@ -22,22 +22,26 @@
   --control-icon-sm: 20;
   --control-icon-md: 24;
   --control-icon-lg: 32;
-  --container-default: 240;
+  --radius-none: 0;
   --radius-xs: 2;
   --radius-sm: 4;
   --radius-md: 8;
   --radius-lg: 12;
   --radius-xl: 16;
-  --radius-container: 16;
+  --radius-element-sm: 4;
+  --radius-element-md: 12;
+  --radius-container: 20;
   --radius-pill: 9999;
-  --stroke-base: 1;
-  --stroke-thin: 2;
-  --stroke-thick: 4;
-  --stroke-heavy: 6;
+  --container-default: 240;
+  --radius-container-2: 16;
+  --stroke-base: 0;
+  --stroke-thin: 1;
+  --stroke-thick: 2;
+  --stroke-heavy: 4;
 }
 
 @media (min-width: 768px) {
-  :root, .target-theme {
+  :root, .hard-theme {
     --space-page: 16;
   --space-section: 24;
   --space-card: 16;
@@ -56,23 +60,27 @@
   --control-icon-sm: 20;
   --control-icon-md: 24;
   --control-icon-lg: 32;
-  --container-default: 600;
+  --radius-none: 0;
   --radius-xs: 2;
   --radius-sm: 4;
   --radius-md: 8;
   --radius-lg: 12;
   --radius-xl: 16;
-  --radius-container: 16;
+  --radius-element-sm: 4;
+  --radius-element-md: 12;
+  --radius-container: 20;
   --radius-pill: 9999;
-  --stroke-base: 1;
-  --stroke-thin: 2;
-  --stroke-thick: 4;
-  --stroke-heavy: 6;
+  --container-default: 600;
+  --radius-container-2: 16;
+  --stroke-base: 0;
+  --stroke-thin: 1;
+  --stroke-thick: 2;
+  --stroke-heavy: 4;
   }
 }
 
 @media (min-width: 1024px) {
-  :root, .target-theme {
+  :root, .hard-theme {
     --space-page: 16;
   --space-section: 24;
   --space-card: 16;
@@ -91,23 +99,27 @@
   --control-icon-sm: 20;
   --control-icon-md: 24;
   --control-icon-lg: 32;
-  --container-default: 1200;
+  --radius-none: 0;
   --radius-xs: 2;
   --radius-sm: 4;
   --radius-md: 8;
   --radius-lg: 12;
   --radius-xl: 16;
-  --radius-container: 16;
+  --radius-element-sm: 4;
+  --radius-element-md: 12;
+  --radius-container: 20;
   --radius-pill: 9999;
-  --stroke-base: 1;
-  --stroke-thin: 2;
-  --stroke-thick: 4;
-  --stroke-heavy: 6;
+  --container-default: 1200;
+  --radius-container-2: 16;
+  --stroke-base: 0;
+  --stroke-thin: 1;
+  --stroke-thick: 2;
+  --stroke-heavy: 4;
   }
 }
 
 @media (min-width: 1440px) {
-  :root, .target-theme {
+  :root, .hard-theme {
     --space-page: 16;
   --space-section: 24;
   --space-card: 16;
@@ -126,17 +138,21 @@
   --control-icon-sm: 20;
   --control-icon-md: 24;
   --control-icon-lg: 32;
-  --container-default: 840;
+  --radius-none: 0;
   --radius-xs: 2;
   --radius-sm: 4;
   --radius-md: 8;
   --radius-lg: 12;
   --radius-xl: 16;
-  --radius-container: 16;
+  --radius-element-sm: 4;
+  --radius-element-md: 12;
+  --radius-container: 20;
   --radius-pill: 9999;
-  --stroke-base: 1;
-  --stroke-thin: 2;
-  --stroke-thick: 4;
-  --stroke-heavy: 6;
+  --container-default: 840;
+  --radius-container-2: 16;
+  --stroke-base: 0;
+  --stroke-thin: 1;
+  --stroke-thick: 2;
+  --stroke-heavy: 4;
   }
 }

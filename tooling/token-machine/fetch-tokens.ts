@@ -1,6 +1,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { mkdir } from 'fs/promises';
 import './types.ts';
 
 const SCHEMA_VERSION = 1;
@@ -9,6 +10,11 @@ function isoDate(): string {
   const d = new Date();
   const pad2 = (n: number) => (n < 10 ? `0${n}` : String(n));
   return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+}
+
+function resolveCollectionByID(id: string, collections: object): string {
+    const c = Object.values(collections).find(c => c.id === id);
+  return c.name; 
 }
 
 async function main() {
@@ -50,7 +56,14 @@ async function main() {
       return;
     }
 
-    const collections: FigmaCollection[] = Object.values(meta.variableCollections).map((c: any) => ({
+    //Object.values(meta.variableCollections).forEach(c => {
+    //  console.log("name: ", c.name)
+    //  console.log("hiddenFromPublishing: ", c.hiddenFromPublishing)
+    //});
+    
+    const collections: FigmaCollection[] = Object.values(meta.variableCollections)
+    //.filter(c => !c.hiddenFromPublishing)
+    .map((c: any) => ({
       id: c.id,
       name: c.name,
       modes: c.modes,
@@ -60,11 +73,17 @@ async function main() {
       defaultModeId: c.defaultModeId,
     }));
 
-    console.log('collection: ', collections.filter(v => v.isExtension))
-    
-    //console.log("vars: ", Object.values(meta.variables).filter(v => v.variableCollectionId === "VariableCollectionId:17:168").length)
+    //Object.values(meta.variables).forEach(v => {
+     // console.log(v.name)
+     // const collection = resolveCollectionByID(v.variableCollectionId, collections)
+     // console.log(collection)
+     // console.log(v.remote)
+    //})
 
-    const variables: FigmaVariable[] = Object.values(meta.variables).map((v: any) => ({
+
+    const variables: FigmaVariable[] = Object.values(meta.variables)
+    .filter(c => !c.hiddenFromPublishing)
+    .map((v: any) => ({
       id: v.id,
       name: v.name,
       description: v.description,
@@ -91,7 +110,9 @@ async function main() {
       variables,
     };
 
-    const filename = `tokens.json`;
+    await mkdir('./tokens', { recursive: true });
+
+    const filename = `tokens/raw-tokens.json`;
     const outputPath = path.join(process.cwd(), filename);
     fs.writeFileSync(outputPath, JSON.stringify(payload, null, 2));
 

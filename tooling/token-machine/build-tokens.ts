@@ -7,8 +7,8 @@ import * as path from 'path';
 // 1. CONFIGURATION & CONSTANTS
 // ===============================================================================================
 
-const TOKEN_DIR = './dtcg-tokens';
-const TEMP_DIR = './dist/temp';
+const TOKEN_DIR = './tokens/dtcg-tokens';
+const TEMP_DIR = '../../packages/zebra-design-system-tokens/dist/temp';
 const OUTPUT_DIR = '../../packages/zebra-design-system-tokens/dist/css';
 
 const COLOR_COLLECTIONS = ['primitives', 'palette', 'semantics'];

@@ -246,8 +246,8 @@ function convertTokens(inputFile: string, outputDir: string) {
 // ==========================================
 // 4. Execute Script
 // ==========================================
-const INPUT_FILE = './tokens.json';
-const OUTPUT_DIR = './dtcg-tokens';
+const INPUT_FILE = './tokens/raw-tokens.json';
+const OUTPUT_DIR = './tokens/dtcg-tokens';
 
 try {
   convertTokens(INPUT_FILE, OUTPUT_DIR);

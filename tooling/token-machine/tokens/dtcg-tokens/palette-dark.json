@@ -3,7 +3,7 @@
     "brand": {
       "primary": {
         "$type": "color",
-        "$value": "{primitives.color.brand.main.50}",
+        "$value": "{primitives.color.brand.main.60}",
         "$description": "Primary brand color (theme.color.brand.primary)"
       },
       "secondary": {
@@ -112,7 +112,19 @@
       },
       "transparent": {
         "$type": "color",
-        "$value": "#f3f6fa00"
+        "$value": "#f3f6fa00",
+        "emphasis": {
+          "$type": "color",
+          "$value": "#00000040"
+        },
+        "elevate": {
+          "$type": "color",
+          "$value": "#00000080"
+        },
+        "obsure": {
+          "$type": "color",
+          "$value": "#000000bf"
+        }
       }
     },
     "ink": {
@@ -164,12 +176,12 @@
           "$value": "{primitives.color.system.positive.60}",
           "$description": "Success color (theme.color.success.default)"
         },
-        "subtler": {
+        "faint": {
           "$type": "color",
           "$value": "{primitives.color.system.positive.100}",
           "$description": "Success background tint (theme.color.success.subtle)"
         },
-        "stronger": {
+        "deep": {
           "$type": "color",
           "$value": "{primitives.color.system.positive.40}",
           "$description": "Success solid/strong emphasis (theme.color.success.strong)"
@@ -197,7 +209,7 @@
           "$value": "{primitives.color.system.warning.50}",
           "$description": "Warning color (theme.color.warning.default)"
         },
-        "subtler": {
+        "faint": {
           "$type": "color",
           "$value": "{primitives.color.system.warning.100}",
           "$description": "Warning background tint (theme.color.warning.subtle)"
@@ -209,12 +221,12 @@
           "$value": "{primitives.color.system.negative.60}",
           "$description": "Error color (theme.color.error.default)"
         },
-        "subtler": {
+        "faint": {
           "$type": "color",
           "$value": "{primitives.color.system.negative.100}",
           "$description": "Error background tint (theme.color.error.subtle)"
         },
-        "stronger": {
+        "deep": {
           "$type": "color",
           "$value": "{primitives.color.system.negative.30}",
           "$description": "Error solid/strong emphasis (theme.color.error.strong)"
@@ -242,12 +254,12 @@
           "$value": "{primitives.color.system.info.50}",
           "$description": "Info color (theme.color.info.default)"
         },
-        "subtler": {
+        "faint": {
           "$type": "color",
           "$value": "{primitives.color.system.info.100}",
           "$description": "Info background tint (theme.color.info.subtle)"
         },
-        "stronger": {
+        "deep": {
           "$type": "color",
           "$value": "{primitives.color.system.info.30}",
           "$description": "Info solid/strong emphasis (theme.color.info.strong)"
@@ -337,6 +349,20 @@
       "neutral": {
         "$type": "color",
         "$value": "{primitives.color.neutral.cool.60}"
+      }
+    },
+    "Outline": {
+      "base": {
+        "$type": "number",
+        "$value": 0
+      },
+      "thin": {
+        "$type": "number",
+        "$value": 1
+      },
+      "thick": {
+        "$type": "number",
+        "$value": 2
       }
     }
   }

@@ -1,0 +1,116 @@
+{
+  "Semantics": {
+    "colors": {
+      "main": {
+        "default": {
+          "$type": "color",
+          "$value": "{unknown.reference}"
+        },
+        "inverse-subtle": {
+          "$type": "color",
+          "$value": "{unknown.reference}"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{unknown.reference}"
+        },
+        "primary-legacy": {
+          "$type": "color",
+          "$value": "{unknown.reference}"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{unknown.reference}"
+        }
+      },
+      "text": {
+        "info": {
+          "$type": "color",
+          "$value": "{unknown.reference}"
+        }
+      },
+      "icon": {
+        "default": {
+          "$type": "color",
+          "$value": "{unknown.reference}"
+        }
+      },
+      "border": {
+        "primary-legacy": {
+          "$type": "color",
+          "$value": "{unknown.reference}"
+        }
+      },
+      "surface": {
+        "default": {
+          "$type": "color",
+          "$value": "{unknown.reference}"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{unknown.reference}"
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{unknown.reference}"
+        }
+      }
+    },
+    "radius": {
+      "none": {
+        "$type": "number",
+        "$value": "{unknown.reference}"
+      },
+      "minimal": {
+        "$type": "number",
+        "$value": "{unknown.reference}"
+      },
+      "large": {
+        "$type": "number",
+        "$value": "{unknown.reference}"
+      },
+      "full": {
+        "$type": "number",
+        "$value": "{unknown.reference}"
+      }
+    },
+    "spacing": {
+      "none": {
+        "$type": "number",
+        "$value": "{unknown.reference}"
+      },
+      "minimum": {
+        "$type": "number",
+        "$value": "{unknown.reference}"
+      },
+      "small": {
+        "$type": "number",
+        "$value": "{unknown.reference}"
+      },
+      "medium": {
+        "$type": "number",
+        "$value": "{unknown.reference}"
+      },
+      "large": {
+        "$type": "number",
+        "$value": "{unknown.reference}"
+      },
+      "2xl": {
+        "$type": "number",
+        "$value": "{unknown.reference}"
+      },
+      "3xl": {
+        "$type": "number",
+        "$value": "{unknown.reference}"
+      },
+      "4xl": {
+        "$type": "number",
+        "$value": "{unknown.reference}"
+      },
+      "6xl": {
+        "$type": "number",
+        "$value": "{unknown.reference}"
+      }
+    }
+  }
+}

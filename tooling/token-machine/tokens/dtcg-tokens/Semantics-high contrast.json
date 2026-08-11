@@ -1,0 +1,30 @@
+{
+  "Semantics": {
+    "text": {
+      "default": {
+        "$type": "color",
+        "$value": "{unknown.reference}"
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{unknown.reference}"
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{unknown.reference}"
+      }
+    },
+    "border": {
+      "default": {
+        "$type": "color",
+        "$value": "{unknown.reference}"
+      }
+    },
+    "surface": {
+      "default": {
+        "$type": "color",
+        "$value": "{unknown.reference}"
+      }
+    }
+  }
+}

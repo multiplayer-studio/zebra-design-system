@@ -94,14 +94,12 @@
         "$description": "= 32px, source: scale/10"
       }
     },
-    "container": {
-      "default": {
-        "$type": "number",
-        "$value": "{primitives.scale.container.2}",
-        "$description": "= 600px, source: scale/22"
-      }
-    },
     "radius": {
+      "none": {
+        "$type": "number",
+        "$value": "{primitives.scale.0}",
+        "$description": "= 2px, source: scale/1"
+      },
       "xs": {
         "$type": "number",
         "$value": "{primitives.scale.2}",
@@ -127,9 +125,19 @@
         "$value": "{primitives.scale.7}",
         "$description": "= 16px, source: scale/6"
       },
+      "element-sm": {
+        "$type": "number",
+        "$value": "{primitives.scale.3}",
+        "$description": "= 16px, source: scale/6"
+      },
+      "element-md": {
+        "$type": "number",
+        "$value": "{primitives.scale.6}",
+        "$description": "= 16px, source: scale/6"
+      },
       "container": {
         "$type": "number",
-        "$value": "{primitives.scale.7}",
+        "$value": "{primitives.scale.8}",
         "$description": "= 16px, source: scale/6"
       },
       "pill": {
@@ -138,25 +146,39 @@
         "$description": "Literal value, not a scale reference (fully rounded)"
       }
     },
+    "container": {
+      "default": {
+        "$type": "number",
+        "$value": "{primitives.scale.container.3}",
+        "$description": "= 600px, source: scale/22"
+      }
+    },
+    "Radius": {
+      "Container 2": {
+        "$type": "number",
+        "$value": "{primitives.scale.7}",
+        "$description": "= 16px, source: scale/6"
+      }
+    },
     "stroke": {
       "base": {
         "$type": "number",
-        "$value": "{primitives.scale.1}",
+        "$value": "{primitives.scale.0}",
         "$description": "= 1px, source: scale/0"
       },
       "thin": {
         "$type": "number",
-        "$value": "{primitives.scale.2}",
+        "$value": "{primitives.scale.1}",
         "$description": "= 1px, source: scale/0"
       },
       "thick": {
         "$type": "number",
-        "$value": "{primitives.scale.3}",
+        "$value": "{primitives.scale.2}",
         "$description": "= 2px, source: scale/1"
       },
       "heavy": {
         "$type": "number",
-        "$value": "{primitives.scale.4}",
+        "$value": "{primitives.scale.3}",
         "$description": "= 4px, source: scale/2"
       }
     }

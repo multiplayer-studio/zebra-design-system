@@ -2,11 +2,12 @@
   "name": "zebra-design-system",
   "private": true,
   "scripts": {
+    "clean:tokens": "npm run clean --workspace=tooling/token-machine",
     "fetch:tokens": "npm run fetch --workspace=tooling/token-machine",
     "convert:tokens": "npm run convert --workspace=tooling/token-machine",
     "build:tokens": "npm run build --workspace=tooling/token-machine",
     "pack:tokens": "npm pack --workspace=packages/zebra-design-system-tokens",
-    "tokens:sync": "npm run fetch:tokens && npm run convert:tokens && npm run build:tokens"
+    "sync:tokens": "npm run clean:tokens && npm run fetch:tokens && npm run convert:tokens && npm run build:tokens"
   },
   "workspaces": [
     "tooling/*",

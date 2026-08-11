@@ -1,0 +1,57 @@
+{
+  "Semantics": {
+    "color": {
+      "surface": {
+        "primary": {
+          "$type": "color",
+          "$value": "{unknown.reference}",
+          "$description": "The baseline container. Used for high-level structural components like main content sheets,  and primary views. It serves as the standard canvas for the application’s core functional areas"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{unknown.reference}",
+          "$description": "The contextual divider. Used to signal a shift in environment or to partition secondary content. Apply this when moving into sub-sections like Settings, sidebars, or nested views where a visual layering helps the user understand they are in a different branch of the app"
+        }
+      },
+      "foreground": {
+        "primary": {
+          "$type": "color",
+          "$value": "{unknown.reference}",
+          "$description": "The default color for high importance text, including headings, titles, and primary body copy. Designed for maximum legibility against all standard surfaces."
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": "{unknown.reference}",
+          "$description": "Used for supporting text such as captions, metadata, and labels. It reduces visual density to help users scan information quickly."
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{unknown.reference}",
+          "$description": "Indicates non-interactive content. It strips the visual weight from labels and icons to show they are currently unavailable for user input."
+        },
+        "inverse": {
+          "$type": "color",
+          "$value": "{unknown.reference}",
+          "$description": "Applied exclusively to dark or brand-colored backgrounds. Essential for maintaining contrast on Brand background, Surface Inverse, and any   surface requiring negative contrast polarity"
+        }
+      },
+      "border": {
+        "primary": {
+          "$type": "color",
+          "$value": "{unknown.reference}",
+          "$description": "The Structural Standard. Provides clear definition for cards, input fields, and main content containers. It ensures elements are distinct without creating excessive visual noise."
+        }
+      }
+    },
+    "spacing": {
+      "medium": {
+        "$type": "number",
+        "$value": "{unknown.reference}"
+      },
+      "xl": {
+        "$type": "number",
+        "$value": "{unknown.reference}"
+      }
+    }
+  }
+}
