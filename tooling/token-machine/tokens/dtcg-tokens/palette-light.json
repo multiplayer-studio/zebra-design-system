@@ -65,7 +65,7 @@
       },
       "default": {
         "$type": "color",
-        "$value": "{primitives.color.neutral.cool.10}",
+        "$value": "{primitives.color.pure.white}",
         "$description": "Standard component/card background (theme.color.surface.default)"
       },
       "elevated": {
@@ -167,20 +167,6 @@
         "$type": "color",
         "$value": "{primitives.color.neutral.cool.100}",
         "$description": "Text color within a selection (theme.color.selection.text)"
-      }
-    },
-    "Outline": {
-      "base": {
-        "$type": "number",
-        "$value": 0
-      },
-      "thin": {
-        "$type": "number",
-        "$value": 1
-      },
-      "thick": {
-        "$type": "number",
-        "$value": 2
       }
     },
     "status": {

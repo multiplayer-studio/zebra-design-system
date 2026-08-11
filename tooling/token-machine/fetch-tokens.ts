@@ -80,29 +80,44 @@ async function main() {
      // console.log(v.remote)
     //})
 
-
     const variables: FigmaVariable[] = Object.values(meta.variables)
-    .filter(c => !c.hiddenFromPublishing)
-    .map((v: any) => ({
-      id: v.id,
-      name: v.name,
-      description: v.description,
-      collectionId: v.variableCollectionId,
-      type: v.resolvedType,
-      scopes: v.scopes,
-      valuesByMode: Object.entries(v.valuesByMode).reduce((acc, [modeId, value]) => {
-        // Map Figma API's resolved output to match your plugin's local serialized types
-        if (value && typeof value === 'object' && 'type' in value && value.type === 'VARIABLE_ALIAS') {
-          acc[modeId] = { kind: 'alias', variableId: value.id };
-        } else if (value && typeof value === 'object' && 'r' in value) {
-          const rgba = 'a' in value ? value : { ...value, a: 1 };
-          acc[modeId] = { kind: 'literal', value: rgba as any };
-        } else {
-          acc[modeId] = { kind: 'literal', value: value as any };
-        }
-        return acc;
-      }, {} as Record<string, FigmaModeValue>),
-    }));
+      .filter(c => !c.hiddenFromPublishing)
+      .filter(c => !c.deletedButReferenced)
+      .map((v: any) => {
+        const {
+          id,
+          name,
+          description,
+          variableCollectionId,
+          resolvedType,
+          scopes,
+          valuesByMode,
+          ...rest
+        } = v;
+
+        return {
+          ...rest,
+          id,
+          name,
+          description,
+          collectionId: variableCollectionId,
+          type: resolvedType,
+          scopes,
+          valuesByMode: Object.entries(valuesByMode || {}).reduce((acc, [modeId, value]) => {
+            // Map Figma API's resolved output to match your plugin's local serialized types
+            if (value && typeof value === 'object' && 'type' in value && value.type === 'VARIABLE_ALIAS') {
+              acc[modeId] = { kind: 'alias', variableId: value.id };
+            } else if (value && typeof value === 'object' && 'r' in value) {
+              const rgba = 'a' in value ? value : { ...value, a: 1 };
+              acc[modeId] = { kind: 'literal', value: rgba as any };
+            } else {
+              acc[modeId] = { kind: 'literal', value: value as any };
+            }
+            return acc;
+          }, {} as Record<string, FigmaModeValue>),
+        };
+      });
+
     
     const payload: FigmaVarsExport = {
       schemaVersion: SCHEMA_VERSION,

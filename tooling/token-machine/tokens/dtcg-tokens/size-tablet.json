@@ -94,13 +94,6 @@
         "$description": "= 32px, source: scale/10"
       }
     },
-    "container": {
-      "default": {
-        "$type": "number",
-        "$value": "{primitives.scale.container.1}",
-        "$description": "= 600px, source: scale/22"
-      }
-    },
     "radius": {
       "none": {
         "$type": "number",
@@ -153,11 +146,11 @@
         "$description": "Literal value, not a scale reference (fully rounded)"
       }
     },
-    "Radius": {
-      "Container 2": {
+    "container": {
+      "default": {
         "$type": "number",
-        "$value": "{primitives.scale.7}",
-        "$description": "= 16px, source: scale/6"
+        "$value": "{primitives.scale.container.1}",
+        "$description": "= 600px, source: scale/22"
       }
     },
     "stroke": {

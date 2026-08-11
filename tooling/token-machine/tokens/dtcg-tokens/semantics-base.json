@@ -184,22 +184,6 @@
             "$value": "{palette.fill.disabled}",
             "$description": "Primary action background, disabled state."
           },
-          "loading": {
-            "$type": "color",
-            "$value": "{palette.brand.primary}"
-          },
-          "visited": {
-            "$type": "color",
-            "$value": "{palette.brand.primary}"
-          },
-          "dragged": {
-            "$type": "color",
-            "$value": "{palette.brand.primary}"
-          },
-          "droptarget": {
-            "$type": "color",
-            "$value": "{palette.brand.subtle}"
-          },
           "hover": {
             "$type": "color",
             "$value": "{palette.brand.primaryhover}",
@@ -238,10 +222,6 @@
             "$type": "color",
             "$value": "{palette.line.subtle}",
             "$description": "Primary action border, disabled state."
-          },
-          "droptarget": {
-            "$type": "color",
-            "$value": "{palette.brand.subtle}"
           },
           "hover": {
             "$type": "color",
@@ -286,22 +266,6 @@
             "$type": "color",
             "$value": "{palette.fill.disabled}",
             "$description": "Secondary action background, disabled state."
-          },
-          "loading": {
-            "$type": "color",
-            "$value": "{palette.brand.secondary}"
-          },
-          "visited": {
-            "$type": "color",
-            "$value": "{palette.brand.secondary}"
-          },
-          "dragged": {
-            "$type": "color",
-            "$value": "{palette.brand.secondary}"
-          },
-          "droptarget": {
-            "$type": "color",
-            "$value": "{palette.brand.secondarysubtle}"
           }
         },
         "foreground": {
@@ -336,10 +300,6 @@
             "$type": "color",
             "$value": "{palette.line.subtle}",
             "$description": "Secondary action border, disabled state."
-          },
-          "droptarget": {
-            "$type": "color",
-            "$value": "{palette.brand.secondarysubtle}"
           }
         }
       },
@@ -374,22 +334,6 @@
             "$type": "color",
             "$value": "{palette.fill.disabled}",
             "$description": "Ghost action background, disabled state."
-          },
-          "loading": {
-            "$type": "color",
-            "$value": "{palette.fill.transparent}"
-          },
-          "visited": {
-            "$type": "color",
-            "$value": "{palette.fill.transparent}"
-          },
-          "dragged": {
-            "$type": "color",
-            "$value": "{palette.fill.transparent}"
-          },
-          "droptarget": {
-            "$type": "color",
-            "$value": "{palette.brand.subtle}"
           }
         },
         "foreground": {
@@ -458,22 +402,6 @@
             "$type": "color",
             "$value": "{palette.fill.disabled}",
             "$description": "Destructive action background, disabled state."
-          },
-          "loading": {
-            "$type": "color",
-            "$value": "{palette.status.error.default}"
-          },
-          "visited": {
-            "$type": "color",
-            "$value": "{palette.status.error.default}"
-          },
-          "dragged": {
-            "$type": "color",
-            "$value": "{palette.status.error.default}"
-          },
-          "droptarget": {
-            "$type": "color",
-            "$value": "{palette.status.error.faint}"
           }
         },
         "foreground": {
@@ -542,22 +470,6 @@
             "$type": "color",
             "$value": "{palette.fill.disabled}",
             "$description": "Inverse action background, disabled state."
-          },
-          "loading": {
-            "$type": "color",
-            "$value": "{palette.fill.inverse}"
-          },
-          "visited": {
-            "$type": "color",
-            "$value": "{palette.fill.inverse}"
-          },
-          "dragged": {
-            "$type": "color",
-            "$value": "{palette.fill.inverse}"
-          },
-          "droptarget": {
-            "$type": "color",
-            "$value": "{palette.fill.inversehover}"
           }
         },
         "foreground": {
@@ -626,22 +538,6 @@
             "$type": "color",
             "$value": "{palette.fill.disabled}",
             "$description": "Neutral action background, disabled state."
-          },
-          "loading": {
-            "$type": "color",
-            "$value": "{palette.fill.transparent}"
-          },
-          "visited": {
-            "$type": "color",
-            "$value": "{palette.fill.transparent}"
-          },
-          "dragged": {
-            "$type": "color",
-            "$value": "{palette.fill.transparent}"
-          },
-          "droptarget": {
-            "$type": "color",
-            "$value": "{palette.fill.canvas}"
           }
         },
         "border": {
@@ -664,10 +560,6 @@
             "$type": "color",
             "$value": "{palette.line.subtle}",
             "$description": "Neutral action border, disabled state."
-          },
-          "droptarget": {
-            "$type": "color",
-            "$value": "{palette.line.default}"
           }
         },
         "foreground": {
@@ -704,10 +596,6 @@
             "$type": "color",
             "$value": "{palette.line.subtle}",
             "$description": "Positive action border, disabled state."
-          },
-          "droptarget": {
-            "$type": "color",
-            "$value": "{palette.status.success.faint}"
           }
         },
         "background": {
@@ -740,22 +628,6 @@
             "$type": "color",
             "$value": "{palette.fill.disabled}",
             "$description": "Positive action background, disabled state."
-          },
-          "loading": {
-            "$type": "color",
-            "$value": "{palette.status.success.default}"
-          },
-          "visited": {
-            "$type": "color",
-            "$value": "{palette.status.success.default}"
-          },
-          "dragged": {
-            "$type": "color",
-            "$value": "{palette.status.success.default}"
-          },
-          "droptarget": {
-            "$type": "color",
-            "$value": "{palette.status.success.faint}"
           }
         },
         "foreground": {
@@ -792,10 +664,6 @@
             "$type": "color",
             "$value": "{palette.line.subtle}",
             "$description": "Subtle action border, disabled state."
-          },
-          "droptarget": {
-            "$type": "color",
-            "$value": "{palette.brand.subtle}"
           }
         },
         "background": {
@@ -828,22 +696,6 @@
             "$type": "color",
             "$value": "{palette.fill.disabled}",
             "$description": "Subtle action background, disabled state."
-          },
-          "loading": {
-            "$type": "color",
-            "$value": "{palette.brand.subtle}"
-          },
-          "visited": {
-            "$type": "color",
-            "$value": "{palette.brand.subtle}"
-          },
-          "dragged": {
-            "$type": "color",
-            "$value": "{palette.brand.subtle}"
-          },
-          "droptarget": {
-            "$type": "color",
-            "$value": "{palette.brand.muted}"
           }
         },
         "foreground": {
@@ -861,10 +713,6 @@
       }
     },
     "overlay": {
-      "backdrop": {
-        "$type": "color",
-        "$value": "{palette.fill.scrim}"
-      },
       "scrim": {
         "$type": "color",
         "$value": "{palette.fill.scrim}",

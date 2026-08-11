@@ -22,7 +22,6 @@
   --control-icon-sm: 20;
   --control-icon-md: 24;
   --control-icon-lg: 32;
-  --container-default: 240;
   --radius-none: 0;
   --radius-xs: 2;
   --radius-sm: 4;
@@ -33,7 +32,7 @@
   --radius-element-md: 12;
   --radius-container: 20;
   --radius-pill: 9999;
-  --radius-container-2: 16;
+  --container-default: 240;
   --stroke-base: 0;
   --stroke-thin: 1;
   --stroke-thick: 2;
@@ -60,7 +59,6 @@
   --control-icon-sm: 20;
   --control-icon-md: 24;
   --control-icon-lg: 32;
-  --container-default: 600;
   --radius-none: 0;
   --radius-xs: 2;
   --radius-sm: 4;
@@ -71,7 +69,7 @@
   --radius-element-md: 12;
   --radius-container: 20;
   --radius-pill: 9999;
-  --radius-container-2: 16;
+  --container-default: 600;
   --stroke-base: 0;
   --stroke-thin: 1;
   --stroke-thick: 2;
@@ -99,7 +97,6 @@
   --control-icon-sm: 20;
   --control-icon-md: 24;
   --control-icon-lg: 32;
-  --container-default: 1200;
   --radius-none: 0;
   --radius-xs: 2;
   --radius-sm: 4;
@@ -110,7 +107,7 @@
   --radius-element-md: 12;
   --radius-container: 20;
   --radius-pill: 9999;
-  --radius-container-2: 16;
+  --container-default: 1200;
   --stroke-base: 0;
   --stroke-thin: 1;
   --stroke-thick: 2;
@@ -138,7 +135,6 @@
   --control-icon-sm: 20;
   --control-icon-md: 24;
   --control-icon-lg: 32;
-  --container-default: 840;
   --radius-none: 0;
   --radius-xs: 2;
   --radius-sm: 4;
@@ -149,7 +145,7 @@
   --radius-element-md: 12;
   --radius-container: 20;
   --radius-pill: 9999;
-  --radius-container-2: 16;
+  --container-default: 840;
   --stroke-base: 0;
   --stroke-thin: 1;
   --stroke-thick: 2;
