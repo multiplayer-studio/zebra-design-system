@@ -36,6 +36,18 @@
         }
       },
       "border": {
+        "default": {
+          "$type": "color",
+          "$value": "{unknown.reference}"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{unknown.reference}"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{unknown.reference}"
+        },
         "primary-legacy": {
           "$type": "color",
           "$value": "{unknown.reference}"
@@ -51,6 +63,10 @@
           "$value": "{unknown.reference}"
         },
         "selected": {
+          "$type": "color",
+          "$value": "{unknown.reference}"
+        },
+        "disabled": {
           "$type": "color",
           "$value": "{unknown.reference}"
         }

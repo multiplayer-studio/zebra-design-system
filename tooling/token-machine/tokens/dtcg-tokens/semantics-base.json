@@ -184,21 +184,6 @@
             "$value": "{palette.fill.disabled}",
             "$description": "Primary action background, disabled state."
           },
-          "hover": {
-            "$type": "color",
-            "$value": "{palette.brand.primaryhover}",
-            "$description": "Primary action background, hover state."
-          },
-          "pressed": {
-            "$type": "color",
-            "$value": "{palette.brand.primarypressed}",
-            "$description": "Primary action background, pressed state."
-          },
-          "selected": {
-            "$type": "color",
-            "$value": "{palette.brand.primarypressed}",
-            "$description": "Primary action background, selected state."
-          },
           "loading": {
             "$type": "color",
             "$value": "{palette.brand.primary}"
@@ -214,6 +199,21 @@
           "droptarget": {
             "$type": "color",
             "$value": "{palette.brand.subtle}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.brand.primaryhover}",
+            "$description": "Primary action background, hover state."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.brand.primarypressed}",
+            "$description": "Primary action background, pressed state."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{palette.brand.primarypressed}",
+            "$description": "Primary action background, selected state."
           }
         },
         "foreground": {
@@ -239,6 +239,10 @@
             "$value": "{palette.line.subtle}",
             "$description": "Primary action border, disabled state."
           },
+          "droptarget": {
+            "$type": "color",
+            "$value": "{palette.brand.subtle}"
+          },
           "hover": {
             "$type": "color",
             "$value": "{palette.brand.primaryhover}",
@@ -248,10 +252,6 @@
             "$type": "color",
             "$value": "{palette.brand.primarypressed}",
             "$description": "Primary action border, pressed state."
-          },
-          "droptarget": {
-            "$type": "color",
-            "$value": "{palette.brand.subtle}"
           }
         }
       },
@@ -861,6 +861,10 @@
       }
     },
     "overlay": {
+      "backdrop": {
+        "$type": "color",
+        "$value": "{palette.fill.scrim}"
+      },
       "scrim": {
         "$type": "color",
         "$value": "{palette.fill.scrim}",
@@ -870,10 +874,6 @@
         "$type": "color",
         "$value": "{palette.fill.overlay}",
         "$description": "Modal panel surface color."
-      },
-      "backdrop": {
-        "$type": "color",
-        "$value": "{palette.fill.scrim}"
       }
     },
     "feedback": {

@@ -169,6 +169,20 @@
         "$description": "Text color within a selection (theme.color.selection.text)"
       }
     },
+    "Outline": {
+      "base": {
+        "$type": "number",
+        "$value": 0
+      },
+      "thin": {
+        "$type": "number",
+        "$value": 1
+      },
+      "thick": {
+        "$type": "number",
+        "$value": 2
+      }
+    },
     "status": {
       "success": {
         "default": {
@@ -349,20 +363,6 @@
       "neutral": {
         "$type": "color",
         "$value": "{primitives.color.neutral.cool.50}"
-      }
-    },
-    "Outline": {
-      "base": {
-        "$type": "number",
-        "$value": 0
-      },
-      "thin": {
-        "$type": "number",
-        "$value": 1
-      },
-      "thick": {
-        "$type": "number",
-        "$value": 2
       }
     }
   }
