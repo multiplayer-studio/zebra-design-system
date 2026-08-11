@@ -1,5 +1,5 @@
 {
-  "Companion": {
+  "palette": {
     "brand": {
       "primary": {
         "$type": "color",

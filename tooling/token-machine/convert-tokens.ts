@@ -1,6 +1,13 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import './types.ts';
+import { 
+  FigmaModeValue, 
+  FigmaVariableType, 
+  FigmaVariable, 
+  ExtendedFigmaCollection, 
+  ExtendedFigmaVarsExport, 
+  DTCGToken 
+} from './types.ts';
 
 function rgbaToHex(color: { r: number; g: number; b: number; a: number }): string {
   const toHex = (value: number) => {
@@ -98,7 +105,6 @@ function convertTokens(inputFile: string, outputDir: string) {
   // 3c. The Value Resolver
   const resolveValue = (modeValue: any): string | number | boolean => {
     if (modeValue === undefined || modeValue === null) return "";
-
     // 1. Check for standard 'alias' OR alternative Figma 'VARIABLE_ALIAS' type
     if (modeValue.kind === 'alias' || modeValue.type === 'VARIABLE_ALIAS') {
       const targetId = modeValue.variableId || modeValue.id;
@@ -116,7 +122,6 @@ function convertTokens(inputFile: string, outputDir: string) {
       }
       return val as string | number | boolean;
     }
-
     // 3. FALLBACK: What if the export unwrapped the value in the overrides?
     if (typeof modeValue === 'object' && modeValue !== null && 'r' in modeValue) {
       return rgbaToHex(modeValue as { r: number; g: number; b: number; a: number });
@@ -124,7 +129,6 @@ function convertTokens(inputFile: string, outputDir: string) {
     if (typeof modeValue === 'string' || typeof modeValue === 'number' || typeof modeValue === 'boolean') {
       return modeValue;
     }
-
     return "";
   };
 
@@ -133,25 +137,26 @@ function convertTokens(inputFile: string, outputDir: string) {
 
   figmaExport.collections.forEach(collection => {
     collection.modes.forEach(mode => {
-      // Create an empty root object mapped to the collection's namespace
-      const fileData: Record<string, any> = { [collection.name]: {} };
-
-      // Determine Mode Suffix (Light/Default has no suffix)
-      const modeName = mode.name.toLowerCase();
-
-      // Determine Output File Name
+      // Determine File Name & Key structure
       let fileName = '';
+      let parentName = collection.name; // Fallback to current collection name if not an extension
+
       if (collection.isExtension && collection.variableOverrides) {
         // Find the first overriden variable to locate the parent collection's ID
         const firstOverriddenId = Object.keys(collection.variableOverrides)[0];
         const baseVar = firstOverriddenId ? variableById.get(firstOverriddenId) : undefined;
         const parentCollection = baseVar ? collectionById.get(baseVar.collectionId) : undefined;
         
-        const parentName = parentCollection ? parentCollection.name : 'parent';
-        fileName = `${parentName}-${collection.name}-${modeName}.json`;
+        if (parentCollection) {
+          parentName = parentCollection.name;
+        }
+        fileName = `${parentName}-${collection.name}-${mode.name.toLowerCase()}.json`;
       } else {
-        fileName = `${collection.name}-${modeName}.json`;
+        fileName = `${collection.name}-${mode.name.toLowerCase()}.json`;
       }
+
+      // Create an empty root object mapped to the Parent's namespace (keeps pattern matching identical)
+      const fileData: Record<string, any> = { [parentName]: {} };
 
       // Populate fileData with Standard Variables native to this collection
       figmaExport.variables
@@ -166,7 +171,7 @@ function convertTokens(inputFile: string, outputDir: string) {
             };
             if (variable.description) token.$description = variable.description;
             
-            setNestedProperty(fileData[collection.name], tokenPath, token);
+            setNestedProperty(fileData[parentName], tokenPath, token);
           }
         });
 
@@ -193,11 +198,9 @@ function convertTokens(inputFile: string, outputDir: string) {
           figmaExport.variables
             .filter(v => v.collectionId === baseColId)
             .forEach(baseVar => {
-              
               // Overrides lookup
               const overridesForVar = collection.variableOverrides![baseVar.id];
               let overrideValue: any = undefined;
-
               if (overridesForVar !== undefined) {
                 // Try extension's mode ID
                 overrideValue = overridesForVar[mode.id];
@@ -206,7 +209,6 @@ function convertTokens(inputFile: string, outputDir: string) {
                 if (overrideValue === undefined) {
                   overrideValue = overridesForVar[baseMode.id];
                 }
-
                 // If STILL not found, check if the overrides object is just a flat value
                 if (overrideValue === undefined && 
                    (overridesForVar.kind || overridesForVar.type === 'VARIABLE_ALIAS' || typeof overridesForVar !== 'object' || 'r' in overridesForVar)) {
@@ -216,7 +218,6 @@ function convertTokens(inputFile: string, outputDir: string) {
               
               // Fallback to the base collection's value if no valid override exists
               const finalValue = overrideValue !== undefined ? overrideValue : baseVar.valuesByMode[baseMode.id];
-
               if (finalValue !== undefined) {
                  const tokenPath = baseVar.name.split('/');
                  const token: DTCGToken = {
@@ -225,8 +226,8 @@ function convertTokens(inputFile: string, outputDir: string) {
                  };
                  if (baseVar.description) token.$description = baseVar.description;
                  
-                 // Make sure to nest them inside the current collection's name root (e.g. Companion)
-                 setNestedProperty(fileData[collection.name], tokenPath, token);
+                 // Nest the token under the base/parent collection's name root (e.g. palette) instead of the extension
+                 setNestedProperty(fileData[parentName], tokenPath, token);
               }
             });
         });
@@ -245,7 +246,7 @@ function convertTokens(inputFile: string, outputDir: string) {
 // ==========================================
 // 4. Execute Script
 // ==========================================
-const INPUT_FILE = './tokens-2026-08-07.json';
+const INPUT_FILE = './tokens.json';
 const OUTPUT_DIR = './dtcg-tokens';
 
 try {

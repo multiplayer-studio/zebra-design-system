@@ -1,0 +1,142 @@
+/**
+ * Default Theme - Size Variables
+ * This file is auto-generated. Do not edit directly.
+ */
+
+:root {
+  --space-page: 16;
+  --space-section: 24;
+  --space-card: 16;
+  --space-gutter: 16;
+  --space-2xs: 2;
+  --space-xs: 4;
+  --space-sm: 8;
+  --space-md: 12;
+  --space-lg: 16;
+  --space-xl: 24;
+  --space-2xl: 32;
+  --control-target-min: 44;
+  --control-sm: 40;
+  --control-md: 48;
+  --control-lg: 56;
+  --control-icon-sm: 20;
+  --control-icon-md: 24;
+  --control-icon-lg: 32;
+  --container-default: 240;
+  --radius-xs: 2;
+  --radius-sm: 4;
+  --radius-md: 8;
+  --radius-lg: 12;
+  --radius-xl: 16;
+  --radius-container: 16;
+  --radius-pill: 9999;
+  --stroke-base: 1;
+  --stroke-thin: 2;
+  --stroke-thick: 4;
+  --stroke-heavy: 6;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --space-page: 16;
+  --space-section: 24;
+  --space-card: 16;
+  --space-gutter: 16;
+  --space-2xs: 2;
+  --space-xs: 4;
+  --space-sm: 8;
+  --space-md: 12;
+  --space-lg: 16;
+  --space-xl: 24;
+  --space-2xl: 32;
+  --control-target-min: 44;
+  --control-sm: 40;
+  --control-md: 48;
+  --control-lg: 56;
+  --control-icon-sm: 20;
+  --control-icon-md: 24;
+  --control-icon-lg: 32;
+  --container-default: 600;
+  --radius-xs: 2;
+  --radius-sm: 4;
+  --radius-md: 8;
+  --radius-lg: 12;
+  --radius-xl: 16;
+  --radius-container: 16;
+  --radius-pill: 9999;
+  --stroke-base: 1;
+  --stroke-thin: 2;
+  --stroke-thick: 4;
+  --stroke-heavy: 6;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --space-page: 16;
+  --space-section: 24;
+  --space-card: 16;
+  --space-gutter: 16;
+  --space-2xs: 2;
+  --space-xs: 4;
+  --space-sm: 8;
+  --space-md: 12;
+  --space-lg: 16;
+  --space-xl: 24;
+  --space-2xl: 32;
+  --control-target-min: 44;
+  --control-sm: 40;
+  --control-md: 48;
+  --control-lg: 56;
+  --control-icon-sm: 20;
+  --control-icon-md: 24;
+  --control-icon-lg: 32;
+  --container-default: 1200;
+  --radius-xs: 2;
+  --radius-sm: 4;
+  --radius-md: 8;
+  --radius-lg: 12;
+  --radius-xl: 16;
+  --radius-container: 16;
+  --radius-pill: 9999;
+  --stroke-base: 1;
+  --stroke-thin: 2;
+  --stroke-thick: 4;
+  --stroke-heavy: 6;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --space-page: 16;
+  --space-section: 24;
+  --space-card: 16;
+  --space-gutter: 16;
+  --space-2xs: 2;
+  --space-xs: 4;
+  --space-sm: 8;
+  --space-md: 12;
+  --space-lg: 16;
+  --space-xl: 24;
+  --space-2xl: 32;
+  --control-target-min: 44;
+  --control-sm: 40;
+  --control-md: 48;
+  --control-lg: 56;
+  --control-icon-sm: 20;
+  --control-icon-md: 24;
+  --control-icon-lg: 32;
+  --container-default: 840;
+  --radius-xs: 2;
+  --radius-sm: 4;
+  --radius-md: 8;
+  --radius-lg: 12;
+  --radius-xl: 16;
+  --radius-container: 16;
+  --radius-pill: 9999;
+  --stroke-base: 1;
+  --stroke-thin: 2;
+  --stroke-thick: 4;
+  --stroke-heavy: 6;
+  }
+}
