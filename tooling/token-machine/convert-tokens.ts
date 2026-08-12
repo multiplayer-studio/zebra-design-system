@@ -235,8 +235,11 @@ function convertTokens(inputFile: string, outputDir: string) {
 
       // Write File
       const filePath = path.join(outputDir, fileName);
-      fs.writeFileSync(filePath, JSON.stringify(fileData, null, 2), 'utf-8');
-      console.log(`✅ Generated: ${fileName}`);
+      const nestedObj = Object.values(fileData)[0];
+      if (Object.keys(nestedObj).length !== 0) {
+        fs.writeFileSync(filePath, JSON.stringify(fileData, null, 2), 'utf-8');
+        console.log(`✅ Generated: ${fileName}`);
+      }
     });
   });
 

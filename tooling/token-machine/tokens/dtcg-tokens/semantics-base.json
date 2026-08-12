@@ -103,6 +103,11 @@
         "$value": "{palette.ink.link}",
         "$description": "Hyperlink text color."
       },
+      "cursor": {
+        "$type": "color",
+        "$value": "{palette.ink.brand}",
+        "$description": "Hyperlink text color."
+      },
       "success": {
         "$type": "color",
         "$value": "{palette.status.success.default}",

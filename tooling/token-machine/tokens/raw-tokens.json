@@ -4547,9 +4547,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:2:2",
       "type": "COLOR",
-      "scopes": [
-        "ALL_SCOPES"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "2:0": {
           "kind": "literal",
@@ -4572,9 +4570,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:2:2",
       "type": "COLOR",
-      "scopes": [
-        "ALL_SCOPES"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "2:0": {
           "kind": "literal",
@@ -4597,9 +4593,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:2:2",
       "type": "COLOR",
-      "scopes": [
-        "ALL_SCOPES"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "2:0": {
           "kind": "literal",
@@ -5560,38 +5554,6 @@
     },
     {
       "remote": false,
-      "key": "0478ebef44d923ce6a3591d87e085116a009b65a",
-      "hiddenFromPublishing": false,
-      "codeSyntax": {},
-      "id": "VariableID:2021:6725",
-      "name": "radius/container",
-      "description": "= 16px, source: scale/6",
-      "collectionId": "VariableCollectionId:2013:6723",
-      "type": "FLOAT",
-      "scopes": [
-        "CORNER_RADIUS"
-      ],
-      "valuesByMode": {
-        "2013:0": {
-          "kind": "alias",
-          "variableId": "VariableID:2004:8"
-        },
-        "2059:0": {
-          "kind": "alias",
-          "variableId": "VariableID:2004:8"
-        },
-        "2059:1": {
-          "kind": "alias",
-          "variableId": "VariableID:2004:8"
-        },
-        "2059:2": {
-          "kind": "alias",
-          "variableId": "VariableID:2004:8"
-        }
-      }
-    },
-    {
-      "remote": false,
       "key": "741955df370252e872a8d656f1e947941de690c4",
       "hiddenFromPublishing": false,
       "codeSyntax": {},
@@ -5619,6 +5581,38 @@
         "2059:2": {
           "kind": "alias",
           "variableId": "VariableID:2004:2"
+        }
+      }
+    },
+    {
+      "remote": false,
+      "key": "0478ebef44d923ce6a3591d87e085116a009b65a",
+      "hiddenFromPublishing": false,
+      "codeSyntax": {},
+      "id": "VariableID:2021:6725",
+      "name": "radius/container",
+      "description": "= 16px, source: scale/6",
+      "collectionId": "VariableCollectionId:2013:6723",
+      "type": "FLOAT",
+      "scopes": [
+        "CORNER_RADIUS"
+      ],
+      "valuesByMode": {
+        "2013:0": {
+          "kind": "alias",
+          "variableId": "VariableID:2004:8"
+        },
+        "2059:0": {
+          "kind": "alias",
+          "variableId": "VariableID:2004:8"
+        },
+        "2059:1": {
+          "kind": "alias",
+          "variableId": "VariableID:2004:8"
+        },
+        "2059:2": {
+          "kind": "alias",
+          "variableId": "VariableID:2004:8"
         }
       }
     },
@@ -6103,6 +6097,27 @@
         "2:1": {
           "kind": "alias",
           "variableId": "VariableID:63:21"
+        }
+      }
+    },
+    {
+      "remote": false,
+      "key": "9d373d0bcfaf8e95bf7c67ea666256a9e06be52e",
+      "hiddenFromPublishing": false,
+      "codeSyntax": {},
+      "id": "VariableID:2183:20602",
+      "name": "foreground/cursor",
+      "description": "Hyperlink text color.",
+      "collectionId": "VariableCollectionId:2:3",
+      "type": "COLOR",
+      "scopes": [
+        "SHAPE_FILL",
+        "TEXT_FILL"
+      ],
+      "valuesByMode": {
+        "2:1": {
+          "kind": "alias",
+          "variableId": "VariableID:121:6194"
         }
       }
     },
@@ -9978,9 +9993,7 @@
       "description": "Info background tint (theme.color.info.subtle)",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10002,9 +10015,7 @@
       "description": "Info solid/strong emphasis (theme.color.info.strong)",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10202,9 +10213,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "STROKE_COLOR"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10226,9 +10235,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "STROKE_COLOR"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10250,9 +10257,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "STROKE_COLOR"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10490,9 +10495,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10514,9 +10517,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10538,10 +10539,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS",
-        "STROKE_COLOR"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10563,10 +10561,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS",
-        "STROKE_COLOR"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10588,10 +10583,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS",
-        "STROKE_COLOR"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10613,10 +10605,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS",
-        "STROKE_COLOR"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10638,10 +10627,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS",
-        "STROKE_COLOR"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10663,10 +10649,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS",
-        "STROKE_COLOR"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10688,10 +10671,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS",
-        "STROKE_COLOR"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10713,10 +10693,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS",
-        "STROKE_COLOR"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10738,10 +10715,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS",
-        "STROKE_COLOR"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10763,10 +10737,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS",
-        "STROKE_COLOR"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10788,10 +10759,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS",
-        "STROKE_COLOR"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10813,10 +10781,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS",
-        "STROKE_COLOR"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10838,10 +10803,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS",
-        "STROKE_COLOR"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10863,10 +10825,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS",
-        "STROKE_COLOR"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10888,9 +10847,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10912,9 +10869,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10936,9 +10891,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",
@@ -10960,9 +10913,7 @@
       "description": "",
       "collectionId": "VariableCollectionId:3:4",
       "type": "COLOR",
-      "scopes": [
-        "ALL_FILLS"
-      ],
+      "scopes": [],
       "valuesByMode": {
         "3:2": {
           "kind": "alias",

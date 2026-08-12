@@ -5,6 +5,7 @@
   "scripts": {
     "clean": "tsx clean-tokens.ts",
     "fetch": "tsx --env-file=../../.env fetch-tokens.ts",
+    "preconvert": "npm run fetch",
     "convert": "tsx --env-file=../../.env convert-tokens.ts",
     "build": "tsx build-tokens.ts"
   },

@@ -1,2 +1,5 @@
 node_modules/
+
 .env
+
+tooling/token-machine/tokens/raw-tokens.json
