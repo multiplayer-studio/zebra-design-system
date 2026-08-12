@@ -55,6 +55,11 @@
         "$type": "number",
         "$value": "{primitives.scale.11}",
         "$description": "= 32px, source: scale/10"
+      },
+      "none": {
+        "$type": "number",
+        "$value": "{primitives.scale.0}",
+        "$description": "= 32px, source: scale/10"
       }
     },
     "control": {

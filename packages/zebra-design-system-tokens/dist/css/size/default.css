@@ -1,0 +1,158 @@
+/**
+ * Default Size - Building Block Variables
+ * This file is auto-generated. Do not edit directly.
+ */
+
+:root {
+  --size-radius-pill: 9999; /** Literal value, not a scale reference (fully rounded) */
+  --size-space-page: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-space-section: var(--primitives-scale-9); /** = 24px, source: scale/8 */
+  --size-space-card: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-space-gutter: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-space-2xs: var(--primitives-scale-2); /** = 2px, source: scale/1 */
+  --size-space-xs: var(--primitives-scale-3); /** = 4px, source: scale/2 */
+  --size-space-sm: var(--primitives-scale-5); /** = 8px, source: scale/4 */
+  --size-space-md: var(--primitives-scale-6); /** = 12px, source: scale/5 */
+  --size-space-lg: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-space-xl: var(--primitives-scale-9); /** = 24px, source: scale/8 */
+  --size-space-2xl: var(--primitives-scale-11); /** = 32px, source: scale/10 */
+  --size-space-none: var(--primitives-scale-0); /** = 32px, source: scale/10 */
+  --size-control-target-min: var(--primitives-scale-14); /** = 44px, source: scale/13 */
+  --size-control-sm: var(--primitives-scale-13); /** = 40px, source: scale/12 */
+  --size-control-md: var(--primitives-scale-15); /** = 48px, source: scale/14 */
+  --size-control-lg: var(--primitives-scale-16); /** = 56px, source: scale/15 */
+  --size-control-icon-sm: var(--primitives-scale-8); /** = 20px, source: scale/7 */
+  --size-control-icon-md: var(--primitives-scale-9); /** = 24px, source: scale/8 */
+  --size-control-icon-lg: var(--primitives-scale-11); /** = 32px, source: scale/10 */
+  --size-radius-none: var(--primitives-scale-0); /** = 2px, source: scale/1 */
+  --size-radius-xs: var(--primitives-scale-2); /** = 2px, source: scale/1 */
+  --size-radius-sm: var(--primitives-scale-3); /** = 4px, source: scale/2 */
+  --size-radius-md: var(--primitives-scale-5); /** = 8px, source: scale/4 */
+  --size-radius-lg: var(--primitives-scale-6); /** = 12px, source: scale/5 */
+  --size-radius-xl: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-radius-element-sm: var(--primitives-scale-3); /** = 16px, source: scale/6 */
+  --size-radius-element-md: var(--primitives-scale-6); /** = 16px, source: scale/6 */
+  --size-radius-container: var(--primitives-scale-8); /** = 16px, source: scale/6 */
+  --size-container-default: var(--primitives-scale-container-0); /** = 600px, source: scale/22 */
+  --size-stroke-base: var(--primitives-scale-0); /** = 1px, source: scale/0 */
+  --size-stroke-thin: var(--primitives-scale-1); /** = 1px, source: scale/0 */
+  --size-stroke-thick: var(--primitives-scale-2); /** = 2px, source: scale/1 */
+  --size-stroke-heavy: var(--primitives-scale-3); /** = 4px, source: scale/2 */
+}
+
+@media (min-width: 768px) {
+  :root {
+    --size-radius-pill: 9999; /** Literal value, not a scale reference (fully rounded) */
+  --size-space-page: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-space-section: var(--primitives-scale-9); /** = 24px, source: scale/8 */
+  --size-space-card: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-space-gutter: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-space-2xs: var(--primitives-scale-2); /** = 2px, source: scale/1 */
+  --size-space-xs: var(--primitives-scale-3); /** = 4px, source: scale/2 */
+  --size-space-sm: var(--primitives-scale-5); /** = 8px, source: scale/4 */
+  --size-space-md: var(--primitives-scale-6); /** = 12px, source: scale/5 */
+  --size-space-lg: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-space-xl: var(--primitives-scale-9); /** = 24px, source: scale/8 */
+  --size-space-2xl: var(--primitives-scale-11); /** = 32px, source: scale/10 */
+  --size-space-none: var(--primitives-scale-0); /** = 32px, source: scale/10 */
+  --size-control-target-min: var(--primitives-scale-14); /** = 44px, source: scale/13 */
+  --size-control-sm: var(--primitives-scale-13); /** = 40px, source: scale/12 */
+  --size-control-md: var(--primitives-scale-15); /** = 48px, source: scale/14 */
+  --size-control-lg: var(--primitives-scale-16); /** = 56px, source: scale/15 */
+  --size-control-icon-sm: var(--primitives-scale-8); /** = 20px, source: scale/7 */
+  --size-control-icon-md: var(--primitives-scale-9); /** = 24px, source: scale/8 */
+  --size-control-icon-lg: var(--primitives-scale-11); /** = 32px, source: scale/10 */
+  --size-radius-none: var(--primitives-scale-0); /** = 2px, source: scale/1 */
+  --size-radius-xs: var(--primitives-scale-2); /** = 2px, source: scale/1 */
+  --size-radius-sm: var(--primitives-scale-3); /** = 4px, source: scale/2 */
+  --size-radius-md: var(--primitives-scale-5); /** = 8px, source: scale/4 */
+  --size-radius-lg: var(--primitives-scale-6); /** = 12px, source: scale/5 */
+  --size-radius-xl: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-radius-element-sm: var(--primitives-scale-3); /** = 16px, source: scale/6 */
+  --size-radius-element-md: var(--primitives-scale-6); /** = 16px, source: scale/6 */
+  --size-radius-container: var(--primitives-scale-8); /** = 16px, source: scale/6 */
+  --size-container-default: var(--primitives-scale-container-1); /** = 600px, source: scale/22 */
+  --size-stroke-base: var(--primitives-scale-0); /** = 1px, source: scale/0 */
+  --size-stroke-thin: var(--primitives-scale-1); /** = 1px, source: scale/0 */
+  --size-stroke-thick: var(--primitives-scale-2); /** = 2px, source: scale/1 */
+  --size-stroke-heavy: var(--primitives-scale-3); /** = 4px, source: scale/2 */
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --size-radius-pill: 9999; /** Literal value, not a scale reference (fully rounded) */
+  --size-space-page: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-space-section: var(--primitives-scale-9); /** = 24px, source: scale/8 */
+  --size-space-card: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-space-gutter: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-space-2xs: var(--primitives-scale-2); /** = 2px, source: scale/1 */
+  --size-space-xs: var(--primitives-scale-3); /** = 4px, source: scale/2 */
+  --size-space-sm: var(--primitives-scale-5); /** = 8px, source: scale/4 */
+  --size-space-md: var(--primitives-scale-6); /** = 12px, source: scale/5 */
+  --size-space-lg: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-space-xl: var(--primitives-scale-9); /** = 24px, source: scale/8 */
+  --size-space-2xl: var(--primitives-scale-11); /** = 32px, source: scale/10 */
+  --size-space-none: var(--primitives-scale-0); /** = 32px, source: scale/10 */
+  --size-control-target-min: var(--primitives-scale-14); /** = 44px, source: scale/13 */
+  --size-control-sm: var(--primitives-scale-13); /** = 40px, source: scale/12 */
+  --size-control-md: var(--primitives-scale-15); /** = 48px, source: scale/14 */
+  --size-control-lg: var(--primitives-scale-16); /** = 56px, source: scale/15 */
+  --size-control-icon-sm: var(--primitives-scale-8); /** = 20px, source: scale/7 */
+  --size-control-icon-md: var(--primitives-scale-9); /** = 24px, source: scale/8 */
+  --size-control-icon-lg: var(--primitives-scale-11); /** = 32px, source: scale/10 */
+  --size-radius-none: var(--primitives-scale-0); /** = 2px, source: scale/1 */
+  --size-radius-xs: var(--primitives-scale-2); /** = 2px, source: scale/1 */
+  --size-radius-sm: var(--primitives-scale-3); /** = 4px, source: scale/2 */
+  --size-radius-md: var(--primitives-scale-5); /** = 8px, source: scale/4 */
+  --size-radius-lg: var(--primitives-scale-6); /** = 12px, source: scale/5 */
+  --size-radius-xl: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-radius-element-sm: var(--primitives-scale-3); /** = 16px, source: scale/6 */
+  --size-radius-element-md: var(--primitives-scale-6); /** = 16px, source: scale/6 */
+  --size-radius-container: var(--primitives-scale-8); /** = 16px, source: scale/6 */
+  --size-container-default: var(--primitives-scale-container-3); /** = 600px, source: scale/22 */
+  --size-stroke-base: var(--primitives-scale-0); /** = 1px, source: scale/0 */
+  --size-stroke-thin: var(--primitives-scale-1); /** = 1px, source: scale/0 */
+  --size-stroke-thick: var(--primitives-scale-2); /** = 2px, source: scale/1 */
+  --size-stroke-heavy: var(--primitives-scale-3); /** = 4px, source: scale/2 */
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --size-radius-pill: 9999; /** Literal value, not a scale reference (fully rounded) */
+  --size-space-page: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-space-section: var(--primitives-scale-9); /** = 24px, source: scale/8 */
+  --size-space-card: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-space-gutter: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-space-2xs: var(--primitives-scale-2); /** = 2px, source: scale/1 */
+  --size-space-xs: var(--primitives-scale-3); /** = 4px, source: scale/2 */
+  --size-space-sm: var(--primitives-scale-5); /** = 8px, source: scale/4 */
+  --size-space-md: var(--primitives-scale-6); /** = 12px, source: scale/5 */
+  --size-space-lg: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-space-xl: var(--primitives-scale-9); /** = 24px, source: scale/8 */
+  --size-space-2xl: var(--primitives-scale-11); /** = 32px, source: scale/10 */
+  --size-space-none: var(--primitives-scale-0); /** = 32px, source: scale/10 */
+  --size-control-target-min: var(--primitives-scale-14); /** = 44px, source: scale/13 */
+  --size-control-sm: var(--primitives-scale-13); /** = 40px, source: scale/12 */
+  --size-control-md: var(--primitives-scale-15); /** = 48px, source: scale/14 */
+  --size-control-lg: var(--primitives-scale-16); /** = 56px, source: scale/15 */
+  --size-control-icon-sm: var(--primitives-scale-8); /** = 20px, source: scale/7 */
+  --size-control-icon-md: var(--primitives-scale-9); /** = 24px, source: scale/8 */
+  --size-control-icon-lg: var(--primitives-scale-11); /** = 32px, source: scale/10 */
+  --size-radius-none: var(--primitives-scale-0); /** = 2px, source: scale/1 */
+  --size-radius-xs: var(--primitives-scale-2); /** = 2px, source: scale/1 */
+  --size-radius-sm: var(--primitives-scale-3); /** = 4px, source: scale/2 */
+  --size-radius-md: var(--primitives-scale-5); /** = 8px, source: scale/4 */
+  --size-radius-lg: var(--primitives-scale-6); /** = 12px, source: scale/5 */
+  --size-radius-xl: var(--primitives-scale-7); /** = 16px, source: scale/6 */
+  --size-radius-element-sm: var(--primitives-scale-3); /** = 16px, source: scale/6 */
+  --size-radius-element-md: var(--primitives-scale-6); /** = 16px, source: scale/6 */
+  --size-radius-container: var(--primitives-scale-8); /** = 16px, source: scale/6 */
+  --size-container-default: var(--primitives-scale-container-2); /** = 600px, source: scale/22 */
+  --size-stroke-base: var(--primitives-scale-0); /** = 1px, source: scale/0 */
+  --size-stroke-thin: var(--primitives-scale-1); /** = 1px, source: scale/0 */
+  --size-stroke-thick: var(--primitives-scale-2); /** = 2px, source: scale/1 */
+  --size-stroke-heavy: var(--primitives-scale-3); /** = 4px, source: scale/2 */
+  }
+}

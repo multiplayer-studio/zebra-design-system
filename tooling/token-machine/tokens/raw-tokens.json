@@ -4978,6 +4978,38 @@
     },
     {
       "remote": false,
+      "key": "3923dd84e30fca60fa1a51f5c8b6458a9cb570ad",
+      "hiddenFromPublishing": false,
+      "codeSyntax": {},
+      "id": "VariableID:2204:20683",
+      "name": "space/none",
+      "description": "= 32px, source: scale/10",
+      "collectionId": "VariableCollectionId:2013:6723",
+      "type": "FLOAT",
+      "scopes": [
+        "GAP"
+      ],
+      "valuesByMode": {
+        "2013:0": {
+          "kind": "alias",
+          "variableId": "VariableID:2058:2"
+        },
+        "2059:0": {
+          "kind": "alias",
+          "variableId": "VariableID:2058:2"
+        },
+        "2059:1": {
+          "kind": "alias",
+          "variableId": "VariableID:2058:2"
+        },
+        "2059:2": {
+          "kind": "alias",
+          "variableId": "VariableID:2058:2"
+        }
+      }
+    },
+    {
+      "remote": false,
       "key": "75ab800c846b9bda97203f35026f84f1e27759fe",
       "hiddenFromPublishing": false,
       "codeSyntax": {},

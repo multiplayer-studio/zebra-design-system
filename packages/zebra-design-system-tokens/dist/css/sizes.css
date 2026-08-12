@@ -15,6 +15,7 @@
   --space-lg: 16;
   --space-xl: 24;
   --space-2xl: 32;
+  --space-none: 0;
   --control-target-min: 44;
   --control-sm: 40;
   --control-md: 48;
@@ -52,6 +53,7 @@
   --space-lg: 16;
   --space-xl: 24;
   --space-2xl: 32;
+  --space-none: 0;
   --control-target-min: 44;
   --control-sm: 40;
   --control-md: 48;
@@ -77,7 +79,7 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1440px) {
   :root {
     --space-page: 16;
   --space-section: 24;
@@ -90,6 +92,7 @@
   --space-lg: 16;
   --space-xl: 24;
   --space-2xl: 32;
+  --space-none: 0;
   --control-target-min: 44;
   --control-sm: 40;
   --control-md: 48;
@@ -115,7 +118,7 @@
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1024px) {
   :root {
     --space-page: 16;
   --space-section: 24;
@@ -128,6 +131,7 @@
   --space-lg: 16;
   --space-xl: 24;
   --space-2xl: 32;
+  --space-none: 0;
   --control-target-min: 44;
   --control-sm: 40;
   --control-md: 48;
