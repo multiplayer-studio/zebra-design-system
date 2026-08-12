@@ -56,13 +56,7 @@ async function main() {
       return;
     }
 
-    //Object.values(meta.variableCollections).forEach(c => {
-    //  console.log("name: ", c.name)
-    //  console.log("hiddenFromPublishing: ", c.hiddenFromPublishing)
-    //});
-    
     const collections: FigmaCollection[] = Object.values(meta.variableCollections)
-    //.filter(c => !c.hiddenFromPublishing)
     .map((c: any) => ({
       id: c.id,
       name: c.name,
@@ -72,13 +66,6 @@ async function main() {
       parentVariableCollectionId: c.parentVariableCollectionId,
       defaultModeId: c.defaultModeId,
     }));
-
-    //Object.values(meta.variables).forEach(v => {
-     // console.log(v.name)
-     // const collection = resolveCollectionByID(v.variableCollectionId, collections)
-     // console.log(collection)
-     // console.log(v.remote)
-    //})
 
     const variables: FigmaVariable[] = Object.values(meta.variables)
       .filter(c => !c.hiddenFromPublishing)
