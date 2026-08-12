@@ -1,0 +1,45 @@
+.app {
+  max-width: calc(var(--container-default) * 1px);
+  margin: 0 auto;
+  padding: calc(var(--space-page) * 1px);
+}
+
+.app-header {
+  margin-bottom: calc(var(--space-2xl) * 1px);
+}
+
+.app-header h1 {
+  color: var(--foreground-primary);
+  margin-bottom: calc(var(--space-2xs) * 1px);
+}
+
+.app-header p {
+  color: var(--foreground-secondary);
+}
+
+.app-main section {
+  margin-bottom: calc(var(--space-2xl) * 1px);
+}
+
+.app-main h2 {
+  color: var(--foreground-primary);
+  border-bottom: calc(var(--stroke-base) * 1px) solid var(--border-default);
+  padding-bottom: calc(var(--space-xs) * 1px);
+  margin-bottom: calc(var(--space-sm) * 1px);
+}
+
+.section-intro {
+  color: var(--foreground-secondary);
+}
+
+.app-footer {
+  border-top: calc(var(--stroke-base) * 1px) solid var(--border-default);
+  padding-top: calc(var(--space-lg) * 1px);
+  color: var(--foreground-tertiary);
+}
+
+code {
+  background: var(--surface-section);
+  border-radius: calc(var(--radius-xs) * 1px);
+  padding: 0 calc(var(--space-2xs) * 1px);
+}

@@ -1,0 +1,171 @@
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--space-sm) * 1px);
+  margin-bottom: calc(var(--space-sm) * 1px);
+}
+
+.btn {
+  font: inherit;
+  text-transform: capitalize;
+  cursor: pointer;
+  padding: calc(var(--space-sm) * 1px) calc(var(--space-lg) * 1px);
+  border-radius: calc(var(--radius-md) * 1px);
+  border-width: calc(var(--stroke-base) * 1px);
+  border-style: solid;
+  transition: background-color 0.1s ease, border-color 0.1s ease;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+}
+
+.btn:focus-visible {
+  outline: calc(var(--stroke-thick) * 1px) solid var(--focus-outline);
+  outline-offset: calc(var(--stroke-thin) * 1px);
+  box-shadow: 0 0 0 calc(var(--stroke-heavy) * 1px) var(--focus-ring);
+}
+
+.btn-primary {
+  background: var(--interactive-primary-background-default);
+  color: var(--interactive-primary-foreground-default);
+  border-color: var(--interactive-primary-border-default);
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--interactive-primary-background-hover);
+  border-color: var(--interactive-primary-border-hover);
+}
+.btn-primary:active:not(:disabled) {
+  background: var(--interactive-primary-background-pressed);
+  border-color: var(--interactive-primary-border-pressed);
+}
+.btn-primary:disabled {
+  background: var(--interactive-primary-background-disabled);
+  color: var(--interactive-primary-foreground-disabled);
+}
+
+.btn-secondary {
+  background: var(--interactive-secondary-background-default);
+  color: var(--interactive-secondary-foreground-default);
+  border-color: var(--interactive-secondary-border-default);
+}
+.btn-secondary:hover:not(:disabled) {
+  background: var(--interactive-secondary-background-hover);
+  border-color: var(--interactive-secondary-border-hover);
+}
+.btn-secondary:active:not(:disabled) {
+  background: var(--interactive-secondary-background-pressed);
+  border-color: var(--interactive-secondary-border-pressed);
+}
+.btn-secondary:disabled {
+  background: var(--interactive-secondary-background-disabled);
+  color: var(--interactive-secondary-foreground-disabled);
+}
+
+.btn-destructive {
+  background: var(--interactive-destructive-background-default);
+  color: var(--interactive-destructive-foreground-default);
+  border-color: var(--interactive-destructive-border-default);
+}
+.btn-destructive:hover:not(:disabled) {
+  background: var(--interactive-destructive-background-hover);
+  border-color: var(--interactive-destructive-border-hover);
+}
+.btn-destructive:active:not(:disabled) {
+  background: var(--interactive-destructive-background-pressed);
+  border-color: var(--interactive-destructive-border-pressed);
+}
+.btn-destructive:disabled {
+  background: var(--interactive-destructive-background-disabled);
+  color: var(--interactive-destructive-foreground-disabled);
+}
+
+.btn-ghost {
+  background: var(--interactive-ghost-background-default);
+  color: var(--interactive-ghost-foreground-default);
+  border-color: var(--interactive-ghost-border-default);
+}
+.btn-ghost:hover:not(:disabled) {
+  background: var(--interactive-ghost-background-hover);
+  border-color: var(--interactive-ghost-border-hover);
+}
+.btn-ghost:active:not(:disabled) {
+  background: var(--interactive-ghost-background-pressed);
+  border-color: var(--interactive-ghost-border-pressed);
+}
+.btn-ghost:disabled {
+  background: var(--interactive-ghost-background-disabled);
+  color: var(--interactive-ghost-foreground-disabled);
+}
+
+.btn-subtle {
+  background: var(--interactive-subtle-background-default);
+  color: var(--interactive-subtle-foreground-default);
+  border-color: var(--interactive-subtle-border-default);
+}
+.btn-subtle:hover:not(:disabled) {
+  background: var(--interactive-subtle-background-hover);
+  border-color: var(--interactive-subtle-border-hover);
+}
+.btn-subtle:active:not(:disabled) {
+  background: var(--interactive-subtle-background-pressed);
+  border-color: var(--interactive-subtle-border-pressed);
+}
+.btn-subtle:disabled {
+  background: var(--interactive-subtle-background-disabled);
+  color: var(--interactive-subtle-foreground-disabled);
+}
+
+.btn-positive {
+  background: var(--interactive-positive-background-default);
+  color: var(--interactive-positive-foreground-default);
+  border-color: var(--interactive-positive-border-default);
+}
+.btn-positive:hover:not(:disabled) {
+  background: var(--interactive-positive-background-hover);
+  border-color: var(--interactive-positive-border-hover);
+}
+.btn-positive:active:not(:disabled) {
+  background: var(--interactive-positive-background-pressed);
+  border-color: var(--interactive-positive-border-pressed);
+}
+.btn-positive:disabled {
+  background: var(--interactive-positive-background-disabled);
+  color: var(--interactive-positive-foreground-disabled);
+}
+
+.btn-neutral {
+  background: var(--interactive-neutral-background-default);
+  color: var(--interactive-neutral-foreground-default);
+  border-color: var(--interactive-neutral-border-default);
+}
+.btn-neutral:hover:not(:disabled) {
+  background: var(--interactive-neutral-background-hover);
+  border-color: var(--interactive-neutral-border-hover);
+}
+.btn-neutral:active:not(:disabled) {
+  background: var(--interactive-neutral-background-pressed);
+  border-color: var(--interactive-neutral-border-pressed);
+}
+.btn-neutral:disabled {
+  background: var(--interactive-neutral-background-disabled);
+  color: var(--interactive-neutral-foreground-disabled);
+}
+
+.btn-inverse {
+  background: var(--interactive-inverse-background-default);
+  color: var(--interactive-inverse-foreground-default);
+  border-color: var(--interactive-inverse-border-default);
+}
+.btn-inverse:hover:not(:disabled) {
+  background: var(--interactive-inverse-background-hover);
+  border-color: var(--interactive-inverse-border-hover);
+}
+.btn-inverse:active:not(:disabled) {
+  background: var(--interactive-inverse-background-pressed);
+  border-color: var(--interactive-inverse-border-pressed);
+}
+.btn-inverse:disabled {
+  background: var(--interactive-inverse-background-disabled);
+  color: var(--interactive-inverse-foreground-disabled);
+}

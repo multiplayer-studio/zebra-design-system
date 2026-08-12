@@ -1,0 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--surface-page);
+  color: var(--foreground-primary);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
