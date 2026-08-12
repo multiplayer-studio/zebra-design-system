@@ -7,11 +7,13 @@
     "convert:tokens": "npm run convert --workspace=tooling/token-machine",
     "build:tokens": "npm run build --workspace=tooling/token-machine",
     "pack:tokens": "npm pack --workspace=packages/zebra-design-system-tokens",
-    "sync:tokens": "npm run clean:tokens && npm run convert:tokens && npm run build:tokens"
+    "sync:tokens": "npm run clean:tokens && npm run convert:tokens && npm run build:tokens",
+    "dev:tokens": "npm run dev --workspace=apps/token-showcase"
   },
   "workspaces": [
     "tooling/*",
-    "packages/*"
+    "packages/*",
+    "apps/*"
   ],
   "dependencies": {
     "style-dictionary": "^5.5.0"

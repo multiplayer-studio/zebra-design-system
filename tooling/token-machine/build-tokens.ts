@@ -19,8 +19,8 @@ const SIZE_MODES = ['mobile', 'tablet', 'desktop', 'desktop compact'];
 const SIZE_BREAKPOINTS: { [key: string]: string } = {
   mobile: '', 
   tablet: '768px',
-  desktop: '1024px',
-  'desktop compact': '1440px',
+  'desktop compact': '1024px',
+  desktop: '1440px',
 };
 
 // ===============================================================================================
@@ -46,6 +46,29 @@ StyleDictionary.registerFormat({
     ).join('\n');
     return `${header}:root {\n${variables}\n}\n`;
   },
+});
+
+// Building-block filters: these keep primitives/palette/size/semantics as their own
+// separate, var()-chained CSS files (see section 5) instead of flattening everything
+// into one resolved output, so a dev can swap any primitives file with any palette file.
+StyleDictionary.registerFilter({
+  name: 'primitivesOnlyFilter',
+  filter: (token: TransformedToken) => token.path[0] === 'primitives',
+});
+
+StyleDictionary.registerFilter({
+  name: 'paletteOnlyFilter',
+  filter: (token: TransformedToken) => token.path[0] === 'palette',
+});
+
+StyleDictionary.registerFilter({
+  name: 'semanticsOnlyFilter',
+  filter: (token: TransformedToken) => token.path[0] === 'semantics',
+});
+
+StyleDictionary.registerFilter({
+  name: 'sizeOnlyFilter',
+  filter: (token: TransformedToken) => token.path[0] === 'size',
 });
 
 // ===============================================================================================
@@ -94,6 +117,41 @@ async function compileTempMode(sources: string[], destination: string) {
     await sd.buildAllPlatforms();
   } catch (error) {
     console.error(`\n❌ Error in compileTempMode for destination: "${destination}"`);
+    console.error(error);
+    throw error;
+  }
+}
+
+// Like compileTempMode, but emits var()-chained references (via Style Dictionary's
+// built-in 'css/variables' format + outputReferences) instead of flattened literals,
+// and is scoped to a single collection via `filter`. Used only by the building-block
+// pipeline in section 5 — compileTempMode/css/variables-root above are untouched.
+async function compileTempModeVariables(sources: string[], destination: string, filter: string) {
+  try {
+    const config = {
+      source: sources,
+      platforms: {
+        css: {
+          transformGroup: 'css',
+          buildPath: '',
+          files: [
+            {
+              destination: destination,
+              format: 'css/variables',
+              filter: filter,
+              options: {
+                outputReferences: true,
+              },
+            },
+          ],
+        },
+      },
+    };
+
+    const sd = new StyleDictionary(config);
+    await sd.buildAllPlatforms();
+  } catch (error) {
+    console.error(`\n❌ Error in compileTempModeVariables for destination: "${destination}"`);
     console.error(error);
     throw error;
   }
@@ -169,7 +227,173 @@ function synthesizeSizeCss(theme: string) {
 }
 
 // ===============================================================================================
-// 5. MAIN EXECUTION
+// 5. BUILDING BLOCK CSS SYNTHESIZER
+// ===============================================================================================
+// Exposes primitives/palette/size/semantics as their own standalone CSS files, each using
+// var() to reference the layer below instead of a flattened literal. A developer picks exactly
+// one primitives-*.css and exactly one palette-*.css (any combination, not just ones that share
+// a Figma theme name) plus semantics.css, and the browser cascade resolves the final values.
+// These are additive outputs alongside colors.css/sizes.css — they do not replace them.
+
+function synthesizePrimitivesBuildingBlockCss(theme: string) {
+  console.log(`\n🧱 Synthesizing primitives building block for theme: ${theme}`);
+  const vars = extractCssVariables(path.join(TEMP_DIR, `${theme}-bb-primitives.css`));
+  if (!vars) {
+    console.log(`   - Skipping, no primitives variables found.`);
+    return;
+  }
+
+  const finalCss = `/**\n * ${theme.charAt(0).toUpperCase() + theme.slice(1)} Primitives - Building Block Variables\n * This file is auto-generated. Do not edit directly.\n */\n\n:root {\n  ${vars}\n}\n`;
+  const outputDir = path.join(OUTPUT_DIR, 'primitives');
+  fs.mkdirSync(outputDir, { recursive: true });
+  const outputFileName = theme === 'default' ? 'default.css' : `${theme.toLowerCase()}.css`;
+  fs.writeFileSync(path.join(outputDir, outputFileName), finalCss, 'utf-8');
+  console.log(`   ✅ Wrote final file: primitives/${outputFileName}`);
+}
+
+function synthesizePaletteBuildingBlockCss(theme: string) {
+  console.log(`\n🧱 Synthesizing palette building block for theme: ${theme}`);
+  const lightVars = extractCssVariables(path.join(TEMP_DIR, `${theme}-light-bb-palette.css`));
+  const darkVars = extractCssVariables(path.join(TEMP_DIR, `${theme}-dark-bb-palette.css`));
+
+  if (!lightVars && !darkVars) {
+    console.log(`   - Skipping, no palette variables found.`);
+    return;
+  }
+
+  let finalCss = `/**\n * ${theme.charAt(0).toUpperCase() + theme.slice(1)} Palette - Building Block Variables\n * This file is auto-generated. Do not edit directly.\n */\n\n`;
+
+  // Plain :root, not class-scoped like synthesizeColorCss's `.{theme}-theme` — the
+  // selection mechanism here is *which file you load*, not a runtime class toggle.
+  if (lightVars) finalCss += `:root {\n  ${lightVars}\n}\n\n`;
+  if (darkVars) {
+    finalCss += `@media (prefers-color-scheme: dark) {\n  :root {\n    ${darkVars}\n  }\n}\n\n`;
+    finalCss += `:root.dark-mode, .dark-mode :root {\n  ${darkVars}\n}\n`;
+  }
+
+  const outputDir = path.join(OUTPUT_DIR, 'palette');
+  fs.mkdirSync(outputDir, { recursive: true });
+  const outputFileName = theme === 'default' ? 'default.css' : `${theme.toLowerCase()}.css`;
+  fs.writeFileSync(path.join(outputDir, outputFileName), finalCss, 'utf-8');
+  console.log(`   ✅ Wrote final file: palette/${outputFileName}`);
+}
+
+function synthesizeSizeBuildingBlockCss(theme: string) {
+  console.log(`\n🧱 Synthesizing size building block for theme: ${theme}`);
+  let finalCss = `/**\n * ${theme.charAt(0).toUpperCase() + theme.slice(1)} Size - Building Block Variables\n * This file is auto-generated. Do not edit directly.\n */\n\n`;
+  let hasContent = false;
+
+  SIZE_MODES.forEach(mode => {
+    const vars = extractCssVariables(path.join(TEMP_DIR, `${theme}-${mode}-bb-size.css`));
+    if (vars) {
+      hasContent = true;
+      const breakpoint = SIZE_BREAKPOINTS[mode];
+      if (!breakpoint) {
+        finalCss += `:root {\n  ${vars}\n}\n\n`;
+      } else {
+        finalCss += `@media (min-width: ${breakpoint}) {\n  :root {\n    ${vars}\n  }\n}\n\n`;
+      }
+    }
+  });
+
+  if (!hasContent) {
+    console.log(`   - Skipping, no size variables found.`);
+    return;
+  }
+
+  const outputDir = path.join(OUTPUT_DIR, 'size');
+  fs.mkdirSync(outputDir, { recursive: true });
+  const outputFileName = theme === 'default' ? 'default.css' : `${theme.toLowerCase()}.css`;
+  fs.writeFileSync(path.join(outputDir, outputFileName), finalCss.trim(), 'utf-8');
+  console.log(`   ✅ Wrote final file: size/${outputFileName}`);
+}
+
+function synthesizeSemanticsBuildingBlockCss() {
+  console.log(`\n🧱 Synthesizing semantics building block`);
+  const vars = extractCssVariables(path.join(TEMP_DIR, `default-bb-semantics.css`));
+  if (!vars) {
+    console.log(`   - Skipping, no semantics variables found.`);
+    return;
+  }
+
+  // Strip the "semantics-" prefix from the declared property name only (so the public
+  // API stays `--surface-page`, matching colors.css) — leave var(--palette-...) refs as-is.
+  const unprefixedVars = vars.replace(/^(\s*)--semantics-/gm, '$1--');
+  const finalCss = `/**\n * Semantics - Building Block Variables\n * References palette/*.css. Import exactly one primitives/*.css + one palette/*.css alongside this file.\n * This file is auto-generated. Do not edit directly.\n */\n\n:root {\n  ${unprefixedVars}\n}\n`;
+  fs.writeFileSync(path.join(OUTPUT_DIR, 'semantics.css'), finalCss, 'utf-8');
+  console.log(`   ✅ Wrote final file: semantics.css`);
+}
+
+async function compilePrimitivesBuildingBlock(theme: string) {
+  if (theme !== 'default' && !fs.existsSync(path.join(TOKEN_DIR, `primitives-${theme}-value.json`))) {
+    console.log(`   - Skipping primitives building block for theme '${theme}' (no override found).`);
+    return;
+  }
+  try {
+    const sources = getSourceFilesForCollection('primitives', theme, 'value');
+    await compileTempModeVariables(sources, path.join(TEMP_DIR, `${theme}-bb-primitives.css`), 'primitivesOnlyFilter');
+  } catch (error) {
+    console.warn(`    - ⚠️  Building-block compilation failed for primitives in theme '${theme}'.`);
+    return;
+  }
+  synthesizePrimitivesBuildingBlockCss(theme);
+}
+
+async function compilePaletteBuildingBlock(theme: string) {
+  if (theme !== 'default' && !COLOR_MODES.some(mode => fs.existsSync(path.join(TOKEN_DIR, `palette-${theme}-${mode}.json`)))) {
+    console.log(`   - Skipping palette building block for theme '${theme}' (no override found).`);
+    return;
+  }
+  for (const mode of COLOR_MODES) {
+    try {
+      const sources = [
+        ...getSourceFilesForCollection('primitives', theme, 'value'),
+        ...getSourceFilesForCollection('palette', theme, mode),
+      ];
+      await compileTempModeVariables(sources, path.join(TEMP_DIR, `${theme}-${mode}-bb-palette.css`), 'paletteOnlyFilter');
+    } catch (error) {
+      console.warn(`    - ⚠️  Building-block compilation failed for palette mode '${mode}' in theme '${theme}'.`);
+    }
+  }
+  synthesizePaletteBuildingBlockCss(theme);
+}
+
+async function compileSizeBuildingBlock(theme: string) {
+  if (theme !== 'default' && !SIZE_MODES.some(mode => fs.existsSync(path.join(TOKEN_DIR, `size-${theme}-${mode}.json`)))) {
+    console.log(`   - Skipping size building block for theme '${theme}' (no override found).`);
+    return;
+  }
+  for (const mode of SIZE_MODES) {
+    try {
+      const sources = [
+        ...getSourceFilesForCollection('primitives', theme, 'value'),
+        ...getSourceFilesForCollection('size', theme, mode),
+      ];
+      await compileTempModeVariables(sources, path.join(TEMP_DIR, `${theme}-${mode}-bb-size.css`), 'sizeOnlyFilter');
+    } catch (error) {
+      console.warn(`    - ⚠️  Building-block compilation failed for size mode '${mode}' in theme '${theme}'.`);
+    }
+  }
+  synthesizeSizeBuildingBlockCss(theme);
+}
+
+async function compileSemanticsBuildingBlock() {
+  try {
+    const sources = [
+      ...getSourceFilesForCollection('primitives', 'default', 'value'),
+      ...getSourceFilesForCollection('palette', 'default', 'light'),
+      ...getSourceFilesForCollection('semantics', 'default', 'base'),
+    ];
+    await compileTempModeVariables(sources, path.join(TEMP_DIR, `default-bb-semantics.css`), 'semanticsOnlyFilter');
+  } catch (error) {
+    console.warn(`    - ⚠️  Building-block compilation failed for semantics.`);
+    return;
+  }
+  synthesizeSemanticsBuildingBlockCss();
+}
+
+// ===============================================================================================
+// 6. MAIN EXECUTION
 // ===============================================================================================
 
 async function main() {
@@ -218,6 +442,15 @@ async function main() {
     synthesizeColorCss(theme);
     synthesizeSizeCss(theme);
   }
+
+  console.log('\n\n🧱 Building mix-and-match building blocks...');
+  for (const theme of themes) {
+    console.log(`\nProcessing Building Blocks for Theme: [${theme}]`);
+    await compilePrimitivesBuildingBlock(theme);
+    await compilePaletteBuildingBlock(theme);
+    await compileSizeBuildingBlock(theme);
+  }
+  await compileSemanticsBuildingBlock();
 
   fs.rmSync(TEMP_DIR, { recursive: true, force: true });
   console.log('\n\n✅ Build complete. Temporary files cleaned up.');

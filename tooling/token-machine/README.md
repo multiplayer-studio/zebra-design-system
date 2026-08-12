@@ -85,6 +85,32 @@ This is the most involved script. It:
    - `sizes.css` (or `{theme}-sizes.css`): mobile values under `:root` (no breakpoint — mobile is the base), then tablet/desktop/desktop-compact each behind their own `@media (min-width: ...)` per `SIZE_BREAKPOINTS`.
 4. Deletes the temp directory when done.
 
+### 3b. Building-block CSS — mixing primitives/palette extensions independently
+
+Steps 1–3 above produce fully-resolved, self-contained CSS (`colors.css`, `sizes.css`, `{theme}-colors.css`, `{theme}-sizes.css`) — pick one file, done. That works great as long as a "theme" (e.g. `Companion`, `Target`) is really one designer's complete, coherent bundle of overrides sharing a single name across `primitives`/`palette`/`size`.
+
+But Figma lets designers create `primitives` extensions and `palette` extensions completely independently of each other, under different names. There's no way to get CSS for an arbitrary pairing (e.g. "Target's primitives + Companion's palette") from the fully-resolved files without pre-baking every possible combination.
+
+To solve that, `build-tokens.ts` *additionally* emits each layer as its own standalone file, using `var()` to reference the layer below instead of a flattened literal, via Style Dictionary's built-in `css/variables` format with `outputReferences: true`:
+
+These are organized into two kinds of file: **ingredients** (`primitives/`, `palette/`, `size/` — multiple interchangeable variants, one per theme) and **entry points** (`semantics.css` — always the same single file a developer actually links, referencing whichever ingredients happen to be loaded alongside it):
+
+- `primitives/default.css`, `primitives/{theme}.css` — literal leaf values as CSS variables (e.g. `--primitives-color-brand-main-60: #1f69ff;`). Only emitted for a theme if that theme actually has a `primitives` override.
+- `palette/default.css`, `palette/{theme}.css` — references primitives (`--palette-brand-primary: var(--primitives-color-brand-main-60);`), light/dark handled the same way as `colors.css` (media query + `.dark-mode` class), just without the `.{theme}-theme` class scoping. Only emitted for a theme if it has a `palette` override.
+- `size/default.css`, `size/{theme}.css` — references primitives, breakpoint-scoped like `sizes.css`. This one is also an "entry point" in the sense that `size` tokens (`--space-page`, etc.) already are the public-facing names — there's no separate semantic layer for sizing. Only emitted if a theme has a `size` override.
+- `semantics.css` — **always exactly one file, no theme variants, not in a folder.** Every token in `semantics-base.json` is a single-hop `{palette.<path>}` reference (confirmed — none reference `primitives` directly, none vary by mode), so `semantics.css` doesn't need light/dark logic or a theme-specific version of its own; that all happens one layer down in whichever `palette/*.css` you load. Its declared variable names are unprefixed (`--surface-page`, matching `colors.css`'s public API) — only the *referenced* name inside `var(...)` keeps its `palette-` prefix.
+
+**Recipe — mixing a primitives theme with a different palette theme** (impossible via the resolved files, since no single theme bundle spans both):
+
+```html
+<link rel="stylesheet" href="node_modules/zebra-design-system-tokens/dist/css/primitives/target.css">
+<link rel="stylesheet" href="node_modules/zebra-design-system-tokens/dist/css/palette/companion.css">
+<link rel="stylesheet" href="node_modules/zebra-design-system-tokens/dist/css/semantics.css">
+```
+(or the equivalent package imports, e.g. `zebra-design-system-tokens/css/primitives/target`, per the `exports` map below — the wildcard export matches across the `/`, so no `package.json` changes were needed for the folder structure.) Once loaded, use the semantic variables exactly like normal (`var(--surface-page)`, `var(--interactive-primary-background-default)`, etc.) — the resolved colors depend on which `primitives/*.css`/`palette/*.css` pair you actually loaded.
+
+**Important constraint:** these building-block files are all `:root`-scoped (not class-scoped like `.{theme}-theme`), because the selection mechanism is *which files you include*, not a runtime class toggle. Load exactly one `primitives/*.css` and exactly one `palette/*.css` per page — loading two of the same layer silently collides at `:root` (last one in source order wins, no error).
+
 ### 4. `clean-tokens.ts`
 
 Deletes `./tokens` (both `raw-tokens.json` and `dtcg-tokens/`) and `../../packages/zebra-design-system-tokens/dist/`. Run before `sync:tokens` if you want a guaranteed-fresh build; the scripts otherwise just overwrite files in place.
@@ -97,12 +123,14 @@ Deletes `./tokens` (both `raw-tokens.json` and `dtcg-tokens/`) and `../../packag
 
 - **Collection/mode names are matched case-sensitively and by exact string** in `build-tokens.ts` (`COLOR_COLLECTIONS`, `SIZE_COLLECTIONS`, `COLOR_MODES`, `SIZE_MODES`, `SIZE_BREAKPOINTS`). If someone renames a Figma collection or mode (e.g. `Palette` → `Palettes`, or adds a new breakpoint mode), you must update those constants at the top of `build-tokens.ts` or the new/renamed data will silently be excluded from the CSS output.
 - **Theme auto-discovery is a naming-convention hack**, not real config: it splits filenames on `-` and assumes exactly 3 parts means `{parent}-{theme}-{mode}.json`. Keep collection/theme/mode names free of extra hyphens, or this heuristic misfires (it's also why `size-desktop compact.json` is safe — the space, not a hyphen, keeps "desktop compact" as one part).
-- **`primitives` and `palette` tokens never appear directly as CSS variables** — only `semantics` and `size` do (see `encapsulationFilter`). If a new component needs a raw primitive or palette value exposed as a CSS variable, it needs a corresponding `semantics` (or `size`) token added in Figma first; you can't just widen the filter without checking why primitives/palette were excluded (they're meant to stay internal/reference-only).
+- **`primitives` and `palette` tokens never appear directly in the resolved files** (`colors.css`/`sizes.css`/`{theme}-colors.css`/`{theme}-sizes.css`) — only `semantics` and `size` do there (see `encapsulationFilter`). They *do* appear as their own building-block files under `primitives/`, `palette/`, `size/` (see [§3b](#3b-building-block-css--mixing-primitivespalette-extensions-independently)), which is the supported way to consume a raw primitive/palette value directly.
 - **`raw-tokens.json` and the per-mode `dtcg-tokens/*.json` files are checked into git**, so a `fetch`+`convert` from a stale or wrong `FIGMA_FILE_KEY` will show up as a large, confusing diff. Diff `tokens/raw-tokens.json` first if a sync produces unexpected changes.
+- **Building-block files (`primitives/*.css`, `palette/*.css`, `size/*.css`, `semantics.css`) are `:root`-scoped, not class-scoped** — loading two `primitives/*.css` files (or two `palette/*.css` files) on the same page silently collides, last one in source order wins. Pick exactly one of each per page. This is different from the resolved `.{theme}-theme`-scoped files, which are deliberately safe to load side-by-side.
+- **Building the `palette/*.css`/`size/*.css`/`semantics.css` building blocks logs a benign Style Dictionary warning** ("filtered out token references were found") — expected, not a bug. Those files intentionally filter out `primitives`/`palette` tokens from the *output* while still referencing them via `var(...)`; Style Dictionary still resolves the reference correctly (it uses the full unfiltered token set to do so), it just warns because the referenced token isn't in that file. "Token collisions detected" is a separate, also-benign warning that predates this feature — it fires whenever a themed override file and its base file both define the same token path, which is how overrides work by design (the source list is base-file-then-override-file; Style Dictionary resolves it deterministically, last source wins).
 
 ## Common maintenance tasks
 
 - **Add a new semantic or size token:** add the variable in Figma under the `semantics` or `size` collection, then `npm run sync:tokens`.
 - **Add a new breakpoint/mode for sizes:** add the mode in the Figma `size` collection, then add it to `SIZE_MODES` and `SIZE_BREAKPOINTS` in `build-tokens.ts`.
-- **Add a themed override (e.g. a second brand):** create an extension collection in Figma that overrides `palette` (or another base collection), run `sync:tokens`, and confirm `convert-tokens.ts` produces `palette-{themeName}-{mode}.json` files — `build-tokens.ts`'s theme discovery should then pick up the new theme automatically and emit `{themeName}-colors.css` / `{themeName}-sizes.css`.
+- **Add a themed override (e.g. a second brand):** create an extension collection in Figma that overrides `palette` (or another base collection), run `sync:tokens`, and confirm `convert-tokens.ts` produces `palette-{themeName}-{mode}.json` files — `build-tokens.ts`'s theme discovery should then pick up the new theme automatically and emit `{themeName}-colors.css` / `{themeName}-sizes.css`, plus a matching `palette/{themeName}.css` (or `primitives/{themeName}.css`/`size/{themeName}.css`, whichever collection was actually overridden) building-block file.
 - **Rotate the Figma PAT:** update `FIGMA_PERSONAL_ACCESS_TOKEN` in the repo-root `.env`; nothing else references it.
