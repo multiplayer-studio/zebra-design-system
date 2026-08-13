@@ -1,6 +1,6 @@
 # Zebra Design System
 
-This repository is a monorepo containing everything related to the Zebra Design System — the packages that ship it, the services that support it, the tooling that builds it, its documentation, and design.zebra.com.
+This repository is a monorepo containing everything related to the Zebra Design System — the packages that ship it, the services that support it, the tooling that builds it, its documentation, and apps that showcase it.
 
 ## Folder structure
 
