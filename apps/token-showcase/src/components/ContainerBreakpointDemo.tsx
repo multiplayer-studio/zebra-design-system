@@ -23,7 +23,7 @@ export function ContainerBreakpointDemo() {
       </div>
       <p className="section-intro">
         Resize the window — this box's <code>max-width</code> is{' '}
-        <code>calc(var(--container-default) * 1px)</code>, and the resolved value jumps at the
+        <code>var(--container-default)</code>, and the resolved value jumps at the
         768px, 1024px, and 1440px breakpoints defined in <code>sizes.css</code>.
       </p>
     </div>

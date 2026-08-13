@@ -1,17 +1,17 @@
 .button-row {
   display: flex;
   flex-wrap: wrap;
-  gap: calc(var(--space-sm) * 1px);
-  margin-bottom: calc(var(--space-sm) * 1px);
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
 }
 
 .btn {
   font: inherit;
   text-transform: capitalize;
   cursor: pointer;
-  padding: calc(var(--space-sm) * 1px) calc(var(--space-lg) * 1px);
-  border-radius: calc(var(--radius-md) * 1px);
-  border-width: calc(var(--stroke-base) * 1px);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+  border-width: var(--stroke-thin);
   border-style: solid;
   transition: background-color 0.1s ease, border-color 0.1s ease;
 }
@@ -21,9 +21,9 @@
 }
 
 .btn:focus-visible {
-  outline: calc(var(--stroke-thick) * 1px) solid var(--focus-outline);
-  outline-offset: calc(var(--stroke-thin) * 1px);
-  box-shadow: 0 0 0 calc(var(--stroke-heavy) * 1px) var(--focus-ring);
+  outline: var(--stroke-thick) solid var(--focus-outline);
+  outline-offset: var(--stroke-thin);
+  box-shadow: 0 0 0 var(--stroke-heavy) var(--focus-ring);
 }
 
 .btn-primary {

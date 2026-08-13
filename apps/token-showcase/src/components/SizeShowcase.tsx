@@ -15,7 +15,7 @@ function SpaceBars({ tokens }: { tokens: SizeToken[] }) {
     <div className="size-list">
       {tokens.map((t) => (
         <div className="size-row" key={t.cssVar}>
-          <div className="size-bar" style={{ width: `calc(var(${t.cssVar}) * 1px)` }} />
+          <div className="size-bar" style={{ width: `var(${t.cssVar})` }} />
           <code>{t.cssVar}</code>
         </div>
       ))}
@@ -30,7 +30,7 @@ function RadiusBoxes({ tokens }: { tokens: SizeToken[] }) {
         <div className="size-swatch" key={t.cssVar}>
           <div
             className="radius-box"
-            style={{ borderRadius: `calc(var(${t.cssVar}) * 1px)` }}
+            style={{ borderRadius: `var(${t.cssVar})` }}
           />
           <code>{t.cssVar}</code>
         </div>
@@ -44,7 +44,7 @@ function StrokeBars({ tokens }: { tokens: SizeToken[] }) {
     <div className="size-swatch-row">
       {tokens.map((t) => (
         <div className="size-swatch" key={t.cssVar}>
-          <div className="stroke-bar" style={{ height: `calc(var(${t.cssVar}) * 1px)` }} />
+          <div className="stroke-bar" style={{ height: `var(${t.cssVar})` }} />
           <code>{t.cssVar}</code>
         </div>
       ))}
@@ -60,8 +60,8 @@ function ControlBoxes({ tokens }: { tokens: SizeToken[] }) {
           <div
             className="control-box"
             style={{
-              width: `calc(var(${t.cssVar}) * 1px)`,
-              height: `calc(var(${t.cssVar}) * 1px)`,
+              width: `var(${t.cssVar})`,
+              height: `var(${t.cssVar})`,
             }}
           />
           <code>{t.cssVar}</code>
@@ -76,8 +76,8 @@ export function SizeShowcase() {
     <section>
       <h2>Size tokens</h2>
       <p className="section-intro">
-        Size tokens are unitless numbers (e.g. <code>--space-md: 12;</code>), so consuming CSS
-        multiplies by <code>1px</code> via <code>calc()</code>.
+        Size tokens are pixel values (e.g. <code>--space-md: 12px;</code>) and can be used directly
+        in CSS properties.
       </p>
 
       <div className="token-group">

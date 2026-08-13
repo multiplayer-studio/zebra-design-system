@@ -1,6 +1,7 @@
 import { ColorSwatches } from './components/ColorSwatches';
 import { InteractiveShowcase } from './components/InteractiveShowcase';
 import { SizeShowcase } from './components/SizeShowcase';
+import { TypographyShowcase } from './components/TypographyShowcase';
 import './App.css';
 
 function App() {
@@ -9,9 +10,10 @@ function App() {
       <header className="app-header">
         <h1>Zebra Design Tokens</h1>
         <p>
-          This app imports only <code>zebra-design-system-tokens/css/colors</code> and{' '}
-          <code>zebra-design-system-tokens/css/sizes</code> — the fully-resolved <strong>default
-          theme</strong>. Every color and size below is a design token, not a hardcoded value.
+          This app imports <code>zebra-design-system-tokens/css/colors</code>,{' '}
+          <code>zebra-design-system-tokens/css/sizes</code>, and{' '}
+          <code>zebra-design-system-tokens/css/typography</code> — the fully-resolved <strong>default
+          theme</strong>. Every color, size, and typography value below is a design token, not a hardcoded value.
         </p>
       </header>
 
@@ -19,6 +21,7 @@ function App() {
         <ColorSwatches />
         <InteractiveShowcase />
         <SizeShowcase />
+        <TypographyShowcase />
       </main>
 
       <footer className="app-footer">

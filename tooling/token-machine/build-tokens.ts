@@ -32,7 +32,7 @@ StyleDictionary.registerFilter({
   name: 'encapsulationFilter',
   filter: (token: TransformedToken) => {
     const collection = token.path[0];
-    return ['semantics', 'size'].includes(collection);
+    return ['semantics', 'size', 'typography'].includes(collection);
   },
 });
 
@@ -174,17 +174,54 @@ function extractCssVariables(filePath: string): string {
   return match ? match[1].trim() : '';
 }
 
+function translateFontWeights(css: string): string {
+  // Translate font-weight names to numeric values
+  const fontWeightMap: { [key: string]: number } = {
+    'Light': 300,
+    'Regular': 400,
+    'Medium': 500,
+    'Bold': 700,
+  };
+
+  return css.replace(/^(\s*--[^:]*fontweight[^:]*): ([^;\n]+)([;\n])/gm, (match, prefix, value, suffix) => {
+    const trimmedValue = value.trim();
+    const numericValue = fontWeightMap[trimmedValue];
+    return numericValue !== undefined ? `${prefix}: ${numericValue}${suffix}` : match;
+  });
+}
+
+function addPixelUnits(css: string): string {
+  // Add px to numeric values that represent pixel measurements
+  // Match lines like --property-name: 123; and convert to --property-name: 123px;
+  // but skip font-family, font-weight, and other non-pixel numeric properties
+  return css
+    .replace(/^(\s*--[^:]*fontsize[^:]*): (-?[\d.]+)([;\n])/gm, '$1: $2px$3')
+    .replace(/^(\s*--[^:]*lineheight[^:]*): (-?[\d.]+)([;\n])/gm, '$1: $2px$3')
+    .replace(/^(\s*--[^:]*letterspacing[^:]*): (-?[\d.]+)([;\n])/gm, '$1: $2px$3')
+    .replace(/^(\s*--space[^:]*): (-?[\d.]+)([;\n])/gm, '$1: $2px$3')
+    .replace(/^(\s*--control[^:]*): (-?[\d.]+)([;\n])/gm, '$1: $2px$3')
+    .replace(/^(\s*--radius[^:]*): (-?[\d.]+)([;\n])/gm, '$1: $2px$3')
+    .replace(/^(\s*--stroke[^:]*): (-?[\d.]+)([;\n])/gm, '$1: $2px$3')
+    .replace(/^(\s*--scale[^:]*): (-?[\d.]+)([;\n])/gm, '$1: $2px$3')
+    .replace(/^(\s*--container[^:]*): (-?[\d.]+)([;\n])/gm, '$1: $2px$3');
+}
+
 function synthesizeColorCss(theme: string) {
   console.log(`\n🎨 Synthesizing color CSS for theme: ${theme}`);
   const themeClass = theme === 'default' ? '' : `.${theme.toLowerCase()}-theme`;
-  const lightVars = extractCssVariables(path.join(TEMP_DIR, `${theme}-light.css`));
-  const darkVars = extractCssVariables(path.join(TEMP_DIR, `${theme}-dark.css`));
+  let lightVars = extractCssVariables(path.join(TEMP_DIR, `${theme}-light.css`));
+  let darkVars = extractCssVariables(path.join(TEMP_DIR, `${theme}-dark.css`));
 
   if (!lightVars && !darkVars) {
     console.log(`   - Skipping, no color variables found.`);
     return;
   }
-  
+
+  lightVars = translateFontWeights(lightVars);
+  lightVars = addPixelUnits(lightVars);
+  darkVars = translateFontWeights(darkVars);
+  darkVars = addPixelUnits(darkVars);
+
   const lightSelector = `:root${themeClass ? `, ${themeClass}` : ''}`;
   const darkSelectorDefault = `@media (prefers-color-scheme: dark) { ${lightSelector}`;
   const darkSelectorOverride = `${themeClass || ':root'}.dark-mode, .dark-mode ${themeClass || ':root'}`;
@@ -210,9 +247,11 @@ function synthesizeSizeCss(theme: string) {
   let hasContent = false;
 
   BREAKPOINT_MODES.forEach(mode => {
-    const vars = extractCssVariables(path.join(TEMP_DIR, `${theme}-${mode}.css`));
+    let vars = extractCssVariables(path.join(TEMP_DIR, `${theme}-${mode}.css`));
     if (vars) {
       hasContent = true;
+      vars = translateFontWeights(vars);
+      vars = addPixelUnits(vars);
       const breakpoint = SIZE_BREAKPOINTS[mode];
       if (!breakpoint) {
         finalCss += `${rootSelector} {\n  ${vars}\n}\n\n`;
@@ -243,8 +282,9 @@ function synthesizeTypographyCss(theme: string) {
     let vars = extractCssVariables(path.join(TEMP_DIR, `${theme}-${mode}-typography.css`));
     if (vars) {
       hasContent = true;
-      // Strip the "typography-" prefix from the declared property name only
       vars = vars.replace(/^(\s*)--typography-/gm, '$1--');
+      vars = translateFontWeights(vars);
+      vars = addPixelUnits(vars);
       const breakpoint = SIZE_BREAKPOINTS[mode];
       if (!breakpoint) {
         finalCss += `${rootSelector} {\n  ${vars}\n}\n\n`;
@@ -262,6 +302,40 @@ function synthesizeTypographyCss(theme: string) {
   const outputFileName = theme === 'default' ? 'typography.css' : `${theme.toLowerCase()}-typography.css`;
   fs.writeFileSync(path.join(OUTPUT_DIR, outputFileName), finalCss.trim(), 'utf-8');
   console.log(`   ✅ Wrote final file: ${outputFileName}`);
+}
+
+function synthesizeTypographyBuildingBlockCss(theme: string) {
+  console.log(`\n🧱 Synthesizing typography building block for theme: ${theme}`);
+  let finalCss = `/**\n * ${theme.charAt(0).toUpperCase() + theme.slice(1)} Typography - Building Block Variables\n * This file is auto-generated. Do not edit directly.\n */\n\n`;
+  let hasContent = false;
+
+  BREAKPOINT_MODES.forEach(mode => {
+    let vars = extractCssVariables(path.join(TEMP_DIR, `${theme}-${mode}-bb-typography.css`));
+    if (vars) {
+      hasContent = true;
+      vars = vars.replace(/^(\s*)--typography-/gm, '$1--');
+      vars = vars.replace(/var\(--primitives-/g, 'var(--');
+      vars = translateFontWeights(vars);
+      vars = addPixelUnits(vars);
+      const breakpoint = SIZE_BREAKPOINTS[mode];
+      if (!breakpoint) {
+        finalCss += `:root {\n  ${vars}\n}\n\n`;
+      } else {
+        finalCss += `@media (min-width: ${breakpoint}) {\n  :root {\n    ${vars}\n  }\n}\n\n`;
+      }
+    }
+  });
+
+  if (!hasContent) {
+    console.log(`   - Skipping, no typography variables found.`);
+    return;
+  }
+
+  const outputDir = path.join(OUTPUT_DIR, 'typography');
+  fs.mkdirSync(outputDir, { recursive: true });
+  const outputFileName = theme === 'default' ? 'default.css' : `${theme.toLowerCase()}.css`;
+  fs.writeFileSync(path.join(outputDir, outputFileName), finalCss.trim(), 'utf-8');
+  console.log(`   ✅ Wrote final file: typography/${outputFileName}`);
 }
 
 // ===============================================================================================
@@ -283,6 +357,8 @@ function synthesizePrimitivesBuildingBlockCss(theme: string) {
 
   vars = vars.replace(/^(\s*)--primitives-/gm, '$1--');
   vars = vars.replace(/var\(--primitives-/g, 'var(--');
+  vars = translateFontWeights(vars);
+  vars = addPixelUnits(vars);
   const finalCss = `/**\n * ${theme.charAt(0).toUpperCase() + theme.slice(1)} Primitives - Building Block Variables\n * This file is auto-generated. Do not edit directly.\n */\n\n:root {\n  ${vars}\n}\n`;
   const outputDir = path.join(OUTPUT_DIR, 'primitives');
   fs.mkdirSync(outputDir, { recursive: true });
@@ -304,6 +380,8 @@ function synthesizePaletteBuildingBlockCss(theme: string) {
   const stripPrefixes = (vars: string) => {
     vars = vars.replace(/^(\s*)--palette-/gm, '$1--');
     vars = vars.replace(/var\(--(?:palette|primitives)-/g, 'var(--');
+    vars = translateFontWeights(vars);
+    vars = addPixelUnits(vars);
     return vars;
   };
 
@@ -338,6 +416,8 @@ function synthesizeSizeBuildingBlockCss(theme: string) {
       hasContent = true;
       vars = vars.replace(/^(\s*)--size-/gm, '$1--');
       vars = vars.replace(/var\(--(?:size|primitives)-/g, 'var(--');
+      vars = translateFontWeights(vars);
+      vars = addPixelUnits(vars);
       const breakpoint = SIZE_BREAKPOINTS[mode];
       if (!breakpoint) {
         finalCss += `:root {\n  ${vars}\n}\n\n`;
@@ -369,6 +449,8 @@ function synthesizeSemanticsBuildingBlockCss() {
 
   let unprefixedVars = vars.replace(/^(\s*)--semantics-/gm, '$1--');
   unprefixedVars = unprefixedVars.replace(/var\(--(?:semantics|palette|primitives)-/g, 'var(--');
+  unprefixedVars = translateFontWeights(unprefixedVars);
+  unprefixedVars = addPixelUnits(unprefixedVars);
   const finalCss = `/**\n * Semantics - Building Block Variables\n * References palette/*.css. Import exactly one primitives/*.css + one palette/*.css alongside this file.\n * This file is auto-generated. Do not edit directly.\n */\n\n:root {\n  ${unprefixedVars}\n}\n`;
   fs.writeFileSync(path.join(OUTPUT_DIR, 'semantics.css'), finalCss, 'utf-8');
   console.log(`   ✅ Wrote final file: semantics.css`);
@@ -442,6 +524,25 @@ async function compileSemanticsBuildingBlock() {
   synthesizeSemanticsBuildingBlockCss();
 }
 
+async function compileTypographyBuildingBlock(theme: string) {
+  if (theme !== 'default' && !BREAKPOINT_MODES.some(mode => fs.existsSync(path.join(TOKEN_DIR, `typography-${theme}-${mode}.json`)))) {
+    console.log(`   - Skipping typography building block for theme '${theme}' (no override found).`);
+    return;
+  }
+  for (const mode of BREAKPOINT_MODES) {
+    try {
+      const sources = [
+        ...getSourceFilesForCollection('primitives', theme, 'value'),
+        ...getSourceFilesForCollection('typography', theme, mode),
+      ];
+      await compileTempModeVariables(sources, path.join(TEMP_DIR, `${theme}-${mode}-bb-typography.css`), 'typographyOnlyFilter');
+    } catch (error) {
+      console.warn(`    - ⚠️  Building-block compilation failed for typography mode '${mode}' in theme '${theme}'.`);
+    }
+  }
+  synthesizeTypographyBuildingBlockCss(theme);
+}
+
 // ===============================================================================================
 // 6. MAIN EXECUTION
 // ===============================================================================================
@@ -495,7 +596,7 @@ async function main() {
         const sources = TYPOGRAPHY_COLLECTIONS.flatMap(collection =>
           getSourceFilesForCollection(collection, theme, collection === 'primitives' ? 'value' : mode)
         );
-        await compileTempModeVariables(sources, path.join(TEMP_DIR, `${theme}-${mode}-typography.css`), 'typographyOnlyFilter');
+        await compileTempMode(sources, path.join(TEMP_DIR, `${theme}-${mode}-typography.css`));
       } catch (error) {
         console.warn(`    - ⚠️  Compilation failed for typography mode '${mode}' in theme '${theme}'.`);
       }
@@ -512,6 +613,7 @@ async function main() {
     await compilePrimitivesBuildingBlock(theme);
     await compilePaletteBuildingBlock(theme);
     await compileSizeBuildingBlock(theme);
+    await compileTypographyBuildingBlock(theme);
   }
   await compileSemanticsBuildingBlock();
 
