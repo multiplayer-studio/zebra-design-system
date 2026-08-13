@@ -41,14 +41,14 @@ Then use the variables in your CSS:
 .card {
   background: var(--surface-card);
   padding: var(--space-card);
-  font: var(--body-md-fontsize) / var(--body-md-lineheight) var(--body-md-fontfamily);
-  letter-spacing: var(--body-md-letterspacing);
+  font: var(--body-medium-fontsize) var(--body-medium-lineheight) var(--body-medium-fontfamily);
+  letter-spacing: var(--body-medium-letterspacing);
 }
 ```
 
 - `colors.css` — semantic color variables (`--surface-page`, `--interactive-primary-background-default`, etc.), fully resolved to hex values. Dark values apply automatically via `@media (prefers-color-scheme: dark)`, or force it with a `.dark-mode` class anywhere up the tree.
 - `sizes.css` — spacing/radius/control-size variables (`--space-md`, `--control-sm`, etc.), fully resolved to px values. Values are mobile-first, with tablet/desktop/desktop-compact breakpoints layered in via `@media (min-width: ...)`.
-- `typography.css` — typography variables grouped by style (e.g. `--body-md-fontsize`, `--body-md-lineheight`, `--body-md-fontfamily`, `--body-md-letterspacing`), fully resolved to concrete values. Values are mobile-first, with tablet/desktop/desktop-compact breakpoints available via `@media (min-width: ...)`.
+- `typography.css` — typography variables grouped by style (e.g. `--body-medium-fontsize`, `--body-medium-lineheight`, `--body-medium-fontfamily`, `--body-medium-letterspacing`), fully resolved to concrete values. Values are mobile-first, with tablet/desktop/desktop-compact breakpoints available via `@media (min-width: ...)`.
 
 Every variable name is stable regardless of theme or viewport — you never need to branch your CSS/component code on breakpoint or color scheme.
 
@@ -62,7 +62,7 @@ import 'zebra-design-system-tokens/css/target-sizes';
 import 'zebra-design-system-tokens/css/target-typography';
 ```
 
-Same variable names (`--surface-page`, `--space-md`, `--body-md-fontsize`, etc.) either way — only the import path changes. Check `dist/css/` for which theme files actually exist; a theme only gets a file if it overrides that layer.
+Same variable names (`--surface-page`, `--space-md`, `--body-medium-fontsize`, etc.) either way — only the import path changes. Check `dist/css/` for which theme files actually exist; a theme only gets a file if it overrides that layer.
 
 ## Mixing themes: building-block files
 
@@ -80,5 +80,5 @@ or the equivalent package imports (`zebra-design-system-tokens/css/primitives/de
 
 Rules:
 - Load **exactly one** `primitives/*.css`, **exactly one** `palette/*.css`, **exactly one** `size/*.css`, and **exactly one** `typography/*.css` per page — these are `:root`-scoped, so loading two of the same layer silently collides (last one in source order wins).
-- Reference tokens the same way either path — `var(--surface-page)`, `var(--space-md)`, `var(--body-md-fontsize)` — your component code doesn't change based on which layer files you loaded.
+- Reference tokens the same way either path — `var(--surface-page)`, `var(--space-md)`, `var(--body-medium-fontsize)` — your component code doesn't change based on which layer files you loaded.
 
