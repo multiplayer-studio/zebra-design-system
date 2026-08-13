@@ -4,7 +4,7 @@ This repository is a monorepo containing everything related to the Zebra Design 
 
 ## Folder structure
 
-- **`apps/`** — A collection of example applications to show off the system and the website used to host the documentation. See `apps/README.md`.
+- **`apps/`** — A collection of example applications to show off the system and the website used to host the documentation.
 - **`packages/`** — Publishable packages, such as the design tokens package (`packages/zebra-design-system-tokens`). See `packages/PACKAGES_README.md`.
 - **`services/`** — Standalone services that support the design system, such as the MCP server (`services/mcp-server`). See `services/mcp-server/MCP_README.md`.
 - **`tooling/`** — Internal tools used to build and maintain the design system, such as the token machine. See `tooling/token-machine`.
