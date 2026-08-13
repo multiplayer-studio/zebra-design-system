@@ -12,9 +12,10 @@ const TEMP_DIR = '../../packages/zebra-design-system-tokens/dist/temp';
 const OUTPUT_DIR = '../../packages/zebra-design-system-tokens/dist/css';
 
 const COLOR_COLLECTIONS = ['primitives', 'palette', 'semantics'];
-const SIZE_COLLECTIONS = ['primitives', 'size']; 
+const SIZE_COLLECTIONS = ['primitives', 'size'];
+const TYPOGRAPHY_COLLECTIONS = ['primitives', 'typography'];
 const COLOR_MODES = ['light', 'dark'];
-const SIZE_MODES = ['mobile', 'tablet', 'desktop', 'desktop compact']; 
+const BREAKPOINT_MODES = ['mobile', 'tablet', 'desktop', 'desktop compact'];
 
 const SIZE_BREAKPOINTS: { [key: string]: string } = {
   mobile: '', 
@@ -69,6 +70,11 @@ StyleDictionary.registerFilter({
 StyleDictionary.registerFilter({
   name: 'sizeOnlyFilter',
   filter: (token: TransformedToken) => token.path[0] === 'size',
+});
+
+StyleDictionary.registerFilter({
+  name: 'typographyOnlyFilter',
+  filter: (token: TransformedToken) => token.path[0] === 'typography',
 });
 
 // ===============================================================================================
@@ -202,8 +208,8 @@ function synthesizeSizeCss(theme: string) {
   const rootSelector = `:root${themeClass ? `, ${themeClass}` : ''}`;
   let finalCss = `/**\n * ${theme.charAt(0).toUpperCase() + theme.slice(1)} Theme - Size Variables\n * This file is auto-generated. Do not edit directly.\n */\n\n`;
   let hasContent = false;
-  
-  SIZE_MODES.forEach(mode => {
+
+  BREAKPOINT_MODES.forEach(mode => {
     const vars = extractCssVariables(path.join(TEMP_DIR, `${theme}-${mode}.css`));
     if (vars) {
       hasContent = true;
@@ -220,8 +226,40 @@ function synthesizeSizeCss(theme: string) {
     console.log(`   - Skipping, no size variables found.`);
     return;
   }
-  
+
   const outputFileName = theme === 'default' ? 'sizes.css' : `${theme.toLowerCase()}-sizes.css`;
+  fs.writeFileSync(path.join(OUTPUT_DIR, outputFileName), finalCss.trim(), 'utf-8');
+  console.log(`   ✅ Wrote final file: ${outputFileName}`);
+}
+
+function synthesizeTypographyCss(theme: string) {
+  console.log(`\n✍️  Synthesizing typography CSS for theme: ${theme}`);
+  const themeClass = theme === 'default' ? '' : `.${theme.toLowerCase()}-theme`;
+  const rootSelector = `:root${themeClass ? `, ${themeClass}` : ''}`;
+  let finalCss = `/**\n * ${theme.charAt(0).toUpperCase() + theme.slice(1)} Theme - Typography Variables\n * This file is auto-generated. Do not edit directly.\n */\n\n`;
+  let hasContent = false;
+
+  BREAKPOINT_MODES.forEach(mode => {
+    let vars = extractCssVariables(path.join(TEMP_DIR, `${theme}-${mode}-typography.css`));
+    if (vars) {
+      hasContent = true;
+      // Strip the "typography-" prefix from the declared property name only
+      vars = vars.replace(/^(\s*)--typography-/gm, '$1--');
+      const breakpoint = SIZE_BREAKPOINTS[mode];
+      if (!breakpoint) {
+        finalCss += `${rootSelector} {\n  ${vars}\n}\n\n`;
+      } else {
+        finalCss += `@media (min-width: ${breakpoint}) {\n  ${rootSelector} {\n    ${vars}\n  }\n}\n\n`;
+      }
+    }
+  });
+
+  if (!hasContent) {
+    console.log(`   - Skipping, no typography variables found.`);
+    return;
+  }
+
+  const outputFileName = theme === 'default' ? 'typography.css' : `${theme.toLowerCase()}-typography.css`;
   fs.writeFileSync(path.join(OUTPUT_DIR, outputFileName), finalCss.trim(), 'utf-8');
   console.log(`   ✅ Wrote final file: ${outputFileName}`);
 }
@@ -237,12 +275,14 @@ function synthesizeSizeCss(theme: string) {
 
 function synthesizePrimitivesBuildingBlockCss(theme: string) {
   console.log(`\n🧱 Synthesizing primitives building block for theme: ${theme}`);
-  const vars = extractCssVariables(path.join(TEMP_DIR, `${theme}-bb-primitives.css`));
+  let vars = extractCssVariables(path.join(TEMP_DIR, `${theme}-bb-primitives.css`));
   if (!vars) {
     console.log(`   - Skipping, no primitives variables found.`);
     return;
   }
 
+  vars = vars.replace(/^(\s*)--primitives-/gm, '$1--');
+  vars = vars.replace(/var\(--primitives-/g, 'var(--');
   const finalCss = `/**\n * ${theme.charAt(0).toUpperCase() + theme.slice(1)} Primitives - Building Block Variables\n * This file is auto-generated. Do not edit directly.\n */\n\n:root {\n  ${vars}\n}\n`;
   const outputDir = path.join(OUTPUT_DIR, 'primitives');
   fs.mkdirSync(outputDir, { recursive: true });
@@ -253,13 +293,22 @@ function synthesizePrimitivesBuildingBlockCss(theme: string) {
 
 function synthesizePaletteBuildingBlockCss(theme: string) {
   console.log(`\n🧱 Synthesizing palette building block for theme: ${theme}`);
-  const lightVars = extractCssVariables(path.join(TEMP_DIR, `${theme}-light-bb-palette.css`));
-  const darkVars = extractCssVariables(path.join(TEMP_DIR, `${theme}-dark-bb-palette.css`));
+  let lightVars = extractCssVariables(path.join(TEMP_DIR, `${theme}-light-bb-palette.css`));
+  let darkVars = extractCssVariables(path.join(TEMP_DIR, `${theme}-dark-bb-palette.css`));
 
   if (!lightVars && !darkVars) {
     console.log(`   - Skipping, no palette variables found.`);
     return;
   }
+
+  const stripPrefixes = (vars: string) => {
+    vars = vars.replace(/^(\s*)--palette-/gm, '$1--');
+    vars = vars.replace(/var\(--(?:palette|primitives)-/g, 'var(--');
+    return vars;
+  };
+
+  lightVars = stripPrefixes(lightVars);
+  darkVars = stripPrefixes(darkVars);
 
   let finalCss = `/**\n * ${theme.charAt(0).toUpperCase() + theme.slice(1)} Palette - Building Block Variables\n * This file is auto-generated. Do not edit directly.\n */\n\n`;
 
@@ -283,10 +332,12 @@ function synthesizeSizeBuildingBlockCss(theme: string) {
   let finalCss = `/**\n * ${theme.charAt(0).toUpperCase() + theme.slice(1)} Size - Building Block Variables\n * This file is auto-generated. Do not edit directly.\n */\n\n`;
   let hasContent = false;
 
-  SIZE_MODES.forEach(mode => {
-    const vars = extractCssVariables(path.join(TEMP_DIR, `${theme}-${mode}-bb-size.css`));
+  BREAKPOINT_MODES.forEach(mode => {
+    let vars = extractCssVariables(path.join(TEMP_DIR, `${theme}-${mode}-bb-size.css`));
     if (vars) {
       hasContent = true;
+      vars = vars.replace(/^(\s*)--size-/gm, '$1--');
+      vars = vars.replace(/var\(--(?:size|primitives)-/g, 'var(--');
       const breakpoint = SIZE_BREAKPOINTS[mode];
       if (!breakpoint) {
         finalCss += `:root {\n  ${vars}\n}\n\n`;
@@ -316,9 +367,8 @@ function synthesizeSemanticsBuildingBlockCss() {
     return;
   }
 
-  // Strip the "semantics-" prefix from the declared property name only (so the public
-  // API stays `--surface-page`, matching colors.css) — leave var(--palette-...) refs as-is.
-  const unprefixedVars = vars.replace(/^(\s*)--semantics-/gm, '$1--');
+  let unprefixedVars = vars.replace(/^(\s*)--semantics-/gm, '$1--');
+  unprefixedVars = unprefixedVars.replace(/var\(--(?:semantics|palette|primitives)-/g, 'var(--');
   const finalCss = `/**\n * Semantics - Building Block Variables\n * References palette/*.css. Import exactly one primitives/*.css + one palette/*.css alongside this file.\n * This file is auto-generated. Do not edit directly.\n */\n\n:root {\n  ${unprefixedVars}\n}\n`;
   fs.writeFileSync(path.join(OUTPUT_DIR, 'semantics.css'), finalCss, 'utf-8');
   console.log(`   ✅ Wrote final file: semantics.css`);
@@ -359,11 +409,11 @@ async function compilePaletteBuildingBlock(theme: string) {
 }
 
 async function compileSizeBuildingBlock(theme: string) {
-  if (theme !== 'default' && !SIZE_MODES.some(mode => fs.existsSync(path.join(TOKEN_DIR, `size-${theme}-${mode}.json`)))) {
+  if (theme !== 'default' && !BREAKPOINT_MODES.some(mode => fs.existsSync(path.join(TOKEN_DIR, `size-${theme}-${mode}.json`)))) {
     console.log(`   - Skipping size building block for theme '${theme}' (no override found).`);
     return;
   }
-  for (const mode of SIZE_MODES) {
+  for (const mode of BREAKPOINT_MODES) {
     try {
       const sources = [
         ...getSourceFilesForCollection('primitives', theme, 'value'),
@@ -406,7 +456,7 @@ async function main() {
   const tokenFiles = await glob(`${TOKEN_DIR}/*.json`);
   tokenFiles.forEach(file => {
     const parts = path.basename(file, '.json').split('-');
-    if (parts.length === 3 && !['base', 'value', ...COLOR_MODES, ...SIZE_MODES].includes(parts[1])) {
+    if (parts.length === 3 && !['base', 'value', ...COLOR_MODES, ...BREAKPOINT_MODES].includes(parts[1])) {
       themes.add(parts[1]);
     }
   });
@@ -428,9 +478,9 @@ async function main() {
     }
 
     console.log('  - Compiling size modes...');
-    for (const mode of SIZE_MODES) {
+    for (const mode of BREAKPOINT_MODES) {
       try {
-        const sources = SIZE_COLLECTIONS.flatMap(collection => 
+        const sources = SIZE_COLLECTIONS.flatMap(collection =>
           getSourceFilesForCollection(collection, theme, collection === 'primitives' ? 'value' : mode)
         );
         await compileTempMode(sources, path.join(TEMP_DIR, `${theme}-${mode}.css`));
@@ -439,8 +489,21 @@ async function main() {
       }
     }
 
+    console.log('  - Compiling typography modes...');
+    for (const mode of BREAKPOINT_MODES) {
+      try {
+        const sources = TYPOGRAPHY_COLLECTIONS.flatMap(collection =>
+          getSourceFilesForCollection(collection, theme, collection === 'primitives' ? 'value' : mode)
+        );
+        await compileTempModeVariables(sources, path.join(TEMP_DIR, `${theme}-${mode}-typography.css`), 'typographyOnlyFilter');
+      } catch (error) {
+        console.warn(`    - ⚠️  Compilation failed for typography mode '${mode}' in theme '${theme}'.`);
+      }
+    }
+
     synthesizeColorCss(theme);
     synthesizeSizeCss(theme);
+    synthesizeTypographyCss(theme);
   }
 
   console.log('\n\n🧱 Building mix-and-match building blocks...');

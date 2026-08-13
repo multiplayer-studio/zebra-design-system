@@ -35,6 +35,10 @@ function getDtcgType(figmaType: FigmaVariableType): string {
 }
 
 // Deep Object Setter for converting "brand/primary/500" into nested JSON
+function sanitizeTokenName(name: string): string {
+  return name.replace(/ /g, '');
+}
+
 function setNestedProperty(obj: any, pathArray: string[], value: any) {
   let current = obj;
   for (let i = 0; i < pathArray.length - 1; i++) {
@@ -97,7 +101,8 @@ function convertTokens(inputFile: string, outputDir: string) {
     const collection = collectionById.get(v.collectionId);
     if (collection) {
       // Build the DTCG Reference Path string (e.g. "{palette.brand.primary}")
-      const pathString = `${collection.name}.${v.name.replace(/\//g, '.')}`;
+      const sanitizedName = sanitizeTokenName(v.name).replace(/\//g, '.');
+      const pathString = `${collection.name}.${sanitizedName}`;
       dtcgPathByVarId.set(v.id, `{${pathString}}`);
     }
   });
@@ -160,17 +165,17 @@ function convertTokens(inputFile: string, outputDir: string) {
 
       // Populate fileData with Standard Variables native to this collection
       figmaExport.variables
-        .filter(v => v.collectionId === collection.id) 
+        .filter(v => v.collectionId === collection.id)
         .forEach(variable => {
           const modeValue = variable.valuesByMode[mode.id];
           if (modeValue !== undefined) {
-            const tokenPath = variable.name.split('/');
+            const tokenPath = sanitizeTokenName(variable.name).split('/');
             const token: DTCGToken = {
               $type: getDtcgType(variable.type),
               $value: resolveValue(modeValue)
             };
             if (variable.description) token.$description = variable.description;
-            
+
             setNestedProperty(fileData[parentName], tokenPath, token);
           }
         });
@@ -219,13 +224,13 @@ function convertTokens(inputFile: string, outputDir: string) {
               // Fallback to the base collection's value if no valid override exists
               const finalValue = overrideValue !== undefined ? overrideValue : baseVar.valuesByMode[baseMode.id];
               if (finalValue !== undefined) {
-                 const tokenPath = baseVar.name.split('/');
+                 const tokenPath = sanitizeTokenName(baseVar.name).split('/');
                  const token: DTCGToken = {
                    $type: getDtcgType(baseVar.type),
                    $value: resolveValue(finalValue)
                  };
                  if (baseVar.description) token.$description = baseVar.description;
-                 
+
                  // Nest the token under the base/parent collection's name root (e.g. palette) instead of the extension
                  setNestedProperty(fileData[parentName], tokenPath, token);
               }

@@ -4,225 +4,225 @@
  */
 
 :root {
-  --palette-fill-transparent: rgba(243, 246, 250, 0);
-  --palette-brand-primary: var(--primitives-color-brand-main-60); /** Primary brand color (theme.color.brand.primary) */
-  --palette-brand-secondary: var(--primitives-color-brand-alternative-60); /** Secondary brand color (theme.color.brand.secondary) */
-  --palette-brand-tertiary: var(--primitives-color-accent-5-60); /** Tertiary brand color (theme.color.brand.tertiary) */
-  --palette-brand-subtle: var(--primitives-color-brand-main-10); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
-  --palette-brand-muted: var(--primitives-color-brand-main-20); /** Muted/softened brand tone (theme.color.brand.muted) */
-  --palette-brand-onprimary: var(--primitives-color-neutral-cool-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
-  --palette-brand-onsecondary: var(--primitives-color-neutral-cool-10); /** Foreground on top of Brand/Secondary (theme.color.brand.onSecondary) */
-  --palette-brand-secondaryhover: var(--primitives-color-brand-alternative-50);
-  --palette-brand-secondarypressed: var(--primitives-color-brand-alternative-70);
-  --palette-brand-secondarysubtle: var(--primitives-color-brand-alternative-10);
-  --palette-brand-primaryhover: var(--primitives-color-brand-main-50);
-  --palette-brand-primarypressed: var(--primitives-color-brand-main-70);
-  --palette-fill-canvas: var(--primitives-color-neutral-cool-20); /** App/page base background (theme.color.surface.canvas) */
-  --palette-fill-default: var(--primitives-color-pure-white); /** Standard component/card background (theme.color.surface.default) */
-  --palette-fill-elevated: var(--primitives-color-neutral-cool-10); /** Raised surface background, pair with elevation shadow (theme.color.surface.elevated) */
-  --palette-fill-overlay: var(--primitives-color-neutral-cool-10); /** Modal/popover panel background (theme.color.surface.overlay) */
-  --palette-fill-inverse: var(--primitives-color-neutral-cool-90); /** Inverted (dark) surface, e.g. tooltips (theme.color.surface.inverse) */
-  --palette-fill-sunken: var(--primitives-color-neutral-cool-30); /** Recessed background, e.g. inputs/wells (theme.color.surface.sunken) */
-  --palette-fill-scrim: var(--primitives-color-alpha-dark-60); /** Backdrop behind modals; apply opacity at usage since this alias is fully opaque (theme.color.surface.scrim) */
-  --palette-fill-selection: var(--primitives-color-brand-main-20); /** Selected item/text background (theme.color.selection.background) */
-  --palette-fill-inversehover: var(--primitives-color-neutral-cool-80);
-  --palette-fill-inversepressed: var(--primitives-color-neutral-cool-100);
-  --palette-fill-disabled: var(--primitives-color-neutral-cool-30);
-  --palette-ink-high: var(--primitives-color-neutral-cool-100); /** High-emphasis text/icon color (theme.color.content.high) */
-  --palette-ink-medium: var(--primitives-color-neutral-cool-70); /** Medium-emphasis text/icon color (theme.color.content.medium) */
-  --palette-ink-low: var(--primitives-color-neutral-cool-60); /** Low-emphasis text/icon color (theme.color.content.low) */
-  --palette-ink-disabled: var(--primitives-color-neutral-cool-50); /** Disabled-state text/icon color (theme.color.content.disabled) */
-  --palette-ink-inverse: var(--primitives-color-neutral-cool-10); /** Text/icon color on inverse/dark surfaces (theme.color.content.inverse) */
-  --palette-ink-link: var(--primitives-color-brand-main-60); /** Hyperlink text color (theme.color.content.link) */
-  --palette-ink-brand: var(--primitives-color-brand-main-70); /** Hyperlink text color (theme.color.content.link) */
-  --palette-ink-selection: var(--primitives-color-neutral-cool-100); /** Text color within a selection (theme.color.selection.text) */
-  --palette-status-success-default: var(--primitives-color-system-positive-60); /** Success color (theme.color.success.default) */
-  --palette-status-success-faint: var(--primitives-color-system-positive-10); /** Success background tint (theme.color.success.subtle) */
-  --palette-status-success-deep: var(--primitives-color-system-positive-80); /** Success solid/strong emphasis (theme.color.success.strong) */
-  --palette-status-success-strong: var(--primitives-color-system-positive-70);
-  --palette-status-success-subtle: var(--primitives-color-system-positive-50);
-  --palette-status-success-hover: var(--primitives-color-system-positive-70);
-  --palette-status-success-pressed: var(--primitives-color-system-positive-80);
-  --palette-status-warning-default: var(--primitives-color-system-warning-60); /** Warning color (theme.color.warning.default) */
-  --palette-status-warning-faint: var(--primitives-color-system-warning-10); /** Warning background tint (theme.color.warning.subtle) */
-  --palette-status-error-default: var(--primitives-color-system-negative-60); /** Error color (theme.color.error.default) */
-  --palette-status-error-faint: var(--primitives-color-system-negative-10); /** Error background tint (theme.color.error.subtle) */
-  --palette-status-error-deep: var(--primitives-color-system-negative-80); /** Error solid/strong emphasis (theme.color.error.strong) */
-  --palette-status-error-subtle: var(--primitives-color-system-negative-50);
-  --palette-status-error-strong: var(--primitives-color-system-negative-70);
-  --palette-status-error-hover: var(--primitives-color-system-negative-50);
-  --palette-status-error-pressed: var(--primitives-color-system-negative-70);
-  --palette-status-info-default: var(--primitives-color-system-info-60); /** Info color (theme.color.info.default) */
-  --palette-status-info-faint: var(--primitives-color-system-info-10); /** Info background tint (theme.color.info.subtle) */
-  --palette-status-info-deep: var(--primitives-color-system-info-80); /** Info solid/strong emphasis (theme.color.info.strong) */
-  --palette-status-info-subtle: var(--primitives-color-system-info-50);
-  --palette-status-info-strong: var(--primitives-color-system-info-70);
-  --palette-line-selection: var(--primitives-color-brand-main-60); /** Selected item border/outline (theme.color.selection.border) */
-  --palette-line-default: var(--primitives-color-neutral-cool-40);
-  --palette-line-subtle: var(--primitives-color-neutral-cool-30);
-  --palette-line-strong: var(--primitives-color-neutral-cool-60);
-  --palette-line-stronger: var(--primitives-color-neutral-cool-80);
-  --palette-data-1: var(--primitives-color-brand-main-60);
-  --palette-data-2: var(--primitives-color-brand-alternative-60);
-  --palette-data-3: var(--primitives-color-accent-5-60);
-  --palette-data-4: var(--primitives-color-accent-1-60);
-  --palette-data-5: var(--primitives-color-accent-4-60);
-  --palette-data-6: var(--primitives-color-accent-3-60);
-  --palette-data-7: var(--primitives-color-accent-2-40);
-  --palette-data-8: var(--primitives-color-extend-3-60);
-  --palette-data-9: var(--primitives-color-extend-4-60);
-  --palette-data-10: var(--primitives-color-extend-2-60);
-  --palette-data-11: var(--primitives-color-system-negative-50);
-  --palette-data-12: var(--primitives-color-extend-1-50);
-  --palette-data-neutral: var(--primitives-color-neutral-cool-50);
+  --fill-transparent: rgba(243, 246, 250, 0);
+  --brand-primary: var(--color-brand-main-60); /** Primary brand color (theme.color.brand.primary) */
+  --brand-secondary: var(--color-brand-alternative-60); /** Secondary brand color (theme.color.brand.secondary) */
+  --brand-tertiary: var(--color-accent-5-60); /** Tertiary brand color (theme.color.brand.tertiary) */
+  --brand-subtle: var(--color-brand-main-10); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
+  --brand-muted: var(--color-brand-main-20); /** Muted/softened brand tone (theme.color.brand.muted) */
+  --brand-onprimary: var(--color-neutral-cool-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
+  --brand-onsecondary: var(--color-neutral-cool-10); /** Foreground on top of Brand/Secondary (theme.color.brand.onSecondary) */
+  --brand-secondaryhover: var(--color-brand-alternative-50);
+  --brand-secondarypressed: var(--color-brand-alternative-70);
+  --brand-secondarysubtle: var(--color-brand-alternative-10);
+  --brand-primaryhover: var(--color-brand-main-50);
+  --brand-primarypressed: var(--color-brand-main-70);
+  --fill-canvas: var(--color-neutral-cool-20); /** App/page base background (theme.color.surface.canvas) */
+  --fill-default: var(--color-pure-white); /** Standard component/card background (theme.color.surface.default) */
+  --fill-elevated: var(--color-neutral-cool-10); /** Raised surface background, pair with elevation shadow (theme.color.surface.elevated) */
+  --fill-overlay: var(--color-neutral-cool-10); /** Modal/popover panel background (theme.color.surface.overlay) */
+  --fill-inverse: var(--color-neutral-cool-90); /** Inverted (dark) surface, e.g. tooltips (theme.color.surface.inverse) */
+  --fill-sunken: var(--color-neutral-cool-30); /** Recessed background, e.g. inputs/wells (theme.color.surface.sunken) */
+  --fill-scrim: var(--color-alpha-dark-60); /** Backdrop behind modals; apply opacity at usage since this alias is fully opaque (theme.color.surface.scrim) */
+  --fill-selection: var(--color-brand-main-20); /** Selected item/text background (theme.color.selection.background) */
+  --fill-inversehover: var(--color-neutral-cool-80);
+  --fill-inversepressed: var(--color-neutral-cool-100);
+  --fill-disabled: var(--color-neutral-cool-30);
+  --ink-high: var(--color-neutral-cool-100); /** High-emphasis text/icon color (theme.color.content.high) */
+  --ink-medium: var(--color-neutral-cool-70); /** Medium-emphasis text/icon color (theme.color.content.medium) */
+  --ink-low: var(--color-neutral-cool-60); /** Low-emphasis text/icon color (theme.color.content.low) */
+  --ink-disabled: var(--color-neutral-cool-50); /** Disabled-state text/icon color (theme.color.content.disabled) */
+  --ink-inverse: var(--color-neutral-cool-10); /** Text/icon color on inverse/dark surfaces (theme.color.content.inverse) */
+  --ink-link: var(--color-brand-main-60); /** Hyperlink text color (theme.color.content.link) */
+  --ink-brand: var(--color-brand-main-70); /** Hyperlink text color (theme.color.content.link) */
+  --ink-selection: var(--color-neutral-cool-100); /** Text color within a selection (theme.color.selection.text) */
+  --status-success-default: var(--color-system-positive-60); /** Success color (theme.color.success.default) */
+  --status-success-faint: var(--color-system-positive-10); /** Success background tint (theme.color.success.subtle) */
+  --status-success-deep: var(--color-system-positive-80); /** Success solid/strong emphasis (theme.color.success.strong) */
+  --status-success-strong: var(--color-system-positive-70);
+  --status-success-subtle: var(--color-system-positive-50);
+  --status-success-hover: var(--color-system-positive-70);
+  --status-success-pressed: var(--color-system-positive-80);
+  --status-warning-default: var(--color-system-warning-60); /** Warning color (theme.color.warning.default) */
+  --status-warning-faint: var(--color-system-warning-10); /** Warning background tint (theme.color.warning.subtle) */
+  --status-error-default: var(--color-system-negative-60); /** Error color (theme.color.error.default) */
+  --status-error-faint: var(--color-system-negative-10); /** Error background tint (theme.color.error.subtle) */
+  --status-error-deep: var(--color-system-negative-80); /** Error solid/strong emphasis (theme.color.error.strong) */
+  --status-error-subtle: var(--color-system-negative-50);
+  --status-error-strong: var(--color-system-negative-70);
+  --status-error-hover: var(--color-system-negative-50);
+  --status-error-pressed: var(--color-system-negative-70);
+  --status-info-default: var(--color-system-info-60); /** Info color (theme.color.info.default) */
+  --status-info-faint: var(--color-system-info-10); /** Info background tint (theme.color.info.subtle) */
+  --status-info-deep: var(--color-system-info-80); /** Info solid/strong emphasis (theme.color.info.strong) */
+  --status-info-subtle: var(--color-system-info-50);
+  --status-info-strong: var(--color-system-info-70);
+  --line-selection: var(--color-brand-main-60); /** Selected item border/outline (theme.color.selection.border) */
+  --line-default: var(--color-neutral-cool-40);
+  --line-subtle: var(--color-neutral-cool-30);
+  --line-strong: var(--color-neutral-cool-60);
+  --line-stronger: var(--color-neutral-cool-80);
+  --data-1: var(--color-brand-main-60);
+  --data-2: var(--color-brand-alternative-60);
+  --data-3: var(--color-accent-5-60);
+  --data-4: var(--color-accent-1-60);
+  --data-5: var(--color-accent-4-60);
+  --data-6: var(--color-accent-3-60);
+  --data-7: var(--color-accent-2-40);
+  --data-8: var(--color-extend-3-60);
+  --data-9: var(--color-extend-4-60);
+  --data-10: var(--color-extend-2-60);
+  --data-11: var(--color-system-negative-50);
+  --data-12: var(--color-extend-1-50);
+  --data-neutral: var(--color-neutral-cool-50);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --palette-fill-transparent: rgba(243, 246, 250, 0);
-  --palette-brand-primary: var(--primitives-color-brand-main-60); /** Primary brand color (theme.color.brand.primary) */
-  --palette-brand-secondary: var(--primitives-color-brand-alternative-50); /** Secondary brand color (theme.color.brand.secondary) */
-  --palette-brand-tertiary: var(--primitives-color-accent-5-50); /** Tertiary brand color (theme.color.brand.tertiary) */
-  --palette-brand-subtle: var(--primitives-color-brand-main-100); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
-  --palette-brand-muted: var(--primitives-color-brand-main-90); /** Muted/softened brand tone (theme.color.brand.muted) */
-  --palette-brand-onprimary: var(--primitives-color-neutral-cool-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
-  --palette-brand-onsecondary: var(--primitives-color-neutral-cool-10); /** Foreground on top of Brand/Secondary (theme.color.brand.onSecondary) */
-  --palette-brand-secondaryhover: var(--primitives-color-brand-alternative-60);
-  --palette-brand-secondarypressed: var(--primitives-color-brand-alternative-40);
-  --palette-brand-secondarysubtle: var(--primitives-color-brand-alternative-100);
-  --palette-brand-primaryhover: var(--primitives-color-brand-main-50);
-  --palette-brand-primarypressed: var(--primitives-color-brand-main-40);
-  --palette-fill-canvas: var(--primitives-color-neutral-cool-90); /** App/page base background (theme.color.surface.canvas) */
-  --palette-fill-default: var(--primitives-color-neutral-cool-100); /** Standard component/card background (theme.color.surface.default) */
-  --palette-fill-elevated: var(--primitives-color-neutral-cool-100); /** Raised surface background, pair with elevation shadow (theme.color.surface.elevated) */
-  --palette-fill-overlay: var(--primitives-color-neutral-cool-100); /** Modal/popover panel background (theme.color.surface.overlay) */
-  --palette-fill-inverse: var(--primitives-color-neutral-cool-20); /** Inverted (dark) surface, e.g. tooltips (theme.color.surface.inverse) */
-  --palette-fill-sunken: var(--primitives-color-neutral-cool-80); /** Recessed background, e.g. inputs/wells (theme.color.surface.sunken) */
-  --palette-fill-scrim: var(--primitives-color-alpha-dark-60); /** Backdrop behind modals; apply opacity at usage since this alias is fully opaque (theme.color.surface.scrim) */
-  --palette-fill-selection: var(--primitives-color-brand-main-90); /** Selected item/text background (theme.color.selection.background) */
-  --palette-fill-inversehover: var(--primitives-color-neutral-cool-30);
-  --palette-fill-inversepressed: var(--primitives-color-neutral-cool-10);
-  --palette-fill-disabled: var(--primitives-color-neutral-cool-80);
-  --palette-ink-high: var(--primitives-color-neutral-cool-10); /** High-emphasis text/icon color (theme.color.content.high) */
-  --palette-ink-medium: var(--primitives-color-neutral-cool-40); /** Medium-emphasis text/icon color (theme.color.content.medium) */
-  --palette-ink-low: var(--primitives-color-neutral-cool-50); /** Low-emphasis text/icon color (theme.color.content.low) */
-  --palette-ink-disabled: var(--primitives-color-neutral-cool-60); /** Disabled-state text/icon color (theme.color.content.disabled) */
-  --palette-ink-inverse: var(--primitives-color-neutral-cool-100); /** Text/icon color on inverse/dark surfaces (theme.color.content.inverse) */
-  --palette-ink-link: var(--primitives-color-brand-main-50); /** Hyperlink text color (theme.color.content.link) */
-  --palette-ink-brand: var(--primitives-color-brand-main-40); /** Hyperlink text color (theme.color.content.link) */
-  --palette-ink-selection: var(--primitives-color-neutral-cool-10); /** Text color within a selection (theme.color.selection.text) */
-  --palette-status-success-default: var(--primitives-color-system-positive-60); /** Success color (theme.color.success.default) */
-  --palette-status-success-faint: var(--primitives-color-system-positive-100); /** Success background tint (theme.color.success.subtle) */
-  --palette-status-success-deep: var(--primitives-color-system-positive-40); /** Success solid/strong emphasis (theme.color.success.strong) */
-  --palette-status-success-strong: var(--primitives-color-system-positive-40);
-  --palette-status-success-subtle: var(--primitives-color-system-positive-70);
-  --palette-status-success-hover: var(--primitives-color-system-positive-40);
-  --palette-status-success-pressed: var(--primitives-color-system-positive-40);
-  --palette-status-warning-default: var(--primitives-color-system-warning-50); /** Warning color (theme.color.warning.default) */
-  --palette-status-warning-faint: var(--primitives-color-system-warning-100); /** Warning background tint (theme.color.warning.subtle) */
-  --palette-status-error-default: var(--primitives-color-system-negative-60); /** Error color (theme.color.error.default) */
-  --palette-status-error-faint: var(--primitives-color-system-negative-100); /** Error background tint (theme.color.error.subtle) */
-  --palette-status-error-deep: var(--primitives-color-system-negative-30); /** Error solid/strong emphasis (theme.color.error.strong) */
-  --palette-status-error-subtle: var(--primitives-color-system-negative-70);
-  --palette-status-error-strong: var(--primitives-color-system-negative-40);
-  --palette-status-error-hover: var(--primitives-color-system-negative-70);
-  --palette-status-error-pressed: var(--primitives-color-system-negative-40);
-  --palette-status-info-default: var(--primitives-color-system-info-50); /** Info color (theme.color.info.default) */
-  --palette-status-info-faint: var(--primitives-color-system-info-100); /** Info background tint (theme.color.info.subtle) */
-  --palette-status-info-deep: var(--primitives-color-system-info-30); /** Info solid/strong emphasis (theme.color.info.strong) */
-  --palette-status-info-subtle: var(--primitives-color-system-info-60);
-  --palette-status-info-strong: var(--primitives-color-system-info-40);
-  --palette-line-selection: var(--primitives-color-brand-main-50); /** Selected item border/outline (theme.color.selection.border) */
-  --palette-line-default: var(--primitives-color-neutral-cool-70);
-  --palette-line-subtle: var(--primitives-color-neutral-cool-80);
-  --palette-line-strong: var(--primitives-color-neutral-cool-50);
-  --palette-line-stronger: var(--primitives-color-neutral-cool-30);
-  --palette-data-1: var(--primitives-color-brand-main-50);
-  --palette-data-2: var(--primitives-color-brand-alternative-50);
-  --palette-data-3: var(--primitives-color-accent-5-50);
-  --palette-data-4: var(--primitives-color-accent-1-50);
-  --palette-data-5: var(--primitives-color-accent-4-50);
-  --palette-data-6: var(--primitives-color-accent-3-50);
-  --palette-data-7: var(--primitives-color-accent-2-70);
-  --palette-data-8: var(--primitives-color-extend-3-50);
-  --palette-data-9: var(--primitives-color-extend-4-50);
-  --palette-data-10: var(--primitives-color-extend-2-50);
-  --palette-data-11: var(--primitives-color-system-negative-60);
-  --palette-data-12: var(--primitives-color-extend-1-60);
-  --palette-data-neutral: var(--primitives-color-neutral-cool-60);
+    --fill-transparent: rgba(243, 246, 250, 0);
+  --brand-primary: var(--color-brand-main-60); /** Primary brand color (theme.color.brand.primary) */
+  --brand-secondary: var(--color-brand-alternative-50); /** Secondary brand color (theme.color.brand.secondary) */
+  --brand-tertiary: var(--color-accent-5-50); /** Tertiary brand color (theme.color.brand.tertiary) */
+  --brand-subtle: var(--color-brand-main-100); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
+  --brand-muted: var(--color-brand-main-90); /** Muted/softened brand tone (theme.color.brand.muted) */
+  --brand-onprimary: var(--color-neutral-cool-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
+  --brand-onsecondary: var(--color-neutral-cool-10); /** Foreground on top of Brand/Secondary (theme.color.brand.onSecondary) */
+  --brand-secondaryhover: var(--color-brand-alternative-60);
+  --brand-secondarypressed: var(--color-brand-alternative-40);
+  --brand-secondarysubtle: var(--color-brand-alternative-100);
+  --brand-primaryhover: var(--color-brand-main-50);
+  --brand-primarypressed: var(--color-brand-main-40);
+  --fill-canvas: var(--color-neutral-cool-90); /** App/page base background (theme.color.surface.canvas) */
+  --fill-default: var(--color-neutral-cool-100); /** Standard component/card background (theme.color.surface.default) */
+  --fill-elevated: var(--color-neutral-cool-100); /** Raised surface background, pair with elevation shadow (theme.color.surface.elevated) */
+  --fill-overlay: var(--color-neutral-cool-100); /** Modal/popover panel background (theme.color.surface.overlay) */
+  --fill-inverse: var(--color-neutral-cool-20); /** Inverted (dark) surface, e.g. tooltips (theme.color.surface.inverse) */
+  --fill-sunken: var(--color-neutral-cool-80); /** Recessed background, e.g. inputs/wells (theme.color.surface.sunken) */
+  --fill-scrim: var(--color-alpha-dark-60); /** Backdrop behind modals; apply opacity at usage since this alias is fully opaque (theme.color.surface.scrim) */
+  --fill-selection: var(--color-brand-main-90); /** Selected item/text background (theme.color.selection.background) */
+  --fill-inversehover: var(--color-neutral-cool-30);
+  --fill-inversepressed: var(--color-neutral-cool-10);
+  --fill-disabled: var(--color-neutral-cool-80);
+  --ink-high: var(--color-neutral-cool-10); /** High-emphasis text/icon color (theme.color.content.high) */
+  --ink-medium: var(--color-neutral-cool-40); /** Medium-emphasis text/icon color (theme.color.content.medium) */
+  --ink-low: var(--color-neutral-cool-50); /** Low-emphasis text/icon color (theme.color.content.low) */
+  --ink-disabled: var(--color-neutral-cool-60); /** Disabled-state text/icon color (theme.color.content.disabled) */
+  --ink-inverse: var(--color-neutral-cool-100); /** Text/icon color on inverse/dark surfaces (theme.color.content.inverse) */
+  --ink-link: var(--color-brand-main-50); /** Hyperlink text color (theme.color.content.link) */
+  --ink-brand: var(--color-brand-main-40); /** Hyperlink text color (theme.color.content.link) */
+  --ink-selection: var(--color-neutral-cool-10); /** Text color within a selection (theme.color.selection.text) */
+  --status-success-default: var(--color-system-positive-60); /** Success color (theme.color.success.default) */
+  --status-success-faint: var(--color-system-positive-100); /** Success background tint (theme.color.success.subtle) */
+  --status-success-deep: var(--color-system-positive-40); /** Success solid/strong emphasis (theme.color.success.strong) */
+  --status-success-strong: var(--color-system-positive-40);
+  --status-success-subtle: var(--color-system-positive-70);
+  --status-success-hover: var(--color-system-positive-40);
+  --status-success-pressed: var(--color-system-positive-40);
+  --status-warning-default: var(--color-system-warning-50); /** Warning color (theme.color.warning.default) */
+  --status-warning-faint: var(--color-system-warning-100); /** Warning background tint (theme.color.warning.subtle) */
+  --status-error-default: var(--color-system-negative-60); /** Error color (theme.color.error.default) */
+  --status-error-faint: var(--color-system-negative-100); /** Error background tint (theme.color.error.subtle) */
+  --status-error-deep: var(--color-system-negative-30); /** Error solid/strong emphasis (theme.color.error.strong) */
+  --status-error-subtle: var(--color-system-negative-70);
+  --status-error-strong: var(--color-system-negative-40);
+  --status-error-hover: var(--color-system-negative-70);
+  --status-error-pressed: var(--color-system-negative-40);
+  --status-info-default: var(--color-system-info-50); /** Info color (theme.color.info.default) */
+  --status-info-faint: var(--color-system-info-100); /** Info background tint (theme.color.info.subtle) */
+  --status-info-deep: var(--color-system-info-30); /** Info solid/strong emphasis (theme.color.info.strong) */
+  --status-info-subtle: var(--color-system-info-60);
+  --status-info-strong: var(--color-system-info-40);
+  --line-selection: var(--color-brand-main-50); /** Selected item border/outline (theme.color.selection.border) */
+  --line-default: var(--color-neutral-cool-70);
+  --line-subtle: var(--color-neutral-cool-80);
+  --line-strong: var(--color-neutral-cool-50);
+  --line-stronger: var(--color-neutral-cool-30);
+  --data-1: var(--color-brand-main-50);
+  --data-2: var(--color-brand-alternative-50);
+  --data-3: var(--color-accent-5-50);
+  --data-4: var(--color-accent-1-50);
+  --data-5: var(--color-accent-4-50);
+  --data-6: var(--color-accent-3-50);
+  --data-7: var(--color-accent-2-70);
+  --data-8: var(--color-extend-3-50);
+  --data-9: var(--color-extend-4-50);
+  --data-10: var(--color-extend-2-50);
+  --data-11: var(--color-system-negative-60);
+  --data-12: var(--color-extend-1-60);
+  --data-neutral: var(--color-neutral-cool-60);
   }
 }
 
 :root.dark-mode, .dark-mode :root {
-  --palette-fill-transparent: rgba(243, 246, 250, 0);
-  --palette-brand-primary: var(--primitives-color-brand-main-60); /** Primary brand color (theme.color.brand.primary) */
-  --palette-brand-secondary: var(--primitives-color-brand-alternative-50); /** Secondary brand color (theme.color.brand.secondary) */
-  --palette-brand-tertiary: var(--primitives-color-accent-5-50); /** Tertiary brand color (theme.color.brand.tertiary) */
-  --palette-brand-subtle: var(--primitives-color-brand-main-100); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
-  --palette-brand-muted: var(--primitives-color-brand-main-90); /** Muted/softened brand tone (theme.color.brand.muted) */
-  --palette-brand-onprimary: var(--primitives-color-neutral-cool-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
-  --palette-brand-onsecondary: var(--primitives-color-neutral-cool-10); /** Foreground on top of Brand/Secondary (theme.color.brand.onSecondary) */
-  --palette-brand-secondaryhover: var(--primitives-color-brand-alternative-60);
-  --palette-brand-secondarypressed: var(--primitives-color-brand-alternative-40);
-  --palette-brand-secondarysubtle: var(--primitives-color-brand-alternative-100);
-  --palette-brand-primaryhover: var(--primitives-color-brand-main-50);
-  --palette-brand-primarypressed: var(--primitives-color-brand-main-40);
-  --palette-fill-canvas: var(--primitives-color-neutral-cool-90); /** App/page base background (theme.color.surface.canvas) */
-  --palette-fill-default: var(--primitives-color-neutral-cool-100); /** Standard component/card background (theme.color.surface.default) */
-  --palette-fill-elevated: var(--primitives-color-neutral-cool-100); /** Raised surface background, pair with elevation shadow (theme.color.surface.elevated) */
-  --palette-fill-overlay: var(--primitives-color-neutral-cool-100); /** Modal/popover panel background (theme.color.surface.overlay) */
-  --palette-fill-inverse: var(--primitives-color-neutral-cool-20); /** Inverted (dark) surface, e.g. tooltips (theme.color.surface.inverse) */
-  --palette-fill-sunken: var(--primitives-color-neutral-cool-80); /** Recessed background, e.g. inputs/wells (theme.color.surface.sunken) */
-  --palette-fill-scrim: var(--primitives-color-alpha-dark-60); /** Backdrop behind modals; apply opacity at usage since this alias is fully opaque (theme.color.surface.scrim) */
-  --palette-fill-selection: var(--primitives-color-brand-main-90); /** Selected item/text background (theme.color.selection.background) */
-  --palette-fill-inversehover: var(--primitives-color-neutral-cool-30);
-  --palette-fill-inversepressed: var(--primitives-color-neutral-cool-10);
-  --palette-fill-disabled: var(--primitives-color-neutral-cool-80);
-  --palette-ink-high: var(--primitives-color-neutral-cool-10); /** High-emphasis text/icon color (theme.color.content.high) */
-  --palette-ink-medium: var(--primitives-color-neutral-cool-40); /** Medium-emphasis text/icon color (theme.color.content.medium) */
-  --palette-ink-low: var(--primitives-color-neutral-cool-50); /** Low-emphasis text/icon color (theme.color.content.low) */
-  --palette-ink-disabled: var(--primitives-color-neutral-cool-60); /** Disabled-state text/icon color (theme.color.content.disabled) */
-  --palette-ink-inverse: var(--primitives-color-neutral-cool-100); /** Text/icon color on inverse/dark surfaces (theme.color.content.inverse) */
-  --palette-ink-link: var(--primitives-color-brand-main-50); /** Hyperlink text color (theme.color.content.link) */
-  --palette-ink-brand: var(--primitives-color-brand-main-40); /** Hyperlink text color (theme.color.content.link) */
-  --palette-ink-selection: var(--primitives-color-neutral-cool-10); /** Text color within a selection (theme.color.selection.text) */
-  --palette-status-success-default: var(--primitives-color-system-positive-60); /** Success color (theme.color.success.default) */
-  --palette-status-success-faint: var(--primitives-color-system-positive-100); /** Success background tint (theme.color.success.subtle) */
-  --palette-status-success-deep: var(--primitives-color-system-positive-40); /** Success solid/strong emphasis (theme.color.success.strong) */
-  --palette-status-success-strong: var(--primitives-color-system-positive-40);
-  --palette-status-success-subtle: var(--primitives-color-system-positive-70);
-  --palette-status-success-hover: var(--primitives-color-system-positive-40);
-  --palette-status-success-pressed: var(--primitives-color-system-positive-40);
-  --palette-status-warning-default: var(--primitives-color-system-warning-50); /** Warning color (theme.color.warning.default) */
-  --palette-status-warning-faint: var(--primitives-color-system-warning-100); /** Warning background tint (theme.color.warning.subtle) */
-  --palette-status-error-default: var(--primitives-color-system-negative-60); /** Error color (theme.color.error.default) */
-  --palette-status-error-faint: var(--primitives-color-system-negative-100); /** Error background tint (theme.color.error.subtle) */
-  --palette-status-error-deep: var(--primitives-color-system-negative-30); /** Error solid/strong emphasis (theme.color.error.strong) */
-  --palette-status-error-subtle: var(--primitives-color-system-negative-70);
-  --palette-status-error-strong: var(--primitives-color-system-negative-40);
-  --palette-status-error-hover: var(--primitives-color-system-negative-70);
-  --palette-status-error-pressed: var(--primitives-color-system-negative-40);
-  --palette-status-info-default: var(--primitives-color-system-info-50); /** Info color (theme.color.info.default) */
-  --palette-status-info-faint: var(--primitives-color-system-info-100); /** Info background tint (theme.color.info.subtle) */
-  --palette-status-info-deep: var(--primitives-color-system-info-30); /** Info solid/strong emphasis (theme.color.info.strong) */
-  --palette-status-info-subtle: var(--primitives-color-system-info-60);
-  --palette-status-info-strong: var(--primitives-color-system-info-40);
-  --palette-line-selection: var(--primitives-color-brand-main-50); /** Selected item border/outline (theme.color.selection.border) */
-  --palette-line-default: var(--primitives-color-neutral-cool-70);
-  --palette-line-subtle: var(--primitives-color-neutral-cool-80);
-  --palette-line-strong: var(--primitives-color-neutral-cool-50);
-  --palette-line-stronger: var(--primitives-color-neutral-cool-30);
-  --palette-data-1: var(--primitives-color-brand-main-50);
-  --palette-data-2: var(--primitives-color-brand-alternative-50);
-  --palette-data-3: var(--primitives-color-accent-5-50);
-  --palette-data-4: var(--primitives-color-accent-1-50);
-  --palette-data-5: var(--primitives-color-accent-4-50);
-  --palette-data-6: var(--primitives-color-accent-3-50);
-  --palette-data-7: var(--primitives-color-accent-2-70);
-  --palette-data-8: var(--primitives-color-extend-3-50);
-  --palette-data-9: var(--primitives-color-extend-4-50);
-  --palette-data-10: var(--primitives-color-extend-2-50);
-  --palette-data-11: var(--primitives-color-system-negative-60);
-  --palette-data-12: var(--primitives-color-extend-1-60);
-  --palette-data-neutral: var(--primitives-color-neutral-cool-60);
+  --fill-transparent: rgba(243, 246, 250, 0);
+  --brand-primary: var(--color-brand-main-60); /** Primary brand color (theme.color.brand.primary) */
+  --brand-secondary: var(--color-brand-alternative-50); /** Secondary brand color (theme.color.brand.secondary) */
+  --brand-tertiary: var(--color-accent-5-50); /** Tertiary brand color (theme.color.brand.tertiary) */
+  --brand-subtle: var(--color-brand-main-100); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
+  --brand-muted: var(--color-brand-main-90); /** Muted/softened brand tone (theme.color.brand.muted) */
+  --brand-onprimary: var(--color-neutral-cool-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
+  --brand-onsecondary: var(--color-neutral-cool-10); /** Foreground on top of Brand/Secondary (theme.color.brand.onSecondary) */
+  --brand-secondaryhover: var(--color-brand-alternative-60);
+  --brand-secondarypressed: var(--color-brand-alternative-40);
+  --brand-secondarysubtle: var(--color-brand-alternative-100);
+  --brand-primaryhover: var(--color-brand-main-50);
+  --brand-primarypressed: var(--color-brand-main-40);
+  --fill-canvas: var(--color-neutral-cool-90); /** App/page base background (theme.color.surface.canvas) */
+  --fill-default: var(--color-neutral-cool-100); /** Standard component/card background (theme.color.surface.default) */
+  --fill-elevated: var(--color-neutral-cool-100); /** Raised surface background, pair with elevation shadow (theme.color.surface.elevated) */
+  --fill-overlay: var(--color-neutral-cool-100); /** Modal/popover panel background (theme.color.surface.overlay) */
+  --fill-inverse: var(--color-neutral-cool-20); /** Inverted (dark) surface, e.g. tooltips (theme.color.surface.inverse) */
+  --fill-sunken: var(--color-neutral-cool-80); /** Recessed background, e.g. inputs/wells (theme.color.surface.sunken) */
+  --fill-scrim: var(--color-alpha-dark-60); /** Backdrop behind modals; apply opacity at usage since this alias is fully opaque (theme.color.surface.scrim) */
+  --fill-selection: var(--color-brand-main-90); /** Selected item/text background (theme.color.selection.background) */
+  --fill-inversehover: var(--color-neutral-cool-30);
+  --fill-inversepressed: var(--color-neutral-cool-10);
+  --fill-disabled: var(--color-neutral-cool-80);
+  --ink-high: var(--color-neutral-cool-10); /** High-emphasis text/icon color (theme.color.content.high) */
+  --ink-medium: var(--color-neutral-cool-40); /** Medium-emphasis text/icon color (theme.color.content.medium) */
+  --ink-low: var(--color-neutral-cool-50); /** Low-emphasis text/icon color (theme.color.content.low) */
+  --ink-disabled: var(--color-neutral-cool-60); /** Disabled-state text/icon color (theme.color.content.disabled) */
+  --ink-inverse: var(--color-neutral-cool-100); /** Text/icon color on inverse/dark surfaces (theme.color.content.inverse) */
+  --ink-link: var(--color-brand-main-50); /** Hyperlink text color (theme.color.content.link) */
+  --ink-brand: var(--color-brand-main-40); /** Hyperlink text color (theme.color.content.link) */
+  --ink-selection: var(--color-neutral-cool-10); /** Text color within a selection (theme.color.selection.text) */
+  --status-success-default: var(--color-system-positive-60); /** Success color (theme.color.success.default) */
+  --status-success-faint: var(--color-system-positive-100); /** Success background tint (theme.color.success.subtle) */
+  --status-success-deep: var(--color-system-positive-40); /** Success solid/strong emphasis (theme.color.success.strong) */
+  --status-success-strong: var(--color-system-positive-40);
+  --status-success-subtle: var(--color-system-positive-70);
+  --status-success-hover: var(--color-system-positive-40);
+  --status-success-pressed: var(--color-system-positive-40);
+  --status-warning-default: var(--color-system-warning-50); /** Warning color (theme.color.warning.default) */
+  --status-warning-faint: var(--color-system-warning-100); /** Warning background tint (theme.color.warning.subtle) */
+  --status-error-default: var(--color-system-negative-60); /** Error color (theme.color.error.default) */
+  --status-error-faint: var(--color-system-negative-100); /** Error background tint (theme.color.error.subtle) */
+  --status-error-deep: var(--color-system-negative-30); /** Error solid/strong emphasis (theme.color.error.strong) */
+  --status-error-subtle: var(--color-system-negative-70);
+  --status-error-strong: var(--color-system-negative-40);
+  --status-error-hover: var(--color-system-negative-70);
+  --status-error-pressed: var(--color-system-negative-40);
+  --status-info-default: var(--color-system-info-50); /** Info color (theme.color.info.default) */
+  --status-info-faint: var(--color-system-info-100); /** Info background tint (theme.color.info.subtle) */
+  --status-info-deep: var(--color-system-info-30); /** Info solid/strong emphasis (theme.color.info.strong) */
+  --status-info-subtle: var(--color-system-info-60);
+  --status-info-strong: var(--color-system-info-40);
+  --line-selection: var(--color-brand-main-50); /** Selected item border/outline (theme.color.selection.border) */
+  --line-default: var(--color-neutral-cool-70);
+  --line-subtle: var(--color-neutral-cool-80);
+  --line-strong: var(--color-neutral-cool-50);
+  --line-stronger: var(--color-neutral-cool-30);
+  --data-1: var(--color-brand-main-50);
+  --data-2: var(--color-brand-alternative-50);
+  --data-3: var(--color-accent-5-50);
+  --data-4: var(--color-accent-1-50);
+  --data-5: var(--color-accent-4-50);
+  --data-6: var(--color-accent-3-50);
+  --data-7: var(--color-accent-2-70);
+  --data-8: var(--color-extend-3-50);
+  --data-9: var(--color-extend-4-50);
+  --data-10: var(--color-extend-2-50);
+  --data-11: var(--color-system-negative-60);
+  --data-12: var(--color-extend-1-60);
+  --data-neutral: var(--color-neutral-cool-60);
 }

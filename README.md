@@ -20,5 +20,5 @@ Install dependencies from the root of the repo:
 npm i
 ```
 
-This installs dependencies for every workspace (`tooling/*` and `packages/*`) in one step.
+This installs dependencies for every workspace (`apps/*`, `tooling/*` and `packages/*`) in one step.
 
