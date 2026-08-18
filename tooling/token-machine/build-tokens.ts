@@ -2,27 +2,23 @@ import StyleDictionary, { type TransformedToken } from 'style-dictionary';
 import { glob } from 'glob';
 import * as fs from 'fs';
 import * as path from 'path';
+import config from './config.json' assert { type: 'json' };
 
 // ===============================================================================================
 // 1. CONFIGURATION & CONSTANTS
 // ===============================================================================================
 
-const TOKEN_DIR = './tokens/dtcg-tokens';
-const TEMP_DIR = '../../packages/zebra-design-system-tokens/dist/temp';
-const OUTPUT_DIR = '../../packages/zebra-design-system-tokens/dist/css';
+const TOKEN_DIR = config.directories.tokenDir;
+const TEMP_DIR = config.directories.tempDir;
+const CSS_OUTPUT_DIR = config.directories.cssOutputDir;
 
-const COLOR_COLLECTIONS = ['primitives', 'palette', 'semantics'];
-const SIZE_COLLECTIONS = ['primitives', 'size'];
-const TYPOGRAPHY_COLLECTIONS = ['primitives', 'typography'];
-const COLOR_MODES = ['light', 'dark'];
-const BREAKPOINT_MODES = ['mobile', 'tablet', 'desktop', 'desktop compact'];
+const COLOR_COLLECTIONS = config.collections.color;
+const SIZE_COLLECTIONS = config.collections.size;
+const TYPOGRAPHY_COLLECTIONS = config.collections.typography;
+const COLOR_MODES = config.modes.color;
+const BREAKPOINT_MODES = config.modes.breakpoint;
 
-const SIZE_BREAKPOINTS: { [key: string]: string } = {
-  mobile: '', 
-  tablet: '768px',
-  'desktop compact': '1024px',
-  desktop: '1440px',
-};
+const SIZE_BREAKPOINTS: { [key: string]: string } = config.breakpoints;
 
 // ===============================================================================================
 // 2. STYLE DICTIONARY: GLOBAL REGISTRATIONS
@@ -49,32 +45,11 @@ StyleDictionary.registerFormat({
   },
 });
 
-// Building-block filters: these keep primitives/palette/size/semantics as their own
-// separate, var()-chained CSS files (see section 5) instead of flattening everything
-// into one resolved output, so a dev can swap any primitives file with any palette file.
-StyleDictionary.registerFilter({
-  name: 'primitivesOnlyFilter',
-  filter: (token: TransformedToken) => token.path[0] === 'primitives',
-});
-
-StyleDictionary.registerFilter({
-  name: 'paletteOnlyFilter',
-  filter: (token: TransformedToken) => token.path[0] === 'palette',
-});
-
-StyleDictionary.registerFilter({
-  name: 'semanticsOnlyFilter',
-  filter: (token: TransformedToken) => token.path[0] === 'semantics',
-});
-
-StyleDictionary.registerFilter({
-  name: 'sizeOnlyFilter',
-  filter: (token: TransformedToken) => token.path[0] === 'size',
-});
-
-StyleDictionary.registerFilter({
-  name: 'typographyOnlyFilter',
-  filter: (token: TransformedToken) => token.path[0] === 'typography',
+['primitives', 'palette', 'semantics', 'size', 'typography'].forEach(collection => {
+  StyleDictionary.registerFilter({
+    name: `${collection}OnlyFilter`,
+    filter: (token: TransformedToken) => token.path[0] === collection,
+  });
 });
 
 // ===============================================================================================
@@ -99,57 +74,26 @@ function getSourceFilesForCollection(collection: string, theme: string, mode: st
   return files;
 }
   
-async function compileTempMode(sources: string[], destination: string) {
+async function compileTokens(sources: string[], destination: string, opts?: { filter?: string; outputReferences?: boolean }) {
   try {
-    const config = {
-      source: sources,
-      // No custom parsers needed now because JSON namespaces align perfectly!
-      platforms: {
-        css: {
-          transformGroup: 'css',
-          buildPath: '',
-          files: [
-            {
-              destination: destination,
-              format: 'css/variables-root',
-              filter: 'encapsulationFilter',
-            },
-          ],
-        },
-      },
+    const fileConfig: any = {
+      destination: destination,
+      format: opts?.outputReferences ? 'css/variables' : 'css/variables-root',
     };
-  
-    const sd = new StyleDictionary(config);
-    await sd.buildAllPlatforms();
-  } catch (error) {
-    console.error(`\n❌ Error in compileTempMode for destination: "${destination}"`);
-    console.error(error);
-    throw error;
-  }
-}
+    if (opts?.outputReferences) {
+      fileConfig.filter = opts.filter;
+      fileConfig.options = { outputReferences: true };
+    } else {
+      fileConfig.filter = 'encapsulationFilter';
+    }
 
-// Like compileTempMode, but emits var()-chained references (via Style Dictionary's
-// built-in 'css/variables' format + outputReferences) instead of flattened literals,
-// and is scoped to a single collection via `filter`. Used only by the building-block
-// pipeline in section 5 — compileTempMode/css/variables-root above are untouched.
-async function compileTempModeVariables(sources: string[], destination: string, filter: string) {
-  try {
     const config = {
       source: sources,
       platforms: {
         css: {
           transformGroup: 'css',
           buildPath: '',
-          files: [
-            {
-              destination: destination,
-              format: 'css/variables',
-              filter: filter,
-              options: {
-                outputReferences: true,
-              },
-            },
-          ],
+          files: [fileConfig],
         },
       },
     };
@@ -157,7 +101,7 @@ async function compileTempModeVariables(sources: string[], destination: string, 
     const sd = new StyleDictionary(config);
     await sd.buildAllPlatforms();
   } catch (error) {
-    console.error(`\n❌ Error in compileTempModeVariables for destination: "${destination}"`);
+    console.error(`\n❌ Error compiling tokens for destination: "${destination}"`);
     console.error(error);
     throw error;
   }
@@ -167,140 +111,74 @@ async function compileTempModeVariables(sources: string[], destination: string, 
 // 4. UNIFIED CSS SYNTHESIZER
 // ===============================================================================================
 
-function extractCssVariables(filePath: string): string {
+export function extractCssVariables(filePath: string): string {
   if (!fs.existsSync(filePath)) return '';
   const content = fs.readFileSync(filePath, 'utf-8');
   const match = content.match(/:root\s*\{([\s\S]*?)\}/);
-  return match ? match[1].trim() : '';
+  if (!match) return '';
+  // Collapse convert-tokens.ts's reserved "selfvalue" leaf back into its parent's
+  // name — in both declarations (--x-y-selfvalue: ...) and var() references.
+  return match[1].trim().replace(/-selfvalue\b/g, '');
 }
 
-function translateFontWeights(css: string): string {
-  // Translate font-weight names to numeric values
-  const fontWeightMap: { [key: string]: number } = {
-    'Light': 300,
-    'Regular': 400,
-    'Medium': 500,
-    'Bold': 700,
+export type SynthesizeType = 'color' | 'size' | 'typography';
+
+export function synthesizeCss(theme: string, type: SynthesizeType, tempDir?: string, outputDir?: string) {
+  const TEMP = tempDir || TEMP_DIR;
+  const OUT = outputDir || OUTPUT_DIR;
+  const typeIcons: Record<SynthesizeType, string> = { color: '🎨', size: '📏', typography: '✍️ ' };
+  console.log(`\n${typeIcons[type]} Synthesizing ${type} CSS for theme: ${theme}`);
+  const themeClass = theme === 'default' ? '' : `.${theme.toLowerCase()}-theme`;
+  let finalCss = `/**\n * ${theme.charAt(0).toUpperCase() + theme.slice(1)} Theme - ${type.charAt(0).toUpperCase() + type.slice(1)} Variables\n * This file is auto-generated. Do not edit directly.\n */\n\n`;
+  let hasContent = false;
+
+  if (type === 'color') {
+    const lightSelector = `:root${themeClass ? `, ${themeClass}` : ''}`;
+    const darkSelectorDefault = `@media (prefers-color-scheme: dark) { ${lightSelector}`;
+    const darkSelectorOverride = `${themeClass || ':root'}.dark-mode, .dark-mode ${themeClass || ':root'}`;
+    let lightVars = extractCssVariables(path.join(TEMP, `${theme}-light.css`));
+    let darkVars = extractCssVariables(path.join(TEMP, `${theme}-dark.css`));
+
+    if (lightVars || darkVars) {
+      if (lightVars) finalCss += `${lightSelector} {\n  ${lightVars}\n}\n\n`;
+      if (darkVars) {
+        finalCss += `${darkSelectorDefault} {\n    ${darkVars}\n  }\n}\n\n`;
+        finalCss += `${darkSelectorOverride} {\n  ${darkVars}\n}\n`;
+      }
+      hasContent = true;
+    }
+  } else {
+    const rootSelector = `:root${themeClass ? `, ${themeClass}` : ''}`;
+    const fileSuffix = type === 'typography' ? '-typography' : '';
+    const stripPattern = type === 'typography' ? /^(\s*)--typography-/gm : undefined;
+
+    BREAKPOINT_MODES.forEach(mode => {
+      let vars = extractCssVariables(path.join(TEMP, `${theme}-${mode}${fileSuffix}.css`));
+      if (vars) {
+        hasContent = true;
+        if (stripPattern) vars = vars.replace(stripPattern, '$1--');
+        const breakpoint = SIZE_BREAKPOINTS[mode];
+        if (!breakpoint) {
+          finalCss += `${rootSelector} {\n  ${vars}\n}\n\n`;
+        } else {
+          finalCss += `@media (min-width: ${breakpoint}) {\n  ${rootSelector} {\n    ${vars}\n  }\n}\n\n`;
+        }
+      }
+    });
+  }
+
+  if (!hasContent) {
+    console.log(`   - Skipping, no ${type} variables found.`);
+    return;
+  }
+
+  const fileMap: Record<SynthesizeType, (theme: string) => string> = {
+    color: t => t === 'default' ? 'colors.css' : `${t.toLowerCase()}-colors.css`,
+    size: t => t === 'default' ? 'sizes.css' : `${t.toLowerCase()}-sizes.css`,
+    typography: t => t === 'default' ? 'typography.css' : `${t.toLowerCase()}-typography.css`,
   };
-
-  return css.replace(/^(\s*--[^:]*fontweight[^:]*): ([^;\n]+)([;\n])/gm, (match, prefix, value, suffix) => {
-    const trimmedValue = value.trim();
-    const numericValue = fontWeightMap[trimmedValue];
-    return numericValue !== undefined ? `${prefix}: ${numericValue}${suffix}` : match;
-  });
-}
-
-function addPixelUnits(css: string): string {
-  // Add px to numeric values that represent pixel measurements
-  // Match lines like --property-name: 123; and convert to --property-name: 123px;
-  // but skip font-family, font-weight, and other non-pixel numeric properties
-  return css
-    .replace(/^(\s*--[^:]*fontsize[^:]*): (-?[\d.]+)([;\n])/gm, '$1: $2px$3')
-    .replace(/^(\s*--[^:]*lineheight[^:]*): (-?[\d.]+)([;\n])/gm, '$1: $2px$3')
-    .replace(/^(\s*--[^:]*letterspacing[^:]*): (-?[\d.]+)([;\n])/gm, '$1: $2px$3')
-    .replace(/^(\s*--space[^:]*): (-?[\d.]+)([;\n])/gm, '$1: $2px$3')
-    .replace(/^(\s*--control[^:]*): (-?[\d.]+)([;\n])/gm, '$1: $2px$3')
-    .replace(/^(\s*--radius[^:]*): (-?[\d.]+)([;\n])/gm, '$1: $2px$3')
-    .replace(/^(\s*--stroke[^:]*): (-?[\d.]+)([;\n])/gm, '$1: $2px$3')
-    .replace(/^(\s*--scale[^:]*): (-?[\d.]+)([;\n])/gm, '$1: $2px$3')
-    .replace(/^(\s*--container[^:]*): (-?[\d.]+)([;\n])/gm, '$1: $2px$3');
-}
-
-function synthesizeColorCss(theme: string) {
-  console.log(`\n🎨 Synthesizing color CSS for theme: ${theme}`);
-  const themeClass = theme === 'default' ? '' : `.${theme.toLowerCase()}-theme`;
-  let lightVars = extractCssVariables(path.join(TEMP_DIR, `${theme}-light.css`));
-  let darkVars = extractCssVariables(path.join(TEMP_DIR, `${theme}-dark.css`));
-
-  if (!lightVars && !darkVars) {
-    console.log(`   - Skipping, no color variables found.`);
-    return;
-  }
-
-  lightVars = translateFontWeights(lightVars);
-  lightVars = addPixelUnits(lightVars);
-  darkVars = translateFontWeights(darkVars);
-  darkVars = addPixelUnits(darkVars);
-
-  const lightSelector = `:root${themeClass ? `, ${themeClass}` : ''}`;
-  const darkSelectorDefault = `@media (prefers-color-scheme: dark) { ${lightSelector}`;
-  const darkSelectorOverride = `${themeClass || ':root'}.dark-mode, .dark-mode ${themeClass || ':root'}`;
-
-  let finalCss = `/**\n * ${theme.charAt(0).toUpperCase() + theme.slice(1)} Theme - Color Variables\n * This file is auto-generated. Do not edit directly.\n */\n\n`;
-
-  if (lightVars) finalCss += `${lightSelector} {\n  ${lightVars}\n}\n\n`;
-  if (darkVars) {
-    finalCss += `${darkSelectorDefault} {\n    ${darkVars}\n  }\n}\n\n`;
-    finalCss += `${darkSelectorOverride} {\n  ${darkVars}\n}\n`;
-  }
-
-  const outputFileName = theme === 'default' ? 'colors.css' : `${theme.toLowerCase()}-colors.css`;
-  fs.writeFileSync(path.join(OUTPUT_DIR, outputFileName), finalCss, 'utf-8');
-  console.log(`   ✅ Wrote final file: ${outputFileName}`);
-}
-
-function synthesizeSizeCss(theme: string) {
-  console.log(`\n📏 Synthesizing size CSS for theme: ${theme}`);
-  const themeClass = theme === 'default' ? '' : `.${theme.toLowerCase()}-theme`;
-  const rootSelector = `:root${themeClass ? `, ${themeClass}` : ''}`;
-  let finalCss = `/**\n * ${theme.charAt(0).toUpperCase() + theme.slice(1)} Theme - Size Variables\n * This file is auto-generated. Do not edit directly.\n */\n\n`;
-  let hasContent = false;
-
-  BREAKPOINT_MODES.forEach(mode => {
-    let vars = extractCssVariables(path.join(TEMP_DIR, `${theme}-${mode}.css`));
-    if (vars) {
-      hasContent = true;
-      vars = translateFontWeights(vars);
-      vars = addPixelUnits(vars);
-      const breakpoint = SIZE_BREAKPOINTS[mode];
-      if (!breakpoint) {
-        finalCss += `${rootSelector} {\n  ${vars}\n}\n\n`;
-      } else {
-        finalCss += `@media (min-width: ${breakpoint}) {\n  ${rootSelector} {\n    ${vars}\n  }\n}\n\n`;
-      }
-    }
-  });
-
-  if (!hasContent) {
-    console.log(`   - Skipping, no size variables found.`);
-    return;
-  }
-
-  const outputFileName = theme === 'default' ? 'sizes.css' : `${theme.toLowerCase()}-sizes.css`;
-  fs.writeFileSync(path.join(OUTPUT_DIR, outputFileName), finalCss.trim(), 'utf-8');
-  console.log(`   ✅ Wrote final file: ${outputFileName}`);
-}
-
-function synthesizeTypographyCss(theme: string) {
-  console.log(`\n✍️  Synthesizing typography CSS for theme: ${theme}`);
-  const themeClass = theme === 'default' ? '' : `.${theme.toLowerCase()}-theme`;
-  const rootSelector = `:root${themeClass ? `, ${themeClass}` : ''}`;
-  let finalCss = `/**\n * ${theme.charAt(0).toUpperCase() + theme.slice(1)} Theme - Typography Variables\n * This file is auto-generated. Do not edit directly.\n */\n\n`;
-  let hasContent = false;
-
-  BREAKPOINT_MODES.forEach(mode => {
-    let vars = extractCssVariables(path.join(TEMP_DIR, `${theme}-${mode}-typography.css`));
-    if (vars) {
-      hasContent = true;
-      vars = vars.replace(/^(\s*)--typography-/gm, '$1--');
-      vars = translateFontWeights(vars);
-      vars = addPixelUnits(vars);
-      const breakpoint = SIZE_BREAKPOINTS[mode];
-      if (!breakpoint) {
-        finalCss += `${rootSelector} {\n  ${vars}\n}\n\n`;
-      } else {
-        finalCss += `@media (min-width: ${breakpoint}) {\n  ${rootSelector} {\n    ${vars}\n  }\n}\n\n`;
-      }
-    }
-  });
-
-  if (!hasContent) {
-    console.log(`   - Skipping, no typography variables found.`);
-    return;
-  }
-
-  const outputFileName = theme === 'default' ? 'typography.css' : `${theme.toLowerCase()}-typography.css`;
-  fs.writeFileSync(path.join(OUTPUT_DIR, outputFileName), finalCss.trim(), 'utf-8');
+  const outputFileName = fileMap[type](theme);
+  fs.writeFileSync(path.join(OUT, outputFileName), finalCss.trim(), 'utf-8');
   console.log(`   ✅ Wrote final file: ${outputFileName}`);
 }
 
@@ -315,8 +193,6 @@ function synthesizeTypographyBuildingBlockCss(theme: string) {
       hasContent = true;
       vars = vars.replace(/^(\s*)--typography-/gm, '$1--');
       vars = vars.replace(/var\(--primitives-/g, 'var(--');
-      vars = translateFontWeights(vars);
-      vars = addPixelUnits(vars);
       const breakpoint = SIZE_BREAKPOINTS[mode];
       if (!breakpoint) {
         finalCss += `:root {\n  ${vars}\n}\n\n`;
@@ -347,114 +223,83 @@ function synthesizeTypographyBuildingBlockCss(theme: string) {
 // a Figma theme name) plus semantics.css, and the browser cascade resolves the final values.
 // These are additive outputs alongside colors.css/sizes.css — they do not replace them.
 
-function synthesizePrimitivesBuildingBlockCss(theme: string) {
-  console.log(`\n🧱 Synthesizing primitives building block for theme: ${theme}`);
-  let vars = extractCssVariables(path.join(TEMP_DIR, `${theme}-bb-primitives.css`));
-  if (!vars) {
-    console.log(`   - Skipping, no primitives variables found.`);
-    return;
-  }
+export type BuildingBlockType = 'primitives' | 'palette' | 'size' | 'typography' | 'semantics';
 
-  vars = vars.replace(/^(\s*)--primitives-/gm, '$1--');
-  vars = vars.replace(/var\(--primitives-/g, 'var(--');
-  vars = translateFontWeights(vars);
-  vars = addPixelUnits(vars);
-  const finalCss = `/**\n * ${theme.charAt(0).toUpperCase() + theme.slice(1)} Primitives - Building Block Variables\n * This file is auto-generated. Do not edit directly.\n */\n\n:root {\n  ${vars}\n}\n`;
-  const outputDir = path.join(OUTPUT_DIR, 'primitives');
-  fs.mkdirSync(outputDir, { recursive: true });
-  const outputFileName = theme === 'default' ? 'default.css' : `${theme.toLowerCase()}.css`;
-  fs.writeFileSync(path.join(outputDir, outputFileName), finalCss, 'utf-8');
-  console.log(`   ✅ Wrote final file: primitives/${outputFileName}`);
-}
+export function synthesizeBuildingBlockCss(theme: string, type: BuildingBlockType, tempDir?: string, outputDir?: string) {
+  const TEMP = tempDir || TEMP_DIR;
+  const OUT = outputDir || OUTPUT_DIR;
+  console.log(`\n🧱 Synthesizing ${type} building block for theme: ${theme}`);
+  let finalCss = `/**\n * ${theme.charAt(0).toUpperCase() + theme.slice(1)} ${type.charAt(0).toUpperCase() + type.slice(1)} - Building Block Variables\n * This file is auto-generated. Do not edit directly.\n */\n\n`;
+  let hasContent = false;
 
-function synthesizePaletteBuildingBlockCss(theme: string) {
-  console.log(`\n🧱 Synthesizing palette building block for theme: ${theme}`);
-  let lightVars = extractCssVariables(path.join(TEMP_DIR, `${theme}-light-bb-palette.css`));
-  let darkVars = extractCssVariables(path.join(TEMP_DIR, `${theme}-dark-bb-palette.css`));
-
-  if (!lightVars && !darkVars) {
-    console.log(`   - Skipping, no palette variables found.`);
-    return;
-  }
-
-  const stripPrefixes = (vars: string) => {
-    vars = vars.replace(/^(\s*)--palette-/gm, '$1--');
-    vars = vars.replace(/var\(--(?:palette|primitives)-/g, 'var(--');
-    vars = translateFontWeights(vars);
-    vars = addPixelUnits(vars);
+  const stripVars = (vars: string, ...prefixes: string[]): string => {
+    for (const prefix of prefixes) {
+      vars = vars.replace(new RegExp(`^(\\s*)--${prefix}-`, 'gm'), '$1--');
+      vars = vars.replace(new RegExp(`var\\(--${prefix}-`, 'g'), 'var(--');
+    }
     return vars;
   };
 
-  lightVars = stripPrefixes(lightVars);
-  darkVars = stripPrefixes(darkVars);
-
-  let finalCss = `/**\n * ${theme.charAt(0).toUpperCase() + theme.slice(1)} Palette - Building Block Variables\n * This file is auto-generated. Do not edit directly.\n */\n\n`;
-
-  // Plain :root, not class-scoped like synthesizeColorCss's `.{theme}-theme` — the
-  // selection mechanism here is *which file you load*, not a runtime class toggle.
-  if (lightVars) finalCss += `:root {\n  ${lightVars}\n}\n\n`;
-  if (darkVars) {
-    finalCss += `@media (prefers-color-scheme: dark) {\n  :root {\n    ${darkVars}\n  }\n}\n\n`;
-    finalCss += `:root.dark-mode, .dark-mode :root {\n  ${darkVars}\n}\n`;
-  }
-
-  const outputDir = path.join(OUTPUT_DIR, 'palette');
-  fs.mkdirSync(outputDir, { recursive: true });
-  const outputFileName = theme === 'default' ? 'default.css' : `${theme.toLowerCase()}.css`;
-  fs.writeFileSync(path.join(outputDir, outputFileName), finalCss, 'utf-8');
-  console.log(`   ✅ Wrote final file: palette/${outputFileName}`);
-}
-
-function synthesizeSizeBuildingBlockCss(theme: string) {
-  console.log(`\n🧱 Synthesizing size building block for theme: ${theme}`);
-  let finalCss = `/**\n * ${theme.charAt(0).toUpperCase() + theme.slice(1)} Size - Building Block Variables\n * This file is auto-generated. Do not edit directly.\n */\n\n`;
-  let hasContent = false;
-
-  BREAKPOINT_MODES.forEach(mode => {
-    let vars = extractCssVariables(path.join(TEMP_DIR, `${theme}-${mode}-bb-size.css`));
+  if (type === 'primitives') {
+    let vars = extractCssVariables(path.join(TEMP, `${theme}-bb-primitives.css`));
     if (vars) {
+      finalCss += `:root {\n  ${stripVars(vars, 'primitives')}\n}\n`;
       hasContent = true;
-      vars = vars.replace(/^(\s*)--size-/gm, '$1--');
-      vars = vars.replace(/var\(--(?:size|primitives)-/g, 'var(--');
-      vars = translateFontWeights(vars);
-      vars = addPixelUnits(vars);
-      const breakpoint = SIZE_BREAKPOINTS[mode];
-      if (!breakpoint) {
-        finalCss += `:root {\n  ${vars}\n}\n\n`;
-      } else {
-        finalCss += `@media (min-width: ${breakpoint}) {\n  :root {\n    ${vars}\n  }\n}\n\n`;
-      }
     }
-  });
+  } else if (type === 'palette') {
+    let lightVars = extractCssVariables(path.join(TEMP, `${theme}-light-bb-palette.css`));
+    let darkVars = extractCssVariables(path.join(TEMP, `${theme}-dark-bb-palette.css`));
+    if (lightVars || darkVars) {
+      lightVars = stripVars(lightVars, 'palette', 'primitives');
+      darkVars = stripVars(darkVars, 'palette', 'primitives');
+      if (lightVars) finalCss += `:root {\n  ${lightVars}\n}\n\n`;
+      if (darkVars) {
+        finalCss += `@media (prefers-color-scheme: dark) {\n  :root {\n    ${darkVars}\n  }\n}\n\n`;
+        finalCss += `:root.dark-mode, .dark-mode :root {\n  ${darkVars}\n}\n`;
+      }
+      hasContent = true;
+    }
+  } else if (type === 'semantics') {
+    const vars = extractCssVariables(path.join(TEMP, `default-bb-semantics.css`));
+    if (vars) {
+      finalCss = `/**\n * Semantics - Building Block Variables\n * References palette/*.css. Import exactly one primitives/*.css + one palette/*.css alongside this file.\n * This file is auto-generated. Do not edit directly.\n */\n\n`;
+      finalCss += `:root {\n  ${stripVars(vars, 'semantics', 'palette', 'primitives')}\n}\n`;
+      hasContent = true;
+    }
+  } else {
+    BREAKPOINT_MODES.forEach(mode => {
+      let vars = extractCssVariables(path.join(TEMP, `${theme}-${mode}-bb-${type}.css`));
+      if (vars) {
+        hasContent = true;
+        const stripList = type === 'size' ? ['size', 'primitives'] : ['typography', 'primitives'];
+        vars = stripVars(vars, ...stripList);
+        const breakpoint = SIZE_BREAKPOINTS[mode];
+        if (!breakpoint) {
+          finalCss += `:root {\n  ${vars}\n}\n\n`;
+        } else {
+          finalCss += `@media (min-width: ${breakpoint}) {\n  :root {\n    ${vars}\n  }\n}\n\n`;
+        }
+      }
+    });
+  }
 
   if (!hasContent) {
-    console.log(`   - Skipping, no size variables found.`);
+    console.log(`   - Skipping, no ${type} variables found.`);
     return;
   }
 
-  const outputDir = path.join(OUTPUT_DIR, 'size');
-  fs.mkdirSync(outputDir, { recursive: true });
-  const outputFileName = theme === 'default' ? 'default.css' : `${theme.toLowerCase()}.css`;
-  fs.writeFileSync(path.join(outputDir, outputFileName), finalCss.trim(), 'utf-8');
-  console.log(`   ✅ Wrote final file: size/${outputFileName}`);
-}
-
-function synthesizeSemanticsBuildingBlockCss() {
-  console.log(`\n🧱 Synthesizing semantics building block`);
-  const vars = extractCssVariables(path.join(TEMP_DIR, `default-bb-semantics.css`));
-  if (!vars) {
-    console.log(`   - Skipping, no semantics variables found.`);
-    return;
+  if (type !== 'semantics') {
+    const outputPath = path.join(OUT, type);
+    fs.mkdirSync(outputPath, { recursive: true });
+    const outputFileName = theme === 'default' ? 'default.css' : `${theme.toLowerCase()}.css`;
+    fs.writeFileSync(path.join(outputPath, outputFileName), finalCss.trim(), 'utf-8');
+    console.log(`   ✅ Wrote final file: ${type}/${outputFileName}`);
+  } else {
+    fs.writeFileSync(path.join(OUT, 'semantics.css'), finalCss, 'utf-8');
+    console.log(`   ✅ Wrote final file: semantics.css`);
   }
-
-  let unprefixedVars = vars.replace(/^(\s*)--semantics-/gm, '$1--');
-  unprefixedVars = unprefixedVars.replace(/var\(--(?:semantics|palette|primitives)-/g, 'var(--');
-  unprefixedVars = translateFontWeights(unprefixedVars);
-  unprefixedVars = addPixelUnits(unprefixedVars);
-  const finalCss = `/**\n * Semantics - Building Block Variables\n * References palette/*.css. Import exactly one primitives/*.css + one palette/*.css alongside this file.\n * This file is auto-generated. Do not edit directly.\n */\n\n:root {\n  ${unprefixedVars}\n}\n`;
-  fs.writeFileSync(path.join(OUTPUT_DIR, 'semantics.css'), finalCss, 'utf-8');
-  console.log(`   ✅ Wrote final file: semantics.css`);
 }
+
 
 async function compilePrimitivesBuildingBlock(theme: string) {
   if (theme !== 'default' && !fs.existsSync(path.join(TOKEN_DIR, `primitives-${theme}-value.json`))) {
@@ -463,12 +308,12 @@ async function compilePrimitivesBuildingBlock(theme: string) {
   }
   try {
     const sources = getSourceFilesForCollection('primitives', theme, 'value');
-    await compileTempModeVariables(sources, path.join(TEMP_DIR, `${theme}-bb-primitives.css`), 'primitivesOnlyFilter');
+    await compileTokens(sources, path.join(TEMP_DIR, `${theme}-bb-primitives.css`), { filter: 'primitivesOnlyFilter', outputReferences: true });
   } catch (error) {
     console.warn(`    - ⚠️  Building-block compilation failed for primitives in theme '${theme}'.`);
     return;
   }
-  synthesizePrimitivesBuildingBlockCss(theme);
+  synthesizeBuildingBlockCss(theme, 'primitives');
 }
 
 async function compilePaletteBuildingBlock(theme: string) {
@@ -482,12 +327,12 @@ async function compilePaletteBuildingBlock(theme: string) {
         ...getSourceFilesForCollection('primitives', theme, 'value'),
         ...getSourceFilesForCollection('palette', theme, mode),
       ];
-      await compileTempModeVariables(sources, path.join(TEMP_DIR, `${theme}-${mode}-bb-palette.css`), 'paletteOnlyFilter');
+      await compileTokens(sources, path.join(TEMP_DIR, `${theme}-${mode}-bb-palette.css`), { filter: 'paletteOnlyFilter', outputReferences: true });
     } catch (error) {
       console.warn(`    - ⚠️  Building-block compilation failed for palette mode '${mode}' in theme '${theme}'.`);
     }
   }
-  synthesizePaletteBuildingBlockCss(theme);
+  synthesizeBuildingBlockCss(theme, 'palette');
 }
 
 async function compileSizeBuildingBlock(theme: string) {
@@ -501,12 +346,12 @@ async function compileSizeBuildingBlock(theme: string) {
         ...getSourceFilesForCollection('primitives', theme, 'value'),
         ...getSourceFilesForCollection('size', theme, mode),
       ];
-      await compileTempModeVariables(sources, path.join(TEMP_DIR, `${theme}-${mode}-bb-size.css`), 'sizeOnlyFilter');
+      await compileTokens(sources, path.join(TEMP_DIR, `${theme}-${mode}-bb-size.css`), { filter: 'sizeOnlyFilter', outputReferences: true });
     } catch (error) {
       console.warn(`    - ⚠️  Building-block compilation failed for size mode '${mode}' in theme '${theme}'.`);
     }
   }
-  synthesizeSizeBuildingBlockCss(theme);
+  synthesizeBuildingBlockCss(theme, 'size');
 }
 
 async function compileSemanticsBuildingBlock() {
@@ -516,12 +361,12 @@ async function compileSemanticsBuildingBlock() {
       ...getSourceFilesForCollection('palette', 'default', 'light'),
       ...getSourceFilesForCollection('semantics', 'default', 'base'),
     ];
-    await compileTempModeVariables(sources, path.join(TEMP_DIR, `default-bb-semantics.css`), 'semanticsOnlyFilter');
+    await compileTokens(sources, path.join(TEMP_DIR, `default-bb-semantics.css`), { filter: 'semanticsOnlyFilter', outputReferences: true });
   } catch (error) {
     console.warn(`    - ⚠️  Building-block compilation failed for semantics.`);
     return;
   }
-  synthesizeSemanticsBuildingBlockCss();
+  synthesizeBuildingBlockCss('default', 'semantics');
 }
 
 async function compileTypographyBuildingBlock(theme: string) {
@@ -535,19 +380,19 @@ async function compileTypographyBuildingBlock(theme: string) {
         ...getSourceFilesForCollection('primitives', theme, 'value'),
         ...getSourceFilesForCollection('typography', theme, mode),
       ];
-      await compileTempModeVariables(sources, path.join(TEMP_DIR, `${theme}-${mode}-bb-typography.css`), 'typographyOnlyFilter');
+      await compileTokens(sources, path.join(TEMP_DIR, `${theme}-${mode}-bb-typography.css`), { filter: 'typographyOnlyFilter', outputReferences: true });
     } catch (error) {
       console.warn(`    - ⚠️  Building-block compilation failed for typography mode '${mode}' in theme '${theme}'.`);
     }
   }
-  synthesizeTypographyBuildingBlockCss(theme);
+  synthesizeBuildingBlockCss(theme, 'typography');
 }
 
 // ===============================================================================================
 // 6. MAIN EXECUTION
 // ===============================================================================================
 
-async function main() {
+export async function main() {
   console.log('🚀 Starting Design Token Build Process...');
   if (fs.existsSync(TEMP_DIR)) fs.rmSync(TEMP_DIR, { recursive: true, force: true });
   fs.mkdirSync(TEMP_DIR, { recursive: true });
@@ -571,8 +416,8 @@ async function main() {
       try {
         const sources = COLOR_COLLECTIONS.flatMap(collection =>
           getSourceFilesForCollection(collection, theme, collection === 'primitives' ? 'value' : collection === 'semantics' ? 'base' : mode)
-        ); 
-        await compileTempMode(sources, path.join(TEMP_DIR, `${theme}-${mode}.css`));
+        );
+        await compileTokens(sources, path.join(TEMP_DIR, `${theme}-${mode}.css`));
       } catch (error) {
         console.warn(`    - ⚠️  Compilation failed for color mode '${mode}' in theme '${theme}'.`);
       }
@@ -584,7 +429,7 @@ async function main() {
         const sources = SIZE_COLLECTIONS.flatMap(collection =>
           getSourceFilesForCollection(collection, theme, collection === 'primitives' ? 'value' : mode)
         );
-        await compileTempMode(sources, path.join(TEMP_DIR, `${theme}-${mode}.css`));
+        await compileTokens(sources, path.join(TEMP_DIR, `${theme}-${mode}.css`));
       } catch (error) {
         console.warn(`    - ⚠️  Compilation failed for size mode '${mode}' in theme '${theme}'.`);
       }
@@ -596,15 +441,15 @@ async function main() {
         const sources = TYPOGRAPHY_COLLECTIONS.flatMap(collection =>
           getSourceFilesForCollection(collection, theme, collection === 'primitives' ? 'value' : mode)
         );
-        await compileTempMode(sources, path.join(TEMP_DIR, `${theme}-${mode}-typography.css`));
+        await compileTokens(sources, path.join(TEMP_DIR, `${theme}-${mode}-typography.css`));
       } catch (error) {
         console.warn(`    - ⚠️  Compilation failed for typography mode '${mode}' in theme '${theme}'.`);
       }
     }
 
-    synthesizeColorCss(theme);
-    synthesizeSizeCss(theme);
-    synthesizeTypographyCss(theme);
+    synthesizeCss(theme, 'color');
+    synthesizeCss(theme, 'size');
+    synthesizeCss(theme, 'typography');
   }
 
   console.log('\n\n🧱 Building mix-and-match building blocks...');
