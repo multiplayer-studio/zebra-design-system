@@ -21,6 +21,8 @@
   --surface-warning: var(--status-warning-faint); /** Warning-tinted surface background. */
   --surface-error: var(--status-error-faint); /** Error-tinted surface background. */
   --surface-info: var(--status-info-faint); /** Info-tinted surface background. */
+  --surface-gradient-start: var(--gradient-default-start); /** Info-tinted surface background. */
+  --surface-gradient-end: var(--gradient-default-end); /** Info-tinted surface background. */
   --foreground-primary: var(--ink-high); /** Highest-emphasis text/icon color. */
   --foreground-secondary: var(--ink-medium); /** Medium-emphasis text/icon color. */
   --foreground-tertiary: var(--ink-low); /** Low-emphasis text/icon color. */
@@ -32,6 +34,8 @@
   --foreground-warning: var(--status-warning-default); /** Text/icon color conveying warning. */
   --foreground-error: var(--status-error-default); /** Text/icon color conveying error. */
   --foreground-info: var(--status-info-default); /** Text/icon color conveying info. */
+  --foreground-gradient-start: var(--gradient-default-start); /** Info-tinted surface background. */
+  --foreground-gradient-end: var(--gradient-default-end); /** Info-tinted surface background. */
   --border-default: var(--line-default); /** Standard border color for containers and dividers. */
   --border-subtle: var(--line-subtle); /** Low-emphasis border, e.g. subtle dividers. */
   --border-strong: var(--line-strong); /** High-emphasis border, e.g. active/focused containers. */
@@ -40,6 +44,8 @@
   --border-warning: var(--status-warning-default); /** Border color for warning-state containers/inputs. */
   --border-error: var(--status-error-default); /** Border color for error-state containers/inputs. */
   --border-info: var(--status-info-default); /** Border color for info-state containers/inputs. */
+  --border-gradient-start: var(--gradient-default-start); /** Info-tinted surface background. */
+  --border-gradient-end: var(--gradient-default-end); /** Info-tinted surface background. */
   --interactive-primary-background-default: var(--brand-primary); /** Primary action background, default state. */
   --interactive-primary-background-focused: var(--brand-primary); /** Primary action background, focused state. */
   --interactive-primary-background-disabled: var(--fill-disabled); /** Primary action background, disabled state. */

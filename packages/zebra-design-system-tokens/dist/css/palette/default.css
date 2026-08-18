@@ -5,6 +5,9 @@
 
 :root {
   --fill-transparent: rgba(243, 246, 250, 0);
+  --fill-transparent-emphasis: rgba(0, 0, 0, 0.25);
+  --fill-transparent-elevate: rgba(0, 0, 0, 0.5);
+  --fill-transparent-obsure: rgba(0, 0, 0, 0.75);
   --brand-primary: var(--color-brand-main-60); /** Primary brand color (theme.color.brand.primary) */
   --brand-secondary: var(--color-brand-alternative-60); /** Secondary brand color (theme.color.brand.secondary) */
   --brand-tertiary: var(--color-accent-5-60); /** Tertiary brand color (theme.color.brand.tertiary) */
@@ -75,11 +78,20 @@
   --data-11: var(--color-system-negative-50);
   --data-12: var(--color-extend-1-50);
   --data-neutral: var(--color-neutral-cool-50);
+  --gradient-default-start: var(--color-accent-1-60);
+  --gradient-default-end: var(--color-extend-4-60);
+  --gradient-strong-start: var(--color-accent-1-80);
+  --gradient-strong-end: var(--color-extend-4-80);
+  --gradient-subtle-start: var(--color-accent-1-50);
+  --gradient-subtle-end: var(--color-extend-4-40);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --fill-transparent: rgba(243, 246, 250, 0);
+  --fill-transparent-emphasis: rgba(0, 0, 0, 0.25);
+  --fill-transparent-elevate: rgba(0, 0, 0, 0.5);
+  --fill-transparent-obsure: rgba(0, 0, 0, 0.75);
   --brand-primary: var(--color-brand-main-60); /** Primary brand color (theme.color.brand.primary) */
   --brand-secondary: var(--color-brand-alternative-50); /** Secondary brand color (theme.color.brand.secondary) */
   --brand-tertiary: var(--color-accent-5-50); /** Tertiary brand color (theme.color.brand.tertiary) */
@@ -150,11 +162,20 @@
   --data-11: var(--color-system-negative-60);
   --data-12: var(--color-extend-1-60);
   --data-neutral: var(--color-neutral-cool-60);
+  --gradient-default-start: var(--color-accent-1-60);
+  --gradient-default-end: var(--color-extend-4-50);
+  --gradient-strong-start: var(--color-accent-1-40);
+  --gradient-strong-end: var(--color-extend-4-40);
+  --gradient-subtle-start: var(--color-accent-1-70);
+  --gradient-subtle-end: var(--color-extend-4-80);
   }
 }
 
 :root.dark-mode, .dark-mode :root {
   --fill-transparent: rgba(243, 246, 250, 0);
+  --fill-transparent-emphasis: rgba(0, 0, 0, 0.25);
+  --fill-transparent-elevate: rgba(0, 0, 0, 0.5);
+  --fill-transparent-obsure: rgba(0, 0, 0, 0.75);
   --brand-primary: var(--color-brand-main-60); /** Primary brand color (theme.color.brand.primary) */
   --brand-secondary: var(--color-brand-alternative-50); /** Secondary brand color (theme.color.brand.secondary) */
   --brand-tertiary: var(--color-accent-5-50); /** Tertiary brand color (theme.color.brand.tertiary) */
@@ -225,4 +246,10 @@
   --data-11: var(--color-system-negative-60);
   --data-12: var(--color-extend-1-60);
   --data-neutral: var(--color-neutral-cool-60);
+  --gradient-default-start: var(--color-accent-1-60);
+  --gradient-default-end: var(--color-extend-4-50);
+  --gradient-strong-start: var(--color-accent-1-40);
+  --gradient-strong-end: var(--color-extend-4-40);
+  --gradient-subtle-start: var(--color-accent-1-70);
+  --gradient-subtle-end: var(--color-extend-4-80);
 }
