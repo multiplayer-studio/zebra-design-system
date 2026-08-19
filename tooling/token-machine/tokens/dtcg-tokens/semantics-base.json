@@ -43,7 +43,7 @@
       },
       "brand": {
         "$type": "color",
-        "$value": "{palette.brand.subtle}",
+        "$value": "{palette.brand.primary.faint}",
         "$description": "Brand-tinted surface background."
       },
       "inverse": {
@@ -70,6 +70,18 @@
         "$type": "color",
         "$value": "{palette.status.info.faint}",
         "$description": "Info-tinted surface background."
+      },
+      "gradient": {
+        "start": {
+          "$type": "color",
+          "$value": "{palette.gradient.default.start}",
+          "$description": "Info-tinted surface background."
+        },
+        "end": {
+          "$type": "color",
+          "$value": "{palette.gradient.default.end}",
+          "$description": "Info-tinted surface background."
+        }
       }
     },
     "foreground": {
@@ -127,6 +139,18 @@
         "$type": "color",
         "$value": "{palette.status.info.default}",
         "$description": "Text/icon color conveying info."
+      },
+      "gradient": {
+        "start": {
+          "$type": "color",
+          "$value": "{palette.gradient.default.start}",
+          "$description": "Info-tinted surface background."
+        },
+        "end": {
+          "$type": "color",
+          "$value": "{palette.gradient.default.end}",
+          "$description": "Info-tinted surface background."
+        }
       }
     },
     "border": {
@@ -147,7 +171,7 @@
       },
       "focus": {
         "$type": "color",
-        "$value": "{palette.brand.primary}",
+        "$value": "{palette.line.focus}",
         "$description": "Focus indicator border color."
       },
       "success": {
@@ -169,6 +193,18 @@
         "$type": "color",
         "$value": "{palette.status.info.default}",
         "$description": "Border color for info-state containers/inputs."
+      },
+      "gradient": {
+        "start": {
+          "$type": "color",
+          "$value": "{palette.gradient.default.start}",
+          "$description": "Info-tinted surface background."
+        },
+        "end": {
+          "$type": "color",
+          "$value": "{palette.gradient.default.end}",
+          "$description": "Info-tinted surface background."
+        }
       }
     },
     "interactive": {
@@ -176,12 +212,12 @@
         "background": {
           "default": {
             "$type": "color",
-            "$value": "{palette.brand.primary}",
+            "$value": "{palette.brand.primary.default}",
             "$description": "Primary action background, default state."
           },
           "focused": {
             "$type": "color",
-            "$value": "{palette.brand.primary}",
+            "$value": "{palette.brand.primary.default}",
             "$description": "Primary action background, focused state."
           },
           "disabled": {
@@ -191,24 +227,24 @@
           },
           "hover": {
             "$type": "color",
-            "$value": "{palette.brand.primaryhover}",
+            "$value": "{palette.brand.primary.subtle}",
             "$description": "Primary action background, hover state."
           },
           "pressed": {
             "$type": "color",
-            "$value": "{palette.brand.primarypressed}",
+            "$value": "{palette.brand.primary.deep}",
             "$description": "Primary action background, pressed state."
           },
           "selected": {
             "$type": "color",
-            "$value": "{palette.brand.primarypressed}",
+            "$value": "{palette.brand.primary.deep}",
             "$description": "Primary action background, selected state."
           }
         },
         "foreground": {
           "default": {
             "$type": "color",
-            "$value": "{palette.brand.onprimary}",
+            "$value": "{palette.brand.primary.on}",
             "$description": "Primary action foreground, default state."
           },
           "disabled": {
@@ -220,7 +256,7 @@
         "border": {
           "default": {
             "$type": "color",
-            "$value": "{palette.brand.primary}",
+            "$value": "{palette.brand.primary.default}",
             "$description": "Primary action border, default state."
           },
           "disabled": {
@@ -230,12 +266,12 @@
           },
           "hover": {
             "$type": "color",
-            "$value": "{palette.brand.primaryhover}",
+            "$value": "{palette.brand.primary.subtle}",
             "$description": "Primary action border, hover state."
           },
           "pressed": {
             "$type": "color",
-            "$value": "{palette.brand.primarypressed}",
+            "$value": "{palette.brand.primary.deep}",
             "$description": "Primary action border, pressed state."
           }
         }
@@ -244,27 +280,27 @@
         "background": {
           "default": {
             "$type": "color",
-            "$value": "{palette.brand.secondary}",
+            "$value": "{palette.brand.secondary.default}",
             "$description": "Secondary action background, default state."
           },
           "hover": {
             "$type": "color",
-            "$value": "{palette.brand.secondaryhover}",
+            "$value": "{palette.brand.secondary.subtle}",
             "$description": "Secondary action background, hover state."
           },
           "pressed": {
             "$type": "color",
-            "$value": "{palette.brand.secondarypressed}",
+            "$value": "{palette.brand.secondary.deep}",
             "$description": "Secondary action background, pressed state."
           },
           "focused": {
             "$type": "color",
-            "$value": "{palette.brand.secondary}",
+            "$value": "{palette.brand.secondary.default}",
             "$description": "Secondary action background, focused state."
           },
           "selected": {
             "$type": "color",
-            "$value": "{palette.brand.secondarypressed}",
+            "$value": "{palette.brand.secondary.deep}",
             "$description": "Secondary action background, selected state."
           },
           "disabled": {
@@ -276,7 +312,7 @@
         "foreground": {
           "default": {
             "$type": "color",
-            "$value": "{palette.brand.onsecondary}",
+            "$value": "{palette.brand.secondary.on}",
             "$description": "Secondary action foreground, default state."
           },
           "disabled": {
@@ -288,17 +324,17 @@
         "border": {
           "default": {
             "$type": "color",
-            "$value": "{palette.brand.secondary}",
+            "$value": "{palette.brand.secondary.default}",
             "$description": "Secondary action border, default state."
           },
           "hover": {
             "$type": "color",
-            "$value": "{palette.brand.secondaryhover}",
+            "$value": "{palette.brand.secondary.subtle}",
             "$description": "Secondary action border, hover state."
           },
           "pressed": {
             "$type": "color",
-            "$value": "{palette.brand.secondarypressed}",
+            "$value": "{palette.brand.secondary.deep}",
             "$description": "Secondary action border, pressed state."
           },
           "disabled": {
@@ -312,27 +348,27 @@
         "background": {
           "default": {
             "$type": "color",
-            "$value": "{palette.fill.transparent}",
+            "$value": "{palette.fill.transparent.selfvalue}",
             "$description": "Ghost action background, default state."
           },
           "hover": {
             "$type": "color",
-            "$value": "{palette.brand.subtle}",
+            "$value": "{palette.brand.primary.faint}",
             "$description": "Ghost action background, hover state."
           },
           "pressed": {
             "$type": "color",
-            "$value": "{palette.brand.muted}",
+            "$value": "{palette.brand.primary.muted}",
             "$description": "Ghost action background, pressed state."
           },
           "focused": {
             "$type": "color",
-            "$value": "{palette.fill.transparent}",
+            "$value": "{palette.fill.transparent.selfvalue}",
             "$description": "Ghost action background, focused state."
           },
           "selected": {
             "$type": "color",
-            "$value": "{palette.brand.muted}",
+            "$value": "{palette.brand.primary.muted}",
             "$description": "Ghost action background, selected state."
           },
           "disabled": {
@@ -356,17 +392,17 @@
         "border": {
           "default": {
             "$type": "color",
-            "$value": "{palette.brand.primary}",
+            "$value": "{palette.brand.primary.default}",
             "$description": "Ghost action border, default state."
           },
           "hover": {
             "$type": "color",
-            "$value": "{palette.brand.primaryhover}",
+            "$value": "{palette.brand.primary.subtle}",
             "$description": "Ghost action border, hover state."
           },
           "pressed": {
             "$type": "color",
-            "$value": "{palette.brand.primarypressed}",
+            "$value": "{palette.brand.primary.deep}",
             "$description": "Ghost action border, pressed state."
           },
           "disabled": {
@@ -385,12 +421,12 @@
           },
           "hover": {
             "$type": "color",
-            "$value": "{palette.status.error.hover}",
+            "$value": "{palette.status.error.subtle}",
             "$description": "Destructive action background, hover state."
           },
           "pressed": {
             "$type": "color",
-            "$value": "{palette.status.error.pressed}",
+            "$value": "{palette.status.error.deep}",
             "$description": "Destructive action background, pressed state."
           },
           "focused": {
@@ -400,7 +436,7 @@
           },
           "selected": {
             "$type": "color",
-            "$value": "{palette.status.error.pressed}",
+            "$value": "{palette.status.error.deep}",
             "$description": "Destructive action background, selected state."
           },
           "disabled": {
@@ -412,7 +448,7 @@
         "foreground": {
           "default": {
             "$type": "color",
-            "$value": "{palette.brand.onprimary}",
+            "$value": "{palette.brand.primary.on}",
             "$description": "Destructive action foreground, default state."
           },
           "disabled": {
@@ -611,12 +647,12 @@
           },
           "hover": {
             "$type": "color",
-            "$value": "{palette.status.success.hover}",
+            "$value": "{palette.status.success.subtle}",
             "$description": "Positive action background, hover state."
           },
           "pressed": {
             "$type": "color",
-            "$value": "{palette.status.success.pressed}",
+            "$value": "{palette.status.success.deep}",
             "$description": "Positive action background, pressed state."
           },
           "focused": {
@@ -626,7 +662,7 @@
           },
           "selected": {
             "$type": "color",
-            "$value": "{palette.status.success.pressed}",
+            "$value": "{palette.status.success.deep}",
             "$description": "Positive action background, selected state."
           },
           "disabled": {
@@ -638,7 +674,7 @@
         "foreground": {
           "default": {
             "$type": "color",
-            "$value": "{palette.brand.onprimary}",
+            "$value": "{palette.brand.primary.on}",
             "$description": "Positive action foreground, default state."
           },
           "disabled": {
@@ -652,17 +688,17 @@
         "border": {
           "default": {
             "$type": "color",
-            "$value": "{palette.brand.primary}",
+            "$value": "{palette.brand.primary.default}",
             "$description": "Subtle action border, default state."
           },
           "hover": {
             "$type": "color",
-            "$value": "{palette.brand.primaryhover}",
+            "$value": "{palette.brand.primary.subtle}",
             "$description": "Subtle action border, hover state."
           },
           "pressed": {
             "$type": "color",
-            "$value": "{palette.brand.primarypressed}",
+            "$value": "{palette.brand.primary.deep}",
             "$description": "Subtle action border, pressed state."
           },
           "disabled": {
@@ -674,27 +710,27 @@
         "background": {
           "default": {
             "$type": "color",
-            "$value": "{palette.brand.subtle}",
+            "$value": "{palette.brand.primary.faint}",
             "$description": "Subtle action background, default state."
           },
           "hover": {
             "$type": "color",
-            "$value": "{palette.brand.muted}",
+            "$value": "{palette.brand.primary.muted}",
             "$description": "Subtle action background, hover state."
           },
           "pressed": {
             "$type": "color",
-            "$value": "{palette.brand.primaryhover}",
+            "$value": "{palette.brand.primary.subtle}",
             "$description": "Subtle action background, pressed state."
           },
           "focused": {
             "$type": "color",
-            "$value": "{palette.brand.subtle}",
+            "$value": "{palette.brand.primary.faint}",
             "$description": "Subtle action background, focused state."
           },
           "selected": {
             "$type": "color",
-            "$value": "{palette.brand.primaryhover}",
+            "$value": "{palette.brand.primary.subtle}",
             "$description": "Subtle action background, selected state."
           },
           "disabled": {
@@ -799,57 +835,16 @@
         }
       }
     },
-    "navigation": {
-      "background": {
-        "$type": "color",
-        "$value": "{palette.fill.default}",
-        "$description": "Background color for navigation surfaces (nav bars, sidebars)."
-      },
-      "item": {
-        "default": {
-          "$type": "color",
-          "$value": "{palette.ink.medium}",
-          "$description": "Default (unselected) navigation item text/icon color."
-        },
-        "active": {
-          "$type": "color",
-          "$value": "{palette.brand.primary}",
-          "$description": "Navigation item color for the current/active route."
-        },
-        "hover": {
-          "$type": "color",
-          "$value": "{palette.ink.high}",
-          "$description": "Navigation item color on hover."
-        },
-        "selected": {
-          "$type": "color",
-          "$value": "{palette.brand.primary}",
-          "$description": "Navigation item color when selected."
-        }
-      }
-    },
     "focus": {
       "ring": {
         "$type": "color",
-        "$value": "{palette.brand.primaryhover}",
+        "$value": "{palette.line.focus}",
         "$description": "Focus ring glow/halo color."
       },
       "outline": {
         "$type": "color",
-        "$value": "{palette.brand.primary}",
+        "$value": "{palette.line.focus}",
         "$description": "Focus outline stroke color."
-      }
-    },
-    "contrast": {
-      "high": {
-        "$type": "color",
-        "$value": "{palette.ink.high}",
-        "$description": "Highest-contrast text/icon color, alias of foreground/primary."
-      },
-      "low": {
-        "$type": "color",
-        "$value": "{palette.ink.low}",
-        "$description": "Lowest-contrast text/icon color, alias of foreground/tertiary."
       }
     },
     "chart": {

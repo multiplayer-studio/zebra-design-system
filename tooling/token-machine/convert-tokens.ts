@@ -1,12 +1,13 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { 
-  FigmaModeValue, 
-  FigmaVariableType, 
-  FigmaVariable, 
-  ExtendedFigmaCollection, 
-  ExtendedFigmaVarsExport, 
-  DTCGToken 
+import config from './config.json' assert { type: 'json' };
+import {
+  FigmaModeValue,
+  FigmaVariableType,
+  FigmaVariable,
+  ExtendedFigmaCollection,
+  ExtendedFigmaVarsExport,
+  DTCGToken
 } from './types.ts';
 
 function rgbaToHex(color: { r: number; g: number; b: number; a: number }): string {
@@ -34,6 +35,28 @@ function getDtcgType(figmaType: FigmaVariableType): string {
   }
 }
 
+const FONT_WEIGHT_MAP = config.tokens.fontWeights;
+const PX_PATTERNS = config.tokens.pxPatterns;
+
+function normalizePathValue(pathSegments: string[], value: string | number | boolean): string | number | boolean {
+  if (typeof value === 'string' && value.startsWith('{')) return value; // alias reference, leave untouched
+
+  const joinedPath = pathSegments.join('').toLowerCase();
+
+  if (joinedPath.includes('fontweight') && typeof value === 'string' && value in FONT_WEIGHT_MAP) {
+    return FONT_WEIGHT_MAP[value];
+  }
+
+  if (PX_PATTERNS.some(pattern => joinedPath.includes(pattern))) {
+    const numericValue = typeof value === 'number' ? value : Number(value);
+    if (!isNaN(numericValue) && (typeof value === 'number' || typeof value === 'string')) {
+      return `${numericValue}px`;
+    }
+  }
+
+  return value;
+}
+
 // Deep Object Setter for converting "brand/primary/500" into nested JSON
 function sanitizeTokenName(name: string): string {
   return name.replace(/ /g, '');
@@ -49,11 +72,38 @@ function setNestedProperty(obj: any, pathArray: string[], value: any) {
   current[pathArray[pathArray.length - 1]] = value;
 }
 
+// A DTCG node can't have $value AND children (e.g. Figma vars "fill/transparent" and
+// "fill/transparent/emphasis" in the same collection). A variable whose path is a strict
+// prefix of another's needs its own value pushed one level deeper, under this reserved key,
+// so the shared path segment can be a pure group. Never appears in generated CSS —
+// build-tokens.ts strips it back out when naming variables.
+const GROUP_VALUE_KEY = config.tokens.groupValueKey;
+
+function findCollidingAncestorIds(variables: FigmaVariable[]): Set<string> {
+  const byCollection = new Map<string, { id: string; path: string[] }[]>();
+  variables.forEach(v => {
+    const path = sanitizeTokenName(v.name).split('/');
+    if (!byCollection.has(v.collectionId)) byCollection.set(v.collectionId, []);
+    byCollection.get(v.collectionId)!.push({ id: v.id, path });
+  });
+
+  const collidingIds = new Set<string>();
+  byCollection.forEach(entries => {
+    entries.forEach(a => {
+      const hasDescendant = entries.some(b =>
+        b.path.length > a.path.length && a.path.every((seg, i) => seg === b.path[i])
+      );
+      if (hasDescendant) collidingIds.add(a.id);
+    });
+  });
+  return collidingIds;
+}
+
 // ==========================================
 // 3. Main Converter Script
 // ==========================================
 
-function convertTokens(inputFile: string, outputDir: string) {
+export function convertTokens(inputFile: string, outputDir: string) {
   console.log(`🚀 Starting conversion for: ${inputFile}`);
   
   // Read input file
@@ -95,14 +145,17 @@ function convertTokens(inputFile: string, outputDir: string) {
 
   // 3b. Index Collections & Variables
   figmaExport.collections.forEach(c => collectionById.set(c.id, c));
-  
+
+  const collidingAncestorIds = findCollidingAncestorIds(figmaExport.variables);
+
   figmaExport.variables.forEach(v => {
     variableById.set(v.id, v);
     const collection = collectionById.get(v.collectionId);
     if (collection) {
       // Build the DTCG Reference Path string (e.g. "{palette.brand.primary}")
       const sanitizedName = sanitizeTokenName(v.name).replace(/\//g, '.');
-      const pathString = `${collection.name}.${sanitizedName}`;
+      let pathString = `${collection.name}.${sanitizedName}`;
+      if (collidingAncestorIds.has(v.id)) pathString += `.${GROUP_VALUE_KEY}`;
       dtcgPathByVarId.set(v.id, `{${pathString}}`);
     }
   });
@@ -135,6 +188,15 @@ function convertTokens(inputFile: string, outputDir: string) {
       return modeValue;
     }
     return "";
+  };
+
+  const buildToken = (tokenPath: string[], type: string, rawValue: any, description?: string): DTCGToken => {
+    const token: DTCGToken = {
+      $type: type,
+      $value: normalizePathValue(tokenPath, resolveValue(rawValue)),
+    };
+    if (description) token.$description = description;
+    return token;
   };
 
   // 3d. Process Data and Output Files
@@ -170,11 +232,8 @@ function convertTokens(inputFile: string, outputDir: string) {
           const modeValue = variable.valuesByMode[mode.id];
           if (modeValue !== undefined) {
             const tokenPath = sanitizeTokenName(variable.name).split('/');
-            const token: DTCGToken = {
-              $type: getDtcgType(variable.type),
-              $value: resolveValue(modeValue)
-            };
-            if (variable.description) token.$description = variable.description;
+            if (collidingAncestorIds.has(variable.id)) tokenPath.push(GROUP_VALUE_KEY);
+            const token = buildToken(tokenPath, getDtcgType(variable.type), modeValue, variable.description);
 
             setNestedProperty(fileData[parentName], tokenPath, token);
           }
@@ -225,11 +284,8 @@ function convertTokens(inputFile: string, outputDir: string) {
               const finalValue = overrideValue !== undefined ? overrideValue : baseVar.valuesByMode[baseMode.id];
               if (finalValue !== undefined) {
                  const tokenPath = sanitizeTokenName(baseVar.name).split('/');
-                 const token: DTCGToken = {
-                   $type: getDtcgType(baseVar.type),
-                   $value: resolveValue(finalValue)
-                 };
-                 if (baseVar.description) token.$description = baseVar.description;
+                 if (collidingAncestorIds.has(baseVar.id)) tokenPath.push(GROUP_VALUE_KEY);
+                 const token = buildToken(tokenPath, getDtcgType(baseVar.type), finalValue, baseVar.description);
 
                  // Nest the token under the base/parent collection's name root (e.g. palette) instead of the extension
                  setNestedProperty(fileData[parentName], tokenPath, token);
@@ -254,11 +310,13 @@ function convertTokens(inputFile: string, outputDir: string) {
 // ==========================================
 // 4. Execute Script
 // ==========================================
-const INPUT_FILE = './tokens/raw-tokens.json';
-const OUTPUT_DIR = './tokens/dtcg-tokens';
+if (import.meta.url === `file://${process.argv[1]}`) {
+  const INPUT_FILE = config.directories.inputFile;
+  const OUTPUT_DIR = config.directories.tokenDir;
 
-try {
-  convertTokens(INPUT_FILE, OUTPUT_DIR);
-} catch (error) {
-  console.error("❌ Error running script:", error);
+  try {
+    convertTokens(INPUT_FILE, OUTPUT_DIR);
+  } catch (error) {
+    console.error("❌ Error running script:", error);
+  }
 }

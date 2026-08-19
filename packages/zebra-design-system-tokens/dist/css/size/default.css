@@ -24,23 +24,23 @@
   --control-icon-sm: var(--scale-7); /** = 20px, source: scale/7 */
   --control-icon-md: var(--scale-8); /** = 24px, source: scale/8 */
   --control-icon-lg: var(--scale-10); /** = 32px, source: scale/10 */
-  --radius-none: var(--scale-0); /** = 2px, source: scale/1 */
-  --radius-xs: var(--scale-2); /** = 2px, source: scale/1 */
-  --radius-sm: var(--scale-3); /** = 4px, source: scale/2 */
-  --radius-md: var(--scale-5); /** = 8px, source: scale/4 */
-  --radius-lg: var(--scale-6); /** = 12px, source: scale/5 */
-  --radius-xl: var(--scale-7); /** = 16px, source: scale/6 */
-  --radius-element-sm: var(--scale-3); /** = 16px, source: scale/6 */
-  --radius-element-md: var(--scale-6); /** = 16px, source: scale/6 */
-  --radius-container: var(--scale-8); /** = 16px, source: scale/6 */
   --container-default: var(--scale-container-0); /** = 600px, source: scale/22 */
+  --radius-none: var(--scale-0); /** = 2px, source: scale/1 */
+  --radius-xs: var(--scale-2); /** = 2px, source: scale/1 */
+  --radius-sm: var(--scale-3); /** = 4px, source: scale/2 */
+  --radius-md: var(--scale-5); /** = 8px, source: scale/4 */
+  --radius-lg: var(--scale-6); /** = 12px, source: scale/5 */
+  --radius-xl: var(--scale-7); /** = 16px, source: scale/6 */
+  --radius-element-sm: var(--scale-3); /** = 16px, source: scale/6 */
+  --radius-element-md: var(--scale-6); /** = 16px, source: scale/6 */
+  --radius-container: var(--scale-8); /** = 16px, source: scale/6 */
   --stroke-base: var(--scale-0); /** = 1px, source: scale/0 */
   --stroke-thin: var(--scale-1); /** = 1px, source: scale/0 */
   --stroke-thick: var(--scale-2); /** = 2px, source: scale/1 */
   --stroke-heavy: var(--scale-3); /** = 4px, source: scale/2 */
 }
 
-@media (min-width: 768px) {
+@media (min-width: 600px) {
   :root {
     --radius-pill: 9999px; /** Literal value, not a scale reference (fully rounded) */
   --space-page: var(--scale-7); /** = 16px, source: scale/6 */
@@ -62,16 +62,16 @@
   --control-icon-sm: var(--scale-7); /** = 20px, source: scale/7 */
   --control-icon-md: var(--scale-8); /** = 24px, source: scale/8 */
   --control-icon-lg: var(--scale-10); /** = 32px, source: scale/10 */
-  --radius-none: var(--scale-0); /** = 2px, source: scale/1 */
-  --radius-xs: var(--scale-2); /** = 2px, source: scale/1 */
-  --radius-sm: var(--scale-3); /** = 4px, source: scale/2 */
-  --radius-md: var(--scale-5); /** = 8px, source: scale/4 */
-  --radius-lg: var(--scale-6); /** = 12px, source: scale/5 */
-  --radius-xl: var(--scale-7); /** = 16px, source: scale/6 */
-  --radius-element-sm: var(--scale-3); /** = 16px, source: scale/6 */
-  --radius-element-md: var(--scale-6); /** = 16px, source: scale/6 */
-  --radius-container: var(--scale-8); /** = 16px, source: scale/6 */
   --container-default: var(--scale-container-1); /** = 600px, source: scale/22 */
+  --radius-none: var(--scale-0); /** = 2px, source: scale/1 */
+  --radius-xs: var(--scale-2); /** = 2px, source: scale/1 */
+  --radius-sm: var(--scale-3); /** = 4px, source: scale/2 */
+  --radius-md: var(--scale-5); /** = 8px, source: scale/4 */
+  --radius-lg: var(--scale-6); /** = 12px, source: scale/5 */
+  --radius-xl: var(--scale-7); /** = 16px, source: scale/6 */
+  --radius-element-sm: var(--scale-3); /** = 16px, source: scale/6 */
+  --radius-element-md: var(--scale-6); /** = 16px, source: scale/6 */
+  --radius-container: var(--scale-8); /** = 16px, source: scale/6 */
   --stroke-base: var(--scale-0); /** = 1px, source: scale/0 */
   --stroke-thin: var(--scale-1); /** = 1px, source: scale/0 */
   --stroke-thick: var(--scale-2); /** = 2px, source: scale/1 */
@@ -79,7 +79,7 @@
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1200px) {
   :root {
     --radius-pill: 9999px; /** Literal value, not a scale reference (fully rounded) */
   --space-page: var(--scale-7); /** = 16px, source: scale/6 */
@@ -101,16 +101,16 @@
   --control-icon-sm: var(--scale-7); /** = 20px, source: scale/7 */
   --control-icon-md: var(--scale-8); /** = 24px, source: scale/8 */
   --control-icon-lg: var(--scale-10); /** = 32px, source: scale/10 */
-  --radius-none: var(--scale-0); /** = 2px, source: scale/1 */
-  --radius-xs: var(--scale-2); /** = 2px, source: scale/1 */
-  --radius-sm: var(--scale-3); /** = 4px, source: scale/2 */
-  --radius-md: var(--scale-5); /** = 8px, source: scale/4 */
-  --radius-lg: var(--scale-6); /** = 12px, source: scale/5 */
-  --radius-xl: var(--scale-7); /** = 16px, source: scale/6 */
-  --radius-element-sm: var(--scale-3); /** = 16px, source: scale/6 */
-  --radius-element-md: var(--scale-6); /** = 16px, source: scale/6 */
-  --radius-container: var(--scale-8); /** = 16px, source: scale/6 */
   --container-default: var(--scale-container-3); /** = 600px, source: scale/22 */
+  --radius-none: var(--scale-0); /** = 2px, source: scale/1 */
+  --radius-xs: var(--scale-2); /** = 2px, source: scale/1 */
+  --radius-sm: var(--scale-3); /** = 4px, source: scale/2 */
+  --radius-md: var(--scale-5); /** = 8px, source: scale/4 */
+  --radius-lg: var(--scale-6); /** = 12px, source: scale/5 */
+  --radius-xl: var(--scale-7); /** = 16px, source: scale/6 */
+  --radius-element-sm: var(--scale-3); /** = 16px, source: scale/6 */
+  --radius-element-md: var(--scale-6); /** = 16px, source: scale/6 */
+  --radius-container: var(--scale-8); /** = 16px, source: scale/6 */
   --stroke-base: var(--scale-0); /** = 1px, source: scale/0 */
   --stroke-thin: var(--scale-1); /** = 1px, source: scale/0 */
   --stroke-thick: var(--scale-2); /** = 2px, source: scale/1 */
@@ -118,7 +118,7 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 840px) {
   :root {
     --radius-pill: 9999px; /** Literal value, not a scale reference (fully rounded) */
   --space-page: var(--scale-7); /** = 16px, source: scale/6 */
@@ -140,6 +140,7 @@
   --control-icon-sm: var(--scale-7); /** = 20px, source: scale/7 */
   --control-icon-md: var(--scale-8); /** = 24px, source: scale/8 */
   --control-icon-lg: var(--scale-10); /** = 32px, source: scale/10 */
+  --container-default: var(--scale-container-2); /** = 600px, source: scale/22 */
   --radius-none: var(--scale-0); /** = 2px, source: scale/1 */
   --radius-xs: var(--scale-2); /** = 2px, source: scale/1 */
   --radius-sm: var(--scale-3); /** = 4px, source: scale/2 */
@@ -149,7 +150,6 @@
   --radius-element-sm: var(--scale-3); /** = 16px, source: scale/6 */
   --radius-element-md: var(--scale-6); /** = 16px, source: scale/6 */
   --radius-container: var(--scale-8); /** = 16px, source: scale/6 */
-  --container-default: var(--scale-container-2); /** = 600px, source: scale/22 */
   --stroke-base: var(--scale-0); /** = 1px, source: scale/0 */
   --stroke-thin: var(--scale-1); /** = 1px, source: scale/0 */
   --stroke-thick: var(--scale-2); /** = 2px, source: scale/1 */

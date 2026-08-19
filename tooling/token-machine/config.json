@@ -1,0 +1,41 @@
+{
+  "directories": {
+    "tokenRootDir": "./tokens",
+    "tokenDir": "./tokens/dtcg-tokens",
+    "inputFile": "./tokens/raw-tokens.json",
+    "tempDir": "../../packages/zebra-design-system-tokens/dist/temp",
+    "cssOutputDir": "../../packages/zebra-design-system-tokens/dist/css",
+    "flutterOutputDir": "../../packages/zebra-design-system-tokens/dist/flutter",
+    "jsOutputDir": "../../packages/zebra-design-system-tokens/dist/js"
+  },
+  "collections": {
+    "color": ["primitives", "palette", "semantics"],
+    "size": ["primitives", "size"],
+    "typography": ["primitives", "typography"]
+  },
+  "modes": {
+    "color": ["light", "dark"],
+    "breakpoint": ["mobile", "tablet", "desktop", "desktop compact"]
+  },
+  "tokens": {
+    "fontWeights": {
+      "Light": 300,
+      "Regular": 400,
+      "Medium": 500,
+      "Bold": 700
+    },
+    "pxPatterns": [
+      "fontsize",
+      "lineheight",
+      "letterspacing",
+      "space",
+      "control",
+      "radius",
+      "stroke",
+      "scale",
+      "container"
+    ],
+    "groupValueKey": "selfvalue",
+    "schemaVersion": 1
+  }
+}

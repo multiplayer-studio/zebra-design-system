@@ -8,18 +8,22 @@
   --fill-transparent-emphasis: rgba(0, 0, 0, 0.25);
   --fill-transparent-elevate: rgba(0, 0, 0, 0.5);
   --fill-transparent-obsure: rgba(0, 0, 0, 0.75);
-  --brand-primary: var(--color-brand-main-60); /** Primary brand color (theme.color.brand.primary) */
-  --brand-secondary: var(--color-brand-alternative-60); /** Secondary brand color (theme.color.brand.secondary) */
-  --brand-tertiary: var(--color-accent-5-60); /** Tertiary brand color (theme.color.brand.tertiary) */
-  --brand-subtle: var(--color-brand-main-10); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
-  --brand-muted: var(--color-brand-main-20); /** Muted/softened brand tone (theme.color.brand.muted) */
-  --brand-onprimary: var(--color-neutral-cool-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
-  --brand-onsecondary: var(--color-neutral-cool-10); /** Foreground on top of Brand/Secondary (theme.color.brand.onSecondary) */
-  --brand-secondaryhover: var(--color-brand-alternative-50);
-  --brand-secondarypressed: var(--color-brand-alternative-70);
-  --brand-secondarysubtle: var(--color-brand-alternative-10);
-  --brand-primaryhover: var(--color-brand-main-50);
-  --brand-primarypressed: var(--color-brand-main-70);
+  --brand-primary-default: var(--color-brand-main-60); /** Primary brand color (theme.color.brand.primary) */
+  --brand-primary-faint: var(--color-brand-main-10); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
+  --brand-primary-subtle: var(--color-brand-main-50);
+  --brand-primary-deep: var(--color-brand-main-70);
+  --brand-primary-muted: var(--color-brand-main-20); /** Muted/softened brand tone (theme.color.brand.muted) */
+  --brand-primary-on: var(--color-neutral-cool-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
+  --brand-secondary-default: var(--color-brand-alternative-60); /** Secondary brand color (theme.color.brand.secondary) */
+  --brand-secondary-faint: var(--color-brand-alternative-10);
+  --brand-secondary-subtle: var(--color-brand-alternative-50);
+  --brand-secondary-deep: var(--color-brand-alternative-70);
+  --brand-secondary-on: var(--color-neutral-warm-10); /** Foreground on top of Brand/Secondary (theme.color.brand.onSecondary) */
+  --brand-tertiary-default: var(--color-accent-5-60); /** Tertiary brand color (theme.color.brand.tertiary) */
+  --brand-tertiary-faint: var(--color-accent-5-10); /** Tertiary brand color (theme.color.brand.tertiary) */
+  --brand-tertiary-subtle: var(--color-accent-5-50); /** Tertiary brand color (theme.color.brand.tertiary) */
+  --brand-tertiary-deep: var(--color-accent-5-70); /** Tertiary brand color (theme.color.brand.tertiary) */
+  --brand-tertiary-on: var(--color-neutral-cool-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
   --fill-canvas: var(--color-neutral-cool-20); /** App/page base background (theme.color.surface.canvas) */
   --fill-default: var(--color-pure-white); /** Standard component/card background (theme.color.surface.default) */
   --fill-elevated: var(--color-neutral-cool-10); /** Raised surface background, pair with elevation shadow (theme.color.surface.elevated) */
@@ -44,23 +48,23 @@
   --status-success-deep: var(--color-system-positive-80); /** Success solid/strong emphasis (theme.color.success.strong) */
   --status-success-strong: var(--color-system-positive-70);
   --status-success-subtle: var(--color-system-positive-50);
-  --status-success-hover: var(--color-system-positive-70);
-  --status-success-pressed: var(--color-system-positive-80);
   --status-warning-default: var(--color-system-warning-60); /** Warning color (theme.color.warning.default) */
   --status-warning-faint: var(--color-system-warning-10); /** Warning background tint (theme.color.warning.subtle) */
+  --status-warning-deep: var(--color-system-warning-80); /** Warning color (theme.color.warning.default) */
+  --status-warning-strong: var(--color-system-warning-70); /** Warning background tint (theme.color.warning.subtle) */
+  --status-warning-subtle: var(--color-system-warning-50); /** Warning background tint (theme.color.warning.subtle) */
   --status-error-default: var(--color-system-negative-60); /** Error color (theme.color.error.default) */
   --status-error-faint: var(--color-system-negative-10); /** Error background tint (theme.color.error.subtle) */
   --status-error-deep: var(--color-system-negative-80); /** Error solid/strong emphasis (theme.color.error.strong) */
   --status-error-subtle: var(--color-system-negative-50);
   --status-error-strong: var(--color-system-negative-70);
-  --status-error-hover: var(--color-system-negative-50);
-  --status-error-pressed: var(--color-system-negative-70);
   --status-info-default: var(--color-system-info-60); /** Info color (theme.color.info.default) */
   --status-info-faint: var(--color-system-info-10); /** Info background tint (theme.color.info.subtle) */
   --status-info-deep: var(--color-system-info-80); /** Info solid/strong emphasis (theme.color.info.strong) */
   --status-info-subtle: var(--color-system-info-50);
   --status-info-strong: var(--color-system-info-70);
   --line-selection: var(--color-brand-main-60); /** Selected item border/outline (theme.color.selection.border) */
+  --line-focus: var(--color-brand-main-60); /** Selected item border/outline (theme.color.selection.border) */
   --line-default: var(--color-neutral-cool-40);
   --line-subtle: var(--color-neutral-cool-30);
   --line-strong: var(--color-neutral-cool-60);
@@ -92,18 +96,22 @@
   --fill-transparent-emphasis: rgba(0, 0, 0, 0.25);
   --fill-transparent-elevate: rgba(0, 0, 0, 0.5);
   --fill-transparent-obsure: rgba(0, 0, 0, 0.75);
-  --brand-primary: var(--color-brand-main-60); /** Primary brand color (theme.color.brand.primary) */
-  --brand-secondary: var(--color-brand-alternative-50); /** Secondary brand color (theme.color.brand.secondary) */
-  --brand-tertiary: var(--color-accent-5-50); /** Tertiary brand color (theme.color.brand.tertiary) */
-  --brand-subtle: var(--color-brand-main-100); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
-  --brand-muted: var(--color-brand-main-90); /** Muted/softened brand tone (theme.color.brand.muted) */
-  --brand-onprimary: var(--color-neutral-cool-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
-  --brand-onsecondary: var(--color-neutral-cool-10); /** Foreground on top of Brand/Secondary (theme.color.brand.onSecondary) */
-  --brand-secondaryhover: var(--color-brand-alternative-60);
-  --brand-secondarypressed: var(--color-brand-alternative-40);
-  --brand-secondarysubtle: var(--color-brand-alternative-100);
-  --brand-primaryhover: var(--color-brand-main-50);
-  --brand-primarypressed: var(--color-brand-main-40);
+  --brand-primary-default: var(--color-brand-main-60); /** Primary brand color (theme.color.brand.primary) */
+  --brand-primary-faint: var(--color-brand-main-100); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
+  --brand-primary-subtle: var(--color-brand-main-50);
+  --brand-primary-deep: var(--color-brand-main-40);
+  --brand-primary-muted: var(--color-brand-main-90); /** Muted/softened brand tone (theme.color.brand.muted) */
+  --brand-primary-on: var(--color-neutral-cool-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
+  --brand-secondary-default: var(--color-brand-alternative-50); /** Secondary brand color (theme.color.brand.secondary) */
+  --brand-secondary-faint: var(--color-brand-alternative-100);
+  --brand-secondary-subtle: var(--color-brand-alternative-60);
+  --brand-secondary-deep: var(--color-brand-alternative-40);
+  --brand-secondary-on: var(--color-neutral-warm-10); /** Foreground on top of Brand/Secondary (theme.color.brand.onSecondary) */
+  --brand-tertiary-default: var(--color-accent-5-50); /** Tertiary brand color (theme.color.brand.tertiary) */
+  --brand-tertiary-faint: var(--color-accent-5-100); /** Tertiary brand color (theme.color.brand.tertiary) */
+  --brand-tertiary-subtle: var(--color-accent-5-50); /** Tertiary brand color (theme.color.brand.tertiary) */
+  --brand-tertiary-deep: var(--color-accent-5-40); /** Tertiary brand color (theme.color.brand.tertiary) */
+  --brand-tertiary-on: var(--color-neutral-cool-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
   --fill-canvas: var(--color-neutral-cool-90); /** App/page base background (theme.color.surface.canvas) */
   --fill-default: var(--color-neutral-cool-100); /** Standard component/card background (theme.color.surface.default) */
   --fill-elevated: var(--color-neutral-cool-100); /** Raised surface background, pair with elevation shadow (theme.color.surface.elevated) */
@@ -128,23 +136,23 @@
   --status-success-deep: var(--color-system-positive-40); /** Success solid/strong emphasis (theme.color.success.strong) */
   --status-success-strong: var(--color-system-positive-40);
   --status-success-subtle: var(--color-system-positive-70);
-  --status-success-hover: var(--color-system-positive-40);
-  --status-success-pressed: var(--color-system-positive-40);
   --status-warning-default: var(--color-system-warning-50); /** Warning color (theme.color.warning.default) */
   --status-warning-faint: var(--color-system-warning-100); /** Warning background tint (theme.color.warning.subtle) */
+  --status-warning-deep: var(--color-system-warning-40); /** Warning color (theme.color.warning.default) */
+  --status-warning-strong: var(--color-system-warning-40); /** Warning background tint (theme.color.warning.subtle) */
+  --status-warning-subtle: var(--color-system-warning-70); /** Warning background tint (theme.color.warning.subtle) */
   --status-error-default: var(--color-system-negative-60); /** Error color (theme.color.error.default) */
   --status-error-faint: var(--color-system-negative-100); /** Error background tint (theme.color.error.subtle) */
   --status-error-deep: var(--color-system-negative-30); /** Error solid/strong emphasis (theme.color.error.strong) */
   --status-error-subtle: var(--color-system-negative-70);
   --status-error-strong: var(--color-system-negative-40);
-  --status-error-hover: var(--color-system-negative-70);
-  --status-error-pressed: var(--color-system-negative-40);
   --status-info-default: var(--color-system-info-50); /** Info color (theme.color.info.default) */
   --status-info-faint: var(--color-system-info-100); /** Info background tint (theme.color.info.subtle) */
   --status-info-deep: var(--color-system-info-30); /** Info solid/strong emphasis (theme.color.info.strong) */
   --status-info-subtle: var(--color-system-info-60);
   --status-info-strong: var(--color-system-info-40);
   --line-selection: var(--color-brand-main-50); /** Selected item border/outline (theme.color.selection.border) */
+  --line-focus: var(--color-brand-main-50); /** Selected item border/outline (theme.color.selection.border) */
   --line-default: var(--color-neutral-cool-70);
   --line-subtle: var(--color-neutral-cool-80);
   --line-strong: var(--color-neutral-cool-50);
@@ -176,18 +184,22 @@
   --fill-transparent-emphasis: rgba(0, 0, 0, 0.25);
   --fill-transparent-elevate: rgba(0, 0, 0, 0.5);
   --fill-transparent-obsure: rgba(0, 0, 0, 0.75);
-  --brand-primary: var(--color-brand-main-60); /** Primary brand color (theme.color.brand.primary) */
-  --brand-secondary: var(--color-brand-alternative-50); /** Secondary brand color (theme.color.brand.secondary) */
-  --brand-tertiary: var(--color-accent-5-50); /** Tertiary brand color (theme.color.brand.tertiary) */
-  --brand-subtle: var(--color-brand-main-100); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
-  --brand-muted: var(--color-brand-main-90); /** Muted/softened brand tone (theme.color.brand.muted) */
-  --brand-onprimary: var(--color-neutral-cool-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
-  --brand-onsecondary: var(--color-neutral-cool-10); /** Foreground on top of Brand/Secondary (theme.color.brand.onSecondary) */
-  --brand-secondaryhover: var(--color-brand-alternative-60);
-  --brand-secondarypressed: var(--color-brand-alternative-40);
-  --brand-secondarysubtle: var(--color-brand-alternative-100);
-  --brand-primaryhover: var(--color-brand-main-50);
-  --brand-primarypressed: var(--color-brand-main-40);
+  --brand-primary-default: var(--color-brand-main-60); /** Primary brand color (theme.color.brand.primary) */
+  --brand-primary-faint: var(--color-brand-main-100); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
+  --brand-primary-subtle: var(--color-brand-main-50);
+  --brand-primary-deep: var(--color-brand-main-40);
+  --brand-primary-muted: var(--color-brand-main-90); /** Muted/softened brand tone (theme.color.brand.muted) */
+  --brand-primary-on: var(--color-neutral-cool-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
+  --brand-secondary-default: var(--color-brand-alternative-50); /** Secondary brand color (theme.color.brand.secondary) */
+  --brand-secondary-faint: var(--color-brand-alternative-100);
+  --brand-secondary-subtle: var(--color-brand-alternative-60);
+  --brand-secondary-deep: var(--color-brand-alternative-40);
+  --brand-secondary-on: var(--color-neutral-warm-10); /** Foreground on top of Brand/Secondary (theme.color.brand.onSecondary) */
+  --brand-tertiary-default: var(--color-accent-5-50); /** Tertiary brand color (theme.color.brand.tertiary) */
+  --brand-tertiary-faint: var(--color-accent-5-100); /** Tertiary brand color (theme.color.brand.tertiary) */
+  --brand-tertiary-subtle: var(--color-accent-5-50); /** Tertiary brand color (theme.color.brand.tertiary) */
+  --brand-tertiary-deep: var(--color-accent-5-40); /** Tertiary brand color (theme.color.brand.tertiary) */
+  --brand-tertiary-on: var(--color-neutral-cool-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
   --fill-canvas: var(--color-neutral-cool-90); /** App/page base background (theme.color.surface.canvas) */
   --fill-default: var(--color-neutral-cool-100); /** Standard component/card background (theme.color.surface.default) */
   --fill-elevated: var(--color-neutral-cool-100); /** Raised surface background, pair with elevation shadow (theme.color.surface.elevated) */
@@ -212,23 +224,23 @@
   --status-success-deep: var(--color-system-positive-40); /** Success solid/strong emphasis (theme.color.success.strong) */
   --status-success-strong: var(--color-system-positive-40);
   --status-success-subtle: var(--color-system-positive-70);
-  --status-success-hover: var(--color-system-positive-40);
-  --status-success-pressed: var(--color-system-positive-40);
   --status-warning-default: var(--color-system-warning-50); /** Warning color (theme.color.warning.default) */
   --status-warning-faint: var(--color-system-warning-100); /** Warning background tint (theme.color.warning.subtle) */
+  --status-warning-deep: var(--color-system-warning-40); /** Warning color (theme.color.warning.default) */
+  --status-warning-strong: var(--color-system-warning-40); /** Warning background tint (theme.color.warning.subtle) */
+  --status-warning-subtle: var(--color-system-warning-70); /** Warning background tint (theme.color.warning.subtle) */
   --status-error-default: var(--color-system-negative-60); /** Error color (theme.color.error.default) */
   --status-error-faint: var(--color-system-negative-100); /** Error background tint (theme.color.error.subtle) */
   --status-error-deep: var(--color-system-negative-30); /** Error solid/strong emphasis (theme.color.error.strong) */
   --status-error-subtle: var(--color-system-negative-70);
   --status-error-strong: var(--color-system-negative-40);
-  --status-error-hover: var(--color-system-negative-70);
-  --status-error-pressed: var(--color-system-negative-40);
   --status-info-default: var(--color-system-info-50); /** Info color (theme.color.info.default) */
   --status-info-faint: var(--color-system-info-100); /** Info background tint (theme.color.info.subtle) */
   --status-info-deep: var(--color-system-info-30); /** Info solid/strong emphasis (theme.color.info.strong) */
   --status-info-subtle: var(--color-system-info-60);
   --status-info-strong: var(--color-system-info-40);
   --line-selection: var(--color-brand-main-50); /** Selected item border/outline (theme.color.selection.border) */
+  --line-focus: var(--color-brand-main-50); /** Selected item border/outline (theme.color.selection.border) */
   --line-default: var(--color-neutral-cool-70);
   --line-subtle: var(--color-neutral-cool-80);
   --line-strong: var(--color-neutral-cool-50);

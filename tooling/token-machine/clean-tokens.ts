@@ -23,7 +23,7 @@ async function deleteFolders(folderPaths: string[]): Promise<void> {
 
 (async () => {
   try {
-    const foldersToClean = ['./tokens', '../../packages/zebra-design-system-tokens/dist/']; // Replace with your paths
+    const foldersToClean = ['./tokens', '../../packages/zebra-design-system-tokens/dist/css/', '../../packages/zebra-design-system-tokens/dist/flutter/lib/', '../../packages/zebra-design-system-tokens/dist/js/'];
     await deleteFolders(foldersToClean);
   } catch (error) {
     console.error('Fatal execution error:', error);

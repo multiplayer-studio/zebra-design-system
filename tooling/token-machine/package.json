@@ -7,7 +7,8 @@
     "fetch": "tsx --env-file=../../.env fetch-tokens.ts",
     "preconvert": "npm run fetch",
     "convert": "tsx --env-file=../../.env convert-tokens.ts",
-    "build": "tsx build-tokens.ts"
+    "build": "tsx build-tokens/index.ts",
+    "export": "tsx export-resolved-tokens.ts"
   },
   "devDependencies": {
     "style-dictionary": "^5.5.0",

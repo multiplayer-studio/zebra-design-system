@@ -1,10 +1,5 @@
 
-export type FigmaVariableType =
-  | 'COLOR'
-  | 'FLOAT'
-  | 'STRING'
-  | 'BOOLEAN'
-  | (string & {});
+export type FigmaVariableType = 'COLOR' | 'FLOAT' | 'STRING' | 'BOOLEAN';
 
 export interface FigmaModeValueLiteral {
   kind: 'literal';

@@ -1,0 +1,419 @@
+{
+  "palette": {
+    "brand": {
+      "primary": {
+        "default": {
+          "$type": "color",
+          "$value": "{primitives.color.extend.4.60}",
+          "$description": "Primary brand color (theme.color.brand.primary)"
+        },
+        "faint": {
+          "$type": "color",
+          "$value": "{primitives.color.extend.4.10}",
+          "$description": "Light brand tint for backgrounds (theme.color.brand.subtle)"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{primitives.color.extend.4.50}"
+        },
+        "deep": {
+          "$type": "color",
+          "$value": "{primitives.color.extend.4.70}"
+        },
+        "muted": {
+          "$type": "color",
+          "$value": "{primitives.color.extend.4.20}",
+          "$description": "Muted/softened brand tone (theme.color.brand.muted)"
+        },
+        "on": {
+          "$type": "color",
+          "$value": "{primitives.color.neutral.warm.10}",
+          "$description": "Foreground on top of Brand/Primary (theme.color.brand.onPrimary)"
+        }
+      },
+      "secondary": {
+        "default": {
+          "$type": "color",
+          "$value": "{primitives.color.extend.3.60}",
+          "$description": "Secondary brand color (theme.color.brand.secondary)"
+        },
+        "faint": {
+          "$type": "color",
+          "$value": "{primitives.color.extend.3.10}"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{primitives.color.extend.3.50}"
+        },
+        "deep": {
+          "$type": "color",
+          "$value": "{primitives.color.extend.3.70}"
+        },
+        "on": {
+          "$type": "color",
+          "$value": "{primitives.color.neutral.warm.10}",
+          "$description": "Foreground on top of Brand/Secondary (theme.color.brand.onSecondary)"
+        }
+      },
+      "tertiary": {
+        "default": {
+          "$type": "color",
+          "$value": "{primitives.color.accent.5.60}",
+          "$description": "Tertiary brand color (theme.color.brand.tertiary)"
+        },
+        "faint": {
+          "$type": "color",
+          "$value": "{primitives.color.accent.5.10}",
+          "$description": "Tertiary brand color (theme.color.brand.tertiary)"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{primitives.color.accent.5.50}",
+          "$description": "Tertiary brand color (theme.color.brand.tertiary)"
+        },
+        "deep": {
+          "$type": "color",
+          "$value": "{primitives.color.accent.5.70}",
+          "$description": "Tertiary brand color (theme.color.brand.tertiary)"
+        },
+        "on": {
+          "$type": "color",
+          "$value": "{primitives.color.neutral.cool.10}",
+          "$description": "Foreground on top of Brand/Primary (theme.color.brand.onPrimary)"
+        }
+      }
+    },
+    "fill": {
+      "canvas": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.20}",
+        "$description": "App/page base background (theme.color.surface.canvas)"
+      },
+      "default": {
+        "$type": "color",
+        "$value": "{primitives.color.pure.white}",
+        "$description": "Standard component/card background (theme.color.surface.default)"
+      },
+      "elevated": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.10}",
+        "$description": "Raised surface background, pair with elevation shadow (theme.color.surface.elevated)"
+      },
+      "overlay": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.10}",
+        "$description": "Modal/popover panel background (theme.color.surface.overlay)"
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.90}",
+        "$description": "Inverted (dark) surface, e.g. tooltips (theme.color.surface.inverse)"
+      },
+      "sunken": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.30}",
+        "$description": "Recessed background, e.g. inputs/wells (theme.color.surface.sunken)"
+      },
+      "scrim": {
+        "$type": "color",
+        "$value": "{primitives.color.alpha.dark.60}",
+        "$description": "Backdrop behind modals; apply opacity at usage since this alias is fully opaque (theme.color.surface.scrim)"
+      },
+      "selection": {
+        "$type": "color",
+        "$value": "{primitives.color.brand.main.20}",
+        "$description": "Selected item/text background (theme.color.selection.background)"
+      },
+      "inversehover": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.80}"
+      },
+      "inversepressed": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.100}"
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.30}"
+      },
+      "transparent": {
+        "selfvalue": {
+          "$type": "color",
+          "$value": "#f3f6fa00"
+        },
+        "emphasis": {
+          "$type": "color",
+          "$value": "#00000040"
+        },
+        "elevate": {
+          "$type": "color",
+          "$value": "#00000080"
+        },
+        "obsure": {
+          "$type": "color",
+          "$value": "#000000bf"
+        }
+      }
+    },
+    "ink": {
+      "high": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.100}",
+        "$description": "High-emphasis text/icon color (theme.color.content.high)"
+      },
+      "medium": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.70}",
+        "$description": "Medium-emphasis text/icon color (theme.color.content.medium)"
+      },
+      "low": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.60}",
+        "$description": "Low-emphasis text/icon color (theme.color.content.low)"
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.50}",
+        "$description": "Disabled-state text/icon color (theme.color.content.disabled)"
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.10}",
+        "$description": "Text/icon color on inverse/dark surfaces (theme.color.content.inverse)"
+      },
+      "link": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.4.60}",
+        "$description": "Hyperlink text color (theme.color.content.link)"
+      },
+      "brand": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.4.70}",
+        "$description": "Hyperlink text color (theme.color.content.link)"
+      },
+      "selection": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.100}",
+        "$description": "Text color within a selection (theme.color.selection.text)"
+      }
+    },
+    "status": {
+      "success": {
+        "default": {
+          "$type": "color",
+          "$value": "{primitives.color.system.positive.60}",
+          "$description": "Success color (theme.color.success.default)"
+        },
+        "faint": {
+          "$type": "color",
+          "$value": "{primitives.color.system.positive.10}",
+          "$description": "Success background tint (theme.color.success.subtle)"
+        },
+        "deep": {
+          "$type": "color",
+          "$value": "{primitives.color.system.positive.80}",
+          "$description": "Success solid/strong emphasis (theme.color.success.strong)"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{primitives.color.system.positive.70}"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{primitives.color.system.positive.50}"
+        }
+      },
+      "warning": {
+        "default": {
+          "$type": "color",
+          "$value": "{primitives.color.system.warning.60}",
+          "$description": "Warning color (theme.color.warning.default)"
+        },
+        "faint": {
+          "$type": "color",
+          "$value": "{primitives.color.system.warning.10}",
+          "$description": "Warning background tint (theme.color.warning.subtle)"
+        },
+        "deep": {
+          "$type": "color",
+          "$value": "{primitives.color.system.warning.80}",
+          "$description": "Warning color (theme.color.warning.default)"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{primitives.color.system.warning.70}",
+          "$description": "Warning background tint (theme.color.warning.subtle)"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{primitives.color.system.warning.50}",
+          "$description": "Warning background tint (theme.color.warning.subtle)"
+        }
+      },
+      "error": {
+        "default": {
+          "$type": "color",
+          "$value": "{primitives.color.system.negative.60}",
+          "$description": "Error color (theme.color.error.default)"
+        },
+        "faint": {
+          "$type": "color",
+          "$value": "{primitives.color.system.negative.10}",
+          "$description": "Error background tint (theme.color.error.subtle)"
+        },
+        "deep": {
+          "$type": "color",
+          "$value": "{primitives.color.system.negative.80}",
+          "$description": "Error solid/strong emphasis (theme.color.error.strong)"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{primitives.color.system.negative.50}"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{primitives.color.system.negative.70}"
+        }
+      },
+      "info": {
+        "default": {
+          "$type": "color",
+          "$value": "{primitives.color.system.info.60}",
+          "$description": "Info color (theme.color.info.default)"
+        },
+        "faint": {
+          "$type": "color",
+          "$value": "{primitives.color.system.info.10}",
+          "$description": "Info background tint (theme.color.info.subtle)"
+        },
+        "deep": {
+          "$type": "color",
+          "$value": "{primitives.color.system.info.80}",
+          "$description": "Info solid/strong emphasis (theme.color.info.strong)"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{primitives.color.system.info.50}"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{primitives.color.system.info.70}"
+        }
+      }
+    },
+    "line": {
+      "selection": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.4.60}",
+        "$description": "Selected item border/outline (theme.color.selection.border)"
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.60}",
+        "$description": "Selected item border/outline (theme.color.selection.border)"
+      },
+      "default": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.40}"
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.30}"
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.60}"
+      },
+      "stronger": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.80}"
+      }
+    },
+    "data": {
+      "1": {
+        "$type": "color",
+        "$value": "{primitives.color.brand.main.60}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{primitives.color.brand.alternative.60}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.5.60}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.60}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.4.60}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.3.60}"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.2.40}"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.3.60}"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.4.60}"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.2.60}"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{primitives.color.system.negative.50}"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.1.50}"
+      },
+      "neutral": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.50}"
+      }
+    },
+    "gradient": {
+      "default": {
+        "start": {
+          "$type": "color",
+          "$value": "{primitives.color.extend.3.80}"
+        },
+        "end": {
+          "$type": "color",
+          "$value": "{primitives.color.extend.4.60}"
+        }
+      },
+      "strong": {
+        "start": {
+          "$type": "color",
+          "$value": "{primitives.color.extend.3.90}"
+        },
+        "end": {
+          "$type": "color",
+          "$value": "{primitives.color.extend.4.80}"
+        }
+      },
+      "subtle": {
+        "start": {
+          "$type": "color",
+          "$value": "{primitives.color.extend.3.70}"
+        },
+        "end": {
+          "$type": "color",
+          "$value": "{primitives.color.extend.4.40}"
+        }
+      }
+    }
+  }
+}

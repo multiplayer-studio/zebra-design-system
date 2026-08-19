@@ -154,7 +154,7 @@
       },
       "pill": {
         "$type": "number",
-        "$value": 9999,
+        "$value": "9999px",
         "$description": "Literal value, not a scale reference (fully rounded)"
       }
     },

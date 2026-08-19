@@ -2,9 +2,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { mkdir } from 'fs/promises';
+import config from './config.json' assert { type: 'json' };
 import './types.ts';
 
-const SCHEMA_VERSION = 1;
+const SCHEMA_VERSION = config.tokens.schemaVersion;
 
 function isoDate(): string {
   const d = new Date();
@@ -17,7 +18,7 @@ function resolveCollectionByID(id: string, collections: object): string {
   return c.name; 
 }
 
-async function main() {
+export async function main() {
   const FIGMA_TOKEN = process.env.FIGMA_PERSONAL_ACCESS_TOKEN;
   const FIGMA_FILE_KEY = process.env.FIGMA_FILE_KEY;
 
@@ -114,7 +115,7 @@ async function main() {
 
     await mkdir('./tokens', { recursive: true });
 
-    const filename = `tokens/raw-tokens.json`;
+    const filename = config.directories.inputFile;
     const outputPath = path.join(process.cwd(), filename);
     fs.writeFileSync(outputPath, JSON.stringify(payload, null, 2));
 
@@ -127,4 +128,6 @@ async function main() {
   }
 }
 
-main();
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main();
+}

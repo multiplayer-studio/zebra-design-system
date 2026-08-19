@@ -2,12 +2,15 @@
   "name": "zebra-design-system-tokens",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "license": "ISC",
   "author": "",
   "files": [
     "dist"
   ],
   "exports": {
-    "./css/*": "./dist/css/*.css"
+    "./css/*": "./dist/css/*.css",
+    "./js/*": "./dist/js/*.js",
+    "./flutter/*": "./dist/flutter/*.dart"
   }
  }

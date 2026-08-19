@@ -23,24 +23,24 @@
   --control-icon-sm: 16px;
   --control-icon-md: 20px;
   --control-icon-lg: 28px;
-  --radius-none: 0px;
-  --radius-xs: 2px;
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-element-sm: 4px;
-  --radius-element-md: 12px;
-  --radius-container: 20px;
-  --radius-pill: 9999px;
   --container-default: 240px;
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-element-sm: 4px;
+  --radius-element-md: 12px;
+  --radius-container: 20px;
+  --radius-pill: 9999px;
   --stroke-base: 0px;
   --stroke-thin: 1px;
   --stroke-thick: 2px;
   --stroke-heavy: 4px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 600px) {
   :root {
     --space-page: 16px;
   --space-section: 24px;
@@ -61,17 +61,17 @@
   --control-icon-sm: 16px;
   --control-icon-md: 20px;
   --control-icon-lg: 28px;
-  --radius-none: 0px;
-  --radius-xs: 2px;
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-element-sm: 4px;
-  --radius-element-md: 12px;
-  --radius-container: 20px;
-  --radius-pill: 9999px;
   --container-default: 600px;
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-element-sm: 4px;
+  --radius-element-md: 12px;
+  --radius-container: 20px;
+  --radius-pill: 9999px;
   --stroke-base: 0px;
   --stroke-thin: 1px;
   --stroke-thick: 2px;
@@ -79,7 +79,7 @@
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1200px) {
   :root {
     --space-page: 16px;
   --space-section: 24px;
@@ -100,17 +100,17 @@
   --control-icon-sm: 16px;
   --control-icon-md: 20px;
   --control-icon-lg: 28px;
-  --radius-none: 0px;
-  --radius-xs: 2px;
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-element-sm: 4px;
-  --radius-element-md: 12px;
-  --radius-container: 20px;
-  --radius-pill: 9999px;
   --container-default: 1200px;
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-element-sm: 4px;
+  --radius-element-md: 12px;
+  --radius-container: 20px;
+  --radius-pill: 9999px;
   --stroke-base: 0px;
   --stroke-thin: 1px;
   --stroke-thick: 2px;
@@ -118,7 +118,7 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 840px) {
   :root {
     --space-page: 16px;
   --space-section: 24px;
@@ -139,6 +139,7 @@
   --control-icon-sm: 16px;
   --control-icon-md: 20px;
   --control-icon-lg: 28px;
+  --container-default: 840px;
   --radius-none: 0px;
   --radius-xs: 2px;
   --radius-sm: 4px;
@@ -149,7 +150,6 @@
   --radius-element-md: 12px;
   --radius-container: 20px;
   --radius-pill: 9999px;
-  --container-default: 840px;
   --stroke-base: 0px;
   --stroke-thin: 1px;
   --stroke-thick: 2px;
