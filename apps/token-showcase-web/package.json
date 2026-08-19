@@ -1,5 +1,5 @@
 {
-  "name": "token-showcase",
+  "name": "token-showcase-web",
   "private": true,
   "version": "0.0.0",
   "description": "Example React app demonstrating how to consume the zebra-design-system-tokens default theme.",
