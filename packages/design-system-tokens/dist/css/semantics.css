@@ -1,0 +1,178 @@
+/**
+ * Semantics - Building Block Variables
+ * References palette/*.css. Import exactly one primitives/*.css + one palette/*.css alongside this file.
+ * This file is auto-generated. Do not edit directly.
+ */
+
+:root {
+  --interactive-ghost-background-default: var(--fill-transparent); /** Default state for a ghost interactive element, minimal in styling with no fill, for low-emphasis actions. */
+  --interactive-ghost-background-focused: var(--fill-transparent); /** Focused state for a ghost interactive element. */
+  --shadow-soft: var(--fill-transparent-emphasis); /** Soft, diffuse drop shadow for subtle elevation, e.g. cards */
+  --shadow-hard: var(--fill-transparent-elevate); /** Crisp, high-contrast drop shadow for elements needing strong separation, e.g. dropdowns */
+  --surface-page: var(--fill-canvas); /** Default background color of the page or app canvas */
+  --surface-section: var(--fill-default); /** Background for a section or panel that groups related content */
+  --surface-card: var(--fill-elevated); /** Background of card components */
+  --surface-dialog: var(--fill-overlay); /** Background of dialog/modal windows */
+  --surface-sheet: var(--fill-overlay); /** Background of bottom sheets and side drawers */
+  --surface-popover: var(--fill-overlay); /** Background of popovers and other floating panels */
+  --surface-menu: var(--fill-overlay); /** Background of dropdown and context menus */
+  --surface-tooltip: var(--fill-inverse); /** Background of tooltips */
+  --surface-brand: var(--brand-primary-faint); /** Brand-colored background, e.g. hero sections or marketing highlights */
+  --surface-inverse: var(--fill-inverse); /** Dark/inverse background for high-contrast sections */
+  --surface-success: var(--status-success-faint); /** Background for containers communicating a success state */
+  --surface-warning: var(--status-warning-faint); /** Background for containers communicating a warning state */
+  --surface-error: var(--status-error-faint); /** Background for containers communicating an error state */
+  --surface-info: var(--status-info-faint); /** Background for containers communicating neutral information */
+  --surface-gradient-start: var(--gradient-default-start); /** Starting color stop for surfaces using a gradient fill */
+  --surface-gradient-end: var(--gradient-default-end); /** Ending color stop for surfaces using a gradient fill */
+  --foreground-primary: var(--ink-high); /** The default color for body text and primary icons, used as the highest-emphasis content color. */
+  --foreground-secondary: var(--ink-medium); /** Lower-emphasis text/icon color, e.g. captions or supporting copy */
+  --foreground-tertiary: var(--ink-low); /** Lowest-emphasis text/icon color, e.g. placeholders or metadata */
+  --foreground-disabled: var(--ink-disabled); /** Text/icon color for disabled, non-interactive elements */
+  --foreground-inverse: var(--ink-inverse); /** Text/icon color for use on dark or inverse-colored surfaces */
+  --foreground-link: var(--ink-link); /** Color for hyperlinks and other clickable inline text */
+  --foreground-cursor: var(--ink-brand); /** Color of the blinking caret inside text inputs */
+  --foreground-success: var(--status-success-default); /** Text/icon color that communicates success */
+  --foreground-warning: var(--status-warning-default); /** Text/icon color that communicates a warning */
+  --foreground-error: var(--status-error-default); /** Text/icon color that communicates an error, paired with feedback/error tokens */
+  --foreground-info: var(--status-info-default); /** Text/icon color that communicates neutral information */
+  --foreground-gradient-start: var(--gradient-default-start); /** Starting color stop for text/icons using a gradient treatment */
+  --foreground-gradient-end: var(--gradient-default-end); /** Ending color stop for text/icons using a gradient treatment */
+  --border-default: var(--line-default); /** Default border color for inputs, cards, and dividers at rest */
+  --border-subtle: var(--line-subtle); /** Faint border for low-emphasis separation, e.g. nested cards */
+  --border-strong: var(--line-strong); /** Higher-contrast border for emphasis, e.g. active outlines or key dividers */
+  --border-focus: var(--line-focus); /** Border applied when an element receives keyboard focus, for accessibility */
+  --border-success: var(--status-success-default); /** Border color for inputs/fields confirmed valid or successful */
+  --border-warning: var(--status-warning-default); /** Border color for elements flagged with a warning */
+  --border-error: var(--status-error-default); /** Border color for inputs/fields in an invalid or error state */
+  --border-info: var(--status-info-default); /** Border color for elements conveying neutral, informational context */
+  --border-gradient-start: var(--gradient-default-start); /** Starting color stop for borders using a gradient treatment */
+  --border-gradient-end: var(--gradient-default-end); /** Ending color stop for borders using a gradient treatment */
+  --interactive-primary-background-default: var(--brand-primary-default); /** Default state for the primary interactive element, the main and highest-emphasis action or control on a screen. */
+  --interactive-primary-background-focused: var(--brand-primary-default); /** Focused state for the primary interactive element. */
+  --interactive-primary-background-disabled: var(--fill-disabled); /** Disabled state for the primary interactive element. */
+  --interactive-primary-background-hover: var(--brand-primary-subtle); /** Hover state for the primary interactive element. */
+  --interactive-primary-background-pressed: var(--brand-primary-deep); /** Pressed state for the primary interactive element. */
+  --interactive-primary-background-selected: var(--brand-primary-deep); /** Selected state for the primary interactive element. */
+  --interactive-primary-foreground-default: var(--brand-primary-on); /** Default-state text/icon color on the primary interactive element&#39;s background. */
+  --interactive-primary-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on the primary interactive element&#39;s background. */
+  --interactive-primary-border-default: var(--brand-primary-default); /** Default-state border for the primary interactive element. */
+  --interactive-primary-border-disabled: var(--line-subtle); /** Disabled-state border for the primary interactive element. */
+  --interactive-primary-border-hover: var(--brand-primary-subtle); /** Hover-state border for the primary interactive element. */
+  --interactive-primary-border-pressed: var(--brand-primary-deep); /** Pressed-state border for the primary interactive element. */
+  --interactive-secondary-background-default: var(--brand-secondary-default); /** Default state for a secondary interactive element, an alternative and less prominent action alongside primary. */
+  --interactive-secondary-background-hover: var(--brand-secondary-subtle); /** Hover state for a secondary interactive element. */
+  --interactive-secondary-background-pressed: var(--brand-secondary-deep); /** Pressed state for a secondary interactive element. */
+  --interactive-secondary-background-focused: var(--brand-secondary-default); /** Focused state for a secondary interactive element. */
+  --interactive-secondary-background-selected: var(--brand-secondary-deep); /** Selected state for a secondary interactive element. */
+  --interactive-secondary-background-disabled: var(--fill-disabled); /** Disabled state for a secondary interactive element. */
+  --interactive-secondary-foreground-default: var(--brand-secondary-on); /** Default-state text/icon color on a secondary interactive element&#39;s background. */
+  --interactive-secondary-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on a secondary interactive element&#39;s background. */
+  --interactive-secondary-border-default: var(--brand-secondary-default); /** Default-state border for a secondary interactive element. */
+  --interactive-secondary-border-hover: var(--brand-secondary-subtle); /** Hover-state border for a secondary interactive element. */
+  --interactive-secondary-border-pressed: var(--brand-secondary-deep); /** Pressed-state border for a secondary interactive element. */
+  --interactive-secondary-border-disabled: var(--line-subtle); /** Disabled-state border for a secondary interactive element. */
+  --interactive-ghost-background-hover: var(--brand-primary-faint); /** Hover state for a ghost interactive element. */
+  --interactive-ghost-background-pressed: var(--brand-primary-muted); /** Pressed state for a ghost interactive element. */
+  --interactive-ghost-background-selected: var(--brand-primary-muted); /** Selected state for a ghost interactive element. */
+  --interactive-ghost-background-disabled: var(--fill-disabled); /** Disabled state for a ghost interactive element. */
+  --interactive-ghost-foreground-default: var(--ink-brand); /** Default-state text/icon color on a ghost interactive element&#39;s background. */
+  --interactive-ghost-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on a ghost interactive element&#39;s background. */
+  --interactive-ghost-border-default: var(--brand-primary-default); /** Default-state border for a ghost interactive element. */
+  --interactive-ghost-border-hover: var(--brand-primary-subtle); /** Hover-state border for a ghost interactive element. */
+  --interactive-ghost-border-pressed: var(--brand-primary-deep); /** Pressed-state border for a ghost interactive element. */
+  --interactive-ghost-border-disabled: var(--line-subtle); /** Disabled-state border for a ghost interactive element. */
+  --interactive-destructive-background-default: var(--status-error-default); /** Default state for a destructive interactive element, signaling a harmful or irreversible action such as Delete. */
+  --interactive-destructive-background-hover: var(--status-error-subtle); /** Hover state for a destructive interactive element. */
+  --interactive-destructive-background-pressed: var(--status-error-deep); /** Pressed state for a destructive interactive element. */
+  --interactive-destructive-background-focused: var(--status-error-default); /** Focused state for a destructive interactive element. */
+  --interactive-destructive-background-selected: var(--status-error-deep); /** Selected state for a destructive interactive element. */
+  --interactive-destructive-background-disabled: var(--fill-disabled); /** Disabled state for a destructive interactive element. */
+  --interactive-destructive-foreground-default: var(--brand-primary-on); /** Default-state text/icon color on a destructive interactive element&#39;s background. */
+  --interactive-destructive-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on a destructive interactive element&#39;s background. */
+  --interactive-destructive-border-default: var(--status-error-default); /** Default-state border for a destructive interactive element. */
+  --interactive-destructive-border-hover: var(--status-error-subtle); /** Hover-state border for a destructive interactive element. */
+  --interactive-destructive-border-pressed: var(--status-error-strong); /** Pressed-state border for a destructive interactive element. */
+  --interactive-destructive-border-disabled: var(--line-subtle); /** Disabled-state border for a destructive interactive element. */
+  --interactive-inverse-background-default: var(--fill-inverse); /** Default state for an interactive element placed on a dark or inverse-colored surface. */
+  --interactive-inverse-background-hover: var(--fill-inversehover); /** Hover state for an inverse-surface interactive element. */
+  --interactive-inverse-background-pressed: var(--fill-inversepressed); /** Pressed state for an inverse-surface interactive element. */
+  --interactive-inverse-background-focused: var(--fill-inverse); /** Focused state for an inverse-surface interactive element. */
+  --interactive-inverse-background-selected: var(--fill-inversepressed); /** Selected state for an inverse-surface interactive element. */
+  --interactive-inverse-background-disabled: var(--fill-disabled); /** Disabled state for an inverse-surface interactive element. */
+  --interactive-inverse-foreground-default: var(--ink-inverse); /** Default-state text/icon color on an inverse-surface interactive element&#39;s background. */
+  --interactive-inverse-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on an inverse-surface interactive element&#39;s background. */
+  --interactive-inverse-border-default: var(--fill-inverse); /** Default-state border for an inverse-surface interactive element. */
+  --interactive-inverse-border-hover: var(--fill-inversehover); /** Hover-state border for an inverse-surface interactive element. */
+  --interactive-inverse-border-pressed: var(--fill-inversepressed); /** Pressed-state border for an inverse-surface interactive element. */
+  --interactive-inverse-border-disabled: var(--line-subtle); /** Disabled-state border for an inverse-surface interactive element. */
+  --interactive-neutral-background-default: var(--fill-default); /** Default state for a neutral, general-purpose interactive element with no semantic meaning. */
+  --interactive-neutral-background-hover: var(--fill-canvas); /** Hover state for a neutral interactive element. */
+  --interactive-neutral-background-pressed: var(--fill-sunken); /** Pressed state for a neutral interactive element. */
+  --interactive-neutral-background-focused: var(--fill-default); /** Focused state for a neutral interactive element. */
+  --interactive-neutral-background-selected: var(--fill-sunken); /** Selected state for a neutral interactive element. */
+  --interactive-neutral-background-disabled: var(--fill-disabled); /** Disabled state for a neutral interactive element. */
+  --interactive-neutral-border-default: var(--line-default); /** Default-state border for a neutral interactive element. */
+  --interactive-neutral-border-hover: var(--line-strong); /** Hover-state border for a neutral interactive element. */
+  --interactive-neutral-border-pressed: var(--line-strong); /** Pressed-state border for a neutral interactive element. */
+  --interactive-neutral-border-disabled: var(--line-subtle); /** Disabled-state border for a neutral interactive element. */
+  --interactive-neutral-foreground-default: var(--ink-high); /** Default-state text/icon color on a neutral interactive element&#39;s background. */
+  --interactive-neutral-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on a neutral interactive element&#39;s background. */
+  --interactive-positive-border-default: var(--status-success-default); /** Default-state border for a high-emphasis positive-confirmation interactive element. */
+  --interactive-positive-border-hover: var(--status-success-default); /** Hover-state border for a high-emphasis positive-confirmation interactive element. */
+  --interactive-positive-border-pressed: var(--status-success-deep); /** Pressed-state border for a high-emphasis positive-confirmation interactive element. */
+  --interactive-positive-border-disabled: var(--line-subtle); /** Disabled-state border for a high-emphasis positive-confirmation interactive element. */
+  --interactive-positive-background-default: var(--status-success-default); /** Default state for a high-emphasis interactive element used for a positive confirmation action, such as Approve, Confirm, or Complete. */
+  --interactive-positive-background-hover: var(--status-success-subtle); /** Hover state for a high-emphasis positive-confirmation interactive element. */
+  --interactive-positive-background-pressed: var(--status-success-deep); /** Pressed state for a high-emphasis positive-confirmation interactive element. */
+  --interactive-positive-background-focused: var(--status-success-default); /** Focused state for a high-emphasis positive-confirmation interactive element. */
+  --interactive-positive-background-selected: var(--status-success-deep); /** Selected state for a high-emphasis positive-confirmation interactive element. */
+  --interactive-positive-background-disabled: var(--fill-disabled); /** Disabled state for a high-emphasis positive-confirmation interactive element. */
+  --interactive-positive-foreground-default: var(--brand-primary-on); /** Default-state text/icon color on a high-emphasis positive-confirmation interactive element&#39;s background. */
+  --interactive-positive-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on a high-emphasis positive-confirmation interactive element&#39;s background. */
+  --interactive-subtle-border-default: var(--brand-primary-default); /** Default-state border for a subtle interactive element. */
+  --interactive-subtle-border-hover: var(--brand-primary-subtle); /** Hover-state border for a subtle interactive element. */
+  --interactive-subtle-border-pressed: var(--brand-primary-deep); /** Pressed-state border for a subtle interactive element. */
+  --interactive-subtle-border-disabled: var(--line-subtle); /** Disabled-state border for a subtle interactive element. */
+  --interactive-subtle-background-default: var(--brand-primary-faint); /** Default state for a subtle interactive element, quieter in emphasis than secondary. */
+  --interactive-subtle-background-hover: var(--brand-primary-muted); /** Hover state for a subtle interactive element. */
+  --interactive-subtle-background-pressed: var(--brand-primary-subtle); /** Pressed state for a subtle interactive element. */
+  --interactive-subtle-background-focused: var(--brand-primary-faint); /** Focused state for a subtle interactive element. */
+  --interactive-subtle-background-selected: var(--brand-primary-subtle); /** Selected state for a subtle interactive element. */
+  --interactive-subtle-background-disabled: var(--fill-disabled); /** Disabled state for a subtle interactive element. */
+  --interactive-subtle-foreground-default: var(--ink-link); /** Default-state text/icon color on a subtle interactive element&#39;s background. */
+  --interactive-subtle-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on a subtle interactive element&#39;s background. */
+  --overlay-scrim: var(--fill-scrim); /** Semi-transparent dimming layer behind a drawer, sheet, or side panel */
+  --overlay-modal: var(--fill-overlay); /** Semi-transparent dimming layer behind a modal dialog, to focus attention on it */
+  --feedback-success-background: var(--status-success-faint); /** Background fill for success alerts, banners, and inline messages */
+  --feedback-success-foreground: var(--status-success-default); /** Icon/text color used inside success alerts and messages */
+  --feedback-warning-background: var(--status-warning-faint); /** Background fill for warning alerts, banners, and inline messages */
+  --feedback-warning-foreground: var(--status-warning-default); /** Icon/text color used inside warning alerts and messages */
+  --feedback-error-background: var(--status-error-faint); /** Background fill for error alerts, banners, and inline messages */
+  --feedback-error-foreground: var(--status-error-default); /** Icon/text color used inside error alerts and messages */
+  --feedback-info-background: var(--status-info-faint); /** Background fill for informational alerts, banners, and inline messages */
+  --feedback-info-foreground: var(--status-info-default); /** Icon/text color used inside informational alerts and messages */
+  --focus-ring: var(--line-focus); /** Soft glow/ring drawn just outside the focus outline, reinforcing keyboard focus */
+  --focus-outline: var(--line-focus); /** Solid outline drawn directly around an element on keyboard focus, for accessibility */
+  --chart-series-1: var(--data-1); /** 1st color in the categorical data-series palette, assigned in order across multiple series. */
+  --chart-series-2: var(--data-2); /** 2nd data series color */
+  --chart-series-3: var(--data-3); /** 3rd data series color */
+  --chart-series-4: var(--data-4); /** 4th data series color */
+  --chart-series-5: var(--data-5); /** 5th data series color */
+  --chart-series-6: var(--data-6); /** 6th data series color */
+  --chart-series-7: var(--data-7); /** 7th data series color */
+  --chart-series-8: var(--data-8); /** 8th data series color */
+  --chart-series-9: var(--data-9); /** 9th data series color */
+  --chart-series-10: var(--data-10); /** 10th data series color */
+  --chart-series-11: var(--data-11); /** 11th data series color */
+  --chart-series-12: var(--data-12); /** 12th data series color */
+  --chart-grid: var(--line-subtle); /** Color for background gridlines that help read values across a chart */
+  --chart-axis: var(--line-strong); /** Color for chart axis lines and axis tick labels */
+  --chart-reference: var(--line-stronger); /** Color for a reference or target line overlaid on a chart, e.g. a goal or average */
+  --chart-positive: var(--status-success-default); /** Color for data points/values trending up or improving */
+  --chart-negative: var(--status-error-default); /** Color for data points/values trending down or declining */
+  --chart-neutral: var(--data-neutral); /** Color for data points/values that are flat or unchanged */
+  --selection-background: var(--fill-selection); /** Highlight background applied to selected text or selected list/table items */
+  --selection-border: var(--line-selection); /** Border drawn around a selected item, e.g. a selected card or table row */
+  --selection-text: var(--ink-selection); /** Text color applied to selected or highlighted text */
+}

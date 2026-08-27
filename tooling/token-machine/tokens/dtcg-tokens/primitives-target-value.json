@@ -861,17 +861,17 @@
       }
     },
     "text": {
-      "fontfamily": {
-        "ZebraSans": {
+      "font-family": {
+        "Zebra-Sans": {
           "$type": "string",
           "$value": "Zebra Sans"
         },
-        "IBMPlexSans": {
+        "IBM-Plex-Sans": {
           "$type": "string",
           "$value": "IBM Plex Sans"
         }
       },
-      "fontweight": {
+      "font-weight": {
         "light": {
           "$type": "string",
           "$value": 300
@@ -889,7 +889,7 @@
           "$value": 700
         }
       },
-      "fontsize": {
+      "font-size": {
         "10": {
           "$type": "number",
           "$value": "10px"
@@ -947,7 +947,7 @@
           "$value": "52px"
         }
       },
-      "lineheight": {
+      "line-height": {
         "14": {
           "$type": "number",
           "$value": "14px"
@@ -997,7 +997,7 @@
           "$value": "60px"
         }
       },
-      "letterspacing": {
+      "letter-spacing": {
         "none": {
           "$type": "number",
           "$value": "0px"

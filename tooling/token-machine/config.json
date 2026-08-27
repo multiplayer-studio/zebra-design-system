@@ -3,10 +3,10 @@
     "tokenRootDir": "./tokens",
     "tokenDir": "./tokens/dtcg-tokens",
     "inputFile": "./tokens/raw-tokens.json",
-    "tempDir": "../../packages/zebra-design-system-tokens/dist/temp",
-    "cssOutputDir": "../../packages/zebra-design-system-tokens/dist/css",
-    "flutterOutputDir": "../../packages/zebra-design-system-tokens/dist/flutter",
-    "jsOutputDir": "../../packages/zebra-design-system-tokens/dist/js"
+    "tempDir": "../../packages/design-system-tokens/dist/temp",
+    "cssOutputDir": "../../packages/design-system-tokens/dist/css",
+    "flutterOutputDir": "../../packages/design-system-tokens/dist/flutter",
+    "jsOutputDir": "../../packages/design-system-tokens/dist/js"
   },
   "collections": {
     "color": ["primitives", "palette", "semantics"],

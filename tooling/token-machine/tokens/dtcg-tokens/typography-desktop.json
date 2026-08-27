@@ -2,385 +2,385 @@
   "typography": {
     "display": {
       "large": {
-        "fontfamily": {
+        "font-family": {
           "$type": "string",
-          "$value": "{primitives.text.fontfamily.IBMPlexSans}"
+          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
         },
-        "fontsize": {
+        "font-size": {
           "$type": "number",
-          "$value": "{primitives.text.fontsize.52}"
+          "$value": "{primitives.text.font-size.52}"
         },
-        "fontweight": {
+        "font-weight": {
           "$type": "string",
-          "$value": "{primitives.text.fontweight.light}"
+          "$value": "{primitives.text.font-weight.light}"
         },
-        "lineheight": {
+        "line-height": {
           "$type": "number",
-          "$value": "{primitives.text.lineheight.60}"
+          "$value": "{primitives.text.line-height.60}"
         },
-        "letterspacing": {
+        "letter-spacing": {
           "$type": "number",
-          "$value": "{primitives.text.letterspacing.none}"
+          "$value": "{primitives.text.letter-spacing.none}"
         }
       },
       "medium": {
-        "fontfamily": {
+        "font-family": {
           "$type": "string",
-          "$value": "{primitives.text.fontfamily.IBMPlexSans}"
+          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
         },
-        "fontsize": {
+        "font-size": {
           "$type": "number",
-          "$value": "{primitives.text.fontsize.44}"
+          "$value": "{primitives.text.font-size.44}"
         },
-        "fontweight": {
+        "font-weight": {
           "$type": "string",
-          "$value": "{primitives.text.fontweight.light}"
+          "$value": "{primitives.text.font-weight.light}"
         },
-        "lineheight": {
+        "line-height": {
           "$type": "number",
-          "$value": "{primitives.text.lineheight.52}"
+          "$value": "{primitives.text.line-height.52}"
         },
-        "letterspacing": {
+        "letter-spacing": {
           "$type": "number",
-          "$value": "{primitives.text.letterspacing.none}"
+          "$value": "{primitives.text.letter-spacing.none}"
         }
       },
       "small": {
-        "fontfamily": {
+        "font-family": {
           "$type": "string",
-          "$value": "{primitives.text.fontfamily.IBMPlexSans}"
+          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
         },
-        "fontsize": {
+        "font-size": {
           "$type": "number",
-          "$value": "{primitives.text.fontsize.36}"
+          "$value": "{primitives.text.font-size.36}"
         },
-        "fontweight": {
+        "font-weight": {
           "$type": "string",
-          "$value": "{primitives.text.fontweight.light}"
+          "$value": "{primitives.text.font-weight.light}"
         },
-        "lineheight": {
+        "line-height": {
           "$type": "number",
-          "$value": "{primitives.text.lineheight.40}"
+          "$value": "{primitives.text.line-height.40}"
         },
-        "letterspacing": {
+        "letter-spacing": {
           "$type": "number",
-          "$value": "{primitives.text.letterspacing.none}"
+          "$value": "{primitives.text.letter-spacing.none}"
         }
       }
     },
     "heading": {
       "large": {
-        "fontfamily": {
+        "font-family": {
           "$type": "string",
-          "$value": "{primitives.text.fontfamily.IBMPlexSans}"
+          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
         },
-        "fontsize": {
+        "font-size": {
           "$type": "number",
-          "$value": "{primitives.text.fontsize.32}"
+          "$value": "{primitives.text.font-size.32}"
         },
-        "fontweight": {
+        "font-weight": {
           "$type": "string",
-          "$value": "{primitives.text.fontweight.regular}"
+          "$value": "{primitives.text.font-weight.regular}"
         },
-        "lineheight": {
+        "line-height": {
           "$type": "number",
-          "$value": "{primitives.text.lineheight.36}"
+          "$value": "{primitives.text.line-height.36}"
         },
-        "letterspacing": {
+        "letter-spacing": {
           "$type": "number",
-          "$value": "{primitives.text.letterspacing.none}"
+          "$value": "{primitives.text.letter-spacing.none}"
         }
       },
       "medium": {
-        "fontfamily": {
+        "font-family": {
           "$type": "string",
-          "$value": "{primitives.text.fontfamily.IBMPlexSans}"
+          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
         },
-        "fontsize": {
+        "font-size": {
           "$type": "number",
-          "$value": "{primitives.text.fontsize.28}"
+          "$value": "{primitives.text.font-size.28}"
         },
-        "fontweight": {
+        "font-weight": {
           "$type": "string",
-          "$value": "{primitives.text.fontweight.regular}"
+          "$value": "{primitives.text.font-weight.regular}"
         },
-        "lineheight": {
+        "line-height": {
           "$type": "number",
-          "$value": "{primitives.text.lineheight.32}"
+          "$value": "{primitives.text.line-height.32}"
         },
-        "letterspacing": {
+        "letter-spacing": {
           "$type": "number",
-          "$value": "{primitives.text.letterspacing.none}"
+          "$value": "{primitives.text.letter-spacing.none}"
         }
       },
       "small": {
-        "fontfamily": {
+        "font-family": {
           "$type": "string",
-          "$value": "{primitives.text.fontfamily.IBMPlexSans}"
+          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
         },
-        "fontsize": {
+        "font-size": {
           "$type": "number",
-          "$value": "{primitives.text.fontsize.24}"
+          "$value": "{primitives.text.font-size.24}"
         },
-        "fontweight": {
+        "font-weight": {
           "$type": "string",
-          "$value": "{primitives.text.fontweight.regular}"
+          "$value": "{primitives.text.font-weight.regular}"
         },
-        "lineheight": {
+        "line-height": {
           "$type": "number",
-          "$value": "{primitives.text.lineheight.28}"
+          "$value": "{primitives.text.line-height.28}"
         },
-        "letterspacing": {
+        "letter-spacing": {
           "$type": "number",
-          "$value": "{primitives.text.letterspacing.none}"
+          "$value": "{primitives.text.letter-spacing.none}"
         }
       }
     },
     "title": {
       "large": {
-        "fontfamily": {
+        "font-family": {
           "$type": "string",
-          "$value": "{primitives.text.fontfamily.IBMPlexSans}"
+          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
         },
-        "fontsize": {
+        "font-size": {
           "$type": "number",
-          "$value": "{primitives.text.fontsize.20}"
+          "$value": "{primitives.text.font-size.20}"
         },
-        "fontweight": {
+        "font-weight": {
           "$type": "string",
-          "$value": "{primitives.text.fontweight.medium}"
+          "$value": "{primitives.text.font-weight.medium}"
         },
-        "lineheight": {
+        "line-height": {
           "$type": "number",
-          "$value": "{primitives.text.lineheight.24}"
+          "$value": "{primitives.text.line-height.24}"
         },
-        "letterspacing": {
+        "letter-spacing": {
           "$type": "number",
-          "$value": "{primitives.text.letterspacing.none}"
+          "$value": "{primitives.text.letter-spacing.none}"
         }
       },
       "medium": {
-        "fontfamily": {
+        "font-family": {
           "$type": "string",
-          "$value": "{primitives.text.fontfamily.IBMPlexSans}"
+          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
         },
-        "fontsize": {
+        "font-size": {
           "$type": "number",
-          "$value": "{primitives.text.fontsize.16}"
+          "$value": "{primitives.text.font-size.16}"
         },
-        "fontweight": {
+        "font-weight": {
           "$type": "string",
-          "$value": "{primitives.text.fontweight.medium}"
+          "$value": "{primitives.text.font-weight.medium}"
         },
-        "lineheight": {
+        "line-height": {
           "$type": "number",
-          "$value": "{primitives.text.lineheight.20}"
+          "$value": "{primitives.text.line-height.20}"
         },
-        "letterspacing": {
+        "letter-spacing": {
           "$type": "number",
-          "$value": "{primitives.text.letterspacing.none}"
+          "$value": "{primitives.text.letter-spacing.none}"
         }
       },
       "small": {
-        "fontfamily": {
+        "font-family": {
           "$type": "string",
-          "$value": "{primitives.text.fontfamily.IBMPlexSans}"
+          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
         },
-        "fontsize": {
+        "font-size": {
           "$type": "number",
-          "$value": "{primitives.text.fontsize.12}"
+          "$value": "{primitives.text.font-size.12}"
         },
-        "fontweight": {
+        "font-weight": {
           "$type": "string",
-          "$value": "{primitives.text.fontweight.medium}"
+          "$value": "{primitives.text.font-weight.medium}"
         },
-        "lineheight": {
+        "line-height": {
           "$type": "number",
-          "$value": "{primitives.text.lineheight.16}"
+          "$value": "{primitives.text.line-height.16}"
         },
-        "letterspacing": {
+        "letter-spacing": {
           "$type": "number",
-          "$value": "{primitives.text.letterspacing.none}"
+          "$value": "{primitives.text.letter-spacing.none}"
         }
       }
     },
     "body": {
       "large": {
-        "fontfamily": {
+        "font-family": {
           "$type": "string",
-          "$value": "{primitives.text.fontfamily.IBMPlexSans}"
+          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
         },
-        "fontsize": {
+        "font-size": {
           "$type": "number",
-          "$value": "{primitives.text.fontsize.20}"
+          "$value": "{primitives.text.font-size.20}"
         },
-        "fontweight": {
+        "font-weight": {
           "$type": "string",
-          "$value": "{primitives.text.fontweight.regular}"
+          "$value": "{primitives.text.font-weight.regular}"
         },
-        "lineheight": {
+        "line-height": {
           "$type": "number",
-          "$value": "{primitives.text.lineheight.24}"
+          "$value": "{primitives.text.line-height.24}"
         },
-        "letterspacing": {
+        "letter-spacing": {
           "$type": "number",
-          "$value": "{primitives.text.letterspacing.none}"
+          "$value": "{primitives.text.letter-spacing.none}"
         }
       },
       "medium": {
-        "fontfamily": {
+        "font-family": {
           "$type": "string",
-          "$value": "{primitives.text.fontfamily.IBMPlexSans}"
+          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
         },
-        "fontsize": {
+        "font-size": {
           "$type": "number",
-          "$value": "{primitives.text.fontsize.16}"
+          "$value": "{primitives.text.font-size.16}"
         },
-        "fontweight": {
+        "font-weight": {
           "$type": "string",
-          "$value": "{primitives.text.fontweight.regular}"
+          "$value": "{primitives.text.font-weight.regular}"
         },
-        "lineheight": {
+        "line-height": {
           "$type": "number",
-          "$value": "{primitives.text.lineheight.24}"
+          "$value": "{primitives.text.line-height.24}"
         },
-        "letterspacing": {
+        "letter-spacing": {
           "$type": "number",
-          "$value": "{primitives.text.letterspacing.none}"
+          "$value": "{primitives.text.letter-spacing.none}"
         }
       },
       "small": {
-        "fontfamily": {
+        "font-family": {
           "$type": "string",
-          "$value": "{primitives.text.fontfamily.IBMPlexSans}"
+          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
         },
-        "fontsize": {
+        "font-size": {
           "$type": "number",
-          "$value": "{primitives.text.fontsize.14}"
+          "$value": "{primitives.text.font-size.14}"
         },
-        "fontweight": {
+        "font-weight": {
           "$type": "string",
-          "$value": "{primitives.text.fontweight.regular}"
+          "$value": "{primitives.text.font-weight.regular}"
         },
-        "lineheight": {
+        "line-height": {
           "$type": "number",
-          "$value": "{primitives.text.lineheight.18}"
+          "$value": "{primitives.text.line-height.18}"
         },
-        "letterspacing": {
+        "letter-spacing": {
           "$type": "number",
-          "$value": "{primitives.text.letterspacing.none}"
+          "$value": "{primitives.text.letter-spacing.none}"
         }
       },
       "xsmall": {
-        "fontfamily": {
+        "font-family": {
           "$type": "string",
-          "$value": "{primitives.text.fontfamily.IBMPlexSans}"
+          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
         },
-        "fontsize": {
+        "font-size": {
           "$type": "number",
-          "$value": "{primitives.text.fontsize.12}"
+          "$value": "{primitives.text.font-size.12}"
         },
-        "fontweight": {
+        "font-weight": {
           "$type": "string",
-          "$value": "{primitives.text.fontweight.regular}"
+          "$value": "{primitives.text.font-weight.regular}"
         },
-        "lineheight": {
+        "line-height": {
           "$type": "number",
-          "$value": "{primitives.text.lineheight.16}"
+          "$value": "{primitives.text.line-height.16}"
         },
-        "letterspacing": {
+        "letter-spacing": {
           "$type": "number",
-          "$value": "{primitives.text.letterspacing.none}"
+          "$value": "{primitives.text.letter-spacing.none}"
         }
       }
     },
     "label": {
       "large": {
-        "fontfamily": {
+        "font-family": {
           "$type": "string",
-          "$value": "{primitives.text.fontfamily.IBMPlexSans}"
+          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
         },
-        "fontsize": {
+        "font-size": {
           "$type": "number",
-          "$value": "{primitives.text.fontsize.16}"
+          "$value": "{primitives.text.font-size.16}"
         },
-        "fontweight": {
+        "font-weight": {
           "$type": "string",
-          "$value": "{primitives.text.fontweight.medium}"
+          "$value": "{primitives.text.font-weight.medium}"
         },
-        "lineheight": {
+        "line-height": {
           "$type": "number",
-          "$value": "{primitives.text.lineheight.24}"
+          "$value": "{primitives.text.line-height.24}"
         },
-        "letterspacing": {
+        "letter-spacing": {
           "$type": "number",
-          "$value": "{primitives.text.letterspacing.none}"
+          "$value": "{primitives.text.letter-spacing.none}"
         }
       },
       "medium": {
-        "fontfamily": {
+        "font-family": {
           "$type": "string",
-          "$value": "{primitives.text.fontfamily.IBMPlexSans}"
+          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
         },
-        "fontsize": {
+        "font-size": {
           "$type": "number",
-          "$value": "{primitives.text.fontsize.14}"
+          "$value": "{primitives.text.font-size.14}"
         },
-        "fontweight": {
+        "font-weight": {
           "$type": "string",
-          "$value": "{primitives.text.fontweight.medium}"
+          "$value": "{primitives.text.font-weight.medium}"
         },
-        "lineheight": {
+        "line-height": {
           "$type": "number",
-          "$value": "{primitives.text.lineheight.20}"
+          "$value": "{primitives.text.line-height.20}"
         },
-        "letterspacing": {
+        "letter-spacing": {
           "$type": "number",
-          "$value": "{primitives.text.letterspacing.none}"
+          "$value": "{primitives.text.letter-spacing.none}"
         }
       },
       "small": {
-        "fontfamily": {
+        "font-family": {
           "$type": "string",
-          "$value": "{primitives.text.fontfamily.IBMPlexSans}"
+          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
         },
-        "fontsize": {
+        "font-size": {
           "$type": "number",
-          "$value": "{primitives.text.fontsize.12}"
+          "$value": "{primitives.text.font-size.12}"
         },
-        "fontweight": {
+        "font-weight": {
           "$type": "string",
-          "$value": "{primitives.text.fontweight.medium}"
+          "$value": "{primitives.text.font-weight.medium}"
         },
-        "lineheight": {
+        "line-height": {
           "$type": "number",
-          "$value": "{primitives.text.lineheight.16}"
+          "$value": "{primitives.text.line-height.16}"
         },
-        "letterspacing": {
+        "letter-spacing": {
           "$type": "number",
-          "$value": "{primitives.text.letterspacing.none}"
+          "$value": "{primitives.text.letter-spacing.none}"
         }
       },
       "indicator": {
-        "fontfamily": {
+        "font-family": {
           "$type": "string",
-          "$value": "{primitives.text.fontfamily.IBMPlexSans}"
+          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
         },
-        "fontsize": {
+        "font-size": {
           "$type": "number",
-          "$value": "{primitives.text.fontsize.12}"
+          "$value": "{primitives.text.font-size.12}"
         },
-        "fontweight": {
+        "font-weight": {
           "$type": "string",
-          "$value": "{primitives.text.fontweight.medium}"
+          "$value": "{primitives.text.font-weight.medium}"
         },
-        "lineheight": {
+        "line-height": {
           "$type": "number",
-          "$value": "{primitives.text.lineheight.14}"
+          "$value": "{primitives.text.line-height.14}"
         },
-        "letterspacing": {
+        "letter-spacing": {
           "$type": "number",
-          "$value": "{primitives.text.letterspacing.none}"
+          "$value": "{primitives.text.letter-spacing.none}"
         }
       }
     }

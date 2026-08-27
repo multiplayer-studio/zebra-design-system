@@ -36,7 +36,7 @@ export function synthesizeBuildingBlockCss(theme: string, type: BuildingBlockTyp
       if (lightVars) finalCss += `:root {\n  ${lightVars}\n}\n\n`;
       if (darkVars) {
         finalCss += `@media (prefers-color-scheme: dark) {\n  :root {\n    ${darkVars}\n  }\n}\n\n`;
-        finalCss += `:root.dark-mode, .dark-mode :root {\n  ${darkVars}\n}\n`;
+        finalCss += `[data-mode="dark"],\n:root.dark-mode, .dark-mode :root {\n  ${darkVars}\n}\n`;
       }
       hasContent = true;
     }

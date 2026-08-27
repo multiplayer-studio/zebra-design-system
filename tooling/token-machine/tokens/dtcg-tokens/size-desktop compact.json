@@ -13,7 +13,7 @@
       },
       "card": {
         "$type": "number",
-        "$value": "{primitives.scale.7}",
+        "$value": "{primitives.scale.6}",
         "$description": "= 16px, source: scale/6"
       },
       "gutter": {
@@ -65,7 +65,7 @@
     "control": {
       "target-min": {
         "$type": "number",
-        "$value": "{primitives.scale.14}",
+        "$value": "{primitives.scale.13}",
         "$description": "= 44px, source: scale/13"
       },
       "sm": {
@@ -97,13 +97,6 @@
         "$type": "number",
         "$value": "{primitives.scale.10}",
         "$description": "= 32px, source: scale/10"
-      }
-    },
-    "container": {
-      "default": {
-        "$type": "number",
-        "$value": "{primitives.scale.container.2}",
-        "$description": "= 600px, source: scale/22"
       }
     },
     "radius": {
@@ -144,18 +137,25 @@
       },
       "element-md": {
         "$type": "number",
-        "$value": "{primitives.scale.6}",
+        "$value": "{primitives.scale.4}",
         "$description": "= 16px, source: scale/6"
       },
       "container": {
         "$type": "number",
-        "$value": "{primitives.scale.8}",
+        "$value": "{primitives.scale.6}",
         "$description": "= 16px, source: scale/6"
       },
       "pill": {
         "$type": "number",
         "$value": "9999px",
         "$description": "Literal value, not a scale reference (fully rounded)"
+      }
+    },
+    "container": {
+      "default": {
+        "$type": "number",
+        "$value": "{primitives.scale.container.2}",
+        "$description": "= 600px, source: scale/22"
       }
     },
     "stroke": {
@@ -178,6 +178,76 @@
         "$type": "number",
         "$value": "{primitives.scale.3}",
         "$description": "= 4px, source: scale/2"
+      }
+    },
+    "shadow": {
+      "xsmall": {
+        "x": {
+          "$type": "number",
+          "$value": "{primitives.scale.0}",
+          "$description": "= 1px, source: scale/0"
+        },
+        "y": {
+          "$type": "number",
+          "$value": "{primitives.scale.1}",
+          "$description": "= 1px, source: scale/0"
+        },
+        "blur": {
+          "$type": "number",
+          "$value": "{primitives.scale.1}",
+          "$description": "= 2px, source: scale/1"
+        }
+      },
+      "small": {
+        "x": {
+          "$type": "number",
+          "$value": "{primitives.scale.0}",
+          "$description": "= 1px, source: scale/0"
+        },
+        "y": {
+          "$type": "number",
+          "$value": "{primitives.scale.2}",
+          "$description": "= 1px, source: scale/0"
+        },
+        "blur": {
+          "$type": "number",
+          "$value": "{primitives.scale.4}",
+          "$description": "= 2px, source: scale/1"
+        }
+      },
+      "medium": {
+        "x": {
+          "$type": "number",
+          "$value": "{primitives.scale.0}",
+          "$description": "= 1px, source: scale/0"
+        },
+        "y": {
+          "$type": "number",
+          "$value": "{primitives.scale.5}",
+          "$description": "= 1px, source: scale/0"
+        },
+        "blur": {
+          "$type": "number",
+          "$value": "{primitives.scale.7}",
+          "$description": "= 2px, source: scale/1"
+        }
+      },
+      "large": {
+        "x": {
+          "$type": "number",
+          "$value": "{primitives.scale.0}",
+          "$description": "= 1px, source: scale/0"
+        },
+        "y": {
+          "$type": "number",
+          "$value": "{primitives.scale.8}",
+          "$description": "= 1px, source: scale/0"
+        },
+        "blur": {
+          "$type": "number",
+          "$value": "{primitives.scale.11}",
+          "$description": "= 2px, source: scale/1"
+        }
       }
     }
   }

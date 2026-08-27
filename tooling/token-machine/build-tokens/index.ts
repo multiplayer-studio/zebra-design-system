@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { glob } from 'glob';
+import { fileURLToPath } from 'url';
 import './style-dictionary-formats.ts';
 import { TOKEN_DIR, TEMP_DIR, CSS_OUTPUT_DIR, FLUTTER_OUTPUT_DIR, JS_OUTPUT_DIR, COLOR_COLLECTIONS, SIZE_COLLECTIONS, TYPOGRAPHY_COLLECTIONS, COLOR_MODES, BREAKPOINT_MODES } from './constants.ts';
 import { dashToPascal } from './dart-helpers.ts';
@@ -8,6 +8,9 @@ import { compileTokens, compileFlatModeTokens, getSourceFilesForCollection } fro
 import { synthesizeCss } from './css-synthesizer.ts';
 import { synthesizeJs } from './js-synthesizer.ts';
 import { compilePrimitivesBuildingBlock, compileModeBuildingBlock, compileSemanticsBuildingBlock } from './flutter-building-blocks.ts';
+import { compileZetaTarget } from './zeta-generate.ts';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function writeFlutterPubspec() {
   const pubspec = `name: zebra_design_system_tokens
@@ -35,9 +38,10 @@ async function main() {
   writeFlutterPubspec();
 
   const themes = new Set<string>(['default']);
-  const tokenFiles = await glob(`${TOKEN_DIR}/*.json`);
+  const tokenFiles = fs.readdirSync(TOKEN_DIR).filter(file => file.endsWith('.json'));
   tokenFiles.forEach(file => {
-    const parts = path.basename(file, '.json').split('-');
+    const basename = path.basename(file, '.json');
+    const parts = basename.split('-');
     if (parts.length === 3 && !['base', 'value', ...COLOR_MODES, ...BREAKPOINT_MODES].includes(parts[1])) {
       themes.add(parts[1]);
     }
@@ -96,6 +100,9 @@ async function main() {
     await compileModeBuildingBlock('typography', BREAKPOINT_MODES, theme);
   }
   await compileSemanticsBuildingBlock();
+
+  console.log('\n\n🎯 Building zeta_flutter target...');
+  await compileZetaTarget();
 
   fs.rmSync(TEMP_DIR, { recursive: true, force: true });
   console.log('\n\n✅ Build complete. Temporary files cleaned up.');

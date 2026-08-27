@@ -25,7 +25,7 @@ export function synthesizeCss(theme: string, type: SynthesizeType, tempDir?: str
   if (type === 'color') {
     const lightSelector = `:root${themeClass ? `, ${themeClass}` : ''}`;
     const darkSelectorDefault = `@media (prefers-color-scheme: dark) { ${lightSelector}`;
-    const darkSelectorOverride = `${themeClass || ':root'}.dark-mode, .dark-mode ${themeClass || ':root'}`;
+    const darkSelectorOverride = `[data-mode="dark"],\n${themeClass || ':root'}.dark-mode, .dark-mode ${themeClass || ':root'}`;
     let lightVars = extractCssVariables(path.join(TEMP, `${theme}-light.css`));
     let darkVars = extractCssVariables(path.join(TEMP, `${theme}-dark.css`));
 

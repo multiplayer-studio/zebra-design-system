@@ -41,7 +41,7 @@ const PX_PATTERNS = config.tokens.pxPatterns;
 function normalizePathValue(pathSegments: string[], value: string | number | boolean): string | number | boolean {
   if (typeof value === 'string' && value.startsWith('{')) return value; // alias reference, leave untouched
 
-  const joinedPath = pathSegments.join('').toLowerCase();
+  const joinedPath = pathSegments.join('').toLowerCase().replace(/[-\s]/g, '');
 
   if (joinedPath.includes('fontweight') && typeof value === 'string' && value in FONT_WEIGHT_MAP) {
     return FONT_WEIGHT_MAP[value];
@@ -59,7 +59,7 @@ function normalizePathValue(pathSegments: string[], value: string | number | boo
 
 // Deep Object Setter for converting "brand/primary/500" into nested JSON
 function sanitizeTokenName(name: string): string {
-  return name.replace(/ /g, '');
+  return name.replace(/ /g, '-');
 }
 
 function setNestedProperty(obj: any, pathArray: string[], value: any) {

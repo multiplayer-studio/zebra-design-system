@@ -1,0 +1,206 @@
+/**
+ * Companion Theme - Size Variables
+ * This file is auto-generated. Do not edit directly.
+ */
+
+:root, .companion-theme {
+  --space-page: 16px;
+  --space-section: 24px;
+  --space-card: 12px;
+  --space-gutter: 16px;
+  --space-2xs: 2px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-none: 0px;
+  --control-target-min: 40px;
+  --control-sm: 36px;
+  --control-md: 40px;
+  --control-lg: 48px;
+  --control-icon-sm: 16px;
+  --control-icon-md: 20px;
+  --control-icon-lg: 28px;
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-element-sm: 4px;
+  --radius-element-md: 6px;
+  --radius-container: 12px;
+  --radius-pill: 9999px;
+  --container-default: 240px;
+  --stroke-base: 0px;
+  --stroke-thin: 1px;
+  --stroke-thick: 2px;
+  --stroke-heavy: 4px;
+  --shadow-xsmall-x: 0px;
+  --shadow-xsmall-y: 1px;
+  --shadow-xsmall-blur: 1px;
+  --shadow-small-x: 0px;
+  --shadow-small-y: 2px;
+  --shadow-small-blur: 6px;
+  --shadow-medium-x: 0px;
+  --shadow-medium-y: 8px;
+  --shadow-medium-blur: 16px;
+  --shadow-large-x: 0px;
+  --shadow-large-y: 20px;
+  --shadow-large-blur: 32px;
+}
+
+@media (min-width: 600px) {
+  :root, .companion-theme {
+    --space-page: 16px;
+  --space-section: 24px;
+  --space-card: 12px;
+  --space-gutter: 16px;
+  --space-2xs: 2px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-none: 0px;
+  --control-target-min: 40px;
+  --control-sm: 36px;
+  --control-md: 40px;
+  --control-lg: 48px;
+  --control-icon-sm: 16px;
+  --control-icon-md: 20px;
+  --control-icon-lg: 28px;
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-element-sm: 4px;
+  --radius-element-md: 6px;
+  --radius-container: 12px;
+  --radius-pill: 9999px;
+  --container-default: 600px;
+  --stroke-base: 0px;
+  --stroke-thin: 1px;
+  --stroke-thick: 2px;
+  --stroke-heavy: 4px;
+  --shadow-xsmall-x: 0px;
+  --shadow-xsmall-y: 1px;
+  --shadow-xsmall-blur: 1px;
+  --shadow-small-x: 0px;
+  --shadow-small-y: 2px;
+  --shadow-small-blur: 6px;
+  --shadow-medium-x: 0px;
+  --shadow-medium-y: 8px;
+  --shadow-medium-blur: 16px;
+  --shadow-large-x: 0px;
+  --shadow-large-y: 20px;
+  --shadow-large-blur: 32px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root, .companion-theme {
+    --space-page: 16px;
+  --space-section: 24px;
+  --space-card: 12px;
+  --space-gutter: 16px;
+  --space-2xs: 2px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-none: 0px;
+  --control-target-min: 40px;
+  --control-sm: 36px;
+  --control-md: 40px;
+  --control-lg: 48px;
+  --control-icon-sm: 16px;
+  --control-icon-md: 20px;
+  --control-icon-lg: 28px;
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-element-sm: 4px;
+  --radius-element-md: 6px;
+  --radius-container: 12px;
+  --radius-pill: 9999px;
+  --container-default: 1200px;
+  --stroke-base: 0px;
+  --stroke-thin: 1px;
+  --stroke-thick: 2px;
+  --stroke-heavy: 4px;
+  --shadow-xsmall-x: 0px;
+  --shadow-xsmall-y: 1px;
+  --shadow-xsmall-blur: 1px;
+  --shadow-small-x: 0px;
+  --shadow-small-y: 2px;
+  --shadow-small-blur: 6px;
+  --shadow-medium-x: 0px;
+  --shadow-medium-y: 8px;
+  --shadow-medium-blur: 16px;
+  --shadow-large-x: 0px;
+  --shadow-large-y: 20px;
+  --shadow-large-blur: 32px;
+  }
+}
+
+@media (min-width: 840px) {
+  :root, .companion-theme {
+    --space-page: 16px;
+  --space-section: 24px;
+  --space-card: 12px;
+  --space-gutter: 16px;
+  --space-2xs: 2px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-none: 0px;
+  --control-target-min: 40px;
+  --control-sm: 36px;
+  --control-md: 40px;
+  --control-lg: 48px;
+  --control-icon-sm: 16px;
+  --control-icon-md: 20px;
+  --control-icon-lg: 28px;
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-element-sm: 4px;
+  --radius-element-md: 6px;
+  --radius-container: 12px;
+  --radius-pill: 9999px;
+  --container-default: 840px;
+  --stroke-base: 0px;
+  --stroke-thin: 1px;
+  --stroke-thick: 2px;
+  --stroke-heavy: 4px;
+  --shadow-xsmall-x: 0px;
+  --shadow-xsmall-y: 1px;
+  --shadow-xsmall-blur: 1px;
+  --shadow-small-x: 0px;
+  --shadow-small-y: 2px;
+  --shadow-small-blur: 6px;
+  --shadow-medium-x: 0px;
+  --shadow-medium-y: 8px;
+  --shadow-medium-blur: 16px;
+  --shadow-large-x: 0px;
+  --shadow-large-y: 20px;
+  --shadow-large-blur: 32px;
+  }
+}

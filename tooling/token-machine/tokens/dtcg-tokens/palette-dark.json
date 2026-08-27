@@ -101,7 +101,7 @@
       },
       "overlay": {
         "$type": "color",
-        "$value": "{primitives.color.neutral.cool.100}",
+        "$value": "{primitives.color.neutral.cool.80}",
         "$description": "Modal/popover panel background (theme.color.surface.overlay)"
       },
       "inverse": {
@@ -143,15 +143,15 @@
         },
         "emphasis": {
           "$type": "color",
-          "$value": "#00000040"
+          "$value": "#0000000d"
         },
         "elevate": {
           "$type": "color",
-          "$value": "#00000080"
+          "$value": "#00000026"
         },
         "obsure": {
           "$type": "color",
-          "$value": "#000000bf"
+          "$value": "#00000073"
         }
       }
     },
@@ -344,7 +344,7 @@
       },
       "4": {
         "$type": "color",
-        "$value": "{primitives.color.accent.1.50}"
+        "$value": "{primitives.color.accent.1.40}"
       },
       "5": {
         "$type": "color",
@@ -368,7 +368,7 @@
       },
       "10": {
         "$type": "color",
-        "$value": "{primitives.color.extend.2.50}"
+        "$value": "{primitives.color.extend.2.40}"
       },
       "11": {
         "$type": "color",
