@@ -1,0 +1,32 @@
+name: Update Zeta Icons
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [update-icons]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
+
+      - name: Update Zeta Icons
+        run: yarn add @zebra-fed/zeta-icons@latest
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: "deps: Update zeta-icons library"
+          branch: "update-zeta-icons"
+          base: "main"
+          delete-branch: true
+          title: "deps: Update zeta-icons library"
+          labels: "icons"

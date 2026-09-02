@@ -1,0 +1,52 @@
+name: CI - On Main
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/zeta-web/**'
+      - 'packages/design-system-tokens/**'
+      - '.github/workflows/zeta-web-on-main.yml'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  deploy-qa-demo:
+    name: Deploy preview version of the storybook on firebase
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Create custom-elements.json
+        run: yarn run analyze
+
+      - name: Build storybook
+        run: yarn run storybook:build
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_ZETA_DS }}"
+          channelId: "live"

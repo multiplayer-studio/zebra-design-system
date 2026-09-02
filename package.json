@@ -2,20 +2,19 @@
   "name": "zebra-design-system",
   "private": true,
   "scripts": {
-    "clean:tokens": "npm run clean --workspace=tooling/token-machine",
-    "fetch:tokens": "npm run fetch --workspace=tooling/token-machine",
-    "convert:tokens": "npm run convert --workspace=tooling/token-machine",
-    "build:tokens": "npm run build --workspace=tooling/token-machine",
-    "pack:tokens": "npm pack --workspace=packages/design-system-tokens",
-    "export:tokens": "npm run export --workspace=tooling/token-machine",
-    "sync:tokens": "npm run clean:tokens && npm run convert:tokens && npm run build:tokens && npm run export:tokens",
-    "dev:tokens-web": "npm run dev --workspace=apps/token-showcase-web",
+    "clean:tokens": "yarn workspace tooling/token-machine clean",
+    "fetch:tokens": "yarn workspace tooling/token-machine fetch",
+    "convert:tokens": "yarn workspace tooling/token-machine convert",
+    "build:tokens": "yarn workspace tooling/token-machine build",
+    "pack:tokens": "yarn workspace packages/design-system-tokens pack",
+    "export:tokens": "yarn workspace tooling/token-machine export",
+    "sync:tokens": "yarn clean:tokens && yarn convert:tokens && yarn build:tokens && yarn export:tokens",
+    "dev:tokens-web": "yarn workspace token-showcase-web dev",
     "dev:tokens-flutter": "cd apps/token-showcase-flutter && flutter run"
   },
   "workspaces": [
     "tooling/*",
     "packages/*",
-    "packages/zebra-web",
     "apps/*"
   ],
   "dependencies": {
@@ -23,5 +22,18 @@
   },
   "devDependencies": {
     "vitest": "^4.1.10"
-  }
+  },
+  "resolutions": {
+    "react-router-dom": "^6.3.0",
+    "react-router": "^6.3.0",
+    "@isaacs/brace-expansion": "^5.0.1",
+    "@xmldom/xmldom": "^0.8.13",
+    "picomatch": "^4.0.2",
+    "undici": "^7.28.0",
+    "js-yaml": "^4.3.0",
+    "brace-expansion": "^2.1.4",
+    "@puppeteer/browsers": "^3.0.0",
+    "uuid": "^11.1.1"
+  },
+  "packageManager": "yarn@4.0.2+sha512.4e502bea682e7d8004561f916f1da2dfbe6f718024f6aa50bf8cd86f38ea3a94a7f1bf854a9ca666dd8eafcfb8d44baaa91bf5c7876e79a7aeac952c332f0e88"
 }
