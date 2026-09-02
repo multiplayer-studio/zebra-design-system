@@ -1,1 +1,0 @@
-export default `<zeta-file-upload class="full" caption="Supports: JPG, JPEG2000, PNG. Max file size 100mb" multiple></zeta-file-upload>`;

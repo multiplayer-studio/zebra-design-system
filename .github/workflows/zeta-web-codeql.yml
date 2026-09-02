@@ -1,0 +1,44 @@
+name: "CodeQL"
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - 'packages/zeta-web/**'
+      - 'packages/tokens/**'
+      - '.github/workflows/zeta-web-codeql.yml'
+  pull_request:
+    branches:
+      - "main"
+    paths:
+      - 'packages/zeta-web/**'
+      - 'packages/design-system-tokens/**'
+      - '.github/workflows/zeta-web-codeql.yml'
+  schedule:
+    - cron: "24 8 * * 0"
+
+jobs:
+  codeql:
+    name: Analyze Code Quality
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ["javascript"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: ${{ matrix.language }}
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+        with:
+          category: "/language:${{matrix.language}}"

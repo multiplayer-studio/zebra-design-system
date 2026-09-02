@@ -1,3 +1,0 @@
-export default `<div class="container">
-    <zeta-status-chip text="Status Chip"> </zeta-status-chip>
-</div>`;

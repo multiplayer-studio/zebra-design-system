@@ -1,5 +1,0 @@
-export default `<div class="container">
-    <zeta-filter-chip active>
-        Label
-    </zeta-filter-chip>
-</div>`;

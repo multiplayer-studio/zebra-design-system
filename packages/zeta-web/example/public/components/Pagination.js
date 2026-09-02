@@ -1,3 +1,0 @@
-export default `<div class="container">
-    <zeta-pagination></zeta-pagination>
-</div>`;
