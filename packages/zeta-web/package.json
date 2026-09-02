@@ -130,8 +130,8 @@
     "@fontsource/ibm-plex-sans": "^5.3.0",
     "@lit/localize": "^0.12.2",
     "@zebra-fed/zeta-icons": "1.9.6",
-    "tokens": "file:../tokens/",
-    "lit": "^3.3.3"
+    "lit": "^3.3.3",
+    "tokens": "file:../tokens/"
   },
   "overrides": {
     "@storybook/blocks": {

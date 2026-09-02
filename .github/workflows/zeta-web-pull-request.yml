@@ -35,16 +35,19 @@ jobs:
         run: yarn install --immutable
 
       - name: Run lit-localize extract
-        run: yarn run localize:extract
+        run: cd packages/zeta-web && yarn run localize:extract
 
       - name: Run lit-localize build
-        run: yarn run localize:build
+        run: cd packages/zeta-web && yarn run localize:build
+
+      - name: Debug - List src directory
+        run: cd packages/zeta-web && ls -la src/ || echo "src directory not found"
 
       - name: Format code
-        run: npx prettier src --write --ignore-unknown
+        run: cd packages/zeta-web && yarn run prettier
 
       - name: Run test-count
-        run: yarn test:count
+        run: cd packages/zeta-web && yarn test:count
 
       - name: Check diff
         id: diff
@@ -87,10 +90,10 @@ jobs:
         uses: ZebraDevs/web-components-code-quality@a9ead66559ba1d72fdc71f0112f97082d6f2725b
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          test-results-path: "src/test/test-results.xml"
-          eslint-config-path: "src/eslint.config.mjs"
-          test-config-path: "src/test/web-test-runner.config.js"
-          lit-analyzer-cmd: "npx lit-analyzer src/components/**/* src/stories/**/* src/mixins/**/* src/test/**/* src/utils/**/* --quiet --format markdown"
+          test-results-path: "packages/zeta-web/src/test/test-results.xml"
+          eslint-config-path: "packages/zeta-web/src/eslint.config.mjs"
+          test-config-path: "packages/zeta-web/src/test/web-test-runner.config.js"
+          lit-analyzer-cmd: "npx lit-analyzer packages/zeta-web/src/components/**/* packages/zeta-web/src/stories/**/* packages/zeta-web/src/mixins/**/* packages/zeta-web/src/test/**/* packages/zeta-web/src/utils/**/* --quiet --format markdown"
 
   deploy-preview:
     timeout-minutes: 20
@@ -115,10 +118,10 @@ jobs:
         run: yarn install --immutable
 
       - name: Create custom-elements.json
-        run: yarn run analyze
+        run: cd packages/zeta-web && yarn run analyze
 
       - name: Build storybook
-        run: yarn run storybook:build
+        run: cd packages/zeta-web && yarn run storybook:build
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:

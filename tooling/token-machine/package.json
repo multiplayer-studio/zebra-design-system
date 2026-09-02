@@ -1,11 +1,10 @@
 {
-  "name": "token-machine",
+  "name": "@zebra-design-system/token-machine",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "clean": "tsx clean-tokens.ts",
     "fetch": "tsx --env-file=../../.env fetch-tokens.ts",
-    "preconvert": "npm run fetch",
     "convert": "tsx --env-file=../../.env convert-tokens.ts",
     "build": "tsx build-tokens/index.ts",
     "export": "tsx export-resolved-tokens.ts"
@@ -14,5 +13,6 @@
     "style-dictionary": "^5.5.0",
     "tsx": "^4.23.5",
     "typescript": "^7.0.2"
-  }
+  },
+  "packageManager": "yarn@4.18.0"
 }

@@ -34,9 +34,8 @@ async function deleteFolders(folderPaths: string[]): Promise<void> {
   try {
     const foldersToClean = [
       path.join(__dirname, 'tokens'),
-      path.join(__dirname, '../../packages/design-system-tokens/dist/css/'),
-      path.join(__dirname, '../../packages/design-system-tokens/dist/flutter/lib/'),
-      path.join(__dirname, '../../packages/design-system-tokens/dist/js/'),
+      path.join(__dirname, '../../packages/tokens/dist/css/'),
+      path.join(__dirname, '../../packages/tokens/dist/js/'),
     ];
     await deleteFolders(foldersToClean);
   } catch (error) {

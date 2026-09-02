@@ -143,15 +143,15 @@
         },
         "emphasis": {
           "$type": "color",
-          "$value": "#0000000d"
+          "$value": "{primitives.color.alpha.dark.5}"
         },
         "elevate": {
           "$type": "color",
-          "$value": "#0000001a"
+          "$value": "{primitives.color.alpha.dark.10}"
         },
         "obsure": {
           "$type": "color",
-          "$value": "#00000040"
+          "$value": "{primitives.color.alpha.dark.30}"
         }
       }
     },
@@ -299,6 +299,31 @@
           "$type": "color",
           "$value": "{primitives.color.system.info.70}"
         }
+      },
+      "ghost": {
+        "default": {
+          "$type": "color",
+          "$value": "{primitives.color.alpha.dark.0}",
+          "$description": "Info color (theme.color.info.default)"
+        },
+        "faint": {
+          "$type": "color",
+          "$value": "{primitives.color.alpha.dark.5}",
+          "$description": "Info background tint (theme.color.info.subtle)"
+        },
+        "deep": {
+          "$type": "color",
+          "$value": "{primitives.color.alpha.dark.10}",
+          "$description": "Info solid/strong emphasis (theme.color.info.strong)"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{primitives.color.alpha.dark.0}"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{primitives.color.alpha.dark.20}"
+        }
       }
     },
     "line": {
@@ -319,6 +344,10 @@
       "subtle": {
         "$type": "color",
         "$value": "{primitives.color.neutral.cool.30}"
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{primitives.color.pure.white}"
       },
       "strong": {
         "$type": "color",

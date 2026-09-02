@@ -5,9 +5,6 @@
 
 :root {
   --fill-transparent: rgba(243, 246, 250, 0);
-  --fill-transparent-emphasis: rgba(0, 0, 0, 0.05);
-  --fill-transparent-elevate: rgba(0, 0, 0, 0.1);
-  --fill-transparent-obsure: rgba(0, 0, 0, 0.25);
   --brand-primary-default: var(--color-brand-main-60); /** Primary brand color (theme.color.brand.primary) */
   --brand-primary-faint: var(--color-brand-main-10); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
   --brand-primary-subtle: var(--color-brand-main-50);
@@ -35,6 +32,9 @@
   --fill-inversehover: var(--color-neutral-cool-80);
   --fill-inversepressed: var(--color-neutral-cool-100);
   --fill-disabled: var(--color-neutral-cool-30);
+  --fill-transparent-emphasis: var(--color-alpha-dark-5);
+  --fill-transparent-elevate: var(--color-alpha-dark-10);
+  --fill-transparent-obsure: var(--color-alpha-dark-30);
   --ink-high: var(--color-neutral-cool-100); /** High-emphasis text/icon color (theme.color.content.high) */
   --ink-medium: var(--color-neutral-cool-70); /** Medium-emphasis text/icon color (theme.color.content.medium) */
   --ink-low: var(--color-neutral-cool-60); /** Low-emphasis text/icon color (theme.color.content.low) */
@@ -63,10 +63,16 @@
   --status-info-deep: var(--color-system-info-80); /** Info solid/strong emphasis (theme.color.info.strong) */
   --status-info-subtle: var(--color-system-info-50);
   --status-info-strong: var(--color-system-info-70);
+  --status-ghost-default: var(--color-alpha-dark-0); /** Info color (theme.color.info.default) */
+  --status-ghost-faint: var(--color-alpha-dark-5); /** Info background tint (theme.color.info.subtle) */
+  --status-ghost-deep: var(--color-alpha-dark-10); /** Info solid/strong emphasis (theme.color.info.strong) */
+  --status-ghost-subtle: var(--color-alpha-dark-0);
+  --status-ghost-strong: var(--color-alpha-dark-20);
   --line-selection: var(--color-brand-main-60); /** Selected item border/outline (theme.color.selection.border) */
   --line-focus: var(--color-brand-main-60); /** Selected item border/outline (theme.color.selection.border) */
   --line-default: var(--color-neutral-cool-40);
   --line-subtle: var(--color-neutral-cool-30);
+  --line-inverse: var(--color-pure-white);
   --line-strong: var(--color-neutral-cool-60);
   --line-stronger: var(--color-neutral-cool-80);
   --data-1: var(--color-brand-main-60);
@@ -151,10 +157,16 @@
   --status-info-deep: var(--color-system-info-30); /** Info solid/strong emphasis (theme.color.info.strong) */
   --status-info-subtle: var(--color-system-info-60);
   --status-info-strong: var(--color-system-info-40);
+  --status-ghost-default: var(--color-alpha-light-0); /** Info color (theme.color.info.default) */
+  --status-ghost-faint: var(--color-alpha-light-5); /** Info background tint (theme.color.info.subtle) */
+  --status-ghost-deep: var(--color-alpha-light-10); /** Info solid/strong emphasis (theme.color.info.strong) */
+  --status-ghost-subtle: var(--color-alpha-light-0);
+  --status-ghost-strong: var(--color-alpha-light-20);
   --line-selection: var(--color-brand-main-50); /** Selected item border/outline (theme.color.selection.border) */
   --line-focus: var(--color-brand-main-50); /** Selected item border/outline (theme.color.selection.border) */
   --line-default: var(--color-neutral-cool-70);
   --line-subtle: var(--color-neutral-cool-80);
+  --line-inverse: var(--color-pure-black);
   --line-strong: var(--color-neutral-cool-50);
   --line-stronger: var(--color-neutral-cool-30);
   --data-1: var(--color-brand-main-50);
@@ -240,10 +252,16 @@
   --status-info-deep: var(--color-system-info-30); /** Info solid/strong emphasis (theme.color.info.strong) */
   --status-info-subtle: var(--color-system-info-60);
   --status-info-strong: var(--color-system-info-40);
+  --status-ghost-default: var(--color-alpha-light-0); /** Info color (theme.color.info.default) */
+  --status-ghost-faint: var(--color-alpha-light-5); /** Info background tint (theme.color.info.subtle) */
+  --status-ghost-deep: var(--color-alpha-light-10); /** Info solid/strong emphasis (theme.color.info.strong) */
+  --status-ghost-subtle: var(--color-alpha-light-0);
+  --status-ghost-strong: var(--color-alpha-light-20);
   --line-selection: var(--color-brand-main-50); /** Selected item border/outline (theme.color.selection.border) */
   --line-focus: var(--color-brand-main-50); /** Selected item border/outline (theme.color.selection.border) */
   --line-default: var(--color-neutral-cool-70);
   --line-subtle: var(--color-neutral-cool-80);
+  --line-inverse: var(--color-pure-black);
   --line-strong: var(--color-neutral-cool-50);
   --line-stronger: var(--color-neutral-cool-30);
   --data-1: var(--color-brand-main-50);

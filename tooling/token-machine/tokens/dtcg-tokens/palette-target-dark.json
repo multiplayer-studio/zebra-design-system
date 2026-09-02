@@ -299,6 +299,31 @@
           "$type": "color",
           "$value": "{primitives.color.system.info.40}"
         }
+      },
+      "ghost": {
+        "default": {
+          "$type": "color",
+          "$value": "{primitives.color.alpha.light.0}",
+          "$description": "Info color (theme.color.info.default)"
+        },
+        "faint": {
+          "$type": "color",
+          "$value": "{primitives.color.alpha.light.5}",
+          "$description": "Info background tint (theme.color.info.subtle)"
+        },
+        "deep": {
+          "$type": "color",
+          "$value": "{primitives.color.alpha.light.10}",
+          "$description": "Info solid/strong emphasis (theme.color.info.strong)"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{primitives.color.alpha.light.0}"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{primitives.color.alpha.light.20}"
+        }
       }
     },
     "line": {
@@ -319,6 +344,10 @@
       "subtle": {
         "$type": "color",
         "$value": "{primitives.color.neutral.cool.80}"
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{primitives.color.pure.black}"
       },
       "strong": {
         "$type": "color",

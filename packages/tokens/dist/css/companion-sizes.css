@@ -50,6 +50,7 @@
   --shadow-large-x: 0px;
   --shadow-large-y: 20px;
   --shadow-large-blur: 32px;
+  --shape: sharp;
 }
 
 @media (min-width: 600px) {
@@ -100,6 +101,7 @@
   --shadow-large-x: 0px;
   --shadow-large-y: 20px;
   --shadow-large-blur: 32px;
+  --shape: rounded;
   }
 }
 
@@ -151,6 +153,7 @@
   --shadow-large-x: 0px;
   --shadow-large-y: 20px;
   --shadow-large-blur: 32px;
+  --shape: rounded;
   }
 }
 
@@ -202,5 +205,6 @@
   --shadow-large-x: 0px;
   --shadow-large-y: 20px;
   --shadow-large-blur: 32px;
+  --shape: rounded;
   }
 }

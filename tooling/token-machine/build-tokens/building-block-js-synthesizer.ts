@@ -1,12 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { TEMP_DIR, JS_OUTPUT_DIR, BREAKPOINT_MODES } from './constants.ts';
-import { dashToCamel } from './dart-helpers.ts';
-
-function readJsObjectFragment(filePath: string): string {
-  if (!fs.existsSync(filePath)) return '';
-  return fs.readFileSync(filePath, 'utf-8').trim();
-}
+import { dashToCamel, readJsObjectFragment } from './utils.ts';
 
 export type BuildingBlockType = 'primitives' | 'palette' | 'size' | 'typography' | 'semantics';
 

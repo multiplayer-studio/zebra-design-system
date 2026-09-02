@@ -164,6 +164,11 @@
         "$value": "{palette.line.subtle}",
         "$description": "Faint border for low-emphasis separation, e.g. nested cards"
       },
+      "inverse": {
+        "$type": "color",
+        "$value": "{palette.line.inverse}",
+        "$description": "Low-emphasis border, e.g. subtle dividers."
+      },
       "strong": {
         "$type": "color",
         "$value": "{palette.line.strong}",
@@ -348,32 +353,32 @@
         "background": {
           "default": {
             "$type": "color",
-            "$value": "{palette.fill.transparent.selfvalue}",
+            "$value": "{palette.status.ghost.default}",
             "$description": "Default state for a ghost interactive element, minimal in styling with no fill, for low-emphasis actions."
           },
           "hover": {
             "$type": "color",
-            "$value": "{palette.brand.primary.faint}",
+            "$value": "{palette.status.ghost.faint}",
             "$description": "Hover state for a ghost interactive element."
           },
           "pressed": {
             "$type": "color",
-            "$value": "{palette.brand.primary.muted}",
+            "$value": "{palette.status.ghost.deep}",
             "$description": "Pressed state for a ghost interactive element."
           },
           "focused": {
             "$type": "color",
-            "$value": "{palette.fill.transparent.selfvalue}",
+            "$value": "{palette.status.ghost.default}",
             "$description": "Focused state for a ghost interactive element."
           },
           "selected": {
             "$type": "color",
-            "$value": "{palette.brand.primary.muted}",
+            "$value": "{palette.status.ghost.faint}",
             "$description": "Selected state for a ghost interactive element."
           },
           "disabled": {
             "$type": "color",
-            "$value": "{palette.fill.disabled}",
+            "$value": "{palette.status.ghost.default}",
             "$description": "Disabled state for a ghost interactive element."
           }
         },

@@ -1,32 +1,29 @@
 # token-machine
 
-Internal tool that pulls design tokens out of Figma (via the Figma Variables REST API) and turns them into the CSS custom properties shipped in `packages/zebra-design-system-tokens`.
+Pulls design tokens from Figma (via the Figma Variables REST API) and compiles them into CSS custom properties and JavaScript objects shipped in `packages/tokens`.
 
-Pipeline, end to end:
+Pipeline:
 
 ```
 Figma Variables API
       │  fetch-tokens.ts
       ▼
-tokens/raw-tokens.json            (flat dump of Figma collections/variables)
+tokens/raw-tokens.json
       │  convert-tokens.ts
       ▼
-tokens/dtcg-tokens/*.json         (one file per collection+mode, DTCG format)
-      │  build-tokens/ (Style Dictionary + format synthesizers)
+tokens/dtcg-tokens/*.json         (DTCG format, one per collection+mode)
+      │  build-tokens/ (Style Dictionary + synthesizers)
       ▼
-┌─────────────────────────────────────────┐
-│ CSS         │ JavaScript  │ Flutter/Dart│
-│ colors.css  │ colors.js   │ colors.dart │
-│ sizes.css   │ sizes.js    │ sizes.dart  │
-│ typography  │ typography  │ typography  │
-│   .css      │    .js      │    .dart    │
-└─────────────────────────────────────────┘
+┌──────────────────────┐
+│ CSS         │ JavaScript
+│ colors.css  │ colors.js
+│ sizes.css   │ sizes.js
+│ typography  │ typography.js
+└──────────────────────┘
       │  export-resolved-tokens.ts
       ▼
 services/mcp-server/src/resources/resolved-tokens.json
 ```
-
-`clean-tokens.ts` wipes the generated output (`tokens/` and the tokens package's `dist/`) so you can rebuild from scratch.
 
 ## Prerequisites
 
@@ -42,37 +39,30 @@ services/mcp-server/src/resources/resolved-tokens.json
 
 ## Configuration
 
-Token-machine constants (collection names, modes, breakpoints, px conversion rules, etc.) are centralized in `tooling/token-machine/config.json`. Updating Figma collections, modes, or breakpoint rules requires editing this file:
+Token-machine constants are centralized in `config.json`. When Figma collections, modes, or breakpoints change:
 
-- **`directories`**: output paths for CSS, JavaScript, Flutter, and token artifacts.
-- **`collections`**: which DTCG collections feed into each output type (color, size, typography).
-- **`modes`**: color modes (`light`/`dark`) and breakpoint modes (`mobile`/`tablet`/`desktop`/`desktop compact`).
-- **`tokens.fontWeights`**: Figma font weight names → numeric values (Light→300, Regular→400, Medium→500, Bold→700).
-- **`tokens.pxPatterns`**: token name patterns that should be suffixed with `px` in CSS/JS output (e.g., `fontsize`, `space`, `radius`).
-- **`tokens.groupValueKey`**: reserved key for group-level token values (normally `selfvalue`).
+- **`directories`**: output paths for CSS and JavaScript artifacts.
+- **`collections`**: DTCG collections for color, size, typography.
+- **`modes`**: color modes (`light`/`dark`) and breakpoint modes.
+- **`tokens`**: font weights, px patterns (e.g., `fontsize`, `space`), and group value key.
 
 If a Figma collection, mode, or breakpoint is added, update the corresponding array in `config.json` and re-run `sync:tokens`.
 
 ## Running it
 
-From the repo root, use the workspace scripts (defined in the root `package.json`):
+From the repo root:
 
 ```bash
-npm run fetch:tokens    # pull latest variables from Figma -> tokens/raw-tokens.json
-npm run convert:tokens  # raw-tokens.json -> tokens/dtcg-tokens/*.json
-npm run build:tokens    # dtcg-tokens/*.json -> dist/css/*.js/*.dart (via Style Dictionary + synthesizers)
-npm run export:tokens   # css/*.css -> services/mcp-server/src/resources/resolved-tokens.json
-npm run clean:tokens    # delete tokens/ and the tokens package's dist/
+npm run fetch:tokens    # Figma → tokens/raw-tokens.json
+npm run convert:tokens  # raw-tokens.json → tokens/dtcg-tokens/*.json
+npm run build:tokens    # dtcg-tokens/ → dist/css/ + dist/js/
+npm run export:tokens   # css/*.css → services/mcp-server/src/resources/resolved-tokens.json
+npm run clean:tokens    # delete tokens/ and tokens package dist/
 
-npm run sync:tokens     # clean -> fetch -> convert -> build -> export, in order
-
-npm run dev:tokens-web      # launch web token showcase (React)
-npm run dev:tokens-flutter  # launch Flutter token showcase
+npm run sync:tokens     # clean → fetch → convert → build → export (full cycle)
 ```
 
-Or from inside `tooling/token-machine/` directly (`npm run fetch`, `npm run convert`, `npm run build`, `npm run clean`, `npm run export`).
-
-`sync:tokens` is the one you want for "give me the latest tokens from Figma end to end." Run `build:tokens` on its own if you've hand-edited a file in `tokens/dtcg-tokens/` and just want to regenerate tokens without hitting the Figma API.
+`sync:tokens` is the standard "update all tokens from Figma" command. Run `build:tokens` alone if you've edited `tokens/dtcg-tokens/` directly and only need to regenerate outputs.
 
 ## The pipeline, stage by stage
 
@@ -97,35 +87,26 @@ Reads `tokens/raw-tokens.json` and, for every `(collection, mode)` pair, writes 
 - **Extension/override collections** (Figma "collection extends collection" — `isExtension: true` with `variableOverrides`): the script resolves the parent collection, writes the file as `{parentName}-{extensionName}-{mode}.json`, and merges every variable from the base collection (overridden or not) under the parent's root key. This is how a themed variant (e.g. a "Companion" brand overriding `palette`) is meant to produce `palette-companion-light.json` alongside the base `palette-light.json`.
 - **Empty collections are skipped:** after populating a `(collection, mode)` file, the script checks whether the root key actually has any properties; if a collection has no variables assigned to it (or none that resolve for that mode), no file is written for it. This filters out stray/junk Figma collections at conversion time rather than emitting empty JSON files for `build-tokens.ts` to ignore later.
 
-### 3. `build-tokens/` — DTCG tokens → CSS/JS/Flutter (Style Dictionary + Synthesizers)
-
-The build process is now modular, split across specialized files:
+### 3. `build-tokens/` — DTCG tokens → CSS/JS (Style Dictionary + Synthesizers)
 
 **Discovery & Compilation:**
-1. **Theme discovery** (`index.ts`): globs `tokens/dtcg-tokens/*.json` looking for filenames with exactly 3 hyphen-separated parts where the middle part isn't a known mode (`light`, `dark`, `mobile`, `tablet`, `desktop`, `desktop compact`, `base`, `value`) — that middle part is treated as a theme name. Default theme is always `default`.
-2. **Token compilation** (`compile-tokens.ts`): for each theme and mode, compiles temporary files with Style Dictionary:
-   - **Color**: sources `primitives-value.json` + `palette-{light,dark}.json` + `semantics-base.json` into temp CSS + Dart files.
-   - **Size**: sources `primitives-value.json` + `size-{mobile,tablet,desktop,desktop compact}.json` per breakpoint.
-   - **Typography**: sources `primitives-value.json` + `typography-{mobile,tablet,desktop,desktop compact}.json` per breakpoint.
-   - Style Dictionary formats are registered in `style-dictionary-formats.ts` and include custom filters (`encapsulationFilter` — only emit `semantics`, `size`, `typography` tokens, not internal `primitives`/`palette`) and CSS/Dart outputs.
+1. **Theme discovery** (`index.ts`): filenames with exactly 3 hyphen-separated parts (where the middle part isn't a known mode) are treated as themed variants. Default theme is always `default`.
+2. **Token compilation** (`compile-tokens.ts`): for each theme and mode, compiles with Style Dictionary:
+   - **Color**: `primitives-value.json` + `palette-{light,dark}.json` + `semantics-base.json` → CSS + JS.
+   - **Size/Typography**: per breakpoint mode → CSS + JS.
+   - `style-dictionary-formats.ts` registers custom filters (`encapsulationFilter`: emit only `semantics`, `size`, `typography`) and CSS/JS outputs.
 
-**Synthesis to Final Formats:**
-- **CSS** (`css-synthesizer.ts`): synthesizes temp CSS files into `packages/zebra-design-system-tokens/dist/css/`:
-  - `colors.css`: light values under `:root`, dark values under `@media (prefers-color-scheme: dark)` + `.dark-mode` class override.
-  - `sizes.css`: mobile under `:root`, then tablet/desktop/desktop-compact behind `@media (min-width: ...)` breakpoints.
-  - `typography.css`: mobile under `:root`, then breakpoint-scoped variants.
+**Output Synthesis:**
+- **CSS** (`css-synthesizer.ts`): 
+  - `colors.css`: light under `:root`, dark under `@media (prefers-color-scheme: dark)` + `.dark-mode`.
+  - `sizes.css` / `typography.css`: mobile under `:root`, then breakpoint-scoped variants.
 
-- **JavaScript** (`js-synthesizer.ts`): synthesizes temp files into `packages/zebra-design-system-tokens/dist/js/`:
-  - `colors.js`: exported as `{ light: {...}, dark: {...} }` objects.
-  - `sizes.js`: exported as `{ mobile: {...}, tablet: {...}, desktop: {...}, desktopCompact: {...} }` objects.
-  - `typography.js`: exported as `{ mobile: {...}, tablet: {...}, ... }` objects.
+- **JavaScript** (`js-synthesizer.ts`): 
+  - `colors.js`: `{ light: {...}, dark: {...} }`
+  - `sizes.js` / `typography.js`: `{ mobile: {...}, tablet: {...}, ... }`
 
-- **Flutter/Dart** (`flutter-building-blocks.ts`, `dart-helpers.ts`): generates Dart classes:
-  - `colors_light.dart`, `colors_dark.dart`: Dart classes with static token properties.
-  - `sizes_*.dart`, `typography_*.dart`: Dart classes per breakpoint mode.
-
-**Building-block CSS** (see [§3b](#3b-building-block-css--mixing-primitives-palette-extensions-independently)):
-- `building-block-css-synthesizer.ts` & `building-block-js-synthesizer.ts`: emit layer-specific files that use `var()` references instead of flattened literals, enabling mix-and-match composition of `primitives/`, `palette/`, `size/`, `typography/` from different themes.
+**Building-block layers** (`building-block-css-synthesizer.ts`, `building-block-js-synthesizer.ts`):
+- Emit layer-specific files with `var()` references (not flattened literals), enabling mix-and-match of `primitives/`, `palette/`, `size/`, `typography/` from different themes.
 
 ### 3b. Building-block CSS — mixing primitives/palette/size/typography extensions independently
 
@@ -146,13 +127,13 @@ These are organized into two kinds of file: **ingredients** (`primitives/`, `pal
 **Recipe — mixing primitives, palette, size, and typography from different themes** (impossible via the resolved files, since no single theme bundle spans all combinations):
 
 ```html
-<link rel="stylesheet" href="node_modules/zebra-design-system-tokens/dist/css/primitives/target.css">
-<link rel="stylesheet" href="node_modules/zebra-design-system-tokens/dist/css/palette/companion.css">
-<link rel="stylesheet" href="node_modules/zebra-design-system-tokens/dist/css/size/target.css">
-<link rel="stylesheet" href="node_modules/zebra-design-system-tokens/dist/css/typography/companion.css">
-<link rel="stylesheet" href="node_modules/zebra-design-system-tokens/dist/css/semantics.css">
+<link rel="stylesheet" href="node_modules/design-system-tokens/dist/css/primitives/target.css">
+<link rel="stylesheet" href="node_modules/design-system-tokens/dist/css/palette/companion.css">
+<link rel="stylesheet" href="node_modules/design-system-tokens/dist/css/size/target.css">
+<link rel="stylesheet" href="node_modules/design-system-tokens/dist/css/typography/companion.css">
+<link rel="stylesheet" href="node_modules/design-system-tokens/dist/css/semantics.css">
 ```
-(or the equivalent package imports, e.g. `zebra-design-system-tokens/css/primitives/target`, per the `exports` map below — the wildcard export matches across the `/`, so no `package.json` changes were needed for the folder structure.) Once loaded, use the variables exactly like normal (`var(--surface-page)`, `var(--interactive-primary-background-default)`, `var(--space-md)`, `var(--body-medium-fontsize)`, etc.) — the resolved values depend on which layer files you actually loaded.
+(or the equivalent package imports, e.g. `@zebra-design-system/tokens/css/primitives/target`, per the `exports` map below — the wildcard export matches across the `/`, so no `package.json` changes were needed for the folder structure.) Once loaded, use the variables exactly like normal (`var(--surface-page)`, `var(--interactive-primary-background-default)`, `var(--space-md)`, `var(--body-medium-fontsize)`, etc.) — the resolved values depend on which layer files you actually loaded.
 
 **Important constraint:** these building-block files are all `:root`-scoped (not class-scoped like `.{theme}-theme`), because the selection mechanism is *which files you include*, not a runtime class toggle. Load exactly one `primitives/*.css`, exactly one `palette/*.css`, exactly one `size/*.css`, and exactly one `typography/*.css` per page — loading two of the same layer silently collides at `:root` (last one in source order wins, no error).
 
@@ -162,17 +143,16 @@ Parses the resolved CSS output files (`colors.css`, `sizes.css`, `typography.css
 
 ### 5. `clean-tokens.ts`
 
-Deletes `./tokens` (both `raw-tokens.json` and `dtcg-tokens/`) and `../../packages/zebra-design-system-tokens/dist/`. Run before `sync:tokens` if you want a guaranteed-fresh build; the scripts otherwise just overwrite files in place.
+Deletes `./tokens` (both `raw-tokens.json` and `dtcg-tokens/`) and `../../packages/tokens/dist/`. Run before `sync:tokens` if you want a guaranteed-fresh build; the scripts otherwise just overwrite files in place.
 
-## Output package: `zebra-design-system-tokens`
+## Output: `design-system-tokens`
 
-`packages/zebra-design-system-tokens/package.json` exports three formats:
+`packages/tokens/` exports:
 
-- **CSS**: `./css/*` → `./dist/css/*.css` — import e.g. `zebra-design-system-tokens/css/colors` or `.../css/sizes`.
-- **JavaScript**: `./js/*` → `./dist/js/*.js` — import e.g. `zebra-design-system-tokens/js/colors` (ESM, JSON objects per breakpoint).
-- **Flutter/Dart**: `./dart/*` → `./dist/flutter/lib/*.dart` — import as Dart classes with static token properties.
+- **CSS**: `dist/css/*.css` — import e.g. `design-system-tokens/css/colors`
+- **JavaScript**: `dist/js/*.js` — import e.g. `design-system-tokens/js/colors` (ESM objects per breakpoint)
 
-The generated files are committed to the repo (not gitignored) — regenerating tokens will show up as a diff in `packages/zebra-design-system-tokens/dist/**`, so commit that alongside the token source changes deliberately, not as incidental noise.
+Generated files are committed to the repo. Changes to `packages/tokens/dist/**` should be committed alongside token source updates.
 
 ## Known quirks to watch for
 
@@ -180,14 +160,13 @@ The generated files are committed to the repo (not gitignored) — regenerating 
 - **Theme auto-discovery is a naming-convention hack**, not real config: it splits filenames on `-` and assumes exactly 3 parts means `{parent}-{theme}-{mode}.json`. Keep collection/theme/mode names free of extra hyphens, or this heuristic misfires (it's also why `size-desktop compact.json` is safe — the space, not a hyphen, keeps "desktop compact" as one part).
 - **`primitives`, `palette`, and `typography` tokens never appear directly in the resolved files** (`colors.css`/`sizes.css`/`typography.css`/`{theme}-colors.css`/`{theme}-sizes.css`/`{theme}-typography.css`) — only `semantics`, `size`, and `typography` do there (see `encapsulationFilter`). `primitives` and `palette` *do* appear as their own building-block files under `primitives/`, `palette/`, `size/`, `typography/` (see [§3b](#3b-building-block-css--mixing-primitivespalette-extensions-independently)), which is the supported way to consume a raw primitive/palette value or a custom typography scale directly.
 - **`raw-tokens.json` and the per-mode `dtcg-tokens/*.json` files are checked into git**, so a `fetch`+`convert` from a stale or wrong `FIGMA_FILE_KEY` will show up as a large, confusing diff. Diff `tokens/raw-tokens.json` first if a sync produces unexpected changes.
-- **Building-block files (`primitives/*.css`, `palette/*.css`, `size/*.css`, `typography/*.css`, `semantics.css`) are `:root`-scoped, not class-scoped** — loading two `primitives/*.css` files (or two `palette/*.css` files, or two `size/*.css` files, or two `typography/*.css` files) on the same page silently collides, last one in source order wins. Pick exactly one of each per page. This is different from the resolved `.{theme}-theme`-scoped files, which are deliberately safe to load side-by-side.
-- **Building the `palette/*.css`/`size/*.css`/`semantics.css` building blocks logs a benign Style Dictionary warning** ("filtered out token references were found") — expected, not a bug. Those files intentionally filter out `primitives`/`palette` tokens from the *output* while still referencing them via `var(...)`; Style Dictionary still resolves the reference correctly (it uses the full unfiltered token set to do so), it just warns because the referenced token isn't in that file. "Token collisions detected" is a separate, also-benign warning that predates this feature — it fires whenever a themed override file and its base file both define the same token path, which is how overrides work by design (the source list is base-file-then-override-file; Style Dictionary resolves it deterministically, last source wins).
+- **Building-block files (`:root`-scoped, not class-scoped)** — loading two `primitives/*.css` (or two `palette/*.css`, etc.) on the same page silently collides; last one wins. Pick exactly one of each per page.
+- **Building block warnings** — Style Dictionary logs benign "filtered out token references" warnings when building layers that use `var()` references. Expected, not an error.
 
-## Common maintenance tasks
+## Common tasks
 
-- **Add a new semantic, size, or typography token:** add the variable in Figma under the `semantics`, `size`, or `typography` collection, then `npm run sync:tokens`.
-- **Add a new breakpoint/mode for sizes or typography:** add the mode in the Figma `size` or `typography` collection, then add it to the `modes.breakpoint` array in `config.json`, and update `breakpoints` if necessary (e.g., if the new mode has a different media-query threshold). Re-run `sync:tokens`.
-- **Add a themed override (e.g. a second brand):** create an extension collection in Figma that overrides `palette`, `primitives`, `size`, `typography`, or another base collection, run `sync:tokens`, and confirm `convert-tokens.ts` produces the appropriate `{collection}-{themeName}-{mode}.json` files — `build-tokens/index.ts` will auto-discover the theme and emit corresponding CSS/JS/Dart files (`{themeName}-colors.css`, `colors_{theme}_light.dart`, etc.) and building-block files for the overridden layers.
-- **Update font weights:** edit `tokens.fontWeights` in `config.json` (e.g., if Figma renames "Medium" to "Semi-Bold"), then re-run `sync:tokens`. The mapping is used during `convert-tokens.ts` to translate variable font weights to numeric CSS values.
-- **Change token px conversion rules:** edit `tokens.pxPatterns` in `config.json` (e.g., add `"gap"` if new size tokens use that naming). The pattern list is used by `convert-tokens.ts` to auto-suffix matching tokens with `px` in resolved outputs.
-- **Rotate the Figma PAT:** update `FIGMA_PERSONAL_ACCESS_TOKEN` in the repo-root `.env`; nothing else references it.
+- **Add a token:** add to Figma collection, then `npm run sync:tokens`.
+- **Add a breakpoint mode:** add to Figma, update `modes.breakpoint` in `config.json`, update `breakpoints.ts` if needed, then `sync:tokens`.
+- **Add a theme (e.g., second brand):** create an extension collection in Figma that overrides `palette`/`primitives`/`size`/`typography`, run `sync:tokens`. `build-tokens/index.ts` auto-discovers it and emits `{theme}-colors.css`, `{theme}-sizes.js`, etc.
+- **Update font weights or px patterns:** edit `config.json`, then `sync:tokens`.
+- **Rotate Figma PAT:** update `FIGMA_PERSONAL_ACCESS_TOKEN` in `.env`.

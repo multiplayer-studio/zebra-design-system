@@ -249,6 +249,10 @@
           "$description": "= 2px, source: scale/1"
         }
       }
+    },
+    "shape": {
+      "$type": "string",
+      "$value": "sharp"
     }
   }
 }

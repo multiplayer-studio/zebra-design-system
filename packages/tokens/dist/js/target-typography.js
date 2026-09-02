@@ -49,6 +49,7 @@ export default {
   shadowLargeX: "0px",
   shadowLargeY: "20px",
   shadowLargeBlur: "32px",
+  shape: "sharp",
 },
   tablet: {
   spacePage: "16px",
@@ -97,6 +98,7 @@ export default {
   shadowLargeX: "0px",
   shadowLargeY: "20px",
   shadowLargeBlur: "32px",
+  shape: "rounded",
 },
   desktop: {
   spacePage: "16px",
@@ -145,6 +147,7 @@ export default {
   shadowLargeX: "0px",
   shadowLargeY: "20px",
   shadowLargeBlur: "32px",
+  shape: "rounded",
 },
   desktop compact: {
   spacePage: "16px",
@@ -193,5 +196,6 @@ export default {
   shadowLargeX: "0px",
   shadowLargeY: "20px",
   shadowLargeBlur: "32px",
+  shape: "rounded",
 },
 };

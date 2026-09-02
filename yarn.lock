@@ -1037,8 +1037,8 @@ __metadata:
   linkType: hard
 
 "@eslint/eslintrc@npm:^3.3.6":
-  version: 3.3.6
-  resolution: "@eslint/eslintrc@npm:3.3.6"
+  version: 3.3.7
+  resolution: "@eslint/eslintrc@npm:3.3.7"
   dependencies:
     ajv: "npm:^6.14.0"
     debug: "npm:^4.3.2"
@@ -1046,10 +1046,10 @@ __metadata:
     globals: "npm:^14.0.0"
     ignore: "npm:^5.2.0"
     import-fresh: "npm:^3.2.1"
-    js-yaml: "npm:^4.3.0"
+    js-yaml: "npm:^4.3.2"
     minimatch: "npm:^3.1.5"
     strip-json-comments: "npm:^3.1.1"
-  checksum: 349697171ee116f501a2f483bf47cd38937a61880aeb1c23481a69afc95e95859430a0947acbe1f5507f223180bf57530ecf2989e73bcbea763a6dcffdf1d010
+  checksum: 010fca3403489ff109cfb5b9996142a2a4b4be28bbb233eda3c30ed004826aeab84d6914d0c5c4b1cd80add7051525adb7818268e0fb4775ddb6dbc620f00c72
   languageName: node
   linkType: hard
 
@@ -3875,11 +3875,11 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 26.4.0
-  resolution: "@types/node@npm:26.4.0"
+  version: 26.4.1
+  resolution: "@types/node@npm:26.4.1"
   dependencies:
     undici-types: "npm:~8.3.0"
-  checksum: e6fc94ea3b58fb8040b38c465dec1c53c1fd9d2c092c81f699d28799726baf59f12e1600318e79e8e6f985bb919dab6ae820180b942b8e38c51acaad63e8aada
+  checksum: 29568336db8bc67740744782492af0e81ab1f88d86eaa07e38cf0a4c8bae7250a7b4b85c80ac1014fc98b2bc6d4bcac872b2c494ee0671b3880eada7c1fdbc94
   languageName: node
   linkType: hard
 
@@ -5061,7 +5061,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zebra-design-system/zeta-web@workspace:^, @zebra-design-system/zeta-web@workspace:packages/zeta-web":
+"@zebra-design-system/token-machine@workspace:tooling/token-machine":
+  version: 0.0.0-use.local
+  resolution: "@zebra-design-system/token-machine@workspace:tooling/token-machine"
+  dependencies:
+    style-dictionary: "npm:^5.5.0"
+    tsx: "npm:^4.23.5"
+    typescript: "npm:^7.0.2"
+  languageName: unknown
+  linkType: soft
+
+"@zebra-design-system/tokens@workspace:packages/tokens":
+  version: 0.0.0-use.local
+  resolution: "@zebra-design-system/tokens@workspace:packages/tokens"
+  languageName: unknown
+  linkType: soft
+
+"@zebra-design-system/zeta-web@workspace:packages/zeta-web":
   version: 0.0.0-use.local
   resolution: "@zebra-design-system/zeta-web@workspace:packages/zeta-web"
   dependencies:
@@ -5105,7 +5121,6 @@ __metadata:
     cem-plugin-better-lit-types: "npm:^0.2.1"
     cem-plugin-custom-jsdoc-tags: "npm:^1.2.0"
     custom-element-jsx-integration: "npm:^1.6.0"
-    design-system-tokens: "file:../design-system-tokens/"
     dompurify: "npm:^3.4.13"
     dts-minify: "npm:^0.3.3"
     eslint: "npm:^9.39.5"
@@ -5122,6 +5137,7 @@ __metadata:
     react: "npm:^19.2.8"
     sinon: "npm:^22.1.0"
     storybook: "npm:^8.6.18"
+    tokens: "file:../tokens/"
     ts-lit-plugin: "npm:^2.0.2"
     ts-morph: "npm:^27.0.2"
     typedoc: "npm:^0.28.20"
@@ -6572,18 +6588,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"design-system-tokens@file:../design-system-tokens/::locator=%40zebra-design-system%2Fzeta-web%40workspace%3Apackages%2Fzeta-web":
+"design-system-tokens@npm:1.0.0":
   version: 1.0.0
-  resolution: "design-system-tokens@file:../design-system-tokens/#../design-system-tokens/::hash=14e084&locator=%40zebra-design-system%2Fzeta-web%40workspace%3Apackages%2Fzeta-web"
-  checksum: fdd600cc1f52223bf87ed0fc4a398cba82b708704a3ab5943a6d2977355e42babcd5af5332cc58872f6dd074a6b37f34979ed79a36dc31c8952e02839f4eb3d9
+  resolution: "design-system-tokens@npm:1.0.0"
+  checksum: ea8c77aa5600f6433142c6f6c2ee35bc4f6d492531fce391b72f3d41c82e51bd07caff256817d107e004e2e01404ac6263d73aa151dc77747bfd00c75075e01b
   languageName: node
   linkType: hard
-
-"design-system-tokens@npm:1.0.0, design-system-tokens@workspace:packages/tokens":
-  version: 0.0.0-use.local
-  resolution: "design-system-tokens@workspace:packages/tokens"
-  languageName: unknown
-  linkType: soft
 
 "destroy@npm:^1.0.4":
   version: 1.2.0
@@ -6799,9 +6809,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.5.402":
-  version: 1.5.418
-  resolution: "electron-to-chromium@npm:1.5.418"
-  checksum: 8c901037c516e4affce66d5c8f4058ef963cb6bcc377aa13f357eb20ac4e72cbf97c1b6d67795ff8c24a1b61a4948008bd938f9268c0fcd916f1c67de7909c6b
+  version: 1.5.420
+  resolution: "electron-to-chromium@npm:1.5.420"
+  checksum: 0c4a4932991cefc9aa655cbb00b3b693680709df9e4eb2fc1a51cab851b735a2be9510c345b5ed6cad571e58e6d27867731607741df82de9535a7eb041fceda2
   languageName: node
   linkType: hard
 
@@ -7070,7 +7080,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.27.0 || ^0.28.0, esbuild@npm:~0.28.0":
+"esbuild@npm:~0.28.0":
   version: 0.28.2
   resolution: "esbuild@npm:0.28.2"
   dependencies:
@@ -7569,9 +7579,9 @@ __metadata:
   linkType: hard
 
 "fast-uri@npm:^3.0.1":
-  version: 3.1.6
-  resolution: "fast-uri@npm:3.1.6"
-  checksum: 77fa4f966f7d2cf83c34af2d3eb88882872fe90634f27a6bd309551db65377d3ca55616467c7cb4dcc57e33523d149e2fec1952d51cc2f00bfce68a66c3711ea
+  version: 3.1.7
+  resolution: "fast-uri@npm:3.1.7"
+  checksum: ca2baa4bde48fc7322bdc692c6636975943ebe4f6dd97e07d70b14e0ab85af2ff30de90f550f5ec2956684fe208e150d85d6cb5f3c74438c8ac1bf86bd435c13
   languageName: node
   linkType: hard
 
@@ -9265,15 +9275,15 @@ __metadata:
   linkType: hard
 
 "joi@npm:^17.11.0":
-  version: 17.13.6
-  resolution: "joi@npm:17.13.6"
+  version: 17.13.7
+  resolution: "joi@npm:17.13.7"
   dependencies:
     "@hapi/hoek": "npm:^9.3.0"
     "@hapi/topo": "npm:^5.1.0"
     "@sideway/address": "npm:^4.1.5"
     "@sideway/formula": "npm:^3.0.1"
     "@sideway/pinpoint": "npm:^2.0.0"
-  checksum: 17fee2ec1cb8af6752a7b49962c83a81cd83deb2426fa1a93ab62ad89f2f387ed44a35d06a5734516cae9312f0d82f35e7211b87c79b7c78f0370da9a9b54920
+  checksum: 631b917001611631d4ed1007f307aabe36c0471617187f77298784c21264213b879c0f2ccd871fafbb0325c62012d4e3b77c60abbd67cc7a4f2d583f17f24568
   languageName: node
   linkType: hard
 
@@ -10950,7 +10960,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.5.26, postcss@npm:^8.5.3, postcss@npm:^8.5.6":
+"postcss@npm:^8.5.26, postcss@npm:^8.5.3":
   version: 8.5.26
   resolution: "postcss@npm:8.5.26"
   dependencies:
@@ -11406,7 +11416,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^4.34.9, rollup@npm:^4.4.0, rollup@npm:^4.43.0":
+"rollup@npm:^4.34.9, rollup@npm:^4.4.0":
   version: 4.63.1
   resolution: "rollup@npm:4.63.1"
   dependencies:
@@ -12246,16 +12256,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"token-machine@workspace:tooling/token-machine":
-  version: 0.0.0-use.local
-  resolution: "token-machine@workspace:tooling/token-machine"
-  dependencies:
-    style-dictionary: "npm:^5.5.0"
-    tsx: "npm:^4.23.5"
-    typescript: "npm:^7.0.2"
-  languageName: unknown
-  linkType: soft
-
 "token-showcase-web@workspace:apps/token-showcase-web":
   version: 0.0.0-use.local
   resolution: "token-showcase-web@workspace:apps/token-showcase-web"
@@ -12270,6 +12270,13 @@ __metadata:
     vite: "npm:^8.2.0"
   languageName: unknown
   linkType: soft
+
+"tokens@file:../tokens/::locator=%40zebra-design-system%2Fzeta-web%40workspace%3Apackages%2Fzeta-web":
+  version: 1.0.0
+  resolution: "tokens@file:../tokens/#../tokens/::hash=4eb8c0&locator=%40zebra-design-system%2Fzeta-web%40workspace%3Apackages%2Fzeta-web"
+  checksum: b0c8d3b840c40f8629cb5b56e025bc918f295c4941057730969c1adef87d54b5edaca41f53ee31cb01bc847dbc4c7227afc83681039bc140a522055f1e2157a2
+  languageName: node
+  linkType: hard
 
 "tough-cookie@npm:^4.1.4":
   version: 4.1.4
@@ -12685,16 +12692,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:~5.8.3":
-  version: 5.8.3
-  resolution: "typescript@npm:5.8.3"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 5f8bb01196e542e64d44db3d16ee0e4063ce4f3e3966df6005f2588e86d91c03e1fb131c2581baf0fb65ee79669eea6e161cd448178986587e9f6844446dbb48
-  languageName: node
-  linkType: hard
-
 "typescript@patch:typescript@npm%3A6.0.3#optional!builtin<compat/typescript>":
   version: 6.0.3
   resolution: "typescript@patch:typescript@npm%3A6.0.3#optional!builtin<compat/typescript>::version=6.0.3&hash=e012d7"
@@ -12823,16 +12820,6 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 9cf4c053893bcf327d101b6c024a55baf05430dc30263f9adb1bf354aeffc11306fe1f23ba2f9a0209674359f16219b5b7d229e923477b94831d07d5a33a4217
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@npm%3A~5.8.3#optional!builtin<compat/typescript>":
-  version: 5.8.3
-  resolution: "typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=e012d7"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 92ea03509e06598948559ddcdd8a4ae5a7ab475766d5589f1b796f5731b3d631a4c7ddfb86a3bd44d58d10102b132cd4b4994dda9b63e6273c66d77d6a271dbd
   languageName: node
   linkType: hard
 
@@ -13101,17 +13088,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-zeta-web-example@workspace:packages/zeta-web/example":
-  version: 0.0.0-use.local
-  resolution: "vite-zeta-web-example@workspace:packages/zeta-web/example"
-  dependencies:
-    "@zebra-design-system/zeta-web": "workspace:^"
-    lit: "npm:^3.3.3"
-    typescript: "npm:~5.8.3"
-    vite: "npm:^7.3.6"
-  languageName: unknown
-  linkType: soft
-
 "vite@npm:^6.0.0 || ^7.0.0 || ^8.0.0, vite@npm:^8.2.0":
   version: 8.2.2
   resolution: "vite@npm:8.2.2"
@@ -13221,61 +13197,6 @@ __metadata:
   bin:
     vite: bin/vite.js
   checksum: 23ce22e50d5c7a87321f04b155c5bc3cf915e34e6c40918975741ed5e8b0c257039a643f1bc1cd829ee814ad92a138704e82084b7ebe40b399a62d8effea630c
-  languageName: node
-  linkType: hard
-
-"vite@npm:^7.3.6":
-  version: 7.3.6
-  resolution: "vite@npm:7.3.6"
-  dependencies:
-    esbuild: "npm:^0.27.0 || ^0.28.0"
-    fdir: "npm:^6.5.0"
-    fsevents: "npm:~2.3.3"
-    picomatch: "npm:^4.0.3"
-    postcss: "npm:^8.5.6"
-    rollup: "npm:^4.43.0"
-    tinyglobby: "npm:^0.2.15"
-  peerDependencies:
-    "@types/node": ^20.19.0 || >=22.12.0
-    jiti: ">=1.21.0"
-    less: ^4.0.0
-    lightningcss: ^1.21.0
-    sass: ^1.70.0
-    sass-embedded: ^1.70.0
-    stylus: ">=0.54.8"
-    sugarss: ^5.0.0
-    terser: ^5.16.0
-    tsx: ^4.8.1
-    yaml: ^2.4.2
-  dependenciesMeta:
-    fsevents:
-      optional: true
-  peerDependenciesMeta:
-    "@types/node":
-      optional: true
-    jiti:
-      optional: true
-    less:
-      optional: true
-    lightningcss:
-      optional: true
-    sass:
-      optional: true
-    sass-embedded:
-      optional: true
-    stylus:
-      optional: true
-    sugarss:
-      optional: true
-    terser:
-      optional: true
-    tsx:
-      optional: true
-    yaml:
-      optional: true
-  bin:
-    vite: bin/vite.js
-  checksum: c6d359f84ad362f5c97ff7988b77c90add04162c60cdf6059375a7d9e3217848c53a8cb6b6c48517bef84b6bba4c9bc85319a889b5236acb7d5a2bc8cb7b9a8d
   languageName: node
   linkType: hard
 

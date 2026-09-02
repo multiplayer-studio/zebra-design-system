@@ -5,8 +5,6 @@
  */
 
 :root {
-  --interactive-ghost-background-default: var(--fill-transparent); /** Default state for a ghost interactive element, minimal in styling with no fill, for low-emphasis actions. */
-  --interactive-ghost-background-focused: var(--fill-transparent); /** Focused state for a ghost interactive element. */
   --shadow-soft: var(--fill-transparent-emphasis); /** Soft, diffuse drop shadow for subtle elevation, e.g. cards */
   --shadow-hard: var(--fill-transparent-elevate); /** Crisp, high-contrast drop shadow for elements needing strong separation, e.g. dropdowns */
   --surface-page: var(--fill-canvas); /** Default background color of the page or app canvas */
@@ -40,6 +38,7 @@
   --foreground-gradient-end: var(--gradient-default-end); /** Ending color stop for text/icons using a gradient treatment */
   --border-default: var(--line-default); /** Default border color for inputs, cards, and dividers at rest */
   --border-subtle: var(--line-subtle); /** Faint border for low-emphasis separation, e.g. nested cards */
+  --border-inverse: var(--line-inverse); /** Low-emphasis border, e.g. subtle dividers. */
   --border-strong: var(--line-strong); /** Higher-contrast border for emphasis, e.g. active outlines or key dividers */
   --border-focus: var(--line-focus); /** Border applied when an element receives keyboard focus, for accessibility */
   --border-success: var(--status-success-default); /** Border color for inputs/fields confirmed valid or successful */
@@ -72,10 +71,12 @@
   --interactive-secondary-border-hover: var(--brand-secondary-subtle); /** Hover-state border for a secondary interactive element. */
   --interactive-secondary-border-pressed: var(--brand-secondary-deep); /** Pressed-state border for a secondary interactive element. */
   --interactive-secondary-border-disabled: var(--line-subtle); /** Disabled-state border for a secondary interactive element. */
-  --interactive-ghost-background-hover: var(--brand-primary-faint); /** Hover state for a ghost interactive element. */
-  --interactive-ghost-background-pressed: var(--brand-primary-muted); /** Pressed state for a ghost interactive element. */
-  --interactive-ghost-background-selected: var(--brand-primary-muted); /** Selected state for a ghost interactive element. */
-  --interactive-ghost-background-disabled: var(--fill-disabled); /** Disabled state for a ghost interactive element. */
+  --interactive-ghost-background-default: var(--status-ghost-default); /** Default state for a ghost interactive element, minimal in styling with no fill, for low-emphasis actions. */
+  --interactive-ghost-background-hover: var(--status-ghost-faint); /** Hover state for a ghost interactive element. */
+  --interactive-ghost-background-pressed: var(--status-ghost-deep); /** Pressed state for a ghost interactive element. */
+  --interactive-ghost-background-focused: var(--status-ghost-default); /** Focused state for a ghost interactive element. */
+  --interactive-ghost-background-selected: var(--status-ghost-faint); /** Selected state for a ghost interactive element. */
+  --interactive-ghost-background-disabled: var(--status-ghost-default); /** Disabled state for a ghost interactive element. */
   --interactive-ghost-foreground-default: var(--ink-brand); /** Default-state text/icon color on a ghost interactive element&#39;s background. */
   --interactive-ghost-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on a ghost interactive element&#39;s background. */
   --interactive-ghost-border-default: var(--brand-primary-default); /** Default-state border for a ghost interactive element. */

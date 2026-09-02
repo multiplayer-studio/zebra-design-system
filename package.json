@@ -2,15 +2,16 @@
   "name": "zebra-design-system",
   "private": true,
   "scripts": {
-    "clean:tokens": "yarn workspace tooling/token-machine clean",
-    "fetch:tokens": "yarn workspace tooling/token-machine fetch",
-    "convert:tokens": "yarn workspace tooling/token-machine convert",
-    "build:tokens": "yarn workspace tooling/token-machine build",
+    "clean:tokens": "yarn workspace @zebra-design-system/token-machine clean",
+    "fetch:tokens": "yarn workspace @zebra-design-system/token-machine fetch",
+    "convert:tokens": "yarn workspace @zebra-design-system/token-machine convert",
+    "build:tokens": "yarn workspace @zebra-design-system/token-machine build",
     "pack:tokens": "yarn workspace packages/tokens pack",
-    "export:tokens": "yarn workspace tooling/token-machine export",
-    "sync:tokens": "yarn clean:tokens && yarn convert:tokens && yarn build:tokens && yarn export:tokens",
+    "export:tokens": "yarn workspace @zebra-design-system/token-machine export",
+    "sync:tokens": "yarn clean:tokens && yarn fetch:tokens && yarn convert:tokens && yarn build:tokens && yarn export:tokens",
     "dev:tokens-web": "yarn workspace token-showcase-web dev",
-    "dev:tokens-flutter": "cd apps/token-showcase-flutter && flutter run"
+    "storybook": "yarn workspace @zebra-design-system/zeta-web storybook",
+    "test:web": "yarn workspace @zebra-design-system/zeta-web test"
   },
   "workspaces": [
     "tooling/*",

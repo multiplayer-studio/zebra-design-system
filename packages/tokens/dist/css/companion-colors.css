@@ -35,6 +35,7 @@
   --foreground-gradient-end: #4f62fe;
   --border-default: #ced2db;
   --border-subtle: #e0e3e9;
+  --border-inverse: #ffffff;
   --border-strong: #7a8190;
   --border-focus: #1f69ff;
   --border-success: #00864f;
@@ -67,12 +68,12 @@
   --interactive-secondary-border-hover: #ff7a40;
   --interactive-secondary-border-pressed: #f34300;
   --interactive-secondary-border-disabled: #e0e3e9;
-  --interactive-ghost-background-default: rgba(243, 246, 250, 0);
-  --interactive-ghost-background-hover: #f7f0ff;
-  --interactive-ghost-background-pressed: #efe1ff;
-  --interactive-ghost-background-focused: rgba(243, 246, 250, 0);
-  --interactive-ghost-background-selected: #efe1ff;
-  --interactive-ghost-background-disabled: #e0e3e9;
+  --interactive-ghost-background-default: rgba(12, 13, 14, 0);
+  --interactive-ghost-background-hover: rgba(12, 13, 14, 0.05);
+  --interactive-ghost-background-pressed: rgba(12, 13, 14, 0.1);
+  --interactive-ghost-background-focused: rgba(12, 13, 14, 0);
+  --interactive-ghost-background-selected: rgba(12, 13, 14, 0.05);
+  --interactive-ghost-background-disabled: rgba(12, 13, 14, 0);
   --interactive-ghost-foreground-default: #0e53e5;
   --interactive-ghost-foreground-disabled: #8d95a3;
   --interactive-ghost-border-default: #7e0cff;
@@ -172,8 +173,8 @@
   --selection-background: #b9daff;
   --selection-border: #1f69ff;
   --selection-text: #0c0d0e;
-  --shadow-soft: rgba(0, 0, 0, 0.05);
-  --shadow-hard: rgba(0, 0, 0, 0.1);
+  --shadow-soft: rgba(12, 13, 14, 0.05);
+  --shadow-hard: rgba(12, 13, 14, 0.1);
 }
 
 @media (prefers-color-scheme: dark) { :root, .companion-theme {
@@ -208,6 +209,7 @@
   --foreground-gradient-end: #7281fe;
   --border-default: #545963;
   --border-subtle: #2c2f36;
+  --border-inverse: #000000;
   --border-strong: #8d95a3;
   --border-focus: #3886ff;
   --border-success: #00864f;
@@ -240,12 +242,12 @@
   --interactive-secondary-border-hover: #ff4d00;
   --interactive-secondary-border-pressed: #ff9f75;
   --interactive-secondary-border-disabled: #2c2f36;
-  --interactive-ghost-background-default: rgba(243, 246, 250, 0);
-  --interactive-ghost-background-hover: #180f22;
-  --interactive-ghost-background-pressed: #260052;
-  --interactive-ghost-background-focused: rgba(243, 246, 250, 0);
-  --interactive-ghost-background-selected: #260052;
-  --interactive-ghost-background-disabled: #2c2f36;
+  --interactive-ghost-background-default: rgba(214, 220, 226, 0);
+  --interactive-ghost-background-hover: rgba(212, 221, 230, 0.05);
+  --interactive-ghost-background-pressed: rgba(212, 221, 230, 0.1);
+  --interactive-ghost-background-focused: rgba(214, 220, 226, 0);
+  --interactive-ghost-background-selected: rgba(212, 221, 230, 0.05);
+  --interactive-ghost-background-disabled: rgba(214, 220, 226, 0);
   --interactive-ghost-foreground-default: #5ea2ff;
   --interactive-ghost-foreground-disabled: #7a8190;
   --interactive-ghost-border-default: #7e0cff;
@@ -383,6 +385,7 @@
   --foreground-gradient-end: #7281fe;
   --border-default: #545963;
   --border-subtle: #2c2f36;
+  --border-inverse: #000000;
   --border-strong: #8d95a3;
   --border-focus: #3886ff;
   --border-success: #00864f;
@@ -415,12 +418,12 @@
   --interactive-secondary-border-hover: #ff4d00;
   --interactive-secondary-border-pressed: #ff9f75;
   --interactive-secondary-border-disabled: #2c2f36;
-  --interactive-ghost-background-default: rgba(243, 246, 250, 0);
-  --interactive-ghost-background-hover: #180f22;
-  --interactive-ghost-background-pressed: #260052;
-  --interactive-ghost-background-focused: rgba(243, 246, 250, 0);
-  --interactive-ghost-background-selected: #260052;
-  --interactive-ghost-background-disabled: #2c2f36;
+  --interactive-ghost-background-default: rgba(214, 220, 226, 0);
+  --interactive-ghost-background-hover: rgba(212, 221, 230, 0.05);
+  --interactive-ghost-background-pressed: rgba(212, 221, 230, 0.1);
+  --interactive-ghost-background-focused: rgba(214, 220, 226, 0);
+  --interactive-ghost-background-selected: rgba(212, 221, 230, 0.05);
+  --interactive-ghost-background-disabled: rgba(214, 220, 226, 0);
   --interactive-ghost-foreground-default: #5ea2ff;
   --interactive-ghost-foreground-disabled: #7a8190;
   --interactive-ghost-border-default: #7e0cff;

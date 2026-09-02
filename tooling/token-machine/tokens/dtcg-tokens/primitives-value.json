@@ -845,17 +845,95 @@
       },
       "alpha": {
         "dark": {
+          "0": {
+            "$type": "color",
+            "$value": "#0c0d0e00"
+          },
+          "5": {
+            "$type": "color",
+            "$value": "#0c0d0e0d"
+          },
+          "10": {
+            "$type": "color",
+            "$value": "#0c0d0e1a"
+          },
+          "20": {
+            "$type": "color",
+            "$value": "#0c0d0e33"
+          },
+          "30": {
+            "$type": "color",
+            "$value": "#0c0d0e4d"
+          },
           "40": {
             "$type": "color",
             "$value": "#0c0d0e66"
+          },
+          "50": {
+            "$type": "color",
+            "$value": "#0c0d0e80"
           },
           "60": {
             "$type": "color",
             "$value": "#0c0d0e99"
           },
+          "70": {
+            "$type": "color",
+            "$value": "#0c0d0eb2"
+          },
           "80": {
             "$type": "color",
             "$value": "#0c0d0ecc"
+          },
+          "90": {
+            "$type": "color",
+            "$value": "#0c0d0ee5"
+          }
+        },
+        "light": {
+          "0": {
+            "$type": "color",
+            "$value": "#d6dce200"
+          },
+          "5": {
+            "$type": "color",
+            "$value": "#d4dde60d"
+          },
+          "10": {
+            "$type": "color",
+            "$value": "#d4dde61a"
+          },
+          "20": {
+            "$type": "color",
+            "$value": "#d4dde633"
+          },
+          "30": {
+            "$type": "color",
+            "$value": "#d4dde64d"
+          },
+          "40": {
+            "$type": "color",
+            "$value": "#d4dde666"
+          },
+          "50": {
+            "$type": "color",
+            "$value": "#d4dde680"
+          },
+          "60": {
+            "$type": "color",
+            "$value": "#d4dde699"
+          },
+          "70": {
+            "$type": "color",
+            "$value": "#d4dde6b2"
+          },
+          "80": {
+            "$type": "color",
+            "$value": "#d4dde6cc"
+          },
+          "90": {
+            "$type": "color",
+            "$value": "#d4dde6e5"
           }
         }
       }

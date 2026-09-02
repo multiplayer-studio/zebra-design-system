@@ -17,7 +17,7 @@
   }
 
   .sbdocs-content {
-    background-color: var(--surface-default);
+    background-color: var(--surface-section);
     border-radius: 20px;
 
     h1.sbdocs-title::before {
@@ -95,14 +95,14 @@
       width: calc(100% - 4rem);
       padding: 1rem;
       margin: 1rem;
-      border-radius: var(--radius-rounded);
+      border-radius: var(--radius-md);
       overflow-x: auto;
     }
 
     p+blockquote,
     pre+blockquote {
       margin: 2rem;
-      border-left-color: var(--color-cool-30);
+      border-left-color: var(--border-subtle);
 
       p {
         margin: 0;
@@ -111,7 +111,7 @@
     }
 
     blockquote {
-      background: var(--color-cool-20) !important;
+      background: var(--surface-page) !important;
     }
 
     h1.sbdocs-title {
@@ -119,9 +119,9 @@
       flex-direction: row;
       font: var(--display-large) !important;
       line-height: 80px !important;
-      background-color: var(--color-cool-20) !important;
+      background-color: var(--surface-page) !important;
       padding: 60px 3rem 40px !important;
-      background-color: var(--color-cool-20);
+      background-color: var(--surface-page);
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
       gap: 40px;
@@ -140,7 +140,7 @@
     padding: 60px 4rem 32px 3rem !important;
     display: block;
     font: var(--title-medium);
-    color: var(--main-subtle);
+    color: var(--foreground-secondary);
   }
 
   @media (prefers-color-scheme: dark) {

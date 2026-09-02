@@ -5,7 +5,7 @@
  */
 
 import { reduceTypes } from "cem-plugin-better-lit-types/storybook";
-import { FIELD } from "../node_modules/cem-plugin-better-lit-types/dist/extractor/types";
+import { FIELD } from "../../../node_modules/cem-plugin-better-lit-types/dist/extractor/types";
 
 /**
  * Extracts arguments for a component based on its manifest and mapArgs.

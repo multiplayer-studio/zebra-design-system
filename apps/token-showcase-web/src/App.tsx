@@ -10,9 +10,9 @@ function App() {
       <header className="app-header">
         <h1>Zebra Design Tokens</h1>
         <p>
-          This app imports <code>zebra-design-system-tokens/css/colors</code>,{' '}
-          <code>zebra-design-system-tokens/css/sizes</code>, and{' '}
-          <code>zebra-design-system-tokens/css/typography</code> — the fully-resolved <strong>default
+          This app imports <code>design-system-tokens/css/colors</code>,{' '}
+          <code>design-system-tokens/css/sizes</code>, and{' '}
+          <code>design-system-tokens/css/typography</code> — the fully-resolved <strong>default
           theme</strong>. Every color, size, and typography value below is a design token, not a hardcoded value.
         </p>
       </header>
