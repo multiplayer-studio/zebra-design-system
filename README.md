@@ -1,23 +1,39 @@
 # Zebra Design System
 
-This repository is a monorepo containing everything related to the Zebra Design System — the packages that ship it, the services that support it, the tooling that builds it, its documentation, and apps that showcase it.
+A monorepo containing the Zebra Design System, including design tokens, web components, design tooling, and example applications.
 
-## Folder structure
+## What's included
 
-- **`apps/`** — A collection of example applications to show off the system and the website used to host the documentation.
-- **`packages/`** — Publishable packages, such as the design tokens package (`packages/zebra-design-system-tokens`). See `packages/PACKAGES_README.md`.
-- **`services/`** — Standalone services that support the design system, such as the MCP server (`services/mcp-server`). See `services/mcp-server/MCP_README.md`.
-- **`tooling/`** — Internal tools used to build and maintain the design system, such as the token machine. See `tooling/token-machine`.
+- **`packages/tokens`** — Design tokens package with CSS, JavaScript, and Dart exports
+- **`packages/zeta-web`** — Web components library built with Lit
+- **`apps/token-showcase-web`** — Example React app demonstrating token usage
+- **`tooling/token-machine`** — Tool to fetch, convert, build, and export design tokens
 
-Each of these top-level folders has its own README with more detail on what lives inside it.
+## Setup
 
-## Getting started
+Install dependencies (works with Yarn 4):
 
-Install dependencies from the root of the repo:
-
-```
-npm i
+```bash
+yarn install
 ```
 
-This installs dependencies for every workspace (`apps/*`, `tooling/*` and `packages/*`) in one step.
+## Available commands
+
+### Tokens
+
+- `yarn sync:tokens` — Full token pipeline (clean → fetch → convert → build → export)
+- `yarn clean:tokens` — Clean token artifacts
+- `yarn fetch:tokens` — Fetch tokens from source
+- `yarn convert:tokens` — Convert tokens to internal format
+- `yarn build:tokens` — Build tokens
+- `yarn export:tokens` — Export tokens to dist
+
+### Web components
+
+- `yarn storybook` — Run Storybook for `zeta-web` components
+- `yarn test:web` — Run tests for `zeta-web`
+
+### Apps
+
+- `yarn dev:tokens-web` — Run the token showcase app (Vite dev server)
 

@@ -1,0 +1,959 @@
+{
+  "semantics": {
+    "surface": {
+      "page": {
+        "$type": "color",
+        "$value": "{palette.fill.canvas}",
+        "$description": "Default background color of the page or app canvas"
+      },
+      "section": {
+        "$type": "color",
+        "$value": "{palette.fill.default}",
+        "$description": "Background for a section or panel that groups related content"
+      },
+      "card": {
+        "$type": "color",
+        "$value": "{palette.fill.elevated}",
+        "$description": "Background of card components"
+      },
+      "dialog": {
+        "$type": "color",
+        "$value": "{palette.fill.overlay}",
+        "$description": "Background of dialog/modal windows"
+      },
+      "sheet": {
+        "$type": "color",
+        "$value": "{palette.fill.overlay}",
+        "$description": "Background of bottom sheets and side drawers"
+      },
+      "popover": {
+        "$type": "color",
+        "$value": "{palette.fill.overlay}",
+        "$description": "Background of popovers and other floating panels"
+      },
+      "menu": {
+        "$type": "color",
+        "$value": "{palette.fill.overlay}",
+        "$description": "Background of dropdown and context menus"
+      },
+      "tooltip": {
+        "$type": "color",
+        "$value": "{palette.fill.inverse}",
+        "$description": "Background of tooltips"
+      },
+      "brand": {
+        "$type": "color",
+        "$value": "{palette.brand.primary.faint}",
+        "$description": "Brand-colored background, e.g. hero sections or marketing highlights"
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{palette.fill.inverse}",
+        "$description": "Dark/inverse background for high-contrast sections"
+      },
+      "success": {
+        "$type": "color",
+        "$value": "{palette.status.success.faint}",
+        "$description": "Background for containers communicating a success state"
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{palette.status.warning.faint}",
+        "$description": "Background for containers communicating a warning state"
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{palette.status.error.faint}",
+        "$description": "Background for containers communicating an error state"
+      },
+      "info": {
+        "$type": "color",
+        "$value": "{palette.status.info.faint}",
+        "$description": "Background for containers communicating neutral information"
+      },
+      "gradient": {
+        "start": {
+          "$type": "color",
+          "$value": "{palette.gradient.default.start}",
+          "$description": "Starting color stop for surfaces using a gradient fill"
+        },
+        "end": {
+          "$type": "color",
+          "$value": "{palette.gradient.default.end}",
+          "$description": "Ending color stop for surfaces using a gradient fill"
+        }
+      }
+    },
+    "foreground": {
+      "primary": {
+        "$type": "color",
+        "$value": "{palette.ink.high}",
+        "$description": "The default color for body text and primary icons, used as the highest-emphasis content color."
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{palette.ink.medium}",
+        "$description": "Lower-emphasis text/icon color, e.g. captions or supporting copy"
+      },
+      "tertiary": {
+        "$type": "color",
+        "$value": "{palette.ink.low}",
+        "$description": "Lowest-emphasis text/icon color, e.g. placeholders or metadata"
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{palette.ink.disabled}",
+        "$description": "Text/icon color for disabled, non-interactive elements"
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{palette.ink.inverse}",
+        "$description": "Text/icon color for use on dark or inverse-colored surfaces"
+      },
+      "link": {
+        "$type": "color",
+        "$value": "{palette.ink.link}",
+        "$description": "Color for hyperlinks and other clickable inline text"
+      },
+      "cursor": {
+        "$type": "color",
+        "$value": "{palette.ink.brand}",
+        "$description": "Color of the blinking caret inside text inputs"
+      },
+      "success": {
+        "$type": "color",
+        "$value": "{palette.status.success.default}",
+        "$description": "Text/icon color that communicates success"
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{palette.status.warning.default}",
+        "$description": "Text/icon color that communicates a warning"
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{palette.status.error.default}",
+        "$description": "Text/icon color that communicates an error, paired with feedback/error tokens"
+      },
+      "info": {
+        "$type": "color",
+        "$value": "{palette.status.info.default}",
+        "$description": "Text/icon color that communicates neutral information"
+      },
+      "gradient": {
+        "start": {
+          "$type": "color",
+          "$value": "{palette.gradient.default.start}",
+          "$description": "Starting color stop for text/icons using a gradient treatment"
+        },
+        "end": {
+          "$type": "color",
+          "$value": "{palette.gradient.default.end}",
+          "$description": "Ending color stop for text/icons using a gradient treatment"
+        }
+      }
+    },
+    "border": {
+      "default": {
+        "$type": "color",
+        "$value": "{palette.line.default}",
+        "$description": "Default border color for inputs, cards, and dividers at rest"
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{palette.line.subtle}",
+        "$description": "Faint border for low-emphasis separation, e.g. nested cards"
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{palette.line.inverse}",
+        "$description": "Low-emphasis border, e.g. subtle dividers."
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{palette.line.strong}",
+        "$description": "Higher-contrast border for emphasis, e.g. active outlines or key dividers"
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "{palette.line.focus}",
+        "$description": "Border applied when an element receives keyboard focus, for accessibility"
+      },
+      "success": {
+        "$type": "color",
+        "$value": "{palette.status.success.default}",
+        "$description": "Border color for inputs/fields confirmed valid or successful"
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{palette.status.warning.default}",
+        "$description": "Border color for elements flagged with a warning"
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{palette.status.error.default}",
+        "$description": "Border color for inputs/fields in an invalid or error state"
+      },
+      "info": {
+        "$type": "color",
+        "$value": "{palette.status.info.default}",
+        "$description": "Border color for elements conveying neutral, informational context"
+      },
+      "gradient": {
+        "start": {
+          "$type": "color",
+          "$value": "{palette.gradient.default.start}",
+          "$description": "Starting color stop for borders using a gradient treatment"
+        },
+        "end": {
+          "$type": "color",
+          "$value": "{palette.gradient.default.end}",
+          "$description": "Ending color stop for borders using a gradient treatment"
+        }
+      }
+    },
+    "interactive": {
+      "primary": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.default}",
+            "$description": "Default state for the primary interactive element, the main and highest-emphasis action or control on a screen."
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.default}",
+            "$description": "Focused state for the primary interactive element."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.fill.disabled}",
+            "$description": "Disabled state for the primary interactive element."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.subtle}",
+            "$description": "Hover state for the primary interactive element."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.deep}",
+            "$description": "Pressed state for the primary interactive element."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.deep}",
+            "$description": "Selected state for the primary interactive element."
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.on}",
+            "$description": "Default-state text/icon color on the primary interactive element&#39;s background."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.ink.disabled}",
+            "$description": "Disabled-state text/icon color on the primary interactive element&#39;s background."
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.default}",
+            "$description": "Default-state border for the primary interactive element."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.line.subtle}",
+            "$description": "Disabled-state border for the primary interactive element."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.subtle}",
+            "$description": "Hover-state border for the primary interactive element."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.deep}",
+            "$description": "Pressed-state border for the primary interactive element."
+          }
+        }
+      },
+      "secondary": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.secondary.default}",
+            "$description": "Default state for a secondary interactive element, an alternative and less prominent action alongside primary."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.brand.secondary.subtle}",
+            "$description": "Hover state for a secondary interactive element."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.brand.secondary.deep}",
+            "$description": "Pressed state for a secondary interactive element."
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{palette.brand.secondary.default}",
+            "$description": "Focused state for a secondary interactive element."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{palette.brand.secondary.deep}",
+            "$description": "Selected state for a secondary interactive element."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.fill.disabled}",
+            "$description": "Disabled state for a secondary interactive element."
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.secondary.on}",
+            "$description": "Default-state text/icon color on a secondary interactive element&#39;s background."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.ink.disabled}",
+            "$description": "Disabled-state text/icon color on a secondary interactive element&#39;s background."
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.secondary.default}",
+            "$description": "Default-state border for a secondary interactive element."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.brand.secondary.subtle}",
+            "$description": "Hover-state border for a secondary interactive element."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.brand.secondary.deep}",
+            "$description": "Pressed-state border for a secondary interactive element."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.line.subtle}",
+            "$description": "Disabled-state border for a secondary interactive element."
+          }
+        }
+      },
+      "ghost": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.status.ghost.default}",
+            "$description": "Default state for a ghost interactive element, minimal in styling with no fill, for low-emphasis actions."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.status.ghost.faint}",
+            "$description": "Hover state for a ghost interactive element."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.status.ghost.deep}",
+            "$description": "Pressed state for a ghost interactive element."
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{palette.status.ghost.default}",
+            "$description": "Focused state for a ghost interactive element."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{palette.status.ghost.faint}",
+            "$description": "Selected state for a ghost interactive element."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.status.ghost.default}",
+            "$description": "Disabled state for a ghost interactive element."
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.ink.brand}",
+            "$description": "Default-state text/icon color on a ghost interactive element&#39;s background."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.ink.disabled}",
+            "$description": "Disabled-state text/icon color on a ghost interactive element&#39;s background."
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.default}",
+            "$description": "Default-state border for a ghost interactive element."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.subtle}",
+            "$description": "Hover-state border for a ghost interactive element."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.deep}",
+            "$description": "Pressed-state border for a ghost interactive element."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.line.subtle}",
+            "$description": "Disabled-state border for a ghost interactive element."
+          }
+        }
+      },
+      "destructive": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.status.error.default}",
+            "$description": "Default state for a destructive interactive element, signaling a harmful or irreversible action such as Delete."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.status.error.subtle}",
+            "$description": "Hover state for a destructive interactive element."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.status.error.deep}",
+            "$description": "Pressed state for a destructive interactive element."
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{palette.status.error.default}",
+            "$description": "Focused state for a destructive interactive element."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{palette.status.error.deep}",
+            "$description": "Selected state for a destructive interactive element."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.fill.disabled}",
+            "$description": "Disabled state for a destructive interactive element."
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.on}",
+            "$description": "Default-state text/icon color on a destructive interactive element&#39;s background."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.ink.disabled}",
+            "$description": "Disabled-state text/icon color on a destructive interactive element&#39;s background."
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.status.error.default}",
+            "$description": "Default-state border for a destructive interactive element."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.status.error.subtle}",
+            "$description": "Hover-state border for a destructive interactive element."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.status.error.strong}",
+            "$description": "Pressed-state border for a destructive interactive element."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.line.subtle}",
+            "$description": "Disabled-state border for a destructive interactive element."
+          }
+        }
+      },
+      "inverse": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.fill.inverse}",
+            "$description": "Default state for an interactive element placed on a dark or inverse-colored surface."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.fill.inversehover}",
+            "$description": "Hover state for an inverse-surface interactive element."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.fill.inversepressed}",
+            "$description": "Pressed state for an inverse-surface interactive element."
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{palette.fill.inverse}",
+            "$description": "Focused state for an inverse-surface interactive element."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{palette.fill.inversepressed}",
+            "$description": "Selected state for an inverse-surface interactive element."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.fill.disabled}",
+            "$description": "Disabled state for an inverse-surface interactive element."
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.ink.inverse}",
+            "$description": "Default-state text/icon color on an inverse-surface interactive element&#39;s background."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.ink.disabled}",
+            "$description": "Disabled-state text/icon color on an inverse-surface interactive element&#39;s background."
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.fill.inverse}",
+            "$description": "Default-state border for an inverse-surface interactive element."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.fill.inversehover}",
+            "$description": "Hover-state border for an inverse-surface interactive element."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.fill.inversepressed}",
+            "$description": "Pressed-state border for an inverse-surface interactive element."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.line.subtle}",
+            "$description": "Disabled-state border for an inverse-surface interactive element."
+          }
+        }
+      },
+      "neutral": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.fill.default}",
+            "$description": "Default state for a neutral, general-purpose interactive element with no semantic meaning."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.fill.canvas}",
+            "$description": "Hover state for a neutral interactive element."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.fill.sunken}",
+            "$description": "Pressed state for a neutral interactive element."
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{palette.fill.default}",
+            "$description": "Focused state for a neutral interactive element."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{palette.fill.sunken}",
+            "$description": "Selected state for a neutral interactive element."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.fill.disabled}",
+            "$description": "Disabled state for a neutral interactive element."
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.line.default}",
+            "$description": "Default-state border for a neutral interactive element."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.line.strong}",
+            "$description": "Hover-state border for a neutral interactive element."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.line.strong}",
+            "$description": "Pressed-state border for a neutral interactive element."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.line.subtle}",
+            "$description": "Disabled-state border for a neutral interactive element."
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.ink.high}",
+            "$description": "Default-state text/icon color on a neutral interactive element&#39;s background."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.ink.disabled}",
+            "$description": "Disabled-state text/icon color on a neutral interactive element&#39;s background."
+          }
+        }
+      },
+      "positive": {
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.status.success.default}",
+            "$description": "Default-state border for a high-emphasis positive-confirmation interactive element."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.status.success.default}",
+            "$description": "Hover-state border for a high-emphasis positive-confirmation interactive element."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.status.success.deep}",
+            "$description": "Pressed-state border for a high-emphasis positive-confirmation interactive element."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.line.subtle}",
+            "$description": "Disabled-state border for a high-emphasis positive-confirmation interactive element."
+          }
+        },
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.status.success.default}",
+            "$description": "Default state for a high-emphasis interactive element used for a positive confirmation action, such as Approve, Confirm, or Complete."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.status.success.subtle}",
+            "$description": "Hover state for a high-emphasis positive-confirmation interactive element."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.status.success.deep}",
+            "$description": "Pressed state for a high-emphasis positive-confirmation interactive element."
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{palette.status.success.default}",
+            "$description": "Focused state for a high-emphasis positive-confirmation interactive element."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{palette.status.success.deep}",
+            "$description": "Selected state for a high-emphasis positive-confirmation interactive element."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.fill.disabled}",
+            "$description": "Disabled state for a high-emphasis positive-confirmation interactive element."
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.on}",
+            "$description": "Default-state text/icon color on a high-emphasis positive-confirmation interactive element&#39;s background."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.ink.disabled}",
+            "$description": "Disabled-state text/icon color on a high-emphasis positive-confirmation interactive element&#39;s background."
+          }
+        }
+      },
+      "subtle": {
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.default}",
+            "$description": "Default-state border for a subtle interactive element."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.subtle}",
+            "$description": "Hover-state border for a subtle interactive element."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.deep}",
+            "$description": "Pressed-state border for a subtle interactive element."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.line.subtle}",
+            "$description": "Disabled-state border for a subtle interactive element."
+          }
+        },
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.faint}",
+            "$description": "Default state for a subtle interactive element, quieter in emphasis than secondary."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.muted}",
+            "$description": "Hover state for a subtle interactive element."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.subtle}",
+            "$description": "Pressed state for a subtle interactive element."
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.faint}",
+            "$description": "Focused state for a subtle interactive element."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{palette.brand.primary.subtle}",
+            "$description": "Selected state for a subtle interactive element."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.fill.disabled}",
+            "$description": "Disabled state for a subtle interactive element."
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.ink.link}",
+            "$description": "Default-state text/icon color on a subtle interactive element&#39;s background."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{palette.ink.disabled}",
+            "$description": "Disabled-state text/icon color on a subtle interactive element&#39;s background."
+          }
+        }
+      }
+    },
+    "overlay": {
+      "scrim": {
+        "$type": "color",
+        "$value": "{palette.fill.scrim}",
+        "$description": "Semi-transparent dimming layer behind a drawer, sheet, or side panel"
+      },
+      "modal": {
+        "$type": "color",
+        "$value": "{palette.fill.overlay}",
+        "$description": "Semi-transparent dimming layer behind a modal dialog, to focus attention on it"
+      }
+    },
+    "feedback": {
+      "success": {
+        "background": {
+          "$type": "color",
+          "$value": "{palette.status.success.faint}",
+          "$description": "Background fill for success alerts, banners, and inline messages"
+        },
+        "foreground": {
+          "$type": "color",
+          "$value": "{palette.status.success.default}",
+          "$description": "Icon/text color used inside success alerts and messages"
+        }
+      },
+      "warning": {
+        "background": {
+          "$type": "color",
+          "$value": "{palette.status.warning.faint}",
+          "$description": "Background fill for warning alerts, banners, and inline messages"
+        },
+        "foreground": {
+          "$type": "color",
+          "$value": "{palette.status.warning.default}",
+          "$description": "Icon/text color used inside warning alerts and messages"
+        }
+      },
+      "error": {
+        "background": {
+          "$type": "color",
+          "$value": "{palette.status.error.faint}",
+          "$description": "Background fill for error alerts, banners, and inline messages"
+        },
+        "foreground": {
+          "$type": "color",
+          "$value": "{palette.status.error.default}",
+          "$description": "Icon/text color used inside error alerts and messages"
+        }
+      },
+      "info": {
+        "background": {
+          "$type": "color",
+          "$value": "{palette.status.info.faint}",
+          "$description": "Background fill for informational alerts, banners, and inline messages"
+        },
+        "foreground": {
+          "$type": "color",
+          "$value": "{palette.status.info.default}",
+          "$description": "Icon/text color used inside informational alerts and messages"
+        }
+      }
+    },
+    "focus": {
+      "ring": {
+        "$type": "color",
+        "$value": "{palette.line.focus}",
+        "$description": "Soft glow/ring drawn just outside the focus outline, reinforcing keyboard focus"
+      },
+      "outline": {
+        "$type": "color",
+        "$value": "{palette.line.focus}",
+        "$description": "Solid outline drawn directly around an element on keyboard focus, for accessibility"
+      }
+    },
+    "chart": {
+      "series": {
+        "1": {
+          "$type": "color",
+          "$value": "{palette.data.1}",
+          "$description": "1st color in the categorical data-series palette, assigned in order across multiple series."
+        },
+        "2": {
+          "$type": "color",
+          "$value": "{palette.data.2}",
+          "$description": "2nd data series color"
+        },
+        "3": {
+          "$type": "color",
+          "$value": "{palette.data.3}",
+          "$description": "3rd data series color"
+        },
+        "4": {
+          "$type": "color",
+          "$value": "{palette.data.4}",
+          "$description": "4th data series color"
+        },
+        "5": {
+          "$type": "color",
+          "$value": "{palette.data.5}",
+          "$description": "5th data series color"
+        },
+        "6": {
+          "$type": "color",
+          "$value": "{palette.data.6}",
+          "$description": "6th data series color"
+        },
+        "7": {
+          "$type": "color",
+          "$value": "{palette.data.7}",
+          "$description": "7th data series color"
+        },
+        "8": {
+          "$type": "color",
+          "$value": "{palette.data.8}",
+          "$description": "8th data series color"
+        },
+        "9": {
+          "$type": "color",
+          "$value": "{palette.data.9}",
+          "$description": "9th data series color"
+        },
+        "10": {
+          "$type": "color",
+          "$value": "{palette.data.10}",
+          "$description": "10th data series color"
+        },
+        "11": {
+          "$type": "color",
+          "$value": "{palette.data.11}",
+          "$description": "11th data series color"
+        },
+        "12": {
+          "$type": "color",
+          "$value": "{palette.data.12}",
+          "$description": "12th data series color"
+        }
+      },
+      "grid": {
+        "$type": "color",
+        "$value": "{palette.line.subtle}",
+        "$description": "Color for background gridlines that help read values across a chart"
+      },
+      "axis": {
+        "$type": "color",
+        "$value": "{palette.line.strong}",
+        "$description": "Color for chart axis lines and axis tick labels"
+      },
+      "reference": {
+        "$type": "color",
+        "$value": "{palette.line.stronger}",
+        "$description": "Color for a reference or target line overlaid on a chart, e.g. a goal or average"
+      },
+      "positive": {
+        "$type": "color",
+        "$value": "{palette.status.success.default}",
+        "$description": "Color for data points/values trending up or improving"
+      },
+      "negative": {
+        "$type": "color",
+        "$value": "{palette.status.error.default}",
+        "$description": "Color for data points/values trending down or declining"
+      },
+      "neutral": {
+        "$type": "color",
+        "$value": "{palette.data.neutral}",
+        "$description": "Color for data points/values that are flat or unchanged"
+      }
+    },
+    "selection": {
+      "background": {
+        "$type": "color",
+        "$value": "{palette.fill.selection}",
+        "$description": "Highlight background applied to selected text or selected list/table items"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{palette.line.selection}",
+        "$description": "Border drawn around a selected item, e.g. a selected card or table row"
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{palette.ink.selection}",
+        "$description": "Text color applied to selected or highlighted text"
+      }
+    },
+    "shadow": {
+      "soft": {
+        "$type": "color",
+        "$value": "{palette.fill.transparent.emphasis}",
+        "$description": "Soft, diffuse drop shadow for subtle elevation, e.g. cards"
+      },
+      "hard": {
+        "$type": "color",
+        "$value": "{palette.fill.transparent.elevate}",
+        "$description": "Crisp, high-contrast drop shadow for elements needing strong separation, e.g. dropdowns"
+      }
+    }
+  }
+}

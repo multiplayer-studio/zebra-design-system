@@ -5,7 +5,8 @@
     "inputFile": "./tokens/raw-tokens.json",
     "tempDir": "../../packages/tokens/dist/temp",
     "cssOutputDir": "../../packages/tokens/dist/css",
-    "jsOutputDir": "../../packages/tokens/dist/js"
+    "jsOutputDir": "../../packages/tokens/dist/js",
+    "jsonOutputDir": "../../packages/tokens/dist/json"
   },
   "collections": {
     "color": ["primitives", "palette", "semantics"],
