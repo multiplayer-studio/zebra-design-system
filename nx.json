@@ -1,0 +1,80 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
+    "production": [
+      "default",
+      "!{projectRoot}/**/*.test.{ts,tsx}",
+      "!{projectRoot}/src/test/**/*",
+      "!{projectRoot}/.storybook/**/*"
+    ],
+    "sharedGlobals": [
+      "{workspaceRoot}/pnpm-lock.yaml"
+    ]
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ],
+      "cache": true
+    },
+    "test": {
+      "inputs": [
+        "default",
+        "^production"
+      ],
+      "cache": true
+    },
+    "lint": {
+      "inputs": [
+        "default"
+      ],
+      "cache": true
+    },
+    "pack": {
+      "dependsOn": [
+        "build"
+      ],
+      "inputs": [
+        "production"
+      ],
+      "outputs": [
+        "{projectRoot}/dist/artifacts"
+      ],
+      "cache": true
+    }
+  },
+  "release": {
+    "projects": [
+      "tag:release"
+    ],
+    "projectsRelationship": "independent",
+    "releaseTag": {
+      "pattern": "{projectName}@{version}"
+    },
+    "git": {
+      "commit": true,
+      "tag": true
+    },
+    "version": {
+      "conventionalCommits": true,
+      "updateDependents": "auto"
+    },
+    "changelog": {
+      "projectChangelogs": true,
+      "workspaceChangelog": false
+    }
+  },
+  "analytics": false
+}

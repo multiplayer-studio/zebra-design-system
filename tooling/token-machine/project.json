@@ -1,0 +1,68 @@
+{
+  "name": "@zebra-design-system/token-machine",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "tags": [
+    "private",
+    "internal"
+  ],
+  "targets": {
+    "clean": {
+      "executor": "nx:run-script",
+      "cache": false,
+      "options": {
+        "script": "clean"
+      }
+    },
+    "fetch": {
+      "executor": "nx:run-script",
+      "cache": false,
+      "options": {
+        "script": "fetch"
+      }
+    },
+    "convert": {
+      "executor": "nx:run-script",
+      "dependsOn": [
+        "fetch"
+      ],
+      "cache": false,
+      "options": {
+        "script": "convert"
+      }
+    },
+    "build": {
+      "executor": "nx:run-script",
+      "inputs": [
+        "{projectRoot}/tokens/dtcg-tokens/**/*",
+        "{projectRoot}/build-tokens/**/*",
+        "{projectRoot}/config.json"
+      ],
+      "outputs": [
+        "{workspaceRoot}/packages/foundations/tokens/dist/css",
+        "{workspaceRoot}/packages/foundations/tokens/dist/js",
+        "{workspaceRoot}/packages/foundations/tokens/dist/json"
+      ],
+      "cache": true,
+      "options": {
+        "script": "build"
+      }
+    },
+    "export": {
+      "executor": "nx:run-script",
+      "dependsOn": [
+        "build"
+      ],
+      "cache": false,
+      "options": {
+        "script": "export"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-script",
+      "cache": true,
+      "options": {
+        "script": "typecheck"
+      }
+    }
+  }
+}

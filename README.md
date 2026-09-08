@@ -1,38 +1,79 @@
 # Zebra Design System
 
-A monorepo containing the Zebra Design System, including design tokens, web components, design tooling, and example applications.
+A monorepo containing the Zebra Design System, including design tokens, web components, design tooling, and example applications. Managed with **Nx** for build orchestration and independent semantic versioning.
 
 ## What's included
 
-- **`packages/tokens`** — Design tokens package with CSS, JavaScript, and Dart exports
-- **`packages/zeta-web`** — Web components library built with Lit
-- **`tooling/token-machine`** — Tool to fetch, convert, build, and export design tokens
+- **`packages/zeta-web`** — Web components library built with Lit (`@zebra-design-system/zeta-web`)
+- **`packages/foundations/tokens`** — Design tokens with CSS, JavaScript, and Dart exports (`@zebra-design-system/tokens`)
+- **`tooling/token-machine`** — Private tool to fetch, convert, build, and export design tokens
 
-## Setup
+## Quick Start
 
-Install dependencies (works with Yarn 4):
+### Setup
 
 ```bash
-yarn install
+pnpm install
 ```
 
-## Available commands
+#### Environment Variables
 
-### Tokens
+Create a `.env` file in the root with:
 
-- `yarn sync:tokens` — Full token pipeline (clean → fetch → convert → build → export)
-- `yarn clean:tokens` — Clean token artifacts
-- `yarn fetch:tokens` — Fetch tokens from source
-- `yarn convert:tokens` — Convert tokens to internal format
-- `yarn build:tokens` — Build tokens
-- `yarn export:tokens` — Export tokens to dist
+```
+FIGMA_FILE_KEY=<your-figma-file-key>
+FIGMA_PERSONAL_ACCESS_TOKEN=<your-figma-personal-access-token>
+```
 
-### Web components
+### Run Storybook
 
-- `yarn storybook` — Run Storybook for `zeta-web` components
-- `yarn test:web` — Run tests for `zeta-web`
+```bash
+pnpm storybook
+```
 
-### Apps
+### Run Tests
 
-- `yarn dev:tokens-web` — Run the token showcase app (Vite dev server)
+```bash
+pnpm test:web
+```
+
+### Make a Release
+
+See **[VERSIONING.md](./VERSIONING.md)** for how to version and release packages independently using Conventional Commits.
+
+## Build Orchestration with Nx
+
+This monorepo uses **Nx** to orchestrate builds, run tests, and manage independent package versioning.
+
+```bash
+# Build all affected packages
+pnpm exec nx run-many -t build
+
+# Test a specific package
+pnpm exec nx run @zebra-design-system/zeta-web:test
+
+# Dry-run a release to see what would version
+pnpm exec nx release --dry-run
+```
+
+See [Versioning](./VERSIONING.md) for more Nx release commands and workflows.
+
+## Token Pipeline
+
+```bash
+# Full token pipeline (fetch → convert → build → export)
+pnpm run sync:tokens
+
+# Or individual steps:
+pnpm run build:tokens   # Build from committed DTCG tokens
+pnpm run export:tokens  # Export to dist
+```
+
+## Versioning & Releases
+
+This project uses **Conventional Commits** for automatic semantic versioning via Nx Release.
+
+- **[VERSIONING.md](./VERSIONING.md)** — How to release packages, commit format, troubleshooting
+
+Each package (`zeta-web`, `tokens`, future platforms) is versioned independently. Releases are triggered via Conventional Commit types (`feat:`, `fix:`, `feat!:`, etc.).
 

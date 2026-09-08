@@ -2,8 +2,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { mkdir } from 'fs/promises';
-import config from './config.json' assert { type: 'json' };
-import './types.ts';
+import { fileURLToPath } from 'url';
+import config from './config.json' with { type: 'json' };
+import type { FigmaVariable, ProcessedFigmaCollection, ProcessedFigmaVariable, ProcessedFigmaModeValue, ProcessedFigmaVarsExport, FigmaVariablesResponse, FigmaVariableAlias, FigmaColor } from './types.js';
 
 const SCHEMA_VERSION = config.tokens.schemaVersion;
 
@@ -49,7 +50,7 @@ export async function main() {
         throw new Error(`Figma API request failed with status ${response.status}: ${errorData.err || errorData.message}`);
     }
 
-    const data: any = await response.json();
+    const data = await response.json() as FigmaVariablesResponse;
     const meta = data.meta;
 
     if (!meta || !meta.variables || Object.keys(meta.variables).length === 0) {
@@ -57,20 +58,20 @@ export async function main() {
       return;
     }
 
-    const collections: FigmaCollection[] = Object.values(meta.variableCollections)
-    .map((c: any) => ({
+    const collections: ProcessedFigmaCollection[] = Object.values(meta.variableCollections)
+    .map((c) => ({
       id: c.id,
       name: c.name,
-      modes: c.modes,
+      modes: c.modes.map(m => ({ id: m.modeId, name: m.name })),
       isExtension: c.isExtension,
       variableOverrides: c.variableOverrides,
       parentVariableCollectionId: c.parentVariableCollectionId,
       defaultModeId: c.defaultModeId,
     }));
 
-    const variables: FigmaVariable[] = Object.values(meta.variables)
-      .filter(c => !c.hiddenFromPublishing)
-      .filter(c => !c.deletedButReferenced)
+    const variables: ProcessedFigmaVariable[] = Object.values(meta.variables)
+      .filter((c: FigmaVariable) => !c.hiddenFromPublishing)
+      .filter((c: FigmaVariable) => !c.deletedButReferenced)
       .map((v: any) => {
         const {
           id,
@@ -94,20 +95,21 @@ export async function main() {
           valuesByMode: Object.entries(valuesByMode || {}).reduce((acc, [modeId, value]) => {
             // Map Figma API's resolved output to match your plugin's local serialized types
             if (value && typeof value === 'object' && 'type' in value && value.type === 'VARIABLE_ALIAS') {
-              acc[modeId] = { kind: 'alias', variableId: value.id };
+              const alias = value as FigmaVariableAlias;
+              acc[modeId] = { kind: 'alias', variableId: alias.id };
             } else if (value && typeof value === 'object' && 'r' in value) {
               const rgba = 'a' in value ? value : { ...value, a: 1 };
-              acc[modeId] = { kind: 'literal', value: rgba as any };
+              acc[modeId] = { kind: 'literal', value: rgba as FigmaColor };
             } else {
-              acc[modeId] = { kind: 'literal', value: value as any };
+              acc[modeId] = { kind: 'literal', value: value as string | number | boolean };
             }
             return acc;
-          }, {} as Record<string, FigmaModeValue>),
+          }, {} as Record<string, ProcessedFigmaModeValue>),
         };
       });
 
     
-    const payload: FigmaVarsExport = {
+    const payload: ProcessedFigmaVarsExport = {
       schemaVersion: SCHEMA_VERSION,
       collections,
       variables,
@@ -128,6 +130,6 @@ export async function main() {
   }
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
   main();
 }

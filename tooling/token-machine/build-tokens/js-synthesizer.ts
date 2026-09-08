@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { TEMP_DIR, JS_OUTPUT_DIR, BREAKPOINT_MODES } from './constants.ts';
-import { dashToCamel, readJsObjectFragment } from './utils.ts';
+import { TEMP_DIR, JS_OUTPUT_DIR, BREAKPOINT_MODES } from './constants.js';
+import { dashToCamel, readJsObjectFragment } from './utils.js';
 
 export type SynthesizeType = 'color' | 'size' | 'typography';
 

@@ -1,7 +1,7 @@
 import StyleDictionary from 'style-dictionary';
 import * as path from 'path';
-import { TEMP_DIR, BREAKPOINT_MODES } from './constants.ts';
-import { getSourceFilesForCollection } from './utils.ts';
+import { TEMP_DIR, BREAKPOINT_MODES } from './constants.js';
+import { getSourceFilesForCollection } from './utils.js';
 
 export async function compileTokens(
   sources: string[],

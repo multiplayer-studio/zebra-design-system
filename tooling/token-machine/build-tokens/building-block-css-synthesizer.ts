@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { TEMP_DIR, CSS_OUTPUT_DIR, BREAKPOINT_MODES } from './constants.ts';
-import { getBreakpointsForTheme } from './breakpoints.ts';
-import { extractCssVariables } from './css-synthesizer.ts';
+import { TEMP_DIR, CSS_OUTPUT_DIR, BREAKPOINT_MODES } from './constants.js';
+import { getBreakpointsForTheme } from './breakpoints.js';
+import { extractCssVariables } from './css-synthesizer.js';
 
 export type BuildingBlockType = 'primitives' | 'palette' | 'size' | 'typography' | 'semantics';
 

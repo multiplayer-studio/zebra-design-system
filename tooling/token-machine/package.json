@@ -1,18 +1,21 @@
 {
   "name": "@zebra-design-system/token-machine",
   "version": "1.0.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "clean": "tsx clean-tokens.ts",
     "fetch": "tsx --env-file=../../.env fetch-tokens.ts",
     "convert": "tsx --env-file=../../.env convert-tokens.ts",
     "build": "tsx build-tokens/index.ts",
-    "export": "tsx export-dtcg-tokens.ts"
+    "export": "tsx export-dtcg-tokens.ts",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@types/node": "^26.5.0",
     "style-dictionary": "^5.5.0",
     "tsx": "^4.23.5",
     "typescript": "^7.0.2"
   },
-  "packageManager": "yarn@4.18.0"
+  "packageManager": "pnpm@10.34.5+sha512.a4ee05f2f73658255bd6a89859c065a45c28a57daefae2c893a168ee2b73168c37b91e83e57ea67654ad03f03031746430e8bce38e362e042605fb8abc80192e"
 }

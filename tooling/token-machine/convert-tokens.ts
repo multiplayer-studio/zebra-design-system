@@ -1,16 +1,18 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import config from './config.json' assert { type: 'json' };
+import { fileURLToPath } from 'url';
+import config from './config.json' with { type: 'json' };
 import {
-  FigmaModeValue,
+  ProcessedFigmaModeValue,
   FigmaVariableType,
-  FigmaVariable,
+  ProcessedFigmaVariable,
   ExtendedFigmaCollection,
   ExtendedFigmaVarsExport,
-  DTCGToken
-} from './types.ts';
+  DTCGToken,
+  FigmaColor
+} from './types.js';
 
-function rgbaToHex(color: { r: number; g: number; b: number; a: number }): string {
+function rgbaToHex(color: FigmaColor): string {
   const toHex = (value: number) => {
     const hex = Math.round(value * 255).toString(16);
     return hex.length === 1 ? '0' + hex : hex;
@@ -44,7 +46,7 @@ function normalizePathValue(pathSegments: string[], value: string | number | boo
   const joinedPath = pathSegments.join('').toLowerCase().replace(/[-\s]/g, '');
 
   if (joinedPath.includes('fontweight') && typeof value === 'string' && value in FONT_WEIGHT_MAP) {
-    return FONT_WEIGHT_MAP[value];
+    return FONT_WEIGHT_MAP[value as keyof typeof FONT_WEIGHT_MAP];
   }
 
   if (PX_PATTERNS.some(pattern => joinedPath.includes(pattern))) {
@@ -79,7 +81,7 @@ function setNestedProperty(obj: any, pathArray: string[], value: any) {
 // build-tokens.ts strips it back out when naming variables.
 const GROUP_VALUE_KEY = config.tokens.groupValueKey;
 
-function findCollidingAncestorIds(variables: FigmaVariable[]): Set<string> {
+function findCollidingAncestorIds(variables: ProcessedFigmaVariable[]): Set<string> {
   const byCollection = new Map<string, { id: string; path: string[] }[]>();
   variables.forEach(v => {
     const path = sanitizeTokenName(v.name).split('/');
@@ -125,14 +127,12 @@ export function convertTokens(inputFile: string, outputDir: string) {
       defaultModeId: c.defaultModeId,
       variableOverrides: c.variableOverrides
     })),
-    variables: rawJson.variables.map((v: any) => ({
+    variables: rawJson.variables.map((v: ProcessedFigmaVariable) => ({
       id: v.id,
       name: v.name,
       description: v.description,
-      // Map Figma's 'variableCollectionId' to our strict 'collectionId'
-      collectionId: v.variableCollectionId || v.collectionId, 
-      // Handle cases where Figma exports as 'resolvedType' instead of 'type'
-      type: v.resolvedType || v.type,
+      collectionId: v.collectionId,
+      type: v.type,
       scopes: v.scopes || [],
       valuesByMode: v.valuesByMode
     }))
@@ -140,7 +140,7 @@ export function convertTokens(inputFile: string, outputDir: string) {
 
   // Lookup dictionaries
   const collectionById = new Map<string, ExtendedFigmaCollection>();
-  const variableById = new Map<string, FigmaVariable>();
+  const variableById = new Map<string, ProcessedFigmaVariable>();
   const dtcgPathByVarId = new Map<string, string>(); // Maps variableId -> {collection.name.path}
 
   // 3b. Index Collections & Variables
@@ -161,13 +161,12 @@ export function convertTokens(inputFile: string, outputDir: string) {
   });
 
   // 3c. The Value Resolver
-  const resolveValue = (modeValue: any): string | number | boolean => {
+  const resolveValue = (modeValue: ProcessedFigmaModeValue): string | number | boolean => {
     if (modeValue === undefined || modeValue === null) return "";
-    // 1. Check for standard 'alias' OR alternative Figma 'VARIABLE_ALIAS' type
-    if (modeValue.kind === 'alias' || modeValue.type === 'VARIABLE_ALIAS') {
-      const targetId = modeValue.variableId || modeValue.id;
-      if (targetId && dtcgPathByVarId.has(targetId)) {
-        return dtcgPathByVarId.get(targetId)!;
+    // 1. Check for alias
+    if (modeValue.kind === 'alias') {
+      if (modeValue.variableId && dtcgPathByVarId.has(modeValue.variableId)) {
+        return dtcgPathByVarId.get(modeValue.variableId)!;
       }
       return "{unknown.reference}";
     }
@@ -176,13 +175,13 @@ export function convertTokens(inputFile: string, outputDir: string) {
     if (modeValue.kind === 'literal') {
       const val = modeValue.value;
       if (typeof val === 'object' && val !== null && 'r' in val) {
-        return rgbaToHex(val as { r: number; g: number; b: number; a: number });
+        return rgbaToHex(val as FigmaColor);
       }
       return val as string | number | boolean;
     }
     // 3. FALLBACK: What if the export unwrapped the value in the overrides?
     if (typeof modeValue === 'object' && modeValue !== null && 'r' in modeValue) {
-      return rgbaToHex(modeValue as { r: number; g: number; b: number; a: number });
+      return rgbaToHex(modeValue as FigmaColor);
     }
     if (typeof modeValue === 'string' || typeof modeValue === 'number' || typeof modeValue === 'boolean') {
       return modeValue;
@@ -273,9 +272,9 @@ export function convertTokens(inputFile: string, outputDir: string) {
                 if (overrideValue === undefined) {
                   overrideValue = overridesForVar[baseMode.id];
                 }
-                // If STILL not found, check if the overrides object is just a flat value
-                if (overrideValue === undefined && 
-                   (overridesForVar.kind || overridesForVar.type === 'VARIABLE_ALIAS' || typeof overridesForVar !== 'object' || 'r' in overridesForVar)) {
+                // If STILL not found, check if overridesForVar is a flat value (not a Record of values)
+                if (overrideValue === undefined &&
+                   (typeof overridesForVar !== 'object' || (typeof overridesForVar === 'object' && overridesForVar !== null && ('r' in overridesForVar || (typeof overridesForVar === 'object' && 'type' in overridesForVar))))) {
                   overrideValue = overridesForVar;
                 }
               }
@@ -310,7 +309,7 @@ export function convertTokens(inputFile: string, outputDir: string) {
 // ==========================================
 // 4. Execute Script
 // ==========================================
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
   const INPUT_FILE = config.directories.inputFile;
   const OUTPUT_DIR = config.directories.tokenDir;
 

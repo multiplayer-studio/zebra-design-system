@@ -1,6 +1,7 @@
 import * as path from 'path';
 import { fileURLToPath } from 'url';
-import config from '../config.json' assert { type: 'json' };
+import config from '../config.json' with { type: 'json' };
+// Config types are implicit; config is typed by the JSON import
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TOKEN_MACHINE_DIR = path.resolve(__dirname, '..');

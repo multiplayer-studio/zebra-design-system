@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { TOKEN_DIR, BREAKPOINT_MODES } from './constants.ts';
+import { TOKEN_DIR, BREAKPOINT_MODES } from './constants.js';
 
 function readJsonToken(filePath: string, path_: string[]): unknown {
   if (!fs.existsSync(filePath)) return undefined;

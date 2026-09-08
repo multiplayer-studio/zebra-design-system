@@ -1,0 +1,49 @@
+{
+  "name": "@zebra-design-system/tokens",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": [
+    "release",
+    "platform:web"
+  ],
+  "targets": {
+    "build": {
+      "executor": "nx:noop",
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": [
+            "@zebra-design-system/token-machine"
+          ]
+        },
+        {
+          "target": "export",
+          "projects": [
+            "@zebra-design-system/token-machine"
+          ]
+        }
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ]
+    },
+    "pack": {
+      "executor": "nx:run-script",
+      "dependsOn": [
+        "build"
+      ],
+      "outputs": [
+        "{projectRoot}/dist/artifacts"
+      ],
+      "options": {
+        "script": "pack"
+      }
+    },
+    "nx-release-publish": {
+      "executor": "@nx/js:release-publish",
+      "options": {
+        "packageRoot": "{projectRoot}"
+      }
+    }
+  }
+}

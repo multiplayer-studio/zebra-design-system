@@ -4,25 +4,25 @@
       "primary": {
         "default": {
           "$type": "color",
-          "$value": "{primitives.color.accent.1.60}",
+          "$value": "",
           "$description": "Primary brand color (theme.color.brand.primary)"
         },
         "faint": {
           "$type": "color",
-          "$value": "{primitives.color.accent.1.100}",
+          "$value": "",
           "$description": "Light brand tint for backgrounds (theme.color.brand.subtle)"
         },
         "subtle": {
           "$type": "color",
-          "$value": "{primitives.color.accent.1.50}"
+          "$value": ""
         },
         "deep": {
           "$type": "color",
-          "$value": "{primitives.color.accent.1.40}"
+          "$value": ""
         },
         "muted": {
           "$type": "color",
-          "$value": "{primitives.color.accent.1.90}",
+          "$value": "",
           "$description": "Muted/softened brand tone (theme.color.brand.muted)"
         },
         "on": {

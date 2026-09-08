@@ -1,6 +1,6 @@
 import StyleDictionary, { type TransformedToken } from 'style-dictionary';
 import { usesReferences, getReferences } from 'style-dictionary/utils';
-import { dashToCamel } from './utils.ts';
+import { dashToCamel } from './utils.js';
 
 StyleDictionary.registerFilter({
   name: 'encapsulationFilter',
@@ -37,7 +37,7 @@ StyleDictionary.registerFormat({
     const entries = dictionary.allTokens.map(token => {
       const key = dashToCamel(token.name.substring(token.name.indexOf('-') + 1));
       if (ctorParamName && usesReferences(token.original.$value)) {
-        const refs = getReferences(token.original.$value, dictionary.tokenMap, { unfilteredTokens: dictionary.unfilteredTokenMap });
+        const refs = getReferences(token.original.$value, dictionary.tokenMap, { unfilteredTokens: dictionary.unfilteredTokenMap ? Object.fromEntries(dictionary.unfilteredTokenMap) : undefined });
         if (refs.length > 0) {
           const refKey = dashToCamel(refs[0].name.substring(refs[0].name.indexOf('-') + 1));
           return `  ${key}: ${ctorParamName}.${refKey},`;

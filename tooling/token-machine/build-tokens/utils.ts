@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { TOKEN_DIR } from './constants.ts';
+import { TOKEN_DIR } from './constants.js';
 
 export function dashToCamel(str: string): string {
   return str.replace(/[-_]([a-zA-Z0-9])/g, (g) => g[1].toUpperCase());

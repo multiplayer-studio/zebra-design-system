@@ -12,14 +12,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
       - name: Setup node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
+          cache: 'pnpm'
 
       - name: Update Zeta Icons
-        run: yarn add @zebra-fed/zeta-icons@latest
+        run: pnpm add @zebra-fed/zeta-icons@latest --filter @zebra-design-system/zeta-web
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5

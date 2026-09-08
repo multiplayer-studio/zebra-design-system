@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { TEMP_DIR, CSS_OUTPUT_DIR, BREAKPOINT_MODES } from './constants.ts';
-import { getBreakpointsForTheme } from './breakpoints.ts';
+import { TEMP_DIR, CSS_OUTPUT_DIR, BREAKPOINT_MODES } from './constants.js';
+import { getBreakpointsForTheme } from './breakpoints.js';
 
 export function extractCssVariables(filePath: string): string {
   if (!fs.existsSync(filePath)) return '';

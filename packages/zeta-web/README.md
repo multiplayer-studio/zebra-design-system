@@ -24,8 +24,8 @@ Zeta Web Components can be directly used in many web frameworks including Angula
    ```sh
    # NPM
    npm install @zebra-design-system/zeta-web
-   # YARN
-   yarn add @zebra-design-system/zeta-web
+   # PNPM
+   pnpm add @zebra-design-system/zeta-web
    ```
 
 2. Import the global styles into the main app file
@@ -135,8 +135,8 @@ ts-lit-plugin adds type checking and code completion to lit-html. To install, fi
 # NPM
 npm install ts-lit-plugin -D
 
-# Yarn
-yarn add -D ts-lit-plugin
+# PNPM
+pnpm add -D ts-lit-plugin
 ```
 
 and add the plugin to your tsconfig.json:

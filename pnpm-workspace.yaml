@@ -1,0 +1,5 @@
+packages:
+  - "tooling/*"
+  - "packages/*"
+  - "packages/foundations/*"
+  - "apps/*"

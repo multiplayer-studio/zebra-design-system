@@ -1,8 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import config from './config.json' assert { type: 'json' };
+import { fileURLToPath } from 'url';
+import config from './config.json' with { type: 'json' };
 
-const SOURCE_DIR = path.join(import.meta.url.replace('file://', ''), '..', 'tokens', 'dtcg-tokens');
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_DIR = config.directories.jsonOutputDir;
 
 async function main() {
@@ -14,7 +15,7 @@ async function main() {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
   // Get all JSON files from dtcg-tokens
-  const sourceDir = path.join(path.dirname(new URL(import.meta.url).pathname), 'tokens', 'dtcg-tokens');
+  const sourceDir = path.join(__dirname, 'tokens', 'dtcg-tokens');
   const files = fs.readdirSync(sourceDir).filter(file => file.endsWith('.json'));
 
   if (files.length === 0) {

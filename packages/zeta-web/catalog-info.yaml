@@ -11,7 +11,7 @@ metadata:
       title: Storybook
     - url: https://design.zebra.com/web/tsdoc/
       title: TSDoc
-    - url: https://npmjs.com/package/@zebra-fed/zeta-web
+    - url: https://npmjs.com/package/@zebra-design-system/zeta-web
       title: npm
   tags: 
     - typescript

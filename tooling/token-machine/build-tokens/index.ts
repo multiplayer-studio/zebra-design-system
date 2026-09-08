@@ -2,13 +2,13 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import './style-dictionary-formats.ts';
-import { TOKEN_DIR, TEMP_DIR, CSS_OUTPUT_DIR, JS_OUTPUT_DIR, COLOR_COLLECTIONS, SIZE_COLLECTIONS, TYPOGRAPHY_COLLECTIONS, COLOR_MODES, BREAKPOINT_MODES } from './constants.ts';
-import { compileTokens, compileFlatModeTokens } from './compile-tokens.ts';
-import { synthesizeCss } from './css-synthesizer.ts';
-import { synthesizeJs } from './js-synthesizer.ts';
-import { synthesizeBuildingBlockCss } from './building-block-css-synthesizer.ts';
-import { synthesizeBuildingBlockJs } from './building-block-js-synthesizer.ts';
-import { getSourceFilesForCollection } from './utils.ts';
+import { TOKEN_DIR, TEMP_DIR, CSS_OUTPUT_DIR, JS_OUTPUT_DIR, COLOR_COLLECTIONS, SIZE_COLLECTIONS, TYPOGRAPHY_COLLECTIONS, COLOR_MODES, BREAKPOINT_MODES } from './constants.js';
+import { compileTokens, compileFlatModeTokens } from './compile-tokens.js';
+import { synthesizeCss } from './css-synthesizer.js';
+import { synthesizeJs } from './js-synthesizer.js';
+import { synthesizeBuildingBlockCss } from './building-block-css-synthesizer.js';
+import { synthesizeBuildingBlockJs } from './building-block-js-synthesizer.js';
+import { getSourceFilesForCollection } from './utils.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

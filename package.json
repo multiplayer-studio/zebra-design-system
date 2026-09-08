@@ -2,38 +2,38 @@
   "name": "zebra-design-system",
   "private": true,
   "scripts": {
-    "clean:tokens": "yarn workspace @zebra-design-system/token-machine clean",
-    "fetch:tokens": "yarn workspace @zebra-design-system/token-machine fetch",
-    "convert:tokens": "yarn workspace @zebra-design-system/token-machine convert",
-    "build:tokens": "yarn workspace @zebra-design-system/token-machine build",
-    "pack:tokens": "yarn workspace packages/tokens pack",
-    "export:tokens": "yarn workspace @zebra-design-system/token-machine export",
-    "sync:tokens": "yarn clean:tokens && yarn fetch:tokens && yarn convert:tokens && yarn build:tokens && yarn export:tokens",
-    "storybook": "yarn workspace @zebra-design-system/zeta-web storybook",
-    "test:web": "yarn workspace @zebra-design-system/zeta-web test"
+    "clean:tokens": "pnpm --filter @zebra-design-system/token-machine run clean",
+    "fetch:tokens": "pnpm --filter @zebra-design-system/token-machine run fetch",
+    "convert:tokens": "pnpm --filter @zebra-design-system/token-machine run convert",
+    "build:tokens": "pnpm --filter @zebra-design-system/token-machine run build",
+    "pack:tokens": "pnpm --filter @zebra-design-system/tokens pack",
+    "export:tokens": "pnpm --filter @zebra-design-system/token-machine run export",
+    "sync:tokens": "pnpm run clean:tokens && pnpm run fetch:tokens && pnpm run convert:tokens && pnpm run build:tokens && pnpm run export:tokens",
+    "storybook": "pnpm --filter @zebra-design-system/zeta-web run storybook",
+    "test:web": "pnpm --filter @zebra-design-system/zeta-web run test"
   },
-  "workspaces": [
-    "tooling/*",
-    "packages/*",
-    "apps/*"
-  ],
   "dependencies": {
     "style-dictionary": "^5.5.0"
   },
   "devDependencies": {
+    "@nx/js": "^23.2.0",
+    "@types/node": "^26.5.0",
+    "nx": "23.2.0",
     "vitest": "^4.1.10"
   },
-  "resolutions": {
-    "react-router-dom": "^6.3.0",
-    "react-router": "^6.3.0",
-    "@isaacs/brace-expansion": "^5.0.1",
-    "@xmldom/xmldom": "^0.8.13",
-    "picomatch": "^4.0.2",
-    "undici": "^7.28.0",
-    "js-yaml": "^4.3.0",
-    "brace-expansion": "^2.1.4",
-    "@puppeteer/browsers": "^3.0.0",
-    "uuid": "^11.1.1"
+  "pnpm": {
+    "overrides": {
+      "react-router-dom": "^6.3.0",
+      "react-router": "^6.3.0",
+      "@xmldom/xmldom": "^0.8.13",
+      "picomatch": "^4.0.2",
+      "undici": "^7.28.0",
+      "js-yaml": "^4.3.0",
+      "@puppeteer/browsers": "^3.0.0",
+      "uuid": "^11.1.1",
+      "@storybook/blocks>react": "^19.2.8",
+      "@storybook/addon-designs>react": "^19.2.8"
+    }
   },
-  "packageManager": "yarn@4.0.2+sha512.4e502bea682e7d8004561f916f1da2dfbe6f718024f6aa50bf8cd86f38ea3a94a7f1bf854a9ca666dd8eafcfb8d44baaa91bf5c7876e79a7aeac952c332f0e88"
+  "packageManager": "pnpm@10.34.5+sha512.a4ee05f2f73658255bd6a89859c065a45c28a57daefae2c893a168ee2b73168c37b91e83e57ea67654ad03f03031746430e8bce38e362e042605fb8abc80192e"
 }

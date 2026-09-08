@@ -3,10 +3,10 @@
     "tokenRootDir": "./tokens",
     "tokenDir": "./tokens/dtcg-tokens",
     "inputFile": "./tokens/raw-tokens.json",
-    "tempDir": "../../packages/tokens/dist/temp",
-    "cssOutputDir": "../../packages/tokens/dist/css",
-    "jsOutputDir": "../../packages/tokens/dist/js",
-    "jsonOutputDir": "../../packages/tokens/dist/json"
+    "tempDir": "../../packages/foundations/tokens/dist/temp",
+    "cssOutputDir": "../../packages/foundations/tokens/dist/css",
+    "jsOutputDir": "../../packages/foundations/tokens/dist/js",
+    "jsonOutputDir": "../../packages/foundations/tokens/dist/json"
   },
   "collections": {
     "color": ["primitives", "palette", "semantics"],

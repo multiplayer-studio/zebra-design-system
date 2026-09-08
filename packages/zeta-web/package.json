@@ -7,11 +7,6 @@
     "assets",
     "LICENSE-3RD-PARTY"
   ],
-  "workspaces": {
-    "packages": [
-      "example"
-    ]
-  },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "exports": {
@@ -43,28 +38,29 @@
   "customElements": "custom-elements.json",
   "scripts": {
     "analyze": "cem analyze",
-    "build-storybook:with-output-dir": "yarn run build && storybook build -o ",
-    "build": "yarn prebuild && node scripts/build.js",
-    "check": "yarn analyze && yarn lint && yarn lint:lit-analyzer && yarn test && yarn docs",
+    "build-storybook:with-output-dir": "pnpm run build && storybook build -o ",
+    "build": "pnpm run prebuild && node scripts/build.js",
+    "check": "pnpm run analyze && pnpm run lint && pnpm run lint:lit-analyzer && pnpm run test && pnpm run docs",
     "create": "cd scripts && node makeWebComponentTemplate.js",
     "docs": "npx typedoc --logLevel Warn",
     "lint:lit-analyzer": "lit-analyzer src/components/**/* src/stories/**/* src/mixins/**/* src/test/**/* src/utils/**/* --quiet",
     "lint": "eslint -f unix \"src/**/*.{ts,tsx}\" --config src/eslint.config.*",
     "localize:build": "lit-localize build --config src/lit-localize.json",
     "localize:extract": "lit-localize extract --config src/lit-localize.json",
-    "prebuild": "yarn run analyze && node scripts/make-index.js",
-    "prepack": "yarn run build",
-    "prepare": "yarn run build",
+    "prebuild": "pnpm run analyze && node scripts/make-index.js",
+    "prepack": "pnpm run build",
+    "prepare": "pnpm run build",
     "prettier": "prettier src --write --ignore-unknown",
-    "start": "cd example && yarn run dev",
-    "storybook:build": "yarn run build && storybook build",
+    "start": "cd example && pnpm run dev",
+    "storybook:build": "pnpm run build && storybook build",
     "storybook:test": "test-storybook",
     "storybook": "cem analyze && storybook dev -p 6006",
     "test:count": "npx tsx scripts/test/test_counter.ts",
-    "pretest:package": "yarn pack --pack-destination ./test && cd test && yarn install && cd ..",
-    "test:package": "cd test && yarn run dev",
-    "test:watch": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --watch --config src/test/web-test-runner.config.*",
-    "test": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --config src/test/web-test-runner.config.*"
+    "pretest:package": "pnpm pack --pack-destination ./test && cd test && pnpm install && cd ..",
+    "test:package": "cd test && pnpm run dev",
+    "test:watch": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --watch --config src/test/web-test-runner.config.js",
+    "test": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --config src/test/web-test-runner.config.js",
+    "pack": "pnpm pack --pack-destination dist/artifacts"
   },
   "devDependencies": {
     "@actions/core": "^1.11.1",
@@ -131,15 +127,7 @@
     "@lit/localize": "^0.12.2",
     "@zebra-fed/zeta-icons": "1.9.6",
     "lit": "^3.3.3",
-    "tokens": "file:../tokens/"
-  },
-  "overrides": {
-    "@storybook/blocks": {
-      "react": "$react"
-    },
-    "@storybook/addon-designs": {
-      "react": "$react"
-    }
+    "@zebra-design-system/tokens": "file:../foundations/tokens/"
   },
   "browserslist": {
     "production": [
@@ -153,5 +141,5 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "yarn@4.18.0"
+  "packageManager": "pnpm@10.34.5+sha512.a4ee05f2f73658255bd6a89859c065a45c28a57daefae2c893a168ee2b73168c37b91e83e57ea67654ad03f03031746430e8bce38e362e042605fb8abc80192e"
 }
