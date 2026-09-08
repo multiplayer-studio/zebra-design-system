@@ -9,7 +9,6 @@
     "pack:tokens": "yarn workspace packages/tokens pack",
     "export:tokens": "yarn workspace @zebra-design-system/token-machine export",
     "sync:tokens": "yarn clean:tokens && yarn fetch:tokens && yarn convert:tokens && yarn build:tokens && yarn export:tokens",
-    "dev:tokens-web": "yarn workspace token-showcase-web dev",
     "storybook": "yarn workspace @zebra-design-system/zeta-web storybook",
     "test:web": "yarn workspace @zebra-design-system/zeta-web test"
   },

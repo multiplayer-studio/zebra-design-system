@@ -6,7 +6,6 @@ A monorepo containing the Zebra Design System, including design tokens, web comp
 
 - **`packages/tokens`** — Design tokens package with CSS, JavaScript, and Dart exports
 - **`packages/zeta-web`** — Web components library built with Lit
-- **`apps/token-showcase-web`** — Example React app demonstrating token usage
 - **`tooling/token-machine`** — Tool to fetch, convert, build, and export design tokens
 
 ## Setup
