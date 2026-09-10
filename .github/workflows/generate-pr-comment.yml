@@ -18,6 +18,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
 
       - name: Get PR info
         id: pr-info
@@ -32,7 +35,7 @@ jobs:
         run: |
           BRANCH="${{ steps.pr-info.outputs.head_branch }}"
           # Escape special chars in branch name for glob
-          BRANCH_PATTERN=$(echo "$BRANCH" | sed 's/[^a-zA-Z0-9_-]/_/g')
+          BRANCH_PATTERN=$(echo "$BRANCH" | sed 's/[^a-zA-Z0-9_]/_/g')
 
           # Find latest file matching PR_COMMENT_{BRANCH}_*.md (sort by filename to get latest timestamp)
           LATEST_FILE=$(ls .github/pr-comments/PR_COMMENT_${BRANCH_PATTERN}_*.md 2>/dev/null | sort -V | tail -1)

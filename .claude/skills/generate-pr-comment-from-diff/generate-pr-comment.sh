@@ -7,9 +7,10 @@ set -e
 # Configuration
 BASE_BRANCH="${1:-origin/main}"
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
+BRANCH_ESCAPED=$(echo "$BRANCH" | sed 's/[^a-zA-Z0-9_]/_/g')
 DATETIME=$(date +"%Y%m%d_%H%M%S")
 OUTPUT_DIR=".github/pr-comments"
-FILENAME="PR_COMMENT_${BRANCH}_${DATETIME}.md"
+FILENAME="PR_COMMENT_${BRANCH_ESCAPED}_${DATETIME}.md"
 OUTPUT_FILE="${OUTPUT_DIR}/${FILENAME}"
 
 # Ensure output directory exists
@@ -27,13 +28,13 @@ echo "Branch: $BRANCH"
 echo ""
 
 # Check if there's a previous PR comment for this branch
-LATEST_PR_COMMENT=$(ls -t "$OUTPUT_DIR"/PR_COMMENT_${BRANCH}_*.md 2>/dev/null | head -1)
+LATEST_PR_COMMENT=$(ls -t "$OUTPUT_DIR"/PR_COMMENT_${BRANCH_ESCAPED}_*.md 2>/dev/null | head -1)
 
 if [ -n "$LATEST_PR_COMMENT" ]; then
     # Extract timestamp from filename (format: PR_COMMENT_BRANCH_YYYYMMDD_HHMMSS.md)
     FILENAME_ONLY=$(basename "$LATEST_PR_COMMENT")
     # Remove prefix and .md extension to get YYYYMMDD_HHMMSS
-    TIMESTAMP_STR="${FILENAME_ONLY#PR_COMMENT_${BRANCH}_}"
+    TIMESTAMP_STR="${FILENAME_ONLY#PR_COMMENT_${BRANCH_ESCAPED}_}"
     TIMESTAMP_STR="${TIMESTAMP_STR%.md}"
 
     # Convert YYYYMMDD_HHMMSS to a date git can understand

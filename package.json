@@ -9,6 +9,7 @@
     "pack:tokens": "pnpm --filter @zebra-design-system/tokens pack",
     "export:tokens": "pnpm --filter @zebra-design-system/token-machine run export",
     "sync:tokens": "pnpm run clean:tokens && pnpm run fetch:tokens && pnpm run convert:tokens && pnpm run build:tokens && pnpm run export:tokens",
+    "scrape:metadata": "pnpm --filter @zebra-design-system/figma-metadata-scraper run scrape",
     "storybook": "pnpm --filter @zebra-design-system/zeta-web run storybook",
     "test:web": "pnpm --filter @zebra-design-system/zeta-web run test"
   },
