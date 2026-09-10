@@ -60,74 +60,11 @@ That's it! The tags trigger publishing once Google Artifact Registry is configur
 
 ---
 
-## Commit Format (Conventional Commits)
+## Commit Standards
 
-Commit messages must follow the [Conventional Commits](https://www.conventionalcommits.org/) standard so the system can automatically infer version bumps:
+**→ See [CONTRIBUTING.md](./CONTRIBUTING.md#commit-standards)** for detailed commit format, types, scopes, and examples.
 
-```
-<type>(<scope>): <description>
-
-<body>
-
-<footer>
-```
-
-### Types
-
-- **`feat:`** — new feature → **minor version bump** (0.1.0 → 0.2.0)
-- **`fix:`** — bug fix → **patch version bump** (0.1.0 → 0.1.1)
-- **`docs:`** — documentation only → **no version bump**
-- **`chore:`** — housekeeping (dependencies, CI, etc.) → **no version bump**
-- **`test:`** — tests only → **no version bump**
-- **`refactor:`** — code refactor → **no version bump**
-- **`perf:`** — performance improvement → **patch version bump**
-- **`style:`** — formatting → **no version bump**
-
-### Breaking Changes (Major Bump)
-
-Add `BREAKING CHANGE:` in the commit body to trigger a **major version bump** (1.0.0 → 2.0.0):
-
-```
-feat(button): redesign button API
-
-BREAKING CHANGE: The `variant` prop has been renamed to `type`.
-Consumers must update their imports.
-```
-
-Or use the shorthand `feat!:` in the type:
-
-```
-feat!(button): redesign button API
-
-The `variant` prop has been renamed to `type`.
-```
-
-### Examples
-
-**Patch bump** (zeta-web v1.4.2 → 1.4.3):
-```
-fix(button): correct padding on small button variant
-```
-
-**Minor bump** (tokens v1.0.0 → 1.1.0):
-```
-feat(tokens): add new semantic color for error states
-```
-
-**Major bump** (zeta-web v1.4.2 → 2.0.0):
-```
-feat!(components): remove deprecated legacy component API
-
-BREAKING CHANGE: The legacy API for all components is removed.
-Use the new recommended patterns in the migration guide.
-```
-
-**Multiple packages** — scope defines which package(s) are affected:
-```
-feat(token-machine): add Flutter token export
-
-This generates Flutter-compatible token definitions in the tokens package.
-```
+All commits must follow [Conventional Commits](https://www.conventionalcommits.org/) — this is required for automatic version bumps.
 
 ---
 
@@ -159,44 +96,6 @@ If `@zebra-design-system/tokens` releases a new version, `@zebra-design-system/z
 - **Breaking changes in tokens** require an explicit breaking-change commit in zeta-web itself to force a major bump
 - This is intentional: it keeps consumers aware of breaking changes and requires explicit review
 
----
-
-## Scoping Commits to Packages & Monorepo
-
-Use the `<scope>` in your commit to indicate which package or area a change affects:
-
-### Package Scopes
-
-| Scope | Package |
-|-------|---------|
-| `(tokens)` | Design tokens (`@zebra-design-system/tokens`) |
-| `(zeta-web)` or `(button)`, `(card)`, etc. | Web components (`@zebra-design-system/zeta-web`) |
-| `(flutter)` | Flutter package (`zeta_flutter`) |
-| `(android)` | Android package (`com.zebra.zeta.android`) |
-| `(icons)` | Icons package (future) |
-| `(skills)` | AI Skills package (future) |
-
-### Monorepo Root Scopes
-
-| Scope | Target |
-|-------|--------|
-| `(ci)` | GitHub workflows, CI configuration (`.github/workflows/`) |
-| `(config)` | Root config files (`nx.json`, `pnpm-workspace.yaml`, `.npmrc`) |
-| `(build)` | Build scripts, Nx configuration, build tooling |
-| *(no scope)* | Miscellaneous root changes (if unsure, omit scope) |
-
-### Multiple Packages
-
-If a commit affects multiple packages, list them:
-```
-fix(tokens,zeta-web): fix color contrast in semantic palette
-
-This updates both the token definitions and their usage in zeta-web components.
-```
-
-Or make separate commits — Nx will version each package independently based on its own commits.
-
----
 
 ## Checking Version Inference
 
