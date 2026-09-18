@@ -34,15 +34,24 @@ jobs:
         id: find-comment-file
         run: |
           BRANCH="${{ steps.pr-info.outputs.head_branch }}"
+          echo "🔍 Debug: Original branch name: '$BRANCH'"
+
           # Escape special chars in branch name for glob
-          BRANCH_PATTERN=$(echo "$BRANCH" | sed 's/[^a-zA-Z0-9_]/_/g')
+          BRANCH_PATTERN=$(echo "$BRANCH" | sed 's/[^a-zA-Z0-9_-]/_/g')
+          echo "🔍 Debug: Branch pattern after transformation: '$BRANCH_PATTERN'"
+
+          # List all available PR comment files for debugging
+          echo "🔍 Debug: All PR comment files available:"
+          ls -lah .github/pr-comments/PR_COMMENT_*.md 2>/dev/null || echo "  (no files found)"
 
           # Find latest file matching PR_COMMENT_{BRANCH}_*.md (sort by filename to get latest timestamp)
+          echo "🔍 Debug: Searching for: .github/pr-comments/PR_COMMENT_${BRANCH_PATTERN}_*.md"
           LATEST_FILE=$(ls .github/pr-comments/PR_COMMENT_${BRANCH_PATTERN}_*.md 2>/dev/null | sort -V | tail -1)
+          echo "🔍 Debug: Search result: '$LATEST_FILE'"
 
           if [ -z "$LATEST_FILE" ]; then
             echo "comment_file=" >> $GITHUB_OUTPUT
-            echo "::notice::No PR comment file found for branch: $BRANCH"
+            echo "::notice::No PR comment file found for branch: $BRANCH (pattern: $BRANCH_PATTERN)"
           else
             echo "comment_file=$LATEST_FILE" >> $GITHUB_OUTPUT
             echo "::notice::Found PR comment file: $LATEST_FILE"

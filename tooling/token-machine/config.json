@@ -4,8 +4,8 @@
     "tokenDir": "./tokens/dtcg-tokens",
     "inputFile": "./tokens/raw-tokens.json",
     "tempDir": "../../packages/foundations/tokens/dist/temp",
+    "resolvedFragmentsDir": "../../packages/foundations/tokens/dist/resolved-fragments",
     "cssOutputDir": "../../packages/foundations/tokens/dist/css",
-    "jsOutputDir": "../../packages/foundations/tokens/dist/js",
     "jsonOutputDir": "../../packages/foundations/tokens/dist/json"
   },
   "collections": {

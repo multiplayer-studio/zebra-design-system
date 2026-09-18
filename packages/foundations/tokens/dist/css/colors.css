@@ -42,6 +42,7 @@
   --border-warning: #ae6500;
   --border-error: #d70015;
   --border-info: #0073e6;
+  --border-transparent: rgba(12, 13, 14, 0);
   --border-gradient-start: #7e0cff;
   --border-gradient-end: #4f62fe;
   --interactive-primary-background-default: #1f69ff;
@@ -216,6 +217,7 @@
   --border-warning: #d78d26;
   --border-error: #d70015;
   --border-info: #599fe5;
+  --border-transparent: rgba(214, 220, 226, 0);
   --border-gradient-start: #7e0cff;
   --border-gradient-end: #7281fe;
   --interactive-primary-background-default: #1f69ff;
@@ -392,6 +394,7 @@
   --border-warning: #d78d26;
   --border-error: #d70015;
   --border-info: #599fe5;
+  --border-transparent: rgba(214, 220, 226, 0);
   --border-gradient-start: #7e0cff;
   --border-gradient-end: #7281fe;
   --interactive-primary-background-default: #1f69ff;

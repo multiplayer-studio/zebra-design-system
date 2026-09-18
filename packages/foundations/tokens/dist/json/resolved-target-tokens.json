@@ -1,0 +1,3996 @@
+{
+  "color": {
+    "light": {
+      "surface": {
+        "page": {
+          "$type": "color",
+          "$value": "#f3f6fa"
+        },
+        "section": {
+          "$type": "color",
+          "$value": "#ffffff"
+        },
+        "card": {
+          "$type": "color",
+          "$value": "#f8fbff"
+        },
+        "dialog": {
+          "$type": "color",
+          "$value": "#ffffff"
+        },
+        "sheet": {
+          "$type": "color",
+          "$value": "#ffffff"
+        },
+        "popover": {
+          "$type": "color",
+          "$value": "#ffffff"
+        },
+        "menu": {
+          "$type": "color",
+          "$value": "#ffffff"
+        },
+        "tooltip": {
+          "$type": "color",
+          "$value": "#1d1e23"
+        },
+        "brand": {
+          "$type": "color",
+          "$value": ""
+        },
+        "inverse": {
+          "$type": "color",
+          "$value": "#1d1e23"
+        },
+        "success": {
+          "$type": "color",
+          "$value": "#ecfff7"
+        },
+        "warning": {
+          "$type": "color",
+          "$value": "#fef2e2"
+        },
+        "error": {
+          "$type": "color",
+          "$value": "#fff0f1"
+        },
+        "info": {
+          "$type": "color",
+          "$value": "#f1f8ff"
+        },
+        "gradient": {
+          "start": {
+            "$type": "color",
+            "$value": ""
+          },
+          "end": {
+            "$type": "color",
+            "$value": "#cc0000"
+          }
+        }
+      },
+      "foreground": {
+        "primary": {
+          "$type": "color",
+          "$value": "#0c0d0e"
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": "#545963"
+        },
+        "tertiary": {
+          "$type": "color",
+          "$value": "#7a8190"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "#8d95a3"
+        },
+        "inverse": {
+          "$type": "color",
+          "$value": "#f8fbff"
+        },
+        "link": {
+          "$type": "color",
+          "$value": ""
+        },
+        "cursor": {
+          "$type": "color",
+          "$value": ""
+        },
+        "success": {
+          "$type": "color",
+          "$value": "#00864f"
+        },
+        "warning": {
+          "$type": "color",
+          "$value": "#ae6500"
+        },
+        "error": {
+          "$type": "color",
+          "$value": "#d70015"
+        },
+        "info": {
+          "$type": "color",
+          "$value": "#0073e6"
+        },
+        "gradient": {
+          "start": {
+            "$type": "color",
+            "$value": ""
+          },
+          "end": {
+            "$type": "color",
+            "$value": "#cc0000"
+          }
+        }
+      },
+      "border": {
+        "default": {
+          "$type": "border",
+          "$value": "#ced2db"
+        },
+        "subtle": {
+          "$type": "border",
+          "$value": "#e0e3e9"
+        },
+        "inverse": {
+          "$type": "border",
+          "$value": "#ffffff"
+        },
+        "strong": {
+          "$type": "border",
+          "$value": "#7a8190"
+        },
+        "focus": {
+          "$type": "border",
+          "$value": ""
+        },
+        "success": {
+          "$type": "border",
+          "$value": "#00864f"
+        },
+        "warning": {
+          "$type": "border",
+          "$value": "#ae6500"
+        },
+        "error": {
+          "$type": "border",
+          "$value": "#d70015"
+        },
+        "info": {
+          "$type": "border",
+          "$value": "#0073e6"
+        },
+        "transparent": {
+          "$type": "border",
+          "$value": "rgba(12, 13, 14, 0)"
+        },
+        "gradient": {
+          "start": {
+            "$type": "border",
+            "$value": ""
+          },
+          "end": {
+            "$type": "border",
+            "$value": "#cc0000"
+          }
+        }
+      },
+      "interactive": {
+        "primary": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": ""
+            },
+            "focused": {
+              "$type": "color",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#e0e3e9"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": ""
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": ""
+            },
+            "selected": {
+              "$type": "color",
+              "$value": ""
+            }
+          },
+          "foreground": {
+            "default": {
+              "$type": "color",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#8d95a3"
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "border",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "border",
+              "$value": "#e0e3e9"
+            },
+            "hover": {
+              "$type": "border",
+              "$value": ""
+            },
+            "pressed": {
+              "$type": "border",
+              "$value": ""
+            }
+          }
+        },
+        "secondary": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": ""
+            },
+            "hover": {
+              "$type": "color",
+              "$value": ""
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": ""
+            },
+            "focused": {
+              "$type": "color",
+              "$value": ""
+            },
+            "selected": {
+              "$type": "color",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#e0e3e9"
+            }
+          },
+          "foreground": {
+            "default": {
+              "$type": "color",
+              "$value": "#fafafa"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#8d95a3"
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "border",
+              "$value": ""
+            },
+            "hover": {
+              "$type": "border",
+              "$value": ""
+            },
+            "pressed": {
+              "$type": "border",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "border",
+              "$value": "#e0e3e9"
+            }
+          }
+        },
+        "ghost": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "rgba(12, 13, 14, 0)"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "rgba(12, 13, 14, 0.050980392156862744)"
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "rgba(12, 13, 14, 0.10196078431372549)"
+            },
+            "focused": {
+              "$type": "color",
+              "$value": "rgba(12, 13, 14, 0)"
+            },
+            "selected": {
+              "$type": "color",
+              "$value": "rgba(12, 13, 14, 0.050980392156862744)"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "rgba(12, 13, 14, 0)"
+            }
+          },
+          "foreground": {
+            "default": {
+              "$type": "color",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#8d95a3"
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "border",
+              "$value": ""
+            },
+            "hover": {
+              "$type": "border",
+              "$value": ""
+            },
+            "pressed": {
+              "$type": "border",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "border",
+              "$value": "#e0e3e9"
+            }
+          }
+        },
+        "destructive": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "#d70015"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "#f36170"
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "#8f000e"
+            },
+            "focused": {
+              "$type": "color",
+              "$value": "#d70015"
+            },
+            "selected": {
+              "$type": "color",
+              "$value": "#8f000e"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#e0e3e9"
+            }
+          },
+          "foreground": {
+            "default": {
+              "$type": "color",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#8d95a3"
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "border",
+              "$value": "#d70015"
+            },
+            "hover": {
+              "$type": "border",
+              "$value": "#f36170"
+            },
+            "pressed": {
+              "$type": "border",
+              "$value": "#b50012"
+            },
+            "disabled": {
+              "$type": "border",
+              "$value": "#e0e3e9"
+            }
+          }
+        },
+        "inverse": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "#1d1e23"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "#2c2f36"
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "#0c0d0e"
+            },
+            "focused": {
+              "$type": "color",
+              "$value": "#1d1e23"
+            },
+            "selected": {
+              "$type": "color",
+              "$value": "#0c0d0e"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#e0e3e9"
+            }
+          },
+          "foreground": {
+            "default": {
+              "$type": "color",
+              "$value": "#f8fbff"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#8d95a3"
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "border",
+              "$value": "#1d1e23"
+            },
+            "hover": {
+              "$type": "border",
+              "$value": "#2c2f36"
+            },
+            "pressed": {
+              "$type": "border",
+              "$value": "#0c0d0e"
+            },
+            "disabled": {
+              "$type": "border",
+              "$value": "#e0e3e9"
+            }
+          }
+        },
+        "neutral": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "#ffffff"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "#f3f6fa"
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "#e0e3e9"
+            },
+            "focused": {
+              "$type": "color",
+              "$value": "#ffffff"
+            },
+            "selected": {
+              "$type": "color",
+              "$value": "#e0e3e9"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#e0e3e9"
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "border",
+              "$value": "#ced2db"
+            },
+            "hover": {
+              "$type": "border",
+              "$value": "#7a8190"
+            },
+            "pressed": {
+              "$type": "border",
+              "$value": "#7a8190"
+            },
+            "disabled": {
+              "$type": "border",
+              "$value": "#e0e3e9"
+            }
+          },
+          "foreground": {
+            "default": {
+              "$type": "color",
+              "$value": "#0c0d0e"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#8d95a3"
+            }
+          }
+        },
+        "positive": {
+          "border": {
+            "default": {
+              "$type": "border",
+              "$value": "#00864f"
+            },
+            "hover": {
+              "$type": "border",
+              "$value": "#00864f"
+            },
+            "pressed": {
+              "$type": "border",
+              "$value": "#005f38"
+            },
+            "disabled": {
+              "$type": "border",
+              "$value": "#e0e3e9"
+            }
+          },
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "#00864f"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "#67b796"
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "#005f38"
+            },
+            "focused": {
+              "$type": "color",
+              "$value": "#00864f"
+            },
+            "selected": {
+              "$type": "color",
+              "$value": "#005f38"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#e0e3e9"
+            }
+          },
+          "foreground": {
+            "default": {
+              "$type": "color",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#8d95a3"
+            }
+          }
+        },
+        "subtle": {
+          "border": {
+            "default": {
+              "$type": "border",
+              "$value": ""
+            },
+            "hover": {
+              "$type": "border",
+              "$value": ""
+            },
+            "pressed": {
+              "$type": "border",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "border",
+              "$value": "#e0e3e9"
+            }
+          },
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": ""
+            },
+            "hover": {
+              "$type": "color",
+              "$value": ""
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": ""
+            },
+            "focused": {
+              "$type": "color",
+              "$value": ""
+            },
+            "selected": {
+              "$type": "color",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#e0e3e9"
+            }
+          },
+          "foreground": {
+            "default": {
+              "$type": "color",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#8d95a3"
+            }
+          }
+        }
+      },
+      "overlay": {
+        "scrim": {
+          "$type": "color",
+          "$value": "rgba(12, 13, 14, 0.6)"
+        },
+        "modal": {
+          "$type": "color",
+          "$value": "#ffffff"
+        }
+      },
+      "feedback": {
+        "success": {
+          "background": {
+            "$type": "color",
+            "$value": "#ecfff7"
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "#00864f"
+          }
+        },
+        "warning": {
+          "background": {
+            "$type": "color",
+            "$value": "#fef2e2"
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "#ae6500"
+          }
+        },
+        "error": {
+          "background": {
+            "$type": "color",
+            "$value": "#fff0f1"
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "#d70015"
+          }
+        },
+        "info": {
+          "background": {
+            "$type": "color",
+            "$value": "#f1f8ff"
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "#0073e6"
+          }
+        }
+      },
+      "focus": {
+        "ring": {
+          "$type": "color",
+          "$value": ""
+        },
+        "outline": {
+          "$type": "color",
+          "$value": ""
+        }
+      },
+      "chart": {
+        "series": {
+          "1": {
+            "$type": "color",
+            "$value": "#1f69ff"
+          },
+          "2": {
+            "$type": "color",
+            "$value": "#ff4d00"
+          },
+          "3": {
+            "$type": "color",
+            "$value": "#8fd820"
+          },
+          "4": {
+            "$type": "color",
+            "$value": "#7e0cff"
+          },
+          "5": {
+            "$type": "color",
+            "$value": "#840054"
+          },
+          "6": {
+            "$type": "color",
+            "$value": "#1a8080"
+          },
+          "7": {
+            "$type": "color",
+            "$value": "#dbb91c"
+          },
+          "8": {
+            "$type": "color",
+            "$value": "#d7965a"
+          },
+          "9": {
+            "$type": "color",
+            "$value": "#cc0000"
+          },
+          "10": {
+            "$type": "color",
+            "$value": "#c300ed"
+          },
+          "11": {
+            "$type": "color",
+            "$value": "#f36170"
+          },
+          "12": {
+            "$type": "color",
+            "$value": "#878787"
+          }
+        },
+        "grid": {
+          "$type": "color",
+          "$value": "#e0e3e9"
+        },
+        "axis": {
+          "$type": "color",
+          "$value": "#7a8190"
+        },
+        "reference": {
+          "$type": "color",
+          "$value": "#2c2f36"
+        },
+        "positive": {
+          "$type": "color",
+          "$value": "#00864f"
+        },
+        "negative": {
+          "$type": "color",
+          "$value": "#d70015"
+        },
+        "neutral": {
+          "$type": "color",
+          "$value": "#8d95a3"
+        }
+      },
+      "selection": {
+        "background": {
+          "$type": "color",
+          "$value": "#b9daff"
+        },
+        "border": {
+          "$type": "border",
+          "$value": ""
+        },
+        "text": {
+          "$type": "color",
+          "$value": "#0c0d0e"
+        }
+      },
+      "shadow": {
+        "soft": {
+          "$type": "shadow",
+          "$value": "rgba(12, 13, 14, 0.050980392156862744)"
+        },
+        "hard": {
+          "$type": "shadow",
+          "$value": "rgba(12, 13, 14, 0.10196078431372549)"
+        }
+      }
+    },
+    "dark": {
+      "surface": {
+        "page": {
+          "$type": "color",
+          "$value": "#1d1e23"
+        },
+        "section": {
+          "$type": "color",
+          "$value": "#0c0d0e"
+        },
+        "card": {
+          "$type": "color",
+          "$value": "#0c0d0e"
+        },
+        "dialog": {
+          "$type": "color",
+          "$value": "#2c2f36"
+        },
+        "sheet": {
+          "$type": "color",
+          "$value": "#2c2f36"
+        },
+        "popover": {
+          "$type": "color",
+          "$value": "#2c2f36"
+        },
+        "menu": {
+          "$type": "color",
+          "$value": "#2c2f36"
+        },
+        "tooltip": {
+          "$type": "color",
+          "$value": "#f3f6fa"
+        },
+        "brand": {
+          "$type": "color",
+          "$value": ""
+        },
+        "inverse": {
+          "$type": "color",
+          "$value": "#f3f6fa"
+        },
+        "success": {
+          "$type": "color",
+          "$value": "#081711"
+        },
+        "warning": {
+          "$type": "color",
+          "$value": "#1e1100"
+        },
+        "error": {
+          "$type": "color",
+          "$value": "#220f11"
+        },
+        "info": {
+          "$type": "color",
+          "$value": "#101b25"
+        },
+        "gradient": {
+          "start": {
+            "$type": "color",
+            "$value": ""
+          },
+          "end": {
+            "$type": "color",
+            "$value": "#d11919"
+          }
+        }
+      },
+      "foreground": {
+        "primary": {
+          "$type": "color",
+          "$value": "#f8fbff"
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": "#ced2db"
+        },
+        "tertiary": {
+          "$type": "color",
+          "$value": "#8d95a3"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "#7a8190"
+        },
+        "inverse": {
+          "$type": "color",
+          "$value": "#0c0d0e"
+        },
+        "link": {
+          "$type": "color",
+          "$value": ""
+        },
+        "cursor": {
+          "$type": "color",
+          "$value": ""
+        },
+        "success": {
+          "$type": "color",
+          "$value": "#00864f"
+        },
+        "warning": {
+          "$type": "color",
+          "$value": "#d78d26"
+        },
+        "error": {
+          "$type": "color",
+          "$value": "#d70015"
+        },
+        "info": {
+          "$type": "color",
+          "$value": "#599fe5"
+        },
+        "gradient": {
+          "start": {
+            "$type": "color",
+            "$value": ""
+          },
+          "end": {
+            "$type": "color",
+            "$value": "#d11919"
+          }
+        }
+      },
+      "border": {
+        "default": {
+          "$type": "border",
+          "$value": "#545963"
+        },
+        "subtle": {
+          "$type": "border",
+          "$value": "#2c2f36"
+        },
+        "inverse": {
+          "$type": "border",
+          "$value": "#000000"
+        },
+        "strong": {
+          "$type": "border",
+          "$value": "#8d95a3"
+        },
+        "focus": {
+          "$type": "border",
+          "$value": ""
+        },
+        "success": {
+          "$type": "border",
+          "$value": "#00864f"
+        },
+        "warning": {
+          "$type": "border",
+          "$value": "#d78d26"
+        },
+        "error": {
+          "$type": "border",
+          "$value": "#d70015"
+        },
+        "info": {
+          "$type": "border",
+          "$value": "#599fe5"
+        },
+        "transparent": {
+          "$type": "border",
+          "$value": "rgba(214, 220, 226, 0)"
+        },
+        "gradient": {
+          "start": {
+            "$type": "border",
+            "$value": ""
+          },
+          "end": {
+            "$type": "border",
+            "$value": "#d11919"
+          }
+        }
+      },
+      "interactive": {
+        "primary": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": ""
+            },
+            "focused": {
+              "$type": "color",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#2c2f36"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": ""
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": ""
+            },
+            "selected": {
+              "$type": "color",
+              "$value": ""
+            }
+          },
+          "foreground": {
+            "default": {
+              "$type": "color",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#7a8190"
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "border",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "border",
+              "$value": "#2c2f36"
+            },
+            "hover": {
+              "$type": "border",
+              "$value": ""
+            },
+            "pressed": {
+              "$type": "border",
+              "$value": ""
+            }
+          }
+        },
+        "secondary": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": ""
+            },
+            "hover": {
+              "$type": "color",
+              "$value": ""
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": ""
+            },
+            "focused": {
+              "$type": "color",
+              "$value": ""
+            },
+            "selected": {
+              "$type": "color",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#2c2f36"
+            }
+          },
+          "foreground": {
+            "default": {
+              "$type": "color",
+              "$value": "#fafafa"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#7a8190"
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "border",
+              "$value": ""
+            },
+            "hover": {
+              "$type": "border",
+              "$value": ""
+            },
+            "pressed": {
+              "$type": "border",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "border",
+              "$value": "#2c2f36"
+            }
+          }
+        },
+        "ghost": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "rgba(214, 220, 226, 0)"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "rgba(212, 221, 230, 0.050980392156862744)"
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "rgba(212, 221, 230, 0.10196078431372549)"
+            },
+            "focused": {
+              "$type": "color",
+              "$value": "rgba(214, 220, 226, 0)"
+            },
+            "selected": {
+              "$type": "color",
+              "$value": "rgba(212, 221, 230, 0.050980392156862744)"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "rgba(214, 220, 226, 0)"
+            }
+          },
+          "foreground": {
+            "default": {
+              "$type": "color",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#7a8190"
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "border",
+              "$value": ""
+            },
+            "hover": {
+              "$type": "border",
+              "$value": ""
+            },
+            "pressed": {
+              "$type": "border",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "border",
+              "$value": "#2c2f36"
+            }
+          }
+        },
+        "destructive": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "#d70015"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "#b50012"
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "#ffb3bb"
+            },
+            "focused": {
+              "$type": "color",
+              "$value": "#d70015"
+            },
+            "selected": {
+              "$type": "color",
+              "$value": "#ffb3bb"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#2c2f36"
+            }
+          },
+          "foreground": {
+            "default": {
+              "$type": "color",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#7a8190"
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "border",
+              "$value": "#d70015"
+            },
+            "hover": {
+              "$type": "border",
+              "$value": "#b50012"
+            },
+            "pressed": {
+              "$type": "border",
+              "$value": "#f98c97"
+            },
+            "disabled": {
+              "$type": "border",
+              "$value": "#2c2f36"
+            }
+          }
+        },
+        "inverse": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "#f3f6fa"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "#e0e3e9"
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "#f8fbff"
+            },
+            "focused": {
+              "$type": "color",
+              "$value": "#f3f6fa"
+            },
+            "selected": {
+              "$type": "color",
+              "$value": "#f8fbff"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#2c2f36"
+            }
+          },
+          "foreground": {
+            "default": {
+              "$type": "color",
+              "$value": "#0c0d0e"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#7a8190"
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "border",
+              "$value": "#f3f6fa"
+            },
+            "hover": {
+              "$type": "border",
+              "$value": "#e0e3e9"
+            },
+            "pressed": {
+              "$type": "border",
+              "$value": "#f8fbff"
+            },
+            "disabled": {
+              "$type": "border",
+              "$value": "#2c2f36"
+            }
+          }
+        },
+        "neutral": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "#0c0d0e"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "#1d1e23"
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "#2c2f36"
+            },
+            "focused": {
+              "$type": "color",
+              "$value": "#0c0d0e"
+            },
+            "selected": {
+              "$type": "color",
+              "$value": "#2c2f36"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#2c2f36"
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "border",
+              "$value": "#545963"
+            },
+            "hover": {
+              "$type": "border",
+              "$value": "#8d95a3"
+            },
+            "pressed": {
+              "$type": "border",
+              "$value": "#8d95a3"
+            },
+            "disabled": {
+              "$type": "border",
+              "$value": "#2c2f36"
+            }
+          },
+          "foreground": {
+            "default": {
+              "$type": "color",
+              "$value": "#f8fbff"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#7a8190"
+            }
+          }
+        },
+        "positive": {
+          "border": {
+            "default": {
+              "$type": "border",
+              "$value": "#00864f"
+            },
+            "hover": {
+              "$type": "border",
+              "$value": "#00864f"
+            },
+            "pressed": {
+              "$type": "border",
+              "$value": "#84dab6"
+            },
+            "disabled": {
+              "$type": "border",
+              "$value": "#2c2f36"
+            }
+          },
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "#00864f"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "#006d3f"
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "#84dab6"
+            },
+            "focused": {
+              "$type": "color",
+              "$value": "#00864f"
+            },
+            "selected": {
+              "$type": "color",
+              "$value": "#84dab6"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#2c2f36"
+            }
+          },
+          "foreground": {
+            "default": {
+              "$type": "color",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#7a8190"
+            }
+          }
+        },
+        "subtle": {
+          "border": {
+            "default": {
+              "$type": "border",
+              "$value": ""
+            },
+            "hover": {
+              "$type": "border",
+              "$value": ""
+            },
+            "pressed": {
+              "$type": "border",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "border",
+              "$value": "#2c2f36"
+            }
+          },
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": ""
+            },
+            "hover": {
+              "$type": "color",
+              "$value": ""
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": ""
+            },
+            "focused": {
+              "$type": "color",
+              "$value": ""
+            },
+            "selected": {
+              "$type": "color",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#2c2f36"
+            }
+          },
+          "foreground": {
+            "default": {
+              "$type": "color",
+              "$value": ""
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "#7a8190"
+            }
+          }
+        }
+      },
+      "overlay": {
+        "scrim": {
+          "$type": "color",
+          "$value": "rgba(12, 13, 14, 0.6)"
+        },
+        "modal": {
+          "$type": "color",
+          "$value": "#2c2f36"
+        }
+      },
+      "feedback": {
+        "success": {
+          "background": {
+            "$type": "color",
+            "$value": "#081711"
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "#00864f"
+          }
+        },
+        "warning": {
+          "background": {
+            "$type": "color",
+            "$value": "#1e1100"
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "#d78d26"
+          }
+        },
+        "error": {
+          "background": {
+            "$type": "color",
+            "$value": "#220f11"
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "#d70015"
+          }
+        },
+        "info": {
+          "background": {
+            "$type": "color",
+            "$value": "#101b25"
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "#599fe5"
+          }
+        }
+      },
+      "focus": {
+        "ring": {
+          "$type": "color",
+          "$value": ""
+        },
+        "outline": {
+          "$type": "color",
+          "$value": ""
+        }
+      },
+      "chart": {
+        "series": {
+          "1": {
+            "$type": "color",
+            "$value": "#3886ff"
+          },
+          "2": {
+            "$type": "color",
+            "$value": "#ff7a40"
+          },
+          "3": {
+            "$type": "color",
+            "$value": "#a8f931"
+          },
+          "4": {
+            "$type": "color",
+            "$value": "#cea4ff"
+          },
+          "5": {
+            "$type": "color",
+            "$value": "#ee78c3"
+          },
+          "6": {
+            "$type": "color",
+            "$value": "#65c4c4"
+          },
+          "7": {
+            "$type": "color",
+            "$value": "#766200"
+          },
+          "8": {
+            "$type": "color",
+            "$value": "#e8af79"
+          },
+          "9": {
+            "$type": "color",
+            "$value": "#d11919"
+          },
+          "10": {
+            "$type": "color",
+            "$value": "#ea7ff6"
+          },
+          "11": {
+            "$type": "color",
+            "$value": "#d70015"
+          },
+          "12": {
+            "$type": "color",
+            "$value": "#757575"
+          }
+        },
+        "grid": {
+          "$type": "color",
+          "$value": "#2c2f36"
+        },
+        "axis": {
+          "$type": "color",
+          "$value": "#8d95a3"
+        },
+        "reference": {
+          "$type": "color",
+          "$value": "#e0e3e9"
+        },
+        "positive": {
+          "$type": "color",
+          "$value": "#00864f"
+        },
+        "negative": {
+          "$type": "color",
+          "$value": "#d70015"
+        },
+        "neutral": {
+          "$type": "color",
+          "$value": "#7a8190"
+        }
+      },
+      "selection": {
+        "background": {
+          "$type": "color",
+          "$value": "#002775"
+        },
+        "border": {
+          "$type": "border",
+          "$value": ""
+        },
+        "text": {
+          "$type": "color",
+          "$value": "#f8fbff"
+        }
+      },
+      "shadow": {
+        "soft": {
+          "$type": "shadow",
+          "$value": "rgba(0, 0, 0, 0.050980392156862744)"
+        },
+        "hard": {
+          "$type": "shadow",
+          "$value": "rgba(0, 0, 0, 0.14901960784313725)"
+        }
+      }
+    }
+  },
+  "size": {
+    "mobile": {
+      "space": {
+        "page": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "section": {
+          "$type": "dimension",
+          "$value": "24px"
+        },
+        "card": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "gutter": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "2xs": {
+          "$type": "dimension",
+          "$value": "2px"
+        },
+        "xs": {
+          "$type": "dimension",
+          "$value": "4px"
+        },
+        "sm": {
+          "$type": "dimension",
+          "$value": "8px"
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "24px"
+        },
+        "2xl": {
+          "$type": "dimension",
+          "$value": "32px"
+        },
+        "none": {
+          "$type": "dimension",
+          "$value": "0px"
+        }
+      },
+      "control": {
+        "target": {
+          "min": {
+            "$type": "number",
+            "$value": "40px"
+          }
+        },
+        "sm": {
+          "$type": "number",
+          "$value": "36px"
+        },
+        "md": {
+          "$type": "number",
+          "$value": "40px"
+        },
+        "lg": {
+          "$type": "number",
+          "$value": "48px"
+        },
+        "icon": {
+          "sm": {
+            "$type": "number",
+            "$value": "16px"
+          },
+          "md": {
+            "$type": "number",
+            "$value": "20px"
+          },
+          "lg": {
+            "$type": "number",
+            "$value": "28px"
+          }
+        }
+      },
+      "radius": {
+        "none": {
+          "$type": "dimension",
+          "$value": "0px"
+        },
+        "xs": {
+          "$type": "dimension",
+          "$value": "2px"
+        },
+        "sm": {
+          "$type": "dimension",
+          "$value": "4px"
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": "8px"
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "element": {
+          "sm": {
+            "$type": "dimension",
+            "$value": "4px"
+          },
+          "md": {
+            "$type": "dimension",
+            "$value": "6px"
+          }
+        },
+        "container": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "pill": {
+          "$type": "dimension",
+          "$value": "9999px"
+        }
+      },
+      "container": {
+        "default": {
+          "$type": "number",
+          "$value": "240px"
+        }
+      },
+      "stroke": {
+        "base": {
+          "$type": "dimension",
+          "$value": "0px"
+        },
+        "thin": {
+          "$type": "dimension",
+          "$value": "1px"
+        },
+        "thick": {
+          "$type": "dimension",
+          "$value": "2px"
+        },
+        "heavy": {
+          "$type": "dimension",
+          "$value": "4px"
+        }
+      },
+      "shadow": {
+        "xsmall": {
+          "x": {
+            "$type": "shadow",
+            "$value": "0px"
+          },
+          "y": {
+            "$type": "shadow",
+            "$value": "1px"
+          },
+          "blur": {
+            "$type": "shadow",
+            "$value": "1px"
+          }
+        },
+        "small": {
+          "x": {
+            "$type": "shadow",
+            "$value": "0px"
+          },
+          "y": {
+            "$type": "shadow",
+            "$value": "2px"
+          },
+          "blur": {
+            "$type": "shadow",
+            "$value": "6px"
+          }
+        },
+        "medium": {
+          "x": {
+            "$type": "shadow",
+            "$value": "0px"
+          },
+          "y": {
+            "$type": "shadow",
+            "$value": "8px"
+          },
+          "blur": {
+            "$type": "shadow",
+            "$value": "16px"
+          }
+        },
+        "large": {
+          "x": {
+            "$type": "shadow",
+            "$value": "0px"
+          },
+          "y": {
+            "$type": "shadow",
+            "$value": "20px"
+          },
+          "blur": {
+            "$type": "shadow",
+            "$value": "32px"
+          }
+        }
+      },
+      "shape": {
+        "$type": "string",
+        "$value": "sharp"
+      }
+    },
+    "tablet": {
+      "space": {
+        "page": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "section": {
+          "$type": "dimension",
+          "$value": "24px"
+        },
+        "card": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "gutter": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "2xs": {
+          "$type": "dimension",
+          "$value": "2px"
+        },
+        "xs": {
+          "$type": "dimension",
+          "$value": "4px"
+        },
+        "sm": {
+          "$type": "dimension",
+          "$value": "8px"
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "24px"
+        },
+        "2xl": {
+          "$type": "dimension",
+          "$value": "32px"
+        },
+        "none": {
+          "$type": "dimension",
+          "$value": "0px"
+        }
+      },
+      "control": {
+        "target": {
+          "min": {
+            "$type": "number",
+            "$value": "40px"
+          }
+        },
+        "sm": {
+          "$type": "number",
+          "$value": "36px"
+        },
+        "md": {
+          "$type": "number",
+          "$value": "40px"
+        },
+        "lg": {
+          "$type": "number",
+          "$value": "48px"
+        },
+        "icon": {
+          "sm": {
+            "$type": "number",
+            "$value": "16px"
+          },
+          "md": {
+            "$type": "number",
+            "$value": "20px"
+          },
+          "lg": {
+            "$type": "number",
+            "$value": "28px"
+          }
+        }
+      },
+      "radius": {
+        "none": {
+          "$type": "dimension",
+          "$value": "0px"
+        },
+        "xs": {
+          "$type": "dimension",
+          "$value": "2px"
+        },
+        "sm": {
+          "$type": "dimension",
+          "$value": "4px"
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": "8px"
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "element": {
+          "sm": {
+            "$type": "dimension",
+            "$value": "4px"
+          },
+          "md": {
+            "$type": "dimension",
+            "$value": "6px"
+          }
+        },
+        "container": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "pill": {
+          "$type": "dimension",
+          "$value": "9999px"
+        }
+      },
+      "container": {
+        "default": {
+          "$type": "number",
+          "$value": "600px"
+        }
+      },
+      "stroke": {
+        "base": {
+          "$type": "dimension",
+          "$value": "0px"
+        },
+        "thin": {
+          "$type": "dimension",
+          "$value": "1px"
+        },
+        "thick": {
+          "$type": "dimension",
+          "$value": "2px"
+        },
+        "heavy": {
+          "$type": "dimension",
+          "$value": "4px"
+        }
+      },
+      "shadow": {
+        "xsmall": {
+          "x": {
+            "$type": "shadow",
+            "$value": "0px"
+          },
+          "y": {
+            "$type": "shadow",
+            "$value": "1px"
+          },
+          "blur": {
+            "$type": "shadow",
+            "$value": "1px"
+          }
+        },
+        "small": {
+          "x": {
+            "$type": "shadow",
+            "$value": "0px"
+          },
+          "y": {
+            "$type": "shadow",
+            "$value": "2px"
+          },
+          "blur": {
+            "$type": "shadow",
+            "$value": "6px"
+          }
+        },
+        "medium": {
+          "x": {
+            "$type": "shadow",
+            "$value": "0px"
+          },
+          "y": {
+            "$type": "shadow",
+            "$value": "8px"
+          },
+          "blur": {
+            "$type": "shadow",
+            "$value": "16px"
+          }
+        },
+        "large": {
+          "x": {
+            "$type": "shadow",
+            "$value": "0px"
+          },
+          "y": {
+            "$type": "shadow",
+            "$value": "20px"
+          },
+          "blur": {
+            "$type": "shadow",
+            "$value": "32px"
+          }
+        }
+      },
+      "shape": {
+        "$type": "string",
+        "$value": "rounded"
+      }
+    },
+    "desktop": {
+      "space": {
+        "page": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "section": {
+          "$type": "dimension",
+          "$value": "24px"
+        },
+        "card": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "gutter": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "2xs": {
+          "$type": "dimension",
+          "$value": "2px"
+        },
+        "xs": {
+          "$type": "dimension",
+          "$value": "4px"
+        },
+        "sm": {
+          "$type": "dimension",
+          "$value": "8px"
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "24px"
+        },
+        "2xl": {
+          "$type": "dimension",
+          "$value": "32px"
+        },
+        "none": {
+          "$type": "dimension",
+          "$value": "0px"
+        }
+      },
+      "control": {
+        "target": {
+          "min": {
+            "$type": "number",
+            "$value": "40px"
+          }
+        },
+        "sm": {
+          "$type": "number",
+          "$value": "36px"
+        },
+        "md": {
+          "$type": "number",
+          "$value": "40px"
+        },
+        "lg": {
+          "$type": "number",
+          "$value": "48px"
+        },
+        "icon": {
+          "sm": {
+            "$type": "number",
+            "$value": "16px"
+          },
+          "md": {
+            "$type": "number",
+            "$value": "20px"
+          },
+          "lg": {
+            "$type": "number",
+            "$value": "28px"
+          }
+        }
+      },
+      "radius": {
+        "none": {
+          "$type": "dimension",
+          "$value": "0px"
+        },
+        "xs": {
+          "$type": "dimension",
+          "$value": "2px"
+        },
+        "sm": {
+          "$type": "dimension",
+          "$value": "4px"
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": "8px"
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "element": {
+          "sm": {
+            "$type": "dimension",
+            "$value": "4px"
+          },
+          "md": {
+            "$type": "dimension",
+            "$value": "6px"
+          }
+        },
+        "container": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "pill": {
+          "$type": "dimension",
+          "$value": "9999px"
+        }
+      },
+      "container": {
+        "default": {
+          "$type": "number",
+          "$value": "1200px"
+        }
+      },
+      "stroke": {
+        "base": {
+          "$type": "dimension",
+          "$value": "0px"
+        },
+        "thin": {
+          "$type": "dimension",
+          "$value": "1px"
+        },
+        "thick": {
+          "$type": "dimension",
+          "$value": "2px"
+        },
+        "heavy": {
+          "$type": "dimension",
+          "$value": "4px"
+        }
+      },
+      "shadow": {
+        "xsmall": {
+          "x": {
+            "$type": "shadow",
+            "$value": "0px"
+          },
+          "y": {
+            "$type": "shadow",
+            "$value": "1px"
+          },
+          "blur": {
+            "$type": "shadow",
+            "$value": "1px"
+          }
+        },
+        "small": {
+          "x": {
+            "$type": "shadow",
+            "$value": "0px"
+          },
+          "y": {
+            "$type": "shadow",
+            "$value": "2px"
+          },
+          "blur": {
+            "$type": "shadow",
+            "$value": "6px"
+          }
+        },
+        "medium": {
+          "x": {
+            "$type": "shadow",
+            "$value": "0px"
+          },
+          "y": {
+            "$type": "shadow",
+            "$value": "8px"
+          },
+          "blur": {
+            "$type": "shadow",
+            "$value": "16px"
+          }
+        },
+        "large": {
+          "x": {
+            "$type": "shadow",
+            "$value": "0px"
+          },
+          "y": {
+            "$type": "shadow",
+            "$value": "20px"
+          },
+          "blur": {
+            "$type": "shadow",
+            "$value": "32px"
+          }
+        }
+      },
+      "shape": {
+        "$type": "string",
+        "$value": "rounded"
+      }
+    },
+    "desktop compact": {
+      "space": {
+        "page": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "section": {
+          "$type": "dimension",
+          "$value": "24px"
+        },
+        "card": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "gutter": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "2xs": {
+          "$type": "dimension",
+          "$value": "2px"
+        },
+        "xs": {
+          "$type": "dimension",
+          "$value": "4px"
+        },
+        "sm": {
+          "$type": "dimension",
+          "$value": "8px"
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "24px"
+        },
+        "2xl": {
+          "$type": "dimension",
+          "$value": "32px"
+        },
+        "none": {
+          "$type": "dimension",
+          "$value": "0px"
+        }
+      },
+      "control": {
+        "target": {
+          "min": {
+            "$type": "number",
+            "$value": "40px"
+          }
+        },
+        "sm": {
+          "$type": "number",
+          "$value": "36px"
+        },
+        "md": {
+          "$type": "number",
+          "$value": "40px"
+        },
+        "lg": {
+          "$type": "number",
+          "$value": "48px"
+        },
+        "icon": {
+          "sm": {
+            "$type": "number",
+            "$value": "16px"
+          },
+          "md": {
+            "$type": "number",
+            "$value": "20px"
+          },
+          "lg": {
+            "$type": "number",
+            "$value": "28px"
+          }
+        }
+      },
+      "radius": {
+        "none": {
+          "$type": "dimension",
+          "$value": "0px"
+        },
+        "xs": {
+          "$type": "dimension",
+          "$value": "2px"
+        },
+        "sm": {
+          "$type": "dimension",
+          "$value": "4px"
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": "8px"
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "element": {
+          "sm": {
+            "$type": "dimension",
+            "$value": "4px"
+          },
+          "md": {
+            "$type": "dimension",
+            "$value": "6px"
+          }
+        },
+        "container": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "pill": {
+          "$type": "dimension",
+          "$value": "9999px"
+        }
+      },
+      "container": {
+        "default": {
+          "$type": "number",
+          "$value": "840px"
+        }
+      },
+      "stroke": {
+        "base": {
+          "$type": "dimension",
+          "$value": "0px"
+        },
+        "thin": {
+          "$type": "dimension",
+          "$value": "1px"
+        },
+        "thick": {
+          "$type": "dimension",
+          "$value": "2px"
+        },
+        "heavy": {
+          "$type": "dimension",
+          "$value": "4px"
+        }
+      },
+      "shadow": {
+        "xsmall": {
+          "x": {
+            "$type": "shadow",
+            "$value": "0px"
+          },
+          "y": {
+            "$type": "shadow",
+            "$value": "1px"
+          },
+          "blur": {
+            "$type": "shadow",
+            "$value": "1px"
+          }
+        },
+        "small": {
+          "x": {
+            "$type": "shadow",
+            "$value": "0px"
+          },
+          "y": {
+            "$type": "shadow",
+            "$value": "2px"
+          },
+          "blur": {
+            "$type": "shadow",
+            "$value": "6px"
+          }
+        },
+        "medium": {
+          "x": {
+            "$type": "shadow",
+            "$value": "0px"
+          },
+          "y": {
+            "$type": "shadow",
+            "$value": "8px"
+          },
+          "blur": {
+            "$type": "shadow",
+            "$value": "16px"
+          }
+        },
+        "large": {
+          "x": {
+            "$type": "shadow",
+            "$value": "0px"
+          },
+          "y": {
+            "$type": "shadow",
+            "$value": "20px"
+          },
+          "blur": {
+            "$type": "shadow",
+            "$value": "32px"
+          }
+        }
+      },
+      "shape": {
+        "$type": "string",
+        "$value": "rounded"
+      }
+    }
+  },
+  "typography": {
+    "mobile": {
+      "display": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "52px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 300
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "60px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "44px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 300
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "52px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "36px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 300
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "40px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
+      "heading": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "32px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "36px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "28px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "32px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "28px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
+      "title": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "20px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "20px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
+      "body": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "20px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "18px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "xsmall": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
+      "label": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "20px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "indicator": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      }
+    },
+    "tablet": {
+      "display": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "52px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 300
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "60px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "44px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 300
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "52px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "36px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 300
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "40px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
+      "heading": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "32px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "36px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "28px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "32px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "28px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
+      "title": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "20px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "20px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
+      "body": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "20px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "18px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "xsmall": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
+      "label": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "20px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "indicator": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      }
+    },
+    "desktop": {
+      "display": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "52px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 300
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "60px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "44px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 300
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "52px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "36px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 300
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "40px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
+      "heading": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "32px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "36px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "28px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "32px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "28px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
+      "title": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "20px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "20px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
+      "body": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "20px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "18px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "xsmall": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
+      "label": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "20px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "indicator": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      }
+    },
+    "desktop compact": {
+      "display": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "52px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 300
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "60px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "44px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 300
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "52px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "36px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 300
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "40px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
+      "heading": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "32px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "36px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "28px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "32px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "28px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
+      "title": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "20px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "20px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
+      "body": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "20px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "18px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "xsmall": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
+      "label": {
+        "large": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "24px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "20px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "16px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "indicator": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      }
+    }
+  }
+}

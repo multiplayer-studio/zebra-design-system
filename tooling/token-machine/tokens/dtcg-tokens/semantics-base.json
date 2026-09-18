@@ -155,58 +155,63 @@
     },
     "border": {
       "default": {
-        "$type": "color",
+        "$type": "border",
         "$value": "{palette.line.default}",
         "$description": "Default border color for inputs, cards, and dividers at rest"
       },
       "subtle": {
-        "$type": "color",
+        "$type": "border",
         "$value": "{palette.line.subtle}",
         "$description": "Faint border for low-emphasis separation, e.g. nested cards"
       },
       "inverse": {
-        "$type": "color",
+        "$type": "border",
         "$value": "{palette.line.inverse}",
         "$description": "Low-emphasis border, e.g. subtle dividers."
       },
       "strong": {
-        "$type": "color",
+        "$type": "border",
         "$value": "{palette.line.strong}",
         "$description": "Higher-contrast border for emphasis, e.g. active outlines or key dividers"
       },
       "focus": {
-        "$type": "color",
+        "$type": "border",
         "$value": "{palette.line.focus}",
         "$description": "Border applied when an element receives keyboard focus, for accessibility"
       },
       "success": {
-        "$type": "color",
+        "$type": "border",
         "$value": "{palette.status.success.default}",
         "$description": "Border color for inputs/fields confirmed valid or successful"
       },
       "warning": {
-        "$type": "color",
+        "$type": "border",
         "$value": "{palette.status.warning.default}",
         "$description": "Border color for elements flagged with a warning"
       },
       "error": {
-        "$type": "color",
+        "$type": "border",
         "$value": "{palette.status.error.default}",
         "$description": "Border color for inputs/fields in an invalid or error state"
       },
       "info": {
-        "$type": "color",
+        "$type": "border",
         "$value": "{palette.status.info.default}",
+        "$description": "Border color for elements conveying neutral, informational context"
+      },
+      "transparent": {
+        "$type": "border",
+        "$value": "{semantics.interactive.ghost.background.default}",
         "$description": "Border color for elements conveying neutral, informational context"
       },
       "gradient": {
         "start": {
-          "$type": "color",
+          "$type": "border",
           "$value": "{palette.gradient.default.start}",
           "$description": "Starting color stop for borders using a gradient treatment"
         },
         "end": {
-          "$type": "color",
+          "$type": "border",
           "$value": "{palette.gradient.default.end}",
           "$description": "Ending color stop for borders using a gradient treatment"
         }
@@ -260,22 +265,22 @@
         },
         "border": {
           "default": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.brand.primary.default}",
             "$description": "Default-state border for the primary interactive element."
           },
           "disabled": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.line.subtle}",
             "$description": "Disabled-state border for the primary interactive element."
           },
           "hover": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.brand.primary.subtle}",
             "$description": "Hover-state border for the primary interactive element."
           },
           "pressed": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.brand.primary.deep}",
             "$description": "Pressed-state border for the primary interactive element."
           }
@@ -328,22 +333,22 @@
         },
         "border": {
           "default": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.brand.secondary.default}",
             "$description": "Default-state border for a secondary interactive element."
           },
           "hover": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.brand.secondary.subtle}",
             "$description": "Hover-state border for a secondary interactive element."
           },
           "pressed": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.brand.secondary.deep}",
             "$description": "Pressed-state border for a secondary interactive element."
           },
           "disabled": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.line.subtle}",
             "$description": "Disabled-state border for a secondary interactive element."
           }
@@ -396,22 +401,22 @@
         },
         "border": {
           "default": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.brand.primary.default}",
             "$description": "Default-state border for a ghost interactive element."
           },
           "hover": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.brand.primary.subtle}",
             "$description": "Hover-state border for a ghost interactive element."
           },
           "pressed": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.brand.primary.deep}",
             "$description": "Pressed-state border for a ghost interactive element."
           },
           "disabled": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.line.subtle}",
             "$description": "Disabled-state border for a ghost interactive element."
           }
@@ -464,22 +469,22 @@
         },
         "border": {
           "default": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.status.error.default}",
             "$description": "Default-state border for a destructive interactive element."
           },
           "hover": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.status.error.subtle}",
             "$description": "Hover-state border for a destructive interactive element."
           },
           "pressed": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.status.error.strong}",
             "$description": "Pressed-state border for a destructive interactive element."
           },
           "disabled": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.line.subtle}",
             "$description": "Disabled-state border for a destructive interactive element."
           }
@@ -532,22 +537,22 @@
         },
         "border": {
           "default": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.fill.inverse}",
             "$description": "Default-state border for an inverse-surface interactive element."
           },
           "hover": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.fill.inversehover}",
             "$description": "Hover-state border for an inverse-surface interactive element."
           },
           "pressed": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.fill.inversepressed}",
             "$description": "Pressed-state border for an inverse-surface interactive element."
           },
           "disabled": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.line.subtle}",
             "$description": "Disabled-state border for an inverse-surface interactive element."
           }
@@ -588,22 +593,22 @@
         },
         "border": {
           "default": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.line.default}",
             "$description": "Default-state border for a neutral interactive element."
           },
           "hover": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.line.strong}",
             "$description": "Hover-state border for a neutral interactive element."
           },
           "pressed": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.line.strong}",
             "$description": "Pressed-state border for a neutral interactive element."
           },
           "disabled": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.line.subtle}",
             "$description": "Disabled-state border for a neutral interactive element."
           }
@@ -624,22 +629,22 @@
       "positive": {
         "border": {
           "default": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.status.success.default}",
             "$description": "Default-state border for a high-emphasis positive-confirmation interactive element."
           },
           "hover": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.status.success.default}",
             "$description": "Hover-state border for a high-emphasis positive-confirmation interactive element."
           },
           "pressed": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.status.success.deep}",
             "$description": "Pressed-state border for a high-emphasis positive-confirmation interactive element."
           },
           "disabled": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.line.subtle}",
             "$description": "Disabled-state border for a high-emphasis positive-confirmation interactive element."
           }
@@ -692,22 +697,22 @@
       "subtle": {
         "border": {
           "default": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.brand.primary.default}",
             "$description": "Default-state border for a subtle interactive element."
           },
           "hover": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.brand.primary.subtle}",
             "$description": "Hover-state border for a subtle interactive element."
           },
           "pressed": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.brand.primary.deep}",
             "$description": "Pressed-state border for a subtle interactive element."
           },
           "disabled": {
-            "$type": "color",
+            "$type": "border",
             "$value": "{palette.line.subtle}",
             "$description": "Disabled-state border for a subtle interactive element."
           }
@@ -933,7 +938,7 @@
         "$description": "Highlight background applied to selected text or selected list/table items"
       },
       "border": {
-        "$type": "color",
+        "$type": "border",
         "$value": "{palette.line.selection}",
         "$description": "Border drawn around a selected item, e.g. a selected card or table row"
       },
@@ -945,12 +950,12 @@
     },
     "shadow": {
       "soft": {
-        "$type": "color",
+        "$type": "shadow",
         "$value": "{palette.fill.transparent.emphasis}",
         "$description": "Soft, diffuse drop shadow for subtle elevation, e.g. cards"
       },
       "hard": {
-        "$type": "color",
+        "$type": "shadow",
         "$value": "{palette.fill.transparent.elevate}",
         "$description": "Crisp, high-contrast drop shadow for elements needing strong separation, e.g. dropdowns"
       }

@@ -7,7 +7,7 @@ Zebra Design tokens exported to multiple platforms, generated from Figma.
 | Platform | Format | Status |
 |---|---|---|
 | Web (CSS) | CSS custom properties | ✅ Available (this package) |
-| Web (JS) | JS/TS token objects | ✅ Available (this package) |
+| Web (JS) | JSON token objects | ✅ Available (this package) |
 | Android | Kotlin/XML resources | 🚧 Planned, not yet implemented |
 | Flutter | Dart constants | ✅ Available (this package) |
 
@@ -54,37 +54,30 @@ Every variable name is stable regardless of theme or viewport — you never need
 
 ## Quick start: JavaScript/TypeScript
 
-Import token objects directly as JavaScript:
+Import resolved tokens directly as JSON:
 
 ```ts
-import colors from '@zebra-design-system/tokens/js/colors';
-import sizes from '@zebra-design-system/tokens/js/sizes';
-import typography from '@zebra-design-system/tokens/js/typography';
+import tokens from '@zebra-design-system/tokens/dist/json/resolved-tokens.json';
 
-// Access light theme (automatic in browsers, explicit in Node)
-const bgColor = colors.light.surfacePage;
-const padding = sizes.light.spaceMd;
-
-// Access dark theme
-const darkBg = colors.dark.surfacePage;
+// Access tokens by category
+const bgColor = tokens.color['surface-page'];
+const padding = tokens.size['space-md'];
+const typography = tokens.typography['body-medium-fontsize'];
 ```
 
-Or use the building-block approach for custom theme mixes:
+Or import theme-specific resolved tokens:
 
 ```ts
-import primitives from '@zebra-design-system/tokens/js/primitives/default';
-import palette from '@zebra-design-system/tokens/js/palette/default';
-import sizes from '@zebra-design-system/tokens/js/size/default';
-import semantics from '@zebra-design-system/tokens/js/semantics';
+// Companion theme tokens
+import companionTokens from '@zebra-design-system/tokens/dist/json/resolved-companion-tokens.json';
 
-const myTokens = {
-  colors: semantics(palette),
-  sizes: sizes,
-  primitives: primitives,
-};
+// Target theme tokens
+import targetTokens from '@zebra-design-system/tokens/dist/json/resolved-target-tokens.json';
 ```
 
-Token objects use camelCase naming (e.g. `surfacePage`, `bodyMediumFontSize`) and are fully resolved to concrete values (hex colors, pixel measurements, font families, etc.). Reference the `dist/js/` directory to see available files for each theme.
+Resolved tokens are fully resolved to concrete values (hex colors, pixel measurements, font families, etc.) and organized by type (color, size, typography). Token names use kebab-case (e.g. `surface-page`, `space-md`, `body-medium-fontsize`).
+
+For custom theme mixes, use the building-block CSS approach instead (see [Mixing themes: building-block files](#mixing-themes-building-block-files) below).
 
 ## Quick start: Flutter (Dart)
 
@@ -147,15 +140,16 @@ Same variable names (`--surface-page`, `--space-md`, `--body-medium-fontsize`, e
 
 **For JavaScript:**
 
-Swap the theme name in imports:
+Import theme-specific resolved tokens:
 
 ```ts
-import colors from '@zebra-design-system/tokens/js/target-colors';
-import sizes from '@zebra-design-system/tokens/js/target-sizes';
-import typography from '@zebra-design-system/tokens/js/target-typography';
+import targetTokens from '@zebra-design-system/tokens/dist/json/resolved-target-tokens.json';
+
+const bgColor = targetTokens.color['surface-page'];
+const padding = targetTokens.size['space-md'];
 ```
 
-Same token names (`surfacePage`, `spaceMd`, `bodyMediumFontSize`, etc.) regardless of theme — only the import path changes. Check `dist/js/` for which theme files exist.
+Same token names and structure regardless of theme — only the import path changes. Available resolved JSON files: `resolved-tokens.json`, `resolved-companion-tokens.json`, `resolved-target-tokens.json`.
 
 **For Flutter:**
 

@@ -2,12 +2,10 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import './style-dictionary-formats.ts';
-import { TOKEN_DIR, TEMP_DIR, CSS_OUTPUT_DIR, JS_OUTPUT_DIR, COLOR_COLLECTIONS, SIZE_COLLECTIONS, TYPOGRAPHY_COLLECTIONS, COLOR_MODES, BREAKPOINT_MODES } from './constants.js';
+import { TOKEN_DIR, TEMP_DIR, RESOLVED_FRAGMENTS_DIR, CSS_OUTPUT_DIR, COLOR_COLLECTIONS, SIZE_COLLECTIONS, TYPOGRAPHY_COLLECTIONS, COLOR_MODES, BREAKPOINT_MODES } from './constants.js';
 import { compileTokens, compileFlatModeTokens } from './compile-tokens.js';
 import { synthesizeCss } from './css-synthesizer.js';
-import { synthesizeJs } from './js-synthesizer.js';
 import { synthesizeBuildingBlockCss } from './building-block-css-synthesizer.js';
-import { synthesizeBuildingBlockJs } from './building-block-js-synthesizer.js';
 import { getSourceFilesForCollection } from './utils.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -15,9 +13,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 async function main() {
   console.log('🚀 Starting Design Token Build Process...');
   if (fs.existsSync(TEMP_DIR)) fs.rmSync(TEMP_DIR, { recursive: true, force: true });
+  if (fs.existsSync(RESOLVED_FRAGMENTS_DIR)) fs.rmSync(RESOLVED_FRAGMENTS_DIR, { recursive: true, force: true });
   fs.mkdirSync(TEMP_DIR, { recursive: true });
+  fs.mkdirSync(RESOLVED_FRAGMENTS_DIR, { recursive: true });
   fs.mkdirSync(CSS_OUTPUT_DIR, { recursive: true });
-  fs.mkdirSync(JS_OUTPUT_DIR, { recursive: true });
 
   const themes = new Set<string>(['default']);
   const tokenFiles = fs.readdirSync(TOKEN_DIR).filter(file => file.endsWith('.json'));
@@ -56,11 +55,8 @@ async function main() {
     });
 
     synthesizeCss(theme, 'color');
-    synthesizeJs(theme, 'color');
     synthesizeCss(theme, 'size');
-    synthesizeJs(theme, 'size');
     synthesizeCss(theme, 'typography');
-    synthesizeJs(theme, 'typography');
 
     // Building block layers
     console.log(`\n  🧱 Building mix-and-match building blocks...`);
@@ -74,7 +70,6 @@ async function main() {
           outputReferences: true,
         });
         synthesizeBuildingBlockCss(theme, 'primitives');
-        synthesizeBuildingBlockJs(theme, 'primitives');
       } catch (error) {
         console.warn(`    - ⚠️  Failed to compile primitives building block for theme '${theme}'.`);
       }
@@ -95,7 +90,6 @@ async function main() {
         }
       }
       synthesizeBuildingBlockCss(theme, 'palette');
-      synthesizeBuildingBlockJs(theme, 'palette');
     }
 
     // Size building block (per breakpoint mode)
@@ -113,7 +107,6 @@ async function main() {
         }
       }
       synthesizeBuildingBlockCss(theme, 'size');
-      synthesizeBuildingBlockJs(theme, 'size');
     }
 
     // Typography building block (per breakpoint mode)
@@ -131,7 +124,6 @@ async function main() {
         }
       }
       synthesizeBuildingBlockCss(theme, 'typography');
-      synthesizeBuildingBlockJs(theme, 'typography');
     }
   }
 
@@ -146,7 +138,6 @@ async function main() {
       outputReferences: true,
     });
     synthesizeBuildingBlockCss('default', 'semantics');
-    synthesizeBuildingBlockJs('default', 'semantics');
   } catch (error) {
     console.warn(`⚠️  Failed to compile semantics building block.`);
   }

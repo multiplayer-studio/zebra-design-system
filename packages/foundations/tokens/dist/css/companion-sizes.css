@@ -23,7 +23,6 @@
   --control-icon-sm: 16px;
   --control-icon-md: 20px;
   --control-icon-lg: 28px;
-  --container-default: 240px;
   --radius-none: 0px;
   --radius-xs: 2px;
   --radius-sm: 4px;
@@ -34,6 +33,7 @@
   --radius-element-md: 6px;
   --radius-container: 12px;
   --radius-pill: 9999px;
+  --container-default: 240px;
   --stroke-base: 0px;
   --stroke-thin: 1px;
   --stroke-thick: 2px;
@@ -74,7 +74,6 @@
   --control-icon-sm: 16px;
   --control-icon-md: 20px;
   --control-icon-lg: 28px;
-  --container-default: 600px;
   --radius-none: 0px;
   --radius-xs: 2px;
   --radius-sm: 4px;
@@ -85,6 +84,7 @@
   --radius-element-md: 6px;
   --radius-container: 12px;
   --radius-pill: 9999px;
+  --container-default: 600px;
   --stroke-base: 0px;
   --stroke-thin: 1px;
   --stroke-thick: 2px;
@@ -126,7 +126,6 @@
   --control-icon-sm: 16px;
   --control-icon-md: 20px;
   --control-icon-lg: 28px;
-  --container-default: 1200px;
   --radius-none: 0px;
   --radius-xs: 2px;
   --radius-sm: 4px;
@@ -137,6 +136,7 @@
   --radius-element-md: 6px;
   --radius-container: 12px;
   --radius-pill: 9999px;
+  --container-default: 1200px;
   --stroke-base: 0px;
   --stroke-thin: 1px;
   --stroke-thick: 2px;
@@ -178,7 +178,6 @@
   --control-icon-sm: 16px;
   --control-icon-md: 20px;
   --control-icon-lg: 28px;
-  --container-default: 840px;
   --radius-none: 0px;
   --radius-xs: 2px;
   --radius-sm: 4px;
@@ -189,6 +188,7 @@
   --radius-element-md: 6px;
   --radius-container: 12px;
   --radius-pill: 9999px;
+  --container-default: 840px;
   --stroke-base: 0px;
   --stroke-thin: 1px;
   --stroke-thick: 2px;

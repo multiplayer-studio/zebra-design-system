@@ -8,7 +8,7 @@
     "fetch": "tsx --env-file=../../.env fetch-tokens.ts",
     "convert": "tsx --env-file=../../.env convert-tokens.ts",
     "build": "tsx build-tokens/index.ts",
-    "export": "tsx export-dtcg-tokens.ts",
+    "export": "tsx export-resolved-tokens.ts",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

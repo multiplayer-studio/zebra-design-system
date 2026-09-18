@@ -42,6 +42,7 @@
   --border-warning: #ae6500;
   --border-error: #d70015;
   --border-info: #0073e6;
+  --border-transparent: rgba(12, 13, 14, 0);
   --border-gradient-start: ;
   --border-gradient-end: #cc0000;
   --interactive-primary-background-default: ;
@@ -216,6 +217,7 @@
   --border-warning: #d78d26;
   --border-error: #d70015;
   --border-info: #599fe5;
+  --border-transparent: rgba(214, 220, 226, 0);
   --border-gradient-start: ;
   --border-gradient-end: #d11919;
   --interactive-primary-background-default: ;
@@ -392,6 +394,7 @@
   --border-warning: #d78d26;
   --border-error: #d70015;
   --border-info: #599fe5;
+  --border-transparent: rgba(214, 220, 226, 0);
   --border-gradient-start: ;
   --border-gradient-end: #d11919;
   --interactive-primary-background-default: ;

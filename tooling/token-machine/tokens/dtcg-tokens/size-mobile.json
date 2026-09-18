@@ -2,62 +2,62 @@
   "size": {
     "space": {
       "page": {
-        "$type": "number",
+        "$type": "dimension",
         "$value": "{primitives.scale.7}",
         "$description": "= 16px, source: scale/6"
       },
       "section": {
-        "$type": "number",
+        "$type": "dimension",
         "$value": "{primitives.scale.9}",
         "$description": "= 24px, source: scale/8"
       },
       "card": {
-        "$type": "number",
+        "$type": "dimension",
         "$value": "{primitives.scale.6}",
         "$description": "= 16px, source: scale/6"
       },
       "gutter": {
-        "$type": "number",
+        "$type": "dimension",
         "$value": "{primitives.scale.7}",
         "$description": "= 16px, source: scale/6"
       },
       "2xs": {
-        "$type": "number",
+        "$type": "dimension",
         "$value": "{primitives.scale.2}",
         "$description": "= 2px, source: scale/1"
       },
       "xs": {
-        "$type": "number",
+        "$type": "dimension",
         "$value": "{primitives.scale.3}",
         "$description": "= 4px, source: scale/2"
       },
       "sm": {
-        "$type": "number",
+        "$type": "dimension",
         "$value": "{primitives.scale.5}",
         "$description": "= 8px, source: scale/4"
       },
       "md": {
-        "$type": "number",
+        "$type": "dimension",
         "$value": "{primitives.scale.6}",
         "$description": "= 12px, source: scale/5"
       },
       "lg": {
-        "$type": "number",
+        "$type": "dimension",
         "$value": "{primitives.scale.7}",
         "$description": "= 16px, source: scale/6"
       },
       "xl": {
-        "$type": "number",
+        "$type": "dimension",
         "$value": "{primitives.scale.9}",
         "$description": "= 24px, source: scale/8"
       },
       "2xl": {
-        "$type": "number",
+        "$type": "dimension",
         "$value": "{primitives.scale.11}",
         "$description": "= 32px, source: scale/10"
       },
       "none": {
-        "$type": "number",
+        "$type": "dimension",
         "$value": "{primitives.scale.0}",
         "$description": "= 32px, source: scale/10"
       }
@@ -99,6 +99,58 @@
         "$description": "= 32px, source: scale/10"
       }
     },
+    "radius": {
+      "none": {
+        "$type": "dimension",
+        "$value": "{primitives.scale.0}",
+        "$description": "= 2px, source: scale/1"
+      },
+      "xs": {
+        "$type": "dimension",
+        "$value": "{primitives.scale.2}",
+        "$description": "= 2px, source: scale/1"
+      },
+      "sm": {
+        "$type": "dimension",
+        "$value": "{primitives.scale.3}",
+        "$description": "= 4px, source: scale/2"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "{primitives.scale.5}",
+        "$description": "= 8px, source: scale/4"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "{primitives.scale.6}",
+        "$description": "= 12px, source: scale/5"
+      },
+      "xl": {
+        "$type": "dimension",
+        "$value": "{primitives.scale.7}",
+        "$description": "= 16px, source: scale/6"
+      },
+      "element-sm": {
+        "$type": "dimension",
+        "$value": "{primitives.scale.3}",
+        "$description": "= 16px, source: scale/6"
+      },
+      "element-md": {
+        "$type": "dimension",
+        "$value": "{primitives.scale.4}",
+        "$description": "= 16px, source: scale/6"
+      },
+      "container": {
+        "$type": "dimension",
+        "$value": "{primitives.scale.6}",
+        "$description": "= 16px, source: scale/6"
+      },
+      "pill": {
+        "$type": "dimension",
+        "$value": "9999px",
+        "$description": "Literal value, not a scale reference (fully rounded)"
+      }
+    },
     "container": {
       "default": {
         "$type": "number",
@@ -106,76 +158,24 @@
         "$description": "= 600px, source: scale/22"
       }
     },
-    "radius": {
-      "none": {
-        "$type": "number",
-        "$value": "{primitives.scale.0}",
-        "$description": "= 2px, source: scale/1"
-      },
-      "xs": {
-        "$type": "number",
-        "$value": "{primitives.scale.2}",
-        "$description": "= 2px, source: scale/1"
-      },
-      "sm": {
-        "$type": "number",
-        "$value": "{primitives.scale.3}",
-        "$description": "= 4px, source: scale/2"
-      },
-      "md": {
-        "$type": "number",
-        "$value": "{primitives.scale.5}",
-        "$description": "= 8px, source: scale/4"
-      },
-      "lg": {
-        "$type": "number",
-        "$value": "{primitives.scale.6}",
-        "$description": "= 12px, source: scale/5"
-      },
-      "xl": {
-        "$type": "number",
-        "$value": "{primitives.scale.7}",
-        "$description": "= 16px, source: scale/6"
-      },
-      "element-sm": {
-        "$type": "number",
-        "$value": "{primitives.scale.3}",
-        "$description": "= 16px, source: scale/6"
-      },
-      "element-md": {
-        "$type": "number",
-        "$value": "{primitives.scale.4}",
-        "$description": "= 16px, source: scale/6"
-      },
-      "container": {
-        "$type": "number",
-        "$value": "{primitives.scale.6}",
-        "$description": "= 16px, source: scale/6"
-      },
-      "pill": {
-        "$type": "number",
-        "$value": "9999px",
-        "$description": "Literal value, not a scale reference (fully rounded)"
-      }
-    },
     "stroke": {
       "base": {
-        "$type": "number",
+        "$type": "dimension",
         "$value": "{primitives.scale.0}",
         "$description": "= 1px, source: scale/0"
       },
       "thin": {
-        "$type": "number",
+        "$type": "dimension",
         "$value": "{primitives.scale.1}",
         "$description": "= 1px, source: scale/0"
       },
       "thick": {
-        "$type": "number",
+        "$type": "dimension",
         "$value": "{primitives.scale.2}",
         "$description": "= 2px, source: scale/1"
       },
       "heavy": {
-        "$type": "number",
+        "$type": "dimension",
         "$value": "{primitives.scale.3}",
         "$description": "= 4px, source: scale/2"
       }
@@ -183,68 +183,68 @@
     "shadow": {
       "xsmall": {
         "x": {
-          "$type": "number",
+          "$type": "shadow",
           "$value": "{primitives.scale.0}",
           "$description": "= 1px, source: scale/0"
         },
         "y": {
-          "$type": "number",
+          "$type": "shadow",
           "$value": "{primitives.scale.1}",
           "$description": "= 1px, source: scale/0"
         },
         "blur": {
-          "$type": "number",
+          "$type": "shadow",
           "$value": "{primitives.scale.1}",
           "$description": "= 2px, source: scale/1"
         }
       },
       "small": {
         "x": {
-          "$type": "number",
+          "$type": "shadow",
           "$value": "{primitives.scale.0}",
           "$description": "= 1px, source: scale/0"
         },
         "y": {
-          "$type": "number",
+          "$type": "shadow",
           "$value": "{primitives.scale.2}",
           "$description": "= 1px, source: scale/0"
         },
         "blur": {
-          "$type": "number",
+          "$type": "shadow",
           "$value": "{primitives.scale.4}",
           "$description": "= 2px, source: scale/1"
         }
       },
       "medium": {
         "x": {
-          "$type": "number",
+          "$type": "shadow",
           "$value": "{primitives.scale.0}",
           "$description": "= 1px, source: scale/0"
         },
         "y": {
-          "$type": "number",
+          "$type": "shadow",
           "$value": "{primitives.scale.5}",
           "$description": "= 1px, source: scale/0"
         },
         "blur": {
-          "$type": "number",
+          "$type": "shadow",
           "$value": "{primitives.scale.7}",
           "$description": "= 2px, source: scale/1"
         }
       },
       "large": {
         "x": {
-          "$type": "number",
+          "$type": "shadow",
           "$value": "{primitives.scale.0}",
           "$description": "= 1px, source: scale/0"
         },
         "y": {
-          "$type": "number",
+          "$type": "shadow",
           "$value": "{primitives.scale.8}",
           "$description": "= 1px, source: scale/0"
         },
         "blur": {
-          "$type": "number",
+          "$type": "shadow",
           "$value": "{primitives.scale.11}",
           "$description": "= 2px, source: scale/1"
         }

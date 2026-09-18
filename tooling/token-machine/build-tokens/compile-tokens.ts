@@ -1,6 +1,6 @@
 import StyleDictionary from 'style-dictionary';
 import * as path from 'path';
-import { TEMP_DIR, BREAKPOINT_MODES } from './constants.js';
+import { TEMP_DIR, RESOLVED_FRAGMENTS_DIR, BREAKPOINT_MODES } from './constants.js';
 import { getSourceFilesForCollection } from './utils.js';
 
 export async function compileTokens(
@@ -20,20 +20,23 @@ export async function compileTokens(
       fileConfig.filter = 'encapsulationFilter';
     }
 
+    // Derive json destination: replace destination path with RESOLVED_FRAGMENTS_DIR and change extension to .json
+    const jsonFilename = path.basename(destination).replace(/\.css$/, '.json');
+    const jsonDestination = path.join(RESOLVED_FRAGMENTS_DIR, jsonFilename);
+
     const platforms: any = {
       css: {
         transformGroup: 'css',
         buildPath: '',
         files: [fileConfig],
       },
-      javascript: {
+      json: {
         transformGroup: 'css',
         buildPath: '',
         files: [{
-          destination: destination.replace(/\.css$/, '.jsobj'),
-          format: 'javascript/object-entries',
+          destination: jsonDestination,
+          format: 'json/flat-entries',
           filter: fileConfig.filter,
-          options: { ctorParamName: opts?.javascriptCtorParam },
         }],
       },
     };

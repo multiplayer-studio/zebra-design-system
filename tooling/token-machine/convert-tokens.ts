@@ -27,13 +27,47 @@ function rgbaToHex(color: FigmaColor): string {
   return `#${r}${g}${b}${a}`;
 }
 
-function getDtcgType(figmaType: FigmaVariableType): string {
+/**
+ * Infer DTCG type based on token path and value
+ * @see https://www.designtokens.org/tr/drafts/format/#types
+ */
+function getDtcgType(figmaType: FigmaVariableType, tokenPath: string[], value?: any): string {
+  const pathLower = tokenPath.join('').toLowerCase().replace(/[-\s]/g, '');
+
+  // Check path for specific token types first (more specific than Figma type)
+  if (pathLower.includes('fontfamily')) return 'fontFamily';
+  if (pathLower.includes('fontweight')) return 'fontWeight';
+  if (pathLower.includes('fontsize')) return 'dimension';
+  if (pathLower.includes('lineheight')) return 'dimension';
+  if (pathLower.includes('letterspacing')) return 'dimension';
+  if (pathLower.includes('duration')) return 'duration';
+  if (pathLower.includes('delay')) return 'duration';
+  if (pathLower.includes('cubic') || pathLower.includes('easing')) return 'cubicBezier';
+  if (pathLower.includes('shadow')) return 'shadow';
+  if (pathLower.includes('border')) return 'border';
+  if (pathLower.includes('transition')) return 'transition';
+  if (pathLower.includes('stroke')) return 'dimension';
+  if (pathLower.includes('radius') || pathLower.includes('corner')) return 'dimension';
+  if (pathLower.includes('space') || pathLower.includes('gap') || pathLower.includes('padding') ||
+      pathLower.includes('margin')) return 'dimension';
+  if (pathLower.includes('width') || pathLower.includes('height') || pathLower.includes('size'))
+    return 'dimension';
+  if (pathLower.includes('opacity')) return 'number';
+  if (pathLower.includes('scale') || pathLower.includes('ratio')) return 'number';
+
+  // Fallback to Figma type
   switch (figmaType) {
     case 'COLOR': return 'color';
-    case 'FLOAT': return 'number';
+    case 'FLOAT': {
+      // Check value to disambiguate between dimension and number
+      if (value !== undefined && typeof value === 'string' && /^[\d.]+(?:px|em|rem|%|s|ms|deg)/.test(value)) {
+        return 'dimension';
+      }
+      return 'number';
+    }
     case 'STRING': return 'string';
     case 'BOOLEAN': return 'boolean';
-    default: return 'unknown';
+    default: return 'string';
   }
 }
 
@@ -232,7 +266,9 @@ export function convertTokens(inputFile: string, outputDir: string) {
           if (modeValue !== undefined) {
             const tokenPath = sanitizeTokenName(variable.name).split('/');
             if (collidingAncestorIds.has(variable.id)) tokenPath.push(GROUP_VALUE_KEY);
-            const token = buildToken(tokenPath, getDtcgType(variable.type), modeValue, variable.description);
+            const resolvedValue = resolveValue(modeValue);
+            const dtcgType = getDtcgType(variable.type, tokenPath, resolvedValue);
+            const token = buildToken(tokenPath, dtcgType, modeValue, variable.description);
 
             setNestedProperty(fileData[parentName], tokenPath, token);
           }
@@ -284,7 +320,9 @@ export function convertTokens(inputFile: string, outputDir: string) {
               if (finalValue !== undefined) {
                  const tokenPath = sanitizeTokenName(baseVar.name).split('/');
                  if (collidingAncestorIds.has(baseVar.id)) tokenPath.push(GROUP_VALUE_KEY);
-                 const token = buildToken(tokenPath, getDtcgType(baseVar.type), finalValue, baseVar.description);
+                 const resolvedValue = resolveValue(finalValue);
+                 const dtcgType = getDtcgType(baseVar.type, tokenPath, resolvedValue);
+                 const token = buildToken(tokenPath, dtcgType, finalValue, baseVar.description);
 
                  // Nest the token under the base/parent collection's name root (e.g. palette) instead of the extension
                  setNestedProperty(fileData[parentName], tokenPath, token);

@@ -176,4 +176,5 @@
   --selection-background: var(--fill-selection); /** Highlight background applied to selected text or selected list/table items */
   --selection-border: var(--line-selection); /** Border drawn around a selected item, e.g. a selected card or table row */
   --selection-text: var(--ink-selection); /** Text color applied to selected or highlighted text */
+  --border-transparent: var(--interactive-ghost-background-default); /** Border color for elements conveying neutral, informational context */
 }

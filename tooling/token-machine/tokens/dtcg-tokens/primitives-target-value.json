@@ -941,155 +941,155 @@
     "text": {
       "font-family": {
         "Zebra-Sans": {
-          "$type": "string",
+          "$type": "fontFamily",
           "$value": "Zebra Sans"
         },
         "IBM-Plex-Sans": {
-          "$type": "string",
+          "$type": "fontFamily",
           "$value": "IBM Plex Sans"
         }
       },
       "font-weight": {
         "light": {
-          "$type": "string",
+          "$type": "fontWeight",
           "$value": 300
         },
         "regular": {
-          "$type": "string",
+          "$type": "fontWeight",
           "$value": 400
         },
         "medium": {
-          "$type": "string",
+          "$type": "fontWeight",
           "$value": 500
         },
         "bold": {
-          "$type": "string",
+          "$type": "fontWeight",
           "$value": 700
         }
       },
       "font-size": {
         "10": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "10px"
         },
         "12": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "12px"
         },
         "14": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "14px"
         },
         "16": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "16px"
         },
         "18": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "18px"
         },
         "20": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "20px"
         },
         "24": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "24px"
         },
         "28": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "28px"
         },
         "32": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "32px"
         },
         "36": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "36px"
         },
         "40": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "40px"
         },
         "44": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "44px"
         },
         "48": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "48px"
         },
         "52": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "52px"
         }
       },
       "line-height": {
         "14": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "14px"
         },
         "16": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "16px"
         },
         "18": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "18px"
         },
         "20": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "20px"
         },
         "24": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "24px"
         },
         "28": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "28px"
         },
         "32": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "32px"
         },
         "36": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "36px"
         },
         "40": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "40px"
         },
         "48": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "48px"
         },
         "52": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "52px"
         },
         "60": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "60px"
         }
       },
       "letter-spacing": {
         "none": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "0px"
         },
         "body": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "-0.4300000071525574px"
         },
         "heading": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "0.4000000059604645px"
         },
         "title": {
-          "$type": "number",
+          "$type": "dimension",
           "$value": "0px"
         }
       }

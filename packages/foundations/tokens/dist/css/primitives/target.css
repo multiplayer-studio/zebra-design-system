@@ -224,8 +224,8 @@
   --color-alpha-light-70: rgba(212, 221, 230, 0.6980392156862745);
   --color-alpha-light-80: rgba(212, 221, 230, 0.8);
   --color-alpha-light-90: rgba(212, 221, 230, 0.8980392156862745);
-  --text-font-family-zebra-sans: Zebra Sans;
-  --text-font-family-ibm-plex-sans: IBM Plex Sans;
+  --text-font-family-zebra-sans: 'Zebra Sans';
+  --text-font-family-ibm-plex-sans: 'IBM Plex Sans';
   --text-font-weight-light: 300;
   --text-font-weight-regular: 400;
   --text-font-weight-medium: 500;

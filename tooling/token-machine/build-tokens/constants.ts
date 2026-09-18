@@ -8,8 +8,8 @@ const TOKEN_MACHINE_DIR = path.resolve(__dirname, '..');
 
 export const TOKEN_DIR = path.resolve(TOKEN_MACHINE_DIR, config.directories.tokenDir);
 export const TEMP_DIR = path.resolve(TOKEN_MACHINE_DIR, config.directories.tempDir);
+export const RESOLVED_FRAGMENTS_DIR = path.resolve(TOKEN_MACHINE_DIR, config.directories.resolvedFragmentsDir);
 export const CSS_OUTPUT_DIR = path.resolve(TOKEN_MACHINE_DIR, config.directories.cssOutputDir);
-export const JS_OUTPUT_DIR = path.resolve(TOKEN_MACHINE_DIR, config.directories.jsOutputDir);
 
 export const COLOR_COLLECTIONS = config.collections.color;
 export const SIZE_COLLECTIONS = config.collections.size;

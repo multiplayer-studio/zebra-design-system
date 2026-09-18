@@ -12,17 +12,12 @@ tokens/raw-tokens.json
       │  convert-tokens.ts
       ▼
 tokens/dtcg-tokens/*.json         (DTCG format, one per collection+mode)
-      │  build-tokens/ (Style Dictionary + synthesizers)
+      │  build-tokens/ (Style Dictionary + CSS synthesizers)
       ▼
-┌──────────────────────┐
-│ CSS         │ JavaScript
-│ colors.css  │ colors.js
-│ sizes.css   │ sizes.js
-│ typography  │ typography.js
-└──────────────────────┘
+CSS (colors.css, sizes.css, typography.css, etc.)
       │  export-resolved-tokens.ts
       ▼
-services/mcp-server/src/resources/resolved-tokens.json
+JSON (resolved-tokens.json, resolved-companion-tokens.json, etc.)
 ```
 
 ## Prerequisites
@@ -55,8 +50,8 @@ From the repo root:
 ```bash
 npm run fetch:tokens    # Figma → tokens/raw-tokens.json
 npm run convert:tokens  # raw-tokens.json → tokens/dtcg-tokens/*.json
-npm run build:tokens    # dtcg-tokens/ → dist/css/ + dist/js/
-npm run export:tokens   # css/*.css → services/mcp-server/src/resources/resolved-tokens.json
+npm run build:tokens    # dtcg-tokens/ → dist/css/
+npm run export:tokens   # css/ → dist/json/resolved-tokens.json
 npm run clean:tokens    # delete tokens/ and tokens package dist/
 
 npm run sync:tokens     # clean → fetch → convert → build → export (full cycle)
@@ -87,26 +82,23 @@ Reads `tokens/raw-tokens.json` and, for every `(collection, mode)` pair, writes 
 - **Extension/override collections** (Figma "collection extends collection" — `isExtension: true` with `variableOverrides`): the script resolves the parent collection, writes the file as `{parentName}-{extensionName}-{mode}.json`, and merges every variable from the base collection (overridden or not) under the parent's root key. This is how a themed variant (e.g. a "Companion" brand overriding `palette`) is meant to produce `palette-companion-light.json` alongside the base `palette-light.json`.
 - **Empty collections are skipped:** after populating a `(collection, mode)` file, the script checks whether the root key actually has any properties; if a collection has no variables assigned to it (or none that resolve for that mode), no file is written for it. This filters out stray/junk Figma collections at conversion time rather than emitting empty JSON files for `build-tokens.ts` to ignore later.
 
-### 3. `build-tokens/` — DTCG tokens → CSS/JS (Style Dictionary + Synthesizers)
+### 3. `build-tokens/` — DTCG tokens → CSS (Style Dictionary + Synthesizers)
 
 **Discovery & Compilation:**
 1. **Theme discovery** (`index.ts`): filenames with exactly 3 hyphen-separated parts (where the middle part isn't a known mode) are treated as themed variants. Default theme is always `default`.
 2. **Token compilation** (`compile-tokens.ts`): for each theme and mode, compiles with Style Dictionary:
-   - **Color**: `primitives-value.json` + `palette-{light,dark}.json` + `semantics-base.json` → CSS + JS.
-   - **Size/Typography**: per breakpoint mode → CSS + JS.
-   - `style-dictionary-formats.ts` registers custom filters (`encapsulationFilter`: emit only `semantics`, `size`, `typography`) and CSS/JS outputs.
+   - **Color**: `primitives-value.json` + `palette-{light,dark}.json` + `semantics-base.json` → CSS.
+   - **Size/Typography**: per breakpoint mode → CSS.
+   - `style-dictionary-formats.ts` registers custom filters (`encapsulationFilter`: emit only `semantics`, `size`, `typography`) and CSS output.
 
 **Output Synthesis:**
 - **CSS** (`css-synthesizer.ts`): 
   - `colors.css`: light under `:root`, dark under `@media (prefers-color-scheme: dark)` + `.dark-mode`.
   - `sizes.css` / `typography.css`: mobile under `:root`, then breakpoint-scoped variants.
+  - Theme-specific variants (e.g., `target-colors.css`, `companion-sizes.css`).
 
-- **JavaScript** (`js-synthesizer.ts`): 
-  - `colors.js`: `{ light: {...}, dark: {...} }`
-  - `sizes.js` / `typography.js`: `{ mobile: {...}, tablet: {...}, ... }`
-
-**Building-block layers** (`building-block-css-synthesizer.ts`, `building-block-js-synthesizer.ts`):
-- Emit layer-specific files with `var()` references (not flattened literals), enabling mix-and-match of `primitives/`, `palette/`, `size/`, `typography/` from different themes.
+**Building-block layers** (`building-block-css-synthesizer.ts`):
+- Emit layer-specific CSS files with `var()` references (not flattened literals), enabling mix-and-match of `primitives/`, `palette/`, `size/`, `typography/` from different themes.
 
 ### 3b. Building-block CSS — mixing primitives/palette/size/typography extensions independently
 
@@ -137,9 +129,14 @@ These are organized into two kinds of file: **ingredients** (`primitives/`, `pal
 
 **Important constraint:** these building-block files are all `:root`-scoped (not class-scoped like `.{theme}-theme`), because the selection mechanism is *which files you include*, not a runtime class toggle. Load exactly one `primitives/*.css`, exactly one `palette/*.css`, exactly one `size/*.css`, and exactly one `typography/*.css` per page — loading two of the same layer silently collides at `:root` (last one in source order wins, no error).
 
-### 4. `export-resolved-tokens.ts` — CSS → `resolved-tokens.json`
+### 4. `export-resolved-tokens.ts` — Resolved fragments → JSON
 
-Parses the resolved CSS output files (`colors.css`, `sizes.css`, `typography.css`) and exports a flattened JSON representation to `services/mcp-server/src/resources/resolved-tokens.json` for use by the MCP server. This file groups tokens by type (color, size, typography) and is used to power token queries in the MCP server.
+Merges resolved token fragments from the build process and exports comprehensive JSON files to `packages/foundations/tokens/dist/json/`:
+
+- **`resolved-tokens.json`**: All default theme tokens (color, size, typography) merged into one file, organized by type.
+- **`resolved-{theme}-tokens.json`** (e.g., `resolved-companion-tokens.json`, `resolved-target-tokens.json`): Theme-specific resolved tokens, available if that theme overrides the respective layers.
+
+These files group tokens by type and provide a consumable JSON format for JavaScript/TypeScript applications that need token values at runtime (as an alternative to CSS custom properties).
 
 ### 5. `clean-tokens.ts`
 
@@ -149,8 +146,9 @@ Deletes `./tokens` (both `raw-tokens.json` and `dtcg-tokens/`) and `../../packag
 
 `packages/tokens/` exports:
 
-- **CSS**: `dist/css/*.css` — import e.g. `design-system-tokens/css/colors`
-- **JavaScript**: `dist/js/*.js` — import e.g. `design-system-tokens/js/colors` (ESM objects per breakpoint)
+- **CSS**: `dist/css/*.css` — import e.g. `design-system-tokens/css/colors` (CSS custom properties, fully resolved)
+- **JSON**: `dist/json/*.json` — import e.g. `design-system-tokens/dist/json/resolved-tokens.json` (resolved tokens, organized by type)
+- **CSS Building Blocks**: `dist/css/{primitives,palette,size,typography}/*.css` — mix-and-match layer files with `var()` references
 
 Generated files are committed to the repo. Changes to `packages/tokens/dist/**` should be committed alongside token source updates.
 
@@ -158,7 +156,7 @@ Generated files are committed to the repo. Changes to `packages/tokens/dist/**` 
 
 - **Collection/mode names are matched case-sensitively and by exact string** in `config.json` (`collections.color`, `collections.size`, `collections.typography`, `modes.color`, `modes.breakpoint`). If someone renames a Figma collection or mode (e.g. `Palette` → `Palettes`, or adds a new breakpoint mode), you must update the corresponding array in `config.json` or the new/renamed data will silently be excluded from the output.
 - **Theme auto-discovery is a naming-convention hack**, not real config: it splits filenames on `-` and assumes exactly 3 parts means `{parent}-{theme}-{mode}.json`. Keep collection/theme/mode names free of extra hyphens, or this heuristic misfires (it's also why `size-desktop compact.json` is safe — the space, not a hyphen, keeps "desktop compact" as one part).
-- **`primitives`, `palette`, and `typography` tokens never appear directly in the resolved files** (`colors.css`/`sizes.css`/`typography.css`/`{theme}-colors.css`/`{theme}-sizes.css`/`{theme}-typography.css`) — only `semantics`, `size`, and `typography` do there (see `encapsulationFilter`). `primitives` and `palette` *do* appear as their own building-block files under `primitives/`, `palette/`, `size/`, `typography/` (see [§3b](#3b-building-block-css--mixing-primitivespalette-extensions-independently)), which is the supported way to consume a raw primitive/palette value or a custom typography scale directly.
+- **`primitives`, `palette`, and `typography` tokens never appear directly in the resolved CSS files** (`colors.css`/`sizes.css`/`typography.css`/`{theme}-colors.css`/`{theme}-sizes.css`/`{theme}-typography.css`) — only `semantics`, `size`, and `typography` do there (see `encapsulationFilter`). `primitives` and `palette` *do* appear as their own building-block CSS files under `primitives/`, `palette/`, `size/`, `typography/` (see [§3b](#3b-building-block-css--mixing-primitivespalette-extensions-independently)), which is the supported way to consume a raw primitive/palette value or a custom typography scale directly. Resolved JSON tokens include all types, fully resolved into their final values.
 - **`raw-tokens.json` and the per-mode `dtcg-tokens/*.json` files are checked into git**, so a `fetch`+`convert` from a stale or wrong `FIGMA_FILE_KEY` will show up as a large, confusing diff. Diff `tokens/raw-tokens.json` first if a sync produces unexpected changes.
 - **Building-block files (`:root`-scoped, not class-scoped)** — loading two `primitives/*.css` (or two `palette/*.css`, etc.) on the same page silently collides; last one wins. Pick exactly one of each per page.
 - **Building block warnings** — Style Dictionary logs benign "filtered out token references" warnings when building layers that use `var()` references. Expected, not an error.
