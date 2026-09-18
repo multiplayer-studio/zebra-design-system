@@ -294,6 +294,52 @@
         }
       }
     },
+    "indicator": {
+      "medium": {
+        "font-family": {
+          "$type": "fontFamily",
+          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
+        },
+        "font-size": {
+          "$type": "dimension",
+          "$value": "{primitives.text.font-size.12}"
+        },
+        "font-weight": {
+          "$type": "fontWeight",
+          "$value": "{primitives.text.font-weight.medium}"
+        },
+        "line-height": {
+          "$type": "dimension",
+          "$value": "{primitives.text.line-height.14}"
+        },
+        "letter-spacing": {
+          "$type": "dimension",
+          "$value": "{primitives.text.letter-spacing.none}"
+        }
+      },
+      "small": {
+        "font-family": {
+          "$type": "fontFamily",
+          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
+        },
+        "font-size": {
+          "$type": "dimension",
+          "$value": "{primitives.text.font-size.10}"
+        },
+        "font-weight": {
+          "$type": "fontWeight",
+          "$value": "{primitives.text.font-weight.medium}"
+        },
+        "line-height": {
+          "$type": "dimension",
+          "$value": "{primitives.text.line-height.14}"
+        },
+        "letter-spacing": {
+          "$type": "dimension",
+          "$value": "{primitives.text.letter-spacing.none}"
+        }
+      }
+    },
     "label": {
       "large": {
         "font-family": {
@@ -355,28 +401,6 @@
         "line-height": {
           "$type": "dimension",
           "$value": "{primitives.text.line-height.16}"
-        },
-        "letter-spacing": {
-          "$type": "dimension",
-          "$value": "{primitives.text.letter-spacing.none}"
-        }
-      },
-      "indicator": {
-        "font-family": {
-          "$type": "fontFamily",
-          "$value": "{primitives.text.font-family.IBM-Plex-Sans}"
-        },
-        "font-size": {
-          "$type": "dimension",
-          "$value": "{primitives.text.font-size.12}"
-        },
-        "font-weight": {
-          "$type": "fontWeight",
-          "$value": "{primitives.text.font-weight.medium}"
-        },
-        "line-height": {
-          "$type": "dimension",
-          "$value": "{primitives.text.line-height.14}"
         },
         "letter-spacing": {
           "$type": "dimension",

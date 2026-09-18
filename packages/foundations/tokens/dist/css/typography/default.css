@@ -69,6 +69,16 @@
   --body-xsmall-font-weight: var(--text-font-weight-regular);
   --body-xsmall-line-height: var(--text-line-height-16);
   --body-xsmall-letter-spacing: var(--text-letter-spacing-none);
+  --indicator-medium-font-family: var(--text-font-family-ibm-plex-sans);
+  --indicator-medium-font-size: var(--text-font-size-12);
+  --indicator-medium-font-weight: var(--text-font-weight-medium);
+  --indicator-medium-line-height: var(--text-line-height-14);
+  --indicator-medium-letter-spacing: var(--text-letter-spacing-none);
+  --indicator-small-font-family: var(--text-font-family-ibm-plex-sans);
+  --indicator-small-font-size: var(--text-font-size-10);
+  --indicator-small-font-weight: var(--text-font-weight-medium);
+  --indicator-small-line-height: var(--text-line-height-14);
+  --indicator-small-letter-spacing: var(--text-letter-spacing-none);
   --label-large-font-family: var(--text-font-family-ibm-plex-sans);
   --label-large-font-size: var(--text-font-size-16);
   --label-large-font-weight: var(--text-font-weight-medium);
@@ -84,11 +94,6 @@
   --label-small-font-weight: var(--text-font-weight-medium);
   --label-small-line-height: var(--text-line-height-16);
   --label-small-letter-spacing: var(--text-letter-spacing-none);
-  --label-indicator-font-family: var(--text-font-family-ibm-plex-sans);
-  --label-indicator-font-size: var(--text-font-size-12);
-  --label-indicator-font-weight: var(--text-font-weight-medium);
-  --label-indicator-line-height: var(--text-line-height-14);
-  --label-indicator-letter-spacing: var(--text-letter-spacing-none);
 }
 
 @media (min-width: 600px) {
@@ -158,6 +163,16 @@
   --body-xsmall-font-weight: var(--text-font-weight-regular);
   --body-xsmall-line-height: var(--text-line-height-16);
   --body-xsmall-letter-spacing: var(--text-letter-spacing-none);
+  --indicator-medium-font-family: var(--text-font-family-ibm-plex-sans);
+  --indicator-medium-font-size: var(--text-font-size-12);
+  --indicator-medium-font-weight: var(--text-font-weight-medium);
+  --indicator-medium-line-height: var(--text-line-height-14);
+  --indicator-medium-letter-spacing: var(--text-letter-spacing-none);
+  --indicator-small-font-family: var(--text-font-family-ibm-plex-sans);
+  --indicator-small-font-size: var(--text-font-size-10);
+  --indicator-small-font-weight: var(--text-font-weight-medium);
+  --indicator-small-line-height: var(--text-line-height-14);
+  --indicator-small-letter-spacing: var(--text-letter-spacing-none);
   --label-large-font-family: var(--text-font-family-ibm-plex-sans);
   --label-large-font-size: var(--text-font-size-16);
   --label-large-font-weight: var(--text-font-weight-medium);
@@ -173,11 +188,6 @@
   --label-small-font-weight: var(--text-font-weight-medium);
   --label-small-line-height: var(--text-line-height-16);
   --label-small-letter-spacing: var(--text-letter-spacing-none);
-  --label-indicator-font-family: var(--text-font-family-ibm-plex-sans);
-  --label-indicator-font-size: var(--text-font-size-12);
-  --label-indicator-font-weight: var(--text-font-weight-medium);
-  --label-indicator-line-height: var(--text-line-height-14);
-  --label-indicator-letter-spacing: var(--text-letter-spacing-none);
   }
 }
 
@@ -248,6 +258,16 @@
   --body-xsmall-font-weight: var(--text-font-weight-regular);
   --body-xsmall-line-height: var(--text-line-height-16);
   --body-xsmall-letter-spacing: var(--text-letter-spacing-none);
+  --indicator-medium-font-family: var(--text-font-family-ibm-plex-sans);
+  --indicator-medium-font-size: var(--text-font-size-12);
+  --indicator-medium-font-weight: var(--text-font-weight-medium);
+  --indicator-medium-line-height: var(--text-line-height-14);
+  --indicator-medium-letter-spacing: var(--text-letter-spacing-none);
+  --indicator-small-font-family: var(--text-font-family-ibm-plex-sans);
+  --indicator-small-font-size: var(--text-font-size-10);
+  --indicator-small-font-weight: var(--text-font-weight-medium);
+  --indicator-small-line-height: var(--text-line-height-14);
+  --indicator-small-letter-spacing: var(--text-letter-spacing-none);
   --label-large-font-family: var(--text-font-family-ibm-plex-sans);
   --label-large-font-size: var(--text-font-size-16);
   --label-large-font-weight: var(--text-font-weight-medium);
@@ -263,11 +283,6 @@
   --label-small-font-weight: var(--text-font-weight-medium);
   --label-small-line-height: var(--text-line-height-16);
   --label-small-letter-spacing: var(--text-letter-spacing-none);
-  --label-indicator-font-family: var(--text-font-family-ibm-plex-sans);
-  --label-indicator-font-size: var(--text-font-size-12);
-  --label-indicator-font-weight: var(--text-font-weight-medium);
-  --label-indicator-line-height: var(--text-line-height-14);
-  --label-indicator-letter-spacing: var(--text-letter-spacing-none);
   }
 }
 
@@ -338,6 +353,16 @@
   --body-xsmall-font-weight: var(--text-font-weight-regular);
   --body-xsmall-line-height: var(--text-line-height-16);
   --body-xsmall-letter-spacing: var(--text-letter-spacing-none);
+  --indicator-medium-font-family: var(--text-font-family-ibm-plex-sans);
+  --indicator-medium-font-size: var(--text-font-size-12);
+  --indicator-medium-font-weight: var(--text-font-weight-medium);
+  --indicator-medium-line-height: var(--text-line-height-14);
+  --indicator-medium-letter-spacing: var(--text-letter-spacing-none);
+  --indicator-small-font-family: var(--text-font-family-ibm-plex-sans);
+  --indicator-small-font-size: var(--text-font-size-10);
+  --indicator-small-font-weight: var(--text-font-weight-medium);
+  --indicator-small-line-height: var(--text-line-height-14);
+  --indicator-small-letter-spacing: var(--text-letter-spacing-none);
   --label-large-font-family: var(--text-font-family-ibm-plex-sans);
   --label-large-font-size: var(--text-font-size-16);
   --label-large-font-weight: var(--text-font-weight-medium);
@@ -353,10 +378,5 @@
   --label-small-font-weight: var(--text-font-weight-medium);
   --label-small-line-height: var(--text-line-height-16);
   --label-small-letter-spacing: var(--text-letter-spacing-none);
-  --label-indicator-font-family: var(--text-font-family-ibm-plex-sans);
-  --label-indicator-font-size: var(--text-font-size-12);
-  --label-indicator-font-weight: var(--text-font-weight-medium);
-  --label-indicator-line-height: var(--text-line-height-14);
-  --label-indicator-letter-spacing: var(--text-letter-spacing-none);
   }
 }

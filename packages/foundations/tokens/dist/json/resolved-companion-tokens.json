@@ -36,7 +36,7 @@
         },
         "brand": {
           "$type": "color",
-          "$value": ""
+          "$value": "#f7f0ff"
         },
         "inverse": {
           "$type": "color",
@@ -182,11 +182,11 @@
           "background": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#7e0cff"
             },
             "focused": {
               "$type": "color",
-              "$value": ""
+              "$value": "#7e0cff"
             },
             "disabled": {
               "$type": "color",
@@ -194,21 +194,21 @@
             },
             "hover": {
               "$type": "color",
-              "$value": ""
+              "$value": "#9b71df"
             },
             "pressed": {
               "$type": "color",
-              "$value": ""
+              "$value": "#6400d6"
             },
             "selected": {
               "$type": "color",
-              "$value": ""
+              "$value": "#6400d6"
             }
           },
           "foreground": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#f8fbff"
             },
             "disabled": {
               "$type": "color",
@@ -218,7 +218,7 @@
           "border": {
             "default": {
               "$type": "border",
-              "$value": ""
+              "$value": "#7e0cff"
             },
             "disabled": {
               "$type": "border",
@@ -226,11 +226,11 @@
             },
             "hover": {
               "$type": "border",
-              "$value": ""
+              "$value": "#9b71df"
             },
             "pressed": {
               "$type": "border",
-              "$value": ""
+              "$value": "#6400d6"
             }
           }
         },
@@ -330,15 +330,15 @@
           "border": {
             "default": {
               "$type": "border",
-              "$value": ""
+              "$value": "#7e0cff"
             },
             "hover": {
               "$type": "border",
-              "$value": ""
+              "$value": "#9b71df"
             },
             "pressed": {
               "$type": "border",
-              "$value": ""
+              "$value": "#6400d6"
             },
             "disabled": {
               "$type": "border",
@@ -376,7 +376,7 @@
           "foreground": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#f8fbff"
             },
             "disabled": {
               "$type": "color",
@@ -562,7 +562,7 @@
           "foreground": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#f8fbff"
             },
             "disabled": {
               "$type": "color",
@@ -574,15 +574,15 @@
           "border": {
             "default": {
               "$type": "border",
-              "$value": ""
+              "$value": "#7e0cff"
             },
             "hover": {
               "$type": "border",
-              "$value": ""
+              "$value": "#9b71df"
             },
             "pressed": {
               "$type": "border",
-              "$value": ""
+              "$value": "#6400d6"
             },
             "disabled": {
               "$type": "border",
@@ -592,23 +592,23 @@
           "background": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#f7f0ff"
             },
             "hover": {
               "$type": "color",
-              "$value": ""
+              "$value": "#efe1ff"
             },
             "pressed": {
               "$type": "color",
-              "$value": ""
+              "$value": "#9b71df"
             },
             "focused": {
               "$type": "color",
-              "$value": ""
+              "$value": "#f7f0ff"
             },
             "selected": {
               "$type": "color",
-              "$value": ""
+              "$value": "#9b71df"
             },
             "disabled": {
               "$type": "color",
@@ -826,7 +826,7 @@
         },
         "brand": {
           "$type": "color",
-          "$value": ""
+          "$value": "#180f22"
         },
         "inverse": {
           "$type": "color",
@@ -972,11 +972,11 @@
           "background": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#7e0cff"
             },
             "focused": {
               "$type": "color",
-              "$value": ""
+              "$value": "#7e0cff"
             },
             "disabled": {
               "$type": "color",
@@ -984,15 +984,15 @@
             },
             "hover": {
               "$type": "color",
-              "$value": ""
+              "$value": "#9b71df"
             },
             "pressed": {
               "$type": "color",
-              "$value": ""
+              "$value": "#cea4ff"
             },
             "selected": {
               "$type": "color",
-              "$value": ""
+              "$value": "#cea4ff"
             }
           },
           "foreground": {
@@ -1008,7 +1008,7 @@
           "border": {
             "default": {
               "$type": "border",
-              "$value": ""
+              "$value": "#7e0cff"
             },
             "disabled": {
               "$type": "border",
@@ -1016,11 +1016,11 @@
             },
             "hover": {
               "$type": "border",
-              "$value": ""
+              "$value": "#9b71df"
             },
             "pressed": {
               "$type": "border",
-              "$value": ""
+              "$value": "#cea4ff"
             }
           }
         },
@@ -1120,15 +1120,15 @@
           "border": {
             "default": {
               "$type": "border",
-              "$value": ""
+              "$value": "#7e0cff"
             },
             "hover": {
               "$type": "border",
-              "$value": ""
+              "$value": "#9b71df"
             },
             "pressed": {
               "$type": "border",
-              "$value": ""
+              "$value": "#cea4ff"
             },
             "disabled": {
               "$type": "border",
@@ -1364,15 +1364,15 @@
           "border": {
             "default": {
               "$type": "border",
-              "$value": ""
+              "$value": "#7e0cff"
             },
             "hover": {
               "$type": "border",
-              "$value": ""
+              "$value": "#9b71df"
             },
             "pressed": {
               "$type": "border",
-              "$value": ""
+              "$value": "#cea4ff"
             },
             "disabled": {
               "$type": "border",
@@ -1382,23 +1382,23 @@
           "background": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#180f22"
             },
             "hover": {
               "$type": "color",
-              "$value": ""
+              "$value": "#260052"
             },
             "pressed": {
               "$type": "color",
-              "$value": ""
+              "$value": "#9b71df"
             },
             "focused": {
               "$type": "color",
-              "$value": ""
+              "$value": "#180f22"
             },
             "selected": {
               "$type": "color",
-              "$value": ""
+              "$value": "#9b71df"
             },
             "disabled": {
               "$type": "color",
@@ -1667,6 +1667,12 @@
           }
         }
       },
+      "container": {
+        "default": {
+          "$type": "number",
+          "$value": "240px"
+        }
+      },
       "radius": {
         "none": {
           "$type": "dimension",
@@ -1709,12 +1715,6 @@
         "pill": {
           "$type": "dimension",
           "$value": "9999px"
-        }
-      },
-      "container": {
-        "default": {
-          "$type": "number",
-          "$value": "240px"
         }
       },
       "stroke": {
@@ -1883,6 +1883,12 @@
           }
         }
       },
+      "container": {
+        "default": {
+          "$type": "number",
+          "$value": "600px"
+        }
+      },
       "radius": {
         "none": {
           "$type": "dimension",
@@ -1925,12 +1931,6 @@
         "pill": {
           "$type": "dimension",
           "$value": "9999px"
-        }
-      },
-      "container": {
-        "default": {
-          "$type": "number",
-          "$value": "600px"
         }
       },
       "stroke": {
@@ -2099,6 +2099,12 @@
           }
         }
       },
+      "container": {
+        "default": {
+          "$type": "number",
+          "$value": "1200px"
+        }
+      },
       "radius": {
         "none": {
           "$type": "dimension",
@@ -2141,12 +2147,6 @@
         "pill": {
           "$type": "dimension",
           "$value": "9999px"
-        }
-      },
-      "container": {
-        "default": {
-          "$type": "number",
-          "$value": "1200px"
         }
       },
       "stroke": {
@@ -2315,6 +2315,12 @@
           }
         }
       },
+      "container": {
+        "default": {
+          "$type": "number",
+          "$value": "840px"
+        }
+      },
       "radius": {
         "none": {
           "$type": "dimension",
@@ -2357,12 +2363,6 @@
         "pill": {
           "$type": "dimension",
           "$value": "9999px"
-        }
-      },
-      "container": {
-        "default": {
-          "$type": "number",
-          "$value": "840px"
         }
       },
       "stroke": {
@@ -2743,6 +2743,52 @@
           }
         }
       },
+      "indicator": {
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "10px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
       "label": {
         "large": {
           "font-family": {
@@ -2804,28 +2850,6 @@
           "line-height": {
             "$type": "dimension",
             "$value": "16px"
-          },
-          "letter-spacing": {
-            "$type": "dimension",
-            "$value": "0px"
-          }
-        },
-        "indicator": {
-          "font-family": {
-            "$type": "fontFamily",
-            "$value": "'IBM Plex Sans', sans-serif"
-          },
-          "font-size": {
-            "$type": "dimension",
-            "$value": "12px"
-          },
-          "font-weight": {
-            "$type": "fontWeight",
-            "$value": 500
-          },
-          "line-height": {
-            "$type": "dimension",
-            "$value": "14px"
           },
           "letter-spacing": {
             "$type": "dimension",
@@ -3129,6 +3153,52 @@
           }
         }
       },
+      "indicator": {
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "10px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
       "label": {
         "large": {
           "font-family": {
@@ -3190,28 +3260,6 @@
           "line-height": {
             "$type": "dimension",
             "$value": "16px"
-          },
-          "letter-spacing": {
-            "$type": "dimension",
-            "$value": "0px"
-          }
-        },
-        "indicator": {
-          "font-family": {
-            "$type": "fontFamily",
-            "$value": "'IBM Plex Sans', sans-serif"
-          },
-          "font-size": {
-            "$type": "dimension",
-            "$value": "12px"
-          },
-          "font-weight": {
-            "$type": "fontWeight",
-            "$value": 500
-          },
-          "line-height": {
-            "$type": "dimension",
-            "$value": "14px"
           },
           "letter-spacing": {
             "$type": "dimension",
@@ -3515,6 +3563,52 @@
           }
         }
       },
+      "indicator": {
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "10px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
       "label": {
         "large": {
           "font-family": {
@@ -3576,28 +3670,6 @@
           "line-height": {
             "$type": "dimension",
             "$value": "16px"
-          },
-          "letter-spacing": {
-            "$type": "dimension",
-            "$value": "0px"
-          }
-        },
-        "indicator": {
-          "font-family": {
-            "$type": "fontFamily",
-            "$value": "'IBM Plex Sans', sans-serif"
-          },
-          "font-size": {
-            "$type": "dimension",
-            "$value": "12px"
-          },
-          "font-weight": {
-            "$type": "fontWeight",
-            "$value": 500
-          },
-          "line-height": {
-            "$type": "dimension",
-            "$value": "14px"
           },
           "letter-spacing": {
             "$type": "dimension",
@@ -3901,6 +3973,52 @@
           }
         }
       },
+      "indicator": {
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "10px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
       "label": {
         "large": {
           "font-family": {
@@ -3962,28 +4080,6 @@
           "line-height": {
             "$type": "dimension",
             "$value": "16px"
-          },
-          "letter-spacing": {
-            "$type": "dimension",
-            "$value": "0px"
-          }
-        },
-        "indicator": {
-          "font-family": {
-            "$type": "fontFamily",
-            "$value": "'IBM Plex Sans', sans-serif"
-          },
-          "font-size": {
-            "$type": "dimension",
-            "$value": "12px"
-          },
-          "font-weight": {
-            "$type": "fontWeight",
-            "$value": 500
-          },
-          "line-height": {
-            "$type": "dimension",
-            "$value": "14px"
           },
           "letter-spacing": {
             "$type": "dimension",

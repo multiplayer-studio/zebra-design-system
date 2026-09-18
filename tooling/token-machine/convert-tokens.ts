@@ -214,6 +214,11 @@ export function convertTokens(inputFile: string, outputDir: string) {
       return val as string | number | boolean;
     }
     // 3. FALLBACK: What if the export unwrapped the value in the overrides?
+    if (typeof modeValue === 'object' && modeValue !== null && 'type' in modeValue && (modeValue as any).type === 'VARIABLE_ALIAS') {
+      const aliasId = (modeValue as any).id;
+      if (aliasId && dtcgPathByVarId.has(aliasId)) return dtcgPathByVarId.get(aliasId)!;
+      return "{unknown.reference}";
+    }
     if (typeof modeValue === 'object' && modeValue !== null && 'r' in modeValue) {
       return rgbaToHex(modeValue as FigmaColor);
     }

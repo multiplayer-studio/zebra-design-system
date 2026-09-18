@@ -1026,6 +1026,10 @@
         }
       },
       "line-height": {
+        "12": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
         "14": {
           "$type": "dimension",
           "$value": "14px"

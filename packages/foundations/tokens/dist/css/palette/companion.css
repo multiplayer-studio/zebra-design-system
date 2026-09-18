@@ -4,13 +4,13 @@
  */
 
 :root {
-  --brand-primary-default: ; /** Primary brand color (theme.color.brand.primary) */
-  --brand-primary-faint: ; /** Light brand tint for backgrounds (theme.color.brand.subtle) */
-  --brand-primary-subtle: ;
-  --brand-primary-deep: ;
-  --brand-primary-muted: ; /** Muted/softened brand tone (theme.color.brand.muted) */
-  --brand-primary-on: ; /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
   --fill-transparent: rgba(243, 246, 250, 0);
+  --brand-primary-default: var(--color-accent-1-60); /** Primary brand color (theme.color.brand.primary) */
+  --brand-primary-faint: var(--color-accent-1-10); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
+  --brand-primary-subtle: var(--color-accent-1-50);
+  --brand-primary-deep: var(--color-accent-1-70);
+  --brand-primary-muted: var(--color-accent-1-20); /** Muted/softened brand tone (theme.color.brand.muted) */
+  --brand-primary-on: var(--color-neutral-cool-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
   --brand-secondary-default: var(--color-brand-alternative-60); /** Secondary brand color (theme.color.brand.secondary) */
   --brand-secondary-faint: var(--color-brand-alternative-10);
   --brand-secondary-subtle: var(--color-brand-alternative-50);
@@ -98,15 +98,15 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --brand-primary-default: ; /** Primary brand color (theme.color.brand.primary) */
-  --brand-primary-faint: ; /** Light brand tint for backgrounds (theme.color.brand.subtle) */
-  --brand-primary-subtle: ;
-  --brand-primary-deep: ;
-  --brand-primary-muted: ; /** Muted/softened brand tone (theme.color.brand.muted) */
-  --fill-transparent: rgba(243, 246, 250, 0);
+    --fill-transparent: rgba(243, 246, 250, 0);
   --fill-transparent-emphasis: rgba(0, 0, 0, 0.050980392156862744);
   --fill-transparent-elevate: rgba(0, 0, 0, 0.14901960784313725);
   --fill-transparent-obsure: rgba(0, 0, 0, 0.45098039215686275);
+  --brand-primary-default: var(--color-accent-1-60); /** Primary brand color (theme.color.brand.primary) */
+  --brand-primary-faint: var(--color-accent-1-100); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
+  --brand-primary-subtle: var(--color-accent-1-50);
+  --brand-primary-deep: var(--color-accent-1-40);
+  --brand-primary-muted: var(--color-accent-1-90); /** Muted/softened brand tone (theme.color.brand.muted) */
   --brand-primary-on: var(--color-neutral-cool-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
   --brand-secondary-default: var(--color-brand-alternative-50); /** Secondary brand color (theme.color.brand.secondary) */
   --brand-secondary-faint: var(--color-brand-alternative-100);
@@ -193,15 +193,15 @@
 
 [data-mode="dark"],
 :root.dark-mode, .dark-mode :root {
-  --brand-primary-default: ; /** Primary brand color (theme.color.brand.primary) */
-  --brand-primary-faint: ; /** Light brand tint for backgrounds (theme.color.brand.subtle) */
-  --brand-primary-subtle: ;
-  --brand-primary-deep: ;
-  --brand-primary-muted: ; /** Muted/softened brand tone (theme.color.brand.muted) */
   --fill-transparent: rgba(243, 246, 250, 0);
   --fill-transparent-emphasis: rgba(0, 0, 0, 0.050980392156862744);
   --fill-transparent-elevate: rgba(0, 0, 0, 0.14901960784313725);
   --fill-transparent-obsure: rgba(0, 0, 0, 0.45098039215686275);
+  --brand-primary-default: var(--color-accent-1-60); /** Primary brand color (theme.color.brand.primary) */
+  --brand-primary-faint: var(--color-accent-1-100); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
+  --brand-primary-subtle: var(--color-accent-1-50);
+  --brand-primary-deep: var(--color-accent-1-40);
+  --brand-primary-muted: var(--color-accent-1-90); /** Muted/softened brand tone (theme.color.brand.muted) */
   --brand-primary-on: var(--color-neutral-cool-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
   --brand-secondary-default: var(--color-brand-alternative-50); /** Secondary brand color (theme.color.brand.secondary) */
   --brand-secondary-faint: var(--color-brand-alternative-100);

@@ -4,50 +4,50 @@
       "primary": {
         "default": {
           "$type": "color",
-          "$value": "",
+          "$value": "{primitives.color.extend.4.60}",
           "$description": "Primary brand color (theme.color.brand.primary)"
         },
         "faint": {
           "$type": "color",
-          "$value": "",
+          "$value": "{primitives.color.extend.4.100}",
           "$description": "Light brand tint for backgrounds (theme.color.brand.subtle)"
         },
         "subtle": {
           "$type": "color",
-          "$value": ""
+          "$value": "{primitives.color.extend.4.70}"
         },
         "deep": {
           "$type": "color",
-          "$value": ""
+          "$value": "{primitives.color.extend.4.40}"
         },
         "muted": {
           "$type": "color",
-          "$value": "",
+          "$value": "{primitives.color.extend.4.90}",
           "$description": "Muted/softened brand tone (theme.color.brand.muted)"
         },
         "on": {
           "$type": "color",
-          "$value": "",
+          "$value": "{primitives.color.neutral.warm.10}",
           "$description": "Foreground on top of Brand/Primary (theme.color.brand.onPrimary)"
         }
       },
       "secondary": {
         "default": {
           "$type": "color",
-          "$value": "",
+          "$value": "{primitives.color.extend.3.50}",
           "$description": "Secondary brand color (theme.color.brand.secondary)"
         },
         "faint": {
           "$type": "color",
-          "$value": ""
+          "$value": "{primitives.color.extend.3.100}"
         },
         "subtle": {
           "$type": "color",
-          "$value": ""
+          "$value": "{primitives.color.extend.3.60}"
         },
         "deep": {
           "$type": "color",
-          "$value": ""
+          "$value": "{primitives.color.extend.3.40}"
         },
         "on": {
           "$type": "color",
@@ -183,12 +183,12 @@
       },
       "link": {
         "$type": "color",
-        "$value": "",
+        "$value": "{primitives.color.extend.4.50}",
         "$description": "Hyperlink text color (theme.color.content.link)"
       },
       "brand": {
         "$type": "color",
-        "$value": "",
+        "$value": "{primitives.color.extend.4.40}",
         "$description": "Hyperlink text color (theme.color.content.link)"
       },
       "selection": {
@@ -329,12 +329,12 @@
     "line": {
       "selection": {
         "$type": "color",
-        "$value": "",
+        "$value": "{primitives.color.extend.4.50}",
         "$description": "Selected item border/outline (theme.color.selection.border)"
       },
       "focus": {
         "$type": "color",
-        "$value": "",
+        "$value": "{primitives.color.accent.1.60}",
         "$description": "Selected item border/outline (theme.color.selection.border)"
       },
       "default": {
@@ -416,7 +416,7 @@
       "default": {
         "start": {
           "$type": "color",
-          "$value": ""
+          "$value": "{primitives.color.extend.3.70}"
         },
         "end": {
           "$type": "color",
@@ -426,7 +426,7 @@
       "strong": {
         "start": {
           "$type": "color",
-          "$value": ""
+          "$value": "{primitives.color.extend.3.50}"
         },
         "end": {
           "$type": "color",
@@ -436,7 +436,7 @@
       "subtle": {
         "start": {
           "$type": "color",
-          "$value": ""
+          "$value": "{primitives.color.extend.3.80}"
         },
         "end": {
           "$type": "color",

@@ -4,24 +4,17 @@
  */
 
 :root {
-  --brand-primary-default: ; /** Primary brand color (theme.color.brand.primary) */
-  --brand-primary-faint: ; /** Light brand tint for backgrounds (theme.color.brand.subtle) */
-  --brand-primary-subtle: ;
-  --brand-primary-deep: ;
-  --brand-primary-muted: ; /** Muted/softened brand tone (theme.color.brand.muted) */
-  --brand-primary-on: ; /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
-  --brand-secondary-default: ; /** Secondary brand color (theme.color.brand.secondary) */
-  --brand-secondary-faint: ;
-  --brand-secondary-subtle: ;
-  --brand-secondary-deep: ;
   --fill-transparent: rgba(243, 246, 250, 0);
-  --ink-link: ; /** Hyperlink text color (theme.color.content.link) */
-  --ink-brand: ; /** Hyperlink text color (theme.color.content.link) */
-  --line-selection: ; /** Selected item border/outline (theme.color.selection.border) */
-  --line-focus: ; /** Selected item border/outline (theme.color.selection.border) */
-  --gradient-default-start: ;
-  --gradient-strong-start: ;
-  --gradient-subtle-start: ;
+  --brand-primary-default: var(--color-extend-4-60); /** Primary brand color (theme.color.brand.primary) */
+  --brand-primary-faint: var(--color-extend-4-10); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
+  --brand-primary-subtle: var(--color-extend-4-50);
+  --brand-primary-deep: var(--color-extend-4-70);
+  --brand-primary-muted: var(--color-extend-4-20); /** Muted/softened brand tone (theme.color.brand.muted) */
+  --brand-primary-on: var(--color-neutral-warm-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
+  --brand-secondary-default: var(--color-extend-3-60); /** Secondary brand color (theme.color.brand.secondary) */
+  --brand-secondary-faint: var(--color-extend-3-10);
+  --brand-secondary-subtle: var(--color-extend-3-50);
+  --brand-secondary-deep: var(--color-extend-3-70);
   --brand-secondary-on: var(--color-neutral-warm-10); /** Foreground on top of Brand/Secondary (theme.color.brand.onSecondary) */
   --brand-tertiary-default: var(--color-accent-5-60); /** Tertiary brand color (theme.color.brand.tertiary) */
   --brand-tertiary-faint: var(--color-accent-5-10); /** Tertiary brand color (theme.color.brand.tertiary) */
@@ -47,6 +40,8 @@
   --ink-low: var(--color-neutral-cool-60); /** Low-emphasis text/icon color (theme.color.content.low) */
   --ink-disabled: var(--color-neutral-cool-50); /** Disabled-state text/icon color (theme.color.content.disabled) */
   --ink-inverse: var(--color-neutral-cool-10); /** Text/icon color on inverse/dark surfaces (theme.color.content.inverse) */
+  --ink-link: var(--color-extend-4-60); /** Hyperlink text color (theme.color.content.link) */
+  --ink-brand: var(--color-extend-4-70); /** Hyperlink text color (theme.color.content.link) */
   --ink-selection: var(--color-neutral-cool-100); /** Text color within a selection (theme.color.selection.text) */
   --status-success-default: var(--color-system-positive-60); /** Success color (theme.color.success.default) */
   --status-success-faint: var(--color-system-positive-10); /** Success background tint (theme.color.success.subtle) */
@@ -73,6 +68,8 @@
   --status-ghost-deep: var(--color-alpha-dark-10); /** Info solid/strong emphasis (theme.color.info.strong) */
   --status-ghost-subtle: var(--color-alpha-dark-0);
   --status-ghost-strong: var(--color-alpha-dark-20);
+  --line-selection: var(--color-extend-4-60); /** Selected item border/outline (theme.color.selection.border) */
+  --line-focus: var(--color-accent-1-60); /** Selected item border/outline (theme.color.selection.border) */
   --line-default: var(--color-neutral-cool-40);
   --line-subtle: var(--color-neutral-cool-30);
   --line-inverse: var(--color-pure-white);
@@ -91,34 +88,30 @@
   --data-11: var(--color-system-negative-50);
   --data-12: var(--color-extend-1-50);
   --data-neutral: var(--color-neutral-cool-50);
+  --gradient-default-start: var(--color-extend-3-80);
   --gradient-default-end: var(--color-extend-4-60);
+  --gradient-strong-start: var(--color-extend-3-90);
   --gradient-strong-end: var(--color-extend-4-80);
+  --gradient-subtle-start: var(--color-extend-3-70);
   --gradient-subtle-end: var(--color-extend-4-40);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --brand-primary-default: ; /** Primary brand color (theme.color.brand.primary) */
-  --brand-primary-faint: ; /** Light brand tint for backgrounds (theme.color.brand.subtle) */
-  --brand-primary-subtle: ;
-  --brand-primary-deep: ;
-  --brand-primary-muted: ; /** Muted/softened brand tone (theme.color.brand.muted) */
-  --brand-primary-on: ; /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
-  --brand-secondary-default: ; /** Secondary brand color (theme.color.brand.secondary) */
-  --brand-secondary-faint: ;
-  --brand-secondary-subtle: ;
-  --brand-secondary-deep: ;
-  --fill-transparent: rgba(243, 246, 250, 0);
+    --fill-transparent: rgba(243, 246, 250, 0);
   --fill-transparent-emphasis: rgba(0, 0, 0, 0.050980392156862744);
   --fill-transparent-elevate: rgba(0, 0, 0, 0.14901960784313725);
   --fill-transparent-obsure: rgba(0, 0, 0, 0.45098039215686275);
-  --ink-link: ; /** Hyperlink text color (theme.color.content.link) */
-  --ink-brand: ; /** Hyperlink text color (theme.color.content.link) */
-  --line-selection: ; /** Selected item border/outline (theme.color.selection.border) */
-  --line-focus: ; /** Selected item border/outline (theme.color.selection.border) */
-  --gradient-default-start: ;
-  --gradient-strong-start: ;
-  --gradient-subtle-start: ;
+  --brand-primary-default: var(--color-extend-4-60); /** Primary brand color (theme.color.brand.primary) */
+  --brand-primary-faint: var(--color-extend-4-100); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
+  --brand-primary-subtle: var(--color-extend-4-70);
+  --brand-primary-deep: var(--color-extend-4-40);
+  --brand-primary-muted: var(--color-extend-4-90); /** Muted/softened brand tone (theme.color.brand.muted) */
+  --brand-primary-on: var(--color-neutral-warm-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
+  --brand-secondary-default: var(--color-extend-3-50); /** Secondary brand color (theme.color.brand.secondary) */
+  --brand-secondary-faint: var(--color-extend-3-100);
+  --brand-secondary-subtle: var(--color-extend-3-60);
+  --brand-secondary-deep: var(--color-extend-3-40);
   --brand-secondary-on: var(--color-neutral-warm-10); /** Foreground on top of Brand/Secondary (theme.color.brand.onSecondary) */
   --brand-tertiary-default: var(--color-accent-5-50); /** Tertiary brand color (theme.color.brand.tertiary) */
   --brand-tertiary-faint: var(--color-accent-5-100); /** Tertiary brand color (theme.color.brand.tertiary) */
@@ -141,6 +134,8 @@
   --ink-low: var(--color-neutral-cool-50); /** Low-emphasis text/icon color (theme.color.content.low) */
   --ink-disabled: var(--color-neutral-cool-60); /** Disabled-state text/icon color (theme.color.content.disabled) */
   --ink-inverse: var(--color-neutral-cool-100); /** Text/icon color on inverse/dark surfaces (theme.color.content.inverse) */
+  --ink-link: var(--color-extend-4-50); /** Hyperlink text color (theme.color.content.link) */
+  --ink-brand: var(--color-extend-4-40); /** Hyperlink text color (theme.color.content.link) */
   --ink-selection: var(--color-neutral-cool-10); /** Text color within a selection (theme.color.selection.text) */
   --status-success-default: var(--color-system-positive-60); /** Success color (theme.color.success.default) */
   --status-success-faint: var(--color-system-positive-100); /** Success background tint (theme.color.success.subtle) */
@@ -167,6 +162,8 @@
   --status-ghost-deep: var(--color-alpha-light-10); /** Info solid/strong emphasis (theme.color.info.strong) */
   --status-ghost-subtle: var(--color-alpha-light-0);
   --status-ghost-strong: var(--color-alpha-light-20);
+  --line-selection: var(--color-extend-4-50); /** Selected item border/outline (theme.color.selection.border) */
+  --line-focus: var(--color-accent-1-60); /** Selected item border/outline (theme.color.selection.border) */
   --line-default: var(--color-neutral-cool-70);
   --line-subtle: var(--color-neutral-cool-80);
   --line-inverse: var(--color-pure-black);
@@ -185,35 +182,31 @@
   --data-11: var(--color-system-negative-60);
   --data-12: var(--color-extend-1-60);
   --data-neutral: var(--color-neutral-cool-60);
+  --gradient-default-start: var(--color-extend-3-70);
   --gradient-default-end: var(--color-extend-4-50);
+  --gradient-strong-start: var(--color-extend-3-50);
   --gradient-strong-end: var(--color-extend-4-40);
+  --gradient-subtle-start: var(--color-extend-3-80);
   --gradient-subtle-end: var(--color-extend-4-80);
   }
 }
 
 [data-mode="dark"],
 :root.dark-mode, .dark-mode :root {
-  --brand-primary-default: ; /** Primary brand color (theme.color.brand.primary) */
-  --brand-primary-faint: ; /** Light brand tint for backgrounds (theme.color.brand.subtle) */
-  --brand-primary-subtle: ;
-  --brand-primary-deep: ;
-  --brand-primary-muted: ; /** Muted/softened brand tone (theme.color.brand.muted) */
-  --brand-primary-on: ; /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
-  --brand-secondary-default: ; /** Secondary brand color (theme.color.brand.secondary) */
-  --brand-secondary-faint: ;
-  --brand-secondary-subtle: ;
-  --brand-secondary-deep: ;
   --fill-transparent: rgba(243, 246, 250, 0);
   --fill-transparent-emphasis: rgba(0, 0, 0, 0.050980392156862744);
   --fill-transparent-elevate: rgba(0, 0, 0, 0.14901960784313725);
   --fill-transparent-obsure: rgba(0, 0, 0, 0.45098039215686275);
-  --ink-link: ; /** Hyperlink text color (theme.color.content.link) */
-  --ink-brand: ; /** Hyperlink text color (theme.color.content.link) */
-  --line-selection: ; /** Selected item border/outline (theme.color.selection.border) */
-  --line-focus: ; /** Selected item border/outline (theme.color.selection.border) */
-  --gradient-default-start: ;
-  --gradient-strong-start: ;
-  --gradient-subtle-start: ;
+  --brand-primary-default: var(--color-extend-4-60); /** Primary brand color (theme.color.brand.primary) */
+  --brand-primary-faint: var(--color-extend-4-100); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
+  --brand-primary-subtle: var(--color-extend-4-70);
+  --brand-primary-deep: var(--color-extend-4-40);
+  --brand-primary-muted: var(--color-extend-4-90); /** Muted/softened brand tone (theme.color.brand.muted) */
+  --brand-primary-on: var(--color-neutral-warm-10); /** Foreground on top of Brand/Primary (theme.color.brand.onPrimary) */
+  --brand-secondary-default: var(--color-extend-3-50); /** Secondary brand color (theme.color.brand.secondary) */
+  --brand-secondary-faint: var(--color-extend-3-100);
+  --brand-secondary-subtle: var(--color-extend-3-60);
+  --brand-secondary-deep: var(--color-extend-3-40);
   --brand-secondary-on: var(--color-neutral-warm-10); /** Foreground on top of Brand/Secondary (theme.color.brand.onSecondary) */
   --brand-tertiary-default: var(--color-accent-5-50); /** Tertiary brand color (theme.color.brand.tertiary) */
   --brand-tertiary-faint: var(--color-accent-5-100); /** Tertiary brand color (theme.color.brand.tertiary) */
@@ -236,6 +229,8 @@
   --ink-low: var(--color-neutral-cool-50); /** Low-emphasis text/icon color (theme.color.content.low) */
   --ink-disabled: var(--color-neutral-cool-60); /** Disabled-state text/icon color (theme.color.content.disabled) */
   --ink-inverse: var(--color-neutral-cool-100); /** Text/icon color on inverse/dark surfaces (theme.color.content.inverse) */
+  --ink-link: var(--color-extend-4-50); /** Hyperlink text color (theme.color.content.link) */
+  --ink-brand: var(--color-extend-4-40); /** Hyperlink text color (theme.color.content.link) */
   --ink-selection: var(--color-neutral-cool-10); /** Text color within a selection (theme.color.selection.text) */
   --status-success-default: var(--color-system-positive-60); /** Success color (theme.color.success.default) */
   --status-success-faint: var(--color-system-positive-100); /** Success background tint (theme.color.success.subtle) */
@@ -262,6 +257,8 @@
   --status-ghost-deep: var(--color-alpha-light-10); /** Info solid/strong emphasis (theme.color.info.strong) */
   --status-ghost-subtle: var(--color-alpha-light-0);
   --status-ghost-strong: var(--color-alpha-light-20);
+  --line-selection: var(--color-extend-4-50); /** Selected item border/outline (theme.color.selection.border) */
+  --line-focus: var(--color-accent-1-60); /** Selected item border/outline (theme.color.selection.border) */
   --line-default: var(--color-neutral-cool-70);
   --line-subtle: var(--color-neutral-cool-80);
   --line-inverse: var(--color-pure-black);
@@ -280,7 +277,10 @@
   --data-11: var(--color-system-negative-60);
   --data-12: var(--color-extend-1-60);
   --data-neutral: var(--color-neutral-cool-60);
+  --gradient-default-start: var(--color-extend-3-70);
   --gradient-default-end: var(--color-extend-4-50);
+  --gradient-strong-start: var(--color-extend-3-50);
   --gradient-strong-end: var(--color-extend-4-40);
+  --gradient-subtle-start: var(--color-extend-3-80);
   --gradient-subtle-end: var(--color-extend-4-80);
 }

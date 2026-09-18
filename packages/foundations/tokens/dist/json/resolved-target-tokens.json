@@ -36,7 +36,7 @@
         },
         "brand": {
           "$type": "color",
-          "$value": ""
+          "$value": "#f9e5e5"
         },
         "inverse": {
           "$type": "color",
@@ -61,7 +61,7 @@
         "gradient": {
           "start": {
             "$type": "color",
-            "$value": ""
+            "$value": "#874d17"
           },
           "end": {
             "$type": "color",
@@ -92,11 +92,11 @@
         },
         "link": {
           "$type": "color",
-          "$value": ""
+          "$value": "#cc0000"
         },
         "cursor": {
           "$type": "color",
-          "$value": ""
+          "$value": "#b70000"
         },
         "success": {
           "$type": "color",
@@ -117,7 +117,7 @@
         "gradient": {
           "start": {
             "$type": "color",
-            "$value": ""
+            "$value": "#874d17"
           },
           "end": {
             "$type": "color",
@@ -144,7 +144,7 @@
         },
         "focus": {
           "$type": "border",
-          "$value": ""
+          "$value": "#7e0cff"
         },
         "success": {
           "$type": "border",
@@ -169,7 +169,7 @@
         "gradient": {
           "start": {
             "$type": "border",
-            "$value": ""
+            "$value": "#874d17"
           },
           "end": {
             "$type": "border",
@@ -182,11 +182,11 @@
           "background": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#cc0000"
             },
             "focused": {
               "$type": "color",
-              "$value": ""
+              "$value": "#cc0000"
             },
             "disabled": {
               "$type": "color",
@@ -194,21 +194,21 @@
             },
             "hover": {
               "$type": "color",
-              "$value": ""
+              "$value": "#d11919"
             },
             "pressed": {
               "$type": "color",
-              "$value": ""
+              "$value": "#b70000"
             },
             "selected": {
               "$type": "color",
-              "$value": ""
+              "$value": "#b70000"
             }
           },
           "foreground": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#fafafa"
             },
             "disabled": {
               "$type": "color",
@@ -218,7 +218,7 @@
           "border": {
             "default": {
               "$type": "border",
-              "$value": ""
+              "$value": "#cc0000"
             },
             "disabled": {
               "$type": "border",
@@ -226,11 +226,11 @@
             },
             "hover": {
               "$type": "border",
-              "$value": ""
+              "$value": "#d11919"
             },
             "pressed": {
               "$type": "border",
-              "$value": ""
+              "$value": "#b70000"
             }
           }
         },
@@ -238,23 +238,23 @@
           "background": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#d7965a"
             },
             "hover": {
               "$type": "color",
-              "$value": ""
+              "$value": "#e8af79"
             },
             "pressed": {
               "$type": "color",
-              "$value": ""
+              "$value": "#b87438"
             },
             "focused": {
               "$type": "color",
-              "$value": ""
+              "$value": "#d7965a"
             },
             "selected": {
               "$type": "color",
-              "$value": ""
+              "$value": "#b87438"
             },
             "disabled": {
               "$type": "color",
@@ -274,15 +274,15 @@
           "border": {
             "default": {
               "$type": "border",
-              "$value": ""
+              "$value": "#d7965a"
             },
             "hover": {
               "$type": "border",
-              "$value": ""
+              "$value": "#e8af79"
             },
             "pressed": {
               "$type": "border",
-              "$value": ""
+              "$value": "#b87438"
             },
             "disabled": {
               "$type": "border",
@@ -320,7 +320,7 @@
           "foreground": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#b70000"
             },
             "disabled": {
               "$type": "color",
@@ -330,15 +330,15 @@
           "border": {
             "default": {
               "$type": "border",
-              "$value": ""
+              "$value": "#cc0000"
             },
             "hover": {
               "$type": "border",
-              "$value": ""
+              "$value": "#d11919"
             },
             "pressed": {
               "$type": "border",
-              "$value": ""
+              "$value": "#b70000"
             },
             "disabled": {
               "$type": "border",
@@ -376,7 +376,7 @@
           "foreground": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#fafafa"
             },
             "disabled": {
               "$type": "color",
@@ -562,7 +562,7 @@
           "foreground": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#fafafa"
             },
             "disabled": {
               "$type": "color",
@@ -574,15 +574,15 @@
           "border": {
             "default": {
               "$type": "border",
-              "$value": ""
+              "$value": "#cc0000"
             },
             "hover": {
               "$type": "border",
-              "$value": ""
+              "$value": "#d11919"
             },
             "pressed": {
               "$type": "border",
-              "$value": ""
+              "$value": "#b70000"
             },
             "disabled": {
               "$type": "border",
@@ -592,23 +592,23 @@
           "background": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#f9e5e5"
             },
             "hover": {
               "$type": "color",
-              "$value": ""
+              "$value": "#efb2b2"
             },
             "pressed": {
               "$type": "color",
-              "$value": ""
+              "$value": "#d11919"
             },
             "focused": {
               "$type": "color",
-              "$value": ""
+              "$value": "#f9e5e5"
             },
             "selected": {
               "$type": "color",
-              "$value": ""
+              "$value": "#d11919"
             },
             "disabled": {
               "$type": "color",
@@ -618,7 +618,7 @@
           "foreground": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#cc0000"
             },
             "disabled": {
               "$type": "color",
@@ -682,11 +682,11 @@
       "focus": {
         "ring": {
           "$type": "color",
-          "$value": ""
+          "$value": "#7e0cff"
         },
         "outline": {
           "$type": "color",
-          "$value": ""
+          "$value": "#7e0cff"
         }
       },
       "chart": {
@@ -772,7 +772,7 @@
         },
         "border": {
           "$type": "border",
-          "$value": ""
+          "$value": "#cc0000"
         },
         "text": {
           "$type": "color",
@@ -826,7 +826,7 @@
         },
         "brand": {
           "$type": "color",
-          "$value": ""
+          "$value": "#140000"
         },
         "inverse": {
           "$type": "color",
@@ -851,7 +851,7 @@
         "gradient": {
           "start": {
             "$type": "color",
-            "$value": ""
+            "$value": "#b87438"
           },
           "end": {
             "$type": "color",
@@ -882,11 +882,11 @@
         },
         "link": {
           "$type": "color",
-          "$value": ""
+          "$value": "#d11919"
         },
         "cursor": {
           "$type": "color",
-          "$value": ""
+          "$value": "#db4c4c"
         },
         "success": {
           "$type": "color",
@@ -907,7 +907,7 @@
         "gradient": {
           "start": {
             "$type": "color",
-            "$value": ""
+            "$value": "#b87438"
           },
           "end": {
             "$type": "color",
@@ -934,7 +934,7 @@
         },
         "focus": {
           "$type": "border",
-          "$value": ""
+          "$value": "#7e0cff"
         },
         "success": {
           "$type": "border",
@@ -959,7 +959,7 @@
         "gradient": {
           "start": {
             "$type": "border",
-            "$value": ""
+            "$value": "#b87438"
           },
           "end": {
             "$type": "border",
@@ -972,11 +972,11 @@
           "background": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#cc0000"
             },
             "focused": {
               "$type": "color",
-              "$value": ""
+              "$value": "#cc0000"
             },
             "disabled": {
               "$type": "color",
@@ -984,21 +984,21 @@
             },
             "hover": {
               "$type": "color",
-              "$value": ""
+              "$value": "#b70000"
             },
             "pressed": {
               "$type": "color",
-              "$value": ""
+              "$value": "#db4c4c"
             },
             "selected": {
               "$type": "color",
-              "$value": ""
+              "$value": "#db4c4c"
             }
           },
           "foreground": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#fafafa"
             },
             "disabled": {
               "$type": "color",
@@ -1008,7 +1008,7 @@
           "border": {
             "default": {
               "$type": "border",
-              "$value": ""
+              "$value": "#cc0000"
             },
             "disabled": {
               "$type": "border",
@@ -1016,11 +1016,11 @@
             },
             "hover": {
               "$type": "border",
-              "$value": ""
+              "$value": "#b70000"
             },
             "pressed": {
               "$type": "border",
-              "$value": ""
+              "$value": "#db4c4c"
             }
           }
         },
@@ -1028,23 +1028,23 @@
           "background": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#e8af79"
             },
             "hover": {
               "$type": "color",
-              "$value": ""
+              "$value": "#d7965a"
             },
             "pressed": {
               "$type": "color",
-              "$value": ""
+              "$value": "#e8b985"
             },
             "focused": {
               "$type": "color",
-              "$value": ""
+              "$value": "#e8af79"
             },
             "selected": {
               "$type": "color",
-              "$value": ""
+              "$value": "#e8b985"
             },
             "disabled": {
               "$type": "color",
@@ -1064,15 +1064,15 @@
           "border": {
             "default": {
               "$type": "border",
-              "$value": ""
+              "$value": "#e8af79"
             },
             "hover": {
               "$type": "border",
-              "$value": ""
+              "$value": "#d7965a"
             },
             "pressed": {
               "$type": "border",
-              "$value": ""
+              "$value": "#e8b985"
             },
             "disabled": {
               "$type": "border",
@@ -1110,7 +1110,7 @@
           "foreground": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#db4c4c"
             },
             "disabled": {
               "$type": "color",
@@ -1120,15 +1120,15 @@
           "border": {
             "default": {
               "$type": "border",
-              "$value": ""
+              "$value": "#cc0000"
             },
             "hover": {
               "$type": "border",
-              "$value": ""
+              "$value": "#b70000"
             },
             "pressed": {
               "$type": "border",
-              "$value": ""
+              "$value": "#db4c4c"
             },
             "disabled": {
               "$type": "border",
@@ -1166,7 +1166,7 @@
           "foreground": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#fafafa"
             },
             "disabled": {
               "$type": "color",
@@ -1352,7 +1352,7 @@
           "foreground": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#fafafa"
             },
             "disabled": {
               "$type": "color",
@@ -1364,15 +1364,15 @@
           "border": {
             "default": {
               "$type": "border",
-              "$value": ""
+              "$value": "#cc0000"
             },
             "hover": {
               "$type": "border",
-              "$value": ""
+              "$value": "#b70000"
             },
             "pressed": {
               "$type": "border",
-              "$value": ""
+              "$value": "#db4c4c"
             },
             "disabled": {
               "$type": "border",
@@ -1382,23 +1382,23 @@
           "background": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#140000"
             },
             "hover": {
               "$type": "color",
-              "$value": ""
+              "$value": "#3d0000"
             },
             "pressed": {
               "$type": "color",
-              "$value": ""
+              "$value": "#b70000"
             },
             "focused": {
               "$type": "color",
-              "$value": ""
+              "$value": "#140000"
             },
             "selected": {
               "$type": "color",
-              "$value": ""
+              "$value": "#b70000"
             },
             "disabled": {
               "$type": "color",
@@ -1408,7 +1408,7 @@
           "foreground": {
             "default": {
               "$type": "color",
-              "$value": ""
+              "$value": "#d11919"
             },
             "disabled": {
               "$type": "color",
@@ -1472,11 +1472,11 @@
       "focus": {
         "ring": {
           "$type": "color",
-          "$value": ""
+          "$value": "#7e0cff"
         },
         "outline": {
           "$type": "color",
-          "$value": ""
+          "$value": "#7e0cff"
         }
       },
       "chart": {
@@ -1562,7 +1562,7 @@
         },
         "border": {
           "$type": "border",
-          "$value": ""
+          "$value": "#d11919"
         },
         "text": {
           "$type": "color",
@@ -1667,6 +1667,12 @@
           }
         }
       },
+      "container": {
+        "default": {
+          "$type": "number",
+          "$value": "240px"
+        }
+      },
       "radius": {
         "none": {
           "$type": "dimension",
@@ -1709,12 +1715,6 @@
         "pill": {
           "$type": "dimension",
           "$value": "9999px"
-        }
-      },
-      "container": {
-        "default": {
-          "$type": "number",
-          "$value": "240px"
         }
       },
       "stroke": {
@@ -1883,6 +1883,12 @@
           }
         }
       },
+      "container": {
+        "default": {
+          "$type": "number",
+          "$value": "600px"
+        }
+      },
       "radius": {
         "none": {
           "$type": "dimension",
@@ -1925,12 +1931,6 @@
         "pill": {
           "$type": "dimension",
           "$value": "9999px"
-        }
-      },
-      "container": {
-        "default": {
-          "$type": "number",
-          "$value": "600px"
         }
       },
       "stroke": {
@@ -2099,6 +2099,12 @@
           }
         }
       },
+      "container": {
+        "default": {
+          "$type": "number",
+          "$value": "1200px"
+        }
+      },
       "radius": {
         "none": {
           "$type": "dimension",
@@ -2141,12 +2147,6 @@
         "pill": {
           "$type": "dimension",
           "$value": "9999px"
-        }
-      },
-      "container": {
-        "default": {
-          "$type": "number",
-          "$value": "1200px"
         }
       },
       "stroke": {
@@ -2315,6 +2315,12 @@
           }
         }
       },
+      "container": {
+        "default": {
+          "$type": "number",
+          "$value": "840px"
+        }
+      },
       "radius": {
         "none": {
           "$type": "dimension",
@@ -2357,12 +2363,6 @@
         "pill": {
           "$type": "dimension",
           "$value": "9999px"
-        }
-      },
-      "container": {
-        "default": {
-          "$type": "number",
-          "$value": "840px"
         }
       },
       "stroke": {
@@ -2743,6 +2743,52 @@
           }
         }
       },
+      "indicator": {
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "10px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
       "label": {
         "large": {
           "font-family": {
@@ -2804,28 +2850,6 @@
           "line-height": {
             "$type": "dimension",
             "$value": "16px"
-          },
-          "letter-spacing": {
-            "$type": "dimension",
-            "$value": "0px"
-          }
-        },
-        "indicator": {
-          "font-family": {
-            "$type": "fontFamily",
-            "$value": "'IBM Plex Sans', sans-serif"
-          },
-          "font-size": {
-            "$type": "dimension",
-            "$value": "12px"
-          },
-          "font-weight": {
-            "$type": "fontWeight",
-            "$value": 500
-          },
-          "line-height": {
-            "$type": "dimension",
-            "$value": "14px"
           },
           "letter-spacing": {
             "$type": "dimension",
@@ -3129,6 +3153,52 @@
           }
         }
       },
+      "indicator": {
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "10px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
       "label": {
         "large": {
           "font-family": {
@@ -3190,28 +3260,6 @@
           "line-height": {
             "$type": "dimension",
             "$value": "16px"
-          },
-          "letter-spacing": {
-            "$type": "dimension",
-            "$value": "0px"
-          }
-        },
-        "indicator": {
-          "font-family": {
-            "$type": "fontFamily",
-            "$value": "'IBM Plex Sans', sans-serif"
-          },
-          "font-size": {
-            "$type": "dimension",
-            "$value": "12px"
-          },
-          "font-weight": {
-            "$type": "fontWeight",
-            "$value": 500
-          },
-          "line-height": {
-            "$type": "dimension",
-            "$value": "14px"
           },
           "letter-spacing": {
             "$type": "dimension",
@@ -3515,6 +3563,52 @@
           }
         }
       },
+      "indicator": {
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "10px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
       "label": {
         "large": {
           "font-family": {
@@ -3576,28 +3670,6 @@
           "line-height": {
             "$type": "dimension",
             "$value": "16px"
-          },
-          "letter-spacing": {
-            "$type": "dimension",
-            "$value": "0px"
-          }
-        },
-        "indicator": {
-          "font-family": {
-            "$type": "fontFamily",
-            "$value": "'IBM Plex Sans', sans-serif"
-          },
-          "font-size": {
-            "$type": "dimension",
-            "$value": "12px"
-          },
-          "font-weight": {
-            "$type": "fontWeight",
-            "$value": 500
-          },
-          "line-height": {
-            "$type": "dimension",
-            "$value": "14px"
           },
           "letter-spacing": {
             "$type": "dimension",
@@ -3901,6 +3973,52 @@
           }
         }
       },
+      "indicator": {
+        "medium": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "12px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        },
+        "small": {
+          "font-family": {
+            "$type": "fontFamily",
+            "$value": "'IBM Plex Sans', sans-serif"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "10px"
+          },
+          "font-weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "line-height": {
+            "$type": "dimension",
+            "$value": "14px"
+          },
+          "letter-spacing": {
+            "$type": "dimension",
+            "$value": "0px"
+          }
+        }
+      },
       "label": {
         "large": {
           "font-family": {
@@ -3962,28 +4080,6 @@
           "line-height": {
             "$type": "dimension",
             "$value": "16px"
-          },
-          "letter-spacing": {
-            "$type": "dimension",
-            "$value": "0px"
-          }
-        },
-        "indicator": {
-          "font-family": {
-            "$type": "fontFamily",
-            "$value": "'IBM Plex Sans', sans-serif"
-          },
-          "font-size": {
-            "$type": "dimension",
-            "$value": "12px"
-          },
-          "font-weight": {
-            "$type": "fontWeight",
-            "$value": 500
-          },
-          "line-height": {
-            "$type": "dimension",
-            "$value": "14px"
           },
           "letter-spacing": {
             "$type": "dimension",

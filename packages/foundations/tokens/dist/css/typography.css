@@ -69,6 +69,16 @@
   --body-xsmall-font-weight: 400;
   --body-xsmall-line-height: 16px;
   --body-xsmall-letter-spacing: 0px;
+  --indicator-medium-font-family: 'IBM Plex Sans', sans-serif;
+  --indicator-medium-font-size: 12px;
+  --indicator-medium-font-weight: 500;
+  --indicator-medium-line-height: 14px;
+  --indicator-medium-letter-spacing: 0px;
+  --indicator-small-font-family: 'IBM Plex Sans', sans-serif;
+  --indicator-small-font-size: 10px;
+  --indicator-small-font-weight: 500;
+  --indicator-small-line-height: 14px;
+  --indicator-small-letter-spacing: 0px;
   --label-large-font-family: 'IBM Plex Sans', sans-serif;
   --label-large-font-size: 16px;
   --label-large-font-weight: 500;
@@ -84,11 +94,6 @@
   --label-small-font-weight: 500;
   --label-small-line-height: 16px;
   --label-small-letter-spacing: 0px;
-  --label-indicator-font-family: 'IBM Plex Sans', sans-serif;
-  --label-indicator-font-size: 12px;
-  --label-indicator-font-weight: 500;
-  --label-indicator-line-height: 14px;
-  --label-indicator-letter-spacing: 0px;
 }
 
 @media (min-width: 600px) {
@@ -158,6 +163,16 @@
   --body-xsmall-font-weight: 400;
   --body-xsmall-line-height: 16px;
   --body-xsmall-letter-spacing: 0px;
+  --indicator-medium-font-family: 'IBM Plex Sans', sans-serif;
+  --indicator-medium-font-size: 12px;
+  --indicator-medium-font-weight: 500;
+  --indicator-medium-line-height: 14px;
+  --indicator-medium-letter-spacing: 0px;
+  --indicator-small-font-family: 'IBM Plex Sans', sans-serif;
+  --indicator-small-font-size: 10px;
+  --indicator-small-font-weight: 500;
+  --indicator-small-line-height: 14px;
+  --indicator-small-letter-spacing: 0px;
   --label-large-font-family: 'IBM Plex Sans', sans-serif;
   --label-large-font-size: 16px;
   --label-large-font-weight: 500;
@@ -173,11 +188,6 @@
   --label-small-font-weight: 500;
   --label-small-line-height: 16px;
   --label-small-letter-spacing: 0px;
-  --label-indicator-font-family: 'IBM Plex Sans', sans-serif;
-  --label-indicator-font-size: 12px;
-  --label-indicator-font-weight: 500;
-  --label-indicator-line-height: 14px;
-  --label-indicator-letter-spacing: 0px;
   }
 }
 
@@ -248,6 +258,16 @@
   --body-xsmall-font-weight: 400;
   --body-xsmall-line-height: 16px;
   --body-xsmall-letter-spacing: 0px;
+  --indicator-medium-font-family: 'IBM Plex Sans', sans-serif;
+  --indicator-medium-font-size: 12px;
+  --indicator-medium-font-weight: 500;
+  --indicator-medium-line-height: 14px;
+  --indicator-medium-letter-spacing: 0px;
+  --indicator-small-font-family: 'IBM Plex Sans', sans-serif;
+  --indicator-small-font-size: 10px;
+  --indicator-small-font-weight: 500;
+  --indicator-small-line-height: 14px;
+  --indicator-small-letter-spacing: 0px;
   --label-large-font-family: 'IBM Plex Sans', sans-serif;
   --label-large-font-size: 16px;
   --label-large-font-weight: 500;
@@ -263,11 +283,6 @@
   --label-small-font-weight: 500;
   --label-small-line-height: 16px;
   --label-small-letter-spacing: 0px;
-  --label-indicator-font-family: 'IBM Plex Sans', sans-serif;
-  --label-indicator-font-size: 12px;
-  --label-indicator-font-weight: 500;
-  --label-indicator-line-height: 14px;
-  --label-indicator-letter-spacing: 0px;
   }
 }
 
@@ -338,6 +353,16 @@
   --body-xsmall-font-weight: 400;
   --body-xsmall-line-height: 16px;
   --body-xsmall-letter-spacing: 0px;
+  --indicator-medium-font-family: 'IBM Plex Sans', sans-serif;
+  --indicator-medium-font-size: 12px;
+  --indicator-medium-font-weight: 500;
+  --indicator-medium-line-height: 14px;
+  --indicator-medium-letter-spacing: 0px;
+  --indicator-small-font-family: 'IBM Plex Sans', sans-serif;
+  --indicator-small-font-size: 10px;
+  --indicator-small-font-weight: 500;
+  --indicator-small-line-height: 14px;
+  --indicator-small-letter-spacing: 0px;
   --label-large-font-family: 'IBM Plex Sans', sans-serif;
   --label-large-font-size: 16px;
   --label-large-font-weight: 500;
@@ -353,10 +378,5 @@
   --label-small-font-weight: 500;
   --label-small-line-height: 16px;
   --label-small-letter-spacing: 0px;
-  --label-indicator-font-family: 'IBM Plex Sans', sans-serif;
-  --label-indicator-font-size: 12px;
-  --label-indicator-font-weight: 500;
-  --label-indicator-line-height: 14px;
-  --label-indicator-letter-spacing: 0px;
   }
 }
