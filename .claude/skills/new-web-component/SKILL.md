@@ -97,7 +97,7 @@ Rules the CEM analyzer and TSDoc lint enforce:
 import { css } from "lit";
 export default css`
   :host {
-    --_foo-bar-color: var(--foo-bar-color, var(--color-and-effects-brand-primary));
+    --_foo-bar-color: var(--foo-bar-color, var(--interactive-primary-background-default));
   }
   [part="root"] {
     border-radius: var(--radius-element-sm);
@@ -105,7 +105,7 @@ export default css`
 `;
 ```
 
-- Use design tokens (`--color-*`, `--radius-*`, `--spacing-*` etc. from `design-system-tokens` / `src/generated/tokens/`) for every color, spacing, and radius value — never hardcode a hex/px value. Match whatever variables `get_variable_defs` showed in the Figma design.
+- Use tokens from `@zebra-design-system/tokens` (`packages/foundations/tokens`) for every color, spacing, and radius value — `--surface-*` / `--foreground-*` / `--border-*` / `--interactive-*` for color, `--space-*` / `--radius-*` for sizing/shape, `--body-*` / `--title-*` for typography — never hardcode a hex/px value. Match whatever variables `get_variable_defs` showed in the Figma design. Don't reach for the old pre-migration names (`--main-*`, `--spacing-*`, `--state-*`, etc., aliased in `packages/zeta-web/src/css/tokens-compat.css`) — that file is a legacy shim for un-migrated components, not the source of truth for new components.
 - Expose customization points as CSS custom properties with a token fallback (`var(--public-name, var(--token-fallback))`), matching the `@cssproperty` tags documented on the class.
 
 ## 5. Storybook story + docs
@@ -163,9 +163,7 @@ An ESLint rule (`scripts/enforce-testing-structure.js`) enforces this shape exac
 import { fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/testing";
 import type { ZetaFooBar } from "../../components/foo-bar/foo-bar.js";
 import "../../components/foo-bar/foo-bar.js";
-import "../../css/styles.css";
-import "../../generated/tokens/primitives.css";
-import "../../generated/tokens/semantics.css";
+import "../../index.css";
 
 describe("zeta-foo-bar", () => {
   let subject: ZetaFooBar;
