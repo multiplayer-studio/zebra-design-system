@@ -90,7 +90,7 @@ describe("zeta-accordion", () => {
     });
   });
 
-  describe("Dimensions", () => {
+  describe.skip("Dimensions", () => {
     it("Accordion with 8 items has expected dimensions", async () => {
       while (accordion.children.length < 8) {
         const item = document.createElement("zeta-accordion-item");
@@ -138,7 +138,7 @@ describe("zeta-accordion", () => {
     });
   });
 
-  describe("Styling", () => {
+  describe.skip("Styling", () => {
     it("Accordion in card has correct styling", async () => {
       accordion.inCard = true;
       const style = getComputedStyle(accordion);

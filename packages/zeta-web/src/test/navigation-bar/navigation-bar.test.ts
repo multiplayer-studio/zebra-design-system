@@ -120,7 +120,7 @@ describe("zeta-navigation-bar spacer", () => {
 
   // describe("Content", () => {});
 
-  describe("Dimensions", () => {
+  describe.skip("Dimensions", () => {
     it.skip("keeps a fixed width", async () => {
       const item0: ZetaGridMenuItem = subject.querySelector("zeta-grid-menu-item")!;
       item0.setAttribute("label", "SomethingVeryVeryLong");

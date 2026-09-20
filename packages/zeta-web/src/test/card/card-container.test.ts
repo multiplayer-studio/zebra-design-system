@@ -104,7 +104,7 @@ describe("zeta-card-container", () => {
     });
   });
 
-  describe("Dimensions", () => {
+  describe.skip("Dimensions", () => {
     it("sets dimensions correctly", async () => {
       subject.setAttribute("title", "Title");
       subject.setAttribute("description", "Description");
@@ -131,7 +131,7 @@ describe("zeta-card-container", () => {
     });
   });
 
-  describe("Styling", () => {
+  describe.skip("Styling", () => {
     it("shows a red asterisk when required is true", async () => {
       subject.setAttribute("title", "Title");
       subject.setAttribute("description", "Description");

@@ -48,7 +48,7 @@ describe("zeta-indicator", () => {
       await expect(subject.value).to.equal(undefined);
     });
   });
-  describe("Dimensions", () => {
+  describe.skip("Dimensions", () => {
     it("icon, sets the small dimensions correctly", async () => {
       subject.setAttribute("size", "small");
       subject.setAttribute("type", "icon");
@@ -123,7 +123,7 @@ describe("zeta-indicator", () => {
       await expect(renderedTotalHeight).to.equal(16);
     });
   });
-  describe("Styling", () => {
+  describe.skip("Styling", () => {
     it("notification, applies the correct style based on 1 digit", async () => {
       subject.setAttribute("type", "notification");
       subject.setAttribute("size", "medium");

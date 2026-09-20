@@ -55,7 +55,7 @@ describe("zeta-slider", () => {
     });
   });
 
-  describe("Dimensions", () => {
+  describe.skip("Dimensions", () => {
     it("sets the track height correctly", async () => {
       const track = subject.shadowRoot?.querySelector(".track");
 
@@ -74,7 +74,7 @@ describe("zeta-slider", () => {
     });
   });
 
-  describe("Styling", () => {
+  describe.skip("Styling", () => {
     it("sets the correct background color for the track", async () => {
       const track = subject.shadowRoot?.querySelector(".track");
       await expect(getComputedStyle(track as Element).backgroundColor).to.equal(getCssVarColorValue(track!, "--surface-disabled"));

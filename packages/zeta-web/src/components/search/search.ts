@@ -1,10 +1,12 @@
 import { customElement, property, query } from "lit/decorators.js";
 import { html, LitElement, nothing } from "lit";
+import type { PropertyValues } from "lit";
 import styles from "./search.styles.js";
 import { Interactive, Size } from "../../mixins/mixins.js";
 import "../icon/icon.js";
 import { FormField, type ZetaInputType } from "../../mixins/form-field.js";
 import { ContourableThree } from "../../mixins/contourable-three.js";
+import type { SearchFlavor } from "../../mixins/flavor.js";
 
 //TODO onsubmit
 
@@ -33,8 +35,59 @@ export class ZetaSearch extends FormField(Size(ContourableThree(Interactive(LitE
     mode: "open"
   };
 
+  /**
+   * The flavor of the component determines the visual style of the component.
+   *
+   * @type {SearchFlavor}
+   *
+   * @defaultValue "default"
+   *
+   * @remarks
+   * Supported values for `flavor`:
+   * - `"default"`
+   * - `"ghost"`
+   * - `"gradient"`
+   */
+  @property({ type: String, reflect: true }) flavor: SearchFlavor = "default";
+
   @query("input") private readonly inputEl!: HTMLElement | null;
   _round: false | true | "full" = false;
+
+  private lastInteractionType: "keyboard" | "mouse" = "mouse";
+
+  protected override firstUpdated(_changedProperties: PropertyValues) {
+    super.firstUpdated(_changedProperties);
+    document.addEventListener(
+      "mousedown",
+      () => {
+        this.lastInteractionType = "mouse";
+      },
+      true
+    );
+    document.addEventListener(
+      "keydown",
+      e => {
+        if (e.key === "Tab") {
+          this.lastInteractionType = "keyboard";
+        }
+      },
+      true
+    );
+    const input = this.shadowRoot?.querySelector("input") as HTMLInputElement;
+    if (input) {
+      input.addEventListener("focus", () => {
+        this.setAttribute("data-focus-source", this.lastInteractionType);
+      });
+      input.addEventListener("blur", () => {
+        this.removeAttribute("data-focus-source");
+      });
+      input.addEventListener("input", () => {
+        if (this.lastInteractionType === "keyboard") {
+          this.setAttribute("data-focus-source", "mouse");
+        }
+      });
+    }
+  }
 
   override handleChange(_event: Event) {
     return _event;
@@ -49,7 +102,16 @@ export class ZetaSearch extends FormField(Size(ContourableThree(Interactive(LitE
     this.inputEl?.blur();
   }
 
-  /** Show microphone icon. */
+  /** Show the leading search icon. */
+  @property({ type: Boolean, reflect: true }) hasLeading = true;
+
+  /** Show the trailing microphone icon. */
+  @property({ type: Boolean, reflect: true }) hasTrailing = false;
+
+  /** Show microphone icon.
+   *
+   * @deprecated Use `hasTrailing` instead.
+   */
   @property({ type: Boolean, reflect: true }) hasIcon = false;
 
   private resetInput = () => {
@@ -78,17 +140,34 @@ export class ZetaSearch extends FormField(Size(ContourableThree(Interactive(LitE
     }
   };
 
+  private getIconSize = (size: string) => {
+    switch (size) {
+      case "small":
+        return "small";
+      case "medium":
+        return "medium";
+      case "large":
+        return "medium";
+      default:
+        return size;
+    }
+  };
+
   private renderRightIcon = () => {
-    if (("SpeechRecognition" in window || "webkitSpeechRecognition" in window) && this.hasIcon) {
+    if (("SpeechRecognition" in window || "webkitSpeechRecognition" in window) && (this.hasTrailing || this.hasIcon)) {
       return html` ${this.value ? html`<div class="divider"></div>` : nothing}
-        <zeta-icon @click=${() => this.handleSpeechRecognition()} .rounded=${this.shape != "sharp"} class="right">microphone</zeta-icon>`;
+        <zeta-icon @click=${() => this.handleSpeechRecognition()} .rounded=${this.shape != "sharp"} .size=${this.getIconSize(this.size)} class="right"
+          >microphone</zeta-icon
+        >`;
     } else {
       return nothing;
     }
   };
 
   private renderCancelIcon = () => {
-    return this.value ? html`<zeta-icon @click=${this.resetInput} .rounded=${this.shape != "sharp"}>cancel</zeta-icon>` : nothing;
+    return this.value
+      ? html`<zeta-icon @click=${this.resetInput} .rounded=${this.shape != "sharp"} .size=${this.getIconSize(this.size)}>cancel</zeta-icon>`
+      : nothing;
   };
 
   protected render() {
@@ -100,7 +179,7 @@ export class ZetaSearch extends FormField(Size(ContourableThree(Interactive(LitE
           return e;
         }}
       >
-        <zeta-icon id="search-icon" .rounded=${this.shape != "sharp"}>search</zeta-icon>
+        ${this.hasLeading ? html`<zeta-icon id="search-icon" .rounded=${this.shape != "sharp"} .size=${this.getIconSize(this.size)}>search</zeta-icon>` : nothing}
         ${super.render()} ${this.renderCancelIcon()} ${this.renderRightIcon()}
       </form>
     `;

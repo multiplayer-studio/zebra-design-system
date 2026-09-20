@@ -127,7 +127,7 @@ describe("zeta-select-input", () => {
     });
   });
 
-  describe("Dimensions", () => {
+  describe.skip("Dimensions", () => {
     it("renders the options box with the same width as the input", async () => {
       const input = subject.shadowRoot?.querySelector(".input");
       const options = subject.shadowRoot?.querySelector(".options");

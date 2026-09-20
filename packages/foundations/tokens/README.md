@@ -9,7 +9,7 @@ Zebra Design tokens exported to multiple platforms, generated from Figma.
 | Web (CSS) | CSS custom properties | ✅ Available (this package) |
 | Web (JS) | JSON token objects | ✅ Available (this package) |
 | Android | Kotlin/XML resources | 🚧 Planned, not yet implemented |
-| Flutter | Dart constants | ✅ Available (this package) |
+| Flutter | Dart constants | 🚧 Planned, not yet implemented |
 
 ## Install
 
@@ -41,28 +41,28 @@ Then use the variables in your CSS:
 .card {
   background: var(--surface-card);
   padding: var(--space-card);
-  font: var(--body-medium-fontsize) var(--body-medium-lineheight) var(--body-medium-fontfamily);
-  letter-spacing: var(--body-medium-letterspacing);
+  font: var(--body-medium);
+  letter-spacing: var(--body-medium-letter-spacing);
 }
 ```
 
 - `colors.css` — semantic color variables (`--surface-page`, `--interactive-primary-background-default`, etc.), fully resolved to hex values. Dark values apply automatically via `@media (prefers-color-scheme: dark)`, or force it with a `.dark-mode` class anywhere up the tree.
 - `sizes.css` — spacing/radius/control-size variables (`--space-md`, `--control-sm`, etc.), fully resolved to px values. Values are mobile-first, with tablet/desktop/desktop-compact breakpoints layered in via `@media (min-width: ...)`.
-- `typography.css` — typography variables grouped by style (e.g. `--body-medium-fontsize`, `--body-medium-lineheight`, `--body-medium-fontfamily`, `--body-medium-letterspacing`), fully resolved to concrete values. Values are mobile-first, with tablet/desktop/desktop-compact breakpoints available via `@media (min-width: ...)`.
+- `typography.css` — typography variables grouped by style. Each style exposes its individual properties (`--body-medium-font-size`, `--body-medium-line-height`, `--body-medium-font-family`, `--body-medium-letter-spacing`) plus a `font`-shorthand helper variable (`--body-medium`, usable directly in the CSS `font` property) that references them, so it always reflects whichever breakpoint is active. Values are mobile-first, with tablet/desktop/desktop-compact breakpoints available via `@media (min-width: ...)`.
 
 Every variable name is stable regardless of theme or viewport — you never need to branch your CSS/component code on breakpoint or color scheme.
 
 ## Quick start: JavaScript/TypeScript
 
-Import resolved tokens directly as JSON:
+Import resolved tokens directly as JSON. Tokens are nested by mode, then by name segment, and every leaf is a DTCG token object (`{ $type, $value }`):
 
 ```ts
 import tokens from '@zebra-design-system/tokens/dist/json/resolved-tokens.json';
 
-// Access tokens by category
-const bgColor = tokens.color['surface-page'];
-const padding = tokens.size['space-md'];
-const typography = tokens.typography['body-medium-fontsize'];
+// Access tokens by category → mode → path segments → $value
+const bgColor = tokens.color.light.surface.page.$value;
+const padding = tokens.size.mobile.space.md.$value;
+const fontSize = tokens.typography.mobile.body.medium['font-size'].$value;
 ```
 
 Or import theme-specific resolved tokens:
@@ -75,56 +75,13 @@ import companionTokens from '@zebra-design-system/tokens/dist/json/resolved-comp
 import targetTokens from '@zebra-design-system/tokens/dist/json/resolved-target-tokens.json';
 ```
 
-Resolved tokens are fully resolved to concrete values (hex colors, pixel measurements, font families, etc.) and organized by type (color, size, typography). Token names use kebab-case (e.g. `surface-page`, `space-md`, `body-medium-fontsize`).
+Resolved tokens are fully resolved to concrete values (hex colors, pixel measurements, font families, etc.) and organized by type (color, size, typography), then by mode (`light`/`dark` for color; `mobile`/`tablet`/`desktop`/`desktop compact` for size and typography).
 
 For custom theme mixes, use the building-block CSS approach instead (see [Mixing themes: building-block files](#mixing-themes-building-block-files) below).
 
-## Quick start: Flutter (Dart)
-
-Add the tokens as a Flutter dependency:
-
-```yaml
-dependencies:
-  zebra_design_system_tokens:
-    path: ../@zebra-design-system/tokens
-```
-
-Import and use token constants:
-
-```dart
-import 'package:zebra_design_system_tokens/colors_light.dart';
-import 'package:zebra_design_system_tokens/sizes_mobile.dart';
-import 'package:zebra_design_system_tokens/typographys_mobile.dart';
-
-Container(
-  color: LightColors.surface_page,
-  padding: EdgeInsets.all(SizesMobile.space_md.toDouble()),
-  child: Text(
-    'Hello',
-    style: TextStyle(
-      fontSize: TypographysMobile.body_medium_fontsize.toDouble(),
-      fontFamily: TypographysMobile.body_medium_fontfamily,
-    ),
-  ),
-)
-```
-
-For dark theme, use the `*_dark.dart` files:
-
-```dart
-import 'package:zebra_design_system_tokens/colors_dark.dart';
-```
-
-Token constants are organized by theme and breakpoint:
-- **Colors:** `colors_light.dart`, `colors_dark.dart` (automatically handle light/dark modes)
-- **Sizes:** `sizes_mobile.dart`, `sizes_tablet.dart`, `sizes_desktop.dart`, `sizes_desktop_compact.dart` (choose the appropriate breakpoint)
-- **Typography:** `typographys_mobile.dart`, `typographys_tablet.dart`, `typographys_desktop.dart`, `typographys_desktop_compact.dart` (choose the appropriate breakpoint)
-
-Use the `building_blocks/` directory for custom theme mixes (combining different palettes, primitives, or typography across themes).
-
 ### Using a different theme
 
-`default` isn't the only resolved theme — any theme with its own primitives/palette/size/typography override (e.g. `target`, `companion`) ships its own resolved files for both CSS and JS.
+`default` isn't the only resolved theme — any theme with its own primitives/palette/size/typography override (e.g. `target`, `companion`) ships its own resolved files for both CSS and JSON.
 
 **For CSS:**
 
@@ -136,7 +93,7 @@ import '@zebra-design-system/tokens/css/target-sizes';
 import '@zebra-design-system/tokens/css/target-typography';
 ```
 
-Same variable names (`--surface-page`, `--space-md`, `--body-medium-fontsize`, etc.) either way — only the import path changes. Check `dist/css/` for which theme files actually exist; a theme only gets a file if it overrides that layer.
+Same variable names (`--surface-page`, `--space-md`, `--body-medium-font-size`, etc.) either way — only the import path changes. Check `dist/css/` for which theme files actually exist; a theme only gets a file if it overrides that layer.
 
 **For JavaScript:**
 
@@ -145,22 +102,11 @@ Import theme-specific resolved tokens:
 ```ts
 import targetTokens from '@zebra-design-system/tokens/dist/json/resolved-target-tokens.json';
 
-const bgColor = targetTokens.color['surface-page'];
-const padding = targetTokens.size['space-md'];
+const bgColor = targetTokens.color.light.surface.page.$value;
+const padding = targetTokens.size.mobile.space.md.$value;
 ```
 
-Same token names and structure regardless of theme — only the import path changes. Available resolved JSON files: `resolved-tokens.json`, `resolved-companion-tokens.json`, `resolved-target-tokens.json`.
-
-**For Flutter:**
-
-Import different theme files by filename:
-
-```dart
-import 'package:zebra_design_system_tokens/target_colors_light.dart';
-import 'package:zebra_design_system_tokens/target_sizes_mobile.dart';
-```
-
-Same constant naming convention applies across themes — class and constant names adapt to the theme (e.g., `TargetColorsLight`, `TargetSizesMobile`).
+Same token shape regardless of theme — only the import path changes. Available resolved JSON files: `resolved-tokens.json`, `resolved-companion-tokens.json`, `resolved-target-tokens.json`.
 
 ## Mixing themes: building-block files
 
@@ -178,5 +124,4 @@ or the equivalent package imports (`@zebra-design-system/tokens/css/primitives/d
 
 Rules:
 - Load **exactly one** `primitives/*.css`, **exactly one** `palette/*.css`, **exactly one** `size/*.css`, and **exactly one** `typography/*.css` per page — these are `:root`-scoped, so loading two of the same layer silently collides (last one in source order wins).
-- Reference tokens the same way either path — `var(--surface-page)`, `var(--space-md)`, `var(--body-medium-fontsize)` — your component code doesn't change based on which layer files you loaded.
-
+- Reference tokens the same way either path — `var(--surface-page)`, `var(--space-md)`, `var(--body-medium-font-size)` — your component code doesn't change based on which layer files you loaded.

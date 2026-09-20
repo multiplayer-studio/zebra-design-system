@@ -2,9 +2,7 @@ import { customElement, property, state } from "lit/decorators.js";
 import { html, LitElement, nothing } from "lit";
 import styles from "./stepper-item.styles.js";
 import "../icon/icon.js";
-
-//Make a type for flavor
-export type StepperItemFlavor = "partial" | "success" | "active" | "default";
+import type { StepperItemFlavor } from "../../mixins/flavor.js";
 
 /**
  * The step items that the stepper uses to convey progress through numbered steps.

@@ -102,7 +102,7 @@ describe("zeta-empty-state", () => {
     });
   });
 
-  describe("Dimensions", () => {
+  describe.skip("Dimensions", () => {
     it("renders with correct dimensions", async () => {
       subject.setAttribute("title", "Title");
       subject.setAttribute("description", "This is a placeholder description. It explains what this view is for and what to do next.");

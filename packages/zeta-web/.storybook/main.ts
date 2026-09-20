@@ -1,5 +1,6 @@
 import type { StorybookConfig } from "@storybook/web-components-vite";
 import { mergeConfig } from "vite";
+import path from "path";
 
 const config: StorybookConfig = {
   stories: [
@@ -23,7 +24,18 @@ const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
   },
-
+  async viteFinal(config) {
+    return mergeConfig(config, {
+      server: {
+        fs: {
+          allow: [
+            path.resolve(__dirname, '..'),
+            path.resolve(__dirname, '../../../node_modules'),
+          ],
+        },
+      },
+    });
+  },
   staticDirs: ["../assets/"],
 };
 export default config;

@@ -10,6 +10,7 @@ export const TOKEN_DIR = path.resolve(TOKEN_MACHINE_DIR, config.directories.toke
 export const TEMP_DIR = path.resolve(TOKEN_MACHINE_DIR, config.directories.tempDir);
 export const RESOLVED_FRAGMENTS_DIR = path.resolve(TOKEN_MACHINE_DIR, config.directories.resolvedFragmentsDir);
 export const CSS_OUTPUT_DIR = path.resolve(TOKEN_MACHINE_DIR, config.directories.cssOutputDir);
+export const JSON_OUTPUT_DIR = path.resolve(TOKEN_MACHINE_DIR, config.directories.jsonOutputDir);
 
 export const COLOR_COLLECTIONS = config.collections.color;
 export const SIZE_COLLECTIONS = config.collections.size;

@@ -11,7 +11,8 @@ const meta: Meta<PaginationStory> = {
   tags: ["autodocs"],
   title: "Components/Pagination",
   args: {
-    rounded: false,
+    rounded: true,
+    outline: false,
     totalPages: 10,
     currentPage: 1,
     siblingCount: 1,
@@ -19,7 +20,7 @@ const meta: Meta<PaginationStory> = {
   },
   parameters: {
     design: {
-      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=1348-33899&mode=design&t=DUHsS5bjWB5UW1iG-4"
+      url: "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev"
     },
     status: {
       type: "ready"

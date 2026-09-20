@@ -11,7 +11,7 @@ import "../icon/icon.js";
  *
  *  @event {CustomEvent<ZetaPageEventDetail>} pageChange - Fired when page change. Contains a single value in details: `page: number`.
  *
- * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-24&node-type=canvas&m=dev
+ * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-pagination--docs
  */
 
@@ -24,6 +24,9 @@ export class ZetaPagination extends Contourable(LitElement) {
 
   /** Number of pages on both sides of current active page. */
   @property({ type: Number }) siblingCount = 1;
+
+  /** Whether the page indicators and pagination controls have a visible outline/border. */
+  @property({ type: Boolean, reflect: true }) outline = false;
 
   /** Current active page. */
   @property({ type: Number })
@@ -89,13 +92,12 @@ export class ZetaPagination extends Contourable(LitElement) {
   };
 
   getIconButton(iconName: string, pageNumber: number, disabled: boolean) {
-    // TODO: need to migrate away from icon button, the icon colour and size is now incorrect on the text flavour
     return html`<zeta-icon-button
       class=${iconName}
       .disabled=${disabled}
       shape=${this.rounded ? "rounded" : "sharp"}
       @click=${() => this.handlePageChange(pageNumber)}
-      flavor="text"
+      flavor=${this.outline ? "outline-subtle" : "subtle"}
       size="small"
     >
       ${iconName}
@@ -117,7 +119,7 @@ export class ZetaPagination extends Contourable(LitElement) {
           if (typeof page === "string") {
             return html`<zeta-icon class="more">more_horizontal</zeta-icon>`;
           } else {
-            return html` <button @click=${() => this.handlePageChange(page)} class="page ${pageClass}">${page}</button> `;
+            return html` <button @click=${() => this.handlePageChange(page)} class="page contourable-target ${pageClass}">${page}</button> `;
           }
         })}
         ${this.getIconButton("chevron_right", this.currentPage + 1, disabledRightControl)}

@@ -22,7 +22,7 @@ import "../../index.css";
  * @property {String} name - The name to show in the header, next to the user icon.
  * @property {String} initials - The initials to display within the user icon.
  * @property {Boolean} appSwitcher - Shows the app switcher icon. Make true to show the app switcher icon.
- * @property {Boolean} searchbar - Shows the search bar. Make true to show the search bar.
+ * @property {String | Boolean} searchbar - Shows the search bar. Make true to show the search bar, or pass a string to show the search bar using that string as its placeholder text.
  *
  * @event user-info-click - Fired when the user info button is clicked.
  * @event hamburger-menu-click - Fired when the hamburger menu button is clicked.
@@ -53,9 +53,22 @@ import "../../index.css";
 @customElement("zeta-global-header")
 export class ZetaGlobalHeader extends Contourable(LitElement) {
   /**
-   * Autoset the theme to dark mode for this component.
+   * Autoset the mode to dark mode for this component.
    */
-  @property({ type: String, attribute: "data-theme", reflect: true }) theme = "dark";
+  @property({ type: String, attribute: "data-mode", reflect: true }) mode = "dark";
+
+  /**
+   * Autoset the theme to dark mode for this component.
+   *
+   * @deprecated Use `mode` instead.
+   */
+  @property({ type: String, attribute: "data-theme", reflect: true })
+  get theme() {
+    return this.mode;
+  }
+  set theme(value: string) {
+    this.mode = value;
+  }
 
   /** The platform name text on the header.
    * @deprecated The 'platformName' property is deprecated. Please use the default slot to set the platform name instead.
@@ -76,9 +89,21 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
 
   /**
    * Shows the search bar.
-   * Make true to show the search bar.
+   * Make true to show the search bar, or pass a string to show the search bar using that string as its placeholder text.
+   *
+   * @remarks Legacy boolean usage (`searchbar`, `searchbar="true"`, `.searchbar=${true}`) continues to work unchanged.
    */
-  @property({ type: Boolean }) searchbar: boolean = false;
+  @property({
+    converter: {
+      fromAttribute: (value: string | null): boolean | string => {
+        if (value === null) return false;
+        if (value === "" || value.toLowerCase() === "true") return true;
+        if (value.toLowerCase() === "false") return false;
+        return value;
+      }
+    }
+  })
+  searchbar: boolean | string = false;
 
   /**
    * Slot for menu items on the left side of the header.
@@ -221,7 +246,15 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
         </div>
         <!--Right container - Holds search bar, action items, user info and app switcher-->
         <div id="header-right">
-          ${this.searchbar ? html`<zeta-search id="search-bar" shape=${this.rounded ? "rounded" : "sharp"}></zeta-search>` : nothing}
+          ${
+            this.searchbar
+              ? html`<zeta-search
+                  id="search-bar"
+                  shape=${this.rounded ? "rounded" : "sharp"}
+                  placeholder=${typeof this.searchbar === "string" ? this.searchbar : nothing}
+                ></zeta-search>`
+              : nothing
+          }
           <!--Action items container - Holds action items-->
           <div id="action-items" class=${this.hasActionItems ? "has-items" : ""}><slot name="action-items"></slot></div>
           <!--User info button - Holds user name, avatar and chevron icon-->

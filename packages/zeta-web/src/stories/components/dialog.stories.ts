@@ -23,7 +23,7 @@ const meta: Meta<
   title: "Components/Dialog",
   tags: ["autodocs"],
   args: {
-    rounded: false,
+    rounded: true,
     title: "Dialog Title",
     slot: "Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur adipisc.",
     confirm: "Button",

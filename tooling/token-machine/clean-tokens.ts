@@ -33,9 +33,8 @@ async function deleteFolders(folderPaths: string[]): Promise<void> {
 (async () => {
   try {
     const foldersToClean = [
-      path.join(__dirname, 'tokens'),
-      path.join(__dirname, '../../packages/foundations/tokens/dist/css/'),
-      path.join(__dirname, '../../packages/foundations/tokens/dist/json/'),
+      path.join(__dirname, 'source'),
+      path.join(__dirname, '../../packages/foundations/tokens/dist/'),
     ];
     await deleteFolders(foldersToClean);
   } catch (error) {

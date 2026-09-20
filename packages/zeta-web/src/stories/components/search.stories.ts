@@ -14,11 +14,15 @@ const meta: Meta<SearchStory> = {
   title: "Components/Search",
   component: "zeta-search",
   args: {
-    value: "Predefined search value",
+    value: "",
+    placeholder: "Search",
     disabled: false,
     size: "medium",
+    shape: "rounded",
+    flavor: "default",
     // formAction: "https://google.com/search", // BK to @mikecoomber, I removed this to get the story working after search was changed to a FormField.
-    hasIcon: true,
+    hasLeading: true,
+    hasTrailing: true,
     oninput: fn(),
     onchange: fn(),
     onfocus: fn(),
@@ -35,6 +39,12 @@ const meta: Meta<SearchStory> = {
       options: ShapeList,
       control: {
         type: "inline-radio"
+      }
+    },
+    flavor: {
+      options: ["default", "gradient", "ghost"],
+      control: {
+        type: "select"
       }
     },
     oninput: { table: { disable: true } },

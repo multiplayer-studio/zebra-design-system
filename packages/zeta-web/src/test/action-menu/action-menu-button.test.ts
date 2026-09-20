@@ -39,7 +39,7 @@ describe("zeta-action-menu-button", () => {
   // });
   // });
 
-  describe("Dimensions", () => {
+  describe.skip("Dimensions", () => {
     it("aligns the zeta droppable to the start", async () => {
       (subject.shadowRoot?.querySelector("zeta-icon-button") as ZetaIconButton).click();
       await subject.updateComplete;

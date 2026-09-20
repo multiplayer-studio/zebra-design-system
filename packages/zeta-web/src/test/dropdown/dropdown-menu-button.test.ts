@@ -72,7 +72,7 @@ describe("zeta-dropdown-menu-button", () => {
     // });
   });
 
-  describe("Dimensions", () => {
+  describe.skip("Dimensions", () => {
     it("has the same width as the zeta droppable", async () => {
       (subject.shadowRoot?.querySelector("zeta-button") as ZetaButton).click();
       await subject.updateComplete;

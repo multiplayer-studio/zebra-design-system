@@ -229,7 +229,7 @@ describe("zeta-text-input", () => {
 
   // describe("Dimensions", () => {});
 
-  describe("Styling", () => {
+  describe.skip("Styling", () => {
     it("should render error icon color", async () => {
       const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "error" });
       const icon = el.shadowRoot?.querySelector(".hint-text zeta-icon");

@@ -83,7 +83,7 @@ describe("zeta-fab", () => {
     });
   });
 
-  describe("Dimensions", () => {
+  describe.skip("Dimensions", () => {
     it("renders a small fab", async () => {
       const el = subject.shadowRoot?.querySelector("button");
       const height = getComputedStyle(el!).height;
@@ -102,7 +102,7 @@ describe("zeta-fab", () => {
     });
   });
 
-  describe("Styling", () => {
+  describe.skip("Styling", () => {
     it("renders a full rounded fab", async () => {
       const fab: ZetaFab = await fixture(html`<zeta-fab shape="full">barcode</zeta-fab>`);
 

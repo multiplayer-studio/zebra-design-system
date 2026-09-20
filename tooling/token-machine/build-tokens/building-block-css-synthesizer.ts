@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { TEMP_DIR, CSS_OUTPUT_DIR, BREAKPOINT_MODES } from './constants.js';
 import { getBreakpointsForTheme } from './breakpoints.js';
-import { extractCssVariables } from './css-synthesizer.js';
+import { extractCssVariables, buildTypographyShorthand } from './css-synthesizer.js';
 
 export type BuildingBlockType = 'primitives' | 'palette' | 'size' | 'typography' | 'semantics';
 
@@ -49,12 +49,14 @@ export function synthesizeBuildingBlockCss(theme: string, type: BuildingBlockTyp
     }
   } else {
     const breakpoints = getBreakpointsForTheme(theme);
+    let sampleVars = '';
     BREAKPOINT_MODES.forEach(mode => {
       let vars = extractCssVariables(path.join(TEMP, `${theme}-${mode}-bb-${type}.css`));
       if (vars) {
         hasContent = true;
         const stripList = type === 'size' ? ['size', 'primitives'] : ['typography', 'primitives'];
         vars = stripVars(vars, ...stripList);
+        sampleVars = sampleVars || vars;
         const breakpoint = breakpoints[mode];
         if (!breakpoint) {
           finalCss += `:root {\n  ${vars}\n}\n\n`;
@@ -63,6 +65,13 @@ export function synthesizeBuildingBlockCss(theme: string, type: BuildingBlockTyp
         }
       }
     });
+
+    if (type === 'typography' && sampleVars) {
+      const shorthand = buildTypographyShorthand(sampleVars);
+      if (shorthand) {
+        finalCss += `:root {\n  /* Semantic shorthand typography tokens */\n  ${shorthand}\n}\n\n`;
+      }
+    }
   }
 
   if (!hasContent) {

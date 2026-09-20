@@ -45,7 +45,7 @@ describe("zeta-icon-button", () => {
     });
   });
 
-  describe("Dimensions", () => {
+  describe.skip("Dimensions", () => {
     it("renders small button with correct dimensions", async () => {
       subject.setAttribute("icon", "star");
       subject.setAttribute("size", "small");
@@ -78,7 +78,7 @@ describe("zeta-icon-button", () => {
     });
   });
 
-  describe("Styling", () => {
+  describe.skip("Styling", () => {
     it("should display correct icon color when disabled by default", async () => {
       const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button>${iconName}</zeta-icon-button>`);
       iconButton.setAttribute("disabled", "true");

@@ -13,6 +13,19 @@ export function extractCssVariables(filePath: string): string {
 
 export type SynthesizeType = 'color' | 'size' | 'typography';
 
+// Groups e.g. --display-large-font-weight/-font-size/-line-height/-font-family into one
+// shorthand var. Only references sibling vars, so it's breakpoint-agnostic - emit once,
+// outside any @media block, and it tracks whichever breakpoint is currently active.
+export function buildTypographyShorthand(varsBlock: string): string {
+  const names = new Set<string>();
+  const regex = /--([\w-]+)-font-weight\s*:/g;
+  let match;
+  while ((match = regex.exec(varsBlock))) names.add(match[1]);
+  return Array.from(names).sort().map(name =>
+    `--${name}: var(--${name}-font-weight) var(--${name}-font-size)/var(--${name}-line-height) var(--${name}-font-family);`
+  ).join('\n  ');
+}
+
 export function synthesizeCss(theme: string, type: SynthesizeType, tempDir?: string, outputDir?: string) {
   const TEMP = tempDir || TEMP_DIR;
   const OUT = outputDir || CSS_OUTPUT_DIR;
@@ -42,12 +55,14 @@ export function synthesizeCss(theme: string, type: SynthesizeType, tempDir?: str
     const fileSuffix = type === 'typography' ? '-typography' : '';
     const stripPattern = type === 'typography' ? /^(\s*)--typography-/gm : undefined;
     const breakpoints = getBreakpointsForTheme(theme);
+    let sampleVars = '';
 
     BREAKPOINT_MODES.forEach(mode => {
       let vars = extractCssVariables(path.join(TEMP, `${theme}-${mode}${fileSuffix}.css`));
       if (vars) {
         hasContent = true;
         if (stripPattern) vars = vars.replace(stripPattern, '$1--');
+        sampleVars = sampleVars || vars;
         const breakpoint = breakpoints[mode];
         if (!breakpoint) {
           finalCss += `${rootSelector} {\n  ${vars}\n}\n\n`;
@@ -56,6 +71,13 @@ export function synthesizeCss(theme: string, type: SynthesizeType, tempDir?: str
         }
       }
     });
+
+    if (type === 'typography' && sampleVars) {
+      const shorthand = buildTypographyShorthand(sampleVars);
+      if (shorthand) {
+        finalCss += `${rootSelector} {\n  /* Semantic shorthand typography tokens */\n  ${shorthand}\n}\n\n`;
+      }
+    }
   }
 
   if (!hasContent) {

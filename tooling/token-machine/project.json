@@ -33,28 +33,29 @@
     "build": {
       "executor": "nx:run-script",
       "inputs": [
-        "{projectRoot}/tokens/dtcg-tokens/**/*",
+        "{projectRoot}/source/dtcg-tokens/**/*",
         "{projectRoot}/build-tokens/**/*",
         "{projectRoot}/config.json"
       ],
       "outputs": [
         "{workspaceRoot}/packages/foundations/tokens/dist/css",
         "{workspaceRoot}/packages/foundations/tokens/dist/js",
-        "{workspaceRoot}/packages/foundations/tokens/dist/json"
+        "{workspaceRoot}/packages/foundations/tokens/dist/json",
+        "{workspaceRoot}/packages/foundations/tokens/dist/artifacts"
       ],
       "cache": true,
       "options": {
         "script": "build"
       }
     },
-    "export": {
+    "artifact": {
       "executor": "nx:run-script",
-      "dependsOn": [
-        "build"
-      ],
       "cache": false,
+      "outputs": [
+        "{workspaceRoot}/packages/foundations/tokens/dist/artifacts"
+      ],
       "options": {
-        "script": "export"
+        "script": "artifact"
       }
     },
     "typecheck": {
@@ -62,6 +63,13 @@
       "cache": true,
       "options": {
         "script": "typecheck"
+      }
+    },
+    "test": {
+      "executor": "nx:run-script",
+      "cache": false,
+      "options": {
+        "script": "test"
       }
     }
   }

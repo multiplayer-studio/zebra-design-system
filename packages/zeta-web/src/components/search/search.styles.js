@@ -1,37 +1,35 @@
 import { css } from "lit";
+// TODO: should the form border be a box-shadow or border?
 export default css`
   :host {
     display: flex;
     align-items: center;
     width: fit-content;
     height: fit-content;
-    --icon-size: 20px;
-    --icon-color: var(--main-subtle);
-    --icon-color: var(--main-subtle);
+    --icon-color: var(--interactive-neutral-foreground-default);
   }
 
   :host([disabled]) {
-    --icon-color: var(--main-disabled);
+    zeta-icon {
+      --icon-color: var(--interactive-neutral-foreground-disabled);
+    }
+
     .contourable-target {
       pointer-events: none;
-      background-color: var(--surface-disabled);
+      background-color: var(--interactive-neutral-background-disabled);
     }
 
     input {
-      color: var(--main-subtle);
+      color: var(--interactive-neutral-foreground-disabled);
     }
   }
 
-  #search-icon {
-    display: var(--search-icon-display, block);
-  }
-
   :host(:not([disabled])) zeta-icon.right {
-    --icon-color: var(--main-default);
+    --icon-color: var(--interactive-neutral-foreground-default);
   }
 
   :host([round="full"][rounded]) .contourable-target {
-    border-radius: var(--radius-full);
+    border-radius: var(--radius-pill);
   }
 
   form {
@@ -40,21 +38,62 @@ export default css`
     align-items: center;
     border-radius: inherit;
     height: fit-content;
-    box-shadow: 0 0 0 var(--border-size-small) var(--search-border-color, var(--border-default));
+    border: var(--stroke-thin) solid var(--interactive-neutral-border-default);
 
-    background-color: var(--surface-default);
+    background-color: var(--interactive-neutral-background-default);
     flex-shrink: 0;
-    gap: var(--spacing-small);
+    gap: var(--space-xs);
     -webkit-tap-highlight-color: transparent;
 
     &:has(input:focus) {
-      box-shadow: 0 0 0 var(--border-size-medium) var(--border-primary);
+      border: var(--stroke-thin) solid var(--border-focus);
     }
+  }
+
+  :host([disabled]) form {
+    border: var(--stroke-thin) solid var(--interactive-neutral-border-disabled);
+  }
+
+  :host([flavor="ghost"]) form {
+    border: var(--stroke-base) solid var(--interactive-ghost-border-default);
+    background-color: var(--interactive-ghost-background-default);
+  }
+
+  :host([flavor="gradient"]) form {
+    position: relative;
+    border: var(--stroke-thin) solid transparent;
+    background-color: var(--interactive-ghost-background-default);
+    background-clip: padding-box;
+  }
+
+  :host([flavor="gradient"]) form::before {
+    content: "";
+    position: absolute;
+    inset: calc(var(--stroke-thin) * -1);
+    padding: var(--stroke-thin);
+    background: linear-gradient(96deg, var(--surface-gradient-start) 0%, var(--surface-gradient-end) 87.02%);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  :host([flavor="gradient"][disabled]) form::before {
+    background: transparent;
+  }
+
+  :host([data-focus-source="keyboard"]) form {
+    outline: var(--stroke-thick) solid var(--border-focus);
   }
 
   @media (hover: hover), (hover: none) and (pointer: fine) {
     form:hover {
-      box-shadow: 0 0 0 var(--border-size-small) var(--border-hover);
+      border: var(--stroke-thin) solid var(--interactive-neutral-border-hover);
     }
   }
 
@@ -69,8 +108,8 @@ export default css`
     background-color: inherit;
     border: none;
     outline: none;
-    caret-color: var(--main-primary);
-    color: var(--main-subtle);
+    caret-color: var(--foreground-cursor);
+    color: var(--foreground-primary);
     flex: 1;
     padding: 0;
     margin: 0;
@@ -83,20 +122,18 @@ export default css`
 
   .divider {
     display: flex;
-    width: var(--border-size-small);
+    width: var(--stroke-thin);
     background-color: var(--border-default);
   }
 
   /* SIZE */
   :host([size="small"]) {
-    --icon-size: 16px;
-
     .contourable-target {
-      padding: var(--spacing-minimum-5);
+      padding: var(--space-xs) var(--space-md);
     }
 
     .divider {
-      height: var(--spacing-large);
+      height: var(--space-xl);
     }
 
     input {
@@ -105,14 +142,12 @@ export default css`
   }
 
   :host([size="medium"]) {
-    --icon-size: 20px;
-
     .contourable-target {
-      padding: var(--spacing-small);
+      padding: var(--space-sm) var(--space-md);
     }
 
     .divider {
-      height: var(--spacing-2xl);
+      height: var(--space-xl);
     }
 
     input {
@@ -121,14 +156,12 @@ export default css`
   }
 
   :host([size="large"]) {
-    --icon-size: 24px;
-
     .contourable-target {
-      padding: var(--spacing-small);
+      padding: var(--space-lg) var(--space-md);
     }
 
     .divider {
-      height: var(--spacing-2xl);
+      height: var(--space-xl);
     }
 
     input {

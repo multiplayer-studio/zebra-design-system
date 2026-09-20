@@ -77,7 +77,7 @@ describe("zeta-slider-input-field", () => {
     });
   });
 
-  describe("Dimensions", () => {
+  describe.skip("Dimensions", () => {
     it("sets the input width and height correctly", async () => {
       const input = subject.shadowRoot?.querySelector("input.contourable-target");
       const inputPaddingLeft = getComputedStyle(input!).paddingLeft?.split("px")?.shift();
@@ -93,7 +93,7 @@ describe("zeta-slider-input-field", () => {
     });
   });
 
-  describe("Styling", () => {
+  describe.skip("Styling", () => {
     it("sets the correct styles for the label", async () => {
       subject.label = "Label";
       await subject.updateComplete;

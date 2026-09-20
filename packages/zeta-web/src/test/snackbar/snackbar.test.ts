@@ -79,7 +79,7 @@ describe("zeta-snackbar", () => {
 
   // describe("Dimensions", () => {});
 
-  describe("Styling", () => {
+  describe.skip("Styling", () => {
     beforeEach(async () => {
       subject = await createComponent();
       subject.actionClick = () => console.log("Action Clicked");

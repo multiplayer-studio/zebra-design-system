@@ -11,7 +11,8 @@ metadata:
       title: Storybook
     - url: https://design.zebra.com/web/tsdoc/
       title: TSDoc
-    - url: https://npmjs.com/package/@zebra-design-system/zeta-web
+      # TODO: change this link after gcloud distribution
+    - url: https://npmjs.com/package/@zebra-fed/zeta-web
       title: npm
   tags: 
     - typescript

@@ -1,16 +1,45 @@
+# Build artifacts
+**/dist/
+**/build/
+**/coverage/
+**/out/
+
+# Dependencies
 node_modules/
 
+# Environment
 .env
+.env.*.local
 
-tooling/token-machine/tokens/raw-tokens.json
-tooling/figma-metadata-scraper/output/
-
+# OS
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
 
+# Logs & debugging
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Cache & temp
 .nx/cache
 .nx/workspace-data
 .nx/migrate-runs
 .nx/polygraph
+.nx/self-healing
 .claude/worktrees
 .claude/settings.local.json
-.nx/self-healing
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
+
+# Monorepo-specific
+tooling/figma-metadata-scraper/output/

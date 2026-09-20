@@ -15,29 +15,11 @@
           "projects": [
             "@zebra-design-system/token-machine"
           ]
-        },
-        {
-          "target": "export",
-          "projects": [
-            "@zebra-design-system/token-machine"
-          ]
         }
       ],
       "outputs": [
         "{projectRoot}/dist"
       ]
-    },
-    "pack": {
-      "executor": "nx:run-script",
-      "dependsOn": [
-        "build"
-      ],
-      "outputs": [
-        "{projectRoot}/dist/artifacts"
-      ],
-      "options": {
-        "script": "pack"
-      }
     },
     "nx-release-publish": {
       "executor": "@nx/js:release-publish",

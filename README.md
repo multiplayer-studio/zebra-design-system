@@ -69,6 +69,21 @@ pnpm run build:tokens   # Build from committed DTCG tokens
 pnpm run export:tokens  # Export to dist
 ```
 
+## Design Token Component Migration
+
+The zeta-web components are being progressively updated to use the new design token system. This ensures consistent theming, improved maintainability, and alignment with the design system.
+
+**Components Updated to New Tokens: 7 of ~48**
+- Button (base-button)
+- Icon Button
+- Divider
+- Global Header
+- Icon
+- Pagination
+- Search
+
+**Migration Status:** Ongoing — Components are being updated incrementally.
+
 ## Versioning & Releases
 
 This project uses **Conventional Commits** for automatic semantic versioning via Nx Release.
@@ -77,3 +92,8 @@ This project uses **Conventional Commits** for automatic semantic versioning via
 
 Each package (`zeta-web`, `tokens`, future platforms) is versioned independently. Releases are triggered via Conventional Commit types (`feat:`, `fix:`, `feat!:`, etc.).
 
+## Contributing
+
+Branches and commit messages should follow the conventional commits standards. 
+
+Always push the yarn.lock file.

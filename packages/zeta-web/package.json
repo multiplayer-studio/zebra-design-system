@@ -43,11 +43,13 @@
     "check": "pnpm run analyze && pnpm run lint && pnpm run lint:lit-analyzer && pnpm run test && pnpm run docs",
     "create": "cd scripts && node makeWebComponentTemplate.js",
     "docs": "npx typedoc --logLevel Warn",
+    "docs:build": "typedoc --logLevel Warn",
+    "docs:serve": "npx http-server docs/ -p 8080 -o",
     "lint:lit-analyzer": "lit-analyzer src/components/**/* src/stories/**/* src/mixins/**/* src/test/**/* src/utils/**/* --quiet",
     "lint": "eslint -f unix \"src/**/*.{ts,tsx}\" --config src/eslint.config.*",
     "localize:build": "lit-localize build --config src/lit-localize.json",
     "localize:extract": "lit-localize extract --config src/lit-localize.json",
-    "prebuild": "pnpm run analyze && node scripts/make-index.js",
+    "prebuild": "pnpm exec nx run @zebra-design-system/token-machine:build && pnpm run analyze && node scripts/make-index.js",
     "prepack": "pnpm run build",
     "prepare": "pnpm run build",
     "prettier": "prettier src --write --ignore-unknown",
@@ -58,9 +60,13 @@
     "test:count": "npx tsx scripts/test/test_counter.ts",
     "pretest:package": "pnpm pack --pack-destination ./test && cd test && pnpm install && cd ..",
     "test:package": "cd test && pnpm run dev",
-    "test:watch": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --watch --config src/test/web-test-runner.config.js",
-    "test": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --config src/test/web-test-runner.config.js",
-    "pack": "pnpm pack --pack-destination dist/artifacts"
+    "test:watch": "wtr \"src/test/**/*.test.ts\" --node-resolve --watch --config src/test/web-test-runner.config.js",
+    "test:file": "wtr --node-resolve --config src/test/web-test-runner.config.*",
+    "test:file:watch": "wtr --node-resolve --watch --config src/test/web-test-runner.config.*",
+    "test": "wtr \"src/test/**/*.test.ts\" --node-resolve --config src/test/web-test-runner.config.js",
+    "pack": "pnpm pack --pack-destination dist/artifacts",
+    "typecheck": "tsc --noEmit",
+    "typecheck:watch": "tsc --noEmit --watch"
   },
   "devDependencies": {
     "@actions/core": "^1.11.1",
@@ -118,6 +124,7 @@
     "ts-lit-plugin": "^2.0.2",
     "ts-morph": "^27.0.2",
     "typedoc": "^0.28.20",
+    "tsx": "^4.17.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.67.0",
     "vite": "^6.4.3"
@@ -127,7 +134,7 @@
     "@lit/localize": "^0.12.2",
     "@zebra-fed/zeta-icons": "1.9.6",
     "lit": "^3.3.3",
-    "@zebra-design-system/tokens": "file:../foundations/tokens/"
+    "@zebra-design-system/tokens": "workspace:*"
   },
   "browserslist": {
     "production": [

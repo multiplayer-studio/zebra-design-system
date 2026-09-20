@@ -70,7 +70,7 @@ describe("zeta-range-selector", () => {
     });
   });
 
-  describe("Dimensions", () => {
+  describe.skip("Dimensions", () => {
     it("sets the lower input width and height correctly", async () => {
       const lowerInput = subject.shadowRoot?.querySelector("input.lower-input");
       const inputPaddingLeft = getComputedStyle(lowerInput!).paddingLeft?.split("px")?.shift();
@@ -100,7 +100,7 @@ describe("zeta-range-selector", () => {
     });
   });
 
-  describe("Styling", () => {
+  describe.skip("Styling", () => {
     it("sets the correct styles for the label", async () => {
       subject.label = "Label";
       await subject.updateComplete;

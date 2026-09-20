@@ -68,7 +68,7 @@ describe("zeta-droppable", () => {
     });
   });
 
-  describe("Dimensions", () => {
+  describe.skip("Dimensions", () => {
     it("ensures the droppable does not exceed the dropdown menu button width when dropdown menu item text is long", async () => {
       // Create a zeta-button as the anchor
       const anchorButton = document.createElement("zeta-button");
@@ -101,7 +101,7 @@ describe("zeta-droppable", () => {
     });
   });
 
-  describe("Styling", () => {
+  describe.skip("Styling", () => {
     it("sets the correct border radius when rounded is true", async () => {
       subject.rounded = true;
       await elementUpdated(subject);

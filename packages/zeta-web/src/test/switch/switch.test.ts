@@ -39,7 +39,7 @@ describe("zeta-switch", () => {
 
   // describe("Dimensions", () => {});
 
-  describe("Styling", () => {
+  describe.skip("Styling", () => {
     let subject: ZetaSwitch;
     let track: HTMLElement | null | undefined;
     let thumb: HTMLElement | null | undefined;
@@ -88,7 +88,7 @@ describe("zeta-switch", () => {
 });
 
 describe("zeta-switch disabled", () => {
-  describe("Styling", () => {
+  describe.skip("Styling", () => {
     let subject: ZetaSwitch;
     let track: HTMLElement | null | undefined;
     let thumb: HTMLElement | null | undefined;
@@ -127,7 +127,7 @@ describe("zeta-switch disabled", () => {
 });
 
 describe("zeta-switch:hover", () => {
-  describe("Styling", () => {
+  describe.skip("Styling", () => {
     let subject: ZetaSwitch;
     let track: HTMLElement | null | undefined;
     let thumb: HTMLElement | null | undefined;

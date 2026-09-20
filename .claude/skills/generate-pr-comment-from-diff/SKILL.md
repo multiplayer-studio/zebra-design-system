@@ -174,11 +174,6 @@ Save the markdown file with the naming convention:
 .github/pr-comments/PR_COMMENT_{BRANCH}_{DATETIME}.md
 ```
 
-Example:
-```
-.github/pr-comments/PR_COMMENT_pnpm-monorepo-upgrade_20260907_165037.md
-```
-
 ## Implementation Steps
 
 ### For Agents Using This Skill
@@ -250,7 +245,6 @@ When updating a PR comment with new commits:
 
 ### Sections to Update
 - **Diff Statistics**: Replace with current stats (always changes with new commits).
-- **Recent Commits**: Replace with current commit list.
 - **Testing/Verification**: Update with new test results or verification status.
 - **Next Steps**: Update based on current state and remaining work.
 - **Impact Summary**: Update if numbers or scope changed.

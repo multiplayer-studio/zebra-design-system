@@ -7,15 +7,17 @@
     "clean": "tsx clean-tokens.ts",
     "fetch": "tsx --env-file=../../.env fetch-tokens.ts",
     "convert": "tsx --env-file=../../.env convert-tokens.ts",
-    "build": "tsx build-tokens/index.ts",
-    "export": "tsx export-resolved-tokens.ts",
-    "typecheck": "tsc --noEmit"
+    "build": "tsx build-tokens/index.ts && pnpm run artifact",
+    "artifact": "cd ../../packages/foundations/tokens && pnpm pack --pack-destination dist/artifacts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
   },
   "devDependencies": {
     "@types/node": "^26.5.0",
     "style-dictionary": "^5.5.0",
     "tsx": "^4.23.5",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
   },
   "packageManager": "pnpm@10.34.5+sha512.a4ee05f2f73658255bd6a89859c065a45c28a57daefae2c893a168ee2b73168c37b91e83e57ea67654ad03f03031746430e8bce38e362e042605fb8abc80192e"
 }

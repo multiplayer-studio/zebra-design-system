@@ -7,6 +7,7 @@ import { compileTokens, compileFlatModeTokens } from './compile-tokens.js';
 import { synthesizeCss } from './css-synthesizer.js';
 import { synthesizeBuildingBlockCss } from './building-block-css-synthesizer.js';
 import { getSourceFilesForCollection } from './utils.js';
+import { exportResolvedTokens } from './resolved-json-exporter.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -145,6 +146,8 @@ async function main() {
   fs.rmSync(TEMP_DIR, { recursive: true, force: true });
   console.log('\n\n✅ Build complete. Temporary files cleaned up.');
   console.log(`🎉 Final CSS & Building-block files are available in: ${CSS_OUTPUT_DIR}`);
+
+  exportResolvedTokens();
 }
 
 main().catch(error => {

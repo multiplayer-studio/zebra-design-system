@@ -1007,7 +1007,7 @@
 
 ### ⚠ BREAKING CHANGES
 
-- renamed the package to "@zebra-fed/zeta-web"
+- renamed the package to "@zebra-design-system/zeta-web"
 
 ### ✨ New Features
 
@@ -1059,7 +1059,7 @@
 
 ### Continuous Integration
 
-- renamed the package to "@zebra-fed/zeta-web" ([bf3c39e](https://github.com/zebratechnologies/zeta-web/commit/bf3c39ec40cc9d3e1bc63c742e0ff38a7396e1b4))
+- renamed the package to "@zebra-design-system/zeta-web" ([bf3c39e](https://github.com/zebratechnologies/zeta-web/commit/bf3c39ec40cc9d3e1bc63c742e0ff38a7396e1b4))
 
 ## [0.1.0](https://github.com/zebratechnologies/zeta-web/compare/zeta-web-v0.0.1+1...zeta-web-v0.1.0) (2024-03-18)
 

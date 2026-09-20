@@ -1,8 +1,8 @@
 {
   "directories": {
-    "tokenRootDir": "./tokens",
-    "tokenDir": "./tokens/dtcg-tokens",
-    "inputFile": "./tokens/raw-tokens.json",
+    "tokenRootDir": "./source",
+    "tokenDir": "./source/dtcg-tokens",
+    "inputFile": "./source/raw-tokens.json",
     "tempDir": "../../packages/foundations/tokens/dist/temp",
     "resolvedFragmentsDir": "../../packages/foundations/tokens/dist/resolved-fragments",
     "cssOutputDir": "../../packages/foundations/tokens/dist/css",

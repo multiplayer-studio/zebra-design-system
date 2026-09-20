@@ -8,6 +8,10 @@ export default css`
     -webkit-tap-highlight-color: transparent;
   }
 
+  zeta-icon-button {
+    --control-sm: var(--spacing-4xl);
+  }
+
   button {
     border-radius: inherit;
     background-color: transparent;
@@ -16,61 +20,48 @@ export default css`
     cursor: pointer;
   }
 
-  .pagination-control {
-    cursor: pointer;
-    padding: var(--spacing-small) var(--spacing-minimum);
-
-    &:disabled {
-      pointer-events: none;
-      background-color: var(--surface-disabled);
-    }
-
-    &:hover {
-      background-color: var(--state-default-hover);
-    }
-
-    &:active {
-      background-color: var(--state-default-selected);
-    }
-
-    &:focus-visible {
-      border: none;
-      outline: none;
-      box-shadow: 0 0 0 var(--border-size-medium) var(--border-primary);
-    }
-  }
-
   .page {
-    text-align: center;
-    padding: var(--spacing-small) var(--spacing-minimum);
-    font: var(--body-small);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: var(--spacing-4xl);
-    color: var(--main-default);
+    height: var(--spacing-4xl);
+    font: var(--body-small);
+    color: var(--foreground-primary);
+    background-color: var(--interactive-neutral-background-default);
+    border: var(--stroke-base) solid var(--interactive-neutral-border-default);
     -webkit-tap-highlight-color: transparent;
 
     @media (hover: hover), (hover: none) and (pointer: fine) {
       &:hover {
-        background-color: var(--state-default-hover);
+        background-color: var(--interactive-neutral-background-hover);
       }
     }
 
     &:active {
-      background-color: var(--state-default-selected);
+      background-color: var(--interactive-neutral-background-pressed);
     }
 
     &:focus-visible {
-      border: none;
+      border-color: transparent;
       outline: none;
-      box-shadow: 0 0 0 var(--border-size-medium) var(--border-primary);
+      box-shadow: 0 0 0 var(--stroke-thick) var(--border-focus);
     }
 
     &.selected {
-      color: var(--main-inverse);
-      background-color: var(--state-inverse-selected);
+      color: var(--foreground-inverse);
+      background-color: var(--interactive-inverse-background-selected);
+      border-color: var(--interactive-inverse-border-default);
     }
   }
+
+  :host([outline]) .page {
+    border-width: var(--stroke-thin);
+  }
+
   zeta-icon.more {
-    --icon-color: var(--main-default);
+    --icon-color: var(--foreground-primary);
     --icon-size: 20px;
   }
 `;

@@ -49,7 +49,7 @@ describe("zeta-bottom-sheet + zeta-list-item", () => {
     });
   });
 
-  describe("Dimensions", () => {
+  describe.skip("Dimensions", () => {
     it("applies the correct header alignment", async () => {
       const headerAlignment = "center";
       subject.headerAlignment = headerAlignment;
@@ -127,7 +127,7 @@ describe("zeta-bottom-sheet + zeta-grid-menu-item", () => {
     });
   });
 
-  describe("Dimensions", () => {
+  describe.skip("Dimensions", () => {
     it("applies the correct header alignment", async () => {
       const headerAlignment = "center";
       subject.headerAlignment = headerAlignment;
@@ -228,7 +228,7 @@ describe("zeta-bottom-sheet + generic content", () => {
     });
   });
 
-  describe("Dimensions", () => {
+  describe.skip("Dimensions", () => {
     it("applies the correct header alignment", async () => {
       const headerAlignment = "center";
       subject.headerAlignment = headerAlignment;

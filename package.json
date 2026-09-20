@@ -2,16 +2,24 @@
   "name": "zebra-design-system",
   "private": true,
   "scripts": {
+    "check": "pnpm run typecheck && pnpm run lint && pnpm run format",
+    "typecheck": "pnpm --filter @zebra-design-system/token-machine run typecheck && pnpm --filter @zebra-design-system/figma-metadata-scraper run typecheck",
+    "lint": "pnpm --filter @zebra-design-system/zeta-web run lint && pnpm --filter @zebra-design-system/zeta-web run lint:lit-analyzer",
+    "format": "pnpm --filter @zebra-design-system/zeta-web run prettier",
     "clean:tokens": "pnpm --filter @zebra-design-system/token-machine run clean",
     "fetch:tokens": "pnpm --filter @zebra-design-system/token-machine run fetch",
     "convert:tokens": "pnpm --filter @zebra-design-system/token-machine run convert",
     "build:tokens": "pnpm --filter @zebra-design-system/token-machine run build",
     "pack:tokens": "pnpm --filter @zebra-design-system/tokens pack",
-    "export:tokens": "pnpm --filter @zebra-design-system/token-machine run export",
-    "sync:tokens": "pnpm run clean:tokens && pnpm run fetch:tokens && pnpm run convert:tokens && pnpm run build:tokens && pnpm run export:tokens",
+    "sync:tokens": "pnpm run clean:tokens && pnpm run fetch:tokens && pnpm run convert:tokens && pnpm run build:tokens",
+    "test:tokens": "pnpm --filter @zebra-design-system/token-machine run test",
     "scrape:metadata": "pnpm --filter @zebra-design-system/figma-metadata-scraper run scrape",
     "storybook": "pnpm --filter @zebra-design-system/zeta-web run storybook",
-    "test:web": "pnpm --filter @zebra-design-system/zeta-web run test"
+    "test:web": "pnpm --filter @zebra-design-system/zeta-web run test",
+    "docs:web:build": "pnpm --filter @zebra-design-system/zeta-web run docs:build",
+    "docs:web": "pnpm --filter @zebra-design-system/zeta-web run docs",
+    "docs:web:serve": "pnpm --filter @zebra-design-system/zeta-web run docs:serve",
+    "extract:props": "tsx tooling/utils/extract-component-props.ts"
   },
   "dependencies": {
     "style-dictionary": "^5.5.0"
@@ -20,6 +28,7 @@
     "@nx/js": "^23.2.0",
     "@types/node": "^26.5.0",
     "nx": "23.2.0",
+    "tsx": "^4.17.0",
     "vitest": "^4.1.10"
   },
   "pnpm": {

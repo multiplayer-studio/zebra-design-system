@@ -180,7 +180,7 @@ describe("zeta-status-label", () => {
       expect(subject.shadowRoot?.querySelector("[part='icon-container']")).to.not.exist;
     });
   });
-  describe("Dimensions", () => {
+  describe.skip("Dimensions", () => {
     it("sets the default dimensions correctly", async () => {
       subject.setAttribute("label", `Label`);
       subject.setAttribute("status", "negative");

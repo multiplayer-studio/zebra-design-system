@@ -20,5 +20,12 @@
 - DON'T USE for: basic generator syntax (`nx g @nx/react:app`), standard commands, things you already know
 - The `nx-generate` skill handles generator discovery internally - don't call nx_docs just to look up generator syntax
 
+## Documentation Maintenance
+
+**Keep the root README.md in sync with the codebase:**
+- The README documents the current state of the design system, including component migration status, token pipeline, and quick-start information
+- When making significant changes (adding/updating components, migrating components to new token system, changing tooling), verify the README reflects reality
+- Specifically: The "Design Token Component Migration" section lists how many components have been updated and their names — update this count when components are migrated
+- Use `git diff main...HEAD --name-only packages/zeta-web/src/components | grep -E "styles|\.scss|\.css" | sort -u` to audit which components have actually been changed in the current branch
 
 <!-- nx configuration end-->

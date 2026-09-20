@@ -14,11 +14,6 @@ function isoDate(): string {
   return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
 }
 
-function resolveCollectionByID(id: string, collections: object): string {
-    const c = Object.values(collections).find(c => c.id === id);
-  return c.name; 
-}
-
 export async function main() {
   const FIGMA_TOKEN = process.env.FIGMA_PERSONAL_ACCESS_TOKEN;
   const FIGMA_FILE_KEY = process.env.FIGMA_FILE_KEY;
@@ -81,11 +76,9 @@ export async function main() {
           resolvedType,
           scopes,
           valuesByMode,
-          ...rest
         } = v;
 
         return {
-          ...rest,
           id,
           name,
           description,
@@ -115,7 +108,7 @@ export async function main() {
       variables,
     };
 
-    await mkdir('./tokens', { recursive: true });
+    await mkdir('./source', { recursive: true });
 
     const filename = config.directories.inputFile;
     const outputPath = path.join(process.cwd(), filename);

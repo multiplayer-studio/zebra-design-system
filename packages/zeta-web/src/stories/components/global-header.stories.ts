@@ -6,7 +6,7 @@ import { action } from "@storybook/addon-actions";
 import "../../components/global-header/global-header";
 import "../../components/action-menu/action-menu-button";
 
-const meta: Meta<ZetaGlobalHeader & { "data-theme": string; customLogo: string; logo: string }> = {
+const meta: Meta<ZetaGlobalHeader & { "data-mode": string; "data-theme": string; customLogo: string; logo: string }> = {
   component: "zeta-global-header",
   tags: ["autodocs"],
   title: "Components/Global Header",
@@ -15,7 +15,7 @@ const meta: Meta<ZetaGlobalHeader & { "data-theme": string; customLogo: string; 
     name: "Name",
     initials: "RK",
     appSwitcher: true,
-    searchbar: true,
+    searchbar: "Search",
     rounded: false,
     customLogo: ""
   },
@@ -24,10 +24,11 @@ const meta: Meta<ZetaGlobalHeader & { "data-theme": string; customLogo: string; 
     name: { control: "text" },
     initials: { control: "text" },
     appSwitcher: { control: "boolean" },
-    searchbar: { control: "boolean" },
+    searchbar: { control: "text", description: "Pass `true`/`false` to show/hide the search bar, or a string to show it with that string as its placeholder." },
     rounded: { control: "boolean" },
     customLogo: { control: "text" },
     logo: { table: { disable: true } },
+    "data-mode": { table: { disable: true } },
     "data-theme": { table: { disable: true } }
   },
   parameters: {
@@ -57,7 +58,7 @@ export const GlobalHeader: StoryObj = {
         .name=${args.name}
         .initials=${args.initials}
         .appSwitcher=${args.appSwitcher}
-        .searchbar=${args.searchbar}
+        searchbar=${args.searchbar}
         .rounded=${args.rounded}
         @user-info-click=${action("user-info-click")}
         @hamburger-menu-click=${action("hamburger-menu-click")}

@@ -5,8 +5,7 @@ import styles from "./dialog.styles.js";
 import { ZetaButton } from "../button/button.js";
 import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { Contourable, Popup } from "../../mixins/mixins.js";
-
-export type DialogFlavor = "default" | "info" | "success" | "warning" | "error";
+import type { DialogFlavor } from "../../mixins/flavor.js";
 
 /*
  * TODO: dialog Autofocus.
@@ -155,23 +154,20 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
    */
   @queryAssignedElements({ slot: "other", flatten: true }) otherBtn!: NodeList;
 
-  // set props to buttons
+  // set flavor props to buttons (shape is controlled independently by the developer)
   private handleActionButtonChange = () => {
     this.requestUpdate();
     let count = 0;
     if (this.confirmBtn[0] && this.confirmBtn[0] instanceof ZetaButton) {
       this.confirmBtn[0].flavor = this.confirmButtonFlavor;
-      this.confirmBtn[0].shape = this.rounded ? "rounded" : "sharp";
       count++;
     }
     if (this.cancelBtn[0] && this.cancelBtn[0] instanceof ZetaButton) {
       this.cancelBtn[0].flavor = "outline-subtle";
-      this.cancelBtn[0].shape = this.rounded ? "rounded" : "sharp";
       count++;
     }
     if (this.otherBtn[0] && this.otherBtn[0] instanceof ZetaButton) {
       this.otherBtn[0].flavor = "text";
-      this.otherBtn[0].shape = this.rounded ? "rounded" : "sharp";
       count++;
     }
     return count;

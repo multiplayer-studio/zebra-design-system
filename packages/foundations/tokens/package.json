@@ -18,7 +18,5 @@
     "url": "git+https://github.com/zebratechnologies/zebra-design-system.git",
     "directory": "packages/foundations/tokens"
   },
-  "scripts": {
-    "pack": "pnpm pack --pack-destination dist/artifacts"
-  }
+  "scripts": {}
 }

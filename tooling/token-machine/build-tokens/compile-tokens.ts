@@ -6,7 +6,7 @@ import { getSourceFilesForCollection } from './utils.js';
 export async function compileTokens(
   sources: string[],
   destination: string,
-  opts?: { filter?: string; outputReferences?: boolean; javascriptCtorParam?: string }
+  opts?: { filter?: string; outputReferences?: boolean }
 ) {
   try {
     const fileConfig: any = {

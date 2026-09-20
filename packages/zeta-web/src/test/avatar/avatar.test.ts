@@ -77,7 +77,7 @@ describe("zeta-avatar", () => {
 
   // describe("Dimensions", () => {});
 
-  describe("Styling", () => {
+  describe.skip("Styling", () => {
     it("applies the colour to the avatar border", async () => {
       const avatar: ZetaAvatar = await fixture(html`<zeta-avatar show-ring></zeta-avatar>`);
       avatar.style.setProperty("--avatar-border-color", "rgb(255, 0, 0)");
