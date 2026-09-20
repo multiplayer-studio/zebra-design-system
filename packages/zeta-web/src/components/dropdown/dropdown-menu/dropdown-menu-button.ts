@@ -3,7 +3,7 @@ import styles from "./dropdown-menu-button.styles.js";
 import { html, LitElement } from "lit";
 import { Contourable, Flavored, Size } from "../../../mixins/mixins.js";
 import { FormField, type ZetaInputType } from "../../../mixins/form-field.js";
-import type { ZetaDroppable } from "../droppable.js";
+import type { ZetaDroppable, ZetaDroppableAlign, ZetaDroppablePosition } from "../droppable.js";
 import "../../button/button.js";
 import "../../radio-button/radio-button.js";
 import "../../checkbox/checkbox.js";
@@ -23,7 +23,7 @@ export type ZetaDropdownType = Extract<ZetaInputType, "text-dropdown" | "checkbo
  *
  * Zeta Dropdown Menu Button places a button that when clicked opens a dropdown menu containing the items passed into it through the items prop.
  *
- * @property {boolean} matchParentWidth - Whether the dropdown menu should match the width of its parent. Enabled by default. If disabled, the dropdown menu will size to fit its content.
+ * @property {boolean} matchParentWidth - Whether the dropdown menu should match the width of its parent. Disabled by default — the dropdown menu sizes to fit its content, with a sensible default min-width.
  * @property {string} defaultText - The default text to display when no item is selected. Defaults to an empty string if nothing is set.
  * @property {boolean} buttonTextMatchesSelected - Whether the button text should update to match the selected item. Default is true. Only applicable for the text-dropdown type.
  * @property {boolean} open - Controls the state of the dropdown menu. Default is false.
@@ -31,7 +31,9 @@ export type ZetaDropdownType = Extract<ZetaInputType, "text-dropdown" | "checkbo
  * @property {ButtonFlavor} flavor - The flavor of the dropdown button. Default is "primary".
  * @property {ZetaDropdownType} type - The type of dropdown. Options are "text-dropdown", "checkbox-dropdown", and "radio-dropdown". Default is "text-dropdown".
  * @property {string} name - The name of the dropdown menu button for form control. Default is "default".
- * @property {"left" | "right" | "bottom" | "top"} direction - The direction of the droppable relative to the anchor. Defaults to bottom if left undefined.
+ * @property {"left" | "right" | "bottom" | "top"} direction - **Deprecated** — use `position` instead. The direction of the droppable relative to the anchor. Defaults to bottom if left undefined.
+ * @property {"left" | "right" | "bottom" | "top"} position - The side of the anchor the droppable opens on. Defaults to bottom if left undefined. Falls back to the deprecated `direction` if unset.
+ * @property {"left" | "right" | "top" | "bottom"} align - The edge of the anchor the droppable aligns to along the axis perpendicular to `position`. Falls back to the deprecated `alignment` on `zeta-droppable` if unset.
  *
  * @event {CustomEvent<ZetaDropdownEventDetail>} open - Fired when the dropdown is opened.
  * @event {CustomEvent<ZetaDropdownEventDetail>} close - Fired when the dropdown is closed.
@@ -44,10 +46,9 @@ export type ZetaDropdownType = Extract<ZetaInputType, "text-dropdown" | "checkbo
 export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(LitElement)))) {
   /**
    * Whether the dropdown menu should match the width of its parent.
-   * Enabled by default.
-   * If disabled, the dropdown menu will size to fit its content.
+   * Disabled by default — the dropdown menu sizes to fit its content.
    */
-  @property({ type: Boolean }) matchParentWidth: boolean = true;
+  @property({ type: Boolean }) matchParentWidth: boolean = false;
 
   /** Whether the button text should update to match the selected item. */
   @property({ type: Boolean }) buttonTextMatchesSelected: boolean = true;
@@ -80,8 +81,21 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
   /** The name of the dropdown menu button for form control*/
   @property({ type: String }) name: string = "default";
 
-  /** The direction of the droppable relative to the anchor. Defaults to bottom if left undefined.*/
-  @property({ type: String }) direction?: "left" | "right" | "bottom" | "top" = "bottom";
+  /**
+   * The direction of the droppable relative to the anchor. Defaults to bottom if left undefined.
+   * @deprecated Use `position` instead.
+   */
+  @property({ type: String }) direction?: ZetaDroppablePosition = "bottom";
+
+  /** The side of the anchor the droppable opens on. Defaults to bottom if left undefined. Falls back to the deprecated `direction` prop if unset. */
+  @property({ type: String }) position?: ZetaDroppablePosition;
+
+  /**
+   * The edge of the anchor the droppable aligns to along the axis perpendicular to `position`.
+   * - When `position` is "bottom" or "top": "left" aligns the droppable's left edge with the anchor's left edge (default), "right" aligns the droppable's right edge with the anchor's right edge.
+   * - When `position` is "left" or "right": "top" aligns the droppable's top edge with the anchor's top edge (default), "bottom" aligns the droppable's bottom edge with the anchor's bottom edge.
+   */
+  @property({ type: String }) align?: ZetaDroppableAlign;
 
   /** The text state which displays the currently selected item */
   @state() private displayText: string = "";
@@ -242,7 +256,14 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
           >chevron_left</zeta-icon
         ></zeta-button
       >
-      <zeta-droppable .anchor=${this.anchor} .direction=${this.direction} .matchParentWidth=${this.matchParentWidth} ?open=${this.open} ?rounded=${this.rounded}
+      <zeta-droppable
+        .anchor=${this.anchor}
+        .direction=${this.direction}
+        .position=${this.position}
+        .align=${this.align}
+        .matchParentWidth=${this.matchParentWidth}
+        ?open=${this.open}
+        ?rounded=${this.rounded}
         >${this.renderItems()}</zeta-droppable
       >
       ${super.render()}

@@ -61,6 +61,22 @@ describe("zeta-dropdown-menu-item", () => {
 
       expect(subject.disabled).to.equal(disabled);
     });
+
+    it("sets the selected attribute correctly", async () => {
+      const selected = true;
+      subject.selected = selected;
+      await elementUpdated(subject);
+
+      expect(subject.selected).to.equal(selected);
+    });
+
+    it("renders a trailing icon with the correct name", async () => {
+      const icon = await fixture(html`<zeta-icon slot="trailing-icon">chevron_right</zeta-icon>`);
+      subject.appendChild(icon);
+      await elementUpdated(subject);
+
+      expect(getSlottedIconName(subject, "trailing-icon")).to.equal("chevron_right");
+    });
   });
 
   // describe("Dimensions", () => {});

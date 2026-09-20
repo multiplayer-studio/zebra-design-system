@@ -1,4 +1,4 @@
-import { customElement } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
 import styles from "./dropdown-menu-item.styles.js";
 import { html, LitElement } from "lit";
 import { Contourable, Interactive, Size } from "../../../mixins/mixins.js";
@@ -8,11 +8,15 @@ import "../../icon/icon.js";
  *
  * @slot - Content of menu item; typically text.
  * @slot  {zeta-icon} icon - A `zeta-icon` element shown on leading side of item. Only shown if `type` is `default`.
+ * @slot  {zeta-icon} trailing-icon - A `zeta-icon` element shown on trailing side of item.
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=22391-10146
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-dropdown--docs
  */
 @customElement("zeta-dropdown-menu-item")
 export class ZetaDropdownMenuItem extends Contourable(Size(Interactive(LitElement))) {
+  /** Whether the item is currently selected. Applies the selected visual state. */
+  @property({ type: Boolean, reflect: true }) selected: boolean = false;
+
   key(e: KeyboardEvent, type: "down" | "up") {
     if (type === "up") {
       if (e.key === " ") {
@@ -30,6 +34,7 @@ export class ZetaDropdownMenuItem extends Contourable(Size(Interactive(LitElemen
     >
       <slot name="icon"></slot>
       <slot></slot>
+      <slot name="trailing-icon"></slot>
     </div>`;
   }
 

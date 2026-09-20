@@ -4,9 +4,12 @@ import styles from "./droppable.styles.js";
 import { html, LitElement, nothing } from "lit";
 import { Contourable } from "../../mixins/mixins.js";
 
+export type ZetaDroppablePosition = "left" | "right" | "bottom" | "top";
+export type ZetaDroppableAlign = "left" | "right" | "top" | "bottom";
+
 /** Zeta Droppable is a container that can be opened and closed and can be attached to an anchor which will determine it's position.
  *
- * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=22391-10146
+ * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2669-10309
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-dropdown--docs
  */
 @customElement("zeta-droppable")
@@ -20,13 +23,42 @@ export class ZetaDroppable extends Contourable(LitElement) {
   /** The anchor element to position the droppable */
   @property({ type: Object }) anchor?: HTMLElement;
 
-  /** The alignment of the droppable relative to the anchor */
+  /**
+   * The alignment of the droppable relative to the anchor.
+   * @deprecated Use `align` instead.
+   */
   @property({ type: String }) alignment?: "start" | "end" | "center";
 
-  /** The direction of the droppable relative to the anchor */
-  @property({ type: String }) direction?: "left" | "right" | "bottom" | "top" = "bottom";
+  /**
+   * The direction of the droppable relative to the anchor.
+   * @deprecated Use `position` instead.
+   */
+  @property({ type: String }) direction?: ZetaDroppablePosition = "bottom";
+
+  /** The side of the anchor the droppable opens on. Defaults to "bottom" if left undefined. Falls back to the deprecated `direction` prop if unset. */
+  @property({ type: String }) position?: ZetaDroppablePosition;
+
+  /**
+   * The edge of the anchor the droppable aligns to along the axis perpendicular to `position`. Falls back to the deprecated `alignment` prop if unset.
+   * - When `position` is "bottom" or "top": "left" aligns the droppable's left edge with the anchor's left edge (default), "right" aligns the droppable's right edge with the anchor's right edge.
+   * - When `position` is "left" or "right": "top" aligns the droppable's top edge with the anchor's top edge (default), "bottom" aligns the droppable's bottom edge with the anchor's bottom edge.
+   */
+  @property({ type: String }) align?: ZetaDroppableAlign;
 
   @queryAssignedElements() slottedElements!: Array<HTMLElement>;
+
+  /** @internal resolves `position`, falling back to the deprecated `direction` prop. */
+  private get resolvedPosition(): ZetaDroppablePosition {
+    return this.position ?? this.direction ?? "bottom";
+  }
+
+  /** @internal resolves `align`, falling back to the deprecated `alignment` prop. */
+  private get resolvedAlign(): ZetaDroppableAlign | "center" | undefined {
+    if (this.align) return this.align;
+    if (this.alignment === "center") return "center";
+    if (this.alignment === "end") return this.resolvedPosition === "left" || this.resolvedPosition === "right" ? "bottom" : "right";
+    return undefined;
+  }
 
   private getAnchorPosition() {
     if (this.anchor) {
@@ -64,10 +96,10 @@ export class ZetaDroppable extends Contourable(LitElement) {
     const anchorPosition = this.getAnchorPosition();
     const droppablePosition = this.getDroppablePosition();
 
-    if (this.alignment == "end") {
+    if (this.resolvedAlign == "right") {
       this.style.left = "0";
       this.style.left = `${anchorPosition.right - droppablePosition.width}px`;
-    } else if (this.alignment == "center") {
+    } else if (this.resolvedAlign == "center") {
       this.style.left = `${anchorPosition.left + anchorPosition.width / 2 - droppablePosition.width / 2}px`;
     } else {
       this.style.left = `${anchorPosition.left}px`;
@@ -77,9 +109,9 @@ export class ZetaDroppable extends Contourable(LitElement) {
   private alignVertically = () => {
     const anchorPosition = this.getAnchorPosition();
     const droppablePosition = this.getDroppablePosition();
-    if (this.alignment == "end") {
-      this.style.top = `${anchorPosition.top - droppablePosition.height + anchorPosition.height}px`;
-    } else if (this.alignment == "center") {
+    if (this.resolvedAlign == "bottom") {
+      this.style.top = `${anchorPosition.top - droppablePosition.height + anchorPosition.height * 2}px`;
+    } else if (this.resolvedAlign == "center") {
       this.style.top = `${anchorPosition.top + anchorPosition.height / 2 - droppablePosition.height / 2}px`;
     }
   };
@@ -89,23 +121,23 @@ export class ZetaDroppable extends Contourable(LitElement) {
     const droppablePosition = this.getDroppablePosition();
 
     if (this.anchor) {
-      switch (this.direction) {
+      switch (this.resolvedPosition) {
         case "left":
           this.style.top = `${anchorPosition.top}px`;
-          this.style.left = `${anchorPosition.left - droppablePosition.width}px`;
+          this.style.left = `${anchorPosition.left - droppablePosition.width - 8}px`;
           this.alignVertically();
           break;
         case "right":
           this.style.top = `${anchorPosition.top}px`;
-          this.style.left = `${anchorPosition.left + anchorPosition.width}px`;
+          this.style.left = `${anchorPosition.left + anchorPosition.width + 8}px`;
           this.alignVertically();
           break;
         case "top":
-          this.style.top = `${anchorPosition.top - droppablePosition.height}px`;
+          this.style.top = `${anchorPosition.top + anchorPosition.height - droppablePosition.height - 12}px`;
           this.alignHorizontally();
           break;
         case "bottom":
-          this.style.top = `${anchorPosition.top + anchorPosition.height}px`;
+          this.style.top = `${anchorPosition.top + anchorPosition.height + 8}px`;
           this.alignHorizontally();
           break;
         default:
@@ -157,11 +189,6 @@ export class ZetaDroppable extends Contourable(LitElement) {
       this.setDroppablePosition();
     }
 
-    const anchorPosition = this.getAnchorPosition();
-
-    if (this.anchor) {
-      this.style.top = `${anchorPosition.top + anchorPosition.height}px`;
-    }
     if (this.matchParentWidth) {
       this.matchParentWidthHandler();
     } else {

@@ -40,7 +40,8 @@ const staticArgTypes = {
   checkValidity: { table: { disable: true } },
   reportValidity: { table: { disable: true } },
   validity: { table: { disable: true } },
-  validationMessage: { table: { disable: true } }
+  validationMessage: { table: { disable: true } },
+  direction: { table: { disable: true } }
 };
 
 const meta: Meta<ZetaDropdownMenuButton & { onopen: () => void }> = {
@@ -50,9 +51,10 @@ const meta: Meta<ZetaDropdownMenuButton & { onopen: () => void }> = {
     rounded: true,
     flavor: "primary",
     open: false,
-    direction: undefined,
+    position: undefined,
+    align: undefined,
     defaultText: "Select an option",
-    matchParentWidth: true,
+    matchParentWidth: false,
     buttonTextMatchesSelected: true,
     onclick: fn(),
     onchange: fn(),
@@ -67,8 +69,14 @@ const meta: Meta<ZetaDropdownMenuButton & { onopen: () => void }> = {
         type: "select"
       }
     },
-    direction: {
+    position: {
       options: ["left", "right", "bottom", "top", undefined],
+      control: {
+        type: "select"
+      }
+    },
+    align: {
+      options: ["left", "right", "top", "bottom", undefined],
       control: {
         type: "select"
       }
@@ -112,7 +120,8 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
             .type=${"text-dropdown"}
             .items=${items1}
             ?open=${args.open}
-            .direction=${args.direction}
+            .position=${args.position}
+            .align=${args.align}
             .matchParentWidth=${args.matchParentWidth}
             .defaultText=${args.defaultText}
             .buttonTextMatchesSelected=${args.buttonTextMatchesSelected}
@@ -150,6 +159,8 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
             .defaultText=${args.defaultText}
             ?open=${args.open}
             .direction=${args.direction}
+            .position=${args.position}
+            .align=${args.align}
             .matchParentWidth=${args.matchParentWidth}
             .buttonTextMatchesSelected=${args.buttonTextMatchesSelected}
             @click=${args.onclick}
@@ -186,6 +197,8 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
             .defaultText=${args.defaultText}
             ?open=${args.open}
             .direction=${args.direction}
+            .position=${args.position}
+            .align=${args.align}
             .matchParentWidth=${args.matchParentWidth}
             .buttonTextMatchesSelected=${args.buttonTextMatchesSelected}
             @click=${args.onclick}

@@ -70,17 +70,50 @@ describe("zeta-dropdown-menu-button", () => {
     //   expect(iconElement).to.not.be.undefined;
     //   expect(getIconName(iconElement)).to.equal(iconName);
     // });
+
+    it("passes `position` and `align` through to the droppable", async () => {
+      subject.position = "left";
+      subject.align = "bottom";
+      await subject.updateComplete;
+
+      expect(subject.droppable.position).to.equal("left");
+      expect(subject.droppable.align).to.equal("bottom");
+    });
+
+    it("still passes the deprecated `direction` through to the droppable when `position` is unset", async () => {
+      subject.direction = "top";
+      await subject.updateComplete;
+
+      expect(subject.droppable.direction).to.equal("top");
+      expect(subject.droppable.position).to.be.undefined;
+    });
+
+    it("defaults `matchParentWidth` to false so the dropdown menu sizes to its content instead of the button", () => {
+      expect(subject.matchParentWidth).to.equal(false);
+    });
+
+    it("does not stretch the droppable to the button's width by default, even for a wide button", async () => {
+      subject.style.width = "400px";
+      (subject.shadowRoot?.querySelector("zeta-button") as ZetaButton).click();
+      await subject.updateComplete;
+
+      const buttonWidth = subject.getBoundingClientRect().width;
+      const droppableWidth = subject.droppable.getBoundingClientRect().width;
+
+      expect(droppableWidth).to.be.lessThan(buttonWidth);
+    });
   });
 
   describe.skip("Dimensions", () => {
-    it("has the same width as the zeta droppable", async () => {
+    it("does not match the width of the dropdown menu button by default, sizing to its content instead", async () => {
       (subject.shadowRoot?.querySelector("zeta-button") as ZetaButton).click();
       await subject.updateComplete;
 
       const dropdownMenuButtonWidth = subject.getBoundingClientRect().width;
       const droppableWidth = subject.droppable.getBoundingClientRect().width;
 
-      expect(dropdownMenuButtonWidth).to.equal(droppableWidth);
+      expect(subject.matchParentWidth).to.equal(false);
+      expect(droppableWidth).to.not.equal(dropdownMenuButtonWidth);
     });
 
     it("aligns the zeta droppable to the bottom of the dropdown menu button", async () => {

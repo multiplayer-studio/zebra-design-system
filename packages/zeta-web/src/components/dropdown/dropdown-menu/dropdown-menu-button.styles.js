@@ -7,21 +7,21 @@ export default css`
   }
 
   .droppable-item {
-    height: var(--spacing-6xl);
-    padding: 0 var(--spacing-medium);
+    height: var(--control-md);
+    padding: 0 var(--space-md);
   }
 
   @media (hover: hover), (hover: none) and (pointer: fine) {
     .droppable-item:hover {
-      background-color: var(--surface-hover);
+      background-color: var(--interactive-ghost-background-hover);
     }
   }
 
   .droppable-item:active {
-    background-color: var(--surface-selected);
+    background-color: var(--interactive-ghost-background-selected);
   }
 
   :host([rounded]) .droppable-item {
-    border-radius: var(--radius-minimal);
+    border-radius: var(--radius-sm);
   }
 `;
