@@ -7,7 +7,7 @@ import "../../components/text-input/text-input.js";
 import "../../index.css";
 
 describe("zeta-text-input", () => {
-  // describe("Accessibility", () => {});
+  // describe.skip("Accessibility", () => {});
 
   describe("Content", () => {
     it.skip("creates from document.createElement", function () {
@@ -213,7 +213,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("5");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("5");
+      expect(el.value).to.equal("5");
     });
 
     it("should not strip leading minus when integer min is a non-numeric string", async () => {
@@ -223,7 +223,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("-5");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("-5");
+      expect(el.value).to.equal("-5");
     });
   });
 
@@ -260,7 +260,7 @@ describe("zeta-text-input", () => {
       const rgbColor = window.getComputedStyle(x!).color.split("(")[1].split(")")[0].split(",");
       const hexColor = rgbToHex(Number.parseInt(rgbColor[0]), Number.parseInt(rgbColor[1]), Number.parseInt(rgbColor[2]));
 
-      return await expect(hexColor).to.equal(getComputedStyle(el).getPropertyValue("--main-disabled"));
+      return expect(hexColor).to.equal(getComputedStyle(el).getPropertyValue("--main-disabled"));
     });
 
     it("should default to 2 rows when type is textarea and rows is not specified", async () => {
@@ -308,7 +308,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("Test Value");
 
       const event = await eventListener;
-      await expect(event.type).to.equal("input");
+      expect(event.type).to.equal("input");
     });
     it("should dispatch onChange when value changes", async () => {
       const el = await setup({});
@@ -318,7 +318,7 @@ describe("zeta-text-input", () => {
       await MouseActions.clickOutside(el);
 
       const event = await eventListener;
-      await expect(event.type).to.equal("change");
+      expect(event.type).to.equal("change");
     });
     it("should dispatch onChange when field is deselected & value has changed", async () => {
       const el = await setup({});
@@ -354,7 +354,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("123.45");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("12345");
+      expect(el.value).to.equal("12345");
     });
 
     it("should allow negative integers when type is integer", async () => {
@@ -365,7 +365,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("-123");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("-123");
+      expect(el.value).to.equal("-123");
     });
 
     it("should filter out non-numeric characters except minus when type is integer", async () => {
@@ -376,7 +376,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("1a2b3.45c");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("12345");
+      expect(el.value).to.equal("12345");
     });
 
     it("should filter out scientific notation 'e' when type is integer", async () => {
@@ -387,7 +387,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("123e4");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("1234");
+      expect(el.value).to.equal("1234");
     });
 
     it("should filter out scientific notation 'E' when type is integer", async () => {
@@ -398,7 +398,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("123E4");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("1234");
+      expect(el.value).to.equal("1234");
     });
 
     it("should not affect input when type is not integer", async () => {
@@ -409,7 +409,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("123.45");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("123.45");
+      expect(el.value).to.equal("123.45");
     });
 
     it("should not affect input when type is not number", async () => {
@@ -420,7 +420,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("123.45");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("123.45");
+      expect(el.value).to.equal("123.45");
     });
 
     it("should not go below min when type is integer and min is set", async () => {
@@ -430,7 +430,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("30");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("50");
+      expect(el.value).to.equal("50");
     });
 
     it("should not go above max when type is integer and max is set", async () => {
@@ -440,7 +440,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("80");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("50");
+      expect(el.value).to.equal("50");
     });
 
     it("should not go below min and should filter dots and non-numeric characters when type is integer and min is set", async () => {
@@ -450,7 +450,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("5.e5");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("55");
+      expect(el.value).to.equal("55");
     });
 
     it("should not go above max and should filter dots and non-numeric characters when type is integer and max is set", async () => {
@@ -460,7 +460,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("7e1.5");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("50");
+      expect(el.value).to.equal("50");
     });
 
     it("should clear the text input when the clear button is clicked", async () => {
@@ -471,7 +471,7 @@ describe("zeta-text-input", () => {
 
       clearButton?.dispatchEvent(new Event("click", { bubbles: true, composed: true }));
       await changeListener;
-      await expect(el.value).to.equal("");
+      expect(el.value).to.equal("");
     });
 
     // Increment / Decrement tests

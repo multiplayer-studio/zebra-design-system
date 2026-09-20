@@ -7,7 +7,7 @@ import { getSlotText } from "../utils";
 import type { ZetaIcon } from "../../components/icon/icon";
 
 describe("zeta-navigation-rail", () => {
-  // describe("Accessibility", () => {});
+  // describe.skip("Accessibility", () => {});
 
   describe("Content", () => {
     it("renders the navigation items", async () => {
@@ -29,10 +29,10 @@ describe("zeta-navigation-rail", () => {
       let i = 0;
       for (const item of navigationItems) {
         const label = getSlotText(item);
-        await expect(label).to.equal(items[i].label);
+        expect(label).to.equal(items[i].label);
 
         const icon = (item.shadowRoot?.querySelector("slot[name=icon]") as HTMLSlotElement).assignedElements()[0] as ZetaIcon;
-        await expect(getSlotText(icon)).to.equal(items[i].icon);
+        expect(getSlotText(icon)).to.equal(items[i].icon);
         i++;
       }
     });
@@ -48,7 +48,7 @@ describe("zeta-navigation-rail", () => {
       const slot = element.shadowRoot?.getElementById("content-slot") as HTMLSlotElement;
       const unwantedItem = slot.assignedElements().find(el => el.id === "unwanted") as HTMLDivElement;
 
-      await expect(window.getComputedStyle(unwantedItem).display).to.equal("none");
+      expect(window.getComputedStyle(unwantedItem).display).to.equal("none");
     });
   });
 

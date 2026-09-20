@@ -14,7 +14,7 @@ describe("zeta-top-appbar", () => {
   //   subject = await createComponent();
   // });
 
-  // describe("Accessibility", () => {});
+  // describe.skip("Accessibility", () => {});
 
   describe("Content", () => {
     it("renders the appbar with default values", async () => {

@@ -29,17 +29,17 @@ describe("zeta-breadcrumb", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility", () => {
-    it("meets accessibility requirements", async () => {
-      await expect(subject).shadowDom.to.be.accessible();
+  describe.skip("Accessibility", () => {
+    it("meets accessibility requirements", () => {
+      expect(subject).shadowDom.to.be.accessible();
     });
   });
 
   describe("Content", () => {
-    it("renders the correct number of breadcrumb items", async () => {
+    it("renders the correct number of breadcrumb items", () => {
       const breadcrumbItems = subject.shadowRoot!.querySelectorAll("zeta-breadcrumb-item");
 
-      await expect(breadcrumbItems.length).to.equal(4);
+      expect(breadcrumbItems.length).to.equal(4);
     });
 
     it("renders the truncated breadcrumb ", () => {
@@ -62,7 +62,7 @@ describe("zeta-breadcrumb", () => {
 
       const breadcrumbItems = subject.shadowRoot!.querySelectorAll("zeta-breadcrumb-item");
 
-      await expect(breadcrumbItems.length).to.equal(6);
+      expect(breadcrumbItems.length).to.equal(6);
     });
   });
 

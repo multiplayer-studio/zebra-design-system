@@ -5,7 +5,7 @@ import "../../index.css";
 import { getCssVarColorValue } from "../utils.js";
 
 describe("zeta-pagination", () => {
-  // describe("Accessibility", () => {});
+  // describe.skip("Accessibility", () => {});
 
   describe("Content", () => {
     it("creates from document.createElement", function () {

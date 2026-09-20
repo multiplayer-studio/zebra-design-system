@@ -6,7 +6,7 @@ import { ZetaStepperChangeEvent } from "../../events.js";
 import { KeyboardActions } from "../utils.js";
 
 describe("zeta-stepper-input", () => {
-  // describe("Accessibility", () => {});
+  // describe.skip("Accessibility", () => {});
 
   describe("Content", () => {
     it("creates from document.createElement", function () {

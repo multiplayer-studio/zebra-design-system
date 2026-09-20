@@ -9,7 +9,7 @@ import "../../index.css";
 //TODO test enter (submit) and escape (clear) keys
 //TODO test the input event
 describe("zeta-search", () => {
-  // describe("Accessibility", () => {});
+  // describe.skip("Accessibility", () => {});
 
   describe("Content", () => {
     it("creates from document.createElement", function () {
@@ -90,7 +90,7 @@ describe("zeta-search", () => {
       // prettier-ignore
       const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
       const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-      await expect(getComputedStyle(icon).fontSize).to.equal("20px");
+      expect(getComputedStyle(icon).fontSize).to.equal("20px");
     });
 
     it("should set correct small icon size", async () => {
@@ -99,7 +99,7 @@ describe("zeta-search", () => {
       el.size = "small";
       await el.updateComplete;
       const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-      await expect(getComputedStyle(icon).fontSize).to.equal("16px");
+      expect(getComputedStyle(icon).fontSize).to.equal("16px");
     });
 
     it("should set correct large icon size", async () => {
@@ -108,7 +108,7 @@ describe("zeta-search", () => {
       el.size = "large";
       await el.updateComplete;
       const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-      await expect(getComputedStyle(icon).fontSize).to.equal("24px");
+      expect(getComputedStyle(icon).fontSize).to.equal("24px");
     });
   });
 
@@ -119,7 +119,7 @@ describe("zeta-search", () => {
       el.disabled = true;
       await el.updateComplete;
       const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-      await expect(getComputedStyle(icon).color).to.equal(getCssVarColorValue(icon, "--main-disabled"));
+      expect(getComputedStyle(icon).color).to.equal(getCssVarColorValue(icon, "--main-disabled"));
     });
   });
 
@@ -154,18 +154,18 @@ describe("zeta-search", () => {
 
       let subjectStyles = getComputedStyle(subject!);
       let interactiveTargetStyles = getComputedStyle(interactiveTarget!);
-      await expect(subjectStyles.outlineWidth).to.equal("0px");
-      await expect(subjectStyles.outlineStyle).to.equal("none");
-      await expect(interactiveTargetStyles.outlineWidth).to.equal("0px");
-      await expect(interactiveTargetStyles.outlineStyle).to.equal("none");
+      expect(subjectStyles.outlineWidth).to.equal("0px");
+      expect(subjectStyles.outlineStyle).to.equal("none");
+      expect(interactiveTargetStyles.outlineWidth).to.equal("0px");
+      expect(interactiveTargetStyles.outlineStyle).to.equal("none");
       await MouseActions.down(subject);
 
       subjectStyles = getComputedStyle(subject!);
       interactiveTargetStyles = getComputedStyle(interactiveTarget!);
-      await expect(subjectStyles.outlineWidth).to.equal("0px");
-      await expect(subjectStyles.outlineStyle).to.equal("none");
-      await expect(interactiveTargetStyles.outlineWidth).to.equal("0px");
-      await expect(interactiveTargetStyles.outlineStyle).to.equal("none");
+      expect(subjectStyles.outlineWidth).to.equal("0px");
+      expect(subjectStyles.outlineStyle).to.equal("none");
+      expect(interactiveTargetStyles.outlineWidth).to.equal("0px");
+      expect(interactiveTargetStyles.outlineStyle).to.equal("none");
     });
   });
 

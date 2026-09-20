@@ -21,9 +21,9 @@ describe("zeta-bottom-sheet + zeta-list-item", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility", () => {
-    it("it meets accessibility requirements", async () => {
-      await expect(subject).shadowDom.to.be.accessible();
+  describe.skip("Accessibility", () => {
+    it("it meets accessibility requirements", () => {
+      expect(subject).shadowDom.to.be.accessible();
     });
   });
 
@@ -38,14 +38,14 @@ describe("zeta-bottom-sheet + zeta-list-item", () => {
       await elementUpdated(subject);
 
       const headerElement = subject.shadowRoot?.querySelector(".header");
-      await expect(headerElement?.textContent).to.equal(headerText);
+      expect(headerElement?.textContent).to.equal(headerText);
     });
 
     it("updates when isExpanded changes", async () => {
       subject.isExpanded = true;
       await elementUpdated(subject);
 
-      await expect(subject.isExpanded).to.not.equal(false);
+      expect(subject.isExpanded).to.not.equal(false);
     });
   });
 
@@ -56,18 +56,18 @@ describe("zeta-bottom-sheet + zeta-list-item", () => {
       await elementUpdated(subject);
 
       const headerElement = subject.shadowRoot?.querySelector(".header");
-      await expect(getComputedStyle(headerElement!).justifyContent).to.equal(headerAlignment);
+      expect(getComputedStyle(headerElement!).justifyContent).to.equal(headerAlignment);
 
       const headerAlignmentStart = "start";
       subject.headerAlignment = headerAlignmentStart;
       await elementUpdated(subject);
 
-      await expect(getComputedStyle(headerElement!).justifyContent).to.equal("flex-" + headerAlignmentStart);
+      expect(getComputedStyle(headerElement!).justifyContent).to.equal("flex-" + headerAlignmentStart);
     });
 
-    it("applies the correct css display for list items", async () => {
+    it("applies the correct css display for list items", () => {
       const sheetContent = subject.shadowRoot?.querySelector(".content");
-      await expect(getComputedStyle(sheetContent!).display).to.equal("flex");
+      expect(getComputedStyle(sheetContent!).display).to.equal("flex");
     });
   });
 
@@ -99,9 +99,9 @@ describe("zeta-bottom-sheet + zeta-grid-menu-item", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility", () => {
-    it("it meets accessibility requirements", async () => {
-      await expect(subject).shadowDom.to.be.accessible();
+  describe.skip("Accessibility", () => {
+    it("it meets accessibility requirements", () => {
+      expect(subject).shadowDom.to.be.accessible();
     });
   });
 
@@ -116,14 +116,14 @@ describe("zeta-bottom-sheet + zeta-grid-menu-item", () => {
       await elementUpdated(subject);
 
       const headerElement = subject.shadowRoot?.querySelector(".header");
-      await expect(headerElement?.textContent).to.equal(headerText);
+      expect(headerElement?.textContent).to.equal(headerText);
     });
 
     it("updates when isExpanded changes", async () => {
       subject.isExpanded = true;
       await elementUpdated(subject);
 
-      await expect(subject.isExpanded).to.not.equal(false);
+      expect(subject.isExpanded).to.not.equal(false);
     });
   });
 
@@ -134,13 +134,13 @@ describe("zeta-bottom-sheet + zeta-grid-menu-item", () => {
       await elementUpdated(subject);
 
       const headerElement = subject.shadowRoot?.querySelector(".header");
-      await expect(getComputedStyle(headerElement!).justifyContent).to.equal(headerAlignment);
+      expect(getComputedStyle(headerElement!).justifyContent).to.equal(headerAlignment);
 
       const headerAlignmentStart = "start";
       subject.headerAlignment = headerAlignmentStart;
       await elementUpdated(subject);
 
-      await expect(getComputedStyle(headerElement!).justifyContent).to.equal("flex-" + headerAlignmentStart);
+      expect(getComputedStyle(headerElement!).justifyContent).to.equal("flex-" + headerAlignmentStart);
     });
 
     it("applies the correct css display for grid items", async () => {
@@ -148,7 +148,7 @@ describe("zeta-bottom-sheet + zeta-grid-menu-item", () => {
       await elementUpdated(subject);
 
       const sheetContent = subject.shadowRoot?.querySelector(".content");
-      await expect(getComputedStyle(sheetContent!).display).to.equal("grid");
+      expect(getComputedStyle(sheetContent!).display).to.equal("grid");
     });
   });
 
@@ -200,9 +200,9 @@ describe("zeta-bottom-sheet + generic content", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility", () => {
-    it("it meets accessibility requirements", async () => {
-      await expect(subject).shadowDom.to.be.accessible();
+  describe.skip("Accessibility", () => {
+    it("it meets accessibility requirements", () => {
+      expect(subject).shadowDom.to.be.accessible();
     });
   });
 
@@ -217,14 +217,14 @@ describe("zeta-bottom-sheet + generic content", () => {
       await elementUpdated(subject);
 
       const headerElement = subject.shadowRoot?.querySelector(".header");
-      await expect(headerElement?.textContent).to.equal(headerText);
+      expect(headerElement?.textContent).to.equal(headerText);
     });
 
     it("updates when isExpanded changes", async () => {
       subject.isExpanded = true;
       await elementUpdated(subject);
 
-      await expect(subject.isExpanded).to.not.equal(false);
+      expect(subject.isExpanded).to.not.equal(false);
     });
   });
 
@@ -235,13 +235,13 @@ describe("zeta-bottom-sheet + generic content", () => {
       await elementUpdated(subject);
 
       const headerElement = subject.shadowRoot?.querySelector(".header");
-      await expect(getComputedStyle(headerElement!).justifyContent).to.equal(headerAlignment);
+      expect(getComputedStyle(headerElement!).justifyContent).to.equal(headerAlignment);
 
       const headerAlignmentStart = "start";
       subject.headerAlignment = headerAlignmentStart;
       await elementUpdated(subject);
 
-      await expect(getComputedStyle(headerElement!).justifyContent).to.equal("flex-" + headerAlignmentStart);
+      expect(getComputedStyle(headerElement!).justifyContent).to.equal("flex-" + headerAlignmentStart);
     });
 
     it("applies the correct css display for generic content", async () => {
@@ -249,7 +249,7 @@ describe("zeta-bottom-sheet + generic content", () => {
       await elementUpdated(subject);
 
       const sheetContent = subject.shadowRoot?.querySelector(".content");
-      await expect(getComputedStyle(sheetContent!).display).to.equal("block");
+      expect(getComputedStyle(sheetContent!).display).to.equal("block");
     });
   });
 

@@ -6,19 +6,19 @@ import { ZetaCancelUploadEvent } from "../../events";
 import "../../components/upload-item/upload-item.js";
 
 describe("zeta-upload-item", () => {
-  // describe("Accessibility", () => {});
+  // describe.skip("Accessibility", () => {});
 
   describe("Content", () => {
     it("renders default flavor correctly", async () => {
       const element: ZetaUploadItem = await fixture(html` <zeta-upload-item></zeta-upload-item> `);
 
-      await expect(element.flavor).to.equal("default");
+      expect(element.flavor).to.equal("default");
     });
 
     it("renders completed flavor correctly", async () => {
       const element: ZetaUploadItem = await fixture(html` <zeta-upload-item flavor="completed"></zeta-upload-item> `);
 
-      await expect(element.flavor).to.equal("completed");
+      expect(element.flavor).to.equal("completed");
 
       const progressCircle = element.shadowRoot?.querySelector("zeta-progress-circle");
       expect(progressCircle).to.not.exist;
@@ -27,7 +27,7 @@ describe("zeta-upload-item", () => {
     it("renders error flavor correctly", async () => {
       const element: ZetaUploadItem = await fixture(html` <zeta-upload-item flavor="error"></zeta-upload-item> `);
 
-      await expect(element.flavor).to.equal("error");
+      expect(element.flavor).to.equal("error");
 
       const progressCircle = element.shadowRoot?.querySelector("zeta-progress-circle");
       expect(progressCircle).to.not.exist;
@@ -36,11 +36,11 @@ describe("zeta-upload-item", () => {
     it("updates progress correctly", async () => {
       const element: ZetaUploadItem = await fixture(html` <zeta-upload-item progress="50"></zeta-upload-item> `);
 
-      await expect(element.progress).to.equal(50);
+      expect(element.progress).to.equal(50);
 
       const progressCircle: ZetaProgressCircle | null | undefined = element.shadowRoot?.querySelector("zeta-progress-circle");
 
-      await expect(progressCircle?.progress).to.equal(50);
+      expect(progressCircle?.progress).to.equal(50);
     });
   });
 
@@ -58,7 +58,7 @@ describe("zeta-upload-item", () => {
       await element.updateComplete;
 
       const event = await eventListener;
-      await expect(event.type).to.equal(new ZetaCancelUploadEvent().name);
+      expect(event.type).to.equal(new ZetaCancelUploadEvent().name);
     });
   });
 

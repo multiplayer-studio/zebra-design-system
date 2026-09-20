@@ -59,8 +59,8 @@ describe("zeta-dialog", () => {
       });
       it(`meets aria requirements for the ${flavor} flavor`, async () => {
         subject = await createFlavoredDialog(subject, flavor as DialogFlavor);
-        await expect(subject).to.be.accessible();
-        await expect(subject).shadowDom.to.be.accessible();
+        expect(subject).to.be.accessible();
+        expect(subject).shadowDom.to.be.accessible();
       });
     });
   });
@@ -130,7 +130,7 @@ describe("zeta-dialog", () => {
       const el = await fixture<ZetaDialog>(html`<zeta-dialog title="Dialog title"></zeta-dialog>`);
       const icon = el.shadowRoot?.querySelector("zeta-icon");
       expect(icon).to.exist;
-      await expect(icon?.name).to.equal("block");
+      expect(icon?.name).to.equal("block");
     });
 
     it("hides the leading icon, including a slotted custom icon, when showLeadingIcon is false", async () => {
@@ -146,7 +146,7 @@ describe("zeta-dialog", () => {
         await elementUpdated(subject);
         const icon = subject.shadowRoot?.querySelector("zeta-icon");
         const expectedIcon = flavor === "success" ? "verified" : flavor === "default" ? "block" : flavor;
-        await expect(icon?.name).to.equal(expectedIcon);
+        expect(icon?.name).to.equal(expectedIcon);
       }
     });
 
@@ -229,22 +229,22 @@ describe("zeta-dialog", () => {
       headerH1!.textContent = "This title is very long and should be truncated";
       await elementUpdated(subject);
       expect((headerH1 as HTMLElement).offsetWidth).to.be.lessThan((headerH1 as HTMLElement).scrollWidth);
-      await expect(getComputedStyle(headerH1 as HTMLElement).textOverflow).to.equal("ellipsis");
-      await expect(getComputedStyle(headerH1 as HTMLElement).overflow).to.equal("hidden");
+      expect(getComputedStyle(headerH1 as HTMLElement).textOverflow).to.equal("ellipsis");
+      expect(getComputedStyle(headerH1 as HTMLElement).overflow).to.equal("hidden");
     });
   });
 
   describe.skip("Dimensions", () => {
-    it("renders the correct width", async () => {
+    it("renders the correct width", () => {
       const dialog = subject.shadowRoot?.querySelector("dialog");
       expect(dialog).to.exist;
-      await expect(getComputedStyle(dialog!).width).to.equal("480px");
+      expect(getComputedStyle(dialog!).width).to.equal("480px");
     });
 
-    it("renders the correct height", async () => {
+    it("renders the correct height", () => {
       const dialog = subject.shadowRoot?.querySelector("dialog");
       expect(dialog).to.exist;
-      await expect(getComputedStyle(dialog!).height).to.equal("256px");
+      expect(getComputedStyle(dialog!).height).to.equal("256px");
     });
 
     it("stays the same width when the title is very long", async () => {
@@ -254,7 +254,7 @@ describe("zeta-dialog", () => {
       expect(dialog).to.exist;
       headerH1!.textContent = "This title is very long and should not change the dialog width";
       await elementUpdated(subject);
-      await expect(getComputedStyle(dialog!).width).to.equal("480px");
+      expect(getComputedStyle(dialog!).width).to.equal("480px");
     });
 
     it("stays the same width when the content is very long", async () => {
@@ -269,7 +269,7 @@ describe("zeta-dialog", () => {
       Aenean in ligula convallis, ullamcorper tortor id, vehicula mi. 
       Duis sit amet lacus blandit, lacinia ligula a, tristique tortor.`;
       await elementUpdated(subject);
-      await expect(getComputedStyle(dialog!).width).to.equal("480px");
+      expect(getComputedStyle(dialog!).width).to.equal("480px");
     });
 
     it("adjusts height to fit content when the content is very long", async () => {
@@ -284,28 +284,28 @@ describe("zeta-dialog", () => {
       Aenean in ligula convallis, ullamcorper tortor id, vehicula mi. 
       Duis sit amet lacus blandit, lacinia ligula a, tristique tortor.`;
       await elementUpdated(subject);
-      await expect(getComputedStyle(dialog!).height).to.not.equal("256px");
+      expect(getComputedStyle(dialog!).height).to.not.equal("256px");
     });
   });
 
   describe.skip("Styling", () => {
-    it("has the --surface-default background colour", async () => {
+    it("has the --surface-default background colour", () => {
       const dialog = subject.shadowRoot?.querySelector("dialog");
       expect(dialog).to.exist;
-      await expect(getComputedStyle(dialog!).backgroundColor).to.equal("rgb(255, 255, 255)");
+      expect(getComputedStyle(dialog!).backgroundColor).to.equal("rgb(255, 255, 255)");
     });
 
-    it("has the --main-default font colour", async () => {
+    it("has the --main-default font colour", () => {
       const dialog = subject.shadowRoot?.querySelector("dialog");
       expect(dialog).to.exist;
-      await expect(getComputedStyle(dialog!).color).to.equal("rgb(29, 30, 35)");
+      expect(getComputedStyle(dialog!).color).to.equal("rgb(29, 30, 35)");
     });
 
-    it("has the border-default border colour", async () => {
+    it("has the border-default border colour", () => {
       const dialog = subject.shadowRoot?.querySelector("dialog");
       expect(dialog).to.exist;
       const borderColor = getComputedStyle(dialog!).borderColor;
-      await expect(borderColor).to.equal("rgb(206, 210, 219)");
+      expect(borderColor).to.equal("rgb(206, 210, 219)");
     });
 
     it("has the correct icon colour for each flavor", async () => {
@@ -315,15 +315,15 @@ describe("zeta-dialog", () => {
         const icon = subject.shadowRoot?.querySelector("zeta-icon");
         expect(icon).to.exist;
         if (flavor === "success") {
-          await expect(getComputedStyle(icon!).color).to.equal("rgb(0, 134, 79)");
+          expect(getComputedStyle(icon!).color).to.equal("rgb(0, 134, 79)");
         } else if (flavor === "error") {
-          await expect(getComputedStyle(icon!).color).to.equal("rgb(215, 0, 21)");
+          expect(getComputedStyle(icon!).color).to.equal("rgb(215, 0, 21)");
         } else if (flavor === "warning") {
-          await expect(getComputedStyle(icon!).color).to.equal("rgb(174, 101, 0)");
+          expect(getComputedStyle(icon!).color).to.equal("rgb(174, 101, 0)");
         } else if (flavor === "info") {
-          await expect(getComputedStyle(icon!).color).to.equal("rgb(126, 12, 255)");
+          expect(getComputedStyle(icon!).color).to.equal("rgb(126, 12, 255)");
         } else if (flavor === "default") {
-          await expect(getComputedStyle(icon!).color).to.equal("rgb(29, 30, 35)");
+          expect(getComputedStyle(icon!).color).to.equal("rgb(29, 30, 35)");
         }
       }
     });
@@ -335,19 +335,19 @@ describe("zeta-dialog", () => {
         subject.confirmButtonFlavor = flavor as "primary" | "positive" | "negative";
         await elementUpdated(subject);
         if (flavor === "primary") {
-          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(0, 115, 230)");
+          expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(0, 115, 230)");
         } else if (flavor === "positive") {
-          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(0, 134, 79)");
+          expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(0, 134, 79)");
         } else if (flavor === "negative") {
-          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(215, 0, 21)");
+          expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(215, 0, 21)");
         }
       }
     });
 
-    it("has primary button flavour by default", async () => {
+    it("has primary button flavour by default", () => {
       const buttonEl = subject.querySelector('zeta-button[slot="confirm"]')?.shadowRoot?.querySelector("button");
       expect(buttonEl).to.exist;
-      await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(0, 115, 230)");
+      expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(0, 115, 230)");
     });
 
     it("has the correct background colour when confirm button is hovered for each flavor", async () => {
@@ -358,11 +358,11 @@ describe("zeta-dialog", () => {
         await MouseActions.hover(buttonEl!);
         await elementUpdated(subject);
         if (flavor === "primary") {
-          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(89, 159, 229)");
+          expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(89, 159, 229)");
         } else if (flavor === "positive") {
-          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(103, 183, 150)");
+          expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(103, 183, 150)");
         } else if (flavor === "negative") {
-          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(243, 97, 112)");
+          expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(243, 97, 112)");
         }
       }
     });
@@ -377,11 +377,11 @@ describe("zeta-dialog", () => {
 
       subject.shape = "full";
       await elementUpdated(subject);
-      await expect(getComputedStyle(dialog!).borderRadius).to.equal(roundedRadius);
+      expect(getComputedStyle(dialog!).borderRadius).to.equal(roundedRadius);
 
       subject.shape = "sharp";
       await elementUpdated(subject);
-      await expect(getComputedStyle(dialog!).borderRadius).to.equal("0px");
+      expect(getComputedStyle(dialog!).borderRadius).to.equal("0px");
     });
 
     it("has the correct background colour when the cancel button is hovered", async () => {
@@ -389,7 +389,7 @@ describe("zeta-dialog", () => {
       expect(buttonEl).to.exist;
       await MouseActions.hover(buttonEl!);
       await elementUpdated(subject);
-      await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(243, 246, 250)");
+      expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(243, 246, 250)");
     });
   });
 

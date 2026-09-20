@@ -4,7 +4,7 @@ import "../../components/progress-indicators/progress-circle/progress-circle.js"
 import { ZetaCancelUploadEvent } from "../../events.js";
 
 describe("zeta-progress-circle", () => {
-  // describe("Accessibility", () => {});
+  // describe.skip("Accessibility", () => {});
 
   describe("Content", () => {
     it("creates from document.createElement", function () {

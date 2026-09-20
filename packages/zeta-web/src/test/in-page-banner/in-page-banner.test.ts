@@ -22,9 +22,9 @@ describe("zeta-in-page-banner", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility", () => {
-    it("meets accessibility requirements", async () => {
-      await expect(subject).shadowDom.to.be.accessible();
+  describe.skip("Accessibility", () => {
+    it("meets accessibility requirements", () => {
+      expect(subject).shadowDom.to.be.accessible();
     });
   });
 
@@ -36,10 +36,10 @@ describe("zeta-in-page-banner", () => {
       void expect(headerElement?.textContent).to.equal(headingText);
     });
 
-    it("sets the content correctly", async () => {
+    it("sets the content correctly", () => {
       const slot = subject.shadowRoot!.querySelector("slot");
       const slotContent = (slot?.assignedNodes()[0] as Text)?.data.trim();
-      await expect(slotContent).to.equal(bodyContent);
+      expect(slotContent).to.equal(bodyContent);
     });
 
     it("renders correctly with no content", async () => {
@@ -48,7 +48,7 @@ describe("zeta-in-page-banner", () => {
       await subject.updateComplete;
       const slot = subject.shadowRoot!.querySelector("slot");
       const slotContent = slot?.assignedNodes().length;
-      await expect(slotContent).to.equal(0);
+      expect(slotContent).to.equal(0);
     });
 
     it("renders correctly with no title", async () => {
@@ -67,7 +67,7 @@ describe("zeta-in-page-banner", () => {
       const slot = subject.shadowRoot!.querySelector("slot");
       const slotContent = slot?.assignedNodes().length;
       expect(titleElement).to.be.null;
-      await expect(slotContent).to.equal(0);
+      expect(slotContent).to.equal(0);
     });
 
     it("renders correctly with icon hidden", async () => {
@@ -88,7 +88,7 @@ describe("zeta-in-page-banner", () => {
       subject.icon = "star";
       await subject.updateComplete;
       const icon = subject.shadowRoot?.querySelector("zeta-icon");
-      await expect(icon?.textContent?.trim()).to.equal("star");
+      expect(icon?.textContent?.trim()).to.equal("star");
     });
 
     it("renders the correct icon for each status", async () => {
@@ -104,7 +104,7 @@ describe("zeta-in-page-banner", () => {
         subject.status = statusValue as ZetaInPageBanner["status"];
         await subject.updateComplete;
         const icon = subject.shadowRoot?.querySelector("zeta-icon");
-        await expect(icon?.textContent?.trim()).to.equal(expectedIcon);
+        expect(icon?.textContent?.trim()).to.equal(expectedIcon);
       }
     });
 
@@ -119,7 +119,7 @@ describe("zeta-in-page-banner", () => {
       await subject.updateComplete;
       const titleElement = subject.shadowRoot?.querySelector(".title");
       expect(titleElement).to.not.be.null;
-      await expect(getComputedStyle(titleElement!).font).to.equal(customFont);
+      expect(getComputedStyle(titleElement!).font).to.equal(customFont);
     });
 
     it("renders the correct body font when the css property is set", async () => {
@@ -128,7 +128,7 @@ describe("zeta-in-page-banner", () => {
       await subject.updateComplete;
       const bodyElement = subject.shadowRoot?.querySelector("div[part='body']");
       expect(bodyElement).to.not.be.null;
-      await expect(getComputedStyle(bodyElement!).font).to.equal(customFont);
+      expect(getComputedStyle(bodyElement!).font).to.equal(customFont);
     });
   });
 

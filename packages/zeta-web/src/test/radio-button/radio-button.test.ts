@@ -18,17 +18,17 @@ describe("zeta-radio-button", () => {
   describe.skip("Accessibility", () => {
     it("meets accessibility requirements", async () => {
       const el = await fixture(html`<label for="checky">Label</label><zeta-radio-button name="checky"></zeta-radio-button>`);
-      await expect(el).to.be.accessible();
+      expect(el).to.be.accessible();
     });
 
     it("doesn't meet accessibility requirement without a label", async () => {
       const el = await fixture(html`<zeta-radio-button></zeta-radio-button>`);
-      await expect(el).not.to.be.accessible();
+      expect(el).not.to.be.accessible();
     });
 
     it("is accessible by adding aria-label", async () => {
       const el = await fixture(html`<zeta-radio-button aria-label="Test radio button"></zeta-radio-button>`);
-      await expect(el).to.be.accessible();
+      expect(el).to.be.accessible();
     });
   });
 
@@ -40,7 +40,7 @@ describe("zeta-radio-button", () => {
 
       const inputElement = subject.shadowRoot?.querySelector("input");
       expect(inputElement).to.not.be.undefined;
-      await expect(inputElement?.getAttribute("name")).to.equal(name);
+      expect(inputElement?.getAttribute("name")).to.equal(name);
     });
 
     it("sets the id attribute correctly", async () => {
@@ -50,11 +50,11 @@ describe("zeta-radio-button", () => {
 
       const inputElement = subject.shadowRoot?.querySelector("input");
       expect(inputElement).to.not.be.undefined;
-      await expect(inputElement?.getAttribute("id")).to.equal(id);
+      expect(inputElement?.getAttribute("id")).to.equal(id);
     });
 
-    it("renders the radio button as unchecked by default", async () => {
-      await expect(subject.checked).to.equal(false);
+    it("renders the radio button as unchecked by default", () => {
+      expect(subject.checked).to.equal(false);
     });
   });
 
@@ -68,7 +68,7 @@ describe("zeta-radio-button", () => {
       expect(subject.getAttribute("checked")).to.be.null;
       interactiveNode?.click();
       await elementUpdated(subject);
-      await expect(subject.getAttribute("checked")).to.be.equal("");
+      expect(subject.getAttribute("checked")).to.be.equal("");
       expect(subject.checked).to.be.true;
     });
   });
@@ -91,12 +91,12 @@ describe("zeta-radio-button label", () => {
     subject = await createComponent();
   });
 
-  // describe("Accessibility", () => {});
+  // describe.skip("Accessibility", () => {});
 
   describe("Content", () => {
-    it("renders the radio label correctly", async () => {
+    it("renders the radio label correctly", () => {
       const slot = subject.shadowRoot?.querySelector("slot");
-      await expect(
+      expect(
         slot
           ?.assignedNodes()
           .map(a => a.nodeValue)
@@ -115,7 +115,7 @@ describe("zeta-radio-button label", () => {
       expect(subject.getAttribute("checked")).to.be.null;
       labelText?.click();
       await elementUpdated(subject);
-      await expect(subject.getAttribute("checked")).to.be.equal("");
+      expect(subject.getAttribute("checked")).to.be.equal("");
       expect(subject.checked).to.be.true;
     });
   });

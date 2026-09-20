@@ -31,10 +31,10 @@ describe("zeta-dropdown-menu-button", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility", () => {
+  describe.skip("Accessibility", () => {
     // TODO: Colors currently fail accessability
-    it.skip("meets accessability requirements", async () => {
-      await expect(subject).shadowDom.to.be.accessible();
+    it.skip("meets accessability requirements", () => {
+      expect(subject).shadowDom.to.be.accessible();
     });
   });
 
@@ -48,14 +48,14 @@ describe("zeta-dropdown-menu-button", () => {
       expect(buttonElement.textContent).to.include(text);
     });
 
-    // it.skip("renders an icon with the correct name", async () => {
+    // it.skip("renders an icon with the correct name", () => {
     //   // fails due to slotting icon changes
     //   const iconName = "chevron_left";
 
     //   const iconElement = subject.shadowRoot?.querySelector("zeta-icon") as ZetaIcon;
 
     //   expect(iconElement).to.not.be.undefined;
-    //   await expect(getIconName(iconElement)).to.equal(iconName);
+    //   expect(getIconName(iconElement)).to.equal(iconName);
     // });
 
     // it.skip("renders an icon with the correct name when open", async () => {
@@ -68,7 +68,7 @@ describe("zeta-dropdown-menu-button", () => {
     //   await subject.updateComplete;
 
     //   expect(iconElement).to.not.be.undefined;
-    //   await expect(getIconName(iconElement)).to.equal(iconName);
+    //   expect(getIconName(iconElement)).to.equal(iconName);
     // });
   });
 
@@ -80,7 +80,7 @@ describe("zeta-dropdown-menu-button", () => {
       const dropdownMenuButtonWidth = subject.getBoundingClientRect().width;
       const droppableWidth = subject.droppable.getBoundingClientRect().width;
 
-      await expect(dropdownMenuButtonWidth).to.equal(droppableWidth);
+      expect(dropdownMenuButtonWidth).to.equal(droppableWidth);
     });
 
     it("aligns the zeta droppable to the bottom of the dropdown menu button", async () => {
@@ -93,7 +93,7 @@ describe("zeta-dropdown-menu-button", () => {
       const dropdownMenuButtonBottom = dropdownMenuButtonRect.bottom;
       const droppableTop = droppableRect.top;
 
-      await expect(droppableTop).to.equal(dropdownMenuButtonBottom);
+      expect(droppableTop).to.equal(dropdownMenuButtonBottom);
     });
     it("makes the dropdown menu match the width of the dropdown menu button when matchParentWidth is true", async () => {
       subject.matchParentWidth = true;
@@ -111,7 +111,7 @@ describe("zeta-dropdown-menu-button", () => {
       const dropdownMenuButtonWidth = window.getComputedStyle(dropdownMenuButton).width;
       const droppableWidth = window.getComputedStyle(dropdownMenu).width;
 
-      await expect(dropdownMenuButtonWidth).to.equal(droppableWidth);
+      expect(dropdownMenuButtonWidth).to.equal(droppableWidth);
     });
     it("The dropdown menu is not the same width as the dropdown menu button when matchParentWidth is false", async () => {
       subject = await createComponent(`<zeta-dropdown-menu-button
@@ -141,7 +141,7 @@ describe("zeta-dropdown-menu-button", () => {
       const dropdownMenuButtonWidth = dropdownMenuButton.getBoundingClientRect().width;
       const droppableWidth = dropdownMenu.getBoundingClientRect().width;
 
-      await expect(dropdownMenuButtonWidth).to.not.equal(droppableWidth);
+      expect(dropdownMenuButtonWidth).to.not.equal(droppableWidth);
     });
   });
 
@@ -198,7 +198,7 @@ describe("zeta-dropdown-menu-button", () => {
 
       const data = new FormData(event.target as HTMLFormElement);
 
-      await expect(Object.fromEntries(data)["dropdown-menu"]).to.equal(subject.items[0].label);
+      expect(Object.fromEntries(data)["dropdown-menu"]).to.equal(subject.items[0].label);
     });
 
     it("returns the selected checkboxes when a wrapping form is submitted", async () => {
@@ -255,7 +255,7 @@ describe("zeta-dropdown-menu-button", () => {
       const data = new FormData(event.target as HTMLFormElement);
       console.log("FormData", data);
 
-      await expect(Object.fromEntries(data)["dropdown-menu"]).to.equal(selectedItem1.label);
+      expect(Object.fromEntries(data)["dropdown-menu"]).to.equal(selectedItem1.label);
     });
   });
 

@@ -18,12 +18,12 @@ describe("zeta-avatar", () => {
   //   subject = await createComponent();
   // });
 
-  // describe("Accessibility", () => {});
+  // describe.skip("Accessibility", () => {});
 
   describe("Content", () => {
     it("renders the avatar with a custom size", async () => {
       const avatar: ZetaAvatar = await fixture(html`<zeta-avatar size="xl"></zeta-avatar>`);
-      await expect(avatar.size).to.equal("xl");
+      expect(avatar.size).to.equal("xl");
     });
 
     it("renders the avatar with the ring", async () => {
@@ -53,7 +53,7 @@ describe("zeta-avatar", () => {
       const img = slot?.assignedElements()[0] as HTMLImageElement;
 
       expect(img).to.exist;
-      return await expect(img?.src).to.equal(url);
+      return expect(img?.src).to.equal(url);
     });
 
     it("renders the avatar with an icon", async () => {
@@ -63,7 +63,7 @@ describe("zeta-avatar", () => {
       const icon = slot?.assignedElements()[0] as ZetaIcon;
 
       expect(icon).to.exist;
-      await expect(getSlotText(icon)).to.equal(iconName);
+      expect(getSlotText(icon)).to.equal(iconName);
     });
 
     it("renders the badge on the avatar", async () => {
@@ -86,7 +86,7 @@ describe("zeta-avatar", () => {
       expect(avatarDiv).to.exist;
 
       const style = getComputedStyle(avatarDiv!);
-      await expect(style.borderColor).to.equal("rgb(255, 0, 0)");
+      expect(style.borderColor).to.equal("rgb(255, 0, 0)");
     });
   });
 

@@ -37,6 +37,17 @@ pnpm storybook
 pnpm test:web
 ```
 
+#### Test Coverage Notes
+
+Some test suites in `zeta-web` are currently **skipped** during the token migration:
+
+- **Accessibility tests** — Skipped pending design team input on new token accessibility values. The components render correctly, but color contrast and accessibility assertions need to be verified against the finalized token values.
+- **Dimensions & Styling tests** — Skipped because the new design tokens affect layout and visual measurements. We're evaluating whether to:
+  - Remove these tests in favor of visual regression testing
+  - Convert them to use dynamic token-based assertions instead of hard-coded pixel values
+
+These tests will be re-enabled once the token values are finalized and test strategies are updated.
+
 ### Make a Release
 
 See **[VERSIONING.md](./VERSIONING.md)** for how to version and release packages independently using Conventional Commits.

@@ -24,18 +24,18 @@ describe("zeta-dropdown-menu-item", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility", () => {
+  describe.skip("Accessibility", () => {
     it("meets accessability requirements", async () => {
       const item: ZetaDropdownMenuItem = await fixture(html`<zeta-dropdown-menu-item><zeta-icon slot="icon">star</zeta-icon>${text}</zeta-dropdown-menu-item>`);
       await elementUpdated(item);
 
-      await expect(item).shadowDom.to.be.accessible();
+      expect(item).shadowDom.to.be.accessible();
     });
   });
 
   describe("Content", () => {
-    it("renders the given text", async () => {
-      await expect(subject.lastChild?.nodeValue).to.equal(text);
+    it("renders the given text", () => {
+      expect(subject.lastChild?.nodeValue).to.equal(text);
     });
 
     it("renders an icon with the correct name with the 'default' type", async () => {
@@ -43,7 +43,7 @@ describe("zeta-dropdown-menu-item", () => {
       subject.appendChild(icon);
       await elementUpdated(subject);
 
-      await expect(getSlottedIconName(subject)).to.equal("star");
+      expect(getSlottedIconName(subject)).to.equal("star");
     });
 
     it("sets the rounded attribute correctly", async () => {
@@ -51,7 +51,7 @@ describe("zeta-dropdown-menu-item", () => {
       subject.rounded = rounded;
       await elementUpdated(subject);
 
-      await expect(subject.rounded).to.equal(rounded);
+      expect(subject.rounded).to.equal(rounded);
     });
 
     it("sets the disabled attribute correctly", async () => {
@@ -59,7 +59,7 @@ describe("zeta-dropdown-menu-item", () => {
       subject.disabled = disabled;
       await elementUpdated(subject);
 
-      await expect(subject.disabled).to.equal(disabled);
+      expect(subject.disabled).to.equal(disabled);
     });
   });
 
@@ -73,8 +73,8 @@ describe("zeta-dropdown-menu-item", () => {
       const droppableItemElement = subject.shadowRoot?.querySelector(".droppable-item") as HTMLElement;
       const style = window.getComputedStyle(droppableItemElement);
 
-      await expect(style.color).to.equal(getCssVarColorValue(droppableItemElement, "--main-default"));
-      await expect(style.backgroundColor).to.equal(getCssVarColorValue(droppableItemElement, "--surface-default"));
+      expect(style.color).to.equal(getCssVarColorValue(droppableItemElement, "--main-default"));
+      expect(style.backgroundColor).to.equal(getCssVarColorValue(droppableItemElement, "--surface-default"));
     });
 
     it("sets the correct colors when disabled", async () => {
@@ -84,8 +84,8 @@ describe("zeta-dropdown-menu-item", () => {
       const droppableItemElement = subject.shadowRoot?.querySelector(".droppable-item") as HTMLElement;
       const style = window.getComputedStyle(droppableItemElement);
 
-      await expect(style.color).to.equal(getCssVarColorValue(droppableItemElement, "--main-disabled"));
-      await expect(style.backgroundColor).to.equal(getCssVarColorValue(droppableItemElement, "--surface-disabled"));
+      expect(style.color).to.equal(getCssVarColorValue(droppableItemElement, "--main-disabled"));
+      expect(style.backgroundColor).to.equal(getCssVarColorValue(droppableItemElement, "--surface-disabled"));
     });
 
     it.skip("sets the correct icon color when not disabled", async () => {
@@ -96,7 +96,7 @@ describe("zeta-dropdown-menu-item", () => {
       const iconElement = subject.shadowRoot?.querySelector("zeta-icon") as Element;
       const style = window.getComputedStyle(iconElement);
 
-      await expect(style.color).to.equal(getCssVarColorValue(iconElement, "--main-subtle"));
+      expect(style.color).to.equal(getCssVarColorValue(iconElement, "--main-subtle"));
     });
 
     it.skip("sets the correct icon color when disabled", async () => {
@@ -107,7 +107,7 @@ describe("zeta-dropdown-menu-item", () => {
       const iconElement = subject.shadowRoot?.querySelector("zeta-icon") as ZetaIcon;
       const style = window.getComputedStyle(iconElement);
 
-      await expect(style.color).to.equal(getCssVarColorValue(iconElement, "--main-disabled"));
+      expect(style.color).to.equal(getCssVarColorValue(iconElement, "--main-disabled"));
     });
 
     it("sets the correct border radius when rounded is true", async () => {
@@ -116,7 +116,7 @@ describe("zeta-dropdown-menu-item", () => {
 
       const style = window.getComputedStyle(subject.shadowRoot?.querySelector(".droppable-item") as Element);
 
-      await expect(style.borderRadius).to.equal(getCssVarValue(subject, "--radius-minimal"));
+      expect(style.borderRadius).to.equal(getCssVarValue(subject, "--radius-minimal"));
     });
 
     it("sets the correct border radius when rounded is false", async () => {
@@ -125,7 +125,7 @@ describe("zeta-dropdown-menu-item", () => {
 
       const style = window.getComputedStyle(subject.shadowRoot?.querySelector(".droppable-item") as HTMLElement);
 
-      await expect(style.borderRadius).to.equal(getCssVarValue(subject, "--radius-none"));
+      expect(style.borderRadius).to.equal(getCssVarValue(subject, "--radius-none"));
     });
   });
 

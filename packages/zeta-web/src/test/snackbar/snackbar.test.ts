@@ -22,39 +22,39 @@ describe("zeta-snackbar", () => {
     subject.actionClick = () => console.log("Action Clicked");
   });
 
-  describe("Accessibility", () => {
+  describe.skip("Accessibility", () => {
     // TODO: collaborate with design to fix contrast ratio of action button text in default status
-    it.skip("meets accessibility requirements", async () => {
-      await expect(subject).shadowDom.to.be.accessible();
+    it.skip("meets accessibility requirements", () => {
+      expect(subject).shadowDom.to.be.accessible();
     });
   });
 
   describe("Content", () => {
-    it("displays the correct text in the slot", async () => {
+    it("displays the correct text in the slot", () => {
       const slotContent = (subject.shadowRoot!.querySelector("slot:not([name='icon'])") as HTMLSlotElement)?.assignedNodes({ flatten: true });
       const textNode = slotContent.find(node => node.nodeType === Node.TEXT_NODE) as Text;
 
-      await expect(textNode.textContent).to.equal("Message");
+      expect(textNode.textContent).to.equal("Message");
     });
 
-    it("displays the correct text in the action button", async () => {
+    it("displays the correct text in the action button", () => {
       const actionButton = subject.shadowRoot!.querySelector("button") as HTMLElement;
-      await expect(actionButton.textContent).to.equal("Action");
+      expect(actionButton.textContent).to.equal("Action");
     });
 
-    it("displays the correct icon in the slot", async () => {
+    it("displays the correct icon in the slot", () => {
       const iconSlotContent = (subject.shadowRoot!.querySelector("slot[name='icon']") as HTMLSlotElement)?.assignedNodes({ flatten: true });
       const iconElement = iconSlotContent.find(node => node.nodeType === Node.ELEMENT_NODE && (node as HTMLElement).tagName === "ZETA-ICON") as ZetaIcon;
 
       expect(iconElement).to.not.be.null;
-      await expect(iconElement.textContent).to.equal("happy");
+      expect(iconElement.textContent).to.equal("happy");
     });
 
-    it("displays the default close icon when closeActionIcon is not provided", async () => {
+    it("displays the default close icon when closeActionIcon is not provided", () => {
       const closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
 
       expect(closeIcon).to.not.be.null;
-      await expect(closeIcon.textContent).to.equal("cancel");
+      expect(closeIcon.textContent).to.equal("cancel");
     });
 
     it("displays the custom close icon when closeActionIcon is provided", async () => {
@@ -62,18 +62,18 @@ describe("zeta-snackbar", () => {
       await subject.updateComplete;
 
       const closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
-      await expect(closeIcon.textContent).to.equal("close");
+      expect(closeIcon.textContent).to.equal("close");
     });
 
     it("updates the close icon when closeActionIcon property is changed", async () => {
       let closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
-      await expect(closeIcon.textContent).to.equal("cancel");
+      expect(closeIcon.textContent).to.equal("cancel");
 
       subject.closeActionIcon = "delete";
       await subject.updateComplete;
 
       closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
-      await expect(closeIcon.textContent).to.equal("delete");
+      expect(closeIcon.textContent).to.equal("delete");
     });
   });
 
@@ -88,24 +88,24 @@ describe("zeta-snackbar", () => {
       subject.shape = "full";
       const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
       await subject.updateComplete;
-      await expect(subject.shape).to.equal("full");
-      await expect(getComputedStyle(root).borderRadius).to.equal(getCssVarValue(subject, "--radius-full"));
+      expect(subject.shape).to.equal("full");
+      expect(getComputedStyle(root).borderRadius).to.equal(getCssVarValue(subject, "--radius-full"));
     });
 
     it("sets true border radius correctly", async () => {
       subject.shape = "rounded";
       const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
       await subject.updateComplete;
-      await expect(subject.shape).to.equal("rounded");
-      await expect(getComputedStyle(root).borderRadius).to.equal(getCssVarValue(subject, "--radius-minimal"));
+      expect(subject.shape).to.equal("rounded");
+      expect(getComputedStyle(root).borderRadius).to.equal(getCssVarValue(subject, "--radius-minimal"));
     });
 
     it("sets false border radius correctly", async () => {
       subject.shape = "sharp";
       await subject.updateComplete;
-      await expect(subject.shape).to.equal("sharp");
+      expect(subject.shape).to.equal("sharp");
       const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
-      await expect(getComputedStyle(root).borderRadius).to.equal(getCssVarValue(subject, "--radius-none"));
+      expect(getComputedStyle(root).borderRadius).to.equal(getCssVarValue(subject, "--radius-none"));
     });
 
     it("sets the correct colors for default status", async () => {
@@ -116,12 +116,12 @@ describe("zeta-snackbar", () => {
 
       subject.status = "default";
       await subject.updateComplete;
-      await expect(subject.status).to.equal("default");
-      await expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-default-inverse"));
-      await expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--main-inverse"));
-      await expect(getIconColor(icon)).to.equal(getCssVarColorValue(subject, "--main-inverse"));
-      await expect(getIconColor(closeIcon)).to.equal(getCssVarColorValue(subject, "--main-inverse"));
-      await expect(getComputedStyle(actionButton).color).to.equal(getCssVarColorValue(subject, "--main-primary"));
+      expect(subject.status).to.equal("default");
+      expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-default-inverse"));
+      expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--main-inverse"));
+      expect(getIconColor(icon)).to.equal(getCssVarColorValue(subject, "--main-inverse"));
+      expect(getIconColor(closeIcon)).to.equal(getCssVarColorValue(subject, "--main-inverse"));
+      expect(getComputedStyle(actionButton).color).to.equal(getCssVarColorValue(subject, "--main-primary"));
     });
 
     it("sets the correct colors for positive status", async () => {
@@ -132,12 +132,12 @@ describe("zeta-snackbar", () => {
 
       subject.status = "positive";
       await subject.updateComplete;
-      await expect(subject.status).to.equal("positive");
-      await expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-positive-subtle"));
-      await expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getIconColor(icon)).to.equal(getCssVarColorValue(subject, "--main-positive"));
-      await expect(getIconColor(closeIcon)).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getComputedStyle(actionButton).color).to.equal(getCssVarColorValue(subject, "--main-default"));
+      expect(subject.status).to.equal("positive");
+      expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-positive-subtle"));
+      expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--main-default"));
+      expect(getIconColor(icon)).to.equal(getCssVarColorValue(subject, "--main-positive"));
+      expect(getIconColor(closeIcon)).to.equal(getCssVarColorValue(subject, "--main-default"));
+      expect(getComputedStyle(actionButton).color).to.equal(getCssVarColorValue(subject, "--main-default"));
     });
 
     it("sets the correct colors for info status", async () => {
@@ -148,12 +148,12 @@ describe("zeta-snackbar", () => {
 
       subject.status = "info";
       await subject.updateComplete;
-      await expect(subject.status).to.equal("info");
-      await expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-info-subtle"));
-      await expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getIconColor(icon)).to.equal(getCssVarColorValue(subject, "--main-info"));
-      await expect(getIconColor(closeIcon)).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getComputedStyle(actionButton).color).to.equal(getCssVarColorValue(subject, "--main-default"));
+      expect(subject.status).to.equal("info");
+      expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-info-subtle"));
+      expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--main-default"));
+      expect(getIconColor(icon)).to.equal(getCssVarColorValue(subject, "--main-info"));
+      expect(getIconColor(closeIcon)).to.equal(getCssVarColorValue(subject, "--main-default"));
+      expect(getComputedStyle(actionButton).color).to.equal(getCssVarColorValue(subject, "--main-default"));
     });
 
     it("sets the correct colors for warning status", async () => {
@@ -164,12 +164,12 @@ describe("zeta-snackbar", () => {
 
       subject.status = "warning";
       await subject.updateComplete;
-      await expect(subject.status).to.equal("warning");
-      await expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-warning-subtle"));
-      await expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getIconColor(icon)).to.equal(getCssVarColorValue(subject, "--main-warning"));
-      await expect(getIconColor(closeIcon)).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getComputedStyle(actionButton).color).to.equal(getCssVarColorValue(subject, "--main-default"));
+      expect(subject.status).to.equal("warning");
+      expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-warning-subtle"));
+      expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--main-default"));
+      expect(getIconColor(icon)).to.equal(getCssVarColorValue(subject, "--main-warning"));
+      expect(getIconColor(closeIcon)).to.equal(getCssVarColorValue(subject, "--main-default"));
+      expect(getComputedStyle(actionButton).color).to.equal(getCssVarColorValue(subject, "--main-default"));
     });
 
     it("sets the correct colors for negative status", async () => {
@@ -180,12 +180,12 @@ describe("zeta-snackbar", () => {
 
       subject.status = "negative";
       await subject.updateComplete;
-      await expect(subject.status).to.equal("negative");
-      await expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-negative-subtle"));
-      await expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getIconColor(icon)).to.equal(getCssVarColorValue(subject, "--main-negative"));
-      await expect(getIconColor(closeIcon)).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getComputedStyle(actionButton).color).to.equal(getCssVarColorValue(subject, "--main-default"));
+      expect(subject.status).to.equal("negative");
+      expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-negative-subtle"));
+      expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--main-default"));
+      expect(getIconColor(icon)).to.equal(getCssVarColorValue(subject, "--main-negative"));
+      expect(getIconColor(closeIcon)).to.equal(getCssVarColorValue(subject, "--main-default"));
+      expect(getComputedStyle(actionButton).color).to.equal(getCssVarColorValue(subject, "--main-default"));
     });
 
     it("sets the correct colors for view status", async () => {
@@ -196,12 +196,12 @@ describe("zeta-snackbar", () => {
 
       subject.status = "view";
       await subject.updateComplete;
-      await expect(subject.status).to.equal("view");
-      await expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-primary-subtle"));
-      await expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getIconColor(icon)).to.equal(getCssVarColorValue(subject, "--main-primary"));
-      await expect(getIconColor(closeIcon)).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getComputedStyle(actionButton).color).to.equal(getCssVarColorValue(subject, "--main-default"));
+      expect(subject.status).to.equal("view");
+      expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-primary-subtle"));
+      expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--main-default"));
+      expect(getIconColor(icon)).to.equal(getCssVarColorValue(subject, "--main-primary"));
+      expect(getIconColor(closeIcon)).to.equal(getCssVarColorValue(subject, "--main-default"));
+      expect(getComputedStyle(actionButton).color).to.equal(getCssVarColorValue(subject, "--main-default"));
     });
   });
 

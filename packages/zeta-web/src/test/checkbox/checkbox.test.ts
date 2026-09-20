@@ -15,20 +15,20 @@ describe("zeta-checkbox", () => {
   });
 
   /** TODO need a full reassess of form control labels */
-  // describe("Accessibility", () => {
+  // describe.skip("Accessibility", () => {
   //   it.skip("meets accessibility requirements", async () => {
   //     const el = await fixture(html`<label for="checky">Label</label><zeta-checkbox name="checky"></zeta-checkbox>`);
-  //     await expect(el).to.be.accessible();
+  //     expect(el).to.be.accessible();
   //   });
 
   //   it.skip("doesn't meet accessibility requirement without a label", async () => {
   //     const el = await fixture(html`<zeta-checkbox></zeta-checkbox>`);
-  //     await expect(el).not.to.be.accessible();
+  //     expect(el).not.to.be.accessible();
   //   });
 
   //   it.skip("is accessible by adding aria-label", async () => {
   //     const el = await fixture(html`<zeta-checkbox aria-label="Test Checkbox"></zeta-checkbox>`);
-  //     await expect(el).to.be.accessible();
+  //     expect(el).to.be.accessible();
   //   });
   // });
 
@@ -40,7 +40,7 @@ describe("zeta-checkbox", () => {
 
       const inputElement = subject.shadowRoot?.querySelector("input");
       expect(inputElement).to.not.be.undefined;
-      await expect(inputElement?.getAttribute("name")).to.equal(name);
+      expect(inputElement?.getAttribute("name")).to.equal(name);
     });
 
     it("sets the id attribute correctly", async () => {
@@ -50,7 +50,7 @@ describe("zeta-checkbox", () => {
 
       const inputElement = subject.shadowRoot?.querySelector("input");
       expect(inputElement).to.not.be.undefined;
-      await expect(inputElement?.getAttribute("id")).to.equal(id);
+      expect(inputElement?.getAttribute("id")).to.equal(id);
     });
 
     it("creates from document.createElement", function () {
@@ -74,7 +74,7 @@ describe("zeta-checkbox", () => {
       expect(subject.getAttribute("checked")).to.be.null;
       interactiveNode?.click();
       await elementUpdated(subject);
-      await expect(subject.getAttribute("checked")).to.be.equal("");
+      expect(subject.getAttribute("checked")).to.be.equal("");
       expect(subject.checked).to.be.true;
     });
   });
@@ -97,12 +97,12 @@ describe("zeta-checkbox + label", () => {
     subject = await createComponent();
   });
 
-  // describe("Accessibility", () => {});
+  // describe.skip("Accessibility", () => {});
 
   describe("Content", () => {
-    it("renders the checkbox label correctly", async () => {
+    it("renders the checkbox label correctly", () => {
       const slot = subject.shadowRoot?.querySelector("slot");
-      await expect(
+      expect(
         slot
           ?.assignedNodes()
           .map(a => a.nodeValue)
@@ -121,7 +121,7 @@ describe("zeta-checkbox + label", () => {
       expect(subject.getAttribute("checked")).to.be.null;
       labelText?.click();
       await elementUpdated(subject);
-      await expect(subject.getAttribute("checked")).to.be.equal("");
+      expect(subject.getAttribute("checked")).to.be.equal("");
       expect(subject.checked).to.be.true;
     });
   });

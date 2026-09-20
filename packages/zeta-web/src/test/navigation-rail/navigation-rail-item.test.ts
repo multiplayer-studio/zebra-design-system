@@ -7,14 +7,14 @@ import type { ZetaIcon } from "../../components/icon/icon";
 import "../../components/icon/icon";
 
 describe("zeta-navigation-rail-item", () => {
-  // describe("Accessibility", () => {});
+  // describe.skip("Accessibility", () => {});
 
   describe("Content", () => {
     it("renders the label slot correctly", async () => {
       const label = "Home";
       const element = await fixture(html` <zeta-navigation-rail-item> ${label} </zeta-navigation-rail-item> `);
 
-      await expect(getSlotText(element as HTMLElement)).to.equal(label);
+      expect(getSlotText(element as HTMLElement)).to.equal(label);
     });
 
     it("renders the icon slot correctly", async () => {
@@ -22,7 +22,7 @@ describe("zeta-navigation-rail-item", () => {
       const element = await fixture(html` <zeta-navigation-rail-item> <zeta-icon slot="icon">${iconName}</zeta-icon> </zeta-navigation-rail-item> `);
 
       const icon = (element.shadowRoot?.querySelector("slot[name=icon]") as HTMLSlotElement).assignedElements()[0] as ZetaIcon;
-      await expect(getSlotText(icon)).to.equal(iconName);
+      expect(getSlotText(icon)).to.equal(iconName);
     });
 
     it("reflects the 'selected' property correctly", async () => {
@@ -45,7 +45,7 @@ describe("zeta-navigation-rail-item", () => {
       element.click();
 
       await element.updateComplete;
-      await expect(window.location.href).to.equal("https://www.google.com");
+      expect(window.location.href).to.equal("https://www.google.com");
     });
   });
 

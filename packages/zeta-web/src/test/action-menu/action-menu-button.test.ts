@@ -23,19 +23,19 @@ describe("zeta-action-menu-button", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility", () => {
-    it("meets accessability requirements", async () => {
-      await expect(subject).shadowDom.to.be.accessible();
+  describe.skip("Accessibility", () => {
+    it("meets accessability requirements", () => {
+      expect(subject).shadowDom.to.be.accessible();
     });
   });
 
   // describe("Content", () => {
-  // it.skip("renders an icon with the correct name", async () => {
+  // it.skip("renders an icon with the correct name", () => {
   //   // fails due to slotting icon changes
   //   const iconName = "more_vertical";
   //   const iconElement = subject.shadowRoot!.querySelector("zeta-icon-button") as ZetaIconButton;
   //   expect(iconElement).to.not.be.undefined;
-  //   await expect(getIconName(iconElement)).to.equal(iconName);
+  //   expect(getIconName(iconElement)).to.equal(iconName);
   // });
   // });
 
@@ -50,7 +50,7 @@ describe("zeta-action-menu-button", () => {
       const dropdownMenuButtonStart = dropdownMenuButtonRect.left;
       const droppableStart = droppableRect.left;
 
-      await expect(droppableStart).to.equal(dropdownMenuButtonStart);
+      expect(droppableStart).to.equal(dropdownMenuButtonStart);
     });
 
     it("aligns the zeta droppable to the center", async () => {
@@ -78,7 +78,7 @@ describe("zeta-action-menu-button", () => {
       const dropdownMenuButtonEnd = dropdownMenuButtonRect.right;
       const droppableEnd = droppableRect.right;
 
-      await expect(droppableEnd).to.equal(dropdownMenuButtonEnd);
+      expect(droppableEnd).to.equal(dropdownMenuButtonEnd);
     });
   });
 

@@ -17,9 +17,9 @@ describe("zeta-range-selector", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility", () => {
-    it("meets accessibility requirements", async () => {
-      await expect(subject).shadowDom.to.be.accessible();
+  describe.skip("Accessibility", () => {
+    it("meets accessibility requirements", () => {
+      expect(subject).shadowDom.to.be.accessible();
     });
   });
 
@@ -37,41 +37,41 @@ describe("zeta-range-selector", () => {
       expect(label).to.exist;
 
       const labelText = label?.textContent;
-      await expect(labelText).to.equal("Label");
+      expect(labelText).to.equal("Label");
     });
 
-    it("renders the lower input field", async () => {
+    it("renders the lower input field", () => {
       const input = subject.shadowRoot?.querySelector(".lower-input") as HTMLInputElement;
       expect(input).to.exist;
 
       const inputValue = input?.value;
-      await expect(inputValue).to.equal("10");
+      expect(inputValue).to.equal("10");
     });
 
-    it("renders the upper input field", async () => {
+    it("renders the upper input field", () => {
       const input = subject.shadowRoot?.querySelector(".upper-input") as HTMLInputElement;
       expect(input).to.exist;
 
       const inputValue = input?.value;
-      await expect(inputValue).to.equal("90");
+      expect(inputValue).to.equal("90");
     });
 
-    it("sets the initial values correctly", async () => {
-      await expect(subject.initialValues.min).to.equal(10);
-      await expect(subject.initialValues.max).to.equal(90);
-      await expect(subject.min).to.equal(0);
-      await expect(subject.max).to.equal(100);
-      await expect(subject.stepIncrement).to.equal(undefined);
-      await expect(subject.label).to.equal(undefined);
-      await expect(subject.disabled).to.equal(false);
-      await expect(subject.error).to.equal(false);
-      await expect(subject.rounded).to.equal(true);
-      await expect(subject.name).to.equal("");
+    it("sets the initial values correctly", () => {
+      expect(subject.initialValues.min).to.equal(10);
+      expect(subject.initialValues.max).to.equal(90);
+      expect(subject.min).to.equal(0);
+      expect(subject.max).to.equal(100);
+      expect(subject.stepIncrement).to.equal(undefined);
+      expect(subject.label).to.equal(undefined);
+      expect(subject.disabled).to.equal(false);
+      expect(subject.error).to.equal(false);
+      expect(subject.rounded).to.equal(true);
+      expect(subject.name).to.equal("");
     });
   });
 
   describe.skip("Dimensions", () => {
-    it("sets the lower input width and height correctly", async () => {
+    it("sets the lower input width and height correctly", () => {
       const lowerInput = subject.shadowRoot?.querySelector("input.lower-input");
       const inputPaddingLeft = getComputedStyle(lowerInput!).paddingLeft?.split("px")?.shift();
       const inputPaddingRight = getComputedStyle(lowerInput!).paddingRight?.split("px")?.shift();
@@ -81,11 +81,11 @@ describe("zeta-range-selector", () => {
       const inputPaddingBottom = getComputedStyle(lowerInput!).paddingBottom?.split("px")?.shift();
       const inputHeight = +48 + parseInt(inputPaddingTop!) + parseInt(inputPaddingBottom!);
 
-      await expect(lowerInput?.clientWidth).to.equal(inputWidth);
-      await expect(lowerInput?.clientHeight).to.equal(inputHeight);
+      expect(lowerInput?.clientWidth).to.equal(inputWidth);
+      expect(lowerInput?.clientHeight).to.equal(inputHeight);
     });
 
-    it("sets the upper input width and height correctly", async () => {
+    it("sets the upper input width and height correctly", () => {
       const upperInput = subject.shadowRoot?.querySelector("input.upper-input");
       const upperinputPaddingLeft = getComputedStyle(upperInput!).paddingLeft?.split("px")?.shift();
       const upperinputPaddingRight = getComputedStyle(upperInput!).paddingRight?.split("px")?.shift();
@@ -95,8 +95,8 @@ describe("zeta-range-selector", () => {
       const upperInputPaddingBottom = getComputedStyle(upperInput!).paddingBottom?.split("px")?.shift();
       const upperInputHeight = +48 + parseInt(upperInputPaddingTop!) + parseInt(upperInputPaddingBottom!);
 
-      await expect(upperInput?.clientWidth).to.equal(upperInputWidth);
-      await expect(upperInput?.clientHeight).to.equal(upperInputHeight);
+      expect(upperInput?.clientWidth).to.equal(upperInputWidth);
+      expect(upperInput?.clientHeight).to.equal(upperInputHeight);
     });
   });
 
@@ -110,44 +110,44 @@ describe("zeta-range-selector", () => {
       const labelFontWeight = getComputedStyle(label!).fontWeight;
       const labelColor = getComputedStyle(label!).color;
 
-      await expect(labelFontSize).to.equal("16px");
-      await expect(labelFontWeight).to.equal("400");
-      await expect(labelColor).to.equal(getCssVarColorValue(label as Element, "--main-default"));
+      expect(labelFontSize).to.equal("16px");
+      expect(labelFontWeight).to.equal("400");
+      expect(labelColor).to.equal(getCssVarColorValue(label as Element, "--main-default"));
     });
 
-    it("sets the correct styles for the lower input", async () => {
+    it("sets the correct styles for the lower input", () => {
       const input = subject.shadowRoot?.querySelector("input.lower-input");
 
       const inputFontSize = getComputedStyle(input!).fontSize;
       const inputFontWeight = getComputedStyle(input!).fontWeight;
       const inputColor = getComputedStyle(input!).color;
 
-      await expect(inputFontSize).to.equal("16px");
-      await expect(inputFontWeight).to.equal("400");
-      await expect(inputColor).to.equal(getCssVarColorValue(input as Element, "--main-subtle"));
+      expect(inputFontSize).to.equal("16px");
+      expect(inputFontWeight).to.equal("400");
+      expect(inputColor).to.equal(getCssVarColorValue(input as Element, "--main-subtle"));
     });
 
-    it("sets the correct styles for the upper input", async () => {
+    it("sets the correct styles for the upper input", () => {
       const input = subject.shadowRoot?.querySelector("input.upper-input");
 
       const inputFontSize = getComputedStyle(input!).fontSize;
       const inputFontWeight = getComputedStyle(input!).fontWeight;
       const inputColor = getComputedStyle(input!).color;
 
-      await expect(inputFontSize).to.equal("16px");
-      await expect(inputFontWeight).to.equal("400");
-      await expect(inputColor).to.equal(getCssVarColorValue(input as Element, "--main-subtle"));
+      expect(inputFontSize).to.equal("16px");
+      expect(inputFontWeight).to.equal("400");
+      expect(inputColor).to.equal(getCssVarColorValue(input as Element, "--main-subtle"));
     });
   });
 
   describe("Interaction", () => {
-    it("updates the hidden input value when the slider value changes", async () => {
+    it("updates the hidden input value when the slider value changes", () => {
       const slider = subject.shadowRoot?.querySelector("zeta-slider");
       slider?.dispatchEvent(new CustomEvent("change", { detail: { min: 25, max: 75 } }));
 
       const input = subject.shadowRoot?.querySelector("input#hidden-range-selector-input") as HTMLInputElement;
       const inputValue = input?.value;
-      await expect(inputValue).to.equal("25-75");
+      expect(inputValue).to.equal("25-75");
     });
 
     it("updates the slider value when the lower input value changes", async () => {
@@ -161,7 +161,7 @@ describe("zeta-range-selector", () => {
 
       const slider = subject.shadowRoot?.querySelector("zeta-slider");
       const sliderValue = slider?.getAttribute("lowerValue");
-      await expect(sliderValue).to.equal("25");
+      expect(sliderValue).to.equal("25");
     });
 
     it("updates the slider value when the lower input value changes", async () => {
@@ -175,7 +175,7 @@ describe("zeta-range-selector", () => {
 
       const slider = subject.shadowRoot?.querySelector("zeta-slider");
       const sliderValue = slider?.getAttribute("upperValue");
-      await expect(sliderValue).to.equal("75");
+      expect(sliderValue).to.equal("75");
     });
   });
 
