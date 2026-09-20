@@ -21,21 +21,21 @@ export default css`
 
   :host([size="large"]) > button {
     padding: var(--space-xs) var(--space-lg);
-    height: var(--control-lg);
+    min-height: var(--control-lg);
     gap: var(--space-sm);
   }
 
   :host > button,
   :host([size="medium"]) > button {
     padding: var(--space-xs) var(--space-md);
-    height: var(--control-md);
+    min-height: var(--control-md);
     gap: var(--space-sm);
   }
 
   :host([size="small"]) > button {
     padding: var(--space-xs) var(--space-md);
     font: var(--label-medium);
-    height: var(--control-sm);
+    min-height: var(--control-sm);
     gap: var(--space-xs);
 
     slot {
