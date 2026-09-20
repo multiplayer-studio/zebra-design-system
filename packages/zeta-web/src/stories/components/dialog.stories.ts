@@ -9,10 +9,13 @@ const meta: Meta<
     confirm: string;
     cancel: string;
     other: string;
-    flavor: "info" | "success" | "warning" | "error" | "default";
     confirmButtonFlavor: "primary" | "positive" | "negative";
     showLeadingIcon: boolean;
+    showClose: boolean;
+    showFooter: boolean;
     leadingIcon: string;
+    icon: string;
+    shape: "sharp" | "rounded" | "full";
     "--icon-color": String;
     onOpen: () => void;
     onClose: () => void;
@@ -23,19 +26,20 @@ const meta: Meta<
   title: "Components/Dialog",
   tags: ["autodocs"],
   args: {
-    rounded: true,
+    shape: "rounded",
     title: "Dialog Title",
     slot: "Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur adipisc.",
     confirm: "Button",
     cancel: "Button",
     other: "Button",
-    flavor: "default",
     confirmButtonFlavor: "primary",
     onOpen: fn(),
     onClose: fn(),
     onCancel: fn(),
     closeOnBarrierClicked: true,
-    showLeadingIcon: true
+    showLeadingIcon: true,
+    showClose: true,
+    showFooter: true
   },
   argTypes: {
     initialOpen: {
@@ -45,8 +49,7 @@ const meta: Meta<
       table: { disable: true }
     },
     flavor: {
-      options: ["default", "info", "success", "warning", "error"],
-      control: { type: "select" }
+      table: { disable: true }
     },
     confirmButtonFlavor: {
       options: ["primary", "positive", "negative"],
@@ -54,6 +57,16 @@ const meta: Meta<
     },
     leadingIcon: {
       options: [null, ...ZetaIconNameList],
+      control: { type: "select" }
+    },
+    icon: {
+      name: "icon (slot)",
+      description: "Fills the `icon` slot with a `<zeta-icon>`, overriding the flavor/leadingIcon-derived icon. Leave unset to see the fallback icon.",
+      options: [null, ...ZetaIconNameList],
+      control: { type: "select" }
+    },
+    shape: {
+      options: ["sharp", "rounded", "full"],
       control: { type: "select" }
     },
     "--icon-color": { control: "color" }
@@ -81,19 +94,21 @@ export const Dialog: StoryObj = {
       <div class="box">
         <zeta-dialog
           id="dialog1"
-          .rounded=${args.rounded}
+          .shape=${args.shape}
           .initialOpen=${true}
           .title=${args.title}
-          .flavor=${args.flavor}
           .confirmButtonFlavor=${args.confirmButtonFlavor}
           .showLeadingIcon=${args.showLeadingIcon}
+          .showClose=${args.showClose}
+          .showFooter=${args.showFooter}
           .leadingIcon=${args.leadingIcon}
+          .closeOnBarrierClicked=${args.closeOnBarrierClicked}
           @open=${args.onOpen}
           @close=${args.onClose}
           @cancel=${args.onCancel}
         >
-          ${args.slot} ${html`<zeta-icon slot="icon">${args.icon || "block"}</zeta-icon>`}
-          ${args.confirm && args.confirm.length > 0 ? html`<zeta-button slot="confirm">${args.confirm}</zeta-button>` : nothing}
+          ${args.slot} ${args.icon ? html`<zeta-icon slot="icon" name=${args.icon}></zeta-icon>` : nothing}
+          ${args.confirm && args.confirm.length > 0 ? html`<zeta-button flavor="negative" slot="confirm">${args.confirm}</zeta-button>` : nothing}
           ${args.cancel && args.cancel.length > 0 ? html`<zeta-button slot="cancel">${args.cancel}</zeta-button>` : nothing}
           ${args.other && args.other.length > 0 ? html`<zeta-button slot="other">${args.other}</zeta-button>` : nothing}
         </zeta-dialog>
@@ -131,18 +146,19 @@ export const DialogOpen: StoryObj = {
         >
         <zeta-dialog
           id="dialog1"
-          .rounded=${args.rounded}
+          .shape=${args.shape}
           .title=${args.title}
-          .flavor=${args.flavor}
           .confirmButtonFlavor=${args.confirmButtonFlavor}
           .showLeadingIcon=${args.showLeadingIcon}
+          .showClose=${args.showClose}
+          .showFooter=${args.showFooter}
           .leadingIcon=${args.leadingIcon}
           @open=${args.onOpen}
           @close=${args.onClose}
           @cancel=${args.onCancel}
           .closeOnBarrierClicked=${args.closeOnBarrierClicked}
         >
-          ${args.slot} ${html`<zeta-icon slot="icon">${args.icon || "block"}</zeta-icon>`}
+          ${args.slot} ${args.icon ? html`<zeta-icon slot="icon" name=${args.icon}></zeta-icon>` : nothing}
           ${args.confirm && args.confirm.length > 0 ? html`<zeta-button slot="confirm">${args.confirm}</zeta-button>` : nothing}
           ${args.cancel && args.cancel.length > 0 ? html`<zeta-button slot="cancel">${args.cancel}</zeta-button>` : nothing}
           ${args.other && args.other.length > 0 ? html`<zeta-button slot="other">${args.other}</zeta-button>` : nothing}

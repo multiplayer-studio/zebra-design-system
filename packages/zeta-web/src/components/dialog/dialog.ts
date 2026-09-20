@@ -4,7 +4,8 @@ import { LitElement, html } from "lit";
 import styles from "./dialog.styles.js";
 import { ZetaButton } from "../button/button.js";
 import type { ZetaIconName } from "@zebra-fed/zeta-icons";
-import { Contourable, Popup } from "../../mixins/mixins.js";
+import { Popup } from "../../mixins/mixins.js";
+import { ContourableThree } from "../../mixins/contourable-three.js";
 import type { DialogFlavor } from "../../mixins/flavor.js";
 
 /*
@@ -26,6 +27,7 @@ import type { DialogFlavor } from "../../mixins/flavor.js";
  *
  * When the confirm button is clicked, the dialog will close. To change this behavior, you can set the button's `type` attribute to `submit`.
  *
+ * @slot {zeta-icon} icon - Custom leading icon shown in the header. Falls back to the icon derived from `leadingIcon`/`flavor` when left empty. Only rendered when `showLeadingIcon` is true.
  * @slot - Body of dialog; typically text.
  * @slot {zeta-button} confirm - Button used in footer. Must be of type zeta-button.
  * @slot {zeta-button} cancel - Button used in footer. Must be of type zeta-button.
@@ -45,7 +47,7 @@ import type { DialogFlavor } from "../../mixins/flavor.js";
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-dialog--docs
  */
 @customElement("zeta-dialog")
-export class ZetaDialog extends Contourable(Popup(LitElement)) {
+export class ZetaDialog extends ContourableThree(Popup(LitElement)) {
   constructor() {
     super();
     this.addEventListener("submit", this.handleSubmit);
@@ -104,10 +106,35 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
   /** Whether to show a leading icon in the header. */
   @property({ type: Boolean }) showLeadingIcon: boolean = true;
 
-  /** Icon to display in the header. Initial value is undefined. */
+  /** Whether to show the close (X) icon in the header. */
+  @property({ type: Boolean }) showClose: boolean = true;
+
+  /** Whether to show the footer (action buttons). */
+  @property({ type: Boolean }) showFooter: boolean = true;
+
+  /**
+   * @deprecated Use the `icon` slot instead to provide a custom leading icon.
+   *
+   * Icon to display in the header. Initial value is undefined.
+   */
   @property({ type: String }) leadingIcon?: ZetaIconName = undefined;
 
   /**
+   * @deprecated Use `shape` instead. This is now a shorthand for `shape = "rounded"` (`true`, the default) or `shape = "sharp"` (`false`).
+   * Whether the component is rounded or sharp.
+   */
+  @property({ type: Boolean, reflect: true })
+  get rounded(): boolean {
+    return this.shape !== "sharp";
+  }
+
+  set rounded(value: boolean) {
+    this.shape = value ? "rounded" : "sharp";
+  }
+
+  /**
+   * @deprecated Provide a custom icon via the `icon` slot instead. Still used to derive the default header icon and its colour when no icon is slotted.
+   *
    * What type of dialog box to show.
    * This will change the icon and icon colour shown in the header.
    *
@@ -154,20 +181,23 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
    */
   @queryAssignedElements({ slot: "other", flatten: true }) otherBtn!: NodeList;
 
-  // set flavor props to buttons (shape is controlled independently by the developer)
+  // set flavor and shape on the action buttons to match the dialog (shape "full" renders pill-shaped buttons)
   private handleActionButtonChange = () => {
     this.requestUpdate();
     let count = 0;
     if (this.confirmBtn[0] && this.confirmBtn[0] instanceof ZetaButton) {
       this.confirmBtn[0].flavor = this.confirmButtonFlavor;
+      this.confirmBtn[0].shape = this.shape;
       count++;
     }
     if (this.cancelBtn[0] && this.cancelBtn[0] instanceof ZetaButton) {
       this.cancelBtn[0].flavor = "outline-subtle";
+      this.cancelBtn[0].shape = this.shape;
       count++;
     }
     if (this.otherBtn[0] && this.otherBtn[0] instanceof ZetaButton) {
       this.otherBtn[0].flavor = "text";
+      this.otherBtn[0].shape = this.shape;
       count++;
     }
     return count;
@@ -179,27 +209,37 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
     return html`
       <dialog .returnValue=${this.returnValue} id=${this.id} ?open=${this.initialOpen} part="dialog">
         <header part="header">
-          ${this.showLeadingIcon ? html`<zeta-icon part="header-icon" name=${this.leadingIcon ?? this.getHeaderIconName()}></zeta-icon>` : ""}
+          ${
+            this.showLeadingIcon
+              ? html`<slot name="icon"><zeta-icon part="header-icon" name=${this.leadingIcon ?? this.getHeaderIconName()}></zeta-icon></slot>`
+              : ""
+          }
           <h1>${this._title}</h1>
-          <zeta-icon @click=${() => this.hide("close")} name="close"></zeta-icon>
+          ${this.showClose ? html`<zeta-icon @click=${() => this.hide("close")} name="close"></zeta-icon>` : ""}
         </header>
         <div part="body"><slot></slot></div>
-        <footer data-element-count=${count} part="footer">
-          <slot @click=${() => this.hide("other")} @slotchange=${this.handleActionButtonChange} name="other"></slot>
-          <div class="actions">
-            <slot @click=${() => this.hide("cancel")} @slotchange=${this.handleActionButtonChange} name="cancel"></slot>
-            <slot
-              @click=${(e: Event) => {
-                const btn = e.target as HTMLButtonElement;
-                if (btn.type !== "submit") {
-                  this.hide("confirm");
-                }
-              }}
-              @slotchange=${this.handleActionButtonChange}
-              name="confirm"
-            ></slot>
-          </div>
-        </footer>
+        ${
+          this.showFooter
+            ? html`
+                <footer data-element-count=${count} part="footer">
+                  <slot @click=${() => this.hide("other")} @slotchange=${this.handleActionButtonChange} name="other"></slot>
+                  <div class="actions">
+                    <slot @click=${() => this.hide("cancel")} @slotchange=${this.handleActionButtonChange} name="cancel"></slot>
+                    <slot
+                      @click=${(e: Event) => {
+                        const btn = e.target as HTMLButtonElement;
+                        if (btn.type !== "submit") {
+                          this.hide("confirm");
+                        }
+                      }}
+                      @slotchange=${this.handleActionButtonChange}
+                      name="confirm"
+                    ></slot>
+                  </div>
+                </footer>
+              `
+            : ""
+        }
       </dialog>
     `;
   }

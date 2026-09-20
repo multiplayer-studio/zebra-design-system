@@ -1,5 +1,6 @@
 import { assert, fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/testing";
 import { ZetaDialog } from "../../components/dialog/dialog.js";
+import type { ZetaButton } from "../../components/button/button.js";
 import type { DialogFlavor } from "../../mixins/flavor.ts";
 import "../../components/dialog/dialog.js";
 import { contrastTest } from "../accessibility-utils/accessibility-test-runner.js";
@@ -33,7 +34,6 @@ describe("zeta-dialog", () => {
     await elementUpdated(subject);
     return await createComponent(`<zeta-dialog id="dialog1" title="Dialog title" flavor=${flavor} initialOpen>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          <zeta-icon slot="icon">block</zeta-icon>
           <zeta-button slot="confirm">Button</zeta-button>
           <zeta-button slot="cancel">Button</zeta-button>
           <zeta-button slot="other">Button</zeta-button>
@@ -120,10 +120,24 @@ describe("zeta-dialog", () => {
       expect(el.open).to.be.true;
     });
 
-    it("renders an icon", async () => {
-      const icon = subject.shadowRoot?.querySelector("zeta-icon");
+    it("renders a custom icon when the icon slot is filled", () => {
+      const icon = subject.querySelector('zeta-icon[slot="icon"]');
+      expect(icon).to.exist;
+      expect(icon?.textContent?.trim()).to.equal("block");
+    });
+
+    it("renders the default fallback icon when the icon slot is empty", async () => {
+      const el = await fixture<ZetaDialog>(html`<zeta-dialog title="Dialog title"></zeta-dialog>`);
+      const icon = el.shadowRoot?.querySelector("zeta-icon");
       expect(icon).to.exist;
       await expect(icon?.name).to.equal("block");
+    });
+
+    it("hides the leading icon, including a slotted custom icon, when showLeadingIcon is false", async () => {
+      subject.showLeadingIcon = false;
+      await elementUpdated(subject);
+      expect(subject.shadowRoot?.querySelector('slot[name="icon"]')).to.not.exist;
+      expect(subject.querySelector('zeta-icon[slot="icon"]')?.assignedSlot).to.be.null;
     });
 
     it("renders the correct icon for each flavor", async () => {
@@ -158,6 +172,55 @@ describe("zeta-dialog", () => {
       const otherButton = subject.querySelector('zeta-button[slot="other"]');
       expect(otherButton).to.exist;
       expect(otherButton?.textContent).to.include("Button");
+    });
+
+    it("hides the close icon when showClose is false", async () => {
+      subject.showClose = false;
+      await elementUpdated(subject);
+      const closeButton = subject.shadowRoot?.querySelector('zeta-icon[name="close"]');
+      expect(closeButton).to.not.exist;
+    });
+
+    it("shows the close icon by default", () => {
+      const closeButton = subject.shadowRoot?.querySelector('zeta-icon[name="close"]');
+      expect(closeButton).to.exist;
+    });
+
+    it("hides the footer when showFooter is false", async () => {
+      subject.showFooter = false;
+      await elementUpdated(subject);
+      const footer = subject.shadowRoot?.querySelector("footer");
+      expect(footer).to.not.exist;
+    });
+
+    it("shows the footer by default", () => {
+      const footer = subject.shadowRoot?.querySelector("footer");
+      expect(footer).to.exist;
+    });
+
+    it("passes the dialog's shape through to the action buttons", async () => {
+      subject.shape = "full";
+      await elementUpdated(subject);
+      const confirmButton = subject.querySelector('zeta-button[slot="confirm"]') as ZetaButton;
+      const cancelButton = subject.querySelector('zeta-button[slot="cancel"]') as ZetaButton;
+      const otherButton = subject.querySelector('zeta-button[slot="other"]') as ZetaButton;
+      expect(confirmButton.shape).to.equal("full");
+      expect(cancelButton.shape).to.equal("full");
+      expect(otherButton.shape).to.equal("full");
+    });
+
+    it("keeps the deprecated rounded property in sync with shape", async () => {
+      expect(subject.shape).to.equal("rounded");
+      expect(subject.rounded).to.be.true;
+
+      subject.rounded = false;
+      await elementUpdated(subject);
+      expect(subject.shape).to.equal("sharp");
+      expect(subject.rounded).to.be.false;
+
+      subject.shape = "full";
+      await elementUpdated(subject);
+      expect(subject.rounded).to.be.true;
     });
 
     it("truncates the label when text is longer than button width", async () => {
@@ -302,6 +365,23 @@ describe("zeta-dialog", () => {
           await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(243, 97, 112)");
         }
       }
+    });
+
+    it("gives the dialog the same corner radius for the rounded and full shapes, and none for sharp", async () => {
+      const dialog = subject.shadowRoot?.querySelector("dialog");
+      expect(dialog).to.exist;
+
+      subject.shape = "rounded";
+      await elementUpdated(subject);
+      const roundedRadius = getComputedStyle(dialog!).borderRadius;
+
+      subject.shape = "full";
+      await elementUpdated(subject);
+      await expect(getComputedStyle(dialog!).borderRadius).to.equal(roundedRadius);
+
+      subject.shape = "sharp";
+      await elementUpdated(subject);
+      await expect(getComputedStyle(dialog!).borderRadius).to.equal("0px");
     });
 
     it("has the correct background colour when the cancel button is hovered", async () => {
