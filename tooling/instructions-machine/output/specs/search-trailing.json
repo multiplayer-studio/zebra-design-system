@@ -1,0 +1,93 @@
+{
+  "componentName": "Trailing",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2114-8976&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "2183:20055",
+  "fetchedAt": "2026-09-21T18:19:39.333Z",
+  "componentProperties": {
+    "hasIcon": {
+      "type": "VARIANT",
+      "defaultValue": "true",
+      "options": [
+        "true",
+        "false"
+      ]
+    },
+    "hasCancel": {
+      "type": "VARIANT",
+      "defaultValue": "true",
+      "options": [
+        "true",
+        "false"
+      ]
+    }
+  },
+  "structure": {
+    "path": "Trailing",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "Trailing/Cancel-Icon",
+        "type": "INSTANCE"
+      },
+      {
+        "path": "Trailing/Divider",
+        "type": "INSTANCE"
+      },
+      {
+        "path": "Trailing/Trailing-Icon",
+        "type": "INSTANCE"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "hasIcon=true, hasCancel=true",
+      "nodeId": "2183:20054",
+      "properties": {
+        "hasIcon": "true",
+        "hasCancel": "true"
+      },
+      "values": {
+        "Trailing": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          }
+        },
+        "Trailing/Cancel-Icon": {},
+        "Trailing/Divider": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Trailing/Trailing-Icon": {}
+      }
+    },
+    {
+      "name": "hasIcon=true, hasCancel=false",
+      "nodeId": "2183:20074",
+      "properties": {
+        "hasIcon": "true",
+        "hasCancel": "false"
+      },
+      "values": {
+        "Trailing": {},
+        "Trailing/Trailing-Icon": {}
+      }
+    },
+    {
+      "name": "hasIcon=false, hasCancel=true",
+      "nodeId": "2183:20065",
+      "properties": {
+        "hasIcon": "false",
+        "hasCancel": "true"
+      },
+      "values": {
+        "Trailing": {},
+        "Trailing/Cancel-Icon": {}
+      }
+    }
+  ]
+}

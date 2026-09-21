@@ -3,9 +3,10 @@
   "private": true,
   "scripts": {
     "check": "pnpm run typecheck && pnpm run lint && pnpm run format",
-    "typecheck": "pnpm --filter @zebra-design-system/token-machine run typecheck && pnpm --filter @zebra-design-system/figma-metadata-scraper run typecheck",
+    "typecheck": "pnpm --filter @zebra-design-system/token-machine run typecheck && pnpm --filter @zebra-design-system/instructions-machine run typecheck",
     "lint": "pnpm --filter @zebra-design-system/zeta-web run lint && pnpm --filter @zebra-design-system/zeta-web run lint:lit-analyzer",
     "format": "pnpm --filter @zebra-design-system/zeta-web run prettier",
+    "test": "pnpm test:tokens && pnpm test:figma && pnpm test:web",
     "clean:tokens": "pnpm --filter @zebra-design-system/token-machine run clean",
     "fetch:tokens": "pnpm --filter @zebra-design-system/token-machine run fetch",
     "convert:tokens": "pnpm --filter @zebra-design-system/token-machine run convert",
@@ -13,13 +14,13 @@
     "pack:tokens": "pnpm --filter @zebra-design-system/tokens pack",
     "sync:tokens": "pnpm run clean:tokens && pnpm run fetch:tokens && pnpm run convert:tokens && pnpm run build:tokens",
     "test:tokens": "pnpm --filter @zebra-design-system/token-machine run test",
-    "scrape:metadata": "pnpm --filter @zebra-design-system/figma-metadata-scraper run scrape",
+    "docs:figma": "pnpm --filter @zebra-design-system/instructions-machine run generate",
+    "test:figma": "pnpm --filter @zebra-design-system/instructions-machine run test",
     "storybook": "pnpm --filter @zebra-design-system/zeta-web run storybook",
     "test:web": "pnpm --filter @zebra-design-system/zeta-web run test",
     "docs:web:build": "pnpm --filter @zebra-design-system/zeta-web run docs:build",
     "docs:web": "pnpm --filter @zebra-design-system/zeta-web run docs",
-    "docs:web:serve": "pnpm --filter @zebra-design-system/zeta-web run docs:serve",
-    "extract:props": "tsx tooling/utils/extract-component-props.ts"
+    "docs:web:serve": "pnpm --filter @zebra-design-system/zeta-web run docs:serve"
   },
   "dependencies": {
     "style-dictionary": "^5.5.0"

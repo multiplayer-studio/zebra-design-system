@@ -1,0 +1,254 @@
+{
+  "componentName": "Avatar",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-6017&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "2699:17793",
+  "fetchedAt": "2026-09-21T18:19:50.877Z",
+  "componentProperties": {
+    "Show Close#2701:0": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "Show Status#2701:8": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "Show Ring#2701:16": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "Size": {
+      "type": "VARIANT",
+      "defaultValue": "xxxsmall",
+      "options": [
+        "xxxsmall",
+        "small",
+        "medium",
+        "large",
+        "xlarge",
+        "xxlarge",
+        "xxxlarge",
+        "xxsmall",
+        "xsmall"
+      ]
+    }
+  },
+  "structure": {
+    "path": "Avatar",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "Avatar/Avatar Type",
+        "type": "INSTANCE"
+      },
+      {
+        "path": "Avatar/Ring",
+        "type": "ELLIPSE"
+      },
+      {
+        "path": "Avatar/Close",
+        "type": "INSTANCE"
+      },
+      {
+        "path": "Avatar/Status",
+        "type": "INSTANCE"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "Size=xxxsmall",
+      "nodeId": "2699:17791",
+      "properties": {
+        "Size": "xxxsmall"
+      },
+      "values": {
+        "Avatar": {},
+        "Avatar/Avatar Type": {},
+        "Avatar/Ring": {
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ]
+        },
+        "Avatar/Close": {},
+        "Avatar/Status": {}
+      }
+    },
+    {
+      "name": "Size=xxsmall",
+      "nodeId": "2739:184",
+      "properties": {
+        "Size": "xxsmall"
+      },
+      "values": {
+        "Avatar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Avatar/Avatar Type": {},
+        "Avatar/Ring": {
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ]
+        },
+        "Avatar/Close": {},
+        "Avatar/Status": {}
+      }
+    },
+    {
+      "name": "Size=xsmall",
+      "nodeId": "2739:164",
+      "properties": {
+        "Size": "xsmall"
+      },
+      "values": {
+        "Avatar": {},
+        "Avatar/Avatar Type": {},
+        "Avatar/Ring": {
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ]
+        },
+        "Avatar/Close": {},
+        "Avatar/Status": {}
+      }
+    },
+    {
+      "name": "Size=small",
+      "nodeId": "2699:17794",
+      "properties": {
+        "Size": "small"
+      },
+      "values": {
+        "Avatar": {},
+        "Avatar/Avatar Type": {},
+        "Avatar/Ring": {
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ]
+        },
+        "Avatar/Close": {},
+        "Avatar/Status": {}
+      }
+    },
+    {
+      "name": "Size=medium",
+      "nodeId": "2699:17813",
+      "properties": {
+        "Size": "medium"
+      },
+      "values": {
+        "Avatar": {},
+        "Avatar/Avatar Type": {},
+        "Avatar/Ring": {
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ]
+        },
+        "Avatar/Close": {},
+        "Avatar/Status": {}
+      }
+    },
+    {
+      "name": "Size=large",
+      "nodeId": "2699:17832",
+      "properties": {
+        "Size": "large"
+      },
+      "values": {
+        "Avatar": {},
+        "Avatar/Avatar Type": {},
+        "Avatar/Ring": {
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ]
+        },
+        "Avatar/Close": {},
+        "Avatar/Status": {}
+      }
+    },
+    {
+      "name": "Size=xlarge",
+      "nodeId": "2699:17851",
+      "properties": {
+        "Size": "xlarge"
+      },
+      "values": {
+        "Avatar": {},
+        "Avatar/Avatar Type": {},
+        "Avatar/Ring": {
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ]
+        },
+        "Avatar/Close": {},
+        "Avatar/Status": {}
+      }
+    },
+    {
+      "name": "Size=xxlarge",
+      "nodeId": "2699:17870",
+      "properties": {
+        "Size": "xxlarge"
+      },
+      "values": {
+        "Avatar": {},
+        "Avatar/Avatar Type": {},
+        "Avatar/Ring": {
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ]
+        },
+        "Avatar/Close": {},
+        "Avatar/Status": {}
+      }
+    },
+    {
+      "name": "Size=xxxlarge",
+      "nodeId": "2699:17890",
+      "properties": {
+        "Size": "xxxlarge"
+      },
+      "values": {
+        "Avatar": {},
+        "Avatar/Avatar Type": {},
+        "Avatar/Ring": {
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ]
+        },
+        "Avatar/Close": {},
+        "Avatar/Status": {}
+      }
+    }
+  ]
+}

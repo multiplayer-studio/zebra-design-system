@@ -1,0 +1,79 @@
+{
+  "componentName": "Divider",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2152-8795&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "2152:8803",
+  "fetchedAt": "2026-09-21T18:19:35.422Z",
+  "componentProperties": {
+    "Orientation": {
+      "type": "VARIANT",
+      "defaultValue": "horizontal",
+      "options": [
+        "horizontal",
+        "vertical"
+      ]
+    }
+  },
+  "structure": {
+    "path": "Divider",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "Divider/Horizontal",
+        "type": "LINE"
+      },
+      {
+        "path": "Divider/Vertical",
+        "type": "LINE"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "Orientation=horizontal",
+      "nodeId": "2152:8802",
+      "properties": {
+        "Orientation": "horizontal"
+      },
+      "values": {
+        "Divider": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Divider/Horizontal": {
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Orientation=vertical",
+      "nodeId": "2152:8801",
+      "properties": {
+        "Orientation": "vertical"
+      },
+      "values": {
+        "Divider": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Divider/Vertical": {
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

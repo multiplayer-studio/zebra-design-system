@@ -1,0 +1,1150 @@
+{
+  "componentName": "Navigation Rail",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3182-237&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "3453:54061",
+  "fetchedAt": "2026-09-21T18:20:04.699Z",
+  "componentProperties": {
+    "Footer Slot#3200:16": {
+      "type": "SLOT",
+      "defaultValue": {
+        "guid": {
+          "sessionID": -1,
+          "localID": -1
+        }
+      }
+    },
+    "Menu Slot#3200:20": {
+      "type": "SLOT",
+      "defaultValue": {
+        "guid": {
+          "sessionID": -1,
+          "localID": -1
+        }
+      }
+    },
+    "Show Header#3388:12": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "Show Header Action#3388:16": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "Show Toggle Item#3402:20": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "Show Sub menu#3404:30": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "Sub Menu Slot#3408:34": {
+      "type": "SLOT",
+      "defaultValue": {
+        "guid": {
+          "sessionID": -1,
+          "localID": -1
+        }
+      }
+    },
+    "Menu Slot#3497:65": {
+      "type": "SLOT",
+      "defaultValue": {
+        "guid": {
+          "sessionID": -1,
+          "localID": -1
+        }
+      }
+    },
+    "Menu Slot#3497:69": {
+      "type": "SLOT",
+      "defaultValue": {
+        "guid": {
+          "sessionID": -1,
+          "localID": -1
+        }
+      }
+    },
+    "More Rail Items#3502:73": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "More Footer Items#3502:77": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "Label": {
+      "type": "VARIANT",
+      "defaultValue": "false",
+      "options": [
+        "false",
+        "true"
+      ]
+    },
+    "Expanded": {
+      "type": "VARIANT",
+      "defaultValue": "false",
+      "options": [
+        "false",
+        "true"
+      ]
+    }
+  },
+  "structure": {
+    "path": "Navigation Rail",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "Navigation Rail/Main Rail",
+        "type": "FRAME",
+        "children": [
+          {
+            "path": "Navigation Rail/Main Rail/Navigation Header",
+            "type": "INSTANCE"
+          },
+          {
+            "path": "Navigation Rail/Main Rail/Icon Button",
+            "type": "INSTANCE"
+          },
+          {
+            "path": "Navigation Rail/Main Rail/Menu List",
+            "type": "FRAME",
+            "children": [
+              {
+                "path": "Navigation Rail/Main Rail/Menu List/Rail Item 1",
+                "type": "INSTANCE"
+              },
+              {
+                "path": "Navigation Rail/Main Rail/Menu List/Rail Item 2",
+                "type": "INSTANCE"
+              },
+              {
+                "path": "Navigation Rail/Main Rail/Menu List/Rail Item 3",
+                "type": "INSTANCE"
+              },
+              {
+                "path": "Navigation Rail/Main Rail/Menu List/Menu Slot",
+                "type": "SLOT"
+              }
+            ]
+          },
+          {
+            "path": "Navigation Rail/Main Rail/Footer",
+            "type": "FRAME",
+            "children": [
+              {
+                "path": "Navigation Rail/Main Rail/Footer/Footer Slot",
+                "type": "SLOT"
+              },
+              {
+                "path": "Navigation Rail/Main Rail/Footer/Footer Rail Item",
+                "type": "INSTANCE"
+              },
+              {
+                "path": "Navigation Rail/Main Rail/Footer/Navigation Rail Item",
+                "type": "INSTANCE"
+              }
+            ]
+          },
+          {
+            "path": "Navigation Rail/Main Rail/Button",
+            "type": "INSTANCE"
+          }
+        ]
+      },
+      {
+        "path": "Navigation Rail/Sub menu",
+        "type": "FRAME",
+        "children": [
+          {
+            "path": "Navigation Rail/Sub menu/Sub Menu Header",
+            "type": "INSTANCE"
+          },
+          {
+            "path": "Navigation Rail/Sub menu/Sub Menu Slot",
+            "type": "SLOT"
+          }
+        ]
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "Label=false, Expanded=false",
+      "nodeId": "4654:10599",
+      "properties": {
+        "Label": "false",
+        "Expanded": "false"
+      },
+      "values": {
+        "Navigation Rail": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "surface.section"
+            }
+          ]
+        },
+        "Navigation Rail/Main Rail": {
+          "itemSpacing": {
+            "raw": 12,
+            "token": "space.md"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.card"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.card"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Navigation Header": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Navigation Rail/Main Rail/Icon Button": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Menu List": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Navigation Rail/Main Rail/Menu List/Rail Item 1": {
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Menu List/Rail Item 2": {
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Menu List/Rail Item 3": {
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Menu List/Menu Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Footer": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Navigation Rail/Main Rail/Footer/Footer Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Navigation Rail/Main Rail/Footer/Footer Rail Item": {
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Footer/Navigation Rail Item": {
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "Navigation Rail/Sub menu": {
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "border.default"
+            }
+          ]
+        },
+        "Navigation Rail/Sub menu/Sub Menu Header": {
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "border.default"
+            }
+          ],
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "right": {
+              "raw": 16,
+              "token": "space.lg"
+            }
+          }
+        },
+        "Navigation Rail/Sub menu/Sub Menu Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          },
+          "padding": {
+            "left": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "right": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Label=true, Expanded=false",
+      "nodeId": "3453:54097",
+      "properties": {
+        "Label": "true",
+        "Expanded": "false"
+      },
+      "values": {
+        "Navigation Rail": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "surface.section"
+            }
+          ]
+        },
+        "Navigation Rail/Main Rail": {
+          "itemSpacing": {
+            "raw": 12,
+            "token": "space.md"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.card"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.card"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Navigation Header": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Navigation Rail/Main Rail/Icon Button": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Menu List": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Navigation Rail/Main Rail/Menu List/Rail Item 1": {
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Menu List/Rail Item 2": {
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Menu List/Rail Item 3": {
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Menu List/Menu Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Footer": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Navigation Rail/Main Rail/Footer/Footer Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Navigation Rail/Main Rail/Footer/Footer Rail Item": {
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Footer/Navigation Rail Item": {
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "Navigation Rail/Sub menu": {
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "border.default"
+            }
+          ]
+        },
+        "Navigation Rail/Sub menu/Sub Menu Header": {
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "border.default"
+            }
+          ],
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "right": {
+              "raw": 16,
+              "token": "space.lg"
+            }
+          }
+        },
+        "Navigation Rail/Sub menu/Sub Menu Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          },
+          "padding": {
+            "left": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "right": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Label=false, Expanded=true",
+      "nodeId": "3453:54121",
+      "properties": {
+        "Label": "false",
+        "Expanded": "true"
+      },
+      "values": {
+        "Navigation Rail": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "surface.section"
+            }
+          ]
+        },
+        "Navigation Rail/Main Rail": {
+          "itemSpacing": {
+            "raw": 12,
+            "token": "space.md"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.card"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.card"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Navigation Header": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Navigation Rail/Main Rail/Button": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "right": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Menu List": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Navigation Rail/Main Rail/Menu List/Rail Item 1": {
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "right": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Menu List/Rail Item 2": {
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "right": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Menu List/Rail Item 3": {
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "right": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Menu List/Menu Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Navigation Rail/Main Rail/Footer": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Navigation Rail/Main Rail/Footer/Footer Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Navigation Rail/Main Rail/Footer/Footer Rail Item": {
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "right": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "Navigation Rail/Main Rail/Footer/Navigation Rail Item": {
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "right": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "Navigation Rail/Sub menu": {
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "border.default"
+            }
+          ]
+        },
+        "Navigation Rail/Sub menu/Sub Menu Header": {
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "border.default"
+            }
+          ],
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "right": {
+              "raw": 16,
+              "token": "space.lg"
+            }
+          }
+        },
+        "Navigation Rail/Sub menu/Sub Menu Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          },
+          "padding": {
+            "left": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "right": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

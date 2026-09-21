@@ -1,0 +1,10 @@
+{
+  "tokens": {
+    "resolvedTokensPath": "../../packages/foundations/tokens/dist/json/resolved-tokens.json"
+  },
+  "output": {
+    "docsDir": "../../docs/instructions",
+    "debugSpecsDir": "output/specs",
+    "debugMetadataDir": "output/metadata"
+  }
+}

@@ -1,0 +1,294 @@
+{
+  "componentName": "_controls sharp outline",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "4484:5969",
+  "fetchedAt": "2026-09-21T18:19:40.992Z",
+  "componentProperties": {
+    "State": {
+      "type": "VARIANT",
+      "defaultValue": "enabled",
+      "options": [
+        "pressed",
+        "hover",
+        "focused",
+        "disabled",
+        "enabled"
+      ]
+    },
+    "Outline": {
+      "type": "VARIANT",
+      "defaultValue": "true",
+      "options": [
+        "true"
+      ]
+    }
+  },
+  "structure": {
+    "path": "_controls sharp outline",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "_controls sharp outline/Icon",
+        "type": "INSTANCE"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "State=enabled, Outline=true",
+      "nodeId": "4484:5972",
+      "properties": {
+        "State": "enabled",
+        "Outline": "true"
+      },
+      "values": {
+        "_controls sharp outline": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "interactive.neutral.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_controls sharp outline/Icon": {}
+      }
+    },
+    {
+      "name": "State=disabled, Outline=true",
+      "nodeId": "4484:5976",
+      "properties": {
+        "State": "disabled",
+        "Outline": "true"
+      },
+      "values": {
+        "_controls sharp outline": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "interactive.neutral.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.neutral.border.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_controls sharp outline/Icon": {}
+      }
+    },
+    {
+      "name": "State=focused, Outline=true",
+      "nodeId": "4484:5980",
+      "properties": {
+        "State": "focused",
+        "Outline": "true"
+      },
+      "values": {
+        "_controls sharp outline": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "interactive.neutral.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_controls sharp outline/Icon": {}
+      }
+    },
+    {
+      "name": "State=hover, Outline=true",
+      "nodeId": "4484:5984",
+      "properties": {
+        "State": "hover",
+        "Outline": "true"
+      },
+      "values": {
+        "_controls sharp outline": {
+          "fills": [
+            {
+              "raw": "#f3f6fa",
+              "token": "interactive.neutral.background.hover"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_controls sharp outline/Icon": {}
+      }
+    },
+    {
+      "name": "State=pressed, Outline=true",
+      "nodeId": "4484:5988",
+      "properties": {
+        "State": "pressed",
+        "Outline": "true"
+      },
+      "values": {
+        "_controls sharp outline": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.neutral.background.pressed"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#7a8190",
+              "token": "interactive.neutral.border.pressed"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_controls sharp outline/Icon": {}
+      }
+    }
+  ]
+}

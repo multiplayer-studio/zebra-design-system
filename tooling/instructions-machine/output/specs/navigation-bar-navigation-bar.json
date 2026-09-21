@@ -1,0 +1,242 @@
+{
+  "componentName": "Navigation Bar",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2835-796&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "3077:8391",
+  "fetchedAt": "2026-09-21T18:19:55.532Z",
+  "componentProperties": {
+    "Action Slot#2908:11": {
+      "type": "SLOT",
+      "defaultValue": {
+        "guid": {
+          "sessionID": -1,
+          "localID": -1
+        }
+      }
+    },
+    "Show Action Slot#2908:16": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "Slot#2923:28": {
+      "type": "SLOT",
+      "defaultValue": {
+        "guid": {
+          "sessionID": -1,
+          "localID": -1
+        }
+      }
+    },
+    "Right Slot#3077:34": {
+      "type": "SLOT",
+      "defaultValue": {
+        "guid": {
+          "sessionID": -1,
+          "localID": -1
+        }
+      }
+    },
+    "Shrink Items": {
+      "type": "VARIANT",
+      "defaultValue": "true",
+      "options": [
+        "true",
+        "false"
+      ]
+    },
+    "Spacer": {
+      "type": "VARIANT",
+      "defaultValue": "false",
+      "options": [
+        "false",
+        "true"
+      ]
+    },
+    "Show Divider": {
+      "type": "VARIANT",
+      "defaultValue": "false",
+      "options": [
+        "false",
+        "true"
+      ]
+    }
+  },
+  "structure": {
+    "path": "Navigation Bar",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "Navigation Bar/Slot",
+        "type": "SLOT"
+      },
+      {
+        "path": "Navigation Bar/Action Slot",
+        "type": "SLOT"
+      },
+      {
+        "path": "Navigation Bar/Right Slot",
+        "type": "SLOT"
+      },
+      {
+        "path": "Navigation Bar/Divider Section",
+        "type": "FRAME",
+        "children": [
+          {
+            "path": "Navigation Bar/Divider Section/Divider",
+            "type": "INSTANCE"
+          }
+        ]
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "Shrink Items=true, Spacer=false, Show Divider=false",
+      "nodeId": "3077:8392",
+      "properties": {
+        "Shrink Items": "true",
+        "Spacer": "false",
+        "Show Divider": "false"
+      },
+      "values": {
+        "Navigation Bar": {
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ]
+        },
+        "Navigation Bar/Slot": {},
+        "Navigation Bar/Action Slot": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": "space.lg"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Shrink Items=false, Spacer=false, Show Divider=false",
+      "nodeId": "3077:8667",
+      "properties": {
+        "Shrink Items": "false",
+        "Spacer": "false",
+        "Show Divider": "false"
+      },
+      "values": {
+        "Navigation Bar": {
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ]
+        },
+        "Navigation Bar/Slot": {},
+        "Navigation Bar/Action Slot": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": "space.lg"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Shrink Items=true, Spacer=true, Show Divider=false",
+      "nodeId": "3077:8752",
+      "properties": {
+        "Shrink Items": "true",
+        "Spacer": "true",
+        "Show Divider": "false"
+      },
+      "values": {
+        "Navigation Bar": {
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ]
+        },
+        "Navigation Bar/Slot": {},
+        "Navigation Bar/Right Slot": {},
+        "Navigation Bar/Action Slot": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": "space.lg"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Shrink Items=true, Spacer=true, Show Divider=true",
+      "nodeId": "3077:8813",
+      "properties": {
+        "Shrink Items": "true",
+        "Spacer": "true",
+        "Show Divider": "true"
+      },
+      "values": {
+        "Navigation Bar": {
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ]
+        },
+        "Navigation Bar/Slot": {},
+        "Navigation Bar/Divider Section": {
+          "padding": {
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "Navigation Bar/Divider Section/Divider": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Navigation Bar/Right Slot": {},
+        "Navigation Bar/Action Slot": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": "space.lg"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

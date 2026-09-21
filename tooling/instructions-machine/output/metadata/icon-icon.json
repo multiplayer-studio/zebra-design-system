@@ -1,0 +1,201 @@
+{
+  "componentName": "ICON",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15004&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "3945:37",
+  "fetchedAt": "2026-09-21T18:19:33.292Z",
+  "hero": {
+    "statusLabel": "ICON · COMPONENT METADATA",
+    "heading": "What this component does",
+    "description": "A single glyph from the shared icon library. Size sets its pixel dimensions, Framed adds an invisible touch-target square, Name picks which glyph to show. Nested inside most other components in this file, from Button to Dropdown"
+  },
+  "sections": [
+    {
+      "kind": "table",
+      "nodeId": "3945:46",
+      "title": "Property breakdown",
+      "columns": [
+        "Property",
+        "Type",
+        "Default",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Size",
+          "Type": "small",
+          "Default": true,
+          "Description": "16px, for dense UI like table cells or inline text icons"
+        },
+        {
+          "Property": "Size",
+          "Type": "medium",
+          "Default": "-",
+          "Description": "20px, the general-purpose size used inside most components"
+        },
+        {
+          "Property": "Size",
+          "Type": "large",
+          "Default": "-",
+          "Description": "28px, for standalone or emphasized icon use"
+        },
+        {
+          "Property": "Framed",
+          "Type": "false",
+          "Default": true,
+          "Description": "Icon renders at its natural Size with no extra space around it"
+        },
+        {
+          "Property": "Framed",
+          "Type": "true",
+          "Default": "-",
+          "Description": "Centers the icon inside an invisible 40px square regardless of Size, useful for consistent touch targets or alignment"
+        },
+        {
+          "Property": "Name",
+          "Type": "instance swap",
+          "Default": "\"Verified\" (rounded)",
+          "Description": "The key property. Picks which glyph this Icon shows, swappable to any icon in the shared library."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "3945:179",
+      "title": "Behavior & Motion Intent",
+      "columns": [
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Type": "Motion",
+          "Description": "None on its own. Icon is a static graphic, any transition belongs to whatever component embeds it"
+        },
+        {
+          "Type": "Color changes",
+          "Description": "When nested inside an interactive component, icon color typically swaps instantly alongside the parent's foreground/text color."
+        },
+        {
+          "Type": "Framed toggle",
+          "Description": "A static layout choice, not an animated transition"
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "3945:195",
+      "title": "Content & Slot",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Name",
+          "Type": "instance swap, required",
+          "Description": "Every Icon instance must reference a glyph, there's no empty state. Swap it to any icon in the shared library"
+        },
+        {
+          "Property": "As a nested slot",
+          "Type": "rule",
+          "Description": "When embedded in another component, the parent usually locks Size to match its own scale and doesn't expose Name as a property, swapping the glyph directly on the instance instead"
+        },
+        {
+          "Property": "Framed",
+          "Type": "rule",
+          "Description": "Usually left false when nested inside a component that provides its own padding, true is more common for standalone or bare icon usage"
+        },
+        {
+          "Property": "Color",
+          "Type": "inherited",
+          "Description": "Icon has no exposed color property of its own, it inherits its fill from whatever context or token the embedding component applies"
+        }
+      ]
+    },
+    {
+      "kind": "unknown",
+      "nodeId": "3945:219",
+      "layerName": "Anatomy",
+      "title": "Anatomy",
+      "rawTextContent": [
+        "Anatomy",
+        "1.",
+        "2.",
+        "4.",
+        "3.",
+        "5.",
+        "Glyph",
+        "The SVG shape itself, swapped via the Name property. Every glyph in the shared library fits the same square canvas",
+        "Bounding box",
+        "Square canvas sized by Size, 16px small, 20px medium, 28px large",
+        "Frame",
+        "An invisible 40px square padding area, added only when Framed is true. No visible background or border",
+        "Color",
+        "Inherited from context, not an exposed property on Icon itself. Confirmed by comparing the same glyph across different parent flavours",
+        "Nested style",
+        "Some individual glyphs, like the default Verified icon, expose their own further Style property. Icon doesn't promote it, editing it means swapping the instance directly"
+      ]
+    },
+    {
+      "kind": "how-to-use",
+      "nodeId": "3945:246",
+      "title": "How to use",
+      "dos": [
+        "Use Framed when the icon needs a consistent touch target or alignment box, like inside a list row or toolbar",
+        "Pick Size to match the text or component it sits next to, don't eyeball a custom size"
+      ],
+      "donts": [
+        "Rely on Icon's own color, it always inherits from context. Set color where Icon is embedded, not here"
+      ]
+    },
+    {
+      "kind": "bullet-list",
+      "nodeId": "3945:262",
+      "title": "Accessibility and content guidelines",
+      "items": [
+        "Icon is purely decorative unless it's the only content in an interactive element, like Icon Button",
+        "When Icon is the sole content of a button or link, the accessible name belongs on that parent, not on the Icon itself",
+        "Don't rely on the glyph name, like Verified, to convey meaning to screen readers"
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "3945:266",
+      "title": "Layout, Theming Intents",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Size",
+          "Type": "Fixed per Size",
+          "Description": "16px small, 20px medium, 28px large. No custom sizes"
+        },
+        {
+          "Property": "Framed box",
+          "Type": "Fixed",
+          "Description": "Always exactly 40px square when true, regardless of Size"
+        },
+        {
+          "Property": "Width and height",
+          "Type": "Fixed, no hug or fill",
+          "Description": "Icon never stretches or scales to fill a parent"
+        },
+        {
+          "Property": "Color",
+          "Type": "Inherited",
+          "Description": "No fill token of its own, always takes color from context"
+        },
+        {
+          "Property": "Responsive",
+          "Type": "Rule",
+          "Description": "No breakpoints, only Size changes the layout"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,507 @@
+{
+  "componentName": "_Avatar Photos",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-6017&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "2695:17612",
+  "fetchedAt": "2026-09-21T18:19:50.878Z",
+  "componentProperties": {
+    "Name": {
+      "type": "VARIANT",
+      "defaultValue": "Ophelia McKenna",
+      "options": [
+        "Ophelia McKenna",
+        "Addie Finnegan",
+        "Adler Huxley",
+        "Alfonso Lubin",
+        "Amal Badawi",
+        "Anna Whitney Spark",
+        "Chen Zhang",
+        "David Saris",
+        "Destiny Calzoni",
+        "Edward Yarrow",
+        "Gabrielle Zimmerman",
+        "Hamish Sumbeiywo",
+        "Hasnain Fatsani",
+        "Jagdesh Kumar",
+        "Jessica Holland",
+        "John Ford",
+        "Jordyn Park",
+        "Judith Gray",
+        "Jóse Valdez",
+        "Kate Finch-Beam",
+        "Kurtis Njoku",
+        "Mabel Anderson",
+        "Madelyn Fong",
+        "Malaika Osman",
+        "Miah Remington",
+        "Miguel Hernandez",
+        "Omer Mccarthy",
+        "Paxton Granis",
+        "Sabrina Wixx",
+        "Sarah Verlice",
+        "Selina Undergrove",
+        "Sian Bardot",
+        "Sophia Wyatt",
+        "Taylor Vaccaro",
+        "Tim Taylor",
+        "Tyrell Crawford",
+        "Whitney Jones",
+        "Xiong Vang",
+        "Zackary Curran",
+        "Zuzanna Rogers"
+      ]
+    }
+  },
+  "structure": {
+    "path": "_Avatar Photos",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "_Avatar Photos/Photo",
+        "type": "ELLIPSE"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "Name=Judith Gray",
+      "nodeId": "2695:17606",
+      "properties": {
+        "Name": "Judith Gray"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Hasnain Fatsani",
+      "nodeId": "2695:17587",
+      "properties": {
+        "Name": "Hasnain Fatsani"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Addie Finnegan",
+      "nodeId": "2695:17594",
+      "properties": {
+        "Name": "Addie Finnegan"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Edward Yarrow",
+      "nodeId": "2695:17591",
+      "properties": {
+        "Name": "Edward Yarrow"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Malaika Osman",
+      "nodeId": "2695:17608",
+      "properties": {
+        "Name": "Malaika Osman"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Omer Mccarthy",
+      "nodeId": "2695:17605",
+      "properties": {
+        "Name": "Omer Mccarthy"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=David Saris",
+      "nodeId": "2695:17604",
+      "properties": {
+        "Name": "David Saris"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Paxton Granis",
+      "nodeId": "2695:17593",
+      "properties": {
+        "Name": "Paxton Granis"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Hamish Sumbeiywo",
+      "nodeId": "2695:17609",
+      "properties": {
+        "Name": "Hamish Sumbeiywo"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Sarah Verlice",
+      "nodeId": "2695:17603",
+      "properties": {
+        "Name": "Sarah Verlice"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Mabel Anderson",
+      "nodeId": "2695:17602",
+      "properties": {
+        "Name": "Mabel Anderson"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Miah Remington",
+      "nodeId": "2695:17595",
+      "properties": {
+        "Name": "Miah Remington"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Ophelia McKenna",
+      "nodeId": "2695:17599",
+      "properties": {
+        "Name": "Ophelia McKenna"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Sophia Wyatt",
+      "nodeId": "2695:17598",
+      "properties": {
+        "Name": "Sophia Wyatt"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Destiny Calzoni",
+      "nodeId": "2695:17596",
+      "properties": {
+        "Name": "Destiny Calzoni"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Whitney Jones",
+      "nodeId": "2695:17592",
+      "properties": {
+        "Name": "Whitney Jones"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Chen Zhang",
+      "nodeId": "2695:17590",
+      "properties": {
+        "Name": "Chen Zhang"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=John Ford",
+      "nodeId": "2695:17588",
+      "properties": {
+        "Name": "John Ford"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Zackary Curran",
+      "nodeId": "2695:17610",
+      "properties": {
+        "Name": "Zackary Curran"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Tyrell Crawford",
+      "nodeId": "2695:17586",
+      "properties": {
+        "Name": "Tyrell Crawford"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Gabrielle Zimmerman",
+      "nodeId": "2695:17597",
+      "properties": {
+        "Name": "Gabrielle Zimmerman"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Zuzanna Rogers",
+      "nodeId": "2695:17583",
+      "properties": {
+        "Name": "Zuzanna Rogers"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Taylor Vaccaro",
+      "nodeId": "2695:17611",
+      "properties": {
+        "Name": "Taylor Vaccaro"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Anna Whitney Spark",
+      "nodeId": "2695:17581",
+      "properties": {
+        "Name": "Anna Whitney Spark"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Kate Finch-Beam",
+      "nodeId": "2695:17601",
+      "properties": {
+        "Name": "Kate Finch-Beam"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Adler Huxley",
+      "nodeId": "2695:17580",
+      "properties": {
+        "Name": "Adler Huxley"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Miguel Hernandez",
+      "nodeId": "2695:17607",
+      "properties": {
+        "Name": "Miguel Hernandez"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Selina Undergrove",
+      "nodeId": "2695:17585",
+      "properties": {
+        "Name": "Selina Undergrove"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Sian Bardot",
+      "nodeId": "2695:17578",
+      "properties": {
+        "Name": "Sian Bardot"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Jessica Holland",
+      "nodeId": "2695:17582",
+      "properties": {
+        "Name": "Jessica Holland"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Madelyn Fong",
+      "nodeId": "2695:17589",
+      "properties": {
+        "Name": "Madelyn Fong"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Jordyn Park",
+      "nodeId": "2695:17577",
+      "properties": {
+        "Name": "Jordyn Park"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Xiong Vang",
+      "nodeId": "2695:17600",
+      "properties": {
+        "Name": "Xiong Vang"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Jagdesh Kumar",
+      "nodeId": "2695:17584",
+      "properties": {
+        "Name": "Jagdesh Kumar"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Sabrina Wixx",
+      "nodeId": "2695:17576",
+      "properties": {
+        "Name": "Sabrina Wixx"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Amal Badawi",
+      "nodeId": "2695:17575",
+      "properties": {
+        "Name": "Amal Badawi"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Kurtis Njoku",
+      "nodeId": "2695:17573",
+      "properties": {
+        "Name": "Kurtis Njoku"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Jóse Valdez",
+      "nodeId": "2695:17579",
+      "properties": {
+        "Name": "Jóse Valdez"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Alfonso Lubin",
+      "nodeId": "2695:17572",
+      "properties": {
+        "Name": "Alfonso Lubin"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    },
+    {
+      "name": "Name=Tim Taylor",
+      "nodeId": "2695:17574",
+      "properties": {
+        "Name": "Tim Taylor"
+      },
+      "values": {
+        "_Avatar Photos": {},
+        "_Avatar Photos/Photo": {}
+      }
+    }
+  ]
+}

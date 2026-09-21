@@ -40,6 +40,3 @@ lerna-debug.log*
 *.tsbuildinfo
 .eslintcache
 .stylelintcache
-
-# Monorepo-specific
-tooling/figma-metadata-scraper/output/
