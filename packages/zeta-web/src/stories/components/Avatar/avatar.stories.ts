@@ -75,6 +75,10 @@ export const Playground: StoryObj<PlaygroundStory> = {
       options: ["default", "purple", "yellow", "blue", "orange", "sea", "burgundy", "green"],
       control: { type: "select" }
     },
+    icon: {
+      options: ZetaIconNameList,
+      control: { type: "select" }
+    },
     statusIcon: {
       options: ZetaIconNameList,
       control: { type: "select" }
