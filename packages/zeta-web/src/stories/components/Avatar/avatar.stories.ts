@@ -70,18 +70,19 @@ export const Playground: StoryObj<PlaygroundStory> = {
       control: { type: "select" }
     },
     initials: { control: { type: "text" }, if: { arg: "contentType", eq: "initials" } },
-    icon: { control: { type: "text" }, if: { arg: "contentType", eq: "icon" } },
     swatch: {
       options: ["default", "purple", "yellow", "blue", "orange", "sea", "burgundy", "green"],
       control: { type: "select" }
     },
     icon: {
       options: ZetaIconNameList,
-      control: { type: "select" }
+      control: { type: "select" },
+      if: { arg: "contentType", eq: "icon" }
     },
     statusIcon: {
       options: ZetaIconNameList,
-      control: { type: "select" }
+      control: { type: "select" },
+      if: { arg: "status", eq: "icon" }
     }
   },
   render: ({ onclose, contentType, initials, icon, swatch, showRing, showClose, statusIcon, ...args }) => {
