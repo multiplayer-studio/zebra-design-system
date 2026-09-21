@@ -1,15 +1,22 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaAvatarRail } from "../../components/avatar-rail/avatar-rail.js";
+import { html } from "lit";
+import { ZetaAvatar } from "../../components/avatar/avatar.js";
 
-const meta: Meta<ZetaAvatarRail & { "show-close": boolean }> = {
+type AvatarRailArgs = {
+  "show-close": boolean;
+  size?: string;
+};
+
+const meta: Meta<AvatarRailArgs> = {
   component: "zeta-avatar-rail",
   title: "Components/Avatar Rail",
   tags: ["autodocs"],
   args: {
-    "show-close": false,
+    "show-close": true,
     size: "m"
   },
   argTypes: {
+    "show-close": { control: { type: "boolean" } },
     size: {
       options: ["xxxs", "xxs", "xs", "s", "m", "l", "xl", "xxl", "xxxl"],
       control: {
@@ -29,11 +36,14 @@ const meta: Meta<ZetaAvatarRail & { "show-close": boolean }> = {
 
 export default meta;
 
-export const AvatarRail: StoryObj<ZetaAvatarRail> = {
-  args: {
-    slot: "<zeta-avatar>AD</zeta-avatar><zeta-avatar>AB</zeta-avatar><zeta-avatar>AC</zeta-avatar>"
-  },
-  argTypes: {
-    slot: { table: { disable: true } }
+export const AvatarRail: StoryObj<AvatarRailArgs> = {
+  render: args => {
+    return html`
+      <zeta-avatar-rail ?show-close=${args["show-close"]} size=${args.size}>
+        <zeta-avatar>AD</zeta-avatar>
+        <zeta-avatar>AB</zeta-avatar>
+        <zeta-avatar>AC</zeta-avatar>
+      </zeta-avatar-rail>
+    `;
   }
 };
