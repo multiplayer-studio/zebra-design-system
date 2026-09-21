@@ -21,8 +21,8 @@ export default meta;
 export const TabBar: StoryObj<ZetaTabBar> = {
   render: () =>
     html`<zeta-tab-bar>
-      <zeta-tab-item active>Menu Item</zeta-tab-item>
-      <zeta-tab-item>Menu Item</zeta-tab-item>
+      <zeta-tab-item active><zeta-icon>home</zeta-icon>Menu Item</zeta-tab-item>
+      <zeta-tab-item><zeta-icon>lightbulb</zeta-icon>Menu Item</zeta-tab-item>
       <zeta-tab-item>Menu Item</zeta-tab-item>
       <zeta-tab-item>Menu Item</zeta-tab-item>
       <zeta-tab-item>Menu Item</zeta-tab-item>
