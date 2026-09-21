@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2024-6729&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2338:1763",
-  "fetchedAt": "2026-09-21T18:19:31.114Z",
+  "fetchedAt": "2026-09-21T18:55:21.024Z",
   "componentProperties": {
     "Size": {
       "type": "VARIANT",
@@ -11769,13 +11769,13 @@
       }
     },
     {
-      "name": "Size=small, Shape=sharp, Flavour=outline-subtle, State=default, Disabled=true",
+      "name": "Size=small, Shape=sharp, Flavour=outline-subtle, State=focus, Disabled=true",
       "nodeId": "2338:2934",
       "properties": {
         "Size": "small",
         "Shape": "sharp",
         "Flavour": "outline-subtle",
-        "State": "default",
+        "State": "focus",
         "Disabled": "true"
       },
       "values": {
@@ -11819,13 +11819,13 @@
       }
     },
     {
-      "name": "Size=small, Shape=rounded, Flavour=outline-subtle, State=default, Disabled=true",
+      "name": "Size=small, Shape=rounded, Flavour=outline-subtle, State=focus, Disabled=true",
       "nodeId": "2338:2939",
       "properties": {
         "Size": "small",
         "Shape": "rounded",
         "Flavour": "outline-subtle",
-        "State": "default",
+        "State": "focus",
         "Disabled": "true"
       },
       "values": {
@@ -11869,13 +11869,13 @@
       }
     },
     {
-      "name": "Size=small, Shape=full, Flavour=outline-subtle, State=default, Disabled=true",
+      "name": "Size=small, Shape=full, Flavour=outline-subtle, State=focus, Disabled=true",
       "nodeId": "2338:2944",
       "properties": {
         "Size": "small",
         "Shape": "full",
         "Flavour": "outline-subtle",
-        "State": "default",
+        "State": "focus",
         "Disabled": "true"
       },
       "values": {
@@ -11919,13 +11919,13 @@
       }
     },
     {
-      "name": "Size=medium, Shape=sharp, Flavour=outline-subtle, State=default, Disabled=true",
+      "name": "Size=medium, Shape=sharp, Flavour=outline-subtle, State=focus, Disabled=true",
       "nodeId": "2338:2949",
       "properties": {
         "Size": "medium",
         "Shape": "sharp",
         "Flavour": "outline-subtle",
-        "State": "default",
+        "State": "focus",
         "Disabled": "true"
       },
       "values": {
@@ -11969,13 +11969,13 @@
       }
     },
     {
-      "name": "Size=medium, Shape=rounded, Flavour=outline-subtle, State=default, Disabled=true",
+      "name": "Size=medium, Shape=rounded, Flavour=outline-subtle, State=focus, Disabled=true",
       "nodeId": "2338:2954",
       "properties": {
         "Size": "medium",
         "Shape": "rounded",
         "Flavour": "outline-subtle",
-        "State": "default",
+        "State": "focus",
         "Disabled": "true"
       },
       "values": {
@@ -12019,13 +12019,13 @@
       }
     },
     {
-      "name": "Size=medium, Shape=full, Flavour=outline-subtle, State=default, Disabled=true",
+      "name": "Size=medium, Shape=full, Flavour=outline-subtle, State=focus, Disabled=true",
       "nodeId": "2338:2959",
       "properties": {
         "Size": "medium",
         "Shape": "full",
         "Flavour": "outline-subtle",
-        "State": "default",
+        "State": "focus",
         "Disabled": "true"
       },
       "values": {
@@ -12069,13 +12069,13 @@
       }
     },
     {
-      "name": "Size=large, Shape=sharp, Flavour=outline-subtle, State=default, Disabled=true",
+      "name": "Size=large, Shape=sharp, Flavour=outline-subtle, State=focus, Disabled=true",
       "nodeId": "2338:2964",
       "properties": {
         "Size": "large",
         "Shape": "sharp",
         "Flavour": "outline-subtle",
-        "State": "default",
+        "State": "focus",
         "Disabled": "true"
       },
       "values": {
@@ -12119,13 +12119,13 @@
       }
     },
     {
-      "name": "Size=large, Shape=rounded, Flavour=outline-subtle, State=default, Disabled=true",
+      "name": "Size=large, Shape=rounded, Flavour=outline-subtle, State=focus, Disabled=true",
       "nodeId": "2338:2969",
       "properties": {
         "Size": "large",
         "Shape": "rounded",
         "Flavour": "outline-subtle",
-        "State": "default",
+        "State": "focus",
         "Disabled": "true"
       },
       "values": {
@@ -12169,13 +12169,13 @@
       }
     },
     {
-      "name": "Size=large, Shape=full, Flavour=outline-subtle, State=default, Disabled=true",
+      "name": "Size=large, Shape=full, Flavour=outline-subtle, State=focus, Disabled=true",
       "nodeId": "2338:2974",
       "properties": {
         "Size": "large",
         "Shape": "full",
         "Flavour": "outline-subtle",
-        "State": "default",
+        "State": "focus",
         "Disabled": "true"
       },
       "values": {

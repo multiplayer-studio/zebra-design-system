@@ -31,6 +31,18 @@ function writeDebugJson(dir: string, name: string, data: unknown): void {
   fs.writeFileSync(path.join(dir, `${name}.json`), JSON.stringify(data, null, 2));
 }
 
+// A page can carry several "<Name> Metadata" frames (e.g. the Button page has both
+// "Button Metadata" and "Icon Button Metadata"). Each is matched to its component
+// independently — loosely, since hand-authored layer names drift: case-insensitive and
+// ignoring the `_` / `Template/` prefixes this file uses for subcomponents.
+function metadataKey(name: string): string {
+  return name
+    .replace(/^_+/, '')
+    .replace(/^Template\//i, '')
+    .trim()
+    .toLowerCase();
+}
+
 export async function main(): Promise<void> {
   const token = process.env.FIGMA_PERSONAL_ACCESS_TOKEN;
   if (!token) {
@@ -92,22 +104,41 @@ export async function main(): Promise<void> {
         return spec;
       });
 
-      const metadataByComponent = new Map<string, ComponentMetadataDoc>();
-      for (const d of discovered) {
-        const frame = metadataFrames.get(d.name);
-        if (!frame) continue;
+      // Same debug-JSON dump figma-metadata-scraper used to write on its own, now
+      // just folded into this tool's own output dir alongside the specs.
+      const parseMetadata = (label: string, frame: FigmaNodeRaw): ComponentMetadataDoc | undefined => {
         try {
           const metadata = parseFrame(frame, url, fileKey);
-          metadataByComponent.set(d.name, metadata);
-          // Same debug-JSON dump figma-metadata-scraper used to write on its own, now
-          // just folded into this tool's own output dir alongside the specs.
-          writeDebugJson(debugMetadataDir, `${slugify(pageName)}-${slugify(d.name)}`, metadata);
+          writeDebugJson(debugMetadataDir, `${slugify(pageName)}-${slugify(label)}`, metadata);
+          return metadata;
         } catch (err) {
-          console.warn(`  ⚠️  Skipping metadata for ${d.name}:`, err instanceof Error ? err.message : String(err));
+          console.warn(`  ⚠️  Skipping metadata for ${label}:`, err instanceof Error ? err.message : String(err));
+          return undefined;
         }
+      };
+
+      const framesByKey = new Map([...metadataFrames].map(([name, frame]) => [metadataKey(name), { name, frame }]));
+      const metadataByComponent = new Map<string, ComponentMetadataDoc>();
+      const claimed = new Set<string>();
+      for (const d of discovered) {
+        const hit = framesByKey.get(metadataKey(d.name));
+        if (!hit) continue;
+        claimed.add(hit.name);
+        const metadata = parseMetadata(d.name, hit.frame);
+        if (metadata) metadataByComponent.set(d.name, metadata);
       }
 
-      const markdown = renderPageMarkdown({ pageName, pageSourceUrl: url, components, metadataByComponent });
+      // A metadata frame matching no component on the page is still rendered, on its own
+      // — hand-authored docs are never silently dropped over a layer-naming mismatch.
+      const orphanMetadata: ComponentMetadataDoc[] = [];
+      for (const [name, frame] of metadataFrames) {
+        if (claimed.has(name)) continue;
+        console.warn(`  ⚠️  "${name} Metadata" matches no component on this page — rendering it standalone.`);
+        const metadata = parseMetadata(name, frame);
+        if (metadata) orphanMetadata.push({ ...metadata, componentName: name });
+      }
+
+      const markdown = renderPageMarkdown({ pageName, pageSourceUrl: url, components, metadataByComponent, orphanMetadata });
       const outputPath = path.join(docsDir, `${slugify(pageName)}.md`);
       fs.writeFileSync(outputPath, markdown);
       console.log(`✨ Exported: ${outputPath}`);

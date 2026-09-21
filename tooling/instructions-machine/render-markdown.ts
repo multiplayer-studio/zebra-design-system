@@ -8,6 +8,10 @@ export interface PageDoc {
   // Human-authored doc content (hero/anatomy/how-to-use/etc.), keyed by component name.
   // Not every component has one — see discover.ts's metadataFrames.
   metadataByComponent?: Map<string, ComponentMetadataDoc>;
+  // Metadata frames on the page that matched no component (layer-name mismatch, or docs
+  // for a component that lives elsewhere). Rendered as their own sections rather than
+  // dropped — see generate-page-docs.ts.
+  orphanMetadata?: ComponentMetadataDoc[];
 }
 
 // A cell value can itself contain a literal "|" — e.g. an ambiguous typography match
@@ -214,6 +218,9 @@ export function renderPageMarkdown(page: PageDoc): string {
   for (const comp of page.components) {
     lines.push(...renderComponent(comp, page.metadataByComponent?.get(comp.componentName)));
   }
+  for (const metadata of page.orphanMetadata ?? []) {
+    lines.push(`## ${metadata.componentName} (documentation only)`, '', `Source: ${metadata.sourceUrl}`, '', ...renderMetadata(metadata));
+  }
   return lines.join('\n');
 }
 
@@ -318,6 +325,29 @@ export function selfCheck(): void {
   // form (which would corrupt the row) is not.
   assert.ok(markdown.includes('| Size | Small | Button | fontSize | body.medium \\| label.large |'));
   assert.ok(!markdown.includes('| Size | Small | Button | fontSize | body.medium | label.large |'));
+
+  // Several metadata frames on one page are integrated independently: a matched one
+  // under its component, an unmatched one as its own section — never merged, never dropped.
+  const withOrphan = renderPageMarkdown({
+    pageName: 'Buttons',
+    pageSourceUrl: 'https://example.com/page',
+    components: [fixture],
+    metadataByComponent: new Map([['Button', metadata]]),
+    orphanMetadata: [
+      {
+        ...metadata,
+        componentName: 'Icon Button',
+        hero: { ...metadata.hero, description: 'A button that is only an icon.' },
+        sections: [{ kind: 'bullet-list', nodeId: 's3', title: 'Accessibility', items: ['Always needs an aria-label'] }],
+      },
+    ],
+  });
+  assert.ok(withOrphan.includes('## Icon Button (documentation only)'));
+  assert.ok(withOrphan.includes('A button that is only an icon.'));
+  assert.ok(withOrphan.includes('Always needs an aria-label'));
+  // The matched component's own metadata is untouched by the orphan section.
+  assert.ok(withOrphan.includes('Triggers one action.'));
+  assert.ok(withOrphan.indexOf('## Button') < withOrphan.indexOf('## Icon Button (documentation only)'));
 
   console.log('✓ render-markdown.selfCheck() passed');
 }

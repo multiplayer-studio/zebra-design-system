@@ -79,6 +79,13 @@ picks up both the component and its metadata frame in the same page fetch — no
 node-id list for metadata. A component with no matching metadata frame on the page just
 renders without that section.
 
+A page can carry several metadata frames (the Button page has both `"Button Metadata"`
+and `"Icon Button Metadata"`); each is matched and rendered independently under its own
+component, never merged. Matching is loose — case-insensitive and ignoring the `_` /
+`Template/` prefixes used for subcomponents — and a frame matching no component on the
+page is still rendered, as its own `## <Name> (documentation only)` section with a
+warning, rather than being silently dropped.
+
 ## Token resolution
 
 Colors, spacing, radius, and stroke weight are resolved from each node's actual Figma
@@ -101,8 +108,9 @@ font-size or line-height).
 - Discovery can't distinguish a page's actual subject components from an unrelated
   component instance nested purely for illustration inside a doc frame. Not filtered in
   v1 — add a name/section-prefix filter if this shows up in practice.
-- Metadata frame matching is an exact `"<Name> Metadata"` suffix match — a page that
-  doesn't follow this naming convention just won't get a metadata section.
+- Metadata frames are found by the `"<Name> Metadata"` suffix on a `FRAME` — a page that
+  names its doc frames some other way won't get a metadata section at all. Two frames
+  with the identical name on one page: first wins, second warned about and ignored.
 - Corner radius only reads the top-left corner when radii are bound per-corner
   (`rectangleCornerRadii`) — fine for uniform radii, wrong if a component intentionally
   uses different radii per corner.

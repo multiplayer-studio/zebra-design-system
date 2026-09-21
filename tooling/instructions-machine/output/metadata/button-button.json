@@ -1,0 +1,390 @@
+{
+  "componentName": "BUTTON",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2024-6729&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "4732:878",
+  "fetchedAt": "2026-09-21T18:55:21.026Z",
+  "hero": {
+    "statusLabel": "BUTTON · COMPONENT METADATA",
+    "heading": "What this component does",
+    "description": "Triggers an action from a text label, with optional icons on either side. Nine flavours set how much weight the action carries, three sizes and three shapes fit it to the surface it sits on. The label is the only content a consumer writes, everything else is a variant choice. When an action has no text label, reach for Icon Button rather than hiding this one's label."
+  },
+  "sections": [
+    {
+      "kind": "table",
+      "nodeId": "4732:887",
+      "title": "Property Breakdown",
+      "columns": [
+        "Property",
+        "Type",
+        "Default",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Flavour",
+          "Type": "primary",
+          "Default": true,
+          "Description": "The single most important action in a view, one per group. If two buttons both read as primary, the view has two competing goals and that is a layout problem rather than a property one."
+        },
+        {
+          "Property": "Flavour",
+          "Type": "positive",
+          "Default": "-",
+          "Description": "Confirms a constructive outcome such as approving or publishing. Reserve it for the confirmation itself, not for every agreeable action, or it stops signalling anything."
+        },
+        {
+          "Property": "Flavour",
+          "Type": "negative",
+          "Default": "-",
+          "Description": "Destructive actions the user cannot undo, such as delete or revoke. If the cancel beside it is styled any stronger than subtle, the safe choice becomes the harder one to find."
+        },
+        {
+          "Property": "Flavour",
+          "Type": "subtle",
+          "Default": "-",
+          "Description": "A neutral action meant to sit quietly beside a stronger one, typically the cancel next to a primary. It leans on that neighbour for contrast, so on its own it may not read as interactive."
+        },
+        {
+          "Property": "Flavour",
+          "Type": "text",
+          "Default": "-",
+          "Description": "A tertiary action inside dense content. It has nothing behind it at rest, so on a coloured or busy surface it stops looking like a control."
+        },
+        {
+          "Property": "Flavour",
+          "Type": "outline-subtle",
+          "Default": "-",
+          "Description": "A secondary action on a busy surface where an accent border would compete. It reads as neutral, so it is the wrong choice for the main action on that surface."
+        },
+        {
+          "Property": "Flavour",
+          "Type": "outline",
+          "Default": "-",
+          "Description": "A secondary action that still needs to look clickable on its own. Two of them side by side read as equal weight, which is rarely what was intended."
+        },
+        {
+          "Property": "Flavour",
+          "Type": "gradient",
+          "Default": "-",
+          "Description": "One promotional or high-emphasis moment, such as an upgrade prompt. It outranks primary, so a screen carrying two of them has no hierarchy left."
+        },
+        {
+          "Property": "Flavour",
+          "Type": "text-gradient",
+          "Default": "-",
+          "Description": "The promotional treatment without the filled weight, for a high-emphasis action inside content. The gradient runs across the label itself, so a very short label barely shows it."
+        },
+        {
+          "Property": "Size",
+          "Type": "small",
+          "Default": true,
+          "Description": "The default, for toolbars, table rows and dense forms where controls sit close together."
+        },
+        {
+          "Property": "Size",
+          "Type": "medium",
+          "Default": "-",
+          "Description": "For standard forms and dialogs where the button is a deliberate step rather than a dense control."
+        },
+        {
+          "Property": "Size",
+          "Type": "large",
+          "Default": "-",
+          "Description": "For a call to action that should be easy to hit without precision, typically the confirm on a touch surface."
+        },
+        {
+          "Property": "Shape",
+          "Type": "sharp",
+          "Default": true,
+          "Description": "Match the container. Correct when the surrounding surface and inputs are square."
+        },
+        {
+          "Property": "Shape",
+          "Type": "rounded",
+          "Default": "-",
+          "Description": "Match the container. The general-purpose choice alongside the system's other rounded controls."
+        },
+        {
+          "Property": "Shape",
+          "Type": "full",
+          "Default": "-",
+          "Description": "A deliberately soft treatment for standalone or promotional actions. Beside rounded controls in the same group it looks unintentional."
+        },
+        {
+          "Property": "State",
+          "Type": "default",
+          "Default": true,
+          "Description": "The resting state, and the only one to use when laying out a static screen."
+        },
+        {
+          "Property": "State",
+          "Type": "hover",
+          "Default": "-",
+          "Description": "Documents the pointer-over treatment. The implementation drives this, so choosing it in a layout freezes the button in a state it should not be in."
+        },
+        {
+          "Property": "State",
+          "Type": "pressed",
+          "Default": "-",
+          "Description": "Documents the pointer-down treatment, with the same caveat as hover."
+        },
+        {
+          "Property": "State",
+          "Type": "focus",
+          "Default": "-",
+          "Description": "Documents the keyboard focus treatment. The one state whose treatment is identical on every flavour."
+        },
+        {
+          "Property": "Disabled",
+          "Type": "false",
+          "Default": true,
+          "Description": "The control accepts input."
+        },
+        {
+          "Property": "Disabled",
+          "Type": "true",
+          "Default": "-",
+          "Description": "The action is unavailable. Say why somewhere nearby, because a disabled control with no explanation is indistinguishable from a broken one."
+        },
+        {
+          "Property": "Label",
+          "Type": "text",
+          "Default": "Button",
+          "Description": "The action the user is about to perform, written as a verb. The button hugs whatever it is given, so a long label widens the control and can break a toolbar row."
+        },
+        {
+          "Property": "Leading Icon",
+          "Type": "false",
+          "Default": true,
+          "Description": "No icon before the label."
+        },
+        {
+          "Property": "Leading Icon",
+          "Type": "true",
+          "Default": "-",
+          "Description": "Adds an icon before the label to reinforce the action at a glance. Choose the glyph deliberately, the slot arrives holding a default that suits almost nothing."
+        },
+        {
+          "Property": "Trailing Icon",
+          "Type": "false",
+          "Default": true,
+          "Description": "No icon after the label."
+        },
+        {
+          "Property": "Trailing Icon",
+          "Type": "true",
+          "Default": "-",
+          "Description": "Turning both icons on at small leaves very little room for the label itself. Use a trailing icon for directional or disclosure actions."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4732:959",
+      "title": "States & Triggers",
+      "columns": [
+        "State",
+        "Trigger",
+        "Duration",
+        "What changes"
+      ],
+      "rows": [
+        {
+          "State": "default",
+          "Trigger": "Resting",
+          "Duration": "—",
+          "What changes": "Background, border and label sit on the default tokens of the chosen flavour."
+        },
+        {
+          "State": "hover",
+          "Trigger": "Pointer over the control",
+          "Duration": "—",
+          "What changes": "Filled flavours move their own background token one step. Outline flavours hold their border and shift a neutral background underneath instead. Text flavours raise a ghost scrim from fully transparent. The label colour does not change on any flavour."
+        },
+        {
+          "State": "pressed",
+          "Trigger": "Pointer held down",
+          "Duration": "—",
+          "What changes": "The same mechanism as hover carried one step further. Gradient is the exception, collapsing from a two-stop gradient to a single flat token."
+        },
+        {
+          "State": "focus",
+          "Trigger": "Keyboard focus",
+          "Duration": "—",
+          "What changes": "A focus ring is drawn outside the bounds, replacing the resting border rather than adding to it. Identical on all nine flavours, and the only state that changes the control's outer footprint."
+        },
+        {
+          "State": "disabled",
+          "Trigger": "Disabled set to true",
+          "Duration": "—",
+          "What changes": "Background and label swap to the disabled tokens of their family, and the icon follows the label. No flavour keeps its accent colour, so disabled buttons of different flavours look alike."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4732:973",
+      "title": "Behavior & Motion Intent",
+      "columns": [
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Type": "Motion",
+          "Description": "Figma stores no timing. Every state change is colour-only, with no scale, shadow or elevation shift on any flavour, so a transition should read as a tint change rather than movement."
+        },
+        {
+          "Type": "Focus ring",
+          "Description": "The only change that alters the control's outer footprint, because the ring is drawn outside the bounds. Leave room around a button in a tight row so the ring is not clipped."
+        },
+        {
+          "Type": "Resize",
+          "Description": "The control re-hugs its label whenever the text changes, so a label swapped at runtime shifts the position of everything beside it in a row."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4732:983",
+      "title": "Content & Slot",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Label",
+          "Type": "text property",
+          "Description": "A verb phrase naming the action. The button hugs whatever length it is given, there is no truncation and no wrapping."
+        },
+        {
+          "Property": "Leading Icon",
+          "Type": "boolean, toggles a nested Icon",
+          "Description": "Toggles visibility only. Button does not re-declare Icon's other properties, but the instance stays exposed, so Icon's glyph, Size and Framed are still reachable in the properties panel. See the Icon Metadata frame for what Icon itself offers, and leave its Size alone, Button pairs it to the label."
+        },
+        {
+          "Property": "Trailing Icon",
+          "Type": "boolean, toggles a nested Icon",
+          "Description": "The same slot mechanics as Leading Icon, placed after the label instead."
+        },
+        {
+          "Property": "Icon glyph",
+          "Type": "instance swap on the nested Icon",
+          "Description": "Any glyph from the icon library. Both slots arrive holding Verified, which suits almost no real action, so set it deliberately whenever a slot is turned on."
+        }
+      ]
+    },
+    {
+      "kind": "unknown",
+      "nodeId": "4732:1007",
+      "layerName": "Anatomy",
+      "title": "Anatomy",
+      "rawTextContent": [
+        "Anatomy",
+        "Button",
+        "1.",
+        "2.",
+        "4.",
+        "3.",
+        "Container",
+        "The button's own horizontal auto-layout frame. Carries the background, the border and the radius, and holds the height fixed for the chosen Size.",
+        "Leading Icon",
+        "An Icon instance before the label, hidden until Leading Icon is turned on. Button sets its size and leaves the instance exposed.",
+        "Label",
+        "A wrapper frame around the text. Its own horizontal padding is what separates the text from the icons, the row itself has no gap.",
+        "Trailing Icon",
+        "An Icon instance after the label, hidden until Trailing Icon is turned on."
+      ]
+    },
+    {
+      "kind": "how-to-use",
+      "nodeId": "4732:1030",
+      "title": "How to use",
+      "dos": [
+        "Use one primary per view or per group. Everything else steps down to outline, subtle or text so the single most important action stays findable.",
+        "Write the label as the verb the user is about to perform, Save rather than OK, so the action still reads clearly on its own."
+      ],
+      "donts": [
+        "Don't build an icon-only button by hiding this one's label. Icon Button is a separate square component made for that, and it keeps the touch target correct.",
+        "Don't mix Shape values inside one button group. A pill beside a rounded button reads as a mistake rather than a deliberate distinction."
+      ]
+    },
+    {
+      "kind": "bullet-list",
+      "nodeId": "4732:1046",
+      "title": "Accessibility & Content Guidelines",
+      "items": [
+        "Focus is drawn as a ring outside the control and is identical on every flavour, so it stays visible whatever the button sits on.",
+        "Disabled is a visual state only. Figma cannot carry the reason an action is unavailable, so put that in nearby text in the implementation.",
+        "The icon repeats the label rather than adding to it. An action with no visible label belongs in Icon Button, which still needs an accessible name in code.",
+        "Every state change is colour-only, so anything signalled by hover or pressed alone will not reach a keyboard or screen reader user.",
+        "Write labels as the verb the user is about to carry out, Save rather than OK, so the action is understandable when read out of context."
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4732:1050",
+      "title": "Layout & Theming Intents",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Width",
+          "Type": "Hug",
+          "Description": "Always hugs the label and any visible icons, never fixed. Small grows by 16px for each icon shown, medium and large by 20px."
+        },
+        {
+          "Property": "Height",
+          "Type": "Fixed per Size",
+          "Description": "36px at small (control/sm), 40px at medium (control/md), 48px at large (control/lg). Not resizable independently of Size."
+        },
+        {
+          "Property": "Horizontal padding",
+          "Type": "Fixed per Size",
+          "Description": "12px (space/md) at small and medium, 16px (space/lg) at large."
+        },
+        {
+          "Property": "Vertical padding",
+          "Type": "Fixed",
+          "Description": "4px (space/xs) at every size. The fixed height does the real work."
+        },
+        {
+          "Property": "Gap",
+          "Type": "None on the row",
+          "Description": "Item spacing is space/none. The visible separation between an icon and the label comes from the Label wrapper's own horizontal padding, 4px (space/xs) at small and 8px (space/sm) at medium and large."
+        },
+        {
+          "Property": "Radius",
+          "Type": "Fixed per Shape",
+          "Description": "0 (radius/none) for sharp, 4px (radius/element-sm) for rounded, 9999 (radius/pill) for full. All three are token-bound, so match the container rather than overriding on the instance."
+        },
+        {
+          "Property": "Border",
+          "Type": "Fixed per Flavour",
+          "Description": "1px drawn inside on outline and outline-subtle, none on the other seven at rest. Focus replaces it with a 2px ring drawn outside the bounds."
+        },
+        {
+          "Property": "Icon size",
+          "Type": "Fixed per Size",
+          "Description": "16px at small, 20px at medium and large. Large reuses Icon's medium step, so Icon's own large (28px) never appears inside a Button."
+        },
+        {
+          "Property": "Label type",
+          "Type": "Fixed per Size",
+          "Description": "label/medium (14/20) at small, label/large (16/24) at medium and large, IBM Plex Sans Medium."
+        },
+        {
+          "Property": "Colour",
+          "Type": "Theming",
+          "Description": "Every fill, border and label colour is bound to an interactive/* token for the flavour. Gradient draws from surface/gradient/*, text-gradient from foreground/gradient/*, and focus from border/focus. No variant hardcodes a colour."
+        }
+      ]
+    }
+  ]
+}

@@ -48,7 +48,12 @@ export function discoverPage(root: FigmaNodeRaw): PageDiscovery {
       return;
     }
     if (node.type === 'FRAME' && node.name.endsWith(METADATA_FRAME_SUFFIX)) {
-      metadataFrames.set(node.name.slice(0, -METADATA_FRAME_SUFFIX.length), node);
+      const key = node.name.slice(0, -METADATA_FRAME_SUFFIX.length);
+      if (metadataFrames.has(key)) {
+        console.warn(`  ⚠️  Two metadata frames named "${node.name}" on this page — keeping the first, ignoring ${node.id}.`);
+        return;
+      }
+      metadataFrames.set(key, node);
       return;
     }
     if (CONTAINER_TYPES.has(node.type) && node.children) {

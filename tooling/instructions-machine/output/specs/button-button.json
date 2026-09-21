@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2024-6729&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2060:15072",
-  "fetchedAt": "2026-09-21T18:19:31.110Z",
+  "fetchedAt": "2026-09-21T18:55:21.021Z",
   "componentProperties": {
     "Leading Icon#2109:0": {
       "type": "BOOLEAN",
@@ -94,6 +94,94 @@
     ]
   },
   "variants": [
+    {
+      "name": "Size=medium, Shape=rounded, Flavour=primary, State=default, Disabled=false",
+      "nodeId": "2109:6945",
+      "properties": {
+        "Size": "medium",
+        "Shape": "rounded",
+        "Flavour": "primary",
+        "State": "default",
+        "Disabled": "false"
+      },
+      "values": {
+        "Button": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Button/Leading Icon": {},
+        "Button/Label": {
+          "padding": {
+            "left": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "right": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "Button/Label/Label": {
+          "fills": [
+            {
+              "raw": "#f8fbff",
+              "token": "interactive.primary.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Button",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium | label.large"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium | label.large"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium | label.large"
+            }
+          }
+        },
+        "Button/Trailing Icon": {}
+      }
+    },
     {
       "name": "Size=small, Shape=sharp, Flavour=primary, State=default, Disabled=false",
       "nodeId": "2060:15071",
@@ -385,94 +473,6 @@
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
-          },
-          "padding": {
-            "left": {
-              "raw": 12,
-              "token": "space.md"
-            },
-            "right": {
-              "raw": 12,
-              "token": "space.md"
-            },
-            "top": {
-              "raw": 4,
-              "token": "space.xs"
-            },
-            "bottom": {
-              "raw": 4,
-              "token": "space.xs"
-            }
-          }
-        },
-        "Button/Leading Icon": {},
-        "Button/Label": {
-          "padding": {
-            "left": {
-              "raw": 8,
-              "token": "space.sm"
-            },
-            "right": {
-              "raw": 8,
-              "token": "space.sm"
-            }
-          }
-        },
-        "Button/Label/Label": {
-          "fills": [
-            {
-              "raw": "#f8fbff",
-              "token": "interactive.primary.foreground.default"
-            }
-          ],
-          "text": {
-            "characters": "Button",
-            "fontFamily": "IBM Plex Sans",
-            "fontWeight": 500,
-            "fontSize": {
-              "raw": 16,
-              "token": "body.medium | label.large"
-            },
-            "lineHeight": {
-              "raw": 24,
-              "token": "body.medium | label.large"
-            },
-            "letterSpacing": {
-              "raw": 0,
-              "token": "body.medium | label.large"
-            }
-          }
-        },
-        "Button/Trailing Icon": {}
-      }
-    },
-    {
-      "name": "Size=medium, Shape=rounded, Flavour=primary, State=default, Disabled=false",
-      "nodeId": "2109:6945",
-      "properties": {
-        "Size": "medium",
-        "Shape": "rounded",
-        "Flavour": "primary",
-        "State": "default",
-        "Disabled": "false"
-      },
-      "values": {
-        "Button": {
-          "fills": [
-            {
-              "raw": "#1f69ff",
-              "token": "interactive.primary.background.default"
-            }
-          ],
-          "strokes": [
-            {
-              "raw": "#1f69ff",
-              "token": "interactive.primary.border.default"
-            }
-          ],
-          "cornerRadius": {
-            "raw": 4,
-            "token": "radius.element-sm"
           },
           "padding": {
             "left": {
