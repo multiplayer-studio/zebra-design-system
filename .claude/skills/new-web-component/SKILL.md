@@ -11,11 +11,12 @@ Never hard code hex or px values. Always use a tokens.
 
 ## 0. Pull the design context first
 
-The prompt will include a Figma link. Before writing any code:
+`docs/instructions/<component>.md` is the first port of truth — it mirrors the Figma design exactly (layer structure, resolved tokens per variant, token changes by property). Before writing any code:
 
-1. Load the `figma-design-to-code` skill and use `get_design_context` (and `get_screenshot` / `get_variable_defs` as needed) on the given node to get props, variants, states, and layout.
-2. Note every variant/enum shown in Figma (e.g. size, flavor/type, shape, disabled/status) — these become `@property` values later and Figma Code Connect enum mappings.
-3. Note any tokens/variables used for color, spacing, radius — these must map to this repo's design tokens (see step 4), never hardcoded values.
+1. Check `docs/instructions/<component>.md` first. If it exists, read it for layer structure, resolved tokens, and the token-changes-by-property table — this is the same information Figma would give you, already extracted.
+2. If it doesn't exist (or is missing detail you need), fall back to Figma directly: load the `figma-design-to-code` skill and use `get_design_context` (and `get_screenshot` / `get_variable_defs` as needed) on the given node to get props, variants, states, and layout.
+3. Note every variant/enum shown (e.g. size, flavor/type, shape, disabled/status) — these become `@property` values later and Figma Code Connect enum mappings.
+4. Note every token used for color, spacing, radius — these must map to this repo's design tokens (see step 4), never hardcoded values.
 
 ## 1. Decide before writing: does this need new code?
 
