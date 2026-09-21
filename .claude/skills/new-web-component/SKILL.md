@@ -7,6 +7,8 @@ description: Use when the user wants to create a new zeta-web component and give
 
 `zeta-web` is a Lit web component library (`@zebra-fed/zeta-web`). Every component must match existing conventions closely — reviewers check this against `CONTRIBUTING.md` and existing components. Read that file (`CONTRIBUTING.md` at repo root) if anything below is ambiguous.
 
+Never hard code hex or px values. Always use a tokens. 
+
 ## 0. Pull the design context first
 
 The prompt will include a Figma link. Before writing any code:
@@ -105,7 +107,8 @@ export default css`
 `;
 ```
 
-- Use tokens from `@zebra-design-system/tokens` (`packages/foundations/tokens`) for every color, spacing, and radius value — `--surface-*` / `--foreground-*` / `--border-*` / `--interactive-*` for color, `--space-*` / `--radius-*` for sizing/shape, `--body-*` / `--title-*` for typography — never hardcode a hex/px value. Match whatever variables `get_variable_defs` showed in the Figma design. Don't reach for the old pre-migration names (`--main-*`, `--spacing-*`, `--state-*`, etc., aliased in `packages/zeta-web/src/css/tokens-compat.css`) — that file is a legacy shim for un-migrated components, not the source of truth for new components.
+- Use tokens from `@zebra-design-system/tokens` (`packages/foundations/tokens`) for every color, spacing, and radius value — `--surface-*` / `--foreground-*` / `--border-*` / `--interactive-*` for color, `--space-*` / `--radius-*` for sizing/shape, `--body-*` / `--title-*` for typography. Match whatever variables `get_variable_defs` showed in the Figma design. Don't reach for the old pre-migration names (`--main-*`, `--spacing-*`, `--state-*`, etc., aliased in `packages/zeta-web/src/css/tokens-compat.css`) — that file is a legacy shim for un-migrated components, not the source of truth for new components.
+- Never hardcode a hex/px value. 
 - Expose customization points as CSS custom properties with a token fallback (`var(--public-name, var(--token-fallback))`), matching the `@cssproperty` tags documented on the class.
 
 ## 5. Storybook story + docs

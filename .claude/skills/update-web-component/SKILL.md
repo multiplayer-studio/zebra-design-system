@@ -43,15 +43,15 @@ Read the existing `.ts` and `.styles.js` first — match its current patterns (m
   - Bug fix: add a regression test that fails without the fix, alongside updating whatever test previously asserted the buggy behavior.
   - Deprecating a prop: keep its existing tests passing and add a test for the new replacement prop/variant.
   - Run the full existing test file (not just new tests) to catch regressions the change may have introduced elsewhere in the component.
-- Don't touch `src/index.ts` by hand — it's auto-generated (`node scripts/make-index.js` / `yarn build`).
+- Don't touch `src/index.ts` by hand — it's auto-generated (`pnpm nx run zeta-web:build`).
 
 ## 4. Verify before calling it done
 
 ```
-yarn analyze           # regenerate custom-elements.json if TSDoc tags/props changed
-yarn lint               # eslint, incl. testing-structure and doc-tag rules
-yarn lint:lit-analyzer
-yarn test               # web-test-runner
+pnpm nx run zeta-web:analyze           # regenerate custom-elements.json if TSDoc tags/props changed
+pnpm nx run zeta-web:lint              # eslint, incl. testing-structure and doc-tag rules
+pnpm nx run zeta-web:lint:lit-analyzer
+pnpm nx run zeta-web:test              # web-test-runner
 ```
 
-Or just run `yarn check`, which does all of the above plus `yarn docs`.
+Or just run `pnpm nx run zeta-web:check`, which does all of the above plus `pnpm nx run zeta-web:docs`.
