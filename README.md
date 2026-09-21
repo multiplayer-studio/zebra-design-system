@@ -84,7 +84,7 @@ pnpm run export:tokens  # Export to dist
 
 The zeta-web components are being progressively updated to use the new design token system. This ensures consistent theming, improved maintainability, and alignment with the design system.
 
-**Components Updated to New Tokens: 8 of ~48**
+**Components Updated to New Tokens: 9 of ~48**
 - Button (base-button)
 - Icon Button
 - Divider
@@ -93,6 +93,7 @@ The zeta-web components are being progressively updated to use the new design to
 - Pagination
 - Search
 - Dropdown (droppable, dropdown-menu-button, dropdown-menu-item)
+- Avatar
 
 **Migration Status:** Ongoing — Components are being updated incrementally.
 
