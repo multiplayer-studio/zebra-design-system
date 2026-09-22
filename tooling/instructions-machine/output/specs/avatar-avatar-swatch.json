@@ -1,0 +1,160 @@
+{
+  "componentName": "_Avatar Swatch",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-6017&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "2695:17235",
+  "fetchedAt": "2026-09-22T20:44:18.962Z",
+  "componentProperties": {
+    "Color": {
+      "type": "VARIANT",
+      "defaultValue": "purple",
+      "options": [
+        "purple",
+        "blue",
+        "sea",
+        "yellow",
+        "orange",
+        "green",
+        "burgundy"
+      ]
+    }
+  },
+  "structure": {
+    "path": "_Avatar Swatch",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "_Avatar Swatch/swatch",
+        "type": "ELLIPSE"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "Color=purple",
+      "nodeId": "2695:17234",
+      "properties": {
+        "Color": "purple"
+      },
+      "values": {
+        "_Avatar Swatch": {},
+        "_Avatar Swatch/swatch": {
+          "fills": [
+            {
+              "raw": "#7e0cff",
+              "token": "chart.series.4"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Color=blue",
+      "nodeId": "2695:17236",
+      "properties": {
+        "Color": "blue"
+      },
+      "values": {
+        "_Avatar Swatch": {},
+        "_Avatar Swatch/swatch": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "chart.series.1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Color=sea",
+      "nodeId": "2695:17238",
+      "properties": {
+        "Color": "sea"
+      },
+      "values": {
+        "_Avatar Swatch": {},
+        "_Avatar Swatch/swatch": {
+          "fills": [
+            {
+              "raw": "#4f62fe",
+              "token": "chart.series.9"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Color=yellow",
+      "nodeId": "2695:17240",
+      "properties": {
+        "Color": "yellow"
+      },
+      "values": {
+        "_Avatar Swatch": {},
+        "_Avatar Swatch/swatch": {
+          "fills": [
+            {
+              "raw": "#dbb91c",
+              "token": "chart.series.7"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Color=orange",
+      "nodeId": "2695:17242",
+      "properties": {
+        "Color": "orange"
+      },
+      "values": {
+        "_Avatar Swatch": {},
+        "_Avatar Swatch/swatch": {
+          "fills": [
+            {
+              "raw": "#f36170",
+              "token": "chart.series.11"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Color=green",
+      "nodeId": "2695:17244",
+      "properties": {
+        "Color": "green"
+      },
+      "values": {
+        "_Avatar Swatch": {},
+        "_Avatar Swatch/swatch": {
+          "fills": [
+            {
+              "raw": "#1a8080",
+              "token": "chart.series.6"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Color=burgundy",
+      "nodeId": "2695:17246",
+      "properties": {
+        "Color": "burgundy"
+      },
+      "values": {
+        "_Avatar Swatch": {},
+        "_Avatar Swatch/swatch": {
+          "fills": [
+            {
+              "raw": "#840054",
+              "token": "chart.series.5"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

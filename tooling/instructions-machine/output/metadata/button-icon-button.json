@@ -1,0 +1,328 @@
+{
+  "componentName": "ICON BUTTON",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2024-6729&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "4732:1074",
+  "fetchedAt": "2026-09-22T20:43:58.885Z",
+  "hero": {
+    "statusLabel": "ICON BUTTON · COMPONENT METADATA",
+    "heading": "What this component does",
+    "description": "Triggers an action from a single glyph, with no text label. Square at every size, and it carries the same nine flavours, three shapes and four states as Button so the two sit together consistently. Nothing on it is readable, so every instance needs an accessible name in code. When the action can carry a word, use Button instead."
+  },
+  "sections": [
+    {
+      "kind": "table",
+      "nodeId": "4732:1083",
+      "title": "Property Breakdown",
+      "columns": [
+        "Property",
+        "Type",
+        "Default",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Flavour",
+          "Type": "primary",
+          "Default": true,
+          "Description": "The one action in a cluster that matters most, such as the confirm in a toolbar. More than one primary in a row of icon buttons removes the distinction it exists to make."
+        },
+        {
+          "Property": "Flavour",
+          "Type": "positive",
+          "Default": "-",
+          "Description": "Confirms a constructive outcome. With no label the colour is doing all the work, so reserve it for cases where the glyph already reads as approval."
+        },
+        {
+          "Property": "Flavour",
+          "Type": "negative",
+          "Default": "-",
+          "Description": "Destructive actions such as delete. Colour alone is a weak warning, so back it with a confirmation step rather than relying on the red to stop anyone."
+        },
+        {
+          "Property": "Flavour",
+          "Type": "subtle",
+          "Default": "-",
+          "Description": "A quiet action that should not compete with its neighbours, the usual choice for secondary toolbar controls."
+        },
+        {
+          "Property": "Flavour",
+          "Type": "text",
+          "Default": "-",
+          "Description": "A tertiary action inside dense content. Nothing sits behind it at rest, so on a busy surface the target becomes hard to find even though it is still there."
+        },
+        {
+          "Property": "Flavour",
+          "Type": "outline-subtle",
+          "Default": "-",
+          "Description": "A secondary action that needs a visible edge without pulling attention, for toolbars that are already busy."
+        },
+        {
+          "Property": "Flavour",
+          "Type": "outline",
+          "Default": "-",
+          "Description": "A secondary action that still needs to read as a control on its own, carrying the accent edge."
+        },
+        {
+          "Property": "Flavour",
+          "Type": "gradient",
+          "Default": "-",
+          "Description": "One promotional moment. In a row of icon buttons it wins every time, which is only useful when that is the intent."
+        },
+        {
+          "Property": "Flavour",
+          "Type": "text-gradient",
+          "Default": "-",
+          "Description": "The promotional treatment without the filled weight. The gradient runs across a single small glyph, so it reads as a colour shift more than a gradient."
+        },
+        {
+          "Property": "Size",
+          "Type": "small",
+          "Default": true,
+          "Description": "The default, for dense toolbars and table rows. At 36px square it sits below the 40px minimum target the system defines, so avoid it where the control will be tapped."
+        },
+        {
+          "Property": "Size",
+          "Type": "medium",
+          "Default": "-",
+          "Description": "Meets the system's 40px minimum target, the safe default whenever the control can be tapped."
+        },
+        {
+          "Property": "Size",
+          "Type": "large",
+          "Default": "-",
+          "Description": "For a prominent standalone action, or a primary target on a touch surface."
+        },
+        {
+          "Property": "Shape",
+          "Type": "sharp",
+          "Default": true,
+          "Description": "Match the container. Correct when the surrounding surface and inputs are square."
+        },
+        {
+          "Property": "Shape",
+          "Type": "rounded",
+          "Default": "-",
+          "Description": "Match the container. The general-purpose choice alongside the system's other rounded controls."
+        },
+        {
+          "Property": "Shape",
+          "Type": "full",
+          "Default": "-",
+          "Description": "A circular button, the usual choice for a floating or standalone action. It reads as clearly separate from a form control, which is why it looks wrong inside one."
+        },
+        {
+          "Property": "State",
+          "Type": "default",
+          "Default": true,
+          "Description": "The resting state, and the only one to use when laying out a static screen."
+        },
+        {
+          "Property": "State",
+          "Type": "hover",
+          "Default": "-",
+          "Description": "Documents the pointer-over treatment. The implementation drives this, so choosing it in a layout freezes the button in a state it should not be in."
+        },
+        {
+          "Property": "State",
+          "Type": "pressed",
+          "Default": "-",
+          "Description": "Documents the pointer-down treatment, with the same caveat as hover."
+        },
+        {
+          "Property": "State",
+          "Type": "focus",
+          "Default": "-",
+          "Description": "Documents the keyboard focus treatment. The one state whose treatment is identical on every flavour."
+        },
+        {
+          "Property": "Disabled",
+          "Type": "false",
+          "Default": true,
+          "Description": "The control accepts input."
+        },
+        {
+          "Property": "Disabled",
+          "Type": "true",
+          "Default": "-",
+          "Description": "The action is unavailable. With no label there is nothing on the control to explain why, so put the reason in a tooltip or adjacent text."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4732:1155",
+      "title": "States & Triggers",
+      "columns": [
+        "State",
+        "Trigger",
+        "Duration",
+        "What changes"
+      ],
+      "rows": [
+        {
+          "State": "default",
+          "Trigger": "Resting",
+          "Duration": "—",
+          "What changes": "Background, border and glyph sit on the default tokens of the chosen flavour."
+        },
+        {
+          "State": "hover",
+          "Trigger": "Pointer over the control",
+          "Duration": "—",
+          "What changes": "Filled flavours move their own background token one step. Outline flavours hold their border and shift a neutral background underneath instead. Text flavours raise a ghost scrim from fully transparent. The glyph colour does not change on any flavour."
+        },
+        {
+          "State": "pressed",
+          "Trigger": "Pointer held down",
+          "Duration": "—",
+          "What changes": "The same mechanism as hover carried one step further. Gradient is the exception, collapsing from a two-stop gradient to a single flat token."
+        },
+        {
+          "State": "focus",
+          "Trigger": "Keyboard focus",
+          "Duration": "—",
+          "What changes": "A focus ring is drawn outside the bounds, replacing the resting border rather than adding to it. Identical on all nine flavours, and the only state that changes the control's outer footprint."
+        },
+        {
+          "State": "disabled",
+          "Trigger": "Disabled set to true",
+          "Duration": "—",
+          "What changes": "Background and glyph swap to the disabled tokens of their family. No flavour keeps its accent colour, so a disabled destructive button is indistinguishable from any other disabled one."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4732:1169",
+      "title": "Behavior & Motion Intent",
+      "columns": [
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Type": "Motion",
+          "Description": "Figma stores no timing. Every state change is colour-only, with no scale, shadow or elevation shift on any flavour, so a transition should read as a tint change rather than movement."
+        },
+        {
+          "Type": "Focus ring",
+          "Description": "The only change that alters the control's outer footprint, because the ring is drawn outside the bounds. Leave room around a button in a tight toolbar so the ring is not clipped."
+        },
+        {
+          "Type": "Resize",
+          "Description": "The control never resizes with its content. Both axes are fixed per Size, so swapping the glyph changes nothing about the footprint."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4732:1179",
+      "title": "Content & Slot",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Icon glyph",
+          "Type": "instance swap on the nested Icon",
+          "Description": "The only content this component has. It arrives holding More Horizontal, which reads as an overflow menu, so leaving it unchanged will actively mislead."
+        },
+        {
+          "Property": "Icon Size and Framed",
+          "Type": "exposed on the nested instance",
+          "Description": "Icon Button does not re-declare them, but the nested Icon stays exposed so both remain reachable in the properties panel. The button already pairs the glyph size to its own Size, and Framed would nest a 40px box inside an already-sized control. See the Icon Metadata frame for what Icon offers on its own terms."
+        }
+      ]
+    },
+    {
+      "kind": "unknown",
+      "nodeId": "4732:1203",
+      "layerName": "Anatomy",
+      "title": "Anatomy",
+      "rawTextContent": [
+        "Anatomy",
+        "1.",
+        "2.",
+        "Container",
+        "The button's own frame, fixed square at every size. Carries the background, the border and the radius, and never hugs its content.",
+        "Icon",
+        "A single Icon instance, always visible and centred. Icon Button sets its size and leaves the instance exposed."
+      ]
+    },
+    {
+      "kind": "how-to-use",
+      "nodeId": "4732:1226",
+      "title": "How to use",
+      "dos": [
+        "Give every icon button an accessible name in code. Nothing on the control is readable, so without one it is announced only as a button.",
+        "Use medium or large wherever the control will be tapped. Small is 36px, under the 40px minimum target the system sets for itself."
+      ],
+      "donts": [
+        "Don't leave the default More Horizontal glyph in place. It reads as an overflow menu and will be understood as one.",
+        "Don't use an icon button where the action needs explaining. If it takes a word to be clear, Button carries one and this component cannot."
+      ]
+    },
+    {
+      "kind": "bullet-list",
+      "nodeId": "4732:1242",
+      "title": "Accessibility & Content Guidelines",
+      "items": [
+        "Nothing in this component is readable, so every instance needs an accessible name in code. The glyph is decorative on its own.",
+        "Small is 36px square, below the 40px minimum target the system defines as control/target-min. Prefer medium or large wherever the control is tapped.",
+        "Focus is drawn as a ring outside the control and is identical on every flavour, so it stays visible whatever the button sits on.",
+        "Disabled is visual only, and with no label there is nothing on the control to explain why. Put the reason in a tooltip or adjacent text.",
+        "Colour is the only thing separating a destructive icon button from a neutral one, so back a destructive action with a confirmation step."
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4732:1246",
+      "title": "Layout & Theming Intents",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Size",
+          "Type": "Fixed square per Size",
+          "Description": "36×36 at small (control/sm), 40×40 at medium (control/md), 48×48 at large (control/lg). Both axes bind to the same token, so it is always square and never hugs its content."
+        },
+        {
+          "Property": "Padding",
+          "Type": "Fixed",
+          "Description": "4px (space/xs) on all four sides at every size."
+        },
+        {
+          "Property": "Radius",
+          "Type": "Fixed per Shape",
+          "Description": "0 (radius/none) for sharp, 4px (radius/element-sm) for rounded, 9999 (radius/pill) for full, which gives a circle. All three are token-bound, so match the container rather than overriding on the instance."
+        },
+        {
+          "Property": "Border",
+          "Type": "Fixed per Flavour",
+          "Description": "1px drawn inside on outline and outline-subtle, none on the other seven at rest. Focus replaces it with a 2px ring drawn outside the bounds."
+        },
+        {
+          "Property": "Glyph size",
+          "Type": "Fixed per Size",
+          "Description": "16px at small, 20px at medium and large. Large reuses Icon's medium step, so the glyph does not grow between medium and large even though the button does."
+        },
+        {
+          "Property": "Touch target",
+          "Type": "Fixed per Size",
+          "Description": "Small is 36px, under the 40px control/target-min the system defines. Medium meets it exactly and large exceeds it."
+        },
+        {
+          "Property": "Colour",
+          "Type": "Theming",
+          "Description": "Every fill, border and glyph colour is bound to an interactive/* token for the flavour. Gradient draws from surface/gradient/*, text-gradient from foreground/gradient/*, and focus from border/focus. No variant hardcodes a colour."
+        }
+      ]
+    }
+  ]
+}

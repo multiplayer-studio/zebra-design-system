@@ -1,0 +1,105 @@
+{
+  "componentName": "Caret Indicator",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3182-237&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "3453:54347",
+  "fetchedAt": "2026-09-22T20:44:33.123Z",
+  "componentProperties": {
+    "Open": {
+      "type": "VARIANT",
+      "defaultValue": "false",
+      "options": [
+        "false",
+        "true"
+      ]
+    },
+    "Direction": {
+      "type": "VARIANT",
+      "defaultValue": "vertical",
+      "options": [
+        "vertical",
+        "horizontal"
+      ]
+    }
+  },
+  "structure": {
+    "path": "Caret Indicator",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "Caret Indicator/Icon",
+        "type": "INSTANCE"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "Open=false, Direction=vertical",
+      "nodeId": "3453:54348",
+      "properties": {
+        "Open": "false",
+        "Direction": "vertical"
+      },
+      "values": {
+        "Caret Indicator": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Caret Indicator/Icon": {}
+      }
+    },
+    {
+      "name": "Open=true, Direction=vertical",
+      "nodeId": "3453:54350",
+      "properties": {
+        "Open": "true",
+        "Direction": "vertical"
+      },
+      "values": {
+        "Caret Indicator": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Caret Indicator/Icon": {}
+      }
+    },
+    {
+      "name": "Open=false, Direction=horizontal",
+      "nodeId": "3476:62257",
+      "properties": {
+        "Open": "false",
+        "Direction": "horizontal"
+      },
+      "values": {
+        "Caret Indicator": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Caret Indicator/Icon": {}
+      }
+    },
+    {
+      "name": "Open=true, Direction=horizontal",
+      "nodeId": "3476:62261",
+      "properties": {
+        "Open": "true",
+        "Direction": "horizontal"
+      },
+      "values": {
+        "Caret Indicator": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Caret Indicator/Icon": {}
+      }
+    }
+  ]
+}

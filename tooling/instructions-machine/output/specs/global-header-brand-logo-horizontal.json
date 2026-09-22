@@ -1,0 +1,71 @@
+{
+  "componentName": "_Brand Logo Horizontal",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2314-3348&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "2356:4944",
+  "fetchedAt": "2026-09-22T20:44:13.300Z",
+  "componentProperties": {},
+  "structure": {
+    "path": "_Brand Logo Horizontal",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "_Brand Logo Horizontal/zebra",
+        "type": "BOOLEAN_OPERATION"
+      },
+      {
+        "path": "_Brand Logo Horizontal/text",
+        "type": "BOOLEAN_OPERATION"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "_Brand Logo Horizontal",
+      "nodeId": "2356:4944",
+      "properties": {},
+      "values": {
+        "_Brand Logo Horizontal": {
+          "itemSpacing": {
+            "raw": 2,
+            "token": "space.2xs"
+          },
+          "padding": {
+            "left": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "right": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "_Brand Logo Horizontal/zebra": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ]
+        },
+        "_Brand Logo Horizontal/text": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

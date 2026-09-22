@@ -1,6 +1,6 @@
 # Versioning Guide
 
-This project uses **Nx Release** with **Conventional Commits** for independent semantic versioning. Each package (tokens, zeta-web, flutter, android, etc.) is versioned and released independently based on the changes it receives.
+This project uses **Nx Release** with **Conventional Commits** for independent semantic versioning. Each package that exists today (`tokens`, `zeta-web`) is versioned independently based on the changes it receives. Flutter and Android packages are planned but don't exist in this repo yet — see the Implementation Checklist below.
 
 ## Quick Start
 
@@ -50,7 +50,7 @@ This project uses **Nx Release** with **Conventional Commits** for independent s
    git push origin main --follow-tags
    ```
 
-That's it! The tags trigger publishing once Google Artifact Registry is configured.
+That's it for now — nothing is actually published anywhere from this repo yet. `nx release` only creates versions, changelogs, and git tags. See "Current State" below.
 
 **⚠️ Key Rules:**
 - ✅ Always work on **feature branches** with PR review before merging
@@ -81,9 +81,11 @@ Each package is versioned independently. When you commit a change:
 
 ### Tag Pattern
 
-Git tags follow the pattern `{packageName}@{version}`:
+Git tags follow the pattern `{packageName}@{version}`. Currently in use:
 - `@zebra-design-system/zeta-web@1.4.3`
 - `@zebra-design-system/tokens@1.0.1`
+
+Planned, once those packages exist:
 - `zeta_flutter@2.1.0`
 - `com.zebra.zeta.android@1.0.0`
 
@@ -181,6 +183,23 @@ To check what commits Nx sees:
 git log @zebra-design-system/zeta-web@1.4.2..HEAD --oneline
 ```
 
+### "No git tags matching pattern... were found" (but the tag exists)
+
+This means the release tag exists but isn't an ancestor of `HEAD` — usually because a squash-merge or rebase rewrote the history it was pointing at, stranding it. Check with:
+
+```bash
+git merge-base --is-ancestor "@zebra-design-system/<package>@<version>" HEAD && echo OK || echo STRANDED
+```
+
+If stranded, delete and re-create it at the current `HEAD`:
+
+```bash
+git tag -d "@zebra-design-system/<package>@<version>"
+git tag -a "@zebra-design-system/<package>@<version>" HEAD -m "@zebra-design-system/<package>@<version>"
+```
+
+Note: this repo's git config signs tags (`tag.gpgSign = true`), so `git tag -a ... -m ...` will prompt for your GPG passphrase — run it in a real terminal, not through an automated tool.
+
 ### "Version looks wrong for tokens"
 
 Tokens has never had independent releases — its first Nx-driven bump is inferred from all unscoped commits that touched `packages/foundations/tokens/**`. If the inferred version seems off, you can override it:
@@ -212,13 +231,18 @@ git commit -m "chore: revert accidental release"
 
 ---
 
-## Future: Publishing to Google Artifact Registry
+## Current State: Nothing Is Published From This Repo
 
-Once GAR credentials are configured, releases will automatically publish to the registry. For now:
+`pnpm exec nx release` only creates versions, changelogs, and git tags — no package is currently published anywhere from this monorepo.
 
-- `pnpm exec nx release` creates versions and tags locally only
-- To test artifacts locally: `pnpm exec nx run <package>:pack` creates a tarball in `dist/artifacts/`
+There is a `.github/workflows/zeta-web-on-release.yml` that publishes `zeta-web` to npmjs.com on a GitHub Release. It's a leftover artifact from when `zeta-web` was pulled in from its old standalone (pre-monorepo) repo, not an active or intentional part of this repo's release process — don't rely on it.
+
+To see what a published artifact would look like without actually publishing:
+
+- `pnpm exec nx run <package>:pack` creates a tarball in `dist/artifacts/`
 - Verify tarball contents: `tar -tzf dist/artifacts/*.tgz | head`
+
+Real distribution (npm, GAR, Pub.dev, Maven, etc.) isn't set up yet — see the Implementation Checklist below for planned phases.
 
 ---
 
@@ -327,7 +351,6 @@ Once GAR credentials are configured, releases will automatically publish to the 
 - [Conventional Commits](https://www.conventionalcommits.org/)
 - [Semantic Versioning](https://semver.org/)
 - [Nx Release Docs](https://nx.dev/features/manage-releases)
-- [Plan Document](/.claude/plans/you-are-acting-as-drifting-conway.md) — full technical details
 - [GAR npm Setup](https://cloud.google.com/artifact-registry/docs/npm/quickstart)
 - [Pub.dev Publishing](https://dart.dev/tools/pub/publishing)
 - [Android Publishing to Maven](https://developer.android.com/studio/publish/maven-publish-plugin)

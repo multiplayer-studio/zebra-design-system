@@ -1,0 +1,4218 @@
+{
+  "componentName": "Menu Item",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-5903&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "2402:6508",
+  "fetchedAt": "2026-09-22T20:44:16.319Z",
+  "componentProperties": {
+    "Leading Element#2402:29": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "Trailing Icon#2402:30": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "Leading Slot#2546:5": {
+      "type": "SLOT",
+      "defaultValue": {
+        "guid": {
+          "sessionID": -1,
+          "localID": -1
+        }
+      }
+    },
+    "Label#2665:55": {
+      "type": "TEXT",
+      "defaultValue": "Menu Item"
+    },
+    "State": {
+      "type": "VARIANT",
+      "defaultValue": "Default",
+      "options": [
+        "Default",
+        "hover",
+        "selected",
+        "focus",
+        "selected focus",
+        "disabled"
+      ]
+    },
+    "Type": {
+      "type": "VARIANT",
+      "defaultValue": "Icon",
+      "options": [
+        "Icon",
+        "checkbox",
+        "radio",
+        "custom"
+      ]
+    },
+    "Rounded": {
+      "type": "VARIANT",
+      "defaultValue": "false",
+      "options": [
+        "false",
+        "true"
+      ]
+    }
+  },
+  "structure": {
+    "path": "Menu Item",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "Menu Item/Leading Icon",
+        "type": "INSTANCE"
+      },
+      {
+        "path": "Menu Item/Label",
+        "type": "FRAME",
+        "children": [
+          {
+            "path": "Menu Item/Label/Label",
+            "type": "TEXT"
+          }
+        ]
+      },
+      {
+        "path": "Menu Item/Trailing Icon",
+        "type": "INSTANCE"
+      },
+      {
+        "path": "Menu Item/Leading Slot",
+        "type": "SLOT"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "State=Default, Type=Icon, Rounded=false",
+      "nodeId": "2398:6352",
+      "properties": {
+        "State": "Default",
+        "Type": "Icon",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=hover, Type=Icon, Rounded=false",
+      "nodeId": "2546:4650",
+      "properties": {
+        "State": "hover",
+        "Type": "Icon",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=selected, Type=Icon, Rounded=false",
+      "nodeId": "2546:4659",
+      "properties": {
+        "State": "selected",
+        "Type": "Icon",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.selected"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=focus, Type=Icon, Rounded=false",
+      "nodeId": "2546:4668",
+      "properties": {
+        "State": "focus",
+        "Type": "Icon",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=selected focus, Type=Icon, Rounded=false",
+      "nodeId": "2546:4677",
+      "properties": {
+        "State": "selected focus",
+        "Type": "Icon",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.selected"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=disabled, Type=Icon, Rounded=false",
+      "nodeId": "2546:4686",
+      "properties": {
+        "State": "disabled",
+        "Type": "Icon",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "interactive.neutral.foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=selected focus, Type=Icon, Rounded=true",
+      "nodeId": "2546:4695",
+      "properties": {
+        "State": "selected focus",
+        "Type": "Icon",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.selected"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=disabled, Type=Icon, Rounded=true",
+      "nodeId": "2546:4700",
+      "properties": {
+        "State": "disabled",
+        "Type": "Icon",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "interactive.neutral.foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=focus, Type=Icon, Rounded=true",
+      "nodeId": "2546:4705",
+      "properties": {
+        "State": "focus",
+        "Type": "Icon",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=selected, Type=Icon, Rounded=true",
+      "nodeId": "2546:4710",
+      "properties": {
+        "State": "selected",
+        "Type": "Icon",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.selected"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=hover, Type=Icon, Rounded=true",
+      "nodeId": "2546:4715",
+      "properties": {
+        "State": "hover",
+        "Type": "Icon",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=Default, Type=Icon, Rounded=true",
+      "nodeId": "2546:4720",
+      "properties": {
+        "State": "Default",
+        "Type": "Icon",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=Default, Type=radio, Rounded=false",
+      "nodeId": "2546:4848",
+      "properties": {
+        "State": "Default",
+        "Type": "radio",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=Default, Type=radio, Rounded=true",
+      "nodeId": "2546:4853",
+      "properties": {
+        "State": "Default",
+        "Type": "radio",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=hover, Type=radio, Rounded=true",
+      "nodeId": "2546:4858",
+      "properties": {
+        "State": "hover",
+        "Type": "radio",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=selected, Type=radio, Rounded=true",
+      "nodeId": "2546:4863",
+      "properties": {
+        "State": "selected",
+        "Type": "radio",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.selected"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=focus, Type=radio, Rounded=true",
+      "nodeId": "2546:4868",
+      "properties": {
+        "State": "focus",
+        "Type": "radio",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=disabled, Type=radio, Rounded=true",
+      "nodeId": "2546:4873",
+      "properties": {
+        "State": "disabled",
+        "Type": "radio",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "interactive.neutral.foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=selected focus, Type=radio, Rounded=true",
+      "nodeId": "2546:4878",
+      "properties": {
+        "State": "selected focus",
+        "Type": "radio",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.selected"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=disabled, Type=radio, Rounded=false",
+      "nodeId": "2546:4883",
+      "properties": {
+        "State": "disabled",
+        "Type": "radio",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "interactive.neutral.foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=selected focus, Type=radio, Rounded=false",
+      "nodeId": "2546:4888",
+      "properties": {
+        "State": "selected focus",
+        "Type": "radio",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.selected"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=focus, Type=radio, Rounded=false",
+      "nodeId": "2546:4893",
+      "properties": {
+        "State": "focus",
+        "Type": "radio",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=selected, Type=radio, Rounded=false",
+      "nodeId": "2546:4898",
+      "properties": {
+        "State": "selected",
+        "Type": "radio",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.selected"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=hover, Type=radio, Rounded=false",
+      "nodeId": "2546:4903",
+      "properties": {
+        "State": "hover",
+        "Type": "radio",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=Default, Type=checkbox, Rounded=false",
+      "nodeId": "2546:4957",
+      "properties": {
+        "State": "Default",
+        "Type": "checkbox",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=Default, Type=checkbox, Rounded=true",
+      "nodeId": "2546:4962",
+      "properties": {
+        "State": "Default",
+        "Type": "checkbox",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=hover, Type=checkbox, Rounded=true",
+      "nodeId": "2546:4967",
+      "properties": {
+        "State": "hover",
+        "Type": "checkbox",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=selected, Type=checkbox, Rounded=true",
+      "nodeId": "2546:4972",
+      "properties": {
+        "State": "selected",
+        "Type": "checkbox",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.selected"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=focus, Type=checkbox, Rounded=true",
+      "nodeId": "2546:4977",
+      "properties": {
+        "State": "focus",
+        "Type": "checkbox",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=disabled, Type=checkbox, Rounded=true",
+      "nodeId": "2546:4982",
+      "properties": {
+        "State": "disabled",
+        "Type": "checkbox",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "interactive.neutral.foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=selected focus, Type=checkbox, Rounded=true",
+      "nodeId": "2546:4987",
+      "properties": {
+        "State": "selected focus",
+        "Type": "checkbox",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.selected"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=disabled, Type=checkbox, Rounded=false",
+      "nodeId": "2546:4992",
+      "properties": {
+        "State": "disabled",
+        "Type": "checkbox",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "interactive.neutral.foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=selected focus, Type=checkbox, Rounded=false",
+      "nodeId": "2546:4997",
+      "properties": {
+        "State": "selected focus",
+        "Type": "checkbox",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.selected"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=focus, Type=checkbox, Rounded=false",
+      "nodeId": "2546:5002",
+      "properties": {
+        "State": "focus",
+        "Type": "checkbox",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=selected, Type=checkbox, Rounded=false",
+      "nodeId": "2546:5007",
+      "properties": {
+        "State": "selected",
+        "Type": "checkbox",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.selected"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=hover, Type=checkbox, Rounded=false",
+      "nodeId": "2546:5012",
+      "properties": {
+        "State": "hover",
+        "Type": "checkbox",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Icon": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=Default, Type=custom, Rounded=false",
+      "nodeId": "2546:5066",
+      "properties": {
+        "State": "Default",
+        "Type": "custom",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Slot": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=Default, Type=custom, Rounded=true",
+      "nodeId": "2546:5071",
+      "properties": {
+        "State": "Default",
+        "Type": "custom",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Slot": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=hover, Type=custom, Rounded=true",
+      "nodeId": "2546:5076",
+      "properties": {
+        "State": "hover",
+        "Type": "custom",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Slot": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=selected, Type=custom, Rounded=true",
+      "nodeId": "2546:5081",
+      "properties": {
+        "State": "selected",
+        "Type": "custom",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.selected"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Slot": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=focus, Type=custom, Rounded=true",
+      "nodeId": "2546:5086",
+      "properties": {
+        "State": "focus",
+        "Type": "custom",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Slot": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=disabled, Type=custom, Rounded=true",
+      "nodeId": "2546:5091",
+      "properties": {
+        "State": "disabled",
+        "Type": "custom",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Slot": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "interactive.neutral.foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=selected focus, Type=custom, Rounded=true",
+      "nodeId": "2546:5096",
+      "properties": {
+        "State": "selected focus",
+        "Type": "custom",
+        "Rounded": "true"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.selected"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Slot": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=disabled, Type=custom, Rounded=false",
+      "nodeId": "2546:5101",
+      "properties": {
+        "State": "disabled",
+        "Type": "custom",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Slot": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "interactive.neutral.foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=selected focus, Type=custom, Rounded=false",
+      "nodeId": "2546:5106",
+      "properties": {
+        "State": "selected focus",
+        "Type": "custom",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.selected"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Slot": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=focus, Type=custom, Rounded=false",
+      "nodeId": "2546:5111",
+      "properties": {
+        "State": "focus",
+        "Type": "custom",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Slot": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=selected, Type=custom, Rounded=false",
+      "nodeId": "2546:5116",
+      "properties": {
+        "State": "selected",
+        "Type": "custom",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.selected"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Slot": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    },
+    {
+      "name": "State=hover, Type=custom, Rounded=false",
+      "nodeId": "2546:5121",
+      "properties": {
+        "State": "hover",
+        "Type": "custom",
+        "Rounded": "false"
+      },
+      "values": {
+        "Menu Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Menu Item/Leading Slot": {},
+        "Menu Item/Label": {
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 24,
+              "token": "space.xl"
+            }
+          }
+        },
+        "Menu Item/Label/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "Menu Item",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Menu Item/Trailing Icon": {}
+      }
+    }
+  ]
+}

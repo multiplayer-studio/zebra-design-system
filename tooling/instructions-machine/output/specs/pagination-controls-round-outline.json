@@ -1,0 +1,294 @@
+{
+  "componentName": "_controls round outline",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "4485:1658",
+  "fetchedAt": "2026-09-22T20:44:08.082Z",
+  "componentProperties": {
+    "State": {
+      "type": "VARIANT",
+      "defaultValue": "enabled",
+      "options": [
+        "pressed",
+        "hover",
+        "focused",
+        "disabled",
+        "enabled"
+      ]
+    },
+    "Outline": {
+      "type": "VARIANT",
+      "defaultValue": "true",
+      "options": [
+        "true"
+      ]
+    }
+  },
+  "structure": {
+    "path": "_controls round outline",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "_controls round outline/Icon",
+        "type": "INSTANCE"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "State=enabled, Outline=true",
+      "nodeId": "4485:1659",
+      "properties": {
+        "State": "enabled",
+        "Outline": "true"
+      },
+      "values": {
+        "_controls round outline": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "interactive.neutral.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_controls round outline/Icon": {}
+      }
+    },
+    {
+      "name": "State=disabled, Outline=true",
+      "nodeId": "4485:1661",
+      "properties": {
+        "State": "disabled",
+        "Outline": "true"
+      },
+      "values": {
+        "_controls round outline": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "interactive.neutral.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.neutral.border.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_controls round outline/Icon": {}
+      }
+    },
+    {
+      "name": "State=focused, Outline=true",
+      "nodeId": "4485:1663",
+      "properties": {
+        "State": "focused",
+        "Outline": "true"
+      },
+      "values": {
+        "_controls round outline": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "interactive.neutral.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_controls round outline/Icon": {}
+      }
+    },
+    {
+      "name": "State=hover, Outline=true",
+      "nodeId": "4485:1665",
+      "properties": {
+        "State": "hover",
+        "Outline": "true"
+      },
+      "values": {
+        "_controls round outline": {
+          "fills": [
+            {
+              "raw": "#f3f6fa",
+              "token": "interactive.neutral.background.hover"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_controls round outline/Icon": {}
+      }
+    },
+    {
+      "name": "State=pressed, Outline=true",
+      "nodeId": "4485:1667",
+      "properties": {
+        "State": "pressed",
+        "Outline": "true"
+      },
+      "values": {
+        "_controls round outline": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.neutral.background.pressed"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#7a8190",
+              "token": "interactive.neutral.border.pressed"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_controls round outline/Icon": {}
+      }
+    }
+  ]
+}

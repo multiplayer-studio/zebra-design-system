@@ -1,0 +1,2262 @@
+{
+  "componentName": "Progress Bar",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4275-1344&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "4275:1997",
+  "fetchedAt": "2026-09-22T20:44:36.578Z",
+  "componentProperties": {
+    "Show Track#4282:0": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "Show Label#4335:5": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "Show More Details#4411:23": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "Right Slot#4411:36": {
+      "type": "SLOT",
+      "defaultValue": {
+        "guid": {
+          "sessionID": -1,
+          "localID": -1
+        }
+      }
+    },
+    "Progress": {
+      "type": "VARIANT",
+      "defaultValue": "0%",
+      "options": [
+        "0%",
+        "25%",
+        "50%",
+        "100%",
+        "Indeterminate",
+        "Buffering"
+      ]
+    },
+    "Shape": {
+      "type": "VARIANT",
+      "defaultValue": "rounded",
+      "options": [
+        "rounded",
+        "sharp"
+      ]
+    },
+    "Size": {
+      "type": "VARIANT",
+      "defaultValue": "small",
+      "options": [
+        "small",
+        "medium"
+      ]
+    }
+  },
+  "structure": {
+    "path": "Progress Bar",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "Progress Bar/Details",
+        "type": "FRAME",
+        "children": [
+          {
+            "path": "Progress Bar/Details/Label",
+            "type": "TEXT"
+          },
+          {
+            "path": "Progress Bar/Details/Right Slot",
+            "type": "SLOT"
+          }
+        ]
+      },
+      {
+        "path": "Progress Bar/Indicator Group",
+        "type": "FRAME",
+        "children": [
+          {
+            "path": "Progress Bar/Indicator Group/Indicator",
+            "type": "RECTANGLE"
+          },
+          {
+            "path": "Progress Bar/Indicator Group/Track",
+            "type": "RECTANGLE"
+          },
+          {
+            "path": "Progress Bar/Indicator Group/Rail",
+            "type": "RECTANGLE"
+          }
+        ]
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "Progress=0%, Shape=rounded, Size=small",
+      "nodeId": "4275:1998",
+      "properties": {
+        "Progress": "0%",
+        "Shape": "rounded",
+        "Size": "small"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "0%",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "padding": {
+            "right": {
+              "raw": 408,
+              "token": null
+            }
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=25%, Shape=rounded, Size=small",
+      "nodeId": "4275:2000",
+      "properties": {
+        "Progress": "25%",
+        "Shape": "rounded",
+        "Size": "small"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "25% complete",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=50%, Shape=rounded, Size=small",
+      "nodeId": "4275:2002",
+      "properties": {
+        "Progress": "50%",
+        "Shape": "rounded",
+        "Size": "small"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "50% complete",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=100%, Shape=rounded, Size=small",
+      "nodeId": "4275:2004",
+      "properties": {
+        "Progress": "100%",
+        "Shape": "rounded",
+        "Size": "small"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "Complete",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {},
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=Indeterminate, Shape=rounded, Size=small",
+      "nodeId": "4285:2023",
+      "properties": {
+        "Progress": "Indeterminate",
+        "Shape": "rounded",
+        "Size": "small"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "Uploading...",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=Buffering, Shape=rounded, Size=small",
+      "nodeId": "4285:2027",
+      "properties": {
+        "Progress": "Buffering",
+        "Shape": "rounded",
+        "Size": "small"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "Loading...",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {},
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        },
+        "Progress Bar/Indicator Group/Rail": {
+          "fills": [
+            {
+              "raw": "#0c0d0e1a",
+              "token": "surface.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=50%, Shape=sharp, Size=small",
+      "nodeId": "4330:2072",
+      "properties": {
+        "Progress": "50%",
+        "Shape": "sharp",
+        "Size": "small"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "50% complete",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=25%, Shape=sharp, Size=small",
+      "nodeId": "4330:2077",
+      "properties": {
+        "Progress": "25%",
+        "Shape": "sharp",
+        "Size": "small"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "25% complete",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=0%, Shape=sharp, Size=small",
+      "nodeId": "4330:2082",
+      "properties": {
+        "Progress": "0%",
+        "Shape": "sharp",
+        "Size": "small"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "0%",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "padding": {
+            "right": {
+              "raw": 408,
+              "token": null
+            }
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=100%, Shape=sharp, Size=small",
+      "nodeId": "4330:2087",
+      "properties": {
+        "Progress": "100%",
+        "Shape": "sharp",
+        "Size": "small"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "Complete",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {},
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=Indeterminate, Shape=sharp, Size=small",
+      "nodeId": "4330:2092",
+      "properties": {
+        "Progress": "Indeterminate",
+        "Shape": "sharp",
+        "Size": "small"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "Uploading...",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=Buffering, Shape=sharp, Size=small",
+      "nodeId": "4330:2097",
+      "properties": {
+        "Progress": "Buffering",
+        "Shape": "sharp",
+        "Size": "small"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "Loading...",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Rail": {
+          "fills": [
+            {
+              "raw": "#0c0d0e1a",
+              "token": "surface.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=Buffering, Shape=rounded, Size=medium",
+      "nodeId": "4411:5113",
+      "properties": {
+        "Progress": "Buffering",
+        "Shape": "rounded",
+        "Size": "medium"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "Loading...",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 8,
+            "token": "radius.md"
+          }
+        },
+        "Progress Bar/Indicator Group/Rail": {
+          "fills": [
+            {
+              "raw": "#0c0d0e1a",
+              "token": "surface.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 8,
+            "token": "radius.md"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 8,
+            "token": "radius.md"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=Buffering, Shape=sharp, Size=medium",
+      "nodeId": "4411:5122",
+      "properties": {
+        "Progress": "Buffering",
+        "Shape": "sharp",
+        "Size": "medium"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "Loading...",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Rail": {
+          "fills": [
+            {
+              "raw": "#0c0d0e1a",
+              "token": "surface.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=Indeterminate, Shape=sharp, Size=medium",
+      "nodeId": "4411:5131",
+      "properties": {
+        "Progress": "Indeterminate",
+        "Shape": "sharp",
+        "Size": "medium"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "Uploading...",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=Indeterminate, Shape=rounded, Size=medium",
+      "nodeId": "4411:5139",
+      "properties": {
+        "Progress": "Indeterminate",
+        "Shape": "rounded",
+        "Size": "medium"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "Uploading...",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 8,
+            "token": "radius.md"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 8,
+            "token": "radius.md"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=100%, Shape=rounded, Size=medium",
+      "nodeId": "4411:5147",
+      "properties": {
+        "Progress": "100%",
+        "Shape": "rounded",
+        "Size": "medium"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "Complete",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 8,
+            "token": "radius.md"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 8,
+            "token": "radius.md"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=100%, Shape=sharp, Size=medium",
+      "nodeId": "4411:5155",
+      "properties": {
+        "Progress": "100%",
+        "Shape": "sharp",
+        "Size": "medium"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "Complete",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {},
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=50%, Shape=sharp, Size=medium",
+      "nodeId": "4411:5163",
+      "properties": {
+        "Progress": "50%",
+        "Shape": "sharp",
+        "Size": "medium"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "50% complete",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=50%, Shape=rounded, Size=medium",
+      "nodeId": "4411:5171",
+      "properties": {
+        "Progress": "50%",
+        "Shape": "rounded",
+        "Size": "medium"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "50% complete",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 8,
+            "token": "radius.md"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 8,
+            "token": "radius.md"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=25%, Shape=rounded, Size=medium",
+      "nodeId": "4411:5179",
+      "properties": {
+        "Progress": "25%",
+        "Shape": "rounded",
+        "Size": "medium"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "25% complete",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 8,
+            "token": "radius.md"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 8,
+            "token": "radius.md"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=25%, Shape=sharp, Size=medium",
+      "nodeId": "4411:5187",
+      "properties": {
+        "Progress": "25%",
+        "Shape": "sharp",
+        "Size": "medium"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "25% complete",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=0%, Shape=sharp, Size=medium",
+      "nodeId": "4411:5195",
+      "properties": {
+        "Progress": "0%",
+        "Shape": "sharp",
+        "Size": "medium"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "0%",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "right": {
+              "raw": 408,
+              "token": null
+            }
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        }
+      }
+    },
+    {
+      "name": "Progress=0%, Shape=rounded, Size=medium",
+      "nodeId": "4411:5203",
+      "properties": {
+        "Progress": "0%",
+        "Shape": "rounded",
+        "Size": "medium"
+      },
+      "values": {
+        "Progress Bar": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "Progress Bar/Details": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Progress Bar/Details/Label": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "0%",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium"
+            }
+          }
+        },
+        "Progress Bar/Details/Right Slot": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          }
+        },
+        "Progress Bar/Indicator Group": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "right": {
+              "raw": 408,
+              "token": null
+            }
+          }
+        },
+        "Progress Bar/Indicator Group/Indicator": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "foreground.link"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 8,
+            "token": "radius.md"
+          }
+        },
+        "Progress Bar/Indicator Group/Track": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "border.subtle"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 8,
+            "token": "radius.md"
+          }
+        }
+      }
+    }
+  ]
+}

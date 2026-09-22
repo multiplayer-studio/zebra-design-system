@@ -1,0 +1,252 @@
+{
+  "componentName": "NAVIGATION BAR",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2835-796&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "4750:164",
+  "fetchedAt": "2026-09-22T20:44:22.569Z",
+  "hero": {
+    "statusLabel": "NAVIGATION BAR · COMPONENT METADATA",
+    "heading": "What this component does",
+    "description": "A horizontal bar of top-level destinations, pinned to one edge of a view. It is a container rather than a fixed design, three slots hold the content and the variant axes decide only how that content is arranged across the width. Fill the slots with Navigation Item instances, and turn on the Action Slot when the bar also needs a call to action. It draws no background of its own, so it takes the colour of whatever sits behind it."
+  },
+  "sections": [
+    {
+      "kind": "table",
+      "nodeId": "4750:173",
+      "title": "Property Breakdown",
+      "columns": [
+        "Property",
+        "Type",
+        "Default",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Shrink Items",
+          "Type": "true",
+          "Default": true,
+          "Description": "Items keep their natural width and the groups sit against the ends of the bar. The right choice when the number of destinations can change, because adding one does not re-space the others."
+        },
+        {
+          "Property": "Shrink Items",
+          "Type": "false",
+          "Default": "-",
+          "Description": "The item row stretches to the full width and spreads the items evenly across it. Suits a fixed set of destinations, and looks unbalanced the moment the count changes."
+        },
+        {
+          "Property": "Spacer",
+          "Type": "false",
+          "Default": true,
+          "Description": "One group of items flowing from the start of the bar. Use when every destination has equal standing."
+        },
+        {
+          "Property": "Spacer",
+          "Type": "true",
+          "Default": "-",
+          "Description": "Splits the items into two groups pushed to opposite ends and adds a second slot on the right. Use it to separate primary destinations from account or utility entries. Available only while Shrink Items is true."
+        },
+        {
+          "Property": "Show Divider",
+          "Type": "false",
+          "Default": true,
+          "Description": "No rule between the two groups. The gap alone carries the separation, which is enough on a plain surface."
+        },
+        {
+          "Property": "Show Divider",
+          "Type": "true",
+          "Default": "-",
+          "Description": "Draws a vertical rule between the two groups. Available only when Spacer is true, because without a split there is nothing to divide."
+        },
+        {
+          "Property": "Show Action Slot",
+          "Type": "false",
+          "Default": true,
+          "Description": "No action alongside the destinations."
+        },
+        {
+          "Property": "Show Action Slot",
+          "Type": "true",
+          "Default": "-",
+          "Description": "Reveals a slot at the end of the bar for a call to action that is not a destination. Placing an action among the items instead makes it read as another place to go."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4750:245",
+      "title": "States & Triggers",
+      "columns": [
+        "State",
+        "Trigger",
+        "Duration",
+        "What changes"
+      ],
+      "rows": [
+        {
+          "State": "Static",
+          "Trigger": "—",
+          "Duration": "—",
+          "What changes": "The bar itself has no interaction states. Selection, hover and disabled all live on the Navigation Item instances inside the slots, so the bar never changes appearance on its own."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4750:259",
+      "title": "Behavior & Motion Intent",
+      "columns": [
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Type": "Motion",
+          "Description": "Figma stores no timing, and the bar models no transition. Arrangement changes come from switching a variant, which is an authoring choice rather than something that animates at runtime."
+        },
+        {
+          "Type": "Reflow",
+          "Description": "Width fills the parent and height is driven by the slot content, so taller items make a taller bar. Under Shrink Items=false, adding or removing an item re-spaces every remaining item immediately."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4750:269",
+      "title": "Content & Slot",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Slot",
+          "Type": "slot, prefers Navigation Item",
+          "Description": "The main group of destinations. It will accept other content, but Navigation Item is what the bar is built around and what sets its height. See the Navigation Item Metadata frame for what each item offers."
+        },
+        {
+          "Property": "Right Slot",
+          "Type": "slot, prefers Navigation Item",
+          "Description": "The second group, present only while Spacer is true. Same content rules as Slot. Switching to a variant without Spacer removes the slot along with anything placed in it."
+        },
+        {
+          "Property": "Action Slot",
+          "Type": "slot, prefers Button",
+          "Description": "A single action rather than a destination, hidden until Show Action Slot is turned on. See the Button Metadata frame. The bar does not constrain which flavour or size goes in, so match it to the surface."
+        },
+        {
+          "Property": "Item count",
+          "Type": "not constrained",
+          "Description": "No slot caps how many items it holds. The bar keeps adding them well past the point where labels stay readable, so that limit is a design decision rather than one the component enforces."
+        }
+      ]
+    },
+    {
+      "kind": "unknown",
+      "nodeId": "4750:293",
+      "layerName": "Anatomy",
+      "title": "Anatomy",
+      "rawTextContent": [
+        "Anatomy",
+        "Label",
+        "Label",
+        "Label",
+        "Label",
+        "Button",
+        "1.",
+        "2.",
+        "4.",
+        "3.",
+        "Bar",
+        "The outer horizontal frame. Fills its parent's width, hugs its content vertically, and carries a top border and nothing else.",
+        "Slot and Right Slot",
+        "The groups of destinations, holding Navigation Item instances. The right group exists only while Spacer is true.",
+        "Divider Section",
+        "A vertical rule between the two groups, inset from the top and bottom edges. Present only while Show Divider is true.",
+        "Action Slot",
+        "An end-aligned slot holding a single Button, hidden until Show Action Slot is turned on."
+      ]
+    },
+    {
+      "kind": "how-to-use",
+      "nodeId": "4750:316",
+      "title": "How to use",
+      "dos": [
+        "Fill the slots with Navigation Item instances and let the bar handle the arrangement. The variant axes exist so items never have to be positioned by hand.",
+        "Turn on Show Action Slot when the bar needs a call to action, rather than dropping a Button in among the destinations."
+      ],
+      "donts": [
+        "Don't use Shrink Items=false when the number of destinations can change. Evenly spread items re-space every time one is added or removed.",
+        "Don't rely on the bar for a background. It has no fill of its own, so it shows whatever surface sits behind it."
+      ]
+    },
+    {
+      "kind": "bullet-list",
+      "nodeId": "4750:332",
+      "title": "Accessibility & Content Guidelines",
+      "items": [
+        "The bar is a container and announces nothing itself. The destinations inside carry the meaning, so every Navigation Item needs a clear label.",
+        "Only the top edge is drawn. On a surface close to border/default the bar's boundary disappears, so check that contrast rather than assuming the edge reads.",
+        "Selection lives on the item, not the bar. Exactly one Navigation Item should be Active at a time, and nothing in the component enforces it.",
+        "The Action Slot holds an action rather than a destination. Keeping it visually distinct matters more here than elsewhere, because everything else in the bar navigates."
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4750:336",
+      "title": "Layout & Theming Intents",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Width",
+          "Type": "Fill",
+          "Description": "Fills its parent's width at every variant. It is not built to be given a fixed width."
+        },
+        {
+          "Property": "Height",
+          "Type": "Hug",
+          "Description": "72px, driven entirely by the items inside. Nothing sets a height on the bar, so taller slot content makes a taller bar."
+        },
+        {
+          "Property": "Padding",
+          "Type": "None",
+          "Description": "Zero on all four sides. Every inset comes from the items themselves."
+        },
+        {
+          "Property": "Gap",
+          "Type": "None",
+          "Description": "Item spacing is zero. Separation comes from each item's own padding and from the alignment mode, never from a gap on the bar."
+        },
+        {
+          "Property": "Arrangement",
+          "Type": "Fixed per variant",
+          "Description": "Shrink Items=true lets each slot hug its content and spaces the groups apart. Shrink Items=false makes the slot fill the width and distribute its items evenly inside it."
+        },
+        {
+          "Property": "Divider",
+          "Type": "Fixed",
+          "Description": "A vertical Divider inside a Divider Section, inset 8px (space/sm) top and bottom, 1px wide on stroke/thin. Present only while Show Divider is true."
+        },
+        {
+          "Property": "Action Slot inset",
+          "Type": "Fixed",
+          "Description": "16px (space/lg) of padding on its leading edge and an 8px gap, so the action separates from the last destination."
+        },
+        {
+          "Property": "Border",
+          "Type": "Fixed",
+          "Description": "A 1px top border on border/default, drawn outside the bounds. No other edge is drawn, and there is no fill and no shadow."
+        },
+        {
+          "Property": "Colour",
+          "Type": "Theming",
+          "Description": "The bar binds only its border, to border/default. Everything else visible in it is coloured by the items, or by the surface showing through."
+        }
+      ]
+    }
+  ]
+}

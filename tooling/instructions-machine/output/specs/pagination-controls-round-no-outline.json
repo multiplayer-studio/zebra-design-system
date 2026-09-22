@@ -1,0 +1,294 @@
+{
+  "componentName": "_controls round no-outline",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "4485:1647",
+  "fetchedAt": "2026-09-22T20:44:08.082Z",
+  "componentProperties": {
+    "State": {
+      "type": "VARIANT",
+      "defaultValue": "enabled",
+      "options": [
+        "pressed",
+        "hover",
+        "focused",
+        "disabled",
+        "enabled"
+      ]
+    },
+    "Outline": {
+      "type": "VARIANT",
+      "defaultValue": "false",
+      "options": [
+        "false"
+      ]
+    }
+  },
+  "structure": {
+    "path": "_controls round no-outline",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "_controls round no-outline/Icon",
+        "type": "INSTANCE"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "State=enabled, Outline=false",
+      "nodeId": "4485:1648",
+      "properties": {
+        "State": "enabled",
+        "Outline": "false"
+      },
+      "values": {
+        "_controls round no-outline": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "interactive.neutral.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_controls round no-outline/Icon": {}
+      }
+    },
+    {
+      "name": "State=disabled, Outline=false",
+      "nodeId": "4485:1650",
+      "properties": {
+        "State": "disabled",
+        "Outline": "false"
+      },
+      "values": {
+        "_controls round no-outline": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "interactive.neutral.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.neutral.border.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_controls round no-outline/Icon": {}
+      }
+    },
+    {
+      "name": "State=focused, Outline=false",
+      "nodeId": "4485:1652",
+      "properties": {
+        "State": "focused",
+        "Outline": "false"
+      },
+      "values": {
+        "_controls round no-outline": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "interactive.neutral.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_controls round no-outline/Icon": {}
+      }
+    },
+    {
+      "name": "State=hover, Outline=false",
+      "nodeId": "4485:1654",
+      "properties": {
+        "State": "hover",
+        "Outline": "false"
+      },
+      "values": {
+        "_controls round no-outline": {
+          "fills": [
+            {
+              "raw": "#f3f6fa",
+              "token": "interactive.neutral.background.hover"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_controls round no-outline/Icon": {}
+      }
+    },
+    {
+      "name": "State=pressed, Outline=false",
+      "nodeId": "4485:1656",
+      "properties": {
+        "State": "pressed",
+        "Outline": "false"
+      },
+      "values": {
+        "_controls round no-outline": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.neutral.background.pressed"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#7a8190",
+              "token": "interactive.neutral.border.pressed"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_controls round no-outline/Icon": {}
+      }
+    }
+  ]
+}

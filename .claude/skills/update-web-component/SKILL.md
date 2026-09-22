@@ -7,9 +7,13 @@ description: Use when the user wants to update or maintain an existing zeta-web 
 
 `zeta-web` is the Lit web component library package (`packages/zeta-web` / `@zebra-fed/zeta-web`) within this monorepo. The goal here is a minimal, consistent change — match the existing file's style and don't restructure what the update doesn't touch. Check `CONTRIBUTING.md` if anything below is ambiguous.
 
-## 0. If a Figma link was given, pull the design context first
+## 0. Pull the design context first
 
-Load the `figma-design-to-code` skill and use `get_design_context` (and `get_variable_defs`) on the given node to see exactly what changed — new variant, new token, new state — before touching code. Skip this step if there's no Figma link.
+`docs/instructions/<component>.md` is the first port of truth — it mirrors the Figma design exactly (layer structure, resolved tokens per variant, token changes by property). Before touching code:
+
+1. Check `docs/instructions/<component>.md` first and diff it mentally against the current implementation to see what changed — new variant, new token, new state.
+2. If a Figma link was given and the doc doesn't cover the change (or doesn't exist yet), fall back to Figma directly: load the `figma-design-to-code` skill and use `get_design_context` (and `get_variable_defs`) on the given node.
+3. Skip this step only if there's no `docs/instructions/<component>.md` file and no Figma link.
 
 ## 1. Find the component and its related files
 

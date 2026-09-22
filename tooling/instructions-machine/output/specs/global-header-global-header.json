@@ -1,0 +1,582 @@
+{
+  "componentName": "Global Header",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2314-3348&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "2356:5644",
+  "fetchedAt": "2026-09-22T20:44:13.297Z",
+  "componentProperties": {
+    "AppSwitcher#2356:3": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "SearchBar#2356:4": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "Dividers#2356:5": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "Slot-Menu-Items#2364:6": {
+      "type": "SLOT",
+      "defaultValue": {
+        "guid": {
+          "sessionID": -1,
+          "localID": -1
+        }
+      }
+    },
+    "Slot-Menu-Actions#2364:9": {
+      "type": "SLOT",
+      "defaultValue": {
+        "guid": {
+          "sessionID": -1,
+          "localID": -1
+        }
+      }
+    },
+    "ActionMenu#2364:12": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "MenuItems#2364:15": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "PlatformName#2368:18": {
+      "type": "TEXT",
+      "defaultValue": "Platform Name"
+    },
+    "Show Platform Name#2368:21": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "Show Logo#2368:24": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "Slot Logo#2797:0": {
+      "type": "SLOT",
+      "defaultValue": {
+        "guid": {
+          "sessionID": -1,
+          "localID": -1
+        }
+      }
+    },
+    "Rounded": {
+      "type": "VARIANT",
+      "defaultValue": "false",
+      "options": [
+        "true",
+        "false"
+      ]
+    }
+  },
+  "structure": {
+    "path": "Global Header",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "Global Header/Header-Left",
+        "type": "FRAME",
+        "children": [
+          {
+            "path": "Global Header/Header-Left/Icon Button",
+            "type": "INSTANCE"
+          },
+          {
+            "path": "Global Header/Header-Left/Slot Logo",
+            "type": "SLOT"
+          },
+          {
+            "path": "Global Header/Header-Left/Platform Name",
+            "type": "TEXT"
+          }
+        ]
+      },
+      {
+        "path": "Global Header/Divider",
+        "type": "INSTANCE"
+      },
+      {
+        "path": "Global Header/Header-Middle",
+        "type": "FRAME",
+        "children": [
+          {
+            "path": "Global Header/Header-Middle/Slot-Menu-Items",
+            "type": "SLOT"
+          },
+          {
+            "path": "Global Header/Header-Middle/Search",
+            "type": "INSTANCE"
+          },
+          {
+            "path": "Global Header/Header-Middle/Slot-Menu-Actions",
+            "type": "SLOT"
+          }
+        ]
+      },
+      {
+        "path": "Global Header/Header-Right",
+        "type": "FRAME",
+        "children": [
+          {
+            "path": "Global Header/Header-Right/Template/Dropdown",
+            "type": "INSTANCE"
+          },
+          {
+            "path": "Global Header/Header-Right/Icon Button",
+            "type": "INSTANCE"
+          }
+        ]
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "Rounded=false",
+      "nodeId": "2356:5580",
+      "properties": {
+        "Rounded": "false"
+      },
+      "values": {
+        "Global Header": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "surface.section"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "border.default"
+            }
+          ],
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.gutter"
+          },
+          "padding": {
+            "left": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "right": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "Global Header/Header-Left": {
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.gutter"
+          }
+        },
+        "Global Header/Header-Left/Icon Button": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Global Header/Header-Left/Slot Logo": {},
+        "Global Header/Header-Left/Platform Name": {
+          "fills": [
+            {
+              "raw": "#f8fbff",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Platform Name",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 16,
+              "token": "title.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "title.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "title.medium"
+            }
+          }
+        },
+        "Global Header/Divider": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Global Header/Header-Middle": {
+          "itemSpacing": {
+            "raw": 2,
+            "token": "space.2xs"
+          }
+        },
+        "Global Header/Header-Middle/Slot-Menu-Items": {
+          "itemSpacing": {
+            "raw": 2,
+            "token": "space.2xs"
+          }
+        },
+        "Global Header/Header-Middle/Search": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": null
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": null
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": null
+          },
+          "itemSpacing": {
+            "raw": 4,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": null
+            },
+            "right": {
+              "raw": 12,
+              "token": null
+            },
+            "top": {
+              "raw": 8,
+              "token": null
+            },
+            "bottom": {
+              "raw": 8,
+              "token": null
+            }
+          }
+        },
+        "Global Header/Header-Middle/Slot-Menu-Actions": {
+          "itemSpacing": {
+            "raw": 2,
+            "token": "space.2xs"
+          }
+        },
+        "Global Header/Header-Right": {
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.gutter"
+          }
+        },
+        "Global Header/Header-Right/Template/Dropdown": {},
+        "Global Header/Header-Right/Icon Button": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Rounded=true",
+      "nodeId": "2356:5655",
+      "properties": {
+        "Rounded": "true"
+      },
+      "values": {
+        "Global Header": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "surface.section"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.gutter"
+          },
+          "padding": {
+            "left": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "right": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "Global Header/Header-Left": {
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.gutter"
+          }
+        },
+        "Global Header/Header-Left/Icon Button": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Global Header/Header-Left/Slot Logo": {},
+        "Global Header/Header-Left/Platform Name": {
+          "fills": [
+            {
+              "raw": "#f8fbff",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Platform Name",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 16,
+              "token": "title.medium"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "title.medium"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "title.medium"
+            }
+          }
+        },
+        "Global Header/Divider": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          }
+        },
+        "Global Header/Header-Middle": {
+          "itemSpacing": {
+            "raw": 2,
+            "token": "space.2xs"
+          }
+        },
+        "Global Header/Header-Middle/Slot-Menu-Items": {
+          "itemSpacing": {
+            "raw": 2,
+            "token": "space.2xs"
+          }
+        },
+        "Global Header/Header-Middle/Search": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": null
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": null
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "itemSpacing": {
+            "raw": 4,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": null
+            },
+            "right": {
+              "raw": 12,
+              "token": null
+            },
+            "top": {
+              "raw": 2,
+              "token": null
+            },
+            "bottom": {
+              "raw": 2,
+              "token": null
+            }
+          }
+        },
+        "Global Header/Header-Middle/Slot-Menu-Actions": {
+          "itemSpacing": {
+            "raw": 2,
+            "token": "space.2xs"
+          }
+        },
+        "Global Header/Header-Right": {
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.gutter"
+          }
+        },
+        "Global Header/Header-Right/Template/Dropdown": {},
+        "Global Header/Header-Right/Icon Button": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.neutral.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,475 @@
+{
+  "componentName": "Dialog Footer",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2526-316&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "2644:3185",
+  "fetchedAt": "2026-09-22T20:44:10.062Z",
+  "componentProperties": {
+    "Right Action#2896:32": {
+      "type": "SLOT",
+      "defaultValue": {
+        "guid": {
+          "sessionID": -1,
+          "localID": -1
+        }
+      }
+    },
+    "Left Action#2903:8": {
+      "type": "SLOT",
+      "defaultValue": {
+        "guid": {
+          "sessionID": -1,
+          "localID": -1
+        }
+      }
+    },
+    "Actions": {
+      "type": "VARIANT",
+      "defaultValue": "3",
+      "options": [
+        "2",
+        "3",
+        "1",
+        "custom"
+      ]
+    }
+  },
+  "structure": {
+    "path": "Dialog Footer",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "Dialog Footer/Tertiary",
+        "type": "INSTANCE"
+      },
+      {
+        "path": "Dialog Footer/Right Button Group",
+        "type": "FRAME",
+        "children": [
+          {
+            "path": "Dialog Footer/Right Button Group/Secondary",
+            "type": "INSTANCE"
+          },
+          {
+            "path": "Dialog Footer/Right Button Group/Primary",
+            "type": "INSTANCE"
+          },
+          {
+            "path": "Dialog Footer/Right Button Group/Right Action",
+            "type": "SLOT"
+          }
+        ]
+      },
+      {
+        "path": "Dialog Footer/Secondary",
+        "type": "INSTANCE"
+      },
+      {
+        "path": "Dialog Footer/Primary",
+        "type": "INSTANCE"
+      },
+      {
+        "path": "Dialog Footer/Left Button Group",
+        "type": "FRAME",
+        "children": [
+          {
+            "path": "Dialog Footer/Left Button Group/Left Action",
+            "type": "SLOT"
+          }
+        ]
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "Actions=3",
+      "nodeId": "2622:3169",
+      "properties": {
+        "Actions": "3"
+      },
+      "values": {
+        "Dialog Footer": {
+          "itemSpacing": {
+            "raw": 159,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog Footer/Tertiary": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.ghost.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Dialog Footer/Right Button Group": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          }
+        },
+        "Dialog Footer/Right Button Group/Secondary": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "interactive.neutral.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Dialog Footer/Right Button Group/Primary": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Actions=2",
+      "nodeId": "2644:3186",
+      "properties": {
+        "Actions": "2"
+      },
+      "values": {
+        "Dialog Footer": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog Footer/Secondary": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "interactive.neutral.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Dialog Footer/Primary": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Actions=1",
+      "nodeId": "2644:3243",
+      "properties": {
+        "Actions": "1"
+      },
+      "values": {
+        "Dialog Footer": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog Footer/Primary": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Actions=custom",
+      "nodeId": "2896:4920",
+      "properties": {
+        "Actions": "custom"
+      },
+      "values": {
+        "Dialog Footer": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog Footer/Left Button Group": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          }
+        },
+        "Dialog Footer/Left Button Group/Left Action": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          }
+        },
+        "Dialog Footer/Right Button Group": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          }
+        },
+        "Dialog Footer/Right Button Group/Right Action": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          }
+        }
+      }
+    }
+  ]
+}

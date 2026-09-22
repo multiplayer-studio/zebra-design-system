@@ -1,0 +1,494 @@
+{
+  "componentName": "_indicators round no-outline",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "4489:1815",
+  "fetchedAt": "2026-09-22T20:44:08.079Z",
+  "componentProperties": {
+    "State": {
+      "type": "VARIANT",
+      "defaultValue": "enabled",
+      "options": [
+        "enabled",
+        "hover",
+        "selected",
+        "focused",
+        "disabled",
+        "pressed"
+      ]
+    },
+    "Outline": {
+      "type": "VARIANT",
+      "defaultValue": "false",
+      "options": [
+        "false"
+      ]
+    }
+  },
+  "structure": {
+    "path": "_indicators round no-outline",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "_indicators round no-outline/10",
+        "type": "TEXT"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "State=enabled, Outline=false",
+      "nodeId": "4489:1816",
+      "properties": {
+        "State": "enabled",
+        "Outline": "false"
+      },
+      "values": {
+        "_indicators round no-outline": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "interactive.neutral.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_indicators round no-outline/10": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "10",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 14,
+              "token": "body.small"
+            },
+            "lineHeight": {
+              "raw": 18,
+              "token": "body.small"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.small"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "State=disabled, Outline=false",
+      "nodeId": "4489:1818",
+      "properties": {
+        "State": "disabled",
+        "Outline": "false"
+      },
+      "values": {
+        "_indicators round no-outline": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.neutral.background.disabled"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.neutral.border.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_indicators round no-outline/10": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "10",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 14,
+              "token": "body.small"
+            },
+            "lineHeight": {
+              "raw": 18,
+              "token": "body.small"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.small"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "State=focused, Outline=false",
+      "nodeId": "4489:1820",
+      "properties": {
+        "State": "focused",
+        "Outline": "false"
+      },
+      "values": {
+        "_indicators round no-outline": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "interactive.neutral.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "border.focus"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_indicators round no-outline/10": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "10",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 14,
+              "token": "body.small"
+            },
+            "lineHeight": {
+              "raw": 18,
+              "token": "body.small"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.small"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "State=hover, Outline=false",
+      "nodeId": "4489:1822",
+      "properties": {
+        "State": "hover",
+        "Outline": "false"
+      },
+      "values": {
+        "_indicators round no-outline": {
+          "fills": [
+            {
+              "raw": "#f3f6fa",
+              "token": "interactive.neutral.background.hover"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_indicators round no-outline/10": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "10",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 14,
+              "token": "body.small"
+            },
+            "lineHeight": {
+              "raw": 18,
+              "token": "body.small"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.small"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "State=pressed, Outline=false",
+      "nodeId": "4489:1824",
+      "properties": {
+        "State": "pressed",
+        "Outline": "false"
+      },
+      "values": {
+        "_indicators round no-outline": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.neutral.background.pressed"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_indicators round no-outline/10": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "10",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 14,
+              "token": "body.small"
+            },
+            "lineHeight": {
+              "raw": 18,
+              "token": "body.small"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.small"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "State=selected, Outline=false",
+      "nodeId": "4489:1826",
+      "properties": {
+        "State": "selected",
+        "Outline": "false"
+      },
+      "values": {
+        "_indicators round no-outline": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.neutral.background.pressed"
+            },
+            {
+              "raw": "#0c0d0e",
+              "token": "interactive.inverse.background.selected"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1d1e23",
+              "token": "interactive.inverse.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 10,
+              "token": null
+            },
+            "right": {
+              "raw": 10,
+              "token": null
+            },
+            "top": {
+              "raw": 10,
+              "token": null
+            },
+            "bottom": {
+              "raw": 10,
+              "token": null
+            }
+          }
+        },
+        "_indicators round no-outline/10": {
+          "fills": [
+            {
+              "raw": "#f8fbff",
+              "token": "foreground.inverse"
+            }
+          ],
+          "text": {
+            "characters": "10",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 14,
+              "token": "body.small"
+            },
+            "lineHeight": {
+              "raw": 18,
+              "token": "body.small"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.small"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

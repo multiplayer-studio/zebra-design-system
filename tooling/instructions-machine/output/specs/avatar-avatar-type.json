@@ -1,0 +1,101 @@
+{
+  "componentName": "_Avatar Type",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-6017&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "2697:17618",
+  "fetchedAt": "2026-09-22T20:44:18.965Z",
+  "componentProperties": {
+    "Type": {
+      "type": "VARIANT",
+      "defaultValue": "initials",
+      "options": [
+        "initials",
+        "photo",
+        "Icon"
+      ]
+    }
+  },
+  "structure": {
+    "path": "_Avatar Type",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "_Avatar Type/Swatch",
+        "type": "INSTANCE"
+      },
+      {
+        "path": "_Avatar Type/AA",
+        "type": "TEXT"
+      },
+      {
+        "path": "_Avatar Type/Photo",
+        "type": "INSTANCE"
+      },
+      {
+        "path": "_Avatar Type/Icon",
+        "type": "INSTANCE"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "Type=initials",
+      "nodeId": "2697:17617",
+      "properties": {
+        "Type": "initials"
+      },
+      "values": {
+        "_Avatar Type": {},
+        "_Avatar Type/Swatch": {},
+        "_Avatar Type/AA": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": null
+            }
+          ],
+          "text": {
+            "characters": "AA",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium | label.large"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium | label.large"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium | label.large"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Type=photo",
+      "nodeId": "2697:17619",
+      "properties": {
+        "Type": "photo"
+      },
+      "values": {
+        "_Avatar Type": {},
+        "_Avatar Type/Photo": {}
+      }
+    },
+    {
+      "name": "Type=Icon",
+      "nodeId": "2697:17625",
+      "properties": {
+        "Type": "Icon"
+      },
+      "values": {
+        "_Avatar Type": {},
+        "_Avatar Type/Swatch": {},
+        "_Avatar Type/Icon": {}
+      }
+    }
+  ]
+}

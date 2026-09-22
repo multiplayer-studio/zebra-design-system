@@ -9,9 +9,6 @@ Use Nx generators to create new packages:
 ```bash
 # Create a new library under packages/
 pnpm exec nx generate @nx/js:library --directory packages --name my-package --bundler swc
-
-# Create a new application under apps/
-pnpm exec nx generate @nx/web:app --directory apps --name my-app
 ```
 
 ### Add an existing project to the monorepo
@@ -102,8 +99,8 @@ Use the `<scope>` to indicate which package or area a change affects:
 |-------|---------|
 | `(tokens)` | Design tokens (`@zebra-design-system/tokens`) |
 | `(zeta-web)` or `(button)`, `(card)`, etc. | Web components (`@zebra-design-system/zeta-web`) |
-| `(flutter)` | Flutter package (`zeta_flutter`) |
-| `(android)` | Android package (`com.zebra.zeta.android`) |
+| `(flutter)` | Flutter package (`zeta_flutter`, future) |
+| `(android)` | Android package (`com.zebra.zeta.android`, future) |
 | `(icons)` | Icons package (future) |
 | `(ci)` | GitHub workflows, CI configuration |
 | `(config)` | Root config files (`nx.json`, `pnpm-workspace.yaml`, `.npmrc`) |

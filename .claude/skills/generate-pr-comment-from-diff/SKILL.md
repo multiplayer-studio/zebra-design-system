@@ -45,8 +45,11 @@ The skill:
 The skill first checks if a PR comment already exists for the current branch:
 
 ```bash
-# Get current branch name
-BRANCH=$(git rev-parse --abbrev-ref HEAD)
+# Get current branch name, sanitized for use in a filename: anything that isn't
+# alphanumeric or `_` (slashes included) becomes `_` — matches the existing files in
+# .github/pr-comments/. Never substitute a different separator (e.g. `-`) for the raw
+# branch name; a literal `/` would also create a nested directory instead of a filename.
+BRANCH=$(git rev-parse --abbrev-ref HEAD | sed 's/[^a-zA-Z0-9_]/_/g')
 
 # Find the most recent PR comment file for this branch
 LATEST_PR_COMMENT=$(ls -t .github/pr-comments/PR_COMMENT_${BRANCH}_*.md 2>/dev/null | head -1)
@@ -180,10 +183,12 @@ Save the markdown file with the naming convention:
 
 1. **Get branch and timestamp**:
    ```bash
-   BRANCH=$(git rev-parse --abbrev-ref HEAD)
+   BRANCH=$(git rev-parse --abbrev-ref HEAD | sed 's/[^a-zA-Z0-9_]/_/g')
    DATETIME=$(date +"%Y%m%d_%H%M%S")
    FILENAME=".github/pr-comments/PR_COMMENT_${BRANCH}_${DATETIME}.md"
    ```
+   Branch names with slashes (e.g. `tooling/instructions`) must have them replaced with
+   `_`, not `-` or left as-is.
 
 2. **Check for and read previous PR comment** (if generating an update):
    ```bash

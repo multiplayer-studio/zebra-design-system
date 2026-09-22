@@ -1,0 +1,1544 @@
+{
+  "componentName": "Dialog",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2526-316&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "2896:877",
+  "fetchedAt": "2026-09-22T20:44:10.058Z",
+  "componentProperties": {
+    "showFooter#2896:37": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "Flavour": {
+      "type": "VARIANT",
+      "defaultValue": "default",
+      "options": [
+        "default",
+        "error",
+        "info",
+        "success",
+        "warning"
+      ]
+    },
+    "Shape": {
+      "type": "VARIANT",
+      "defaultValue": "round",
+      "options": [
+        "sharp",
+        "round"
+      ]
+    }
+  },
+  "structure": {
+    "path": "Dialog",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "Dialog/Dialog Header",
+        "type": "INSTANCE"
+      },
+      {
+        "path": "Dialog/Dialog Body",
+        "type": "FRAME",
+        "children": [
+          {
+            "path": "Dialog/Dialog Body/Content",
+            "type": "FRAME",
+            "children": [
+              {
+                "path": "Dialog/Dialog Body/Content/Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+                "type": "TEXT"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Dialog/Dialog Footer",
+        "type": "INSTANCE"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "Flavour=default, Shape=round",
+      "nodeId": "2886:839",
+      "properties": {
+        "Flavour": "default",
+        "Shape": "round"
+      },
+      "values": {
+        "Dialog": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "surface.dialog"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 6,
+            "token": "radius.element-md"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Header": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Body": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 24,
+              "token": "space.section"
+            }
+          }
+        },
+        "Dialog/Dialog Body/Content": {},
+        "Dialog/Dialog Body/Content/Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium | label.large"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium | label.large"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium | label.large"
+            }
+          }
+        },
+        "Dialog/Dialog Footer": {
+          "itemSpacing": {
+            "raw": 159,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Flavour=error, Shape=round",
+      "nodeId": "2909:6564",
+      "properties": {
+        "Flavour": "error",
+        "Shape": "round"
+      },
+      "values": {
+        "Dialog": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "surface.dialog"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 6,
+            "token": "radius.element-md"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Header": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Body": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 24,
+              "token": "space.section"
+            }
+          }
+        },
+        "Dialog/Dialog Body/Content": {},
+        "Dialog/Dialog Body/Content/Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium | label.large"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium | label.large"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium | label.large"
+            }
+          }
+        },
+        "Dialog/Dialog Footer": {
+          "itemSpacing": {
+            "raw": 159,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Flavour=info, Shape=round",
+      "nodeId": "2909:6653",
+      "properties": {
+        "Flavour": "info",
+        "Shape": "round"
+      },
+      "values": {
+        "Dialog": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "surface.dialog"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 6,
+            "token": "radius.element-md"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Header": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Body": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 24,
+              "token": "space.section"
+            }
+          }
+        },
+        "Dialog/Dialog Body/Content": {},
+        "Dialog/Dialog Body/Content/Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium | label.large"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium | label.large"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium | label.large"
+            }
+          }
+        },
+        "Dialog/Dialog Footer": {
+          "itemSpacing": {
+            "raw": 159,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Flavour=success, Shape=round",
+      "nodeId": "2909:6713",
+      "properties": {
+        "Flavour": "success",
+        "Shape": "round"
+      },
+      "values": {
+        "Dialog": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "surface.dialog"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 6,
+            "token": "radius.element-md"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Header": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Body": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 24,
+              "token": "space.section"
+            }
+          }
+        },
+        "Dialog/Dialog Body/Content": {},
+        "Dialog/Dialog Body/Content/Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium | label.large"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium | label.large"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium | label.large"
+            }
+          }
+        },
+        "Dialog/Dialog Footer": {
+          "itemSpacing": {
+            "raw": 159,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Flavour=warning, Shape=round",
+      "nodeId": "2909:6773",
+      "properties": {
+        "Flavour": "warning",
+        "Shape": "round"
+      },
+      "values": {
+        "Dialog": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "surface.dialog"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 6,
+            "token": "radius.element-md"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Header": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Body": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 24,
+              "token": "space.section"
+            }
+          }
+        },
+        "Dialog/Dialog Body/Content": {},
+        "Dialog/Dialog Body/Content/Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium | label.large"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium | label.large"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium | label.large"
+            }
+          }
+        },
+        "Dialog/Dialog Footer": {
+          "itemSpacing": {
+            "raw": 159,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Flavour=default, Shape=sharp",
+      "nodeId": "2909:6445",
+      "properties": {
+        "Flavour": "default",
+        "Shape": "sharp"
+      },
+      "values": {
+        "Dialog": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "surface.dialog"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Header": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Body": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 24,
+              "token": "space.section"
+            }
+          }
+        },
+        "Dialog/Dialog Body/Content": {},
+        "Dialog/Dialog Body/Content/Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium | label.large"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium | label.large"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium | label.large"
+            }
+          }
+        },
+        "Dialog/Dialog Footer": {
+          "itemSpacing": {
+            "raw": 159,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Flavour=error, Shape=sharp",
+      "nodeId": "2909:6623",
+      "properties": {
+        "Flavour": "error",
+        "Shape": "sharp"
+      },
+      "values": {
+        "Dialog": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "surface.dialog"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Header": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Body": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 24,
+              "token": "space.section"
+            }
+          }
+        },
+        "Dialog/Dialog Body/Content": {},
+        "Dialog/Dialog Body/Content/Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium | label.large"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium | label.large"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium | label.large"
+            }
+          }
+        },
+        "Dialog/Dialog Footer": {
+          "itemSpacing": {
+            "raw": 159,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Flavour=info, Shape=sharp",
+      "nodeId": "2909:6683",
+      "properties": {
+        "Flavour": "info",
+        "Shape": "sharp"
+      },
+      "values": {
+        "Dialog": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "surface.dialog"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Header": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Body": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 24,
+              "token": "space.section"
+            }
+          }
+        },
+        "Dialog/Dialog Body/Content": {},
+        "Dialog/Dialog Body/Content/Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium | label.large"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium | label.large"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium | label.large"
+            }
+          }
+        },
+        "Dialog/Dialog Footer": {
+          "itemSpacing": {
+            "raw": 159,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Flavour=success, Shape=sharp",
+      "nodeId": "2909:6743",
+      "properties": {
+        "Flavour": "success",
+        "Shape": "sharp"
+      },
+      "values": {
+        "Dialog": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "surface.dialog"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Header": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Body": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 24,
+              "token": "space.section"
+            }
+          }
+        },
+        "Dialog/Dialog Body/Content": {},
+        "Dialog/Dialog Body/Content/Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium | label.large"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium | label.large"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium | label.large"
+            }
+          }
+        },
+        "Dialog/Dialog Footer": {
+          "itemSpacing": {
+            "raw": 159,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Flavour=warning, Shape=sharp",
+      "nodeId": "2909:6803",
+      "properties": {
+        "Flavour": "warning",
+        "Shape": "sharp"
+      },
+      "values": {
+        "Dialog": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "surface.dialog"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ced2db",
+              "token": "border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Header": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        },
+        "Dialog/Dialog Body": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 24,
+              "token": "space.section"
+            }
+          }
+        },
+        "Dialog/Dialog Body/Content": {},
+        "Dialog/Dialog Body/Content/Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium | label.large"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium | label.large"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium | label.large"
+            }
+          }
+        },
+        "Dialog/Dialog Footer": {
+          "itemSpacing": {
+            "raw": 159,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.md"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
