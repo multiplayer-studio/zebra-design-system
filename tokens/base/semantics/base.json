@@ -1,0 +1,3153 @@
+{
+  "border": {
+    "default": {
+      "$type": "color",
+      "$value": "{palette.line.default}",
+      "$description": "Default border color for inputs, cards, and dividers at rest",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:324",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "STROKE_COLOR"
+          ],
+          "aliasOf": "VariableID:72:10"
+        }
+      }
+    },
+    "error": {
+      "$type": "color",
+      "$value": "{palette.status.error.default}",
+      "$description": "Border color for inputs/fields in an invalid or error state",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:330",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "STROKE_COLOR"
+          ],
+          "aliasOf": "VariableID:63:28"
+        }
+      }
+    },
+    "focus": {
+      "$type": "color",
+      "$value": "{palette.line.focus}",
+      "$description": "Border applied when an element receives keyboard focus, for accessibility",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:327",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "STROKE_COLOR"
+          ],
+          "aliasOf": "VariableID:2535:3742"
+        }
+      }
+    },
+    "gradient": {
+      "end": {
+        "$type": "color",
+        "$value": "{palette.gradient.default.end}",
+        "$description": "Ending color stop for borders using a gradient treatment",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:2315:9048",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "STROKE_COLOR"
+            ],
+            "aliasOf": "VariableID:2315:9012"
+          }
+        }
+      },
+      "start": {
+        "$type": "color",
+        "$value": "{palette.gradient.default.start}",
+        "$description": "Starting color stop for borders using a gradient treatment",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:2315:9047",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "STROKE_COLOR"
+            ],
+            "aliasOf": "VariableID:2315:9011"
+          }
+        }
+      }
+    },
+    "info": {
+      "$type": "color",
+      "$value": "{palette.status.info.default}",
+      "$description": "Border color for elements conveying neutral, informational context",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:331",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "STROKE_COLOR"
+          ],
+          "aliasOf": "VariableID:63:202"
+        }
+      }
+    },
+    "inverse": {
+      "$type": "color",
+      "$value": "{palette.line.inverse}",
+      "$description": "Low-emphasis border, e.g. subtle dividers.",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2838:1534",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "STROKE_COLOR"
+          ],
+          "aliasOf": "VariableID:2838:1535"
+        }
+      }
+    },
+    "strong": {
+      "$type": "color",
+      "$value": "{palette.line.strong}",
+      "$description": "Higher-contrast border for emphasis, e.g. active outlines or key dividers",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:326",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "STROKE_COLOR"
+          ],
+          "aliasOf": "VariableID:72:12"
+        }
+      }
+    },
+    "subtle": {
+      "$type": "color",
+      "$value": "{palette.line.subtle}",
+      "$description": "Faint border for low-emphasis separation, e.g. nested cards",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:325",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "STROKE_COLOR"
+          ],
+          "aliasOf": "VariableID:72:11"
+        }
+      }
+    },
+    "success": {
+      "$type": "color",
+      "$value": "{palette.status.success.default}",
+      "$description": "Border color for inputs/fields confirmed valid or successful",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:328",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "STROKE_COLOR"
+          ],
+          "aliasOf": "VariableID:63:22"
+        }
+      }
+    },
+    "transparent": {
+      "$type": "color",
+      "$value": "{semantics.interactive.ghost.background.default}",
+      "$description": "Border color for elements conveying neutral, informational context",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:3635:1241",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "STROKE_COLOR"
+          ],
+          "aliasOf": "VariableID:72:394"
+        }
+      }
+    },
+    "warning": {
+      "$type": "color",
+      "$value": "{palette.status.warning.default}",
+      "$description": "Border color for elements flagged with a warning",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:329",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "STROKE_COLOR"
+          ],
+          "aliasOf": "VariableID:63:25"
+        }
+      }
+    }
+  },
+  "chart": {
+    "axis": {
+      "$type": "color",
+      "$value": "{palette.line.strong}",
+      "$description": "Color for chart axis lines and axis tick labels",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:493",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "TEXT_FILL",
+            "STROKE_COLOR"
+          ],
+          "aliasOf": "VariableID:72:12"
+        }
+      }
+    },
+    "grid": {
+      "$type": "color",
+      "$value": "{palette.line.subtle}",
+      "$description": "Color for background gridlines that help read values across a chart",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:492",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "STROKE_COLOR"
+          ],
+          "aliasOf": "VariableID:72:11"
+        }
+      }
+    },
+    "negative": {
+      "$type": "color",
+      "$value": "{palette.status.error.default}",
+      "$description": "Color for data points/values trending down or declining",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:496",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "STROKE_COLOR"
+          ],
+          "aliasOf": "VariableID:63:28"
+        }
+      }
+    },
+    "neutral": {
+      "$type": "color",
+      "$value": "{palette.data.neutral}",
+      "$description": "Color for data points/values that are flat or unchanged",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:497",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "STROKE_COLOR"
+          ],
+          "aliasOf": "VariableID:2061:6746"
+        }
+      }
+    },
+    "positive": {
+      "$type": "color",
+      "$value": "{palette.status.success.default}",
+      "$description": "Color for data points/values trending up or improving",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:495",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "STROKE_COLOR"
+          ],
+          "aliasOf": "VariableID:63:22"
+        }
+      }
+    },
+    "reference": {
+      "$type": "color",
+      "$value": "{palette.line.stronger}",
+      "$description": "Color for a reference or target line overlaid on a chart, e.g. a goal or average",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:494",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "STROKE_COLOR"
+          ],
+          "aliasOf": "VariableID:2061:6745"
+        }
+      }
+    },
+    "series": {
+      "1": {
+        "$type": "color",
+        "$value": "{palette.data.1}",
+        "$description": "1st color in the categorical data-series palette, assigned in order across multiple series.",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:480",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "STROKE_COLOR"
+            ],
+            "aliasOf": "VariableID:2061:6747"
+          }
+        }
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{palette.data.10}",
+        "$description": "10th data series color",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:489",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "STROKE_COLOR"
+            ],
+            "aliasOf": "VariableID:2061:6756"
+          }
+        }
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{palette.data.11}",
+        "$description": "11th data series color",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:490",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "STROKE_COLOR"
+            ],
+            "aliasOf": "VariableID:2061:6757"
+          }
+        }
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{palette.data.12}",
+        "$description": "12th data series color",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:491",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "STROKE_COLOR"
+            ],
+            "aliasOf": "VariableID:2061:6758"
+          }
+        }
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{palette.data.2}",
+        "$description": "2nd data series color",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:481",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "STROKE_COLOR"
+            ],
+            "aliasOf": "VariableID:2061:6748"
+          }
+        }
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{palette.data.3}",
+        "$description": "3rd data series color",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:482",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "STROKE_COLOR"
+            ],
+            "aliasOf": "VariableID:2061:6749"
+          }
+        }
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{palette.data.4}",
+        "$description": "4th data series color",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:483",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "STROKE_COLOR"
+            ],
+            "aliasOf": "VariableID:2061:6750"
+          }
+        }
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{palette.data.5}",
+        "$description": "5th data series color",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:484",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "STROKE_COLOR"
+            ],
+            "aliasOf": "VariableID:2061:6751"
+          }
+        }
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{palette.data.6}",
+        "$description": "6th data series color",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:485",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "STROKE_COLOR"
+            ],
+            "aliasOf": "VariableID:2061:6752"
+          }
+        }
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{palette.data.7}",
+        "$description": "7th data series color",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:486",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "STROKE_COLOR"
+            ],
+            "aliasOf": "VariableID:2061:6753"
+          }
+        }
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{palette.data.8}",
+        "$description": "8th data series color",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:487",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "STROKE_COLOR"
+            ],
+            "aliasOf": "VariableID:2061:6754"
+          }
+        }
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{palette.data.9}",
+        "$description": "9th data series color",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:488",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "STROKE_COLOR"
+            ],
+            "aliasOf": "VariableID:2061:6755"
+          }
+        }
+      }
+    }
+  },
+  "feedback": {
+    "error": {
+      "background": {
+        "$type": "color",
+        "$value": "{palette.status.error.faint}",
+        "$description": "Background fill for error alerts, banners, and inline messages",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:463",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "aliasOf": "VariableID:63:29"
+          }
+        }
+      },
+      "foreground": {
+        "$type": "color",
+        "$value": "{palette.status.error.default}",
+        "$description": "Icon/text color used inside error alerts and messages",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:464",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "TEXT_FILL"
+            ],
+            "aliasOf": "VariableID:63:28"
+          }
+        }
+      }
+    },
+    "info": {
+      "background": {
+        "$type": "color",
+        "$value": "{palette.status.info.faint}",
+        "$description": "Background fill for informational alerts, banners, and inline messages",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:466",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "aliasOf": "VariableID:63:203"
+          }
+        }
+      },
+      "foreground": {
+        "$type": "color",
+        "$value": "{palette.status.info.default}",
+        "$description": "Icon/text color used inside informational alerts and messages",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:467",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "TEXT_FILL"
+            ],
+            "aliasOf": "VariableID:63:202"
+          }
+        }
+      }
+    },
+    "success": {
+      "background": {
+        "$type": "color",
+        "$value": "{palette.status.success.faint}",
+        "$description": "Background fill for success alerts, banners, and inline messages",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:457",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "aliasOf": "VariableID:63:23"
+          }
+        }
+      },
+      "foreground": {
+        "$type": "color",
+        "$value": "{palette.status.success.default}",
+        "$description": "Icon/text color used inside success alerts and messages",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:458",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "TEXT_FILL"
+            ],
+            "aliasOf": "VariableID:63:22"
+          }
+        }
+      }
+    },
+    "warning": {
+      "background": {
+        "$type": "color",
+        "$value": "{palette.status.warning.faint}",
+        "$description": "Background fill for warning alerts, banners, and inline messages",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:460",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "aliasOf": "VariableID:63:26"
+          }
+        }
+      },
+      "foreground": {
+        "$type": "color",
+        "$value": "{palette.status.warning.default}",
+        "$description": "Icon/text color used inside warning alerts and messages",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:461",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "TEXT_FILL"
+            ],
+            "aliasOf": "VariableID:63:25"
+          }
+        }
+      }
+    }
+  },
+  "focus": {
+    "outline": {
+      "$type": "color",
+      "$value": "{palette.line.focus}",
+      "$description": "Solid outline drawn directly around an element on keyboard focus, for accessibility",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:475",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "STROKE_COLOR"
+          ],
+          "aliasOf": "VariableID:2535:3742"
+        }
+      }
+    },
+    "ring": {
+      "$type": "color",
+      "$value": "{palette.line.focus}",
+      "$description": "Soft glow/ring drawn just outside the focus outline, reinforcing keyboard focus",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:474",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "STROKE_COLOR",
+            "EFFECT_COLOR"
+          ],
+          "aliasOf": "VariableID:2535:3742"
+        }
+      }
+    }
+  },
+  "foreground": {
+    "cursor": {
+      "$type": "color",
+      "$value": "{palette.ink.brand}",
+      "$description": "Color of the blinking caret inside text inputs",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2183:20602",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "aliasOf": "VariableID:121:6194"
+        }
+      }
+    },
+    "disabled": {
+      "$type": "color",
+      "$value": "{palette.ink.disabled}",
+      "$description": "Text/icon color for disabled, non-interactive elements",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:317",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "aliasOf": "VariableID:63:19"
+        }
+      }
+    },
+    "error": {
+      "$type": "color",
+      "$value": "{palette.status.error.default}",
+      "$description": "Text/icon color that communicates an error, paired with feedback/error tokens",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:322",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "aliasOf": "VariableID:63:28"
+        }
+      }
+    },
+    "gradient": {
+      "end": {
+        "$type": "color",
+        "$value": "{palette.gradient.default.end}",
+        "$description": "Ending color stop for text/icons using a gradient treatment",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:2315:9046",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL"
+            ],
+            "aliasOf": "VariableID:2315:9012"
+          }
+        }
+      },
+      "start": {
+        "$type": "color",
+        "$value": "{palette.gradient.default.start}",
+        "$description": "Starting color stop for text/icons using a gradient treatment",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:2315:9045",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL"
+            ],
+            "aliasOf": "VariableID:2315:9011"
+          }
+        }
+      }
+    },
+    "info": {
+      "$type": "color",
+      "$value": "{palette.status.info.default}",
+      "$description": "Text/icon color that communicates neutral information",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:323",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "aliasOf": "VariableID:63:202"
+        }
+      }
+    },
+    "inverse": {
+      "$type": "color",
+      "$value": "{palette.ink.inverse}",
+      "$description": "Text/icon color for use on dark or inverse-colored surfaces",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:318",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "aliasOf": "VariableID:63:20"
+        }
+      }
+    },
+    "link": {
+      "$type": "color",
+      "$value": "{palette.ink.link}",
+      "$description": "Color for hyperlinks and other clickable inline text",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:319",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "aliasOf": "VariableID:63:21"
+        }
+      }
+    },
+    "primary": {
+      "$type": "color",
+      "$value": "{palette.ink.high}",
+      "$description": "The default color for body text and primary icons, used as the highest-emphasis content color.",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:314",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "aliasOf": "VariableID:63:16"
+        }
+      }
+    },
+    "secondary": {
+      "$type": "color",
+      "$value": "{palette.ink.medium}",
+      "$description": "Lower-emphasis text/icon color, e.g. captions or supporting copy",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:315",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "aliasOf": "VariableID:63:17"
+        }
+      }
+    },
+    "success": {
+      "$type": "color",
+      "$value": "{palette.status.success.default}",
+      "$description": "Text/icon color that communicates success",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:320",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "aliasOf": "VariableID:63:22"
+        }
+      }
+    },
+    "tertiary": {
+      "$type": "color",
+      "$value": "{palette.ink.low}",
+      "$description": "Lowest-emphasis text/icon color, e.g. placeholders or metadata",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:316",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "aliasOf": "VariableID:63:18"
+        }
+      }
+    },
+    "warning": {
+      "$type": "color",
+      "$value": "{palette.status.warning.default}",
+      "$description": "Text/icon color that communicates a warning",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:321",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "aliasOf": "VariableID:63:25"
+        }
+      }
+    }
+  },
+  "interactive": {
+    "destructive": {
+      "background": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.status.error.default}",
+          "$description": "Default state for a destructive interactive element, signaling a harmful or irreversible action such as Delete.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:414",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:28"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.fill.disabled}",
+          "$description": "Disabled state for a destructive interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:419",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:9"
+            }
+          }
+        },
+        "focused": {
+          "$type": "color",
+          "$value": "{palette.status.error.default}",
+          "$description": "Focused state for a destructive interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:417",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:28"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{palette.status.error.subtle}",
+          "$description": "Hover state for a destructive interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:415",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:5"
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{palette.status.error.deep}",
+          "$description": "Pressed state for a destructive interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:416",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:30"
+            }
+          }
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{palette.status.error.deep}",
+          "$description": "Selected state for a destructive interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:418",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:30"
+            }
+          }
+        }
+      },
+      "border": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.status.error.default}",
+          "$description": "Default-state border for a destructive interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:111:7",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:63:28"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.line.subtle}",
+          "$description": "Disabled-state border for a destructive interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:111:10",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:11"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{palette.status.error.subtle}",
+          "$description": "Hover-state border for a destructive interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:111:8",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:5"
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{palette.status.error.strong}",
+          "$description": "Pressed-state border for a destructive interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:111:9",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:6"
+            }
+          }
+        }
+      },
+      "foreground": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.on}",
+          "$description": "Default-state text/icon color on a destructive interactive element's background.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:424",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "aliasOf": "VariableID:63:7"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.ink.disabled}",
+          "$description": "Disabled-state text/icon color on a destructive interactive element's background.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:429",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "aliasOf": "VariableID:63:19"
+            }
+          }
+        }
+      }
+    },
+    "ghost": {
+      "background": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.status.ghost.default}",
+          "$description": "Default state for a ghost interactive element, minimal in styling with no fill, for low-emphasis actions.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:394",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:3147:3871"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.status.ghost.default}",
+          "$description": "Disabled state for a ghost interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:399",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:3147:3871"
+            }
+          }
+        },
+        "focused": {
+          "$type": "color",
+          "$value": "{palette.status.ghost.default}",
+          "$description": "Focused state for a ghost interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:397",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:3147:3871"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{palette.status.ghost.faint}",
+          "$description": "Hover state for a ghost interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:395",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:3147:3872"
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{palette.status.ghost.deep}",
+          "$description": "Pressed state for a ghost interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:396",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:3147:3873"
+            }
+          }
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{palette.status.ghost.faint}",
+          "$description": "Selected state for a ghost interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:398",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:3147:3872"
+            }
+          }
+        }
+      },
+      "border": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.default}",
+          "$description": "Default-state border for a ghost interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:111:12",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:63:2"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.line.subtle}",
+          "$description": "Disabled-state border for a ghost interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:111:15",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:11"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.subtle}",
+          "$description": "Hover-state border for a ghost interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:111:13",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:386"
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.deep}",
+          "$description": "Pressed-state border for a ghost interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:111:14",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:387"
+            }
+          }
+        }
+      },
+      "foreground": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.ink.brand}",
+          "$description": "Default-state text/icon color on a ghost interactive element's background.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:404",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "aliasOf": "VariableID:121:6194"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.ink.disabled}",
+          "$description": "Disabled-state text/icon color on a ghost interactive element's background.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:409",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "aliasOf": "VariableID:63:19"
+            }
+          }
+        }
+      }
+    },
+    "inverse": {
+      "background": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.fill.inverse}",
+          "$description": "Default state for an interactive element placed on a dark or inverse-colored surface.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:434",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:13"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.fill.disabled}",
+          "$description": "Disabled state for an inverse-surface interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:439",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:9"
+            }
+          }
+        },
+        "focused": {
+          "$type": "color",
+          "$value": "{palette.fill.inverse}",
+          "$description": "Focused state for an inverse-surface interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:437",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:13"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{palette.fill.inversehover}",
+          "$description": "Hover state for an inverse-surface interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:435",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:7"
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{palette.fill.inversepressed}",
+          "$description": "Pressed state for an inverse-surface interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:436",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:8"
+            }
+          }
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{palette.fill.inversepressed}",
+          "$description": "Selected state for an inverse-surface interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:438",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:8"
+            }
+          }
+        }
+      },
+      "border": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.fill.inverse}",
+          "$description": "Default-state border for an inverse-surface interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:2063:2",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:63:13"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.line.subtle}",
+          "$description": "Disabled-state border for an inverse-surface interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:2063:5",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:11"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{palette.fill.inversehover}",
+          "$description": "Hover-state border for an inverse-surface interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:2063:3",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:7"
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{palette.fill.inversepressed}",
+          "$description": "Pressed-state border for an inverse-surface interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:2063:4",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:8"
+            }
+          }
+        }
+      },
+      "foreground": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.ink.inverse}",
+          "$description": "Default-state text/icon color on an inverse-surface interactive element's background.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:444",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "aliasOf": "VariableID:63:20"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.ink.disabled}",
+          "$description": "Disabled-state text/icon color on an inverse-surface interactive element's background.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:449",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "aliasOf": "VariableID:63:19"
+            }
+          }
+        }
+      }
+    },
+    "neutral": {
+      "background": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.fill.default}",
+          "$description": "Default state for a neutral, general-purpose interactive element with no semantic meaning.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:98:2",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:10"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.fill.disabled}",
+          "$description": "Disabled state for a neutral interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:98:7",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:9"
+            }
+          }
+        },
+        "focused": {
+          "$type": "color",
+          "$value": "{palette.fill.default}",
+          "$description": "Focused state for a neutral interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:98:5",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:10"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{palette.fill.canvas}",
+          "$description": "Hover state for a neutral interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:98:3",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:9"
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{palette.fill.sunken}",
+          "$description": "Pressed state for a neutral interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:98:4",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:14"
+            }
+          }
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{palette.fill.sunken}",
+          "$description": "Selected state for a neutral interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:98:6",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:14"
+            }
+          }
+        }
+      },
+      "border": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.line.default}",
+          "$description": "Default-state border for a neutral interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:98:12",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:10"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.line.subtle}",
+          "$description": "Disabled-state border for a neutral interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:98:15",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:11"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{palette.line.strong}",
+          "$description": "Hover-state border for a neutral interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:98:13",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:12"
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{palette.line.strong}",
+          "$description": "Pressed-state border for a neutral interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:98:14",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:12"
+            }
+          }
+        }
+      },
+      "foreground": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.ink.high}",
+          "$description": "Default-state text/icon color on a neutral interactive element's background.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:98:17",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "aliasOf": "VariableID:63:16"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.ink.disabled}",
+          "$description": "Disabled-state text/icon color on a neutral interactive element's background.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:98:18",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "aliasOf": "VariableID:63:19"
+            }
+          }
+        }
+      }
+    },
+    "positive": {
+      "background": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.status.success.default}",
+          "$description": "Default state for a high-emphasis interactive element used for a positive confirmation action, such as Approve, Confirm, or Complete.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3359",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:22"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.fill.disabled}",
+          "$description": "Disabled state for a high-emphasis positive-confirmation interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3364",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:9"
+            }
+          }
+        },
+        "focused": {
+          "$type": "color",
+          "$value": "{palette.status.success.default}",
+          "$description": "Focused state for a high-emphasis positive-confirmation interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3362",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:22"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{palette.status.success.subtle}",
+          "$description": "Hover state for a high-emphasis positive-confirmation interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3360",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:143:10455"
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{palette.status.success.deep}",
+          "$description": "Pressed state for a high-emphasis positive-confirmation interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3361",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:24"
+            }
+          }
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{palette.status.success.deep}",
+          "$description": "Selected state for a high-emphasis positive-confirmation interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3363",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:24"
+            }
+          }
+        }
+      },
+      "border": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.status.success.default}",
+          "$description": "Default-state border for a high-emphasis positive-confirmation interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:111:2",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:63:22"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.line.subtle}",
+          "$description": "Disabled-state border for a high-emphasis positive-confirmation interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:111:5",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:11"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{palette.status.success.default}",
+          "$description": "Hover-state border for a high-emphasis positive-confirmation interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:111:3",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:63:22"
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{palette.status.success.deep}",
+          "$description": "Pressed-state border for a high-emphasis positive-confirmation interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:111:4",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:63:24"
+            }
+          }
+        }
+      },
+      "foreground": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.on}",
+          "$description": "Default-state text/icon color on a high-emphasis positive-confirmation interactive element's background.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3369",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "aliasOf": "VariableID:63:7"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.ink.disabled}",
+          "$description": "Disabled-state text/icon color on a high-emphasis positive-confirmation interactive element's background.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3370",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "aliasOf": "VariableID:63:19"
+            }
+          }
+        }
+      }
+    },
+    "primary": {
+      "background": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.default}",
+          "$description": "Default state for the primary interactive element, the main and highest-emphasis action or control on a screen.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:332",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:2"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.fill.disabled}",
+          "$description": "Disabled state for the primary interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:334",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:9"
+            }
+          }
+        },
+        "focused": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.default}",
+          "$description": "Focused state for the primary interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:333",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:2"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.subtle}",
+          "$description": "Hover state for the primary interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:388",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:386"
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.deep}",
+          "$description": "Pressed state for the primary interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:389",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:387"
+            }
+          }
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.deep}",
+          "$description": "Selected state for the primary interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:390",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:387"
+            }
+          }
+        }
+      },
+      "border": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.default}",
+          "$description": "Default-state border for the primary interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:349",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:63:2"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.line.subtle}",
+          "$description": "Disabled-state border for the primary interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:351",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:11"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.subtle}",
+          "$description": "Hover-state border for the primary interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:391",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:386"
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.deep}",
+          "$description": "Pressed-state border for the primary interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:392",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:387"
+            }
+          }
+        }
+      },
+      "foreground": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.on}",
+          "$description": "Default-state text/icon color on the primary interactive element's background.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:339",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "aliasOf": "VariableID:63:7"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.ink.disabled}",
+          "$description": "Disabled-state text/icon color on the primary interactive element's background.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:344",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "aliasOf": "VariableID:63:19"
+            }
+          }
+        }
+      }
+    },
+    "secondary": {
+      "background": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.brand.secondary.default}",
+          "$description": "Default state for a secondary interactive element, an alternative and less prominent action alongside primary.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:356",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:3"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.fill.disabled}",
+          "$description": "Disabled state for a secondary interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:361",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:9"
+            }
+          }
+        },
+        "focused": {
+          "$type": "color",
+          "$value": "{palette.brand.secondary.default}",
+          "$description": "Focused state for a secondary interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:359",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:3"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{palette.brand.secondary.subtle}",
+          "$description": "Hover state for a secondary interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:357",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:2"
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{palette.brand.secondary.deep}",
+          "$description": "Pressed state for a secondary interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:358",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:3"
+            }
+          }
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{palette.brand.secondary.deep}",
+          "$description": "Selected state for a secondary interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:360",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:3"
+            }
+          }
+        }
+      },
+      "border": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.brand.secondary.default}",
+          "$description": "Default-state border for a secondary interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:376",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:63:3"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.line.subtle}",
+          "$description": "Disabled-state border for a secondary interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:381",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:11"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{palette.brand.secondary.subtle}",
+          "$description": "Hover-state border for a secondary interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:377",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:2"
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{palette.brand.secondary.deep}",
+          "$description": "Pressed-state border for a secondary interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:378",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:3"
+            }
+          }
+        }
+      },
+      "foreground": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.brand.secondary.on}",
+          "$description": "Default-state text/icon color on a secondary interactive element's background.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:366",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "aliasOf": "VariableID:63:8"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.ink.disabled}",
+          "$description": "Disabled-state text/icon color on a secondary interactive element's background.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:371",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "aliasOf": "VariableID:63:19"
+            }
+          }
+        }
+      }
+    },
+    "subtle": {
+      "background": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.faint}",
+          "$description": "Default state for a subtle interactive element, quieter in emphasis than secondary.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3371",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:5"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.fill.disabled}",
+          "$description": "Disabled state for a subtle interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3376",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:9"
+            }
+          }
+        },
+        "focused": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.faint}",
+          "$description": "Focused state for a subtle interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3374",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:5"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.muted}",
+          "$description": "Hover state for a subtle interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3372",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:6"
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.subtle}",
+          "$description": "Pressed state for a subtle interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3373",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:386"
+            }
+          }
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.subtle}",
+          "$description": "Selected state for a subtle interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3375",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:386"
+            }
+          }
+        }
+      },
+      "border": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.default}",
+          "$description": "Default-state border for a subtle interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:111:17",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:63:2"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.line.subtle}",
+          "$description": "Disabled-state border for a subtle interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:111:20",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:11"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.subtle}",
+          "$description": "Hover-state border for a subtle interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:111:18",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:386"
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.deep}",
+          "$description": "Pressed-state border for a subtle interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:111:19",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:387"
+            }
+          }
+        }
+      },
+      "foreground": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.ink.link}",
+          "$description": "Default-state text/icon color on a subtle interactive element's background.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3381",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "aliasOf": "VariableID:63:21"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.ink.disabled}",
+          "$description": "Disabled-state text/icon color on a subtle interactive element's background.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3382",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "aliasOf": "VariableID:63:19"
+            }
+          }
+        }
+      }
+    }
+  },
+  "overlay": {
+    "modal": {
+      "$type": "color",
+      "$value": "{palette.fill.overlay}",
+      "$description": "Semi-transparent dimming layer behind a modal dialog, to focus attention on it",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:456",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:12"
+        }
+      }
+    },
+    "scrim": {
+      "$type": "color",
+      "$value": "{palette.fill.scrim}",
+      "$description": "Semi-transparent dimming layer behind a drawer, sheet, or side panel",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:455",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:15"
+        }
+      }
+    }
+  },
+  "selection": {
+    "background": {
+      "$type": "color",
+      "$value": "{palette.fill.selection}",
+      "$description": "Highlight background applied to selected text or selected list/table items",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2061:6759",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL"
+          ],
+          "aliasOf": "VariableID:63:31"
+        }
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$value": "{palette.line.selection}",
+      "$description": "Border drawn around a selected item, e.g. a selected card or table row",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2061:6760",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "STROKE_COLOR"
+          ],
+          "aliasOf": "VariableID:63:32"
+        }
+      }
+    },
+    "text": {
+      "$type": "color",
+      "$value": "{palette.ink.selection}",
+      "$description": "Text color applied to selected or highlighted text",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2061:6761",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "TEXT_FILL"
+          ],
+          "aliasOf": "VariableID:63:33"
+        }
+      }
+    }
+  },
+  "shadow": {
+    "hard": {
+      "$type": "color",
+      "$value": "{palette.fill.transparent.elevate}",
+      "$description": "Crisp, high-contrast drop shadow for elements needing strong separation, e.g. dropdowns",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2646:6335",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "EFFECT_COLOR"
+          ],
+          "aliasOf": "VariableID:2053:15065"
+        }
+      }
+    },
+    "soft": {
+      "$type": "color",
+      "$value": "{palette.fill.transparent.emphasis}",
+      "$description": "Soft, diffuse drop shadow for subtle elevation, e.g. cards",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2646:6334",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "EFFECT_COLOR"
+          ],
+          "aliasOf": "VariableID:2053:15066"
+        }
+      }
+    }
+  },
+  "surface": {
+    "brand": {
+      "$type": "color",
+      "$value": "{palette.brand.primary.faint}",
+      "$description": "Brand-colored background, e.g. hero sections or marketing highlights",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:308",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:5"
+        }
+      }
+    },
+    "card": {
+      "$type": "color",
+      "$value": "{palette.fill.elevated}",
+      "$description": "Background of card components",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:302",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:11"
+        }
+      }
+    },
+    "dialog": {
+      "$type": "color",
+      "$value": "{palette.fill.overlay}",
+      "$description": "Background of dialog/modal windows",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:303",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:12"
+        }
+      }
+    },
+    "error": {
+      "$type": "color",
+      "$value": "{palette.status.error.faint}",
+      "$description": "Background for containers communicating an error state",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:312",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:29"
+        }
+      }
+    },
+    "gradient": {
+      "end": {
+        "$type": "color",
+        "$value": "{palette.gradient.default.end}",
+        "$description": "Ending color stop for surfaces using a gradient fill",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:2315:9010",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "aliasOf": "VariableID:2315:9012"
+          }
+        }
+      },
+      "start": {
+        "$type": "color",
+        "$value": "{palette.gradient.default.start}",
+        "$description": "Starting color stop for surfaces using a gradient fill",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:2315:9009",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "aliasOf": "VariableID:2315:9011"
+          }
+        }
+      }
+    },
+    "info": {
+      "$type": "color",
+      "$value": "{palette.status.info.faint}",
+      "$description": "Background for containers communicating neutral information",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:313",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:203"
+        }
+      }
+    },
+    "inverse": {
+      "$type": "color",
+      "$value": "{palette.fill.inverse}",
+      "$description": "Dark/inverse background for high-contrast sections",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:309",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:13"
+        }
+      }
+    },
+    "menu": {
+      "$type": "color",
+      "$value": "{palette.fill.overlay}",
+      "$description": "Background of dropdown and context menus",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:306",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:12"
+        }
+      }
+    },
+    "page": {
+      "$type": "color",
+      "$value": "{palette.fill.canvas}",
+      "$description": "Default background color of the page or app canvas",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:300",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:9"
+        }
+      }
+    },
+    "popover": {
+      "$type": "color",
+      "$value": "{palette.fill.overlay}",
+      "$description": "Background of popovers and other floating panels",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:305",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:12"
+        }
+      }
+    },
+    "section": {
+      "$type": "color",
+      "$value": "{palette.fill.default}",
+      "$description": "Background for a section or panel that groups related content",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:301",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:10"
+        }
+      }
+    },
+    "sheet": {
+      "$type": "color",
+      "$value": "{palette.fill.overlay}",
+      "$description": "Background of bottom sheets and side drawers",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:304",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:12"
+        }
+      }
+    },
+    "success": {
+      "$type": "color",
+      "$value": "{palette.status.success.faint}",
+      "$description": "Background for containers communicating a success state",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:310",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:23"
+        }
+      }
+    },
+    "tooltip": {
+      "$type": "color",
+      "$value": "{palette.fill.inverse}",
+      "$description": "Background of tooltips",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:307",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:13"
+        }
+      }
+    },
+    "warning": {
+      "$type": "color",
+      "$value": "{palette.status.warning.faint}",
+      "$description": "Background for containers communicating a warning state",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:311",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:26"
+        }
+      }
+    }
+  }
+}

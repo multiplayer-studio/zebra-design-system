@@ -1,0 +1,194 @@
+{
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "extractedAt": "2026-09-22",
+  "source": "Figma Plugin API via use_figma (figma-token-export skill)",
+  "collections": [
+    {
+      "name": "primitives",
+      "slug": "primitives",
+      "id": "VariableCollectionId:2:2",
+      "modes": [
+        "Value"
+      ],
+      "defaultMode": "Value",
+      "variableCount": 257,
+      "isExtension": false,
+      "hiddenFromPublishing": true,
+      "files": [
+        "base/primitives/value.json"
+      ]
+    },
+    {
+      "name": "semantics",
+      "slug": "semantics",
+      "id": "VariableCollectionId:2:3",
+      "modes": [
+        "Base"
+      ],
+      "defaultMode": "Base",
+      "variableCount": 172,
+      "isExtension": false,
+      "hiddenFromPublishing": false,
+      "files": [
+        "base/semantics/base.json"
+      ]
+    },
+    {
+      "name": "palette",
+      "slug": "palette",
+      "id": "VariableCollectionId:3:4",
+      "modes": [
+        "Light",
+        "Dark"
+      ],
+      "defaultMode": "Light",
+      "variableCount": 90,
+      "isExtension": false,
+      "hiddenFromPublishing": false,
+      "files": [
+        "base/palette/light.json",
+        "base/palette/dark.json"
+      ]
+    },
+    {
+      "name": "size",
+      "slug": "size",
+      "id": "VariableCollectionId:2013:6723",
+      "modes": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "defaultMode": "Desktop",
+      "variableCount": 47,
+      "isExtension": false,
+      "hiddenFromPublishing": false,
+      "files": [
+        "base/size/desktop.json",
+        "base/size/mobile.json",
+        "base/size/tablet.json",
+        "base/size/desktop-compact.json"
+      ]
+    },
+    {
+      "name": "typography",
+      "slug": "typography",
+      "id": "VariableCollectionId:2207:329",
+      "modes": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ],
+      "defaultMode": "Desktop",
+      "variableCount": 90,
+      "isExtension": false,
+      "hiddenFromPublishing": false,
+      "files": [
+        "base/typography/desktop.json",
+        "base/typography/tablet.json",
+        "base/typography/mobile.json",
+        "base/typography/desktop-compact.json"
+      ]
+    }
+  ],
+  "extensions": [
+    {
+      "name": "companion",
+      "slug": "companion",
+      "extends": {
+        "name": "palette",
+        "id": "VariableCollectionId:3:4",
+        "slug": "palette"
+      },
+      "root": {
+        "name": "palette",
+        "id": "VariableCollectionId:3:4"
+      },
+      "overrideCount": 6,
+      "modeMap": [
+        {
+          "mode": "Light",
+          "parentMode": "Light"
+        },
+        {
+          "mode": "Dark",
+          "parentMode": "Dark"
+        }
+      ],
+      "files": [
+        "extensions/companion/palette/light.json",
+        "extensions/companion/palette/dark.json"
+      ]
+    },
+    {
+      "name": "target",
+      "slug": "target",
+      "extends": {
+        "name": "primitives",
+        "id": "VariableCollectionId:2:2",
+        "slug": "primitives"
+      },
+      "root": {
+        "name": "primitives",
+        "id": "VariableCollectionId:2:2"
+      },
+      "overrideCount": 10,
+      "modeMap": [
+        {
+          "mode": "Value",
+          "parentMode": "Value"
+        }
+      ],
+      "files": [
+        "extensions/target/primitives/value.json"
+      ]
+    },
+    {
+      "name": "target",
+      "slug": "target",
+      "extends": {
+        "name": "palette",
+        "id": "VariableCollectionId:3:4",
+        "slug": "palette"
+      },
+      "root": {
+        "name": "palette",
+        "id": "VariableCollectionId:3:4"
+      },
+      "overrideCount": 17,
+      "modeMap": [
+        {
+          "mode": "Light",
+          "parentMode": "Light"
+        },
+        {
+          "mode": "Dark",
+          "parentMode": "Dark"
+        }
+      ],
+      "files": [
+        "extensions/target/palette/light.json",
+        "extensions/target/palette/dark.json"
+      ]
+    }
+  ],
+  "counts": {
+    "collections": 5,
+    "extensions": 3,
+    "tokens": 1157,
+    "overrideTokens": 55,
+    "files": 20
+  },
+  "conventions": {
+    "alias": "{<collection name>.<dotted variable name>}",
+    "names": "verbatim from Figma, spaces included; sanitise downstream if building CSS",
+    "extensions": "an extension file contains only the variables that extension overrides, never a merged copy of its parent"
+  },
+  "warnings": [
+    "palette/Light name collisions: ['fill/transparent/elevate']",
+    "palette/Dark name collisions: ['fill/transparent/elevate']",
+    "62 duplicate variable rows across dump pages were de-duplicated by id"
+  ]
+}

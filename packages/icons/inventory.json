@@ -1,0 +1,5192 @@
+{
+  "source": {
+    "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+    "nodeId": "2046:6754"
+  },
+  "generatedAt": "2026-09-22",
+  "styles": [
+    "rounded",
+    "sharp"
+  ],
+  "fonts": [
+    {
+      "style": "rounded",
+      "fontName": "ZdsIcons-Rounded",
+      "glyphs": 715
+    },
+    {
+      "style": "sharp",
+      "fontName": "ZdsIcons-Sharp",
+      "glyphs": 715
+    }
+  ],
+  "counts": {
+    "icons": 724,
+    "glyphs": 1430,
+    "rejected": 18,
+    "retired": 0
+  },
+  "collisions": [
+    {
+      "figmaName": "Table",
+      "category": "Charts",
+      "resolved": "charts-table"
+    },
+    {
+      "figmaName": "To do",
+      "category": "General",
+      "resolved": "general-to-do"
+    },
+    {
+      "figmaName": "Credit Card",
+      "category": "General",
+      "resolved": "general-credit-card"
+    }
+  ],
+  "renamed": [],
+  "missing": [],
+  "rejected": [
+    {
+      "label": "side-bar-toggle/rounded",
+      "why": "stroked path — outline it in Figma"
+    },
+    {
+      "label": "side-bar-toggle/sharp",
+      "why": "stroked path — outline it in Figma"
+    },
+    {
+      "label": "incoming-video/rounded",
+      "why": "stroked path — outline it in Figma"
+    },
+    {
+      "label": "incoming-video/sharp",
+      "why": "stroked path — outline it in Figma"
+    },
+    {
+      "label": "missed-call/rounded",
+      "why": "non-square viewBox 25x24"
+    },
+    {
+      "label": "missed-call/sharp",
+      "why": "non-square viewBox 25x24"
+    },
+    {
+      "label": "missed-video/rounded",
+      "why": "stroked path — outline it in Figma"
+    },
+    {
+      "label": "missed-video/sharp",
+      "why": "stroked path — outline it in Figma"
+    },
+    {
+      "label": "outgoing-video/rounded",
+      "why": "stroked path — outline it in Figma"
+    },
+    {
+      "label": "outgoing-video/sharp",
+      "why": "stroked path — outline it in Figma"
+    },
+    {
+      "label": "to-do/rounded",
+      "why": "stroked path — outline it in Figma"
+    },
+    {
+      "label": "to-do/sharp",
+      "why": "stroked path — outline it in Figma"
+    },
+    {
+      "label": "chat-sync/rounded",
+      "why": "non-square viewBox 24x25"
+    },
+    {
+      "label": "chat-sync/sharp",
+      "why": "non-square viewBox 24x25"
+    },
+    {
+      "label": "chat-sync-outline/rounded",
+      "why": "non-square viewBox 24x25"
+    },
+    {
+      "label": "chat-sync-outline/sharp",
+      "why": "non-square viewBox 24x25"
+    },
+    {
+      "label": "to-do-outline/rounded",
+      "why": "stroked path — outline it in Figma"
+    },
+    {
+      "label": "to-do-outline/sharp",
+      "why": "stroked path — outline it in Figma"
+    }
+  ],
+  "icons": [
+    {
+      "name": "alarm",
+      "codepoint": "U+E000",
+      "figmaName": "Alarm",
+      "category": "Action",
+      "setId": "2046:6771"
+    },
+    {
+      "name": "ar",
+      "codepoint": "U+E001",
+      "figmaName": "AR",
+      "category": "Action",
+      "setId": "2046:6776"
+    },
+    {
+      "name": "bookmark",
+      "codepoint": "U+E002",
+      "figmaName": "Bookmark",
+      "category": "Action",
+      "setId": "2046:6781"
+    },
+    {
+      "name": "bookmark-outline",
+      "codepoint": "U+E003",
+      "figmaName": "Bookmark Outline",
+      "category": "Action",
+      "setId": "2046:6786"
+    },
+    {
+      "name": "build",
+      "codepoint": "U+E004",
+      "figmaName": "Build",
+      "category": "Action",
+      "setId": "2046:6791"
+    },
+    {
+      "name": "cached",
+      "codepoint": "U+E005",
+      "figmaName": "Cached",
+      "category": "Action",
+      "setId": "2046:6796"
+    },
+    {
+      "name": "calendar",
+      "codepoint": "U+E006",
+      "figmaName": "Calendar",
+      "category": "Action",
+      "setId": "2046:6801"
+    },
+    {
+      "name": "calendar-3-day",
+      "codepoint": "U+E007",
+      "figmaName": "Calendar 3 Day",
+      "category": "Action",
+      "setId": "2046:6806"
+    },
+    {
+      "name": "calendar-alt-1",
+      "codepoint": "U+E008",
+      "figmaName": "Calendar Alt 1",
+      "category": "Action",
+      "setId": "2046:6811"
+    },
+    {
+      "name": "calendar-alt-2",
+      "codepoint": "U+E009",
+      "figmaName": "Calendar Alt 2",
+      "category": "Action",
+      "setId": "2046:6816"
+    },
+    {
+      "name": "calendar-available",
+      "codepoint": "U+E00A",
+      "figmaName": "Calendar Available",
+      "category": "Action",
+      "setId": "2046:6821"
+    },
+    {
+      "name": "calendar-day",
+      "codepoint": "U+E00B",
+      "figmaName": "Calendar Day",
+      "category": "Action",
+      "setId": "2046:6826"
+    },
+    {
+      "name": "calendar-edit",
+      "codepoint": "U+E00C",
+      "figmaName": "Calendar Edit",
+      "category": "Action",
+      "setId": "2046:6831"
+    },
+    {
+      "name": "calendar-monthly",
+      "codepoint": "U+E00D",
+      "figmaName": "Calendar Monthly",
+      "category": "Action",
+      "setId": "2046:6836"
+    },
+    {
+      "name": "calendar-range",
+      "codepoint": "U+E00E",
+      "figmaName": "Calendar Range",
+      "category": "Action",
+      "setId": "2046:6841"
+    },
+    {
+      "name": "calendar-unavailable",
+      "codepoint": "U+E00F",
+      "figmaName": "Calendar Unavailable",
+      "category": "Action",
+      "setId": "2046:6846"
+    },
+    {
+      "name": "calendar-weekly",
+      "codepoint": "U+E010",
+      "figmaName": "Calendar Weekly",
+      "category": "Action",
+      "setId": "2046:6851"
+    },
+    {
+      "name": "calendar-yearly",
+      "codepoint": "U+E011",
+      "figmaName": "Calendar Yearly",
+      "category": "Action",
+      "setId": "2046:6856"
+    },
+    {
+      "name": "check-circle",
+      "codepoint": "U+E012",
+      "figmaName": "Check Circle",
+      "category": "Action",
+      "setId": "2046:6861"
+    },
+    {
+      "name": "check-circle-outline",
+      "codepoint": "U+E013",
+      "figmaName": "Check Circle Outline",
+      "category": "Action",
+      "setId": "2046:6866"
+    },
+    {
+      "name": "check-circle-outline-alt",
+      "codepoint": "U+E014",
+      "figmaName": "Check Circle Outline Alt",
+      "category": "Action",
+      "setId": "2046:6871"
+    },
+    {
+      "name": "check-mark",
+      "codepoint": "U+E015",
+      "figmaName": "Check Mark",
+      "category": "Action",
+      "setId": "2046:6876"
+    },
+    {
+      "name": "clipboard",
+      "codepoint": "U+E016",
+      "figmaName": "Clipboard",
+      "category": "Action",
+      "setId": "2046:6881"
+    },
+    {
+      "name": "clock",
+      "codepoint": "U+E017",
+      "figmaName": "Clock",
+      "category": "Action",
+      "setId": "2046:6886"
+    },
+    {
+      "name": "clock-outline",
+      "codepoint": "U+E018",
+      "figmaName": "Clock Outline",
+      "category": "Action",
+      "setId": "2046:6891"
+    },
+    {
+      "name": "credit-card",
+      "codepoint": "U+E019",
+      "figmaName": "Credit Card",
+      "category": "Action",
+      "setId": "2046:6896"
+    },
+    {
+      "name": "delete",
+      "codepoint": "U+E01A",
+      "figmaName": "Delete",
+      "category": "Action",
+      "setId": "2046:6901"
+    },
+    {
+      "name": "delete-forever",
+      "codepoint": "U+E01B",
+      "figmaName": "Delete Forever",
+      "category": "Action",
+      "setId": "2046:6906"
+    },
+    {
+      "name": "delete-outline",
+      "codepoint": "U+E01C",
+      "figmaName": "Delete Outline",
+      "category": "Action",
+      "setId": "2046:6911"
+    },
+    {
+      "name": "dislike",
+      "codepoint": "U+E01D",
+      "figmaName": "Dislike",
+      "category": "Action",
+      "setId": "2046:6916"
+    },
+    {
+      "name": "document",
+      "codepoint": "U+E01E",
+      "figmaName": "Document",
+      "category": "Action",
+      "setId": "2046:6921"
+    },
+    {
+      "name": "download",
+      "codepoint": "U+E01F",
+      "figmaName": "Download",
+      "category": "Action",
+      "setId": "2046:6926"
+    },
+    {
+      "name": "filter",
+      "codepoint": "U+E020",
+      "figmaName": "Filter",
+      "category": "Action",
+      "setId": "2046:6931"
+    },
+    {
+      "name": "filter-alt",
+      "codepoint": "U+E021",
+      "figmaName": "Filter Alt",
+      "category": "Action",
+      "setId": "2046:6936"
+    },
+    {
+      "name": "hand",
+      "codepoint": "U+E022",
+      "figmaName": "Hand",
+      "category": "Action",
+      "setId": "2046:6941"
+    },
+    {
+      "name": "history",
+      "codepoint": "U+E023",
+      "figmaName": "History",
+      "category": "Action",
+      "setId": "2046:6946"
+    },
+    {
+      "name": "home",
+      "codepoint": "U+E024",
+      "figmaName": "Home",
+      "category": "Action",
+      "setId": "2046:6951"
+    },
+    {
+      "name": "info",
+      "codepoint": "U+E025",
+      "figmaName": "Info",
+      "category": "Action",
+      "setId": "2046:6956"
+    },
+    {
+      "name": "ios-share",
+      "codepoint": "U+E026",
+      "figmaName": "iOS Share",
+      "category": "Action",
+      "setId": "2046:6961"
+    },
+    {
+      "name": "label",
+      "codepoint": "U+E027",
+      "figmaName": "Label",
+      "category": "Action",
+      "setId": "2046:6966"
+    },
+    {
+      "name": "left-panel-close",
+      "codepoint": "U+E028",
+      "figmaName": "Left Panel Close",
+      "category": "Action",
+      "setId": "2046:6971"
+    },
+    {
+      "name": "left-panel-open",
+      "codepoint": "U+E029",
+      "figmaName": "Left Panel Open",
+      "category": "Action",
+      "setId": "2046:6976"
+    },
+    {
+      "name": "like",
+      "codepoint": "U+E02A",
+      "figmaName": "Like",
+      "category": "Action",
+      "setId": "2046:6981"
+    },
+    {
+      "name": "lock",
+      "codepoint": "U+E02B",
+      "figmaName": "Lock",
+      "category": "Action",
+      "setId": "2046:6986"
+    },
+    {
+      "name": "lock-alt",
+      "codepoint": "U+E02C",
+      "figmaName": "Lock Alt",
+      "category": "Action",
+      "setId": "2046:6991"
+    },
+    {
+      "name": "log-in",
+      "codepoint": "U+E02D",
+      "figmaName": "Log In",
+      "category": "Action",
+      "setId": "2046:6996"
+    },
+    {
+      "name": "log-out",
+      "codepoint": "U+E02E",
+      "figmaName": "Log Out",
+      "category": "Action",
+      "setId": "2046:7001"
+    },
+    {
+      "name": "love",
+      "codepoint": "U+E02F",
+      "figmaName": "Love",
+      "category": "Action",
+      "setId": "2046:7006"
+    },
+    {
+      "name": "love-outline",
+      "codepoint": "U+E030",
+      "figmaName": "Love Outline",
+      "category": "Action",
+      "setId": "2046:7011"
+    },
+    {
+      "name": "open-in-full",
+      "codepoint": "U+E031",
+      "figmaName": "Open In Full",
+      "category": "Action",
+      "setId": "2046:7016"
+    },
+    {
+      "name": "open-in-new-window",
+      "codepoint": "U+E032",
+      "figmaName": "Open In New Window",
+      "category": "Action",
+      "setId": "2046:7021"
+    },
+    {
+      "name": "pending",
+      "codepoint": "U+E033",
+      "figmaName": "Pending",
+      "category": "Action",
+      "setId": "2046:7026"
+    },
+    {
+      "name": "pin",
+      "codepoint": "U+E034",
+      "figmaName": "Pin",
+      "category": "Action",
+      "setId": "2046:7031"
+    },
+    {
+      "name": "price-or-dollar",
+      "codepoint": "U+E035",
+      "figmaName": "Price or Dollar",
+      "category": "Action",
+      "setId": "2046:7036"
+    },
+    {
+      "name": "renew",
+      "codepoint": "U+E036",
+      "figmaName": "Renew",
+      "category": "Action",
+      "setId": "2046:7041"
+    },
+    {
+      "name": "search",
+      "codepoint": "U+E037",
+      "figmaName": "Search",
+      "category": "Action",
+      "setId": "2046:7046"
+    },
+    {
+      "name": "security-check",
+      "codepoint": "U+E038",
+      "figmaName": "Security Check",
+      "category": "Action",
+      "setId": "2046:7051"
+    },
+    {
+      "name": "settings",
+      "codepoint": "U+E039",
+      "figmaName": "Settings",
+      "category": "Action",
+      "setId": "2046:7056"
+    },
+    {
+      "name": "share",
+      "codepoint": "U+E03A",
+      "figmaName": "Share",
+      "category": "Action",
+      "setId": "2046:7061"
+    },
+    {
+      "name": "touch",
+      "codepoint": "U+E03B",
+      "figmaName": "Touch",
+      "category": "Action",
+      "setId": "2046:7066"
+    },
+    {
+      "name": "trending-down",
+      "codepoint": "U+E03C",
+      "figmaName": "Trending Down",
+      "category": "Action",
+      "setId": "2046:7071"
+    },
+    {
+      "name": "trending-up",
+      "codepoint": "U+E03D",
+      "figmaName": "Trending Up",
+      "category": "Action",
+      "setId": "2046:7076"
+    },
+    {
+      "name": "unlock",
+      "codepoint": "U+E03E",
+      "figmaName": "Unlock",
+      "category": "Action",
+      "setId": "2046:7081"
+    },
+    {
+      "name": "unlock-alt",
+      "codepoint": "U+E03F",
+      "figmaName": "Unlock Alt",
+      "category": "Action",
+      "setId": "2046:7086"
+    },
+    {
+      "name": "update",
+      "codepoint": "U+E040",
+      "figmaName": "Update",
+      "category": "Action",
+      "setId": "2046:7091"
+    },
+    {
+      "name": "upload",
+      "codepoint": "U+E041",
+      "figmaName": "Upload",
+      "category": "Action",
+      "setId": "2046:7096"
+    },
+    {
+      "name": "user",
+      "codepoint": "U+E042",
+      "figmaName": "User",
+      "category": "Action",
+      "setId": "2046:7101"
+    },
+    {
+      "name": "user-circle",
+      "codepoint": "U+E043",
+      "figmaName": "User Circle",
+      "category": "Action",
+      "setId": "2046:7106"
+    },
+    {
+      "name": "user-settings",
+      "codepoint": "U+E044",
+      "figmaName": "User Settings",
+      "category": "Action",
+      "setId": "2046:7111"
+    },
+    {
+      "name": "verified",
+      "codepoint": "U+E045",
+      "figmaName": "Verified",
+      "category": "Action",
+      "setId": "2046:7116"
+    },
+    {
+      "name": "visibility",
+      "codepoint": "U+E046",
+      "figmaName": "Visibility",
+      "category": "Action",
+      "setId": "2046:7121"
+    },
+    {
+      "name": "visibility-off",
+      "codepoint": "U+E047",
+      "figmaName": "Visibility Off",
+      "category": "Action",
+      "setId": "2046:7126"
+    },
+    {
+      "name": "zoom-in",
+      "codepoint": "U+E048",
+      "figmaName": "Zoom In",
+      "category": "Action",
+      "setId": "2046:7131"
+    },
+    {
+      "name": "zoom-out",
+      "codepoint": "U+E049",
+      "figmaName": "Zoom Out",
+      "category": "Action",
+      "setId": "2046:7136"
+    },
+    {
+      "name": "search-tab",
+      "codepoint": "U+E04A",
+      "figmaName": "Search Tab",
+      "category": "Action",
+      "setId": "2046:7141"
+    },
+    {
+      "name": "search-image",
+      "codepoint": "U+E04B",
+      "figmaName": "Search Image",
+      "category": "Action",
+      "setId": "2046:7146"
+    },
+    {
+      "name": "search-refresh",
+      "codepoint": "U+E04C",
+      "figmaName": "Search Refresh",
+      "category": "Action",
+      "setId": "2046:7151"
+    },
+    {
+      "name": "search-checkmark",
+      "codepoint": "U+E04D",
+      "figmaName": "Search Checkmark",
+      "category": "Action",
+      "setId": "2046:7156"
+    },
+    {
+      "name": "search-settings",
+      "codepoint": "U+E04E",
+      "figmaName": "Search Settings",
+      "category": "Action",
+      "setId": "2046:7161"
+    },
+    {
+      "name": "search-file",
+      "codepoint": "U+E04F",
+      "figmaName": "Search File",
+      "category": "Action",
+      "setId": "2046:7166"
+    },
+    {
+      "name": "search-star",
+      "codepoint": "U+E050",
+      "figmaName": "Search Star",
+      "category": "Action",
+      "setId": "2046:7171"
+    },
+    {
+      "name": "search-document",
+      "codepoint": "U+E051",
+      "figmaName": "Search Document",
+      "category": "Action",
+      "setId": "2046:7176"
+    },
+    {
+      "name": "search-data",
+      "codepoint": "U+E052",
+      "figmaName": "Search Data",
+      "category": "Action",
+      "setId": "2046:7181"
+    },
+    {
+      "name": "point-scan",
+      "codepoint": "U+E053",
+      "figmaName": "Point Scan",
+      "category": "Action",
+      "setId": "2046:7186"
+    },
+    {
+      "name": "scan-document",
+      "codepoint": "U+E054",
+      "figmaName": "Scan Document",
+      "category": "Action",
+      "setId": "2046:7191"
+    },
+    {
+      "name": "page-detail",
+      "codepoint": "U+E055",
+      "figmaName": "Page Detail",
+      "category": "Action",
+      "setId": "2046:7196"
+    },
+    {
+      "name": "tune",
+      "codepoint": "U+E056",
+      "figmaName": "Tune",
+      "category": "Action",
+      "setId": "2046:7201"
+    },
+    {
+      "name": "frame-inspect",
+      "codepoint": "U+E057",
+      "figmaName": "Frame inspect",
+      "category": "Action",
+      "setId": "2046:7206"
+    },
+    {
+      "name": "filter-off",
+      "codepoint": "U+E058",
+      "figmaName": "Filter Off",
+      "category": "Action",
+      "setId": "2046:7211"
+    },
+    {
+      "name": "quote",
+      "codepoint": "U+E059",
+      "figmaName": "Quote ",
+      "category": "Action",
+      "setId": "2046:7216"
+    },
+    {
+      "name": "category",
+      "codepoint": "U+E05A",
+      "figmaName": "Category",
+      "category": "Action",
+      "setId": "2046:7221"
+    },
+    {
+      "name": "filter-outlne",
+      "codepoint": "U+E05B",
+      "figmaName": "Filter outlne",
+      "category": "Action",
+      "setId": "2046:7226"
+    },
+    {
+      "name": "side-bar-toggle",
+      "codepoint": "U+E05C",
+      "figmaName": "Side Bar Toggle",
+      "category": "Action",
+      "setId": "2046:7231"
+    },
+    {
+      "name": "shopping-basket",
+      "codepoint": "U+E05D",
+      "figmaName": "Shopping Basket",
+      "category": "Action",
+      "setId": "2046:7236"
+    },
+    {
+      "name": "ai-measure",
+      "codepoint": "U+E05E",
+      "figmaName": "AI Measure",
+      "category": "AI",
+      "setId": "2046:7245"
+    },
+    {
+      "name": "ai-single-star",
+      "codepoint": "U+E05F",
+      "figmaName": "AI Single Star",
+      "category": "AI",
+      "setId": "2046:7250"
+    },
+    {
+      "name": "ai-stars",
+      "codepoint": "U+E060",
+      "figmaName": "AI Stars",
+      "category": "AI",
+      "setId": "2046:7255"
+    },
+    {
+      "name": "add-alert",
+      "codepoint": "U+E061",
+      "figmaName": "Add Alert",
+      "category": "Alert",
+      "setId": "2046:7264"
+    },
+    {
+      "name": "alert",
+      "codepoint": "U+E062",
+      "figmaName": "Alert",
+      "category": "Alert",
+      "setId": "2046:7269"
+    },
+    {
+      "name": "alert-active",
+      "codepoint": "U+E063",
+      "figmaName": "Alert Active",
+      "category": "Alert",
+      "setId": "2046:7274"
+    },
+    {
+      "name": "alert-outline",
+      "codepoint": "U+E064",
+      "figmaName": "Alert Outline",
+      "category": "Alert",
+      "setId": "2046:7279"
+    },
+    {
+      "name": "auto-delete",
+      "codepoint": "U+E065",
+      "figmaName": "Auto Delete",
+      "category": "Alert",
+      "setId": "2046:7284"
+    },
+    {
+      "name": "error",
+      "codepoint": "U+E066",
+      "figmaName": "Error",
+      "category": "Alert",
+      "setId": "2046:7289"
+    },
+    {
+      "name": "error-outline",
+      "codepoint": "U+E067",
+      "figmaName": "Error Outline",
+      "category": "Alert",
+      "setId": "2046:7294"
+    },
+    {
+      "name": "important-notification",
+      "codepoint": "U+E068",
+      "figmaName": "Important Notification",
+      "category": "Alert",
+      "setId": "2046:7299"
+    },
+    {
+      "name": "warning",
+      "codepoint": "U+E069",
+      "figmaName": "Warning",
+      "category": "Alert",
+      "setId": "2046:7304"
+    },
+    {
+      "name": "warning-outline",
+      "codepoint": "U+E06A",
+      "figmaName": "Warning Outline",
+      "category": "Alert",
+      "setId": "2046:7309"
+    },
+    {
+      "name": "closed-caption",
+      "codepoint": "U+E06B",
+      "figmaName": "Closed Caption",
+      "category": "Audio Video",
+      "setId": "2046:7318"
+    },
+    {
+      "name": "fast-forward",
+      "codepoint": "U+E06C",
+      "figmaName": "Fast Forward",
+      "category": "Audio Video",
+      "setId": "2046:7323"
+    },
+    {
+      "name": "fast-rewind",
+      "codepoint": "U+E06D",
+      "figmaName": "Fast Rewind",
+      "category": "Audio Video",
+      "setId": "2046:7328"
+    },
+    {
+      "name": "microphone",
+      "codepoint": "U+E06E",
+      "figmaName": "Microphone",
+      "category": "Audio Video",
+      "setId": "2046:7333"
+    },
+    {
+      "name": "microphone-off",
+      "codepoint": "U+E06F",
+      "figmaName": "Microphone Off",
+      "category": "Audio Video",
+      "setId": "2046:7338"
+    },
+    {
+      "name": "microphone-outline",
+      "codepoint": "U+E070",
+      "figmaName": "Microphone Outline",
+      "category": "Audio Video",
+      "setId": "2046:7343"
+    },
+    {
+      "name": "pause",
+      "codepoint": "U+E071",
+      "figmaName": "Pause",
+      "category": "Audio Video",
+      "setId": "2046:7348"
+    },
+    {
+      "name": "pause-circle",
+      "codepoint": "U+E072",
+      "figmaName": "Pause Circle",
+      "category": "Audio Video",
+      "setId": "2046:7353"
+    },
+    {
+      "name": "play",
+      "codepoint": "U+E073",
+      "figmaName": "Play",
+      "category": "Audio Video",
+      "setId": "2046:7358"
+    },
+    {
+      "name": "play-circle",
+      "codepoint": "U+E074",
+      "figmaName": "Play Circle",
+      "category": "Audio Video",
+      "setId": "2046:7363"
+    },
+    {
+      "name": "play-outline",
+      "codepoint": "U+E075",
+      "figmaName": "Play Outline",
+      "category": "Audio Video",
+      "setId": "2046:7368"
+    },
+    {
+      "name": "replay",
+      "codepoint": "U+E076",
+      "figmaName": "Replay",
+      "category": "Audio Video",
+      "setId": "2046:7373"
+    },
+    {
+      "name": "skip-next",
+      "codepoint": "U+E077",
+      "figmaName": "Skip Next",
+      "category": "Audio Video",
+      "setId": "2046:7378"
+    },
+    {
+      "name": "skip-previous",
+      "codepoint": "U+E078",
+      "figmaName": "Skip Previous",
+      "category": "Audio Video",
+      "setId": "2046:7383"
+    },
+    {
+      "name": "stop",
+      "codepoint": "U+E079",
+      "figmaName": "Stop",
+      "category": "Audio Video",
+      "setId": "2046:7388"
+    },
+    {
+      "name": "stop-circle",
+      "codepoint": "U+E07A",
+      "figmaName": "Stop Circle",
+      "category": "Audio Video",
+      "setId": "2046:7393"
+    },
+    {
+      "name": "video-camera",
+      "codepoint": "U+E07B",
+      "figmaName": "Video Camera",
+      "category": "Audio Video",
+      "setId": "2046:7398"
+    },
+    {
+      "name": "volume-down",
+      "codepoint": "U+E07C",
+      "figmaName": "Volume Down",
+      "category": "Audio Video",
+      "setId": "2046:7403"
+    },
+    {
+      "name": "volume-mute",
+      "codepoint": "U+E07D",
+      "figmaName": "Volume Mute",
+      "category": "Audio Video",
+      "setId": "2046:7408"
+    },
+    {
+      "name": "volume-off",
+      "codepoint": "U+E07E",
+      "figmaName": "Volume Off",
+      "category": "Audio Video",
+      "setId": "2046:7413"
+    },
+    {
+      "name": "volume-up",
+      "codepoint": "U+E07F",
+      "figmaName": "Volume Up",
+      "category": "Audio Video",
+      "setId": "2046:7418"
+    },
+    {
+      "name": "flash-on",
+      "codepoint": "U+E080",
+      "figmaName": "Flash On",
+      "category": "Audio Video",
+      "setId": "2046:7423"
+    },
+    {
+      "name": "flash-off",
+      "codepoint": "U+E081",
+      "figmaName": "Flash Off",
+      "category": "Audio Video",
+      "setId": "2046:7428"
+    },
+    {
+      "name": "flash-auto",
+      "codepoint": "U+E082",
+      "figmaName": "Flash Auto",
+      "category": "Audio Video",
+      "setId": "2046:7433"
+    },
+    {
+      "name": "no-flash",
+      "codepoint": "U+E083",
+      "figmaName": "No Flash",
+      "category": "Audio Video",
+      "setId": "2046:7438"
+    },
+    {
+      "name": "analytics",
+      "codepoint": "U+E084",
+      "figmaName": "Analytics",
+      "category": "Charts",
+      "setId": "2046:7447"
+    },
+    {
+      "name": "chart-bar",
+      "codepoint": "U+E085",
+      "figmaName": "Chart Bar",
+      "category": "Charts",
+      "setId": "2046:7456"
+    },
+    {
+      "name": "chart-bubble",
+      "codepoint": "U+E086",
+      "figmaName": "Chart Bubble",
+      "category": "Charts",
+      "setId": "2046:7461"
+    },
+    {
+      "name": "chart-bubble-outline",
+      "codepoint": "U+E087",
+      "figmaName": "Chart Bubble Outline",
+      "category": "Charts",
+      "setId": "2046:7466"
+    },
+    {
+      "name": "chart-doughnut",
+      "codepoint": "U+E088",
+      "figmaName": "Chart Doughnut",
+      "category": "Charts",
+      "setId": "2046:7471"
+    },
+    {
+      "name": "chart-filled",
+      "codepoint": "U+E089",
+      "figmaName": "Chart Filled",
+      "category": "Charts",
+      "setId": "2046:7476"
+    },
+    {
+      "name": "chart-gantt",
+      "codepoint": "U+E08A",
+      "figmaName": "Chart Gantt",
+      "category": "Charts",
+      "setId": "2046:7481"
+    },
+    {
+      "name": "chart-line",
+      "codepoint": "U+E08B",
+      "figmaName": "Chart Line",
+      "category": "Charts",
+      "setId": "2046:7486"
+    },
+    {
+      "name": "chart-line-predict",
+      "codepoint": "U+E08C",
+      "figmaName": "Chart Line Predict",
+      "category": "Charts",
+      "setId": "2046:7491"
+    },
+    {
+      "name": "chart-line-stacked",
+      "codepoint": "U+E08D",
+      "figmaName": "Chart Line Stacked",
+      "category": "Charts",
+      "setId": "2046:7496"
+    },
+    {
+      "name": "chart-outline",
+      "codepoint": "U+E08E",
+      "figmaName": "Chart Outline",
+      "category": "Charts",
+      "setId": "2046:7501"
+    },
+    {
+      "name": "chart-pie",
+      "codepoint": "U+E08F",
+      "figmaName": "Chart Pie",
+      "category": "Charts",
+      "setId": "2046:7506"
+    },
+    {
+      "name": "chart-pie-outline",
+      "codepoint": "U+E090",
+      "figmaName": "Chart Pie Outline",
+      "category": "Charts",
+      "setId": "2046:7511"
+    },
+    {
+      "name": "chart-scatter-plot",
+      "codepoint": "U+E091",
+      "figmaName": "Chart Scatter Plot",
+      "category": "Charts",
+      "setId": "2046:7516"
+    },
+    {
+      "name": "chart-stacked",
+      "codepoint": "U+E092",
+      "figmaName": "Chart Stacked",
+      "category": "Charts",
+      "setId": "2046:7521"
+    },
+    {
+      "name": "chart-waterfall",
+      "codepoint": "U+E093",
+      "figmaName": "Chart Waterfall",
+      "category": "Charts",
+      "setId": "2046:7526"
+    },
+    {
+      "name": "report",
+      "codepoint": "U+E094",
+      "figmaName": "Report",
+      "category": "Charts",
+      "setId": "2046:7531"
+    },
+    {
+      "name": "table",
+      "codepoint": "U+E095",
+      "figmaName": "Table",
+      "category": "Charts",
+      "setId": "2046:7536"
+    },
+    {
+      "name": "charts-table",
+      "codepoint": "U+E096",
+      "figmaName": "Table",
+      "category": "Charts",
+      "setId": "2046:7541"
+    },
+    {
+      "name": "add-call",
+      "codepoint": "U+E097",
+      "figmaName": "Add Call",
+      "category": "Communication",
+      "setId": "2046:7550"
+    },
+    {
+      "name": "audio",
+      "codepoint": "U+E098",
+      "figmaName": "Audio",
+      "category": "Communication",
+      "setId": "2046:7555"
+    },
+    {
+      "name": "basket",
+      "codepoint": "U+E099",
+      "figmaName": "Basket",
+      "category": "Communication",
+      "setId": "2046:7560"
+    },
+    {
+      "name": "block",
+      "codepoint": "U+E09A",
+      "figmaName": "Block",
+      "category": "Communication",
+      "setId": "2046:7565"
+    },
+    {
+      "name": "broadcast",
+      "codepoint": "U+E09B",
+      "figmaName": "Broadcast",
+      "category": "Communication",
+      "setId": "2046:7570"
+    },
+    {
+      "name": "call-back",
+      "codepoint": "U+E09C",
+      "figmaName": "Call Back",
+      "category": "Communication",
+      "setId": "2046:7575"
+    },
+    {
+      "name": "chat",
+      "codepoint": "U+E09D",
+      "figmaName": "Chat",
+      "category": "Communication",
+      "setId": "2046:7580"
+    },
+    {
+      "name": "chat-bot",
+      "codepoint": "U+E09E",
+      "figmaName": "Chat Bot",
+      "category": "Communication",
+      "setId": "2046:7585"
+    },
+    {
+      "name": "chat-bubble",
+      "codepoint": "U+E09F",
+      "figmaName": "Chat Bubble",
+      "category": "Communication",
+      "setId": "2046:7590"
+    },
+    {
+      "name": "chat-bubble-outline",
+      "codepoint": "U+E0A0",
+      "figmaName": "Chat Bubble Outline",
+      "category": "Communication",
+      "setId": "2046:7595"
+    },
+    {
+      "name": "chat-message-read",
+      "codepoint": "U+E0A1",
+      "figmaName": "Chat Message Read",
+      "category": "Communication",
+      "setId": "2046:7600"
+    },
+    {
+      "name": "chat-message-unread",
+      "codepoint": "U+E0A2",
+      "figmaName": "Chat Message Unread",
+      "category": "Communication",
+      "setId": "2046:7605"
+    },
+    {
+      "name": "chat-search",
+      "codepoint": "U+E0A3",
+      "figmaName": "Chat Search",
+      "category": "Communication",
+      "setId": "2046:7610"
+    },
+    {
+      "name": "comms-chat",
+      "codepoint": "U+E0A4",
+      "figmaName": "Comms Chat",
+      "category": "Communication",
+      "setId": "2046:7615"
+    },
+    {
+      "name": "comms-chat-new",
+      "codepoint": "U+E0A5",
+      "figmaName": "Comms Chat New",
+      "category": "Communication",
+      "setId": "2046:7620"
+    },
+    {
+      "name": "comms-chat-unread",
+      "codepoint": "U+E0A6",
+      "figmaName": "Comms Chat Unread",
+      "category": "Communication",
+      "setId": "2046:7625"
+    },
+    {
+      "name": "conversation",
+      "codepoint": "U+E0A7",
+      "figmaName": "Conversation",
+      "category": "Communication",
+      "setId": "2046:7630"
+    },
+    {
+      "name": "dialpad",
+      "codepoint": "U+E0A8",
+      "figmaName": "Dialpad",
+      "category": "Communication",
+      "setId": "2046:7635"
+    },
+    {
+      "name": "dollar",
+      "codepoint": "U+E0A9",
+      "figmaName": "Dollar",
+      "category": "Communication",
+      "setId": "2046:7640"
+    },
+    {
+      "name": "email-alt",
+      "codepoint": "U+E0AA",
+      "figmaName": "Email Alt",
+      "category": "Communication",
+      "setId": "2046:7645"
+    },
+    {
+      "name": "email-reply-all",
+      "codepoint": "U+E0AB",
+      "figmaName": "Email Reply All",
+      "category": "Communication",
+      "setId": "2046:7650"
+    },
+    {
+      "name": "end-call",
+      "codepoint": "U+E0AC",
+      "figmaName": "End Call",
+      "category": "Communication",
+      "setId": "2046:7655"
+    },
+    {
+      "name": "forward",
+      "codepoint": "U+E0AD",
+      "figmaName": "Forward",
+      "category": "Communication",
+      "setId": "2046:7660"
+    },
+    {
+      "name": "gif",
+      "codepoint": "U+E0AE",
+      "figmaName": "GIF",
+      "category": "Communication",
+      "setId": "2046:7665"
+    },
+    {
+      "name": "headset",
+      "codepoint": "U+E0AF",
+      "figmaName": "Headset",
+      "category": "Communication",
+      "setId": "2046:7670"
+    },
+    {
+      "name": "hourglass",
+      "codepoint": "U+E0B0",
+      "figmaName": "Hourglass",
+      "category": "Communication",
+      "setId": "2046:7675"
+    },
+    {
+      "name": "inbox",
+      "codepoint": "U+E0B1",
+      "figmaName": "Inbox",
+      "category": "Communication",
+      "setId": "2046:7680"
+    },
+    {
+      "name": "incoming-call",
+      "codepoint": "U+E0B2",
+      "figmaName": "Incoming Call",
+      "category": "Communication",
+      "setId": "2046:7685"
+    },
+    {
+      "name": "incoming-video",
+      "codepoint": "U+E0B3",
+      "figmaName": "Incoming Video",
+      "category": "Communication",
+      "setId": "2046:7690"
+    },
+    {
+      "name": "lightbulb",
+      "codepoint": "U+E0B4",
+      "figmaName": "Lightbulb",
+      "category": "Communication",
+      "setId": "2046:7699"
+    },
+    {
+      "name": "location-off",
+      "codepoint": "U+E0B5",
+      "figmaName": "Location Off",
+      "category": "Communication",
+      "setId": "2046:7704"
+    },
+    {
+      "name": "message",
+      "codepoint": "U+E0B6",
+      "figmaName": "Message",
+      "category": "Communication",
+      "setId": "2046:7709"
+    },
+    {
+      "name": "missed-call",
+      "codepoint": "U+E0B7",
+      "figmaName": "Missed call",
+      "category": "Communication",
+      "setId": "2046:7714"
+    },
+    {
+      "name": "missed-video",
+      "codepoint": "U+E0B8",
+      "figmaName": "Missed Video",
+      "category": "Communication",
+      "setId": "2046:7719"
+    },
+    {
+      "name": "navigate",
+      "codepoint": "U+E0B9",
+      "figmaName": "Navigate",
+      "category": "Communication",
+      "setId": "2046:7726"
+    },
+    {
+      "name": "new-chat",
+      "codepoint": "U+E0BA",
+      "figmaName": "New Chat",
+      "category": "Communication",
+      "setId": "2046:7731"
+    },
+    {
+      "name": "notifications-off",
+      "codepoint": "U+E0BB",
+      "figmaName": "Notifications Off",
+      "category": "Communication",
+      "setId": "2046:7736"
+    },
+    {
+      "name": "outgoing-call",
+      "codepoint": "U+E0BC",
+      "figmaName": "Outgoing call",
+      "category": "Communication",
+      "setId": "2046:7741"
+    },
+    {
+      "name": "outgoing-video",
+      "codepoint": "U+E0BD",
+      "figmaName": "Outgoing Video",
+      "category": "Communication",
+      "setId": "2046:7746"
+    },
+    {
+      "name": "palette",
+      "codepoint": "U+E0BE",
+      "figmaName": "Palette",
+      "category": "Communication",
+      "setId": "2046:7755"
+    },
+    {
+      "name": "person-search",
+      "codepoint": "U+E0BF",
+      "figmaName": "Person Search",
+      "category": "Communication",
+      "setId": "2046:7760"
+    },
+    {
+      "name": "phone",
+      "codepoint": "U+E0C0",
+      "figmaName": "Phone",
+      "category": "Communication",
+      "setId": "2046:7765"
+    },
+    {
+      "name": "phone-bluetooth-speaker",
+      "codepoint": "U+E0C1",
+      "figmaName": "Phone Bluetooth Speaker",
+      "category": "Communication",
+      "setId": "2046:7770"
+    },
+    {
+      "name": "phone-in-talk",
+      "codepoint": "U+E0C2",
+      "figmaName": "Phone In Talk",
+      "category": "Communication",
+      "setId": "2046:7775"
+    },
+    {
+      "name": "point-token",
+      "codepoint": "U+E0C3",
+      "figmaName": "Point Token",
+      "category": "Communication",
+      "setId": "2046:7780"
+    },
+    {
+      "name": "priority",
+      "codepoint": "U+E0C4",
+      "figmaName": "Priority",
+      "category": "Communication",
+      "setId": "2046:7785"
+    },
+    {
+      "name": "ptt",
+      "codepoint": "U+E0C5",
+      "figmaName": "PTT",
+      "category": "Communication",
+      "setId": "2046:7790"
+    },
+    {
+      "name": "qr-code",
+      "codepoint": "U+E0C6",
+      "figmaName": "QR Code",
+      "category": "Communication",
+      "setId": "2046:7795"
+    },
+    {
+      "name": "react-add",
+      "codepoint": "U+E0C7",
+      "figmaName": "React Add",
+      "category": "Communication",
+      "setId": "2046:7800"
+    },
+    {
+      "name": "react-thumbsup",
+      "codepoint": "U+E0C8",
+      "figmaName": "React Thumbsup",
+      "category": "Communication",
+      "setId": "2046:7805"
+    },
+    {
+      "name": "recording",
+      "codepoint": "U+E0C9",
+      "figmaName": "Recording",
+      "category": "Communication",
+      "setId": "2046:7810"
+    },
+    {
+      "name": "rss-feed",
+      "codepoint": "U+E0CA",
+      "figmaName": "RSS Feed",
+      "category": "Communication",
+      "setId": "2046:7815"
+    },
+    {
+      "name": "sd-card",
+      "codepoint": "U+E0CB",
+      "figmaName": "SD Card",
+      "category": "Communication",
+      "setId": "2046:7820"
+    },
+    {
+      "name": "sim-card",
+      "codepoint": "U+E0CC",
+      "figmaName": "SIM Card",
+      "category": "Communication",
+      "setId": "2046:7825"
+    },
+    {
+      "name": "sms",
+      "codepoint": "U+E0CD",
+      "figmaName": "SMS",
+      "category": "Communication",
+      "setId": "2046:7830"
+    },
+    {
+      "name": "snooze",
+      "codepoint": "U+E0CE",
+      "figmaName": "Snooze",
+      "category": "Communication",
+      "setId": "2046:7835"
+    },
+    {
+      "name": "sticker",
+      "codepoint": "U+E0CF",
+      "figmaName": "Sticker",
+      "category": "Communication",
+      "setId": "2046:7840"
+    },
+    {
+      "name": "subscribe",
+      "codepoint": "U+E0D0",
+      "figmaName": "Subscribe",
+      "category": "Communication",
+      "setId": "2046:7845"
+    },
+    {
+      "name": "sync",
+      "codepoint": "U+E0D1",
+      "figmaName": "Sync",
+      "category": "Communication",
+      "setId": "2046:7850"
+    },
+    {
+      "name": "sync-disabled",
+      "codepoint": "U+E0D2",
+      "figmaName": "Sync Disabled",
+      "category": "Communication",
+      "setId": "2046:7855"
+    },
+    {
+      "name": "to-do",
+      "codepoint": "U+E0D3",
+      "figmaName": "To Do",
+      "category": "Communication",
+      "setId": "2046:7860"
+    },
+    {
+      "name": "unsubscribe",
+      "codepoint": "U+E0D4",
+      "figmaName": "Unsubscribe",
+      "category": "Communication",
+      "setId": "2046:7865"
+    },
+    {
+      "name": "wifi-call",
+      "codepoint": "U+E0D5",
+      "figmaName": "WiFi Call",
+      "category": "Communication",
+      "setId": "2046:7870"
+    },
+    {
+      "name": "setting-tool",
+      "codepoint": "U+E0D6",
+      "figmaName": "Setting Tool",
+      "category": "General",
+      "setId": "2046:7879"
+    },
+    {
+      "name": "activity",
+      "codepoint": "U+E0D7",
+      "figmaName": "Activity",
+      "category": "General",
+      "setId": "2046:7884"
+    },
+    {
+      "name": "add-task",
+      "codepoint": "U+E0D8",
+      "figmaName": "Add Task",
+      "category": "General",
+      "setId": "2046:7889"
+    },
+    {
+      "name": "app-edit",
+      "codepoint": "U+E0D9",
+      "figmaName": "App Edit",
+      "category": "General",
+      "setId": "2046:7894"
+    },
+    {
+      "name": "audit-activity",
+      "codepoint": "U+E0DA",
+      "figmaName": "Audit Activity",
+      "category": "General",
+      "setId": "2046:7899"
+    },
+    {
+      "name": "building",
+      "codepoint": "U+E0DB",
+      "figmaName": "Building",
+      "category": "General",
+      "setId": "2046:7904"
+    },
+    {
+      "name": "chat-sync",
+      "codepoint": "U+E0DC",
+      "figmaName": "Chat Sync",
+      "category": "General",
+      "setId": "2046:7909"
+    },
+    {
+      "name": "chat-sync-outline",
+      "codepoint": "U+E0DD",
+      "figmaName": "Chat Sync outline",
+      "category": "General",
+      "setId": "2046:7914"
+    },
+    {
+      "name": "clipboard-outline",
+      "codepoint": "U+E0DE",
+      "figmaName": "Clipboard Outline",
+      "category": "General",
+      "setId": "2046:7919"
+    },
+    {
+      "name": "contacts",
+      "codepoint": "U+E0DF",
+      "figmaName": "Contacts",
+      "category": "General",
+      "setId": "2046:7924"
+    },
+    {
+      "name": "contacts-outline",
+      "codepoint": "U+E0E0",
+      "figmaName": "Contacts outline",
+      "category": "General",
+      "setId": "2046:7929"
+    },
+    {
+      "name": "exit",
+      "codepoint": "U+E0E1",
+      "figmaName": "Exit",
+      "category": "General",
+      "setId": "2046:7934"
+    },
+    {
+      "name": "eye-preview",
+      "codepoint": "U+E0E2",
+      "figmaName": "Eye Preview",
+      "category": "General",
+      "setId": "2046:7939"
+    },
+    {
+      "name": "face-id",
+      "codepoint": "U+E0E3",
+      "figmaName": "Face Id",
+      "category": "General",
+      "setId": "2046:7944"
+    },
+    {
+      "name": "flip",
+      "codepoint": "U+E0E4",
+      "figmaName": "Flip",
+      "category": "General",
+      "setId": "2046:7949"
+    },
+    {
+      "name": "glossary",
+      "codepoint": "U+E0E5",
+      "figmaName": "Glossary",
+      "category": "General",
+      "setId": "2046:7954"
+    },
+    {
+      "name": "home-sync",
+      "codepoint": "U+E0E6",
+      "figmaName": "Home Sync",
+      "category": "General",
+      "setId": "2046:7959"
+    },
+    {
+      "name": "home-sync-outline",
+      "codepoint": "U+E0E7",
+      "figmaName": "Home Sync outline",
+      "category": "General",
+      "setId": "2046:7964"
+    },
+    {
+      "name": "how-do-i",
+      "codepoint": "U+E0E8",
+      "figmaName": "How Do I",
+      "category": "General",
+      "setId": "2046:7969"
+    },
+    {
+      "name": "link-add",
+      "codepoint": "U+E0E9",
+      "figmaName": "Link Add",
+      "category": "General",
+      "setId": "2046:7974"
+    },
+    {
+      "name": "list-bullet-contained",
+      "codepoint": "U+E0EA",
+      "figmaName": "List Bullet Contained",
+      "category": "General",
+      "setId": "2046:7979"
+    },
+    {
+      "name": "list-feedback",
+      "codepoint": "U+E0EB",
+      "figmaName": "List Feedback",
+      "category": "General",
+      "setId": "2046:7984"
+    },
+    {
+      "name": "list-form",
+      "codepoint": "U+E0EC",
+      "figmaName": "List Form",
+      "category": "General",
+      "setId": "2046:7989"
+    },
+    {
+      "name": "lock-undo",
+      "codepoint": "U+E0ED",
+      "figmaName": "Lock Undo",
+      "category": "General",
+      "setId": "2046:7994"
+    },
+    {
+      "name": "note",
+      "codepoint": "U+E0EE",
+      "figmaName": "Note",
+      "category": "General",
+      "setId": "2046:7999"
+    },
+    {
+      "name": "place-outline",
+      "codepoint": "U+E0EF",
+      "figmaName": "Place outline",
+      "category": "General",
+      "setId": "2046:8004"
+    },
+    {
+      "name": "priority-important",
+      "codepoint": "U+E0F0",
+      "figmaName": "Priority Important",
+      "category": "General",
+      "setId": "2046:8009"
+    },
+    {
+      "name": "priority-urgent",
+      "codepoint": "U+E0F1",
+      "figmaName": "Priority Urgent",
+      "category": "General",
+      "setId": "2046:8014"
+    },
+    {
+      "name": "queue",
+      "codepoint": "U+E0F2",
+      "figmaName": "Queue",
+      "category": "General",
+      "setId": "2046:8019"
+    },
+    {
+      "name": "recall",
+      "codepoint": "U+E0F3",
+      "figmaName": "Recall",
+      "category": "General",
+      "setId": "2046:8024"
+    },
+    {
+      "name": "reorder",
+      "codepoint": "U+E0F4",
+      "figmaName": "Reorder",
+      "category": "General",
+      "setId": "2046:8029"
+    },
+    {
+      "name": "repeat",
+      "codepoint": "U+E0F5",
+      "figmaName": "Repeat",
+      "category": "General",
+      "setId": "2046:8034"
+    },
+    {
+      "name": "review",
+      "codepoint": "U+E0F6",
+      "figmaName": "Review",
+      "category": "General",
+      "setId": "2046:8039"
+    },
+    {
+      "name": "school",
+      "codepoint": "U+E0F7",
+      "figmaName": "School",
+      "category": "General",
+      "setId": "2046:8044"
+    },
+    {
+      "name": "store",
+      "codepoint": "U+E0F8",
+      "figmaName": "Store",
+      "category": "General",
+      "setId": "2046:8049"
+    },
+    {
+      "name": "store-release",
+      "codepoint": "U+E0F9",
+      "figmaName": "Store Release",
+      "category": "General",
+      "setId": "2046:8054"
+    },
+    {
+      "name": "store-swap",
+      "codepoint": "U+E0FA",
+      "figmaName": "Store Swap",
+      "category": "General",
+      "setId": "2046:8059"
+    },
+    {
+      "name": "store-transfer",
+      "codepoint": "U+E0FB",
+      "figmaName": "Store Transfer",
+      "category": "General",
+      "setId": "2046:8064"
+    },
+    {
+      "name": "swap",
+      "codepoint": "U+E0FC",
+      "figmaName": "Swap",
+      "category": "General",
+      "setId": "2046:8069"
+    },
+    {
+      "name": "tag-outline",
+      "codepoint": "U+E0FD",
+      "figmaName": "Tag Outline",
+      "category": "General",
+      "setId": "2046:8074"
+    },
+    {
+      "name": "tiers",
+      "codepoint": "U+E0FE",
+      "figmaName": "Tiers",
+      "category": "General",
+      "setId": "2046:8079"
+    },
+    {
+      "name": "general-to-do",
+      "codepoint": "U+E0FF",
+      "figmaName": "To do",
+      "category": "General",
+      "setId": "2046:8084"
+    },
+    {
+      "name": "to-do-outline",
+      "codepoint": "U+E100",
+      "figmaName": "To do outline",
+      "category": "General",
+      "setId": "2046:8089"
+    },
+    {
+      "name": "transfer",
+      "codepoint": "U+E101",
+      "figmaName": "Transfer",
+      "category": "General",
+      "setId": "2046:8094"
+    },
+    {
+      "name": "vacation",
+      "codepoint": "U+E102",
+      "figmaName": "Vacation",
+      "category": "General",
+      "setId": "2046:8099"
+    },
+    {
+      "name": "video",
+      "codepoint": "U+E103",
+      "figmaName": "Video",
+      "category": "General",
+      "setId": "2046:8104"
+    },
+    {
+      "name": "video-off",
+      "codepoint": "U+E104",
+      "figmaName": "Video Off",
+      "category": "General",
+      "setId": "2046:8109"
+    },
+    {
+      "name": "write",
+      "codepoint": "U+E105",
+      "figmaName": "Write",
+      "category": "General",
+      "setId": "2046:8114"
+    },
+    {
+      "name": "average-current-status",
+      "codepoint": "U+E106",
+      "figmaName": "Average Current Status",
+      "category": "General",
+      "setId": "2046:8119"
+    },
+    {
+      "name": "fire",
+      "codepoint": "U+E107",
+      "figmaName": "Fire",
+      "category": "General",
+      "setId": "2046:8124"
+    },
+    {
+      "name": "payment-card",
+      "codepoint": "U+E108",
+      "figmaName": "Payment Card",
+      "category": "General",
+      "setId": "2046:8129"
+    },
+    {
+      "name": "currency-dollar",
+      "codepoint": "U+E109",
+      "figmaName": "Currency Dollar",
+      "category": "General",
+      "setId": "2046:8134"
+    },
+    {
+      "name": "local-mall",
+      "codepoint": "U+E10A",
+      "figmaName": "Local Mall",
+      "category": "General",
+      "setId": "2046:8139"
+    },
+    {
+      "name": "savings",
+      "codepoint": "U+E10B",
+      "figmaName": "Savings",
+      "category": "General",
+      "setId": "2046:8144"
+    },
+    {
+      "name": "universal-currency",
+      "codepoint": "U+E10C",
+      "figmaName": "Universal Currency",
+      "category": "General",
+      "setId": "2046:8149"
+    },
+    {
+      "name": "general-credit-card",
+      "codepoint": "U+E10D",
+      "figmaName": "Credit Card",
+      "category": "General",
+      "setId": "2046:8154"
+    },
+    {
+      "name": "universal-currency-alt",
+      "codepoint": "U+E10E",
+      "figmaName": "Universal Currency Alt",
+      "category": "General",
+      "setId": "2046:8159"
+    },
+    {
+      "name": "currency-pound",
+      "codepoint": "U+E10F",
+      "figmaName": "Currency Pound",
+      "category": "General",
+      "setId": "2046:8164"
+    },
+    {
+      "name": "target",
+      "codepoint": "U+E110",
+      "figmaName": "Target",
+      "category": "General",
+      "setId": "2046:8169"
+    },
+    {
+      "name": "search-check-2",
+      "codepoint": "U+E111",
+      "figmaName": "Search Check 2",
+      "category": "General",
+      "setId": "2046:8174"
+    },
+    {
+      "name": "siren-check",
+      "codepoint": "U+E112",
+      "figmaName": "Siren Check",
+      "category": "General",
+      "setId": "2046:8179"
+    },
+    {
+      "name": "award-star",
+      "codepoint": "U+E113",
+      "figmaName": "Award Star",
+      "category": "General",
+      "setId": "2046:8184"
+    },
+    {
+      "name": "achievement-sync-outline",
+      "codepoint": "U+E114",
+      "figmaName": "Achievement Sync Outline",
+      "category": "General",
+      "setId": "2046:8189"
+    },
+    {
+      "name": "achievement-sync",
+      "codepoint": "U+E115",
+      "figmaName": "Achievement Sync",
+      "category": "General",
+      "setId": "2046:8194"
+    },
+    {
+      "name": "read",
+      "codepoint": "U+E116",
+      "figmaName": "Read",
+      "category": "General",
+      "setId": "2046:8199"
+    },
+    {
+      "name": "add",
+      "codepoint": "U+E117",
+      "figmaName": "Add",
+      "category": "Content",
+      "setId": "2046:8208"
+    },
+    {
+      "name": "add-box",
+      "codepoint": "U+E118",
+      "figmaName": "Add Box",
+      "category": "Content",
+      "setId": "2046:8213"
+    },
+    {
+      "name": "add-circle",
+      "codepoint": "U+E119",
+      "figmaName": "Add Circle",
+      "category": "Content",
+      "setId": "2046:8218"
+    },
+    {
+      "name": "add-circle-outline",
+      "codepoint": "U+E11A",
+      "figmaName": "Add Circle Outline",
+      "category": "Content",
+      "setId": "2046:8223"
+    },
+    {
+      "name": "android",
+      "codepoint": "U+E11B",
+      "figmaName": "Android",
+      "category": "Content",
+      "setId": "2046:8228"
+    },
+    {
+      "name": "backspace",
+      "codepoint": "U+E11C",
+      "figmaName": "Backspace",
+      "category": "Content",
+      "setId": "2046:8233"
+    },
+    {
+      "name": "content",
+      "codepoint": "U+E11D",
+      "figmaName": "Content",
+      "category": "Content",
+      "setId": "2046:8238"
+    },
+    {
+      "name": "copy-file",
+      "codepoint": "U+E11E",
+      "figmaName": "Copy File",
+      "category": "Content",
+      "setId": "2046:8243"
+    },
+    {
+      "name": "email",
+      "codepoint": "U+E11F",
+      "figmaName": "Email",
+      "category": "Content",
+      "setId": "2046:8248"
+    },
+    {
+      "name": "email-outline",
+      "codepoint": "U+E120",
+      "figmaName": "Email Outline",
+      "category": "Content",
+      "setId": "2046:8253"
+    },
+    {
+      "name": "flag",
+      "codepoint": "U+E121",
+      "figmaName": "Flag",
+      "category": "Content",
+      "setId": "2046:8258"
+    },
+    {
+      "name": "push-pin-off",
+      "codepoint": "U+E122",
+      "figmaName": "Push Pin Off",
+      "category": "Content",
+      "setId": "2046:8263"
+    },
+    {
+      "name": "redo",
+      "codepoint": "U+E123",
+      "figmaName": "Redo",
+      "category": "Content",
+      "setId": "2046:8268"
+    },
+    {
+      "name": "remove",
+      "codepoint": "U+E124",
+      "figmaName": "Remove",
+      "category": "Content",
+      "setId": "2046:8273"
+    },
+    {
+      "name": "remove-box",
+      "codepoint": "U+E125",
+      "figmaName": "Remove Box",
+      "category": "Content",
+      "setId": "2046:8278"
+    },
+    {
+      "name": "remove-circle",
+      "codepoint": "U+E126",
+      "figmaName": "Remove Circle",
+      "category": "Content",
+      "setId": "2046:8283"
+    },
+    {
+      "name": "remove-circle-outline",
+      "codepoint": "U+E127",
+      "figmaName": "Remove Circle Outline",
+      "category": "Content",
+      "setId": "2046:8288"
+    },
+    {
+      "name": "reply",
+      "codepoint": "U+E128",
+      "figmaName": "Reply",
+      "category": "Content",
+      "setId": "2046:8293"
+    },
+    {
+      "name": "save-alt",
+      "codepoint": "U+E129",
+      "figmaName": "Save Alt",
+      "category": "Content",
+      "setId": "2046:8298"
+    },
+    {
+      "name": "send",
+      "codepoint": "U+E12A",
+      "figmaName": "Send",
+      "category": "Content",
+      "setId": "2046:8303"
+    },
+    {
+      "name": "sort",
+      "codepoint": "U+E12B",
+      "figmaName": "Sort",
+      "category": "Content",
+      "setId": "2046:8308"
+    },
+    {
+      "name": "undo",
+      "codepoint": "U+E12C",
+      "figmaName": "Undo",
+      "category": "Content",
+      "setId": "2046:8313"
+    },
+    {
+      "name": "push-pin",
+      "codepoint": "U+E12D",
+      "figmaName": "Push Pin",
+      "category": "Content",
+      "setId": "2046:8318"
+    },
+    {
+      "name": "push-pin-outline",
+      "codepoint": "U+E12E",
+      "figmaName": "Push Pin Outline",
+      "category": "Content",
+      "setId": "2046:8323"
+    },
+    {
+      "name": "calendar-gantt",
+      "codepoint": "U+E12F",
+      "figmaName": "Calendar Gantt",
+      "category": "Date Time",
+      "setId": "2046:8332"
+    },
+    {
+      "name": "calendar-next",
+      "codepoint": "U+E130",
+      "figmaName": "Calendar Next",
+      "category": "Date Time",
+      "setId": "2046:8337"
+    },
+    {
+      "name": "calendar-rollover",
+      "codepoint": "U+E131",
+      "figmaName": "Calendar Rollover",
+      "category": "Date Time",
+      "setId": "2046:8342"
+    },
+    {
+      "name": "clock-available",
+      "codepoint": "U+E132",
+      "figmaName": "Clock Available",
+      "category": "Date Time",
+      "setId": "2046:8347"
+    },
+    {
+      "name": "clock-bid",
+      "codepoint": "U+E133",
+      "figmaName": "Clock Bid",
+      "category": "Date Time",
+      "setId": "2046:8352"
+    },
+    {
+      "name": "clock-edit",
+      "codepoint": "U+E134",
+      "figmaName": "Clock Edit",
+      "category": "Date Time",
+      "setId": "2046:8357"
+    },
+    {
+      "name": "clock-flexible",
+      "codepoint": "U+E135",
+      "figmaName": "Clock Flexible",
+      "category": "Date Time",
+      "setId": "2046:8362"
+    },
+    {
+      "name": "clock-in-progress",
+      "codepoint": "U+E136",
+      "figmaName": "Clock In Progress",
+      "category": "Date Time",
+      "setId": "2046:8367"
+    },
+    {
+      "name": "clock-info",
+      "codepoint": "U+E137",
+      "figmaName": "Clock Info",
+      "category": "Date Time",
+      "setId": "2046:8372"
+    },
+    {
+      "name": "clock-missed",
+      "codepoint": "U+E138",
+      "figmaName": "Clock Missed",
+      "category": "Date Time",
+      "setId": "2046:8377"
+    },
+    {
+      "name": "clock-on",
+      "codepoint": "U+E139",
+      "figmaName": "Clock On",
+      "category": "Date Time",
+      "setId": "2046:8382"
+    },
+    {
+      "name": "clock-rollover",
+      "codepoint": "U+E13A",
+      "figmaName": "Clock Rollover",
+      "category": "Date Time",
+      "setId": "2046:8387"
+    },
+    {
+      "name": "clock-segment",
+      "codepoint": "U+E13B",
+      "figmaName": "Clock Segment",
+      "category": "Date Time",
+      "setId": "2046:8392"
+    },
+    {
+      "name": "clock-start",
+      "codepoint": "U+E13C",
+      "figmaName": "Clock Start",
+      "category": "Date Time",
+      "setId": "2046:8397"
+    },
+    {
+      "name": "clock-stop",
+      "codepoint": "U+E13D",
+      "figmaName": "Clock Stop",
+      "category": "Date Time",
+      "setId": "2046:8402"
+    },
+    {
+      "name": "clock-switch",
+      "codepoint": "U+E13E",
+      "figmaName": "Clock Switch",
+      "category": "Date Time",
+      "setId": "2046:8407"
+    },
+    {
+      "name": "clock-timer",
+      "codepoint": "U+E13F",
+      "figmaName": "Clock Timer",
+      "category": "Date Time",
+      "setId": "2046:8412"
+    },
+    {
+      "name": "clock-upcoming",
+      "codepoint": "U+E140",
+      "figmaName": "Clock Upcoming",
+      "category": "Date Time",
+      "setId": "2046:8417"
+    },
+    {
+      "name": "meal",
+      "codepoint": "U+E141",
+      "figmaName": "Meal",
+      "category": "Date Time",
+      "setId": "2046:8422"
+    },
+    {
+      "name": "schedule",
+      "codepoint": "U+E142",
+      "figmaName": "Schedule",
+      "category": "Date Time",
+      "setId": "2046:8427"
+    },
+    {
+      "name": "timecard",
+      "codepoint": "U+E143",
+      "figmaName": "Timecard",
+      "category": "Date Time",
+      "setId": "2046:8432"
+    },
+    {
+      "name": "timecard-approve",
+      "codepoint": "U+E144",
+      "figmaName": "Timecard Approve",
+      "category": "Date Time",
+      "setId": "2046:8437"
+    },
+    {
+      "name": "timecard-warning",
+      "codepoint": "U+E145",
+      "figmaName": "Timecard Warning",
+      "category": "Date Time",
+      "setId": "2046:8442"
+    },
+    {
+      "name": "antenna",
+      "codepoint": "U+E146",
+      "figmaName": "Antenna",
+      "category": "Device",
+      "setId": "2046:8451"
+    },
+    {
+      "name": "battery",
+      "codepoint": "U+E147",
+      "figmaName": "Battery",
+      "category": "Device",
+      "setId": "2046:8456"
+    },
+    {
+      "name": "battery-alert",
+      "codepoint": "U+E148",
+      "figmaName": "Battery Alert",
+      "category": "Device",
+      "setId": "2046:8461"
+    },
+    {
+      "name": "battery-charging",
+      "codepoint": "U+E149",
+      "figmaName": "Battery Charging",
+      "category": "Device",
+      "setId": "2046:8466"
+    },
+    {
+      "name": "bluetooth",
+      "codepoint": "U+E14A",
+      "figmaName": "Bluetooth",
+      "category": "Device",
+      "setId": "2046:8471"
+    },
+    {
+      "name": "bluetooth-disabled",
+      "codepoint": "U+E14B",
+      "figmaName": "Bluetooth Disabled",
+      "category": "Device",
+      "setId": "2046:8476"
+    },
+    {
+      "name": "bluetooth-searching",
+      "codepoint": "U+E14C",
+      "figmaName": "Bluetooth Searching",
+      "category": "Device",
+      "setId": "2046:8481"
+    },
+    {
+      "name": "brightness",
+      "codepoint": "U+E14D",
+      "figmaName": "Brightness",
+      "category": "Device",
+      "setId": "2046:8486"
+    },
+    {
+      "name": "cellular-signal",
+      "codepoint": "U+E14E",
+      "figmaName": "Cellular Signal",
+      "category": "Device",
+      "setId": "2046:8491"
+    },
+    {
+      "name": "chain",
+      "codepoint": "U+E14F",
+      "figmaName": "Chain",
+      "category": "Device",
+      "setId": "2046:8496"
+    },
+    {
+      "name": "dark-mode",
+      "codepoint": "U+E150",
+      "figmaName": "Dark Mode",
+      "category": "Device",
+      "setId": "2046:8501"
+    },
+    {
+      "name": "devices",
+      "codepoint": "U+E151",
+      "figmaName": "Devices",
+      "category": "Device",
+      "setId": "2046:8506"
+    },
+    {
+      "name": "ethernet",
+      "codepoint": "U+E152",
+      "figmaName": "Ethernet",
+      "category": "Device",
+      "setId": "2046:8511"
+    },
+    {
+      "name": "flight-mode",
+      "codepoint": "U+E153",
+      "figmaName": "Flight Mode",
+      "category": "Device",
+      "setId": "2046:8516"
+    },
+    {
+      "name": "hdmi",
+      "codepoint": "U+E154",
+      "figmaName": "HDMI",
+      "category": "Device",
+      "setId": "2046:8521"
+    },
+    {
+      "name": "light-mode",
+      "codepoint": "U+E155",
+      "figmaName": "Light Mode",
+      "category": "Device",
+      "setId": "2046:8526"
+    },
+    {
+      "name": "location",
+      "codepoint": "U+E156",
+      "figmaName": "Location",
+      "category": "Device",
+      "setId": "2046:8531"
+    },
+    {
+      "name": "location-point",
+      "codepoint": "U+E157",
+      "figmaName": "Location Point",
+      "category": "Device",
+      "setId": "2046:8536"
+    },
+    {
+      "name": "microsd",
+      "codepoint": "U+E158",
+      "figmaName": "MicroSD",
+      "category": "Device",
+      "setId": "2046:8541"
+    },
+    {
+      "name": "mobile-friendly",
+      "codepoint": "U+E159",
+      "figmaName": "Mobile Friendly",
+      "category": "Device",
+      "setId": "2046:8546"
+    },
+    {
+      "name": "network-signal",
+      "codepoint": "U+E15A",
+      "figmaName": "Network Signal",
+      "category": "Device",
+      "setId": "2046:8551"
+    },
+    {
+      "name": "nfc",
+      "codepoint": "U+E15B",
+      "figmaName": "NFC",
+      "category": "Device",
+      "setId": "2046:8556"
+    },
+    {
+      "name": "night",
+      "codepoint": "U+E15C",
+      "figmaName": "Night",
+      "category": "Device",
+      "setId": "2046:8561"
+    },
+    {
+      "name": "restart-alt",
+      "codepoint": "U+E15D",
+      "figmaName": "Restart Alt",
+      "category": "Device",
+      "setId": "2046:8566"
+    },
+    {
+      "name": "screen-rotation",
+      "codepoint": "U+E15E",
+      "figmaName": "Screen Rotation",
+      "category": "Device",
+      "setId": "2046:8571"
+    },
+    {
+      "name": "uhf-rfid",
+      "codepoint": "U+E15F",
+      "figmaName": "UHF RFID",
+      "category": "Device",
+      "setId": "2046:8576"
+    },
+    {
+      "name": "usb",
+      "codepoint": "U+E160",
+      "figmaName": "USB",
+      "category": "Device",
+      "setId": "2046:8581"
+    },
+    {
+      "name": "usb-alt",
+      "codepoint": "U+E161",
+      "figmaName": "USB Alt",
+      "category": "Device",
+      "setId": "2046:8586"
+    },
+    {
+      "name": "volte",
+      "codepoint": "U+E162",
+      "figmaName": "VOLTE",
+      "category": "Device",
+      "setId": "2046:8591"
+    },
+    {
+      "name": "wifi",
+      "codepoint": "U+E163",
+      "figmaName": "WiFi",
+      "category": "Device",
+      "setId": "2046:8596"
+    },
+    {
+      "name": "wifi-0",
+      "codepoint": "U+E164",
+      "figmaName": "WiFi 0",
+      "category": "Device",
+      "setId": "2046:8601"
+    },
+    {
+      "name": "wifi-1",
+      "codepoint": "U+E165",
+      "figmaName": "WiFi 1",
+      "category": "Device",
+      "setId": "2046:8606"
+    },
+    {
+      "name": "wifi-2",
+      "codepoint": "U+E166",
+      "figmaName": "WiFi 2",
+      "category": "Device",
+      "setId": "2046:8611"
+    },
+    {
+      "name": "wifi-alt",
+      "codepoint": "U+E167",
+      "figmaName": "WiFi Alt",
+      "category": "Device",
+      "setId": "2046:8616"
+    },
+    {
+      "name": "wifi-off",
+      "codepoint": "U+E168",
+      "figmaName": "WiFi Off",
+      "category": "Device",
+      "setId": "2046:8621"
+    },
+    {
+      "name": "wifi-off-alt",
+      "codepoint": "U+E169",
+      "figmaName": "WiFi Off Alt",
+      "category": "Device",
+      "setId": "2046:8626"
+    },
+    {
+      "name": "zebra",
+      "codepoint": "U+E16A",
+      "figmaName": "Zebra",
+      "category": "Brand",
+      "setId": "3388:835"
+    },
+    {
+      "name": "align-center",
+      "codepoint": "U+E16B",
+      "figmaName": "Align Center",
+      "category": "Editor",
+      "setId": "2046:9015"
+    },
+    {
+      "name": "align-horizontal-center",
+      "codepoint": "U+E16C",
+      "figmaName": "Align Horizontal Center",
+      "category": "Editor",
+      "setId": "2046:9020"
+    },
+    {
+      "name": "align-horizontal-left",
+      "codepoint": "U+E16D",
+      "figmaName": "Align Horizontal Left",
+      "category": "Editor",
+      "setId": "2046:9025"
+    },
+    {
+      "name": "align-horizontal-right",
+      "codepoint": "U+E16E",
+      "figmaName": "Align Horizontal Right",
+      "category": "Editor",
+      "setId": "2046:9030"
+    },
+    {
+      "name": "align-left",
+      "codepoint": "U+E16F",
+      "figmaName": "Align Left",
+      "category": "Editor",
+      "setId": "2046:9035"
+    },
+    {
+      "name": "align-right",
+      "codepoint": "U+E170",
+      "figmaName": "Align Right",
+      "category": "Editor",
+      "setId": "2046:9040"
+    },
+    {
+      "name": "align-vertical-bottom",
+      "codepoint": "U+E171",
+      "figmaName": "Align Vertical Bottom",
+      "category": "Editor",
+      "setId": "2046:9045"
+    },
+    {
+      "name": "align-vertical-center",
+      "codepoint": "U+E172",
+      "figmaName": "Align Vertical Center",
+      "category": "Editor",
+      "setId": "2046:9050"
+    },
+    {
+      "name": "align-vertical-top",
+      "codepoint": "U+E173",
+      "figmaName": "Align Vertical Top",
+      "category": "Editor",
+      "setId": "2046:9055"
+    },
+    {
+      "name": "attachment",
+      "codepoint": "U+E174",
+      "figmaName": "Attachment",
+      "category": "Editor",
+      "setId": "2046:9060"
+    },
+    {
+      "name": "bold",
+      "codepoint": "U+E175",
+      "figmaName": "Bold",
+      "category": "Editor",
+      "setId": "2046:9065"
+    },
+    {
+      "name": "bullet-list",
+      "codepoint": "U+E176",
+      "figmaName": "Bullet List",
+      "category": "Editor",
+      "setId": "2046:9070"
+    },
+    {
+      "name": "checklist",
+      "codepoint": "U+E177",
+      "figmaName": "Checklist",
+      "category": "Editor",
+      "setId": "2046:9075"
+    },
+    {
+      "name": "color-fill",
+      "codepoint": "U+E178",
+      "figmaName": "Color Fill",
+      "category": "Editor",
+      "setId": "2046:9080"
+    },
+    {
+      "name": "distribute-horizontal",
+      "codepoint": "U+E179",
+      "figmaName": "Distribute Horizontal",
+      "category": "Editor",
+      "setId": "2046:9085"
+    },
+    {
+      "name": "distribute-vertical",
+      "codepoint": "U+E17A",
+      "figmaName": "Distribute Vertical",
+      "category": "Editor",
+      "setId": "2046:9090"
+    },
+    {
+      "name": "edit",
+      "codepoint": "U+E17B",
+      "figmaName": "Edit",
+      "category": "Editor",
+      "setId": "2046:9095"
+    },
+    {
+      "name": "edit-border",
+      "codepoint": "U+E17C",
+      "figmaName": "Edit Border",
+      "category": "Editor",
+      "setId": "2046:9100"
+    },
+    {
+      "name": "font-size-decrease",
+      "codepoint": "U+E17D",
+      "figmaName": "Font Size Decrease",
+      "category": "Editor",
+      "setId": "2046:9105"
+    },
+    {
+      "name": "font-size-increase",
+      "codepoint": "U+E17E",
+      "figmaName": "Font Size Increase",
+      "category": "Editor",
+      "setId": "2046:9110"
+    },
+    {
+      "name": "format-shapes",
+      "codepoint": "U+E17F",
+      "figmaName": "Format Shapes",
+      "category": "Editor",
+      "setId": "2046:9115"
+    },
+    {
+      "name": "indent-decrease",
+      "codepoint": "U+E180",
+      "figmaName": "Indent Decrease",
+      "category": "Editor",
+      "setId": "2046:9120"
+    },
+    {
+      "name": "indent-increase",
+      "codepoint": "U+E181",
+      "figmaName": "Indent Increase",
+      "category": "Editor",
+      "setId": "2046:9125"
+    },
+    {
+      "name": "italic",
+      "codepoint": "U+E182",
+      "figmaName": "Italic",
+      "category": "Editor",
+      "setId": "2046:9130"
+    },
+    {
+      "name": "justify",
+      "codepoint": "U+E183",
+      "figmaName": "Justify",
+      "category": "Editor",
+      "setId": "2046:9135"
+    },
+    {
+      "name": "line-spacing",
+      "codepoint": "U+E184",
+      "figmaName": "Line Spacing",
+      "category": "Editor",
+      "setId": "2046:9140"
+    },
+    {
+      "name": "link",
+      "codepoint": "U+E185",
+      "figmaName": "Link",
+      "category": "Editor",
+      "setId": "2046:9145"
+    },
+    {
+      "name": "no-color",
+      "codepoint": "U+E186",
+      "figmaName": "No Color",
+      "category": "Editor",
+      "setId": "2046:9150"
+    },
+    {
+      "name": "numbered-list",
+      "codepoint": "U+E187",
+      "figmaName": "Numbered List",
+      "category": "Editor",
+      "setId": "2046:9155"
+    },
+    {
+      "name": "strikethrough",
+      "codepoint": "U+E188",
+      "figmaName": "Strikethrough",
+      "category": "Editor",
+      "setId": "2046:9160"
+    },
+    {
+      "name": "text-color",
+      "codepoint": "U+E189",
+      "figmaName": "Text Color",
+      "category": "Editor",
+      "setId": "2046:9165"
+    },
+    {
+      "name": "type",
+      "codepoint": "U+E18A",
+      "figmaName": "Type",
+      "category": "Editor",
+      "setId": "2046:9170"
+    },
+    {
+      "name": "underline",
+      "codepoint": "U+E18B",
+      "figmaName": "Underline",
+      "category": "Editor",
+      "setId": "2046:9175"
+    },
+    {
+      "name": "barcode",
+      "codepoint": "U+E18C",
+      "figmaName": "Barcode",
+      "category": "Enterprise",
+      "setId": "2046:9184"
+    },
+    {
+      "name": "barcode-bluetooth",
+      "codepoint": "U+E18D",
+      "figmaName": "Barcode Bluetooth",
+      "category": "Enterprise",
+      "setId": "2046:9189"
+    },
+    {
+      "name": "barcode-done",
+      "codepoint": "U+E18E",
+      "figmaName": "Barcode Done",
+      "category": "Enterprise",
+      "setId": "2046:9194"
+    },
+    {
+      "name": "barcode-image-scan",
+      "codepoint": "U+E18F",
+      "figmaName": "Barcode Image Scan",
+      "category": "Enterprise",
+      "setId": "2046:9199"
+    },
+    {
+      "name": "barcode-qr-code",
+      "codepoint": "U+E190",
+      "figmaName": "Barcode QR Code",
+      "category": "Enterprise",
+      "setId": "2046:9204"
+    },
+    {
+      "name": "barcode-scanner-down",
+      "codepoint": "U+E191",
+      "figmaName": "Barcode Scanner Down",
+      "category": "Enterprise",
+      "setId": "2046:9209"
+    },
+    {
+      "name": "barcode-settings",
+      "codepoint": "U+E192",
+      "figmaName": "Barcode Settings",
+      "category": "Enterprise",
+      "setId": "2046:9214"
+    },
+    {
+      "name": "calculator",
+      "codepoint": "U+E193",
+      "figmaName": "Calculator",
+      "category": "Enterprise",
+      "setId": "2046:9219"
+    },
+    {
+      "name": "card-orientation",
+      "codepoint": "U+E194",
+      "figmaName": "Card Orientation",
+      "category": "Enterprise",
+      "setId": "2046:9224"
+    },
+    {
+      "name": "card-with-chip",
+      "codepoint": "U+E195",
+      "figmaName": "Card With Chip",
+      "category": "Enterprise",
+      "setId": "2046:9229"
+    },
+    {
+      "name": "certificate",
+      "codepoint": "U+E196",
+      "figmaName": "Certificate",
+      "category": "Enterprise",
+      "setId": "2046:9234"
+    },
+    {
+      "name": "choices",
+      "codepoint": "U+E197",
+      "figmaName": "Choices",
+      "category": "Enterprise",
+      "setId": "2046:9239"
+    },
+    {
+      "name": "contactless-pay",
+      "codepoint": "U+E198",
+      "figmaName": "Contactless Pay",
+      "category": "Enterprise",
+      "setId": "2046:9244"
+    },
+    {
+      "name": "credit-card-swipe",
+      "codepoint": "U+E199",
+      "figmaName": "Credit Card Swipe",
+      "category": "Enterprise",
+      "setId": "2046:9249"
+    },
+    {
+      "name": "eas",
+      "codepoint": "U+E19A",
+      "figmaName": "EAS",
+      "category": "Enterprise",
+      "setId": "2046:9254"
+    },
+    {
+      "name": "enterprise-diagnostics",
+      "codepoint": "U+E19B",
+      "figmaName": "Enterprise Diagnostics",
+      "category": "Enterprise",
+      "setId": "2046:9259"
+    },
+    {
+      "name": "environmental",
+      "codepoint": "U+E19C",
+      "figmaName": "Environmental",
+      "category": "Enterprise",
+      "setId": "2046:9264"
+    },
+    {
+      "name": "factory",
+      "codepoint": "U+E19D",
+      "figmaName": "Factory",
+      "category": "Enterprise",
+      "setId": "2046:9269"
+    },
+    {
+      "name": "freezer",
+      "codepoint": "U+E19E",
+      "figmaName": "Freezer",
+      "category": "Enterprise",
+      "setId": "2046:9274"
+    },
+    {
+      "name": "issue-audit",
+      "codepoint": "U+E19F",
+      "figmaName": "Issue Audit",
+      "category": "Enterprise",
+      "setId": "2046:9279"
+    },
+    {
+      "name": "planogram",
+      "codepoint": "U+E1A0",
+      "figmaName": "Planogram",
+      "category": "Enterprise",
+      "setId": "2046:9284"
+    },
+    {
+      "name": "productivity-apps",
+      "codepoint": "U+E1A1",
+      "figmaName": "Productivity Apps",
+      "category": "Enterprise",
+      "setId": "2046:9289"
+    },
+    {
+      "name": "receipt",
+      "codepoint": "U+E1A2",
+      "figmaName": "Receipt",
+      "category": "Enterprise",
+      "setId": "2046:9294"
+    },
+    {
+      "name": "road-map",
+      "codepoint": "U+E1A3",
+      "figmaName": "Road Map",
+      "category": "Enterprise",
+      "setId": "2046:9299"
+    },
+    {
+      "name": "rules",
+      "codepoint": "U+E1A4",
+      "figmaName": "Rules",
+      "category": "Enterprise",
+      "setId": "2046:9304"
+    },
+    {
+      "name": "scan-rate",
+      "codepoint": "U+E1A5",
+      "figmaName": "Scan Rate",
+      "category": "Enterprise",
+      "setId": "2046:9309"
+    },
+    {
+      "name": "server",
+      "codepoint": "U+E1A6",
+      "figmaName": "Server",
+      "category": "Enterprise",
+      "setId": "2046:9314"
+    },
+    {
+      "name": "shape-recognition",
+      "codepoint": "U+E1A7",
+      "figmaName": "Shape Recognition",
+      "category": "Enterprise",
+      "setId": "2046:9319"
+    },
+    {
+      "name": "solutions",
+      "codepoint": "U+E1A8",
+      "figmaName": "Solutions",
+      "category": "Enterprise",
+      "setId": "2046:9324"
+    },
+    {
+      "name": "steps",
+      "codepoint": "U+E1A9",
+      "figmaName": "Steps",
+      "category": "Enterprise",
+      "setId": "2046:9329"
+    },
+    {
+      "name": "strategy",
+      "codepoint": "U+E1AA",
+      "figmaName": "Strategy",
+      "category": "Enterprise",
+      "setId": "2046:9334"
+    },
+    {
+      "name": "tag",
+      "codepoint": "U+E1AB",
+      "figmaName": "Tag",
+      "category": "Enterprise",
+      "setId": "2046:9339"
+    },
+    {
+      "name": "tap-to-pay",
+      "codepoint": "U+E1AC",
+      "figmaName": "Tap To Pay",
+      "category": "Enterprise",
+      "setId": "2046:9344"
+    },
+    {
+      "name": "zero-scale",
+      "codepoint": "U+E1AD",
+      "figmaName": "Zero Scale",
+      "category": "Enterprise",
+      "setId": "2046:9349"
+    },
+    {
+      "name": "cloud",
+      "codepoint": "U+E1AE",
+      "figmaName": "Cloud",
+      "category": "File",
+      "setId": "2046:9358"
+    },
+    {
+      "name": "cloud-done",
+      "codepoint": "U+E1AF",
+      "figmaName": "Cloud Done",
+      "category": "File",
+      "setId": "2046:9363"
+    },
+    {
+      "name": "cloud-download",
+      "codepoint": "U+E1B0",
+      "figmaName": "Cloud Download",
+      "category": "File",
+      "setId": "2046:9368"
+    },
+    {
+      "name": "cloud-off",
+      "codepoint": "U+E1B1",
+      "figmaName": "Cloud Off",
+      "category": "File",
+      "setId": "2046:9373"
+    },
+    {
+      "name": "cloud-outline",
+      "codepoint": "U+E1B2",
+      "figmaName": "Cloud Outline",
+      "category": "File",
+      "setId": "2046:9378"
+    },
+    {
+      "name": "cloud-sync",
+      "codepoint": "U+E1B3",
+      "figmaName": "Cloud Sync",
+      "category": "File",
+      "setId": "2046:9383"
+    },
+    {
+      "name": "cloud-upload",
+      "codepoint": "U+E1B4",
+      "figmaName": "Cloud Upload",
+      "category": "File",
+      "setId": "2046:9388"
+    },
+    {
+      "name": "create-new-folder",
+      "codepoint": "U+E1B5",
+      "figmaName": "Create New Folder",
+      "category": "File",
+      "setId": "2046:9393"
+    },
+    {
+      "name": "downloading",
+      "codepoint": "U+E1B6",
+      "figmaName": "Downloading",
+      "category": "File",
+      "setId": "2046:9398"
+    },
+    {
+      "name": "file",
+      "codepoint": "U+E1B7",
+      "figmaName": "File",
+      "category": "File",
+      "setId": "2046:9403"
+    },
+    {
+      "name": "finished-download",
+      "codepoint": "U+E1B8",
+      "figmaName": "Finished Download",
+      "category": "File",
+      "setId": "2046:9408"
+    },
+    {
+      "name": "folder",
+      "codepoint": "U+E1B9",
+      "figmaName": "Folder",
+      "category": "File",
+      "setId": "2046:9413"
+    },
+    {
+      "name": "folder-outline",
+      "codepoint": "U+E1BA",
+      "figmaName": "Folder Outline",
+      "category": "File",
+      "setId": "2046:9418"
+    },
+    {
+      "name": "grid-view",
+      "codepoint": "U+E1BB",
+      "figmaName": "Grid View",
+      "category": "File",
+      "setId": "2046:9423"
+    },
+    {
+      "name": "maintenance",
+      "codepoint": "U+E1BC",
+      "figmaName": "Maintenance",
+      "category": "File",
+      "setId": "2046:9428"
+    },
+    {
+      "name": "open-new-off",
+      "codepoint": "U+E1BD",
+      "figmaName": "Open New Off",
+      "category": "File",
+      "setId": "2046:9433"
+    },
+    {
+      "name": "page-height",
+      "codepoint": "U+E1BE",
+      "figmaName": "Page Height",
+      "category": "File",
+      "setId": "2046:9438"
+    },
+    {
+      "name": "page-rotate",
+      "codepoint": "U+E1BF",
+      "figmaName": "Page Rotate",
+      "category": "File",
+      "setId": "2046:9443"
+    },
+    {
+      "name": "page-width",
+      "codepoint": "U+E1C0",
+      "figmaName": "Page Width",
+      "category": "File",
+      "setId": "2046:9448"
+    },
+    {
+      "name": "publish",
+      "codepoint": "U+E1C1",
+      "figmaName": "Publish",
+      "category": "File",
+      "setId": "2046:9453"
+    },
+    {
+      "name": "save",
+      "codepoint": "U+E1C2",
+      "figmaName": "Save",
+      "category": "File",
+      "setId": "2046:9458"
+    },
+    {
+      "name": "shared-folder-filled",
+      "codepoint": "U+E1C3",
+      "figmaName": "Shared Folder Filled",
+      "category": "File",
+      "setId": "2046:9463"
+    },
+    {
+      "name": "shared-folder",
+      "codepoint": "U+E1C4",
+      "figmaName": "Shared Folder",
+      "category": "File",
+      "setId": "2046:9468"
+    },
+    {
+      "name": "upload-file",
+      "codepoint": "U+E1C5",
+      "figmaName": "Upload File",
+      "category": "File",
+      "setId": "2046:9473"
+    },
+    {
+      "name": "import",
+      "codepoint": "U+E1C6",
+      "figmaName": "Import",
+      "category": "File",
+      "setId": "2046:9478"
+    },
+    {
+      "name": "export",
+      "codepoint": "U+E1C7",
+      "figmaName": "Export",
+      "category": "File",
+      "setId": "2046:9483"
+    },
+    {
+      "name": "aac-attach",
+      "codepoint": "U+E1C8",
+      "figmaName": "AAC Attach",
+      "category": "File Attachments",
+      "setId": "2046:9492"
+    },
+    {
+      "name": "ai-attach",
+      "codepoint": "U+E1C9",
+      "figmaName": "AI Attach",
+      "category": "File Attachments",
+      "setId": "2046:9497"
+    },
+    {
+      "name": "asp-attach",
+      "codepoint": "U+E1CA",
+      "figmaName": "ASP Attach",
+      "category": "File Attachments",
+      "setId": "2046:9502"
+    },
+    {
+      "name": "attach-3ds",
+      "codepoint": "U+E1CB",
+      "figmaName": "Attach 3DS",
+      "category": "File Attachments",
+      "setId": "2046:9507"
+    },
+    {
+      "name": "au-attach",
+      "codepoint": "U+E1CC",
+      "figmaName": "AU Attach",
+      "category": "File Attachments",
+      "setId": "2046:9512"
+    },
+    {
+      "name": "avi-attach",
+      "codepoint": "U+E1CD",
+      "figmaName": "AVI Attach",
+      "category": "File Attachments",
+      "setId": "2046:9517"
+    },
+    {
+      "name": "bin-attach",
+      "codepoint": "U+E1CE",
+      "figmaName": "BIN Attach",
+      "category": "File Attachments",
+      "setId": "2046:9522"
+    },
+    {
+      "name": "bmp-attach",
+      "codepoint": "U+E1CF",
+      "figmaName": "BMP Attach",
+      "category": "File Attachments",
+      "setId": "2046:9527"
+    },
+    {
+      "name": "com-attach",
+      "codepoint": "U+E1D0",
+      "figmaName": "COM Attach",
+      "category": "File Attachments",
+      "setId": "2046:9532"
+    },
+    {
+      "name": "css-attach",
+      "codepoint": "U+E1D1",
+      "figmaName": "CSS Attach",
+      "category": "File Attachments",
+      "setId": "2046:9537"
+    },
+    {
+      "name": "csv-attach",
+      "codepoint": "U+E1D2",
+      "figmaName": "CSV Attach",
+      "category": "File Attachments",
+      "setId": "2046:9542"
+    },
+    {
+      "name": "dat-attach",
+      "codepoint": "U+E1D3",
+      "figmaName": "DAT Attach",
+      "category": "File Attachments",
+      "setId": "2046:9547"
+    },
+    {
+      "name": "dbf-attach",
+      "codepoint": "U+E1D4",
+      "figmaName": "DBF Attach",
+      "category": "File Attachments",
+      "setId": "2046:9552"
+    },
+    {
+      "name": "dll-attach",
+      "codepoint": "U+E1D5",
+      "figmaName": "DLL Attach",
+      "category": "File Attachments",
+      "setId": "2046:9557"
+    },
+    {
+      "name": "doc-attach",
+      "codepoint": "U+E1D6",
+      "figmaName": "DOC Attach",
+      "category": "File Attachments",
+      "setId": "2046:9562"
+    },
+    {
+      "name": "docx-attach",
+      "codepoint": "U+E1D7",
+      "figmaName": "DOCX Attach",
+      "category": "File Attachments",
+      "setId": "2046:9567"
+    },
+    {
+      "name": "dwg-attach",
+      "codepoint": "U+E1D8",
+      "figmaName": "DWG Attach",
+      "category": "File Attachments",
+      "setId": "2046:9572"
+    },
+    {
+      "name": "eml-attach",
+      "codepoint": "U+E1D9",
+      "figmaName": "EML Attach",
+      "category": "File Attachments",
+      "setId": "2046:9577"
+    },
+    {
+      "name": "eps-attach",
+      "codepoint": "U+E1DA",
+      "figmaName": "EPS Attach",
+      "category": "File Attachments",
+      "setId": "2046:9582"
+    },
+    {
+      "name": "exe-attach",
+      "codepoint": "U+E1DB",
+      "figmaName": "EXE Attach",
+      "category": "File Attachments",
+      "setId": "2046:9587"
+    },
+    {
+      "name": "ext-attach",
+      "codepoint": "U+E1DC",
+      "figmaName": "EXT Attach",
+      "category": "File Attachments",
+      "setId": "2046:9592"
+    },
+    {
+      "name": "fla-attach",
+      "codepoint": "U+E1DD",
+      "figmaName": "FLA Attach",
+      "category": "File Attachments",
+      "setId": "2046:9597"
+    },
+    {
+      "name": "fodg-attach",
+      "codepoint": "U+E1DE",
+      "figmaName": "FODG Attach",
+      "category": "File Attachments",
+      "setId": "2046:9602"
+    },
+    {
+      "name": "fodp-attach",
+      "codepoint": "U+E1DF",
+      "figmaName": "FODP Attach",
+      "category": "File Attachments",
+      "setId": "2046:9607"
+    },
+    {
+      "name": "fods-attach",
+      "codepoint": "U+E1E0",
+      "figmaName": "FODS Attach",
+      "category": "File Attachments",
+      "setId": "2046:9612"
+    },
+    {
+      "name": "gif-attach",
+      "codepoint": "U+E1E1",
+      "figmaName": "GIF Attach",
+      "category": "File Attachments",
+      "setId": "2046:9617"
+    },
+    {
+      "name": "htm-attach",
+      "codepoint": "U+E1E2",
+      "figmaName": "HTM Attach",
+      "category": "File Attachments",
+      "setId": "2046:9622"
+    },
+    {
+      "name": "html-attach",
+      "codepoint": "U+E1E3",
+      "figmaName": "HTML Attach",
+      "category": "File Attachments",
+      "setId": "2046:9627"
+    },
+    {
+      "name": "ico-attach",
+      "codepoint": "U+E1E4",
+      "figmaName": "ICO Attach",
+      "category": "File Attachments",
+      "setId": "2046:9632"
+    },
+    {
+      "name": "ini-attach",
+      "codepoint": "U+E1E5",
+      "figmaName": "INI Attach",
+      "category": "File Attachments",
+      "setId": "2046:9637"
+    },
+    {
+      "name": "iso-attach",
+      "codepoint": "U+E1E6",
+      "figmaName": "ISO Attach",
+      "category": "File Attachments",
+      "setId": "2046:9642"
+    },
+    {
+      "name": "jar-attach",
+      "codepoint": "U+E1E7",
+      "figmaName": "JAR Attach",
+      "category": "File Attachments",
+      "setId": "2046:9647"
+    },
+    {
+      "name": "jpeg-attach",
+      "codepoint": "U+E1E8",
+      "figmaName": "JPEG Attach",
+      "category": "File Attachments",
+      "setId": "2046:9652"
+    },
+    {
+      "name": "jpg-attach",
+      "codepoint": "U+E1E9",
+      "figmaName": "JPG Attach",
+      "category": "File Attachments",
+      "setId": "2046:9657"
+    },
+    {
+      "name": "js-attach",
+      "codepoint": "U+E1EA",
+      "figmaName": "JS Attach",
+      "category": "File Attachments",
+      "setId": "2046:9662"
+    },
+    {
+      "name": "json-attach",
+      "codepoint": "U+E1EB",
+      "figmaName": "JSON Attach",
+      "category": "File Attachments",
+      "setId": "2046:9667"
+    },
+    {
+      "name": "key-attach",
+      "codepoint": "U+E1EC",
+      "figmaName": "KEY Attach",
+      "category": "File Attachments",
+      "setId": "2046:9672"
+    },
+    {
+      "name": "mdb-attach",
+      "codepoint": "U+E1ED",
+      "figmaName": "MDB Attach",
+      "category": "File Attachments",
+      "setId": "2046:9677"
+    },
+    {
+      "name": "mkv-attach",
+      "codepoint": "U+E1EE",
+      "figmaName": "MKV Attach",
+      "category": "File Attachments",
+      "setId": "2046:9682"
+    },
+    {
+      "name": "mov-attach",
+      "codepoint": "U+E1EF",
+      "figmaName": "MOV Attach",
+      "category": "File Attachments",
+      "setId": "2046:9687"
+    },
+    {
+      "name": "mp3-attach",
+      "codepoint": "U+E1F0",
+      "figmaName": "MP3 Attach",
+      "category": "File Attachments",
+      "setId": "2046:9692"
+    },
+    {
+      "name": "mp4-attach",
+      "codepoint": "U+E1F1",
+      "figmaName": "MP4 Attach",
+      "category": "File Attachments",
+      "setId": "2046:9697"
+    },
+    {
+      "name": "mpeg-attach",
+      "codepoint": "U+E1F2",
+      "figmaName": "MPEG Attach",
+      "category": "File Attachments",
+      "setId": "2046:9702"
+    },
+    {
+      "name": "mpg-attach",
+      "codepoint": "U+E1F3",
+      "figmaName": "MPG Attach",
+      "category": "File Attachments",
+      "setId": "2046:9707"
+    },
+    {
+      "name": "mpga-attach",
+      "codepoint": "U+E1F4",
+      "figmaName": "MPGA Attach",
+      "category": "File Attachments",
+      "setId": "2046:9712"
+    },
+    {
+      "name": "nfo-attach",
+      "codepoint": "U+E1F5",
+      "figmaName": "NFO Attach",
+      "category": "File Attachments",
+      "setId": "2046:9717"
+    },
+    {
+      "name": "obj-attach",
+      "codepoint": "U+E1F6",
+      "figmaName": "OBJ Attach",
+      "category": "File Attachments",
+      "setId": "2046:9722"
+    },
+    {
+      "name": "odf-attach",
+      "codepoint": "U+E1F7",
+      "figmaName": "ODF Attach",
+      "category": "File Attachments",
+      "setId": "2046:9727"
+    },
+    {
+      "name": "odp-attach",
+      "codepoint": "U+E1F8",
+      "figmaName": "ODP Attach",
+      "category": "File Attachments",
+      "setId": "2046:9732"
+    },
+    {
+      "name": "ods-attach",
+      "codepoint": "U+E1F9",
+      "figmaName": "ODS Attach",
+      "category": "File Attachments",
+      "setId": "2046:9737"
+    },
+    {
+      "name": "odt-attach",
+      "codepoint": "U+E1FA",
+      "figmaName": "ODT Attach",
+      "category": "File Attachments",
+      "setId": "2046:9742"
+    },
+    {
+      "name": "oog-attach",
+      "codepoint": "U+E1FB",
+      "figmaName": "OOG Attach",
+      "category": "File Attachments",
+      "setId": "2046:9747"
+    },
+    {
+      "name": "otf-attach",
+      "codepoint": "U+E1FC",
+      "figmaName": "OTF Attach",
+      "category": "File Attachments",
+      "setId": "2046:9752"
+    },
+    {
+      "name": "ott-attach",
+      "codepoint": "U+E1FD",
+      "figmaName": "OTT Attach",
+      "category": "File Attachments",
+      "setId": "2046:9757"
+    },
+    {
+      "name": "pdf-attach",
+      "codepoint": "U+E1FE",
+      "figmaName": "PDF Attach",
+      "category": "File Attachments",
+      "setId": "2046:9762"
+    },
+    {
+      "name": "pkg-attach",
+      "codepoint": "U+E1FF",
+      "figmaName": "PKG Attach",
+      "category": "File Attachments",
+      "setId": "2046:9767"
+    },
+    {
+      "name": "png-attach",
+      "codepoint": "U+E200",
+      "figmaName": "PNG Attach",
+      "category": "File Attachments",
+      "setId": "2046:9772"
+    },
+    {
+      "name": "pps-attach",
+      "codepoint": "U+E201",
+      "figmaName": "PPS Attach",
+      "category": "File Attachments",
+      "setId": "2046:9777"
+    },
+    {
+      "name": "ppt-attach",
+      "codepoint": "U+E202",
+      "figmaName": "PPT Attach",
+      "category": "File Attachments",
+      "setId": "2046:9782"
+    },
+    {
+      "name": "pptx-attach",
+      "codepoint": "U+E203",
+      "figmaName": "PPTX Attach",
+      "category": "File Attachments",
+      "setId": "2046:9787"
+    },
+    {
+      "name": "psd-attach",
+      "codepoint": "U+E204",
+      "figmaName": "PSD Attach",
+      "category": "File Attachments",
+      "setId": "2046:9792"
+    },
+    {
+      "name": "rar-attach",
+      "codepoint": "U+E205",
+      "figmaName": "RAR Attach",
+      "category": "File Attachments",
+      "setId": "2046:9797"
+    },
+    {
+      "name": "rtf-attach",
+      "codepoint": "U+E206",
+      "figmaName": "RTF Attach",
+      "category": "File Attachments",
+      "setId": "2046:9802"
+    },
+    {
+      "name": "sdc-attach",
+      "codepoint": "U+E207",
+      "figmaName": "SDC Attach",
+      "category": "File Attachments",
+      "setId": "2046:9807"
+    },
+    {
+      "name": "sdd-attach",
+      "codepoint": "U+E208",
+      "figmaName": "SDD Attach",
+      "category": "File Attachments",
+      "setId": "2046:9812"
+    },
+    {
+      "name": "svg-attach",
+      "codepoint": "U+E209",
+      "figmaName": "SVG Attach",
+      "category": "File Attachments",
+      "setId": "2046:9817"
+    },
+    {
+      "name": "swf-attach",
+      "codepoint": "U+E20A",
+      "figmaName": "SWF Attach",
+      "category": "File Attachments",
+      "setId": "2046:9822"
+    },
+    {
+      "name": "tif-attach",
+      "codepoint": "U+E20B",
+      "figmaName": "TIF Attach",
+      "category": "File Attachments",
+      "setId": "2046:9827"
+    },
+    {
+      "name": "tiff-attach",
+      "codepoint": "U+E20C",
+      "figmaName": "TIFF Attach",
+      "category": "File Attachments",
+      "setId": "2046:9832"
+    },
+    {
+      "name": "ttf-attach",
+      "codepoint": "U+E20D",
+      "figmaName": "TTF Attach",
+      "category": "File Attachments",
+      "setId": "2046:9837"
+    },
+    {
+      "name": "txt-attach",
+      "codepoint": "U+E20E",
+      "figmaName": "TXT Attach",
+      "category": "File Attachments",
+      "setId": "2046:9842"
+    },
+    {
+      "name": "vcf-attach",
+      "codepoint": "U+E20F",
+      "figmaName": "VCF Attach",
+      "category": "File Attachments",
+      "setId": "2046:9847"
+    },
+    {
+      "name": "video-attach",
+      "codepoint": "U+E210",
+      "figmaName": "VIDEO Attach",
+      "category": "File Attachments",
+      "setId": "2046:9852"
+    },
+    {
+      "name": "wav-attach",
+      "codepoint": "U+E211",
+      "figmaName": "WAV Attach",
+      "category": "File Attachments",
+      "setId": "2046:9857"
+    },
+    {
+      "name": "webm-attach",
+      "codepoint": "U+E212",
+      "figmaName": "WEBM Attach",
+      "category": "File Attachments",
+      "setId": "2046:9862"
+    },
+    {
+      "name": "wmv-attach",
+      "codepoint": "U+E213",
+      "figmaName": "WMV Attach",
+      "category": "File Attachments",
+      "setId": "2046:9867"
+    },
+    {
+      "name": "woff-attach",
+      "codepoint": "U+E214",
+      "figmaName": "WOFF Attach",
+      "category": "File Attachments",
+      "setId": "2046:9872"
+    },
+    {
+      "name": "xlff-attach",
+      "codepoint": "U+E215",
+      "figmaName": "XLFF Attach",
+      "category": "File Attachments",
+      "setId": "2046:9877"
+    },
+    {
+      "name": "xliff-attach",
+      "codepoint": "U+E216",
+      "figmaName": "XLIFF Attach",
+      "category": "File Attachments",
+      "setId": "2046:9882"
+    },
+    {
+      "name": "xls-attach",
+      "codepoint": "U+E217",
+      "figmaName": "XLS Attach",
+      "category": "File Attachments",
+      "setId": "2046:9887"
+    },
+    {
+      "name": "xlsb-attach",
+      "codepoint": "U+E218",
+      "figmaName": "XLSB Attach",
+      "category": "File Attachments",
+      "setId": "2046:9892"
+    },
+    {
+      "name": "xlsm-attach",
+      "codepoint": "U+E219",
+      "figmaName": "XLSM Attach",
+      "category": "File Attachments",
+      "setId": "2046:9897"
+    },
+    {
+      "name": "xlsx-attach",
+      "codepoint": "U+E21A",
+      "figmaName": "XLSX Attach",
+      "category": "File Attachments",
+      "setId": "2046:9902"
+    },
+    {
+      "name": "xml-attach",
+      "codepoint": "U+E21B",
+      "figmaName": "XML Attach",
+      "category": "File Attachments",
+      "setId": "2046:9907"
+    },
+    {
+      "name": "xsd-attach",
+      "codepoint": "U+E21C",
+      "figmaName": "XSD Attach",
+      "category": "File Attachments",
+      "setId": "2046:9912"
+    },
+    {
+      "name": "xslt-attach",
+      "codepoint": "U+E21D",
+      "figmaName": "XSLT Attach",
+      "category": "File Attachments",
+      "setId": "2046:9917"
+    },
+    {
+      "name": "zip-attach",
+      "codepoint": "U+E21E",
+      "figmaName": "ZIP Attach",
+      "category": "File Attachments",
+      "setId": "2046:9922"
+    },
+    {
+      "name": "cast",
+      "codepoint": "U+E21F",
+      "figmaName": "Cast",
+      "category": "Hardware",
+      "setId": "2046:9931"
+    },
+    {
+      "name": "cast-connected",
+      "codepoint": "U+E220",
+      "figmaName": "Cast Connected",
+      "category": "Hardware",
+      "setId": "2046:9936"
+    },
+    {
+      "name": "desktop",
+      "codepoint": "U+E221",
+      "figmaName": "Desktop",
+      "category": "Hardware",
+      "setId": "2046:9941"
+    },
+    {
+      "name": "device-settings",
+      "codepoint": "U+E222",
+      "figmaName": "Device Settings",
+      "category": "Hardware",
+      "setId": "2046:9946"
+    },
+    {
+      "name": "device-profile-deployment",
+      "codepoint": "U+E223",
+      "figmaName": "Device Profile Deployment",
+      "category": "Hardware",
+      "setId": "2046:9951"
+    },
+    {
+      "name": "devices-ecosystem",
+      "codepoint": "U+E224",
+      "figmaName": "Devices Ecosystem",
+      "category": "Hardware",
+      "setId": "2046:9960"
+    },
+    {
+      "name": "headphones",
+      "codepoint": "U+E225",
+      "figmaName": "Headphones",
+      "category": "Hardware",
+      "setId": "2046:9965"
+    },
+    {
+      "name": "keyboard",
+      "codepoint": "U+E226",
+      "figmaName": "Keyboard",
+      "category": "Hardware",
+      "setId": "2046:9970"
+    },
+    {
+      "name": "laptop",
+      "codepoint": "U+E227",
+      "figmaName": "Laptop",
+      "category": "Hardware",
+      "setId": "2046:9975"
+    },
+    {
+      "name": "memory",
+      "codepoint": "U+E228",
+      "figmaName": "Memory",
+      "category": "Hardware",
+      "setId": "2046:9980"
+    },
+    {
+      "name": "monitor",
+      "codepoint": "U+E229",
+      "figmaName": "Monitor",
+      "category": "Hardware",
+      "setId": "2046:9985"
+    },
+    {
+      "name": "phone-android",
+      "codepoint": "U+E22A",
+      "figmaName": "Phone Android",
+      "category": "Hardware",
+      "setId": "2046:9990"
+    },
+    {
+      "name": "phone-iphone",
+      "codepoint": "U+E22B",
+      "figmaName": "Phone iPhone",
+      "category": "Hardware",
+      "setId": "2046:9995"
+    },
+    {
+      "name": "phonelink",
+      "codepoint": "U+E22C",
+      "figmaName": "Phonelink",
+      "category": "Hardware",
+      "setId": "2046:10000"
+    },
+    {
+      "name": "printer",
+      "codepoint": "U+E22D",
+      "figmaName": "Printer",
+      "category": "Hardware",
+      "setId": "2046:10005"
+    },
+    {
+      "name": "scanner",
+      "codepoint": "U+E22E",
+      "figmaName": "Scanner",
+      "category": "Hardware",
+      "setId": "2046:10010"
+    },
+    {
+      "name": "security",
+      "codepoint": "U+E22F",
+      "figmaName": "Security",
+      "category": "Hardware",
+      "setId": "2046:10015"
+    },
+    {
+      "name": "smart-phone",
+      "codepoint": "U+E230",
+      "figmaName": "Smart Phone",
+      "category": "Hardware",
+      "setId": "2046:10020"
+    },
+    {
+      "name": "speaker",
+      "codepoint": "U+E231",
+      "figmaName": "Speaker",
+      "category": "Hardware",
+      "setId": "2046:10025"
+    },
+    {
+      "name": "tablet",
+      "codepoint": "U+E232",
+      "figmaName": "Tablet",
+      "category": "Hardware",
+      "setId": "2046:10030"
+    },
+    {
+      "name": "tablet-mac",
+      "codepoint": "U+E233",
+      "figmaName": "Tablet Mac",
+      "category": "Hardware",
+      "setId": "2046:10035"
+    },
+    {
+      "name": "tv",
+      "codepoint": "U+E234",
+      "figmaName": "TV",
+      "category": "Hardware",
+      "setId": "2046:10040"
+    },
+    {
+      "name": "video-play",
+      "codepoint": "U+E235",
+      "figmaName": "Video Play",
+      "category": "Hardware",
+      "setId": "2046:10045"
+    },
+    {
+      "name": "watch",
+      "codepoint": "U+E236",
+      "figmaName": "Watch",
+      "category": "Hardware",
+      "setId": "2046:10050"
+    },
+    {
+      "name": "adjustments",
+      "codepoint": "U+E237",
+      "figmaName": "Adjustments",
+      "category": "Image",
+      "setId": "2046:10059"
+    },
+    {
+      "name": "auto",
+      "codepoint": "U+E238",
+      "figmaName": "AUTO",
+      "category": "Image",
+      "setId": "2046:10064"
+    },
+    {
+      "name": "awb",
+      "codepoint": "U+E239",
+      "figmaName": "AWB",
+      "category": "Image",
+      "setId": "2046:10069"
+    },
+    {
+      "name": "camera",
+      "codepoint": "U+E23A",
+      "figmaName": "Camera",
+      "category": "Image",
+      "setId": "2046:10074"
+    },
+    {
+      "name": "camera-shutter",
+      "codepoint": "U+E23B",
+      "figmaName": "Camera Shutter",
+      "category": "Image",
+      "setId": "2046:10079"
+    },
+    {
+      "name": "camera-switch",
+      "codepoint": "U+E23C",
+      "figmaName": "Camera Switch",
+      "category": "Image",
+      "setId": "2046:10084"
+    },
+    {
+      "name": "contrast",
+      "codepoint": "U+E23D",
+      "figmaName": "Contrast",
+      "category": "Image",
+      "setId": "2046:10089"
+    },
+    {
+      "name": "crop",
+      "codepoint": "U+E23E",
+      "figmaName": "Crop",
+      "category": "Image",
+      "setId": "2046:10094"
+    },
+    {
+      "name": "exposure",
+      "codepoint": "U+E23F",
+      "figmaName": "Exposure",
+      "category": "Image",
+      "setId": "2046:10099"
+    },
+    {
+      "name": "eye-dropper",
+      "codepoint": "U+E240",
+      "figmaName": "Eye Dropper",
+      "category": "Image",
+      "setId": "2046:10104"
+    },
+    {
+      "name": "grid-off",
+      "codepoint": "U+E241",
+      "figmaName": "Grid Off",
+      "category": "Image",
+      "setId": "2046:10109"
+    },
+    {
+      "name": "grid-on",
+      "codepoint": "U+E242",
+      "figmaName": "Grid On",
+      "category": "Image",
+      "setId": "2046:10114"
+    },
+    {
+      "name": "hdr",
+      "codepoint": "U+E243",
+      "figmaName": "HDR",
+      "category": "Image",
+      "setId": "2046:10119"
+    },
+    {
+      "name": "image",
+      "codepoint": "U+E244",
+      "figmaName": "Image",
+      "category": "Image",
+      "setId": "2046:10124"
+    },
+    {
+      "name": "image-library",
+      "codepoint": "U+E245",
+      "figmaName": "Image Library",
+      "category": "Image",
+      "setId": "2046:10129"
+    },
+    {
+      "name": "iso",
+      "codepoint": "U+E246",
+      "figmaName": "ISO",
+      "category": "Image",
+      "setId": "2046:10134"
+    },
+    {
+      "name": "portrait",
+      "codepoint": "U+E247",
+      "figmaName": "Portrait",
+      "category": "Image",
+      "setId": "2046:10139"
+    },
+    {
+      "name": "pro",
+      "codepoint": "U+E248",
+      "figmaName": "PRO",
+      "category": "Image",
+      "setId": "2046:10144"
+    },
+    {
+      "name": "rotate-left",
+      "codepoint": "U+E249",
+      "figmaName": "Rotate Left",
+      "category": "Image",
+      "setId": "2046:10149"
+    },
+    {
+      "name": "rotate-right",
+      "codepoint": "U+E24A",
+      "figmaName": "Rotate Right",
+      "category": "Image",
+      "setId": "2046:10154"
+    },
+    {
+      "name": "slide-show",
+      "codepoint": "U+E24B",
+      "figmaName": "Slide Show",
+      "category": "Image",
+      "setId": "2046:10159"
+    },
+    {
+      "name": "straighten",
+      "codepoint": "U+E24C",
+      "figmaName": "Straighten",
+      "category": "Image",
+      "setId": "2046:10164"
+    },
+    {
+      "name": "timer",
+      "codepoint": "U+E24D",
+      "figmaName": "Timer",
+      "category": "Image",
+      "setId": "2046:10169"
+    },
+    {
+      "name": "wb",
+      "codepoint": "U+E24E",
+      "figmaName": "WB",
+      "category": "Image",
+      "setId": "2046:10174"
+    },
+    {
+      "name": "bus",
+      "codepoint": "U+E24F",
+      "figmaName": "Bus",
+      "category": "Maps",
+      "setId": "2046:10183"
+    },
+    {
+      "name": "cafe",
+      "codepoint": "U+E250",
+      "figmaName": "Cafe",
+      "category": "Maps",
+      "setId": "2046:10188"
+    },
+    {
+      "name": "car",
+      "codepoint": "U+E251",
+      "figmaName": "Car",
+      "category": "Maps",
+      "setId": "2046:10193"
+    },
+    {
+      "name": "flight",
+      "codepoint": "U+E252",
+      "figmaName": "Flight",
+      "category": "Maps",
+      "setId": "2046:10198"
+    },
+    {
+      "name": "layers",
+      "codepoint": "U+E253",
+      "figmaName": "Layers",
+      "category": "Maps",
+      "setId": "2046:10203"
+    },
+    {
+      "name": "light-rail-train",
+      "codepoint": "U+E254",
+      "figmaName": "Light Rail Train",
+      "category": "Maps",
+      "setId": "2046:10208"
+    },
+    {
+      "name": "local-shipping",
+      "codepoint": "U+E255",
+      "figmaName": "Local Shipping",
+      "category": "Maps",
+      "setId": "2046:10213"
+    },
+    {
+      "name": "map",
+      "codepoint": "U+E256",
+      "figmaName": "Map",
+      "category": "Maps",
+      "setId": "2046:10218"
+    },
+    {
+      "name": "my-location",
+      "codepoint": "U+E257",
+      "figmaName": "My Location",
+      "category": "Maps",
+      "setId": "2046:10223"
+    },
+    {
+      "name": "navigation",
+      "codepoint": "U+E258",
+      "figmaName": "Navigation",
+      "category": "Maps",
+      "setId": "2046:10228"
+    },
+    {
+      "name": "near-me",
+      "codepoint": "U+E259",
+      "figmaName": "Near Me",
+      "category": "Maps",
+      "setId": "2046:10233"
+    },
+    {
+      "name": "place",
+      "codepoint": "U+E25A",
+      "figmaName": "Place",
+      "category": "Maps",
+      "setId": "2046:10238"
+    },
+    {
+      "name": "ship",
+      "codepoint": "U+E25B",
+      "figmaName": "Ship",
+      "category": "Maps",
+      "setId": "2046:10243"
+    },
+    {
+      "name": "taxi",
+      "codepoint": "U+E25C",
+      "figmaName": "Taxi",
+      "category": "Maps",
+      "setId": "2046:10248"
+    },
+    {
+      "name": "train",
+      "codepoint": "U+E25D",
+      "figmaName": "Train",
+      "category": "Maps",
+      "setId": "2046:10253"
+    },
+    {
+      "name": "world",
+      "codepoint": "U+E25E",
+      "figmaName": "World",
+      "category": "Maps",
+      "setId": "2046:10258"
+    },
+    {
+      "name": "zoom-in-map",
+      "codepoint": "U+E25F",
+      "figmaName": "Zoom In Map",
+      "category": "Maps",
+      "setId": "2046:10263"
+    },
+    {
+      "name": "zoom-out-map",
+      "codepoint": "U+E260",
+      "figmaName": "Zoom Out Map",
+      "category": "Maps",
+      "setId": "2046:10268"
+    },
+    {
+      "name": "las",
+      "codepoint": "U+E261",
+      "figmaName": "LAS",
+      "category": "Maps",
+      "setId": "2046:10273"
+    },
+    {
+      "name": "apps",
+      "codepoint": "U+E262",
+      "figmaName": "Apps",
+      "category": "Navigation",
+      "setId": "2046:10282"
+    },
+    {
+      "name": "arrow-back",
+      "codepoint": "U+E263",
+      "figmaName": "Arrow Back",
+      "category": "Navigation",
+      "setId": "2046:10287"
+    },
+    {
+      "name": "arrow-down",
+      "codepoint": "U+E264",
+      "figmaName": "Arrow Down",
+      "category": "Navigation",
+      "setId": "2046:10292"
+    },
+    {
+      "name": "arrow-forward",
+      "codepoint": "U+E265",
+      "figmaName": "Arrow Forward",
+      "category": "Navigation",
+      "setId": "2046:10297"
+    },
+    {
+      "name": "arrow-up",
+      "codepoint": "U+E266",
+      "figmaName": "Arrow Up",
+      "category": "Navigation",
+      "setId": "2046:10302"
+    },
+    {
+      "name": "cancel",
+      "codepoint": "U+E267",
+      "figmaName": "Cancel",
+      "category": "Navigation",
+      "setId": "2046:10307"
+    },
+    {
+      "name": "cancel-outline",
+      "codepoint": "U+E268",
+      "figmaName": "Cancel Outline",
+      "category": "Navigation",
+      "setId": "2046:10312"
+    },
+    {
+      "name": "caret-down",
+      "codepoint": "U+E269",
+      "figmaName": "Caret Down",
+      "category": "Navigation",
+      "setId": "2046:10317"
+    },
+    {
+      "name": "caret-left",
+      "codepoint": "U+E26A",
+      "figmaName": "Caret Left",
+      "category": "Navigation",
+      "setId": "2046:10322"
+    },
+    {
+      "name": "caret-right",
+      "codepoint": "U+E26B",
+      "figmaName": "Caret Right",
+      "category": "Navigation",
+      "setId": "2046:10327"
+    },
+    {
+      "name": "caret-sort",
+      "codepoint": "U+E26C",
+      "figmaName": "Caret Sort",
+      "category": "Navigation",
+      "setId": "2046:10332"
+    },
+    {
+      "name": "caret-up",
+      "codepoint": "U+E26D",
+      "figmaName": "Caret Up",
+      "category": "Navigation",
+      "setId": "2046:10337"
+    },
+    {
+      "name": "chevron-left",
+      "codepoint": "U+E26E",
+      "figmaName": "Chevron Left",
+      "category": "Navigation",
+      "setId": "2046:10342"
+    },
+    {
+      "name": "chevron-right",
+      "codepoint": "U+E26F",
+      "figmaName": "Chevron Right",
+      "category": "Navigation",
+      "setId": "2046:10347"
+    },
+    {
+      "name": "close",
+      "codepoint": "U+E270",
+      "figmaName": "Close",
+      "category": "Navigation",
+      "setId": "2046:10352"
+    },
+    {
+      "name": "columns",
+      "codepoint": "U+E271",
+      "figmaName": "Columns",
+      "category": "Navigation",
+      "setId": "2046:10357"
+    },
+    {
+      "name": "dashboard",
+      "codepoint": "U+E272",
+      "figmaName": "Dashboard",
+      "category": "Navigation",
+      "setId": "2046:10362"
+    },
+    {
+      "name": "double-arrow-left",
+      "codepoint": "U+E273",
+      "figmaName": "Double Arrow Left",
+      "category": "Navigation",
+      "setId": "2046:10367"
+    },
+    {
+      "name": "double-arrow-right",
+      "codepoint": "U+E274",
+      "figmaName": "Double Arrow Right",
+      "category": "Navigation",
+      "setId": "2046:10372"
+    },
+    {
+      "name": "drop-down-circle",
+      "codepoint": "U+E275",
+      "figmaName": "Drop Down Circle",
+      "category": "Navigation",
+      "setId": "2046:10377"
+    },
+    {
+      "name": "expand-less",
+      "codepoint": "U+E276",
+      "figmaName": "Expand Less",
+      "category": "Navigation",
+      "setId": "2046:10382"
+    },
+    {
+      "name": "expand-more",
+      "codepoint": "U+E277",
+      "figmaName": "Expand More",
+      "category": "Navigation",
+      "setId": "2046:10387"
+    },
+    {
+      "name": "first-page",
+      "codepoint": "U+E278",
+      "figmaName": "First Page",
+      "category": "Navigation",
+      "setId": "2046:10392"
+    },
+    {
+      "name": "full-screen",
+      "codepoint": "U+E279",
+      "figmaName": "Full Screen",
+      "category": "Navigation",
+      "setId": "2046:10397"
+    },
+    {
+      "name": "full-screen-exit",
+      "codepoint": "U+E27A",
+      "figmaName": "Full Screen Exit",
+      "category": "Navigation",
+      "setId": "2046:10402"
+    },
+    {
+      "name": "hamburger-menu",
+      "codepoint": "U+E27B",
+      "figmaName": "Hamburger Menu",
+      "category": "Navigation",
+      "setId": "2046:10407"
+    },
+    {
+      "name": "hamburger-menu-navigation-rail",
+      "codepoint": "U+E27C",
+      "figmaName": "Hamburger Menu Navigation Rail",
+      "category": "Navigation",
+      "setId": "2046:10412"
+    },
+    {
+      "name": "hamburger-menu-thick",
+      "codepoint": "U+E27D",
+      "figmaName": "Hamburger Menu Thick",
+      "category": "Navigation",
+      "setId": "2046:10417"
+    },
+    {
+      "name": "help",
+      "codepoint": "U+E27E",
+      "figmaName": "Help",
+      "category": "Navigation",
+      "setId": "2046:10422"
+    },
+    {
+      "name": "help-outline",
+      "codepoint": "U+E27F",
+      "figmaName": "Help Outline",
+      "category": "Navigation",
+      "setId": "2046:10427"
+    },
+    {
+      "name": "last-page",
+      "codepoint": "U+E280",
+      "figmaName": "Last Page",
+      "category": "Navigation",
+      "setId": "2046:10432"
+    },
+    {
+      "name": "locations",
+      "codepoint": "U+E281",
+      "figmaName": "Locations",
+      "category": "Navigation",
+      "setId": "2046:10437"
+    },
+    {
+      "name": "list",
+      "codepoint": "U+E282",
+      "figmaName": "List",
+      "category": "Navigation",
+      "setId": "2046:10442"
+    },
+    {
+      "name": "list-alt",
+      "codepoint": "U+E283",
+      "figmaName": "List Alt",
+      "category": "Navigation",
+      "setId": "2046:10447"
+    },
+    {
+      "name": "more-horizontal",
+      "codepoint": "U+E284",
+      "figmaName": "More Horizontal",
+      "category": "Navigation",
+      "setId": "2046:10452"
+    },
+    {
+      "name": "more-vertical",
+      "codepoint": "U+E285",
+      "figmaName": "More Vertical",
+      "category": "Navigation",
+      "setId": "2046:10457"
+    },
+    {
+      "name": "refresh",
+      "codepoint": "U+E286",
+      "figmaName": "Refresh",
+      "category": "Navigation",
+      "setId": "2046:10462"
+    },
+    {
+      "name": "unfold-less",
+      "codepoint": "U+E287",
+      "figmaName": "Unfold Less",
+      "category": "Navigation",
+      "setId": "2046:10467"
+    },
+    {
+      "name": "unfold-more",
+      "codepoint": "U+E288",
+      "figmaName": "Unfold More",
+      "category": "Navigation",
+      "setId": "2046:10472"
+    },
+    {
+      "name": "person-admin",
+      "codepoint": "U+E289",
+      "figmaName": "Person Admin",
+      "category": "People",
+      "setId": "2046:10481"
+    },
+    {
+      "name": "person-assign",
+      "codepoint": "U+E28A",
+      "figmaName": "Person Assign",
+      "category": "People",
+      "setId": "2046:10486"
+    },
+    {
+      "name": "person-clock",
+      "codepoint": "U+E28B",
+      "figmaName": "Person Clock",
+      "category": "People",
+      "setId": "2046:10491"
+    },
+    {
+      "name": "person-info",
+      "codepoint": "U+E28C",
+      "figmaName": "Person Info",
+      "category": "People",
+      "setId": "2046:10496"
+    },
+    {
+      "name": "person-manager",
+      "codepoint": "U+E28D",
+      "figmaName": "Person Manager",
+      "category": "People",
+      "setId": "2046:10501"
+    },
+    {
+      "name": "person-move",
+      "codepoint": "U+E28E",
+      "figmaName": "Person Move",
+      "category": "People",
+      "setId": "2046:10506"
+    },
+    {
+      "name": "person-swap",
+      "codepoint": "U+E28F",
+      "figmaName": "Person Swap",
+      "category": "People",
+      "setId": "2046:10511"
+    },
+    {
+      "name": "person-walk",
+      "codepoint": "U+E290",
+      "figmaName": "Person Walk",
+      "category": "People",
+      "setId": "2046:10516"
+    },
+    {
+      "name": "user-minor",
+      "codepoint": "U+E291",
+      "figmaName": "User Minor",
+      "category": "People",
+      "setId": "2046:10521"
+    },
+    {
+      "name": "calibrate-media",
+      "codepoint": "U+E292",
+      "figmaName": "Calibrate Media",
+      "category": "Printer",
+      "setId": "2046:10530"
+    },
+    {
+      "name": "delete-printer",
+      "codepoint": "U+E293",
+      "figmaName": "Delete Printer",
+      "category": "Printer",
+      "setId": "2046:10535"
+    },
+    {
+      "name": "print-configuration-label",
+      "codepoint": "U+E294",
+      "figmaName": "Print Configuration Label",
+      "category": "Printer",
+      "setId": "2046:10540"
+    },
+    {
+      "name": "print-directory-list",
+      "codepoint": "U+E295",
+      "figmaName": "Print Directory List",
+      "category": "Printer",
+      "setId": "2046:10545"
+    },
+    {
+      "name": "print-test-label",
+      "codepoint": "U+E296",
+      "figmaName": "Print Test Label",
+      "category": "Printer",
+      "setId": "2046:10550"
+    },
+    {
+      "name": "restart-printer",
+      "codepoint": "U+E297",
+      "figmaName": "Restart Printer",
+      "category": "Printer",
+      "setId": "2046:10555"
+    },
+    {
+      "name": "restore-printer-defaults",
+      "codepoint": "U+E298",
+      "figmaName": "Restore Printer Defaults",
+      "category": "Printer",
+      "setId": "2046:10560"
+    },
+    {
+      "name": "reset-network",
+      "codepoint": "U+E299",
+      "figmaName": "Reset Network",
+      "category": "Printer",
+      "setId": "2046:10565"
+    },
+    {
+      "name": "restore-network-defaults",
+      "codepoint": "U+E29A",
+      "figmaName": "Restore Network Defaults",
+      "category": "Printer",
+      "setId": "2046:10570"
+    },
+    {
+      "name": "printer-profile-deployment",
+      "codepoint": "U+E29B",
+      "figmaName": "Printer Profile Deployment",
+      "category": "Printer",
+      "setId": "2046:10575"
+    },
+    {
+      "name": "add-group",
+      "codepoint": "U+E29C",
+      "figmaName": "Add Group",
+      "category": "Social",
+      "setId": "2046:10584"
+    },
+    {
+      "name": "add-person",
+      "codepoint": "U+E29D",
+      "figmaName": "Add Person",
+      "category": "Social",
+      "setId": "2046:10589"
+    },
+    {
+      "name": "bad-mood",
+      "codepoint": "U+E29E",
+      "figmaName": "Bad Mood",
+      "category": "Social",
+      "setId": "2046:10594"
+    },
+    {
+      "name": "blog",
+      "codepoint": "U+E29F",
+      "figmaName": "Blog",
+      "category": "Social",
+      "setId": "2046:10599"
+    },
+    {
+      "name": "certified",
+      "codepoint": "U+E2A0",
+      "figmaName": "Certified",
+      "category": "Social",
+      "setId": "2046:10604"
+    },
+    {
+      "name": "facebook",
+      "codepoint": "U+E2A1",
+      "figmaName": "Facebook",
+      "category": "Social",
+      "setId": "2046:10609"
+    },
+    {
+      "name": "google-drive",
+      "codepoint": "U+E2A2",
+      "figmaName": "google drive",
+      "category": "Social",
+      "setId": "2046:10614"
+    },
+    {
+      "name": "group",
+      "codepoint": "U+E2A3",
+      "figmaName": "Group",
+      "category": "Social",
+      "setId": "2046:10619"
+    },
+    {
+      "name": "groups",
+      "codepoint": "U+E2A4",
+      "figmaName": "Groups",
+      "category": "Social",
+      "setId": "2046:10624"
+    },
+    {
+      "name": "instagram",
+      "codepoint": "U+E2A5",
+      "figmaName": "Instagram",
+      "category": "Social",
+      "setId": "2046:10629"
+    },
+    {
+      "name": "linkedin",
+      "codepoint": "U+E2A6",
+      "figmaName": "LinkedIn",
+      "category": "Social",
+      "setId": "2046:10634"
+    },
+    {
+      "name": "medium",
+      "codepoint": "U+E2A7",
+      "figmaName": "Medium",
+      "category": "Social",
+      "setId": "2046:10639"
+    },
+    {
+      "name": "money-euro",
+      "codepoint": "U+E2A8",
+      "figmaName": "Money Euro",
+      "category": "Social",
+      "setId": "2046:10644"
+    },
+    {
+      "name": "money-pound",
+      "codepoint": "U+E2A9",
+      "figmaName": "Money Pound",
+      "category": "Social",
+      "setId": "2046:10649"
+    },
+    {
+      "name": "money-usd",
+      "codepoint": "U+E2AA",
+      "figmaName": "Money USD",
+      "category": "Social",
+      "setId": "2046:10656"
+    },
+    {
+      "name": "partner",
+      "codepoint": "U+E2AB",
+      "figmaName": "Partner",
+      "category": "Social",
+      "setId": "2046:10661"
+    },
+    {
+      "name": "person",
+      "codepoint": "U+E2AC",
+      "figmaName": "Person",
+      "category": "Social",
+      "setId": "2046:10666"
+    },
+    {
+      "name": "person-outline",
+      "codepoint": "U+E2AD",
+      "figmaName": "Person Outline",
+      "category": "Social",
+      "setId": "2046:10671"
+    },
+    {
+      "name": "phrase",
+      "codepoint": "U+E2AE",
+      "figmaName": "Phrase",
+      "category": "Social",
+      "setId": "2046:10676"
+    },
+    {
+      "name": "point-gift",
+      "codepoint": "U+E2AF",
+      "figmaName": "Point Gift",
+      "category": "Social",
+      "setId": "2046:10681"
+    },
+    {
+      "name": "point-heart",
+      "codepoint": "U+E2B0",
+      "figmaName": "Point Heart",
+      "category": "Social",
+      "setId": "2046:10686"
+    },
+    {
+      "name": "point-money",
+      "codepoint": "U+E2B1",
+      "figmaName": "Point Money",
+      "category": "Social",
+      "setId": "2046:10695"
+    },
+    {
+      "name": "point-star",
+      "codepoint": "U+E2B2",
+      "figmaName": "Point Star",
+      "category": "Social",
+      "setId": "2046:10700"
+    },
+    {
+      "name": "remove-group",
+      "codepoint": "U+E2B3",
+      "figmaName": "Remove Group",
+      "category": "Social",
+      "setId": "2046:10705"
+    },
+    {
+      "name": "remove-person",
+      "codepoint": "U+E2B4",
+      "figmaName": "Remove Person",
+      "category": "Social",
+      "setId": "2046:10710"
+    },
+    {
+      "name": "sad",
+      "codepoint": "U+E2B5",
+      "figmaName": "Sad",
+      "category": "Social",
+      "setId": "2046:10715"
+    },
+    {
+      "name": "satisfied",
+      "codepoint": "U+E2B6",
+      "figmaName": "Satisfied",
+      "category": "Social",
+      "setId": "2046:10720"
+    },
+    {
+      "name": "switch-user",
+      "codepoint": "U+E2B7",
+      "figmaName": "Switch User",
+      "category": "Social",
+      "setId": "2046:10725"
+    },
+    {
+      "name": "twitter",
+      "codepoint": "U+E2B8",
+      "figmaName": "Twitter",
+      "category": "Social",
+      "setId": "2046:10730"
+    },
+    {
+      "name": "very-satisfied",
+      "codepoint": "U+E2B9",
+      "figmaName": "Very Satisfied",
+      "category": "Social",
+      "setId": "2046:10735"
+    },
+    {
+      "name": "youtube",
+      "codepoint": "U+E2BA",
+      "figmaName": "YouTube",
+      "category": "Social",
+      "setId": "2046:10740"
+    },
+    {
+      "name": "happy",
+      "codepoint": "U+E2BB",
+      "figmaName": "Happy",
+      "category": "Social",
+      "setId": "2046:10745"
+    },
+    {
+      "name": "neutral",
+      "codepoint": "U+E2BC",
+      "figmaName": "Neutral",
+      "category": "Social",
+      "setId": "2046:10750"
+    },
+    {
+      "name": "check-box",
+      "codepoint": "U+E2BD",
+      "figmaName": "Check Box",
+      "category": "Toggle",
+      "setId": "2046:10759"
+    },
+    {
+      "name": "check-box-empty",
+      "codepoint": "U+E2BE",
+      "figmaName": "Check Box Empty",
+      "category": "Toggle",
+      "setId": "2046:10764"
+    },
+    {
+      "name": "indeterminate-check-box",
+      "codepoint": "U+E2BF",
+      "figmaName": "Indeterminate Check Box",
+      "category": "Toggle",
+      "setId": "2046:10769"
+    },
+    {
+      "name": "radio-button-checked",
+      "codepoint": "U+E2C0",
+      "figmaName": "Radio Button Checked",
+      "category": "Toggle",
+      "setId": "2046:10774"
+    },
+    {
+      "name": "radio-button-unchecked",
+      "codepoint": "U+E2C1",
+      "figmaName": "Radio Button Unchecked",
+      "category": "Toggle",
+      "setId": "2046:10779"
+    },
+    {
+      "name": "star",
+      "codepoint": "U+E2C2",
+      "figmaName": "Star",
+      "category": "Toggle",
+      "setId": "2046:10784"
+    },
+    {
+      "name": "star-half",
+      "codepoint": "U+E2C3",
+      "figmaName": "Star Half",
+      "category": "Toggle",
+      "setId": "2046:10789"
+    },
+    {
+      "name": "star-outline",
+      "codepoint": "U+E2C4",
+      "figmaName": "Star Outline",
+      "category": "Toggle",
+      "setId": "2046:10794"
+    },
+    {
+      "name": "toggle-off",
+      "codepoint": "U+E2C5",
+      "figmaName": "Toggle Off",
+      "category": "Toggle",
+      "setId": "2046:10799"
+    },
+    {
+      "name": "toggle-on",
+      "codepoint": "U+E2C6",
+      "figmaName": "Toggle On",
+      "category": "Toggle",
+      "setId": "2046:10804"
+    },
+    {
+      "name": "locate-scanner",
+      "codepoint": "U+E2C7",
+      "figmaName": "Locate Scanner",
+      "category": "Scanner",
+      "setId": "2046:10813"
+    },
+    {
+      "name": "reboot-scanner",
+      "codepoint": "U+E2C8",
+      "figmaName": "Reboot Scanner",
+      "category": "Scanner",
+      "setId": "2046:10818"
+    },
+    {
+      "name": "retrieve-scanner-settings",
+      "codepoint": "U+E2C9",
+      "figmaName": "Retrieve Scanner Settings",
+      "category": "Scanner",
+      "setId": "2046:10823"
+    },
+    {
+      "name": "delete-scanner",
+      "codepoint": "U+E2CA",
+      "figmaName": "Delete Scanner",
+      "category": "Scanner",
+      "setId": "2046:10828"
+    },
+    {
+      "name": "scanner-profile-deployment",
+      "codepoint": "U+E2CB",
+      "figmaName": "Scanner Profile Deployment",
+      "category": "Scanner",
+      "setId": "2046:10833"
+    },
+    {
+      "name": "api-collection",
+      "codepoint": "U+E2CC",
+      "figmaName": "API Collection",
+      "category": "Technology",
+      "setId": "4767:8483"
+    },
+    {
+      "name": "api",
+      "codepoint": "U+E2CD",
+      "figmaName": "API",
+      "category": "Technology",
+      "setId": "4767:8488"
+    },
+    {
+      "name": "available",
+      "codepoint": "U+E2CE",
+      "figmaName": "Available",
+      "category": "Status",
+      "setId": "2046:10852"
+    },
+    {
+      "name": "away",
+      "codepoint": "U+E2CF",
+      "figmaName": "Away",
+      "category": "Status",
+      "setId": "4768:8544"
+    },
+    {
+      "name": "busy",
+      "codepoint": "U+E2D0",
+      "figmaName": "Busy",
+      "category": "Status",
+      "setId": "4769:8565"
+    },
+    {
+      "name": "dnd",
+      "codepoint": "U+E2D1",
+      "figmaName": "DnD",
+      "category": "Status",
+      "setId": "4769:8582"
+    },
+    {
+      "name": "on-shift",
+      "codepoint": "U+E2D2",
+      "figmaName": "On Shift",
+      "category": "Status",
+      "setId": "4769:8591"
+    },
+    {
+      "name": "offline",
+      "codepoint": "U+E2D3",
+      "figmaName": "Offline",
+      "category": "Status",
+      "setId": "4769:8596"
+    }
+  ]
+}

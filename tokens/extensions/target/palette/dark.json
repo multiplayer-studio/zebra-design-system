@@ -1,0 +1,301 @@
+{
+  "ink": {
+    "brand": {
+      "$type": "color",
+      "$value": "{primitives.color.extend.4.40}",
+      "$description": "Hyperlink text color (theme.color.content.link)",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:121:6194",
+          "overrides": "palette.ink.brand",
+          "extension": "target",
+          "mode": "Dark",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Dark",
+          "aliasOf": "VariableID:38:55"
+        }
+      }
+    },
+    "link": {
+      "$type": "color",
+      "$value": "{primitives.color.extend.4.50}",
+      "$description": "Hyperlink text color (theme.color.content.link)",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:63:21",
+          "overrides": "palette.ink.link",
+          "extension": "target",
+          "mode": "Dark",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Dark",
+          "aliasOf": "VariableID:38:56"
+        }
+      }
+    }
+  },
+  "gradient": {
+    "default": {
+      "start": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.3.70}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:2315:9011",
+            "overrides": "palette.gradient.default.start",
+            "extension": "target",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Dark",
+            "aliasOf": "VariableID:38:48"
+          }
+        }
+      }
+    },
+    "strong": {
+      "start": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.3.50}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:2315:9013",
+            "overrides": "palette.gradient.strong.start",
+            "extension": "target",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Dark",
+            "aliasOf": "VariableID:38:46"
+          }
+        }
+      }
+    },
+    "subtle": {
+      "start": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.3.80}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:2315:9015",
+            "overrides": "palette.gradient.subtle.start",
+            "extension": "target",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Dark",
+            "aliasOf": "VariableID:38:49"
+          }
+        }
+      }
+    }
+  },
+  "line": {
+    "focus": {
+      "$type": "color",
+      "$value": "{primitives.color.accent.1.60}",
+      "$description": "Selected item border/outline (theme.color.selection.border)",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2535:3742",
+          "overrides": "palette.line.focus",
+          "extension": "target",
+          "mode": "Dark",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Dark",
+          "aliasOf": "VariableID:30:1379"
+        }
+      }
+    },
+    "selection": {
+      "$type": "color",
+      "$value": "{primitives.color.extend.4.50}",
+      "$description": "Selected item border/outline (theme.color.selection.border)",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:63:32",
+          "overrides": "palette.line.selection",
+          "extension": "target",
+          "mode": "Dark",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Dark",
+          "aliasOf": "VariableID:38:56"
+        }
+      }
+    }
+  },
+  "brand": {
+    "primary": {
+      "default": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.4.60}",
+        "$description": "Primary brand color (theme.color.brand.primary)",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:63:2",
+            "overrides": "palette.brand.primary.default",
+            "extension": "target",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Dark",
+            "aliasOf": "VariableID:38:57"
+          }
+        }
+      },
+      "faint": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.4.100}",
+        "$description": "Light brand tint for backgrounds (theme.color.brand.subtle)",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:63:5",
+            "overrides": "palette.brand.primary.faint",
+            "extension": "target",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Dark",
+            "aliasOf": "VariableID:38:61"
+          }
+        }
+      },
+      "muted": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.4.90}",
+        "$description": "Muted/softened brand tone (theme.color.brand.muted)",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:63:6",
+            "overrides": "palette.brand.primary.muted",
+            "extension": "target",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Dark",
+            "aliasOf": "VariableID:38:60"
+          }
+        }
+      },
+      "on": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.warm.10}",
+        "$description": "Foreground on top of Brand/Primary (theme.color.brand.onPrimary)",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:63:7",
+            "overrides": "palette.brand.primary.on",
+            "extension": "target",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Dark",
+            "aliasOf": "VariableID:30:1304"
+          }
+        }
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.4.70}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:386",
+            "overrides": "palette.brand.primary.subtle",
+            "extension": "target",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Dark",
+            "aliasOf": "VariableID:38:58"
+          }
+        }
+      },
+      "deep": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.4.40}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:387",
+            "overrides": "palette.brand.primary.deep",
+            "extension": "target",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Dark",
+            "aliasOf": "VariableID:38:55"
+          }
+        }
+      }
+    },
+    "secondary": {
+      "default": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.3.50}",
+        "$description": "Secondary brand color (theme.color.brand.secondary)",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:63:3",
+            "overrides": "palette.brand.secondary.default",
+            "extension": "target",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Dark",
+            "aliasOf": "VariableID:38:46"
+          }
+        }
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.3.60}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:2",
+            "overrides": "palette.brand.secondary.subtle",
+            "extension": "target",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Dark",
+            "aliasOf": "VariableID:38:47"
+          }
+        }
+      },
+      "deep": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.3.40}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:3",
+            "overrides": "palette.brand.secondary.deep",
+            "extension": "target",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Dark",
+            "aliasOf": "VariableID:38:45"
+          }
+        }
+      },
+      "faint": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.3.100}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:4",
+            "overrides": "palette.brand.secondary.faint",
+            "extension": "target",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Dark",
+            "aliasOf": "VariableID:38:51"
+          }
+        }
+      }
+    }
+  }
+}

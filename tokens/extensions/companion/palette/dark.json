@@ -1,0 +1,89 @@
+{
+  "brand": {
+    "primary": {
+      "default": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.60}",
+        "$description": "Primary brand color (theme.color.brand.primary)",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:63:2",
+            "overrides": "palette.brand.primary.default",
+            "extension": "companion",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Dark",
+            "aliasOf": "VariableID:30:1379"
+          }
+        }
+      },
+      "faint": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.100}",
+        "$description": "Light brand tint for backgrounds (theme.color.brand.subtle)",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:63:5",
+            "overrides": "palette.brand.primary.faint",
+            "extension": "companion",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Dark",
+            "aliasOf": "VariableID:30:1383"
+          }
+        }
+      },
+      "muted": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.90}",
+        "$description": "Muted/softened brand tone (theme.color.brand.muted)",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:63:6",
+            "overrides": "palette.brand.primary.muted",
+            "extension": "companion",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Dark",
+            "aliasOf": "VariableID:30:1382"
+          }
+        }
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.50}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:386",
+            "overrides": "palette.brand.primary.subtle",
+            "extension": "companion",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Dark",
+            "aliasOf": "VariableID:30:1378"
+          }
+        }
+      },
+      "deep": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.40}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:387",
+            "overrides": "palette.brand.primary.deep",
+            "extension": "companion",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Dark",
+            "aliasOf": "VariableID:30:1377"
+          }
+        }
+      }
+    }
+  }
+}

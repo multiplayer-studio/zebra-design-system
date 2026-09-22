@@ -1,0 +1,7 @@
+node_modules
+dist
+storybook-static
+src/tokens
+# Created by a standalone `pnpm install --ignore-workspace`. Delete once the
+# repo's pnpm-workspace.yaml is back and install from the root instead.
+pnpm-lock.yaml

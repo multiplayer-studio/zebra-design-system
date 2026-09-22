@@ -1,0 +1,87 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Theming/How it works" />
+
+# Theming
+
+Theming is a class. There is no provider, no JavaScript, and nothing re-renders
+when a theme changes.
+
+```html
+<button class="ext-companion mode-dark">Label</button>
+```
+
+Put `ext-*` and `mode-*` on any element and every token resolves differently
+for that element and everything inside it — including inside component shadow
+roots, because CSS custom properties inherit through them.
+
+## The layers
+
+Tokens are emitted in the same layering Figma uses, and each layer references
+the one below with `var()` rather than a flattened value. That is what makes a
+one-line override re-theme everything downstream of it.
+
+| Layer | Custom property | Example |
+|---|---|---|
+| primitives | `--primitives-*` | `--primitives-color-brand-main-60: #1f69ff` |
+| palette | `--palette-*` | `--palette-brand-primary-default: var(--primitives-color-brand-main-60)` |
+| semantics | *unprefixed — the public API* | `--interactive-primary-background-default: var(--palette-brand-primary-default)` |
+| size / typography | *unprefixed — the public API* | `--control-sm`, `--label-medium-font-size` |
+
+Use the **unprefixed** names in component CSS. Never reach past them to a
+palette or primitive: that is what breaks theming.
+
+## What a class actually changes
+
+- `mode-dark` / `mode-light` redeclare only the palette entries that differ
+  between the two — 79 of 90. Semantics are mode-free, so they never need a
+  second copy.
+- `ext-companion` redeclares the 6 palette entries companion overrides.
+- `ext-target` redeclares 17 palette entries **and** 10 primitives, because
+  that extension overrides both layers. Nothing else has to know.
+
+Because the layers reference each other, overriding `--palette-brand-primary-default`
+alone silently re-themes every semantic token that points at it — background,
+border, foreground, hover, pressed, focus — across every component.
+
+## Combining them
+
+The generated selectors cover the three ways the classes can meet:
+
+```css
+.ext-companion.mode-dark,     /* same element   */
+.mode-dark .ext-companion,    /* mode outside   */
+.ext-companion .mode-dark     /* extension outside */
+```
+
+So all of these work:
+
+```html
+<html class="mode-dark">            <div class="ext-companion">…</div>
+<div class="ext-target">            <section class="mode-dark">…</section>
+<button class="ext-companion mode-dark">Label</button>
+```
+
+To switch back inside a themed subtree, use the explicit counterpart —
+`mode-light` — rather than relying on removing a class.
+
+## Breakpoints
+
+`size` and `typography` have four modes (Desktop, Desktop Compact, Tablet,
+Mobile). Almost nothing varies between them: only `container/default` and
+`shape`. They are exposed as `bp-*` classes.
+
+They are **not** wired to media queries, because the breakpoint widths
+themselves are not in the token file — `scale/container/*` gives the container
+widths, not the min-widths to switch at. Supply those and the generator can
+emit media queries instead.
+
+## Regenerating
+
+```bash
+pnpm run tokens         # tokens/ -> src/tokens/*.css
+pnpm run check:theming  # asserts the cascade still resolves correctly
+```
+
+`src/tokens/*.css` is generated. Edit `tokens/` (via the **figma-token-export**
+skill) and re-run, never the CSS.

@@ -1,0 +1,103 @@
+/* typography — references primitives
+   Generated from tokens/ by scripts/build-tokens-css.mjs — do not edit by hand.
+   Default mode Desktop on :root; a class per other mode carries only what differs.
+*/
+
+:root {
+  --body-large-font-family: var(--primitives-text-font-family-ibm-plex-sans);
+  --body-large-font-size: var(--primitives-text-font-size-20);
+  --body-large-font-weight: var(--primitives-text-font-weight-regular);
+  --body-large-letter-spacing: var(--primitives-text-letter-spacing-none);
+  --body-large-line-height: var(--primitives-text-line-height-24);
+  --body-medium-font-family: var(--primitives-text-font-family-ibm-plex-sans);
+  --body-medium-font-size: var(--primitives-text-font-size-16);
+  --body-medium-font-weight: var(--primitives-text-font-weight-regular);
+  --body-medium-letter-spacing: var(--primitives-text-letter-spacing-none);
+  --body-medium-line-height: var(--primitives-text-line-height-24);
+  --body-small-font-family: var(--primitives-text-font-family-ibm-plex-sans);
+  --body-small-font-size: var(--primitives-text-font-size-14);
+  --body-small-font-weight: var(--primitives-text-font-weight-regular);
+  --body-small-letter-spacing: var(--primitives-text-letter-spacing-none);
+  --body-small-line-height: var(--primitives-text-line-height-18);
+  --body-xsmall-font-family: var(--primitives-text-font-family-ibm-plex-sans);
+  --body-xsmall-font-size: var(--primitives-text-font-size-12);
+  --body-xsmall-font-weight: var(--primitives-text-font-weight-regular);
+  --body-xsmall-letter-spacing: var(--primitives-text-letter-spacing-none);
+  --body-xsmall-line-height: var(--primitives-text-line-height-16);
+  --display-large-font-family: var(--primitives-text-font-family-ibm-plex-sans);
+  --display-large-font-size: var(--primitives-text-font-size-52);
+  --display-large-font-weight: var(--primitives-text-font-weight-light);
+  --display-large-letter-spacing: var(--primitives-text-letter-spacing-none);
+  --display-large-line-height: var(--primitives-text-line-height-60);
+  --display-medium-font-family: var(--primitives-text-font-family-ibm-plex-sans);
+  --display-medium-font-size: var(--primitives-text-font-size-44);
+  --display-medium-font-weight: var(--primitives-text-font-weight-light);
+  --display-medium-letter-spacing: var(--primitives-text-letter-spacing-none);
+  --display-medium-line-height: var(--primitives-text-line-height-52);
+  --display-small-font-family: var(--primitives-text-font-family-ibm-plex-sans);
+  --display-small-font-size: var(--primitives-text-font-size-36);
+  --display-small-font-weight: var(--primitives-text-font-weight-light);
+  --display-small-letter-spacing: var(--primitives-text-letter-spacing-none);
+  --display-small-line-height: var(--primitives-text-line-height-40);
+  --heading-large-font-family: var(--primitives-text-font-family-ibm-plex-sans);
+  --heading-large-font-size: var(--primitives-text-font-size-32);
+  --heading-large-font-weight: var(--primitives-text-font-weight-regular);
+  --heading-large-letter-spacing: var(--primitives-text-letter-spacing-none);
+  --heading-large-line-height: var(--primitives-text-line-height-36);
+  --heading-medium-font-family: var(--primitives-text-font-family-ibm-plex-sans);
+  --heading-medium-font-size: var(--primitives-text-font-size-28);
+  --heading-medium-font-weight: var(--primitives-text-font-weight-regular);
+  --heading-medium-letter-spacing: var(--primitives-text-letter-spacing-none);
+  --heading-medium-line-height: var(--primitives-text-line-height-32);
+  --heading-small-font-family: var(--primitives-text-font-family-ibm-plex-sans);
+  --heading-small-font-size: var(--primitives-text-font-size-24);
+  --heading-small-font-weight: var(--primitives-text-font-weight-regular);
+  --heading-small-letter-spacing: var(--primitives-text-letter-spacing-none);
+  --heading-small-line-height: var(--primitives-text-line-height-28);
+  --indicator-medium-font-family: var(--primitives-text-font-family-ibm-plex-sans);
+  --indicator-medium-font-size: var(--primitives-text-font-size-12);
+  --indicator-medium-font-weight: var(--primitives-text-font-weight-medium);
+  --indicator-medium-letter-spacing: var(--primitives-text-letter-spacing-none);
+  --indicator-medium-line-height: var(--primitives-text-line-height-14);
+  --indicator-small-font-family: var(--primitives-text-font-family-ibm-plex-sans);
+  --indicator-small-font-size: var(--primitives-text-font-size-10);
+  --indicator-small-font-weight: var(--primitives-text-font-weight-regular);
+  --indicator-small-letter-spacing: var(--primitives-text-letter-spacing-none);
+  --indicator-small-line-height: var(--primitives-text-line-height-12);
+  --label-large-font-family: var(--primitives-text-font-family-ibm-plex-sans);
+  --label-large-font-size: var(--primitives-text-font-size-16);
+  --label-large-font-weight: var(--primitives-text-font-weight-medium);
+  --label-large-letter-spacing: var(--primitives-text-letter-spacing-none);
+  --label-large-line-height: var(--primitives-text-line-height-24);
+  --label-medium-font-family: var(--primitives-text-font-family-ibm-plex-sans);
+  --label-medium-font-size: var(--primitives-text-font-size-14);
+  --label-medium-font-weight: var(--primitives-text-font-weight-medium);
+  --label-medium-letter-spacing: var(--primitives-text-letter-spacing-none);
+  --label-medium-line-height: var(--primitives-text-line-height-20);
+  --label-small-font-family: var(--primitives-text-font-family-ibm-plex-sans);
+  --label-small-font-size: var(--primitives-text-font-size-12);
+  --label-small-font-weight: var(--primitives-text-font-weight-medium);
+  --label-small-letter-spacing: var(--primitives-text-letter-spacing-none);
+  --label-small-line-height: var(--primitives-text-line-height-16);
+  --title-large-font-family: var(--primitives-text-font-family-ibm-plex-sans);
+  --title-large-font-size: var(--primitives-text-font-size-20);
+  --title-large-font-weight: var(--primitives-text-font-weight-medium);
+  --title-large-letter-spacing: var(--primitives-text-letter-spacing-none);
+  --title-large-line-height: var(--primitives-text-line-height-24);
+  --title-medium-font-family: var(--primitives-text-font-family-ibm-plex-sans);
+  --title-medium-font-size: var(--primitives-text-font-size-16);
+  --title-medium-font-weight: var(--primitives-text-font-weight-medium);
+  --title-medium-letter-spacing: var(--primitives-text-letter-spacing-none);
+  --title-medium-line-height: var(--primitives-text-line-height-20);
+  --title-small-font-family: var(--primitives-text-font-family-ibm-plex-sans);
+  --title-small-font-size: var(--primitives-text-font-size-12);
+  --title-small-font-weight: var(--primitives-text-font-weight-medium);
+  --title-small-letter-spacing: var(--primitives-text-letter-spacing-none);
+  --title-small-line-height: var(--primitives-text-line-height-16);
+}
+
+/* .bp-tablet — identical to Desktop, nothing to redeclare. */
+
+/* .bp-mobile — identical to Desktop, nothing to redeclare. */
+
+/* .bp-desktop-compact — identical to Desktop, nothing to redeclare. */
