@@ -1,6 +1,6 @@
-/* Semantics — the public API
+/* semantics — Base
    Generated from tokens/ by scripts/build-tokens-css.mjs — do not edit by hand.
-   Single mode: every value is a palette reference, so light/dark is handled one layer down.
+   Public API; use these names in components.
 */
 
 :root {
@@ -22,10 +22,10 @@
   --chart-neutral: var(--palette-data-neutral);
   --chart-positive: var(--palette-status-success-default);
   --chart-reference: var(--palette-line-stronger);
+  --chart-series-1: var(--palette-data-1);
   --chart-series-10: var(--palette-data-10);
   --chart-series-11: var(--palette-data-11);
   --chart-series-12: var(--palette-data-12);
-  --chart-series-1: var(--palette-data-1);
   --chart-series-2: var(--palette-data-2);
   --chart-series-3: var(--palette-data-3);
   --chart-series-4: var(--palette-data-4);

@@ -30,8 +30,8 @@
     "check": "pnpm run tokens && pnpm run typecheck && pnpm run check:theming"
   },
   "dependencies": {
-    "lit": "^3.3.3",
-    "@zebra-design-system/icons": "workspace:*"
+    "@zebra-design-system/icons": "link:../icons",
+    "lit": "^3.3.3"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.11.0",

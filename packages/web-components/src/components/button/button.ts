@@ -55,14 +55,17 @@ export class ZdsButton extends LitElement {
     // The icon follows the button's shape: only shape="sharp" takes the sharp
     // family. Button pins this rather than exposing it.
     const iconStyle = this.shape === "sharp" ? "sharp" : "rounded";
+    // Icon's size axis has no "large" consumer here: medium and large buttons
+    // both use the medium icon (see the icon spec's own size note).
+    const iconSize = this.size === "small" ? "small" : "medium";
     return html`
       <button part="button" type=${this.type} ?disabled=${this.disabled}>
         ${this.leadingIcon
-          ? html`<zds-icon class="icon" name=${this.leadingIcon} .iconStyle=${iconStyle}></zds-icon>`
+          ? html`<zds-icon class="icon" name=${this.leadingIcon} .iconStyle=${iconStyle} size=${iconSize}></zds-icon>`
           : nothing}
         <span class="label"><slot></slot></span>
         ${this.trailingIcon
-          ? html`<zds-icon class="icon" name=${this.trailingIcon} .iconStyle=${iconStyle}></zds-icon>`
+          ? html`<zds-icon class="icon" name=${this.trailingIcon} .iconStyle=${iconStyle} size=${iconSize}></zds-icon>`
           : nothing}
       </button>
     `;

@@ -1,6 +1,6 @@
-/* size — references primitives
+/* size — Desktop
    Generated from tokens/ by scripts/build-tokens-css.mjs — do not edit by hand.
-   Default mode Desktop on :root; a class per other mode carries only what differs.
+   Public API; use these names in components.
 */
 
 :root {
@@ -51,17 +51,4 @@
   --stroke-heavy: var(--primitives-scale-3);
   --stroke-thick: var(--primitives-scale-2);
   --stroke-thin: var(--primitives-scale-1);
-}
-
-.bp-mobile {
-  --container-default: var(--primitives-scale-container-0);
-  --shape: sharp;
-}
-
-.bp-tablet {
-  --container-default: var(--primitives-scale-container-1);
-}
-
-.bp-desktop-compact {
-  --container-default: var(--primitives-scale-container-2);
 }

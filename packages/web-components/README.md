@@ -39,7 +39,7 @@ stories/                       Storybook
 | `<zds-button>` | [specs/button](../../specs/button/button.spec.md) | Built from the full spec: 9 flavours × 3 sizes × 3 shapes × states |
 | `<zds-icon>` | — | Renders a glyph from `@zebra-design-system/icons` (715 names, rounded + sharp) |
 
-Adding a component: spec it with the **figma-component-spec** skill, then
+Adding a component: spec it with the **zebra-figma-component-spec** skill, then
 mirror the spec's anatomy and variant tables into `<name>.styles.ts`, using
 only unprefixed semantic tokens.
 
@@ -59,3 +59,19 @@ only unprefixed semantic tokens.
   the sharp family.
 - The ghost-scrim hover/pressed opacities (5% / 10%) are expressed with
   `color-mix`; they are the one part of Button that has no token behind it.
+
+## Fonts
+
+Two font families load automatically with the token CSS:
+
+- **IBM Plex Sans** (weights 300/400/500/700) from Google Fonts — the family
+  every typography token names. `src/tokens/fonts.css` is generated from the
+  font-family and font-weight tokens, so it cannot drift from them.
+- **The Zebra icon font**, from `@zebra-design-system/icons`.
+
+`Zebra Sans` is also named by a token but is not on Google Fonts; add its
+`@font-face` blocks to `fonts.css` to use it, otherwise tokens naming it fall
+back down the stack.
+
+For production, prefer self-hosting or `<link rel="preconnect">` in the document
+head — the generated file uses `@import`, which is render-blocking.

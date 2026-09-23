@@ -1,6 +1,6 @@
-/* typography — references primitives
+/* typography — Desktop
    Generated from tokens/ by scripts/build-tokens-css.mjs — do not edit by hand.
-   Default mode Desktop on :root; a class per other mode carries only what differs.
+   Public API; use these names in components.
 */
 
 :root {
@@ -95,9 +95,3 @@
   --title-small-letter-spacing: var(--primitives-text-letter-spacing-none);
   --title-small-line-height: var(--primitives-text-line-height-16);
 }
-
-/* .bp-tablet — identical to Desktop, nothing to redeclare. */
-
-/* .bp-mobile — identical to Desktop, nothing to redeclare. */
-
-/* .bp-desktop-compact — identical to Desktop, nothing to redeclare. */

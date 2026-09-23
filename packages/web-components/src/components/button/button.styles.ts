@@ -32,7 +32,7 @@ export default css`
     border-radius: var(--radius-none);
 
     /* --- type: size axis ----------------------------------------------- */
-    font-family: var(--label-medium-font-family);
+    font-family: var(--label-medium-font-family), system-ui, sans-serif;
     font-size: var(--label-medium-font-size);
     font-weight: 500;
     line-height: var(--label-medium-line-height);
@@ -62,14 +62,6 @@ export default css`
     flex: none;
   }
 
-  /* Button pins the icon size to the label rather than exposing it. */
-  .icon {
-    display: inline-flex;
-    width: var(--control-icon-sm);
-    height: var(--control-icon-sm);
-    color: currentColor;
-  }
-
   /* ---- size ---------------------------------------------------------- */
   :host([size="medium"]) button {
     height: var(--control-md);
@@ -77,7 +69,7 @@ export default css`
     font-size: var(--label-large-font-size);
     line-height: var(--label-large-line-height);
     letter-spacing: var(--label-large-letter-spacing);
-    font-family: var(--label-large-font-family);
+    font-family: var(--label-large-font-family), system-ui, sans-serif;
   }
   :host([size="large"]) button {
     height: var(--control-lg);
@@ -85,16 +77,11 @@ export default css`
     font-size: var(--label-large-font-size);
     line-height: var(--label-large-line-height);
     letter-spacing: var(--label-large-letter-spacing);
-    font-family: var(--label-large-font-family);
+    font-family: var(--label-large-font-family), system-ui, sans-serif;
   }
   :host([size="medium"]) .label,
   :host([size="large"]) .label {
     padding-inline: var(--space-sm);
-  }
-  :host([size="medium"]) .icon,
-  :host([size="large"]) .icon {
-    width: var(--control-icon-md);
-    height: var(--control-icon-md);
   }
 
   /* ---- shape --------------------------------------------------------- */
