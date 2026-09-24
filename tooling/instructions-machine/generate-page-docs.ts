@@ -85,11 +85,12 @@ export async function main(): Promise<void> {
 
   let filterPage = process.argv[2];
   if (filterPage === '--') filterPage = process.argv[3];
-  if (filterPage && !(filterPage in pages)) {
+  const matchedPage = filterPage && Object.keys(pages).find((p) => p.toLowerCase() === filterPage!.toLowerCase());
+  if (filterPage && !matchedPage) {
     console.error(`❌ Error: Page "${filterPage}" not found — no Figma page of that name matches a zeta-web component folder.`);
     process.exit(1);
   }
-  const pagesToRun = filterPage ? { [filterPage]: pages[filterPage] } : pages;
+  const pagesToRun = matchedPage ? { [matchedPage]: pages[matchedPage] } : pages;
 
   const docsDir = path.join(process.cwd(), config.output.docsDir);
   const debugSpecsDir = path.join(process.cwd(), config.output.debugSpecsDir);
