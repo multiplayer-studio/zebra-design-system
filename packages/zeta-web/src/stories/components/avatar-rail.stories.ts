@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { ZetaAvatar } from "../../components/avatar/avatar.js";
+import "../../components/avatar/avatar.js";
 
 type AvatarRailArgs = {
   "show-close": boolean;
