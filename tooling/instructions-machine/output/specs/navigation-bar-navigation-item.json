@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2835-796&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2841:3535",
-  "fetchedAt": "2026-09-22T20:44:22.568Z",
+  "fetchedAt": "2026-09-24T09:01:34.894Z",
   "componentProperties": {
     "Label#2841:4": {
       "type": "TEXT",
@@ -110,6 +110,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           }
         },
         "Navigation Item/Label": {
@@ -125,15 +129,15 @@
             "fontWeight": 400,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": null
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": null
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": null
             }
           }
         }
@@ -194,6 +198,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           }
         },
         "Navigation Item/Label": {
@@ -209,15 +217,15 @@
             "fontWeight": 400,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": null
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": null
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": null
             }
           }
         }
@@ -278,6 +286,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           }
         },
         "Navigation Item/Label": {
@@ -293,15 +305,15 @@
             "fontWeight": 400,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": null
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": null
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": null
             }
           }
         }

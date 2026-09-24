@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3182-237&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "3453:54061",
-  "fetchedAt": "2026-09-22T20:44:33.121Z",
+  "fetchedAt": "2026-09-24T09:01:38.285Z",
   "componentProperties": {
     "Footer Slot#3200:16": {
       "type": "SLOT",
@@ -217,6 +217,14 @@
           }
         },
         "Navigation Rail/Main Rail/Icon Button": {
+          "width": {
+            "raw": 48,
+            "token": "control.lg"
+          },
+          "height": {
+            "raw": 48,
+            "token": "control.lg"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -232,6 +240,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -442,7 +454,11 @@
               "raw": "#545963",
               "token": "border.default"
             }
-          ]
+          ],
+          "strokeWeight": {
+            "raw": 1,
+            "token": null
+          }
         },
         "Navigation Rail/Sub menu/Sub Menu Header": {
           "strokes": [
@@ -451,6 +467,10 @@
               "token": "border.default"
             }
           ],
+          "strokeWeight": {
+            "raw": 1,
+            "token": null
+          },
           "itemSpacing": {
             "raw": 10,
             "token": null
@@ -539,6 +559,14 @@
           }
         },
         "Navigation Rail/Main Rail/Icon Button": {
+          "width": {
+            "raw": 48,
+            "token": "control.lg"
+          },
+          "height": {
+            "raw": 48,
+            "token": "control.lg"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -554,6 +582,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -764,7 +796,11 @@
               "raw": "#545963",
               "token": "border.default"
             }
-          ]
+          ],
+          "strokeWeight": {
+            "raw": 1,
+            "token": null
+          }
         },
         "Navigation Rail/Sub menu/Sub Menu Header": {
           "strokes": [
@@ -773,6 +809,10 @@
               "token": "border.default"
             }
           ],
+          "strokeWeight": {
+            "raw": 1,
+            "token": null
+          },
           "itemSpacing": {
             "raw": 10,
             "token": null
@@ -861,6 +901,10 @@
           }
         },
         "Navigation Rail/Main Rail/Button": {
+          "height": {
+            "raw": 48,
+            "token": "control.lg"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -876,6 +920,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -1096,7 +1144,11 @@
               "raw": "#545963",
               "token": "border.default"
             }
-          ]
+          ],
+          "strokeWeight": {
+            "raw": 1,
+            "token": null
+          }
         },
         "Navigation Rail/Sub menu/Sub Menu Header": {
           "strokes": [
@@ -1105,6 +1157,10 @@
               "token": "border.default"
             }
           ],
+          "strokeWeight": {
+            "raw": 1,
+            "token": null
+          },
           "itemSpacing": {
             "raw": 10,
             "token": null

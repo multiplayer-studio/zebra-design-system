@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-5903&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2669:10309",
-  "fetchedAt": "2026-09-22T20:44:16.318Z",
+  "fetchedAt": "2026-09-24T09:01:32.866Z",
   "componentProperties": {
     "Trigger Slot#2669:112": {
       "type": "SLOT",
@@ -90,6 +90,10 @@
           }
         },
         "Template/Dropdown/Trigger Component/Button": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -106,98 +110,9 @@
             "raw": 4,
             "token": "radius.element-sm"
           },
-          "padding": {
-            "left": {
-              "raw": 12,
-              "token": "space.md"
-            },
-            "right": {
-              "raw": 12,
-              "token": "space.md"
-            },
-            "top": {
-              "raw": 4,
-              "token": "space.xs"
-            },
-            "bottom": {
-              "raw": 4,
-              "token": "space.xs"
-            }
-          }
-        },
-        "Template/Dropdown/Dropdown Menu": {
-          "fills": [
-            {
-              "raw": "#ffffff",
-              "token": "surface.menu"
-            }
-          ],
-          "cornerRadius": {
-            "raw": 6,
-            "token": "radius.element-md"
-          },
-          "itemSpacing": {
-            "raw": 2,
-            "token": "space.2xs"
-          },
-          "padding": {
-            "left": {
-              "raw": 12,
-              "token": "space.card"
-            },
-            "right": {
-              "raw": 12,
-              "token": "space.card"
-            },
-            "top": {
-              "raw": 12,
-              "token": "space.card"
-            },
-            "bottom": {
-              "raw": 12,
-              "token": "space.card"
-            }
-          }
-        }
-      }
-    },
-    {
-      "name": "Open=true, Position=bottom, Align=right",
-      "nodeId": "2669:10310",
-      "properties": {
-        "Open": "true",
-        "Position": "bottom",
-        "Align": "right"
-      },
-      "values": {
-        "Template/Dropdown": {
-          "itemSpacing": {
-            "raw": 10,
-            "token": null
-          }
-        },
-        "Template/Dropdown/Trigger Component": {
-          "itemSpacing": {
-            "raw": 10,
-            "token": null
-          }
-        },
-        "Template/Dropdown/Trigger Component/Button": {
-          "fills": [
-            {
-              "raw": "#1f69ff",
-              "token": "interactive.primary.background.default"
-            }
-          ],
-          "strokes": [
-            {
-              "raw": "#1f69ff",
-              "token": "interactive.primary.border.default"
-            }
-          ],
-          "cornerRadius": {
-            "raw": 4,
-            "token": "radius.element-sm"
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -256,7 +171,7 @@
     },
     {
       "name": "Open=true, Position=bottom, Align=left",
-      "nodeId": "2688:14028",
+      "nodeId": "2669:10310",
       "properties": {
         "Open": "true",
         "Position": "bottom",
@@ -276,6 +191,10 @@
           }
         },
         "Template/Dropdown/Trigger Component/Button": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -291,6 +210,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -348,11 +271,11 @@
       }
     },
     {
-      "name": "Open=true, Position=top, Align=right",
-      "nodeId": "2669:10611",
+      "name": "Open=true, Position=bottom, Align=right",
+      "nodeId": "2688:14028",
       "properties": {
         "Open": "true",
-        "Position": "top",
+        "Position": "bottom",
         "Align": "right"
       },
       "values": {
@@ -369,6 +292,10 @@
           }
         },
         "Template/Dropdown/Trigger Component/Button": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -384,6 +311,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -442,7 +373,7 @@
     },
     {
       "name": "Open=true, Position=top, Align=left",
-      "nodeId": "2688:14069",
+      "nodeId": "2669:10611",
       "properties": {
         "Open": "true",
         "Position": "top",
@@ -462,6 +393,10 @@
           }
         },
         "Template/Dropdown/Trigger Component/Button": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -477,6 +412,111 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "Template/Dropdown/Dropdown Menu": {
+          "fills": [
+            {
+              "raw": "#ffffff",
+              "token": "surface.menu"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 6,
+            "token": "radius.element-md"
+          },
+          "itemSpacing": {
+            "raw": 2,
+            "token": "space.2xs"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.card"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.card"
+            },
+            "top": {
+              "raw": 12,
+              "token": "space.card"
+            },
+            "bottom": {
+              "raw": 12,
+              "token": "space.card"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Open=true, Position=top, Align=right",
+      "nodeId": "4938:3022",
+      "properties": {
+        "Open": "true",
+        "Position": "top",
+        "Align": "right"
+      },
+      "values": {
+        "Template/Dropdown": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Template/Dropdown/Trigger Component": {
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "Template/Dropdown/Trigger Component/Button": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 4,
+            "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -555,6 +595,10 @@
           }
         },
         "Template/Dropdown/Trigger Component/Button": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -570,6 +614,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -648,6 +696,10 @@
           }
         },
         "Template/Dropdown/Trigger Component/Button": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -663,6 +715,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -741,6 +797,10 @@
           }
         },
         "Template/Dropdown/Trigger Component/Button": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -756,6 +816,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -834,6 +898,10 @@
           }
         },
         "Template/Dropdown/Trigger Component/Button": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -849,6 +917,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {

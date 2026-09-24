@@ -1,0 +1,132 @@
+{
+  "componentName": "CARD TEMPLATE DEFAULT",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "4977:1013",
+  "fetchedAt": "2026-09-24T09:01:35.501Z",
+  "hero": {
+    "statusLabel": "CARD TEMPLATE DEFAULT · PATTERN METADATA",
+    "heading": "What this component does",
+    "description": "A ready-made card built on Card base, offered in three content layouts and two corner treatments. It declares no properties of its own beyond those two axes, so everything else is configured through the exposed Card base instance inside it. This is a condensed record, the shell and its slots are documented in the Card base Metadata frame."
+  },
+  "sections": [
+    {
+      "kind": "table",
+      "nodeId": "4977:1022",
+      "title": "Property Breakdown",
+      "columns": [
+        "Property",
+        "Type",
+        "Default",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Layout",
+          "Type": "text",
+          "Default": true,
+          "Description": "A heading row, a block of body text and a footer of actions. The everyday card, and the only layout with no image in it."
+        },
+        {
+          "Property": "Layout",
+          "Type": "media inset",
+          "Default": "-",
+          "Description": "Adds an image inside the body above a second heading and the text, keeping the card's own header row on top. Use it when the card needs both an owner row and a picture."
+        },
+        {
+          "Property": "Layout",
+          "Type": "media",
+          "Default": "-",
+          "Description": "Drops the header row entirely and leads with the image. It is wider than the other two, so it will not line up with them in a grid."
+        },
+        {
+          "Property": "Shape",
+          "Type": "sharp",
+          "Default": true,
+          "Description": "Square corners. It sets the shell's Shape to sharp."
+        },
+        {
+          "Property": "Shape",
+          "Type": "round",
+          "Default": "-",
+          "Description": "Softened corners. It sets the shell's Shape to rounded, and the shell clips its content to the curve."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4977:1156",
+      "title": "Content & Slot",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Card base",
+          "Type": "exposed nested instance",
+          "Description": "The shell the template is built on. Exposed, so its Shape, its header and footer toggles and all three slots stay reachable. See the Card base Metadata frame."
+        },
+        {
+          "Property": "Header content",
+          "Type": "filled per Layout",
+          "Description": "_Card Heading with an Avatar and an Icon Button in the text and media inset layouts. The media layout leaves the header off entirely."
+        },
+        {
+          "Property": "Body content",
+          "Type": "filled per Layout",
+          "Description": "_Card Body alone in the text layout. _Card Image, a second _Card Heading and _Card Body stacked in both media layouts."
+        },
+        {
+          "Property": "Footer content",
+          "Type": "filled per Layout",
+          "Description": "_Card Footer in every layout, carrying a Button in the text layout."
+        }
+      ]
+    },
+    {
+      "kind": "bullet-list",
+      "nodeId": "4977:1223",
+      "title": "Accessibility & Content Guidelines",
+      "items": [
+        "The template is a composition rather than a component with behaviour. Everything interactive in it, the avatar, the icon button and the footer actions, is documented by its own component.",
+        "The media layouts lead with an image that carries no text. Give it a description in code, or make sure the heading below it does that work.",
+        "Card content is clipped at the shell's edge, so check long headings and body text at the template's fixed width.",
+        "Nothing here makes the card itself clickable. If the whole card is a link, that target and its focus treatment belong to the implementation."
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4977:1227",
+      "title": "Layout & Theming Intents",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Width",
+          "Type": "Fixed per Layout",
+          "Description": "360px for text and media inset, 394px for media. The shell itself ships at 330px, so the template resizes it."
+        },
+        {
+          "Property": "Height",
+          "Type": "Hug",
+          "Description": "228px for text, 523px for media inset and 451px for media, growing with whatever replaces the placeholder content."
+        },
+        {
+          "Property": "Shape",
+          "Type": "Passed to the shell",
+          "Description": "The template's Shape sets the shell's, so the corner treatment and the clipping that follows from it both come from Card base."
+        },
+        {
+          "Property": "Surface and border",
+          "Type": "From the shell",
+          "Description": "The template paints nothing of its own. surface/card, the border and the clipping all belong to Card base."
+        }
+      ]
+    }
+  ]
+}

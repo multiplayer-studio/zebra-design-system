@@ -499,12 +499,12 @@
           },
           "hover": {
             "$type": "color",
-            "$value": "{palette.fill.inversehover}",
+            "$value": "{palette.fill.inverse-sunken}",
             "$description": "Hover state for an inverse-surface interactive element."
           },
           "pressed": {
             "$type": "color",
-            "$value": "{palette.fill.inversepressed}",
+            "$value": "{palette.fill.inverse-elevated}",
             "$description": "Pressed state for an inverse-surface interactive element."
           },
           "focused": {
@@ -514,7 +514,7 @@
           },
           "selected": {
             "$type": "color",
-            "$value": "{palette.fill.inversepressed}",
+            "$value": "{palette.fill.inverse-elevated}",
             "$description": "Selected state for an inverse-surface interactive element."
           },
           "disabled": {
@@ -543,12 +543,12 @@
           },
           "hover": {
             "$type": "border",
-            "$value": "{palette.fill.inversehover}",
+            "$value": "{palette.fill.inverse-sunken}",
             "$description": "Hover-state border for an inverse-surface interactive element."
           },
           "pressed": {
             "$type": "border",
-            "$value": "{palette.fill.inversepressed}",
+            "$value": "{palette.fill.inverse-elevated}",
             "$description": "Pressed-state border for an inverse-surface interactive element."
           },
           "disabled": {

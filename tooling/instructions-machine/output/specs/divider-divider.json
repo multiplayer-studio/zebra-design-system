@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2152-8795&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2152:8803",
-  "fetchedAt": "2026-09-22T20:44:02.754Z",
+  "fetchedAt": "2026-09-24T09:01:28.198Z",
   "componentProperties": {
     "Orientation": {
       "type": "VARIANT",
@@ -37,6 +37,10 @@
       },
       "values": {
         "Divider": {
+          "height": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
@@ -48,7 +52,11 @@
               "raw": "#ced2db",
               "token": "border.default"
             }
-          ]
+          ],
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
+          }
         }
       }
     },
@@ -60,6 +68,10 @@
       },
       "values": {
         "Divider": {
+          "width": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
@@ -71,7 +83,11 @@
               "raw": "#ced2db",
               "token": "border.default"
             }
-          ]
+          ],
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
+          }
         }
       }
     }

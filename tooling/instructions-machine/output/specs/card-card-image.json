@@ -1,0 +1,29 @@
+{
+  "componentName": "_Card Image",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "3637:581",
+  "fetchedAt": "2026-09-24T09:01:35.499Z",
+  "componentProperties": {},
+  "structure": {
+    "path": "_Card Image",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "_Card Image/Image",
+        "type": "FRAME"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "_Card Image",
+      "nodeId": "3637:581",
+      "properties": {},
+      "values": {
+        "_Card Image": {},
+        "_Card Image/Image": {}
+      }
+    }
+  ]
+}

@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3182-237&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "3453:54275",
-  "fetchedAt": "2026-09-22T20:44:33.122Z",
+  "fetchedAt": "2026-09-24T09:01:38.290Z",
   "componentProperties": {
     "Label#2841:4": {
       "type": "TEXT",
@@ -164,15 +164,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": "label.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": "label.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": "label.medium.letter spacing"
             }
           }
         },
@@ -198,6 +198,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
           }
         },
         "Sub Menu Item/Trailing Slot": {
@@ -277,15 +281,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": "label.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": "label.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": "label.medium.letter spacing"
             }
           }
         },
@@ -311,6 +315,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
           }
         },
         "Sub Menu Item/Trailing Slot": {
@@ -390,15 +398,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": "label.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": "label.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": "label.medium.letter spacing"
             }
           }
         },
@@ -424,6 +432,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
           }
         },
         "Sub Menu Item/Trailing Slot": {
@@ -509,15 +521,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": "label.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": "label.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": "label.medium.letter spacing"
             }
           }
         },
@@ -543,6 +555,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
           }
         },
         "Sub Menu Item/Trailing Slot": {
@@ -628,15 +644,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 12,
-              "token": "indicator.medium"
+              "token": "indicator.medium.font size"
             },
             "lineHeight": {
               "raw": 14,
-              "token": "indicator.medium"
+              "token": "indicator.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "indicator.medium"
+              "token": "indicator.medium.letter spacing"
             }
           }
         },
@@ -662,6 +678,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
           }
         },
         "Sub Menu Item/Trailing Slot": {
@@ -741,15 +761,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 12,
-              "token": "indicator.medium"
+              "token": "indicator.medium.font size"
             },
             "lineHeight": {
               "raw": 14,
-              "token": "indicator.medium"
+              "token": "indicator.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "indicator.medium"
+              "token": "indicator.medium.letter spacing"
             }
           }
         },
@@ -775,6 +795,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
           }
         },
         "Sub Menu Item/Trailing Slot": {
@@ -854,15 +878,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 12,
-              "token": "indicator.medium"
+              "token": "indicator.medium.font size"
             },
             "lineHeight": {
               "raw": 14,
-              "token": "indicator.medium"
+              "token": "indicator.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "indicator.medium"
+              "token": "indicator.medium.letter spacing"
             }
           }
         },
@@ -888,6 +912,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
           }
         },
         "Sub Menu Item/Trailing Slot": {
@@ -973,15 +1001,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 12,
-              "token": "indicator.medium"
+              "token": "indicator.medium.font size"
             },
             "lineHeight": {
               "raw": 14,
-              "token": "indicator.medium"
+              "token": "indicator.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "indicator.medium"
+              "token": "indicator.medium.letter spacing"
             }
           }
         },
@@ -1007,6 +1035,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
           }
         },
         "Sub Menu Item/Trailing Slot": {
@@ -1092,15 +1124,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": "label.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": "label.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": "label.medium.letter spacing"
             }
           }
         },
@@ -1126,6 +1158,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
           }
         },
         "Sub Menu Item/Trailing Slot": {
@@ -1211,15 +1247,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 12,
-              "token": "indicator.medium"
+              "token": "indicator.medium.font size"
             },
             "lineHeight": {
               "raw": 14,
-              "token": "indicator.medium"
+              "token": "indicator.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "indicator.medium"
+              "token": "indicator.medium.letter spacing"
             }
           }
         },
@@ -1245,6 +1281,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
           }
         },
         "Sub Menu Item/Trailing Slot": {

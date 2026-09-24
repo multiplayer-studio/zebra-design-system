@@ -124,11 +124,11 @@
         "$value": "{primitives.color.brand.main.90}",
         "$description": "Selected item/text background (theme.color.selection.background)"
       },
-      "inversehover": {
+      "inverse-sunken": {
         "$type": "color",
         "$value": "{primitives.color.neutral.cool.30}"
       },
-      "inversepressed": {
+      "inverse-elevated": {
         "$type": "color",
         "$value": "{primitives.color.neutral.cool.10}"
       },

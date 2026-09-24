@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3108-191&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "3116:1217",
-  "fetchedAt": "2026-09-22T20:44:28.547Z",
+  "fetchedAt": "2026-09-24T09:01:37.181Z",
   "componentProperties": {
     "Page Title#3116:0": {
       "type": "TEXT",
@@ -203,6 +203,14 @@
           }
         },
         "Top App Bar/Main/Frame 2/Icon Button": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -218,6 +226,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -264,15 +276,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 16,
-              "token": "body.medium | label.large"
+              "token": "label.large.font size"
             },
             "lineHeight": {
               "raw": 24,
-              "token": "body.medium | label.large"
+              "token": "label.large.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "body.medium | label.large"
+              "token": "label.large.letter spacing"
             }
           }
         },
@@ -329,6 +341,14 @@
           }
         },
         "Top App Bar/Main/Frame 2/Icon Button": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -344,6 +364,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -390,15 +414,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 16,
-              "token": "body.medium | label.large"
+              "token": "label.large.font size"
             },
             "lineHeight": {
               "raw": 24,
-              "token": "body.medium | label.large"
+              "token": "label.large.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "body.medium | label.large"
+              "token": "label.large.letter spacing"
             }
           }
         },
@@ -451,6 +475,14 @@
           }
         },
         "Top App Bar/Main/Frame 2/Icon Button": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -466,6 +498,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -511,20 +547,28 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": "label.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": "label.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": "label.medium.letter spacing"
             }
           }
         },
         "Top App Bar/Main/Trailing": {},
         "Top App Bar/Main/Trailing/Icon Button": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -540,6 +584,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -612,6 +660,14 @@
           }
         },
         "Top App Bar/Main/Frame 2/Icon Button": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -627,6 +683,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -672,20 +732,28 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": "label.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": "label.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": "label.medium.letter spacing"
             }
           }
         },
         "Top App Bar/Main/Trailing": {},
         "Top App Bar/Main/Trailing/Icon Button": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -701,6 +769,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -769,6 +841,14 @@
           }
         },
         "Top App Bar/Main/Frame 3/Icon Button": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -784,6 +864,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -829,15 +913,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": "label.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": "label.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": "label.medium.letter spacing"
             }
           }
         },
@@ -894,6 +978,14 @@
           }
         },
         "Top App Bar/Main/Frame 3/Icon Button": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -909,6 +1001,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -954,15 +1050,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": "label.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": "label.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": "label.medium.letter spacing"
             }
           }
         },
@@ -1015,6 +1111,10 @@
           }
         },
         "Top App Bar/Main/Frame 3/Button": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -1030,6 +1130,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -1103,6 +1207,10 @@
           }
         },
         "Top App Bar/Main/Frame 3/Button": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -1118,6 +1226,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -1186,6 +1298,14 @@
           }
         },
         "Top App Bar/Main/Icon Button": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -1201,6 +1321,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -1222,6 +1346,10 @@
           }
         },
         "Top App Bar/Main/Search": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#0c0d0e00",
@@ -1237,6 +1365,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "itemSpacing": {
             "raw": 4,
@@ -1312,6 +1444,14 @@
           }
         },
         "Top App Bar/Main/Icon Button": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -1327,6 +1467,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -1348,6 +1492,10 @@
           }
         },
         "Top App Bar/Main/Search": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#0c0d0e00",
@@ -1363,6 +1511,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "itemSpacing": {
             "raw": 4,
@@ -1435,6 +1587,14 @@
           }
         },
         "Top App Bar/Main/Frame 2/Icon Button": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -1450,6 +1610,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -1500,15 +1664,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 16,
-              "token": "body.medium | label.large"
+              "token": "label.large.font size"
             },
             "lineHeight": {
               "raw": 24,
-              "token": "body.medium | label.large"
+              "token": "label.large.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "body.medium | label.large"
+              "token": "label.large.letter spacing"
             }
           }
         }
@@ -1564,6 +1728,14 @@
           }
         },
         "Top App Bar/Main/Frame 2/Icon Button": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -1579,6 +1751,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -1629,15 +1805,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 16,
-              "token": "body.medium | label.large"
+              "token": "label.large.font size"
             },
             "lineHeight": {
               "raw": 24,
-              "token": "body.medium | label.large"
+              "token": "label.large.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "body.medium | label.large"
+              "token": "label.large.letter spacing"
             }
           }
         }

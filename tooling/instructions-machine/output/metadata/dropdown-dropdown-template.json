@@ -1,0 +1,163 @@
+{
+  "componentName": "DROPDOWN TEMPLATE",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-5903&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "4948:977",
+  "fetchedAt": "2026-09-24T09:01:32.869Z",
+  "hero": {
+    "statusLabel": "DROPDOWN TEMPLATE · PATTERN METADATA",
+    "heading": "What this component does",
+    "description": "A pattern rather than a component, pairing a trigger with a Dropdown Menu and placing the menu relative to it. Open shows or hides the menu, Position picks which side it opens on and Align pins which edges line up. The menu is positioned absolutely and sits outside the template's bounds, so a layout only reserves the trigger's space. This is a condensed record, the panel and its rows are documented in their own frames."
+  },
+  "sections": [
+    {
+      "kind": "table",
+      "nodeId": "4948:986",
+      "title": "Property Breakdown",
+      "columns": [
+        "Property",
+        "Type",
+        "Default",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Open",
+          "Type": "false",
+          "Default": true,
+          "Description": "The resting state, trigger only. The menu is still present but hidden, so anything placed in it is kept."
+        },
+        {
+          "Property": "Open",
+          "Type": "true",
+          "Default": "-",
+          "Description": "Reveals the menu. Only one closed variant is built, so Position and Align have no effect until Open is true."
+        },
+        {
+          "Property": "Position",
+          "Type": "bottom",
+          "Default": true,
+          "Description": "Opens below the trigger. The default, and the right choice unless the trigger sits low in the viewport."
+        },
+        {
+          "Property": "Position",
+          "Type": "top",
+          "Default": "-",
+          "Description": "Opens above the trigger, for a trigger near the bottom of the view."
+        },
+        {
+          "Property": "Position",
+          "Type": "right",
+          "Default": "-",
+          "Description": "Opens to the trailing side, for a trigger in a narrow column or a side rail."
+        },
+        {
+          "Property": "Position",
+          "Type": "left",
+          "Default": "-",
+          "Description": "Opens to the leading side, for a trigger near the trailing edge of the view."
+        },
+        {
+          "Property": "Align",
+          "Type": "left",
+          "Default": true,
+          "Description": "With Position bottom or top, lines the menu's leading edge up with the trigger's."
+        },
+        {
+          "Property": "Align",
+          "Type": "right",
+          "Default": "-",
+          "Description": "With Position bottom or top, lines the trailing edges up instead, for a trigger near the trailing edge."
+        },
+        {
+          "Property": "Align",
+          "Type": "top",
+          "Default": "-",
+          "Description": "With Position left or right, lines the top edges up. It has no effect while Position is bottom or top."
+        },
+        {
+          "Property": "Align",
+          "Type": "bottom",
+          "Default": "-",
+          "Description": "With Position left or right, lines the bottom edges up. It has no effect while Position is bottom or top."
+        },
+        {
+          "Property": "Trigger Component",
+          "Type": "instance swap",
+          "Default": "Button",
+          "Description": "The control the menu opens from. Button and Icon Button are the suggested options, and the instance stays exposed so the trigger's own label and flavour remain editable."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4948:1120",
+      "title": "Content & Slot",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Trigger Component",
+          "Type": "instance swap, prefers Button or Icon Button",
+          "Description": "The control the menu opens from. Swap it through the property rather than replacing the layer, and the instance stays exposed so the trigger's own properties remain reachable."
+        },
+        {
+          "Property": "Dropdown Menu",
+          "Type": "exposed nested instance",
+          "Description": "The panel itself, pinned to Rounded=true. Exposed, so its More Items toggle and its slot are reachable from the template. See the Dropdown Menu Metadata frame."
+        },
+        {
+          "Property": "Menu content",
+          "Type": "through the nested menu",
+          "Description": "Rows go into the menu's slot, not into the template. The template surfaces the Rounded=true slot, so anything placed here belongs to that variant of the menu."
+        }
+      ]
+    },
+    {
+      "kind": "bullet-list",
+      "nodeId": "4948:1187",
+      "title": "Accessibility & Content Guidelines",
+      "items": [
+        "Open is a static variant, not a behaviour. Showing and hiding the menu, returning focus to the trigger and closing on escape all belong to the implementation.",
+        "The menu sits outside the template's bounds, so nothing here stops it opening off-screen. Flipping Position near a viewport edge is the implementation's job.",
+        "The trigger needs an accessible name and a state saying whether the menu is open. Neither is modelled here.",
+        "Rows inside the menu are the interactive targets. Keyboard movement between them is not modelled by this pattern."
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4948:1191",
+      "title": "Layout & Theming Intents",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Bounds",
+          "Type": "Hug the trigger only",
+          "Description": "76×36px as drawn, the size of its trigger. The menu is absolutely positioned and sits outside those bounds, so a layout containing this pattern reserves no space for the open menu."
+        },
+        {
+          "Property": "Offset",
+          "Type": "Fixed",
+          "Description": "The menu clears the trigger by 8px on whichever side Position selects."
+        },
+        {
+          "Property": "Alignment",
+          "Type": "Fixed per Align",
+          "Description": "Align pins opposite edges together. With Position bottom or top the menu's leading or trailing edge lines up with the trigger's, with Position left or right its top or bottom edge does."
+        },
+        {
+          "Property": "Fill and elevation",
+          "Type": "None on the template",
+          "Description": "The template paints nothing of its own. The surface and the shadow both belong to the menu."
+        }
+      ]
+    }
+  ]
+}

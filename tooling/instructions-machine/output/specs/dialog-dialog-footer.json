@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2526-316&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2644:3185",
-  "fetchedAt": "2026-09-22T20:44:10.062Z",
+  "fetchedAt": "2026-09-24T09:01:30.621Z",
   "componentProperties": {
     "Right Action#2896:32": {
       "type": "SLOT",
@@ -53,10 +53,6 @@
           {
             "path": "Dialog Footer/Right Button Group/Primary",
             "type": "INSTANCE"
-          },
-          {
-            "path": "Dialog Footer/Right Button Group/Right Action",
-            "type": "SLOT"
           }
         ]
       },
@@ -69,14 +65,12 @@
         "type": "INSTANCE"
       },
       {
-        "path": "Dialog Footer/Left Button Group",
-        "type": "FRAME",
-        "children": [
-          {
-            "path": "Dialog Footer/Left Button Group/Left Action",
-            "type": "SLOT"
-          }
-        ]
+        "path": "Dialog Footer/Left Action",
+        "type": "SLOT"
+      },
+      {
+        "path": "Dialog Footer/Right Action",
+        "type": "SLOT"
       }
     ]
   },
@@ -113,6 +107,10 @@
           }
         },
         "Dialog Footer/Tertiary": {
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#0c0d0e00",
@@ -128,6 +126,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -155,6 +157,10 @@
           }
         },
         "Dialog Footer/Right Button Group/Secondary": {
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -170,6 +176,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
           },
           "padding": {
             "left": {
@@ -191,6 +201,10 @@
           }
         },
         "Dialog Footer/Right Button Group/Primary": {
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -206,6 +220,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -264,6 +282,10 @@
           }
         },
         "Dialog Footer/Secondary": {
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -279,6 +301,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
           },
           "padding": {
             "left": {
@@ -300,6 +326,10 @@
           }
         },
         "Dialog Footer/Primary": {
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -315,6 +345,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -373,6 +407,10 @@
           }
         },
         "Dialog Footer/Primary": {
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -388,6 +426,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -445,25 +487,13 @@
             }
           }
         },
-        "Dialog Footer/Left Button Group": {
+        "Dialog Footer/Left Action": {
           "itemSpacing": {
             "raw": 8,
             "token": "space.sm"
           }
         },
-        "Dialog Footer/Left Button Group/Left Action": {
-          "itemSpacing": {
-            "raw": 8,
-            "token": "space.sm"
-          }
-        },
-        "Dialog Footer/Right Button Group": {
-          "itemSpacing": {
-            "raw": 8,
-            "token": "space.sm"
-          }
-        },
-        "Dialog Footer/Right Button Group/Right Action": {
+        "Dialog Footer/Right Action": {
           "itemSpacing": {
             "raw": 8,
             "token": "space.sm"

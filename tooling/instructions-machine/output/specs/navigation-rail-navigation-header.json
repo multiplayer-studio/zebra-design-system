@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3182-237&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "3453:54312",
-  "fetchedAt": "2026-09-22T20:44:33.123Z",
+  "fetchedAt": "2026-09-24T09:01:38.290Z",
   "componentProperties": {
     "Title#3388:1": {
       "type": "TEXT",
@@ -149,19 +149,27 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": "label.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": "label.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": "label.medium.letter spacing"
             }
           }
         },
         "Navigation Header/Icon Button": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -177,6 +185,10 @@
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -262,7 +274,12 @@
             }
           }
         },
-        "Navigation Header/Logo with Title/Icon": {},
+        "Navigation Header/Logo with Title/Icon": {
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
         "Navigation Header/Logo with Title/Page Title": {
           "itemSpacing": {
             "raw": 8,
@@ -282,19 +299,27 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": "label.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": "label.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": "label.medium.letter spacing"
             }
           }
         },
         "Navigation Header/Icon Button": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -310,6 +335,10 @@
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -362,7 +391,12 @@
             }
           }
         },
-        "Navigation Header/Avatar/Icon": {}
+        "Navigation Header/Avatar/Icon": {
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        }
       }
     }
   ]

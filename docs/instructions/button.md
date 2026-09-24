@@ -4,7 +4,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Button
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2024-6729&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2060-15072&m=dev
 
 ### Overview
 
@@ -121,18 +121,20 @@ Triggers an action from a text label, with optional icons on either side. Nine f
 ### Layer structure
 
 - Button (COMPONENT)
-  - Button/Leading Icon (INSTANCE)
+  - Button/Leading Icon (INSTANCE, icon: Verified)
   - Button/Label (FRAME)
     - Button/Label/Label (TEXT)
-  - Button/Trailing Icon (INSTANCE)
+  - Button/Trailing Icon (INSTANCE, icon: Verified)
 
 ### Resolved tokens (default variant: Size=medium, Shape=rounded, Flavour=primary, State=default, Disabled=false)
 
 | Layer | Field | Raw | Token |
 | --- | --- | --- | --- |
+| Button | height | 40 | control.md |
 | Button | fill[0] | #1f69ff | interactive.primary.background.default |
 | Button | stroke[0] | #1f69ff | interactive.primary.border.default |
 | Button | cornerRadius | 4 | radius.element-sm |
+| Button | strokeWeight | 0 | stroke.base |
 | Button | padding.left | 12 | space.md |
 | Button | padding.right | 12 | space.md |
 | Button | padding.top | 4 | space.xs |
@@ -140,21 +142,23 @@ Triggers an action from a text label, with optional icons on either side. Nine f
 | Button/Label | padding.left | 8 | space.sm |
 | Button/Label | padding.right | 8 | space.sm |
 | Button/Label/Label | fill[0] | #f8fbff | interactive.primary.foreground.default |
-| Button/Label/Label | fontSize | 16 | body.medium \| label.large |
-| Button/Label/Label | lineHeight | 24 | body.medium \| label.large |
-| Button/Label/Label | letterSpacing | 0 | body.medium \| label.large |
+| Button/Label/Label | fontSize | 16 | label.large.font size |
+| Button/Label/Label | lineHeight | 24 | label.large.line height |
+| Button/Label/Label | letterSpacing | 0 | label.large.letter spacing |
 
 ### Token changes by property
 
 | Property | Value | Layer | Field | Token |
 | --- | --- | --- | --- | --- |
+| Size | large | Button | height | control.lg |
 | Size | large | Button | padding.left | space.lg |
 | Size | large | Button | padding.right | space.lg |
+| Size | small | Button | height | control.sm |
 | Size | small | Button/Label | padding.left | space.xs |
 | Size | small | Button/Label | padding.right | space.xs |
-| Size | small | Button/Label/Label | fontSize | label.medium |
-| Size | small | Button/Label/Label | lineHeight | label.medium |
-| Size | small | Button/Label/Label | letterSpacing | label.medium |
+| Size | small | Button/Label/Label | fontSize | label.medium.font size |
+| Size | small | Button/Label/Label | lineHeight | label.medium.line height |
+| Size | small | Button/Label/Label | letterSpacing | label.medium.letter spacing |
 | Shape | sharp | Button | cornerRadius | radius.none |
 | Shape | full | Button | cornerRadius | radius.pill |
 | Flavour | positive | Button | fill[0] | interactive.positive.background.default |
@@ -163,33 +167,38 @@ Triggers an action from a text label, with optional icons on either side. Nine f
 | Flavour | negative | Button | fill[0] | interactive.destructive.background.default |
 | Flavour | negative | Button | stroke[0] | interactive.destructive.border.default |
 | Flavour | negative | Button/Label/Label | fill[0] | interactive.destructive.foreground.default |
-| Flavour | subtle | Button | fill[0] | interactive.neutral.background.default |
-| Flavour | subtle | Button | stroke[0] | interactive.neutral.border.default |
-| Flavour | subtle | Button/Label/Label | fill[0] | interactive.neutral.foreground.default |
+| Flavour | outline | Button | fill[0] | interactive.neutral.background.default |
+| Flavour | outline | Button | stroke[0] | interactive.ghost.border.default |
+| Flavour | outline | Button | strokeWeight | stroke.thin |
+| Flavour | outline | Button/Label/Label | fill[0] | interactive.ghost.foreground.default |
+| Flavour | outline-subtle | Button | fill[0] | interactive.neutral.background.default |
+| Flavour | outline-subtle | Button | stroke[0] | interactive.neutral.border.default |
+| Flavour | outline-subtle | Button | strokeWeight | stroke.thin |
+| Flavour | outline-subtle | Button/Label/Label | fill[0] | interactive.neutral.foreground.default |
 | Flavour | text | Button | fill[0] | interactive.ghost.background.default |
 | Flavour | text | Button | stroke[0] | interactive.ghost.border.default |
 | Flavour | text | Button/Label/Label | fill[0] | interactive.ghost.foreground.default |
-| Flavour | outline-subtle | Button | fill[0] | interactive.neutral.background.default |
-| Flavour | outline-subtle | Button | stroke[0] | interactive.neutral.border.default |
-| Flavour | outline-subtle | Button/Label/Label | fill[0] | interactive.neutral.foreground.default |
-| Flavour | outline | Button | fill[0] | interactive.neutral.background.default |
-| Flavour | outline | Button | stroke[0] | interactive.ghost.border.default |
-| Flavour | outline | Button/Label/Label | fill[0] | interactive.ghost.foreground.default |
+| Flavour | subtle | Button | fill[0] | interactive.neutral.background.default |
+| Flavour | subtle | Button | stroke[0] | interactive.neutral.border.default |
+| Flavour | subtle | Button/Label/Label | fill[0] | interactive.neutral.foreground.default |
+| Flavour | gradient | Button | fill[0] | linear-gradient(135deg, surface.gradient.start 0%, surface.gradient.end 87%) |
 | Flavour | text-gradient | Button | fill[0] | interactive.ghost.background.default |
 | Flavour | text-gradient | Button | stroke[0] | interactive.ghost.border.default |
+| Flavour | text-gradient | Button/Label/Label | fill[0] | linear-gradient(129deg, foreground.gradient.start 0%, foreground.gradient.end 100%) |
 | State | hover | Button | fill[0] | interactive.primary.background.hover |
 | State | hover | Button | stroke[0] | interactive.primary.border.hover |
 | State | pressed | Button | fill[0] | interactive.primary.background.pressed |
 | State | pressed | Button | stroke[0] | interactive.primary.border.pressed |
 | State | focus | Button | fill[0] | interactive.primary.background.focused |
 | State | focus | Button | stroke[0] | border.focus |
+| State | focus | Button | strokeWeight | stroke.thick |
 | Disabled | true | Button | fill[0] | interactive.primary.background.disabled |
 | Disabled | true | Button | stroke[0] | interactive.primary.border.disabled |
 | Disabled | true | Button/Label/Label | fill[0] | interactive.primary.foreground.disabled |
 
 ## Icon Button
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2024-6729&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2338-1763&m=dev
 
 ### Overview
 
@@ -289,15 +298,18 @@ Triggers an action from a single glyph, with no text label. Square at every size
 ### Layer structure
 
 - Icon Button (COMPONENT)
-  - Icon Button/Icon (INSTANCE)
+  - Icon Button/Icon (INSTANCE, icon: More Horizontal)
 
 ### Resolved tokens (default variant: Size=small, Shape=sharp, Flavour=primary, State=default, Disabled=false)
 
 | Layer | Field | Raw | Token |
 | --- | --- | --- | --- |
+| Icon Button | width | 36 | control.sm |
+| Icon Button | height | 36 | control.sm |
 | Icon Button | fill[0] | #1f69ff | interactive.primary.background.default |
 | Icon Button | stroke[0] | #1f69ff | interactive.primary.border.default |
 | Icon Button | cornerRadius | 0 | radius.none |
+| Icon Button | strokeWeight | 0 | stroke.base |
 | Icon Button | padding.left | 4 | space.xs |
 | Icon Button | padding.right | 4 | space.xs |
 | Icon Button | padding.top | 4 | space.xs |
@@ -307,6 +319,10 @@ Triggers an action from a single glyph, with no text label. Square at every size
 
 | Property | Value | Layer | Field | Token |
 | --- | --- | --- | --- | --- |
+| Size | large | Icon Button | width | control.lg |
+| Size | large | Icon Button | height | control.lg |
+| Size | medium | Icon Button | width | control.md |
+| Size | medium | Icon Button | height | control.md |
 | Shape | rounded | Icon Button | cornerRadius | radius.element-sm |
 | Shape | full | Icon Button | cornerRadius | radius.pill |
 | Flavour | positive | Icon Button | fill[0] | interactive.positive.background.default |
@@ -319,8 +335,11 @@ Triggers an action from a single glyph, with no text label. Square at every size
 | Flavour | text | Icon Button | stroke[0] | interactive.ghost.border.default |
 | Flavour | outline-subtle | Icon Button | fill[0] | interactive.neutral.background.default |
 | Flavour | outline-subtle | Icon Button | stroke[0] | interactive.neutral.border.default |
+| Flavour | outline-subtle | Icon Button | strokeWeight | stroke.thin |
 | Flavour | outline | Icon Button | fill[0] | interactive.neutral.background.default |
 | Flavour | outline | Icon Button | stroke[0] | interactive.ghost.border.default |
+| Flavour | outline | Icon Button | strokeWeight | stroke.thin |
+| Flavour | gradient | Icon Button | fill[0] | linear-gradient(135deg, surface.gradient.start 0%, surface.gradient.end 87%) |
 | Flavour | text-gradient | Icon Button | fill[0] | interactive.ghost.background.default |
 | Flavour | text-gradient | Icon Button | stroke[0] | interactive.ghost.border.default |
 | State | hover | Icon Button | fill[0] | interactive.primary.background.hover |
@@ -329,5 +348,6 @@ Triggers an action from a single glyph, with no text label. Square at every size
 | State | pressed | Icon Button | stroke[0] | interactive.primary.border.pressed |
 | State | focus | Icon Button | fill[0] | interactive.primary.background.focused |
 | State | focus | Icon Button | stroke[0] | border.focus |
+| State | focus | Icon Button | strokeWeight | stroke.thick |
 | Disabled | true | Icon Button | fill[0] | interactive.primary.background.disabled |
 | Disabled | true | Icon Button | stroke[0] | interactive.primary.border.disabled |

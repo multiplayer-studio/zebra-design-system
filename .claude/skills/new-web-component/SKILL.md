@@ -17,17 +17,21 @@ Never hard code hex or px values. Always use a tokens.
 2. If it doesn't exist (or is missing detail you need), fall back to Figma directly: load the `figma-design-to-code` skill and use `get_design_context` (and `get_screenshot` / `get_variable_defs` as needed) on the given node to get props, variants, states, and layout.
 3. Note every variant/enum shown (e.g. size, flavor/type, shape, disabled/status) — these become `@property` values later and Figma Code Connect enum mappings.
 4. Note every token used for color, spacing, radius — these must map to this repo's design tokens (see step 4), never hardcoded values.
+5. The "Resolved tokens" table is captured for **one specific variant combination only** (stated in its own header, e.g. "default variant: Shape=sharp, State=enabled, Size=large, Flavour=default") — it is not the general case. Every other variant's actual values live only in the "Token changes by property" delta table below it; cross-reference both tables together rather than reading the resolved-tokens table as if it applied to every variant.
 
 ## 1. Decide before writing: does this need new code?
 
+- **If you're rebuilding or modifying a component that already ships publicly**, `grep` it (and its tests) for `@deprecated` first — those properties exist for backward compatibility (see `dialog.ts`, `dropdown/droppable.ts`, `global-header.ts`, `empty-state.ts` for precedent) and should be preserved, not dropped, unless the user explicitly asks to remove them.
 - **Check `src/mixins/`** for behavior that already exists — don't reimplement it:
-  - `flavor.ts` — `Flavored()` mixin: primary/positive/negative/outline/outline-subtle/text/inverse/subtle/custom color variants.
-  - `contour.ts` — `ContourableElement` / `Contourable()`: rounded vs sharp shape.
-  - `size.ts` — `Size()`: small/medium/large.
+  - `flavor.ts` — `Flavored()` mixin: primary/positive/negative/outline/outline-subtle/text/inverse/subtle/custom color variants. If a component's variant set doesn't match these fixed values, don't force it into `Flavored()` — instead add a new exported type alias in `mixins/flavor.ts` (e.g. `export type FooFlavor = "a" | "b";`) and use it as a plain `@property` type, bypassing the mixin entirely. See `SearchFlavor`, `DialogFlavor`, `StepperItemFlavor`, `ButtonFlavor` for precedent.
+  - `contour.ts` — `ContourableElement` / `Contourable()`: rounded vs sharp shape (boolean `rounded` attribute).
+  - `contourable-three.ts` — `ContourableThree()`: sharp/rounded/full shape (three-way, via a `shape` attribute). Use this instead of `contour.ts` when the design has 3 shape states, not 2 — see `search.ts`, `dialog.ts`, `base-button.ts`, `tile-button.ts`, `snackbar.ts` for precedent.
+  - `size.ts` — `Size()`: small/medium/large. This only adds the `size` property/attribute — it applies no styles, so the component's own stylesheet must still implement the actual sizing (padding/height/font) per value.
   - `interactive.ts` / `interactive.styles.js`, `tertiary-interactive.styles.js` — hover/press/focus states.
-  - `form-field.ts` — form-associated field behavior (validation, form reset/submit participation).
+  - `form-field.ts` — form-associated field behavior (validation, form reset/submit participation). Its type is declared via `AbstractConstructor`, so a concrete subclass **must** implement `type` and `handleChange` itself, even trivially (`override handleChange(event: Event) { return event; }`) — `tsc` fails on a missing override even though the mixin's runtime default is a no-op, and neither `eslint` nor the tests catch this, only `pnpm nx run zeta-web:typecheck` does.
   - `popup.ts`, `navigate.ts`, `breakpoints.styles.js` — overlay positioning, routing, responsive breakpoints.
   - Compose mixins the same way `button.ts` does: `class ZetaButton extends Flavored(BaseButton)`.
+  - Note: `mixins/mixins.ts` only barrel-exports `flavor`, `interactive`, `popup`, `size`, `contour`, `navigate` — `contourable-three.ts` and `form-field.ts` are **not** in that barrel and must be imported directly from their file path (e.g. `import { ContourableThree } from "../../mixins/contourable-three.js";`).
 - **Check if this is a variant of an existing component family** (e.g. a new chip type belongs under `src/components/chips/<new-chip>/`, extending `base-chips/base-chip.ts`) rather than a fully standalone component.
 - Only write a new mixin/base class if the behavior is genuinely shared across multiple components — for a single component, put logic directly in the component class.
 
@@ -201,12 +205,19 @@ describe("zeta-foo-bar", () => {
 
 ## 8. Verify before calling it done
 
+Prefer running these through Nx rather than raw `pnpm` scripts (per this repo's root `CLAUDE.md`):
+
 ```
-pnpm analyze          # regenerate custom-elements.json (also part of prebuild)
-node scripts/make-index.js   # regenerate src/index.ts (or just `pnpm build`)
-pnpm lint              # eslint, incl. testing-structure and doc-tag rules
-pnpm lint:lit-analyzer
-pnpm test              # web-test-runner
+pnpm nx run zeta-web:analyze                                        # regenerate custom-elements.json (also part of prebuild)
+node scripts/make-index.js                                          # regenerate src/index.ts (or just `pnpm nx run zeta-web:build`)
+pnpm nx run zeta-web:lint                                            # eslint, incl. testing-structure and doc-tag rules
+pnpm nx run-many --targets='lint:lit-analyzer' --projects=zeta-web   # see NOTE below
+pnpm nx run zeta-web:typecheck                                       # tsc --noEmit
+pnpm nx run zeta-web:test                                            # web-test-runner
 ```
 
-Or just run `pnpm check`, which does all of the above plus `pnpm docs`.
+- NOTE: `pnpm nx run zeta-web:lint:lit-analyzer` (colon inside the target name) does **not** error — it silently resolves to the plain `lint` target instead and gives false confidence that lit-analyzer passed. Always invoke it via `nx run-many --targets='lint:lit-analyzer' --projects=zeta-web` as shown above.
+- Don't skip `typecheck`: it's the only one of these checks that catches a missing mixin override (e.g. a `FormField` subclass missing `handleChange`) — `lint` and `test` both pass with that bug present.
+- When regenerating `src/index.ts`, check the diff is minimal — a stray missing-trailing-newline is a known quirk of `make-index.js`, not a real change.
+
+`pnpm check` (from `packages/zeta-web`) runs `analyze`, `lint`, `lint:lit-analyzer`, `test`, and `docs` together, but does **not** include `typecheck` — run that separately.

@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3182-237&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "3453:54230",
-  "fetchedAt": "2026-09-22T20:44:33.122Z",
+  "fetchedAt": "2026-09-24T09:01:38.288Z",
   "componentProperties": {
     "Label#2841:4": {
       "type": "TEXT",
@@ -139,6 +139,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           }
         },
         "Navigation Rail Item/Label": {
@@ -154,15 +158,15 @@
             "fontWeight": 400,
             "fontSize": {
               "raw": 10,
-              "token": "indicator.small"
+              "token": "indicator.small.font size"
             },
             "lineHeight": {
               "raw": 12,
-              "token": "indicator.small"
+              "token": "indicator.small.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "indicator.small"
+              "token": "indicator.small.letter spacing"
             }
           }
         }
@@ -230,6 +234,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           }
         },
         "Navigation Rail Item/Label": {
@@ -245,15 +253,15 @@
             "fontWeight": 400,
             "fontSize": {
               "raw": 10,
-              "token": "indicator.small"
+              "token": "indicator.small.font size"
             },
             "lineHeight": {
               "raw": 12,
-              "token": "indicator.small"
+              "token": "indicator.small.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "indicator.small"
+              "token": "indicator.small.letter spacing"
             }
           }
         }
@@ -315,6 +323,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           }
         },
         "Navigation Rail Item/Label": {
@@ -330,15 +342,15 @@
             "fontWeight": 400,
             "fontSize": {
               "raw": 10,
-              "token": "indicator.small"
+              "token": "indicator.small.font size"
             },
             "lineHeight": {
               "raw": 12,
-              "token": "indicator.small"
+              "token": "indicator.small.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "indicator.small"
+              "token": "indicator.small.letter spacing"
             }
           }
         }
@@ -406,6 +418,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           }
         },
         "Navigation Rail Item/Label": {
@@ -421,15 +437,15 @@
             "fontWeight": 400,
             "fontSize": {
               "raw": 10,
-              "token": "indicator.small"
+              "token": "indicator.small.font size"
             },
             "lineHeight": {
               "raw": 12,
-              "token": "indicator.small"
+              "token": "indicator.small.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "indicator.small"
+              "token": "indicator.small.letter spacing"
             }
           }
         }
@@ -497,6 +513,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           }
         },
         "Navigation Rail Item/Label": {
@@ -512,15 +532,15 @@
             "fontWeight": 400,
             "fontSize": {
               "raw": 10,
-              "token": "indicator.small"
+              "token": "indicator.small.font size"
             },
             "lineHeight": {
               "raw": 12,
-              "token": "indicator.small"
+              "token": "indicator.small.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "indicator.small"
+              "token": "indicator.small.letter spacing"
             }
           }
         }
@@ -586,6 +606,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           }
         },
         "Navigation Rail Item/Label": {
@@ -601,15 +625,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": "label.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": "label.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": "label.medium.letter spacing"
             }
           }
         }
@@ -681,6 +705,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           }
         },
         "Navigation Rail Item/Label": {
@@ -696,15 +724,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": "label.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": "label.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": "label.medium.letter spacing"
             }
           }
         }
@@ -776,6 +804,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           }
         },
         "Navigation Rail Item/Label": {
@@ -791,15 +823,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": "label.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": "label.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": "label.medium.letter spacing"
             }
           }
         }
@@ -871,6 +903,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           }
         },
         "Navigation Rail Item/Label": {
@@ -886,15 +922,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": "label.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": "label.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": "label.medium.letter spacing"
             }
           }
         }
@@ -966,6 +1002,10 @@
           "cornerRadius": {
             "raw": 9999,
             "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           }
         },
         "Navigation Rail Item/Label": {
@@ -981,15 +1021,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": "label.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": "label.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": "label.medium.letter spacing"
             }
           }
         }

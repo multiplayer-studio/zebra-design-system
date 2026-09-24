@@ -42,9 +42,12 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Top App Bar | padding.top | 12 | space.md |
 | Top App Bar | padding.bottom | 12 | space.md |
 | Top App Bar/Main/Frame 2 | itemSpacing | 12 | space.md |
+| Top App Bar/Main/Frame 2/Icon Button | width | 36 | control.sm |
+| Top App Bar/Main/Frame 2/Icon Button | height | 36 | control.sm |
 | Top App Bar/Main/Frame 2/Icon Button | fill[0] | #ffffff | interactive.neutral.background.default |
 | Top App Bar/Main/Frame 2/Icon Button | stroke[0] | #ced2db | interactive.neutral.border.default |
 | Top App Bar/Main/Frame 2/Icon Button | cornerRadius | 4 | radius.element-sm |
+| Top App Bar/Main/Frame 2/Icon Button | strokeWeight | 0 | stroke.base |
 | Top App Bar/Main/Frame 2/Icon Button | padding.left | 4 | space.xs |
 | Top App Bar/Main/Frame 2/Icon Button | padding.right | 4 | space.xs |
 | Top App Bar/Main/Frame 2/Icon Button | padding.top | 4 | space.xs |
@@ -52,56 +55,69 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Top App Bar/Main/Frame 2/Page Header | itemSpacing | 8 | space.sm |
 | Top App Bar/Main/Frame 2/Page Header/Page Title | itemSpacing | 8 | space.sm |
 | Top App Bar/Main/Frame 2/Page Header/Page Title/Title | fill[0] | #000000 | — |
-| Top App Bar/Main/Frame 2/Page Header/Page Title/Title | fontSize | 16 | body.medium \| label.large |
-| Top App Bar/Main/Frame 2/Page Header/Page Title/Title | lineHeight | 24 | body.medium \| label.large |
-| Top App Bar/Main/Frame 2/Page Header/Page Title/Title | letterSpacing | 0 | body.medium \| label.large |
+| Top App Bar/Main/Frame 2/Page Header/Page Title/Title | fontSize | 16 | label.large.font size |
+| Top App Bar/Main/Frame 2/Page Header/Page Title/Title | lineHeight | 24 | label.large.line height |
+| Top App Bar/Main/Frame 2/Page Header/Page Title/Title | letterSpacing | 0 | label.large.letter spacing |
 
 ### Token changes by property
 
 | Property | Value | Layer | Field | Token |
 | --- | --- | --- | --- | --- |
-| Type | centered | Top App Bar/Main/Frame 2/Page Header/Page Title/Title | fontSize | label.medium |
-| Type | centered | Top App Bar/Main/Frame 2/Page Header/Page Title/Title | lineHeight | label.medium |
-| Type | centered | Top App Bar/Main/Frame 2/Page Header/Page Title/Title | letterSpacing | label.medium |
+| Type | centered | Top App Bar/Main/Frame 2/Page Header/Page Title/Title | fontSize | label.medium.font size |
+| Type | centered | Top App Bar/Main/Frame 2/Page Header/Page Title/Title | lineHeight | label.medium.line height |
+| Type | centered | Top App Bar/Main/Frame 2/Page Header/Page Title/Title | letterSpacing | label.medium.letter spacing |
+| Type | centered | Top App Bar/Main/Trailing/Icon Button | width | control.sm |
+| Type | centered | Top App Bar/Main/Trailing/Icon Button | height | control.sm |
 | Type | centered | Top App Bar/Main/Trailing/Icon Button | fill[0] | interactive.neutral.background.default |
 | Type | centered | Top App Bar/Main/Trailing/Icon Button | stroke[0] | interactive.neutral.border.default |
 | Type | centered | Top App Bar/Main/Trailing/Icon Button | cornerRadius | radius.element-sm |
+| Type | centered | Top App Bar/Main/Trailing/Icon Button | strokeWeight | stroke.base |
 | Type | centered | Top App Bar/Main/Trailing/Icon Button | padding.left | space.xs |
 | Type | centered | Top App Bar/Main/Trailing/Icon Button | padding.right | space.xs |
 | Type | centered | Top App Bar/Main/Trailing/Icon Button | padding.top | space.xs |
 | Type | centered | Top App Bar/Main/Trailing/Icon Button | padding.bottom | space.xs |
 | Type | contextual | Top App Bar/Main/Frame 3 | itemSpacing | space.md |
+| Type | contextual | Top App Bar/Main/Frame 3/Icon Button | width | control.sm |
+| Type | contextual | Top App Bar/Main/Frame 3/Icon Button | height | control.sm |
 | Type | contextual | Top App Bar/Main/Frame 3/Icon Button | fill[0] | interactive.neutral.background.default |
 | Type | contextual | Top App Bar/Main/Frame 3/Icon Button | stroke[0] | interactive.neutral.border.default |
 | Type | contextual | Top App Bar/Main/Frame 3/Icon Button | cornerRadius | radius.element-sm |
+| Type | contextual | Top App Bar/Main/Frame 3/Icon Button | strokeWeight | stroke.base |
 | Type | contextual | Top App Bar/Main/Frame 3/Icon Button | padding.left | space.xs |
 | Type | contextual | Top App Bar/Main/Frame 3/Icon Button | padding.right | space.xs |
 | Type | contextual | Top App Bar/Main/Frame 3/Icon Button | padding.top | space.xs |
 | Type | contextual | Top App Bar/Main/Frame 3/Icon Button | padding.bottom | space.xs |
 | Type | contextual | Top App Bar/Main/Frame 3/Contextual Details | itemSpacing | space.sm |
 | Type | contextual | Top App Bar/Main/Frame 3/Contextual Details/Count | itemSpacing | space.sm |
-| Type | contextual | Top App Bar/Main/Frame 3/Contextual Details/Count/2 Items | fontSize | label.medium |
-| Type | contextual | Top App Bar/Main/Frame 3/Contextual Details/Count/2 Items | lineHeight | label.medium |
-| Type | contextual | Top App Bar/Main/Frame 3/Contextual Details/Count/2 Items | letterSpacing | label.medium |
+| Type | contextual | Top App Bar/Main/Frame 3/Contextual Details/Count/2 Items | fontSize | label.medium.font size |
+| Type | contextual | Top App Bar/Main/Frame 3/Contextual Details/Count/2 Items | lineHeight | label.medium.line height |
+| Type | contextual | Top App Bar/Main/Frame 3/Contextual Details/Count/2 Items | letterSpacing | label.medium.letter spacing |
 | Type | contextual alt | Top App Bar/Main/Frame 3 | itemSpacing | space.md |
+| Type | contextual alt | Top App Bar/Main/Frame 3/Button | height | control.sm |
 | Type | contextual alt | Top App Bar/Main/Frame 3/Button | fill[0] | interactive.neutral.background.default |
 | Type | contextual alt | Top App Bar/Main/Frame 3/Button | stroke[0] | interactive.neutral.border.default |
 | Type | contextual alt | Top App Bar/Main/Frame 3/Button | cornerRadius | radius.element-sm |
+| Type | contextual alt | Top App Bar/Main/Frame 3/Button | strokeWeight | stroke.base |
 | Type | contextual alt | Top App Bar/Main/Frame 3/Button | padding.left | space.md |
 | Type | contextual alt | Top App Bar/Main/Frame 3/Button | padding.right | space.md |
 | Type | contextual alt | Top App Bar/Main/Frame 3/Button | padding.top | space.xs |
 | Type | contextual alt | Top App Bar/Main/Frame 3/Button | padding.bottom | space.xs |
 | Type | search | Top App Bar/Main | itemSpacing | space.md |
+| Type | search | Top App Bar/Main/Icon Button | width | control.sm |
+| Type | search | Top App Bar/Main/Icon Button | height | control.sm |
 | Type | search | Top App Bar/Main/Icon Button | fill[0] | interactive.neutral.background.default |
 | Type | search | Top App Bar/Main/Icon Button | stroke[0] | interactive.neutral.border.default |
 | Type | search | Top App Bar/Main/Icon Button | cornerRadius | radius.element-sm |
+| Type | search | Top App Bar/Main/Icon Button | strokeWeight | stroke.base |
 | Type | search | Top App Bar/Main/Icon Button | padding.left | space.xs |
 | Type | search | Top App Bar/Main/Icon Button | padding.right | space.xs |
 | Type | search | Top App Bar/Main/Icon Button | padding.top | space.xs |
 | Type | search | Top App Bar/Main/Icon Button | padding.bottom | space.xs |
+| Type | search | Top App Bar/Main/Search | height | control.sm |
 | Type | search | Top App Bar/Main/Search | fill[0] | interactive.ghost.background.default |
 | Type | search | Top App Bar/Main/Search | stroke[0] | border.focus |
 | Type | search | Top App Bar/Main/Search | cornerRadius | radius.element-sm |
+| Type | search | Top App Bar/Main/Search | strokeWeight | stroke.base |
 | Type | search | Top App Bar/Main/Search | itemSpacing | space.xs |
 | Type | search | Top App Bar/Main/Search | padding.left | space.md |
 | Type | search | Top App Bar/Main/Search | padding.right | space.md |
@@ -111,7 +127,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Type | extended | Top App Bar/Page Title | itemSpacing | space.sm |
 | Type | extended | Top App Bar/Page Title | padding.left | space.sm |
 | Type | extended | Top App Bar/Page Title | padding.right | space.sm |
-| Type | extended | Top App Bar/Page Title/Title | fontSize | body.medium \| label.large |
-| Type | extended | Top App Bar/Page Title/Title | lineHeight | body.medium \| label.large |
-| Type | extended | Top App Bar/Page Title/Title | letterSpacing | body.medium \| label.large |
+| Type | extended | Top App Bar/Page Title/Title | fontSize | label.large.font size |
+| Type | extended | Top App Bar/Page Title/Title | lineHeight | label.large.line height |
+| Type | extended | Top App Bar/Page Title/Title | letterSpacing | label.large.letter spacing |
 | Shape | rounded | Top App Bar | cornerRadius | radius.element-sm |

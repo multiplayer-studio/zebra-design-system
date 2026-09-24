@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2835-796&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "3077:8391",
-  "fetchedAt": "2026-09-22T20:44:22.567Z",
+  "fetchedAt": "2026-09-24T09:01:34.894Z",
   "componentProperties": {
     "Action Slot#2908:11": {
       "type": "SLOT",
@@ -105,7 +105,11 @@
               "raw": "#ced2db",
               "token": "border.default"
             }
-          ]
+          ],
+          "strokeWeight": {
+            "raw": 1,
+            "token": null
+          }
         },
         "Navigation Bar/Slot": {},
         "Navigation Bar/Action Slot": {
@@ -137,7 +141,11 @@
               "raw": "#ced2db",
               "token": "border.default"
             }
-          ]
+          ],
+          "strokeWeight": {
+            "raw": 1,
+            "token": null
+          }
         },
         "Navigation Bar/Slot": {},
         "Navigation Bar/Action Slot": {
@@ -169,7 +177,11 @@
               "raw": "#ced2db",
               "token": "border.default"
             }
-          ]
+          ],
+          "strokeWeight": {
+            "raw": 1,
+            "token": null
+          }
         },
         "Navigation Bar/Slot": {},
         "Navigation Bar/Right Slot": {},
@@ -202,7 +214,11 @@
               "raw": "#ced2db",
               "token": "border.default"
             }
-          ]
+          ],
+          "strokeWeight": {
+            "raw": 1,
+            "token": null
+          }
         },
         "Navigation Bar/Slot": {},
         "Navigation Bar/Divider Section": {
@@ -218,6 +234,10 @@
           }
         },
         "Navigation Bar/Divider Section/Divider": {
+          "width": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"

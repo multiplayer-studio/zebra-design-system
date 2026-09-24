@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 
 // Names come back slash-separated (e.g. "surface/page"); normalized to dots to match
-// this tool's other token-name formatting (e.g. "space.md" from token-resolver.ts).
+// this tool's other token-name formatting (e.g. "space.md").
 export function normalizeVariableName(name: string): string {
   return name.replace(/\//g, '.');
 }

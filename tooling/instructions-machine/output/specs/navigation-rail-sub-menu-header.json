@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3182-237&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "3453:54332",
-  "fetchedAt": "2026-09-22T20:44:33.123Z",
+  "fetchedAt": "2026-09-24T09:01:38.290Z",
   "componentProperties": {
     "Show Leading Icon#3402:24": {
       "type": "BOOLEAN",
@@ -80,6 +80,10 @@
               "token": "border.default"
             }
           ],
+          "strokeWeight": {
+            "raw": 1,
+            "token": null
+          },
           "itemSpacing": {
             "raw": 10,
             "token": null
@@ -121,15 +125,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": "label.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": "label.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": "label.medium.letter spacing"
             }
           }
         },
@@ -155,6 +159,10 @@
               "token": "border.default"
             }
           ],
+          "strokeWeight": {
+            "raw": 1,
+            "token": null
+          },
           "itemSpacing": {
             "raw": 10,
             "token": null
@@ -196,15 +204,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 14,
-              "token": "label.medium"
+              "token": "label.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "label.medium"
+              "token": "label.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "label.medium"
+              "token": "label.medium.letter spacing"
             }
           }
         },

@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2314-3348&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2742:885",
-  "fetchedAt": "2026-09-22T20:44:13.301Z",
+  "fetchedAt": "2026-09-24T09:01:31.338Z",
   "componentProperties": {
     "State": {
       "type": "VARIANT",
@@ -53,6 +53,10 @@
       },
       "values": {
         "_User Profile": {
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -68,6 +72,10 @@
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "itemSpacing": {
             "raw": 4,
@@ -105,15 +113,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 12,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.font size"
             },
             "lineHeight": {
               "raw": 16,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.letter spacing"
             }
           }
         },
@@ -135,6 +143,10 @@
       },
       "values": {
         "_User Profile": {
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#f3f6fa",
@@ -150,6 +162,10 @@
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "itemSpacing": {
             "raw": 4,
@@ -187,15 +203,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 12,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.font size"
             },
             "lineHeight": {
               "raw": 16,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.letter spacing"
             }
           }
         },
@@ -217,6 +233,10 @@
       },
       "values": {
         "_User Profile": {
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#e0e3e9",
@@ -232,6 +252,10 @@
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "itemSpacing": {
             "raw": 4,
@@ -269,15 +293,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 12,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.font size"
             },
             "lineHeight": {
               "raw": 16,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.letter spacing"
             }
           }
         },
@@ -299,6 +323,10 @@
       },
       "values": {
         "_User Profile": {
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -314,6 +342,10 @@
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
           },
           "itemSpacing": {
             "raw": 4,
@@ -351,15 +383,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 12,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.font size"
             },
             "lineHeight": {
               "raw": 16,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.letter spacing"
             }
           }
         },
@@ -381,6 +413,10 @@
       },
       "values": {
         "_User Profile": {
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#e0e3e9",
@@ -396,6 +432,10 @@
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "itemSpacing": {
             "raw": 4,
@@ -433,15 +473,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 12,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.font size"
             },
             "lineHeight": {
               "raw": 16,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.letter spacing"
             }
           }
         },
@@ -463,6 +503,10 @@
       },
       "values": {
         "_User Profile": {
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -478,6 +522,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "itemSpacing": {
             "raw": 4,
@@ -515,15 +563,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 12,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.font size"
             },
             "lineHeight": {
               "raw": 16,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.letter spacing"
             }
           }
         },
@@ -545,6 +593,10 @@
       },
       "values": {
         "_User Profile": {
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#e0e3e9",
@@ -560,6 +612,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "itemSpacing": {
             "raw": 4,
@@ -597,15 +653,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 12,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.font size"
             },
             "lineHeight": {
               "raw": 16,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.letter spacing"
             }
           }
         },
@@ -627,6 +683,10 @@
       },
       "values": {
         "_User Profile": {
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#f3f6fa",
@@ -642,6 +702,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "itemSpacing": {
             "raw": 4,
@@ -679,15 +743,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 12,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.font size"
             },
             "lineHeight": {
               "raw": 16,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.letter spacing"
             }
           }
         },
@@ -709,6 +773,10 @@
       },
       "values": {
         "_User Profile": {
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -724,6 +792,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.sm"
+          },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
           },
           "itemSpacing": {
             "raw": 4,
@@ -761,15 +833,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 12,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.font size"
             },
             "lineHeight": {
               "raw": 16,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.letter spacing"
             }
           }
         },
@@ -791,6 +863,10 @@
       },
       "values": {
         "_User Profile": {
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#e0e3e9",
@@ -806,6 +882,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "itemSpacing": {
             "raw": 4,
@@ -843,15 +923,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 12,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.font size"
             },
             "lineHeight": {
               "raw": 16,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "title.small | body.xsmall | label.small"
+              "token": "label.small.letter spacing"
             }
           }
         },

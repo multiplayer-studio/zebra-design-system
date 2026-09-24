@@ -14,18 +14,18 @@ metadata, rendering) runs from one command: `pnpm run docs:figma`.
 
 ## Setup
 
-1. Ensure root `.env` has `FIGMA_PERSONAL_ACCESS_TOKEN=<your-token>` (no `FIGMA_FILE_KEY`
-   needed — each page's file key is parsed from its own URL).
+1. Ensure root `.env` has `FIGMA_PERSONAL_ACCESS_TOKEN=<your-token>` and
+   `FIGMA_FILE_KEY=<the design file's key>`.
 2. Run `pnpm run sync:tokens` first (or confirm
    `packages/foundations/tokens/dist/json/resolved-tokens.json` already exists) — that's
    the value → token-name lookup source.
-3. Add page links to `pages.json`: `{ "Buttons": "<figma page URL>" }`. Right-click the
-   page/frame in Figma → Copy link.
+
+Nothing else to configure — the page list is auto-discovered (see below), not hand-maintained.
 
 ## Usage
 
 ```bash
-# Generate docs for every page in pages.json
+# Generate docs for every Figma page that matches a zeta-web component folder
 pnpm run docs:figma
 
 # Generate docs for a single page
@@ -56,19 +56,33 @@ write on its own before being folded into this tool.
 
 ## File layout
 
+- `pages.ts` — auto-discovers which Figma pages to process (see below).
 - `discover.ts` — page-scoped discovery: every `COMPONENT_SET`/`COMPONENT` on the page,
   plus any sibling `"<Name> Metadata"` frame.
 - `extract.ts` — walks a discovered component's variants into a `ComponentSpecDoc`
   (structure, properties, resolved values).
 - `metadata.ts` — classifies a `"<Name> Metadata"` frame's content into Hero + sections
   (table/anatomy/how-to-use/bullet-list/unknown) by structure, not by name.
-- `token-resolver.ts` — value-based typography (fontSize/lineHeight) matching against
-  `resolved-tokens.json` — the one case bound variables can't resolve (see below).
 - `variables.ts` — fetches a file's Figma Variables once and maps id → token name.
 - `variant-parser.ts` / `url.ts` — small pure-function helpers.
 - `render-markdown.ts` — turns a page's `ComponentSpecDoc[]` + metadata into the final
   Markdown.
 - `generate-page-docs.ts` — CLI entrypoint wiring all of the above together.
+
+## Page discovery
+
+The list of Figma pages to process isn't hand-maintained — `pages.ts` fetches the design
+file's top-level page list (`GET /v1/files/{fileKey}?depth=1`) and keeps only the pages
+that name an actual zeta-web component: each Figma page name and each folder under
+`packages/zeta-web/src/components/` is lowercased and stripped of its own convention
+(spaces for Figma page names, dashes for folder names) before comparing, so "Top App Bar"
+and "top-appbar" both normalize to "topappbar" and match. Pages naming no component
+folder (Cover, token-exploration canvases, section dividers like "COMPONENTS") are
+skipped automatically — nothing to configure when a new component's page is added, as
+long as its Figma page name and its component folder name agree once normalized.
+
+A Figma page whose name doesn't reduce to the same string as its component folder (e.g. a
+plural/singular mismatch) won't auto-match — rename one side to align them.
 
 ## Metadata integration
 
@@ -97,11 +111,24 @@ value-based reverse lookup would routinely pick a plausible-looking but wrong to
 property with no bound variable is reported as `token: null` — an honest "not tokenized
 in Figma", never a guess.
 
-Typography (fontSize/lineHeight/letterSpacing) is the one exception: those variables are
-bound to an external type-scale library that this file's own `/variables/local` response
-can't resolve, so they're matched by value instead — as a (fontSize, lineHeight) *pair*
-(matching either field alone is far more ambiguous; several styles share the same
-font-size or line-height).
+Typography (fontSize/lineHeight/letterSpacing) resolves the same way — each is its own
+`boundVariables` entry on the text node (arrives as a one-element array, since Figma's
+shape also supports mixed-style runs within one text node). Gradient fills/strokes/text
+colors resolve too: each gradient stop carries its own `boundVariables.color`, and the
+whole thing becomes a CSS `linear-gradient()` in both raw (hex stops) and token form —
+token form only when every stop is itself tokenized.
+
+## Icon resolution
+
+A zeta-web icon is always rendered through the shared "Icon" wrapper component (matches
+the `<zeta-icon>` element), with the actual glyph swapped in as a nested `INSTANCE`. The
+layer structure resolves this the same way as everything else — through Figma's own
+structure, not the layer's own (freely renameable) name: an `INSTANCE` whose applied
+component resolves to `Icon` gets its nested swapped child (found via
+`componentPropertyReferences.mainComponent`) resolved to its own component/componentSet
+name, e.g. `- Search/Search-Icon (INSTANCE, icon: Search)`. Any other `INSTANCE_SWAP`
+(e.g. a dropdown's swappable trigger) is left alone — only a swap nested inside the `Icon`
+wrapper is reported as an icon.
 
 ## Notes / known limitations
 
@@ -111,13 +138,15 @@ font-size or line-height).
 - Metadata frames are found by the `"<Name> Metadata"` suffix on a `FRAME` — a page that
   names its doc frames some other way won't get a metadata section at all. Two frames
   with the identical name on one page: first wins, second warned about and ignored.
-- Corner radius only reads the top-left corner when radii are bound per-corner
-  (`rectangleCornerRadii`) — fine for uniform radii, wrong if a component intentionally
-  uses different radii per corner.
-- Typography matching only reads `typography.mobile` — other breakpoints aren't
-  matched (the data exists in `resolved-tokens.json`; wiring another mode in is
-  straightforward if needed).
-- Gradient fills aren't resolved (`raw: null, token: null`) — only `SOLID` paints are.
+- Corner radius and stroke weight only read the top-left corner / top side when bound
+  per-corner or per-side (`rectangleCornerRadii` / `individualStrokeWeights`) — fine for
+  uniform values, wrong if a component intentionally uses different radii/widths per
+  corner or side.
+- Only `SOLID` and `GRADIENT_LINEAR` paints resolve — `RADIAL`/`ANGULAR`/`DIAMOND`
+  gradients and image fills come back as `{ raw: null, token: null }`.
+- A Figma page name and its zeta-web component folder name must agree once each side's
+  own separator is stripped (see Page discovery above) — a plural/singular mismatch
+  (e.g. a page named "Badge" for a `badges/` folder) won't auto-match.
 - No exhaustive per-variant listing, and no separate structurally-extracted properties
   table, in the output (both dropped — high token cost for no new information once the
   metadata's own Property Breakdown and hero content are rendered).

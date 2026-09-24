@@ -1,0 +1,154 @@
+{
+  "componentName": "_Card Heading",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "3311:1213",
+  "fetchedAt": "2026-09-24T09:01:35.499Z",
+  "componentProperties": {
+    "Leading Content#3311:0": {
+      "type": "SLOT",
+      "defaultValue": {
+        "guid": {
+          "sessionID": -1,
+          "localID": -1
+        }
+      }
+    },
+    "Trailing Content#3311:1": {
+      "type": "SLOT",
+      "defaultValue": {
+        "guid": {
+          "sessionID": -1,
+          "localID": -1
+        }
+      }
+    },
+    "hasLeading#3311:2": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "hasTrailing#3311:3": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    }
+  },
+  "structure": {
+    "path": "_Card Heading",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "_Card Heading/Leading Content",
+        "type": "SLOT"
+      },
+      {
+        "path": "_Card Heading/Heading Content",
+        "type": "FRAME",
+        "children": [
+          {
+            "path": "_Card Heading/Heading Content/Heading",
+            "type": "TEXT"
+          },
+          {
+            "path": "_Card Heading/Heading Content/Subheading",
+            "type": "TEXT"
+          }
+        ]
+      },
+      {
+        "path": "_Card Heading/Trailing Content",
+        "type": "SLOT"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "_Card Heading",
+      "nodeId": "3311:1213",
+      "properties": {},
+      "values": {
+        "_Card Heading": {
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "right": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "top": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "bottom": {
+              "raw": 16,
+              "token": "space.lg"
+            }
+          }
+        },
+        "_Card Heading/Leading Content": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          }
+        },
+        "_Card Heading/Heading Content": {},
+        "_Card Heading/Heading Content/Heading": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Heading",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 16,
+              "token": "title.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "title.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "title.medium.letter spacing"
+            }
+          }
+        },
+        "_Card Heading/Heading Content/Subheading": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "Subheading",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 14,
+              "token": "body.small.font size"
+            },
+            "lineHeight": {
+              "raw": 18,
+              "token": "body.small.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.small.letter spacing"
+            }
+          }
+        },
+        "_Card Heading/Trailing Content": {}
+      }
+    }
+  ]
+}

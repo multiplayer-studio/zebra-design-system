@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2835-796&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2920:5097",
-  "fetchedAt": "2026-09-22T20:44:22.566Z",
+  "fetchedAt": "2026-09-24T09:01:34.893Z",
   "componentProperties": {
     "Show Divider#2920:27": {
       "type": "BOOLEAN",
@@ -33,6 +33,10 @@
           }
         },
         "Spacer/Divider": {
+          "width": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"

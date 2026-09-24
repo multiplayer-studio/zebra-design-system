@@ -1,0 +1,232 @@
+{
+  "componentName": "_Card Footer",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "3311:3383",
+  "fetchedAt": "2026-09-24T09:01:35.500Z",
+  "componentProperties": {
+    "Slot#3358:20": {
+      "type": "SLOT",
+      "defaultValue": {
+        "guid": {
+          "sessionID": -1,
+          "localID": -1
+        }
+      }
+    },
+    "Actions": {
+      "type": "VARIANT",
+      "defaultValue": "1",
+      "options": [
+        "1",
+        "2",
+        "custom"
+      ]
+    }
+  },
+  "structure": {
+    "path": "_Card Footer",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "_Card Footer/Button",
+        "type": "INSTANCE"
+      },
+      {
+        "path": "_Card Footer/Slot",
+        "type": "SLOT"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "Actions=1",
+      "nodeId": "3311:3382",
+      "properties": {
+        "Actions": "1"
+      },
+      "values": {
+        "_Card Footer": {
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "right": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "top": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "bottom": {
+              "raw": 16,
+              "token": "space.lg"
+            }
+          }
+        },
+        "_Card Footer/Button": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Actions=2",
+      "nodeId": "3311:3381",
+      "properties": {
+        "Actions": "2"
+      },
+      "values": {
+        "_Card Footer": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "right": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "top": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "bottom": {
+              "raw": 16,
+              "token": "space.lg"
+            }
+          }
+        },
+        "_Card Footer/Button": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.primary.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
+          },
+          "padding": {
+            "left": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "right": {
+              "raw": 12,
+              "token": "space.md"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Actions=custom",
+      "nodeId": "3311:3380",
+      "properties": {
+        "Actions": "custom"
+      },
+      "values": {
+        "_Card Footer": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "right": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "top": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "bottom": {
+              "raw": 16,
+              "token": "space.lg"
+            }
+          }
+        },
+        "_Card Footer/Slot": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          }
+        }
+      }
+    }
+  ]
+}

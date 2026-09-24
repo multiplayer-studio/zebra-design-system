@@ -82,11 +82,15 @@ A thin line used to visually separate content into distinct sections or groups, 
 
 | Layer | Field | Raw | Token |
 | --- | --- | --- | --- |
+| Divider | height | 1 | stroke.thin |
 | Divider | cornerRadius | 0 | radius.none |
 | Divider/Horizontal | stroke[0] | #ced2db | border.default |
+| Divider/Horizontal | strokeWeight | 1 | stroke.thin |
 
 ### Token changes by property
 
 | Property | Value | Layer | Field | Token |
 | --- | --- | --- | --- | --- |
+| Orientation | vertical | Divider | width | stroke.thin |
 | Orientation | vertical | Divider/Vertical | stroke[0] | border.default |
+| Orientation | vertical | Divider/Vertical | strokeWeight | stroke.thin |

@@ -3,6 +3,7 @@ import * as assert from 'assert';
 export interface FigmaUrlRef {
   fileKey: string;
   nodeId: string;
+  branchId?: string;
 }
 
 // Figma page/component links look like:
@@ -15,12 +16,18 @@ export function parseFigmaUrl(url: string): FigmaUrlRef {
     throw new Error(`Could not extract fileKey from Figma URL: ${url}`);
   }
 
+  const branchMatch = url.match(/\/branch\/([a-zA-Z0-9]{20,})/);
+
   const nodeIdMatch = url.match(/[?&]node-id=(\d+)-(\d+)/);
   if (!nodeIdMatch) {
     throw new Error(`Could not extract node-id from Figma URL: ${url}`);
   }
 
-  return { fileKey: fileKeyMatch[1], nodeId: `${nodeIdMatch[1]}:${nodeIdMatch[2]}` };
+  return {
+    fileKey: fileKeyMatch[1],
+    nodeId: `${nodeIdMatch[1]}:${nodeIdMatch[2]}`,
+    branchId: branchMatch?.[1],
+  };
 }
 
 export function selfCheck(): void {

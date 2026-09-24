@@ -29,6 +29,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Pagination/_controls sharp no-outline | fill[0] | #ffffff | interactive.neutral.background.default |
 | Pagination/_controls sharp no-outline | stroke[0] | #ced2db | interactive.neutral.border.default |
 | Pagination/_controls sharp no-outline | cornerRadius | 0 | radius.none |
+| Pagination/_controls sharp no-outline | strokeWeight | 0 | stroke.base |
 | Pagination/_controls sharp no-outline | itemSpacing | 10 | — |
 | Pagination/_controls sharp no-outline | padding.left | 10 | — |
 | Pagination/_controls sharp no-outline | padding.right | 10 | — |
@@ -38,6 +39,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Pagination/_indicators sharp no-outline | fill[0] | #ffffff | interactive.neutral.background.default |
 | Pagination/_indicators sharp no-outline | stroke[0] | #ced2db | interactive.neutral.border.default |
 | Pagination/_indicators sharp no-outline | cornerRadius | 0 | radius.none |
+| Pagination/_indicators sharp no-outline | strokeWeight | 0 | stroke.base |
 | Pagination/_indicators sharp no-outline | itemSpacing | 10 | — |
 | Pagination/_indicators sharp no-outline | padding.left | 10 | — |
 | Pagination/_indicators sharp no-outline | padding.right | 10 | — |
@@ -51,14 +53,17 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Outline | true | Pagination/_controls sharp outline | fill[0] | interactive.neutral.background.default |
 | Outline | true | Pagination/_controls sharp outline | stroke[0] | interactive.neutral.border.default |
 | Outline | true | Pagination/_controls sharp outline | cornerRadius | radius.none |
+| Outline | true | Pagination/_controls sharp outline | strokeWeight | stroke.thin |
 | Outline | true | Pagination/Main Slot2 | itemSpacing | space.sm |
 | Rounded | true | Pagination/_controls round no-outline | fill[0] | interactive.neutral.background.default |
 | Rounded | true | Pagination/_controls round no-outline | stroke[0] | interactive.neutral.border.default |
 | Rounded | true | Pagination/_controls round no-outline | cornerRadius | radius.sm |
+| Rounded | true | Pagination/_controls round no-outline | strokeWeight | stroke.base |
 | Rounded | true | Pagination/Main Slot 3 | itemSpacing | space.sm |
 | Rounded | true | Pagination/_indicators round no-outline | fill[0] | interactive.neutral.background.default |
 | Rounded | true | Pagination/_indicators round no-outline | stroke[0] | interactive.neutral.border.default |
 | Rounded | true | Pagination/_indicators round no-outline | cornerRadius | radius.sm |
+| Rounded | true | Pagination/_indicators round no-outline | strokeWeight | stroke.base |
 
 ## _indicators sharp no-outline
 
@@ -76,15 +81,16 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | _indicators sharp no-outline | fill[0] | #ffffff | interactive.neutral.background.default |
 | _indicators sharp no-outline | stroke[0] | #ced2db | interactive.neutral.border.default |
 | _indicators sharp no-outline | cornerRadius | 0 | radius.none |
+| _indicators sharp no-outline | strokeWeight | 0 | stroke.base |
 | _indicators sharp no-outline | itemSpacing | 10 | — |
 | _indicators sharp no-outline | padding.left | 10 | — |
 | _indicators sharp no-outline | padding.right | 10 | — |
 | _indicators sharp no-outline | padding.top | 10 | — |
 | _indicators sharp no-outline | padding.bottom | 10 | — |
 | _indicators sharp no-outline/10 | fill[0] | #0c0d0e | foreground.primary |
-| _indicators sharp no-outline/10 | fontSize | 14 | body.small |
-| _indicators sharp no-outline/10 | lineHeight | 18 | body.small |
-| _indicators sharp no-outline/10 | letterSpacing | 0 | body.small |
+| _indicators sharp no-outline/10 | fontSize | 14 | body.small.font size |
+| _indicators sharp no-outline/10 | lineHeight | 18 | body.small.line height |
+| _indicators sharp no-outline/10 | letterSpacing | 0 | body.small.letter spacing |
 
 ### Token changes by property
 
@@ -96,6 +102,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | selected | _indicators sharp no-outline | stroke[0] | interactive.inverse.border.default |
 | State | selected | _indicators sharp no-outline/10 | fill[0] | foreground.inverse |
 | State | focused | _indicators sharp no-outline | stroke[0] | border.focus |
+| State | focused | _indicators sharp no-outline | strokeWeight | stroke.thick |
 | State | disabled | _indicators sharp no-outline | fill[0] | interactive.neutral.background.disabled |
 | State | disabled | _indicators sharp no-outline | stroke[0] | interactive.neutral.border.disabled |
 | State | disabled | _indicators sharp no-outline/10 | fill[0] | foreground.disabled |
@@ -117,15 +124,16 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | _indicators sharp outline | fill[0] | #ffffff | interactive.neutral.background.default |
 | _indicators sharp outline | stroke[0] | #ced2db | border.default |
 | _indicators sharp outline | cornerRadius | 0 | radius.none |
+| _indicators sharp outline | strokeWeight | 1 | stroke.thin |
 | _indicators sharp outline | itemSpacing | 10 | — |
 | _indicators sharp outline | padding.left | 10 | — |
 | _indicators sharp outline | padding.right | 10 | — |
 | _indicators sharp outline | padding.top | 10 | — |
 | _indicators sharp outline | padding.bottom | 10 | — |
 | _indicators sharp outline/10 | fill[0] | #0c0d0e | foreground.primary |
-| _indicators sharp outline/10 | fontSize | 14 | body.small |
-| _indicators sharp outline/10 | lineHeight | 18 | body.small |
-| _indicators sharp outline/10 | letterSpacing | 0 | body.small |
+| _indicators sharp outline/10 | fontSize | 14 | body.small.font size |
+| _indicators sharp outline/10 | lineHeight | 18 | body.small.line height |
+| _indicators sharp outline/10 | letterSpacing | 0 | body.small.letter spacing |
 
 ### Token changes by property
 
@@ -136,6 +144,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | selected | _indicators sharp outline | fill[1] | interactive.inverse.background.selected |
 | State | selected | _indicators sharp outline/10 | fill[0] | foreground.inverse |
 | State | focused | _indicators sharp outline | stroke[0] | border.focus |
+| State | focused | _indicators sharp outline | strokeWeight | stroke.thick |
 | State | disabled | _indicators sharp outline | fill[0] | interactive.neutral.background.disabled |
 | State | disabled | _indicators sharp outline/10 | fill[0] | foreground.disabled |
 | State | pressed | _indicators sharp outline | fill[0] | interactive.neutral.background.pressed |
@@ -156,15 +165,16 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | _indicators round no-outline | fill[0] | #ffffff | interactive.neutral.background.default |
 | _indicators round no-outline | stroke[0] | #ced2db | interactive.neutral.border.default |
 | _indicators round no-outline | cornerRadius | 4 | radius.sm |
+| _indicators round no-outline | strokeWeight | 0 | stroke.base |
 | _indicators round no-outline | itemSpacing | 10 | — |
 | _indicators round no-outline | padding.left | 10 | — |
 | _indicators round no-outline | padding.right | 10 | — |
 | _indicators round no-outline | padding.top | 10 | — |
 | _indicators round no-outline | padding.bottom | 10 | — |
 | _indicators round no-outline/10 | fill[0] | #0c0d0e | foreground.primary |
-| _indicators round no-outline/10 | fontSize | 14 | body.small |
-| _indicators round no-outline/10 | lineHeight | 18 | body.small |
-| _indicators round no-outline/10 | letterSpacing | 0 | body.small |
+| _indicators round no-outline/10 | fontSize | 14 | body.small.font size |
+| _indicators round no-outline/10 | lineHeight | 18 | body.small.line height |
+| _indicators round no-outline/10 | letterSpacing | 0 | body.small.letter spacing |
 
 ### Token changes by property
 
@@ -176,6 +186,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | selected | _indicators round no-outline | stroke[0] | interactive.inverse.border.default |
 | State | selected | _indicators round no-outline/10 | fill[0] | foreground.inverse |
 | State | focused | _indicators round no-outline | stroke[0] | border.focus |
+| State | focused | _indicators round no-outline | strokeWeight | stroke.thick |
 | State | disabled | _indicators round no-outline | fill[0] | interactive.neutral.background.disabled |
 | State | disabled | _indicators round no-outline | stroke[0] | interactive.neutral.border.disabled |
 | State | disabled | _indicators round no-outline/10 | fill[0] | foreground.disabled |
@@ -197,15 +208,16 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | _indicators round outline | fill[0] | #ffffff | interactive.neutral.background.default |
 | _indicators round outline | stroke[0] | #ced2db | border.default |
 | _indicators round outline | cornerRadius | 4 | radius.sm |
+| _indicators round outline | strokeWeight | 1 | stroke.thin |
 | _indicators round outline | itemSpacing | 10 | — |
 | _indicators round outline | padding.left | 10 | — |
 | _indicators round outline | padding.right | 10 | — |
 | _indicators round outline | padding.top | 10 | — |
 | _indicators round outline | padding.bottom | 10 | — |
 | _indicators round outline/10 | fill[0] | #0c0d0e | foreground.primary |
-| _indicators round outline/10 | fontSize | 14 | body.small |
-| _indicators round outline/10 | lineHeight | 18 | body.small |
-| _indicators round outline/10 | letterSpacing | 0 | body.small |
+| _indicators round outline/10 | fontSize | 14 | body.small.font size |
+| _indicators round outline/10 | lineHeight | 18 | body.small.line height |
+| _indicators round outline/10 | letterSpacing | 0 | body.small.letter spacing |
 
 ### Token changes by property
 
@@ -216,6 +228,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | selected | _indicators round outline | fill[1] | interactive.inverse.background.selected |
 | State | selected | _indicators round outline/10 | fill[0] | foreground.inverse |
 | State | focused | _indicators round outline | stroke[0] | border.focus |
+| State | focused | _indicators round outline | strokeWeight | stroke.thick |
 | State | disabled | _indicators round outline | fill[0] | interactive.neutral.background.disabled |
 | State | disabled | _indicators round outline/10 | fill[0] | foreground.disabled |
 | State | pressed | _indicators round outline | fill[0] | interactive.neutral.background.pressed |
@@ -236,6 +249,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | _controls sharp no-outline | fill[0] | #ffffff | interactive.neutral.background.default |
 | _controls sharp no-outline | stroke[0] | #ced2db | interactive.neutral.border.default |
 | _controls sharp no-outline | cornerRadius | 0 | radius.none |
+| _controls sharp no-outline | strokeWeight | 0 | stroke.base |
 | _controls sharp no-outline | itemSpacing | 10 | — |
 | _controls sharp no-outline | padding.left | 10 | — |
 | _controls sharp no-outline | padding.right | 10 | — |
@@ -250,6 +264,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | pressed | _controls sharp no-outline | stroke[0] | interactive.neutral.border.pressed |
 | State | hover | _controls sharp no-outline | fill[0] | interactive.neutral.background.hover |
 | State | focused | _controls sharp no-outline | stroke[0] | border.focus |
+| State | focused | _controls sharp no-outline | strokeWeight | stroke.thick |
 | State | disabled | _controls sharp no-outline | stroke[0] | interactive.neutral.border.disabled |
 
 ## _controls sharp outline
@@ -268,6 +283,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | _controls sharp outline | fill[0] | #ffffff | interactive.neutral.background.default |
 | _controls sharp outline | stroke[0] | #ced2db | interactive.neutral.border.default |
 | _controls sharp outline | cornerRadius | 0 | radius.none |
+| _controls sharp outline | strokeWeight | 1 | stroke.thin |
 | _controls sharp outline | itemSpacing | 10 | — |
 | _controls sharp outline | padding.left | 10 | — |
 | _controls sharp outline | padding.right | 10 | — |
@@ -282,6 +298,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | pressed | _controls sharp outline | stroke[0] | interactive.neutral.border.pressed |
 | State | hover | _controls sharp outline | fill[0] | interactive.neutral.background.hover |
 | State | focused | _controls sharp outline | stroke[0] | border.focus |
+| State | focused | _controls sharp outline | strokeWeight | stroke.thick |
 | State | disabled | _controls sharp outline | stroke[0] | interactive.neutral.border.disabled |
 
 ## _controls round no-outline
@@ -300,6 +317,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | _controls round no-outline | fill[0] | #ffffff | interactive.neutral.background.default |
 | _controls round no-outline | stroke[0] | #ced2db | interactive.neutral.border.default |
 | _controls round no-outline | cornerRadius | 4 | radius.sm |
+| _controls round no-outline | strokeWeight | 0 | stroke.base |
 | _controls round no-outline | itemSpacing | 10 | — |
 | _controls round no-outline | padding.left | 10 | — |
 | _controls round no-outline | padding.right | 10 | — |
@@ -314,6 +332,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | pressed | _controls round no-outline | stroke[0] | interactive.neutral.border.pressed |
 | State | hover | _controls round no-outline | fill[0] | interactive.neutral.background.hover |
 | State | focused | _controls round no-outline | stroke[0] | border.focus |
+| State | focused | _controls round no-outline | strokeWeight | stroke.thick |
 | State | disabled | _controls round no-outline | stroke[0] | interactive.neutral.border.disabled |
 
 ## _controls round outline
@@ -332,6 +351,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | _controls round outline | fill[0] | #ffffff | interactive.neutral.background.default |
 | _controls round outline | stroke[0] | #ced2db | interactive.neutral.border.default |
 | _controls round outline | cornerRadius | 4 | radius.sm |
+| _controls round outline | strokeWeight | 1 | stroke.thin |
 | _controls round outline | itemSpacing | 10 | — |
 | _controls round outline | padding.left | 10 | — |
 | _controls round outline | padding.right | 10 | — |
@@ -346,4 +366,5 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | pressed | _controls round outline | stroke[0] | interactive.neutral.border.pressed |
 | State | hover | _controls round outline | fill[0] | interactive.neutral.background.hover |
 | State | focused | _controls round outline | stroke[0] | border.focus |
+| State | focused | _controls round outline | strokeWeight | stroke.thick |
 | State | disabled | _controls round outline | stroke[0] | interactive.neutral.border.disabled |

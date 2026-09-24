@@ -1,4 +1,4 @@
-# Global Header
+# Global header
 
 Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2314-3348&m=dev
 
@@ -28,29 +28,36 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | --- | --- | --- | --- |
 | Global Header | fill[0] | #0c0d0e | surface.section |
 | Global Header | stroke[0] | #545963 | border.default |
+| Global Header | strokeWeight | 0 | stroke.base |
 | Global Header | itemSpacing | 16 | space.gutter |
 | Global Header | padding.left | 8 | space.sm |
 | Global Header | padding.right | 8 | space.sm |
 | Global Header | padding.top | 8 | space.sm |
 | Global Header | padding.bottom | 8 | space.sm |
 | Global Header/Header-Left | itemSpacing | 16 | space.gutter |
+| Global Header/Header-Left/Icon Button | width | 40 | control.md |
+| Global Header/Header-Left/Icon Button | height | 40 | control.md |
 | Global Header/Header-Left/Icon Button | fill[0] | #0c0d0e | interactive.neutral.background.default |
 | Global Header/Header-Left/Icon Button | stroke[0] | #545963 | interactive.neutral.border.default |
 | Global Header/Header-Left/Icon Button | cornerRadius | 0 | radius.none |
+| Global Header/Header-Left/Icon Button | strokeWeight | 0 | stroke.base |
 | Global Header/Header-Left/Icon Button | padding.left | 4 | space.xs |
 | Global Header/Header-Left/Icon Button | padding.right | 4 | space.xs |
 | Global Header/Header-Left/Icon Button | padding.top | 4 | space.xs |
 | Global Header/Header-Left/Icon Button | padding.bottom | 4 | space.xs |
 | Global Header/Header-Left/Platform Name | fill[0] | #f8fbff | foreground.primary |
-| Global Header/Header-Left/Platform Name | fontSize | 16 | title.medium |
-| Global Header/Header-Left/Platform Name | lineHeight | 20 | title.medium |
-| Global Header/Header-Left/Platform Name | letterSpacing | 0 | title.medium |
+| Global Header/Header-Left/Platform Name | fontSize | 16 | title.medium.font size |
+| Global Header/Header-Left/Platform Name | lineHeight | 20 | title.medium.line height |
+| Global Header/Header-Left/Platform Name | letterSpacing | 0 | title.medium.letter spacing |
+| Global Header/Divider | width | 1 | stroke.thin |
 | Global Header/Divider | cornerRadius | 0 | radius.none |
 | Global Header/Header-Middle | itemSpacing | 2 | space.2xs |
 | Global Header/Header-Middle/Slot-Menu-Items | itemSpacing | 2 | space.2xs |
+| Global Header/Header-Middle/Search | height | 40 | — |
 | Global Header/Header-Middle/Search | fill[0] | #0c0d0e | — |
 | Global Header/Header-Middle/Search | stroke[0] | #545963 | — |
 | Global Header/Header-Middle/Search | cornerRadius | 0 | — |
+| Global Header/Header-Middle/Search | strokeWeight | 1 | — |
 | Global Header/Header-Middle/Search | itemSpacing | 4 | — |
 | Global Header/Header-Middle/Search | padding.left | 12 | — |
 | Global Header/Header-Middle/Search | padding.right | 12 | — |
@@ -58,9 +65,12 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Global Header/Header-Middle/Search | padding.bottom | 8 | — |
 | Global Header/Header-Middle/Slot-Menu-Actions | itemSpacing | 2 | space.2xs |
 | Global Header/Header-Right | itemSpacing | 16 | space.gutter |
+| Global Header/Header-Right/Icon Button | width | 40 | control.md |
+| Global Header/Header-Right/Icon Button | height | 40 | control.md |
 | Global Header/Header-Right/Icon Button | fill[0] | #0c0d0e | interactive.neutral.background.default |
 | Global Header/Header-Right/Icon Button | stroke[0] | #545963 | interactive.neutral.border.default |
 | Global Header/Header-Right/Icon Button | cornerRadius | 0 | radius.none |
+| Global Header/Header-Right/Icon Button | strokeWeight | 0 | stroke.base |
 | Global Header/Header-Right/Icon Button | padding.left | 4 | space.xs |
 | Global Header/Header-Right/Icon Button | padding.right | 4 | space.xs |
 | Global Header/Header-Right/Icon Button | padding.top | 4 | space.xs |
@@ -112,18 +122,20 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 | Layer | Field | Raw | Token |
 | --- | --- | --- | --- |
+| _User Profile | height | 40 | control.md |
 | _User Profile | fill[0] | #ffffff | interactive.neutral.background.default |
 | _User Profile | stroke[0] | #ced2db | interactive.neutral.border.default |
 | _User Profile | cornerRadius | 0 | radius.none |
+| _User Profile | strokeWeight | 0 | stroke.base |
 | _User Profile | itemSpacing | 4 | space.xs |
 | _User Profile | padding.left | 8 | space.sm |
 | _User Profile | padding.right | 8 | space.sm |
 | _User Profile | padding.top | 4 | space.xs |
 | _User Profile | padding.bottom | 4 | space.xs |
 | _User Profile/Username | fill[0] | #0c0d0e | foreground.primary |
-| _User Profile/Username | fontSize | 12 | title.small \| body.xsmall \| label.small |
-| _User Profile/Username | lineHeight | 16 | title.small \| body.xsmall \| label.small |
-| _User Profile/Username | letterSpacing | 0 | title.small \| body.xsmall \| label.small |
+| _User Profile/Username | fontSize | 12 | label.small.font size |
+| _User Profile/Username | lineHeight | 16 | label.small.line height |
+| _User Profile/Username | letterSpacing | 0 | label.small.letter spacing |
 | _User Profile/Avatar | cornerRadius | 0 | radius.none |
 
 ### Token changes by property
@@ -133,6 +145,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | hover | _User Profile | fill[0] | interactive.neutral.background.hover |
 | State | focus | _User Profile | fill[0] | interactive.neutral.background.focused |
 | State | focus | _User Profile | stroke[0] | border.focus |
+| State | focus | _User Profile | strokeWeight | stroke.thin |
 | State | pressed | _User Profile | fill[0] | interactive.neutral.background.pressed |
 | State | disabled | _User Profile | fill[0] | interactive.neutral.background.disabled |
 | State | disabled | _User Profile | stroke[0] | interactive.neutral.border.disabled |

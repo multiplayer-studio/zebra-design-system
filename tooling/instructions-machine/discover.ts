@@ -1,11 +1,21 @@
 import * as assert from 'assert';
-import type { FigmaFileNodesResponse, FigmaNodeRaw } from './types.js';
+import type { FigmaComponentMeta, FigmaComponentSetMeta, FigmaFileNodesResponse, FigmaNodeRaw } from './types.js';
 
 const CONTAINER_TYPES = new Set(['CANVAS', 'SECTION', 'FRAME', 'GROUP']);
 const METADATA_FRAME_SUFFIX = ' Metadata';
 
-export async function fetchNodeSubtree(fileKey: string, nodeId: string, token: string): Promise<FigmaNodeRaw> {
-  const url = `https://api.figma.com/v1/files/${fileKey}/nodes?ids=${encodeURIComponent(nodeId)}`;
+export interface NodeSubtree {
+  document: FigmaNodeRaw;
+  // Every component/componentSet referenced anywhere in this subtree — the same maps the
+  // nodes endpoint already returns for free, used to resolve an INSTANCE's applied
+  // component identity (see extract.ts's resolveIconName) without a separate fetch.
+  components: Record<string, FigmaComponentMeta>;
+  componentSets: Record<string, FigmaComponentSetMeta>;
+}
+
+export async function fetchNodeSubtree(fileKey: string, nodeId: string, token: string, branchId?: string): Promise<NodeSubtree> {
+  let url = `https://api.figma.com/v1/files/${fileKey}/nodes?ids=${encodeURIComponent(nodeId)}`;
+  if (branchId) url += `&branch_id=${branchId}`;
   const response = await fetch(url, { headers: { 'X-Figma-Token': token } });
   if (!response.ok) {
     throw new Error(`Figma API request failed with status ${response.status} for node ${nodeId}`);
@@ -15,7 +25,7 @@ export async function fetchNodeSubtree(fileKey: string, nodeId: string, token: s
   if (!entry || !entry.document) {
     throw new Error(`Node ${nodeId} not found or not accessible.`);
   }
-  return entry.document;
+  return { document: entry.document, components: entry.components ?? {}, componentSets: entry.componentSets ?? {} };
 }
 
 export interface PageDiscovery {

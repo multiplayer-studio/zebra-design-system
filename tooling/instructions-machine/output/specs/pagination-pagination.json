@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "4489:1925",
-  "fetchedAt": "2026-09-22T20:44:08.077Z",
+  "fetchedAt": "2026-09-24T09:01:29.733Z",
   "componentProperties": {
     "Show Controls#4489:13": {
       "type": "BOOLEAN",
@@ -157,6 +157,10 @@
             "raw": 0,
             "token": "radius.none"
           },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
+          },
           "itemSpacing": {
             "raw": 10,
             "token": null
@@ -202,6 +206,10 @@
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "itemSpacing": {
             "raw": 10,
@@ -259,6 +267,10 @@
             "raw": 0,
             "token": "radius.none"
           },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "itemSpacing": {
             "raw": 10,
             "token": null
@@ -304,6 +316,10 @@
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "itemSpacing": {
             "raw": 10,
@@ -361,6 +377,10 @@
             "raw": 4,
             "token": "radius.sm"
           },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
+          },
           "itemSpacing": {
             "raw": 10,
             "token": null
@@ -406,6 +426,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "itemSpacing": {
             "raw": 10,
@@ -463,6 +487,10 @@
             "raw": 4,
             "token": "radius.sm"
           },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "itemSpacing": {
             "raw": 10,
             "token": null
@@ -508,6 +536,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.sm"
+          },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
           },
           "itemSpacing": {
             "raw": 10,

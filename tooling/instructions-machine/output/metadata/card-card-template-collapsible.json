@@ -1,0 +1,123 @@
+{
+  "componentName": "CARD TEMPLATE COLLAPSIBLE",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "4977:1259",
+  "fetchedAt": "2026-09-24T09:01:35.501Z",
+  "hero": {
+    "statusLabel": "CARD TEMPLATE COLLAPSIBLE · PATTERN METADATA",
+    "heading": "What this component does",
+    "description": "A ready-made collapsible card built on Collapsible Card, with the body already filled. It declares no properties of its own beyond its three axes, so everything else is configured through the exposed shell instance. This is a condensed record, the shell is documented in the Collapsible Card Metadata frame."
+  },
+  "sections": [
+    {
+      "kind": "table",
+      "nodeId": "4977:1268",
+      "title": "Property Breakdown",
+      "columns": [
+        "Property",
+        "Type",
+        "Default",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "State",
+          "Type": "collapsed",
+          "Default": true,
+          "Description": "Header only. The resting state, and the one to lay out against."
+        },
+        {
+          "Property": "State",
+          "Type": "expanded",
+          "Default": "-",
+          "Description": "Reveals the filled body. What appears differs by Flavor, because the shell stores its body content separately for each expanded variant."
+        },
+        {
+          "Property": "Flavor",
+          "Type": "gradient",
+          "Default": true,
+          "Description": "The gradient-outlined card, and this template's default. Note the shell's own default is the plain flavour, so the two disagree."
+        },
+        {
+          "Property": "Flavor",
+          "Type": "default",
+          "Default": "-",
+          "Description": "The plain card with no outline. Its expanded body ships with an image that the gradient flavour's does not have."
+        },
+        {
+          "Property": "Shape",
+          "Type": "sharp",
+          "Default": true,
+          "Description": "Square corners. It sets the shell's Shape to sharp."
+        },
+        {
+          "Property": "Shape",
+          "Type": "round",
+          "Default": "-",
+          "Description": "Softened corners. It sets the shell's Shape to rounded."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4977:1402",
+      "title": "Content & Slot",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Collapsible Card",
+          "Type": "exposed nested instance",
+          "Description": "The shell the template is built on. Exposed, so its State, Flavor, Shape and body slot all stay reachable. See the Collapsible Card Metadata frame."
+        },
+        {
+          "Property": "Body content",
+          "Type": "differs per Flavor",
+          "Description": "The default flavour's expanded body holds _Card Body, _Card Image and _Card Footer. The gradient flavour's holds _Card Body and _Card Footer with no image. That difference follows from the shell storing body content separately for each expanded variant."
+        }
+      ]
+    },
+    {
+      "kind": "bullet-list",
+      "nodeId": "4977:1469",
+      "title": "Accessibility & Content Guidelines",
+      "items": [
+        "Expanding is not modelled as a behaviour. The toggle target, its focus treatment and its expanded state all belong to the implementation.",
+        "The two flavours ship with different body content, so what a reader sees on opening depends on a choice that looks purely decorative.",
+        "The gradient outline carries no meaning of its own and should not be the only marker of importance.",
+        "Collapsed content is hidden rather than removed, so make sure assistive technology reaches it only when the card is open."
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4977:1473",
+      "title": "Layout & Theming Intents",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Width",
+          "Type": "Fixed",
+          "Description": "385px at every variant, inherited from the shell."
+        },
+        {
+          "Property": "Height",
+          "Type": "Hug",
+          "Description": "78px collapsed and 481px expanded at the default flavour, 82px and 226px at gradient. The two flavours differ by far more than the 4px their outline accounts for, because their bodies hold different content."
+        },
+        {
+          "Property": "Shape and Flavor",
+          "Type": "Passed to the shell",
+          "Description": "Both map straight onto the shell's own axes. The surface, the outline and the clipping all belong to Collapsible Card."
+        }
+      ]
+    }
+  ]
+}

@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-5903&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2666:6863",
-  "fetchedAt": "2026-09-22T20:44:16.321Z",
+  "fetchedAt": "2026-09-24T09:01:32.867Z",
   "componentProperties": {
     "Slot Container#2666:104": {
       "type": "SLOT",
@@ -105,6 +105,10 @@
           }
         },
         "Dropdown Menu/Content/Menu Item": {
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#0c0d0e00",
@@ -194,6 +198,10 @@
           }
         },
         "Dropdown Menu/Content/Menu Item": {
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#0c0d0e00",

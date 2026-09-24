@@ -18,10 +18,11 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Notification Indicator | fill[0] | #d70015 | interactive.destructive.background.default |
 | Notification Indicator | stroke[0] | #ffffff | border.inverse |
 | Notification Indicator | cornerRadius | 9999 | radius.pill |
+| Notification Indicator | strokeWeight | 0 | stroke.base |
 | Notification Indicator/2 | fill[0] | #f8fbff | interactive.destructive.foreground.default |
-| Notification Indicator/2 | fontSize | 12 | indicator.medium |
-| Notification Indicator/2 | lineHeight | 14 | indicator.medium |
-| Notification Indicator/2 | letterSpacing | 0 | indicator.medium |
+| Notification Indicator/2 | fontSize | 12 | indicator.medium.font size |
+| Notification Indicator/2 | lineHeight | 14 | indicator.medium.line height |
+| Notification Indicator/2 | letterSpacing | 0 | indicator.medium.letter spacing |
 
 ### Token changes by property
 

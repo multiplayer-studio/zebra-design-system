@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15004&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2046:15010",
-  "fetchedAt": "2026-09-22T20:44:00.771Z",
+  "fetchedAt": "2026-09-24T09:01:27.641Z",
   "componentProperties": {
     "Name#2167:166": {
       "type": "INSTANCE_SWAP",
@@ -47,7 +47,12 @@
       },
       "values": {
         "Icon": {},
-        "Icon/Verified": {}
+        "Icon/Verified": {
+          "height": {
+            "raw": 16,
+            "token": "control.icon-sm"
+          }
+        }
       }
     },
     {
@@ -58,8 +63,18 @@
         "Framed": "true"
       },
       "values": {
-        "Icon": {},
-        "Icon/Verified": {}
+        "Icon": {
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Icon/Verified": {
+          "height": {
+            "raw": 16,
+            "token": "control.icon-sm"
+          }
+        }
       }
     },
     {
@@ -71,7 +86,12 @@
       },
       "values": {
         "Icon": {},
-        "Icon/Verified": {}
+        "Icon/Verified": {
+          "height": {
+            "raw": 20,
+            "token": "control.icon-md"
+          }
+        }
       }
     },
     {
@@ -82,8 +102,18 @@
         "Framed": "true"
       },
       "values": {
-        "Icon": {},
-        "Icon/Verified": {}
+        "Icon": {
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Icon/Verified": {
+          "height": {
+            "raw": 20,
+            "token": "control.icon-md"
+          }
+        }
       }
     },
     {
@@ -95,7 +125,12 @@
       },
       "values": {
         "Icon": {},
-        "Icon/Verified": {}
+        "Icon/Verified": {
+          "height": {
+            "raw": 28,
+            "token": "control.icon-lg"
+          }
+        }
       }
     },
     {
@@ -106,8 +141,18 @@
         "Framed": "true"
       },
       "values": {
-        "Icon": {},
-        "Icon/Verified": {}
+        "Icon": {
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Icon/Verified": {
+          "height": {
+            "raw": 28,
+            "token": "control.icon-lg"
+          }
+        }
       }
     }
   ]

@@ -2,8 +2,8 @@
   "componentName": "Avatar",
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-6017&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
-  "nodeId": "2699:17793",
-  "fetchedAt": "2026-09-22T20:44:18.961Z",
+  "nodeId": "4906:1172",
+  "fetchedAt": "2026-09-24T09:01:33.559Z",
   "componentProperties": {
     "Show Close#2701:0": {
       "type": "BOOLEAN",
@@ -21,15 +21,15 @@
       "type": "VARIANT",
       "defaultValue": "xxxsmall",
       "options": [
+        "xsmall",
         "xxxsmall",
+        "xxsmall",
         "small",
         "medium",
         "large",
         "xlarge",
         "xxlarge",
-        "xxxlarge",
-        "xxsmall",
-        "xsmall"
+        "xxxlarge"
       ]
     }
   },
@@ -58,7 +58,7 @@
   "variants": [
     {
       "name": "Size=xxxsmall",
-      "nodeId": "2699:17791",
+      "nodeId": "4906:1432",
       "properties": {
         "Size": "xxxsmall"
       },
@@ -71,7 +71,11 @@
               "raw": "#ced2db",
               "token": "border.default"
             }
-          ]
+          ],
+          "strokeWeight": {
+            "raw": 1,
+            "token": null
+          }
         },
         "Avatar/Close": {},
         "Avatar/Status": {}
@@ -79,17 +83,12 @@
     },
     {
       "name": "Size=xxsmall",
-      "nodeId": "2739:184",
+      "nodeId": "4906:1488",
       "properties": {
         "Size": "xxsmall"
       },
       "values": {
-        "Avatar": {
-          "cornerRadius": {
-            "raw": 0,
-            "token": "radius.none"
-          }
-        },
+        "Avatar": {},
         "Avatar/Avatar Type": {},
         "Avatar/Ring": {
           "strokes": [
@@ -97,7 +96,11 @@
               "raw": "#ced2db",
               "token": "border.default"
             }
-          ]
+          ],
+          "strokeWeight": {
+            "raw": 1.3333333730697632,
+            "token": null
+          }
         },
         "Avatar/Close": {},
         "Avatar/Status": {}
@@ -105,7 +108,7 @@
     },
     {
       "name": "Size=xsmall",
-      "nodeId": "2739:164",
+      "nodeId": "4906:1506",
       "properties": {
         "Size": "xsmall"
       },
@@ -118,7 +121,11 @@
               "raw": "#ced2db",
               "token": "border.default"
             }
-          ]
+          ],
+          "strokeWeight": {
+            "raw": 1.5,
+            "token": null
+          }
         },
         "Avatar/Close": {},
         "Avatar/Status": {}
@@ -126,7 +133,7 @@
     },
     {
       "name": "Size=small",
-      "nodeId": "2699:17794",
+      "nodeId": "4906:1450",
       "properties": {
         "Size": "small"
       },
@@ -139,7 +146,11 @@
               "raw": "#ced2db",
               "token": "border.default"
             }
-          ]
+          ],
+          "strokeWeight": {
+            "raw": 1.6666666269302368,
+            "token": null
+          }
         },
         "Avatar/Close": {},
         "Avatar/Status": {}
@@ -147,12 +158,17 @@
     },
     {
       "name": "Size=medium",
-      "nodeId": "2699:17813",
+      "nodeId": "4906:1193",
       "properties": {
         "Size": "medium"
       },
       "values": {
-        "Avatar": {},
+        "Avatar": {
+          "width": {
+            "raw": 48,
+            "token": "control.lg"
+          }
+        },
         "Avatar/Avatar Type": {},
         "Avatar/Ring": {
           "strokes": [
@@ -160,7 +176,11 @@
               "raw": "#ced2db",
               "token": "border.default"
             }
-          ]
+          ],
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          }
         },
         "Avatar/Close": {},
         "Avatar/Status": {}
@@ -168,7 +188,7 @@
     },
     {
       "name": "Size=large",
-      "nodeId": "2699:17832",
+      "nodeId": "4906:1542",
       "properties": {
         "Size": "large"
       },
@@ -181,7 +201,11 @@
               "raw": "#ced2db",
               "token": "border.default"
             }
-          ]
+          ],
+          "strokeWeight": {
+            "raw": 2.5,
+            "token": null
+          }
         },
         "Avatar/Close": {},
         "Avatar/Status": {}
@@ -189,7 +213,7 @@
     },
     {
       "name": "Size=xlarge",
-      "nodeId": "2699:17851",
+      "nodeId": "4906:1524",
       "properties": {
         "Size": "xlarge"
       },
@@ -202,7 +226,11 @@
               "raw": "#ced2db",
               "token": "border.default"
             }
-          ]
+          ],
+          "strokeWeight": {
+            "raw": 3.333333730697632,
+            "token": null
+          }
         },
         "Avatar/Close": {},
         "Avatar/Status": {}
@@ -210,7 +238,7 @@
     },
     {
       "name": "Size=xxlarge",
-      "nodeId": "2699:17870",
+      "nodeId": "4906:1395",
       "properties": {
         "Size": "xxlarge"
       },
@@ -223,7 +251,11 @@
               "raw": "#ced2db",
               "token": "border.default"
             }
-          ]
+          ],
+          "strokeWeight": {
+            "raw": 5,
+            "token": null
+          }
         },
         "Avatar/Close": {},
         "Avatar/Status": {}
@@ -231,7 +263,7 @@
     },
     {
       "name": "Size=xxxlarge",
-      "nodeId": "2699:17890",
+      "nodeId": "4906:1414",
       "properties": {
         "Size": "xxxlarge"
       },
@@ -244,7 +276,11 @@
               "raw": "#ced2db",
               "token": "border.default"
             }
-          ]
+          ],
+          "strokeWeight": {
+            "raw": 8.333333015441895,
+            "token": null
+          }
         },
         "Avatar/Close": {},
         "Avatar/Status": {}

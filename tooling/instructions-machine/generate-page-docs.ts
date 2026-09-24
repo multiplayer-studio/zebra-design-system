@@ -3,11 +3,10 @@ import { mkdir } from 'fs/promises';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import config from './config.json' with { type: 'json' };
-import pagesConfig from './pages.json' with { type: 'json' };
 import { discoverPage, fetchNodeSubtree, selfCheck as discoverSelfCheck } from './discover.js';
 import { parseComponentSet, selfCheck as extractSelfCheck } from './extract.js';
+import { discoverPages, selfCheck as pagesSelfCheck } from './pages.js';
 import { renderPageMarkdown, selfCheck as renderSelfCheck } from './render-markdown.js';
-import { selfCheck as tokenResolverSelfCheck } from './token-resolver.js';
 import { parseFigmaUrl, selfCheck as urlSelfCheck } from './url.js';
 import { selfCheck as variantParserSelfCheck } from './variant-parser.js';
 import { fetchFileVariableNames, selfCheck as variablesSelfCheck } from './variables.js';
@@ -43,6 +42,21 @@ function metadataKey(name: string): string {
     .toLowerCase();
 }
 
+// Builds a Figma link to a specific node — the page's own node for the page-level link,
+// or a component's own node id so its "Source" links straight to that component set, not
+// just wherever on the page it happens to sit.
+function figmaUrl(fileKey: string, nodeIdDash: string, branchKey: string | undefined): string {
+  if (branchKey) {
+    const parts = branchKey.split('/');
+    if (parts.length !== 2) {
+      throw new Error(`FIGMA_BRANCH_KEY must be in format "branchId/componentName", got: ${branchKey}`);
+    }
+    const [branchId, componentName] = parts;
+    return `https://www.figma.com/design/${branchId}/${componentName}?node-id=${nodeIdDash}&m=dev`;
+  }
+  return `https://www.figma.com/design/${fileKey}/The-Zebra-Design-System?node-id=${nodeIdDash}&m=dev`;
+}
+
 export async function main(): Promise<void> {
   const token = process.env.FIGMA_PERSONAL_ACCESS_TOKEN;
   if (!token) {
@@ -50,16 +64,29 @@ export async function main(): Promise<void> {
     process.exit(1);
   }
 
-  const pages = pagesConfig as Record<string, string>;
-  if (!pages || Object.keys(pages).length === 0) {
-    console.error('❌ Error: pages.json is empty. Add at least one { "Page Name": "<figma page URL>" } entry.');
+  const fileKey = process.env.FIGMA_FILE_KEY;
+  if (!fileKey) {
+    console.error('❌ Error: FIGMA_FILE_KEY environment variable not set.');
     process.exit(1);
   }
+
+  const branchKey = process.env.FIGMA_BRANCH_KEY;
+
+  // Auto-discovered from the Figma file's own page list — every top-level page whose name
+  // matches an actual zeta-web component folder (see pages.ts) — instead of a hand-maintained
+  // pages.json that drifts out of sync as components are added.
+  console.log('🔍 Discovering Figma pages that match zeta-web components...');
+  const pages = await discoverPages(fileKey, token);
+  if (Object.keys(pages).length === 0) {
+    console.error('❌ Error: No Figma page matched a zeta-web component folder.');
+    process.exit(1);
+  }
+  console.log(`  Found ${Object.keys(pages).length} matching page(s): ${Object.keys(pages).join(', ')}`);
 
   let filterPage = process.argv[2];
   if (filterPage === '--') filterPage = process.argv[3];
   if (filterPage && !(filterPage in pages)) {
-    console.error(`❌ Error: Page "${filterPage}" not found in pages.json.`);
+    console.error(`❌ Error: Page "${filterPage}" not found — no Figma page of that name matches a zeta-web component folder.`);
     process.exit(1);
   }
   const pagesToRun = filterPage ? { [filterPage]: pages[filterPage] } : pages;
@@ -77,10 +104,13 @@ export async function main(): Promise<void> {
   // every page in that file, instead of refetching per page.
   const variableNamesByFile = new Map<string, Map<string, string>>();
 
-  for (const [pageName, url] of Object.entries(pagesToRun)) {
+  for (const [pageName, nodeIdStr] of Object.entries(pagesToRun)) {
     try {
       console.log(`\n📝 Processing page: ${pageName}`);
-      const { fileKey, nodeId } = parseFigmaUrl(url);
+      const url = figmaUrl(fileKey, nodeIdStr, branchKey);
+      console.log(`@ 🔗: ${url}`);
+
+      const { nodeId, branchId: parsedBranchId } = parseFigmaUrl(url);
 
       let variableNames = variableNamesByFile.get(fileKey);
       if (!variableNames) {
@@ -88,7 +118,7 @@ export async function main(): Promise<void> {
         variableNamesByFile.set(fileKey, variableNames);
       }
 
-      const root = await fetchNodeSubtree(fileKey, nodeId, token);
+      const { document: root, components: figmaComponents, componentSets: figmaComponentSets } = await fetchNodeSubtree(fileKey, nodeId, token, parsedBranchId);
       const { components: discovered, metadataFrames } = discoverPage(root);
       if (discovered.length === 0) {
         throw new Error('No components discovered on this page.');
@@ -99,7 +129,8 @@ export async function main(): Promise<void> {
       }
 
       const components: ComponentSpecDoc[] = discovered.map((d) => {
-        const spec = parseComponentSet(asComponentSet(d), url, fileKey, variableNames!);
+        const componentUrl = figmaUrl(fileKey, d.id.replace(':', '-'), branchKey);
+        const spec = parseComponentSet(asComponentSet(d), componentUrl, fileKey, variableNames!, figmaComponents, figmaComponentSets);
         writeDebugJson(debugSpecsDir, `${slugify(pageName)}-${slugify(spec.componentName)}`, spec);
         return spec;
       });
@@ -159,13 +190,13 @@ export async function main(): Promise<void> {
 
 function selfCheck(): void {
   urlSelfCheck();
-  tokenResolverSelfCheck();
   variantParserSelfCheck();
   discoverSelfCheck();
   extractSelfCheck();
   renderSelfCheck();
   variablesSelfCheck();
   metadataSelfCheck();
+  pagesSelfCheck();
   console.log('✓✓✓ All self-checks passed! ✓✓✓');
 }
 

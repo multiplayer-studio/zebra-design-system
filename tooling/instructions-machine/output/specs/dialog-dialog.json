@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2526-316&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2896:877",
-  "fetchedAt": "2026-09-22T20:44:10.058Z",
+  "fetchedAt": "2026-09-24T09:01:30.617Z",
   "componentProperties": {
     "showFooter#2896:37": {
       "type": "BOOLEAN",
@@ -85,6 +85,10 @@
             "raw": 6,
             "token": "radius.element-md"
           },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "padding": {
             "left": {
               "raw": 12,
@@ -105,6 +109,10 @@
           }
         },
         "Dialog/Dialog Header": {
+          "height": {
+            "raw": 48,
+            "token": "control.lg"
+          },
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
@@ -170,15 +178,15 @@
             "fontWeight": 400,
             "fontSize": {
               "raw": 16,
-              "token": "body.medium | label.large"
+              "token": "body.medium.font size"
             },
             "lineHeight": {
               "raw": 24,
-              "token": "body.medium | label.large"
+              "token": "body.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "body.medium | label.large"
+              "token": "body.medium.letter spacing"
             }
           }
         },
@@ -233,6 +241,10 @@
             "raw": 6,
             "token": "radius.element-md"
           },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "padding": {
             "left": {
               "raw": 12,
@@ -253,6 +265,10 @@
           }
         },
         "Dialog/Dialog Header": {
+          "height": {
+            "raw": 48,
+            "token": "control.lg"
+          },
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
@@ -318,15 +334,15 @@
             "fontWeight": 400,
             "fontSize": {
               "raw": 16,
-              "token": "body.medium | label.large"
+              "token": "body.medium.font size"
             },
             "lineHeight": {
               "raw": 24,
-              "token": "body.medium | label.large"
+              "token": "body.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "body.medium | label.large"
+              "token": "body.medium.letter spacing"
             }
           }
         },
@@ -381,6 +397,10 @@
             "raw": 6,
             "token": "radius.element-md"
           },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "padding": {
             "left": {
               "raw": 12,
@@ -401,6 +421,10 @@
           }
         },
         "Dialog/Dialog Header": {
+          "height": {
+            "raw": 48,
+            "token": "control.lg"
+          },
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
@@ -466,15 +490,15 @@
             "fontWeight": 400,
             "fontSize": {
               "raw": 16,
-              "token": "body.medium | label.large"
+              "token": "body.medium.font size"
             },
             "lineHeight": {
               "raw": 24,
-              "token": "body.medium | label.large"
+              "token": "body.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "body.medium | label.large"
+              "token": "body.medium.letter spacing"
             }
           }
         },
@@ -529,6 +553,10 @@
             "raw": 6,
             "token": "radius.element-md"
           },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "padding": {
             "left": {
               "raw": 12,
@@ -549,6 +577,10 @@
           }
         },
         "Dialog/Dialog Header": {
+          "height": {
+            "raw": 48,
+            "token": "control.lg"
+          },
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
@@ -614,15 +646,15 @@
             "fontWeight": 400,
             "fontSize": {
               "raw": 16,
-              "token": "body.medium | label.large"
+              "token": "body.medium.font size"
             },
             "lineHeight": {
               "raw": 24,
-              "token": "body.medium | label.large"
+              "token": "body.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "body.medium | label.large"
+              "token": "body.medium.letter spacing"
             }
           }
         },
@@ -677,6 +709,10 @@
             "raw": 6,
             "token": "radius.element-md"
           },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "padding": {
             "left": {
               "raw": 12,
@@ -697,6 +733,10 @@
           }
         },
         "Dialog/Dialog Header": {
+          "height": {
+            "raw": 48,
+            "token": "control.lg"
+          },
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
@@ -762,15 +802,15 @@
             "fontWeight": 400,
             "fontSize": {
               "raw": 16,
-              "token": "body.medium | label.large"
+              "token": "body.medium.font size"
             },
             "lineHeight": {
               "raw": 24,
-              "token": "body.medium | label.large"
+              "token": "body.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "body.medium | label.large"
+              "token": "body.medium.letter spacing"
             }
           }
         },
@@ -825,6 +865,10 @@
             "raw": 0,
             "token": "radius.none"
           },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "padding": {
             "left": {
               "raw": 12,
@@ -845,6 +889,10 @@
           }
         },
         "Dialog/Dialog Header": {
+          "height": {
+            "raw": 48,
+            "token": "control.lg"
+          },
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
@@ -910,15 +958,15 @@
             "fontWeight": 400,
             "fontSize": {
               "raw": 16,
-              "token": "body.medium | label.large"
+              "token": "body.medium.font size"
             },
             "lineHeight": {
               "raw": 24,
-              "token": "body.medium | label.large"
+              "token": "body.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "body.medium | label.large"
+              "token": "body.medium.letter spacing"
             }
           }
         },
@@ -973,6 +1021,10 @@
             "raw": 0,
             "token": "radius.none"
           },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "padding": {
             "left": {
               "raw": 12,
@@ -993,6 +1045,10 @@
           }
         },
         "Dialog/Dialog Header": {
+          "height": {
+            "raw": 48,
+            "token": "control.lg"
+          },
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
@@ -1058,15 +1114,15 @@
             "fontWeight": 400,
             "fontSize": {
               "raw": 16,
-              "token": "body.medium | label.large"
+              "token": "body.medium.font size"
             },
             "lineHeight": {
               "raw": 24,
-              "token": "body.medium | label.large"
+              "token": "body.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "body.medium | label.large"
+              "token": "body.medium.letter spacing"
             }
           }
         },
@@ -1121,6 +1177,10 @@
             "raw": 0,
             "token": "radius.none"
           },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "padding": {
             "left": {
               "raw": 12,
@@ -1141,6 +1201,10 @@
           }
         },
         "Dialog/Dialog Header": {
+          "height": {
+            "raw": 48,
+            "token": "control.lg"
+          },
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
@@ -1206,15 +1270,15 @@
             "fontWeight": 400,
             "fontSize": {
               "raw": 16,
-              "token": "body.medium | label.large"
+              "token": "body.medium.font size"
             },
             "lineHeight": {
               "raw": 24,
-              "token": "body.medium | label.large"
+              "token": "body.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "body.medium | label.large"
+              "token": "body.medium.letter spacing"
             }
           }
         },
@@ -1269,6 +1333,10 @@
             "raw": 0,
             "token": "radius.none"
           },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "padding": {
             "left": {
               "raw": 12,
@@ -1289,6 +1357,10 @@
           }
         },
         "Dialog/Dialog Header": {
+          "height": {
+            "raw": 48,
+            "token": "control.lg"
+          },
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
@@ -1354,15 +1426,15 @@
             "fontWeight": 400,
             "fontSize": {
               "raw": 16,
-              "token": "body.medium | label.large"
+              "token": "body.medium.font size"
             },
             "lineHeight": {
               "raw": 24,
-              "token": "body.medium | label.large"
+              "token": "body.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "body.medium | label.large"
+              "token": "body.medium.letter spacing"
             }
           }
         },
@@ -1417,6 +1489,10 @@
             "raw": 0,
             "token": "radius.none"
           },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "padding": {
             "left": {
               "raw": 12,
@@ -1437,6 +1513,10 @@
           }
         },
         "Dialog/Dialog Header": {
+          "height": {
+            "raw": 48,
+            "token": "control.lg"
+          },
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
@@ -1502,15 +1582,15 @@
             "fontWeight": 400,
             "fontSize": {
               "raw": 16,
-              "token": "body.medium | label.large"
+              "token": "body.medium.font size"
             },
             "lineHeight": {
               "raw": 24,
-              "token": "body.medium | label.large"
+              "token": "body.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "body.medium | label.large"
+              "token": "body.medium.letter spacing"
             }
           }
         },

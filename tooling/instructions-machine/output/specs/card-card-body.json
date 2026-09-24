@@ -1,0 +1,83 @@
+{
+  "componentName": "_Card Body",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "3311:2061",
+  "fetchedAt": "2026-09-24T09:01:35.499Z",
+  "componentProperties": {},
+  "structure": {
+    "path": "_Card Body",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "_Card Body/Content",
+        "type": "FRAME",
+        "children": [
+          {
+            "path": "_Card Body/Content/Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+            "type": "TEXT"
+          }
+        ]
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "_Card Body",
+      "nodeId": "3311:2061",
+      "properties": {},
+      "values": {
+        "_Card Body": {
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "right": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "top": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "bottom": {
+              "raw": 16,
+              "token": "space.lg"
+            }
+          }
+        },
+        "_Card Body/Content": {},
+        "_Card Body/Content/Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "foreground.secondary"
+            }
+          ],
+          "text": {
+            "characters": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 14,
+              "token": "body.small.font size"
+            },
+            "lineHeight": {
+              "raw": 18,
+              "token": "body.small.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.small.letter spacing"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

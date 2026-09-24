@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "4485:1658",
-  "fetchedAt": "2026-09-22T20:44:08.082Z",
+  "fetchedAt": "2026-09-24T09:01:29.738Z",
   "componentProperties": {
     "State": {
       "type": "VARIANT",
@@ -60,6 +60,10 @@
             "raw": 4,
             "token": "radius.sm"
           },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "itemSpacing": {
             "raw": 10,
             "token": null
@@ -110,6 +114,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.sm"
+          },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
           },
           "itemSpacing": {
             "raw": 10,
@@ -162,6 +170,10 @@
             "raw": 4,
             "token": "radius.sm"
           },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          },
           "itemSpacing": {
             "raw": 10,
             "token": null
@@ -213,6 +225,10 @@
             "raw": 4,
             "token": "radius.sm"
           },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "itemSpacing": {
             "raw": 10,
             "token": null
@@ -263,6 +279,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.sm"
+          },
+          "strokeWeight": {
+            "raw": 1,
+            "token": "stroke.thin"
           },
           "itemSpacing": {
             "raw": 10,

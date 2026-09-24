@@ -164,9 +164,12 @@ A vertical navigation column for the edge of a desktop view, made of a narrow ic
 | Navigation Rail/Main Rail | padding.top | 12 | space.card |
 | Navigation Rail/Main Rail | padding.bottom | 12 | space.card |
 | Navigation Rail/Main Rail/Navigation Header | itemSpacing | 10 | — |
+| Navigation Rail/Main Rail/Icon Button | width | 48 | control.lg |
+| Navigation Rail/Main Rail/Icon Button | height | 48 | control.lg |
 | Navigation Rail/Main Rail/Icon Button | fill[0] | #1f69ff | interactive.primary.background.default |
 | Navigation Rail/Main Rail/Icon Button | stroke[0] | #1f69ff | interactive.primary.border.default |
 | Navigation Rail/Main Rail/Icon Button | cornerRadius | 4 | radius.element-sm |
+| Navigation Rail/Main Rail/Icon Button | strokeWeight | 0 | stroke.base |
 | Navigation Rail/Main Rail/Icon Button | padding.left | 4 | space.xs |
 | Navigation Rail/Main Rail/Icon Button | padding.right | 4 | space.xs |
 | Navigation Rail/Main Rail/Icon Button | padding.top | 4 | space.xs |
@@ -208,7 +211,9 @@ A vertical navigation column for the edge of a desktop view, made of a narrow ic
 | Navigation Rail/Main Rail/Footer/Navigation Rail Item | padding.top | 8 | space.sm |
 | Navigation Rail/Main Rail/Footer/Navigation Rail Item | padding.bottom | 8 | space.sm |
 | Navigation Rail/Sub menu | stroke[0] | #545963 | border.default |
+| Navigation Rail/Sub menu | strokeWeight | 1 | — |
 | Navigation Rail/Sub menu/Sub Menu Header | stroke[0] | #545963 | border.default |
+| Navigation Rail/Sub menu/Sub Menu Header | strokeWeight | 1 | — |
 | Navigation Rail/Sub menu/Sub Menu Header | itemSpacing | 10 | — |
 | Navigation Rail/Sub menu/Sub Menu Header | padding.left | 16 | space.lg |
 | Navigation Rail/Sub menu/Sub Menu Header | padding.right | 16 | space.lg |
@@ -222,9 +227,11 @@ A vertical navigation column for the edge of a desktop view, made of a narrow ic
 
 | Property | Value | Layer | Field | Token |
 | --- | --- | --- | --- | --- |
+| Expanded | true | Navigation Rail/Main Rail/Button | height | control.lg |
 | Expanded | true | Navigation Rail/Main Rail/Button | fill[0] | interactive.primary.background.default |
 | Expanded | true | Navigation Rail/Main Rail/Button | stroke[0] | interactive.primary.border.default |
 | Expanded | true | Navigation Rail/Main Rail/Button | cornerRadius | radius.element-sm |
+| Expanded | true | Navigation Rail/Main Rail/Button | strokeWeight | stroke.base |
 | Expanded | true | Navigation Rail/Main Rail/Button | padding.left | space.lg |
 | Expanded | true | Navigation Rail/Main Rail/Button | padding.right | space.lg |
 | Expanded | true | Navigation Rail/Main Rail/Button | padding.top | space.xs |
@@ -369,10 +376,11 @@ A single destination in a Navigation Rail, shown as a glyph in a square target o
 | Navigation Rail Item/Indicator/Notification Indicator | fill[0] | #d70015 | interactive.destructive.background.default |
 | Navigation Rail Item/Indicator/Notification Indicator | stroke[0] | #ffffff | border.inverse |
 | Navigation Rail Item/Indicator/Notification Indicator | cornerRadius | 9999 | radius.pill |
+| Navigation Rail Item/Indicator/Notification Indicator | strokeWeight | 0 | stroke.base |
 | Navigation Rail Item/Label | fill[0] | #0c0d0e | interactive.neutral.foreground.default |
-| Navigation Rail Item/Label | fontSize | 10 | indicator.small |
-| Navigation Rail Item/Label | lineHeight | 12 | indicator.small |
-| Navigation Rail Item/Label | letterSpacing | 0 | indicator.small |
+| Navigation Rail Item/Label | fontSize | 10 | indicator.small.font size |
+| Navigation Rail Item/Label | lineHeight | 12 | indicator.small.line height |
+| Navigation Rail Item/Label | letterSpacing | 0 | indicator.small.letter spacing |
 
 ### Token changes by property
 
@@ -385,9 +393,9 @@ A single destination in a Navigation Rail, shown as a glyph in a square target o
 | Expanded | true | Navigation Rail Item | itemSpacing | space.lg |
 | Expanded | true | Navigation Rail Item | padding.left | space.lg |
 | Expanded | true | Navigation Rail Item | padding.right | space.lg |
-| Expanded | true | Navigation Rail Item/Label | fontSize | label.medium |
-| Expanded | true | Navigation Rail Item/Label | lineHeight | label.medium |
-| Expanded | true | Navigation Rail Item/Label | letterSpacing | label.medium |
+| Expanded | true | Navigation Rail Item/Label | fontSize | label.medium.font size |
+| Expanded | true | Navigation Rail Item/Label | lineHeight | label.medium.line height |
+| Expanded | true | Navigation Rail Item/Label | letterSpacing | label.medium.letter spacing |
 
 ## Sub Menu Item
 
@@ -522,13 +530,14 @@ A row in the Navigation Rail's sub menu panel, with a leading glyph, a label, an
 | Sub Menu Item/Icon and Title | itemSpacing | 12 | space.md |
 | Sub Menu Item/Icon and Title/Page Title | itemSpacing | 8 | space.sm |
 | Sub Menu Item/Icon and Title/Page Title/Title | fill[0] | #0c0d0e | foreground.primary |
-| Sub Menu Item/Icon and Title/Page Title/Title | fontSize | 14 | label.medium |
-| Sub Menu Item/Icon and Title/Page Title/Title | lineHeight | 20 | label.medium |
-| Sub Menu Item/Icon and Title/Page Title/Title | letterSpacing | 0 | label.medium |
+| Sub Menu Item/Icon and Title/Page Title/Title | fontSize | 14 | label.medium.font size |
+| Sub Menu Item/Icon and Title/Page Title/Title | lineHeight | 20 | label.medium.line height |
+| Sub Menu Item/Icon and Title/Page Title/Title | letterSpacing | 0 | label.medium.letter spacing |
 | Sub Menu Item/Badge | itemSpacing | 10 | — |
 | Sub Menu Item/Badge/Notification Indicator | fill[0] | #d70015 | interactive.destructive.background.default |
 | Sub Menu Item/Badge/Notification Indicator | stroke[0] | #ffffff | border.inverse |
 | Sub Menu Item/Badge/Notification Indicator | cornerRadius | 9999 | radius.pill |
+| Sub Menu Item/Badge/Notification Indicator | strokeWeight | 1 | stroke.thin |
 | Sub Menu Item/Trailing Slot | itemSpacing | 10 | — |
 | Sub Menu Item/Trailing Slot/Caret Indicator | itemSpacing | 10 | — |
 
@@ -542,9 +551,9 @@ A row in the Navigation Rail's sub menu panel, with a leading glyph, a label, an
 | State | active | Sub Menu Item/Icon and Title/Page Title/Title | fill[0] | interactive.neutral.foreground.default |
 | Nested | true | Sub Menu Item | padding.left | space.xl |
 | Nested | true | Sub Menu Item/Icon and Title/Page Title/Title | fill[0] | foreground.secondary |
-| Nested | true | Sub Menu Item/Icon and Title/Page Title/Title | fontSize | indicator.medium |
-| Nested | true | Sub Menu Item/Icon and Title/Page Title/Title | lineHeight | indicator.medium |
-| Nested | true | Sub Menu Item/Icon and Title/Page Title/Title | letterSpacing | indicator.medium |
+| Nested | true | Sub Menu Item/Icon and Title/Page Title/Title | fontSize | indicator.medium.font size |
+| Nested | true | Sub Menu Item/Icon and Title/Page Title/Title | lineHeight | indicator.medium.line height |
+| Nested | true | Sub Menu Item/Icon and Title/Page Title/Title | letterSpacing | indicator.medium.letter spacing |
 
 ## Navigation Header
 
@@ -576,12 +585,15 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Navigation Header/Avatar with Title | padding.right | 4 | space.xs |
 | Navigation Header/Avatar with Title/Page Title | itemSpacing | 8 | space.sm |
 | Navigation Header/Avatar with Title/Page Title/Title | fill[0] | #0c0d0e | foreground.primary |
-| Navigation Header/Avatar with Title/Page Title/Title | fontSize | 14 | label.medium |
-| Navigation Header/Avatar with Title/Page Title/Title | lineHeight | 20 | label.medium |
-| Navigation Header/Avatar with Title/Page Title/Title | letterSpacing | 0 | label.medium |
+| Navigation Header/Avatar with Title/Page Title/Title | fontSize | 14 | label.medium.font size |
+| Navigation Header/Avatar with Title/Page Title/Title | lineHeight | 20 | label.medium.line height |
+| Navigation Header/Avatar with Title/Page Title/Title | letterSpacing | 0 | label.medium.letter spacing |
+| Navigation Header/Icon Button | width | 36 | control.sm |
+| Navigation Header/Icon Button | height | 36 | control.sm |
 | Navigation Header/Icon Button | fill[0] | #ffffff | interactive.neutral.background.default |
 | Navigation Header/Icon Button | stroke[0] | #ced2db | interactive.neutral.border.default |
 | Navigation Header/Icon Button | cornerRadius | 0 | radius.none |
+| Navigation Header/Icon Button | strokeWeight | 0 | stroke.base |
 | Navigation Header/Icon Button | padding.left | 4 | space.xs |
 | Navigation Header/Icon Button | padding.right | 4 | space.xs |
 | Navigation Header/Icon Button | padding.top | 4 | space.xs |
@@ -594,11 +606,12 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Type | logo | Navigation Header/Logo with Title | itemSpacing | space.sm |
 | Type | logo | Navigation Header/Logo with Title | padding.left | space.xs |
 | Type | logo | Navigation Header/Logo with Title | padding.right | space.xs |
+| Type | logo | Navigation Header/Logo with Title/Icon | height | control.target-min |
 | Type | logo | Navigation Header/Logo with Title/Page Title | itemSpacing | space.sm |
 | Type | logo | Navigation Header/Logo with Title/Page Title/Title | fill[0] | foreground.primary |
-| Type | logo | Navigation Header/Logo with Title/Page Title/Title | fontSize | label.medium |
-| Type | logo | Navigation Header/Logo with Title/Page Title/Title | lineHeight | label.medium |
-| Type | logo | Navigation Header/Logo with Title/Page Title/Title | letterSpacing | label.medium |
+| Type | logo | Navigation Header/Logo with Title/Page Title/Title | fontSize | label.medium.font size |
+| Type | logo | Navigation Header/Logo with Title/Page Title/Title | lineHeight | label.medium.line height |
+| Type | logo | Navigation Header/Logo with Title/Page Title/Title | letterSpacing | label.medium.letter spacing |
 | Expanded | false | Navigation Header/Avatar | itemSpacing | space.xl |
 | Expanded | false | Navigation Header/Avatar | padding.left | space.xs |
 | Expanded | false | Navigation Header/Avatar | padding.right | space.xs |
@@ -621,15 +634,16 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Layer | Field | Raw | Token |
 | --- | --- | --- | --- |
 | Sub Menu Header | stroke[0] | #ced2db | border.default |
+| Sub Menu Header | strokeWeight | 1 | — |
 | Sub Menu Header | itemSpacing | 10 | — |
 | Sub Menu Header | padding.left | 16 | space.lg |
 | Sub Menu Header | padding.right | 16 | space.lg |
 | Sub Menu Header/Icon and Title | itemSpacing | 12 | space.md |
 | Sub Menu Header/Icon and Title/Page Title | itemSpacing | 8 | space.sm |
 | Sub Menu Header/Icon and Title/Page Title/Title | fill[0] | #0c0d0e | foreground.primary |
-| Sub Menu Header/Icon and Title/Page Title/Title | fontSize | 14 | label.medium |
-| Sub Menu Header/Icon and Title/Page Title/Title | lineHeight | 20 | label.medium |
-| Sub Menu Header/Icon and Title/Page Title/Title | letterSpacing | 0 | label.medium |
+| Sub Menu Header/Icon and Title/Page Title/Title | fontSize | 14 | label.medium.font size |
+| Sub Menu Header/Icon and Title/Page Title/Title | lineHeight | 20 | label.medium.line height |
+| Sub Menu Header/Icon and Title/Page Title/Title | letterSpacing | 0 | label.medium.letter spacing |
 | Sub Menu Header/Trailing Actions Slot | itemSpacing | 4 | space.xs |
 
 ## Caret Indicator

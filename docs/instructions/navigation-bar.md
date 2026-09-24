@@ -16,6 +16,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Layer | Field | Raw | Token |
 | --- | --- | --- | --- |
 | Spacer | itemSpacing | 10 | — |
+| Spacer/Divider | width | 1 | stroke.thin |
 | Spacer/Divider | cornerRadius | 0 | radius.none |
 
 ## Navigation Bar
@@ -127,6 +128,7 @@ A horizontal bar of top-level destinations, pinned to one edge of a view. It is 
 | Layer | Field | Raw | Token |
 | --- | --- | --- | --- |
 | Navigation Bar | stroke[0] | #ced2db | border.default |
+| Navigation Bar | strokeWeight | 1 | — |
 | Navigation Bar/Action Slot | itemSpacing | 8 | — |
 | Navigation Bar/Action Slot | padding.left | 16 | space.lg |
 
@@ -242,10 +244,11 @@ A single destination inside a Navigation Bar, shown as an icon above a label wit
 | Navigation Item/Indicator/Notification Indicator | fill[0] | #d70015 | interactive.destructive.background.default |
 | Navigation Item/Indicator/Notification Indicator | stroke[0] | #ffffff | border.inverse |
 | Navigation Item/Indicator/Notification Indicator | cornerRadius | 9999 | radius.pill |
+| Navigation Item/Indicator/Notification Indicator | strokeWeight | 0 | stroke.base |
 | Navigation Item/Label | fill[0] | #0c0d0e | foreground.primary |
-| Navigation Item/Label | fontSize | 14 | label.medium |
-| Navigation Item/Label | lineHeight | 20 | label.medium |
-| Navigation Item/Label | letterSpacing | 0 | label.medium |
+| Navigation Item/Label | fontSize | 14 | — |
+| Navigation Item/Label | lineHeight | 20 | — |
+| Navigation Item/Label | letterSpacing | 0 | — |
 
 ### Token changes by property
 
@@ -253,3 +256,39 @@ A single destination inside a Navigation Bar, shown as an icon above a label wit
 | --- | --- | --- | --- | --- |
 | Active | true | Navigation Item/Label | fill[0] | interactive.subtle.foreground.default |
 | Disabled | true | Navigation Item/Label | fill[0] | interactive.subtle.foreground.disabled |
+
+## Notification Indicator
+
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2835-796&m=dev
+
+### Layer structure
+
+- Notification Indicator (COMPONENT)
+  - Notification Indicator/2 (TEXT)
+
+### Resolved tokens (default variant: Size=medium)
+
+| Layer | Field | Raw | Token |
+| --- | --- | --- | --- |
+| Notification Indicator | fill[0] | #d70015 | interactive.destructive.background.default |
+| Notification Indicator | stroke[0] | #ffffff | border.inverse |
+| Notification Indicator | cornerRadius | 9999 | radius.pill |
+| Notification Indicator | strokeWeight | 1 | stroke.thin |
+| Notification Indicator/2 | fill[0] | #f8fbff | foreground.inverse |
+| Notification Indicator/2 | fontSize | 12 | indicator.medium.font size |
+| Notification Indicator/2 | lineHeight | 14 | indicator.medium.line height |
+| Notification Indicator/2 | letterSpacing | 0 | indicator.medium.letter spacing |
+
+### Token changes by property
+
+| Property | Value | Layer | Field | Token |
+| --- | --- | --- | --- | --- |
+| Size | small | Notification Indicator | padding.left | space.xs |
+| Size | small | Notification Indicator | padding.right | space.xs |
+| Size | small | Notification Indicator | padding.top | space.xs |
+| Size | small | Notification Indicator | padding.bottom | space.xs |
+| Size | large | Notification Indicator | cornerRadius | radius.element-sm |
+| Size | large | Notification Indicator | padding.left | space.xs |
+| Size | large | Notification Indicator | padding.right | space.xs |
+| Size | large | Notification Indicator | padding.top | space.xs |
+| Size | large | Notification Indicator | padding.bottom | space.xs |

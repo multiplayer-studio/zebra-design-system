@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2314-3348&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2356:5644",
-  "fetchedAt": "2026-09-22T20:44:13.297Z",
+  "fetchedAt": "2026-09-24T09:01:31.337Z",
   "componentProperties": {
     "AppSwitcher#2356:3": {
       "type": "BOOLEAN",
@@ -154,6 +154,10 @@
               "token": "border.default"
             }
           ],
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
+          },
           "itemSpacing": {
             "raw": 16,
             "token": "space.gutter"
@@ -184,6 +188,14 @@
           }
         },
         "Global Header/Header-Left/Icon Button": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#0c0d0e",
@@ -199,6 +211,10 @@
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -233,19 +249,23 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 16,
-              "token": "title.medium"
+              "token": "title.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "title.medium"
+              "token": "title.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "title.medium"
+              "token": "title.medium.letter spacing"
             }
           }
         },
         "Global Header/Divider": {
+          "width": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
@@ -264,6 +284,10 @@
           }
         },
         "Global Header/Header-Middle/Search": {
+          "height": {
+            "raw": 40,
+            "token": null
+          },
           "fills": [
             {
               "raw": "#0c0d0e",
@@ -278,6 +302,10 @@
           ],
           "cornerRadius": {
             "raw": 0,
+            "token": null
+          },
+          "strokeWeight": {
+            "raw": 1,
             "token": null
           },
           "itemSpacing": {
@@ -317,6 +345,14 @@
         },
         "Global Header/Header-Right/Template/Dropdown": {},
         "Global Header/Header-Right/Icon Button": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#0c0d0e",
@@ -332,6 +368,10 @@
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -378,6 +418,10 @@
             "raw": 4,
             "token": "radius.element-sm"
           },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
+          },
           "itemSpacing": {
             "raw": 16,
             "token": "space.gutter"
@@ -408,6 +452,14 @@
           }
         },
         "Global Header/Header-Left/Icon Button": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#0c0d0e",
@@ -423,6 +475,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {
@@ -457,19 +513,23 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 16,
-              "token": "title.medium"
+              "token": "title.medium.font size"
             },
             "lineHeight": {
               "raw": 20,
-              "token": "title.medium"
+              "token": "title.medium.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "title.medium"
+              "token": "title.medium.letter spacing"
             }
           }
         },
         "Global Header/Divider": {
+          "width": {
+            "raw": 1,
+            "token": "stroke.thin"
+          },
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
@@ -488,6 +548,10 @@
           }
         },
         "Global Header/Header-Middle/Search": {
+          "height": {
+            "raw": 40,
+            "token": null
+          },
           "fills": [
             {
               "raw": "#0c0d0e",
@@ -503,6 +567,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 1,
+            "token": null
           },
           "itemSpacing": {
             "raw": 4,
@@ -541,6 +609,14 @@
         },
         "Global Header/Header-Right/Template/Dropdown": {},
         "Global Header/Header-Right/Icon Button": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.md"
+          },
           "fills": [
             {
               "raw": "#0c0d0e",
@@ -556,6 +632,10 @@
           "cornerRadius": {
             "raw": 4,
             "token": "radius.element-sm"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
           },
           "padding": {
             "left": {

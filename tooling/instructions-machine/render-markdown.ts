@@ -14,9 +14,8 @@ export interface PageDoc {
   orphanMetadata?: ComponentMetadataDoc[];
 }
 
-// A cell value can itself contain a literal "|" — e.g. an ambiguous typography match
-// like "body.medium | label.large" (see token-resolver.ts's joinCandidates). Left
-// unescaped, that would be parsed as extra table columns and corrupt every row after
+// A cell value can itself contain a literal "|" — guard against it regardless of source.
+// Left unescaped, that would be parsed as extra table columns and corrupt every row after
 // it. Every dynamic value landing in a `| ... |` row must go through this.
 function escapeCell(value: unknown): string {
   return String(value).replace(/\|/g, '\\|');
@@ -24,7 +23,8 @@ function escapeCell(value: unknown): string {
 
 function renderStructureTree(node: CanonicalLayerNode, depth: number): string[] {
   const indent = '  '.repeat(depth);
-  const lines = [`${indent}- ${node.path} (${node.type})`];
+  const icon = node.icon ? `, icon: ${node.icon}` : '';
+  const lines = [`${indent}- ${node.path} (${node.type}${icon})`];
   for (const child of node.children ?? []) lines.push(...renderStructureTree(child, depth + 1));
   return lines;
 }
@@ -55,9 +55,12 @@ function fieldValues(values: LayerValues | undefined): FieldValue[] {
     if (!rv || rv.raw == null) return;
     out.push({ field, raw: rv.raw, token: rv.token });
   };
+  push('width', values.width);
+  push('height', values.height);
   (values.fills ?? []).forEach((f, i) => push(`fill[${i}]`, f));
   (values.strokes ?? []).forEach((s, i) => push(`stroke[${i}]`, s));
   push('cornerRadius', values.cornerRadius);
+  push('strokeWeight', values.strokeWeight);
   push('itemSpacing', values.itemSpacing);
   if (values.padding) {
     push('padding.left', values.padding.left);
@@ -238,7 +241,10 @@ export function selfCheck(): void {
     structure: {
       path: 'Button',
       type: 'COMPONENT_SET',
-      children: [{ path: 'Button/Label', type: 'TEXT' }],
+      children: [
+        { path: 'Button/Label', type: 'TEXT' },
+        { path: 'Button/Leading-Icon', type: 'INSTANCE', icon: 'Chevron Right' },
+      ],
     },
     variants: [
       {
@@ -247,10 +253,11 @@ export function selfCheck(): void {
         properties: { Size: 'Small', Flavour: 'Primary' },
         values: {
           Button: {
+            height: { raw: 32, token: 'control.sm' },
+            strokeWeight: { raw: 1, token: 'border.width.sm' },
             cornerRadius: { raw: 4, token: 'radius.sm' },
             fills: [{ raw: '#1f69ff', token: 'interactive.primary.background.default' }],
-            // Simulates an ambiguous typography match (token-resolver.ts joins multiple
-            // candidates with " | ") — must not corrupt the markdown table it lands in.
+            // A token containing a literal "|" must not corrupt the markdown table it lands in.
             text: { fontSize: { raw: 14, token: 'body.medium | label.large' } },
           },
         },
@@ -300,6 +307,8 @@ export function selfCheck(): void {
     metadataByComponent: new Map([['Button', metadata]]),
   });
   assert.ok(markdown.includes('- Button/Label (TEXT)'));
+  // An icon layer's resolved glyph name is rendered inline in the structure tree.
+  assert.ok(markdown.includes('- Button/Leading-Icon (INSTANCE, icon: Chevron Right)'));
   assert.ok(markdown.includes('radius.md'));
   assert.ok(markdown.includes('Triggers one action.'));
   assert.ok(markdown.includes('Match Flavour to intent'));
@@ -317,6 +326,10 @@ export function selfCheck(): void {
   assert.ok(markdown.includes('### Token changes by property'));
   assert.ok(markdown.includes('| Size | Small | Button | cornerRadius | radius.sm |'));
   assert.ok(markdown.includes('| Flavour | Positive | Button | fill[0] | interactive.positive.background.default |'));
+  // height and strokeWeight flow through the same field-value pipeline as every other
+  // token — must reach the rendered table, not just the extracted spec.
+  assert.ok(markdown.includes('| Size | Small | Button | height | control.sm |'));
+  assert.ok(markdown.includes('| Size | Small | Button | strokeWeight | border.width.sm |'));
   // cornerRadius doesn't change between Flavour=Primary and Flavour=Positive (both
   // radius.md) — must not appear as a spurious delta row for the Flavour property.
   assert.ok(!markdown.includes('| Flavour | Positive | Button | cornerRadius |'));

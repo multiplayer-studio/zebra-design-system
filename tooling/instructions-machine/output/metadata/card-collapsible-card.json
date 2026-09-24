@@ -1,0 +1,257 @@
+{
+  "componentName": "COLLAPSIBLE CARD",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "4977:767",
+  "fetchedAt": "2026-09-24T09:01:35.501Z",
+  "hero": {
+    "statusLabel": "COLLAPSIBLE CARD · COMPONENT METADATA",
+    "heading": "What this component does",
+    "description": "A card whose body opens and closes behind a header that is always visible. The header carries a title, a description and a leading chevron that flips with the state, and the body slot appears only when expanded. Flavor chooses between a plain card and one outlined with the brand gradient. Unlike Card base it has no header or footer slot of its own, the header is built in."
+  },
+  "sections": [
+    {
+      "kind": "table",
+      "nodeId": "4977:776",
+      "title": "Property Breakdown",
+      "columns": [
+        "Property",
+        "Type",
+        "Default",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "State",
+          "Type": "collapsed",
+          "Default": true,
+          "Description": "Header only, with the body slot hidden. The resting state, and the one to lay out against when several cards stack."
+        },
+        {
+          "Property": "State",
+          "Type": "expanded",
+          "Default": "-",
+          "Description": "Reveals the body slot below the header. The card roughly triples in height, so a column of expanded cards pushes everything below it well down the page."
+        },
+        {
+          "Property": "Flavor",
+          "Type": "default",
+          "Default": true,
+          "Description": "A plain card with no outline, for a list where no single card should stand out."
+        },
+        {
+          "Property": "Flavor",
+          "Type": "gradient",
+          "Default": "-",
+          "Description": "Outlines the card with the brand gradient, for the one card that should draw the eye. More than one in a list removes the distinction it exists to make."
+        },
+        {
+          "Property": "Shape",
+          "Type": "sharp",
+          "Default": true,
+          "Description": "Square corners, matching surfaces and controls that are also square."
+        },
+        {
+          "Property": "Shape",
+          "Type": "rounded",
+          "Default": "-",
+          "Description": "Softened corners, for a card that should read as a distinct object. The card clips to the curve, so inner content follows it."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4977:886",
+      "title": "States & Triggers",
+      "columns": [
+        "State",
+        "Trigger",
+        "Duration",
+        "What changes"
+      ],
+      "rows": [
+        {
+          "State": "collapsed",
+          "Trigger": "Resting",
+          "Duration": "—",
+          "What changes": "The header alone. The body slot is hidden and the leading icon shows its closed chevron."
+        },
+        {
+          "State": "expanded",
+          "Trigger": "The card is opened",
+          "Duration": "—",
+          "What changes": "The body slot appears below the header with its own padding, and the leading icon flips to its open chevron. Nothing else about the header changes."
+        },
+        {
+          "State": "gradient outline",
+          "Trigger": "Flavor set to gradient",
+          "Duration": "—",
+          "What changes": "A gradient stroke is drawn around all four edges, which also makes the card slightly taller and narrows the header by the same amount. No fill or text colour changes with it."
+        },
+        {
+          "State": "header hover",
+          "Trigger": "Through the nested header",
+          "Duration": "—",
+          "What changes": "The header is an exposed _Container header carrying its own default and hover flavours. The card pins it to default in every variant, so a hover treatment has to be set on that instance."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4977:900",
+      "title": "Behavior & Motion Intent",
+      "columns": [
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Type": "Motion",
+          "Description": "Expand and collapse apply a 0.2s ease-in-out transition to height and chevron rotation, giving the card a smooth, continuous reveal."
+        },
+        {
+          "Type": "Height change",
+          "Description": "Expanding roughly triples the card's height and the card hugs that change, so everything below it moves. Plan the surrounding layout against the expanded height rather than the collapsed one."
+        },
+        {
+          "Type": "Chevron",
+          "Description": "The leading icon carries its own open and closed states and the card sets them to match State. Anything driving the card at runtime has to move both together."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4977:910",
+      "title": "Content & Slot",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Body",
+          "Type": "slot, one property per expanded variant",
+          "Description": "The content revealed when the card opens. It is stored separately for each of the four expanded variants, so content placed while default and sharp does not appear after switching to gradient or rounded. Fill the variant you intend to ship."
+        },
+        {
+          "Property": "Header",
+          "Type": "exposed nested _Container header",
+          "Description": "Always visible and not a slot. It carries the title, the description and the leading chevron. The instance is exposed, so all of that is reachable without detaching."
+        },
+        {
+          "Property": "Leading icon",
+          "Type": "exposed nested _Leading Icon",
+          "Description": "The chevron in the header, tied to State by the card. It is exposed, so it can be hidden through the header's own hasLeading toggle."
+        }
+      ]
+    },
+    {
+      "kind": "unknown",
+      "nodeId": "4977:938",
+      "layerName": "Anatomy",
+      "title": "Anatomy",
+      "rawTextContent": [
+        "Anatomy",
+        "Heading",
+        "*",
+        "Description",
+        "1.",
+        "2.",
+        "3.",
+        "Card",
+        "The outer frame. Fixed width, hugging height, carrying the surface, the radius and, at the gradient flavour, the outline. It clips everything inside it.",
+        "Header",
+        "Always visible and not a slot. An exposed _Container header holding the leading chevron, the title and the description.",
+        "Body",
+        "The slot revealed when the card expands. Hidden entirely while collapsed, and inset on three sides when shown."
+      ]
+    },
+    {
+      "kind": "how-to-use",
+      "nodeId": "4977:961",
+      "title": "How to use",
+      "dos": [
+        "Fill the Body of the exact variant you intend to ship. The four expanded variants hold their body content separately.",
+        "Use gradient for at most one card in a group. It exists to single a card out, and a list of them says nothing."
+      ],
+      "donts": [
+        "Don't lay a column out against the collapsed height. Expanding roughly triples the card, so everything below it moves a long way.",
+        "Don't reach for this when the content is always visible. Card base is the shell for a card that does not open and close, and it has a real footer slot."
+      ]
+    },
+    {
+      "kind": "bullet-list",
+      "nodeId": "4977:977",
+      "title": "Accessibility & Content Guidelines",
+      "items": [
+        "The chevron is the only indication the card opens. Whether it is expanded has to be exposed in code, the icon direction alone does not carry it.",
+        "The header is the control that toggles the card, but nothing here models it as a button. That target, its focus treatment and its keyboard behaviour all belong to the implementation.",
+        "The gradient outline is decorative and carries no meaning of its own, so it should not be the only thing marking a card as important.",
+        "Collapsed content is hidden rather than removed. Make sure it is genuinely unavailable to assistive technology when closed, and available when open."
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4977:981",
+      "title": "Layout & Theming Intents",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Width",
+          "Type": "Fixed",
+          "Description": "385px at every variant. The card does not hug horizontally."
+        },
+        {
+          "Property": "Height",
+          "Type": "Hug",
+          "Description": "78px collapsed and 257px expanded at the default flavour. Gradient adds 4px to both, 82px and 261px, because its outline is drawn on the frame itself."
+        },
+        {
+          "Property": "Header padding",
+          "Type": "Fixed",
+          "Description": "16px (space/lg) top and bottom, 24px (space/xl) left and right, with 8px (space/sm) between the leading icon and the heading block."
+        },
+        {
+          "Property": "Body padding",
+          "Type": "Fixed per State",
+          "Description": "None while collapsed, since the slot is hidden. Expanded it insets 24px (space/xl) left, right and bottom, with nothing on top so the body sits tight under the header."
+        },
+        {
+          "Property": "Heading spacing",
+          "Type": "Fixed",
+          "Description": "2px (space/2xs) between the title and the description, and 4px (space/xs) inside the title row."
+        },
+        {
+          "Property": "Radius",
+          "Type": "Fixed per Shape",
+          "Description": "radius/none when sharp, radius/sm when rounded. The card clips to it."
+        },
+        {
+          "Property": "Outline",
+          "Type": "Fixed per Flavor",
+          "Description": "None at the default flavour. Gradient draws a 2px (stroke/thick) linear gradient from foreground/gradient/start to foreground/gradient/end around all four edges."
+        },
+        {
+          "Property": "Fill",
+          "Type": "Theming",
+          "Description": "surface/card on the card. The header sits on a fully transparent interactive/ghost/background/default, so the card surface shows through it."
+        },
+        {
+          "Property": "Leading icon",
+          "Type": "Fixed",
+          "Description": "A 28px Icon at Size=large with Framed off."
+        },
+        {
+          "Property": "Description type",
+          "Type": "Theming",
+          "Description": "The header's description sits on foreground/secondary."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,213 @@
+{
+  "componentName": "DROPDOWN MENU",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-5903&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "4948:485",
+  "fetchedAt": "2026-09-24T09:01:32.868Z",
+  "hero": {
+    "statusLabel": "DROPDOWN MENU · COMPONENT METADATA",
+    "heading": "What this component does",
+    "description": "The surface a dropdown opens onto, a floating panel holding a list of Menu Item rows. It brings its own menu surface and elevation, so it needs nothing behind it. Two built-in rows sit above a slot that takes the rest, and Rounded is the only visual choice it offers. Place it through the Dropdown Template so its position relative to a trigger comes from a property rather than from nudging it by hand."
+  },
+  "sections": [
+    {
+      "kind": "table",
+      "nodeId": "4948:494",
+      "title": "Property Breakdown",
+      "columns": [
+        "Property",
+        "Type",
+        "Default",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Rounded",
+          "Type": "false",
+          "Default": true,
+          "Description": "Square corners, for a panel sitting against surfaces and inputs that are also square. The rows inside square off with it."
+        },
+        {
+          "Property": "Rounded",
+          "Type": "true",
+          "Default": "-",
+          "Description": "Softened corners, for a panel that should read as a floating object rather than part of the surface beneath. The rows round with it, so panel and contents stay in agreement."
+        },
+        {
+          "Property": "More Items",
+          "Type": "true",
+          "Default": true,
+          "Description": "Shows the slot below the two built-in rows, which is where the rest of the menu goes."
+        },
+        {
+          "Property": "More Items",
+          "Type": "false",
+          "Default": "-",
+          "Description": "Hides the slot along with everything placed in it, leaving only the two built-in rows. Fine for a deliberately short menu, but it will also hide content someone else added."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4948:604",
+      "title": "States & Triggers",
+      "columns": [
+        "State",
+        "Trigger",
+        "Duration",
+        "What changes"
+      ],
+      "rows": [
+        {
+          "State": "Static",
+          "Trigger": "—",
+          "Duration": "—",
+          "What changes": "The panel has no interaction states of its own. Hover, selection, focus and disabled all live on the Menu Item rows inside it, so the menu never changes appearance on its own."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4948:618",
+      "title": "Behavior & Motion Intent",
+      "columns": [
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Type": "Motion",
+          "Description": "Figma stores no timing and the panel models no transition. Opening and closing is driven by the Dropdown Template's Open property, which is a variant switch rather than something that animates here."
+        },
+        {
+          "Type": "Elevation",
+          "Description": "The panel carries the Shadow/medium style, two stacked drop shadows. That is the only thing separating it from the surface beneath, and it does not change with any property."
+        },
+        {
+          "Type": "Reflow",
+          "Description": "Both axes hug their content, so the panel grows with the number and width of the rows placed in it. A long label widens the whole menu rather than wrapping inside a row."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4948:628",
+      "title": "Content & Slot",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Slot Container",
+          "Type": "slot, holds Menu Item",
+          "Description": "Where the rest of the menu goes, below the two built-in rows. It ships holding two Menu Item instances. See the Menu Item Metadata frame. Each Rounded variant stores this slot's content separately, so switching Rounded leaves behind whatever was placed in it."
+        },
+        {
+          "Property": "Built-in rows",
+          "Type": "fixed nested instances",
+          "Description": "Two Menu Item instances above the slot, pinned to the menu's own Rounded value. Neither is a slot, so changing them means overriding the nested instance."
+        },
+        {
+          "Property": "Leading icon on a row",
+          "Type": "exposed nested Icon",
+          "Description": "Every Menu Item leaves its leading Icon exposed, so the glyph is reachable from the menu without detaching. See the Icon Metadata frame."
+        },
+        {
+          "Property": "Row count",
+          "Type": "not constrained",
+          "Description": "Nothing caps how many rows the slot holds. The panel neither scrolls nor limits its height, so a menu long enough to run past the viewport is a design decision rather than one the component prevents."
+        }
+      ]
+    },
+    {
+      "kind": "unknown",
+      "nodeId": "4948:656",
+      "layerName": "Anatomy",
+      "title": "Anatomy",
+      "rawTextContent": [
+        "Anatomy",
+        "Menu Item",
+        "Menu Item",
+        "Menu Item",
+        "Menu Item",
+        "1.",
+        "2.",
+        "3.",
+        "Panel",
+        "The outer frame. Hugs its content on both axes and carries the menu surface, the radius and the elevation.",
+        "Content",
+        "The vertical stack inside the padding, holding the two built-in rows and then the slot.",
+        "Slot Container",
+        "The open region for additional Menu Item rows. More Items hides it as a whole, along with anything inside it."
+      ]
+    },
+    {
+      "kind": "how-to-use",
+      "nodeId": "4948:679",
+      "title": "How to use",
+      "dos": [
+        "Place the menu through the Dropdown Template so its position relative to a trigger comes from a property rather than manual nudging.",
+        "Keep Rounded consistent with the surfaces around it. The rows inherit the choice, so the panel and its contents stay in agreement."
+      ],
+      "donts": [
+        "Don't fill the slot and then switch Rounded. Each Rounded variant holds that slot's content separately, so the content will not come with you.",
+        "Don't add a background or shadow behind the menu. It already carries its own surface and elevation, and a second one reads as two stacked panels."
+      ]
+    },
+    {
+      "kind": "bullet-list",
+      "nodeId": "4948:695",
+      "title": "Accessibility & Content Guidelines",
+      "items": [
+        "The panel is a container and announces nothing itself. The rows inside carry the meaning, so each needs a clear label.",
+        "Elevation is the only thing separating the menu from the content behind it. Check Shadow/medium reads on the surfaces you open it over, because there is no border.",
+        "The panel neither traps focus nor caps its own height. Both belong to the implementation.",
+        "Rows are the interactive targets, not the panel. Keyboard movement between them has to be built in code, nothing here models it."
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4948:699",
+      "title": "Layout & Theming Intents",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Size",
+          "Type": "Hug on both axes",
+          "Description": "213×196px as drawn, growing with whatever is placed inside. There is no fixed width, so the longest row sets the panel width."
+        },
+        {
+          "Property": "Padding",
+          "Type": "Fixed",
+          "Description": "12px (space/card) on all four sides."
+        },
+        {
+          "Property": "Gap",
+          "Type": "Fixed",
+          "Description": "4px (space/xs) between rows, both in the built-in stack and inside the slot. The panel's own item spacing is 2px (space/2xs) but it holds a single content frame, so that spacing never shows."
+        },
+        {
+          "Property": "Radius",
+          "Type": "Fixed per Rounded",
+          "Description": "radius/none when Rounded is false, radius/element-md when true. The rows inside take radius/none and radius/sm respectively, a lighter step than the panel itself."
+        },
+        {
+          "Property": "Elevation",
+          "Type": "Fixed",
+          "Description": "The Shadow/medium effect style, two stacked drop shadows. Applied to the panel only and unchanged by any property."
+        },
+        {
+          "Property": "Colour",
+          "Type": "Theming",
+          "Description": "The panel is surface/menu and binds nothing else. Every other colour in the menu comes from the rows."
+        }
+      ]
+    }
+  ]
+}

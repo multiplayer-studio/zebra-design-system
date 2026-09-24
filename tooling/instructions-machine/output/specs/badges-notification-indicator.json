@@ -1,0 +1,195 @@
+{
+  "componentName": "Notification Indicator",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3717-5570&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "3719:6256",
+  "fetchedAt": "2026-09-24T09:01:35.989Z",
+  "componentProperties": {
+    "Value#2838:0": {
+      "type": "TEXT",
+      "defaultValue": "2"
+    },
+    "Size": {
+      "type": "VARIANT",
+      "defaultValue": "large",
+      "options": [
+        "small",
+        "medium",
+        "large"
+      ]
+    }
+  },
+  "structure": {
+    "path": "Notification Indicator",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "Notification Indicator/2",
+        "type": "TEXT"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "Size=medium",
+      "nodeId": "3719:6257",
+      "properties": {
+        "Size": "medium"
+      },
+      "values": {
+        "Notification Indicator": {
+          "fills": [
+            {
+              "raw": "#d70015",
+              "token": "interactive.destructive.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ffffff",
+              "token": "border.inverse"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 9999,
+            "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
+          }
+        },
+        "Notification Indicator/2": {
+          "fills": [
+            {
+              "raw": "#f8fbff",
+              "token": "interactive.destructive.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "2",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 12,
+              "token": "indicator.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 14,
+              "token": "indicator.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "indicator.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Size=small",
+      "nodeId": "3719:6259",
+      "properties": {
+        "Size": "small"
+      },
+      "values": {
+        "Notification Indicator": {
+          "fills": [
+            {
+              "raw": "#d70015",
+              "token": "interactive.destructive.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ffffff",
+              "token": "border.inverse"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 9999,
+            "token": "radius.pill"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
+          }
+        }
+      }
+    },
+    {
+      "name": "Size=large",
+      "nodeId": "3719:6260",
+      "properties": {
+        "Size": "large"
+      },
+      "values": {
+        "Notification Indicator": {
+          "fills": [
+            {
+              "raw": "#d70015",
+              "token": "interactive.destructive.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#ffffff",
+              "token": "border.inverse"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 10,
+            "token": null
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 3,
+              "token": null
+            },
+            "bottom": {
+              "raw": 3,
+              "token": null
+            }
+          }
+        },
+        "Notification Indicator/2": {
+          "fills": [
+            {
+              "raw": "#f8fbff",
+              "token": "interactive.destructive.foreground.default"
+            }
+          ],
+          "text": {
+            "characters": "2",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 12,
+              "token": "indicator.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 14,
+              "token": "indicator.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "indicator.medium.letter spacing"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

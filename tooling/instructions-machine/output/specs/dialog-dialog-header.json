@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2526-316&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2644:3298",
-  "fetchedAt": "2026-09-22T20:44:10.061Z",
+  "fetchedAt": "2026-09-24T09:01:30.621Z",
   "componentProperties": {
     "showLeadingIcon#2644:20": {
       "type": "BOOLEAN",
@@ -45,6 +45,10 @@
       "properties": {},
       "values": {
         "Dialog Header": {
+          "height": {
+            "raw": 48,
+            "token": "control.lg"
+          },
           "cornerRadius": {
             "raw": 0,
             "token": "radius.none"
@@ -92,15 +96,15 @@
             "fontWeight": 500,
             "fontSize": {
               "raw": 20,
-              "token": "title.large | body.large"
+              "token": "title.large.font size"
             },
             "lineHeight": {
               "raw": 24,
-              "token": "title.large | body.large"
+              "token": "title.large.line height"
             },
             "letterSpacing": {
               "raw": 0,
-              "token": "title.large | body.large"
+              "token": "title.large.letter spacing"
             }
           }
         },

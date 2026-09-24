@@ -1,0 +1,342 @@
+{
+  "componentName": "MENU ITEM",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-5903&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "4948:731",
+  "fetchedAt": "2026-09-24T09:01:32.868Z",
+  "hero": {
+    "statusLabel": "MENU ITEM · COMPONENT METADATA",
+    "heading": "What this component does",
+    "description": "A single row inside a Dropdown Menu, with a leading element, a label and an optional trailing icon. Six states cover resting, hover, selection, focus and disabled, and Type chooses what sits in the leading position. The row fills the width of the menu that holds it, so its own width is never set directly. Selection is carried by a faint tint alone, which is the thing to check when a menu sits on a busy surface."
+  },
+  "sections": [
+    {
+      "kind": "table",
+      "nodeId": "4948:740",
+      "title": "Property Breakdown",
+      "columns": [
+        "Property",
+        "Type",
+        "Default",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "State",
+          "Type": "Default",
+          "Default": true,
+          "Description": "The resting row."
+        },
+        {
+          "Property": "State",
+          "Type": "hover",
+          "Default": "-",
+          "Description": "Documents the pointer-over treatment. The implementation drives this, so choosing it in a layout freezes the row in a state it should not be in."
+        },
+        {
+          "Property": "State",
+          "Type": "selected",
+          "Default": "-",
+          "Description": "The row's option is currently chosen. It is carried by a faint background tint with the label and leading element unchanged, so it reads only as strongly as that tint does on the surface behind it."
+        },
+        {
+          "Property": "State",
+          "Type": "focus",
+          "Default": "-",
+          "Description": "Keyboard focus, drawn as a ring on all four edges with the background left alone. It is the only state that adds a border, which is what keeps it tellable apart from selected."
+        },
+        {
+          "Property": "State",
+          "Type": "selected focus",
+          "Default": "-",
+          "Description": "Both at once, for a keyboard user moving across an already-chosen option. Without it the two would be indistinguishable, which is the reason it exists."
+        },
+        {
+          "Property": "State",
+          "Type": "disabled",
+          "Default": "-",
+          "Description": "The option is unavailable. Only the label changes, so the difference between available and unavailable rests on contrast alone."
+        },
+        {
+          "Property": "Type",
+          "Type": "Icon",
+          "Default": true,
+          "Description": "A leading Icon instance you set yourself. The glyph is exposed, so the row is configured from the menu without detaching."
+        },
+        {
+          "Property": "Type",
+          "Type": "radio",
+          "Default": "-",
+          "Description": "Names the row as a single-choice option. It is built from the same exposed Icon as the Icon type, so the radio mark has to come from the glyph you pick rather than from the variant."
+        },
+        {
+          "Property": "Type",
+          "Type": "checkbox",
+          "Default": "-",
+          "Description": "Names the row as a multi-choice option. Also built from the same exposed Icon, so the tick has to come from the glyph you pick."
+        },
+        {
+          "Property": "Type",
+          "Type": "custom",
+          "Default": "-",
+          "Description": "Replaces the leading Icon with an empty slot, for a leading element the icon library cannot supply such as an avatar or a colour swatch. Nothing is provided by default, so the slot stays blank until filled."
+        },
+        {
+          "Property": "Rounded",
+          "Type": "false",
+          "Default": true,
+          "Description": "Square corners, for a row inside a square menu panel. Match the panel rather than choosing per row."
+        },
+        {
+          "Property": "Rounded",
+          "Type": "true",
+          "Default": "-",
+          "Description": "Softened corners, for a rounded panel. Mixing the two inside one menu makes the rows look misaligned against the panel."
+        },
+        {
+          "Property": "Label",
+          "Type": "text",
+          "Default": "Menu Item",
+          "Description": "The option's name. The row fills the menu's width and the text neither wraps nor truncates, so a long label widens the entire menu."
+        },
+        {
+          "Property": "Leading Element",
+          "Type": "true",
+          "Default": true,
+          "Description": "Shows the leading Icon."
+        },
+        {
+          "Property": "Leading Element",
+          "Type": "false",
+          "Default": "-",
+          "Description": "Hides it and the label shifts to the leading edge. A menu mixing rows with and without it loses the alignment that makes a list scannable."
+        },
+        {
+          "Property": "Trailing Icon",
+          "Type": "false",
+          "Default": true,
+          "Description": "No trailing icon."
+        },
+        {
+          "Property": "Trailing Icon",
+          "Type": "true",
+          "Default": "-",
+          "Description": "Adds an icon at the trailing edge, for a submenu arrow or an external-link mark. The label already reserves room on that side, so it takes space from the text."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4948:850",
+      "title": "States & Triggers",
+      "columns": [
+        "State",
+        "Trigger",
+        "Duration",
+        "What changes"
+      ],
+      "rows": [
+        {
+          "State": "Default",
+          "Trigger": "Resting",
+          "Duration": "—",
+          "What changes": "A fully transparent ghost background with the label on interactive/neutral/foreground/default."
+        },
+        {
+          "State": "hover",
+          "Trigger": "Pointer over the row",
+          "Duration": "—",
+          "What changes": "The ghost background rises to 5 percent opacity. The label and the leading element do not change."
+        },
+        {
+          "State": "selected",
+          "Trigger": "The option is chosen",
+          "Duration": "—",
+          "What changes": "A background on interactive/ghost/background/selected at 5 percent. Nothing else changes, so selected and hover sit at the same visual weight."
+        },
+        {
+          "State": "focus",
+          "Trigger": "Keyboard focus",
+          "Duration": "—",
+          "What changes": "A 1px ring on border/focus is drawn on all four edges, inside the row's own bounds. The background stays fully transparent."
+        },
+        {
+          "State": "selected focus",
+          "Trigger": "Focus on a chosen option",
+          "Duration": "—",
+          "What changes": "The selected tint and the focus ring together. It is the only state carrying both."
+        },
+        {
+          "State": "disabled",
+          "Trigger": "State set to disabled",
+          "Duration": "—",
+          "What changes": "The background stays transparent and the label moves to interactive/neutral/foreground/disabled."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4948:864",
+      "title": "Behavior & Motion Intent",
+      "columns": [
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Type": "Motion",
+          "Description": "Figma stores no timing and no transition is modelled. Every state change is colour or opacity only, with no movement, scale or elevation."
+        },
+        {
+          "Type": "Focus ring",
+          "Description": "Drawn inside the row's own bounds rather than outside, so it never overlaps the neighbouring row or the panel's padding."
+        },
+        {
+          "Type": "Reflow",
+          "Description": "The row fills the width of the menu that holds it and its height is fixed, so a longer label reflows the menu rather than the row."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4948:874",
+      "title": "Content & Slot",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Label",
+          "Type": "text property",
+          "Description": "The option's name. No truncation and no wrapping, the menu widens instead."
+        },
+        {
+          "Property": "Leading Icon",
+          "Type": "exposed nested Icon, Types Icon, radio and checkbox",
+          "Description": "Pinned to Size=small with Framed off and left exposed, so the glyph is set per instance from the menu. See the Icon Metadata frame. It arrives holding Verified, which suits almost no real option."
+        },
+        {
+          "Property": "Leading Slot",
+          "Type": "slot, Type custom only",
+          "Description": "Replaces the leading Icon when Type is custom. It carries no suggested components and ships empty, so it stays blank until something is placed in it."
+        },
+        {
+          "Property": "Trailing Icon",
+          "Type": "exposed nested Icon",
+          "Description": "Hidden until Trailing Icon is turned on, then a 16px glyph at the trailing edge. Also pinned to Size=small with Framed off and left exposed."
+        }
+      ]
+    },
+    {
+      "kind": "unknown",
+      "nodeId": "4948:902",
+      "layerName": "Anatomy",
+      "title": "Anatomy",
+      "rawTextContent": [
+        "Anatomy",
+        "Menu Item",
+        "1.",
+        "2.",
+        "4.",
+        "3.",
+        "Row",
+        "The outer horizontal frame. Fills the width of the menu that holds it and keeps a fixed height, so rows line up whatever they contain.",
+        "Leading element",
+        "An exposed Icon for the Icon, radio and checkbox types, and an empty slot for custom.",
+        "Label",
+        "A wrapper frame holding the text. Its own padding sets the text away from the leading element and reserves room on the trailing side.",
+        "Trailing Icon",
+        "An exposed Icon at the trailing edge, hidden until its toggle is turned on."
+      ]
+    },
+    {
+      "kind": "how-to-use",
+      "nodeId": "4948:925",
+      "title": "How to use",
+      "dos": [
+        "Set the leading glyph on every row. It ships holding Verified, which says nothing about the option the row represents.",
+        "Match Rounded to the menu panel that holds the row, rather than choosing it row by row."
+      ],
+      "donts": [
+        "Don't expect radio or checkbox to draw a control. All three of those types are built from the same exposed Icon, so the mark comes from the glyph you pick.",
+        "Don't rely on selection alone being obvious. Selected is a 5 percent tint with no change to the label, which is a small difference on a light panel."
+      ]
+    },
+    {
+      "kind": "bullet-list",
+      "nodeId": "4948:941",
+      "title": "Accessibility & Content Guidelines",
+      "items": [
+        "Selection is carried by a faint background tint alone, with no change to the label or the leading element. It needs to be conveyed in code as well.",
+        "Focus is drawn as a ring inside the row's bounds and is the only state adding a border, which is what keeps it distinguishable from selection.",
+        "Radio and checkbox are named roles rather than built controls. Whatever role the row plays has to be set in code, the variant name does not carry it.",
+        "Disabled changes the label colour only, so the difference between an available and an unavailable option is contrast alone.",
+        "The leading icon decorates or repeats the label rather than replacing it, so the label has to stand on its own."
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "4948:945",
+      "title": "Layout & Theming Intents",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Width",
+          "Type": "Fill",
+          "Description": "Fills the menu that holds it, drawn at 221px. The row never hugs its label, so the menu's width sets it."
+        },
+        {
+          "Property": "Height",
+          "Type": "Fixed",
+          "Description": "40px on control/md at every variant."
+        },
+        {
+          "Property": "Padding",
+          "Type": "Fixed",
+          "Description": "4px (space/xs) top and bottom, 12px (space/md) left and right."
+        },
+        {
+          "Property": "Gap",
+          "Type": "Fixed",
+          "Description": "8px (space/sm) between the leading element, the label and the trailing icon."
+        },
+        {
+          "Property": "Label inset",
+          "Type": "Fixed",
+          "Description": "The label wrapper adds 4px (space/xs) on its leading edge and reserves 24px (space/xl) on its trailing edge, which keeps labels clear of a trailing icon even when one is not shown."
+        },
+        {
+          "Property": "Radius",
+          "Type": "Fixed per Rounded",
+          "Description": "radius/none when false, radius/sm when true."
+        },
+        {
+          "Property": "Leading and trailing icons",
+          "Type": "Fixed",
+          "Description": "Both 16px Icon instances at Size=small with Framed off."
+        },
+        {
+          "Property": "Border",
+          "Type": "Fixed per State",
+          "Description": "None at rest. Focus and selected focus add a 1px ring on border/focus, drawn on all four edges inside the row."
+        },
+        {
+          "Property": "Label type",
+          "Type": "Fixed",
+          "Description": "label/medium (14/20), IBM Plex Sans Medium."
+        },
+        {
+          "Property": "Colour",
+          "Type": "Theming",
+          "Description": "Backgrounds come from the interactive/ghost family, transparent at rest, 5 percent on hover and on selected, transparent again on focus and disabled. The label is interactive/neutral/foreground/default, dropping to interactive/neutral/foreground/disabled when disabled."
+        }
+      ]
+    }
+  ]
+}

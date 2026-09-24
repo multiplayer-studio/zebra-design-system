@@ -3,11 +3,11 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-6017&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "4671:147",
-  "fetchedAt": "2026-09-22T20:44:18.967Z",
+  "fetchedAt": "2026-09-24T09:01:33.562Z",
   "hero": {
     "statusLabel": "AVATAR · COMPONENT METADATA",
     "heading": "What this component does",
-    "description": "A visual representation of a user or entity, shown as a photo, initials, or icon, with an optional status indicator. Available in nine sizes, from xxxsmall to xxxlarge. Content type isn't an exposed property, swap the nested Avatar Type instance directly to change it. For a notification count on an icon or nav item, use the Notification Indicator component instead, Avatar's own indicator is for presence, not counts."
+    "description": "A visual representation of a user or entity, shown as a photo, initials, or icon, with an optional status indicator. Nine sizes step from xxxsmall to xxxlarge with medium as the base, and the badges, ring and glyphs all scale from that step. The status badge carries a distinct glyph per state as well as its colour. Content type isn't an exposed property, swap the nested Avatar Type instance directly to change it. For a notification count on an icon or nav item, use the Notification Indicator component instead, Avatar's own indicator is for presence, not counts."
   },
   "sections": [
     {
@@ -25,55 +25,55 @@
           "Property": "Size",
           "Type": "xxxsmall",
           "Default": true,
-          "Description": "24×24px, the smallest size, for dense inline contexts like compact tables or comment threads."
+          "Description": "The smallest step, for dense inline contexts like compact tables or comment threads. The presence glyph is only a few pixels across here, so do not rely on anyone reading it."
         },
         {
           "Property": "Size",
           "Type": "xxsmall",
           "Default": "-",
-          "Description": "32×32px, a step up from xxxsmall, still compact, for dense lists."
+          "Description": "A step up from xxxsmall, still compact, for dense lists."
         },
         {
           "Property": "Size",
           "Type": "xsmall",
           "Default": "-",
-          "Description": "36×36px, for secondary avatars in tight layouts, like a stacked group of collaborators."
+          "Description": "For secondary avatars in tight layouts, like a stacked group of collaborators."
         },
         {
           "Property": "Size",
           "Type": "small",
           "Default": "-",
-          "Description": "40×40px, for list rows and menu items where the avatar sits alongside text."
+          "Description": "For list rows and menu items where the avatar sits alongside text."
         },
         {
           "Property": "Size",
           "Type": "medium",
           "Default": "-",
-          "Description": "48×48px, a balanced, general-purpose choice for cards and list headers."
+          "Description": "The base step, and a balanced general-purpose choice for cards and list headers. Every other size is scaled from it, so start here unless something specific argues otherwise."
         },
         {
           "Property": "Size",
           "Type": "large",
           "Default": "-",
-          "Description": "64×64px, for emphasis in a card header or a comment's author avatar."
+          "Description": "For emphasis in a card header or a comment's author avatar."
         },
         {
           "Property": "Size",
           "Type": "xlarge",
           "Default": "-",
-          "Description": "80×80px, for a prominent single avatar, like a user menu or account switcher."
+          "Description": "For a prominent single avatar, like a user menu or account switcher."
         },
         {
           "Property": "Size",
           "Type": "xxlarge",
           "Default": "-",
-          "Description": "120×120px, for profile headers where the avatar is a focal point."
+          "Description": "For profile headers where the avatar is a focal point."
         },
         {
           "Property": "Size",
           "Type": "xxxlarge",
           "Default": "-",
-          "Description": "200×200px, the largest size, for full profile pages or standalone display contexts."
+          "Description": "The largest step, for full profile pages or standalone display. The close glyph does not grow with its badge at this size, so check it still reads as a target."
         },
         {
           "Property": "Show Close",
@@ -91,7 +91,7 @@
           "Property": "Show Status",
           "Type": "true",
           "Default": true,
-          "Description": "Shows a presence badge pinned to the bottom-right corner, defaults to Available. Swap the nested Status instance to show a different presence state, it isn't an exposed property."
+          "Description": "Shows a presence badge pinned to the bottom-right corner, defaulting to Available. The badge is an exposed instance, so its state is reachable in the properties panel without detaching or hunting for the nested layer."
         },
         {
           "Property": "Show Status",
@@ -110,6 +110,60 @@
           "Type": "false",
           "Default": "-",
           "Description": "Hides the ring. Use on backgrounds where the outline competes with surrounding content."
+        },
+        {
+          "Property": "Status",
+          "Type": "Available",
+          "Default": true,
+          "Description": "The person is reachable now. It is the default, so an avatar whose presence never updates will keep claiming availability it cannot back up. Turn Show Status off rather than leaving a stale Available."
+        },
+        {
+          "Property": "Status",
+          "Type": "Away",
+          "Default": "-",
+          "Description": "Signed in but idle. Only use it where the system can actually detect idleness, otherwise it reads as a guess the viewer will trust."
+        },
+        {
+          "Property": "Status",
+          "Type": "Busy",
+          "Default": "-",
+          "Description": "Reachable but occupied. It describes the person, where DND describes what their notifications are doing, so the two are not interchangeable."
+        },
+        {
+          "Property": "Status",
+          "Type": "DND",
+          "Default": "-",
+          "Description": "Notifications are suppressed by the person's own choice. Use it only when something really is being suppressed, because it tells the viewer a message may never surface."
+        },
+        {
+          "Property": "Status",
+          "Type": "On Shift",
+          "Default": "-",
+          "Description": "Working a scheduled shift, for rota-based contexts. Outside a shift-based product it reads as a second word for Available and dilutes both."
+        },
+        {
+          "Property": "Status",
+          "Type": "Offline",
+          "Default": "-",
+          "Description": "Not reachable. It is the one state drawn as a hollow badge rather than a filled one, so it stays tellable apart when colour is unreliable."
+        },
+        {
+          "Property": "Status",
+          "Type": "Close",
+          "Default": "-",
+          "Description": "Not a presence state. It is a dismiss mark that happens to live in the same component, and Avatar already uses it for the top-right badge. Setting the bottom-right Status to Close puts two dismiss marks on one avatar."
+        },
+        {
+          "Property": "Status",
+          "Type": "Icon",
+          "Default": "-",
+          "Description": "Hands the glyph over to the Custom Icon property for a meaning outside the presence set. Everything a viewer has learned from the other seven states stops applying, so reach for it rarely."
+        },
+        {
+          "Property": "Custom Icon",
+          "Type": "instance swap",
+          "Default": "Star",
+          "Description": "Takes effect only while Status is Icon, where it replaces the built-in glyph. The suggested list holds just the Star set, though any component can be swapped in. A custom glyph carries none of the shared meaning the named states have, so it needs a text equivalent beside it."
         }
       ]
     },
@@ -128,7 +182,7 @@
           "State": "Static",
           "Trigger": "—",
           "Duration": "—",
-          "What changes": "Avatar has no hover, pressed, or focus states in Figma. Close and Status are static badges, whatever click behavior Close has in a real interface lives in code, not modeled here."
+          "What changes": "Avatar has no hover, pressed, or focus states in Figma. Close and Status are static badges that change only with the Status property, so whatever click behaviour Close has in a real interface lives in code rather than here."
         }
       ]
     },
@@ -170,12 +224,17 @@
         {
           "Property": "Photo",
           "Type": "instance swap, 40 named options",
-          "Description": "Used only when Content type is photo, fills the circle. Swap the nested Photo instance to any of the named photos in _Avatar Photos."
+          "Description": "Used only when Content type is photo, fills the circle. In Figma swap the nested Photo instance to any of the named photos in _Avatar Photos. In code any image can be passed as an image property."
         },
         {
           "Property": "Status",
-          "Type": "fixed per instance, 6 presence options",
-          "Description": "Available (default), Away, Busy, DND, On Shift, or Offline. Not an exposed property, swap the nested Status instance directly. Only shown when Show Status is true."
+          "Type": "exposed nested instance, 8 states",
+          "Description": "Holds one of eight states from the _Status Indicator component, each drawn with its own glyph from the Assets library. The instance is exposed, so the state is set from Avatar's own properties panel without detaching. Only rendered while Show Status is true."
+        },
+        {
+          "Property": "Custom Icon",
+          "Type": "instance swap, any component",
+          "Description": "The glyph used while Status is Icon. Any component can be swapped in and the suggested list holds only the Star set, so nothing constrains it to a presence-shaped mark."
         }
       ]
     },
@@ -193,11 +252,11 @@
         "Avatar Type",
         "Fills the frame, auto-positioned. Holds initials with a colored swatch, a photo, or an icon with a colored swatch. Not an exposed property, swap the nested instance directly",
         "Ring",
-        "An absolute-positioned outline matching the frame's edges. border/default color, stroke only. Weight scales with Size, 2px from xxxsmall to medium up to 8px at xxxlarge",
+        "An absolute-positioned outline matching the frame's edges. border/default color, stroke only. Weight scales proportionally with Size, 2px at medium ",
         "Close",
         "Pinned to the top-right corner. An instance of the Status Indicator component's Close variant, shown or hidden with Show Close",
         "Status",
-        "Pinned to the bottom-right corner, defaults to Available. Shown or hidden with Show Status, swap the nested instance to change the presence state"
+        "Pinned to the bottom-right corner, defaults to Available. Shown or hidden with Show Status. The instance is exposed, so its state, and for the Icon state its glyph, are reachable directly."
       ]
     },
     {
@@ -218,8 +277,9 @@
       "title": "Accessibility & Content Guidelines",
       "items": [
         "Purely visual, an avatar image or initials alone don't convey a name, pair it with visible text or provide an accessible name in code",
-        "The Status presence badge is color-only (Available, Away, Busy, DND, On Shift, Offline), pair it with a text label or tooltip in code so presence isn't conveyed by color alone",
-        "The Close badge implies a dismiss action, give it an accessible name in code like \"Remove [name]\", Figma has no interactive state for it"
+        "Each presence state now carries its own glyph as well as its colour, so the badge no longer depends on colour alone. Still give it a text equivalent, because at the smallest sizes the glyph is only a few pixels across",
+        "The Close badge implies a dismiss action, give it an accessible name in code like \"Remove [name]\", Figma has no interactive state for it",
+        "The close glyph is drawn at a fixed size whatever the avatar, so on the largest avatars it sits very small inside its badge. Check it still reads as a target"
       ]
     },
     {
@@ -234,23 +294,33 @@
       "rows": [
         {
           "Property": "Size",
-          "Type": "Fixed per Size",
-          "Description": "Always a fixed square, 24px to 200px across nine steps, not resizable independent of the Size property."
+          "Type": "Fixed per Size, medium is the base",
+          "Description": "Nine fixed squares stepping 24, 32, 36, 40, 48, 64, 80, 120 and 200px, with medium at 48px as the base. Medium is the only step bound to a token (control/lg), every other step is an authored value. Not resizable independently of the Size property."
+        },
+        {
+          "Property": "Badge size",
+          "Type": "Scales with Size, medium is the base",
+          "Description": "The Status and Close badges are 16px at medium, exactly one third of the avatar, and step 8, 10, 12, 12, 16, 18, 24, 36 and 56px across the ladder. Above medium they grow more slowly than the avatar, so a large avatar is never dominated by its badge."
+        },
+        {
+          "Property": "Badge glyph",
+          "Type": "Scales with the badge",
+          "Description": "The status glyph holds a constant share of its badge at every size, 0.42 of the badge width, so it stays proportional from 24px through 200px. The close glyph is drawn at a fixed 5px at every size, so its share of the badge falls from two thirds at xxxsmall to under a tenth at xxxlarge."
         },
         {
           "Property": "Ring weight",
-          "Type": "Fixed per Size tier",
-          "Description": "2px (stroke/thick) from xxxsmall to medium, 4px (stroke/heavy) at large and xlarge, 6px and 8px (not bound to a token) at xxlarge and xxxlarge."
+          "Type": "Scales per Size tier, medium is the base",
+          "Description": "2px (stroke/thick) at medium and every step below it, 4px (stroke/heavy) at large and xlarge, then 6px and 8px at xxlarge and xxxlarge. The two heaviest weights are authored values rather than tokens."
         },
         {
           "Property": "Close and Status position",
           "Type": "Fixed",
-          "Description": "Pinned to the top-right and bottom-right corners respectively via corner constraints. They scale in position as the avatar resizes but don't move independently."
+          "Description": "Pinned flush to the top-right and bottom-right corners, inset by exactly the badge's own width so both sit inside the avatar's bounds at every size. They scale in position as the avatar resizes and do not move independently."
         },
         {
           "Property": "Color",
           "Type": "Theming",
-          "Description": "Ring uses border/default. Status and Swatch colors use chart/series, chart/positive, and chart/negative tokens. All resolve separately for light and dark mode."
+          "Description": "Ring uses border/default. Each status draws its circle from a chart token, chart/positive for Available, chart/negative for Busy and chart/series steps for the rest, with the glyph on foreground/inverse. Offline inverts that pair, a foreground/inverse circle carrying a foreground/secondary glyph. Swatch colours use chart/series. All resolve separately for light and dark mode."
         }
       ]
     }
