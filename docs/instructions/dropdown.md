@@ -4,7 +4,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Template/Dropdown
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-5903&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2669-10309&m=dev
 
 ### Layer structure
 
@@ -38,7 +38,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Menu Item
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-5903&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2402-6508&m=dev
 
 ### Overview
 
@@ -147,10 +147,10 @@ A single row inside a Dropdown Menu, with a leading element, a label and an opti
 ### Layer structure
 
 - Menu Item (COMPONENT)
-  - Menu Item/Leading Icon (INSTANCE)
+  - Menu Item/Leading Icon (INSTANCE, icon: Verified)
   - Menu Item/Label (FRAME)
     - Menu Item/Label/Label (TEXT)
-  - Menu Item/Trailing Icon (INSTANCE)
+  - Menu Item/Trailing Icon (INSTANCE, icon: Chevron Right)
   - Menu Item/Leading Slot (SLOT)
 
 ### Resolved tokens (default variant: State=Default, Type=Icon, Rounded=false)
@@ -190,7 +190,7 @@ A single row inside a Dropdown Menu, with a leading element, a label and an opti
 
 ## Dropdown Menu
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-5903&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2666-6863&m=dev
 
 ### Overview
 

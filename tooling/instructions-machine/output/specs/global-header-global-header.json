@@ -1,9 +1,9 @@
 {
   "componentName": "Global Header",
-  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2314-3348&m=dev",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2356-5644&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2356:5644",
-  "fetchedAt": "2026-09-24T09:01:31.337Z",
+  "fetchedAt": "2026-09-24T13:22:22.234Z",
   "componentProperties": {
     "AppSwitcher#2356:3": {
       "type": "BOOLEAN",
@@ -273,8 +273,8 @@
         },
         "Global Header/Header-Middle": {
           "itemSpacing": {
-            "raw": 2,
-            "token": "space.2xs"
+            "raw": 8,
+            "token": "space.sm"
           }
         },
         "Global Header/Header-Middle/Slot-Menu-Items": {
@@ -537,8 +537,8 @@
         },
         "Global Header/Header-Middle": {
           "itemSpacing": {
-            "raw": 2,
-            "token": "space.2xs"
+            "raw": 8,
+            "token": "space.sm"
           }
         },
         "Global Header/Header-Middle/Slot-Menu-Items": {

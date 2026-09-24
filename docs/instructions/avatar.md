@@ -4,7 +4,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Avatar
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-6017&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4906-1172&m=dev
 
 ### Overview
 
@@ -128,7 +128,7 @@ A visual representation of a user or entity, shown as a photo, initials, or icon
 
 ## _Avatar Swatch
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-6017&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2695-17235&m=dev
 
 ### Layer structure
 
@@ -154,7 +154,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## _Avatar Photos
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-6017&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2695-17612&m=dev
 
 ### Layer structure
 
@@ -168,7 +168,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## _Avatar Type
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-6017&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2697-17618&m=dev
 
 ### Layer structure
 
@@ -176,7 +176,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
   - _Avatar Type/Swatch (INSTANCE)
   - _Avatar Type/AA (TEXT)
   - _Avatar Type/Photo (INSTANCE)
-  - _Avatar Type/Icon (INSTANCE)
+  - _Avatar Type/Icon (INSTANCE, icon: Verified)
 
 ### Resolved tokens (default variant: Type=initials)
 
@@ -189,14 +189,14 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## _Status Indicator
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-6017&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2699-17716&m=dev
 
 ### Layer structure
 
 - _Status Indicator (COMPONENT)
   - _Status Indicator/Fill (ELLIPSE)
   - _Status Indicator/Void (VECTOR)
-  - _Status Indicator/Icon (INSTANCE)
+  - _Status Indicator/Icon (INSTANCE, icon: Available)
   - _Status Indicator/Custom Icon (INSTANCE)
 
 ### Resolved tokens (default variant: Status=Available)

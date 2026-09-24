@@ -1,9 +1,9 @@
 {
   "componentName": "Template/Dropdown",
-  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-5903&m=dev",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2669-10309&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2669:10309",
-  "fetchedAt": "2026-09-24T09:01:32.866Z",
+  "fetchedAt": "2026-09-24T13:22:25.893Z",
   "componentProperties": {
     "Trigger Slot#2669:112": {
       "type": "SLOT",

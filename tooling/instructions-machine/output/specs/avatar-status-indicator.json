@@ -1,9 +1,9 @@
 {
   "componentName": "_Status Indicator",
-  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-6017&m=dev",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2699-17716&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2699:17716",
-  "fetchedAt": "2026-09-24T09:01:33.560Z",
+  "fetchedAt": "2026-09-24T13:22:29.799Z",
   "componentProperties": {
     "Custom Icon#4770:0": {
       "type": "INSTANCE_SWAP",
@@ -38,7 +38,8 @@
       },
       {
         "path": "_Status Indicator/Icon",
-        "type": "INSTANCE"
+        "type": "INSTANCE",
+        "icon": "Available"
       },
       {
         "path": "_Status Indicator/Custom Icon",

@@ -4,7 +4,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Card base
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3201-53&m=dev
 
 ### Overview
 
@@ -116,7 +116,7 @@ The empty card shell, three stacked slots inside a bordered surface. It decides 
 
 ## Collapsible Card
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3400-364&m=dev
 
 ### Overview
 
@@ -238,7 +238,7 @@ A card whose body opens and closes behind a header that is always visible. The h
 
 ## _Container header
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3395-6505&m=dev
 
 ### Layer structure
 
@@ -283,12 +283,12 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## _Leading Icon
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3395-6526&m=dev
 
 ### Layer structure
 
 - _Leading Icon (COMPONENT)
-  - _Leading Icon/Leading Icon (INSTANCE)
+  - _Leading Icon/Leading Icon (INSTANCE, icon: Expand More)
 
 ### Resolved tokens (default variant: State=open)
 
@@ -297,7 +297,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## _Card Heading
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3311-1213&m=dev
 
 ### Layer structure
 
@@ -329,7 +329,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## _Card Body
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3311-2061&m=dev
 
 ### Layer structure
 
@@ -353,7 +353,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## _Card Image
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3637-581&m=dev
 
 ### Layer structure
 
@@ -367,7 +367,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## _Card Footer
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3311-3383&m=dev
 
 ### Layer structure
 
@@ -403,7 +403,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Default
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4545-545&m=dev
 
 ### Layer structure
 
@@ -427,7 +427,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Collapsible
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4934-562&m=dev
 
 ### Layer structure
 

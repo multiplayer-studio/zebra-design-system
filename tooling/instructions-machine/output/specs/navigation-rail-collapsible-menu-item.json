@@ -1,9 +1,9 @@
 {
   "componentName": "Collapsible Menu Item",
-  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3182-237&m=dev",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3453-54352&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "3453:54352",
-  "fetchedAt": "2026-09-24T09:01:38.291Z",
+  "fetchedAt": "2026-09-24T13:22:55.152Z",
   "componentProperties": {
     "Sub Menu Slot#3423:58": {
       "type": "SLOT",

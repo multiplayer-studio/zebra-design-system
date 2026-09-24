@@ -1,9 +1,9 @@
 {
   "componentName": "_Card Heading",
-  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796&m=dev",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3311-1213&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "3311:1213",
-  "fetchedAt": "2026-09-24T09:01:35.499Z",
+  "fetchedAt": "2026-09-24T13:22:43.489Z",
   "componentProperties": {
     "Leading Content#3311:0": {
       "type": "SLOT",

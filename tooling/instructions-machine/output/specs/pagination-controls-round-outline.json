@@ -1,9 +1,9 @@
 {
   "componentName": "_controls round outline",
-  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4485-1658&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "4485:1658",
-  "fetchedAt": "2026-09-24T09:01:29.738Z",
+  "fetchedAt": "2026-09-24T13:22:17.501Z",
   "componentProperties": {
     "State": {
       "type": "VARIANT",
@@ -30,7 +30,8 @@
     "children": [
       {
         "path": "_controls round outline/Icon",
-        "type": "INSTANCE"
+        "type": "INSTANCE",
+        "icon": "Chevron Left"
       }
     ]
   },

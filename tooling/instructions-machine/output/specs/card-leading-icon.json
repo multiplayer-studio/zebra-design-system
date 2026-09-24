@@ -1,9 +1,9 @@
 {
   "componentName": "_Leading Icon",
-  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796&m=dev",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3395-6526&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "3395:6526",
-  "fetchedAt": "2026-09-24T09:01:35.499Z",
+  "fetchedAt": "2026-09-24T13:22:43.489Z",
   "componentProperties": {
     "State": {
       "type": "VARIANT",
@@ -20,7 +20,8 @@
     "children": [
       {
         "path": "_Leading Icon/Leading Icon",
-        "type": "INSTANCE"
+        "type": "INSTANCE",
+        "icon": "Expand More"
       }
     ]
   },

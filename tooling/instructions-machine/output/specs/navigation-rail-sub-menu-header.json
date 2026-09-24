@@ -1,9 +1,9 @@
 {
   "componentName": "Sub Menu Header",
-  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3182-237&m=dev",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3453-54332&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "3453:54332",
-  "fetchedAt": "2026-09-24T09:01:38.290Z",
+  "fetchedAt": "2026-09-24T13:22:55.151Z",
   "componentProperties": {
     "Show Leading Icon#3402:24": {
       "type": "BOOLEAN",
@@ -45,7 +45,8 @@
         "children": [
           {
             "path": "Sub Menu Header/Icon and Title/Icon",
-            "type": "INSTANCE"
+            "type": "INSTANCE",
+            "icon": "Verified"
           },
           {
             "path": "Sub Menu Header/Icon and Title/Page Title",

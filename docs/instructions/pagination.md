@@ -4,7 +4,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Pagination
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4489-1925&m=dev
 
 ### Layer structure
 
@@ -67,7 +67,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## _indicators sharp no-outline
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4485-1775&m=dev
 
 ### Layer structure
 
@@ -110,7 +110,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## _indicators sharp outline
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4485-1801&m=dev
 
 ### Layer structure
 
@@ -151,7 +151,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## _indicators round no-outline
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4489-1815&m=dev
 
 ### Layer structure
 
@@ -194,7 +194,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## _indicators round outline
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4489-1828&m=dev
 
 ### Layer structure
 
@@ -235,12 +235,12 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## _controls sharp no-outline
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4484-5928&m=dev
 
 ### Layer structure
 
 - _controls sharp no-outline (COMPONENT)
-  - _controls sharp no-outline/Icon (INSTANCE)
+  - _controls sharp no-outline/Icon (INSTANCE, icon: Chevron Left)
 
 ### Resolved tokens (default variant: State=enabled, Outline=false)
 
@@ -269,12 +269,12 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## _controls sharp outline
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4484-5969&m=dev
 
 ### Layer structure
 
 - _controls sharp outline (COMPONENT)
-  - _controls sharp outline/Icon (INSTANCE)
+  - _controls sharp outline/Icon (INSTANCE, icon: Chevron Left)
 
 ### Resolved tokens (default variant: State=enabled, Outline=true)
 
@@ -303,12 +303,12 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## _controls round no-outline
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4485-1647&m=dev
 
 ### Layer structure
 
 - _controls round no-outline (COMPONENT)
-  - _controls round no-outline/Icon (INSTANCE)
+  - _controls round no-outline/Icon (INSTANCE, icon: Chevron Left)
 
 ### Resolved tokens (default variant: State=enabled, Outline=false)
 
@@ -337,12 +337,12 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## _controls round outline
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4485-1658&m=dev
 
 ### Layer structure
 
 - _controls round outline (COMPONENT)
-  - _controls round outline/Icon (INSTANCE)
+  - _controls round outline/Icon (INSTANCE, icon: Chevron Left)
 
 ### Resolved tokens (default variant: State=enabled, Outline=true)
 

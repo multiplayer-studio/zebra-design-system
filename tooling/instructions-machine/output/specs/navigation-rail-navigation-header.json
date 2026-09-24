@@ -1,9 +1,9 @@
 {
   "componentName": "Navigation Header",
-  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3182-237&m=dev",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3453-54312&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "3453:54312",
-  "fetchedAt": "2026-09-24T09:01:38.290Z",
+  "fetchedAt": "2026-09-24T13:22:55.151Z",
   "componentProperties": {
     "Title#3388:1": {
       "type": "TEXT",
@@ -72,7 +72,8 @@
           },
           {
             "path": "Navigation Header/Avatar/Icon",
-            "type": "INSTANCE"
+            "type": "INSTANCE",
+            "icon": "Zebra"
           }
         ]
       },
@@ -82,7 +83,8 @@
         "children": [
           {
             "path": "Navigation Header/Logo with Title/Icon",
-            "type": "INSTANCE"
+            "type": "INSTANCE",
+            "icon": "Zebra"
           },
           {
             "path": "Navigation Header/Logo with Title/Page Title",

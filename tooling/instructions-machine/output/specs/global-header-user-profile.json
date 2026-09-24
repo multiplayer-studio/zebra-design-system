@@ -1,9 +1,9 @@
 {
   "componentName": "_User Profile",
-  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2314-3348&m=dev",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2742-885&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2742:885",
-  "fetchedAt": "2026-09-24T09:01:31.338Z",
+  "fetchedAt": "2026-09-24T13:22:22.235Z",
   "componentProperties": {
     "State": {
       "type": "VARIANT",
@@ -39,7 +39,8 @@
       },
       {
         "path": "_User Profile/Icon",
-        "type": "INSTANCE"
+        "type": "INSTANCE",
+        "icon": "Expand More"
       }
     ]
   },

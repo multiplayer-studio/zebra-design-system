@@ -1,9 +1,9 @@
 {
   "componentName": "_Avatar Type",
-  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-6017&m=dev",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2697-17618&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2697:17618",
-  "fetchedAt": "2026-09-24T09:01:33.560Z",
+  "fetchedAt": "2026-09-24T13:22:29.799Z",
   "componentProperties": {
     "Type": {
       "type": "VARIANT",
@@ -33,7 +33,8 @@
       },
       {
         "path": "_Avatar Type/Icon",
-        "type": "INSTANCE"
+        "type": "INSTANCE",
+        "icon": "Verified"
       }
     ]
   },

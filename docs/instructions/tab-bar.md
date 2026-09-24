@@ -4,12 +4,12 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Navigation Rail Item
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3607-237&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3635-1151&m=dev
 
 ### Layer structure
 
 - Navigation Rail Item (COMPONENT)
-  - Navigation Rail Item/Icon (INSTANCE)
+  - Navigation Rail Item/Icon (INSTANCE, icon: Star)
   - Navigation Rail Item/Tab Item (TEXT)
   - Navigation Rail Item/Notification Indicator (INSTANCE)
 
@@ -50,7 +50,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Frame 1
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3607-237&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3640-2127&m=dev
 
 ### Layer structure
 

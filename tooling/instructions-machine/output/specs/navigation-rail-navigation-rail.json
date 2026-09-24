@@ -1,9 +1,9 @@
 {
   "componentName": "Navigation Rail",
-  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3182-237&m=dev",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3453-54061&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "3453:54061",
-  "fetchedAt": "2026-09-24T09:01:38.285Z",
+  "fetchedAt": "2026-09-24T13:22:55.149Z",
   "componentProperties": {
     "Footer Slot#3200:16": {
       "type": "SLOT",

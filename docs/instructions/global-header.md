@@ -4,7 +4,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Global Header
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2314-3348&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2356-5644&m=dev
 
 ### Layer structure
 
@@ -51,7 +51,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Global Header/Header-Left/Platform Name | letterSpacing | 0 | title.medium.letter spacing |
 | Global Header/Divider | width | 1 | stroke.thin |
 | Global Header/Divider | cornerRadius | 0 | radius.none |
-| Global Header/Header-Middle | itemSpacing | 2 | space.2xs |
+| Global Header/Header-Middle | itemSpacing | 8 | space.sm |
 | Global Header/Header-Middle/Slot-Menu-Items | itemSpacing | 2 | space.2xs |
 | Global Header/Header-Middle/Search | height | 40 | — |
 | Global Header/Header-Middle/Search | fill[0] | #0c0d0e | — |
@@ -87,7 +87,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## _Brand Logo Horizontal
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2314-3348&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2356-4944&m=dev
 
 ### Layer structure
 
@@ -109,14 +109,14 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## _User Profile
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2314-3348&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2742-885&m=dev
 
 ### Layer structure
 
 - _User Profile (COMPONENT)
   - _User Profile/Username (TEXT)
   - _User Profile/Avatar (INSTANCE)
-  - _User Profile/Icon (INSTANCE)
+  - _User Profile/Icon (INSTANCE, icon: Expand More)
 
 ### Resolved tokens (default variant: State=Default, Rounded=false)
 

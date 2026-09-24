@@ -1,9 +1,9 @@
 {
   "componentName": "Navigation Item",
-  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2835-796&m=dev",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2841-3535&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2841:3535",
-  "fetchedAt": "2026-09-24T09:01:34.894Z",
+  "fetchedAt": "2026-09-24T13:22:35.996Z",
   "componentProperties": {
     "Label#2841:4": {
       "type": "TEXT",
@@ -40,7 +40,8 @@
         "children": [
           {
             "path": "Navigation Item/Indicator/Icon",
-            "type": "INSTANCE"
+            "type": "INSTANCE",
+            "icon": "Star"
           },
           {
             "path": "Navigation Item/Indicator/Notification Indicator",

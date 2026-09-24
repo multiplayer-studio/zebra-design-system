@@ -4,7 +4,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Dialog
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2526-316&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2896-877&m=dev
 
 ### Layer structure
 
@@ -57,7 +57,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Dialog Header
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2526-316&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2644-3298&m=dev
 
 ### Layer structure
 
@@ -65,7 +65,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
   - Dialog Header/Title (FRAME)
     - Dialog Header/Title/Block (INSTANCE)
     - Dialog Header/Title/Dialog Title (TEXT)
-  - Dialog Header/Icon (INSTANCE)
+  - Dialog Header/Icon (INSTANCE, icon: Close)
 
 ### Resolved tokens (default variant: Dialog Header)
 
@@ -86,7 +86,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Dialog Footer
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2526-316&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2644-3185&m=dev
 
 ### Layer structure
 

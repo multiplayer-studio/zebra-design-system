@@ -4,7 +4,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Navigation Rail
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3182-237&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3453-54061&m=dev
 
 ### Overview
 
@@ -254,7 +254,7 @@ A vertical navigation column for the edge of a desktop view, made of a narrow ic
 
 ## Navigation Rail Item
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3182-237&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3453-54230&m=dev
 
 ### Overview
 
@@ -358,7 +358,7 @@ A single destination in a Navigation Rail, shown as a glyph in a square target o
 
 - Navigation Rail Item (COMPONENT)
   - Navigation Rail Item/Indicator (FRAME)
-    - Navigation Rail Item/Indicator/Icon (INSTANCE)
+    - Navigation Rail Item/Indicator/Icon (INSTANCE, icon: Star)
     - Navigation Rail Item/Indicator/Notification Indicator (INSTANCE)
   - Navigation Rail Item/Label (TEXT)
 
@@ -399,7 +399,7 @@ A single destination in a Navigation Rail, shown as a glyph in a square target o
 
 ## Sub Menu Item
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3182-237&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3453-54275&m=dev
 
 ### Overview
 
@@ -508,7 +508,7 @@ A row in the Navigation Rail's sub menu panel, with a leading glyph, a label, an
 
 - Sub Menu Item (COMPONENT)
   - Sub Menu Item/Icon and Title (FRAME)
-    - Sub Menu Item/Icon and Title/Icon (INSTANCE)
+    - Sub Menu Item/Icon and Title/Icon (INSTANCE, icon: Verified)
     - Sub Menu Item/Icon and Title/Page Title (FRAME)
       - Sub Menu Item/Icon and Title/Page Title/Title (TEXT)
   - Sub Menu Item/Badge (FRAME)
@@ -557,7 +557,7 @@ A row in the Navigation Rail's sub menu panel, with a leading glyph, a label, an
 
 ## Navigation Header
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3182-237&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3453-54312&m=dev
 
 ### Layer structure
 
@@ -569,9 +569,9 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
   - Navigation Header/Icon Button (INSTANCE)
   - Navigation Header/Avatar (FRAME)
     - Navigation Header/Avatar/Avatar (INSTANCE)
-    - Navigation Header/Avatar/Icon (INSTANCE)
+    - Navigation Header/Avatar/Icon (INSTANCE, icon: Zebra)
   - Navigation Header/Logo with Title (FRAME)
-    - Navigation Header/Logo with Title/Icon (INSTANCE)
+    - Navigation Header/Logo with Title/Icon (INSTANCE, icon: Zebra)
     - Navigation Header/Logo with Title/Page Title (FRAME)
       - Navigation Header/Logo with Title/Page Title/Title (TEXT)
 
@@ -618,13 +618,13 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Sub Menu Header
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3182-237&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3453-54332&m=dev
 
 ### Layer structure
 
 - Sub Menu Header (COMPONENT)
   - Sub Menu Header/Icon and Title (FRAME)
-    - Sub Menu Header/Icon and Title/Icon (INSTANCE)
+    - Sub Menu Header/Icon and Title/Icon (INSTANCE, icon: Verified)
     - Sub Menu Header/Icon and Title/Page Title (FRAME)
       - Sub Menu Header/Icon and Title/Page Title/Title (TEXT)
   - Sub Menu Header/Trailing Actions Slot (SLOT)
@@ -648,12 +648,12 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Caret Indicator
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3182-237&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3453-54347&m=dev
 
 ### Layer structure
 
 - Caret Indicator (COMPONENT)
-  - Caret Indicator/Icon (INSTANCE)
+  - Caret Indicator/Icon (INSTANCE, icon: Expand More)
 
 ### Resolved tokens (default variant: Open=false, Direction=vertical)
 
@@ -663,7 +663,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Collapsible Menu Item
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3182-237&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3453-54352&m=dev
 
 ### Layer structure
 

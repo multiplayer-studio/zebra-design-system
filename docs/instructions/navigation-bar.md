@@ -4,7 +4,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Spacer
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2835-796&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2920-5097&m=dev
 
 ### Layer structure
 
@@ -21,7 +21,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ## Navigation Bar
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2835-796&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3077-8391&m=dev
 
 ### Overview
 
@@ -134,7 +134,7 @@ A horizontal bar of top-level destinations, pinned to one edge of a view. It is 
 
 ## Navigation Item
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2835-796&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2841-3535&m=dev
 
 ### Overview
 
@@ -227,7 +227,7 @@ A single destination inside a Navigation Bar, shown as an icon above a label wit
 
 - Navigation Item (COMPONENT)
   - Navigation Item/Indicator (FRAME)
-    - Navigation Item/Indicator/Icon (INSTANCE)
+    - Navigation Item/Indicator/Icon (INSTANCE, icon: Star)
     - Navigation Item/Indicator/Notification Indicator (INSTANCE)
   - Navigation Item/Label (TEXT)
 
@@ -259,7 +259,7 @@ A single destination inside a Navigation Bar, shown as an icon above a label wit
 
 ## Notification Indicator
 
-Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2835-796&m=dev
+Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2837-1489&m=dev
 
 ### Layer structure
 

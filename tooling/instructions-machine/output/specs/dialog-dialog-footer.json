@@ -1,9 +1,9 @@
 {
   "componentName": "Dialog Footer",
-  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2526-316&m=dev",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2644-3185&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2644:3185",
-  "fetchedAt": "2026-09-24T09:01:30.621Z",
+  "fetchedAt": "2026-09-24T13:22:19.853Z",
   "componentProperties": {
     "Right Action#2896:32": {
       "type": "SLOT",

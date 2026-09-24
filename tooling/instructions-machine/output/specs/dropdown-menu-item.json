@@ -1,9 +1,9 @@
 {
   "componentName": "Menu Item",
-  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-5903&m=dev",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2402-6508&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2402:6508",
-  "fetchedAt": "2026-09-24T09:01:32.867Z",
+  "fetchedAt": "2026-09-24T13:22:25.895Z",
   "componentProperties": {
     "Leading Element#2402:29": {
       "type": "BOOLEAN",
@@ -63,7 +63,8 @@
     "children": [
       {
         "path": "Menu Item/Leading Icon",
-        "type": "INSTANCE"
+        "type": "INSTANCE",
+        "icon": "Verified"
       },
       {
         "path": "Menu Item/Label",
@@ -77,7 +78,8 @@
       },
       {
         "path": "Menu Item/Trailing Icon",
-        "type": "INSTANCE"
+        "type": "INSTANCE",
+        "icon": "Chevron Right"
       },
       {
         "path": "Menu Item/Leading Slot",

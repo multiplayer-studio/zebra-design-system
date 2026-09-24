@@ -1,9 +1,9 @@
 {
   "componentName": "Caret Indicator",
-  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3182-237&m=dev",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3453-54347&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "3453:54347",
-  "fetchedAt": "2026-09-24T09:01:38.290Z",
+  "fetchedAt": "2026-09-24T13:22:55.152Z",
   "componentProperties": {
     "Open": {
       "type": "VARIANT",
@@ -28,7 +28,8 @@
     "children": [
       {
         "path": "Caret Indicator/Icon",
-        "type": "INSTANCE"
+        "type": "INSTANCE",
+        "icon": "Expand More"
       }
     ]
   },
