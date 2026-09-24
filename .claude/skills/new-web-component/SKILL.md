@@ -144,6 +144,9 @@ export const FooBar: StoryObj<ZetaFooBar> = {};
 ```
 
 - Fill in every `args`/`argTypes` entry — this is what reviewers check for "fully documented" stories.
+- **IMPORTANT: Do NOT add `tags: ["autodocs"]` to the meta if you are also creating a `Docs.mdx` file.** If you have both, Storybook will warn about duplicate documentation. Choose one approach:
+  - **With `Docs.mdx`**: Create the `.mdx` file and omit the `tags: ["autodocs"]` from meta. The `.mdx` file provides the full documentation.
+  - **Without `Docs.mdx`**: Add `tags: ["autodocs"]` to the meta to auto-generate docs from TSDoc comments and argTypes.
 - If the family already has a `Docs.mdx` (e.g. `src/stories/components/Buttons/Docs.mdx`), add a `<Canvas of={.../>` + `<Description>` + `<ArgTypes>` section for the new component there. Otherwise create one following that same `@storybook/blocks` pattern (`Canvas`, `Meta`, `Description`, `ArgTypes`, `Title`).
 - The story should visually match the Figma design (same variants/states covered).
 

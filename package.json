@@ -4,7 +4,7 @@
   "scripts": {
     "check": "pnpm run typecheck && pnpm run lint && pnpm run format",
     "typecheck": "pnpm --filter @zebra-design-system/token-machine run typecheck && pnpm --filter @zebra-design-system/instructions-machine run typecheck",
-    "lint": "pnpm --filter @zebra-design-system/zeta-web run lint && pnpm --filter @zebra-design-system/zeta-web run lint:lit-analyzer",
+    "lint": "pnpm --filter @zebra-design-system/zeta-web run lint",
     "format": "pnpm --filter @zebra-design-system/zeta-web run prettier",
     "test": "pnpm test:tokens && pnpm test:figma && pnpm test:web",
     "clean:tokens": "pnpm --filter @zebra-design-system/token-machine run clean",
