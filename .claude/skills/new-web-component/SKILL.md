@@ -18,6 +18,7 @@ Never hard code hex or px values. Always use a tokens.
 3. Note every variant/enum shown (e.g. size, flavor/type, shape, disabled/status) — these become `@property` values later and Figma Code Connect enum mappings.
 4. Note every token used for color, spacing, radius — these must map to this repo's design tokens (see step 4), never hardcoded values.
 5. The "Resolved tokens" table is captured for **one specific variant combination only** (stated in its own header, e.g. "default variant: Shape=sharp, State=enabled, Size=large, Flavour=default") — it is not the general case. Every other variant's actual values live only in the "Token changes by property" delta table below it; cross-reference both tables together rather than reading the resolved-tokens table as if it applied to every variant.
+6. **Don't read a layer's instance label as a component name.** Layer structures commonly show entries like `Trailing-Icon (INSTANCE, icon: Microphone)` or `Search-Icon (INSTANCE, icon: Search)` — the `icon: X` part is a **prop value** on a single shared component (`<zeta-icon name="x">`), not a hint that a `zeta-icon-x` element exists. The same trap applies to other instanced atoms (e.g. a `Divider` instance is `<zeta-divider>`, not a hand-rolled styled `<div>`). See step 1's "reusable atoms" note before writing `render()`.
 
 ## 1. Decide before writing: does this need new code?
 
@@ -32,10 +33,16 @@ Never hard code hex or px values. Always use a tokens.
   - `popup.ts`, `navigate.ts`, `breakpoints.styles.js` — overlay positioning, routing, responsive breakpoints.
   - Compose mixins the same way `button.ts` does: `class ZetaButton extends Flavored(BaseButton)`.
   - Note: `mixins/mixins.ts` only barrel-exports `flavor`, `interactive`, `popup`, `size`, `contour`, `navigate` — `contourable-three.ts` and `form-field.ts` are **not** in that barrel and must be imported directly from their file path (e.g. `import { ContourableThree } from "../../mixins/contourable-three.js";`).
+- **Check `src/components/` for existing leaf/atom components before hand-rolling markup for something Figma shows as a sub-instance.** Mixins cover shared *behavior*; these are shared *elements* a `render()` method should compose, not reimplement:
+  - `icon/icon.ts` — the single `<zeta-icon name="...">` element used for **every** icon everywhere in this repo. `name` is typed `ZetaIconName` from `@zebra-fed/zeta-icons` (a large fixed union — check it, don't guess a name). There is no per-icon custom element (no `zeta-icon-search`, `zeta-icon-cancel`, etc.) — import with `import "../icon/icon.js";` and pass the icon's lowercase/snake_case name as the `name` attribute.
+  - `divider/divider.ts` — `<zeta-divider orientation="horizontal"|"vertical">`, used for any separator line instead of a styled `<div>`.
+  - If unsure whether an atom like this already exists for something in the design, `grep` an existing component that renders something similar (e.g. `button.ts`, `global-header.ts` both render icons) before inventing markup.
 - **Check if this is a variant of an existing component family** (e.g. a new chip type belongs under `src/components/chips/<new-chip>/`, extending `base-chips/base-chip.ts`) rather than a fully standalone component.
 - Only write a new mixin/base class if the behavior is genuinely shared across multiple components — for a single component, put logic directly in the component class.
 
 ## 2. File layout
+
+**All component files live in `packages/zeta-web/`.** All paths below are relative to that directory.
 
 For a standalone component named e.g. `foo-bar`:
 
@@ -93,6 +100,7 @@ declare global {
 ```
 
 Rules the CEM analyzer and TSDoc lint enforce:
+- **Every component must extend `LitElement`** — either directly or through a mixin composed on top of `LitElement` (see line 75 for the pattern). Never extend another component class directly.
 - Real `@figma` and `@storybook` JSDoc tags on the class doc comment (custom CEM plugin, see `custom-elements-manifest.config.js`) — not optional decoration, they're extracted into `custom-elements.json` docs.
 - Every public `@property` needs its own doc comment explaining valid values.
 - `eslint-plugin-wc`, `eslint-plugin-lit`, `eslint-plugin-lit-a11y`, and `tsdoc` all run in `pnpm lint` — no unused vars (prefix intentionally-unused with `_`), no closed shadow roots, no constructor params/attributes.
@@ -218,6 +226,8 @@ pnpm nx run zeta-web:test                                            # web-test-
 
 - NOTE: `pnpm nx run zeta-web:lint:lit-analyzer` (colon inside the target name) does **not** error — it silently resolves to the plain `lint` target instead and gives false confidence that lit-analyzer passed. Always invoke it via `nx run-many --targets='lint:lit-analyzer' --projects=zeta-web` as shown above.
 - Don't skip `typecheck`: it's the only one of these checks that catches a missing mixin override (e.g. a `FormField` subclass missing `handleChange`) — `lint` and `test` both pass with that bug present.
+- An invented or misspelled custom-element tag inside an `html` template (e.g. a fabricated `<zeta-icon-search>` instead of the real `<zeta-icon name="search">`) compiles and lints clean — a tag name is just a string to `tsc` and `eslint`. Only `pnpm nx run zeta-web:test` (a real browser via web-test-runner) surfaces it, typically as the test run hanging or a browser console warning about an undefined element. **If `test` hangs after you added a new element usage, suspect an undefined custom element first** and go verify the real element/prop name in an existing component, rather than assuming an infra flake.
+- If a verification step fails, fix the real component/import it's pointing at — don't substitute a hardcoded value (hex color, emoji/literal glyph, inline SVG) just to make the check stop failing. That trades a caught bug for an uncaught one and reintroduces the hardcoding this repo's styling rules exist to prevent.
 - When regenerating `src/index.ts`, check the diff is minimal — a stray missing-trailing-newline is a known quirk of `make-index.js`, not a real change.
 
 `pnpm check` (from `packages/zeta-web`) runs `analyze`, `lint`, `lint:lit-analyzer`, `test`, and `docs` together, but does **not** include `typecheck` — run that separately.
