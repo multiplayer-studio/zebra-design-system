@@ -123,6 +123,7 @@ export default css`
 - Use tokens from `@zebra-design-system/tokens` (`packages/foundations/tokens`) for every color, spacing, and radius value — `--surface-*` / `--foreground-*` / `--border-*` / `--interactive-*` for color, `--space-*` / `--radius-*` for sizing/shape, `--body-*` / `--title-*` for typography. Match whatever variables `get_variable_defs` showed in the Figma design. Don't reach for the old pre-migration names (`--main-*`, `--spacing-*`, `--state-*`, etc., aliased in `packages/zeta-web/src/css/tokens-compat.css`) — that file is a legacy shim for un-migrated components, not the source of truth for new components.
 - Never hardcode a hex/px value. 
 - Expose customization points as CSS custom properties with a token fallback (`var(--public-name, var(--token-fallback))`), matching the `@cssproperty` tags documented on the class.
+- **Gradient border + rounded corners: never use `border-image` for this.** `border-image` ignores `border-radius` entirely, so a gradient outline stops being rounded once a rounded shape variant is applied. Use the background-mask technique instead — a transparent border plus two `background-image` layers (one `padding-box` layer painting the surface color, one `border-box` layer painting the gradient), clipped with `background-clip: padding-box, border-box`. See `.zb-collapsible-card[data-flavour="gradient"]` in `packages/base-ui/src/styles.css` for the reference implementation.
 
 ## 5. Storybook story + docs
 
