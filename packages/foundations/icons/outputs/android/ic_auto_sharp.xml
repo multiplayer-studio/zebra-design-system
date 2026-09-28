@@ -1,0 +1,9 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="1200"
+    android:viewportHeight="1200">
+    <path
+        android:fillColor="@android:color/black"
+        android:pathData="M200 450a99.99 99.99 0 0 1 70.703 29.297A100 100 0 0 1 300 550v200h-75v-75H125v75H50V550a100 100 0 0 1 29.297-70.703A99.99 99.99 0 0 1 150 450zm-50 75a25 25 0 0 0-17.676 7.325A25 25 0 0 0 125 550v50h100v-50a25 25 0 0 0-7.324-17.675A25 25 0 0 0 200 525z" />
+</vector>
