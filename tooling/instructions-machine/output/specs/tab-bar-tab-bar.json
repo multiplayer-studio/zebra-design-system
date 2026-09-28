@@ -1,9 +1,9 @@
 {
-  "componentName": "Frame 1",
+  "componentName": "Tab Bar",
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3640-2127&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "3640:2127",
-  "fetchedAt": "2026-09-24T13:22:33.059Z",
+  "fetchedAt": "2026-09-28T06:00:00.074Z",
   "componentProperties": {
     " Tab Slot#3640:11": {
       "type": "SLOT",
@@ -24,11 +24,11 @@
     }
   },
   "structure": {
-    "path": "Frame 1",
+    "path": "Tab Bar",
     "type": "COMPONENT",
     "children": [
       {
-        "path": "Frame 1/ Tab Slot",
+        "path": "Tab Bar/ Tab Slot",
         "type": "SLOT"
       }
     ]
@@ -41,7 +41,7 @@
         "Flavour": "full width"
       },
       "values": {
-        "Frame 1": {
+        "Tab Bar": {
           "fills": [
             {
               "raw": "#ffffff",
@@ -49,7 +49,7 @@
             }
           ]
         },
-        "Frame 1/ Tab Slot": {}
+        "Tab Bar/ Tab Slot": {}
       }
     },
     {
@@ -59,7 +59,7 @@
         "Flavour": "condensed"
       },
       "values": {
-        "Frame 1": {
+        "Tab Bar": {
           "fills": [
             {
               "raw": "#ffffff",
@@ -67,7 +67,7 @@
             }
           ]
         },
-        "Frame 1/ Tab Slot": {}
+        "Tab Bar/ Tab Slot": {}
       }
     }
   ]

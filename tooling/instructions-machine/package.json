@@ -4,6 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "clean": "rm -rf ./output ../../docs/instructions",
+    "pregenerate": "npm run clean",
     "generate": "tsx --env-file=../../.env generate-page-docs.ts",
     "selfcheck": "tsx generate-page-docs.ts --selfcheck",
     "typecheck": "tsc --noEmit",

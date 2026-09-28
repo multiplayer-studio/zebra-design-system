@@ -48,17 +48,17 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | hover | Navigation Rail Item/Tab Item | lineHeight | label.medium.line height |
 | State | hover | Navigation Rail Item/Tab Item | letterSpacing | label.medium.letter spacing |
 
-## Frame 1
+## Tab Bar
 
 Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3640-2127&m=dev
 
 ### Layer structure
 
-- Frame 1 (COMPONENT)
-  - Frame 1/ Tab Slot (SLOT)
+- Tab Bar (COMPONENT)
+  - Tab Bar/ Tab Slot (SLOT)
 
 ### Resolved tokens (default variant: Flavour=full width)
 
 | Layer | Field | Raw | Token |
 | --- | --- | --- | --- |
-| Frame 1 | fill[0] | #ffffff | surface.section |
+| Tab Bar | fill[0] | #ffffff | surface.section |
