@@ -13,8 +13,8 @@ import { styleMap } from "lit/directives/style-map.js";
  */
 @customElement("zeta-progress-bar")
 export class ZetaProgressBar extends Contourable(LitElement) {
-  /** The size of the progress indicator. Can either be 'medium' or 'thin'. */
-  @property({ type: String, reflect: true }) size: "thin" | "medium" = "medium";
+  /** The size of the progress indicator. Can either be 'medium' or 'small' ('thin' is an alias for 'small'). */
+  @property({ type: String, reflect: true }) size: "thin" | "small" | "medium" = "medium";
 
   /** Displays the indeterminate progress indicator. If set to true, any argument for 'value' will be ignored. */
   @property({ type: Boolean, reflect: true }) indeterminate?: boolean;

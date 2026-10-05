@@ -37,7 +37,7 @@ export default css`
 
   button {
     padding: var(--spacing-minimum) var(--spacing-small);
-    border: var(--border-size-small) solid var(--border-default);
+    border: var(--stroke-thin) solid var(--border-default);
     background-color: var(--surface-warm);
     cursor: pointer;
 
@@ -49,7 +49,7 @@ export default css`
   @media (hover: hover), (hover: none) and (pointer: fine) {
     button:hover {
       background: var(--surface-hover);
-      border: var(--border-size-small) solid transparent;
+      border: var(--stroke-thin) solid transparent;
     }
   }
 

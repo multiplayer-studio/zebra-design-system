@@ -24,7 +24,7 @@ export default css`
     }
 
     &:focus-visible {
-      outline: var(--border-size-medium) solid var(--border-primary);
+      outline: var(--stroke-thick) solid var(--border-primary);
     }
   }
 
@@ -54,7 +54,7 @@ export default css`
   /* ERROR */
   :host([error]:not([disabled])) .input-container {
     background-color: var(--surface-negative-subtle);
-    box-shadow: 0 0 0 var(--border-size-medium) var(--border-negative);
+    box-shadow: 0 0 0 var(--stroke-thick) var(--border-negative);
   }
 
   :host([error]:not([disabled])) .hint-text zeta-icon {
@@ -125,7 +125,7 @@ export default css`
     height: fit-content;
     background-color: var(--surface-default);
     padding: var(--spacing-medium);
-    box-shadow: 0 0 0 var(--border-size-small) var(--border-default);
+    box-shadow: 0 0 0 var(--stroke-thin) var(--border-default);
     -webkit-tap-highlight-color: transparent;
   }
 
@@ -148,13 +148,13 @@ export default css`
 
   @media (hover: hover), (hover: none) and (pointer: fine) {
     .input-container:hover {
-      box-shadow: 0 0 0 var(--border-size-small) var(--border-hover) !important;
+      box-shadow: 0 0 0 var(--stroke-thin) var(--border-hover) !important;
     }
   }
 
   .input-container:has(input:focus),
   .input-container:has(textarea:focus) {
-    box-shadow: 0 0 0 var(--border-size-medium) var(--border-primary) !important;
+    box-shadow: 0 0 0 var(--stroke-thick) var(--border-primary) !important;
   }
 
   input[type="date"]::-webkit-calendar-picker-indicator,

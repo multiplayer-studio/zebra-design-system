@@ -52,7 +52,7 @@ export default css`
   input {
     width: 56px;
     height: 48px;
-    border: var(--border-default) var(--border-size-small) solid;
+    border: var(--border-default) var(--stroke-thin) solid;
     text-align: center;
     font: var(--body-medium);
     color: var(--main-subtle);
@@ -78,7 +78,7 @@ export default css`
   :host([error]:not([disabled])) {
     input {
       background-color: var(--surface-negative-subtle);
-      border: var(--border-size-small) var(--border-negative) solid;
+      border: var(--stroke-thin) var(--border-negative) solid;
     }
   }
 `;

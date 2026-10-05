@@ -34,6 +34,17 @@ describe("zeta-dropdown-menu-item", () => {
   });
 
   describe("Content", () => {
+    // Styling describe is skipped, so computed-style checks live here.
+    it("rounds the row with radius-sm and insets the label", async () => {
+      subject.rounded = true;
+      await elementUpdated(subject);
+      const row = subject.shadowRoot!.querySelector(".droppable-item")!;
+      const slot = subject.shadowRoot!.querySelector("slot:not([name])")!;
+      expect(getComputedStyle(row).borderTopLeftRadius).to.equal("4px");
+      expect(getComputedStyle(slot).paddingRight).to.equal("24px");
+      expect(getComputedStyle(slot).paddingLeft).to.equal("4px");
+    });
+
     it("renders the given text", () => {
       expect(subject.lastChild?.nodeValue).to.equal(text);
     });

@@ -1,6 +1,7 @@
 import { fixture, html, expect } from "@open-wc/testing";
 import type { ZetaTopAppbar } from "../../components/top-appbar/top-appbar.js";
 import "../../components/top-appbar/top-appbar.js";
+import "../../index.css";
 
 describe("zeta-top-appbar", () => {
   // let subject: ZetaAppbar;
@@ -67,7 +68,20 @@ describe("zeta-top-appbar", () => {
 
   // describe("Dimensions", () => {});
 
-  // describe("Styling", () => {});
+  describe("Styling", () => {
+    it("uses space tokens for padding and gap", async () => {
+      const appbar = await fixture(html`<zeta-top-appbar></zeta-top-appbar>`);
+      const style = getComputedStyle(appbar.shadowRoot!.querySelector("header")!);
+      expect(style.paddingTop).to.equal("12px");
+      expect(style.paddingLeft).to.equal("8px");
+      expect(style.rowGap).to.equal("8px");
+    });
+
+    it("uses larger gap when extended", async () => {
+      const appbar = await fixture(html`<zeta-top-appbar extended></zeta-top-appbar>`);
+      expect(getComputedStyle(appbar.shadowRoot!.querySelector("header")!).rowGap).to.equal("16px");
+    });
+  });
 
   // describe("Interaction", () => {});
 

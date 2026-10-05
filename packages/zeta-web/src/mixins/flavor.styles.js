@@ -93,6 +93,7 @@ export default css`
   :host([flavor="outline"]:not([disabled])) > :first-child,
   :host([flavor="outline-subtle"]:not([disabled])) > :first-child,
   :host([flavor="text"]:not([disabled])) > :first-child,
+  :host([flavor="text-gradient"]:not([disabled])) > :first-child,
   :host([flavor="basic"]:not([disabled])) > :first-child,
   :host([flavor="basic-negative"]:not([disabled])) > :first-child,
   :host([flavor="subtle"]:not([disabled])) > :first-child {
@@ -144,7 +145,8 @@ export default css`
     background-color: var(--interactive-neutral-background-disabled);
     color: var(--interactive-neutral-foreground-disabled);
   }
-  :host([flavor="text"][disabled]) > :first-child {
+  :host([flavor="text"][disabled]) > :first-child,
+  :host([flavor="text-gradient"][disabled]) > :first-child {
     background-color: var(--interactive-ghost-background-disabled);
     color: var(--interactive-ghost-foreground-disabled);
   }

@@ -13,7 +13,7 @@ export default css`
     padding: var(--spacing-medium);
     justify-content: center;
     align-items: center;
-    border: var(--border-size-small) solid var(--banner-border-color);
+    border: var(--stroke-thin) solid var(--banner-border-color);
     color: var(--banner-foreground-color);
     background-color: var(--banner-background-color);
 

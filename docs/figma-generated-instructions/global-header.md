@@ -136,7 +136,6 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | _User Profile/Username | fontSize | 12 | label.small.font size |
 | _User Profile/Username | lineHeight | 16 | label.small.line height |
 | _User Profile/Username | letterSpacing | 0 | label.small.letter spacing |
-| _User Profile/Avatar | cornerRadius | 0 | radius.none |
 
 ### Token changes by property
 

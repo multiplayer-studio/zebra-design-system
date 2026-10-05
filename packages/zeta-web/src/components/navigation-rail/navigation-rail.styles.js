@@ -5,7 +5,9 @@ export default css`
     display: flex;
     flex-direction: column;
     width: min-content;
-    gap: var(--spacing-minimum);
+    gap: var(--space-xs);
+    padding: var(--space-card) var(--space-md);
+    background-color: var(--surface-section);
   }
 
   ::slotted(:not(zeta-navigation-rail-item)) {

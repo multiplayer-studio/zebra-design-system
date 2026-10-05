@@ -4,12 +4,12 @@ export default css`
     display: inline-flex;
     align-items: center;
     border-radius: inherit;
-    gap: var(--spacing-small);
+    gap: var(--space-sm);
     -webkit-tap-highlight-color: transparent;
   }
 
   zeta-icon-button {
-    --control-sm: var(--spacing-4xl);
+    --control-sm: var(--space-2xl);
   }
 
   button {
@@ -25,8 +25,8 @@ export default css`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: var(--spacing-4xl);
-    height: var(--spacing-4xl);
+    width: var(--space-2xl);
+    height: var(--space-2xl);
     font: var(--body-small);
     color: var(--foreground-primary);
     background-color: var(--interactive-neutral-background-default);
@@ -41,6 +41,7 @@ export default css`
 
     &:active {
       background-color: var(--interactive-neutral-background-pressed);
+      border-color: var(--interactive-neutral-border-pressed);
     }
 
     &:focus-visible {

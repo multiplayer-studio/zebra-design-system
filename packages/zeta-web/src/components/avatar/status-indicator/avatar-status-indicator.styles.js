@@ -34,7 +34,8 @@ export default css`
   }
 
   :host([status="offline"]) {
-    --status-color: var(--foreground-secondary);
+    --status-color: var(--foreground-inverse);
+    --icon-color: var(--foreground-secondary);
   }
 
   :host([status="close"]) {

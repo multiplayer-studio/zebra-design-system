@@ -1,0 +1,2999 @@
+{
+  "componentName": "Checkbox",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4354-4171&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "4354:4171",
+  "fetchedAt": "2026-10-05T13:42:19.599Z",
+  "componentProperties": {
+    "Label#4357:0": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "Checked": {
+      "type": "VARIANT",
+      "defaultValue": "false",
+      "options": [
+        "false",
+        "true"
+      ]
+    },
+    "Indeterminate": {
+      "type": "VARIANT",
+      "defaultValue": "false",
+      "options": [
+        "false",
+        "true"
+      ]
+    },
+    "State": {
+      "type": "VARIANT",
+      "defaultValue": "enabled",
+      "options": [
+        "enabled",
+        "hover",
+        "disabled"
+      ]
+    },
+    "Shape": {
+      "type": "VARIANT",
+      "defaultValue": "sharp",
+      "options": [
+        "sharp",
+        "rounded"
+      ]
+    },
+    "Size": {
+      "type": "VARIANT",
+      "defaultValue": "large",
+      "options": [
+        "large",
+        "medium"
+      ]
+    }
+  },
+  "structure": {
+    "path": "Checkbox",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "Checkbox/Checkbox",
+        "type": "FRAME",
+        "children": [
+          {
+            "path": "Checkbox/Checkbox/Checkbox",
+            "type": "FRAME",
+            "children": [
+              {
+                "path": "Checkbox/Checkbox/Checkbox/Icon",
+                "type": "INSTANCE",
+                "icon": "Check Mark"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Checkbox/Label",
+        "type": "TEXT"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "Checked=false, Indeterminate=false, State=enabled, Shape=sharp, Size=large",
+      "nodeId": "4354:4167",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "false",
+        "State": "enabled",
+        "Shape": "sharp",
+        "Size": "large"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#7a8190",
+              "token": "interactive.selection.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          },
+          "padding": {
+            "left": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "right": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "top": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "bottom": {
+              "raw": 2,
+              "token": "space.2xs"
+            }
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=false, State=enabled, Shape=sharp, Size=medium",
+      "nodeId": "4354:4418",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "false",
+        "State": "enabled",
+        "Shape": "sharp",
+        "Size": "medium"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#7a8190",
+              "token": "interactive.selection.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=false, State=enabled, Shape=rounded, Size=medium",
+      "nodeId": "4438:4977",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "false",
+        "State": "enabled",
+        "Shape": "rounded",
+        "Size": "medium"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#7a8190",
+              "token": "interactive.selection.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 2,
+            "token": "radius.xs"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=false, State=enabled, Shape=rounded, Size=large",
+      "nodeId": "4354:4168",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "false",
+        "State": "enabled",
+        "Shape": "rounded",
+        "Size": "large"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#7a8190",
+              "token": "interactive.selection.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 2,
+            "token": "radius.xs"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          },
+          "padding": {
+            "left": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "right": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "top": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "bottom": {
+              "raw": 2,
+              "token": "space.2xs"
+            }
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=false, State=hover, Shape=sharp, Size=large",
+      "nodeId": "4354:4160",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "false",
+        "State": "hover",
+        "Shape": "sharp",
+        "Size": "large"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.border.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          },
+          "padding": {
+            "left": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "right": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "top": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "bottom": {
+              "raw": 2,
+              "token": "space.2xs"
+            }
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=false, State=hover, Shape=sharp, Size=medium",
+      "nodeId": "4438:4941",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "false",
+        "State": "hover",
+        "Shape": "sharp",
+        "Size": "medium"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.border.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=false, State=hover, Shape=rounded, Size=medium",
+      "nodeId": "4438:4982",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "false",
+        "State": "hover",
+        "Shape": "rounded",
+        "Size": "medium"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.border.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 2,
+            "token": "radius.xs"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=false, State=hover, Shape=rounded, Size=large",
+      "nodeId": "4354:4161",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "false",
+        "State": "hover",
+        "Shape": "rounded",
+        "Size": "large"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.border.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 2,
+            "token": "radius.xs"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          },
+          "padding": {
+            "left": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "right": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "top": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "bottom": {
+              "raw": 2,
+              "token": "space.2xs"
+            }
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=true, Indeterminate=false, State=enabled, Shape=sharp, Size=large",
+      "nodeId": "4354:4170",
+      "properties": {
+        "Checked": "true",
+        "Indeterminate": "false",
+        "State": "enabled",
+        "Shape": "sharp",
+        "Size": "large"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.selection.background.pressed"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.selection.border.pressed"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          },
+          "padding": {
+            "left": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "right": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "top": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "bottom": {
+              "raw": 2,
+              "token": "space.2xs"
+            }
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=true, Indeterminate=false, State=enabled, Shape=sharp, Size=medium",
+      "nodeId": "4438:5050",
+      "properties": {
+        "Checked": "true",
+        "Indeterminate": "false",
+        "State": "enabled",
+        "Shape": "sharp",
+        "Size": "medium"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.selection.background.pressed"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.selection.border.pressed"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=true, State=enabled, Shape=sharp, Size=medium",
+      "nodeId": "4438:5172",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "true",
+        "State": "enabled",
+        "Shape": "sharp",
+        "Size": "medium"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.selection.background.pressed"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.selection.border.pressed"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=true, Indeterminate=false, State=enabled, Shape=rounded, Size=large",
+      "nodeId": "4354:4166",
+      "properties": {
+        "Checked": "true",
+        "Indeterminate": "false",
+        "State": "enabled",
+        "Shape": "rounded",
+        "Size": "large"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.selection.background.pressed"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.selection.border.pressed"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 2,
+            "token": "radius.xs"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          },
+          "padding": {
+            "left": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "right": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "top": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "bottom": {
+              "raw": 2,
+              "token": "space.2xs"
+            }
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=true, Indeterminate=false, State=enabled, Shape=rounded, Size=medium",
+      "nodeId": "4438:5092",
+      "properties": {
+        "Checked": "true",
+        "Indeterminate": "false",
+        "State": "enabled",
+        "Shape": "rounded",
+        "Size": "medium"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.selection.background.pressed"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.selection.border.pressed"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 2,
+            "token": "radius.xs"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=true, State=enabled, Shape=rounded, Size=medium",
+      "nodeId": "4438:5177",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "true",
+        "State": "enabled",
+        "Shape": "rounded",
+        "Size": "medium"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.selection.background.pressed"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.selection.border.pressed"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 2,
+            "token": "radius.xs"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=true, State=enabled, Shape=sharp, Size=large",
+      "nodeId": "4354:4165",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "true",
+        "State": "enabled",
+        "Shape": "sharp",
+        "Size": "large"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.selection.background.pressed"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.selection.border.pressed"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          },
+          "padding": {
+            "left": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "right": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "top": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "bottom": {
+              "raw": 2,
+              "token": "space.2xs"
+            }
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=true, State=enabled, Shape=rounded, Size=large",
+      "nodeId": "4354:4164",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "true",
+        "State": "enabled",
+        "Shape": "rounded",
+        "Size": "large"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.selection.background.pressed"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#1f69ff",
+              "token": "interactive.selection.border.pressed"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 2,
+            "token": "radius.xs"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          },
+          "padding": {
+            "left": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "right": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "top": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "bottom": {
+              "raw": 2,
+              "token": "space.2xs"
+            }
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=true, Indeterminate=false, State=hover, Shape=sharp, Size=large",
+      "nodeId": "4354:4159",
+      "properties": {
+        "Checked": "true",
+        "Indeterminate": "false",
+        "State": "hover",
+        "Shape": "sharp",
+        "Size": "large"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.background.hover"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.border.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          },
+          "padding": {
+            "left": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "right": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "top": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "bottom": {
+              "raw": 2,
+              "token": "space.2xs"
+            }
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=true, Indeterminate=false, State=hover, Shape=sharp, Size=medium",
+      "nodeId": "4438:5055",
+      "properties": {
+        "Checked": "true",
+        "Indeterminate": "false",
+        "State": "hover",
+        "Shape": "sharp",
+        "Size": "medium"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.background.hover"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.border.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=true, State=hover, Shape=sharp, Size=medium",
+      "nodeId": "4438:5182",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "true",
+        "State": "hover",
+        "Shape": "sharp",
+        "Size": "medium"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.background.hover"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.border.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=true, Indeterminate=false, State=hover, Shape=rounded, Size=large",
+      "nodeId": "4354:4162",
+      "properties": {
+        "Checked": "true",
+        "Indeterminate": "false",
+        "State": "hover",
+        "Shape": "rounded",
+        "Size": "large"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.background.hover"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.border.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 2,
+            "token": "radius.xs"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          },
+          "padding": {
+            "left": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "right": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "top": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "bottom": {
+              "raw": 2,
+              "token": "space.2xs"
+            }
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=true, Indeterminate=false, State=hover, Shape=rounded, Size=medium",
+      "nodeId": "4438:5097",
+      "properties": {
+        "Checked": "true",
+        "Indeterminate": "false",
+        "State": "hover",
+        "Shape": "rounded",
+        "Size": "medium"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.background.hover"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.border.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 2,
+            "token": "radius.xs"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=true, State=hover, Shape=rounded, Size=medium",
+      "nodeId": "4438:5187",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "true",
+        "State": "hover",
+        "Shape": "rounded",
+        "Size": "medium"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.background.hover"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.border.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 2,
+            "token": "radius.xs"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=true, State=hover, Shape=sharp, Size=large",
+      "nodeId": "4354:4158",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "true",
+        "State": "hover",
+        "Shape": "sharp",
+        "Size": "large"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.background.hover"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.border.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          },
+          "padding": {
+            "left": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "right": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "top": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "bottom": {
+              "raw": 2,
+              "token": "space.2xs"
+            }
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=true, State=hover, Shape=rounded, Size=large",
+      "nodeId": "4354:4157",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "true",
+        "State": "hover",
+        "Shape": "rounded",
+        "Size": "large"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.background.hover"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#545963",
+              "token": "interactive.selection.border.hover"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 2,
+            "token": "radius.xs"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          },
+          "padding": {
+            "left": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "right": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "top": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "bottom": {
+              "raw": 2,
+              "token": "space.2xs"
+            }
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#0c0d0e",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=true, State=disabled, Shape=sharp, Size=large",
+      "nodeId": "4354:4156",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "true",
+        "State": "disabled",
+        "Shape": "sharp",
+        "Size": "large"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.background.disabled"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.border.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          },
+          "padding": {
+            "left": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "right": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "top": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "bottom": {
+              "raw": 2,
+              "token": "space.2xs"
+            }
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=true, State=disabled, Shape=rounded, Size=large",
+      "nodeId": "4354:4155",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "true",
+        "State": "disabled",
+        "Shape": "rounded",
+        "Size": "large"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.background.disabled"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.border.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 2,
+            "token": "radius.xs"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          },
+          "padding": {
+            "left": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "right": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "top": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "bottom": {
+              "raw": 2,
+              "token": "space.2xs"
+            }
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=true, Indeterminate=false, State=disabled, Shape=sharp, Size=large",
+      "nodeId": "4354:4154",
+      "properties": {
+        "Checked": "true",
+        "Indeterminate": "false",
+        "State": "disabled",
+        "Shape": "sharp",
+        "Size": "large"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.background.disabled"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.border.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          },
+          "padding": {
+            "left": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "right": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "top": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "bottom": {
+              "raw": 2,
+              "token": "space.2xs"
+            }
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=true, Indeterminate=false, State=disabled, Shape=sharp, Size=medium",
+      "nodeId": "4438:5060",
+      "properties": {
+        "Checked": "true",
+        "Indeterminate": "false",
+        "State": "disabled",
+        "Shape": "sharp",
+        "Size": "medium"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.background.disabled"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.border.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=true, State=disabled, Shape=sharp, Size=medium",
+      "nodeId": "4438:5192",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "true",
+        "State": "disabled",
+        "Shape": "sharp",
+        "Size": "medium"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.background.disabled"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.border.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=true, Indeterminate=false, State=disabled, Shape=rounded, Size=large",
+      "nodeId": "4354:4153",
+      "properties": {
+        "Checked": "true",
+        "Indeterminate": "false",
+        "State": "disabled",
+        "Shape": "rounded",
+        "Size": "large"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.background.disabled"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.border.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 2,
+            "token": "radius.xs"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          },
+          "padding": {
+            "left": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "right": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "top": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "bottom": {
+              "raw": 2,
+              "token": "space.2xs"
+            }
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=true, Indeterminate=false, State=disabled, Shape=rounded, Size=medium",
+      "nodeId": "4438:5102",
+      "properties": {
+        "Checked": "true",
+        "Indeterminate": "false",
+        "State": "disabled",
+        "Shape": "rounded",
+        "Size": "medium"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.background.disabled"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.border.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 2,
+            "token": "radius.xs"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=true, State=disabled, Shape=rounded, Size=medium",
+      "nodeId": "4438:5197",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "true",
+        "State": "disabled",
+        "Shape": "rounded",
+        "Size": "medium"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.background.disabled"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.border.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 2,
+            "token": "radius.xs"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=false, State=disabled, Shape=sharp, Size=large",
+      "nodeId": "4354:4163",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "false",
+        "State": "disabled",
+        "Shape": "sharp",
+        "Size": "large"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.background.disabled"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.border.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          },
+          "padding": {
+            "left": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "right": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "top": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "bottom": {
+              "raw": 2,
+              "token": "space.2xs"
+            }
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=false, State=disabled, Shape=sharp, Size=medium",
+      "nodeId": "4438:4946",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "false",
+        "State": "disabled",
+        "Shape": "sharp",
+        "Size": "medium"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.background.disabled"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.border.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=false, State=disabled, Shape=rounded, Size=medium",
+      "nodeId": "4438:4987",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "false",
+        "State": "disabled",
+        "Shape": "rounded",
+        "Size": "medium"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.background.disabled"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.border.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 2,
+            "token": "radius.xs"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Checked=false, Indeterminate=false, State=disabled, Shape=rounded, Size=large",
+      "nodeId": "4354:4169",
+      "properties": {
+        "Checked": "false",
+        "Indeterminate": "false",
+        "State": "disabled",
+        "Shape": "rounded",
+        "Size": "large"
+      },
+      "values": {
+        "Checkbox": {},
+        "Checkbox/Checkbox": {
+          "width": {
+            "raw": 40,
+            "token": "control.md"
+          },
+          "height": {
+            "raw": 40,
+            "token": "control.target-min"
+          }
+        },
+        "Checkbox/Checkbox/Checkbox": {
+          "fills": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.background.disabled"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.selection.border.disabled"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 2,
+            "token": "radius.xs"
+          },
+          "strokeWeight": {
+            "raw": 2,
+            "token": "stroke.thick"
+          },
+          "padding": {
+            "left": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "right": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "top": {
+              "raw": 2,
+              "token": "space.2xs"
+            },
+            "bottom": {
+              "raw": 2,
+              "token": "space.2xs"
+            }
+          }
+        },
+        "Checkbox/Checkbox/Checkbox/Icon": {},
+        "Checkbox/Label": {
+          "fills": [
+            {
+              "raw": "#8d95a3",
+              "token": "foreground.disabled"
+            }
+          ],
+          "text": {
+            "characters": "Label",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 16,
+              "token": "body.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 24,
+              "token": "body.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.medium.letter spacing"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

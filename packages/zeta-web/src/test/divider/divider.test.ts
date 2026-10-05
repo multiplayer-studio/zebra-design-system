@@ -40,6 +40,13 @@ describe("zeta-divider", () => {
       const el = document.createElement("zeta-divider");
       expect(el.nodeName).to.equal("ZETA-DIVIDER");
     });
+
+    // Styling block is skipped, so token assertions live here.
+    it("has no corner radius and 1px thickness", () => {
+      const style = getComputedStyle(subject);
+      expect(style.borderTopLeftRadius).to.equal("0px");
+      expect(style.height).to.equal("1px");
+    });
   });
 
   describe.skip("Styling", () => {

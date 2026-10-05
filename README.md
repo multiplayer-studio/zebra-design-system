@@ -87,7 +87,7 @@ pnpm run export:tokens  # Export to dist
 
 ## Design Sync Automation
 
-When a PR lands on `main` that changed `docs/instructions/**` or `packages/foundations/tokens/**`,
+When a PR lands on `main` that changed `docs/figma-generated-instructions/**` or `packages/foundations/tokens/**`,
 [`.github/workflows/design-sync-on-merge.yml`](.github/workflows/design-sync-on-merge.yml) picks it up:
 
 1. **Regenerate** — runs `pnpm run sync:design` (platform token variables first, then the
@@ -114,7 +114,7 @@ pnpm run sync:design   # what step 1 runs locally (needs .env with Figma credent
 
 The zeta-web components are being progressively updated to use the new design token system. This ensures consistent theming, improved maintainability, and alignment with the design system.
 
-**Components Updated to New Tokens: 10 of ~48**
+**Components Updated to New Tokens: 17 of ~48**
 - Button (base-button)
 - Icon Button
 - Divider
@@ -125,6 +125,13 @@ The zeta-web components are being progressively updated to use the new design to
 - Dropdown (droppable, dropdown-menu-button, dropdown-menu-item)
 - Avatar
 - Tab Bar
+- Badges (indicator, label, priority-pill, status-label, tag)
+- Card (card, header, body, footer, container)
+- Dialog
+- Navigation Bar
+- Navigation Rail (rail, rail item)
+- Progress Indicators (progress bar, progress circle)
+- Top App Bar
 
 **Migration Status:** Ongoing — Components are being updated incrementally.
 

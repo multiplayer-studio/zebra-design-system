@@ -6,7 +6,7 @@
     "componentsDir": "../../packages/zeta-web/src/components"
   },
   "output": {
-    "docsDir": "../../docs/instructions",
+    "docsDir": "../../docs/figma-generated-instructions",
     "debugSpecsDir": "output/specs",
     "debugMetadataDir": "output/metadata"
   }

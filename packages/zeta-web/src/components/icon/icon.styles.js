@@ -38,8 +38,7 @@ export default [
       text-rendering: optimizeLegibility;
       font-feature-settings: "liga";
       user-select: none;
-      transition: all 0.3s ease-in-out;
-      color: var(--icon-color, var(--foreground-primary));
+      color: var(--icon-color, inherit);
       font-size: var(--icon-size);
       line-height: var(--icon-size, 1);
       font-family: var(--icon-font, "zeta-icons-round");
@@ -66,7 +65,7 @@ export default [
     :host ::slotted(svg) {
       width: var(--icon-size);
       height: var(--icon-size);
-      fill: var(--icon-color, var(--foreground-primary));
+      fill: var(--icon-color, currentColor);
     }
   `
 ];

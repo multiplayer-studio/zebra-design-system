@@ -1,6 +1,6 @@
 ---
 name: triage-design-changes
-description: Use when a merged PR changed docs/instructions, packages/foundations/tokens (or, in future, the icons package) and you need to work out what that means for zeta-web. Classifies the nature, impact and complexity of the design change, traces it back to the zeta-web source files it affects, audits for drift between the generated instructions and the existing code, and emits a plan of the PRs that should be opened. Used by .github/workflows/design-sync-on-merge.yml.
+description: Use when a merged PR changed docs/figma-generated-instructions, packages/foundations/tokens (or, in future, the icons package) and you need to work out what that means for zeta-web. Classifies the nature, impact and complexity of the design change, traces it back to the zeta-web source files it affects, audits for drift between the generated instructions and the existing code, and emits a plan of the PRs that should be opened. Used by .github/workflows/design-sync-on-merge.yml.
 ---
 
 # Triage a landed design change
@@ -20,7 +20,7 @@ Written by the workflow into `.design-sync/` (git-ignored):
 | `.design-sync/regenerated.diff` | Drift the pipeline run produced on top of that (empty if the committed artifacts were already current) |
 | `.design-sync/context.json` | `{ pr_number, pr_title, base_sha, head_sha, run_id }` |
 
-The watched paths are `docs/instructions/`, `tooling/token-machine/source/` (the committed DTCG
+The watched paths are `docs/figma-generated-instructions/`, `tooling/token-machine/source/` (the committed DTCG
 token data — `packages/foundations/tokens/dist/` is git-ignored build output, so token *values*
 only ever change on the source side) and `tooling/instructions-machine/output/`.
 
@@ -55,7 +55,7 @@ add the replacement and `@deprecated` the old thing, never delete it. Say so in 
 
 ## 2. Trace back to zeta-web source
 
-For each changed `docs/instructions/<page>.md`, the page can describe several components (e.g.
+For each changed `docs/figma-generated-instructions/<page>.md`, the page can describe several components (e.g.
 `button.md` covers both Button and Icon Button — see the `##` headings and the matching
 `tooling/instructions-machine/output/specs/<page>-<component>.json` files). Resolve each component
 separately.
@@ -131,7 +131,7 @@ Write `.design-sync/plan.json` — exactly this shape, no extra keys, no markdow
       "branch": "design-sync/button-12345",
       "complexity": "low",
       "impact": "minor",
-      "instructions": ["docs/instructions/button.md"],
+      "instructions": ["docs/figma-generated-instructions/button.md"],
       "specs": ["tooling/instructions-machine/output/specs/button-button.json"],
       "targets": [
         "packages/zeta-web/src/components/button/button.styles.js",
@@ -157,7 +157,7 @@ Finally, print the plan to stdout as well so it lands in the workflow log.
 
 ## Brand new components
 
-If a changed `docs/instructions/<page>.md` describes a component with **no** matching directory
+If a changed `docs/figma-generated-instructions/<page>.md` describes a component with **no** matching directory
 under `packages/zeta-web/src/components/`, that is a new component: set its `complexity` to `high`,
 leave `targets` empty, and put `"new component — follow the new-web-component skill"` first in
 `changes`. The workflow tells the implementing agent to load `new-web-component` instead of

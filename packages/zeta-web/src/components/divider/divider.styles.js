@@ -4,6 +4,7 @@ export default css`
   :host {
     display: block;
     border: none;
+    border-radius: var(--radius-none);
     background-color: var(--border-default);
   }
 

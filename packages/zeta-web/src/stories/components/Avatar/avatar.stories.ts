@@ -26,7 +26,26 @@ const meta: Meta<PlaygroundStory> = {
   },
   argTypes: {
     size: {
-      options: ["xxxs", "xxs", "xs", "s", "m", "l", "xl", "xxl", "xxxl"],
+      options: [
+        "xxxs",
+        "xxs",
+        "xs",
+        "s",
+        "m",
+        "l",
+        "xl",
+        "xxl",
+        "xxxl",
+        "xxxsmall",
+        "xxsmall",
+        "xsmall",
+        "small",
+        "medium",
+        "large",
+        "xlarge",
+        "xxlarge",
+        "xxxlarge"
+      ],
       control: {
         type: "select"
       }

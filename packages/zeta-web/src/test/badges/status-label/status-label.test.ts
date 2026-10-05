@@ -1,9 +1,7 @@
 import { fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/testing";
 import type { ZetaStatusLabel } from "../../../components/badges/badges";
 import { contrastTest } from "../../accessibility-utils/accessibility-test-runner";
-import "../../../css/styles.css";
-import "../../../generated/tokens/primitives.css";
-import "../../../generated/tokens/semantics.css";
+import "../../../index.css";
 import "../../../components/badges/status-label/status-label";
 
 describe("zeta-status-label", () => {

@@ -35,7 +35,7 @@ export default css`
     align-items: center;
     justify-content: center;
     padding: var(--spacing-small) var(--spacing-medium);
-    box-shadow: 0 0 0 var(--border-size-small) var(--border-default);
+    box-shadow: 0 0 0 var(--stroke-thin) var(--border-default);
     border-radius: inherit;
 
     &:has(input:disabled) {

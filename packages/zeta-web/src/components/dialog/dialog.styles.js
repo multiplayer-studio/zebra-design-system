@@ -34,12 +34,11 @@ export default css`
     max-height: var(--_dialog-max-height);
     overflow: auto;
 
-    border: none;
     padding: var(--space-md);
 
     background-color: var(--surface-dialog);
     color: var(--foreground-primary);
-    border: 1px solid var(--border-default);
+    border: var(--stroke-thin) solid var(--border-default);
   }
 
   /* Higher specificity than ContourableThree's ":host > *" rule, which would otherwise pill the whole box for shape="full" */
@@ -53,6 +52,9 @@ export default css`
 
   header {
     display: flex;
+    box-sizing: border-box;
+    min-height: var(--control-lg);
+    border-radius: var(--radius-none);
     padding: var(--space-md);
     gap: var(--space-sm);
     align-items: center;
@@ -73,6 +75,7 @@ export default css`
   footer {
     display: flex;
     flex-shrink: 0;
+    border-radius: var(--radius-none);
     padding: var(--space-md);
     gap: var(--space-lg);
     justify-content: space-between;
@@ -101,17 +104,22 @@ export default css`
     font: var(--title-large);
     font-size: var(--_dialog-title-font-size);
     line-height: var(--_dialog-title-line-height);
+    letter-spacing: var(--title-large-letter-spacing);
+    color: var(--foreground-primary);
     margin: 0;
     padding: 0;
   }
 
   div[part="body"] {
     display: flex;
-    padding: var(--space-md) var(--space-md) var(--space-xl) var(--space-md);
+    padding: var(--space-md) var(--space-md) var(--space-section) var(--space-md);
+    border-radius: var(--radius-none);
     flex: 1;
     overflow: auto;
     /*Note: the designs as of 28/11/2024 show a different font size for the large dialog body ("Standard/Body/Large"). This isnt in ZDS tokens and needs to be changed in Figma*/
     font: var(--body-medium);
+    letter-spacing: var(--body-medium-letter-spacing);
+    color: var(--foreground-primary);
     min-height: var(--body-medium-line-height);
   }
 

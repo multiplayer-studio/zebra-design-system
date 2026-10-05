@@ -1,9 +1,7 @@
 import { fixture, html, expect, unsafeStatic } from "@open-wc/testing";
 import type { ZetaPriorityPill } from "../../../components/badges/badges";
 import "../../../components/badges/priority-pill/priority-pill";
-import "../../../css/styles.css";
-import "../../../generated/tokens/primitives.css";
-import "../../../generated/tokens/semantics.css";
+import "../../../index.css";
 import { contrastTest } from "../../accessibility-utils/accessibility-test-runner";
 
 describe("zeta-priority-pill", () => {

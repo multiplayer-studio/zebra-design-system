@@ -40,7 +40,7 @@ pnpm --filter @zebra-design-system/instructions-machine run typecheck
 
 ## Output
 
-One Markdown file per page, committed at `docs/instructions/<page-slug>.md`. Per
+One Markdown file per page, committed at `docs/figma-generated-instructions/<page-slug>.md`. Per
 component: its metadata (overview, property breakdown, anatomy, how-to-use,
 accessibility, etc. — only if a sibling `"<Name> Metadata"` frame exists on the page),
 layer structure outline, and a resolved-token table for its default variant. No

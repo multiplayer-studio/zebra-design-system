@@ -35,7 +35,7 @@ export default css`
     position: absolute;
     top: -2px;
     right: -2px;
-    border: var(--border-size-medium) solid var(--surface-default);
+    border: var(--stroke-thick) solid var(--surface-default);
     border-radius: var(--radius-full);
   }
 

@@ -120,7 +120,10 @@ describe("zeta-avatar", () => {
       ["l", "18px"],
       ["xl", "24px"],
       ["xxl", "36px"],
-      ["xxxl", "56px"]
+      ["xxxl", "56px"],
+      ["xxxsmall", "8px"],
+      ["medium", "16px"],
+      ["xxxlarge", "56px"]
     ];
 
     badgeSizes.forEach(([size, expectedSize]) => {

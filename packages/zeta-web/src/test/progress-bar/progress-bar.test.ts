@@ -1,6 +1,7 @@
 import { fixture, html, unsafeStatic, expect } from "@open-wc/testing";
 import type { ZetaProgressBar } from "../../components/progress-indicators/progress-bar/progress-bar.js";
 import "../../components/progress-indicators/progress-bar/progress-bar.js";
+import "../../index.css";
 
 describe("zeta-progress-bar", () => {
   let subject: ZetaProgressBar;
@@ -24,7 +25,18 @@ describe("zeta-progress-bar", () => {
 
   // describe("Dimensions", () => {});
 
-  // describe("Styling", () => {});
+  describe("Styling", () => {
+    it("uses token radius per size and sharp shape", async () => {
+      const radius = () => getComputedStyle(subject.shadowRoot!.querySelector(".wrapper")!).borderRadius;
+      expect(radius()).to.equal("8px");
+      subject.size = "small";
+      await subject.updateComplete;
+      expect(radius()).to.equal("4px");
+      subject.rounded = false;
+      await subject.updateComplete;
+      expect(radius()).to.equal("0px");
+    });
+  });
 
   // describe("Interaction", () => {});
 

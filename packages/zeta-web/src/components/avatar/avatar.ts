@@ -13,7 +13,7 @@ import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 /**
  * An avatar is a visual representation of a user or entity.
  *
- * @cssproperty --avatar-color - The color of the avatar. Defaults to purple. Recommended colors (backed by the chart/series design tokens): --avatar-blue, --avatar-green, --avatar-yellow, --avatar-orange, --avatar-purple, --avatar-pink, --avatar-teal
+ * @cssproperty --avatar-color - The color of the avatar. Defaults to purple. Recommended colors (backed by the chart/series design tokens): --avatar-blue, --avatar-green, --avatar-yellow, --avatar-orange, --avatar-purple, --avatar-sea, --avatar-burgundy
  * @cssproperty --avatar-initials-color - The color of the initials
  * @cssproperty --avatar-border-color - The color of the avatar border.
  * @slot - The content of the avatar. Should be an img element, a zeta-icon, or text.
@@ -42,6 +42,8 @@ export class ZetaAvatar extends LitElement {
    * - xl: 80px
    * - xxl: 120px
    * - xxxl: 200px
+   *
+   * Long-form aliases are also accepted: xxxsmall, xxsmall, xsmall, small, medium, large, xlarge, xxlarge, xxxlarge.
    *
    * Default value: m
    */

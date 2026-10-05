@@ -1,7 +1,7 @@
 import { css } from "lit";
 export default css`
   :host {
-    --default-avatar-size: 48px;
+    --default-avatar-size: var(--control-lg, 48px);
     --computed-avatar-size: var(--avatar-size, var(--default-avatar-size));
     display: block;
     position: relative;

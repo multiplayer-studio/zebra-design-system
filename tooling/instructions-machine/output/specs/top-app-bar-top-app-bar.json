@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3116-1217&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "3116:1217",
-  "fetchedAt": "2026-09-28T06:00:11.619Z",
+  "fetchedAt": "2026-10-05T13:42:41.877Z",
   "componentProperties": {
     "Page Title#3116:0": {
       "type": "TEXT",
@@ -1358,7 +1358,7 @@
           ],
           "strokes": [
             {
-              "raw": "#1f69ff",
+              "raw": "#3886ff",
               "token": "border.focus"
             }
           ],
@@ -1504,7 +1504,7 @@
           ],
           "strokes": [
             {
-              "raw": "#1f69ff",
+              "raw": "#3886ff",
               "token": "border.focus"
             }
           ],

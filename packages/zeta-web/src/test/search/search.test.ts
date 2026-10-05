@@ -83,6 +83,15 @@ describe("zeta-search", () => {
       const input = el.shadowRoot?.querySelector("input");
       expect(input).to.have.attribute("placeholder", "Search transactions");
     });
+
+    // Placed in Content because Styling/Dimensions are skipped.
+    it("uses control height tokens per size and radius.sm when rounded", async () => {
+      const el = await fixture<ZetaSearch>(html`<zeta-search size="medium"></zeta-search>`);
+      const form = el.shadowRoot!.querySelector("form")!;
+      const rootStyle = getComputedStyle(document.documentElement);
+      expect(getComputedStyle(form).height).to.equal(rootStyle.getPropertyValue("--control-md").trim());
+      expect(getComputedStyle(form).borderTopLeftRadius).to.equal(rootStyle.getPropertyValue("--radius-sm").trim());
+    });
   });
 
   describe.skip("Dimensions", () => {

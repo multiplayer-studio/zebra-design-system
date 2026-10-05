@@ -4,11 +4,11 @@ export default css`
     display: block;
     width: fit-content;
     height: fit-content;
-    --progress-circle-color: var(--main-primary);
+    --progress-circle-color: var(--border-info);
   }
   .cancel zeta-icon {
     --icon-size: 20px;
-    --icon-color: var(--main-default);
+    --icon-color: var(--foreground-primary);
   }
 
   svg.loading {
@@ -32,15 +32,15 @@ export default css`
 
   .percentage {
     font: var(--label-small);
-    color: var(--main-default);
+    color: var(--foreground-primary);
   }
 
   .cancel {
     display: none;
     justify-content: center;
     align-items: center;
-    background-color: var(--surface-hover);
-    border-radius: var(--radius-full);
+    background-color: var(--interactive-neutral-background-hover);
+    border-radius: var(--radius-pill);
     cursor: pointer;
   }
 

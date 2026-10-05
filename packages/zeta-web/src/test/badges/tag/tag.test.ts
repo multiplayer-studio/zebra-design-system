@@ -1,9 +1,7 @@
 import { fixture, html, elementUpdated, expect, unsafeStatic } from "@open-wc/testing";
 import type { ZetaTag } from "../../../components/badges/tag/tag.js";
 import "../../../components/badges/tag/tag.js";
-import "../../../css/styles.css";
-import "../../../generated/tokens/primitives.css";
-import "../../../generated/tokens/semantics.css";
+import "../../../index.css";
 import { contrastTest } from "../../accessibility-utils/accessibility-test-runner.js";
 
 describe("zeta-tag", () => {

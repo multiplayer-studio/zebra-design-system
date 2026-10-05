@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "clean": "rm -rf ./output ../../docs/instructions",
+    "clean": "rm -rf ./output ../../docs/figma-generated-instructions",
     "pregenerate": "npm run clean",
     "generate": "tsx --env-file=../../.env generate-page-docs.ts",
     "selfcheck": "tsx generate-page-docs.ts --selfcheck",

@@ -48,7 +48,7 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
   }
 
   private progressValue = 0;
-  private readonly strokeWidth = 3;
+  private readonly strokeWidth = 4; // matches --stroke-heavy (SVG geometry needs a number)
 
   private getStrokeDasharray = () => {
     if (this.indeterminate) return 2 * 3.14 * (this.size / 2.5 - this.strokeWidth);
@@ -104,7 +104,7 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
     const r = this.size / 2 - this.strokeWidth;
     const cx = this.size / 2;
     const cy = this.size / 2;
-    const trackColor = this.type == "upload" ? "var(--main-light)" : "transparent";
+    const trackColor = "var(--border-subtle)";
 
     if (this.indeterminate)
       this.animate([{ transform: "rotate(0)" }, { transform: "rotate(360deg)" }], {

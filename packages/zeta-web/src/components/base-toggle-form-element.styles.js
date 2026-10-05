@@ -34,7 +34,7 @@ export default css`
     align-items: center;
     background: var(--surface-default);
     position: relative;
-    border: var(--border-size-medium) solid var(--main-subtle);
+    border: var(--stroke-thick) solid var(--main-subtle);
     height: var(--spacing-large);
     width: var(--spacing-large);
     justify-content: center;

@@ -7,7 +7,8 @@ export * from "./tab-item/tab-item.js";
 /** Tabs are used to show different views or sections of content within the same context.
  *
  * A bar used to display a collection of zeta-tab-items.
- * @cssproperty --tab-bar-background-color The background color of the tab-bar.
+ * @cssproperty --tab-bar-background The background color of the tab-bar. Defaults to `--surface-section`.
+ * @cssproperty --tab-bar-background-color Deprecated: has no effect, use `--tab-bar-background`.
  * @slot - The tab items displayed in the header. Should be a list of zeta-tab-item.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-18&node-type=canvas&m=dev

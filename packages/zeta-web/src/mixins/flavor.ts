@@ -3,8 +3,8 @@ import type { Constructor } from "./utils.js";
 import { property } from "lit/decorators.js";
 import styles from "./flavor.styles.js";
 
-// TODO: add gradient-text flavor - requires icon rework
-export type Flavor = "primary" | "positive" | "negative" | "outline" | "outline-subtle" | "text" | "inverse" | "subtle" | "gradient" | "custom";
+export type Flavor =
+  "primary" | "positive" | "negative" | "outline" | "outline-subtle" | "text" | "inverse" | "subtle" | "gradient" | "text-gradient" | "custom";
 
 export type ButtonFlavor = Exclude<Flavor, "inverse" | "ghost" | "default">;
 export type FabFlavor = Extract<Flavor, "primary" | "secondary" | "inverse">;
@@ -42,6 +42,7 @@ export const Flavored = <T extends Constructor<LitElement>>(superClass: T) => {
      * * inverse - black/white background. Note that this flavor is not supported in all components.
      * * subtle - white background with grey text. Same action colors as 'text' flavor.
      * * gradient - gradient background.
+     * * text-gradient - gradient text/icon with no background.
      * * custom - custom color background with custom color text/icon.
      *
      * @remarks The value `"secondary"` is no longer supported and should not be used.

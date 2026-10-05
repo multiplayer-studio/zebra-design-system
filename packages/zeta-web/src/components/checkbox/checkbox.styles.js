@@ -12,7 +12,7 @@ export default css`
   .container {
     min-width: 20px;
     min-height: 20px;
-    border: var(--border-size-medium) solid var(--checkbox-border-color);
+    border: var(--stroke-thick) solid var(--checkbox-border-color);
     background-color: var(--checkbox-background);
   }
 

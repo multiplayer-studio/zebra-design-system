@@ -1,7 +1,7 @@
 import { css } from "lit";
 export default css`
   .file-upload {
-    border: var(--border-size-medium) dashed var(--border-default);
+    border: var(--stroke-thick) dashed var(--border-default);
     padding: var(--spacing-4xl);
     display: flex;
     flex-direction: column;

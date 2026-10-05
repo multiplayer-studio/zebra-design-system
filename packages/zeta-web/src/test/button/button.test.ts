@@ -1,9 +1,7 @@
 import { fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/testing";
 import type { ZetaButton } from "../../components/button/button.js";
 import "../../components/button/button.js";
-import "../../css/styles.css";
-import "../../generated/tokens/primitives.css";
-import "../../generated/tokens/semantics.css";
+import "../../index.css";
 import "@zebra-fed/zeta-icons/index.css";
 import { contrastTest } from "../accessibility-utils/accessibility-test-runner.js";
 
@@ -46,6 +44,14 @@ describe("zeta-button", () => {
   });
 
   describe("Content", () => {
+    // Placed in Content because the Styling block is skipped.
+    it("applies gradient text for the text-gradient flavor", async () => {
+      const button: ZetaButton = await fixture(html`<zeta-button flavor="text-gradient">Button</zeta-button>`);
+      const slot = button.shadowRoot!.querySelector("button > slot")!;
+      expect(getComputedStyle(slot).backgroundClip).to.equal("text");
+      expect(getComputedStyle(button.shadowRoot!.querySelector("button")!).backgroundImage).to.equal("none");
+    });
+
     it("should render the correct text within the button", () => {
       expect(subject.lastChild?.nodeValue).to.equal(buttonText);
     });

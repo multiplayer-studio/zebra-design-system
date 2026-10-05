@@ -68,7 +68,7 @@ describe("zeta-avatar-status-indicator", () => {
       ["busy", "--chart-negative"],
       ["dnd", "--chart-series-4"],
       ["on-shift", "--chart-series-1"],
-      ["offline", "--foreground-secondary"],
+      ["offline", "--foreground-inverse"],
       ["close", "--chart-series-12"],
       ["icon", "--chart-series-1"]
     ];

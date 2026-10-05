@@ -9,12 +9,12 @@ export default css`
 
   #header-main {
     justify-content: space-between;
-    padding: 6px;
+    padding: var(--space-sm);
     background-color: var(--surface-section);
   }
 
   #header-right {
-    gap: var(--space-lg);
+    gap: var(--space-gutter);
   }
 
   #platform-name {
@@ -76,7 +76,7 @@ export default css`
     margin: 0 var(--space-lg) 0 var(--space-sm);
   }
   #header-info {
-    margin-right: var(--space-lg);
+    margin-right: var(--space-gutter);
   }
 
   /*Style avatar icon*/

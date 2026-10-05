@@ -11,7 +11,7 @@ export default css`
   }
 
   .border {
-    border-left: var(--border-size-small) solid var(--border-subtle);
+    border-left: var(--stroke-thin) solid var(--border-subtle);
   }
 
   .sub-item {

@@ -10,7 +10,7 @@ export default css`
   }
 
   :host([divide]) .drawer-header {
-    box-shadow: 0 var(--border-size-small) 0 0 var(--border-subtle);
+    box-shadow: 0 var(--stroke-thin) 0 0 var(--border-subtle);
   }
 
   .main-content {

@@ -87,12 +87,11 @@ Wraps a single glyph from the icon library so it can be sized consistently and e
 
 | Layer | Field | Raw | Token |
 | --- | --- | --- | --- |
-| Icon/Verified | height | 16 | control.icon-sm |
 
 ### Token changes by property
 
 | Property | Value | Layer | Field | Token |
 | --- | --- | --- | --- | --- |
-| Size | medium | Icon/Verified | height | control.icon-md |
-| Size | large | Icon/Verified | height | control.icon-lg |
 | Framed | true | Icon | height | control.target-min |
+| Framed | true | Icon/Verified | width | control.icon-sm |
+| Framed | true | Icon/Verified | height | control.icon-sm |

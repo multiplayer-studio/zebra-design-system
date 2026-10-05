@@ -9,7 +9,7 @@ export default css`
     display: flex;
     flex-direction: column;
     background-color: var(--surface-menu);
-    gap: var(--space-2xs);
+    gap: var(--space-xs);
     padding: var(--space-card);
     width: fit-content;
     box-shadow:

@@ -1,7 +1,7 @@
 import { css } from "lit";
 export default css`
   :host {
-    border-top: var(--border-size-small) solid var(--border-default);
+    border-top: var(--stroke-thin) solid var(--border-default);
     display: flex;
     /* justify-content: space-around; */
     align-items: stretch;
@@ -9,7 +9,7 @@ export default css`
 
   ::slotted(.divider)::before {
     content: "";
-    width: var(--border-size-small);
+    width: var(--stroke-thin);
     background-color: var(--border-default);
     display: block;
     height: 100%;
@@ -21,7 +21,7 @@ export default css`
     display: flex;
     flex: 2;
     position: relative;
-    margin: var(--spacing-small) 0;
+    margin: var(--space-sm) 0;
   }
 
   ::slotted(.spacer) {
@@ -41,11 +41,11 @@ export default css`
   :host([shrinkItems]) ::slotted(.divider) {
     flex: 0;
     width: 62px;
-    margin: 0 var(--spacing-6xl);
+    margin: 0 calc(var(--space-2xl) + var(--space-sm));
   }
 
   ::slotted(zeta-button) {
-    margin: var(--spacing-large) var(--spacing-2xl);
+    margin: var(--space-lg) var(--space-2xl) var(--space-lg) var(--space-lg);
     flex: 1;
   }
 `;

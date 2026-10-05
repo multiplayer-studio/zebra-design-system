@@ -18,7 +18,7 @@ export default css`
     justify-content: center;
     gap: var(--spacing-small);
     padding: var(--spacing-small) var(--spacing-medium);
-    outline: var(--border-default) solid var(--border-size-small);
+    outline: var(--border-default) solid var(--stroke-thin);
     border: none;
     color: var(--main-default);
     transition: background-color 0.2s ease-out;

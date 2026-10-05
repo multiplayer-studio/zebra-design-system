@@ -3,7 +3,7 @@ import { css } from "lit";
 export default css`
   :host {
     --chart-card-border-color: var(--border-default);
-    --chart-card-border-width: var(--border-size-small);
+    --chart-card-border-width: var(--stroke-thin);
     --chart-card-background: var(--surface-default);
     --chart-card-min-height: 180px;
     display: block;
@@ -133,7 +133,7 @@ export default css`
     top: 0;
     left: var(--spacing-2xl);
     right: var(--spacing-2xl);
-    height: var(--border-size-small);
+    height: var(--stroke-thin);
     background-color: var(--border-subtle);
   }
 `;

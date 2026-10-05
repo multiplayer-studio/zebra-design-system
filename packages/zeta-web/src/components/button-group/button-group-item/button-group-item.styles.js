@@ -13,8 +13,8 @@ export default css`
   :host > button {
     color: var(--main-default);
     background-color: var(--surface-default);
-    border: var(--border-size-small) solid var(--border-subtle);
-    border-right: var(--group-item-border-right, var(--border-size-small) solid var(--border-subtle));
+    border: var(--stroke-thin) solid var(--border-subtle);
+    border-right: var(--group-item-border-right, var(--stroke-thin) solid var(--border-subtle));
     display: flex;
     flex-direction: row;
     align-items: center;

@@ -12,7 +12,7 @@ on:
   pull_request:
     types: [closed]
     paths:
-      - 'docs/instructions/**'
+      - 'docs/figma-generated-instructions/**'
       # The committed token data lives in token-machine's source — packages/foundations/tokens/dist
       # is git-ignored build output, so a PR can only ever change the source side.
       - 'tooling/token-machine/source/**'
@@ -80,7 +80,7 @@ jobs:
           set -euo pipefail
           mkdir -p .design-sync
           WATCHED=(
-            docs/instructions
+            docs/figma-generated-instructions
             tooling/token-machine/source
             packages/foundations/tokens
             tooling/instructions-machine/output
@@ -113,7 +113,7 @@ jobs:
           include-hidden-files: true
           path: |
             .design-sync/
-            docs/instructions/
+            docs/figma-generated-instructions/
             tooling/instructions-machine/output/
             packages/foundations/tokens/dist/json/
 
@@ -143,7 +143,7 @@ jobs:
             --allowed-tools Read,Glob,Grep,Write,Skill,Bash
           prompt: |
             A PR has just landed on main that changed this design system's sources of truth
-            (docs/instructions and/or packages/foundations/tokens). The token and instruction
+            (docs/figma-generated-instructions and/or packages/foundations/tokens). The token and instruction
             pipelines have already been re-run for you; their inputs are in `.design-sync/`.
 
             Load the `triage-design-changes` skill and follow it end to end. Your deliverable is

@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15010&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2046:15010",
-  "fetchedAt": "2026-09-28T05:59:34.008Z",
+  "fetchedAt": "2026-10-05T13:42:07.739Z",
   "componentProperties": {
     "Name#2167:166": {
       "type": "INSTANCE_SWAP",
@@ -47,12 +47,7 @@
       },
       "values": {
         "Icon": {},
-        "Icon/Verified": {
-          "height": {
-            "raw": 16,
-            "token": "control.icon-sm"
-          }
-        }
+        "Icon/Verified": {}
       }
     },
     {
@@ -70,6 +65,10 @@
           }
         },
         "Icon/Verified": {
+          "width": {
+            "raw": 16,
+            "token": "control.icon-sm"
+          },
           "height": {
             "raw": 16,
             "token": "control.icon-sm"
@@ -86,12 +85,7 @@
       },
       "values": {
         "Icon": {},
-        "Icon/Verified": {
-          "height": {
-            "raw": 20,
-            "token": "control.icon-md"
-          }
-        }
+        "Icon/Verified": {}
       }
     },
     {
@@ -109,6 +103,10 @@
           }
         },
         "Icon/Verified": {
+          "width": {
+            "raw": 20,
+            "token": "control.icon-md"
+          },
           "height": {
             "raw": 20,
             "token": "control.icon-md"
@@ -125,12 +123,7 @@
       },
       "values": {
         "Icon": {},
-        "Icon/Verified": {
-          "height": {
-            "raw": 28,
-            "token": "control.icon-lg"
-          }
-        }
+        "Icon/Verified": {}
       }
     },
     {
@@ -148,6 +141,10 @@
           }
         },
         "Icon/Verified": {
+          "width": {
+            "raw": 28,
+            "token": "control.icon-lg"
+          },
           "height": {
             "raw": 28,
             "token": "control.icon-lg"

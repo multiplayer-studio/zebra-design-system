@@ -28,6 +28,10 @@ export default css`
     --icon-color: var(--interactive-neutral-foreground-default);
   }
 
+  :host([shape="rounded"]) .contourable-target {
+    border-radius: var(--radius-sm);
+  }
+
   :host([round="full"][rounded]) .contourable-target {
     border-radius: var(--radius-pill);
   }
@@ -43,10 +47,13 @@ export default css`
     background-color: var(--interactive-neutral-background-default);
     flex-shrink: 0;
     gap: var(--space-xs);
+    box-sizing: border-box;
+    height: var(--control-lg);
+    padding: var(--space-sm) var(--space-md);
     -webkit-tap-highlight-color: transparent;
 
     &:has(input:focus) {
-      border: var(--stroke-thin) solid var(--border-focus);
+      border: var(--stroke-thick) solid var(--border-focus);
     }
   }
 
@@ -71,7 +78,7 @@ export default css`
     position: absolute;
     inset: calc(var(--stroke-thin) * -1);
     padding: var(--stroke-thin);
-    background: linear-gradient(96deg, var(--surface-gradient-start) 0%, var(--surface-gradient-end) 87.02%);
+    background: linear-gradient(129deg, var(--foreground-gradient-start) 0%, var(--foreground-gradient-end) 100%);
     -webkit-mask:
       linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
@@ -115,6 +122,7 @@ export default css`
     margin: 0;
 
     &::placeholder {
+      color: var(--foreground-disabled);
       font-size: inherit;
       line-height: inherit;
     }
@@ -128,8 +136,8 @@ export default css`
 
   /* SIZE */
   :host([size="small"]) {
-    .contourable-target {
-      padding: var(--space-xs) var(--space-md);
+    form {
+      height: var(--control-sm);
     }
 
     .divider {
@@ -138,12 +146,15 @@ export default css`
 
     input {
       font: var(--body-small);
+      font-size: var(--body-small-font-size);
+      line-height: var(--body-small-line-height);
+      letter-spacing: var(--body-small-letter-spacing);
     }
   }
 
   :host([size="medium"]) {
-    .contourable-target {
-      padding: var(--space-sm) var(--space-md);
+    form {
+      height: var(--control-md);
     }
 
     .divider {
@@ -152,12 +163,15 @@ export default css`
 
     input {
       font: var(--body-medium);
+      font-size: var(--body-medium-font-size);
+      line-height: var(--body-medium-line-height);
+      letter-spacing: var(--body-medium-letter-spacing);
     }
   }
 
   :host([size="large"]) {
-    .contourable-target {
-      padding: var(--space-lg) var(--space-md);
+    form {
+      height: var(--control-lg);
     }
 
     .divider {
@@ -166,6 +180,9 @@ export default css`
 
     input {
       font: var(--body-medium);
+      font-size: var(--body-medium-font-size);
+      line-height: var(--body-medium-line-height);
+      letter-spacing: var(--body-medium-letter-spacing);
     }
   }
 `;

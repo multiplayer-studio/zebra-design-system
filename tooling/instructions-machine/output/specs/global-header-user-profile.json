@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2742-885&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2742:885",
-  "fetchedAt": "2026-09-28T05:59:46.501Z",
+  "fetchedAt": "2026-10-05T13:42:25.144Z",
   "componentProperties": {
     "State": {
       "type": "VARIANT",
@@ -126,12 +126,7 @@
             }
           }
         },
-        "_User Profile/Avatar": {
-          "cornerRadius": {
-            "raw": 0,
-            "token": "radius.none"
-          }
-        },
+        "_User Profile/Avatar": {},
         "_User Profile/Icon": {}
       }
     },
@@ -216,12 +211,7 @@
             }
           }
         },
-        "_User Profile/Avatar": {
-          "cornerRadius": {
-            "raw": 0,
-            "token": "radius.none"
-          }
-        },
+        "_User Profile/Avatar": {},
         "_User Profile/Icon": {}
       }
     },
@@ -306,12 +296,7 @@
             }
           }
         },
-        "_User Profile/Avatar": {
-          "cornerRadius": {
-            "raw": 0,
-            "token": "radius.none"
-          }
-        },
+        "_User Profile/Avatar": {},
         "_User Profile/Icon": {}
       }
     },
@@ -336,7 +321,7 @@
           ],
           "strokes": [
             {
-              "raw": "#1f69ff",
+              "raw": "#3886ff",
               "token": "border.focus"
             }
           ],
@@ -396,12 +381,7 @@
             }
           }
         },
-        "_User Profile/Avatar": {
-          "cornerRadius": {
-            "raw": 0,
-            "token": "radius.none"
-          }
-        },
+        "_User Profile/Avatar": {},
         "_User Profile/Icon": {}
       }
     },
@@ -486,12 +466,7 @@
             }
           }
         },
-        "_User Profile/Avatar": {
-          "cornerRadius": {
-            "raw": 0,
-            "token": "radius.none"
-          }
-        },
+        "_User Profile/Avatar": {},
         "_User Profile/Icon": {}
       }
     },
@@ -576,12 +551,7 @@
             }
           }
         },
-        "_User Profile/Avatar": {
-          "cornerRadius": {
-            "raw": 0,
-            "token": "radius.none"
-          }
-        },
+        "_User Profile/Avatar": {},
         "_User Profile/Icon": {}
       }
     },
@@ -666,12 +636,7 @@
             }
           }
         },
-        "_User Profile/Avatar": {
-          "cornerRadius": {
-            "raw": 0,
-            "token": "radius.none"
-          }
-        },
+        "_User Profile/Avatar": {},
         "_User Profile/Icon": {}
       }
     },
@@ -756,12 +721,7 @@
             }
           }
         },
-        "_User Profile/Avatar": {
-          "cornerRadius": {
-            "raw": 0,
-            "token": "radius.none"
-          }
-        },
+        "_User Profile/Avatar": {},
         "_User Profile/Icon": {}
       }
     },
@@ -786,7 +746,7 @@
           ],
           "strokes": [
             {
-              "raw": "#1f69ff",
+              "raw": "#3886ff",
               "token": "border.focus"
             }
           ],
@@ -846,12 +806,7 @@
             }
           }
         },
-        "_User Profile/Avatar": {
-          "cornerRadius": {
-            "raw": 0,
-            "token": "radius.none"
-          }
-        },
+        "_User Profile/Avatar": {},
         "_User Profile/Icon": {}
       }
     },
@@ -936,12 +891,7 @@
             }
           }
         },
-        "_User Profile/Avatar": {
-          "cornerRadius": {
-            "raw": 0,
-            "token": "radius.none"
-          }
-        },
+        "_User Profile/Avatar": {},
         "_User Profile/Icon": {}
       }
     }
