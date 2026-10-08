@@ -20,6 +20,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | --- | --- | --- | --- |
 | Checkbox/Checkbox | width | 40 | control.md |
 | Checkbox/Checkbox | height | 40 | control.target-min |
+| Checkbox/Checkbox/Checkbox | height | 24 | control.xs |
 | Checkbox/Checkbox/Checkbox | fill[0] | #0c0d0e00 | interactive.ghost.background.default |
 | Checkbox/Checkbox/Checkbox | stroke[0] | #7a8190 | interactive.selection.border.default |
 | Checkbox/Checkbox/Checkbox | cornerRadius | 0 | radius.none |

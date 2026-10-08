@@ -590,8 +590,8 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Navigation Header/Avatar with Title/Page Title/Title | letterSpacing | 0 | label.medium.letter spacing |
 | Navigation Header/Icon Button | width | 36 | control.sm |
 | Navigation Header/Icon Button | height | 36 | control.sm |
-| Navigation Header/Icon Button | fill[0] | #ffffff | interactive.neutral.background.default |
-| Navigation Header/Icon Button | stroke[0] | #ced2db | interactive.neutral.border.default |
+| Navigation Header/Icon Button | fill[0] | #0c0d0e00 | interactive.ghost.background.default |
+| Navigation Header/Icon Button | stroke[0] | #545963 | interactive.neutral.border.default |
 | Navigation Header/Icon Button | cornerRadius | 0 | radius.none |
 | Navigation Header/Icon Button | strokeWeight | 0 | stroke.base |
 | Navigation Header/Icon Button | padding.left | 4 | space.xs |

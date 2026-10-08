@@ -25,7 +25,7 @@ Nothing else to configure — the page list is auto-discovered (see below), not 
 ## Usage
 
 ```bash
-# Generate docs for every Figma page that matches a zeta-web component folder
+# Generate docs for every Figma page that contains component frames
 pnpm run docs:figma
 
 # Generate docs for a single page
@@ -56,7 +56,7 @@ write on its own before being folded into this tool.
 
 ## File layout
 
-- `pages.ts` — auto-discovers which Figma pages to process (see below).
+- `pages.ts` — lists the Figma file's top-level pages (see below).
 - `discover.ts` — page-scoped discovery: every `COMPONENT_SET`/`COMPONENT` on the page,
   plus any sibling `"<Name> Metadata"` frame.
 - `extract.ts` — walks a discovered component's variants into a `ComponentSpecDoc`
@@ -71,18 +71,13 @@ write on its own before being folded into this tool.
 
 ## Page discovery
 
-The list of Figma pages to process isn't hand-maintained — `pages.ts` fetches the design
-file's top-level page list (`GET /v1/files/{fileKey}?depth=1`) and keeps only the pages
-that name an actual zeta-web component: each Figma page name and each folder under
-`packages/zeta-web/src/components/` is lowercased and stripped of its own convention
-(spaces for Figma page names, dashes for folder names) before comparing, so "Top App Bar"
-and "top-appbar" both normalize to "topappbar" and match. Pages naming no component
-folder (Cover, token-exploration canvases, section dividers like "COMPONENTS") are
-skipped automatically — nothing to configure when a new component's page is added, as
-long as its Figma page name and its component folder name agree once normalized.
-
-A Figma page whose name doesn't reduce to the same string as its component folder (e.g. a
-plural/singular mismatch) won't auto-match — rename one side to align them.
+The list of Figma pages to process isn't hand-maintained and isn't matched against
+zeta-web — `pages.ts` fetches the design file's top-level page list
+(`GET /v1/files/{fileKey}?depth=1`), then each page is fetched and walked by
+`discoverPage`. A page with at least one `COMPONENT_SET`/`COMPONENT` in it gets a doc;
+a page with none (Cover, token-exploration canvases, section dividers like "COMPONENTS")
+is skipped and counted in the run summary. Nothing to configure when a new component page
+is added, and no naming agreement with a zeta-web folder is needed.
 
 ## Metadata integration
 
@@ -144,9 +139,6 @@ wrapper is reported as an icon.
   corner or side.
 - Only `SOLID` and `GRADIENT_LINEAR` paints resolve — `RADIAL`/`ANGULAR`/`DIAMOND`
   gradients and image fills come back as `{ raw: null, token: null }`.
-- A Figma page name and its zeta-web component folder name must agree once each side's
-  own separator is stripped (see Page discovery above) — a plural/singular mismatch
-  (e.g. a page named "Badge" for a `badges/` folder) won't auto-match.
 - No exhaustive per-variant listing, and no separate structurally-extracted properties
   table, in the output (both dropped — high token cost for no new information once the
   metadata's own Property Breakdown and hero content are rendered).

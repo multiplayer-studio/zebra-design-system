@@ -44,8 +44,8 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Top App Bar/Main/Frame 2 | itemSpacing | 12 | space.md |
 | Top App Bar/Main/Frame 2/Icon Button | width | 36 | control.sm |
 | Top App Bar/Main/Frame 2/Icon Button | height | 36 | control.sm |
-| Top App Bar/Main/Frame 2/Icon Button | fill[0] | #ffffff | interactive.neutral.background.default |
-| Top App Bar/Main/Frame 2/Icon Button | stroke[0] | #ced2db | interactive.neutral.border.default |
+| Top App Bar/Main/Frame 2/Icon Button | fill[0] | #0c0d0e00 | interactive.ghost.background.default |
+| Top App Bar/Main/Frame 2/Icon Button | stroke[0] | #545963 | interactive.neutral.border.default |
 | Top App Bar/Main/Frame 2/Icon Button | cornerRadius | 4 | radius.element-sm |
 | Top App Bar/Main/Frame 2/Icon Button | strokeWeight | 0 | stroke.base |
 | Top App Bar/Main/Frame 2/Icon Button | padding.left | 4 | space.xs |
@@ -68,7 +68,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Type | centered | Top App Bar/Main/Frame 2/Page Header/Page Title/Title | letterSpacing | label.medium.letter spacing |
 | Type | centered | Top App Bar/Main/Trailing/Icon Button | width | control.sm |
 | Type | centered | Top App Bar/Main/Trailing/Icon Button | height | control.sm |
-| Type | centered | Top App Bar/Main/Trailing/Icon Button | fill[0] | interactive.neutral.background.default |
+| Type | centered | Top App Bar/Main/Trailing/Icon Button | fill[0] | interactive.ghost.background.default |
 | Type | centered | Top App Bar/Main/Trailing/Icon Button | stroke[0] | interactive.neutral.border.default |
 | Type | centered | Top App Bar/Main/Trailing/Icon Button | cornerRadius | radius.element-sm |
 | Type | centered | Top App Bar/Main/Trailing/Icon Button | strokeWeight | stroke.base |
@@ -79,7 +79,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Type | contextual | Top App Bar/Main/Frame 3 | itemSpacing | space.md |
 | Type | contextual | Top App Bar/Main/Frame 3/Icon Button | width | control.sm |
 | Type | contextual | Top App Bar/Main/Frame 3/Icon Button | height | control.sm |
-| Type | contextual | Top App Bar/Main/Frame 3/Icon Button | fill[0] | interactive.neutral.background.default |
+| Type | contextual | Top App Bar/Main/Frame 3/Icon Button | fill[0] | interactive.ghost.background.default |
 | Type | contextual | Top App Bar/Main/Frame 3/Icon Button | stroke[0] | interactive.neutral.border.default |
 | Type | contextual | Top App Bar/Main/Frame 3/Icon Button | cornerRadius | radius.element-sm |
 | Type | contextual | Top App Bar/Main/Frame 3/Icon Button | strokeWeight | stroke.base |
@@ -94,7 +94,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Type | contextual | Top App Bar/Main/Frame 3/Contextual Details/Count/2 Items | letterSpacing | label.medium.letter spacing |
 | Type | contextual alt | Top App Bar/Main/Frame 3 | itemSpacing | space.md |
 | Type | contextual alt | Top App Bar/Main/Frame 3/Button | height | control.sm |
-| Type | contextual alt | Top App Bar/Main/Frame 3/Button | fill[0] | interactive.neutral.background.default |
+| Type | contextual alt | Top App Bar/Main/Frame 3/Button | fill[0] | interactive.ghost.background.default |
 | Type | contextual alt | Top App Bar/Main/Frame 3/Button | stroke[0] | interactive.neutral.border.default |
 | Type | contextual alt | Top App Bar/Main/Frame 3/Button | cornerRadius | radius.element-sm |
 | Type | contextual alt | Top App Bar/Main/Frame 3/Button | strokeWeight | stroke.base |
@@ -105,7 +105,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Type | search | Top App Bar/Main | itemSpacing | space.md |
 | Type | search | Top App Bar/Main/Icon Button | width | control.sm |
 | Type | search | Top App Bar/Main/Icon Button | height | control.sm |
-| Type | search | Top App Bar/Main/Icon Button | fill[0] | interactive.neutral.background.default |
+| Type | search | Top App Bar/Main/Icon Button | fill[0] | interactive.ghost.background.default |
 | Type | search | Top App Bar/Main/Icon Button | stroke[0] | interactive.neutral.border.default |
 | Type | search | Top App Bar/Main/Icon Button | cornerRadius | radius.element-sm |
 | Type | search | Top App Bar/Main/Icon Button | strokeWeight | stroke.base |

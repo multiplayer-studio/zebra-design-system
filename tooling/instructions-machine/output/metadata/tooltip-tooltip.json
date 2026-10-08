@@ -1,0 +1,226 @@
+{
+  "componentName": "TOOLTIP",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=5470-1664&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "5530:33",
+  "fetchedAt": "2026-10-08T10:12:38.515Z",
+  "hero": {
+    "statusLabel": "TOOLTIP · COMPONENT METADATA",
+    "heading": "What this component does",
+    "description": "A short floating message that names what an adjacent control does. Point decides which edge the arrow sits on, which is how the bubble anchors to its trigger from any of four sides. It holds one run of text and nothing else, so for status that stays on screen and sits inline, reach for Status Label instead."
+  },
+  "sections": [
+    {
+      "kind": "table",
+      "nodeId": "5530:42",
+      "title": "Property Breakdown",
+      "columns": [
+        "Property",
+        "Type",
+        "Default",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Label",
+          "Type": "text",
+          "Default": "Label",
+          "Description": "The whole message. Name the control's action in a few words. A tooltip that needs a full sentence is usually carrying information that belongs in the interface itself rather than in a transient hint."
+        },
+        {
+          "Property": "Point",
+          "Type": "bottom",
+          "Default": true,
+          "Description": "Picks the edge the arrow sits on, which is the edge facing the trigger, so bottom puts the bubble above the thing it describes. The right choice wherever there is clear space above the trigger."
+        },
+        {
+          "Property": "Point",
+          "Type": "top",
+          "Default": "-",
+          "Description": "Puts the bubble below its trigger. Use where the trigger sits near the top of its container and a bubble above it would be cut off."
+        },
+        {
+          "Property": "Point",
+          "Type": "left",
+          "Default": "-",
+          "Description": "Puts the bubble to the right of its trigger. Use in a vertical list or rail, where going above or below would cover the neighbouring rows."
+        },
+        {
+          "Property": "Point",
+          "Type": "right",
+          "Default": "-",
+          "Description": "Puts the bubble to the left of its trigger. The mirror of left, for a control sitting against the right edge of its container."
+        },
+        {
+          "Property": "Shape",
+          "Type": "rounded",
+          "Default": true,
+          "Description": "Follow the contour the surrounding controls already use rather than deciding per tooltip. Mixing both contours on one screen reads as a mistake rather than a distinction."
+        },
+        {
+          "Property": "Shape",
+          "Type": "sharp",
+          "Default": "-",
+          "Description": "The square-cornered pairing, for surfaces built from sharp controls. It changes the arrow tip as well as the corners, so the bubble stays internally consistent either way."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "5530:98",
+      "title": "States & Triggers",
+      "columns": [
+        "State",
+        "Trigger",
+        "Duration",
+        "What changes"
+      ],
+      "rows": [
+        {
+          "State": "Static",
+          "Trigger": "—",
+          "Duration": "—",
+          "What changes": "The set carries no hover, focus, pressed or disabled axis. All eight variants render the same way, and the only differences between them are which edge the arrow sits on and which contour the corners take."
+        },
+        {
+          "State": "Shown or hidden",
+          "Trigger": "Owned by the trigger",
+          "Duration": "—",
+          "What changes": "Nothing in the set models appearing or disappearing. A tooltip is either placed or it is not, so whatever reveals and dismisses it lives outside this component."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "5530:117",
+      "title": "Behavior & Motion Intent",
+      "columns": [
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Type": "Motion",
+          "Description": "Figma stores no timing and no transition is authored here. Any fade, delay or dismissal on appearance belongs entirely to the implementation."
+        },
+        {
+          "Type": "Placement",
+          "Description": "Point names the edge the arrow sits on, but nothing in the set positions the bubble against a real trigger. Choosing a variant states the intended side, and the actual anchoring has to be done wherever the tooltip is placed."
+        }
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "5530:133",
+      "title": "Content & Slot",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Label",
+          "Type": "text property",
+          "Description": "The only content the set exposes, and plain text at that. There is no instance-swap slot anywhere in the component, so an icon cannot be placed beside the text or in place of it without detaching the instance."
+        },
+        {
+          "Property": "Pointer",
+          "Type": "fixed part",
+          "Description": "Not a slot. Which edge it sits on and which tip it takes both follow the variant, and there is no property to hide it or move it from an instance."
+        }
+      ]
+    },
+    {
+      "kind": "unknown",
+      "nodeId": "5530:153",
+      "layerName": "Anatomy",
+      "title": "Anatomy",
+      "rawTextContent": [
+        "Anatomy",
+        "Label",
+        "1.",
+        "2.",
+        "3.",
+        "Bubble",
+        "The component frame itself. A horizontal auto-layout that hugs the label and carries the fill, the corner radius and the shadow.",
+        "Label",
+        "The one text property, centred on both axes inside the padding. A single run of text with nothing else allowed beside it.",
+        "Pointer",
+        "A vector drawn outside the frame's bounds rather than inside them. Which edge it sits on and which tip it takes both come from the variant."
+      ]
+    },
+    {
+      "kind": "how-to-use",
+      "nodeId": "5530:173",
+      "title": "How to use",
+      "dos": [
+        "Write the label as a short action phrase. A tooltip earns its place by naming the control, not by describing it.",
+        "Pick Point from where the trigger actually sits. The arrow is the only thing tying the bubble to its control, so the wrong edge breaks the connection."
+      ],
+      "donts": [
+        "Don't mix rounded and sharp across one screen. The contour belongs to the surface the tooltip opens over, not to the individual hint.",
+        "Don't rely on it as the only description of a control. It carries no focus state, so anyone who never hovers never gets the message."
+      ]
+    },
+    {
+      "kind": "bullet-list",
+      "nodeId": "5530:193",
+      "title": "Accessibility & Content Guidelines",
+      "items": [
+        "The set models no focus state, so the keyboard path to whatever reveals the tooltip has to be built in code.",
+        "A tooltip that is the only description of a control is unreachable for anyone who never hovers. Give the control its own accessible name as well.",
+        "The bubble is surface/inverse carrying foreground/inverse text. Check that pairing still clears contrast against whatever surface it floats above.",
+        "Content is one run of text with no wrapping authored, so a long label becomes a layout problem before it becomes a reading problem.",
+        "Nothing here times out or dismisses itself. Persistence and dismissal both belong to the implementation."
+      ]
+    },
+    {
+      "kind": "table",
+      "nodeId": "5530:197",
+      "title": "Layout & Theming Intents",
+      "columns": [
+        "Property",
+        "Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Property": "Size",
+          "Type": "Hug both axes",
+          "Description": "The bubble hugs its label on both axes, so the width follows the text. At the default Label it measures 46 by 24, and the height holds at 24 because one 16px line sits inside 4px of vertical padding."
+        },
+        {
+          "Property": "Padding",
+          "Type": "Fixed",
+          "Description": "space/xs top and bottom, space/sm left and right. Identical across all eight variants."
+        },
+        {
+          "Property": "Radius",
+          "Type": "Per Shape",
+          "Description": "radius/sm on rounded and radius/none on sharp, bound on all four corners. Both are tokens, so the value follows the theme and only the choice between them is made per instance."
+        },
+        {
+          "Property": "Pointer",
+          "Type": "Fixed, absolute",
+          "Description": "Absolutely positioned, centred on its edge and drawn outside the bubble, which is why the component does not clip its contents. 8 by 4 on top and bottom, 4 by 8 on left and right. The rounded tips measure 3.586 on the pointing axis rather than 4, because the curve stops short of the point the sharp triangle reaches."
+        },
+        {
+          "Property": "Fill",
+          "Type": "Theming",
+          "Description": "surface/inverse on the bubble and on the pointer, so the two read as one shape. The label is foreground/inverse."
+        },
+        {
+          "Property": "Type",
+          "Type": "Theming",
+          "Description": "label/small, which is IBM Plex Sans Medium at 12 over a 16px line. Bound to the label/small typography variables as well as the text style, so it follows the responsive modes."
+        },
+        {
+          "Property": "Elevation",
+          "Type": "Fixed",
+          "Description": "Shadow/medium on every variant, a two-layer drop shadow whose colour, blur and offsets are all bound to tokens."
+        }
+      ]
+    }
+  ]
+}

@@ -235,6 +235,7 @@ A single destination inside a Navigation Bar, shown as an icon above a label wit
 
 | Layer | Field | Raw | Token |
 | --- | --- | --- | --- |
+| Navigation Item | fill[0] | #0c0d0e00 | interactive.ghost.background.default |
 | Navigation Item | itemSpacing | 8 | space.sm |
 | Navigation Item | padding.left | 16 | space.lg |
 | Navigation Item | padding.right | 16 | space.lg |

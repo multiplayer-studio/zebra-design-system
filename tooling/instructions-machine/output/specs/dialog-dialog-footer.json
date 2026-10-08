@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2644-3185&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2644:3185",
-  "fetchedAt": "2026-10-05T13:42:22.229Z",
+  "fetchedAt": "2026-10-08T10:12:27.489Z",
   "componentProperties": {
     "Right Action#2896:32": {
       "type": "SLOT",
@@ -163,13 +163,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -288,13 +288,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],

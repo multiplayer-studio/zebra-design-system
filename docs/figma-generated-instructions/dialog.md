@@ -120,8 +120,8 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Dialog Footer/Tertiary | padding.bottom | 4 | space.xs |
 | Dialog Footer/Right Button Group | itemSpacing | 8 | space.sm |
 | Dialog Footer/Right Button Group/Secondary | height | 40 | control.md |
-| Dialog Footer/Right Button Group/Secondary | fill[0] | #ffffff | interactive.neutral.background.default |
-| Dialog Footer/Right Button Group/Secondary | stroke[0] | #ced2db | interactive.neutral.border.default |
+| Dialog Footer/Right Button Group/Secondary | fill[0] | #0c0d0e00 | interactive.ghost.background.default |
+| Dialog Footer/Right Button Group/Secondary | stroke[0] | #545963 | interactive.neutral.border.default |
 | Dialog Footer/Right Button Group/Secondary | cornerRadius | 4 | radius.element-sm |
 | Dialog Footer/Right Button Group/Secondary | strokeWeight | 1 | stroke.thin |
 | Dialog Footer/Right Button Group/Secondary | padding.left | 12 | space.md |
@@ -145,7 +145,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Actions | 2 | Dialog Footer | cornerRadius | radius.none |
 | Actions | 2 | Dialog Footer | itemSpacing | space.sm |
 | Actions | 2 | Dialog Footer/Secondary | height | control.md |
-| Actions | 2 | Dialog Footer/Secondary | fill[0] | interactive.neutral.background.default |
+| Actions | 2 | Dialog Footer/Secondary | fill[0] | interactive.ghost.background.default |
 | Actions | 2 | Dialog Footer/Secondary | stroke[0] | interactive.neutral.border.default |
 | Actions | 2 | Dialog Footer/Secondary | cornerRadius | radius.element-sm |
 | Actions | 2 | Dialog Footer/Secondary | strokeWeight | stroke.thin |

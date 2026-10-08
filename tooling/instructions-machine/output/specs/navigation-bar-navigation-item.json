@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2841-3535&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2841:3535",
-  "fetchedAt": "2026-10-05T13:42:36.077Z",
+  "fetchedAt": "2026-10-08T10:12:31.809Z",
   "componentProperties": {
     "Label#2841:4": {
       "type": "TEXT",
@@ -65,6 +65,12 @@
       },
       "values": {
         "Navigation Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
           "itemSpacing": {
             "raw": 8,
             "token": "space.sm"
@@ -153,6 +159,12 @@
       },
       "values": {
         "Navigation Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
           "itemSpacing": {
             "raw": 8,
             "token": "space.sm"
@@ -241,6 +253,12 @@
       },
       "values": {
         "Navigation Item": {
+          "fills": [
+            {
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
           "itemSpacing": {
             "raw": 8,
             "token": "space.sm"

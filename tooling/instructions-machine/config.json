@@ -2,9 +2,6 @@
   "tokens": {
     "resolvedTokensPath": "../../packages/foundations/tokens/dist/json/resolved-tokens.json"
   },
-  "zetaWeb": {
-    "componentsDir": "../../packages/zeta-web/src/components"
-  },
   "output": {
     "docsDir": "../../docs/figma-generated-instructions",
     "debugSpecsDir": "output/specs",

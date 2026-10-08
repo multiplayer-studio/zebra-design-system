@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4354-4171&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "4354:4171",
-  "fetchedAt": "2026-10-05T13:42:19.599Z",
+  "fetchedAt": "2026-10-08T10:12:25.799Z",
   "componentProperties": {
     "Label#4357:0": {
       "type": "BOOLEAN",
@@ -102,6 +102,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#0c0d0e00",
@@ -192,6 +196,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#0c0d0e00",
@@ -264,6 +272,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#0c0d0e00",
@@ -336,6 +348,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#0c0d0e00",
@@ -426,6 +442,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#0c0d0e00",
@@ -516,6 +536,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#0c0d0e00",
@@ -588,6 +612,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#0c0d0e00",
@@ -660,6 +688,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#0c0d0e00",
@@ -750,6 +782,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -840,6 +876,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -912,6 +952,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -984,6 +1028,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -1074,6 +1122,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -1146,6 +1198,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -1218,6 +1274,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -1308,6 +1368,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#1f69ff",
@@ -1398,6 +1462,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#545963",
@@ -1488,6 +1556,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#545963",
@@ -1560,6 +1632,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#545963",
@@ -1632,6 +1708,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#545963",
@@ -1722,6 +1802,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#545963",
@@ -1794,6 +1878,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#545963",
@@ -1866,6 +1954,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#545963",
@@ -1956,6 +2048,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#545963",
@@ -2046,6 +2142,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#e0e3e9",
@@ -2136,6 +2236,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#e0e3e9",
@@ -2226,6 +2330,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#e0e3e9",
@@ -2316,6 +2424,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#e0e3e9",
@@ -2388,6 +2500,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#e0e3e9",
@@ -2460,6 +2576,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#e0e3e9",
@@ -2550,6 +2670,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#e0e3e9",
@@ -2622,6 +2746,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#e0e3e9",
@@ -2694,6 +2822,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#e0e3e9",
@@ -2784,6 +2916,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#e0e3e9",
@@ -2856,6 +2992,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#e0e3e9",
@@ -2928,6 +3068,10 @@
           }
         },
         "Checkbox/Checkbox/Checkbox": {
+          "height": {
+            "raw": 24,
+            "token": "control.xs"
+          },
           "fills": [
             {
               "raw": "#e0e3e9",

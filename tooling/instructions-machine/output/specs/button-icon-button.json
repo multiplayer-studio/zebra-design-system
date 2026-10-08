@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2338-1763&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2338:1763",
-  "fetchedAt": "2026-10-05T13:42:05.512Z",
+  "fetchedAt": "2026-10-08T10:12:18.169Z",
   "componentProperties": {
     "Size": {
       "type": "VARIANT",
@@ -2323,13 +2323,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -2385,13 +2385,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -2447,13 +2447,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -2509,13 +2509,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -2571,13 +2571,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -2633,13 +2633,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -2695,13 +2695,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -2757,13 +2757,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -2819,13 +2819,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -3439,13 +3439,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -3501,13 +3501,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -3563,13 +3563,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -3625,13 +3625,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -3687,13 +3687,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -3749,13 +3749,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -3811,13 +3811,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -3873,13 +3873,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -3935,13 +3935,13 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.default"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -12925,8 +12925,8 @@
           },
           "fills": [
             {
-              "raw": "#f3f6fa",
-              "token": "interactive.neutral.background.hover"
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
             }
           ],
           "strokes": [
@@ -12987,8 +12987,8 @@
           },
           "fills": [
             {
-              "raw": "#f3f6fa",
-              "token": "interactive.neutral.background.hover"
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
             }
           ],
           "strokes": [
@@ -13049,8 +13049,8 @@
           },
           "fills": [
             {
-              "raw": "#f3f6fa",
-              "token": "interactive.neutral.background.hover"
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
             }
           ],
           "strokes": [
@@ -13111,8 +13111,8 @@
           },
           "fills": [
             {
-              "raw": "#f3f6fa",
-              "token": "interactive.neutral.background.hover"
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
             }
           ],
           "strokes": [
@@ -13173,8 +13173,8 @@
           },
           "fills": [
             {
-              "raw": "#f3f6fa",
-              "token": "interactive.neutral.background.hover"
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
             }
           ],
           "strokes": [
@@ -13235,8 +13235,8 @@
           },
           "fills": [
             {
-              "raw": "#f3f6fa",
-              "token": "interactive.neutral.background.hover"
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
             }
           ],
           "strokes": [
@@ -13297,8 +13297,8 @@
           },
           "fills": [
             {
-              "raw": "#f3f6fa",
-              "token": "interactive.neutral.background.hover"
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
             }
           ],
           "strokes": [
@@ -13359,8 +13359,8 @@
           },
           "fills": [
             {
-              "raw": "#f3f6fa",
-              "token": "interactive.neutral.background.hover"
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
             }
           ],
           "strokes": [
@@ -13421,8 +13421,8 @@
           },
           "fills": [
             {
-              "raw": "#f3f6fa",
-              "token": "interactive.neutral.background.hover"
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
             }
           ],
           "strokes": [
@@ -13483,8 +13483,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.pressed"
+              "raw": "#0c0d0e1a",
+              "token": "interactive.ghost.background.pressed"
             }
           ],
           "strokes": [
@@ -13545,8 +13545,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.pressed"
+              "raw": "#0c0d0e1a",
+              "token": "interactive.ghost.background.pressed"
             }
           ],
           "strokes": [
@@ -13607,8 +13607,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.pressed"
+              "raw": "#0c0d0e1a",
+              "token": "interactive.ghost.background.pressed"
             }
           ],
           "strokes": [
@@ -13669,8 +13669,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.pressed"
+              "raw": "#0c0d0e1a",
+              "token": "interactive.ghost.background.pressed"
             }
           ],
           "strokes": [
@@ -13731,8 +13731,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.pressed"
+              "raw": "#0c0d0e1a",
+              "token": "interactive.ghost.background.pressed"
             }
           ],
           "strokes": [
@@ -13793,8 +13793,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.pressed"
+              "raw": "#0c0d0e1a",
+              "token": "interactive.ghost.background.pressed"
             }
           ],
           "strokes": [
@@ -13855,8 +13855,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.pressed"
+              "raw": "#0c0d0e1a",
+              "token": "interactive.ghost.background.pressed"
             }
           ],
           "strokes": [
@@ -13917,8 +13917,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.pressed"
+              "raw": "#0c0d0e1a",
+              "token": "interactive.ghost.background.pressed"
             }
           ],
           "strokes": [
@@ -13979,8 +13979,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.pressed"
+              "raw": "#0c0d0e1a",
+              "token": "interactive.ghost.background.pressed"
             }
           ],
           "strokes": [
@@ -14041,8 +14041,8 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.focused"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
             }
           ],
           "strokes": [
@@ -14103,8 +14103,8 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.focused"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
             }
           ],
           "strokes": [
@@ -14165,8 +14165,8 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.focused"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
             }
           ],
           "strokes": [
@@ -14227,8 +14227,8 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.focused"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
             }
           ],
           "strokes": [
@@ -14289,8 +14289,8 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.focused"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
             }
           ],
           "strokes": [
@@ -14351,8 +14351,8 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.focused"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
             }
           ],
           "strokes": [
@@ -14413,8 +14413,8 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.focused"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
             }
           ],
           "strokes": [
@@ -14475,8 +14475,8 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.focused"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
             }
           ],
           "strokes": [
@@ -14537,8 +14537,8 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.focused"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
             }
           ],
           "strokes": [
@@ -14599,8 +14599,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.disabled"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
             }
           ],
           "strokes": [
@@ -14661,8 +14661,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.disabled"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
             }
           ],
           "strokes": [
@@ -14723,8 +14723,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.disabled"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
             }
           ],
           "strokes": [
@@ -14785,8 +14785,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.disabled"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
             }
           ],
           "strokes": [
@@ -14847,8 +14847,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.disabled"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
             }
           ],
           "strokes": [
@@ -14909,8 +14909,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.disabled"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
             }
           ],
           "strokes": [
@@ -14971,8 +14971,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.disabled"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
             }
           ],
           "strokes": [
@@ -15033,8 +15033,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.disabled"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
             }
           ],
           "strokes": [
@@ -15095,8 +15095,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.disabled"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
             }
           ],
           "strokes": [
@@ -17389,13 +17389,13 @@
           },
           "fills": [
             {
-              "raw": "#f3f6fa",
-              "token": "interactive.neutral.background.hover"
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -17451,13 +17451,13 @@
           },
           "fills": [
             {
-              "raw": "#f3f6fa",
-              "token": "interactive.neutral.background.hover"
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -17513,13 +17513,13 @@
           },
           "fills": [
             {
-              "raw": "#f3f6fa",
-              "token": "interactive.neutral.background.hover"
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -17575,13 +17575,13 @@
           },
           "fills": [
             {
-              "raw": "#f3f6fa",
-              "token": "interactive.neutral.background.hover"
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -17637,13 +17637,13 @@
           },
           "fills": [
             {
-              "raw": "#f3f6fa",
-              "token": "interactive.neutral.background.hover"
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -17699,13 +17699,13 @@
           },
           "fills": [
             {
-              "raw": "#f3f6fa",
-              "token": "interactive.neutral.background.hover"
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -17761,13 +17761,13 @@
           },
           "fills": [
             {
-              "raw": "#f3f6fa",
-              "token": "interactive.neutral.background.hover"
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -17823,13 +17823,13 @@
           },
           "fills": [
             {
-              "raw": "#f3f6fa",
-              "token": "interactive.neutral.background.hover"
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -17885,13 +17885,13 @@
           },
           "fills": [
             {
-              "raw": "#f3f6fa",
-              "token": "interactive.neutral.background.hover"
+              "raw": "#0c0d0e0d",
+              "token": "interactive.ghost.background.hover"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -17947,13 +17947,13 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.pressed"
+              "raw": "#0c0d0e1a",
+              "token": "interactive.ghost.background.pressed"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -18009,13 +18009,13 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.pressed"
+              "raw": "#0c0d0e1a",
+              "token": "interactive.ghost.background.pressed"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -18071,13 +18071,13 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.pressed"
+              "raw": "#0c0d0e1a",
+              "token": "interactive.ghost.background.pressed"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -18133,13 +18133,13 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.pressed"
+              "raw": "#0c0d0e1a",
+              "token": "interactive.ghost.background.pressed"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -18195,13 +18195,13 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.pressed"
+              "raw": "#0c0d0e1a",
+              "token": "interactive.ghost.background.pressed"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -18257,13 +18257,13 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.pressed"
+              "raw": "#0c0d0e1a",
+              "token": "interactive.ghost.background.pressed"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -18319,13 +18319,13 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.pressed"
+              "raw": "#0c0d0e1a",
+              "token": "interactive.ghost.background.pressed"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -18381,13 +18381,13 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.pressed"
+              "raw": "#0c0d0e1a",
+              "token": "interactive.ghost.background.pressed"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -18443,13 +18443,13 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.pressed"
+              "raw": "#0c0d0e1a",
+              "token": "interactive.ghost.background.pressed"
             }
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -18505,8 +18505,8 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.focused"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
             }
           ],
           "strokes": [
@@ -18567,8 +18567,8 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.focused"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
             }
           ],
           "strokes": [
@@ -18629,8 +18629,8 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.focused"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
             }
           ],
           "strokes": [
@@ -18691,8 +18691,8 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.focused"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
             }
           ],
           "strokes": [
@@ -18753,8 +18753,8 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.focused"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
             }
           ],
           "strokes": [
@@ -18815,8 +18815,8 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.focused"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
             }
           ],
           "strokes": [
@@ -18877,8 +18877,8 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.focused"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
             }
           ],
           "strokes": [
@@ -18939,8 +18939,8 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.focused"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
             }
           ],
           "strokes": [
@@ -19001,8 +19001,8 @@
           },
           "fills": [
             {
-              "raw": "#ffffff",
-              "token": "interactive.neutral.background.focused"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.focused"
             }
           ],
           "strokes": [
@@ -19063,8 +19063,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.disabled"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
             }
           ],
           "strokes": [
@@ -19125,8 +19125,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.disabled"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
             }
           ],
           "strokes": [
@@ -19187,8 +19187,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.disabled"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
             }
           ],
           "strokes": [
@@ -19249,8 +19249,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.disabled"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
             }
           ],
           "strokes": [
@@ -19311,8 +19311,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.disabled"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
             }
           ],
           "strokes": [
@@ -19373,8 +19373,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.disabled"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
             }
           ],
           "strokes": [
@@ -19435,8 +19435,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.disabled"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
             }
           ],
           "strokes": [
@@ -19497,8 +19497,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.disabled"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
             }
           ],
           "strokes": [
@@ -19559,8 +19559,8 @@
           },
           "fills": [
             {
-              "raw": "#e0e3e9",
-              "token": "interactive.neutral.background.disabled"
+              "raw": "#0c0d0e00",
+              "token": "interactive.ghost.background.disabled"
             }
           ],
           "strokes": [

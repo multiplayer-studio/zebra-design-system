@@ -37,8 +37,8 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Global Header/Header-Left | itemSpacing | 16 | space.gutter |
 | Global Header/Header-Left/Icon Button | width | 40 | control.md |
 | Global Header/Header-Left/Icon Button | height | 40 | control.md |
-| Global Header/Header-Left/Icon Button | fill[0] | #0c0d0e | interactive.neutral.background.default |
-| Global Header/Header-Left/Icon Button | stroke[0] | #545963 | interactive.neutral.border.default |
+| Global Header/Header-Left/Icon Button | fill[0] | #d6dce200 | interactive.ghost.background.default |
+| Global Header/Header-Left/Icon Button | stroke[0] | #e0e3e9 | interactive.neutral.border.default |
 | Global Header/Header-Left/Icon Button | cornerRadius | 0 | radius.none |
 | Global Header/Header-Left/Icon Button | strokeWeight | 0 | stroke.base |
 | Global Header/Header-Left/Icon Button | padding.left | 4 | space.xs |
@@ -67,8 +67,8 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Global Header/Header-Right | itemSpacing | 16 | space.gutter |
 | Global Header/Header-Right/Icon Button | width | 40 | control.md |
 | Global Header/Header-Right/Icon Button | height | 40 | control.md |
-| Global Header/Header-Right/Icon Button | fill[0] | #0c0d0e | interactive.neutral.background.default |
-| Global Header/Header-Right/Icon Button | stroke[0] | #545963 | interactive.neutral.border.default |
+| Global Header/Header-Right/Icon Button | fill[0] | #d6dce200 | interactive.ghost.background.default |
+| Global Header/Header-Right/Icon Button | stroke[0] | #e0e3e9 | interactive.neutral.border.default |
 | Global Header/Header-Right/Icon Button | cornerRadius | 0 | radius.none |
 | Global Header/Header-Right/Icon Button | strokeWeight | 0 | stroke.base |
 | Global Header/Header-Right/Icon Button | padding.left | 4 | space.xs |
@@ -124,7 +124,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | --- | --- | --- | --- |
 | _User Profile | height | 40 | control.md |
 | _User Profile | fill[0] | #ffffff | interactive.neutral.background.default |
-| _User Profile | stroke[0] | #ced2db | interactive.neutral.border.default |
+| _User Profile | stroke[0] | #545963 | interactive.neutral.border.default |
 | _User Profile | cornerRadius | 0 | radius.none |
 | _User Profile | strokeWeight | 0 | stroke.base |
 | _User Profile | itemSpacing | 4 | space.xs |

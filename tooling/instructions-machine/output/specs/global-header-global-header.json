@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2356-5644&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "2356:5644",
-  "fetchedAt": "2026-10-05T13:42:25.142Z",
+  "fetchedAt": "2026-10-08T10:12:28.298Z",
   "componentProperties": {
     "AppSwitcher#2356:3": {
       "type": "BOOLEAN",
@@ -198,13 +198,13 @@
           },
           "fills": [
             {
-              "raw": "#0c0d0e",
-              "token": "interactive.neutral.background.default"
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#545963",
+              "raw": "#e0e3e9",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -355,13 +355,13 @@
           },
           "fills": [
             {
-              "raw": "#0c0d0e",
-              "token": "interactive.neutral.background.default"
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#545963",
+              "raw": "#e0e3e9",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -462,13 +462,13 @@
           },
           "fills": [
             {
-              "raw": "#0c0d0e",
-              "token": "interactive.neutral.background.default"
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#545963",
+              "raw": "#e0e3e9",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -619,13 +619,13 @@
           },
           "fills": [
             {
-              "raw": "#0c0d0e",
-              "token": "interactive.neutral.background.default"
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
             }
           ],
           "strokes": [
             {
-              "raw": "#545963",
+              "raw": "#e0e3e9",
               "token": "interactive.neutral.border.default"
             }
           ],

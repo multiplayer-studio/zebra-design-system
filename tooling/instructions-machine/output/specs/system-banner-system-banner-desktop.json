@@ -1,0 +1,1445 @@
+{
+  "componentName": "System Banner (Desktop)",
+  "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=5406-9998&m=dev",
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "nodeId": "5406:9998",
+  "fetchedAt": "2026-10-08T10:12:39.496Z",
+  "componentProperties": {
+    "Action Slot#5350:5": {
+      "type": "SLOT",
+      "defaultValue": {
+        "guid": {
+          "sessionID": -1,
+          "localID": -1
+        }
+      }
+    },
+    "Show Actions#5350:6": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "Show Close#5350:7": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "Title#5394:28": {
+      "type": "TEXT",
+      "defaultValue": "Banner Title"
+    },
+    "Show Leading Icon#5406:34": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "Status": {
+      "type": "VARIANT",
+      "defaultValue": "Default",
+      "options": [
+        "Default",
+        "negative",
+        "warning",
+        "Info"
+      ]
+    },
+    "Content Type": {
+      "type": "VARIANT",
+      "defaultValue": "single line",
+      "options": [
+        "single line",
+        "multiline"
+      ]
+    }
+  },
+  "structure": {
+    "path": "System Banner (Desktop)",
+    "type": "COMPONENT",
+    "children": [
+      {
+        "path": "System Banner (Desktop)/Container",
+        "type": "FRAME",
+        "children": [
+          {
+            "path": "System Banner (Desktop)/Container/Icon Container",
+            "type": "FRAME",
+            "children": [
+              {
+                "path": "System Banner (Desktop)/Container/Icon Container/Status Icon",
+                "type": "INSTANCE",
+                "icon": "Check Circle"
+              }
+            ]
+          },
+          {
+            "path": "System Banner (Desktop)/Container/Content",
+            "type": "FRAME",
+            "children": [
+              {
+                "path": "System Banner (Desktop)/Container/Content/Text",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "path": "System Banner (Desktop)/Container/Content/Text/Title",
+                    "type": "TEXT"
+                  },
+                  {
+                    "path": "System Banner (Desktop)/Container/Content/Text/Description",
+                    "type": "TEXT"
+                  }
+                ]
+              },
+              {
+                "path": "System Banner (Desktop)/Container/Content/Action Slot",
+                "type": "SLOT"
+              }
+            ]
+          },
+          {
+            "path": "System Banner (Desktop)/Container/Dismiss",
+            "type": "INSTANCE"
+          }
+        ]
+      }
+    ]
+  },
+  "variants": [
+    {
+      "name": "Status=Default, Content Type=single line",
+      "nodeId": "5406:9999",
+      "properties": {
+        "Status": "Default",
+        "Content Type": "single line"
+      },
+      "values": {
+        "System Banner (Desktop)": {
+          "fills": [
+            {
+              "raw": "#00864f",
+              "token": "feedback.success.background.strong"
+            }
+          ],
+          "itemSpacing": {
+            "raw": 8,
+            "token": null
+          }
+        },
+        "System Banner (Desktop)/Container": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": null
+            },
+            "right": {
+              "raw": 16,
+              "token": null
+            },
+            "top": {
+              "raw": 16,
+              "token": null
+            },
+            "bottom": {
+              "raw": 16,
+              "token": null
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Icon Container": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "System Banner (Desktop)/Container/Icon Container/Status Icon": {},
+        "System Banner (Desktop)/Container/Content": {
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text": {
+          "itemSpacing": {
+            "raw": 12,
+            "token": "space.card"
+          },
+          "padding": {
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text/Title": {
+          "fills": [
+            {
+              "raw": "#f8fbff",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Banner Title",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium.letter spacing"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Action Slot": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          }
+        },
+        "System Banner (Desktop)/Container/Dismiss": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Status=Default, Content Type=multiline",
+      "nodeId": "5406:10009",
+      "properties": {
+        "Status": "Default",
+        "Content Type": "multiline"
+      },
+      "values": {
+        "System Banner (Desktop)": {
+          "fills": [
+            {
+              "raw": "#00864f",
+              "token": "feedback.success.background.strong"
+            }
+          ],
+          "itemSpacing": {
+            "raw": 8,
+            "token": null
+          }
+        },
+        "System Banner (Desktop)/Container": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": null
+            },
+            "right": {
+              "raw": 16,
+              "token": null
+            },
+            "top": {
+              "raw": 16,
+              "token": null
+            },
+            "bottom": {
+              "raw": 16,
+              "token": null
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Icon Container": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "System Banner (Desktop)/Container/Icon Container/Status Icon": {},
+        "System Banner (Desktop)/Container/Content": {
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          },
+          "padding": {
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          },
+          "padding": {
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text/Title": {
+          "fills": [
+            {
+              "raw": "#f8fbff",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Banner Title",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium.letter spacing"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text/Description": {
+          "fills": [
+            {
+              "raw": "#f8fbff",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Description of the badge goes here but avoid making multiple lines without braking the bank.",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 14,
+              "token": "body.small.font size"
+            },
+            "lineHeight": {
+              "raw": 18,
+              "token": "body.small.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.small.letter spacing"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Action Slot": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          }
+        },
+        "System Banner (Desktop)/Container/Dismiss": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Status=negative, Content Type=single line",
+      "nodeId": "5406:10020",
+      "properties": {
+        "Status": "negative",
+        "Content Type": "single line"
+      },
+      "values": {
+        "System Banner (Desktop)": {
+          "fills": [
+            {
+              "raw": "#d70015",
+              "token": "feedback.error.background.strong"
+            }
+          ],
+          "itemSpacing": {
+            "raw": 8,
+            "token": null
+          }
+        },
+        "System Banner (Desktop)/Container": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": null
+            },
+            "right": {
+              "raw": 16,
+              "token": null
+            },
+            "top": {
+              "raw": 16,
+              "token": null
+            },
+            "bottom": {
+              "raw": 16,
+              "token": null
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Icon Container": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "System Banner (Desktop)/Container/Icon Container/Status Icon": {},
+        "System Banner (Desktop)/Container/Content": {
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text": {
+          "itemSpacing": {
+            "raw": 12,
+            "token": "space.card"
+          },
+          "padding": {
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text/Title": {
+          "fills": [
+            {
+              "raw": "#f8fbff",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Banner Title",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium.letter spacing"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Action Slot": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          }
+        }
+      }
+    },
+    {
+      "name": "Status=negative, Content Type=multiline",
+      "nodeId": "5406:10029",
+      "properties": {
+        "Status": "negative",
+        "Content Type": "multiline"
+      },
+      "values": {
+        "System Banner (Desktop)": {
+          "fills": [
+            {
+              "raw": "#d70015",
+              "token": "feedback.error.background.strong"
+            }
+          ],
+          "itemSpacing": {
+            "raw": 8,
+            "token": null
+          }
+        },
+        "System Banner (Desktop)/Container": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": null
+            },
+            "right": {
+              "raw": 16,
+              "token": null
+            },
+            "top": {
+              "raw": 16,
+              "token": null
+            },
+            "bottom": {
+              "raw": 16,
+              "token": null
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Icon Container": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "System Banner (Desktop)/Container/Icon Container/Status Icon": {},
+        "System Banner (Desktop)/Container/Content": {
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          },
+          "padding": {
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          },
+          "padding": {
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text/Title": {
+          "fills": [
+            {
+              "raw": "#f8fbff",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Banner Title",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium.letter spacing"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text/Description": {
+          "fills": [
+            {
+              "raw": "#f8fbff",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Description of the badge goes here but avoid making multiple lines without braking the bank.",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 14,
+              "token": "body.small.font size"
+            },
+            "lineHeight": {
+              "raw": 18,
+              "token": "body.small.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.small.letter spacing"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Action Slot": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          }
+        }
+      }
+    },
+    {
+      "name": "Status=warning, Content Type=single line",
+      "nodeId": "5406:10039",
+      "properties": {
+        "Status": "warning",
+        "Content Type": "single line"
+      },
+      "values": {
+        "System Banner (Desktop)": {
+          "fills": [
+            {
+              "raw": "#d78d26",
+              "token": "feedback.warning.background.strong"
+            }
+          ],
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          }
+        },
+        "System Banner (Desktop)/Container": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "right": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "top": {
+              "raw": 16,
+              "token": "space.lg"
+            },
+            "bottom": {
+              "raw": 16,
+              "token": "space.lg"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Icon Container": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "System Banner (Desktop)/Container/Icon Container/Status Icon": {},
+        "System Banner (Desktop)/Container/Content": {
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text": {
+          "itemSpacing": {
+            "raw": 12,
+            "token": "space.card"
+          },
+          "padding": {
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text/Title": {
+          "fills": [
+            {
+              "raw": "#f8fbff",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Banner Title",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium.letter spacing"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Action Slot": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          }
+        },
+        "System Banner (Desktop)/Container/Dismiss": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Status=warning, Content Type=multiline",
+      "nodeId": "5406:10049",
+      "properties": {
+        "Status": "warning",
+        "Content Type": "multiline"
+      },
+      "values": {
+        "System Banner (Desktop)": {
+          "fills": [
+            {
+              "raw": "#d78d26",
+              "token": "feedback.warning.background.strong"
+            }
+          ],
+          "itemSpacing": {
+            "raw": 8,
+            "token": null
+          }
+        },
+        "System Banner (Desktop)/Container": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": null
+            },
+            "right": {
+              "raw": 16,
+              "token": null
+            },
+            "top": {
+              "raw": 16,
+              "token": null
+            },
+            "bottom": {
+              "raw": 16,
+              "token": null
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Icon Container": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "System Banner (Desktop)/Container/Icon Container/Status Icon": {},
+        "System Banner (Desktop)/Container/Content": {
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          },
+          "padding": {
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          },
+          "padding": {
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text/Title": {
+          "fills": [
+            {
+              "raw": "#f8fbff",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Banner Title",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium.letter spacing"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text/Description": {
+          "fills": [
+            {
+              "raw": "#f8fbff",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Description of the badge goes here but avoid making multiple lines without braking the bank.",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 14,
+              "token": "body.small.font size"
+            },
+            "lineHeight": {
+              "raw": 18,
+              "token": "body.small.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.small.letter spacing"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Action Slot": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          }
+        },
+        "System Banner (Desktop)/Container/Dismiss": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Status=Info, Content Type=single line",
+      "nodeId": "5406:10060",
+      "properties": {
+        "Status": "Info",
+        "Content Type": "single line"
+      },
+      "values": {
+        "System Banner (Desktop)": {
+          "fills": [
+            {
+              "raw": "#0073e6",
+              "token": "feedback.info.background.strong"
+            }
+          ],
+          "itemSpacing": {
+            "raw": 8,
+            "token": null
+          }
+        },
+        "System Banner (Desktop)/Container": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": null
+            },
+            "right": {
+              "raw": 16,
+              "token": null
+            },
+            "top": {
+              "raw": 16,
+              "token": null
+            },
+            "bottom": {
+              "raw": 16,
+              "token": null
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Icon Container": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "System Banner (Desktop)/Container/Icon Container/Status Icon": {},
+        "System Banner (Desktop)/Container/Content": {
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text": {
+          "itemSpacing": {
+            "raw": 12,
+            "token": "space.card"
+          },
+          "padding": {
+            "top": {
+              "raw": 8,
+              "token": "space.sm"
+            },
+            "bottom": {
+              "raw": 8,
+              "token": "space.sm"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text/Title": {
+          "fills": [
+            {
+              "raw": "#f8fbff",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Banner Title",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium.letter spacing"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Action Slot": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          }
+        },
+        "System Banner (Desktop)/Container/Dismiss": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Status=Info, Content Type=multiline",
+      "nodeId": "5406:10070",
+      "properties": {
+        "Status": "Info",
+        "Content Type": "multiline"
+      },
+      "values": {
+        "System Banner (Desktop)": {
+          "fills": [
+            {
+              "raw": "#0073e6",
+              "token": "feedback.info.background.strong"
+            }
+          ],
+          "itemSpacing": {
+            "raw": 8,
+            "token": null
+          }
+        },
+        "System Banner (Desktop)/Container": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": null
+          },
+          "padding": {
+            "left": {
+              "raw": 16,
+              "token": null
+            },
+            "right": {
+              "raw": 16,
+              "token": null
+            },
+            "top": {
+              "raw": 16,
+              "token": null
+            },
+            "bottom": {
+              "raw": 16,
+              "token": null
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Icon Container": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "itemSpacing": {
+            "raw": 10,
+            "token": null
+          }
+        },
+        "System Banner (Desktop)/Container/Icon Container/Status Icon": {},
+        "System Banner (Desktop)/Container/Content": {
+          "itemSpacing": {
+            "raw": 16,
+            "token": "space.lg"
+          },
+          "padding": {
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text": {
+          "itemSpacing": {
+            "raw": 4,
+            "token": "space.xs"
+          },
+          "padding": {
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text/Title": {
+          "fills": [
+            {
+              "raw": "#f8fbff",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Banner Title",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 500,
+            "fontSize": {
+              "raw": 14,
+              "token": "label.medium.font size"
+            },
+            "lineHeight": {
+              "raw": 20,
+              "token": "label.medium.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "label.medium.letter spacing"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Text/Description": {
+          "fills": [
+            {
+              "raw": "#f8fbff",
+              "token": "foreground.primary"
+            }
+          ],
+          "text": {
+            "characters": "Description of the badge goes here but avoid making multiple lines without braking the bank.",
+            "fontFamily": "IBM Plex Sans",
+            "fontWeight": 400,
+            "fontSize": {
+              "raw": 14,
+              "token": "body.small.font size"
+            },
+            "lineHeight": {
+              "raw": 18,
+              "token": "body.small.line height"
+            },
+            "letterSpacing": {
+              "raw": 0,
+              "token": "body.small.letter spacing"
+            }
+          }
+        },
+        "System Banner (Desktop)/Container/Content/Action Slot": {
+          "itemSpacing": {
+            "raw": 8,
+            "token": "space.sm"
+          }
+        },
+        "System Banner (Desktop)/Container/Dismiss": {
+          "width": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
+          "fills": [
+            {
+              "raw": "#d6dce200",
+              "token": "interactive.ghost.background.default"
+            }
+          ],
+          "strokes": [
+            {
+              "raw": "#e0e3e9",
+              "token": "interactive.neutral.border.default"
+            }
+          ],
+          "cornerRadius": {
+            "raw": 0,
+            "token": "radius.none"
+          },
+          "strokeWeight": {
+            "raw": 0,
+            "token": "stroke.base"
+          },
+          "padding": {
+            "left": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "right": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "top": {
+              "raw": 4,
+              "token": "space.xs"
+            },
+            "bottom": {
+              "raw": 4,
+              "token": "space.xs"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

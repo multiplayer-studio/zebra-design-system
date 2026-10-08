@@ -40,7 +40,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Layer | Field | Raw | Token |
 | --- | --- | --- | --- |
 | Search | fill[0] | #ffffff | interactive.neutral.background.default |
-| Search | stroke[0] | #ced2db | interactive.neutral.border.default |
+| Search | stroke[0] | #545963 | interactive.neutral.border.default |
 | Search | cornerRadius | 0 | radius.none |
 | Search | strokeWeight | 1 | stroke.thin |
 | Search | itemSpacing | 4 | space.xs |

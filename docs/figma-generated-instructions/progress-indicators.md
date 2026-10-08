@@ -263,8 +263,8 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | --- | --- | --- | --- |
 | _Upload/Icon Button | width | 36 | control.sm |
 | _Upload/Icon Button | height | 36 | control.sm |
-| _Upload/Icon Button | fill[0] | #f3f6fa | interactive.neutral.background.hover |
-| _Upload/Icon Button | stroke[0] | #ced2db | interactive.neutral.border.default |
+| _Upload/Icon Button | fill[0] | #0c0d0e0d | interactive.ghost.background.hover |
+| _Upload/Icon Button | stroke[0] | #545963 | interactive.neutral.border.default |
 | _Upload/Icon Button | cornerRadius | 9999 | radius.pill |
 | _Upload/Icon Button | strokeWeight | 0 | stroke.base |
 | _Upload/Icon Button | padding.left | 4 | space.xs |

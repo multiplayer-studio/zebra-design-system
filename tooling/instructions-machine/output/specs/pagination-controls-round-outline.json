@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4485-1658&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "4485:1658",
-  "fetchedAt": "2026-10-05T13:42:15.361Z",
+  "fetchedAt": "2026-10-08T10:12:23.594Z",
   "componentProperties": {
     "State": {
       "type": "VARIANT",
@@ -45,6 +45,10 @@
       },
       "values": {
         "_controls round outline": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -53,7 +57,7 @@
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -65,26 +69,22 @@
             "raw": 1,
             "token": "stroke.thin"
           },
-          "itemSpacing": {
-            "raw": 10,
-            "token": null
-          },
           "padding": {
             "left": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "right": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "top": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "bottom": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             }
           }
         },
@@ -100,6 +100,10 @@
       },
       "values": {
         "_controls round outline": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -120,26 +124,22 @@
             "raw": 1,
             "token": "stroke.thin"
           },
-          "itemSpacing": {
-            "raw": 10,
-            "token": null
-          },
           "padding": {
             "left": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "right": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "top": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "bottom": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             }
           }
         },
@@ -155,6 +155,10 @@
       },
       "values": {
         "_controls round outline": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -175,26 +179,22 @@
             "raw": 2,
             "token": "stroke.thick"
           },
-          "itemSpacing": {
-            "raw": 10,
-            "token": null
-          },
           "padding": {
             "left": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "right": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "top": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "bottom": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             }
           }
         },
@@ -210,6 +210,10 @@
       },
       "values": {
         "_controls round outline": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#f3f6fa",
@@ -218,7 +222,7 @@
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -230,26 +234,22 @@
             "raw": 1,
             "token": "stroke.thin"
           },
-          "itemSpacing": {
-            "raw": 10,
-            "token": null
-          },
           "padding": {
             "left": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "right": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "top": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "bottom": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             }
           }
         },
@@ -265,6 +265,10 @@
       },
       "values": {
         "_controls round outline": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#e0e3e9",
@@ -285,26 +289,22 @@
             "raw": 1,
             "token": "stroke.thin"
           },
-          "itemSpacing": {
-            "raw": 10,
-            "token": null
-          },
           "padding": {
             "left": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "right": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "top": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "bottom": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             }
           }
         },

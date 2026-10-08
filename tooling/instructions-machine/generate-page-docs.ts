@@ -72,22 +72,20 @@ export async function main(): Promise<void> {
 
   const branchKey = process.env.FIGMA_BRANCH_KEY;
 
-  // Auto-discovered from the Figma file's own page list — every top-level page whose name
-  // matches an actual zeta-web component folder (see pages.ts) — instead of a hand-maintained
-  // pages.json that drifts out of sync as components are added.
-  console.log('🔍 Discovering Figma pages that match zeta-web components...');
+  // Every top-level page in the Figma file; pages holding no component frames are skipped
+  // below, once their contents are fetched (see discoverPage).
+  console.log('🔍 Listing Figma pages...');
   const pages = await discoverPages(fileKey, token);
   if (Object.keys(pages).length === 0) {
-    console.error('❌ Error: No Figma page matched a zeta-web component folder.');
+    console.error('❌ Error: No pages found in the Figma file.');
     process.exit(1);
   }
-  console.log(`  Found ${Object.keys(pages).length} matching page(s): ${Object.keys(pages).join(', ')}`);
 
   let filterPage = process.argv[2];
   if (filterPage === '--') filterPage = process.argv[3];
   const matchedPage = filterPage && Object.keys(pages).find((p) => p.toLowerCase() === filterPage!.toLowerCase());
   if (filterPage && !matchedPage) {
-    console.error(`❌ Error: Page "${filterPage}" not found — no Figma page of that name matches a zeta-web component folder.`);
+    console.error(`❌ Error: Page "${filterPage}" not found in the Figma file.`);
     process.exit(1);
   }
   const pagesToRun = matchedPage ? { [matchedPage]: pages[matchedPage] } : pages;
@@ -101,6 +99,7 @@ export async function main(): Promise<void> {
 
   let successCount = 0;
   let failCount = 0;
+  let skipCount = 0;
   // Variables belong to a file, not a page — fetched once per fileKey and reused across
   // every page in that file, instead of refetching per page.
   const variableNamesByFile = new Map<string, Map<string, string>>();
@@ -122,7 +121,9 @@ export async function main(): Promise<void> {
       const { document: root, components: figmaComponents, componentSets: figmaComponentSets } = await fetchNodeSubtree(fileKey, nodeId, token, parsedBranchId);
       const { components: discovered, metadataFrames } = discoverPage(root);
       if (discovered.length === 0) {
-        throw new Error('No components discovered on this page.');
+        console.log('  ⏭️  No component frames on this page — skipping.');
+        skipCount++;
+        continue;
       }
       console.log(`  🔎 Discovered ${discovered.length} component(s): ${discovered.map((d) => d.name).join(', ')}`);
       if (metadataFrames.size) {
@@ -181,8 +182,8 @@ export async function main(): Promise<void> {
     }
   }
 
-  console.log(`\n📊 Summary: ${successCount} succeeded, ${failCount} failed.`);
-  if (failCount > 0 && failCount === Object.keys(pagesToRun).length) {
+  console.log(`\n📊 Summary: ${successCount} succeeded, ${failCount} failed, ${skipCount} skipped (no components).`);
+  if (failCount > 0 && failCount === Object.keys(pagesToRun).length - skipCount) {
     console.error('❌ All pages failed.');
     process.exit(1);
   }

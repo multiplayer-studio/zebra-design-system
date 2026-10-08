@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4489-1925&m=dev",
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
   "nodeId": "4489:1925",
-  "fetchedAt": "2026-10-05T13:42:15.357Z",
+  "fetchedAt": "2026-10-08T10:12:23.592Z",
   "componentProperties": {
     "Show Controls#4489:13": {
       "type": "BOOLEAN",
@@ -141,6 +141,10 @@
           }
         },
         "Pagination/_controls sharp no-outline": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -149,7 +153,7 @@
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -161,36 +165,36 @@
             "raw": 0,
             "token": "stroke.base"
           },
-          "itemSpacing": {
-            "raw": 10,
-            "token": null
-          },
           "padding": {
             "left": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "right": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "top": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "bottom": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             }
           }
         },
         "Pagination/Main Slot 1": {
           "itemSpacing": {
             "raw": 8,
-            "token": null
+            "token": "space.sm"
           }
         },
         "Pagination/_indicators sharp no-outline": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -199,7 +203,7 @@
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -210,28 +214,6 @@
           "strokeWeight": {
             "raw": 0,
             "token": "stroke.base"
-          },
-          "itemSpacing": {
-            "raw": 10,
-            "token": null
-          },
-          "padding": {
-            "left": {
-              "raw": 10,
-              "token": null
-            },
-            "right": {
-              "raw": 10,
-              "token": null
-            },
-            "top": {
-              "raw": 10,
-              "token": null
-            },
-            "bottom": {
-              "raw": 10,
-              "token": null
-            }
           }
         }
       }
@@ -251,6 +233,10 @@
           }
         },
         "Pagination/_controls sharp outline": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -259,7 +245,7 @@
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -271,26 +257,22 @@
             "raw": 1,
             "token": "stroke.thin"
           },
-          "itemSpacing": {
-            "raw": 10,
-            "token": null
-          },
           "padding": {
             "left": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "right": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "top": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "bottom": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             }
           }
         },
@@ -301,6 +283,10 @@
           }
         },
         "Pagination/_indicators sharp no-outline": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -309,7 +295,7 @@
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -320,28 +306,6 @@
           "strokeWeight": {
             "raw": 0,
             "token": "stroke.base"
-          },
-          "itemSpacing": {
-            "raw": 10,
-            "token": null
-          },
-          "padding": {
-            "left": {
-              "raw": 10,
-              "token": null
-            },
-            "right": {
-              "raw": 10,
-              "token": null
-            },
-            "top": {
-              "raw": 10,
-              "token": null
-            },
-            "bottom": {
-              "raw": 10,
-              "token": null
-            }
           }
         }
       }
@@ -361,6 +325,10 @@
           }
         },
         "Pagination/_controls round no-outline": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -369,7 +337,7 @@
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -381,26 +349,22 @@
             "raw": 0,
             "token": "stroke.base"
           },
-          "itemSpacing": {
-            "raw": 10,
-            "token": null
-          },
           "padding": {
             "left": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "right": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "top": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "bottom": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             }
           }
         },
@@ -411,6 +375,10 @@
           }
         },
         "Pagination/_indicators round no-outline": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -419,7 +387,7 @@
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -430,28 +398,6 @@
           "strokeWeight": {
             "raw": 0,
             "token": "stroke.base"
-          },
-          "itemSpacing": {
-            "raw": 10,
-            "token": null
-          },
-          "padding": {
-            "left": {
-              "raw": 10,
-              "token": null
-            },
-            "right": {
-              "raw": 10,
-              "token": null
-            },
-            "top": {
-              "raw": 10,
-              "token": null
-            },
-            "bottom": {
-              "raw": 10,
-              "token": null
-            }
           }
         }
       }
@@ -471,6 +417,10 @@
           }
         },
         "Pagination/_controls round outline": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -479,7 +429,7 @@
           ],
           "strokes": [
             {
-              "raw": "#ced2db",
+              "raw": "#545963",
               "token": "interactive.neutral.border.default"
             }
           ],
@@ -491,26 +441,22 @@
             "raw": 1,
             "token": "stroke.thin"
           },
-          "itemSpacing": {
-            "raw": 10,
-            "token": null
-          },
           "padding": {
             "left": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "right": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "top": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             },
             "bottom": {
-              "raw": 10,
-              "token": null
+              "raw": 8,
+              "token": "space.sm"
             }
           }
         },
@@ -521,6 +467,10 @@
           }
         },
         "Pagination/_indicators round outline": {
+          "height": {
+            "raw": 36,
+            "token": "control.sm"
+          },
           "fills": [
             {
               "raw": "#ffffff",
@@ -540,28 +490,6 @@
           "strokeWeight": {
             "raw": 1,
             "token": "stroke.thin"
-          },
-          "itemSpacing": {
-            "raw": 10,
-            "token": null
-          },
-          "padding": {
-            "left": {
-              "raw": 10,
-              "token": null
-            },
-            "right": {
-              "raw": 10,
-              "token": null
-            },
-            "top": {
-              "raw": 10,
-              "token": null
-            },
-            "bottom": {
-              "raw": 10,
-              "token": null
-            }
           }
         }
       }

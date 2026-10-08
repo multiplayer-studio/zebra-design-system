@@ -171,14 +171,14 @@ Triggers an action from a text label, with optional icons on either side. Nine f
 | Flavour | outline | Button | stroke[0] | interactive.ghost.border.default |
 | Flavour | outline | Button | strokeWeight | stroke.thin |
 | Flavour | outline | Button/Label/Label | fill[0] | interactive.ghost.foreground.default |
-| Flavour | outline-subtle | Button | fill[0] | interactive.neutral.background.default |
+| Flavour | outline-subtle | Button | fill[0] | interactive.ghost.background.default |
 | Flavour | outline-subtle | Button | stroke[0] | interactive.neutral.border.default |
 | Flavour | outline-subtle | Button | strokeWeight | stroke.thin |
 | Flavour | outline-subtle | Button/Label/Label | fill[0] | interactive.neutral.foreground.default |
 | Flavour | text | Button | fill[0] | interactive.ghost.background.default |
 | Flavour | text | Button | stroke[0] | interactive.ghost.border.default |
 | Flavour | text | Button/Label/Label | fill[0] | interactive.ghost.foreground.default |
-| Flavour | subtle | Button | fill[0] | interactive.neutral.background.default |
+| Flavour | subtle | Button | fill[0] | interactive.ghost.background.default |
 | Flavour | subtle | Button | stroke[0] | interactive.neutral.border.default |
 | Flavour | subtle | Button/Label/Label | fill[0] | interactive.neutral.foreground.default |
 | Flavour | gradient | Button | fill[0] | linear-gradient(135deg, surface.gradient.start 0%, surface.gradient.end 87%) |
@@ -329,11 +329,11 @@ Triggers an action from a single glyph, with no text label. Square at every size
 | Flavour | positive | Icon Button | stroke[0] | interactive.positive.border.default |
 | Flavour | negative | Icon Button | fill[0] | interactive.destructive.background.default |
 | Flavour | negative | Icon Button | stroke[0] | interactive.destructive.border.default |
-| Flavour | subtle | Icon Button | fill[0] | interactive.neutral.background.default |
+| Flavour | subtle | Icon Button | fill[0] | interactive.ghost.background.default |
 | Flavour | subtle | Icon Button | stroke[0] | interactive.neutral.border.default |
 | Flavour | text | Icon Button | fill[0] | interactive.ghost.background.default |
 | Flavour | text | Icon Button | stroke[0] | interactive.ghost.border.default |
-| Flavour | outline-subtle | Icon Button | fill[0] | interactive.neutral.background.default |
+| Flavour | outline-subtle | Icon Button | fill[0] | interactive.ghost.background.default |
 | Flavour | outline-subtle | Icon Button | stroke[0] | interactive.neutral.border.default |
 | Flavour | outline-subtle | Icon Button | strokeWeight | stroke.thin |
 | Flavour | outline | Icon Button | fill[0] | interactive.neutral.background.default |
