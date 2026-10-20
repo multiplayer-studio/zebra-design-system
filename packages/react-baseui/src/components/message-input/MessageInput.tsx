@@ -72,9 +72,34 @@ export interface MessageInputProps {
   speakResponse?: boolean;
   defaultSpeakResponse?: boolean;
   onSpeakResponseChange?: (on: boolean) => void;
-  /** A reply is being read aloud. Shows the Speaking bar with a stop control. */
+  /**
+   * A reply is being read aloud. The composer gives way to a glowing orb
+   * that swells with the speech, and a single stop control.
+   */
   speaking?: boolean;
   onStopSpeaking?: () => void;
+  /**
+   * What the orb listens to while speaking: the `<audio>` / `<video>`
+   * element or the MediaStream the reply plays through. Its loudness drives
+   * the orb. An element's output is routed through Web Audio once and
+   * stays audible.
+   */
+  speakingSource?: HTMLMediaElement | MediaStream | null;
+  /**
+   * Loudness 0–1, for speech the component can't hear (e.g. the browser's
+   * speechSynthesis, which exposes no audio). Ignored when `speakingSource`
+   * is set. With neither, the orb breathes on its own.
+   */
+  speakingLevel?: number;
+  /** The reply being read aloud, shown under the orb as it is spoken. */
+  speakingText?: string;
+  /**
+   * Where the voice is in `speakingText`, as a character offset — e.g.
+   * `charIndex` from speechSynthesis `boundary` events. Without it, an
+   * HTMLMediaElement `speakingSource` gives the position from its playback
+   * time; with neither, the whole text shows at once.
+   */
+  speakingCharIndex?: number;
   preview?: MessageInputPreview;
   disabled?: boolean;
   "aria-label"?: string;
@@ -117,6 +142,137 @@ function Waveform({ levels, progress, className }: { levels: number[]; progress?
   );
 }
 
+// One AudioContext for every orb, and one source node per media element:
+// createMediaElementSource may only ever be called once per element, and
+// takes over its output, so the source is kept and wired to the speakers.
+let sharedCtx: AudioContext | null = null;
+const elementSources = new WeakMap<HTMLMediaElement, MediaElementAudioSourceNode>();
+
+/** Calls `onLevel` with the source's loudness (0–1) every frame. Returns a stop function. */
+function listenTo(source: HTMLMediaElement | MediaStream, onLevel: (level: number) => void): () => void {
+  if (typeof window === "undefined" || typeof AudioContext === "undefined") return () => {};
+  const ctx = (sharedCtx ??= new AudioContext());
+  void ctx.resume().catch(() => {});
+  let node: AudioNode;
+  if (source instanceof MediaStream) {
+    node = ctx.createMediaStreamSource(source);
+  } else {
+    let s = elementSources.get(source);
+    if (!s) { s = ctx.createMediaElementSource(source); s.connect(ctx.destination); elementSources.set(source, s); }
+    node = s;
+  }
+  const analyser = ctx.createAnalyser();
+  analyser.fftSize = 512;
+  node.connect(analyser);
+  const data = new Uint8Array(analyser.fftSize);
+  let smoothed = 0, raf = 0;
+  const tick = () => {
+    analyser.getByteTimeDomainData(data);
+    let sum = 0;
+    for (const v of data) { const x = (v - 128) / 128; sum += x * x; }
+    const rms = Math.min(1, Math.sqrt(sum / data.length) * 4);
+    // Rise fast, fall slowly, so the orb swells on a syllable and eases back.
+    smoothed = rms > smoothed ? smoothed + (rms - smoothed) * 0.6 : smoothed + (rms - smoothed) * 0.12;
+    onLevel(smoothed);
+    raf = requestAnimationFrame(tick);
+  };
+  tick();
+  return () => {
+    cancelAnimationFrame(raf);
+    try { node.disconnect(analyser); } catch { /* already gone */ }
+    if (source instanceof MediaStream) node.disconnect();
+    onLevel(0);
+  };
+}
+
+/**
+ * The speaking orb: outlined rings in the brand gradient, no fill. Each ring
+ * has its own shape, tilt and slow spin (CSS, keyed off --ring), and swells
+ * by its own amount with --zds-orb-level, so louder speech pulls them apart.
+ */
+const RINGS = [
+  { rx: 44, ry: 44 }, { rx: 46, ry: 30 }, { rx: 30, ry: 46 },
+  { rx: 42, ry: 36 }, { rx: 38, ry: 44 }, { rx: 46, ry: 40 },
+];
+const Orb = React.forwardRef<HTMLSpanElement, { reactive: boolean }>(function Orb({ reactive }, ref) {
+  const gid = `${React.useId()}-orb`;
+  return (
+    <span ref={ref} className="zds-message-input__orb" data-reactive={reactive || undefined} aria-hidden="true">
+      <svg viewBox="0 0 100 100" className="zds-message-input__orb-svg">
+        <defs>
+          <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" className="zds-message-input__orb-stop-start" />
+            <stop offset="1" className="zds-message-input__orb-stop-end" />
+          </linearGradient>
+        </defs>
+        {RINGS.map((r, i) => (
+          <g key={i} className="zds-message-input__ring" style={{ "--ring": i } as React.CSSProperties}>
+            <ellipse cx="50" cy="50" rx={r.rx} ry={r.ry} stroke={`url(#${gid})`} />
+          </g>
+        ))}
+      </svg>
+    </span>
+  );
+});
+
+const wordsOf = (text: string) => {
+  const out: { word: string; start: number }[] = [];
+  const re = /\S+/g;
+  for (let m; (m = re.exec(text)); ) out.push({ word: m[0], start: m.index });
+  return out;
+};
+const wordAt = (words: { start: number }[], char: number) => {
+  let i = -1;
+  while (i + 1 < words.length && words[i + 1].start <= char) i++;
+  return i;
+};
+
+/**
+ * The reply, word by word: a word fades in as it is spoken and fades away
+ * as the voice moves on; three lines show, older ones fading out at the top.
+ */
+function SpokenCaption({ text, charIndex, media }: { text: string; charIndex?: number; media: HTMLMediaElement | null }) {
+  const words = React.useMemo(() => wordsOf(text), [text]);
+  const [fromMedia, setFromMedia] = React.useState(-1);
+  React.useEffect(() => {
+    if (charIndex !== undefined || !media) return;
+    let raf = 0;
+    const tick = () => {
+      if (media.duration > 0) setFromMedia(wordAt(words, (media.currentTime / media.duration) * text.length));
+      raf = requestAnimationFrame(tick);
+    };
+    tick();
+    return () => cancelAnimationFrame(raf);
+  }, [charIndex, media, words, text.length]);
+  const known = charIndex !== undefined || !!media;
+  const current = charIndex !== undefined ? wordAt(words, charIndex) : media ? fromMedia : words.length - 1;
+
+  // Keep the spoken word on the caption's last line.
+  const boxRef = React.useRef<HTMLParagraphElement | null>(null);
+  React.useEffect(() => {
+    const box = boxRef.current;
+    const el = box?.querySelector<HTMLElement>(`[data-i="${Math.max(0, current)}"]`);
+    if (!box || !el) return;
+    const top = Math.max(0, el.offsetTop + el.offsetHeight - box.clientHeight);
+    const still = typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    box.scrollTo({ top, behavior: still ? "auto" : "smooth" });
+  }, [current]);
+
+  return (
+    <p ref={boxRef} className="zds-message-input__caption" aria-hidden="true" data-tracking={known || undefined}>
+      {words.map((w, i) => {
+        const when = i > current ? "next" : i === current ? "now" : "past";
+        return (
+          <React.Fragment key={i}>
+            <span data-i={i} data-when={when} className="zds-message-input__word"
+              style={when === "past" ? ({ "--behind": Math.min(current - i, 12) } as React.CSSProperties) : undefined}>{w.word}</span>{" "}
+          </React.Fragment>
+        );
+      })}
+    </p>
+  );
+}
+
 /** Resample to `n` buckets by taking each bucket's peak. */
 const resample = (peaks: number[], n: number) =>
   peaks.length === 0 ? Array(n).fill(0.2)
@@ -130,8 +286,9 @@ const resample = (peaks: number[], n: number) =>
  * States, from the reference design: empty, filled, attachment tray open,
  * listening → transcribing → dictated (voice prompt), recording → playback
  * (voice message), plus speaking when a reply is being read aloud. One bar
- * above the toolbar carries whichever of listening, transcribing, recording,
- * playback or speaking is live, with a hint line under it.
+ * above the toolbar carries whichever of listening, transcribing, recording
+ * or playback is live, with a hint line under it. Speaking replaces the
+ * whole composer with an orb that reacts to the speech and one stop button.
  *
  * Behaviour: buttons are IconButton (Base UI Button); the read-aloud control
  * is Base UI's Toggle. Recording uses MediaRecorder and an AnalyserNode for
@@ -147,6 +304,7 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
     defaultAttachments = [], defaultVoiceNote = null, defaultDictated = false, defaultTrayOpen = false,
     accept, extraActions = [], maxRecordingSeconds = 120, transcribe, lang,
     speakResponse: speakProp, defaultSpeakResponse, onSpeakResponseChange, speaking = false, onStopSpeaking,
+    speakingSource = null, speakingLevel, speakingText, speakingCharIndex,
     preview, disabled = false, "aria-label": ariaLabel = "Message", className,
   },
   ref,
@@ -405,16 +563,42 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
           onTimeUpdate={(e) => setPosition(e.currentTarget.currentTime * 1000)} />
       ) : null}
     </>;
-  } else if (speaking) {
-    hint = "Reading the reply aloud.";
-    bar = <>
-      <Icon name="volume-up" iconStyle="rounded" />
-      <Waveform levels={SAMPLE_LEVELS} className="zds-message-input__wave--live" />
-      <span className="zds-message-input__bar-label">Speaking…</span>
-      <IconButton flavour="text" shape="full" icon="stop" label="Stop reading aloud" onClick={onStopSpeaking} />
-    </>;
   }
   const state = mode === "compose" ? (speaking ? "speaking" : trayOpen ? "tray" : hasContent ? "filled" : "empty") : mode;
+
+  // ---- speaking: the orb ------------------------------------------------------
+  // The level goes straight onto the orb as a custom property, every frame,
+  // without a React render.
+  const orbRef = React.useRef<HTMLSpanElement | null>(null);
+  const reactive = !!speakingSource || speakingLevel !== undefined;
+  React.useEffect(() => {
+    if (state !== "speaking" || !speakingSource) return;
+    return listenTo(speakingSource, (level) => orbRef.current?.style.setProperty("--zds-orb-level", level.toFixed(3)));
+  }, [state, speakingSource]);
+  React.useEffect(() => {
+    if (state !== "speaking" || speakingSource || speakingLevel === undefined) return;
+    orbRef.current?.style.setProperty("--zds-orb-level", String(Math.max(0, Math.min(1, speakingLevel))));
+  }, [state, speakingSource, speakingLevel]);
+
+  if (state === "speaking") {
+    return (
+      <div ref={ref} role="group" aria-label={ariaLabel}
+        className={["zds-message-input", className].filter(Boolean).join(" ")}
+        data-state="speaking" data-disabled={disabled || undefined}>
+        <div className="zds-message-input__speaking">
+          <Orb ref={orbRef} reactive={reactive} />
+          {speakingText ? (
+            <SpokenCaption text={speakingText} charIndex={speakingCharIndex}
+              media={speakingSource instanceof HTMLMediaElement ? speakingSource : null} />
+          ) : null}
+          {/* Announced once, whole; the word-by-word caption is visual only. */}
+          <span className="zds-message-input__sr-only" role="status">{speakingText ? `Speaking: ${speakingText}` : "Speaking the reply"}</span>
+          <IconButton className="zds-message-input__stop-speaking" flavour="subtle" shape="full" size="medium" icon="stop"
+            label="Stop speaking" onClick={onStopSpeaking} />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div ref={ref} role="group" aria-label={ariaLabel}

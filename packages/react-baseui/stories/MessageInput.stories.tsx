@@ -63,22 +63,67 @@ export const Recording: Story = { args: { preview: "recording" } };
 /** Voice message, step 2: listen back, record again or delete, then send. */
 export const Playback: Story = { render: (a) => <div style={{ maxInlineSize: 440 }}><MessageInput {...a} defaultVoiceNote={sampleVoiceNote()} /></div> };
 
-/** A reply is being read aloud; the read-aloud toggle is on. */
-export const Speaking: Story = { args: { speaking: true, defaultSpeakResponse: true } };
+/** Decaying pulses: `pulse()` kicks the level up, it eases back each frame. */
+const usePulseLevel = () => {
+  const [level, setLevel] = React.useState(0);
+  const target = React.useRef(0);
+  React.useEffect(() => {
+    let raf = 0;
+    const tick = () => { target.current *= 0.9; setLevel(target.current); raf = requestAnimationFrame(tick); };
+    tick();
+    return () => cancelAnimationFrame(raf);
+  }, []);
+  return { level, pulse: (v = 1) => { target.current = Math.max(target.current, v); } };
+};
+
+const SAMPLE_REPLY = "I found a table for four at Marlow's on Friday at seven. It's by the window, and they can hold it until six thirty. Shall I book it and send the confirmation to your calendar?";
+
+/** A reply is being read aloud with nothing to listen to: the orb breathes and the reply shows whole. */
+export const Speaking: Story = { args: { speaking: true, defaultSpeakResponse: true, speakingText: SAMPLE_REPLY } };
+
+/**
+ * The orb and caption following speech, simulated here: a word every
+ * ~260ms with a pause at each full stop, each word a pulse of loudness
+ * through `speakingLevel`, its position through `speakingCharIndex`. Loops.
+ */
+export const SpeakingReactive: Story = {
+  render: function Render(a) {
+    const { level, pulse } = usePulseLevel();
+    const [charIndex, setCharIndex] = React.useState(0);
+    React.useEffect(() => {
+      const starts = [...SAMPLE_REPLY.matchAll(/\S+/g)].map((m) => ({ i: m.index ?? 0, stop: /[.?!]$/.test(m[0]) }));
+      let w = 0, timer = 0;
+      const next = () => {
+        const cur = starts[w % starts.length];
+        setCharIndex(cur.i);
+        pulse(0.45 + Math.random() * 0.55);
+        w++;
+        timer = window.setTimeout(next, cur.stop ? 700 : 200 + Math.random() * 120);
+      };
+      next();
+      return () => clearTimeout(timer);
+    }, []);
+    return <div style={{ maxInlineSize: 440 }}><MessageInput {...a} speaking speakingLevel={level} speakingText={SAMPLE_REPLY} speakingCharIndex={charIndex} /></div>;
+  },
+};
 
 export const Disabled: Story = { args: { disabled: true, defaultValue: "Can't send right now" } };
 
 /**
  * Everything wired: send a message and a stand-in assistant answers. With
- * read-aloud on, the answer is spoken with the browser's speech synthesis
- * and the Speaking bar can stop it. Dictation uses the browser's speech
- * recognition (Chrome, Edge, Safari).
+ * read-aloud on, the answer is spoken with the browser's speech synthesis.
+ * speechSynthesis exposes no audio, so the orb pulses on each spoken word
+ * (its boundary events) through `speakingLevel`; with a real TTS audio
+ * element, pass it as `speakingSource` instead. Dictation uses the
+ * browser's speech recognition (Chrome, Edge, Safari).
  */
 export const Interactive: Story = {
   render: function Render() {
     const [log, setLog] = React.useState<{ who: "you" | "assistant"; text: string }[]>([]);
     const [speak, setSpeak] = React.useState(true);
     const [speaking, setSpeaking] = React.useState(false);
+    const { level, pulse } = usePulseLevel();
+    const [spoken, setSpoken] = React.useState({ text: "", at: 0 });
     const reply = (m: MessageSubmission) => {
       const parts = [m.text && `"${m.text}"`, m.attachments.length && `${m.attachments.length} attachment${m.attachments.length > 1 ? "s" : ""}`, m.voiceNote && `a ${Math.round(m.voiceNote.durationMs / 1000)}s voice message`].filter(Boolean);
       const answer = `Got ${parts.join(", ")}${m.dictated ? ", dictated" : ""}. This is where the assistant's answer would go.`;
@@ -86,6 +131,8 @@ export const Interactive: Story = {
       if (m.speakResponse && "speechSynthesis" in window) {
         const u = new SpeechSynthesisUtterance(answer);
         u.onend = u.onerror = () => setSpeaking(false);
+        u.onboundary = (e) => { if (e.name === "word") { pulse(0.6 + Math.random() * 0.4); setSpoken({ text: answer, at: e.charIndex }); } };
+        setSpoken({ text: answer, at: 0 });
         speechSynthesis.cancel(); speechSynthesis.speak(u); setSpeaking(true);
       }
     };
@@ -95,7 +142,7 @@ export const Interactive: Story = {
           {log.map((m, i) => <div key={i} style={{ justifySelf: m.who === "you" ? "end" : "start", maxInlineSize: "85%", padding: "8px 12px", borderRadius: 12, background: m.who === "you" ? "var(--interactive-primary-background-default)" : "var(--feedback-neutral-background-subtle)", color: m.who === "you" ? "var(--interactive-primary-foreground-default)" : "var(--foreground-primary)" }}>{m.text}</div>)}
         </div>
         <MessageInput placeholder="Ask anything" onSend={reply} speakResponse={speak} onSpeakResponseChange={setSpeak}
-          speaking={speaking} onStopSpeaking={() => { speechSynthesis.cancel(); setSpeaking(false); }} />
+          speaking={speaking} speakingLevel={level} speakingText={spoken.text} speakingCharIndex={spoken.at} onStopSpeaking={() => { speechSynthesis.cancel(); setSpeaking(false); }} />
       </div>
     );
   },
@@ -109,6 +156,7 @@ export const ThemingCascade: Story = {
           <div style={{ font: "500 12px/1.4 system-ui", opacity: 0.7 }}>{cls || "base / light"}</div>
           <MessageInput placeholder="Placeholder" defaultValue="Book a table for four" defaultDictated />
           <MessageInput preview="recording" />
+          <MessageInput speaking speakingLevel={0.5} speakingText="It is by the window, and they can hold it until six thirty." speakingCharIndex={30} />
         </div>
       ))}
     </div>
