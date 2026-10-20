@@ -19,7 +19,7 @@
   border-radius: var(--radius-none);
 
   /* type: size axis */
-  font-family: var(--label-medium-font-family);
+  font-family: var(--label-medium-font-family), system-ui, sans-serif;
   font-size: var(--label-medium-font-size);
   font-weight: 500;
   line-height: var(--label-medium-line-height);
@@ -33,7 +33,7 @@
   cursor: pointer;
   /* Colour-only: the spec records no scale, shadow or elevation shift on any
      flavour, so a transition must read as a tint change. */
-  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+  transition: background-color 120ms ease, background-position 120ms ease, border-color 120ms ease, color 120ms ease;
 }
 
 /* The label wrapper's own padding separates icon from text; the row has no gap. */
@@ -45,15 +45,12 @@
 
 .zds-button__icon {
   flex: none;
-  width: var(--control-icon-sm);
-  height: var(--control-icon-sm);
-  font-size: var(--control-icon-sm);
 }
 
 /* ---- size ---------------------------------------------------------- */
 .zds-button[data-size="medium"] {
   height: var(--control-md);
-  font-family: var(--label-large-font-family);
+  font-family: var(--label-large-font-family), system-ui, sans-serif;
   font-size: var(--label-large-font-size);
   line-height: var(--label-large-line-height);
   letter-spacing: var(--label-large-letter-spacing);
@@ -61,7 +58,7 @@
 .zds-button[data-size="large"] {
   height: var(--control-lg);
   padding: var(--space-xs) var(--space-lg);
-  font-family: var(--label-large-font-family);
+  font-family: var(--label-large-font-family), system-ui, sans-serif;
   font-size: var(--label-large-font-size);
   line-height: var(--label-large-line-height);
   letter-spacing: var(--label-large-letter-spacing);
@@ -69,12 +66,6 @@
 .zds-button[data-size="medium"] .zds-button__label,
 .zds-button[data-size="large"] .zds-button__label {
   padding-inline: var(--space-sm);
-}
-.zds-button[data-size="medium"] .zds-button__icon,
-.zds-button[data-size="large"] .zds-button__icon {
-  width: var(--control-icon-md);
-  height: var(--control-icon-md);
-  font-size: var(--control-icon-md);
 }
 
 /* ---- shape --------------------------------------------------------- */
@@ -97,18 +88,22 @@
   --zds-button-border: var(--interactive-destructive-border-default);
   --zds-button-fg: var(--interactive-destructive-foreground-default);
 }
+/* subtle, outline-subtle, text and text-gradient sit on the ghost scrim
+   (spec 2026-10-18): interactive/ghost/background/*, whose own alpha is the
+   scrim (0 at rest, 5% hover, 10% pressed). Figma also sets a paint opacity
+   on top, which squares it away (spec issue "gaps"). */
 .zds-button[data-flavour="subtle"] {
-  --zds-button-bg: var(--interactive-neutral-background-default);
+  --zds-button-bg: var(--interactive-ghost-background-default);
   --zds-button-border: var(--interactive-neutral-border-default);
   --zds-button-fg: var(--interactive-neutral-foreground-default);
 }
 .zds-button[data-flavour="text"] {
-  --zds-button-bg: transparent;
+  --zds-button-bg: var(--interactive-ghost-background-default);
   --zds-button-border: var(--interactive-ghost-border-default);
   --zds-button-fg: var(--interactive-ghost-foreground-default);
 }
 .zds-button[data-flavour="outline-subtle"] {
-  --zds-button-bg: var(--interactive-neutral-background-default);
+  --zds-button-bg: var(--interactive-ghost-background-default);
   --zds-button-border: var(--interactive-neutral-border-default);
   --zds-button-fg: var(--interactive-neutral-foreground-default);
 }
@@ -117,21 +112,48 @@
   --zds-button-border: var(--interactive-ghost-border-default);
   --zds-button-fg: var(--interactive-ghost-foreground-default);
 }
+/* The gradient flavours never swap their gradient for a flat colour on hover
+   or press (spec: Gradient transition) — a gradient cannot be interpolated to
+   a solid fill, so that swap flickers. Instead one gradient three times the
+   size of the fill holds the two stops in its middle third: at rest the
+   middle third shows (start at 0%, end at 87% of the fill, as before); hover
+   slides to the last third, pure end; press to the first, pure start. The
+   background position is what transitions. Mirrors button.styles.ts. */
 .zds-button[data-flavour="gradient"] {
-  --zds-button-bg: linear-gradient(135deg, var(--surface-gradient-start) 0%, var(--surface-gradient-end) 87%);
+  --zds-button-bg: linear-gradient(
+    135deg,
+    var(--surface-gradient-start) 0%,
+    var(--surface-gradient-start) 33.333%,
+    var(--surface-gradient-end) 62.333%,
+    var(--surface-gradient-end) 100%
+  );
   --zds-button-border: var(--interactive-primary-border-default);
   --zds-button-fg: var(--interactive-primary-foreground-default);
+  background-size: 300% 300%;
+  background-position: 50% 50%;
 }
 .zds-button[data-flavour="text-gradient"] {
-  --zds-button-bg: transparent;
+  --zds-button-bg: var(--interactive-ghost-background-default);
   --zds-button-border: var(--interactive-ghost-border-default);
   --zds-button-fg: var(--foreground-gradient-start);
 }
-.zds-button[data-flavour="text-gradient"] .zds-button__label {
-  background: linear-gradient(90deg, var(--foreground-gradient-start) 0%, var(--foreground-gradient-end) 100%);
+/* text-gradient runs the same slide across the label's own text, and the
+   icons take it too, since the icon follows the label. */
+.zds-button[data-flavour="text-gradient"] .zds-button__label,
+.zds-button[data-flavour="text-gradient"] .zds-button__icon {
+  background: linear-gradient(
+    90deg,
+    var(--foreground-gradient-start) 0%,
+    var(--foreground-gradient-start) 33.333%,
+    var(--foreground-gradient-end) 66.667%,
+    var(--foreground-gradient-end) 100%
+  );
+  background-size: 300% 100%;
+  background-position: 50% 0;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  transition: background-position 120ms ease;
 }
 
 /* outline and outline-subtle are the only flavours with a resting border */
@@ -153,23 +175,27 @@
   --zds-button-bg: var(--interactive-destructive-background-hover);
   --zds-button-border: var(--interactive-destructive-border-hover);
 }
-.zds-button[data-flavour="subtle"]:hover:not([data-disabled]),
+/* outline keeps its border and shifts a neutral background underneath. */
 .zds-button[data-flavour="outline"]:hover:not([data-disabled]) {
   --zds-button-bg: var(--interactive-neutral-background-hover);
 }
-.zds-button[data-flavour="outline-subtle"]:hover:not([data-disabled]) {
-  --zds-button-bg: var(--interactive-neutral-background-hover);
-  --zds-button-border: var(--interactive-neutral-border-hover);
-}
-/* Text flavours raise a ghost scrim from fully transparent. The 5% / 10%
-   opacities are the component's only untokenised values — see the spec's
-   issue 2. */
+/* The scrim flavours raise the ghost background from transparent. */
+.zds-button[data-flavour="subtle"]:hover:not([data-disabled]),
 .zds-button[data-flavour="text"]:hover:not([data-disabled]),
 .zds-button[data-flavour="text-gradient"]:hover:not([data-disabled]) {
-  --zds-button-bg: color-mix(in srgb, var(--interactive-neutral-foreground-default) 5%, transparent);
+  --zds-button-bg: var(--interactive-ghost-background-hover);
 }
+.zds-button[data-flavour="outline-subtle"]:hover:not([data-disabled]) {
+  --zds-button-bg: var(--interactive-ghost-background-hover);
+  --zds-button-border: var(--interactive-neutral-border-hover);
+}
+/* Gradient flavours: slide until the end colour covers 100%. */
 .zds-button[data-flavour="gradient"]:hover:not([data-disabled]) {
-  --zds-button-bg: var(--surface-gradient-end);
+  background-position: 100% 100%;
+}
+.zds-button[data-flavour="text-gradient"]:hover:not([data-disabled]) .zds-button__label,
+.zds-button[data-flavour="text-gradient"]:hover:not([data-disabled]) .zds-button__icon {
+  background-position: 100% 0;
 }
 
 /* ---- pressed ------------------------------------------------------- */
@@ -185,20 +211,25 @@
   --zds-button-bg: var(--interactive-destructive-background-pressed);
   --zds-button-border: var(--interactive-destructive-border-pressed);
 }
-.zds-button[data-flavour="subtle"]:active:not([data-disabled]),
 .zds-button[data-flavour="outline"]:active:not([data-disabled]) {
   --zds-button-bg: var(--interactive-neutral-background-pressed);
 }
-.zds-button[data-flavour="outline-subtle"]:active:not([data-disabled]) {
-  --zds-button-bg: var(--interactive-neutral-background-pressed);
-  --zds-button-border: var(--interactive-neutral-border-pressed);
-}
+.zds-button[data-flavour="subtle"]:active:not([data-disabled]),
 .zds-button[data-flavour="text"]:active:not([data-disabled]),
 .zds-button[data-flavour="text-gradient"]:active:not([data-disabled]) {
-  --zds-button-bg: color-mix(in srgb, var(--interactive-neutral-foreground-default) 10%, transparent);
+  --zds-button-bg: var(--interactive-ghost-background-pressed);
 }
+.zds-button[data-flavour="outline-subtle"]:active:not([data-disabled]) {
+  --zds-button-bg: var(--interactive-ghost-background-pressed);
+  --zds-button-border: var(--interactive-neutral-border-pressed);
+}
+/* Gradient flavours: slide the other way, until the start colour covers 100%. */
 .zds-button[data-flavour="gradient"]:active:not([data-disabled]) {
-  --zds-button-bg: var(--surface-gradient-start);
+  background-position: 0% 0%;
+}
+.zds-button[data-flavour="text-gradient"]:active:not([data-disabled]) .zds-button__label,
+.zds-button[data-flavour="text-gradient"]:active:not([data-disabled]) .zds-button__icon {
+  background-position: 0% 0;
 }
 
 /* ---- focus --------------------------------------------------------- */
@@ -220,17 +251,22 @@
 }
 .zds-button[data-flavour="text"][data-disabled],
 .zds-button[data-flavour="text-gradient"][data-disabled] {
-  --zds-button-bg: transparent;
+  --zds-button-bg: var(--interactive-ghost-background-disabled);
   --zds-button-fg: var(--interactive-ghost-foreground-disabled);
 }
-.zds-button[data-flavour="text-gradient"][data-disabled] .zds-button__label {
+.zds-button[data-flavour="text-gradient"][data-disabled] .zds-button__label,
+.zds-button[data-flavour="text-gradient"][data-disabled] .zds-button__icon {
   background: none;
   color: var(--interactive-ghost-foreground-disabled);
 }
-.zds-button[data-flavour="outline"][data-disabled],
+.zds-button[data-flavour="outline"][data-disabled] {
+  --zds-button-bg: var(--interactive-neutral-background-disabled);
+  --zds-button-border: var(--interactive-ghost-border-disabled);
+  --zds-button-fg: var(--interactive-neutral-foreground-disabled);
+}
 .zds-button[data-flavour="outline-subtle"][data-disabled],
 .zds-button[data-flavour="subtle"][data-disabled] {
-  --zds-button-bg: var(--interactive-neutral-background-disabled);
+  --zds-button-bg: var(--interactive-ghost-background-disabled);
   --zds-button-border: var(--interactive-neutral-border-disabled);
   --zds-button-fg: var(--interactive-neutral-foreground-disabled);
 }

@@ -486,6 +486,20 @@
         }
       }
     },
+    "hover": {
+      "$type": "color",
+      "$value": "{primitives.color.neutral.cool.40}",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:4142:1630",
+          "collection": "palette",
+          "mode": "Dark",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "aliasOf": "VariableID:30:1296"
+        }
+      }
+    },
     "inverse": {
       "$type": "color",
       "$value": "{primitives.color.neutral.cool.20}",
@@ -501,21 +515,7 @@
         }
       }
     },
-    "inversehover": {
-      "$type": "color",
-      "$value": "{primitives.color.neutral.cool.30}",
-      "$extensions": {
-        "com.figma": {
-          "id": "VariableID:72:7",
-          "collection": "palette",
-          "mode": "Dark",
-          "resolvedType": "COLOR",
-          "scopes": [],
-          "aliasOf": "VariableID:30:1295"
-        }
-      }
-    },
-    "inversepressed": {
+    "inverse-elevated": {
       "$type": "color",
       "$value": "{primitives.color.neutral.cool.10}",
       "$extensions": {
@@ -526,6 +526,20 @@
           "resolvedType": "COLOR",
           "scopes": [],
           "aliasOf": "VariableID:30:1293"
+        }
+      }
+    },
+    "inverse-sunken": {
+      "$type": "color",
+      "$value": "{primitives.color.neutral.cool.30}",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:7",
+          "collection": "palette",
+          "mode": "Dark",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "aliasOf": "VariableID:30:1295"
         }
       }
     },
@@ -737,6 +751,36 @@
     }
   },
   "ink": {
+    "always-blank": {
+      "$type": "color",
+      "$value": "{primitives.color.neutral.cool.100}",
+      "$description": "Near-black that does not change with mode. Source for foreground/on-light.",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:6412:2335",
+          "collection": "palette",
+          "mode": "Dark",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "aliasOf": "VariableID:30:1302"
+        }
+      }
+    },
+    "always-white": {
+      "$type": "color",
+      "$value": "{primitives.color.pure.white}",
+      "$description": "White that does not change with mode. Source for foreground/on-strong.",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:6412:2334",
+          "collection": "palette",
+          "mode": "Dark",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "aliasOf": "VariableID:61:355"
+        }
+      }
+    },
     "brand": {
       "$type": "color",
       "$value": "{primitives.color.brand.main.40}",
@@ -875,7 +919,7 @@
     },
     "focus": {
       "$type": "color",
-      "$value": "{primitives.color.brand.main.50}",
+      "$value": "{primitives.color.brand.main.60}",
       "$description": "Selected item border/outline (theme.color.selection.border)",
       "$extensions": {
         "com.figma": {
@@ -884,7 +928,7 @@
           "mode": "Dark",
           "resolvedType": "COLOR",
           "scopes": [],
-          "aliasOf": "VariableID:30:1318"
+          "aliasOf": "VariableID:30:1319"
         }
       }
     },
@@ -1129,7 +1173,7 @@
       },
       "default": {
         "$type": "color",
-        "$value": "{primitives.color.system.info.50}",
+        "$value": "{primitives.color.system.info.60}",
         "$description": "Info color (theme.color.info.default)",
         "$extensions": {
           "com.figma": {
@@ -1138,7 +1182,7 @@
             "mode": "Dark",
             "resolvedType": "COLOR",
             "scopes": [],
-            "aliasOf": "VariableID:30:1368"
+            "aliasOf": "VariableID:30:1369"
           }
         }
       },
@@ -1182,6 +1226,81 @@
             "resolvedType": "COLOR",
             "scopes": [],
             "aliasOf": "VariableID:30:1369"
+          }
+        }
+      }
+    },
+    "neutral": {
+      "deep": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.warm.30}",
+        "$description": "Neutral solid/strong emphasis (theme.color.neutral.strong)",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:6412:2342",
+            "collection": "palette",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "aliasOf": "VariableID:30:1306"
+          }
+        }
+      },
+      "default": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.warm.60}",
+        "$description": "Neutral color (theme.color.neutral.default)",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:6412:2340",
+            "collection": "palette",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "aliasOf": "VariableID:30:1309"
+          }
+        }
+      },
+      "faint": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.warm.100}",
+        "$description": "Neutral background tint (theme.color.neutral.subtle)",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:6412:2341",
+            "collection": "palette",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "aliasOf": "VariableID:30:1313"
+          }
+        }
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.warm.40}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:6412:2344",
+            "collection": "palette",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "aliasOf": "VariableID:30:1307"
+          }
+        }
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.warm.60}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:6412:2343",
+            "collection": "palette",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "aliasOf": "VariableID:30:1309"
           }
         }
       }

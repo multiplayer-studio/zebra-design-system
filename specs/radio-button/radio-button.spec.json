@@ -1,0 +1,515 @@
+{
+  "component": {
+    "name": "Radio Button",
+    "slug": "radio-button",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "4294:3121",
+      "key": "34d66389912a9e1504d28df4aadaca6e10a81bf4",
+      "page": "Radio Button",
+      "pageNodeId": "3843:2543",
+      "metadataFrameId": "6079:33",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3843-2543",
+      "extractedAt": "2026-10-15",
+      "variantCount": 14,
+      "defaultVariant": "Checked=false, State=enabled, Size=large",
+      "extractionNote": "One component set, all 14 variants walked (Checked x State x Size = 16 combinations; the two Checked=true, State=disabled variants are not built). No on-page subcomponents. The structure result was returned in two read-only passes (base tree with token findings, then per-variant deltas) to stay under the tool's response limit. Re-extracted 2026-10-15 (second pass, unchanged metadata): the ring's ghost fill has been removed, and the medium ring's height is now bound to control/icon-sm in its five non-focus variants; everything else is as before.",
+      "tokenSource": "tokens/"
+    }
+  },
+  "summary": "A circular control for choosing exactly one option from a set, with an optional text label beside it. Every option in the set shares a group and exactly one carries Checked at a time. A short, fixed list of mutually exclusive options is what it fits, a long or growing list is better served by a dropdown.",
+  "api": {
+    "checked": {
+      "type": "enum",
+      "figmaName": "Checked",
+      "values": [
+        "false",
+        "true"
+      ],
+      "default": "false",
+      "controls": [
+        "variant",
+        "ring.stroke",
+        "dot.visible",
+        "dot.fill"
+      ],
+      "intent": {
+        "false": "The option is not the one currently chosen in its group. The inner fill stays hidden in every interactive state.",
+        "true": "The option is the one currently chosen in its group. Only one Radio Button in a group carries this at a time."
+      }
+    },
+    "state": {
+      "type": "enum",
+      "figmaName": "State",
+      "values": [
+        "enabled",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "default": "enabled",
+      "controls": [
+        "variant",
+        "ring.stroke",
+        "dot.fill",
+        "focusRing",
+        "label.fill"
+      ],
+      "_order": "Figma order is enabled, hover, disabled, focus; listed in the metadata's order.",
+      "intent": {
+        "enabled": "Resting and interactive. Ring colour follows Checked, the inner fill is hidden when unchecked and shown when Checked. The default.",
+        "hover": "Pointer over the control. Ring colour steps to its hover tone for both Checked and unchecked, the inner fill’s visibility does not change.",
+        "focus": "Keyboard focus. A second ring is drawn around the control at the same colour as the inner ring, the inner fill keeps whatever visibility Checked already gives it.",
+        "disabled": "Not interactive. Ring and inner fill both move to their disabled tones. Ships only in its unchecked form, a chosen option that becomes disabled has no variant of its own."
+      }
+    },
+    "size": {
+      "type": "enum",
+      "figmaName": "Size",
+      "values": [
+        "medium",
+        "large"
+      ],
+      "default": "large",
+      "controls": [
+        "variant",
+        "ring.size",
+        "dot.size"
+      ],
+      "_order": "Ordered by ring size; Figma order is large, medium.",
+      "intent": {
+        "large": "24px ring, 12px inner fill when Checked. The default.",
+        "medium": "16px ring, 8px inner fill when Checked. The surrounding touch target and the label’s type size stay the same, only the circle itself changes."
+      }
+    },
+    "hasLabel": {
+      "type": "boolean",
+      "figmaName": "hasLabel#4268:0",
+      "default": true,
+      "controls": [
+        "label"
+      ],
+      "intent": {
+        "true": "Shows a text label beside the control, as a separate element rather than part of the circle itself. The default.",
+        "false": "Removes the label, leaving only the circular control at a fixed 40 by 40 size. The option’s meaning then has to be communicated some other way nearby."
+      }
+    }
+  },
+  "internalVariations": [],
+  "contentInputs": [
+    {
+      "part": "label",
+      "input": "label",
+      "sample": "Label",
+      "note": "Not a text property in Figma; the label text is edited on the layer. The metadata: 'Consumer owned.'"
+    }
+  ],
+  "anatomy": [
+    {
+      "id": "root",
+      "kind": "container",
+      "figmaLayer": "Checked=…, State=…, Size=…",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/none",
+        "padding": "space/none",
+        "crossAxisAlign": "center"
+      },
+      "sizing": {
+        "h": "hug",
+        "v": "hug"
+      },
+      "measuredSizePx": {
+        "w": 75,
+        "h": 40
+      }
+    },
+    {
+      "id": "target",
+      "kind": "container",
+      "figmaLayer": "Radio Button",
+      "role": "The 40 by 40 touch target the ring sits centred in.",
+      "size": {
+        "width": "control/target-min",
+        "height": "control/target-min"
+      },
+      "layout": {
+        "direction": "horizontal",
+        "padding": "space/none",
+        "mainAxisAlign": "center",
+        "crossAxisAlign": "center"
+      }
+    },
+    {
+      "id": "ring",
+      "number": 1,
+      "kind": "container",
+      "figmaLayer": "Radio Button/Radio Button",
+      "role": "A circular frame with a stroke, sized by Size and coloured by Checked and State together.",
+      "size": "see variants: size (unbound; see gaps)",
+      "radius": "radius/pill",
+      "paint": {
+        "fill": "none",
+        "stroke": {
+          "color": "see variants: checked x state",
+          "width": "stroke/thick",
+          "align": "inside"
+        }
+      },
+      "layout": {
+        "padding": "see variants: size",
+        "mainAxisAlign": "center",
+        "crossAxisAlign": "center"
+      }
+    },
+    {
+      "id": "dot",
+      "number": 2,
+      "kind": "shape",
+      "shape": "ellipse",
+      "figmaLayer": "Check",
+      "role": "A separate circular layer centred inside the ring, hidden when unchecked in every state except disabled.",
+      "size": "see variants: size (unbound; see gaps)",
+      "visibleWhen": "checked = true, or state = disabled (as built; see issues)",
+      "paint": {
+        "fill": "see variants: checked x state"
+      }
+    },
+    {
+      "id": "focusRing",
+      "kind": "container",
+      "figmaLayer": "Focus",
+      "visibleWhen": "state = focus",
+      "role": "A second ring drawn around the ring on keyboard focus.",
+      "radius": "radius/pill",
+      "paint": {
+        "stroke": {
+          "color": "border/focus",
+          "width": "stroke/thick"
+        }
+      },
+      "_note": "Built two ways (see issues): unchecked wraps the ring in a frame two stroke widths larger with the stroke inside; checked draws it on a frame the ring's size with the stroke outside. Both place the focus ring directly against the ring, with no gap."
+    },
+    {
+      "id": "label",
+      "number": 3,
+      "kind": "text",
+      "figmaLayer": "Label",
+      "role": "Plain text beside the touch target, consumer owned and fixed in type size across both sizes.",
+      "visibleWhen": "hasLabel",
+      "typography": "label/medium",
+      "paint": {
+        "fill": {
+          "default": "foreground/primary",
+          "disabled": "foreground/disabled"
+        }
+      }
+    }
+  ],
+  "variants": {
+    "_note": "Cells are token names, except those ending Px, which are measurements of the rendered file.",
+    "size": {
+      "axis": "size",
+      "base": "large",
+      "table": [
+        {
+          "size": "medium",
+          "ring.measuredSizePx": 16,
+          "dot.measuredSizePx": 8,
+          "ring.padding": "space/2xs",
+          "ringSizeTokenMatch": "control/icon-sm (height bound in the five non-focus medium variants; width unbound)"
+        },
+        {
+          "size": "large",
+          "ring.measuredSizePx": 24,
+          "dot.measuredSizePx": 12,
+          "ring.padding": "space/xs",
+          "ringSizeTokenMatch": "control/xs (unbound)"
+        }
+      ],
+      "_note2": "The touch target (control/target-min), ring stroke (stroke/thick) and label type (label/medium) are the same at both sizes."
+    },
+    "checkedState": {
+      "axes": [
+        "checked",
+        "state"
+      ],
+      "base": {
+        "checked": "false",
+        "state": "enabled"
+      },
+      "table": [
+        {
+          "checked": "false",
+          "state": "enabled",
+          "ring.stroke": "interactive/selection/border/default",
+          "dot": "hidden",
+          "label.fill": "foreground/primary",
+          "figmaNode": "4294:3122"
+        },
+        {
+          "checked": "false",
+          "state": "hover",
+          "ring.stroke": "interactive/selection/border/hover",
+          "dot": "hidden",
+          "label.fill": "foreground/primary",
+          "figmaNode": "4294:3133"
+        },
+        {
+          "checked": "false",
+          "state": "focus",
+          "ring.stroke": "interactive/selection/border/default",
+          "dot": "hidden",
+          "focusRing": "border/focus",
+          "label.fill": "foreground/primary",
+          "figmaNode": "4294:3127"
+        },
+        {
+          "checked": "false",
+          "state": "disabled",
+          "ring.stroke": "interactive/selection/border/disabled",
+          "dot": "shown, interactive/selection/background/disabled (see issues)",
+          "label.fill": "foreground/disabled",
+          "figmaNode": "4294:3149"
+        },
+        {
+          "checked": "true",
+          "state": "enabled",
+          "ring.stroke": "interactive/selection/border/pressed",
+          "dot": "interactive/selection/background/pressed",
+          "label.fill": "foreground/primary",
+          "figmaNode": "4294:3138"
+        },
+        {
+          "checked": "true",
+          "state": "hover",
+          "ring.stroke": "interactive/selection/border/hover",
+          "dot": "interactive/selection/background/hover",
+          "label.fill": "foreground/primary",
+          "figmaNode": "4294:3154"
+        },
+        {
+          "checked": "true",
+          "state": "focus",
+          "ring.stroke": "interactive/selection/border/pressed",
+          "dot": "interactive/selection/background/pressed",
+          "focusRing": "border/focus",
+          "label.fill": "foreground/primary",
+          "figmaNode": "4294:3143"
+        },
+        {
+          "checked": "true",
+          "state": "disabled",
+          "ring.stroke": "not built",
+          "dot": "not built",
+          "label.fill": "not built",
+          "figmaNode": null
+        }
+      ]
+    }
+  },
+  "subcomponents": [],
+  "dependencies": [],
+  "tokens": {
+    "source": "tokens/ — names below resolve there; see tokens/manifest.json for collections, modes and the extension graph",
+    "rule": "This spec names tokens only. Resolved values live in tokens/ and are deliberately not duplicated here.",
+    "color": [
+      "interactive/selection/border/{default,hover,pressed,disabled}",
+      "interactive/selection/background/{hover,pressed,disabled}",
+      "border/focus",
+      "foreground/{primary,disabled}",
+      "foreground/{tertiary,secondary} (hidden dot only; see issues)"
+    ],
+    "dimension": [
+      "control/{target-min,icon-sm}",
+      "space/{none,2xs,xs}",
+      "radius/{none,pill}",
+      "stroke/thick"
+    ],
+    "typography": [
+      "label/medium"
+    ],
+    "effect": [],
+    "missingFromExport": [],
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "typography": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ],
+      "extensions": "tokens/extensions/ (companion, target, condensed)"
+    }
+  },
+  "states": [
+    {
+      "State": "enabled",
+      "Trigger": "Resting",
+      "Duration": "—",
+      "What changes": "Ring colour follows Checked. Unchecked rings use the default border tone, Checked rings and the inner fill both use a stronger tone. The inner fill is hidden entirely when unchecked rather than drawn in a lighter shade."
+    },
+    {
+      "State": "hover",
+      "Trigger": "Pointer over the control",
+      "Duration": "—",
+      "What changes": "Ring colour steps to its hover tone for both Checked and unchecked. The inner fill’s visibility does not change with hover, it stays tied to Checked."
+    },
+    {
+      "State": "focus",
+      "Trigger": "Keyboard focus",
+      "Duration": "—",
+      "What changes": "A second ring is drawn around the control, independent of the inner ring, both using the same focus colour. The inner fill keeps whatever visibility Checked already gives it."
+    },
+    {
+      "State": "disabled",
+      "Trigger": "Disabled set to true",
+      "Duration": "—",
+      "What changes": "Ring and inner fill both move to their disabled tones. The inner fill is visible here even though the variant is unchecked, unlike every other unchecked state, where it is visible only when Checked."
+    }
+  ],
+  "behavior": [
+    {
+      "Type": "Motion",
+      "Description": "No transition is defined. Every state change is a colour and visibility change, except Focus, which adds a second ring rather than altering the existing one."
+    },
+    {
+      "Type": "Resize",
+      "Description": "Removing the label collapses the control to its 40 by 40 touch target, nothing else in the layout shifts position."
+    }
+  ],
+  "content": [
+    {
+      "Property": "Label",
+      "Type": "Plain text",
+      "Description": "Consumer owned. Positioned directly beside the touch target with no gap token between them, at a fixed type size that does not change with Size."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Give every option in a set its own Radio Button sharing a group, with exactly one Checked at a time.",
+      "Pair Checked with a label that states the option in full, the control alone does not say what is being chosen."
+    ],
+    "dont": [
+      "Don’t leave more than one Radio Button in the same group Checked at once, the control is built for a single choice.",
+      "Don’t reach for Radio Button for a single standalone yes or no choice, Checkbox or Switch fits that better."
+    ]
+  },
+  "accessibility": [
+    "Grouping, the relationship that makes exactly one option in a set selectable, is not something Figma represents, it is carried by whatever groups the instances in code. Focus here is the only visual record of keyboard interaction, pair it with a label so the option reads on its own."
+  ],
+  "layoutTheming": [
+    {
+      "Property": "Touch target",
+      "Type": "40×40, fixed",
+      "Description": "Does not change with Size, both ring sizes sit inside the same touch target."
+    },
+    {
+      "Property": "Ring",
+      "Type": "24px at Large, 16px at Medium",
+      "Description": "A 2px stroke at both sizes, drawn on a frame with a 9999 corner radius rather than an ellipse shape."
+    },
+    {
+      "Property": "Inner fill",
+      "Type": "12px at Large, 8px at Medium",
+      "Description": "A separate circular layer rather than a change to the ring’s own fill."
+    },
+    {
+      "Property": "Gap",
+      "Type": "0, no token",
+      "Description": "The label sits directly against the touch target’s edge with no spacing token between them."
+    },
+    {
+      "Property": "Type",
+      "Type": "16px at both sizes",
+      "Description": "Does not change between Large and Medium, only the ring and inner fill do."
+    }
+  ],
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3843-2543",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4294-3121",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6079-33",
+    "variants": {
+      "unchecked enabled (large)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4294-3122",
+      "unchecked hover": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4294-3133",
+      "unchecked focus": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4294-3127",
+      "unchecked disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4294-3149",
+      "checked enabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4294-3138",
+      "checked hover": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4294-3154",
+      "checked focus": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4294-3143",
+      "medium": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4294-3159"
+    }
+  },
+  "issues": [
+    {
+      "severity": "blocker",
+      "source": "structure vs metadata",
+      "detail": "A disabled radio can't show whether it is chosen. There is no Checked=true, State=disabled variant (the metadata confirms it ships only unchecked), and the unchecked disabled variant shows the inner fill, so it looks checked. A disabled group therefore renders every option as selected, or the chosen one indistinguishably from the rest. Build disabled-unchecked with the inner fill hidden, and add disabled-checked (ring interactive/selection/border/disabled with the dot in interactive/selection/background/disabled), or confirm the intent in Figma."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs structure",
+      "detail": "The metadata says the focus ring is 'at the same colour as the inner ring' (Property Breakdown) and that 'both [use] the same focus colour' (States & Triggers). As built, the focus ring is border/focus and the inner ring keeps its own colour (interactive/selection/border/default unchecked, /pressed checked). Build from the table: only the outer ring takes border/focus."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs tokens",
+      "detail": "The metadata says the label is '16px at both sizes'. It is set in label/medium, which resolves to a 14 size in the export. The text style is the source of truth; the metadata figure is stale."
+    },
+    {
+      "severity": "warn",
+      "source": "structure",
+      "detail": "The focus ring is built two ways. Unchecked: a 'Focus' frame two stroke widths larger than the ring (28 or 20) with the stroke inside. Checked: a frame the ring's own size (24 or 16) with the stroke outside. Both draw the ring at the same place, directly against the ring with no gap, but they behave differently if a stroke token changes. In code it is one outline at stroke/thick, offset 0."
+    },
+    {
+      "severity": "warn",
+      "source": "structure",
+      "detail": "Medium, unchecked, hover has a 6.67 inner fill where every other medium variant has 8. It is hidden there, so nothing renders differently, but it is the one geometry outlier. Medium, unchecked, focus has no inner-fill layer at all."
+    },
+    {
+      "severity": "warn",
+      "source": "gaps",
+      "detail": "The ring is only partly bound. The medium ring's height is bound to control/icon-sm in its five non-focus variants, but its width is not, and neither dimension is bound in the medium focus variants or at large (24, which matches control/xs exactly). The inner fill (12 / 8) has no size token and no matching one. The touch target is bound (control/target-min)."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "The hidden inner fill carries colours in states where it never shows: foreground/tertiary (unchecked enabled and focus) and foreground/secondary (unchecked hover). They don't render; implementations can ignore them."
+    },
+    {
+      "severity": "note",
+      "source": "token semantics",
+      "detail": "Checked uses the pressed tokens (interactive/selection/border/pressed, /background/pressed) to mean 'selected', the same naming as Switch. Bound consistently, but a change to pressed states will move the checked look."
+    },
+    {
+      "severity": "note",
+      "source": "bindingDrift",
+      "detail": "The ring's padding, gap, radius and stroke-weight bindings show in 10 of 14 variants only because the four focus variants nest the ring inside the Focus frame (a different layer path). The ring is bound the same way in all 14."
+    },
+    {
+      "severity": "note",
+      "source": "accessibility",
+      "detail": "Grouping is carried by code, not Figma (metadata). In code: a radiogroup with one tab stop, arrow keys to move the selection, and the label associated with its input. The ring and dot meet 3:1 against surface/page in both modes (lowest: the unchecked ring at 3.61 in Light); disabled is exempt."
+    },
+    {
+      "severity": "note",
+      "source": "api",
+      "detail": "State mixes interaction states (hover, focus, which come from the pointer and keyboard in code) with a settable one (disabled). Checked is a two-value enum in Figma; in code it is a boolean, normally owned by the group. There is no invalid / required state and no visible-label-only (no control) option. The component set has no native Figma description."
+    },
+    {
+      "severity": "note",
+      "source": "metadata coverage",
+      "detail": "No motion is defined, by the metadata's own statement."
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "component": {
+    "name": "Label",
+    "slug": "label",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "6404:328",
+      "key": "0d15e2c1a8da9ec1626a3298f79c11477e8802ff",
+      "page": "Badges",
+      "pageNodeId": "3717:5570",
+      "metadataFrameId": "6413:565",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6404-328",
+      "extractedAt": "2026-10-15",
+      "variantCount": 10,
+      "defaultVariant": "Variant=neutral, Shape=rounded",
+      "extractionNote": "One of five independent components on the Badges page. All 10 variants (Variant 5 x Shape 2, complete) read in-file as token signatures and diffed against the default. The text node's typography bindings and line height were probed separately because its reported box is shorter than its line height. No raw values."
+    }
+  },
+  "summary": "Names a category on an item in a word or two, filled solid in one of five colours. Variant carries the standing of that category and Shape matches the surface it sits on. Reach for it where the thing shown is a fixed category, and for Status Label where it is a state that changes over time.",
+  "api": {
+    "label": { "type": "string", "figmaName": "Label#6404:0", "default": "Label", "controls": ["label"], "intent": "The category being named. One or two words, because the component hugs its text at 12px and a phrase turns into a wide bar." },
+    "variant": { "type": "enum", "figmaName": "Variant", "values": ["neutral", "info", "positive", "warning", "negative"], "default": "neutral", "controls": ["fill", "border", "label.fill"],
+      "intent": {
+        "neutral": "No category colour. Reach for it where the label names something carrying no standing of its own, such as a type or a tag.",
+        "info": "Informational standing, carrying no judgement either way.",
+        "positive": "A good or completed standing.",
+        "warning": "A standing that needs attention without having failed.",
+        "negative": "A failed or blocking standing. The strongest of the five, so spending it widely leaves nothing above it."
+      } },
+    "shape": { "type": "enum", "figmaName": "Shape", "values": ["rounded", "sharp"], "default": "rounded", "controls": ["radius"],
+      "intent": { "rounded": "Match the contour of the surface the label sits on.", "sharp": "The square-cornered pair, for dense surfaces built from square corners such as a table cell." } }
+  },
+  "internalVariations": [],
+  "contentInputs": [],
+  "anatomy": [
+    { "id": "root", "kind": "container", "role": "Fill: A solid background per Variant. A strong fill rather than a tint, so the text knocks out of it. Border: A 1px stroke on the same token as the fill, keeping the edge flush and giving a theming set something to raise.", "layout": { "direction": "horizontal", "gap": "space/2xs", "padding": "space/xs" }, "sizing": { "h": "hug", "v": "hug" }, "radius": "radius/element-sm (rounded) · radius/none (sharp)", "paint": { "fill": "per variant", "stroke": { "color": "same token as the fill", "width": "stroke/thin", "align": "inside, included in layout" } } },
+    { "id": "label", "kind": "text", "role": "The category name, set through Label. It decides the width of the whole component.", "content": "label", "text": { "style": "indicator/medium", "color": "per variant" }, "sizing": { "h": "hug", "v": "hug" } }
+  ],
+  "variants": {
+    "_note": "Cells are token names. Shape changes only the radius.",
+    "variant": { "axis": "variant", "base": "neutral", "table": [
+      { "variant": "neutral", "fill+border": "foreground/secondary", "label.fill": "foreground/inverse", "figmaNode": "6404:308" },
+      { "variant": "info", "fill+border": "feedback/info/background/strong", "label.fill": "interactive/primary/foreground/default", "figmaNode": "6404:312" },
+      { "variant": "positive", "fill+border": "feedback/success/background/strong", "label.fill": "interactive/primary/foreground/default", "figmaNode": "6404:316" },
+      { "variant": "warning", "fill+border": "feedback/warning/background/strong", "label.fill": "foreground/inverse", "figmaNode": "6404:320" },
+      { "variant": "negative", "fill+border": "feedback/error/background/strong", "label.fill": "interactive/destructive/foreground/default", "figmaNode": "6404:324" }
+    ] },
+    "shape": { "axis": "shape", "base": "rounded", "table": [
+      { "shape": "rounded", "radius": "radius/element-sm" },
+      { "shape": "sharp", "radius": "radius/none", "figmaNode": "6404:310" }
+    ] }
+  },
+  "subcomponents": [],
+  "dependencies": [],
+  "tokens": {
+    "source": "tokens/ — names below resolve there; see tokens/manifest.json",
+    "rule": "This spec names tokens only.",
+    "color": ["foreground/{secondary,inverse}", "feedback/{info,success,warning,error}/background/strong", "interactive/primary/foreground/default", "interactive/destructive/foreground/default"],
+    "dimension": ["space/{xs,2xs}", "radius/{element-sm,none}", "stroke/thin"],
+    "typography": ["indicator/medium"],
+    "effect": [],
+    "missingFromExport": [],
+    "themeAxes": { "palette": ["Light", "Dark"], "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"], "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"], "extensions": "tokens/extensions/ (companion, target, condensed)" }
+  },
+  "states": [
+    { "state": "Static", "trigger": "—", "duration": "—", "whatChanges": "The component has no interaction states. It names a category rather than offering an action." },
+    { "state": "Variant", "trigger": "The Variant value", "duration": "—", "whatChanges": "Fill, border and text colour move together. Nothing else changes." }
+  ],
+  "behavior": [
+    { "type": "Motion", "description": "No transition is defined. A variant change is a swap of fill, border and text colour." },
+    { "type": "Not interactive", "description": "There is nothing to press. Where a category can be acted on, such as removing a tag, that belongs to Chip rather than here." }
+  ],
+  "content": [ { "property": "Label", "type": "text property", "description": "Consumer owned, set through Label. It hugs, so the text decides the width of the whole component." } ],
+  "usage": {
+    "do": [
+      "Keep it to one or two words. The component hugs its text at 12px, so a phrase becomes a wide bar in a narrow column.",
+      "Reach for Label where the thing shown is a fixed category, and Status Label where it is a state that moves."
+    ],
+    "dont": [
+      "Don't use it for a status that changes. Status Label carries a leading indicator for exactly that, and this has no room for one.",
+      "Don't lean on the colour to carry the category. At 12px on a strong fill the word is doing the work and the colour is reinforcement."
+    ]
+  },
+  "accessibility": [
+    "The label text is the accessible name and the only thing that names the category. The fill reinforces it and never replaces it.",
+    "Text is 12px knocked out of a strong fill. Check contrast per variant, because the pairing differs between them rather than following one rule.",
+    "neutral and the four feedback variants are separated by colour alone. A reader who cannot tell them apart relies entirely on the word inside.",
+    "Nothing here is focusable. Where a category can be removed or filtered by, that interaction belongs to a different component."
+  ],
+  "layoutTheming": [
+    { "property": "Size", "type": "Hug width, fixed height", "description": "18 tall at every variant, hugging its text. The smallest of the badges on this page, sized to sit inline with running text rather than beside it." },
+    { "property": "Padding and gap", "type": "Fixed", "description": "space/xs on all four sides, with a space/2xs gap held for anything placed beside the text." },
+    { "property": "Radius", "type": "Per Shape", "description": "radius/element-sm when rounded and radius/none when sharp. Softer than a pill, so it reads as a block of text rather than as a token." },
+    { "property": "Fill and border", "type": "Per Variant", "description": "neutral draws foreground/secondary. The rest draw feedback/info, success, warning and error at background/strong. The 1px border takes the same token as the fill, so the two move together and the edge stays flush." },
+    { "property": "Label", "type": "Theming", "description": "indicator/medium at 12px, with the colour paired per variant so the text always knocks out of the fill rather than sitting on it." }
+  ],
+  "visualReference": {
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3717-5570",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6404-328",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6413-565",
+    "perAxis": {
+      "neutral": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6404-308",
+      "warning": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6404-320",
+      "negative, sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6404-326"
+    }
+  },
+  "issues": [
+    { "severity": "warn", "source": "structure vs tokens (line height)", "detail": "The metadata gives the label as 18 tall. The text is bound to indicator/medium, whose line height token resolves to 14 in the export, but Figma reports the text box at 8 tall, which is what makes 18 add up (space/xs top and bottom, a 1px border each side, 8 of text). Built from the tokens (padding space/xs, border stroke/thin, line height indicator/medium) the label is 24 tall, not 18. Either the line height should drop for this component, or the padding should, or 24 is the intended height; it needs a decision before code can match Figma." },
+    { "severity": "warn", "source": "tokens", "detail": "Text on info, positive and negative borrows button tokens (interactive/primary/foreground/default, interactive/destructive/foreground/default), and neutral and warning use foreground/inverse. The export now has foreground/on-strong (always white), which covers info, positive and negative; warning still needs a mode-aware 'on' colour because its strong fill lightens in dark mode." },
+    { "severity": "note", "source": "tokens/ (contrast, Light)", "detail": "White text on info, positive and warning strong fills measures 4.40, 4.47 and 4.34:1, below 4.5:1 at 12px; negative is 5.19:1. Recorded earlier and acknowledged by the owner." },
+    { "severity": "note", "source": "metadata Layout vs structure", "detail": "The space/2xs gap is set but there is only one child, so it has no effect today. The metadata says it is 'held for anything placed beside the text'." },
+    { "severity": "note", "source": "code (packages/web-components zds-badge-label)", "detail": "The experimental element matches the radius and colours, but uses label/small text with space/2xs x space/xs padding, so it comes to 22 tall by its tokens, matching neither 18 nor 24, and it carries a low-footprint variant Figma does not have. Align once the height question above is settled." },
+    { "severity": "note", "source": "metadata", "detail": "No motion and no interaction states, by the metadata's own statement. The set has no description." }
+  ]
+}

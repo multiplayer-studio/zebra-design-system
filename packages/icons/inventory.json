@@ -26,23 +26,7 @@
     "rejected": 18,
     "retired": 0
   },
-  "collisions": [
-    {
-      "figmaName": "Table",
-      "category": "Charts",
-      "resolved": "charts-table"
-    },
-    {
-      "figmaName": "To do",
-      "category": "General",
-      "resolved": "general-to-do"
-    },
-    {
-      "figmaName": "Credit Card",
-      "category": "General",
-      "resolved": "general-credit-card"
-    }
-  ],
+  "collisions": [],
   "renamed": [],
   "missing": [],
   "rejected": [

@@ -198,6 +198,12 @@
   --primitives-color-system-warning-70: #965802;
   --primitives-color-system-warning-80: #764502;
   --primitives-color-system-warning-90: #402600;
+  --primitives-scale-minus-1: -1px;
+  --primitives-scale-minus-2: -2px;
+  --primitives-scale-minus-3: -4px;
+  --primitives-scale-minus-4: -6px;
+  --primitives-scale-minus-5: -8px;
+  --primitives-scale-minus-6: -12px;
   --primitives-scale-0: 0px;
   --primitives-scale-1: 1px;
   --primitives-scale-10: 28px;

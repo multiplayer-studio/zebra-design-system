@@ -1,0 +1,655 @@
+{
+  "component": {
+    "name": "Snackbar",
+    "slug": "snackbar",
+    "status": "experimental",
+    "source": {
+      "fileKey": "a141EitftpzBk3asu3a315",
+      "setId": "6551:170",
+      "page": "Snackbar",
+      "pageNodeId": "6547:2448",
+      "metadataFrameId": "6563:142",
+      "url": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-170",
+      "extractedAt": "2026-10-18",
+      "variantCount": 18,
+      "defaultVariant": "Variant=contextual, Flavour=info, Shape=rounded",
+      "extractionNote": "All 18 variants (Variant x Flavour x Shape, sparse: standard exists only with Flavour=default) read part by part: root, Content, the leading icon or icon slot, Message, Controls, and the nested Button (action) and Icon Button (close) with their variant properties. Glyph names resolved through codepoints.json. The set lives in the Snackbar working file, not the main library."
+    }
+  },
+  "summary": "A brief message about something the app just did, carrying at most one action. Variant chooses between a contextual pill, where Flavour sets the tint, the leading glyph and the controls together, and a plain standard bar with a filled action button. Reach for it where the message is worth noticing and not worth interrupting for, and for Dialog where the person has to answer before carrying on.",
+  "api": {
+    "message": {
+      "type": "string",
+      "figmaName": "Message#6551:0",
+      "default": "Message",
+      "controls": [
+        "message (characters)"
+      ],
+      "intent": "The line the snackbar exists to deliver. One short sentence, because the bar holds a single line at a fixed width and anything longer runs past the edge rather than wrapping."
+    },
+    "variant": {
+      "type": "enum",
+      "figmaName": "Variant",
+      "values": [
+        "contextual",
+        "standard"
+      ],
+      "default": "contextual",
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "contextual": "A pill that takes its tint, its glyph and its controls from Flavour. Reach for it where the message is about something specific that just happened.",
+        "standard": "The plain bar, dark and softly squared, with a filled action button. It carries no flavour colour, so reach for it where the message needs no status attached to it."
+      }
+    },
+    "flavour": {
+      "type": "enum",
+      "figmaName": "Flavour",
+      "values": [
+        "info",
+        "positive",
+        "warning",
+        "error",
+        "deletion",
+        "view",
+        "action",
+        "default"
+      ],
+      "default": "info",
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "info": "Something worth knowing with nothing to do about it. An Info glyph on the info tint, carrying only a close.",
+        "positive": "Something finished successfully. A Check Circle on the success tint, close only.",
+        "warning": "Something needs attention without having failed. A Warning glyph on the warning tint, close only.",
+        "error": "Something failed. An Error glyph on the error tint with a close and nothing else, so a failure the person could retry needs a flavour that carries an action.",
+        "deletion": "Something was removed, with Undo offered beside it. It shares the error tint, so it reads as destructive even where the message itself is neutral.",
+        "view": "Something was created or filed somewhere the person can go and look at it. It carries View and no close, so acting or waiting are the only ways out.",
+        "action": "A message whose action is the point. It drops the glyph, sits on the inverse surface and carries a bordered control rather than a plain text one.",
+        "default": "No status at all. The inverse surface with a close and nothing else, for a message that reports rather than signals."
+      },
+      "note": "Figma's default variant is info; the metadata marks default as the default. standard exists only with Flavour=default."
+    },
+    "shape": {
+      "type": "enum",
+      "figmaName": "Shape",
+      "values": [
+        "rounded",
+        "sharp"
+      ],
+      "default": "rounded",
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "rounded": "Match the contour of the surface the bar floats over. It reads as a pill on contextual and a soft rectangle on standard, so the same setting does not give the same silhouette.",
+        "sharp": "Square corners throughout, carried into the close and the action as well as the bar itself."
+      }
+    },
+    "showIcon": {
+      "type": "boolean",
+      "figmaName": "Show Icon#6551:10",
+      "default": false,
+      "controls": [
+        "iconSlot (visible)"
+      ],
+      "visibleWhen": "flavour in (action, default) or variant = standard",
+      "intent": {
+        "false": "No icon slot, which is where standard starts. It has no effect on contextual, where Flavour supplies the glyph instead.",
+        "true": "Opens an icon slot on standard, for a glyph the message needs and that Flavour is not there to choose."
+      }
+    },
+    "showAction": {
+      "type": "boolean",
+      "figmaName": "Show Action#6551:20",
+      "default": true,
+      "controls": [
+        "action (visible)"
+      ],
+      "intent": {
+        "true": "Keeps the action on the flavours that carry one. info, positive, warning, error and default have none, so it changes nothing there.",
+        "false": "Drops the action. On deletion that removes Undo, which is the only way back, and on view it leaves a bar with nothing to act on and no close either."
+      }
+    },
+    "showClose": {
+      "type": "boolean",
+      "figmaName": "Show Close#6551:30",
+      "default": true,
+      "controls": [
+        "close (visible)"
+      ],
+      "intent": {
+        "true": "Keeps the dismiss control, which is how a person clears a bar that is not going to act on its own.",
+        "false": "Drops it. Only safe where the bar dismisses itself on a timer, because otherwise the message has no way out."
+      }
+    }
+  },
+  "internalVariations": [
+    {
+      "part": "iconSlot",
+      "via": "Icon (nested, exposed)",
+      "options": "any glyph; default verified",
+      "intent": "An icon slot that opens when Show Icon is on. This is the one place a consumer picks the glyph, and it exists because standard has no Flavour to pick one for it."
+    },
+    {
+      "part": "action",
+      "via": "Button (nested, exposed)",
+      "options": "label fixed per flavour: Undo (deletion), View (view), Action (action, standard)",
+      "intent": "Drawn by the bar rather than taken in. The action label is fixed per flavour, Undo on deletion, View on view and Action elsewhere, and is not exposed as an input.",
+      "note": "The Button instance is exposed, so its Label is reachable from the instance panel in Figma, which the metadata's 'not exposed as an input' does not reflect."
+    }
+  ],
+  "contentInputs": [],
+  "anatomy": [
+    {
+      "id": "root",
+      "n": 0,
+      "kind": "container",
+      "role": "The bar: a horizontal row holding Content and Controls.",
+      "layout": {
+        "direction": "horizontal",
+        "padding": "space/xs top and bottom; space/lg leading; space/xs trailing",
+        "gap": "space/lg (content to controls)",
+        "counterAlign": "center"
+      },
+      "sizing": {
+        "h": "fixed (per variant)",
+        "v": "hug, min control/lg"
+      },
+      "radius": "per variant × shape",
+      "paint": {
+        "fill": "per flavour",
+        "effect": "Shadow/medium (effect style)"
+      },
+      "theming": "dark variants carry an explicit palette=Dark mode"
+    },
+    {
+      "id": "content",
+      "n": 1,
+      "kind": "container",
+      "role": "The leading glyph and the message, space/md apart, filling whatever width the controls leave.",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/md",
+        "padding": "space/sm top and bottom"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      }
+    },
+    {
+      "id": "icon",
+      "kind": "instance",
+      "ref": "Icon",
+      "role": "The flavour's glyph (contextual info, positive, warning, error, deletion, view).",
+      "size": "Icon Size=medium",
+      "color": "foreground/primary"
+    },
+    {
+      "id": "iconSlot",
+      "kind": "instance",
+      "ref": "Icon",
+      "role": "A swappable glyph on action, default and standard.",
+      "visibleWhen": "showIcon",
+      "size": "Icon Size=medium",
+      "exposed": true
+    },
+    {
+      "id": "message",
+      "kind": "text",
+      "role": "The message.",
+      "content": "message",
+      "text": {
+        "style": "body/medium",
+        "color": "foreground/primary",
+        "autoResize": "width-and-height (single line)"
+      }
+    },
+    {
+      "id": "controls",
+      "kind": "container",
+      "role": "The action and the close.",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/xs"
+      }
+    },
+    {
+      "id": "action",
+      "n": 2,
+      "kind": "instance",
+      "ref": "Button",
+      "role": "Present only on the flavours that carry one. Plain text on deletion and view, bordered on action and a filled button on standard.",
+      "visibleWhen": "showAction",
+      "exposed": true,
+      "shape": "follows Shape: full when contextual rounded, rounded when standard rounded, sharp when sharp"
+    },
+    {
+      "id": "close",
+      "n": 3,
+      "kind": "instance",
+      "ref": "Icon Button",
+      "role": "The dismiss control, a 36 square around a 20 glyph. Absent on view, where the action is the only way out.",
+      "visibleWhen": "showClose",
+      "glyph": "close",
+      "variant": "Flavour=subtle, Size=medium",
+      "shape": "as action"
+    }
+  ],
+  "variants": {
+    "_note": "Cells are token names; …Px cells are measurements. Height is control/lg (minimum) on every variant; geometry other than radius and width does not vary.",
+    "byFlavour": {
+      "axis": "variant × flavour",
+      "base": "contextual / info",
+      "table": [
+        {
+          "variant": "contextual",
+          "flavour": "info",
+          "fill": "feedback/info/background/subtle",
+          "paletteMode": "inherited",
+          "icon": "info",
+          "action": "—",
+          "close": "Icon Button subtle medium",
+          "widthPx": 237,
+          "figmaNode": "6551:57"
+        },
+        {
+          "variant": "contextual",
+          "flavour": "positive",
+          "fill": "feedback/success/background/subtle",
+          "paletteMode": "inherited",
+          "icon": "check-circle",
+          "action": "—",
+          "close": "Icon Button subtle medium",
+          "widthPx": 237,
+          "figmaNode": "6551:71"
+        },
+        {
+          "variant": "contextual",
+          "flavour": "warning",
+          "fill": "feedback/warning/background/subtle",
+          "paletteMode": "inherited",
+          "icon": "warning",
+          "action": "—",
+          "close": "Icon Button subtle medium",
+          "widthPx": 237,
+          "figmaNode": "6551:84"
+        },
+        {
+          "variant": "contextual",
+          "flavour": "error",
+          "fill": "feedback/error/background/subtle",
+          "paletteMode": "inherited",
+          "icon": "error",
+          "action": "—",
+          "close": "Icon Button subtle medium",
+          "widthPx": 237,
+          "figmaNode": "6551:97"
+        },
+        {
+          "variant": "contextual",
+          "flavour": "deletion",
+          "fill": "feedback/error/background/subtle",
+          "paletteMode": "inherited",
+          "icon": "delete",
+          "action": "Button subtle medium, \"Undo\"",
+          "close": "Icon Button subtle medium",
+          "widthPx": 323,
+          "figmaNode": "6551:110"
+        },
+        {
+          "variant": "contextual",
+          "flavour": "view",
+          "fill": "feedback/neutral/background/subtle",
+          "paletteMode": "inherited",
+          "icon": "open-in-new-window",
+          "action": "Button subtle medium, \"View\"",
+          "close": "—",
+          "widthPx": 259,
+          "figmaNode": "6551:125"
+        },
+        {
+          "variant": "contextual",
+          "flavour": "action",
+          "fill": "surface/popover",
+          "paletteMode": "Dark (explicit on the component)",
+          "icon": "icon slot (showIcon)",
+          "action": "Button outline-subtle, \"Action\" — small when rounded, medium when sharp",
+          "close": "—",
+          "widthPx": 246,
+          "figmaNode": "6551:135"
+        },
+        {
+          "variant": "contextual",
+          "flavour": "default",
+          "fill": "surface/popover",
+          "paletteMode": "Dark (explicit on the component)",
+          "icon": "icon slot (showIcon)",
+          "action": "—",
+          "close": "Icon Button subtle medium",
+          "widthPx": 190,
+          "figmaNode": "6551:144"
+        },
+        {
+          "variant": "standard",
+          "flavour": "default",
+          "fill": "surface/popover",
+          "paletteMode": "Dark (explicit on the component)",
+          "icon": "icon slot (showIcon)",
+          "action": "Button subtle medium, \"Action\"",
+          "close": "Icon Button subtle medium",
+          "widthPx": 292,
+          "figmaNode": "6551:156"
+        }
+      ]
+    },
+    "byShape": {
+      "axis": "shape",
+      "base": "rounded",
+      "table": [
+        {
+          "shape": "rounded",
+          "root.radius (contextual)": "radius/pill",
+          "root.radius (standard)": "radius/md",
+          "controls": "Shape=full (contextual), rounded (standard)",
+          "figmaNode": "6551:57"
+        },
+        {
+          "shape": "sharp",
+          "root.radius (contextual)": "radius/none",
+          "root.radius (standard)": "radius/none",
+          "controls": "Shape=sharp",
+          "figmaNode": "6558:102"
+        }
+      ]
+    }
+  },
+  "subcomponents": [],
+  "dependencies": [
+    {
+      "name": "Button",
+      "id": "2060:15072",
+      "remote": false,
+      "usedAt": [
+        "action"
+      ],
+      "spec": "specs/button/button.spec.md"
+    },
+    {
+      "name": "Icon Button",
+      "id": "2338:1763",
+      "remote": false,
+      "usedAt": [
+        "close"
+      ],
+      "spec": "specs/icon-button/icon-button.spec.md"
+    },
+    {
+      "name": "Icon",
+      "id": "2046:15010",
+      "remote": false,
+      "usedAt": [
+        "icon",
+        "iconSlot"
+      ],
+      "delivery": "Font glyphs, rounded family: info, check-circle, warning, error, delete, open-in-new-window, close, verified — all present in codepoints.json, none retired."
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ — names below resolve there; see tokens/manifest.json",
+    "rule": "This spec names tokens only.",
+    "color": [
+      "feedback/{info,success,warning,error,neutral}/background/subtle",
+      "surface/popover",
+      "foreground/primary"
+    ],
+    "dimension": [
+      "control/lg",
+      "space/{xs,sm,md,lg}",
+      "radius/{pill,md,none}"
+    ],
+    "typography": [
+      "body/medium"
+    ],
+    "effect": [
+      "Shadow/medium (Figma effect style; the export carries shadow/* size tokens and shadow/soft, not the style)"
+    ],
+    "missingFromExport": [],
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark"
+      ],
+      "note": "The dark variants pin palette=Dark on the component, so everything inside, the nested Button and Icon Button included, resolves in Dark.",
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "typography": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ],
+      "extensions": "tokens/extensions/ (companion, target, condensed)"
+    }
+  },
+  "states": [
+    {
+      "state": "Static",
+      "trigger": "—",
+      "duration": "—",
+      "whatChanges": "The bar has no interaction states. Nothing answers hover, focus or press, and the controls inside it carry their own."
+    },
+    {
+      "state": "Flavour",
+      "trigger": "The Flavour value",
+      "duration": "—",
+      "whatChanges": "The fill, the leading glyph, the message colour and which controls are present all move together. It is a preset rather than a colour setting."
+    },
+    {
+      "state": "Variant",
+      "trigger": "The Variant value",
+      "duration": "—",
+      "whatChanges": "contextual and standard differ in silhouette, in whether Flavour applies at all and in how the action is drawn. Moving between them changes the whole bar rather than one property of it."
+    },
+    {
+      "state": "Entering",
+      "trigger": "Opened",
+      "duration": "300ms",
+      "whatChanges": "Rises from below its resting place while fading in, then settles."
+    },
+    {
+      "state": "Leaving",
+      "trigger": "Closed by its close, its action or its timer",
+      "duration": "200ms",
+      "whatChanges": "Rises a little further and fades out, then is removed. The timer pauses while the pointer or keyboard focus is on the bar."
+    }
+  ],
+  "behavior": [
+    {
+      "type": "Motion",
+      "description": "It slides in from below over 300ms, fading in as it rises, and leaves by sliding up and fading out over 200ms, so neither direction runs past 0.3s. It stays on screen until the exit has finished, and a bar opened again while it is leaving returns fully visible. With reduced motion it only fades, over 150ms, without moving."
+    },
+    {
+      "type": "Layering (z-axis)",
+      "description": "It floats in the browser's top layer rather than in the page's stacking order, so no z-index anywhere on the page can sit above it, modals and overlays included. It neither takes focus nor blocks the page beneath it. Two bars open at once occupy the same spot; there is no queue yet."
+    },
+    {
+      "type": "Width",
+      "description": "Each variant holds a fixed width and the message sits on a single line without wrapping. Message length is therefore a constraint on what gets written rather than something the bar absorbs."
+    },
+    {
+      "type": "Flavour presets",
+      "description": "Each flavour arrives with its glyph, its tint and its control set already decided. Changing flavour changes all three at once, so one picked for its colour brings controls along with it."
+    }
+  ],
+  "content": [
+    {
+      "property": "Message",
+      "type": "text property",
+      "description": "Consumer owned, set through Message. It is the only text the component takes in."
+    },
+    {
+      "property": "Leading icon",
+      "type": "contextual, per Flavour",
+      "description": "Chosen by Flavour rather than passed in. info takes Info, positive Check Circle, warning Warning, error Error, deletion Delete and view Open In New Window."
+    },
+    {
+      "property": "Leading icon",
+      "type": "standard, via Show Icon",
+      "description": "An icon slot that opens when Show Icon is on. This is the one place a consumer picks the glyph, and it exists because standard has no Flavour to pick one for it."
+    },
+    {
+      "property": "Leading icon",
+      "type": "action and default",
+      "description": "No glyph at all. Both sit on the inverse surface, where the message and its control carry the whole bar."
+    },
+    {
+      "property": "Controls",
+      "type": "Action and Close, per Flavour",
+      "description": "Drawn by the bar rather than taken in. The action label is fixed per flavour, Undo on deletion, View on view and Action elsewhere, and is not exposed as an input."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Pick the flavour for what happened rather than for the colour. Each one brings its own glyph and its own controls, so the choice settles the whole bar.",
+      "Keep the message to one short line. The bar holds a fixed width and does not wrap, so anything longer runs past the edge."
+    ],
+    "dont": [
+      "Don't turn the close off on a bar with no action and no timer. That leaves a person with a message and no way to clear it.",
+      "Don't reach for deletion just to get an error tint. It promises an Undo, and offering one the product cannot honour is worse than a plain error."
+    ]
+  },
+  "accessibility": [
+    "A snackbar appears without being asked for, so it has to announce itself. Nothing in the component does that, and the structure around it has to.",
+    "Flavour is carried by a tint and a glyph. The tints are subtle by design, so the glyph and the words are what separate info from error for anyone who cannot rely on colour.",
+    "The message does not wrap. A line longer than the bar runs past its edge rather than reflowing, so the content has to be written to the space rather than the space found for the content.",
+    "view carries no close. Where the bar does not dismiss itself, its action is the only way out and it has to be reachable by keyboard.",
+    "The close is a 36 square around a 20 glyph and it is a real target rather than decoration. It needs a name, because the glyph carries no text.",
+    "Two drop shadows lift the bar off whatever it covers. Check it does not settle over something a person still needs to read or reach.",
+    "Its movement respects reduced motion: with that preference set it fades in and out without sliding."
+  ],
+  "layoutTheming": [
+    {
+      "property": "Size",
+      "type": "Fixed width, hug height",
+      "description": "48 tall throughout. Each variant carries its own fixed width, running from 190 to 323 depending on the flavour and its controls, rather than growing with the message."
+    },
+    {
+      "property": "Position",
+      "type": "Fixed to the viewport",
+      "description": "Centred horizontally, space/xl above the bottom edge of the viewport, and never wider than the viewport less space/lg on each side. It does not move with the page as it scrolls."
+    },
+    {
+      "property": "Padding and gap",
+      "type": "Fixed",
+      "description": "space/xs top and bottom, space/lg on the leading edge and space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/xs and opens the gap to space/lg so a bordered control sits closer to the end."
+    },
+    {
+      "property": "Content",
+      "type": "Fill",
+      "description": "The leading icon and the message sit space/md apart, and the content block fills whatever width the controls leave it."
+    },
+    {
+      "property": "Radius",
+      "type": "Per Variant and Shape",
+      "description": "contextual is radius/pill when rounded and standard is radius/md, so the two read differently at the same setting. Both drop to radius/none when sharp, and the close and the action follow."
+    },
+    {
+      "property": "Fill",
+      "type": "Per Flavour",
+      "description": "info, positive, warning and error take feedback/info, success, warning and error at background/subtle. deletion shares the error tint and view takes feedback/neutral/background/subtle. action and default sit on surface/inverse, which is what moves the message to foreground/inverse."
+    },
+    {
+      "property": "Controls",
+      "type": "Fixed",
+      "description": "Close is a 36 square holding a 20 glyph. The action is 36 tall where it is plain text and 40 tall where it carries a border or a fill, the bordered one at 2px on foreground/inverse and the filled one at radius/sm on interactive/inverse/background/default."
+    },
+    {
+      "property": "Elevation",
+      "type": "Theming",
+      "description": "Two drop shadows on every variant. They are what lift the bar off whatever it is floating over, since it has no border to separate it."
+    }
+  ],
+  "visualReference": {
+    "page": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6547-2448",
+    "componentSet": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-170",
+    "metadata": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6563-142",
+    "perAxis": {
+      "info": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-57",
+      "positive": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-71",
+      "warning": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-84",
+      "error": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-97",
+      "deletion": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-110",
+      "view": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-125",
+      "action": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-135",
+      "default": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-144",
+      "standard": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-156",
+      "sharp (info)": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6558-102",
+      "sharp (action)": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6558-168"
+    }
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "metadata Layout & Theming / Anatomy / Accessibility vs structure (stale)",
+      "detail": "Several metadata rows describe the first build, not the component as it stands. Fill: 'action and default sit on surface/inverse, which is what moves the message to foreground/inverse' — the file fills them with surface/popover under an explicit palette=Dark mode, with foreground/primary content. Controls: 'Close is a 36 square… the bordered one at 2px on foreground/inverse and the filled one at radius/sm on interactive/inverse/background/default' — the close is now an Icon Button (subtle, medium: control/md) and every action a Button instance. Anatomy and Variant: 'Plain text on deletion and view, bordered on action and a filled button on standard' — deletion, view and standard use a subtle Button; only action carries outline-subtle. Accessibility repeats 'a 36 square around a 20 glyph'."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata Layout & Theming vs structure (padding)",
+      "detail": "'space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/xs and opens the gap to space/lg' — every variant now has space/xs trailing and space/lg between content and controls."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata Content & Slot / Property Breakdown vs structure (icon slot)",
+      "detail": "The metadata gives the icon slot to standard only ('It has no effect on contextual'; 'action and default: No glyph at all'). In the file contextual action and default also carry the Icon Slot, bound to Show Icon, so Show Icon does affect them."
+    },
+    {
+      "severity": "warn",
+      "source": "API vs Property Breakdown (default flavour)",
+      "detail": "The metadata marks Flavour=default as the default; the set's default variant is Flavour=info (contextual / info / rounded)."
+    },
+    {
+      "severity": "warn",
+      "source": "structure (action size)",
+      "detail": "contextual / action uses a small Button when rounded and a medium one when sharp; every other action is medium. The small one sits off-centre against the bar's space/xs trailing edge (control/sm is shorter than control/md)."
+    },
+    {
+      "severity": "note",
+      "source": "code (packages/web-components zds-snackbar, packages/react-baseui Snackbar)",
+      "detail": "Built 2026-10-18 to the file in both packages: <zds-snackbar> (web components, now exported) and Snackbar (react-baseui, controlled: open + onClose). Actions are a subtle Button on deletion, view and standard and outline-subtle on action; the close a subtle IconButton with its glyph on the bar's foreground/primary; contextual radius/pill; the message on one line; default flavour info; show-close=\"false\" turns the close off in HTML. Deliberate differences: the action bar's button is medium in both shapes (Figma: small when rounded, warn above); a message that runs out of room ends in an ellipsis rather than running past the edge; the dark bars invert to Light on a dark page; code adds inline, duration, action-label and close-label. React does not use Base UI's Toast: it is built around a manager that owns queueing and placement, which does not fit the single controlled bar; it is the natural basis for the queue the spec says does not exist yet. Web and React were compared in a browser: pixel-identical across the Contextual, Standard, Shape, IconSlot, LongMessage and ThemingCascade stories, with matching motion, top-layer placement, timer pause and events."
+    },
+    {
+      "severity": "note",
+      "source": "structure (theming)",
+      "detail": "The dark variants (contextual action and default, standard) pin palette=Dark on the component itself. On a dark design, set the instance's palette mode to Light to get the inverted bar the code produces."
+    },
+    {
+      "severity": "note",
+      "source": "structure (sparse set)",
+      "detail": "18 variants of a possible 32: standard exists only with Flavour=default. Show Action and Show Close are bound only where the control exists by default (no action on info, positive, warning, error, default; no close on view and action)."
+    },
+    {
+      "severity": "note",
+      "source": "internalVariations",
+      "detail": "The action label is fixed per flavour in the metadata, but the Button instance is exposed, so its Label is editable from the instance panel in Figma."
+    },
+    {
+      "severity": "note",
+      "source": "tokens",
+      "detail": "Elevation is the Shadow/medium effect style; the export carries shadow/* size tokens and shadow/soft but not the style itself. No untokenised colour, spacing or radius anywhere in the set."
+    },
+    {
+      "severity": "note",
+      "source": "dependencies",
+      "detail": "Button and Icon Button follow their own specs (specs/button, specs/icon-button); the action and the close take their hover, press, focus and disabled treatment from there rather than from the snackbar."
+    }
+  ]
+}

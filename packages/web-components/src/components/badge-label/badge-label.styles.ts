@@ -1,0 +1,67 @@
+import { css } from "lit";
+
+/**
+ * Every value is a semantic token. Sections follow the spec's variant and
+ * shape tables.
+ *
+ * Height: the spec states 18, which only holds with the stale 8px text box
+ * Figma reports. Built from the tokens (space/xs padding, stroke/thin border,
+ * indicator/medium line height) it renders 24 — the spec's open warn "Label
+ * height", to be settled in Figma.
+ *
+ * Spec: specs/badges/label.spec.json
+ */
+export default css`
+  :host {
+    /* ---- variant (neutral default) ------------------------------------ */
+    --zds-badge-fill: var(--foreground-secondary);
+    --zds-badge-text: var(--foreground-inverse);
+    display: inline-flex;
+    vertical-align: middle;
+  }
+  :host([hidden]) {
+    display: none;
+  }
+  /* Text on a strong fill as Figma binds it: borrowed button tokens on info,
+     positive and negative, foreground/inverse on neutral and warning (spec
+     warn; foreground/on-strong would cover the first three). */
+  :host([variant="info"]) {
+    --zds-badge-fill: var(--feedback-info-background-strong);
+    --zds-badge-text: var(--interactive-primary-foreground-default);
+  }
+  :host([variant="positive"]) {
+    --zds-badge-fill: var(--feedback-success-background-strong);
+    --zds-badge-text: var(--interactive-primary-foreground-default);
+  }
+  :host([variant="warning"]) {
+    --zds-badge-fill: var(--feedback-warning-background-strong);
+    --zds-badge-text: var(--foreground-inverse);
+  }
+  :host([variant="negative"]) {
+    --zds-badge-fill: var(--feedback-error-background-strong);
+    --zds-badge-text: var(--interactive-destructive-foreground-default);
+  }
+
+  .root {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    padding: var(--space-xs);
+    /* The border takes the fill's token, so the edge stays flush. */
+    border: var(--stroke-thin) solid var(--zds-badge-fill);
+    border-radius: var(--radius-element-sm);
+    background: var(--zds-badge-fill);
+    color: var(--zds-badge-text);
+    font-family: var(--indicator-medium-font-family), system-ui, sans-serif;
+    font-size: var(--indicator-medium-font-size);
+    font-weight: var(--indicator-medium-font-weight);
+    line-height: var(--indicator-medium-line-height);
+    letter-spacing: var(--indicator-medium-letter-spacing);
+    white-space: nowrap;
+  }
+
+  /* ---- shape ----------------------------------------------------------- */
+  :host([shape="sharp"]) .root {
+    border-radius: var(--radius-none);
+  }
+`;

@@ -1,0 +1,604 @@
+{
+  "component": {
+    "name": "Avatar Rail",
+    "slug": "avatar-rail",
+    "source": {
+      "fileKey": "UZuTdXUhuybNkybf1NZuOt",
+      "setId": "6494:1953",
+      "key": "3ef7fef5b2b19ccd25f13a2d96c79d54e3e9c37e",
+      "page": "Avatar",
+      "pageNodeId": "2364:6017",
+      "metadataFrameId": "6520:737",
+      "url": "https://www.figma.com/design/UZuTdXUhuybNkybf1NZuOt/Avatar-Rail?node-id=6494-1953",
+      "extractedAt": "2026-10-18",
+      "variantCount": 18,
+      "defaultVariant": "Size=xxxsmall, Stacking=start",
+      "extractionNote": "Read in the Avatar Rail working file (not the main library hvRmnZZOZrmTW0wf8hbrt5). The full extract-structure output exceeded the tool's return limit, so the same reads were re-run returning medium/start's full part tree plus a per-variant summary of every value that differs (root width, gap, reverse paint order, avatar width and scale, cutout weight, overflow size and ring, count type) and every token binding per part. All 18 variants (Size 9 x Stacking 2, complete) were read. Avatar is an on-page dependency with its own spec (specs/avatar); its internals were not re-extracted."
+    }
+  },
+  "summary": "Shows a group of people as overlapping avatars, with an optional counter standing in for everyone who did not fit. Up to four avatars are carried, the first two always and the last two by choice, and Size moves the whole rail together rather than any single avatar. Reach for it where the group matters more than the individuals, and for a single Avatar where one person is the subject.",
+  "api": {
+    "size": {
+      "type": "enum",
+      "figmaName": "Size",
+      "values": [
+        "xxxsmall",
+        "xxsmall",
+        "xsmall",
+        "small",
+        "medium",
+        "large",
+        "xlarge",
+        "xxlarge",
+        "xxxlarge"
+      ],
+      "default": "xxxsmall",
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "xxxsmall": "The smallest step, for a rail sitting inside a dense row such as a table cell.",
+        "xxsmall": "A step up, still for compact rows where the group is secondary to the text beside it.",
+        "xsmall": "For secondary groups in a list, where the rail supports the row rather than leading it.",
+        "small": "For list rows and menu items where the people are part of the point rather than decoration.",
+        "medium": "The balanced step, and the right choice where the rail stands on its own inside a card.",
+        "large": "For emphasis in a card header, where the group is the subject of the block.",
+        "xlarge": "For a prominent group on a detail page.",
+        "xxlarge": "For a header where the people are the main content rather than a supporting detail.",
+        "xxxlarge": "The largest step, for a full width header. The rail grows quickly at this end, so check it still fits its column before reaching for it."
+      },
+      "note": "Values listed by rendered width. Figma stores them in creation order (medium first)."
+    },
+    "stacking": {
+      "type": "enum",
+      "figmaName": "Stacking",
+      "values": [
+        "start",
+        "end"
+      ],
+      "default": "start",
+      "controls": [
+        "variant (paint order)"
+      ],
+      "intent": {
+        "start": "The first avatar sits above the ones after it, so the group reads left to right with the earliest person shown whole.",
+        "end": "Reverses it, so the last position is the one shown whole. Reach for it where the counter should sit on top of the stack rather than beneath it."
+      }
+    },
+    "max": {
+      "type": "number",
+      "default": 4,
+      "range": "2 to 4",
+      "controls": [
+        "avatar3 (visible)",
+        "avatar4 (visible)",
+        "overflow (count)"
+      ],
+      "codeOnly": true,
+      "intent": "Code only. How many avatars the rail shows, with the first two always present. Figma has no Max property and sets the same thing with Show Avatar 3 and Show Avatar 4. Everyone past Max is counted into the overflow, as the avatars passed in less Max, so a group of six at Max 4 reads +2 and at Max 3 reads +3.",
+      "figmaName": null,
+      "values": "2 to 4",
+      "source": "metadata Property Breakdown (added 2026-10-18)"
+    },
+    "showOverflow": {
+      "type": "boolean",
+      "figmaName": "Show Overflow#6494:0",
+      "default": true,
+      "controls": [
+        "overflow (visible)"
+      ],
+      "intent": {
+        "true": "Keeps the counter at the end, standing in for everyone not shown. In code it appears only when there are more avatars than Max.",
+        "false": "Drops it. Only safe where the rail shows the whole group, because without the counter a trimmed group reads as complete."
+      }
+    },
+    "overflowCount": {
+      "type": "string",
+      "figmaName": "Overflow Count#6494:19",
+      "default": "+2",
+      "controls": [
+        "count (characters)"
+      ],
+      "visibleWhen": "showOverflow = true and avatars > max",
+      "intent": "Figma only. How many people the rail is not showing, typed by hand in Figma. In code it is not a property: the rail generates it from Max, as the avatars passed in less Max. It is a remainder rather than a total, so a group of six shown four at a time reads +2 and never 6.",
+      "derived": "+(avatars - max)",
+      "figmaOnly": true
+    },
+    "showAvatar3": {
+      "type": "boolean",
+      "figmaName": "Show Avatar 3#6494:38",
+      "default": true,
+      "controls": [
+        "avatar3 (visible)"
+      ],
+      "figmaOnly": true,
+      "intent": "Not in the Property Breakdown. The Anatomy annotation calls avatars 3 and 4 'the two optional positions, each toggled on its own, so a rail can carry two, three or four. (Figma Only)'. In code, max and the avatars passed in decide this."
+    },
+    "showAvatar4": {
+      "type": "boolean",
+      "figmaName": "Show Avatar 4#6494:57",
+      "default": true,
+      "controls": [
+        "avatar4 (visible)"
+      ],
+      "figmaOnly": true,
+      "intent": "As showAvatar3."
+    }
+  },
+  "internalVariations": [
+    {
+      "part": "avatar1..avatar4",
+      "via": "Avatar (nested, not exposed)",
+      "options": [
+        "initials",
+        "photo",
+        "Icon"
+      ],
+      "intent": "Content type, swatch colour, photo and initials are set on each nested Avatar's own Avatar Type instance (sample: initials purple, photo, initials blue, initials sea). The rail pins Show Ring, Show Close and Show Status to false and surfaces none of Avatar's properties.",
+      "note": "The Avatar instances are not exposed (isExposedInstance false), so this is reached by selecting into the rail, not from its properties panel."
+    }
+  ],
+  "contentInputs": [
+    {
+      "name": "avatars",
+      "type": "list of Avatar content (person, photo, initials)",
+      "count": "any; the first max are shown, the rest counted",
+      "intent": "Up to four positions, each an Avatar, the first two always present. In code Max sets how many show (2 to 4); in Figma, Show Avatar 3 and Show Avatar 4 do."
+    }
+  ],
+  "anatomy": [
+    {
+      "id": "rail",
+      "kind": "container",
+      "role": "Horizontal row, hugging its contents. The negative gap is what overlaps the avatars.",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/neg/xl at medium (a quarter of the diameter, negative); raw at every other size",
+        "padding": "space/none (unbound, zero)",
+        "align": "start, centred vertically",
+        "paintOrder": "start: first child on top (reverse z-order) · end: last child on top"
+      },
+      "sizing": {
+        "h": "hug",
+        "v": "hug"
+      }
+    },
+    {
+      "id": "avatar1",
+      "kind": "instance",
+      "ref": "Avatar",
+      "role": "Always present.",
+      "size": "control/lg at medium (the diameter); scaled elsewhere",
+      "radius": "radius/pill",
+      "paint": {
+        "cutout": "border/inverse stroke, outside, stroke/thick at medium (scaled elsewhere)"
+      },
+      "pinned": "Show Ring false · Show Close false · Show Status false"
+    },
+    {
+      "id": "avatar2",
+      "kind": "instance",
+      "ref": "Avatar",
+      "role": "Always present. Same as avatar1."
+    },
+    {
+      "id": "avatar3",
+      "kind": "instance",
+      "ref": "Avatar",
+      "role": "Optional. Same as avatar1.",
+      "visibleWhen": "showAvatar3"
+    },
+    {
+      "id": "avatar4",
+      "kind": "instance",
+      "ref": "Avatar",
+      "role": "Optional. Same as avatar1.",
+      "visibleWhen": "showAvatar4"
+    },
+    {
+      "id": "overflow",
+      "kind": "container",
+      "role": "The counter circle at the end, drawn by the rail. Not an Avatar: no person, no photo, no presence.",
+      "visibleWhen": "showOverflow",
+      "size": "control/lg at medium (matches the avatar diameter); scaled elsewhere",
+      "radius": "radius/pill",
+      "paint": {
+        "fill": "feedback/neutral/background/subtle",
+        "stroke": "border/default, inside, stroke/thick at medium (scaled elsewhere)"
+      },
+      "layout": {
+        "align": "center, center",
+        "padding": "none"
+      }
+    },
+    {
+      "id": "count",
+      "kind": "text",
+      "role": "The remainder, centred in the overflow circle.",
+      "content": "overflowCount",
+      "text": {
+        "style": "label/large at medium; detached and scaled at every other size",
+        "color": "foreground/primary"
+      }
+    }
+  ],
+  "variants": {
+    "_note": "Cells ending Px are measurements of the rendered file, not values to copy. Every size is the medium variant scaled by diameter / 48 (the Avatar's own method), so each measurement is a fixed ratio of the diameter: gap -1/4, cutout and overflow ring 1/24, count font 1/3, count line height 1/2. Only medium binds tokens. Stacking changes only paint order.",
+    "size": {
+      "axis": "size",
+      "base": "medium",
+      "table": [
+        {
+          "size": "xxxsmall",
+          "diameterPx": 24,
+          "diameter": "—",
+          "gapPx": -6.0,
+          "gap": "raw",
+          "rootWidthPx (4 avatars + overflow)": 96,
+          "avatarScale": 0.5,
+          "cutoutWeightPx": 1.0,
+          "overflowRingPx": 1.0,
+          "countFontSizePx": 8.0,
+          "countLineHeightPx": 12.0,
+          "countStyle": "detached",
+          "figmaNode": "6501:15772"
+        },
+        {
+          "size": "xxsmall",
+          "diameterPx": 32,
+          "diameter": "—",
+          "gapPx": -8.0,
+          "gap": "raw",
+          "rootWidthPx (4 avatars + overflow)": 128,
+          "avatarScale": 0.67,
+          "cutoutWeightPx": 1.33,
+          "overflowRingPx": 1.33,
+          "countFontSizePx": 10.67,
+          "countLineHeightPx": 16.0,
+          "countStyle": "detached",
+          "figmaNode": "6501:15806"
+        },
+        {
+          "size": "xsmall",
+          "diameterPx": 36,
+          "diameter": "—",
+          "gapPx": -9.0,
+          "gap": "raw",
+          "rootWidthPx (4 avatars + overflow)": 144,
+          "avatarScale": 0.75,
+          "cutoutWeightPx": 1.5,
+          "overflowRingPx": 1.5,
+          "countFontSizePx": 12.0,
+          "countLineHeightPx": 18.0,
+          "countStyle": "detached",
+          "figmaNode": "6501:15840"
+        },
+        {
+          "size": "small",
+          "diameterPx": 40,
+          "diameter": "—",
+          "gapPx": -10.0,
+          "gap": "raw",
+          "rootWidthPx (4 avatars + overflow)": 160,
+          "avatarScale": 0.83,
+          "cutoutWeightPx": 1.67,
+          "overflowRingPx": 1.67,
+          "countFontSizePx": 13.33,
+          "countLineHeightPx": 20.0,
+          "countStyle": "detached",
+          "figmaNode": "6501:15874"
+        },
+        {
+          "size": "medium",
+          "diameterPx": 48,
+          "diameter": "control/lg",
+          "gapPx": -12.0,
+          "gap": "space/neg/xl",
+          "rootWidthPx (4 avatars + overflow)": 192,
+          "avatarScale": 1.0,
+          "cutoutWeightPx": 2.0,
+          "overflowRingPx": 2.0,
+          "countFontSizePx": 16.0,
+          "countLineHeightPx": 24.0,
+          "countStyle": "label/large",
+          "figmaNode": "6494:609"
+        },
+        {
+          "size": "large",
+          "diameterPx": 60,
+          "diameter": "—",
+          "gapPx": -15.0,
+          "gap": "raw",
+          "rootWidthPx (4 avatars + overflow)": 240,
+          "avatarScale": 1.25,
+          "cutoutWeightPx": 2.5,
+          "overflowRingPx": 2.5,
+          "countFontSizePx": 20.0,
+          "countLineHeightPx": 30.0,
+          "countStyle": "detached",
+          "figmaNode": "6501:15908"
+        },
+        {
+          "size": "xlarge",
+          "diameterPx": 80,
+          "diameter": "—",
+          "gapPx": -20.0,
+          "gap": "raw",
+          "rootWidthPx (4 avatars + overflow)": 320,
+          "avatarScale": 1.67,
+          "cutoutWeightPx": 3.33,
+          "overflowRingPx": 3.33,
+          "countFontSizePx": 26.67,
+          "countLineHeightPx": 40.0,
+          "countStyle": "detached",
+          "figmaNode": "6501:15942"
+        },
+        {
+          "size": "xxlarge",
+          "diameterPx": 120,
+          "diameter": "—",
+          "gapPx": -30.0,
+          "gap": "raw",
+          "rootWidthPx (4 avatars + overflow)": 480,
+          "avatarScale": 2.5,
+          "cutoutWeightPx": 5.0,
+          "overflowRingPx": 5.0,
+          "countFontSizePx": 40.0,
+          "countLineHeightPx": 60.0,
+          "countStyle": "detached",
+          "figmaNode": "6501:15976"
+        },
+        {
+          "size": "xxxlarge",
+          "diameterPx": 200,
+          "diameter": "—",
+          "gapPx": -50.0,
+          "gap": "raw",
+          "rootWidthPx (4 avatars + overflow)": 800,
+          "avatarScale": 4.17,
+          "cutoutWeightPx": 8.33,
+          "overflowRingPx": 8.33,
+          "countFontSizePx": 66.67,
+          "countLineHeightPx": 100.0,
+          "countStyle": "detached",
+          "figmaNode": "6501:16010"
+        }
+      ]
+    },
+    "stacking": {
+      "axis": "stacking",
+      "base": "start",
+      "table": [
+        {
+          "stacking": "start",
+          "paintOrder": "first on top (avatar1 over avatar2 … avatar4 over overflow)",
+          "figmaNode": "6494:609"
+        },
+        {
+          "stacking": "end",
+          "paintOrder": "last on top (overflow over avatar4 … avatar2 over avatar1)",
+          "figmaNode": "6494:1473"
+        }
+      ]
+    }
+  },
+  "subcomponents": [],
+  "dependencies": [
+    {
+      "name": "Avatar",
+      "id": "4906:1172",
+      "remote": false,
+      "usedAt": [
+        "avatar1",
+        "avatar2",
+        "avatar3",
+        "avatar4"
+      ],
+      "delivery": "Instances of Avatar Size=medium, scaled per rail size (0.5 to 4.17). Spec: specs/avatar/avatar.spec.md. No icon glyphs are used by the rail itself."
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ — names below resolve there; see tokens/manifest.json",
+    "rule": "This spec names tokens only.",
+    "color": [
+      "border/inverse",
+      "border/default",
+      "feedback/neutral/background/subtle",
+      "foreground/primary"
+    ],
+    "dimension": [
+      "space/neg/xl",
+      "space/none",
+      "control/lg",
+      "stroke/thick",
+      "radius/pill"
+    ],
+    "typography": [
+      "label/large"
+    ],
+    "effect": [],
+    "missingFromExport": [
+      "space/neg/xl"
+    ],
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "typography": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ],
+      "extensions": "tokens/extensions/ (companion, target, condensed)"
+    }
+  },
+  "states": [
+    {
+      "state": "Static",
+      "trigger": "—",
+      "duration": "—",
+      "whatChanges": "The rail has no interaction states. Nothing answers hover, focus or press, and the avatars inside it carry none either."
+    },
+    {
+      "state": "Stacking",
+      "trigger": "The Stacking value",
+      "duration": "—",
+      "whatChanges": "Only the paint order changes. Positions, diameters and the overlap all hold, so the two values differ solely in which edge of each avatar is covered."
+    }
+  ],
+  "behavior": [
+    {
+      "type": "Motion",
+      "description": "No transition is defined. Changing Size or Stacking is a static swap."
+    },
+    {
+      "type": "Overlap",
+      "description": "The quarter diameter overlap is what makes the rail read as one group rather than a row of separate avatars. Spacing them apart turns the same content into a list of individuals."
+    },
+    {
+      "type": "Composition limits",
+      "description": "Four positions and a counter, with the first two always present. A group of one belongs in a single Avatar, and a group too large for four belongs in the counter rather than in a longer rail."
+    }
+  ],
+  "content": [
+    {
+      "property": "Avatar slots",
+      "type": "nested Avatar",
+      "description": "Up to four positions, each an Avatar, the first two always present. In code Max sets how many show (2 to 4); in Figma, Show Avatar 3 and Show Avatar 4 do."
+    },
+    {
+      "property": "Avatar properties",
+      "type": "parent owned",
+      "description": "The rail turns off the ring and the dismiss badge on every avatar and surfaces none of Avatar's own properties except the status badge. The person shown is set on the nested avatar, and everything else is left to the rail so the group stays uniform. Avatar Metadata covers what an Avatar offers on its own terms."
+    },
+    {
+      "property": "Overflow",
+      "type": "drawn",
+      "description": "A circle at the end of the rail, drawn by the rail rather than taken in. It is not an Avatar, so it carries no person, no photo and no presence."
+    },
+    {
+      "property": "Overflow Count",
+      "type": "text property (Figma only)",
+      "description": "Figma only, typed by hand through Overflow Count. In code the count is generated from Max and the avatars passed in, so there is no count to set. Keep it short, because the circle holding it does not grow."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Keep Show Overflow on whenever the group is larger than the rail shows. Without the counter a trimmed group reads as the whole group.",
+      "Let Size move the whole rail. Every avatar takes the same diameter, so the step is a decision about the group and not about any one person in it."
+    ],
+    "dont": [
+      "Don't reach for the rail to show one person. A single Avatar is the component for that, and a rail of one has an overlap that never happens."
+    ]
+  },
+  "accessibility": [
+    "The rail is a group and the counter at the end is part of what it says. A reader who gets only the avatars gets a smaller group than the real one.",
+    "The counter is a bare number. Something has to say what it counts, because +2 on its own does not say two more people.",
+    "Avatars overlap by a quarter, so part of each one is always covered. Check initials still read at the smallest step, where the diameter is 24.",
+    "The rail turns the presence badge off on every avatar, so presence is not available here. Anything depending on it needs a different arrangement.",
+    "Nothing in the rail is focusable and nothing announces itself. Where people join or leave the group while a person is on the page, the structure around it has to report that."
+  ],
+  "layoutTheming": [
+    {
+      "property": "Size",
+      "type": "Fixed per Size",
+      "description": "Nine steps, 24, 32, 36, 40, 48, 60, 80, 120 and 200 square. Every avatar in the rail takes the same diameter, so the step is a decision about the group rather than about any one person in it."
+    },
+    {
+      "property": "Overlap",
+      "type": "Derived from Size",
+      "description": "Each avatar sits over the one before it by a quarter of a diameter, from 6 at the smallest step to 50 at the largest. The overlap scales with the avatar rather than holding one fixed value, so the rail reads the same at every size."
+    },
+    {
+      "property": "Overall width",
+      "type": "Hug",
+      "description": "Four times the diameter when all five positions are filled, from 96 at the smallest to 800 at the largest. Each position after the first adds three quarters of a diameter, so dropping one takes exactly that much back."
+    },
+    {
+      "property": "Overflow",
+      "type": "Fixed",
+      "description": "A circle matching the avatar diameter, at radius/pill on feedback/neutral/background/subtle. It does not grow with its text, so a longer count has to fit the circle rather than widen it."
+    },
+    {
+      "property": "Count",
+      "type": "Scales with Size",
+      "description": "Centred in the overflow circle and scaling with the rail rather than holding one size across the nine steps."
+    },
+    {
+      "property": "Paint order",
+      "type": "Per Stacking",
+      "description": "start paints each avatar above the one after it and end reverses that. Nothing moves and nothing resizes, only which edge of each avatar is the covered one."
+    }
+  ],
+  "visualReference": {
+    "page": "https://www.figma.com/design/UZuTdXUhuybNkybf1NZuOt/Avatar-Rail?node-id=2364-6017",
+    "componentSet": "https://www.figma.com/design/UZuTdXUhuybNkybf1NZuOt/Avatar-Rail?node-id=6494-1953",
+    "metadata": "https://www.figma.com/design/UZuTdXUhuybNkybf1NZuOt/Avatar-Rail?node-id=6520-737",
+    "perAxis": {
+      "medium, start": "https://www.figma.com/design/UZuTdXUhuybNkybf1NZuOt/Avatar-Rail?node-id=6494-609",
+      "medium, end": "https://www.figma.com/design/UZuTdXUhuybNkybf1NZuOt/Avatar-Rail?node-id=6494-1473",
+      "xxxsmall (default)": "https://www.figma.com/design/UZuTdXUhuybNkybf1NZuOt/Avatar-Rail?node-id=6501-15772",
+      "xxxlarge": "https://www.figma.com/design/UZuTdXUhuybNkybf1NZuOt/Avatar-Rail?node-id=6501-16010"
+    }
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "tokens (spec vs export)",
+      "detail": "The medium gap binds space/neg/xl, which is not in tokens/ (the export has space/neg/{xs,sm,md} only). The token lives in this working file, not yet in the exported library. Re-run the token export once it is published; until then code derives the overlap as a quarter of the diameter."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata Content & Slot vs Accessibility vs structure",
+      "detail": "Content & Slot says the rail 'surfaces none of Avatar's own properties except the status badge'; Accessibility says 'The rail turns the presence badge off on every avatar, so presence is not available here'. Structure agrees with Accessibility: Show Status is false on every avatar, the avatars are not exposed, and the rail has no status property."
+    },
+    {
+      "severity": "note",
+      "source": "metadata Property Breakdown vs Figma API",
+      "detail": "Show Avatar 3 and Show Avatar 4 are Figma properties without rows of their own in the Property Breakdown; its Max row (code only) names them as Figma's equivalent, and the Anatomy annotation marks them '(Figma Only)'."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata Layout & Theming vs Stacking",
+      "detail": "Overlap says 'Each avatar sits over the one before it'. Under the default Stacking=start the reverse holds: each avatar sits over the one after it (the Stacking and Paint order rows say so). Only Stacking=end matches that sentence."
+    },
+    {
+      "severity": "warn",
+      "source": "structure (overflow vs avatars)",
+      "detail": "The avatars have their rings off and a border/inverse cutout outside; the overflow keeps a border/default ring inside and has no cutout. The metadata's Overflow row names only the fill. Under Stacking=end the overflow paints over avatar4 with no cutout separating them. Confirm whether the overflow should take the same border/inverse cutout."
+    },
+    {
+      "severity": "note",
+      "source": "owner decision (2026-10-18)",
+      "detail": "Now carried by the metadata itself: the Property Breakdown has a code-only Max row (2 to 4, default 4) and marks Overflow Count as Figma only, generated in code as the avatars passed in less Max and shown when Show Overflow is on and there is a remainder."
+    },
+    {
+      "severity": "note",
+      "source": "structure (bindingDrift / gaps)",
+      "detail": "Nine bindings exist on medium only: rail gap, avatar width and cutout weight, overflow width, height and ring weight, count font size, line height and letter spacing. Every other size is medium scaled (raw values, count text detached from label/large), the same method as Avatar's own size ladder. Implement as ratios of the diameter (see Variants), not as nine authored values."
+    },
+    {
+      "severity": "note",
+      "source": "structure (nested instances)",
+      "detail": "Each avatar is an Avatar Size=medium instance scaled by diameter / 48, not Avatar's matching Size variant. Visually identical, because Avatar's own sizes are medium scaled the same way; in code render Avatar at the matching size."
+    },
+    {
+      "severity": "note",
+      "source": "structure (exposure)",
+      "detail": "The nested avatars are not exposed instances, so the person shown is changed by selecting into the rail rather than from its properties panel, though the metadata says 'The person shown is set on the nested avatar'."
+    },
+    {
+      "severity": "note",
+      "source": "coverage",
+      "detail": "States and motion are intentionally absent (metadata: static, no transition). No focus, hover or press, and no announcement behaviour, by design."
+    }
+  ]
+}

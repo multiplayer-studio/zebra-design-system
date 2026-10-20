@@ -1,0 +1,449 @@
+{
+  "component": {
+    "name": "Card",
+    "slug": "card",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "page": "Card",
+      "pageId": "3007:796",
+      "extractedAt": "2026-09-24",
+      "extractionNote": "This page does not follow the single-master shape the schema assumes. It hosts two independent, equally public component sets — 'Card base' (3201:53) and 'Collapsible Card' (3400:364) — sharing six private subcomponents, plus two 'Card Templates' component sets ('Default' 4545:545, 'Collapsible' 4934:562) that are pre-built compositions layered on top of them. Each of the four has its own metadata frame. Rather than force one into 'master' and demote the other to an afterthought, this spec records both under `family`, the shared parts under `subcomponents` (extracted in full), and the two templates under `compositions` (documented from their own metadata and the discover-level variant/prop summary — not independently re-walked, since they compose only what `family` and `subcomponents` already cover in full). Second pass: re-discovered the page and found the Figma file had changed since the first pass — `_Container header` gained a new `Show Description#5002:0` boolean property (default true) that didn't exist before. Everything else on the page (Card base, Collapsible Card, the other five subcomponents, both templates, all node ids) is unchanged."
+    }
+  },
+  "family": [
+    {
+      "name": "Card base",
+      "id": "3201:53",
+      "key": "5ffd92194c5ff59287707fc9cb0130fe9660c1a5",
+      "summary": "The empty card shell, three stacked slots inside a bordered surface. It decides the surface, the border, the corner treatment and the fact that content is clipped to the frame, and nothing else. Header and Footer can each be switched off, Body is always present. Reach for a Card Template when you want a card already assembled, and for this when you are composing one yourself.",
+      "api": {
+        "shape": {
+          "type": "enum", "figmaName": "Shape", "default": "sharp", "controls": ["variant"],
+          "values": ["sharp", "rounded"],
+          "intent": {
+            "sharp": "Square corners, matching surfaces and controls that are also square.",
+            "rounded": "Softened corners, for a card that should read as a distinct object on the page. Content is clipped to the corner, so a full-bleed image inside follows the curve rather than squaring it off."
+          }
+        },
+        "hasHeader": {
+          "type": "boolean", "figmaName": "hasHeader#3541:44", "default": true, "controls": ["header (visible)"],
+          "intent": {
+            "true": "Shows the header slot above the body, for a title row or a heading with actions.",
+            "false": "Hides the header slot along with anything placed in it. The body then meets the top edge, which is what a media-led card wants."
+          }
+        },
+        "hasFooter": {
+          "type": "boolean", "figmaName": "hasFooter#3541:46", "default": true, "controls": ["footer (visible)"],
+          "intent": {
+            "true": "Shows the footer slot below the body, for the actions that close out the card.",
+            "false": "Hides the footer slot and everything in it. Use when the card is purely informational and has nothing to act on."
+          }
+        },
+        "header": { "type": "slot", "figmaName": "Header#3414:40", "default": "empty", "controls": ["header (slotContentId)"], "note": "Prefers _Card Heading. Visibility gated by hasHeader." },
+        "body": { "type": "slot", "figmaName": "Body#3201:3", "default": "empty", "controls": ["body (slotContentId)"], "note": "Always present — no visibility toggle. _Card Body, _Card Image and _Card Heading are all offered; media templates stack several." },
+        "footer": { "type": "slot", "figmaName": "Footer#3414:36", "default": "empty", "controls": ["footer (slotContentId)"], "note": "Prefers _Card Footer. Visibility gated by hasFooter." }
+      },
+      "anatomy": [
+        { "id": "root", "kind": "container", "role": "The outer frame. Fixed width, hugging height, carrying the surface, the border and the radius. It clips everything inside it.",
+          "layout": { "direction": "vertical", "gap": "space/none", "padding": "space/none" }, "sizing": { "h": "fixed", "v": "hug" }, "clips": true,
+          "paint": { "fill": "surface/card", "stroke": { "color": "border/default", "width": "stroke/thin", "align": "inside" } } },
+        { "id": "header", "kind": "slot", "role": "The top slot, for a title row or a heading with actions. Switched off as a whole by hasHeader.", "visibleWhen": "hasHeader", "sizing": { "h": "fill", "v": "hug" }, "clips": true },
+        { "id": "body", "kind": "slot", "role": "The middle slot and the card's main content. It is the one slot with no visibility toggle.", "sizing": { "h": "fill", "v": "hug" }, "clips": true },
+        { "id": "footer", "kind": "slot", "role": "The bottom slot, for closing actions. Switched off as a whole by hasFooter.", "visibleWhen": "hasFooter", "sizing": { "h": "fill", "v": "hug" }, "clips": true }
+      ],
+      "variants": {
+        "axis": "shape", "base": "sharp",
+        "_note": "root widthPx (330) is a measured observation, not a token — Card base does not hug horizontally and has no width binding at either shape.",
+        "table": [
+          { "shape": "sharp", "root.widthPx": 330, "root.heightPx (all slots empty)": 214, "root.radius": "radius/none" },
+          { "shape": "rounded", "root.widthPx": 330, "root.heightPx (all slots empty)": 214, "root.radius": "radius/sm", "root.radiusPx": 4 }
+        ]
+      },
+      "states": [
+        { "state": "Static", "trigger": "—", "duration": "—", "whatChanges": "The shell has no interaction states. Hover, focus and selection all belong to whatever is placed in its slots, so the card itself never changes appearance." }
+      ],
+      "behavior": [
+        { "type": "Motion", "description": "Figma stores no timing and the shell models no transition. Showing or hiding a slot is a property change rather than something that animates here." },
+        { "type": "Reflow", "description": "Width is fixed and height hugs the slots, so the card grows downward as content is added and never sideways." },
+        { "type": "Clipping", "description": "The shell and all three slots clip their content. Anything larger than the card is cut at the edge rather than overflowing, which is what lets a full-bleed image sit flush inside a rounded corner." }
+      ],
+      "content": [
+        { "property": "Header", "type": "slot, prefers _Card Heading", "description": "A title row at the top, hidden by hasHeader. It ships empty, and _Card Heading is the part built for it." },
+        { "property": "Body", "type": "slot, always present", "description": "The card's main content. It has no visibility toggle, so unlike the other two it cannot be switched off. _Card Body, _Card Image and _Card Heading are all offered, and the media templates stack several of them." },
+        { "property": "Footer", "type": "slot, prefers _Card Footer", "description": "The actions that close out the card, hidden by hasFooter. _Card Footer carries the one, two and custom action arrangements." },
+        { "property": "Slot content", "type": "shared across variants", "description": "Each slot uses a single property across both Shape variants, so switching Shape keeps whatever has been placed in them." }
+      ],
+      "usage": {
+        "do": [
+          "Switch off the header for a media-led card, so the image meets the top edge rather than sitting under an empty row.",
+          "Let the card grow downward. Height hugs the slots, so adding content is safe in a way that widening it is not."
+        ],
+        "dont": [
+          "Don't expect the card to widen for its content. Width is fixed, so a long unbroken string is clipped at the edge rather than pushing the card out.",
+          "Don't rely on Body being optional. It has no toggle, so a card with nothing to put there still reserves the space."
+        ]
+      },
+      "accessibility": [
+        "The shell is a container and announces nothing itself. Whatever meaning the card carries comes from the parts placed in its slots.",
+        "Content is clipped at the card's edge, so text that overflows disappears rather than wrapping outside. Check long strings at the fixed width.",
+        "The card is not interactive here. If the whole card is meant to be clickable, that target and its focus treatment have to be built in code.",
+        "The border is the only thing separating the card from the page. Check border/default against the surface behind it."
+      ],
+      "layoutTheming": [
+        { "property": "Width", "type": "Fixed", "description": "330px as drawn. The shell does not hug horizontally, so whoever places it decides the width." },
+        { "property": "Height", "type": "Hug", "description": "Grows with the slots. With all three shown and empty it stands at 214px." },
+        { "property": "Padding and gap", "type": "None", "description": "Zero on the shell and zero between the slots. Every inset comes from the parts placed inside, which is why an empty card reads as three touching bands." },
+        { "property": "Radius", "type": "Fixed per Shape", "description": "radius/none when sharp, radius/sm when rounded. The shell clips to this radius, so inner content follows the curve." },
+        { "property": "Border", "type": "Fixed", "description": "1px (stroke/thin) on border/default, on all four edges, at both Shape values." },
+        { "property": "Fill", "type": "Theming", "description": "surface/card on the shell and on each of the three slots, so a slot left empty still reads as card surface rather than a hole." },
+        { "property": "Elevation", "type": "None", "description": "No shadow at either Shape. The card sits flat and is separated from the page by its border alone." }
+      ]
+    },
+    {
+      "name": "Collapsible Card",
+      "id": "3400:364",
+      "key": "8461de3a97de9e3e5c57fa1f744d39460d226d7e",
+      "summary": "A card whose body opens and closes behind a header that is always visible. The header carries a title, a description and a leading chevron that flips with the state, and the body slot appears only when expanded. Flavor chooses between a plain card and one outlined with the brand gradient. Unlike Card base it has no header or footer slot of its own, the header is built in.",
+      "api": {
+        "state": {
+          "type": "enum", "figmaName": "State", "default": "collapsed", "controls": ["variant"], "values": ["collapsed", "expanded"],
+          "intent": {
+            "collapsed": "Header only, with the body slot hidden. The resting state, and the one to lay out against when several cards stack.",
+            "expanded": "Reveals the body slot below the header. The card roughly triples in height, so a column of expanded cards pushes everything below it well down the page."
+          }
+        },
+        "flavor": {
+          "type": "enum", "figmaName": "Flavor", "default": "default", "controls": ["variant"], "values": ["default", "gradient"],
+          "intent": {
+            "default": "A plain card with no outline, for a list where no single card should stand out.",
+            "gradient": "Outlines the card with the brand gradient, for the one card that should draw the eye. More than one in a list removes the distinction it exists to make."
+          }
+        },
+        "shape": {
+          "type": "enum", "figmaName": "Shape", "default": "sharp", "controls": ["variant"], "values": ["sharp", "rounded"],
+          "intent": {
+            "sharp": "Square corners, matching surfaces and controls that are also square.",
+            "rounded": "Softened corners, for a card that should read as a distinct object. The card clips to the curve, so inner content follows it."
+          }
+        },
+        "body": {
+          "type": "slot", "figmaName": "Body#3400:3 / Body#3637:0 / Body#3637:9 / Body#3637:18", "default": "empty",
+          "note": "One separate slot property per expanded (Flavor × Shape) combination — content placed while expanded/default/sharp does not appear after switching to expanded/gradient or expanded/rounded. Fill the exact variant you intend to ship. Hidden entirely while State=collapsed."
+        }
+      },
+      "internalVariations": [
+        { "part": "header", "via": "_Container header", "options": ["default", "hover"], "intent": "Always visible and not a slot. An exposed _Container header holding the leading chevron, the title and the description. The card pins Flavor to default in every one of its own 8 variants — a hover treatment has to be set on that nested instance directly, per the metadata's own States & Triggers row." }
+      ],
+      "anatomy": [
+        { "id": "root", "kind": "container", "role": "The outer frame. Fixed width, hugging height, carrying the surface, the radius and, at the gradient flavour, the outline. It clips everything inside it.",
+          "sizing": { "h": "fixed", "v": "hug" }, "clips": true,
+          "paint": { "fill": "surface/card", "stroke": { "gradient": ["foreground/gradient/start", "foreground/gradient/end"], "width": "stroke/thick", "align": "inside", "visibleWhen": "flavor=gradient" } } },
+        { "id": "header", "kind": "instance", "ref": "_Container header", "refVariant": "Flavor=default", "role": "Always visible and not a slot. An exposed _Container header holding the leading chevron, the title and the description.", "sizing": { "h": "fill", "v": "hug" } },
+        { "id": "body", "kind": "slot", "role": "The slot revealed when the card expands. Hidden entirely while collapsed, and inset on three sides when shown.", "visibleWhen": "state=expanded", "sizing": { "h": "fill", "v": "hug" }, "clips": true }
+      ],
+      "variants": {
+        "axis": "state × flavor × shape", "base": "collapsed, default, sharp",
+        "_note": "root widthPx (385, every variant) is measured, not token-bound. root.heightPx is measured per combination.",
+        "table": [
+          { "state": "collapsed", "flavor": "default", "shape": "sharp", "root.heightPx": 78, "root.radius": "radius/none", "root.stroke": "none" },
+          { "state": "collapsed", "flavor": "default", "shape": "rounded", "root.heightPx": 78, "root.radius": "radius/sm", "root.radiusPx": 4, "root.stroke": "none" },
+          { "state": "expanded", "flavor": "default", "shape": "sharp", "root.heightPx": 257, "root.radius": "radius/none", "root.stroke": "none", "body.padding": "none top, space/xl left/right/bottom" },
+          { "state": "expanded", "flavor": "default", "shape": "rounded", "root.heightPx": 257, "root.radius": "radius/sm", "root.radiusPx": 4, "root.stroke": "none" },
+          { "state": "collapsed", "flavor": "gradient", "shape": "sharp", "root.heightPx": 82, "root.radius": "radius/none", "root.stroke": "stroke/thick, gradient foreground/gradient/start→end" },
+          { "state": "collapsed", "flavor": "gradient", "shape": "rounded", "root.heightPx": 82, "root.radius": "radius/sm", "root.radiusPx": 4, "root.stroke": "stroke/thick, gradient" },
+          { "state": "expanded", "flavor": "gradient", "shape": "sharp", "root.heightPx": 261, "root.radius": "radius/none", "root.stroke": "stroke/thick, gradient" },
+          { "state": "expanded", "flavor": "gradient", "shape": "rounded", "root.heightPx": 261, "root.radius": "radius/sm", "root.radiusPx": 4, "root.stroke": "stroke/thick, gradient" }
+        ]
+      },
+      "states": [
+        { "state": "collapsed", "trigger": "Resting", "duration": "—", "whatChanges": "The header alone. The body slot is hidden and the leading icon shows its closed chevron." },
+        { "state": "expanded", "trigger": "The card is opened", "duration": "—", "whatChanges": "The body slot appears below the header with its own padding, and the leading icon flips to its open chevron. Nothing else about the header changes." },
+        { "state": "gradient outline", "trigger": "Flavor set to gradient", "duration": "—", "whatChanges": "A gradient stroke is drawn around all four edges, which also makes the card slightly taller and narrows the header by the same amount. No fill or text colour changes with it." },
+        { "state": "header hover", "trigger": "Through the nested header", "duration": "—", "whatChanges": "The header is an exposed _Container header carrying its own default and hover flavours. The card pins it to default in every variant, so a hover treatment has to be set on that instance." }
+      ],
+      "behavior": [
+        { "type": "Motion", "description": "Figma stores no timing and no transition is modelled. Opening is a variant switch, so any easing on the body's reveal belongs to the implementation." },
+        { "type": "Height change", "description": "Expanding roughly triples the card's height and the card hugs that change, so everything below it moves. Plan the surrounding layout against the expanded height rather than the collapsed one." },
+        { "type": "Chevron", "description": "The leading icon carries its own open and closed states and the card sets them to match State. Anything driving the card at runtime has to move both together. This extraction found no bound property or per-variant instance change implementing that pairing — see issues." }
+      ],
+      "content": [
+        { "property": "Body", "type": "slot, one property per expanded variant", "description": "The content revealed when the card opens. It is stored separately for each of the four expanded variants, so content placed while default and sharp does not appear after switching to gradient or rounded. Fill the variant you intend to ship." },
+        { "property": "Header", "type": "exposed nested _Container header", "description": "Always visible and not a slot. It carries the title, the description and the leading chevron. The instance is exposed, so all of that is reachable without detaching." },
+        { "property": "Leading icon", "type": "exposed nested _Leading Icon", "description": "The chevron in the header, tied to State by the card. It is exposed, so it can be hidden through the header's own hasLeading toggle." }
+      ],
+      "usage": {
+        "do": [
+          "Fill the Body of the exact variant you intend to ship. The four expanded variants hold their body content separately.",
+          "Use gradient for at most one card in a group. It exists to single a card out, and a list of them says nothing."
+        ],
+        "dont": [
+          "Don't lay a column out against the collapsed height. Expanding roughly triples the card, so everything below it moves a long way.",
+          "Don't reach for this when the content is always visible. Card base is the shell for a card that does not open and close, and it has a real footer slot."
+        ]
+      },
+      "accessibility": [
+        "The chevron is the only indication the card opens. Whether it is expanded has to be exposed in code, the icon direction alone does not carry it.",
+        "The header is the control that toggles the card, but nothing here models it as a button. That target, its focus treatment and its keyboard behaviour all belong to the implementation.",
+        "The gradient outline is decorative and carries no meaning of its own, so it should not be the only thing marking a card as important.",
+        "Collapsed content is hidden rather than removed. Make sure it is genuinely unavailable to assistive technology when closed, and available when open."
+      ],
+      "layoutTheming": [
+        { "property": "Width", "type": "Fixed", "description": "385px at every variant. The card does not hug horizontally." },
+        { "property": "Height", "type": "Hug", "description": "78px collapsed and 257px expanded at the default flavour. Gradient adds 4px to both, 82px and 261px, because its outline is drawn on the frame itself." },
+        { "property": "Header padding", "type": "Fixed", "description": "16px (space/lg) top and bottom, 24px (space/xl) left and right, with 8px (space/sm) between the leading icon and the heading block." },
+        { "property": "Body padding", "type": "Fixed per State", "description": "None while collapsed, since the slot is hidden. Expanded it insets 24px (space/xl) left, right and bottom, with nothing on top so the body sits tight under the header." },
+        { "property": "Heading spacing", "type": "Fixed", "description": "2px (space/2xs) between the title and the description, and 4px (space/xs) inside the title row." },
+        { "property": "Radius", "type": "Fixed per Shape", "description": "radius/none when sharp, radius/sm when rounded. The card clips to it." },
+        { "property": "Outline", "type": "Fixed per Flavor", "description": "None at the default flavour. Gradient draws a 2px (stroke/thick) linear gradient from foreground/gradient/start to foreground/gradient/end around all four edges." },
+        { "property": "Fill", "type": "Theming", "description": "surface/card on the card. The header sits on a fully transparent interactive/ghost/background/default, so the card surface shows through it." },
+        { "property": "Leading icon", "type": "Fixed", "description": "A 28px Icon at Size=large with Framed off." },
+        { "property": "Description type", "type": "Theming", "description": "The header's description sits on foreground/secondary." }
+      ]
+    }
+  ],
+  "subcomponents": [
+    {
+      "name": "_Container header",
+      "private": true,
+      "id": "3395:6505",
+      "key": "2eee9326a611b9981500cdaaeb6ea7664855a8af",
+      "usedBy": ["Collapsible Card (root/header, pinned Flavor=default)"],
+      "api": {
+        "flavor": { "type": "enum", "figmaName": "Flavor", "default": "default", "values": ["default", "hover"] },
+        "hasLeading": { "type": "boolean", "figmaName": "hasLeading#3395:24", "default": true, "controls": ["leadingIcon (visible)"] },
+        "required": { "type": "boolean", "figmaName": "Required#3395:29", "default": true, "controls": ["heading/title/requiredMark (visible)"] },
+        "showDescription": { "type": "boolean", "figmaName": "Show Description#5002:0", "default": true, "controls": ["description (visible)"], "note": "New since the prior extraction pass — this property did not exist when Collapsible Card was first specced/built. Collapsible Card's own componentPropertyDefinitions still has no corresponding pass-through property (same pattern as hasLeading/required); its embedded header instance is presumably still pinned true, not exposed further up." }
+      },
+      "anatomy": [
+        { "id": "leadingIcon", "kind": "instance", "ref": "_Leading Icon", "refVariant": "State=close", "visibleWhen": "hasLeading" },
+        { "id": "heading", "kind": "text", "text": { "characters": "Heading", "style": "title/large" } },
+        { "id": "requiredMark", "kind": "text", "text": { "characters": "*", "style": "title/large", "fill": "foreground/error" }, "visibleWhen": "required" },
+        { "id": "description", "kind": "text", "text": { "characters": "Description", "style": "title/medium", "fill": "foreground/secondary" }, "visibleWhen": "showDescription" }
+      ],
+      "variants": { "axis": "flavor", "base": "default", "table": [
+        { "flavor": "default", "fill": "interactive/ghost/background/default (0% opacity — fully transparent, card surface shows through)" },
+        { "flavor": "hover", "fill": "interactive/ghost/background/hover (5% opacity)" }
+      ] }
+    },
+    {
+      "name": "_Leading Icon",
+      "private": true,
+      "id": "3395:6526",
+      "key": "d2e2f684b866592766a9c47e76c6a923444a057c",
+      "usedBy": ["_Container header (root/leadingIcon)"],
+      "api": {
+        "state": { "type": "enum", "figmaName": "State", "default": "open", "values": ["close", "open"] }
+      },
+      "anatomy": [
+        { "id": "icon", "kind": "instance", "ref": "Icon (shared library component, Size=large, Framed=false)", "note": "Name#2167:166 swaps a genuinely distinct, verified glyph per State (confirmed by resolving the swap to its parent component set, not just its own variant name — see the earlier extraction-methodology correction on Avatar's spec, which applies here too). This subcomponent pins the sharp icon family (unlike Avatar/Button, which pin rounded)." }
+      ],
+      "variants": { "axis": "state", "base": "open", "table": [
+        { "state": "open", "glyph": "expand-more" },
+        { "state": "close", "glyph": "chevron-right" }
+      ] }
+    },
+    {
+      "name": "_Card Heading",
+      "private": true,
+      "id": "3311:1213",
+      "key": "a7ddf5b85028e5bd428ecd7d1f4bdae75af4eb8d",
+      "usedBy": ["Card base's header/body slots (preferred content)", "Card Templates"],
+      "api": {
+        "leadingContent": { "type": "slot", "figmaName": "Leading Content#3311:0", "default": "Avatar, Size=small, ring/status/close off", "controls": ["leadingContent (visible)", "leadingContent (slotContentId)"] },
+        "trailingContent": { "type": "slot", "figmaName": "Trailing Content#3311:1", "default": "Icon Button, Flavour=text, Size=medium", "controls": ["trailingContent (visible)", "trailingContent (slotContentId)"] },
+        "hasLeading": { "type": "boolean", "figmaName": "hasLeading#3311:2", "default": true },
+        "hasTrailing": { "type": "boolean", "figmaName": "hasTrailing#3311:3", "default": true }
+      },
+      "anatomy": [
+        { "id": "leadingContent", "kind": "slot", "visibleWhen": "hasLeading", "sizing": "hug" },
+        { "id": "heading", "kind": "text", "text": { "characters": "Heading", "style": "title/medium", "fill": "foreground/primary" } },
+        { "id": "subheading", "kind": "text", "text": { "characters": "Subheading", "style": "body/small", "fill": "foreground/secondary" } },
+        { "id": "trailingContent", "kind": "slot", "visibleWhen": "hasTrailing", "sizing": "fixed" }
+      ],
+      "note": "Single component (no variants). Fixed width 360px (raw, not token-bound; used at 328px fill-width inside Card base's 330px shell, so the standalone canvas width is a drawing convenience, not a binding). Default leading content is an Avatar instance at Size=small — cross-referencing the already-specced Avatar component (see specs/avatar). Default trailing content is an Icon Button instance, Flavour=text."
+    },
+    {
+      "name": "_Card Body",
+      "private": true,
+      "id": "3311:2061",
+      "key": "f8dc6049c8fab75f0a46517b29289a0e49b80438",
+      "usedBy": ["Card base's body slot (one option)", "Card Templates"],
+      "api": {},
+      "anatomy": [
+        { "id": "content", "kind": "text", "text": { "characters": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.", "style": "body/small", "fill": "foreground/secondary" }, "sizing": { "h": "fill", "v": "hug" } }
+      ],
+      "note": "Single component (no variants, no exposed properties). A plain text block, padding space/lg on all sides, fixed width 360px (raw, unbound)."
+    },
+    {
+      "name": "_Card Image",
+      "private": true,
+      "id": "3637:581",
+      "key": "f20562e1924b1379c30cfa311fc2bdda84ee44d4",
+      "usedBy": ["Card base's body slot (one option, for media layouts)", "Card Templates"],
+      "api": {},
+      "anatomy": [
+        { "id": "image", "kind": "shape", "paint": { "fill": { "type": "IMAGE", "scaleMode": "FILL" } }, "sizing": { "h": "fill", "v": "fixed" } }
+      ],
+      "note": "Single component (no variants, no exposed properties). A single image fill, fixed height 259px (raw, unbound), fills width. Placeholder image — a content input, not a design decision."
+    },
+    {
+      "name": "_Card Footer",
+      "private": true,
+      "id": "3311:3383",
+      "key": "b676bdd54965f53b081633d70e57de9cdcd2f142",
+      "usedBy": ["Card base's footer slot (preferred content)", "Card Templates"],
+      "api": {
+        "actions": { "type": "enum", "figmaName": "Actions", "default": "1", "values": ["1", "2", "custom"] },
+        "slot": { "type": "slot", "figmaName": "Slot#3358:20", "default": "an outline Button", "note": "Only meaningful at actions=custom." }
+      },
+      "anatomy": [
+        { "id": "primaryButton", "kind": "instance", "ref": "Button (shared library component)", "refVariant": "Size=small, Shape=sharp, Flavor=primary", "visibleWhen": "actions=1", "sizing": { "h": "fill", "v": "fixed" } },
+        { "id": "outlineButton", "kind": "instance", "ref": "Button", "refVariant": "Size=small, Shape=sharp, Flavor=outline", "visibleWhen": "actions=2", "sizing": { "h": "fill", "v": "fixed" } },
+        { "id": "secondaryPrimaryButton", "kind": "instance", "ref": "Button", "refVariant": "Size=small, Shape=sharp, Flavor=primary", "visibleWhen": "actions=2", "sizing": { "h": "fill", "v": "fixed" } },
+        { "id": "customSlot", "kind": "slot", "visibleWhen": "actions=custom", "default": "an outline Button" }
+      ],
+      "variants": { "axis": "actions", "base": "1", "table": [
+        { "actions": "1", "buttons": "one, fill width, Flavor=primary" },
+        { "actions": "2", "buttons": "two, gap space/sm, outline then primary" },
+        { "actions": "custom", "buttons": "a slot, default content one outline Button" }
+      ] },
+      "note": "Every Button instance is pinned Shape=sharp regardless of which Actions option is shown, and this subcomponent has no Shape property of its own — there is no evident binding tying the footer's button corners to the parent Card's own Shape variant. See issues."
+    }
+  ],
+  "compositions": [
+    {
+      "name": "Card Template Default",
+      "id": "4545:545",
+      "buildsOn": "Card base",
+      "summary": "A ready-made card built on Card base, offered in three content layouts and two corner treatments. It declares no properties of its own beyond those two axes, so everything else is configured through the exposed Card base instance inside it. This is a condensed record, the shell and its slots are documented in the Card base Metadata frame.",
+      "api": {
+        "layout": {
+          "type": "enum", "figmaName": "Layout", "values": ["text", "media inset", "media"],
+          "intent": {
+            "text": "A heading row, a block of body text and a footer of actions. The everyday card, and the only layout with no image in it.",
+            "media inset": "Adds an image inside the body above a second heading and the text, keeping the card's own header row on top. Use it when the card needs both an owner row and a picture.",
+            "media": "Drops the header row entirely and leads with the image. It is wider than the other two, so it will not line up with them in a grid."
+          }
+        },
+        "shape": {
+          "type": "enum", "figmaName": "Shape", "values": ["sharp", "round"],
+          "intent": { "sharp": "Square corners. It sets the shell's Shape to sharp.", "round": "Softened corners. It sets the shell's Shape to rounded, and the shell clips its content to the curve." }
+        }
+      },
+      "content": [
+        { "property": "Card base", "type": "exposed nested instance", "description": "The shell the template is built on. Exposed, so its Shape, its header and footer toggles and all three slots stay reachable. See the Card base Metadata frame." },
+        { "property": "Header content", "type": "filled per Layout", "description": "_Card Heading with an Avatar and an Icon Button in the text and media inset layouts. The media layout leaves the header off entirely." },
+        { "property": "Body content", "type": "filled per Layout", "description": "_Card Body alone in the text layout. _Card Image, a second _Card Heading and _Card Body stacked in both media layouts." },
+        { "property": "Footer content", "type": "filled per Layout", "description": "_Card Footer in every layout, carrying a Button in the text layout." }
+      ],
+      "accessibility": [
+        "The template is a composition rather than a component with behaviour. Everything interactive in it, the avatar, the icon button and the footer actions, is documented by its own component.",
+        "The media layouts lead with an image that carries no text. Give it a description in code, or make sure the heading below it does that work.",
+        "Card content is clipped at the shell's edge, so check long headings and body text at the template's fixed width.",
+        "Nothing here makes the card itself clickable. If the whole card is a link, that target and its focus treatment belong to the implementation."
+      ],
+      "layoutTheming": [
+        { "property": "Width", "type": "Fixed per Layout", "description": "360px for text and media inset, 394px for media. The shell itself ships at 330px, so the template resizes it." },
+        { "property": "Height", "type": "Hug", "description": "228px for text, 523px for media inset and 451px for media, growing with whatever replaces the placeholder content." },
+        { "property": "Shape", "type": "Passed to the shell", "description": "The template's Shape sets the shell's, so the corner treatment and the clipping that follows from it both come from Card base." },
+        { "property": "Surface and border", "type": "From the shell", "description": "The template paints nothing of its own. surface/card, the border and the clipping all belong to Card base." }
+      ]
+    },
+    {
+      "name": "Card Template Collapsible",
+      "id": "4934:562",
+      "buildsOn": "Collapsible Card",
+      "summary": "A ready-made collapsible card built on Collapsible Card, with the body already filled. It declares no properties of its own beyond its three axes, so everything else is configured through the exposed shell instance. This is a condensed record, the shell is documented in the Collapsible Card Metadata frame.",
+      "api": {
+        "state": { "type": "enum", "figmaName": "State", "values": ["collapsed", "expanded"], "intent": {
+          "collapsed": "Header only. The resting state, and the one to lay out against.",
+          "expanded": "Reveals the filled body. What appears differs by Flavor, because the shell stores its body content separately for each expanded variant."
+        } },
+        "flavor": { "type": "enum", "figmaName": "Flavor", "default": "gradient", "values": ["gradient", "default"], "intent": {
+          "gradient": "The gradient-outlined card, and this template's default. Note the shell's own default is the plain flavour, so the two disagree.",
+          "default": "The plain card with no outline. Its expanded body ships with an image that the gradient flavour's does not have."
+        } },
+        "shape": { "type": "enum", "figmaName": "Shape", "values": ["sharp", "round"], "intent": {
+          "sharp": "Square corners. It sets the shell's Shape to sharp.",
+          "round": "Softened corners. It sets the shell's Shape to rounded."
+        } }
+      },
+      "content": [
+        { "property": "Collapsible Card", "type": "exposed nested instance", "description": "The shell the template is built on. Exposed, so its State, Flavor, Shape and body slot all stay reachable. See the Collapsible Card Metadata frame." },
+        { "property": "Body content", "type": "differs per Flavor", "description": "The default flavour's expanded body holds _Card Body, _Card Image and _Card Footer. The gradient flavour's holds _Card Body and _Card Footer with no image. That difference follows from the shell storing body content separately for each expanded variant." }
+      ],
+      "accessibility": [
+        "Expanding is not modelled as a behaviour. The toggle target, its focus treatment and its expanded state all belong to the implementation.",
+        "The two flavours ship with different body content, so what a reader sees on opening depends on a choice that looks purely decorative.",
+        "The gradient outline carries no meaning of its own and should not be the only marker of importance.",
+        "Collapsed content is hidden rather than removed, so make sure assistive technology reaches it only when the card is open."
+      ],
+      "layoutTheming": [
+        { "property": "Width", "type": "Fixed", "description": "385px at every variant, inherited from the shell." },
+        { "property": "Height", "type": "Hug", "description": "78px collapsed and 481px expanded at the default flavour, 82px and 226px at gradient. The two flavours differ by far more than the 4px their outline accounts for, because their bodies hold different content." },
+        { "property": "Shape and Flavor", "type": "Passed to the shell", "description": "Both map straight onto the shell's own axes. The surface, the outline and the clipping all belong to Collapsible Card." }
+      ],
+      "issues_local": [
+        { "severity": "note", "detail": "This template's own default Flavor (gradient) disagrees with the shell's own default (default/plain) — verbatim from its own metadata. Not a defect, just worth carrying into code deliberately rather than assuming the shell's default applies." }
+      ]
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "surface/card", "border/default", "foreground/primary", "foreground/secondary", "foreground/error",
+      "foreground/gradient/start", "foreground/gradient/end",
+      "interactive/ghost/background/default", "interactive/ghost/background/hover", "interactive/ghost/border/default",
+      "interactive/primary/background/default", "interactive/primary/border/default",
+      "interactive/neutral/background/default"
+    ],
+    "dimension": [
+      "space/none", "space/2xs", "space/xs", "space/sm", "space/md", "space/lg", "space/xl",
+      "radius/none", "radius/sm", "stroke/thin", "stroke/base", "stroke/thick",
+      "control/sm", "control/md", "control/lg"
+    ],
+    "typography": ["title/large", "title/medium", "body/small"],
+    "themeAxes": {
+      "palette": ["Light", "Dark"],
+      "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
+      "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"]
+    }
+  },
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3007-796",
+    "family": {
+      "cardBase": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3201-53",
+      "collapsibleCard": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3400-364"
+    },
+    "subcomponents": {
+      "containerHeader": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3395-6505",
+      "leadingIcon": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3395-6526",
+      "cardHeading": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3311-1213",
+      "cardBody": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3311-2061",
+      "cardImage": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3637-581",
+      "cardFooter": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3311-3383"
+    },
+    "compositions": {
+      "templateDefault": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4545-545",
+      "templateCollapsible": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4934-562"
+    },
+    "metadataFrames": {
+      "cardBase": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4977-521",
+      "collapsibleCard": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4977-767",
+      "templateDefault": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4977-1013",
+      "templateCollapsible": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4977-1259"
+    }
+  },
+  "issues": [
+    { "severity": "blocker", "source": "Stated values vs extracted values (Collapsible Card)", "detail": "The metadata's Behavior & Motion Intent and Content & Slot sections both state the leading chevron 'carries its own open and closed states and the card sets them to match State' / 'is exposed, so it can be hidden through the header's own hasLeading toggle' and implies it flips per State. This extraction found the nested _Container header instance identical, field-for-field, across every collapsed/expanded pair in all 8 Collapsible Card variants — no instanceProps change, no variant swap, nothing in `deltas` for that path at all. There is no exposed property on Collapsible Card that would let code drive this either (no 'State#…' compound property in its componentPropertyDefinitions). The chevron does not currently flip with State in Figma; a developer implementing 'the icon follows State' faithfully would be implementing behavior the design file doesn't actually have wired. What it should swap between, if wired, is now known precisely (see _Leading Icon's own variants): 'chevron-right' when closed, 'expand-more' when open — both real, verified glyphs, not a rotation of one glyph." },
+    { "severity": "warn", "source": "Icon glyph optics (Collapsible Card / _Leading Icon)", "detail": "_Leading Icon's own two states genuinely swap between the glyphs 'chevron-right' (closed) and 'expand-more' (open) — both verified present in packages/icons and not rejected. However, 'expand-more' is not vertically symmetric within its own glyph box (its ink sits in the upper portion, with dead space below), which reads as top-misaligned when box-centered against multi-line header text — this was independently discovered and reported against the built React/Web-components implementation. Those implementations deliberately deviate from a literal glyph-swap: they rotate the single, optically-symmetric 'chevron-right' glyph 90° instead of swapping to 'expand-more', trading literal fidelity to this glyph pairing for correct visual alignment. Worth knowing if a future implementation is tempted to 'fix' it back to the literal two-glyph swap — that would reintroduce the alignment bug." },
+    { "severity": "warn", "source": "Dependencies / unused property (Collapsible Card)", "detail": "Collapsible Card's own componentPropertyDefinitions include a 'Footer#3541:48' SLOT property with an empty `controls` list — this extraction found no part in any of the 8 variants bound to it. Likely vestigial (perhaps inherited from Card base's component structure during creation and never wired, or bound to a node this walk didn't reach). Worth confirming in Figma before assuming Collapsible Card has a usable footer slot; the metadata explicitly says it does not ('Unlike Card base it has no header or footer slot of its own')." },
+    { "severity": "warn", "source": "Dependencies (footer / shape)", "detail": "_Card Footer's Button instances are pinned Shape=sharp in every Actions option, and _Card Footer has no Shape property of its own. There is no evident binding tying the footer's button corners to the parent Card's own Shape variant — a rounded Card's footer buttons may need to be set to a rounded Shape manually in code, since Figma doesn't demonstrate that link." },
+    { "severity": "note", "source": "Dependencies", "detail": "_Card Heading's default leading-content instance resolves to an Avatar component at id 2699:17793. That id predates a Figma edit made earlier in this session that recreated the Avatar master component set under a new id (4906:1172, see specs/avatar/avatar.spec.json). This Card instance may be referencing a now-orphaned prior version of Avatar rather than the current one — worth a manual check in Figma rather than assuming it auto-updated." },
+    { "severity": "note", "source": "gaps", "detail": "Card base and Collapsible Card's own root widths (330px, 385px) are raw, unbound values — neither hugs horizontally and neither binds a width token. This is consistent with both metadata frames' own 'Width: Fixed' rows, which state the px value directly rather than naming a token, so it reads as an intentional authored constant rather than an oversight." },
+    { "severity": "note", "source": "spec vs icon font (corrected)", "detail": "Retracted: an earlier pass reported _Leading Icon's swap as resolving to a generic placeholder with no real glyph committed. Re-resolving each swap to its parent component set (not just its own variant name — the same extraction-methodology fix applied on Avatar's spec) shows two real, verified, distinct glyphs: 'chevron-right' (State=close) and 'expand-more' (State=open). Both confirmed present in packages/icons/codepoints.json and absent from that build's rejected list." },
+    { "severity": "note", "source": "coverage", "detail": "The two 'Card Templates' (Default, Collapsible) were documented from their own metadata frames and the page-level discover summary (variant/prop counts), not independently re-walked node-by-node — everything they compose (Card base, Collapsible Card, and all six subcomponents) is already fully extracted above, and their own metadata frames explicitly describe themselves as 'a condensed record.'" },
+    { "severity": "note", "source": "coverage", "detail": "Neither Card base nor Collapsible Card has an 'Elevation' effect at any variant (confirmed no bound or unbound effects on any extracted node) — matches Card base's own metadata row 'Elevation: None' exactly." }
+  ]
+}

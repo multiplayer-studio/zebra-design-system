@@ -1,0 +1,321 @@
+{
+  "component": {
+    "name": "Checkbox",
+    "slug": "checkbox",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "6384:207",
+      "key": "ff4c1ddcb74a933bc9876100ab6e090e616dbfc7",
+      "page": "Checkbox",
+      "pageNodeId": "6382:52",
+      "metadataFrameId": "6387:94",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6382-52",
+      "extractedAt": "2026-10-15",
+      "variantCount": 24,
+      "defaultVariant": "Checked=false, State=enabled, Size=large",
+      "extractionNote": "One component set, all 24 variants walked (Checked x State x Size = 3 x 4 x 2, complete). extract-structure.js was run unchanged with a slicer appended to keep each response under the size cap (part 0 = API, base and token lists; deltas fetched in chunks). The nested Icon's glyph colour sits on the instance's vector region, so it was read with a targeted probe. No on-page subcomponents; the Icon set (2046:15010) is local to the file. The component set has no description."
+    }
+  },
+  "summary": "A square control for turning a single option on or off, with an optional label beside it. Checked carries three values rather than two, so a checkbox that summarises a set of others can say indeterminate instead of guessing between on and off. Reach for it wherever options are independent of each other, and reach for Radio Button where exactly one of a set has to win.",
+  "api": {
+    "checked": {
+      "type": "enum",
+      "figmaName": "Checked",
+      "values": ["false", "true", "indeterminate"],
+      "default": "false",
+      "controls": ["box.stroke", "box.fill", "mark"],
+      "intent": {
+        "false": "The option is off. The box carries a border and no fill, which is the only state with nothing inside it.",
+        "true": "The option is on, shown by a check mark on a filled box.",
+        "indeterminate": "Some of what this control stands for is on and some is off. Reach for it on a parent that summarises other checkboxes, never as a third value a person can choose, because nothing cycles into it."
+      }
+    },
+    "state": {
+      "type": "enum",
+      "figmaName": "State",
+      "values": ["enabled", "hover", "focus", "disabled"],
+      "default": "enabled",
+      "controls": ["box.stroke", "box.fill", "focusRing", "mark", "label.fill"],
+      "intent": {
+        "enabled": "Resting and interactive.",
+        "hover": "Pointer over the control. The border answers, and the fill answers too once checked.",
+        "focus": "Keyboard focus. A second ring is drawn at the box's own size, so the control stays exactly where it was.",
+        "disabled": "Not interactive. The mark stays visible, so a disabled checkbox still reports its value rather than hiding it."
+      }
+    },
+    "size": {
+      "type": "enum",
+      "figmaName": "Size",
+      "values": ["medium", "large"],
+      "default": "large",
+      "controls": ["box", "mark"],
+      "intent": {
+        "large": "The default, and the right choice wherever the checkbox stands on its own.",
+        "medium": "For dense lists and table rows. The target does not shrink with it, so the control is no harder to hit."
+      }
+    },
+    "hasLabel": {
+      "type": "boolean",
+      "figmaName": "hasLabel#6384:0",
+      "default": true,
+      "controls": ["label"],
+      "intent": {
+        "true": "Shows the label beside the control. Keep it on, because the box carries no name and the target beside it is the part most people aim at.",
+        "false": "Leaves the control as the target alone. Only safe where something else already names the option, such as a column header in a table of rows."
+      }
+    },
+    "label": {
+      "type": "string",
+      "figmaName": "Label#6384:25",
+      "default": "Label",
+      "controls": ["label"],
+      "intent": "Consumer owned, set through the Label property and sitting directly beside the target. Turning hasLabel off leaves the control with no visible name, so one has to come from the surrounding structure."
+    }
+  },
+  "internalVariations": [
+    {
+      "part": "mark",
+      "via": "Icon (nested, Name swap)",
+      "options": ["check-mark", "remove"],
+      "intent": "A check mark when Checked is true and a dash when it is indeterminate. The Checkbox decides both the glyph and its size and surfaces none of the Icon's own properties, so the mark is not a slot a consumer fills.",
+      "note": "Driven by Checked, not a consumer choice. Not a prop."
+    }
+  ],
+  "contentInputs": [],
+  "anatomy": [
+    {
+      "id": "root",
+      "kind": "container",
+      "layout": { "direction": "horizontal", "gap": "space/none", "padding": "space/none", "align": "start / center" },
+      "sizing": { "h": "hug", "v": "hug" }
+    },
+    {
+      "id": "target",
+      "kind": "container",
+      "role": "A fixed 40 square holding the box. It is the pressable area, and it supplies the space between the box and the label on its own.",
+      "layout": { "direction": "horizontal", "gap": "space/none", "padding": "space/none", "align": "center / center" },
+      "size": { "w": "control/target-min", "h": "control/target-min" },
+      "sizing": "fixed",
+      "clips": true
+    },
+    {
+      "id": "focusRing",
+      "kind": "container",
+      "visibleWhen": "state = focus",
+      "role": "A ring bound to border/focus is drawn at the box's own size, sitting over the state border rather than replacing it. Nothing else changes.",
+      "note": "In the focus variants the box is nested inside this frame (layer path target/Focus/Box). The frame hugs the box, so it is the box's size.",
+      "paint": { "stroke": { "color": "border/focus", "width": "stroke/thick", "align": "outside" } },
+      "radius": "same as box (radius/element-sm or radius/xs)"
+    },
+    {
+      "id": "box",
+      "kind": "container",
+      "role": "The square itself, carrying the border at every state and the fill once checked. The mark sits inside it rather than replacing it.",
+      "layout": { "direction": "horizontal", "gap": "space/none", "padding": "space/none", "align": "center / center" },
+      "size": "control/xs (large) · control/icon-sm (medium)",
+      "radius": "radius/element-sm (large) · radius/xs (medium)",
+      "paint": {
+        "stroke": { "color": "see variants.checkedState", "width": "stroke/thick", "align": "inside" },
+        "fill": "none when Checked=false; see variants.checkedState otherwise"
+      }
+    },
+    {
+      "id": "mark",
+      "kind": "instance",
+      "ref": "Icon",
+      "visibleWhen": "checked = true | indeterminate",
+      "glyph": { "true": "check-mark", "indeterminate": "remove", "family": "rounded (pinned)" },
+      "size": "Icon Size=medium (large box) · Icon Size=small scaled to fit (medium box, see issues)",
+      "color": "foreground/on-strong; foreground/disabled when state = disabled. As a font glyph this is the colour the box sets for its content (currentColor), not an Icon property."
+    },
+    {
+      "id": "label",
+      "kind": "text",
+      "role": "The option's name, turned on by hasLabel and set through Label. It extends the area a person can aim at.",
+      "visibleWhen": "hasLabel",
+      "content": "label",
+      "text": { "style": "label/medium", "color": "foreground/primary; foreground/disabled when state = disabled" },
+      "sizing": { "h": "hug", "v": "hug" }
+    }
+  ],
+  "variants": {
+    "_note": "Cells are token names, except those ending Px, which are measurements of the rendered file.",
+    "size": {
+      "axis": "size",
+      "base": "large",
+      "table": [
+        { "size": "medium", "box.size": "control/icon-sm", "box.radius": "radius/xs", "box.measuredSizePx": 16, "mark.icon": "Icon Size=small, scaled (unbound)", "mark.measuredSizePx": 12, "figmaNode": "6384:141" },
+        { "size": "large", "box.size": "control/xs", "box.radius": "radius/element-sm", "box.measuredSizePx": 24, "mark.icon": "Icon Size=medium", "mark.measuredSizePx": 20, "figmaNode": "6384:57" }
+      ],
+      "_note2": "The touch target (control/target-min), stroke (stroke/thick) and label (label/medium) are the same at both sizes. Root measures 75 x 40 with the sample label at both sizes."
+    },
+    "checkedState": {
+      "axes": ["checked", "state"],
+      "base": { "checked": "false", "state": "enabled" },
+      "_note": "Identical at both sizes; the large node ids are listed.",
+      "table": [
+        { "checked": "false", "state": "enabled", "box.stroke": "interactive/selection/border/default", "box.fill": "none", "mark": "hidden", "label.fill": "foreground/primary", "figmaNode": "6384:40" },
+        { "checked": "false", "state": "hover", "box.stroke": "interactive/selection/border/hover", "box.fill": "none", "mark": "hidden", "label.fill": "foreground/primary", "figmaNode": "6384:44" },
+        { "checked": "false", "state": "focus", "box.stroke": "interactive/selection/border/default", "box.fill": "none", "mark": "hidden", "focusRing": "border/focus", "label.fill": "foreground/primary", "figmaNode": "6384:48" },
+        { "checked": "false", "state": "disabled", "box.stroke": "interactive/selection/border/disabled", "box.fill": "none", "mark": "hidden", "label.fill": "foreground/disabled", "figmaNode": "6384:53" },
+        { "checked": "true", "state": "enabled", "box.stroke": "interactive/selection/border/pressed", "box.fill": "interactive/selection/background/pressed", "mark": "check-mark in foreground/on-strong", "label.fill": "foreground/primary", "figmaNode": "6384:57" },
+        { "checked": "true", "state": "hover", "box.stroke": "interactive/selection/border/hover", "box.fill": "interactive/selection/background/hover", "mark": "check-mark in foreground/on-strong", "label.fill": "foreground/primary", "figmaNode": "6384:66" },
+        { "checked": "true", "state": "focus", "box.stroke": "interactive/selection/border/pressed", "box.fill": "interactive/selection/background/pressed", "mark": "check-mark in foreground/on-strong", "focusRing": "border/focus", "label.fill": "foreground/primary", "figmaNode": "6384:74" },
+        { "checked": "true", "state": "disabled", "box.stroke": "interactive/selection/border/disabled", "box.fill": "interactive/selection/background/disabled", "mark": "check-mark in foreground/disabled", "label.fill": "foreground/disabled", "figmaNode": "6384:83" },
+        { "checked": "indeterminate", "state": "enabled", "box.stroke": "interactive/selection/border/pressed", "box.fill": "interactive/selection/background/pressed", "mark": "remove in foreground/on-strong", "label.fill": "foreground/primary", "figmaNode": "6384:91" },
+        { "checked": "indeterminate", "state": "hover", "box.stroke": "interactive/selection/border/hover", "box.fill": "interactive/selection/background/hover", "mark": "remove in foreground/on-strong", "label.fill": "foreground/primary", "figmaNode": "6384:99" },
+        { "checked": "indeterminate", "state": "focus", "box.stroke": "interactive/selection/border/pressed", "box.fill": "interactive/selection/background/pressed", "mark": "remove in foreground/on-strong", "focusRing": "border/focus", "label.fill": "foreground/primary", "figmaNode": "6384:107" },
+        { "checked": "indeterminate", "state": "disabled", "box.stroke": "interactive/selection/border/disabled", "box.fill": "interactive/selection/background/disabled", "mark": "remove in foreground/disabled", "label.fill": "foreground/disabled", "figmaNode": "6384:116" }
+      ]
+    }
+  },
+  "subcomponents": [],
+  "dependencies": [
+    {
+      "name": "Icon",
+      "id": "2046:15010",
+      "key": "a469ac1cf34202af3e094593468d9ef20a37a703",
+      "remote": false,
+      "usedAt": ["mark"],
+      "pinned": { "Size": "medium (large box) / small (medium box)", "Framed": "false", "Name": "Check Mark / Remove, Style=rounded" },
+      "delivery": "Font glyphs from packages/icons: check-mark and remove, both present in codepoints.json and not rejected. Rounded family."
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ — names below resolve there; see tokens/manifest.json for collections, modes and the extension graph",
+    "rule": "This spec names tokens only. Resolved values live in tokens/ and are deliberately not duplicated here.",
+    "color": [
+      "interactive/selection/border/{default,hover,pressed,disabled}",
+      "interactive/selection/background/{pressed,hover,disabled}",
+      "border/focus",
+      "foreground/{primary,disabled,on-strong}"
+    ],
+    "dimension": [
+      "control/{target-min,xs,icon-sm}",
+      "space/none",
+      "radius/{element-sm,xs}",
+      "stroke/thick"
+    ],
+    "typography": ["label/medium"],
+    "effect": [],
+    "missingFromExport": [],
+    "themeAxes": {
+      "palette": ["Light", "Dark"],
+      "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
+      "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"],
+      "extensions": "tokens/extensions/ (companion, target, condensed)"
+    }
+  },
+  "states": [
+    { "state": "enabled", "trigger": "Resting", "duration": "—", "whatChanges": "The border follows Checked. Unchecked draws interactive/selection/border/default over no fill. Checked and indeterminate fill with interactive/selection/background/pressed and border with interactive/selection/border/pressed." },
+    { "state": "hover", "trigger": "Pointer over the control", "duration": "—", "whatChanges": "The border steps to interactive/selection/border/hover, and once checked the fill steps to interactive/selection/background/hover. The label holds." },
+    { "state": "focus", "trigger": "Keyboard focus", "duration": "—", "whatChanges": "A ring bound to border/focus is drawn at the box's own size, sitting over the state border rather than replacing it. Nothing else changes." },
+    { "state": "disabled", "trigger": "—", "duration": "—", "whatChanges": "The border moves to interactive/selection/border/disabled, any fill to interactive/selection/background/disabled, and the label to foreground/disabled. The mark stays where it is." }
+  ],
+  "behavior": [
+    { "type": "Motion", "description": "No transition is defined. Every state is a swap of border, fill and, where it applies, the glyph inside the box." },
+    { "type": "Selection model", "description": "Checked carries all three values on one axis rather than pairing a two-value checked with a separate indeterminate flag. A control can therefore be off, on or mixed and never two of those at once, which a separate flag allows by accident." },
+    { "type": "Resize", "description": "Turning the label off collapses the control to the 40 target alone. With the label on the width hugs it, so a long option name widens the control rather than wrapping inside a fixed box." }
+  ],
+  "content": [
+    { "property": "Label", "type": "Plain text, toggled by hasLabel", "description": "Consumer owned, set through the Label property and sitting directly beside the target. Turning hasLabel off leaves the control with no visible name, so one has to come from the surrounding structure." },
+    { "property": "Mark", "type": "nested Icon, not exposed", "description": "A check mark when Checked is true and a dash when it is indeterminate. The Checkbox decides both the glyph and its size and surfaces none of the Icon's own properties, so the mark is not a slot a consumer fills." }
+  ],
+  "usage": {
+    "do": [
+      "Use indeterminate on a parent that summarises a mixed set of children. It is the one value that says some without claiming all or none.",
+      "Keep the label on. The 40 target already reaches past the box, and the label extends the thing a person aims at, which is most of what makes a small control easy to hit."
+    ],
+    "dont": [
+      "Don't reach for Checkbox where only one option may win. That is Radio Button, and a row of checkboxes gives a person no way to see the constraint before breaking it.",
+      "Don't offer indeterminate as a third value someone can select. Nothing cycles into it. It is set from the state of the things underneath it and read back, never chosen."
+    ]
+  },
+  "accessibility": [
+    "The label is the control's name. Turning hasLabel off removes it from view, so the name has to come from the surrounding structure before the control is usable without sight.",
+    "indeterminate is a third value, not a styling of checked. It has to be exposed as one, or a mixed parent is announced as simply on or off.",
+    "The 40 square target is larger than the box at both sizes. Keep the whole square pressable rather than only the box, and let the label extend it further.",
+    "disabled keeps the mark visible so the value stays readable. Both the border and the fill move to their disabled tokens while the glyph does not, so check the mark still holds contrast against the dimmed fill.",
+    "Focus is a ring at the box's own size rather than an outset halo. Check it reads against the state border directly beneath it, particularly on a busy surface.",
+    "A checkbox rarely stands alone. Where several belong together, the grouping and its name have to be expressed in the structure around them, because nothing in the control carries it."
+  ],
+  "layoutTheming": [
+    { "property": "Touch target", "type": "40×40, fixed", "description": "Does not change with Size. Both sizes centre their box inside the same 40 square, so a column of mixed sizes still aligns and every control keeps the same target regardless of how small its box is." },
+    { "property": "Box", "type": "24 at large, 16 at medium", "description": "control/xs at large and control/icon-sm at medium, with a 2px stroke at both. Radius is radius/element-sm at large and radius/xs at medium, so the corner softens in proportion rather than holding one value." },
+    { "property": "Mark", "type": "20 at large, 12 at medium", "description": "An Icon at Size=medium for the large box and Size=small for the medium one. It sits inside the box rather than replacing its fill, and is present only when Checked is true or indeterminate." },
+    { "property": "Focus ring", "type": "Matches the box", "description": "A second stroke bound to border/focus, carried on a frame the same size as the box rather than outside it, so gaining focus does not change the control's footprint or shift anything beside it." },
+    { "property": "Gap", "type": "0, space/none", "description": "The label sits directly against the target with nothing between them. The 40 square supplies the visual gap on its own, because the box is only 24 or 16 and sits centred inside it." },
+    { "property": "Label", "type": "14px at both sizes", "description": "label/medium at large and medium alike. Size moves the box and the mark and never the text, so the label stays at full legibility in the denser option." }
+  ],
+  "visualReference": {
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6382-52",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6384-207",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6387-94",
+    "perAxis": {
+      "checked=false (large)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6384-40",
+      "checked=true (large)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6384-57",
+      "checked=indeterminate (large)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6384-91",
+      "checked=true, hover": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6384-66",
+      "checked=true, focus": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6384-74",
+      "checked=true, disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6384-83",
+      "size=medium, checked=true": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6384-141"
+    }
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "tokens/ (contrast, Dark) · interactive/selection/background/hover",
+      "detail": "In dark mode a checked or indeterminate box on hover puts the mark (foreground/on-strong, white in every mode) on interactive/selection/background/hover, which resolves light in dark mode. Measured 1.51:1, so the mark effectively disappears under the pointer. Light mode is 7.03:1. The enabled checked fill is 4.64:1 in both modes. Either the hover fill should stay saturated in dark mode, or the mark needs a token that flips with it."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata Accessibility vs structure",
+      "detail": "Accessibility says 'Both the border and the fill move to their disabled tokens while the glyph does not'. As built, the glyph does move: disabled variants paint the mark foreground/disabled, not foreground/on-strong. States & Triggers ('The mark stays where it is') is about position and agrees with either. Measured contrast of the disabled mark on the disabled fill: 2.35:1 light, 3.43:1 dark. Disabled controls are exempt from WCAG contrast, but the metadata asks for the check, and the light value is low."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata Accessibility · tokens/ (contrast)",
+      "detail": "The metadata asks that the focus ring 'reads against the state border directly beneath it'. border/focus against the checked border (interactive/selection/border/pressed) measures 1.33:1 in both modes, so on a checked box the ring and the border read as one thicker blue edge. Against the unchecked border and the page it is distinct."
+    },
+    {
+      "severity": "warn",
+      "source": "structure · tokens",
+      "detail": "The medium mark is the Icon at Size=small scaled down to fit the medium box (measured 12, against the Icon's own 16), with its size bindings removed. No control/icon token matches that size, so the medium mark is the one unbound dimension in the set. The metadata's 'Size=small for the medium one' is right about the variant but not the rendered size."
+    },
+    {
+      "severity": "note",
+      "source": "metadata vs structure (focus ring)",
+      "detail": "The focus frame is the box's own size, as the metadata says, but its stroke is aligned outside, so the ring renders immediately outside the box's edge (an outline at offset 0) rather than 'over the state border'. The footprint claim holds: layout does not change. The target clips its content, and the ring stays inside the 40 square at both sizes."
+    },
+    {
+      "severity": "note",
+      "source": "metadata Property Breakdown",
+      "detail": "The Property Breakdown lists hasLabel, Checked, State and Size but not the Label text property; Label is described in Content & Slot instead. Its Type column holds option values (true, false, indeterminate, enabled…) where Radio Button's holds types (Boolean, Variant). Content is consistent with Figma; only the presentation differs."
+    },
+    {
+      "severity": "note",
+      "source": "tokens",
+      "detail": "Checked uses the pressed tokens (interactive/selection/border/pressed, /background/pressed) to mean 'selected', as Radio Button and Switch do. In dark mode the checked border (pressed) and fill (pressed) resolve to different blues (1.33:1 apart), so a checked box shows a lighter rim; in light mode they are identical."
+    },
+    {
+      "severity": "note",
+      "source": "tokens",
+      "detail": "Checked hover fills the box with interactive/selection/background/hover, a neutral grey, so a checked box changes hue (blue to grey) under the pointer. Bound as the metadata describes; recorded because it is a large visual change on a filled control."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "The four focus variants nest the box inside the Focus frame (target/Focus/Box), so the box's bindings appear under a different layer path there. They are bound the same way in all 24 variants; extract-structure reported no gaps and no binding drift."
+    },
+    {
+      "severity": "note",
+      "source": "component set",
+      "detail": "The component set has no description in Figma."
+    },
+    {
+      "severity": "note",
+      "source": "metadata Behavior",
+      "detail": "No motion is defined, by the metadata's own statement. No invalid or required state is modelled."
+    }
+  ]
+}

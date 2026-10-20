@@ -1,7 +1,7 @@
 # @zebra-design-system/icons
 
 Icon fonts generated from Figma (`node-id=2046-6754`, the Assets › Icons page)
-by the **figma-icon-font** skill.
+by the **zebra-figma-icon-font** skill.
 
 | | |
 |---|---|
@@ -60,6 +60,14 @@ gap without moving anything else.
 
 Three names collided across categories and were disambiguated once, then
 frozen: `charts-table`, `general-to-do`, `general-credit-card`.
+
+## Orientation
+
+SVG is Y-down from the top-left; fonts are Y-up from the baseline.
+`svgicons2svgfont` performs that conversion itself, so the build must **not**
+pre-flip the paths — doing so lands every glyph upside down. Verified by
+inspecting the emitted `<glyph d="…">`: a shape at the top of the source SVG
+must come out at high Y in the font.
 
 ## Check before publishing
 

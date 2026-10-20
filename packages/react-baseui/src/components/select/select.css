@@ -1,0 +1,54 @@
+/* Select (EXPERIMENTAL) — only the deltas. The trigger is styled by
+   input-field.css (.zds-input-field + data-size/shape/flavour/state), the
+   label and hint by input.css, the list by dropdown-menu.css and the rows by
+   menu-item.css. Every value here is a semantic token.
+
+   Spec: none yet — composes specs/input and specs/dropdown. */
+
+/* ---- trigger --------------------------------------------------------- */
+/* A <button>, not a text box: reset the UA button styles input-field.css
+   does not expect, and use the pointer cursor. */
+.zds-select__trigger {
+  inline-size: 100%;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+.zds-select__trigger[data-state="read-only"] { cursor: default; }
+.zds-select__trigger[data-state="disabled"] { cursor: not-allowed; }
+
+/* Keyboard focus: Input Field's `focus` state, drawn from :focus-visible
+   because a button (unlike a text box) can tell keyboard from pointer. */
+.zds-select__trigger:focus-visible:not([data-state="disabled"]) {
+  --zds-input-border: transparent;
+  --zds-input-outline: var(--stroke-thick) solid var(--border-focus);
+}
+
+.zds-select__value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.zds-select__value[data-empty] { color: var(--foreground-disabled); }
+
+.zds-select__chevron {
+  flex: none;
+  display: inline-flex;
+}
+.zds-select__trigger[data-popup-open] .zds-select__chevron { transform: rotate(180deg); }
+
+/* ---- list ------------------------------------------------------------ */
+/* At least as wide as the trigger (Base UI's --anchor-width), never taller
+   than the room left in the viewport. */
+.zds-select__positioner { z-index: 1; outline: none; }
+.zds-select__popup {
+  display: block;
+  min-inline-size: var(--anchor-width);
+  max-block-size: var(--available-height);
+  overflow-y: auto;
+  outline: none;
+}
+
+/* The check sits where Menu Item's trailing icon does; the label's own
+   trailing inset already reserves its room. */
+.zds-select__check { margin-inline-start: auto; }

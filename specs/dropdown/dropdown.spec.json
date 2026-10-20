@@ -1,0 +1,424 @@
+{
+  "component": {
+    "name": "Dropdown",
+    "slug": "dropdown",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "2669:10309",
+      "key": "e5a00b4c71ad54ad48724809d9f365a61d2076d5",
+      "page": "Dropdown",
+      "extractedAt": "2026-09-23",
+      "extractionNote": "Page holds three public component sets rather than one master matching the page name: Template/Dropdown (a positioning pattern, treated here as the master), Menu Item, and Dropdown Menu. Each is documented as its own unit; Template/Dropdown composes the other two plus an external Button trigger."
+    }
+  },
+  "summary": "A pattern rather than a component, pairing a trigger with a Dropdown Menu and placing the menu relative to it. Open shows or hides the menu, Position picks which side it opens on and Align pins which edges line up. The menu is positioned absolutely and sits outside the template's bounds, so a layout only reserves the trigger's space. This is a condensed record, the panel and its rows are documented in their own frames.",
+  "api": {
+    "open": {
+      "type": "enum", "figmaName": "Open", "default": "false", "controls": ["variant"],
+      "values": ["false", "true"],
+      "intent": {
+        "false": "The resting state, trigger only. The menu is still present but hidden, so anything placed in it is kept.",
+        "true": "Reveals the menu. Only one closed variant is built, so Position and Align have no effect until Open is true."
+      }
+    },
+    "position": {
+      "type": "enum", "figmaName": "Position", "default": "bottom", "controls": ["variant"],
+      "values": ["bottom", "top", "right", "left"],
+      "intent": {
+        "bottom": "Opens below the trigger. The default, and the right choice unless the trigger sits low in the viewport.",
+        "top": "Opens above the trigger, for a trigger near the bottom of the view.",
+        "right": "Opens to the trailing side, for a trigger in a narrow column or a side rail.",
+        "left": "Opens to the leading side, for a trigger near the trailing edge of the view."
+      }
+    },
+    "align": {
+      "type": "enum", "figmaName": "Align", "default": "left", "controls": ["variant"],
+      "values": ["left", "right", "bottom", "top"],
+      "intent": {
+        "left": "With Position bottom or top, lines the menu's leading edge up with the trigger's.",
+        "right": "With Position bottom or top, lines the trailing edges up instead, for a trigger near the trailing edge.",
+        "top": "With Position left or right, lines the top edges up. It has no effect while Position is bottom or top.",
+        "bottom": "With Position left or right, lines the bottom edges up. It has no effect while Position is bottom or top."
+      }
+    },
+    "triggerComponent": {
+      "type": "slot", "figmaName": "Trigger Component#2669:113", "default": "Button (Size=small, Shape=rounded, Flavor=primary, State=default, Disabled=false)",
+      "controls": ["root/Trigger Component/Button (mainComponent)"],
+      "preferredCount": 2,
+      "intent": "The control the menu opens from. Button and Icon Button are the suggested options, and the instance stays exposed so the trigger's own label and flavour remain editable."
+    },
+    "triggerSlot": {
+      "type": "slot", "figmaName": "Trigger Slot#2669:112", "default": null, "controls": [],
+      "intent": "Not documented in the metadata's Property Breakdown — see issues."
+    }
+  },
+  "internalVariations": [],
+  "contentInputs": [],
+  "anatomy": [
+    {
+      "id": "root", "kind": "container",
+      "layout": { "direction": "vertical", "gapPx": 10 },
+      "sizing": { "h": "hug", "v": "hug" },
+      "role": "Reserves space for the trigger only. The menu is absolutely positioned and sits outside these bounds."
+    },
+    {
+      "id": "triggerComponent", "kind": "container",
+      "layout": { "direction": "vertical", "gapPx": 10 },
+      "sizing": { "h": "hug", "v": "hug" },
+      "limits": { "minWidth": "control/sm" }
+    },
+    {
+      "id": "button", "kind": "instance", "ref": "Button (external, see specs/button)",
+      "refVariant": "Size=small, Shape=rounded, Flavor=primary, State=default, Disabled=false",
+      "sizing": { "h": "hug", "v": "fixed" },
+      "role": "The trigger. Swappable through triggerComponent; its own label/flavour stay editable since the instance is exposed."
+    },
+    {
+      "id": "dropdownMenu", "kind": "instance", "ref": "Dropdown Menu", "refVariant": "Rounded=true",
+      "visibleWhen": "open",
+      "position": { "mode": "absolute", "anchor": "varies by position + align — see variants table" },
+      "role": "The panel itself, pinned to Rounded=true. Exposed, so its More Items toggle and its slot are reachable from the template."
+    }
+  ],
+  "variants": {
+    "axis": "position + align (only meaningful when open=true)",
+    "base": "open=false",
+    "_note": "root/triggerComponent box is fixed at 76×36px (measured, not a token — comes from the Button trigger's own size). Menu box is 213×196px (measured, from Dropdown Menu's Rounded=true content). Offset between trigger and menu is a fixed 8px per the metadata, not bound to a spacing token in Figma.",
+    "table": [
+      { "position": "bottom", "align": "left",  "dropdownMenu.anchor": "top-left of trigger",     "dropdownMenu.offsetXPx": 0,    "dropdownMenu.offsetYPx": 44 },
+      { "position": "bottom", "align": "right", "dropdownMenu.anchor": "top-right of trigger",    "dropdownMenu.offsetXPx": -137, "dropdownMenu.offsetYPx": 44 },
+      { "position": "top",    "align": "left",  "dropdownMenu.anchor": "bottom-left of trigger",  "dropdownMenu.offsetXPx": 0,    "dropdownMenu.offsetYPx": -214 },
+      { "position": "top",    "align": "right", "dropdownMenu.anchor": "bottom-right of trigger", "dropdownMenu.offsetXPx": -137, "dropdownMenu.offsetYPx": -204 },
+      { "position": "right",  "align": "top",   "dropdownMenu.anchor": "top-left, offset right",  "dropdownMenu.offsetXPx": 84,   "dropdownMenu.offsetYPx": 0 },
+      { "position": "right",  "align": "bottom","dropdownMenu.anchor": "bottom-left, offset right","dropdownMenu.offsetXPx": 84,   "dropdownMenu.offsetYPx": -160 },
+      { "position": "left",   "align": "top",   "dropdownMenu.anchor": "top-left, offset left",   "dropdownMenu.offsetXPx": -221, "dropdownMenu.offsetYPx": 0 },
+      { "position": "left",   "align": "bottom","dropdownMenu.anchor": "bottom-left, offset left","dropdownMenu.offsetXPx": -221, "dropdownMenu.offsetYPx": -160 }
+    ]
+  },
+  "subcomponents": [
+    {
+      "name": "Dropdown Menu",
+      "private": false,
+      "source": { "setId": "2666:6863", "key": "941136f1fd11479676c74ed40efe50135018891c" },
+      "summary": "The surface a dropdown opens onto, a floating panel holding a list of Menu Item rows. It brings its own menu surface and elevation, so it needs nothing behind it. Two built-in rows sit above a slot that takes the rest, and Rounded is the only visual choice it offers. Place it through the Dropdown Template so its position relative to a trigger comes from a property rather than from nudging it by hand.",
+      "api": {
+        "rounded": {
+          "type": "enum", "figmaName": "Rounded", "default": "false", "controls": ["variant"],
+          "values": ["false", "true"],
+          "intent": {
+            "false": "Square corners, for a panel sitting against surfaces and inputs that are also square. The rows inside square off with it.",
+            "true": "Softened corners, for a panel that should read as a floating object rather than part of the surface beneath. The rows round with it, so panel and contents stay in agreement."
+          }
+        },
+        "moreItems": {
+          "type": "boolean", "figmaName": "More Items#2668:108", "default": true,
+          "controls": ["root/Content/Slot Container (visible)"],
+          "intent": {
+            "true": "Shows the slot below the two built-in rows, which is where the rest of the menu goes.",
+            "false": "Hides the slot along with everything placed in it, leaving only the two built-in rows. Fine for a deliberately short menu, but it will also hide content someone else added."
+          }
+        },
+        "slotContainer": {
+          "type": "slot",
+          "figmaName": ["Slot Container#2666:104 (Rounded=false)", "Slot Container#2667:105 (Rounded=true)"],
+          "controls": ["root/Content/Slot Container (slotContentId)"],
+          "intent": "Where the rest of the menu goes, below the two built-in rows. It ships holding two Menu Item instances. Each Rounded variant stores this slot's content separately, so switching Rounded leaves behind whatever was placed in it."
+        }
+      },
+      "internalVariations": [],
+      "contentInputs": [
+        { "part": "content (built-in rows)", "input": "Menu Item instance", "sampleCount": 2, "note": "Two fixed Menu Item instances above the slot, pinned to the menu's own Rounded value. Neither is a slot; changing them means overriding the nested instance." }
+      ],
+      "anatomy": [
+        { "id": "panel", "kind": "container", "role": "The outer frame. Hugs its content on both axes and carries the menu surface, the radius and the elevation.",
+          "layout": { "direction": "vertical", "gap": "space/2xs (never visually shows — single Content child)" },
+          "sizing": { "h": "hug", "v": "hug" },
+          "paint": { "fill": "surface/menu", "radius": "radius/none (Rounded=false) / radius/element-md (Rounded=true)",
+            "effects": { "style": "Shadow/medium", "tokens": ["shadow/soft", "shadow/medium/blur", "shadow/medium/x", "shadow/medium/y", "shadow/small/blur", "shadow/small/x", "shadow/small/y"] } } },
+        { "id": "content", "kind": "container", "role": "The vertical stack inside the padding, holding the two built-in rows and then the slot.",
+          "layout": { "direction": "vertical", "gap": "space/xs" }, "sizing": { "h": "hug", "v": "hug" } },
+        { "id": "builtInRow[1]", "kind": "instance", "ref": "Menu Item", "refVariant": "State=Default, Type=Icon, Rounded=<inherits panel's Rounded>", "sizing": { "h": "fill (per intent; Figma reports FIXED on Rounded=false — see issues)", "v": "fixed" } },
+        { "id": "builtInRow[2]", "kind": "instance", "ref": "Menu Item", "refVariant": "State=Default, Type=Icon, Rounded=<inherits panel's Rounded>", "sizing": { "h": "fill (per intent; Figma reports FIXED on Rounded=false — see issues)", "v": "fixed" } },
+        { "id": "slotContainer", "kind": "slot", "visibleWhen": "moreItems", "role": "The open region for additional Menu Item rows. More Items hides it as a whole, along with anything inside it.",
+          "layout": { "direction": "vertical", "gap": "space/xs" }, "sizing": { "h": "fill", "v": "hug" },
+          "content": { "default": ["Menu Item", "Menu Item"] } }
+      ],
+      "variants": {
+        "axis": "rounded", "base": "false",
+        "table": [
+          { "rounded": "false", "panel.radius": "radius/none", "panel.padding": "space/card", "panel.gap": "space/2xs", "row.radius": "radius/none" },
+          { "rounded": "true",  "panel.radius": "radius/element-md", "panel.padding": "space/card", "panel.gap": "space/2xs", "row.radius": "radius/sm" }
+        ]
+      },
+      "states": [
+        { "state": "Static", "trigger": "—", "duration": "—", "whatChanges": "The panel has no interaction states of its own. Hover, selection, focus and disabled all live on the Menu Item rows inside it, so the menu never changes appearance on its own." }
+      ],
+      "behavior": [
+        { "type": "Motion", "description": "Figma stores no timing and the panel models no transition. Opening and closing is driven by the Dropdown Template's Open property, which is a variant switch rather than something that animates here." },
+        { "type": "Elevation", "description": "The panel carries the Shadow/medium style, two stacked drop shadows. That is the only thing separating it from the surface beneath, and it does not change with any property." },
+        { "type": "Reflow", "description": "Both axes hug their content, so the panel grows with the number and width of the rows placed in it. A long label widens the whole menu rather than wrapping inside a row." },
+        { "type": "Rounded propagation", "description": "Implementations set every nested Menu Item row's `rounded` to match the panel's own `rounded` by default, rather than requiring it be set per row — codifying the metadata's own Menu Item guidance (\"Match Rounded to the menu panel that holds the row, rather than choosing it row by row\") as an enforced default instead of a convention a consumer can forget. This is a code-level addition beyond what the Figma binding itself enforces — see issues." }
+      ],
+      "content": [
+        { "property": "Slot Container", "type": "slot, holds Menu Item", "description": "Where the rest of the menu goes, below the two built-in rows. It ships holding two Menu Item instances. See the Menu Item Metadata frame. Each Rounded variant stores this slot's content separately, so switching Rounded leaves behind whatever was placed in it." },
+        { "property": "Built-in rows", "type": "fixed nested instances", "description": "Two Menu Item instances above the slot, pinned to the menu's own Rounded value. Neither is a slot, so changing them means overriding the nested instance." },
+        { "property": "Leading icon on a row", "type": "exposed nested Icon", "description": "Every Menu Item leaves its leading Icon exposed, so the glyph is reachable from the menu without detaching. See the Icon Metadata frame." },
+        { "property": "Row count", "type": "not constrained", "description": "Nothing caps how many rows the slot holds. The panel neither scrolls nor limits its height, so a menu long enough to run past the viewport is a design decision rather than one the component prevents." }
+      ],
+      "usage": {
+        "do": [
+          "Place the menu through the Dropdown Template so its position relative to a trigger comes from a property rather than manual nudging.",
+          "Keep Rounded consistent with the surfaces around it. The rows inherit the choice, so the panel and its contents stay in agreement."
+        ],
+        "dont": [
+          "Don't fill the slot and then switch Rounded. Each Rounded variant holds that slot's content separately, so the content will not come with you.",
+          "Don't add a background or shadow behind the menu. It already carries its own surface and elevation, and a second one reads as two stacked panels."
+        ]
+      },
+      "accessibility": [
+        "The panel is a container and announces nothing itself. The rows inside carry the meaning, so each needs a clear label.",
+        "Elevation is the only thing separating the menu from the content behind it. Check Shadow/medium reads on the surfaces you open it over, because there is no border.",
+        "The panel neither traps focus nor caps its own height. Both belong to the implementation.",
+        "Rows are the interactive targets, not the panel. Keyboard movement between them has to be built in code, nothing here models it."
+      ],
+      "layoutTheming": [
+        { "property": "Size", "type": "Hug on both axes", "description": "213×196px as drawn, growing with whatever is placed inside. There is no fixed width, so the longest row sets the panel width." },
+        { "property": "Padding", "type": "Fixed", "description": "12px (space/card) on all four sides." },
+        { "property": "Gap", "type": "Fixed", "description": "4px (space/xs) between rows, both in the built-in stack and inside the slot. The panel's own item spacing is 2px (space/2xs) but it holds a single content frame, so that spacing never shows." },
+        { "property": "Radius", "type": "Fixed per Rounded", "description": "radius/none when Rounded is false, radius/element-md when true. The rows inside take radius/none and radius/sm respectively, a lighter step than the panel itself." },
+        { "property": "Elevation", "type": "Fixed", "description": "The Shadow/medium effect style, two stacked drop shadows. Applied to the panel only and unchanged by any property." },
+        { "property": "Colour", "type": "Theming", "description": "The panel is surface/menu and binds nothing else. Every other colour in the menu comes from the rows." }
+      ]
+    },
+    {
+      "name": "Menu Item",
+      "private": false,
+      "source": { "setId": "2402:6508", "key": "c42a9f21fc45d4851390c94be1c1da24ffd1ad17" },
+      "summary": "A single row inside a Dropdown Menu, with a leading element, a label and an optional trailing icon. Six states cover resting, hover, selection, focus and disabled, and Type chooses what sits in the leading position. The row fills the width of the menu that holds it, so its own width is never set directly. Selection is carried by a faint tint alone, which is the thing to check when a menu sits on a busy surface.",
+      "api": {
+        "state": {
+          "type": "enum", "figmaName": "State", "default": "Default", "controls": ["variant"],
+          "values": ["Default", "hover", "selected", "focus", "selected focus", "disabled"],
+          "intent": {
+            "Default": "The resting row.",
+            "hover": "Documents the pointer-over treatment. The implementation drives this, so choosing it in a layout freezes the row in a state it should not be in.",
+            "selected": "The row's option is currently chosen. It is carried by a faint background tint with the label and leading element unchanged, so it reads only as strongly as that tint does on the surface behind it.",
+            "focus": "Keyboard focus, drawn as a ring on all four edges with the background left alone. It is the only state that adds a border, which is what keeps it tellable apart from selected.",
+            "selected focus": "Both at once, for a keyboard user moving across an already-chosen option. Without it the two would be indistinguishable, which is the reason it exists.",
+            "disabled": "The option is unavailable. Only the label changes, so the difference between available and unavailable rests on contrast alone."
+          }
+        },
+        "type": {
+          "type": "enum", "figmaName": "Type", "default": "Icon", "controls": ["variant"],
+          "values": ["Icon", "checkbox", "radio", "custom"],
+          "intent": {
+            "Icon": "A leading Icon instance you set yourself. The glyph is exposed, so the row is configured from the menu without detaching.",
+            "radio": "Names the row as a single-choice option. It is built from the same exposed Icon as the Icon type, so the radio mark has to come from the glyph you pick rather than from the variant.",
+            "checkbox": "Names the row as a multi-choice option. Also built from the same exposed Icon, so the tick has to come from the glyph you pick.",
+            "custom": "Replaces the leading Icon with an empty slot, for a leading element the icon library cannot supply such as an avatar or a colour swatch. Nothing is provided by default, so the slot stays blank until filled."
+          }
+        },
+        "rounded": {
+          "type": "enum", "figmaName": "Rounded", "default": "false", "controls": ["variant"],
+          "values": ["false", "true"],
+          "intent": {
+            "false": "Square corners, for a row inside a square menu panel. Match the panel rather than choosing per row.",
+            "true": "Softened corners, for a rounded panel. Mixing the two inside one menu makes the rows look misaligned against the panel."
+          },
+          "implementationNote": "Figma's own guidance is manual matching only (\"Match Rounded to the menu panel that holds the row\"). Implementations enforce this instead of merely documenting it: a Menu Item nested inside a Dropdown Menu inherits the panel's `rounded` by default and only needs an explicit `rounded` to override it standalone. See issues."
+        },
+        "label": {
+          "type": "string", "figmaName": "Label#2665:55", "default": "Menu Item",
+          "controls": ["root/Label/Label (characters)"],
+          "intent": "The option's name. The row fills the menu's width and the text neither wraps nor truncates, so a long label widens the entire menu."
+        },
+        "leadingElement": {
+          "type": "boolean", "figmaName": "Leading Element#2402:29", "default": true,
+          "controls": ["root/Leading Icon (visible)", "root/Leading Slot (visible)"],
+          "intent": {
+            "true": "Shows the leading Icon.",
+            "false": "Hides it and the label shifts to the leading edge. A menu mixing rows with and without it loses the alignment that makes a list scannable."
+          }
+        },
+        "trailingIcon": {
+          "type": "boolean", "figmaName": "Trailing Icon#2402:30", "default": false,
+          "controls": ["root/Trailing Icon (visible)"],
+          "intent": {
+            "false": "No trailing icon.",
+            "true": "Adds an icon at the trailing edge, for a submenu arrow or an external-link mark. The label already reserves room on that side, so it takes space from the text."
+          }
+        },
+        "leadingSlot": {
+          "type": "slot", "figmaName": "Leading Slot#2546:5", "controls": ["root/Leading Slot (slotContentId)"],
+          "intent": "Replaces the leading Icon when Type is custom. It carries no suggested components and ships empty, so it stays blank until something is placed in it."
+        }
+      },
+      "internalVariations": [
+        {
+          "part": "leadingIcon", "via": "Icon", "options": "any glyph in packages/icons",
+          "intent": "For Type Icon, radio and checkbox the leading element is the same exposed nested Icon instance (Size=small, Framed=false). The row does not draw a radio dot or a checkbox mark itself — 'radio' and 'checkbox' are named roles only, and the glyph has to be picked to match. Default glyph as shipped is 'verified' (icon font name), Style=rounded family — almost never the right choice for a real row per the metadata's own guidance."
+        }
+      ],
+      "contentInputs": [],
+      "anatomy": [
+        { "id": "root", "kind": "container",
+          "role": "The outer horizontal frame. Fills the width of the menu that holds it and keeps a fixed height, so rows line up whatever they contain.",
+          "layout": { "direction": "horizontal", "gap": "space/sm", "padding": { "top": "space/xs", "right": "space/md", "bottom": "space/xs", "left": "space/md" } },
+          "sizing": { "h": "fill (per intent; Figma's own default-variant sizing mode reads FIXED — see issues)", "v": "fixed" },
+          "paint": { "fill": "interactive/ghost/background/<state>", "radius": "radius/none (Rounded=false) / radius/sm (Rounded=true)",
+            "stroke": { "color": "border/focus", "width": "stroke/thin (0 at rest) / 1px (focus, selected focus)", "align": "inside" } } },
+        { "id": "leadingIcon", "kind": "instance", "ref": "Icon", "refVariant": "Size=small, Framed=false",
+          "visibleWhen": "leadingElement && type != custom",
+          "role": "An exposed Icon for the Icon, radio and checkbox types, and an empty slot for custom." },
+        { "id": "leadingSlot", "kind": "slot", "visibleWhen": "leadingElement && type == custom",
+          "role": "Replaces the leading Icon when Type is custom. Ships empty." },
+        { "id": "label", "kind": "container",
+          "role": "A wrapper frame holding the text. Its own padding sets the text away from the leading element and reserves room on the trailing side.",
+          "layout": { "direction": "horizontal", "padding": { "left": "space/xs", "right": "space/xl" } },
+          "sizing": { "h": "fill", "v": "hug" } },
+        { "id": "label.text", "kind": "text", "parent": "label",
+          "text": { "style": "label/medium", "fontFamily": "IBM Plex Sans", "fontStyle": "Medium" },
+          "paint": { "fill": "interactive/neutral/foreground/default (interactive/neutral/foreground/disabled when disabled)" },
+          "content": { "prop": "label", "default": "Menu Item" } },
+        { "id": "trailingIcon", "kind": "instance", "ref": "Icon", "refVariant": "Size=small, Framed=false",
+          "visibleWhen": "trailingIcon",
+          "role": "An exposed Icon at the trailing edge, hidden until its toggle is turned on." }
+      ],
+      "variants": {
+        "axis": "state", "base": "Default",
+        "_note": "Type does not vary any token — see internalVariations. Rounded changes root.radius only (padding/height/stroke tokens are identical figmaName between Rounded=false/true despite Figma re-emitting the binding per variant).",
+        "table": [
+          { "state": "Default",        "rounded": "false", "root.fill": "interactive/ghost/background/default",  "root.stroke": "none",        "root.radius": "radius/none" },
+          { "state": "hover",          "rounded": "false", "root.fill": "interactive/ghost/background/hover",    "root.stroke": "none",        "root.radius": "radius/none" },
+          { "state": "selected",       "rounded": "false", "root.fill": "interactive/ghost/background/selected", "root.stroke": "none",        "root.radius": "radius/none" },
+          { "state": "focus",          "rounded": "false", "root.fill": "interactive/ghost/background/focused",  "root.stroke": "border/focus, 1px", "root.radius": "radius/none" },
+          { "state": "selected focus", "rounded": "false", "root.fill": "interactive/ghost/background/selected", "root.stroke": "border/focus, 1px", "root.radius": "radius/none" },
+          { "state": "disabled",       "rounded": "false", "root.fill": "interactive/ghost/background/disabled", "root.stroke": "none", "root.radius": "radius/none", "label.color": "interactive/neutral/foreground/disabled" },
+          { "state": "Default",        "rounded": "true", "root.fill": "interactive/ghost/background/default",  "root.stroke": "none",        "root.radius": "radius/sm" },
+          { "state": "hover",          "rounded": "true", "root.fill": "interactive/ghost/background/hover",    "root.stroke": "none",        "root.radius": "radius/sm" },
+          { "state": "selected",       "rounded": "true", "root.fill": "interactive/ghost/background/selected", "root.stroke": "none",        "root.radius": "radius/sm" },
+          { "state": "focus",          "rounded": "true", "root.fill": "interactive/ghost/background/focused",  "root.stroke": "border/focus, 1px", "root.radius": "radius/sm" },
+          { "state": "selected focus", "rounded": "true", "root.fill": "interactive/ghost/background/selected", "root.stroke": "border/focus, 1px", "root.radius": "radius/sm" },
+          { "state": "disabled",       "rounded": "true", "root.fill": "interactive/ghost/background/disabled", "root.stroke": "none", "root.radius": "radius/sm", "label.color": "interactive/neutral/foreground/disabled" }
+        ]
+      },
+      "states": [
+        { "state": "Default", "trigger": "Resting", "duration": "—", "whatChanges": "A fully transparent ghost background with the label on interactive/neutral/foreground/default." },
+        { "state": "hover", "trigger": "Pointer over the row", "duration": "—", "whatChanges": "The ghost background rises to 5 percent opacity. The label and the leading element do not change." },
+        { "state": "selected", "trigger": "The option is chosen", "duration": "—", "whatChanges": "A background on interactive/ghost/background/selected at 5 percent. Nothing else changes, so selected and hover sit at the same visual weight." },
+        { "state": "focus", "trigger": "Keyboard focus", "duration": "—", "whatChanges": "A 1px ring on border/focus is drawn on all four edges, inside the row's own bounds. The background stays fully transparent." },
+        { "state": "selected focus", "trigger": "Focus on a chosen option", "duration": "—", "whatChanges": "The selected tint and the focus ring together. It is the only state carrying both." },
+        { "state": "disabled", "trigger": "State set to disabled", "duration": "—", "whatChanges": "The background stays transparent and the label moves to interactive/neutral/foreground/disabled." }
+      ],
+      "behavior": [
+        { "type": "Motion", "description": "Figma stores no timing and no transition is modelled. Every state change is colour or opacity only, with no movement, scale or elevation." },
+        { "type": "Focus ring", "description": "Drawn inside the row's own bounds rather than outside, so it never overlaps the neighbouring row or the panel's padding." },
+        { "type": "Reflow", "description": "The row fills the width of the menu that holds it and its height is fixed, so a longer label reflows the menu rather than the row." }
+      ],
+      "content": [
+        { "property": "Label", "type": "text property", "description": "The option's name. No truncation and no wrapping, the menu widens instead." },
+        { "property": "Leading Icon", "type": "exposed nested Icon, Types Icon, radio and checkbox", "description": "Pinned to Size=small with Framed off and left exposed, so the glyph is set per instance from the menu. See the Icon Metadata frame. It arrives holding Verified, which suits almost no real option." },
+        { "property": "Leading Slot", "type": "slot, Type custom only", "description": "Replaces the leading Icon when Type is custom. It carries no suggested components and ships empty, so it stays blank until something is placed in it." },
+        { "property": "Trailing Icon", "type": "exposed nested Icon", "description": "Hidden until Trailing Icon is turned on, then a 16px glyph at the trailing edge. Also pinned to Size=small with Framed off and left exposed." }
+      ],
+      "usage": {
+        "do": [
+          "Set the leading glyph on every row. It ships holding Verified, which says nothing about the option the row represents.",
+          "Match Rounded to the menu panel that holds the row, rather than choosing it row by row."
+        ],
+        "dont": [
+          "Don't expect radio or checkbox to draw a control. All three of those types are built from the same exposed Icon, so the mark comes from the glyph you pick.",
+          "Don't rely on selection alone being obvious. Selected is a 5 percent tint with no change to the label, which is a small difference on a light panel."
+        ]
+      },
+      "accessibility": [
+        "Selection is carried by a faint background tint alone, with no change to the label or the leading element. It needs to be conveyed in code as well.",
+        "Focus is drawn as a ring inside the row's bounds and is the only state adding a border, which is what keeps it distinguishable from selection.",
+        "Radio and checkbox are named roles rather than built controls. Whatever role the row plays has to be set in code, the variant name does not carry it.",
+        "Disabled changes the label colour only, so the difference between an available and an unavailable option is contrast alone.",
+        "The leading icon decorates or repeats the label rather than replacing it, so the label has to stand on its own."
+      ],
+      "layoutTheming": [
+        { "property": "Width", "type": "Fill", "description": "Fills the menu that holds it, drawn at 221px. The row never hugs its label, so the menu's width sets it." },
+        { "property": "Height", "type": "Fixed", "description": "40px on control/md at every variant." },
+        { "property": "Padding", "type": "Fixed", "description": "4px (space/xs) top and bottom, 12px (space/md) left and right." },
+        { "property": "Gap", "type": "Fixed", "description": "8px (space/sm) between the leading element, the label and the trailing icon." },
+        { "property": "Label inset", "type": "Fixed", "description": "The label wrapper adds 4px (space/xs) on its leading edge and reserves 24px (space/xl) on its trailing edge, which keeps labels clear of a trailing icon even when one is not shown." },
+        { "property": "Radius", "type": "Fixed per Rounded", "description": "radius/none when false, radius/sm when true." },
+        { "property": "Leading and trailing icons", "type": "Fixed", "description": "Both 16px Icon instances at Size=small with Framed off." },
+        { "property": "Border", "type": "Fixed per State", "description": "None at rest. Focus and selected focus add a 1px ring on border/focus, drawn on all four edges inside the row." },
+        { "property": "Label type", "type": "Fixed", "description": "label/medium (14/20), IBM Plex Sans Medium." },
+        { "property": "Colour", "type": "Theming", "description": "Backgrounds come from the interactive/ghost family, transparent at rest, 5 percent on hover and on selected, transparent again on focus and disabled. The label is interactive/neutral/foreground/default, dropping to interactive/neutral/foreground/disabled when disabled." }
+      ]
+    }
+  ],
+  "externalDependencies": [
+    { "name": "Button", "key": "42bf13a5210cd307b7bd4563f2521b78cfd74dae", "remote": false, "usedAt": ["Dropdown Template / triggerComponent"], "note": "Already documented at specs/button/." },
+    { "name": "Icon", "key": "a469ac1cf34202af3e094593468d9ef20a37a703", "remote": false, "usedAt": ["Menu Item / leadingIcon", "Menu Item / trailingIcon"], "note": "Already documented at specs/icon/. Glyph is a font name from packages/icons/codepoints.json — the shipped default resolves to 'verified' (Style=rounded family)." }
+  ],
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "interactive/primary/background/default", "interactive/primary/border/default",
+      "interactive/ghost/background/default", "interactive/ghost/background/hover", "interactive/ghost/background/selected", "interactive/ghost/background/focused", "interactive/ghost/background/disabled",
+      "interactive/neutral/foreground/default", "interactive/neutral/foreground/disabled",
+      "border/focus", "surface/menu", "shadow/soft"
+    ],
+    "dimension": [
+      "control/sm", "control/md", "space/none", "space/2xs", "space/xs", "space/sm", "space/md", "space/xl", "space/card",
+      "radius/none", "radius/sm", "radius/element-sm", "radius/element-md",
+      "stroke/base", "stroke/thin",
+      "shadow/medium/blur", "shadow/medium/x", "shadow/medium/y", "shadow/small/blur", "shadow/small/x", "shadow/small/y"
+    ],
+    "typography": ["label/medium/font size", "label/medium/font family", "label/medium/font weight", "label/medium/line height", "label/medium/letter spacing"],
+    "themeAxes": { "palette": ["Light", "Dark"], "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"] }
+  },
+  "states": [
+    { "state": "Static (Dropdown Template itself has none)", "trigger": "—", "duration": "—", "whatChanges": "Open is a static variant, not a behaviour — see behavior below." }
+  ],
+  "behavior": [
+    { "type": "Note", "description": "Open is a static variant, not a behaviour. Showing and hiding the menu, returning focus to the trigger and closing on escape all belong to the implementation." },
+    { "type": "Note", "description": "The menu sits outside the template's bounds, so nothing here stops it opening off-screen. Flipping Position near a viewport edge is the implementation's job." },
+    { "type": "Note", "description": "The trigger needs an accessible name and a state saying whether the menu is open. Neither is modelled here." },
+    { "type": "Note", "description": "Rows inside the menu are the interactive targets. Keyboard movement between them is not modelled by this pattern." },
+    { "type": "Rounded propagation", "description": "The template pins `Rounded=true` on its nested Dropdown Menu; that panel in turn propagates its own `rounded` to every nested Menu Item row by default (see the Dropdown Menu subcomponent's behavior). A Dropdown built with `rounded=false` therefore rounds nothing anywhere in the stack without extra wiring, and `rounded=true` (the default) rounds panel and rows together." }
+  ],
+  "content": [
+    { "property": "Trigger Component", "type": "instance swap, prefers Button or Icon Button", "description": "The control the menu opens from. Swap it through the property rather than replacing the layer, and the instance stays exposed so the trigger's own properties remain reachable." },
+    { "property": "Dropdown Menu", "type": "exposed nested instance", "description": "The panel itself, pinned to Rounded=true. Exposed, so its More Items toggle and its slot are reachable from the template. See the Dropdown Menu Metadata frame." },
+    { "property": "Menu content", "type": "through the nested menu", "description": "Rows go into the menu's slot, not into the template. The template surfaces the Rounded=true slot, so anything placed here belongs to that variant of the menu." }
+  ],
+  "usage": { "do": [], "dont": [] },
+  "accessibility": [
+    "Open is a static variant, not a behaviour. Showing and hiding the menu, returning focus to the trigger and closing on escape all belong to the implementation.",
+    "The menu sits outside the template's bounds, so nothing here stops it opening off-screen. Flipping Position near a viewport edge is the implementation's job.",
+    "The trigger needs an accessible name and a state saying whether the menu is open. Neither is modelled here.",
+    "Rows inside the menu are the interactive targets. Keyboard movement between them is not modelled by this pattern."
+  ],
+  "layoutTheming": [
+    { "property": "Bounds", "type": "Hug the trigger only", "description": "76×36px as drawn, the size of its trigger. The menu is absolutely positioned and sits outside those bounds, so a layout containing this pattern reserves no space for the open menu." },
+    { "property": "Offset", "type": "Fixed", "description": "The menu clears the trigger by 8px on whichever side Position selects." },
+    { "property": "Alignment", "type": "Fixed per Align", "description": "Align pins opposite edges together. With Position bottom or top the menu's leading or trailing edge lines up with the trigger's, with Position left or right its top or bottom edge does." },
+    { "property": "Fill and elevation", "type": "None on the template", "description": "The template paints nothing of its own. The surface and the shadow both belong to the menu." }
+  ],
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-5903",
+    "componentSets": {
+      "dropdownTemplate": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2669-10309",
+      "dropdownMenu": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2666-6863",
+      "menuItem": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2402-6508"
+    }
+  },
+  "issues": [
+    { "severity": "warn", "source": "structure", "detail": "Page 'Dropdown' has no component set named exactly 'Dropdown' — it holds three sibling public sets (Template/Dropdown, Menu Item, Dropdown Menu). Template/Dropdown was treated as the master pattern since it's the only one that composes the other two; confirm this matches intent before implementing." },
+    { "severity": "warn", "source": "api-vs-metadata", "detail": "Dropdown Template exposes a 'Trigger Slot#2669:112' SLOT property that is not documented anywhere in the metadata's Property Breakdown or Content & Slot sections. Its purpose (relative to Trigger Component) is unclear from the page alone." },
+    { "severity": "warn", "source": "gaps", "detail": "Dropdown Template's root and Trigger Component wrapper frames carry a raw 10px item-spacing (no token). It never renders since each frame holds exactly one visible child, but it's an untokened value worth cleaning up at the source." },
+    { "severity": "warn", "source": "bindingDrift", "detail": "Dropdown Menu's built-in Menu Item rows report layoutSizingHorizontal=FIXED in the Rounded=false (base) variant and FILL in Rounded=true, though the Layout & Theming intent says the row always fills its menu. Don't copy the FIXED value literally for Rounded=false." },
+    { "severity": "note", "source": "extraction-limit", "detail": "Menu Item has 48 variants (State × Type × Rounded); the full per-variant delta script output exceeded the 20kb transport cap partway through checkbox/custom Type variants. The variants table above was reconstructed from State × Rounded only (the axis that actually changes tokens); Type=custom's exact node swap (Leading Icon → Leading Slot) was not independently re-verified from a fresh node diff — confirm visually before implementing." },
+    { "severity": "note", "source": "internalVariations", "detail": "Menu Item's leading element for Type=Icon/radio/checkbox is one exposed Icon instance with no distinct glyph per Type — 'radio' and 'checkbox' are naming conventions only. Decide in code whether Type should surface as a prop or purely a documentation label, since Figma models no different anatomy for the three." },
+    { "severity": "note", "source": "icon-font", "detail": "Menu Item's leading/trailing Icon ships with its default glyph swap pointing at a node named 'Style=rounded' (i.e. the rounded icon-font family), which per the metadata resolves to the 'verified' glyph — present and not retired in packages/icons/codepoints.json. Every real usage is expected to override this before shipping." },
+    { "severity": "note", "source": "coverage", "detail": "Motion is explicitly modelled as absent for all three components ('Figma stores no timing…'). This is intentional per the metadata, not a gap in extraction." },
+    { "severity": "note", "source": "spec-addition", "detail": "Rounded propagation (Dropdown → Dropdown Menu → Menu Item) is enforced structurally in both implementations, not just documented as usage guidance. This goes beyond what the Figma file itself binds — Figma's Menu Item instances inside Dropdown Menu are separately-set variants, not derived from the panel's Rounded via any binding — so a future re-extraction of the page will not show this rule in the raw `api`/`deltas`; it lives only in this spec's `implementationNote`/`behavior` additions and in code." }
+  ]
+}

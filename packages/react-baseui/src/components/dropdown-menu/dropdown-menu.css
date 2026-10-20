@@ -1,0 +1,31 @@
+/* Dropdown Menu — every value is a semantic token from the shared token
+   layer. Keyed off the `data-rounded` attribute DropdownMenu sets. The panel
+   has no interaction states of its own (see the spec's States note) — hover,
+   selection, focus and disabled all live on the Menu Item rows inside it, so
+   there is nothing state-keyed in this file.
+
+   Spec: specs/dropdown/dropdown.spec.md (Dropdown Menu subcomponent) */
+
+.zds-dropdown-menu {
+  box-sizing: border-box;
+  /* Hugs its content on both axes. */
+  display: inline-block;
+  padding: var(--space-card);
+  background: var(--surface-menu);
+  border-radius: var(--radius-none);
+  box-shadow: var(--shadow-medium-x) var(--shadow-medium-y) var(--shadow-medium-blur) var(--shadow-soft);
+}
+
+.zds-dropdown-menu__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+/* ---- rounded ----------------------------------------------------------
+   Radius per Rounded; the rows round with it (MenuItem takes `rounded` as
+   its own prop — this component does not reach into its children to set
+   it, a consumer passes the same `rounded` value to both). */
+.zds-dropdown-menu[data-rounded="true"] {
+  border-radius: var(--radius-element-md);
+}

@@ -1,0 +1,37 @@
+{
+  "name": "condensed",
+  "slug": "condensed",
+  "id": "VariableCollectionId:5190:1287",
+  "extends": {
+    "name": "size",
+    "id": "VariableCollectionId:2013:6723",
+    "slug": "size"
+  },
+  "root": {
+    "name": "size",
+    "id": "VariableCollectionId:2013:6723"
+  },
+  "overrideCount": 29,
+  "modeMap": [
+    {
+      "mode": "Desktop",
+      "parentMode": "Desktop"
+    },
+    {
+      "mode": "Mobile",
+      "parentMode": "Mobile"
+    },
+    {
+      "mode": "Tablet",
+      "parentMode": "Tablet"
+    },
+    {
+      "mode": "Desktop Compact",
+      "parentMode": "Desktop Compact"
+    }
+  ],
+  "files": [
+    "extensions/condensed/size/desktop.json"
+  ],
+  "note": "Each file holds ONLY the variables this extension overrides. Read the parent collection first, then layer this on top."
+}

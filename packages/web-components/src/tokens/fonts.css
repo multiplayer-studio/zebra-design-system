@@ -1,6 +1,6 @@
 /* Webfonts
    Generated from tokens/ by scripts/build-tokens-css.mjs — do not edit by hand.
-   Derived from the font family and weight tokens.
+   Derived from the font family and weight tokens, plus the platform default for <body>.
 */
 
 /* IBM Plex Sans — weights 300, 400, 500, 700 */
@@ -11,3 +11,12 @@
 
 /* Production: prefer self-hosting, or preconnect + <link> in the document head —
    an @import is render-blocking. */
+
+body {
+  font-family: var(--body-medium-font-family), system-ui, sans-serif;
+  font-size: var(--body-medium-font-size);
+  font-weight: var(--body-medium-font-weight);
+  line-height: var(--body-medium-line-height);
+  letter-spacing: var(--body-medium-letter-spacing);
+  color: var(--foreground-primary);
+}

@@ -1,0 +1,948 @@
+{
+  "component": {
+    "name": "Search",
+    "slug": "search",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "2152:8811",
+      "key": "591dd7fa091426e1d12e6ff4041d59a60f45d8e4",
+      "page": "Search",
+      "pageNodeId": "2114:8976",
+      "metadataFrameId": "6268:963",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2114-8976",
+      "extractedAt": "2026-10-15",
+      "variantCount": 189,
+      "defaultVariant": "Shape=sharp, State=enabled, Size=large, Flavour=default",
+      "extractionNote": "189 variants = 3 Shape x 7 State x 3 Size x 3 Flavour. All 189 were walked. A dependence check over all of them confirmed that colour depends only on Flavour x State, and geometry on Size x Shape, except stroke weight and alignment, which follow Flavour x State, plus two binding slips listed in issues. So the variant tables below are a Size x Shape geometry table (at Flavour=default, State=enabled) and a Flavour x State colour/stroke table (at Size=large, Shape=sharp), and between them they cover every variant. The on-page subcomponent Trailing (3 variants) was extracted in full. Updated 2026-10-15: all 189 variants re-read as per-part token signatures and diffed against this spec, and the metadata re-read (unchanged). Changes: the resting icons (magnifier, trailing control) now bind foreground/primary in every flavour; the typing group's icons and every disabled icon are unchanged; the Input Text frame now carries space/xs inline padding. Everything else matches.",
+      "tokenSource": "tokens/",
+      "revision": "Updated 2026-10-14 with a designer clarification on text padding (designerClarifications); the icon-colour correction is recorded in issues."
+    }
+  },
+  "summary": "A single-line input for typing a query, with a magnifier leading it and a trailing control that takes whatever icon and function the implementation passes. State covers the whole typing lifecycle from empty through focus to a committed query, and Flavour decides how much the field asserts itself against the surface behind it. Size and Shape match it to the controls around it.",
+  "api": {
+    "shape": {
+      "type": "enum",
+      "figmaName": "Shape",
+      "values": [
+        "sharp",
+        "rounded",
+        "full"
+      ],
+      "default": "sharp",
+      "controls": [
+        "variant",
+        "root.radius"
+      ],
+      "intent": {
+        "sharp": "Match the contour of the controls around the field. It is the only property that changes nothing but the corners.",
+        "rounded": "The softened corner, for surfaces built from rounded controls.",
+        "full": "A pill, for a field that should read as its own object sitting on a surface rather than as part of a form."
+      }
+    },
+    "state": {
+      "type": "enum",
+      "figmaName": "State",
+      "values": [
+        "enabled",
+        "hover",
+        "focus",
+        "selected",
+        "typing",
+        "filled",
+        "disabled"
+      ],
+      "default": "enabled",
+      "controls": [
+        "variant"
+      ],
+      "_order": "Figma order is focus, hover, enabled, selected, typing, filled, disabled; listed here in the metadata's lifecycle order.",
+      "intent": {
+        "enabled": "The resting empty field, showing its placeholder and waiting.",
+        "hover": "Pointer over the field. The border is the only thing that answers.",
+        "focus": "The field has keyboard focus and is ready for input. It carries the heaviest border in the set, which is what makes focus findable.",
+        "selected": "Focus has settled and the cursor is placed. Lighter than focus, for a field being worked in rather than just arrived at.",
+        "typing": "Text is being entered. This is the only state that offers a way to clear the field, so a flow that needs a clear control has to account for it arriving mid-typing.",
+        "filled": "A committed query. The field is at rest again but the text stays at full strength, which is what separates it from the empty state.",
+        "disabled": "The field cannot be used. Both the surface and the border drop away, so it reads as present but out of reach."
+      }
+    },
+    "size": {
+      "type": "enum",
+      "figmaName": "Size",
+      "values": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "default": "large",
+      "controls": [
+        "variant",
+        "root.height",
+        "text.typography",
+        "icon size"
+      ],
+      "_order": "Ordered by rendered height; Figma order is large, medium, small.",
+      "intent": {
+        "large": "The default, for a field that is the main thing on its surface.",
+        "medium": "For denser surfaces and toolbars where search sits alongside other controls.",
+        "small": "The tightest, and the only size that also reduces the text."
+      }
+    },
+    "flavour": {
+      "type": "enum",
+      "figmaName": "Flavour",
+      "values": [
+        "default",
+        "gradient",
+        "ghost"
+      ],
+      "default": "default",
+      "controls": [
+        "variant",
+        "root.fill",
+        "root.stroke"
+      ],
+      "intent": {
+        "default": "A bordered field on a neutral surface, and the right choice inside a form.",
+        "gradient": "Used for a unique interaction highlight, such as an AI companion search input or a specific use-case callout.",
+        "ghost": "No visible border at rest, for a field sitting on a surface that already bounds it such as a header. The outline returns on focus as an optional implementation and can be turned off, giving the container the option to surface its own focus state, as in a message prompt input."
+      }
+    },
+    "hasLeading": {
+      "type": "boolean",
+      "figmaName": "hasLeading#3164:0",
+      "default": true,
+      "controls": [
+        "leadingIcon"
+      ],
+      "intent": {
+        "true": "Show the magnifier. It is the fastest signal that tells a search field apart from a bare input.",
+        "false": "Drop it where the surrounding context already says this is search and the width matters more."
+      }
+    },
+    "hasTrailing": {
+      "type": "boolean",
+      "figmaName": "hasTrailing#2182:8",
+      "default": true,
+      "controls": [
+        "trailingIcon",
+        "trailingGroup"
+      ],
+      "intent": {
+        "true": "Show the trailing control. It takes whatever icon and function the implementation passes. The example ships voice input, which suits search well without being required, and while typing it becomes the group that also offers a clear.",
+        "false": "No trailing control, with the input taking the width back."
+      }
+    }
+  },
+  "unusedFigmaProperties": [
+    {
+      "figmaName": "Show Cancel#2172:4",
+      "type": "boolean",
+      "default": true,
+      "note": "Bound to no layer in any of the 189 variants, and absent from the metadata. See issues."
+    }
+  ],
+  "internalVariations": [
+    {
+      "part": "leadingIcon",
+      "via": "Icon (glyph swap through the Icon's own Name property)",
+      "options": "any glyph in packages/icons/codepoints.json",
+      "default": "search",
+      "intent": "A magnifier at Size=medium. Its glyph is swappable through the Icon's own Name property."
+    },
+    {
+      "part": "trailingIcon",
+      "via": "Icon (glyph swap)",
+      "options": "any glyph in packages/icons/codepoints.json",
+      "default": "microphone",
+      "intent": "It takes any icon and any function, defaulting to voice input because that suits search best without being a requirement."
+    }
+  ],
+  "contentInputs": [
+    {
+      "part": "text",
+      "input": "value / placeholder",
+      "sample": {
+        "placeholder": "Search",
+        "value": "Input"
+      },
+      "note": "Not parameterised in Figma (no text property). The metadata: 'the placeholder and any value come from the implementation'."
+    }
+  ],
+  "anatomy": [
+    {
+      "id": "root",
+      "kind": "container",
+      "figmaLayer": "Shape=…, State=…, Size=…, Flavour=…",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/xs",
+        "padding": {
+          "block": "space/sm",
+          "inline": "space/md"
+        },
+        "crossAxisAlign": "center"
+      },
+      "sizing": {
+        "h": "fixed",
+        "v": "fixed"
+      },
+      "measuredWidthPx": 280,
+      "height": "see variants: size",
+      "radius": "see variants: shape",
+      "paint": {
+        "fill": "see variants: flavour x state",
+        "stroke": "see variants: flavour x state (colour, weight token, alignment)"
+      }
+    },
+    {
+      "id": "leadingIcon",
+      "number": 1,
+      "kind": "instance",
+      "figmaLayer": "Search-Icon",
+      "ref": "Icon",
+      "glyph": "search",
+      "fontFamily": "rounded",
+      "role": "The magnifier, present unless hasLeading is off.",
+      "visibleWhen": "hasLeading",
+      "iconSize": {
+        "large": "Icon Size=medium",
+        "medium": "Icon Size=medium",
+        "small": "Icon Size=small"
+      },
+      "colour": {
+        "enabled": "foreground/primary",
+        "disabled": "interactive/neutral/foreground/disabled",
+        "intended": "foreground/primary; foreground/disabled when disabled (owner rule for the field family, 2026-10-15; see issues)",
+        "_note": "Set as a fill override on the nested glyph in every flavour; delivered as the glyph's currentColor."
+      }
+    },
+    {
+      "id": "input",
+      "number": 2,
+      "kind": "container",
+      "figmaLayer": "Input Text",
+      "role": "The query text, taking the width left between the two icons.",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/2xs",
+        "crossAxisAlign": "center"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      },
+      "padding": {
+        "inline": "space/xs",
+        "block": "space/none"
+      },
+      "_note": "The text carries space/xs on both sides (designer clarification 2026-10-14), now built in Figma too. Next to an icon it adds to the root's space/xs gap, so icon to text is space/xs + space/xs; with no icon on that side it adds to the root's space/md padding."
+    },
+    {
+      "id": "text",
+      "kind": "text",
+      "figmaLayer": "Input Text/Text",
+      "typography": "see variants: size (body/medium at large and medium, body/small at small)",
+      "paint": {
+        "fill": "see variants: state (foreground/disabled for the placeholder, foreground/primary for a value)"
+      }
+    },
+    {
+      "id": "cursor",
+      "kind": "text",
+      "figmaLayer": "Input Text/Cursor",
+      "visibleWhen": "state is focus, selected or typing",
+      "paint": {
+        "fill": "foreground/cursor"
+      },
+      "_note": "Drawn as a '|' character beside the text. In code this is the native caret; foreground/cursor is its colour."
+    },
+    {
+      "id": "trailingIcon",
+      "number": 3,
+      "kind": "instance",
+      "figmaLayer": "Trailing-Icon",
+      "ref": "Icon",
+      "glyph": "microphone",
+      "fontFamily": "rounded",
+      "role": "The trailing control, defaulting to voice input and open to any icon and function. While typing it becomes a group with a clear control and a divider. Both are pressable, and each claims a target wider than its glyph so the surrounding space counts as part of the control.",
+      "visibleWhen": "hasTrailing and state is not typing",
+      "iconSize": {
+        "large": "Icon Size=medium",
+        "medium": "Icon Size=medium",
+        "small": "Icon Size=small"
+      },
+      "colour": {
+        "enabled": "foreground/primary",
+        "disabled": "interactive/neutral/foreground/disabled",
+        "intended": "foreground/primary; foreground/disabled when disabled (owner rule for the field family, 2026-10-15; see issues)",
+        "_note": "Set as a fill override on the nested glyph in every flavour; delivered as the glyph's currentColor."
+      }
+    },
+    {
+      "id": "trailingGroup",
+      "kind": "instance",
+      "figmaLayer": "Trailing",
+      "ref": "Trailing",
+      "refVariant": "hasIcon=true, hasCancel=true",
+      "visibleWhen": "hasTrailing and state is typing",
+      "_note": "Replaces trailingIcon while typing. See subcomponents.",
+      "colour": {
+        "asBuilt": "interactive/neutral/foreground/default (clear and trailing control, inside the Trailing subcomponent)",
+        "intended": "foreground/primary, like the resting icons (see issues)"
+      }
+    }
+  ],
+  "variants": {
+    "_note": "Cells are token names, except those ending Px, which are measurements of the rendered file.",
+    "size": {
+      "axis": "size",
+      "base": "large",
+      "table": [
+        {
+          "size": "small",
+          "root.height": "control/sm",
+          "text.typography": "body/small",
+          "icon": "Icon Size=small",
+          "iconMeasuredPx": 16,
+          "rootMeasuredHeightPx": 36
+        },
+        {
+          "size": "medium",
+          "root.height": "control/md",
+          "text.typography": "body/medium",
+          "icon": "Icon Size=medium",
+          "iconMeasuredPx": 20,
+          "rootMeasuredHeightPx": 40
+        },
+        {
+          "size": "large",
+          "root.height": "control/lg",
+          "text.typography": "body/medium",
+          "icon": "Icon Size=medium",
+          "iconMeasuredPx": 20,
+          "rootMeasuredHeightPx": 48
+        }
+      ],
+      "_note": "Padding (space/sm block, space/md inline) and gap (space/xs) hold at every size, except two binding slips (see issues). The input adds space/xs inline padding of its own (designerClarifications)."
+    },
+    "shape": {
+      "axis": "shape",
+      "base": "sharp",
+      "table": [
+        {
+          "shape": "sharp",
+          "root.radius": "radius/none"
+        },
+        {
+          "shape": "rounded",
+          "root.radius": "radius/sm"
+        },
+        {
+          "shape": "full",
+          "root.radius": "radius/pill"
+        }
+      ]
+    },
+    "flavourState": {
+      "axes": [
+        "flavour",
+        "state"
+      ],
+      "base": {
+        "flavour": "default",
+        "state": "enabled"
+      },
+      "_note": "Text colour and cursor depend on state only: foreground/disabled (placeholder) at enabled, hover, focus, selected and disabled; foreground/primary at typing and filled; cursor shown at focus, selected and typing. 'inside'/'outside' is the stroke alignment.",
+      "table": [
+        {
+          "flavour": "default",
+          "state": "enabled",
+          "root.fill": "interactive/neutral/background/default",
+          "root.stroke": "interactive/neutral/border/default",
+          "root.strokeWeight": "stroke/thin, inside",
+          "figmaNode": "2152:8810"
+        },
+        {
+          "flavour": "default",
+          "state": "hover",
+          "root.fill": "interactive/neutral/background/default",
+          "root.stroke": "interactive/neutral/border/hover",
+          "root.strokeWeight": "stroke/thin, inside",
+          "figmaNode": "2182:3794"
+        },
+        {
+          "flavour": "default",
+          "state": "focus",
+          "root.fill": "interactive/neutral/background/default",
+          "root.stroke": "border/focus",
+          "root.strokeWeight": "stroke/thick, outside",
+          "figmaNode": "2183:20485"
+        },
+        {
+          "flavour": "default",
+          "state": "selected",
+          "root.fill": "interactive/neutral/background/default",
+          "root.stroke": "border/focus",
+          "root.strokeWeight": "stroke/thin, inside",
+          "figmaNode": "2182:3802"
+        },
+        {
+          "flavour": "default",
+          "state": "typing",
+          "root.fill": "interactive/neutral/background/default",
+          "root.stroke": "border/focus",
+          "root.strokeWeight": "stroke/thin, inside",
+          "figmaNode": "2201:1601"
+        },
+        {
+          "flavour": "default",
+          "state": "filled",
+          "root.fill": "interactive/neutral/background/default",
+          "root.stroke": "interactive/neutral/border/default",
+          "root.strokeWeight": "stroke/thin, inside",
+          "figmaNode": "2201:1625"
+        },
+        {
+          "flavour": "default",
+          "state": "disabled",
+          "root.fill": "interactive/neutral/background/disabled",
+          "root.stroke": "interactive/neutral/border/disabled",
+          "root.strokeWeight": "stroke/thin, inside",
+          "figmaNode": "2201:1643"
+        },
+        {
+          "flavour": "gradient",
+          "state": "enabled",
+          "root.fill": "interactive/neutral/background/default",
+          "root.stroke": "linear gradient foreground/gradient/start → foreground/gradient/end",
+          "root.strokeWeight": "stroke/thin, inside",
+          "figmaNode": "2411:6798"
+        },
+        {
+          "flavour": "gradient",
+          "state": "hover",
+          "root.fill": "interactive/neutral/background/default",
+          "root.stroke": "border/gradient/end",
+          "root.strokeWeight": "stroke/thin, inside",
+          "figmaNode": "2411:6816"
+        },
+        {
+          "flavour": "gradient",
+          "state": "focus",
+          "root.fill": "interactive/neutral/background/default",
+          "root.stroke": "border/focus",
+          "root.strokeWeight": "stroke/thick, outside",
+          "figmaNode": "2411:6901"
+        },
+        {
+          "flavour": "gradient",
+          "state": "selected",
+          "root.fill": "interactive/neutral/background/default",
+          "root.stroke": "border/gradient/start",
+          "root.strokeWeight": "stroke/thin, inside",
+          "figmaNode": "2411:6889"
+        },
+        {
+          "flavour": "gradient",
+          "state": "typing",
+          "root.fill": "interactive/neutral/background/default",
+          "root.stroke": "border/gradient/start",
+          "root.strokeWeight": "stroke/thin, inside",
+          "figmaNode": "2411:6895"
+        },
+        {
+          "flavour": "gradient",
+          "state": "filled",
+          "root.fill": "interactive/neutral/background/default",
+          "root.stroke": "linear gradient foreground/gradient/start → foreground/gradient/end",
+          "root.strokeWeight": "stroke/thin, inside",
+          "figmaNode": "2411:6879"
+        },
+        {
+          "flavour": "gradient",
+          "state": "disabled",
+          "root.fill": "interactive/neutral/background/disabled",
+          "root.stroke": "interactive/neutral/border/disabled",
+          "root.strokeWeight": "stroke/thin, inside",
+          "figmaNode": "2411:6884"
+        },
+        {
+          "flavour": "ghost",
+          "state": "enabled",
+          "root.fill": "interactive/ghost/background/default (paint opacity 0)",
+          "root.stroke": "interactive/ghost/border/default",
+          "root.strokeWeight": "stroke/base",
+          "figmaNode": "3160:1654"
+        },
+        {
+          "flavour": "ghost",
+          "state": "hover",
+          "root.fill": "interactive/ghost/background/default (paint opacity 0)",
+          "root.stroke": "interactive/neutral/border/hover",
+          "root.strokeWeight": "stroke/base",
+          "figmaNode": "3160:1681"
+        },
+        {
+          "flavour": "ghost",
+          "state": "focus",
+          "root.fill": "interactive/ghost/background/default (paint opacity 0)",
+          "root.stroke": "border/focus",
+          "root.strokeWeight": "stroke/thick, outside (optional)",
+          "figmaNode": "3164:2800"
+        },
+        {
+          "flavour": "ghost",
+          "state": "selected",
+          "root.fill": "interactive/ghost/background/default (paint opacity 0)",
+          "root.stroke": "border/focus",
+          "root.strokeWeight": "stroke/base",
+          "figmaNode": "3164:2722"
+        },
+        {
+          "flavour": "ghost",
+          "state": "typing",
+          "root.fill": "interactive/ghost/background/default (paint opacity 0)",
+          "root.stroke": "border/focus",
+          "root.strokeWeight": "stroke/base",
+          "figmaNode": "3164:2752"
+        },
+        {
+          "flavour": "ghost",
+          "state": "filled",
+          "root.fill": "interactive/ghost/background/default (paint opacity 0)",
+          "root.stroke": "interactive/ghost/border/default",
+          "root.strokeWeight": "stroke/base",
+          "figmaNode": "3164:2860"
+        },
+        {
+          "flavour": "ghost",
+          "state": "disabled",
+          "root.fill": "interactive/ghost/background/disabled (paint opacity 0)",
+          "root.stroke": "interactive/ghost/border/disabled",
+          "root.strokeWeight": "stroke/base",
+          "figmaNode": "3164:2887"
+        }
+      ]
+    }
+  },
+  "subcomponents": [
+    {
+      "name": "Trailing",
+      "private": false,
+      "setId": "2183:20055",
+      "key": "9d3ee616e71056bdbc259ad1e8bbdd3db8f60d05",
+      "api": {
+        "hasIcon": {
+          "type": "enum",
+          "figmaName": "hasIcon",
+          "values": [
+            "true",
+            "false"
+          ],
+          "default": "true",
+          "_note": "A string-valued VARIANT in Figma, not a boolean property."
+        },
+        "hasCancel": {
+          "type": "enum",
+          "figmaName": "hasCancel",
+          "values": [
+            "true",
+            "false"
+          ],
+          "default": "true"
+        }
+      },
+      "variantsBuilt": [
+        "hasIcon=true, hasCancel=true",
+        "hasIcon=true, hasCancel=false",
+        "hasIcon=false, hasCancel=true"
+      ],
+      "anatomy": [
+        {
+          "id": "clear",
+          "figmaLayer": "Cancel-Icon",
+          "ref": "Icon",
+          "glyph": "cancel",
+          "fontFamily": "rounded",
+          "visibleWhen": "hasCancel",
+          "role": "Empties the field."
+        },
+        {
+          "id": "divider",
+          "figmaLayer": "Divider",
+          "ref": "Divider",
+          "refVariant": "Orientation=vertical",
+          "width": "stroke/thin",
+          "visibleWhen": "hasIcon and hasCancel",
+          "spec": "specs/divider/divider.spec.json"
+        },
+        {
+          "id": "trailingIcon",
+          "figmaLayer": "Trailing-Icon",
+          "ref": "Icon",
+          "glyph": "microphone",
+          "fontFamily": "rounded",
+          "visibleWhen": "hasIcon"
+        }
+      ],
+      "layout": {
+        "direction": "horizontal",
+        "gap": {
+          "both": "space/sm",
+          "one": "space/none"
+        },
+        "crossAxisAlign": "center",
+        "sizing": "hug"
+      },
+      "iconSize": "Icon Size=medium in the subcomponent; at Search Size=small the nested icons are overridden to Size=small but still render 20 (see issues)",
+      "iconColour": "interactive/neutral/foreground/default (/disabled when the field is disabled), same as the field's icons"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Icon",
+      "setId": "2046:15010",
+      "remote": false,
+      "spec": "specs/icon/icon.spec.json",
+      "delivery": {
+        "as": "icon font glyph",
+        "package": "@zebra-design-system/icons",
+        "glyphs": [
+          "search",
+          "microphone",
+          "cancel"
+        ],
+        "verified": "All three are in packages/icons/codepoints.json (setIds 2046:7046, 2046:7333, 2046:10307), not retired and not in inventory.json's rejected list.",
+        "note": "Search pins the Rounded family on every icon. The glyph takes currentColor, which Search sets to interactive/neutral/foreground/default, or /disabled when disabled. Figma applies this as a fill override on each nested glyph. Icon size is the nested Icon's own Size variant, pinned by Search: medium at large and medium, small at small."
+      }
+    },
+    {
+      "name": "Divider",
+      "setId": "2152:8803",
+      "remote": false,
+      "usedIn": "Trailing",
+      "spec": "specs/divider/divider.spec.json"
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ — names below resolve there; see tokens/manifest.json for collections, modes and the extension graph",
+    "rule": "This spec names tokens only. Resolved values live in tokens/ and are deliberately not duplicated here.",
+    "color": [
+      "interactive/neutral/background/{default,disabled}",
+      "interactive/neutral/border/{default,hover,disabled}",
+      "interactive/ghost/background/{default,disabled}",
+      "interactive/ghost/border/{default,disabled}",
+      "border/focus",
+      "border/gradient/{start,end}",
+      "foreground/gradient/{start,end}",
+      "foreground/{primary,disabled,cursor}",
+      "interactive/neutral/foreground/{default,disabled} (typing group and disabled icons, as built; see issues)"
+    ],
+    "dimension": [
+      "control/{sm,md,lg}",
+      "space/{none,2xs,xs,sm,md}",
+      "radius/{none,sm,pill}",
+      "radius/element-sm (3 variants only; see issues)",
+      "stroke/{base,thin,thick}"
+    ],
+    "typography": [
+      "body/medium",
+      "body/small"
+    ],
+    "effect": [],
+    "missingFromExport": [],
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "typography": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ],
+      "extensions": "tokens/extensions/ (companion, target, condensed)"
+    }
+  },
+  "states": [
+    {
+      "State": "enabled",
+      "Trigger": "—",
+      "Duration": "—",
+      "What changes": "The resting field. Border interactive/neutral/border/default, with the placeholder in foreground/disabled."
+    },
+    {
+      "State": "hover",
+      "Trigger": "Pointer over the field",
+      "Duration": "—",
+      "What changes": "The border moves to interactive/neutral/border/hover. Surface and text hold."
+    },
+    {
+      "State": "focus",
+      "Trigger": "Keyboard focus",
+      "Duration": "—",
+      "What changes": "The border becomes border/focus at double weight and the text moves to foreground/cursor. This is the heaviest border in the set."
+    },
+    {
+      "State": "selected",
+      "Trigger": "Focus settled, cursor placed",
+      "Duration": "—",
+      "What changes": "The border stays border/focus but returns to single weight, and the text keeps foreground/cursor."
+    },
+    {
+      "State": "typing",
+      "Trigger": "Text being entered",
+      "Duration": "—",
+      "What changes": "The text moves to foreground/primary and the trailing area changes from the single trailing control to a group carrying a clear control, a divider and that same control."
+    },
+    {
+      "State": "filled",
+      "Trigger": "A committed query",
+      "Duration": "—",
+      "What changes": "The border returns to interactive/neutral/border/default while the text stays at foreground/primary."
+    },
+    {
+      "State": "disabled",
+      "Trigger": "—",
+      "Duration": "—",
+      "What changes": "Surface and border both move to their disabled tokens and the text returns to foreground/disabled."
+    }
+  ],
+  "behavior": [
+    {
+      "Type": "Motion",
+      "Description": "No transition is defined. Each state is a swap of border, text colour and, at typing, the contents of the trailing area."
+    },
+    {
+      "Type": "Typing lifecycle",
+      "Description": "The states run enabled, focus, selected, typing, filled. Only typing swaps the trailing area, so the clear control arrives once there is something to clear and is gone again once the query is committed."
+    },
+    {
+      "Type": "Flavour and state",
+      "Description": "Flavour decides which border family a state draws from. Ghost holds its border at zero weight in every state, with the focus outline available but optional, so a container that surfaces its own focus can suppress it."
+    }
+  ],
+  "content": [
+    {
+      "Property": "Input text",
+      "Type": "not parameterised",
+      "Description": "The query itself. It is not exposed as an input, so the placeholder and any value come from the implementation."
+    },
+    {
+      "Property": "Leading icon",
+      "Type": "nested Icon, toggled by hasLeading",
+      "Description": "A magnifier at Size=medium. Its glyph is swappable through the Icon's own Name property."
+    },
+    {
+      "Property": "Trailing area",
+      "Type": "nested, toggled by hasTrailing",
+      "Description": "Toggled by hasTrailing. It takes any icon and any function, defaulting to voice input because that suits search best without being a requirement. While typing it becomes a group holding a clear control, a divider and the trailing control. Both controls are real targets rather than decoration, so the pressable area runs past the glyph into the space around it."
+    },
+    {
+      "Property": "Trailing group",
+      "Type": "nested set, three combinations",
+      "Description": "Carries hasIcon and hasCancel, giving icon only, clear only, or both. The combination with neither is not built, because hasTrailing already expresses an empty trailing area. The two controls are independently interactive, the clear control emptying the field and the trailing control running whatever function it was given, so each takes its own target rather than one target spanning the pair."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Keep hasLeading on unless the surrounding context already says this is search. The magnifier is the fastest signal the field gives.",
+      "Use ghost on a surface that already bounds the field, such as a header, and default inside a form."
+    ],
+    "dont": [
+      "Don't reach for gradient on an ordinary search field. It marks a distinct interaction such as an AI companion, and spreading it across a view drains the meaning it carries.",
+      "Don't treat typing as a style. It is the only state carrying a clear control, so choosing it changes what the field offers."
+    ]
+  },
+  "accessibility": [
+    "The field carries no label of its own. A placeholder is not a label, so one has to be supplied alongside it.",
+    "Focus is the heaviest border in the set and is what keyboard users depend on. On ghost the outline is optional, so wherever it is suppressed the container has to show focus in its place.",
+    "The magnifier and the trailing control are icons with no text. Each needs a name, and whatever function the trailing control carries is a real action rather than decoration.",
+    "The clear control appears only while typing. Its arrival and departure change what is reachable, so that change has to be announced.",
+    "Placeholder text uses foreground/disabled, the lowest-contrast text in the field. Check it against the surface before relying on it to carry meaning.",
+    "At small the text drops to 14px and the field to 36 tall. Check the target still works for touch."
+  ],
+  "layoutTheming": [
+    {
+      "Property": "Size",
+      "Type": "Fixed",
+      "Description": "280 wide at every size. 48 tall at large, 40 at medium and 36 at small."
+    },
+    {
+      "Property": "Padding and gap",
+      "Type": "Fixed",
+      "Description": "space/sm top and bottom, space/md left and right, with a space/xs gap between the icons and the input. These hold at every size."
+    },
+    {
+      "Property": "Radius",
+      "Type": "Per Shape",
+      "Description": "radius/none when sharp, radius/sm when rounded and radius/pill when full."
+    },
+    {
+      "Property": "Surface",
+      "Type": "Per Flavour",
+      "Description": "interactive/neutral/background/default on default and gradient, interactive/ghost/background/default on ghost. Disabled moves each to its own disabled token."
+    },
+    {
+      "Property": "Border",
+      "Type": "Per Flavour",
+      "Description": "Default draws at 1px and focus at 2px. Gradient keeps those weights with foreground/gradient/start. Ghost holds every weight at zero, and its focus outline is optional so the container can carry focus instead."
+    },
+    {
+      "Property": "Text",
+      "Type": "Theming",
+      "Description": "16px at large and medium, 14px at small. The colour changes with state, which States and Triggers sets out."
+    },
+    {
+      "Property": "Icons and trailing group",
+      "Type": "Fixed",
+      "Description": "Icons at Size=medium, 20 square. The trailing group hugs both controls or one, separated by a divider. Each control takes a target of roughly 36 square, the 20 glyph plus about 8 all round, which the 8 gap either side of the divider already leaves room for without the two targets meeting."
+    }
+  ],
+  "designerClarifications": [
+    {
+      "date": "2026-10-14",
+      "topic": "text padding",
+      "statement": "The text within the input should have a padding left right of 4px. such that the icon to text end up at 8px but when no icon that extra 4 is included in the gap between the outline and text.",
+      "resolved": "The input carries space/xs inline padding on both sides. Icon to text = the root gap (space/xs) + space/xs; border to text with no icon on that side = the root padding (space/md) + space/xs. Applies to Search and Input alike."
+    }
+  ],
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2114-8976",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2152-8811",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6268-963",
+    "sizes": {
+      "large": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2152-8810",
+      "medium": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2217-5178",
+      "small": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2217-5649"
+    },
+    "shapes": {
+      "rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2201-1652",
+      "full": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2201-1661"
+    },
+    "states (default flavour)": {
+      "hover": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2182-3794",
+      "focus": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2183-20485",
+      "selected": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2182-3802",
+      "typing": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2201-1601",
+      "filled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2201-1625",
+      "disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2201-1643"
+    },
+    "flavours (enabled)": {
+      "gradient": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2411-6798",
+      "ghost": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3160-1654"
+    },
+    "trailingGroup": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2183-20055"
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "API vs Property Breakdown",
+      "detail": "Search has a boolean property 'Show Cancel' (default true) that is bound to no layer in any of the 189 variants and does not appear in the metadata. Clearing is driven by State=typing and the Trailing group's hasCancel instead. Remove it in Figma, or wire it to the Trailing group's hasCancel; don't build it."
+    },
+    {
+      "severity": "warn",
+      "source": "contrast",
+      "detail": "The placeholder (foreground/disabled) is 3.02:1 on the default field and 2.78:1 on the page behind a ghost field in Light, below the 4.5:1 WCAG asks for text. Dark is 4.97:1 and 4.25:1. The metadata flags this ('Check it against the surface before relying on it to carry meaning'); in Light it doesn't pass."
+    },
+    {
+      "severity": "warn",
+      "source": "contrast",
+      "detail": "The resting field border (interactive/neutral/border/default) is 1.40:1 against surface/page in Light and 2.37:1 in Dark, below the 3:1 WCAG asks for the boundary of an input. The focus border (border/focus) passes at 3.22:1 and 3.58:1."
+    },
+    {
+      "severity": "warn",
+      "source": "bindingDrift",
+      "detail": "Height is bound to control/lg in every large variant except the default one (Shape=sharp, State=enabled, Size=large, Flavour=default), which renders at the same height with no binding. Use control/lg."
+    },
+    {
+      "severity": "warn",
+      "source": "bindingDrift",
+      "detail": "At Size=medium, Shape=rounded, the block padding is space/2xs in the default/enabled and gradient/enabled variants and space/sm in the other 19. The metadata says space/sm 'hold at every size'. Use space/sm."
+    },
+    {
+      "severity": "warn",
+      "source": "bindingDrift",
+      "detail": "The three Shape=rounded, State=typing, Flavour=ghost variants bind their corner radius to radius/element-sm; every other rounded variant uses radius/sm. Both resolve to the same value today, so nothing renders differently, but the two will drift if either is re-pointed. Use radius/sm."
+    },
+    {
+      "severity": "warn",
+      "source": "structure",
+      "detail": "At Size=small, the leading icon and the resting trailing icon use Icon Size=small (16), but the icons in the typing trailing group are overridden to Size=small and still render 20. The clear and trailing controls grow by 4 when typing starts. The metadata's Icons row says 20 square without distinguishing sizes; the size table here follows the resting icons."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs structure",
+      "detail": "Ghost's hover (interactive/neutral/border/hover), selected and typing (border/focus) set a border colour at zero weight (stroke/base), so they show no visible change. Hover on ghost has no visible response at all, though the metadata's hover row says 'The border is the only thing that answers'. Selected and typing on ghost are told apart from enabled and filled only by the cursor and text."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs structure",
+      "detail": "The gradient flavour's border is more varied than the metadata's 'Gradient keeps those weights with foreground/gradient/start'. Enabled and filled draw a linear gradient from foreground/gradient/start to foreground/gradient/end (a foreground pair used as a border); hover uses border/gradient/end; selected and typing use border/gradient/start; focus uses border/focus. Build from the table."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs structure",
+      "detail": "The metadata says focus and selected move 'the text' to foreground/cursor. The placeholder stays foreground/disabled in both; what takes foreground/cursor is a separate cursor glyph ('|') that appears beside it at focus, selected and typing. In code that is the caret colour."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs structure",
+      "detail": "The trailing controls' pressable targets ('roughly 36 square, the 20 glyph plus about 8 all round') are not modelled: each icon is a bare 20 square with no padding. Build the targets from the metadata."
+    },
+    {
+      "severity": "warn",
+      "source": "gaps",
+      "detail": "The ghost surface is its token (interactive/ghost/background/default, or /disabled) painted at opacity 0, so the field is always transparent whatever the token resolves to. A literal paint opacity overrides the token. If transparent is intended, a transparent token says so; if the token is intended, the opacity hides it."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata coverage",
+      "detail": "Icon colour is half-migrated. The resting magnifier and trailing control now bind foreground/primary (changed in Figma since 2026-10-14), but the clear and trailing control inside the typing group still bind interactive/neutral/foreground/default, and every disabled icon binds interactive/neutral/foreground/disabled. The owner's rule for the field family (set on Input, 2026-10-15) is foreground/primary, and foreground/disabled when disabled; build that, so an icon does not change colour between rest and typing. Figma's typing group and disabled icons should follow. No metadata section mentions icon colour."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "Focus draws stroke/thick OUTSIDE the field while every other border is inside, so focus grows the footprint by the stroke on every side. In the file, the input also measures 2 wider at focus than at rest (measurement only). Selected returns to stroke/thin inside, matching 'returns to single weight'."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "The width (280) is fixed in every variant; the metadata calls it fixed. In use the field normally fills its container, so treat 280 as the sample width rather than a requirement."
+    },
+    {
+      "severity": "note",
+      "source": "api",
+      "detail": "State mixes interaction states (hover, focus, selected, typing) with a content state (filled = has a committed value) and a settable one (disabled). In code: disabled is a prop; hover and focus are CSS; 'typing' and 'filled' follow from the field having a value and focus (the clear control shows while the field has text and focus). There is no explicit read-only, error or loading state."
+    },
+    {
+      "severity": "note",
+      "source": "subcomponents",
+      "detail": "Trailing's hasIcon and hasCancel are string VARIANTs ('true'/'false'), not boolean properties, and Trailing is public by name though it is used only here. The fourth combination (neither) is deliberately not built (metadata: 'hasTrailing already expresses an empty trailing area')."
+    },
+    {
+      "severity": "note",
+      "source": "descriptionDrift",
+      "detail": "control/md says '= 48px' in its description but resolves to the 40 the medium field renders at (already recorded in other specs)."
+    },
+    {
+      "severity": "note",
+      "source": "metadata coverage",
+      "detail": "No motion is defined, by the metadata's own statement. The component set has no native Figma description."
+    },
+    {
+      "severity": "note",
+      "source": "resolved since 2026-10-14",
+      "detail": "Figma's Input Text frame now carries space/xs inline padding, as the designer clarification asked; the warning about the missing padding is closed. The metadata's Layout row still describes only the gap."
+    }
+  ]
+}

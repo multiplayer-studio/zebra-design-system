@@ -8,10 +8,12 @@
   --control-icon-lg: var(--primitives-scale-10);
   --control-icon-md: var(--primitives-scale-8);
   --control-icon-sm: var(--primitives-scale-7);
+  --control-icon-xs: var(--primitives-scale-5);
   --control-lg: var(--primitives-scale-15);
   --control-md: var(--primitives-scale-13);
   --control-sm: var(--primitives-scale-12);
   --control-target-min: var(--primitives-scale-13);
+  --control-xs: var(--primitives-scale-9);
   --radius-container: var(--primitives-scale-6);
   --radius-element-md: var(--primitives-scale-4);
   --radius-element-sm: var(--primitives-scale-3);
@@ -41,6 +43,11 @@
   --space-gutter: var(--primitives-scale-7);
   --space-lg: var(--primitives-scale-7);
   --space-md: var(--primitives-scale-6);
+  --space-neg-lg: var(--primitives-scale-minus-5);
+  --space-neg-md: var(--primitives-scale-minus-3);
+  --space-neg-sm: var(--primitives-scale-minus-2);
+  --space-neg-xl: var(--primitives-scale-minus-6);
+  --space-neg-xs: var(--primitives-scale-minus-1);
   --space-none: var(--primitives-scale-0);
   --space-page: var(--primitives-scale-7);
   --space-section: var(--primitives-scale-9);

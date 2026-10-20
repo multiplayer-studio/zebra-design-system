@@ -77,3 +77,19 @@ Load `@zebra-design-system/icons/icons.css` once for the `@font-face` blocks.
   should move to `tooling/` when the workspace is reassembled.
 - Only Button is built, from the one component with a verified spec. Base UI has
   41 other primitives ready for the next ones.
+
+## Fonts
+
+Two font families load automatically with the token CSS:
+
+- **IBM Plex Sans** (weights 300/400/500/700) from Google Fonts — the family
+  every typography token names. `src/tokens/fonts.css` is generated from the
+  font-family and font-weight tokens, so it cannot drift from them.
+- **The Zebra icon font**, from `@zebra-design-system/icons`.
+
+`Zebra Sans` is also named by a token but is not on Google Fonts; add its
+`@font-face` blocks to `fonts.css` to use it, otherwise tokens naming it fall
+back down the stack.
+
+For production, prefer self-hosting or `<link rel="preconnect">` in the document
+head — the generated file uses `@import`, which is render-blocking.

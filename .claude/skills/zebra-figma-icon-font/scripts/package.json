@@ -1,0 +1,11 @@
+{
+  "name": "zebra-figma-icon-font-scripts",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "svg2ttf": "^6.0.3",
+    "svgicons2svgfont": "^15.0.1",
+    "svgpath": "^2.6.0",
+    "ttf2woff2": "^8.0.0"
+  }
+}

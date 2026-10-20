@@ -5,13 +5,14 @@
 
 :root {
   --border-default: var(--palette-line-default);
+  --border-disabled: var(--palette-line-strong);
   --border-error: var(--palette-status-error-default);
   --border-focus: var(--palette-line-focus);
   --border-gradient-end: var(--palette-gradient-default-end);
   --border-gradient-start: var(--palette-gradient-default-start);
   --border-info: var(--palette-status-info-default);
   --border-inverse: var(--palette-line-inverse);
-  --border-strong: var(--palette-line-strong);
+  --border-strong: var(--palette-line-stronger);
   --border-subtle: var(--palette-line-subtle);
   --border-success: var(--palette-status-success-default);
   --border-transparent: var(--interactive-ghost-background-default);
@@ -34,13 +35,20 @@
   --chart-series-7: var(--palette-data-7);
   --chart-series-8: var(--palette-data-8);
   --chart-series-9: var(--palette-data-9);
-  --feedback-error-background: var(--palette-status-error-faint);
+  --feedback-error-background-strong: var(--palette-status-error-default);
+  --feedback-error-background-subtle: var(--palette-status-error-faint);
   --feedback-error-foreground: var(--palette-status-error-default);
-  --feedback-info-background: var(--palette-status-info-faint);
+  --feedback-info-background-strong: var(--palette-status-info-default);
+  --feedback-info-background-subtle: var(--palette-status-info-faint);
   --feedback-info-foreground: var(--palette-status-info-default);
-  --feedback-success-background: var(--palette-status-success-faint);
+  --feedback-neutral-background-strong: var(--palette-status-neutral-default);
+  --feedback-neutral-background-subtle: var(--palette-status-neutral-faint);
+  --feedback-neutral-foreground: var(--palette-ink-medium);
+  --feedback-success-background-strong: var(--palette-status-success-default);
+  --feedback-success-background-subtle: var(--palette-status-success-faint);
   --feedback-success-foreground: var(--palette-status-success-default);
-  --feedback-warning-background: var(--palette-status-warning-faint);
+  --feedback-warning-background-strong: var(--palette-status-warning-default);
+  --feedback-warning-background-subtle: var(--palette-status-warning-faint);
   --feedback-warning-foreground: var(--palette-status-warning-default);
   --focus-outline: var(--palette-line-focus);
   --focus-ring: var(--palette-line-focus);
@@ -52,6 +60,8 @@
   --foreground-info: var(--palette-status-info-default);
   --foreground-inverse: var(--palette-ink-inverse);
   --foreground-link: var(--palette-ink-link);
+  --foreground-on-light: var(--palette-ink-always-blank);
+  --foreground-on-strong: var(--palette-ink-always-white);
   --foreground-primary: var(--palette-ink-high);
   --foreground-secondary: var(--palette-ink-medium);
   --foreground-success: var(--palette-status-success-default);
@@ -84,13 +94,13 @@
   --interactive-inverse-background-default: var(--palette-fill-inverse);
   --interactive-inverse-background-disabled: var(--palette-fill-disabled);
   --interactive-inverse-background-focused: var(--palette-fill-inverse);
-  --interactive-inverse-background-hover: var(--palette-fill-inversehover);
-  --interactive-inverse-background-pressed: var(--palette-fill-inversepressed);
-  --interactive-inverse-background-selected: var(--palette-fill-inversepressed);
+  --interactive-inverse-background-hover: var(--palette-fill-inverse-sunken);
+  --interactive-inverse-background-pressed: var(--palette-fill-inverse-elevated);
+  --interactive-inverse-background-selected: var(--palette-fill-inverse-elevated);
   --interactive-inverse-border-default: var(--palette-fill-inverse);
   --interactive-inverse-border-disabled: var(--palette-line-subtle);
-  --interactive-inverse-border-hover: var(--palette-fill-inversehover);
-  --interactive-inverse-border-pressed: var(--palette-fill-inversepressed);
+  --interactive-inverse-border-hover: var(--palette-fill-inverse-sunken);
+  --interactive-inverse-border-pressed: var(--palette-fill-inverse-elevated);
   --interactive-inverse-foreground-default: var(--palette-ink-inverse);
   --interactive-inverse-foreground-disabled: var(--palette-ink-disabled);
   --interactive-neutral-background-default: var(--palette-fill-default);
@@ -141,6 +151,18 @@
   --interactive-secondary-border-pressed: var(--palette-brand-secondary-deep);
   --interactive-secondary-foreground-default: var(--palette-brand-secondary-on);
   --interactive-secondary-foreground-disabled: var(--palette-ink-disabled);
+  --interactive-selection-background-default: var(--palette-ink-low);
+  --interactive-selection-background-disabled: var(--palette-fill-disabled);
+  --interactive-selection-background-focused: var(--palette-fill-default);
+  --interactive-selection-background-hover: var(--palette-fill-hover);
+  --interactive-selection-background-pressed: var(--palette-brand-primary-default);
+  --interactive-selection-background-selected: var(--palette-fill-sunken);
+  --interactive-selection-border-default: var(--palette-line-strong);
+  --interactive-selection-border-disabled: var(--palette-line-subtle);
+  --interactive-selection-border-hover: var(--palette-line-stronger);
+  --interactive-selection-border-pressed: var(--palette-line-selection);
+  --interactive-selection-foreground-default: var(--palette-ink-high);
+  --interactive-selection-foreground-disabled: var(--palette-ink-disabled);
   --interactive-subtle-background-default: var(--palette-brand-primary-faint);
   --interactive-subtle-background-disabled: var(--palette-fill-disabled);
   --interactive-subtle-background-focused: var(--palette-brand-primary-faint);
@@ -175,5 +197,6 @@
   --surface-sheet: var(--palette-fill-overlay);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
+  --surface-track: var(--palette-fill-sunken);
   --surface-warning: var(--palette-status-warning-faint);
 }

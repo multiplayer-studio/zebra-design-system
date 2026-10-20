@@ -2576,6 +2576,84 @@
     }
   },
   "scale": {
+    "-1": {
+      "$type": "dimension",
+      "$value": "-1px",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:5828:257",
+          "collection": "primitives",
+          "mode": "Value",
+          "resolvedType": "FLOAT",
+          "scopes": []
+        }
+      }
+    },
+    "-2": {
+      "$type": "dimension",
+      "$value": "-2px",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:5828:258",
+          "collection": "primitives",
+          "mode": "Value",
+          "resolvedType": "FLOAT",
+          "scopes": []
+        }
+      }
+    },
+    "-3": {
+      "$type": "dimension",
+      "$value": "-4px",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:5828:259",
+          "collection": "primitives",
+          "mode": "Value",
+          "resolvedType": "FLOAT",
+          "scopes": []
+        }
+      }
+    },
+    "-4": {
+      "$type": "dimension",
+      "$value": "-6px",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:6496:3261",
+          "collection": "primitives",
+          "mode": "Value",
+          "resolvedType": "FLOAT",
+          "scopes": []
+        }
+      }
+    },
+    "-5": {
+      "$type": "dimension",
+      "$value": "-8px",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:6496:3262",
+          "collection": "primitives",
+          "mode": "Value",
+          "resolvedType": "FLOAT",
+          "scopes": []
+        }
+      }
+    },
+    "-6": {
+      "$type": "dimension",
+      "$value": "-12px",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:6496:3263",
+          "collection": "primitives",
+          "mode": "Value",
+          "resolvedType": "FLOAT",
+          "scopes": []
+        }
+      }
+    },
     "0": {
       "$type": "dimension",
       "$value": "0px",

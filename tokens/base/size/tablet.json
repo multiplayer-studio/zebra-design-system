@@ -70,6 +70,23 @@
         }
       }
     },
+    "icon-xs": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.5}",
+      "$description": "= 20px, source: scale/7",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:5278:4183",
+          "collection": "size",
+          "mode": "Tablet",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "aliasOf": "VariableID:2004:5"
+        }
+      }
+    },
     "lg": {
       "$type": "dimension",
       "$value": "{primitives.scale.15}",
@@ -135,6 +152,23 @@
             "WIDTH_HEIGHT"
           ],
           "aliasOf": "VariableID:2004:13"
+        }
+      }
+    },
+    "xs": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.9}",
+      "$description": "= 40px, source: scale/12",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:5278:4182",
+          "collection": "size",
+          "mode": "Tablet",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "aliasOf": "VariableID:2004:9"
         }
       }
     }
@@ -649,6 +683,93 @@
             "GAP"
           ],
           "aliasOf": "VariableID:2004:6"
+        }
+      }
+    },
+    "neg": {
+      "lg": {
+        "$type": "dimension",
+        "$value": "{primitives.scale.-5}",
+        "$description": "= -8px, source: scale/-5",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:6496:3259",
+            "collection": "size",
+            "mode": "Tablet",
+            "resolvedType": "FLOAT",
+            "scopes": [
+              "GAP"
+            ],
+            "aliasOf": "VariableID:6496:3262"
+          }
+        }
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "{primitives.scale.-3}",
+        "$description": "= -4px, source: scale/-3",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:5828:262",
+            "collection": "size",
+            "mode": "Tablet",
+            "resolvedType": "FLOAT",
+            "scopes": [
+              "GAP"
+            ],
+            "aliasOf": "VariableID:5828:259"
+          }
+        }
+      },
+      "sm": {
+        "$type": "dimension",
+        "$value": "{primitives.scale.-2}",
+        "$description": "= -2px, source: scale/-2",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:5828:261",
+            "collection": "size",
+            "mode": "Tablet",
+            "resolvedType": "FLOAT",
+            "scopes": [
+              "GAP"
+            ],
+            "aliasOf": "VariableID:5828:258"
+          }
+        }
+      },
+      "xl": {
+        "$type": "dimension",
+        "$value": "{primitives.scale.-6}",
+        "$description": "= -12px, source: scale/-6",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:6496:3260",
+            "collection": "size",
+            "mode": "Tablet",
+            "resolvedType": "FLOAT",
+            "scopes": [
+              "GAP"
+            ],
+            "aliasOf": "VariableID:6496:3263"
+          }
+        }
+      },
+      "xs": {
+        "$type": "dimension",
+        "$value": "{primitives.scale.-1}",
+        "$description": "= -1px, source: scale/-1",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:5828:260",
+            "collection": "size",
+            "mode": "Tablet",
+            "resolvedType": "FLOAT",
+            "scopes": [
+              "GAP"
+            ],
+            "aliasOf": "VariableID:5828:257"
+          }
         }
       }
     },

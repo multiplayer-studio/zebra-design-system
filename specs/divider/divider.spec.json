@@ -1,0 +1,113 @@
+{
+  "component": {
+    "name": "Divider",
+    "slug": "divider",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "2152:8803",
+      "key": "d0ebc910e87ef304f62d037c99458a69b9eabf39",
+      "page": "Divider",
+      "extractedAt": "2026-09-23",
+      "extractionNote": "Full 'Component Metadata' template present and read in full — this spec has both structure and intent, unlike Notification Indicator."
+    }
+  },
+  "summary": "A thin line used to visually separate content into distinct sections or groups, such as list rows, cards, or menu items. Orientation sets whether the line runs horizontal or vertical. It's a static, non-interactive element with no content of its own, choose the orientation that matches the layout direction it needs to divide.",
+  "api": {
+    "orientation": {
+      "type": "enum", "figmaName": "Orientation", "default": "horizontal", "controls": ["variant"],
+      "values": ["horizontal", "vertical"],
+      "intent": {
+        "horizontal": "Use to separate stacked content in a vertical layout, like rows in a list or sections on a page.",
+        "vertical": "Use to separate side-by-side content, like items in a horizontal row or a toolbar."
+      }
+    }
+  },
+  "internalVariations": [],
+  "contentInputs": [],
+  "anatomy": [
+    {
+      "id": "root", "kind": "container",
+      "role": "Sizes and clips the line. Fixed thickness on the cross axis (height for horizontal, width for vertical); the main axis resizes via constraints to fill its container.",
+      "sizing": { "horizontal": "fixed 320x1 (starting size, not a limit)", "vertical": "fixed 1x40 (starting size, not a limit)" },
+      "paint": { "radius": "radius/none (all corners, both orientations)" }
+    },
+    {
+      "id": "line", "kind": "shape",
+      "role": "1. Line — the only visible part. Renders as a horizontal or vertical stroke depending on Orientation, 1px thick (stroke/thin token).",
+      "position": { "mode": "free", "constraints": { "horizontal": "SCALE", "vertical": "SCALE" } },
+      "paint": { "stroke": { "color": "border/default", "width": "stroke/thin", "align": "center" } },
+      "_note": "The vertical variant is the same LINE node rotated -90deg, not a second drawing."
+    }
+  ],
+  "variants": {
+    "axis": "orientation", "base": "horizontal",
+    "table": [
+      { "orientation": "horizontal", "root.width": "fill (320 measured starting size)", "root.height": "stroke/thin", "line.rotation": "0deg" },
+      { "orientation": "vertical", "root.width": "stroke/thin", "root.height": "fill (40 measured starting size)", "line.rotation": "-90deg" }
+    ]
+  },
+  "subcomponents": [],
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": ["border/default"],
+    "dimension": ["stroke/thin", "radius/none"],
+    "typography": [],
+    "themeAxes": {
+      "palette": ["Light", "Dark"],
+      "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"]
+    }
+  },
+  "states": {
+    "table": [
+      { "State": "Static", "Trigger": "—", "Duration": "—", "What changes": "Divider has no interactive states. Orientation is fixed at placement and never changes at runtime." }
+    ]
+  },
+  "behavior": {
+    "table": [
+      { "Type": "Motion", "Description": "None. Divider is a static visual element, it does not animate or transition between states or orientations." }
+    ]
+  },
+  "content": {
+    "table": [
+      { "Property": "Content", "Type": "none", "Description": "Divider has no content slots. It renders only the separator line and holds no text, icon, or nested elements." }
+    ]
+  },
+  "usage": {
+    "do": [
+      "Choose Orientation to match the layout direction, horizontal to separate stacked content, vertical to separate side-by-side content.",
+      "Resize the instance to fill its container rather than leaving it at the default 320×1 (or 1×40) size, the line stretches with the frame."
+    ],
+    "dont": [
+      "Don't use Divider as a spacing or margin mechanism, it's a visual line with no built-in padding, use layout gap for spacing between elements instead."
+    ]
+  },
+  "accessibility": [
+    "Non-interactive and not focusable, Divider carries no keyboard or focus behavior of its own",
+    "In code, expose it with the platform's separator role (and an orientation attribute for the vertical variant) so assistive technology announces it correctly",
+    "Uses the border/default semantic token for its color, which resolves separately for light and dark mode, don't override it with a hardcoded color"
+  ],
+  "layoutTheming": {
+    "table": [
+      { "Property": "Thickness", "Type": "Fixed", "Description": "1px, bound to the stroke/thin token, the same for both orientations." },
+      { "Property": "Length", "Type": "Resizable", "Description": "Not fixed. Constraints on the internal line stretch it to fill the available width (horizontal) or height (vertical) when the instance is resized." },
+      { "Property": "Corner radius", "Type": "Fixed", "Description": "0px, bound to the radius/none token, hard edges on both orientations." },
+      { "Property": "Color", "Type": "Theming", "Description": "border/default token. Resolves to a light neutral gray in light mode and a darker neutral gray in dark mode, so it stays visible in both themes automatically." }
+    ]
+  },
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2152-8795",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2152-8803",
+    "variants": {
+      "orientation": {
+        "horizontal": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2152-8803",
+        "vertical": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2152-8803"
+      }
+    }
+  },
+  "issues": [
+    { "severity": "note", "source": "bindingDrift", "detail": "root's fixed-axis dimension is bound to stroke/thin as 'height' in the horizontal variant and as 'width' in the vertical variant — the extractor reports this as binding drift (present in 1 of 2 variants each), but it's the correct, axis-appropriate split: each orientation only has a cross-axis thickness to bind, not a real inconsistency." },
+    { "severity": "note", "source": "Property Breakdown", "detail": "The table's 'Default' column shows a small checkmark-style icon for the horizontal row and '-' for vertical — this is the metadata template's own default-value marker, not a component icon prop. Divider has no icon parts." },
+    { "severity": "note", "source": "coverage", "detail": "Every metadata section (States, Behavior, Content, Anatomy, Usage, Accessibility, Layout & Theming) is present and explicitly filled — States and Behavior say 'none' outright rather than being empty, so their absence is authored intent, not a gap in this extraction." }
+  ]
+}

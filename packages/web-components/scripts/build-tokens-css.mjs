@@ -34,9 +34,13 @@ const manifest = JSON.parse(readFileSync(join(TOKENS, "manifest.json"), "utf8"))
 const read = (rel) => JSON.parse(readFileSync(join(TOKENS, rel), "utf8"));
 const slug = (s) => s.trim().toLowerCase().replace(/[\s/]+/g, "-");
 
+// A segment that is a negative number keeps its sign as "minus-": collapsing
+// "scale/-5" to "scale-5" would collide with "scale/5", and the later
+// declaration would silently win.
 const varName = (collection, path, prefixed) =>
   "--" + (prefixed ? slug(collection) + "-" : "") +
-  path.replace(/[\s/]+/g, "-").replace(/-+/g, "-").toLowerCase();
+  path.replace(/(^|[\s/])-(?=\d)/g, "$1minus-")
+    .replace(/[\s/]+/g, "-").replace(/-+/g, "-").toLowerCase();
 
 // ---------- load the graph ------------------------------------------------
 function* leaves(node, path = []) {
@@ -241,12 +245,26 @@ write("themes.css",
   const GOOGLE = { "IBM Plex Sans": "IBM+Plex+Sans", "IBM Plex Mono": "IBM+Plex+Mono", "IBM Plex Serif": "IBM+Plex+Serif" };
   const hosted = [...new Set(fams.filter((f) => GOOGLE[f]))];
   const selfHost = [...new Set(fams.filter((f) => !GOOGLE[f]))];
-  let out = HEAD("Webfonts", "Derived from the font family and weight tokens.");
+  let out = HEAD("Webfonts", "Derived from the font family and weight tokens, plus the platform default for <body>.");
   for (const f of hosted)
     out += `/* ${f} — weights ${weights.join(", ")} */\n@import url("https://fonts.googleapis.com/css2?family=${GOOGLE[f]}:wght@${weights.join(";")}&display=swap");\n\n`;
   for (const f of selfHost)
     out += `/* ${f} is not on Google Fonts and must be self-hosted; add its @font-face\n   blocks here, or tokens naming it fall back down the stack. */\n\n`;
-  out += `/* Production: prefer self-hosting, or preconnect + <link> in the document head —\n   an @import is render-blocking. */\n`;
+  out += `/* Production: prefer self-hosting, or preconnect + <link> in the document head —\n   an @import is render-blocking. */\n\n`;
+  // Every platform's default running text: body/medium is the type ramp's own
+  // base reading size, foreground/primary the base ink colour. Without this,
+  // a page that only imports the token layer (no component library styling)
+  // renders with the browser's own black-on-serif default the moment text
+  // sits outside a component — which is exactly what a design system's own
+  // token CSS should not require a consumer to patch by hand.
+  out += `body {\n` +
+    `  font-family: var(--body-medium-font-family), system-ui, sans-serif;\n` +
+    `  font-size: var(--body-medium-font-size);\n` +
+    `  font-weight: var(--body-medium-font-weight);\n` +
+    `  line-height: var(--body-medium-line-height);\n` +
+    `  letter-spacing: var(--body-medium-letter-spacing);\n` +
+    `  color: var(--foreground-primary);\n` +
+    `}\n`;
   write("fonts.css", out);
   console.log(`fonts: ${hosted.join(", ") || "none"} @ ${weights.join("/")}${selfHost.length ? ` · self-host: ${selfHost.join(", ")}` : ""}`);
 }

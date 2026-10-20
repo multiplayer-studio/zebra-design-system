@@ -101,13 +101,13 @@ export const ThemingCascade: Story = {
 /** A theme scope set on an ancestor reaches every descendant, including into shadow roots. */
 export const NestedScopes: Story = {
   render: () => html`
-    <div class="ext-target" style="padding:16px;background:var(--surface-page);border:1px solid var(--border-default);border-radius:8px">
+    <div class="ext-target" style="padding:16px;background:var(--surface-page);color:var(--foreground-primary);border:1px solid var(--border-default);border-radius:8px">
       <div style="font:500 12px/1.4 system-ui;opacity:.7;margin-bottom:8px">ext-target (outer)</div>
       <zds-button shape="rounded">Inherits target</zds-button>
-      <div class="mode-dark" style="margin-top:12px;padding:16px;background:var(--surface-page);border-radius:8px">
+      <div class="mode-dark" style="margin-top:12px;padding:16px;background:var(--surface-page);color:var(--foreground-primary);border-radius:8px">
         <div style="font:500 12px/1.4 system-ui;opacity:.7;margin-bottom:8px">…mode-dark nested inside it</div>
         <zds-button shape="rounded">Target, dark</zds-button>
-        <div class="ext-companion mode-light" style="margin-top:12px;padding:16px;background:var(--surface-page);border-radius:8px">
+        <div class="ext-companion mode-light" style="margin-top:12px;padding:16px;background:var(--surface-page);color:var(--foreground-primary);border-radius:8px">
           <div style="font:500 12px/1.4 system-ui;opacity:.7;margin-bottom:8px">…switched again to ext-companion mode-light</div>
           <zds-button shape="rounded">Companion, light</zds-button>
         </div>

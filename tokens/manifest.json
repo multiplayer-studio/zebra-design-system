@@ -1,7 +1,7 @@
 {
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
-  "extractedAt": "2026-09-22",
-  "source": "Figma Plugin API via use_figma (figma-token-export skill)",
+  "extractedAt": "2026-10-18",
+  "source": "Figma Plugin API via use_figma (zebra-figma-token-export skill) · 5 rows (space/neg/lg, space/neg/xl, scale/-4, scale/-5, scale/-6) taken from working file UZuTdXUhuybNkybf1NZuOt (Avatar Rail), which is the main library plus these additions; not yet in hvRmnZZOZrmTW0wf8hbrt5",
   "collections": [
     {
       "name": "primitives",
@@ -11,7 +11,7 @@
         "Value"
       ],
       "defaultMode": "Value",
-      "variableCount": 257,
+      "variableCount": 263,
       "isExtension": false,
       "hiddenFromPublishing": true,
       "files": [
@@ -26,7 +26,7 @@
         "Base"
       ],
       "defaultMode": "Base",
-      "variableCount": 172,
+      "variableCount": 195,
       "isExtension": false,
       "hiddenFromPublishing": false,
       "files": [
@@ -42,7 +42,7 @@
         "Dark"
       ],
       "defaultMode": "Light",
-      "variableCount": 90,
+      "variableCount": 98,
       "isExtension": false,
       "hiddenFromPublishing": false,
       "files": [
@@ -61,7 +61,7 @@
         "Desktop Compact"
       ],
       "defaultMode": "Desktop",
-      "variableCount": 47,
+      "variableCount": 54,
       "isExtension": false,
       "hiddenFromPublishing": false,
       "files": [
@@ -172,14 +172,87 @@
         "extensions/target/palette/light.json",
         "extensions/target/palette/dark.json"
       ]
+    },
+    {
+      "name": "condensed",
+      "slug": "condensed",
+      "extends": {
+        "name": "typography",
+        "id": "VariableCollectionId:2207:329",
+        "slug": "typography"
+      },
+      "root": {
+        "name": "typography",
+        "id": "VariableCollectionId:2207:329"
+      },
+      "overrideCount": 34,
+      "modeMap": [
+        {
+          "mode": "Desktop",
+          "parentMode": "Desktop"
+        },
+        {
+          "mode": "Tablet",
+          "parentMode": "Tablet"
+        },
+        {
+          "mode": "Mobile",
+          "parentMode": "Mobile"
+        },
+        {
+          "mode": "Desktop Compact",
+          "parentMode": "Desktop Compact"
+        }
+      ],
+      "files": [
+        "extensions/condensed/typography/desktop.json",
+        "extensions/condensed/typography/tablet.json",
+        "extensions/condensed/typography/mobile.json",
+        "extensions/condensed/typography/desktop-compact.json"
+      ]
+    },
+    {
+      "name": "condensed",
+      "slug": "condensed",
+      "extends": {
+        "name": "size",
+        "id": "VariableCollectionId:2013:6723",
+        "slug": "size"
+      },
+      "root": {
+        "name": "size",
+        "id": "VariableCollectionId:2013:6723"
+      },
+      "overrideCount": 29,
+      "modeMap": [
+        {
+          "mode": "Desktop",
+          "parentMode": "Desktop"
+        },
+        {
+          "mode": "Mobile",
+          "parentMode": "Mobile"
+        },
+        {
+          "mode": "Tablet",
+          "parentMode": "Tablet"
+        },
+        {
+          "mode": "Desktop Compact",
+          "parentMode": "Desktop Compact"
+        }
+      ],
+      "files": [
+        "extensions/condensed/size/desktop.json"
+      ]
     }
   ],
   "counts": {
     "collections": 5,
-    "extensions": 3,
-    "tokens": 1157,
-    "overrideTokens": 55,
-    "files": 20
+    "extensions": 5,
+    "tokens": 1230,
+    "overrideTokens": 136,
+    "files": 27
   },
   "conventions": {
     "alias": "{<collection name>.<dotted variable name>}",
@@ -189,6 +262,9 @@
   "warnings": [
     "palette/Light name collisions: ['fill/transparent/elevate']",
     "palette/Dark name collisions: ['fill/transparent/elevate']",
-    "62 duplicate variable rows across dump pages were de-duplicated by id"
+    "Extension 'condensed' mode 'Mobile' overrides nothing; no file written",
+    "Extension 'condensed' mode 'Tablet' overrides nothing; no file written",
+    "Extension 'condensed' mode 'Desktop Compact' overrides nothing; no file written",
+    "5 variables come from working file UZuTdXUhuybNkybf1NZuOt, not the main library: space/neg/lg, space/neg/xl, scale/-4, scale/-5, scale/-6. Re-pull from the main library once they are published there."
   ]
 }

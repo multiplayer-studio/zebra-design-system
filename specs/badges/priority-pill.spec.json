@@ -1,0 +1,151 @@
+{
+  "component": {
+    "name": "Priority Pill",
+    "slug": "priority-pill",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "6406:410",
+      "key": "4ad65470a5671e4a20aca8bf7a93be8085442b26",
+      "page": "Badges",
+      "pageNodeId": "3717:5570",
+      "metadataFrameId": "6413:389",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6406-410",
+      "extractedAt": "2026-10-15",
+      "variantCount": 32,
+      "defaultVariant": "Level=low, Variant=lozenge, Size=large, Leading=icon",
+      "extractionNote": "One of five independent components on the Badges page. All 32 variants (Level 4 x Variant 2 x Size 2 x Leading 2, complete) read in-file as token signatures. Level was checked across every variant to change only colour, glyph and text (it does); the other three axes were diffed from the default one at a time, plus small/badge/number. One raw value found (badge gap)."
+    }
+  },
+  "summary": "Shows where an item sits on a four step scale, from low to urgent. Level sets the fill, the circle and the glyph together, Variant decides whether the name appears beside the circle or the circle stands alone, and Leading swaps the glyph for a rank number. Reach for it where items compete for attention and the order between them is the point.",
+  "api": {
+    "label": { "type": "string", "figmaName": "Label#6401:33", "default": "Label", "controls": ["label"], "visibleWhen": "variant = lozenge", "intent": "The priority name, such as Low or Urgent. Carried on lozenge only, so switching to badge removes it rather than shortening it." },
+    "priorityNumber": { "type": "string", "figmaName": "Priority Number#6401:0", "default": "4", "controls": ["rank"], "visibleWhen": "leading = number", "intent": "The rank shown inside the circle when Leading is number. One or two characters, because the circle is a fixed square and does not grow with the value." },
+    "level": { "type": "enum", "figmaName": "Level", "values": ["low", "medium", "high", "urgent"], "default": "low", "controls": ["pill.fill", "circle.fill", "glyph", "label.fill"],
+      "intent": {
+        "low": "The bottom of the scale, drawn in a neutral rather than a feedback colour so it reads as ordinary rather than as something going well.",
+        "medium": "The middle of the scale. It takes the info colour, the one level that does not escalate the surface it sits on.",
+        "high": "Ahead of the rest but not at the top. Reaching for it on a true emergency leaves nothing above it.",
+        "urgent": "The top of the scale. The strongest colour in the set, so spending it broadly flattens the very scale it exists to express."
+      } },
+    "variant": { "type": "enum", "figmaName": "Variant", "values": ["lozenge", "badge"], "default": "lozenge", "controls": ["label", "pill.padding"],
+      "intent": {
+        "lozenge": "Circle and label together. Reach for it wherever a reader may not already know the scale, because the label is the only part that names the level outright.",
+        "badge": "The circle alone. Reach for it in a dense list or pinned to another object, and only where the colour and the glyph are already understood."
+      } },
+    "size": { "type": "enum", "figmaName": "Size", "values": ["small", "large"], "default": "large", "controls": ["pill.padding", "circle.size", "glyph.size", "label.style", "rank.style"],
+      "intent": {
+        "large": "The default, for a row with room for the name.",
+        "small": "For dense lists. It reduces the text as well as the box, so a long name gets harder to read rather than merely tighter."
+      } },
+    "leading": { "type": "enum", "figmaName": "Leading", "values": ["icon", "number"], "default": "icon", "controls": ["glyph", "rank"],
+      "intent": {
+        "icon": "A direction glyph in the circle, down for low, a dash for medium, up for high and the priority mark for urgent. It says which way the level points without the label being read.",
+        "number": "A rank number in the circle in place of the glyph. Reach for it where the exact position in a queue matters, and note that it removes the only cue to direction that is not colour."
+      } }
+  },
+  "internalVariations": [
+    { "part": "glyph", "via": "Icon (nested)", "options": { "low": "arrow-down", "medium": "remove", "high": "arrow-up", "urgent": "priority" }, "intent": "An Icon at Size=small whose glyph is fixed per level. The component chooses it from Level and surfaces none of the Icon's own properties, so it is not a slot a consumer fills." }
+  ],
+  "contentInputs": [],
+  "anatomy": [
+    { "id": "pill", "kind": "container", "role": "The surround, filled per Level. On badge this is the whole component.", "layout": { "direction": "horizontal", "gap": "space/xs (lozenge)", "padding": "large: space/xs, trailing space/sm · small: space/2xs, trailing space/sm · badge: even (space/xs large, space/2xs small)" }, "sizing": { "h": "hug (lozenge) / fixed square (badge)", "v": "hug" }, "radius": "radius/pill", "paint": { "fill": "per level" } },
+    { "id": "circle", "kind": "container", "role": "A knockout disc carrying either a direction glyph or a rank number. It takes the label's colour while its contents take the pill's.", "size": "control/icon-md (large) · control/icon-sm (small)", "radius": "radius/pill", "paint": { "fill": "per level (the label's colour)" }, "layout": { "padding": "space/none", "align": "center" } },
+    { "id": "glyph", "kind": "instance", "ref": "Icon", "visibleWhen": "leading = icon", "size": "Icon Size=small (large: 16, exact) · scaled to 12 at small (unbound)", "color": "the pill's fill token" },
+    { "id": "rank", "kind": "text", "visibleWhen": "leading = number", "content": "priorityNumber", "text": { "style": "indicator/medium (large; bound per property, no text style) · indicator/small (small)", "color": "the pill's fill token" } },
+    { "id": "label", "kind": "text", "role": "The priority name, set through Label and present on lozenge only.", "visibleWhen": "variant = lozenge", "content": "label", "container": { "padding": "trailing space/xs (large) · space/2xs (small)" }, "text": { "style": "body/small (large) · indicator/small (small)", "color": "per level" } }
+  ],
+  "variants": {
+    "_note": "Cells are token names, except those ending Px, which are measurements of the rendered file. Level changes only colour, glyph and text, at every Variant, Size and Leading.",
+    "level": { "axis": "level", "base": "low", "table": [
+      { "level": "low", "pill.fill": "foreground/secondary", "circle.fill + label.fill": "foreground/inverse", "glyph/rank colour": "foreground/secondary", "glyph": "arrow-down", "figmaNode": "6406:234" },
+      { "level": "medium", "pill.fill": "feedback/info/background/strong", "circle.fill + label.fill": "interactive/primary/foreground/default", "glyph/rank colour": "feedback/info/background/strong", "glyph": "remove", "figmaNode": "6406:278" },
+      { "level": "high", "pill.fill": "feedback/warning/background/strong", "circle.fill + label.fill": "foreground/inverse", "glyph/rank colour": "feedback/warning/background/strong", "glyph": "arrow-up", "figmaNode": "6406:322" },
+      { "level": "urgent", "pill.fill": "feedback/error/background/strong", "circle.fill + label.fill": "interactive/destructive/foreground/default", "glyph/rank colour": "feedback/error/background/strong", "glyph": "priority", "figmaNode": "6406:366" }
+    ] },
+    "size": { "axis": "size", "base": "large", "table": [
+      { "size": "small", "pill.padding": "space/2xs, trailing space/sm", "circle": "control/icon-sm", "glyphPx": 12, "label": "indicator/small, trailing space/2xs", "rank": "indicator/small", "measuredHeightPx": 20, "figmaNode": "6406:247" },
+      { "size": "large", "pill.padding": "space/xs, trailing space/sm", "circle": "control/icon-md", "glyphPx": 16, "label": "body/small, trailing space/xs", "rank": "indicator/medium", "measuredHeightPx": 28, "figmaNode": "6406:234" }
+    ] },
+    "variant": { "axis": "variant", "base": "lozenge", "table": [
+      { "variant": "lozenge", "label": "shown", "pill.padding": "trailing space/sm" },
+      { "variant": "badge", "label": "removed", "pill.padding": "even on all sides", "measuredSizePx": "28 / 20 square", "figmaNode": "6406:260" }
+    ] },
+    "leading": { "axis": "leading", "base": "icon", "table": [
+      { "leading": "icon", "circle.content": "glyph" },
+      { "leading": "number", "circle.content": "rank (Priority Number)", "figmaNode": "6406:242" }
+    ] }
+  },
+  "subcomponents": [],
+  "dependencies": [ { "name": "Icon", "id": "2046:15010", "remote": false, "usedAt": ["glyph"], "delivery": "Font glyphs, rounded family: arrow-down, remove, arrow-up, priority. All present in codepoints.json; none rejected." } ],
+  "tokens": {
+    "source": "tokens/ — names below resolve there; see tokens/manifest.json",
+    "rule": "This spec names tokens only.",
+    "color": ["foreground/{secondary,inverse}", "feedback/{info,warning,error}/background/strong", "interactive/primary/foreground/default", "interactive/destructive/foreground/default"],
+    "dimension": ["space/{none,2xs,xs,sm}", "radius/pill", "control/{icon-md,icon-sm}"],
+    "typography": ["body/small", "indicator/medium", "indicator/small"],
+    "effect": [],
+    "missingFromExport": [],
+    "themeAxes": { "palette": ["Light", "Dark"], "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"], "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"], "extensions": "tokens/extensions/ (companion, target, condensed)" }
+  },
+  "states": [
+    { "state": "Static", "trigger": "—", "duration": "—", "whatChanges": "The component has no interaction states. Nothing answers hover, focus or press, because it reports a rank rather than offering an action." },
+    { "state": "Level", "trigger": "The Level value", "duration": "—", "whatChanges": "The pill fill, the circle fill and the label colour move together, and the glyph changes shape with them. Nothing else varies." }
+  ],
+  "behavior": [
+    { "type": "Motion", "description": "No transition is defined. A level change is a swap of fill, circle, label colour and glyph." },
+    { "type": "Variant and label", "description": "badge removes the label rather than hiding it, so the component becomes a fixed square instead of a pill that hugs its text. Whatever the label was carrying has to be available elsewhere on the row." }
+  ],
+  "content": [
+    { "property": "Label", "type": "text property", "description": "Consumer owned, set through Label. Present on lozenge only." },
+    { "property": "Priority Number", "type": "text property", "description": "Consumer owned, set through Priority Number and shown in the circle when Leading is number." },
+    { "property": "Leading glyph", "type": "nested Icon, per Level", "description": "An Icon at Size=small whose glyph is fixed per level. The component chooses it from Level and surfaces none of the Icon's own properties, so it is not a slot a consumer fills." },
+    { "property": "Circle", "type": "drawn", "description": "Drawn by the component rather than passed in. It holds either the glyph or the number and never both." }
+  ],
+  "usage": {
+    "do": [
+      "Reach for lozenge wherever a reader may not already know the scale. The label is the only part that names the level without prior knowledge of the colours.",
+      "Keep Leading=icon where direction matters more than exact position. The glyph changes shape per level, so it survives greyscale in a way the fill does not."
+    ],
+    "dont": [
+      "Don't mix badge and lozenge down one column. The two read as different scales rather than as one scale abbreviated.",
+      "Don't treat the rank number as a count. It is a position in a queue, so a larger number does not mean more of anything."
+    ]
+  },
+  "accessibility": [
+    "Level is carried by fill and by glyph shape. With Leading=number the glyph is gone, leaving colour as the only cue that is not text, so the label has to be present or the level named nearby.",
+    "badge drops the label entirely. It needs an accessible name from the surrounding structure, or the level reaches only a reader who already knows the colour code.",
+    "The circle is a knockout, so its contents sit in the pill's background colour on the label's colour. Check that pairing holds contrast at small, where the glyph is 16 and the number is 10px.",
+    "At small the label drops to 10px, which is below comfortable reading size for a long name. Keep names to one short word at that size.",
+    "Nothing here is focusable and nothing announces itself. A level changing while a person is on the page has to be announced by the structure around it."
+  ],
+  "layoutTheming": [
+    { "property": "Size", "type": "Hug on lozenge, fixed on badge", "description": "Lozenge is 28 tall at large and 20 at small, hugging its label. Badge is a fixed square at the same two heights, 28 and 20, because it carries no label to hug." },
+    { "property": "Padding and gap", "type": "Fixed", "description": "space/xs around the lozenge at large and space/2xs at small, with a wider trailing edge at both so the label clears the end of the pill. The circle and the label are separated by space/xs at both sizes." },
+    { "property": "Radius", "type": "Fixed", "description": "radius/pill on every level, variant and size. There is no square cornered form." },
+    { "property": "Fill", "type": "Per Level", "description": "low draws foreground/secondary. medium, high and urgent draw feedback/info, warning and error at background/strong. low is the only level not taking a feedback colour, which is what keeps it reading as ordinary rather than good." },
+    { "property": "Circle", "type": "Knockout", "description": "20 at large and 16 at small, filled with the same token as the label. Whatever sits inside it, glyph or number, is drawn in the pill's own background colour, so the circle reads as a hole punched through the pill." },
+    { "property": "Label", "type": "Theming", "description": "body/small at 14px on large and indicator/small at 10px on small. The colour pairs with the level, foreground/inverse on low and high and the matching foreground token on medium and urgent." }
+  ],
+  "visualReference": {
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3717-5570",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6406-410",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6413-389",
+    "perAxis": {
+      "low, lozenge, large, icon": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6406-234",
+      "urgent": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6406-366",
+      "small": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6406-247",
+      "badge": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6406-260",
+      "number": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6406-242",
+      "small, badge, number": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6406-275"
+    }
+  },
+  "issues": [
+    { "severity": "warn", "source": "metadata Accessibility vs structure", "detail": "The metadata says that at small 'the glyph is 16'. As built, the small glyph is the Icon at Size=small scaled to 12 to fit the 16 circle (the circle less space/2xs each side), with no size token. At large the glyph is the Icon at Size=small, 16, exactly." },
+    { "severity": "warn", "source": "code (packages/web-components zds-priority-pill)", "detail": "The experimental element differs from Figma in two places: the circle-to-label gap at large is 6 (space/xs + space/2xs) where Figma and the metadata use space/xs, and the small label is label/small (12) where Figma uses indicator/small (10). Everything else matches (padding, trailing label space, circle sizes and colours, glyphs, rank styles)." },
+    { "severity": "warn", "source": "tokens", "detail": "Medium and urgent borrow button tokens for the circle and label (interactive/primary/foreground/default, interactive/destructive/foreground/default); low and high use foreground/inverse. foreground/on-strong now exists for text on strong fills and covers medium and urgent; high (warning) still needs a mode-aware 'on' colour because its fill lightens in dark mode." },
+    { "severity": "note", "source": "structure (gaps)", "detail": "The badge variants keep a raw 6 gap on the pill. It has no effect (the badge has a single child), but it is the one unbound value in the set." },
+    { "severity": "note", "source": "structure", "detail": "The large rank text binds every indicator/medium property individually but carries no text style, unlike the small rank (indicator/small style). Rendered the same; worth tidying." },
+    { "severity": "note", "source": "tokens/ (contrast)", "detail": "The knockout pairs in light mode: medium 4.40:1 (info on white), high 4.34:1 (warning on foreground/inverse), urgent 5.19:1, low above 6:1. Acknowledged earlier by the owner." },
+    { "severity": "note", "source": "metadata", "detail": "No motion and no interaction states, by the metadata's own statement. The set has no description." }
+  ]
+}

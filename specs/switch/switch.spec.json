@@ -1,0 +1,393 @@
+{
+  "component": {
+    "name": "Switch",
+    "slug": "switch",
+    "source": {
+      "fileKey": "IIMfLwyDF9xnwmpKpy8Kj7",
+      "setId": "5804:156",
+      "key": "b6dac3eb1ed0426361fda621db697b7c88e596c0",
+      "page": "Switch",
+      "pageNodeId": "5655:893",
+      "metadataFrameId": "6116:9977",
+      "url": "https://www.figma.com/design/IIMfLwyDF9xnwmpKpy8Kj7/switch?node-id=5655-893",
+      "extractedAt": "2026-10-13",
+      "revision": "Re-extracted 2026-10-13. Changes since the previous extraction: the thumb is now a rectangle bound to radius/pill (was an ellipse), and the Motion row was rewritten (the width-stretch line was added; the layout-driven/RTL line and the focus-ring line were removed).",
+      "variantCount": 6,
+      "defaultVariant": "State=enabled, Switch=off",
+      "extractionNote": "All 6 variants (3 State x 2 Switch) were extracted in full. The structure walk does not enter instances, so icon glyph colours were read in a second pass from the vector-network region fills inside each icon slot, across all 6 variants.",
+      "tokenSource": "tokens/"
+    }
+  },
+  "summary": "A single on or off toggle, a track with a thumb slider that switches between its two ends. Two independent icon slots sit at either end of the track, which can be removed as a pair. Focus adds a border rather than changing the track or thumb colour.",
+  "api": {
+    "state": {
+      "type": "enum",
+      "figmaName": "State",
+      "values": ["disabled", "enabled", "focus"],
+      "default": "enabled",
+      "controls": ["variant"],
+      "intent": {
+        "enabled": "The resting state. Track and thumb take their default or pressed token depending on Switch.",
+        "focus": "Adds a 2px border bound to border/focus, replacing the 0 weight border/default border at rest. Track and thumb colour do not change.",
+        "disabled": "Track and thumb switch to their disabled tokens regardless of Switch. The control does not accept input."
+      }
+    },
+    "switch": {
+      "type": "enum",
+      "figmaName": "Switch",
+      "values": ["on", "off"],
+      "default": "off",
+      "controls": ["variant"],
+      "intent": {
+        "off": "The track sits on interactive/selection/background/default and the thumb sits at the left. The icon slot nearest the thumb is covered.",
+        "on": "The track switches to interactive/selection/background/pressed and the thumb slides 32px to the right. The thumb colour itself does not change between on and off."
+      }
+    },
+    "hasIcons": {
+      "type": "boolean",
+      "figmaName": "hasIcons#5856:5",
+      "default": true,
+      "controls": ["icons"],
+      "intent": {
+        "true": "Shows both icon slots at the ends of the track.",
+        "false": "Removes both icon slots, leaving a plain track and thumb."
+      }
+    }
+  },
+  "internalVariations": [
+    {
+      "part": "startIcon",
+      "via": "Icon (nested instance, glyph swap)",
+      "options": "any glyph in packages/icons/codepoints.json",
+      "sample": { "switch=off": "microphone-off", "switch=on": "microphone" },
+      "intent": "Independent of the right slot. This file's sample shows Microphone Off at rest and Microphone when the switch is on, to demonstrate a state communicating pair. Any glyph can replace either one."
+    },
+    {
+      "part": "endIcon",
+      "via": "Icon (nested instance, glyph swap)",
+      "options": "any glyph in packages/icons/codepoints.json",
+      "sample": { "switch=off": "microphone-off", "switch=on": "microphone-off" },
+      "intent": "Independent of the left slot. Always shows Microphone Off in this sample, covered by the thumb when the switch is on."
+    }
+  ],
+  "contentInputs": [],
+  "anatomy": [
+    {
+      "id": "root",
+      "figmaLayer": "State=…, Switch=…",
+      "kind": "container",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/sm",
+        "padding": "space/xs",
+        "mainAxisAlign": { "switch=off": "start", "switch=on": "end" },
+        "crossAxisAlign": "center"
+      },
+      "sizing": { "h": "fixed", "v": "fixed" },
+      "measuredSizePx": { "w": 64, "h": 32 },
+      "radius": "radius/pill",
+      "clips": true,
+      "paint": {
+        "stroke": {
+          "color": { "rest": "border/default", "focus": "border/focus" },
+          "width": { "rest": "stroke/base", "focus": "stroke/thick" },
+          "align": { "rest": "inside", "focus": "outside" }
+        }
+      },
+      "_note": "Track and icons are absolutely positioned, so the thumb is the only in-flow child: the root's main-axis alignment is what moves it, and the gap has no visible effect."
+    },
+    {
+      "id": "track",
+      "figmaLayer": "Track",
+      "number": 1,
+      "kind": "shape",
+      "shape": "rectangle",
+      "role": "A rectangle sitting behind everything else. Its own colour depends on both State and Switch.",
+      "position": { "mode": "absolute", "anchor": "fill" },
+      "radius": "radius/pill",
+      "paint": { "fill": "see variants: track.fill" }
+    },
+    {
+      "id": "icons",
+      "figmaLayer": "Icons",
+      "kind": "container",
+      "visibleWhen": "hasIcons",
+      "position": { "mode": "absolute", "anchor": "fill" },
+      "layout": {
+        "direction": "horizontal",
+        "padding": "space/xs",
+        "mainAxisAlign": "space-between",
+        "crossAxisAlign": "center"
+      },
+      "_note": "Sits above the track and below the thumb, so the thumb covers whichever icon is at its end."
+    },
+    {
+      "id": "startIcon",
+      "figmaLayer": "Icons/On Icon",
+      "number": 2,
+      "kind": "instance",
+      "ref": "Icon",
+      "refVariant": "Size=medium, Framed=false",
+      "renderedSizePx": 20,
+      "glyph": { "switch=off": "microphone-off", "switch=on": "microphone" },
+      "fontFamily": "rounded",
+      "role": "An instance swap slot, covered by the thumb when Switch is on.",
+      "paint": { "color": { "enabled": "foreground/inverse", "focus": "foreground/inverse", "disabled": "foreground/disabled" } },
+      "_note": "Sits at the start of the track. Geometrically it is covered by the thumb when switch=off and visible when switch=on; see issues for the conflict with the metadata's anatomy text."
+    },
+    {
+      "id": "endIcon",
+      "figmaLayer": "Icons/Off Icon",
+      "number": 3,
+      "kind": "instance",
+      "ref": "Icon",
+      "refVariant": "Size=medium, Framed=false",
+      "renderedSizePx": 20,
+      "glyph": { "switch=off": "microphone-off", "switch=on": "microphone-off" },
+      "fontFamily": "rounded",
+      "role": "An instance swap slot, covered by the thumb when Switch is off.",
+      "paint": { "color": { "enabled": "foreground/inverse", "focus": "foreground/inverse", "disabled": "foreground/disabled" } },
+      "_note": "Sits at the end of the track. Geometrically it is visible when switch=off and covered by the thumb when switch=on; see issues for the conflict with the metadata's anatomy text."
+    },
+    {
+      "id": "thumb",
+      "figmaLayer": "Thumb",
+      "number": 4,
+      "kind": "shape",
+      "shape": "rectangle",
+      "role": "A circle that slides 32px between the two ends. Its own colour does not change between on and off, only between enabled and disabled.",
+      "sizing": { "h": "fixed", "v": "fixed" },
+      "size": { "height": "control/xs", "width": "unbound (see gaps)" },
+      "radius": "radius/pill",
+      "_note": "Drawn as a fully rounded rectangle rather than an ellipse, so it reads as a circle at rest and as a pill while its width stretches during the toggle motion.",
+      "measuredSizePx": { "w": 24, "h": 24 },
+      "measuredOffsetPx": { "switch=off": 4, "switch=on": 36 },
+      "paint": { "fill": "see variants: thumb.fill" }
+    }
+  ],
+  "variants": {
+    "axes": ["state", "switch"],
+    "base": { "state": "enabled", "switch": "off" },
+    "_note": "Every cell is a token name except the one ending in Px. The axes are orthogonal: switch controls only track colour and thumb position, state controls only the colours and the border.",
+    "table": [
+      { "state": "enabled",  "switch": "off", "track.fill": "interactive/selection/background/default",  "thumb.fill": "interactive/primary/foreground/default",  "thumb.position": "start", "root.stroke": "border/default @ stroke/base, inside", "icon.color": "foreground/inverse",  "figmaNode": "5853:99" },
+      { "state": "enabled",  "switch": "on",  "track.fill": "interactive/selection/background/pressed",  "thumb.fill": "interactive/primary/foreground/default",  "thumb.position": "end",   "root.stroke": "border/default @ stroke/base, inside", "icon.color": "foreground/inverse",  "figmaNode": "5856:135" },
+      { "state": "focus",    "switch": "off", "track.fill": "interactive/selection/background/default",  "thumb.fill": "interactive/primary/foreground/default",  "thumb.position": "start", "root.stroke": "border/focus @ stroke/thick, outside",  "icon.color": "foreground/inverse",  "figmaNode": "5856:168" },
+      { "state": "focus",    "switch": "on",  "track.fill": "interactive/selection/background/pressed",  "thumb.fill": "interactive/primary/foreground/default",  "thumb.position": "end",   "root.stroke": "border/focus @ stroke/thick, outside",  "icon.color": "foreground/inverse",  "figmaNode": "5856:178" },
+      { "state": "disabled", "switch": "off", "track.fill": "interactive/selection/background/disabled", "thumb.fill": "interactive/primary/foreground/disabled", "thumb.position": "start", "root.stroke": "border/default @ stroke/base, inside", "icon.color": "foreground/disabled", "figmaNode": "5856:146" },
+      { "state": "disabled", "switch": "on",  "track.fill": "interactive/selection/background/disabled", "thumb.fill": "interactive/primary/foreground/disabled", "thumb.position": "end",   "root.stroke": "border/default @ stroke/base, inside", "icon.color": "foreground/disabled", "figmaNode": "5856:157" }
+    ],
+    "thumbTravelPx": 32
+  },
+  "subcomponents": [],
+  "dependencies": [
+    {
+      "name": "Icon",
+      "setId": "2046:15010",
+      "key": "a3f9f728b9732886887cc39d7beeb482f3d11df9",
+      "remote": false,
+      "onPage": false,
+      "usedAt": ["startIcon", "endIcon"],
+      "pinned": { "Size": "medium", "Framed": "false" },
+      "spec": "specs/icon/icon.spec.json",
+      "delivery": {
+        "as": "icon font glyph",
+        "package": "@zebra-design-system/icons",
+        "glyphs": ["microphone", "microphone-off"],
+        "verified": "Both glyphs are in packages/icons/codepoints.json, not retired, not in inventory.json's rejected list, and their setIds (2046:7333, 2046:7338) match the instances on this page exactly.",
+        "note": "Switch pins the Rounded family (Style=rounded). Both families share codepoints, so Style is a font-family choice, not a different glyph. The glyph takes currentColor; Switch sets that colour per state (foreground/inverse, or foreground/disabled when disabled). Icon size is not a token on Switch: it comes from the nested Icon's Size=medium variant, which Switch pins."
+      }
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ — names below resolve there; see tokens/manifest.json for collections, modes and the extension graph",
+    "rule": "This spec names tokens only. Resolved values live in tokens/ and are deliberately not duplicated here.",
+    "color": [
+      "interactive/selection/background/default",
+      "interactive/selection/background/pressed",
+      "interactive/selection/background/disabled",
+      "interactive/primary/foreground/default",
+      "interactive/primary/foreground/disabled",
+      "border/default",
+      "border/focus",
+      "foreground/inverse",
+      "foreground/disabled"
+    ],
+    "dimension": ["space/xs", "space/sm", "radius/pill", "stroke/base", "stroke/thick", "control/xs"],
+    "typography": [],
+    "effect": [],
+    "missingFromExport": [],
+    "themeAxes": {
+      "palette": ["Light", "Dark"],
+      "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
+      "extensions": "tokens/extensions/ (companion, target, condensed)"
+    }
+  },
+  "states": [
+    { "State": "enabled", "Trigger": "Resting", "Duration": "—", "What changes": "Track and thumb sit on their default or pressed token depending on Switch. No border." },
+    { "State": "focus", "Trigger": "Keyboard focus", "Duration": "—", "What changes": "A 2px border appears, bound to border/focus, drawn inside the control's own bounds. Track and thumb colour do not change from enabled." },
+    { "State": "disabled", "Trigger": "Disabled state set", "Duration": "—", "What changes": "Track and thumb switch to their disabled tokens. The control does not accept input." }
+  ],
+  "behavior": [
+    {
+      "Type": "Motion",
+      "Description": "When the switch is toggled, the thumb slides to the opposite end of the track and the track colour changes from off to on at the same time.\nThe movement uses ease-spring: cubic-bezier(0.34, 1.36, 0.64, 1), with a duration of 250ms. \nThe track colour changes in step with the thumb, so it reaches its final colour exactly when the thumb arrives.\nIf the switch is toggled again during the animation, the thumb reverses from where it is, without jumping or restarting.\nThe thumb increases it’s width to 1.3 before settling back to it’s original width"
+    }
+  ],
+  "content": [
+    { "Property": "Left icon slot", "Type": "Instance swap on a nested Icon", "Description": "Independent of the right slot. This file's sample shows Microphone Off at rest and Microphone when the switch is on, to demonstrate a state communicating pair. Any glyph can replace either one." },
+    { "Property": "Right icon slot", "Type": "Instance swap on a nested Icon", "Description": "Independent of the left slot. Always shows Microphone Off in this sample, covered by the thumb when the switch is on." }
+  ],
+  "usage": {
+    "do": [
+      "Keep the two icon slots paired to communicate the current state, the way this file's Microphone example does, rather than using unrelated glyphs on each side.",
+      "Turn hasIcons off for a plain track and thumb switch with no icon content at either end."
+    ],
+    "dont": [
+      "Don't expect the thumb to change colour between on and off, only the track does. Rely on the track colour and the thumb's position together to show state.",
+      "Don't expect this component's own focus border to extend past its bounds, it is drawn inside the 64x32 footprint rather than around it."
+    ]
+  },
+  "accessibility": [
+    "The switch has the role of switch and tells assistive technology whether it is on or off. Screen readers announce it as “[label], switch, on” or “off”.",
+    "Space toggles the switch. Enter may also toggle it. Tab moves focus to and from the switch.",
+    "The focus ring is clearly visible on keyboard focus against both the on and off track colours.",
+    "The switch’s state is shown by the thumb’s position as well as by colour, so it does not depend on colour alone.",
+    "A disabled switch can’t be toggled, but it stays readable, and the reason it’s disabled is explained nearby when it isn’t obvious.",
+    "With reduced motion turned on, the state changes instantly. The colour change remains, because it shows the switch’s state."
+  ],
+  "layoutTheming": [
+    { "Property": "Width", "Type": "Fixed", "Description": "64px, held fixed rather than hugging its content." },
+    { "Property": "Height", "Type": "Fixed", "Description": "32px, held fixed." },
+    { "Property": "Padding", "Type": "Fixed", "Description": "4px on every side of the track." },
+    { "Property": "Thumb", "Type": "Fixed size, fixed travel", "Description": "24px across. Slides between x=4 at off and x=36 at on, 32px of travel." },
+    { "Property": "Icon size", "Type": "Fixed", "Description": "20px square at each end, inside the same 4px padding as the thumb." },
+    { "Property": "Border", "Type": "Fixed per State", "Description": "0 weight bound to border/default at rest, 2px bound to border/focus when focused, drawn inside the control’s own bounds so the overall size does not change." }
+  ],
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/IIMfLwyDF9xnwmpKpy8Kj7/switch?node-id=5655-893",
+    "componentSet": "https://www.figma.com/design/IIMfLwyDF9xnwmpKpy8Kj7/switch?node-id=5804-156",
+    "metadata": "https://www.figma.com/design/IIMfLwyDF9xnwmpKpy8Kj7/switch?node-id=6116-9977",
+    "variants": {
+      "enabled/off": "https://www.figma.com/design/IIMfLwyDF9xnwmpKpy8Kj7/switch?node-id=5853-99",
+      "enabled/on": "https://www.figma.com/design/IIMfLwyDF9xnwmpKpy8Kj7/switch?node-id=5856-135",
+      "focus/off": "https://www.figma.com/design/IIMfLwyDF9xnwmpKpy8Kj7/switch?node-id=5856-168",
+      "focus/on": "https://www.figma.com/design/IIMfLwyDF9xnwmpKpy8Kj7/switch?node-id=5856-178",
+      "disabled/off": "https://www.figma.com/design/IIMfLwyDF9xnwmpKpy8Kj7/switch?node-id=5856-146",
+      "disabled/on": "https://www.figma.com/design/IIMfLwyDF9xnwmpKpy8Kj7/switch?node-id=5856-157"
+    }
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "contrast",
+      "detail": "The focus ring is effectively invisible when drawn inside the track, as the metadata says it is. border/focus against the track is 1.33:1 (on) and 1.12:1 (off) in Light, and 1.00:1 (on) and 1.54:1 (off) in Dark: in Dark, border/focus and interactive/selection/background/pressed are the same colour. WCAG asks 3:1 for a focus indicator, and the metadata's own accessibility line says the ring is 'clearly visible on keyboard focus against both the on and off track colours'. Drawn outside, as Figma has it, the ring sits on the page surface instead. Ratios from the 2026-10-13 token export."
+    },
+    {
+      "severity": "warn",
+      "source": "contrast",
+      "detail": "In Dark, the thumb (interactive/primary/foreground/default) on the off track (interactive/selection/background/default) is 2.91:1, below the 3:1 WCAG asks for a component's state-bearing parts. Light is 3.77:1. The icon on the off track passes in both modes."
+    },
+    {
+      "severity": "note",
+      "source": "spec vs token export",
+      "detail": "Resolved 2026-10-13. Previously a blocker: interactive/selection/background/{default,pressed,disabled} and control/xs were missing from tokens/. tokens/ was re-exported from IIMfLwyDF9xnwmpKpy8Kj7 and now contains all four; control/xs is 24 at every size mode, and condensed overrides it in Desktop."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs structure",
+      "detail": "The focus border is drawn OUTSIDE the root in Figma (stroke align outside), but the metadata says three times that it is drawn inside the control's own bounds (States & Triggers, How to use 'Don't', Layout & Theming 'Border'). Built as drawn, the ring extends past the 64x32 footprint; built as described, it sits inside it and overlaps the track. Decide which is intended and fix the other source."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs structure",
+      "detail": "The Anatomy annotations swap the icon slots. They say the left slot is covered when Switch is on and the right when Switch is off. The geometry, the Property Breakdown ('the icon slot nearest the thumb is covered') and Content & Slot all say the opposite: the thumb sits at the start when off (covering the left slot) and at the end when on (covering the right slot). The spec's roles quote the anatomy verbatim; trust the geometry."
+    },
+    {
+      "severity": "warn",
+      "source": "descriptionDrift",
+      "detail": "control/xs's description says '= 40px, source: scale/12' but it aliases scale/9, which is 24px in the export. The thumb height is bound to a token whose description promises a 40px control."
+    },
+    {
+      "severity": "warn",
+      "source": "descriptionDrift",
+      "detail": "stroke/base's description says '= 1px, source: scale/0' but scale/0 is 0px. That 0 is why the rest-state border is invisible, which matches the metadata's '0 weight'. A token called stroke/base that resolves to 0 will surprise anyone reusing it."
+    },
+    {
+      "severity": "warn",
+      "source": "gaps",
+      "detail": "Thumb width is raw (24) while its height is bound to control/xs. If control/xs ever differs from 24 in a size mode, the thumb stops being a circle. The new width-stretch motion animates this same unbound width. Bind the width too, or size the thumb from one token."
+    },
+    {
+      "severity": "warn",
+      "source": "behavior",
+      "detail": "The new motion line 'The thumb increases it’s width to 1.3 before settling back to it’s original width' is underspecified. It doesn't say whether 1.3 is a multiplier of the thumb width, when in the 250ms the peak happens, which edge stays anchored as the thumb stretches (and whether that mirrors in RTL), or whether the stretch follows ease-spring or its own curve. Nothing on the canvas models the stretched frame."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata coverage",
+      "detail": "Two Motion lines from the previous revision were removed: the one saying the thumb moves by layout alignment (start→end), never by setting its position, so it works at any size and in RTL; and the one saying the focus ring appears only on keyboard focus and doesn't animate with the toggle. The structure still moves the thumb by alignment, so the first is still true of the file, but the metadata no longer states either intent. Confirm the removals were deliberate."
+    },
+    {
+      "severity": "note",
+      "source": "metadata",
+      "detail": "The Motion row's Description cell contains a stray instance named 'On Icon' next to its text, which reads as an icon-only cell to the parser. It looks like a pasted layer, not content."
+    },
+    {
+      "severity": "note",
+      "source": "metadata vs structure",
+      "detail": "The Anatomy text still calls the thumb 'A circle'. It is now a pill-rounded rectangle, which renders as a circle at rest and as a pill during the stretch. The wording is right at rest but no longer describes the shape."
+    },
+    {
+      "severity": "warn",
+      "source": "gaps",
+      "detail": "The root's width and height (64x32) are fixed raw values with no token. The metadata states them as fixed measurements, so the spec records them as measuredSizePx. The thumb travel (32) follows from width, padding and thumb size."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata coverage",
+      "detail": "The icon glyph colour is set by Switch per state (foreground/inverse when enabled or focused, foreground/disabled when disabled). It is applied as a fill override on the nested glyph, so it doesn't show in the parent's own bindings, and no metadata section mentions it."
+    },
+    {
+      "severity": "note",
+      "source": "internalVariations",
+      "detail": "The icon slots are swap-only: Switch exposes no INSTANCE_SWAP property, only hasIcons. The sample changes the start glyph with the switch value (microphone-off → microphone). Whether code exposes two glyph props, a per-value pair, or nothing is an implementation decision."
+    },
+    {
+      "severity": "note",
+      "source": "api",
+      "detail": "The Switch axis is a two-value on/off enum in Figma; in code it is naturally a boolean (checked). State mixes a settable condition (disabled) with an interaction-derived one (focus): focus should come from keyboard focus, not a prop. There are no focus+disabled, hover or pressed variants, and the States table lists none, so those states are unmodeled rather than forgotten. Figma orders State as disabled, enabled, focus; the metadata lists enabled, focus, disabled."
+    },
+    {
+      "severity": "note",
+      "source": "token semantics",
+      "detail": "The on track uses interactive/selection/background/pressed, an interaction-state token, to mean the selected value. The thumb uses the interactive/primary/foreground family while the track uses interactive/selection. Both are bound consistently, but the naming may not survive a palette change gracefully."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "The root binds a gap (space/sm), but only the thumb is in flow (track and icons are absolute), so the gap has no visible effect."
+    },
+    {
+      "severity": "note",
+      "source": "descriptionDrift",
+      "detail": "space/sm, space/xs and stroke/thick name a stale source scale step in their descriptions (scale/4, scale/2, scale/1); they alias scale/5, scale/3 and scale/2. The stated px values still match."
+    },
+    {
+      "severity": "note",
+      "source": "behavior",
+      "detail": "The motion (ease-spring curve, 250ms) is stated only as literals in the metadata. tokens/ has no motion collection, so there is no token to bind it to."
+    },
+    {
+      "severity": "note",
+      "source": "accessibility",
+      "detail": "The accessibility text refers to a '[label]', but Switch has no label part. The accessible name must come from an external label."
+    },
+    {
+      "severity": "note",
+      "source": "dependencies",
+      "detail": "There are no subcomponents on this page. The only dependency is Icon (2046:15010), which is local to this file and already specced at specs/icon/. The component set has no native Figma description."
+    }
+  ]
+}

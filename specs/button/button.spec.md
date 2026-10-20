@@ -2,7 +2,7 @@
 
 Triggers an action from a text label, with optional icons on either side. Nine flavours set how much weight the action carries, three sizes and three shapes fit it to the surface it sits on. The label is the only content a consumer writes, everything else is a variant choice. When an action has no text label, reach for Icon Button rather than hiding this one's label.
 
-Source: [The Zebra Design System › Button](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2024-6729) (set `2060:15072`, 405 variants) · extracted 2026-09-22
+Source: [The Zebra Design System › Button](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2024-6729) (set `2060:15072`, 405 variants) · extracted 2026-09-22, re-extracted 2026-10-18
 
 > **Values are token names.** Every colour, space, radius, stroke and type value below is the Figma token name; the values themselves live in the project token export at [tokens/](../../tokens/) and are not duplicated here. The only literals are measurements (labelled as such) and the untokenised paint opacities called out in the issues.
 
@@ -75,7 +75,7 @@ Numbering follows the metadata frame's anatomy diagram.
 1. **Container** (`root`, auto-layout frame) — *"The button's own horizontal auto-layout frame. Carries the background, the border and the radius, and holds the height fixed for the chosen Size."*
    Horizontal, `gap: space/none`, padding `space/xs` top/bottom and `space/md` left/right at small, both axes centred. Width **hugs**, height **fixed** to `control/sm`. Clips content. Radius and paint come from `shape` and `flavour` below.
 2. **Leading Icon** (`leadingIcon`, instance of Icon) — *"An Icon instance before the label, hidden until Leading Icon is turned on. Button sets its size and leaves the instance exposed."*
-   Hidden by default; `visibleWhen: leadingIcon`. Sized by `control/icon-sm` at small (see the size table). Its glyph fill is bound to `foreground/primary` **inside Icon** — see Issues.
+   Hidden by default; `visibleWhen: leadingIcon`. Sized by `control/icon-sm` at small (see the size table). Icon binds its glyph to `foreground/primary`; since 2026-10-18 Button overrides that fill in every flavour and in disabled, so the icon follows the label — see Issues for what could not be read.
 3. **Label wrapper** (`label`, frame) + **Label text** (`label/text`) — *"A wrapper frame around the text. Its own horizontal padding is what separates the text from the icons, the row itself has no gap."*
    Wrapper: horizontal, `gap: space/none`, padding-x `space/xs` at small. Text: style `label/medium` (family, weight, size, line height and letter spacing all token-bound), auto-resizes both axes, **no truncation, no wrapping**, fill from `flavour` below.
 4. **Trailing Icon** (`trailingIcon`, instance of Icon) — *"An Icon instance after the label, hidden until Trailing Icon is turned on."*
@@ -103,7 +103,7 @@ The last column is a measurement of the rendered default label, not an authored 
 
 ### By flavour × state (colour)
 
-Identical at every size and shape. Border widths are token-bound: `stroke/base` **draws nothing** (read issue 2 before implementing a border for it), `stroke/thin` draws inside, `stroke/thick` draws outside. `focus` always replaces the resting border with `border/focus` at `stroke/thick`, drawn outside the bounds.
+Identical at every size and shape, except two single variants listed under Issues. Since 2026-10-18 **subtle** and **outline-subtle** draw the transparent ghost scrim like `text`, rather than a solid neutral fill; their border and label are unchanged. Border widths are token-bound: `stroke/base` **draws nothing** (read issue 2 before implementing a border for it), `stroke/thin` draws inside, `stroke/thick` draws outside. `focus` always replaces the resting border with `border/focus` at `stroke/thick`, drawn outside the bounds.
 
 | flavour | state | background | border | label |
 |---|---|---|---|---|
@@ -122,21 +122,21 @@ Identical at every size and shape. Border widths are token-bound: `stroke/base` 
 | negative | pressed | `interactive/destructive/background/pressed` | `interactive/destructive/border/pressed` · base | `interactive/destructive/foreground/default` |
 | negative | focus | `interactive/destructive/background/focused` | `border/focus` · thick, outside | `interactive/destructive/foreground/default` |
 | negative | disabled | `interactive/destructive/background/disabled` | `interactive/destructive/border/disabled` · base | `interactive/destructive/foreground/disabled` |
-| subtle | default | `interactive/neutral/background/default` | `interactive/neutral/border/default` · base | `interactive/neutral/foreground/default` |
-| subtle | hover | `interactive/neutral/background/hover` | `interactive/neutral/border/default` · base | `interactive/neutral/foreground/default` |
-| subtle | pressed | `interactive/neutral/background/pressed` | `interactive/neutral/border/default` · base | `interactive/neutral/foreground/default` |
-| subtle | focus | `interactive/neutral/background/focused` | `border/focus` · thick, outside | `interactive/neutral/foreground/default` |
-| subtle | disabled | `interactive/neutral/background/disabled` | `interactive/neutral/border/disabled` · base | `interactive/neutral/foreground/disabled` |
+| subtle | default | `interactive/ghost/background/default` @ 0 | `interactive/neutral/border/default` · base | `interactive/neutral/foreground/default` |
+| subtle | hover | `interactive/ghost/background/hover` @ 0.05 | `interactive/neutral/border/default` · base | `interactive/neutral/foreground/default` |
+| subtle | pressed | `interactive/ghost/background/pressed` @ 0.10 | `interactive/neutral/border/default` · base | `interactive/neutral/foreground/default` |
+| subtle | focus | `interactive/ghost/background/focused` @ 0 | `border/focus` · thick, outside | `interactive/neutral/foreground/default` |
+| subtle | disabled | `interactive/ghost/background/disabled` @ 0 | `interactive/neutral/border/disabled` · base | `interactive/neutral/foreground/disabled` |
 | text | default | `interactive/ghost/background/default` @ 0 | `interactive/ghost/border/default` · base | `interactive/ghost/foreground/default` |
 | text | hover | `interactive/ghost/background/hover` @ 0.05 | `interactive/ghost/border/hover` · base | `interactive/ghost/foreground/default` |
 | text | pressed | `interactive/ghost/background/pressed` @ 0.10 | `interactive/ghost/border/pressed` · base | `interactive/ghost/foreground/default` |
 | text | focus | `interactive/ghost/background/focused` @ 0 | `border/focus` · thick, outside | `interactive/ghost/foreground/default` |
 | text | disabled | `interactive/ghost/background/disabled` @ 0 | `interactive/ghost/border/disabled` · base | `interactive/ghost/foreground/disabled` |
-| outline-subtle | default | `interactive/neutral/background/default` | `interactive/neutral/border/default` · **thin** | `interactive/neutral/foreground/default` |
-| outline-subtle | hover | `interactive/neutral/background/hover` | `interactive/neutral/border/hover` · thin | `interactive/neutral/foreground/default` |
-| outline-subtle | pressed | `interactive/neutral/background/pressed` | `interactive/neutral/border/pressed` · thin | `interactive/neutral/foreground/default` |
-| outline-subtle | focus | `interactive/neutral/background/focused` | `border/focus` · thick, outside | `interactive/neutral/foreground/default` |
-| outline-subtle | disabled | `interactive/neutral/background/disabled` | `interactive/neutral/border/disabled` · thin | `interactive/neutral/foreground/disabled` |
+| outline-subtle | default | `interactive/ghost/background/default` @ 0 | `interactive/neutral/border/default` · **thin** | `interactive/neutral/foreground/default` |
+| outline-subtle | hover | `interactive/ghost/background/hover` @ 0.05 | `interactive/neutral/border/hover` · thin | `interactive/neutral/foreground/default` |
+| outline-subtle | pressed | `interactive/ghost/background/pressed` @ 0.10 | `interactive/neutral/border/pressed` · thin | `interactive/neutral/foreground/default` |
+| outline-subtle | focus | `interactive/ghost/background/focused` @ 0 | `border/focus` · thick, outside | `interactive/neutral/foreground/default` |
+| outline-subtle | disabled | `interactive/ghost/background/disabled` @ 0 | `interactive/neutral/border/disabled` · thin | `interactive/neutral/foreground/disabled` |
 | outline | default | `interactive/neutral/background/default` | `interactive/ghost/border/default` · **thin** | `interactive/ghost/foreground/default` |
 | outline | hover | `interactive/neutral/background/hover` | `interactive/ghost/border/default` · thin | `interactive/ghost/foreground/default` |
 | outline | pressed | `interactive/neutral/background/pressed` | `interactive/ghost/border/default` · thin | `interactive/ghost/foreground/default` |
@@ -167,7 +167,7 @@ Only `State=default` pairs with `Disabled=true`, so there is deliberately no dis
 
 Its glyph vector binds `foreground/primary`. Button uses only `small` and `medium`, always `Framed=false`; Icon's `large` step never appears inside a Button. Spec Icon separately from its own page.
 
-**Icon Button** (`2338:1763`) shares the Button page and has its own metadata frame, but it is a *sibling* public component, not a subcomponent. Out of scope here.
+**Icon Button** (`2338:1763`) shares the Button page and has its own metadata frame, but it is a *sibling* public component, not a subcomponent. It has its own spec: [icon-button.spec.md](../icon-button/icon-button.spec.md).
 
 ## Tokens & theming
 
@@ -196,14 +196,15 @@ Its glyph vector binds `foreground/primary`. Button uses only `small` and `mediu
 | State | Trigger | Duration | What changes |
 |---|---|---|---|
 | default | Resting | — | Background, border and label sit on the default tokens of the chosen flavour. |
-| hover | Pointer over the control | — | Filled flavours move their own background token one step. Outline flavours hold their border and shift a neutral background underneath instead. Text flavours raise a ghost scrim from fully transparent. The label colour does not change on any flavour. |
-| pressed | Pointer held down | — | The same mechanism as hover carried one step further. Gradient is the exception, collapsing from a two-stop gradient to a single flat token. |
+| hover | Pointer over the control | — | Filled flavours move their own background token one step. Outline flavours hold their border and shift a neutral background underneath instead. Text flavours raise a ghost scrim from fully transparent. The gradient flavours keep their gradient and slide it toward the end colour rather than swapping it (see Gradient transition). Apart from text-gradient, the label colour does not change on any flavour. |
+| pressed | Pointer held down | — | The same mechanism as hover carried one step further. The gradient flavours slide the other way, toward the start colour, rather than collapsing to a flat token (see Gradient transition). |
 | focus | Keyboard focus | — | A focus ring is drawn outside the bounds, replacing the resting border rather than adding to it. Identical on all nine flavours, and the only state that changes the control's outer footprint. |
 | disabled | Disabled set to true | — | Background and label swap to the disabled tokens of their family, and the icon follows the label. No flavour keeps its accent colour, so disabled buttons of different flavours look alike. |
 
 | | |
 |---|---|
-| **Motion** | Figma stores no timing. Every state change is colour-only, with no scale, shadow or elevation shift on any flavour, so a transition should read as a tint change rather than movement. |
+| **Motion** | Figma stores no timing. Every state change is colour-only, with no scale, shadow or elevation shift on any flavour, so a transition should read as a tint change rather than movement. The gradient flavours are the one exception to a plain tint: their gradient moves (see Gradient transition). |
+| **Gradient transition** | gradient and text-gradient keep their gradient through every state and move it rather than replace it. On hover the gradient slides until its end colour covers 100% of the fill (the label's own text on text-gradient); on press it slides the other way until its start colour covers 100%. Leaving or releasing slides it back to the resting two-stop gradient. It must never jump from the gradient to a flat colour: a browser cannot interpolate between a gradient and a solid fill, so that swap shows as a flicker. The hover and pressed variants show where each slide ends, not a separate flat fill. |
 | **Focus ring** | The only change that alters the control's outer footprint, because the ring is drawn outside the bounds. Leave room around a button in a tight row so the ring is not clipped. |
 | **Resize** | The control re-hugs its label whenever the text changes, so a label swapped at runtime shifts the position of everything beside it in a row. |
 
@@ -251,30 +252,48 @@ Its glyph vector binds `foreground/primary`. Button uses only `small` and `mediu
 
 ## Visual reference
 
-`screens/set-overview.png` is the whole 405-variant set. `screens/flavour-*.png` is one PNG per flavour at Size=small, Shape=rounded, State=default. Node ids for re-rendering: sizes `2109:6941` / `2109:6945` / `2109:6949`; primary states default `2109:6941`, hover `2111:7908`, pressed `2111:7981`, focus `2111:8127`, disabled `2111:8054`.
+No images are stored with this spec. Colour and geometry are fully specified by
+the token names above, so a screenshot is a sanity check rather than a source of
+truth — and a stored PNG goes stale silently, where a link never does.
 
-Every variant in the file hides both icon slots, so no screenshot shows an icon inside a Button.
+Pull one on demand:
+
+| | |
+|---|---|
+| Page | [Button](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2024-6729) |
+| Component set (all 405) | [2060:15072](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2060-15072) |
+| Sizes | [small](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2109-6941) · [medium](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2109-6945) · [large](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2109-6949) |
+| Primary states | [default](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2109-6941) · [hover](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2111-7908) · [pressed](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2111-7981) · [focus](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2111-8127) · [disabled](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2111-8054) |
+
+Per-flavour node ids are in `button.spec.json` under `visualReference.variants.flavours`.
+
+Every one of the 405 variants hides both icon slots, so no screenshot of this
+component shows an icon inside a Button — which is why the icon-colour blocker
+below was found by reading bindings rather than by looking.
 
 ## Issues
 
-### Blocker
-
-1. **The nested icon's colour contradicts the documented intent.** The Icon glyph is bound to `foreground/primary` (`ink/high`: `#0c0d0e` Light, `#f8fbff` Dark) inside the Icon component, and Button never overrides that fill per flavour or state. The metadata says the opposite twice — States & Triggers (disabled): *"the icon follows the label"*; Layout & Theming (Colour): *"Every fill, border and label colour is bound to an interactive/\* token for the flavour."* Taken literally, a leading icon on primary, positive, negative or gradient renders near-black on a saturated fill in Light mode. Because all 405 variants ship with both slots hidden, the file never shows this. Decide before building: implement icon colour = label colour (the documented intent) and raise the Figma binding as a fix, or reproduce Figma literally.
-
 ### Warn
 
-2. **Paint-level opacity is the one untokenised value left.** `text` and `text-gradient` raise their scrim by setting a paint opacity of 0 / 0.05 / 0.10 on `interactive/ghost/background/*`. The fill itself is bound, so the extractor's gap check — which looks for untokenised *fills*, not untokenised paint *opacity* — does not flag it. These three numbers are the only literals this spec still carries.
+1. **Icon colour: addressed in the file, but not verifiable read-only.** The September blocker (the nested Icon kept `foreground/primary` in every flavour) is addressed: since 2026-10-18 every flavour, at rest and disabled, carries a `fills` override on both icon instances, matching the metadata's *"the icon follows the label"*. The overridden token could not be read, because the icons are hidden by default and a hidden instance exposes no layers to a read-only extraction. Icon Button, whose glyph is visible, binds it to the flavour's foreground token (see its spec), so expect the same here and confirm by turning an icon on before relying on it.
+2. **The scrim's paint opacity doubles the token's own alpha.** The scrim flavours (text, text-gradient, subtle, outline-subtle) set a paint-level opacity of 0 / 0.05 / 0.10 on interactive/ghost/background/*. Those tokens already carry the scrim in their own alpha (default and disabled 0%, hover 5%, pressed 10%, in Light and Dark), so Figma applies it twice: the hover scrim renders at about 0.25% and pressed at 1%, practically invisible. Code binds the tokens directly with no paint opacity (the intended 5% / 10%); the Figma paints should drop their opacity to 1.
 3. **`stroke/base` resolves to 0px**, although its description reads *"= 1px, source: scale/0"*. It is the border width on the seven non-outline flavours, so those carry a fully bound but zero-width border. Visually that matches the metadata (*"none on the other seven at rest"*), but a rebuild that trusts the token name or description will draw a 1px border where Figma draws none.
-4. **Seven dimension tokens have descriptions that state the wrong px value**: `control/sm` says 40 → resolves 36; `control/md` says 48 → 40; `control/lg` says 56 → 48; `space/none` says 32 → 0; `radius/element-sm` says 16 → 4; `radius/none` says 2 → 0; `stroke/base` says 1 → 0. The resolved values match the metadata's Layout & Theming table, so build from those.
-5. **`positive` + disabled borrows another family's token.** It takes its border from `interactive/secondary/border/disabled` while all eight other flavours use their own family's disabled border. Everything resolves to `line/subtle`, so nothing looks wrong, but the binding is inconsistent and will read as a mistake in a generated theme map.
-6. **Gradient collapses earlier than documented.** States & Triggers names pressed as the gradient exception; in the file gradient also collapses to a flat token at hover (`surface/gradient/end`) and focus (`surface/gradient/start`). Only the default state carries the actual gradient.
+4. **Seven dimension tokens have descriptions that state the wrong px value** (unchanged in the export): `control/sm` says 40 → resolves 36; `control/md` says 48 → 40; `control/lg` says 56 → 48; `space/none` says 32 → 0; `radius/element-sm` says 16 → 4; `radius/none` says 2 → 0; `stroke/base` says 1 → 0. The resolved values match the metadata's Layout & Theming table, so build from those.
+5. **`positive` + disabled borrows another family's token.** It takes its border from `interactive/secondary/border/disabled` while all eight other flavours use their own family's disabled border. Everything resolves to `line/subtle`, so nothing looks wrong, but the binding is inconsistent.
+7. **The metadata's hover grouping is out of date.** States & Triggers says *"Outline flavours hold their border and shift a neutral background underneath instead. Text flavours raise a ghost scrim from fully transparent."* Since 2026-10-18 outline-subtle (and subtle) raise the ghost scrim like text; only `outline` still shifts a neutral background.
+8. **Binding drift — gradient pressed.** At Size=small, Shape=sharp, `gradient` + `pressed` takes its border from `border/gradient/start`; the other eight size/shape variants use `interactive/primary/border/pressed`. Invisible today (`stroke/base`), but it is the only place `border/gradient/start` appears on Button.
+9. **Binding drift — outline disabled.** At Size=large, Shape=full, `outline` + disabled draws `interactive/ghost/background/disabled` @ 0 with `interactive/ghost/foreground/disabled`; the other eight size/shape variants draw `interactive/neutral/background/disabled` with `interactive/neutral/foreground/disabled`.
+10a. **Code: gradient transition built.** Built 2026-10-18 in <zds-button>, <zds-icon-button>, react-baseui Button and IconButton: the gradient flavours no longer swap to a flat colour. One gradient three times the size of the fill holds the two stops in its middle third (the resting look is unchanged: start at 0%, end at 87%); hover slides its position until the end colour covers 100%, press until the start colour covers 100%, and the position transitions with the other flavours' tints. text-gradient runs the same slide across the label's text and the icons. Web and React were compared in a browser: pixel-identical at rest, hover and pressed.
+10. **Code: resolved 2026-10-18 (scrim).** `<zds-button>` and react-baseui `Button` now draw subtle and outline-subtle (and text, text-gradient) on `interactive/ghost/background/*` directly, and outline's disabled border is `interactive/ghost/border/disabled`. Web and React match on all nine flavours at rest, hover and pressed.
 
 ### Note
 
-7. `Disabled` is a two-option VARIANT axis rather than a Figma boolean, and `State` is documentation-only. In code, disabled is a boolean and hover/pressed/focus are interaction states. Only `State=default` pairs with `Disabled=true`.
-8. Figma returns VARIANT options in creation order — `Size` as `[medium, large, small]`, `Shape` as `[rounded, sharp, full]`. The metadata's order (small/medium/large, sharp/rounded/full) matches the rendered widths (76/90/98) and is the order to ship.
-9. The icon glyph is an `INSTANCE_SWAP` on the nested Icon, not a Button property, and Icon's `Size`/`Framed` stay reachable on the exposed instance. Button pins them; do not expose `Size` or `Framed`.
-10. Icon (`2046:15010`) is local but on the **Icon** page, and its default glyph (*Verified* → `Style=rounded`) is on the **Assets** page. Neither is remote; neither is on the Button page.
-11. Icon Button (`2338:1763`) is a second public 405-variant set sharing the page, with its own metadata frame (`4732:1074`). Sibling, not subcomponent — out of scope.
-12. Motion is intentionally not modelled (*"Figma stores no timing"*), there are no effect styles or shadows, and no variant hardcodes a colour: the extraction found **zero untokenised visual values and zero binding drift** across the sampled variants.
-13. `palette` is the only theme axis that changes Button. Every dimension and typography token resolves identically across all four size and typography modes, so Button does not respond to density or breakpoint in Figma.
+- **Gradient variants match the intent.** The gradient variants agree with the intended transition (corrected 2026-10-18: hover slides to the end colour, press to the start). gradient hover binds surface/gradient/end and pressed surface/gradient/start; text-gradient hover foreground/gradient/end and pressed foreground/gradient/start. Each variant shows where its slide ends, as the metadata says. Focus also binds the start colour; the metadata gives focus only the ring, so code keeps the resting gradient at focus.
+
+11. `Disabled` is a two-option VARIANT axis rather than a Figma boolean, and `State` is documentation-only. In code, disabled is a boolean and hover/pressed/focus are interaction states. Only `State=default` pairs with `Disabled=true`.
+12. Figma returns VARIANT options in creation order — `Size` as `[medium, large, small]`, `Shape` as `[rounded, sharp, full]`, and now `Flavour` as `[primary, positive, negative, outline, outline-subtle, text, subtle, gradient, text-gradient]`. The metadata's order is unchanged and is the order to ship.
+13. The icon glyph is an `INSTANCE_SWAP` on the nested Icon, not a Button property, and Icon's `Size`/`Framed` stay reachable on the exposed instance. Button pins them; do not expose `Size` or `Framed`.
+14. Icon (`2046:15010`) is local but on the **Icon** page, and its default glyph (*Verified* → `Style=rounded`) is on the **Assets** page. Neither is remote; neither is on the Button page.
+15. Icon Button (`2338:1763`) is a second public 405-variant set sharing the page, with its own metadata frame (`4732:1074`). Sibling, not subcomponent — specced in [icon-button.spec.md](../icon-button/icon-button.spec.md).
+16. Motion is intentionally not modelled (*"Figma stores no timing"*), there are no effect styles or shadows, and no variant hardcodes a colour: the 2026-10-18 full scan found **zero untokenised visual values** across all 405 variants; binding drift is limited to the two variants above.
+17. `palette` is the only theme axis that changes Button. Every dimension and typography token resolves identically across all four size and typography modes, so Button does not respond to density or breakpoint in Figma.

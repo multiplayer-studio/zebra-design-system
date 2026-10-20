@@ -40,6 +40,9 @@ export const Button = React.forwardRef<HTMLElement, ButtonProps>(function Button
   // The icon follows the button's shape: only shape="sharp" takes the sharp
   // family. Button pins this rather than exposing it.
   const iconStyle = shape === "sharp" ? "sharp" : "rounded";
+  // Icon's size axis has no "large" consumer here: medium and large buttons
+  // both use the medium icon (see the icon spec's own size note).
+  const iconSize = size === "small" ? "small" : "medium";
   return (
     <BaseButton
       ref={ref}
@@ -49,9 +52,13 @@ export const Button = React.forwardRef<HTMLElement, ButtonProps>(function Button
       data-size={size}
       data-shape={shape}
     >
-      {leadingIcon ? <Icon className="zds-button__icon" name={leadingIcon} iconStyle={iconStyle} /> : null}
+      {leadingIcon ? (
+        <Icon className="zds-button__icon" name={leadingIcon} iconStyle={iconStyle} size={iconSize} />
+      ) : null}
       <span className="zds-button__label">{children}</span>
-      {trailingIcon ? <Icon className="zds-button__icon" name={trailingIcon} iconStyle={iconStyle} /> : null}
+      {trailingIcon ? (
+        <Icon className="zds-button__icon" name={trailingIcon} iconStyle={iconStyle} size={iconSize} />
+      ) : null}
     </BaseButton>
   );
 });

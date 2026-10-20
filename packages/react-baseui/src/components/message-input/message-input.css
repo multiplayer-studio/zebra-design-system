@@ -1,0 +1,307 @@
+/* Message Input (EXPERIMENTAL) — every value is a semantic token. Buttons
+   are IconButton and take their colours from button.css; this file lays
+   out the composer and draws the parts that are its own: the chips, the
+   voice bar, the waveform, the spinner and the recording dot. Keyed off
+   data-state on the root (empty, filled, tray, listening, transcribing,
+   recording, playback, speaking).
+
+   Spec: none yet — built from a reference design. */
+
+/* ---- root ------------------------------------------------------------ */
+.zds-message-input {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: var(--surface-card);
+  border: var(--stroke-thin) solid var(--border-default);
+  border-radius: var(--radius-container);
+  color: var(--foreground-primary);
+}
+.zds-message-input:focus-within {
+  border-color: var(--border-focus);
+}
+.zds-message-input[data-disabled] {
+  background: var(--interactive-neutral-background-disabled);
+  border-color: var(--border-disabled);
+}
+
+/* ---- text ------------------------------------------------------------ */
+.zds-message-input__text {
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-block-size: calc(2 * var(--body-medium-line-height));
+  max-block-size: calc(8 * var(--body-medium-line-height));
+  field-sizing: content;
+  margin: 0;
+  padding: var(--space-xs) var(--space-md);
+  border: 0;
+  outline: none;
+  resize: none;
+  background: transparent;
+  color: var(--foreground-primary);
+  caret-color: var(--foreground-cursor);
+  font-family: var(--body-medium-font-family), system-ui, sans-serif;
+  font-size: var(--body-medium-font-size);
+  font-weight: var(--body-medium-font-weight);
+  line-height: var(--body-medium-line-height);
+  letter-spacing: var(--body-medium-letter-spacing);
+}
+.zds-message-input__text::placeholder {
+  color: var(--foreground-disabled);
+  opacity: 1;
+}
+.zds-message-input__text:disabled {
+  color: var(--foreground-disabled);
+  cursor: not-allowed;
+}
+
+/* ---- chips: attachments and the dictated tag -------------------------- */
+.zds-message-input__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.zds-message-input__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  max-inline-size: 100%;
+  padding: var(--space-2xs) var(--space-xs) var(--space-2xs) var(--space-sm);
+  border: var(--stroke-thin) solid var(--border-default);
+  border-radius: var(--radius-pill);
+  color: var(--foreground-primary);
+  font-family: var(--label-medium-font-family), system-ui, sans-serif;
+  font-size: var(--label-medium-font-size);
+  font-weight: var(--label-medium-font-weight);
+  line-height: var(--label-medium-line-height);
+  letter-spacing: var(--label-medium-letter-spacing);
+}
+.zds-message-input__chip[data-kind="dictated"] {
+  border-color: var(--border-info);
+  color: var(--foreground-info);
+}
+.zds-message-input__chip-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.zds-message-input__chip-remove {
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.zds-message-input__chip-remove:hover {
+  background: var(--interactive-ghost-background-hover);
+}
+.zds-message-input__chip-remove:focus-visible {
+  outline: var(--stroke-thick) solid var(--border-focus);
+  outline-offset: var(--space-2xs);
+}
+
+/* ---- voice bar: listening, transcribing, recording, playback, speaking -- */
+.zds-message-input__voice {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.zds-message-input__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-block-size: var(--control-lg);
+  padding: var(--space-xs) var(--space-xs) var(--space-xs) var(--space-md);
+  border-radius: var(--radius-element-md);
+  /* A sunken well inside the card (fill/sunken, as the open tray toggle). */
+  background: var(--surface-track);
+  color: var(--foreground-primary);
+}
+.zds-message-input[data-state="playback"] .zds-message-input__bar {
+  padding-inline-start: var(--space-xs);
+}
+.zds-message-input__bar-label {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  font-family: var(--body-medium-font-family), system-ui, sans-serif;
+  font-size: var(--body-medium-font-size);
+  font-weight: var(--body-medium-font-weight);
+  line-height: var(--body-medium-line-height);
+  letter-spacing: var(--body-medium-letter-spacing);
+}
+.zds-message-input__time {
+  color: var(--foreground-secondary);
+  font-family: var(--body-medium-font-family), system-ui, sans-serif;
+  font-size: var(--body-medium-font-size);
+  line-height: var(--body-medium-line-height);
+  font-variant-numeric: tabular-nums;
+}
+/* In playback the time follows the waveform and pushes the controls right. */
+.zds-message-input[data-state="playback"] .zds-message-input__time {
+  margin-inline-start: auto;
+}
+.zds-message-input__hint,
+.zds-message-input__error {
+  margin: 0;
+  font-family: var(--body-xsmall-font-family), system-ui, sans-serif;
+  font-size: var(--body-xsmall-font-size);
+  font-weight: var(--body-xsmall-font-weight);
+  line-height: var(--body-xsmall-line-height);
+  letter-spacing: var(--body-xsmall-letter-spacing);
+}
+.zds-message-input__hint { color: var(--foreground-secondary); }
+.zds-message-input__error { color: var(--foreground-error); }
+
+/* Waveform: bars in currentColor, height from --zds-bar-level (0–1). */
+.zds-message-input__wave {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  block-size: var(--control-icon-md);
+}
+.zds-message-input__wave > .zds-message-input__level {
+  display: block;
+  inline-size: var(--stroke-thick);
+  block-size: calc(var(--zds-bar-level) * 100%);
+  min-block-size: var(--stroke-thick);
+  padding: 0;
+  border-radius: var(--radius-pill);
+  background: currentColor;
+  opacity: 0.35;
+}
+.zds-message-input__wave > .zds-message-input__level[data-played] {
+  opacity: 1;
+}
+.zds-message-input__wave--long > .zds-message-input__level[data-played] {
+  color: var(--interactive-primary-background-default);
+}
+
+.zds-message-input__rec-dot {
+  flex: none;
+  inline-size: var(--space-sm);
+  block-size: var(--space-sm);
+  border-radius: var(--radius-pill);
+  background: var(--foreground-error);
+}
+
+.zds-message-input__spinner {
+  flex: none;
+  box-sizing: border-box;
+  inline-size: var(--control-icon-lg);
+  block-size: var(--control-icon-lg);
+  border: var(--stroke-heavy) solid var(--interactive-primary-background-default);
+  border-inline-end-color: transparent;
+  border-radius: var(--radius-pill);
+}
+
+/* ---- toolbar ---------------------------------------------------------- */
+.zds-message-input__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+.zds-message-input__tools,
+.zds-message-input__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+.zds-message-input__tools { flex-wrap: wrap; }
+/* Tools are neutral glyphs, not the text flavour's brand colour; send and
+   stop (primary) stay the only coloured controls (reference design). */
+.zds-message-input .zds-button[data-flavour="text"]:not([data-disabled]) {
+  --zds-button-fg: var(--interactive-neutral-foreground-default);
+}
+/* With the tray open, the toggle sits on a filled circle (reference design)
+   and its + turns 45° to read as ×. */
+.zds-message-input__tray-toggle[data-open] {
+  --zds-button-bg: var(--interactive-neutral-background-selected);
+}
+.zds-message-input__tray-toggle[data-open] .zds-button__icon {
+  transform: rotate(45deg);
+}
+
+/* ---- attachment tray --------------------------------------------------- */
+/* Width goes 0fr → 1fr so the tray grows out of the toggle; the actions
+   fade and slide in after it, one after another. Clip margin keeps focus
+   rings and hover circles from being cut off by the clip. */
+.zds-message-input__tray {
+  display: grid;
+  grid-template-columns: 0fr;
+}
+.zds-message-input__tray[data-open] {
+  grid-template-columns: 1fr;
+}
+.zds-message-input__tray-items {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-inline-size: 0;
+  overflow: clip;
+  overflow-clip-margin: var(--space-xs);
+}
+.zds-message-input__tray-items > * {
+  opacity: 0;
+  transform: translateX(calc(-1 * var(--space-sm))) scale(0.8);
+}
+.zds-message-input__tray[data-open] .zds-message-input__tray-items > * {
+  opacity: 1;
+  transform: none;
+}
+/* Read-aloud on: the toggle holds its selected fill. */
+.zds-message-input .zds-message-input__speak[data-pressed]:not([data-disabled]) {
+  --zds-button-bg: var(--interactive-ghost-background-selected);
+  --zds-button-fg: var(--foreground-info);
+}
+
+/* ---- motion ------------------------------------------------------------- */
+/* The tray uses Switch's timing and curve (250ms, ease-spring), literals as
+   on Switch because tokens/ has no motion collection. The spring's
+   overshoot gives the + its small settle past 45°. Reduced motion: the
+   tray opens and closes instantly, as Switch's state change does. */
+.zds-message-input {
+  --zds-message-input-duration: 250ms;
+  --zds-message-input-ease-spring: cubic-bezier(0.34, 1.36, 0.64, 1);
+  --zds-message-input-stagger: 30ms;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .zds-message-input__tray {
+    transition: grid-template-columns var(--zds-message-input-duration) var(--zds-message-input-ease-spring);
+  }
+  .zds-message-input__tray-items > * {
+    transition:
+      opacity var(--zds-message-input-duration) var(--zds-message-input-ease-spring),
+      transform var(--zds-message-input-duration) var(--zds-message-input-ease-spring);
+  }
+  .zds-message-input__tray[data-open] .zds-message-input__tray-items > :nth-child(2) { transition-delay: calc(1 * var(--zds-message-input-stagger)); }
+  .zds-message-input__tray[data-open] .zds-message-input__tray-items > :nth-child(3) { transition-delay: calc(2 * var(--zds-message-input-stagger)); }
+  .zds-message-input__tray[data-open] .zds-message-input__tray-items > :nth-child(4) { transition-delay: calc(3 * var(--zds-message-input-stagger)); }
+  .zds-message-input__tray[data-open] .zds-message-input__tray-items > :nth-child(n + 5) { transition-delay: calc(4 * var(--zds-message-input-stagger)); }
+  .zds-message-input__tray-toggle .zds-button__icon {
+    transition: transform var(--zds-message-input-duration) var(--zds-message-input-ease-spring);
+  }
+  /* The fill follows the tray; colour and border keep Button's own 120ms. */
+  .zds-message-input__tray-toggle {
+    transition: background-color var(--zds-message-input-duration) var(--zds-message-input-ease-spring),
+      border-color 120ms ease, color 120ms ease;
+  }
+  .zds-message-input__spinner { animation: zds-message-input-spin 0.8s linear infinite; }
+  .zds-message-input[data-state="recording"] .zds-message-input__rec-dot { animation: zds-message-input-fade 1.2s ease-in-out infinite; }
+  .zds-message-input__wave--live > .zds-message-input__level { animation: zds-message-input-pulse 0.9s ease-in-out infinite; transform-origin: center; }
+  .zds-message-input__wave--live > .zds-message-input__level:nth-child(2n) { animation-delay: -0.3s; }
+  .zds-message-input__wave--live > .zds-message-input__level:nth-child(3n) { animation-delay: -0.6s; }
+}
+@keyframes zds-message-input-spin { to { transform: rotate(1turn); } }
+/* The recording dot only fades: its size never changes. */
+@keyframes zds-message-input-fade { 50% { opacity: 0; } }
+@keyframes zds-message-input-pulse { 50% { opacity: 0.4; transform: scaleY(0.6); } }

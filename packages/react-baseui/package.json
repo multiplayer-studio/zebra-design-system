@@ -11,7 +11,8 @@
     "storybook": "pnpm run tokens && storybook dev -p 6008",
     "storybook:build": "pnpm run tokens && storybook build",
     "typecheck": "tsc --noEmit",
-    "check": "pnpm run tokens && pnpm run typecheck"
+    "check": "pnpm run tokens && pnpm run typecheck && pnpm run check:theming",
+    "check:theming": "node ../web-components/scripts/check-theming.mjs ./src/tokens"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",

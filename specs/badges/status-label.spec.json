@@ -1,0 +1,136 @@
+{
+  "component": {
+    "name": "Status Label",
+    "slug": "status-label",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "6403:297",
+      "key": "3e574943cc06906bdc443ec523be229e4bd023e2",
+      "page": "Badges",
+      "pageNodeId": "3717:5570",
+      "metadataFrameId": "6413:213",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6403-297",
+      "extractedAt": "2026-10-15",
+      "variantCount": 30,
+      "defaultVariant": "Status=neutral, Leading=indicator, Shape=rounded",
+      "extractionNote": "One of five independent components on the Badges page, each with its own metadata frame; this spec covers Status Label only. All 30 variants (Status 5 x Leading 3 x Shape 2, complete) were read in-file as per-part token signatures and diffed against the default variant; the nested Icon's glyph and glyph fill were read from its vector regions. No on-page subcomponents. No raw values found."
+    }
+  },
+  "summary": "Reports a read-only state on an item, such as Active, Overdue or Failed. Status sets the fill, the border and the leading element together while the label text holds one colour throughout, and Leading decides whether the status also shows as a dot, an icon or nothing at all. Reach for it where a state is being reported, and for Label where the thing shown is a category rather than a state.",
+  "api": {
+    "label": { "type": "string", "figmaName": "Label#6403:0", "default": "Label", "controls": ["label"], "intent": "The state being reported. Keep it to the state itself and two words at most, because the component hugs its text and a sentence becomes a wide block inside a narrow column." },
+    "status": { "type": "enum", "figmaName": "Status", "values": ["neutral", "info", "positive", "warning", "negative"], "default": "neutral", "controls": ["surround", "leading"],
+      "intent": {
+        "neutral": "No particular standing. Reach for it where a row needs a state shown but none of the four meanings apply, not as a resting value for a status that simply has not changed yet.",
+        "info": "Supporting information carrying no judgement. Nothing is wrong and nothing has succeeded e.g ongoing.",
+        "positive": "A finished or healthy state. Reach for it on completion rather than on progress, or there is nothing left to mark the end with.",
+        "warning": "Something needs attention but nothing has failed. Using it for a failure understates the problem to anyone scanning a column of these.",
+        "negative": "A failed or blocking state. The strongest of the five, so spending it on a recoverable problem leaves nothing in reserve for a real one."
+      } },
+    "leading": { "type": "enum", "figmaName": "Leading", "values": ["indicator", "icon", "none"], "default": "indicator", "controls": ["leading"],
+      "intent": {
+        "indicator": "A dot in the status colour. The quietest of the three and the right choice where the label already names the state.",
+        "icon": "A glyph fixed per status, Info for neutral and info, then Check Circle, Warning and Error. Reach for it where the status has to read without the label being read.",
+        "none": "Text only. The fill and the border still carry the status, so this is the form that leans hardest on colour alone."
+      } },
+    "shape": { "type": "enum", "figmaName": "Shape", "values": ["rounded", "sharp"], "default": "rounded", "controls": ["surround"],
+      "intent": { "rounded": "Match the contour of the surface the label sits on.", "sharp": "The square-cornered pair, for dense surfaces built from square corners such as a table cell." } }
+  },
+  "internalVariations": [
+    { "part": "leading (icon)", "via": "Icon (nested, exposed)", "options": ["info", "check-circle", "warning", "error"], "intent": "An Icon at Size=small whose glyph is fixed per status. The component chooses it and surfaces none of the Icon's own properties, so it is not a slot a consumer fills.", "note": "The nested Icon is marked exposed in Figma, so its Name swap is reachable on an instance even though the metadata calls it fixed. Driven by Status; not a prop." }
+  ],
+  "contentInputs": [],
+  "anatomy": [
+    { "id": "surround", "kind": "container", "role": "The fill and the border, both following Status. Together they carry the status even when the leading element is off.", "layout": { "direction": "horizontal", "gap": "space/none", "padding": "space/xs" }, "sizing": { "h": "hug", "v": "hug" }, "radius": "radius/pill (rounded) · radius/none (sharp)", "paint": { "fill": "per status", "stroke": { "color": "per status", "width": "stroke/thin", "align": "inside, included in layout" } }, "measuredHeightPx": 28 },
+    { "id": "leading", "kind": "container | instance", "role": "A dot or an icon in the status colour, chosen by Leading and absent when it is none. The component draws it from Status rather than taking one in.", "visibleWhen": "leading != none",
+      "indicator": { "box": "control/icon-sm square, padding space/none", "dot": "control/icon-xs ellipse, fill per status" },
+      "icon": { "ref": "Icon", "size": "Icon Size=small", "glyph": "per status", "color": "per status (the glyph's own fill; in code currentColor)" } },
+    { "id": "label", "kind": "text", "role": "The state being reported, set through Label. It decides the width of the whole component.", "content": "label", "container": { "padding": "0 space/xs", "gap": "space/none" }, "text": { "style": "body/small", "color": "foreground/primary" }, "sizing": { "h": "hug", "v": "hug" } }
+  ],
+  "variants": {
+    "_note": "Cells are token names. Shape changes only the radius; Leading only which leading element is drawn. Neither changes colour.",
+    "status": { "axis": "status", "base": "neutral", "table": [
+      { "status": "neutral", "surround.fill": "feedback/neutral/background/subtle", "surround.stroke": "border/default", "leading.color": "foreground/primary", "icon": "info", "figmaNode": "6403:147" },
+      { "status": "info", "surround.fill": "feedback/info/background/subtle", "surround.stroke": "border/info", "leading.color": "foreground/info", "icon": "info", "figmaNode": "6403:177" },
+      { "status": "positive", "surround.fill": "feedback/success/background/subtle", "surround.stroke": "border/success", "leading.color": "foreground/success", "icon": "check-circle", "figmaNode": "6403:207" },
+      { "status": "warning", "surround.fill": "feedback/warning/background/subtle", "surround.stroke": "border/warning", "leading.color": "foreground/warning", "icon": "warning", "figmaNode": "6403:237" },
+      { "status": "negative", "surround.fill": "feedback/error/background/subtle", "surround.stroke": "border/error", "leading.color": "foreground/error", "icon": "error", "figmaNode": "6403:267" }
+    ] },
+    "leading": { "axis": "leading", "base": "indicator", "table": [
+      { "leading": "indicator", "leading.part": "control/icon-sm box with a control/icon-xs dot", "measuredWidthPx": 69, "figmaNode": "6403:147" },
+      { "leading": "icon", "leading.part": "Icon Size=small", "measuredWidthPx": 69, "figmaNode": "6403:157" },
+      { "leading": "none", "leading.part": "removed", "measuredWidthPx": 53, "figmaNode": "6403:171" }
+    ] },
+    "shape": { "axis": "shape", "base": "rounded", "table": [
+      { "shape": "rounded", "surround.radius": "radius/pill" },
+      { "shape": "sharp", "surround.radius": "radius/none", "figmaNode": "6403:152" }
+    ] }
+  },
+  "subcomponents": [],
+  "dependencies": [ { "name": "Icon", "id": "2046:15010", "remote": false, "usedAt": ["leading"], "delivery": "Font glyphs, rounded family: info, check-circle, warning, error. All present in codepoints.json; none rejected." } ],
+  "tokens": {
+    "source": "tokens/ — names below resolve there; see tokens/manifest.json",
+    "rule": "This spec names tokens only.",
+    "color": ["feedback/{neutral,info,success,warning,error}/background/subtle", "border/{default,info,success,warning,error}", "foreground/{primary,info,success,warning,error}"],
+    "dimension": ["space/{none,xs}", "radius/{pill,none}", "stroke/thin", "control/{icon-sm,icon-xs}"],
+    "typography": ["body/small"],
+    "effect": [],
+    "missingFromExport": [],
+    "themeAxes": { "palette": ["Light", "Dark"], "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"], "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"], "extensions": "tokens/extensions/ (companion, target, condensed)" }
+  },
+  "states": [
+    { "state": "Static", "trigger": "—", "duration": "—", "whatChanges": "The component has no interaction states. Nothing answers hover, focus or press, because it reports a state rather than offering one." },
+    { "state": "Status", "trigger": "The Status value", "duration": "—", "whatChanges": "Fill, border and the leading element all move together. The label colour does not, so a status change is carried entirely by the surround." }
+  ],
+  "behavior": [
+    { "type": "Motion", "description": "No transition is defined. A status change is a swap of fill, border and the leading element." },
+    { "type": "Not interactive", "description": "There is nothing to press. Where a reader needs to act on the state, the action belongs on the row around the label rather than on the label itself." }
+  ],
+  "content": [
+    { "property": "Label", "type": "text property", "description": "Consumer owned, set through the Label property. It hugs, so the length of the text decides the width of the whole component." },
+    { "property": "Leading indicator", "type": "drawn, per Status", "description": "An 8 dot in the status colour inside a 16 box. The component draws it from Status, so there is nothing to pass in." },
+    { "property": "Leading icon", "type": "nested Icon, per Status", "description": "An Icon at Size=small whose glyph is fixed per status. The component chooses it and surfaces none of the Icon's own properties, so it is not a slot a consumer fills." }
+  ],
+  "usage": {
+    "do": [
+      "Keep the label to the state itself, such as Active or Overdue. The component hugs its text, so a sentence turns into a wide block in a narrow column.",
+      "Reach for Leading=icon where the status has to survive greyscale. The dot and the fill are colour alone, the glyph differs in shape as well."
+    ],
+    "dont": [
+      "Don't make it pressable. It reports a state and offers nothing, so any action belongs on the row around it.",
+      "Don't reach for neutral to mean normal. It is the absence of a status, and spending it that way leaves no way to say that nothing is known."
+    ]
+  },
+  "accessibility": [
+    "Status is carried by the fill, the border and the leading element. The label holds foreground/primary at every status, so colour alone separates one status from another unless the label names it.",
+    "Set Leading to icon where the status has to survive greyscale or low vision. The glyph differs per status in shape, not only in colour.",
+    "The label text is the accessible name. Where it carries only a colour word or an internal code, the status is unreadable to anyone not already fluent in the convention.",
+    "neutral and info both carry the Info glyph. Where the two appear in one view, the label is the only thing separating them.",
+    "Nothing here is focusable and nothing announces itself. Where a status changes while a person is on the page, the surrounding structure has to announce it."
+  ],
+  "layoutTheming": [
+    { "property": "Size", "type": "Hug width, fixed height", "description": "28 tall at every status. The width hugs the label, running 69 with a leading element and 53 without, so the component is as wide as its text needs." },
+    { "property": "Padding and gap", "type": "Fixed", "description": "space/xs on all four sides, with no gap between the leading element and the label. The leading element is a 16 square box carrying an 8 dot or a 16 icon, and that box supplies the separation on its own." },
+    { "property": "Radius", "type": "Per Shape", "description": "radius/pill when rounded and radius/none when sharp. Nothing else moves between the two." },
+    { "property": "Fill", "type": "Per Status", "description": "neutral draws interactive/neutral/background/default. The other four draw feedback/info, success, warning and error at background/subtle, so all four sit at one tint strength rather than escalating with severity." },
+    { "property": "Border", "type": "Per Status", "description": "A 1px stroke tracking the fill, border/default for neutral and border/info, success, warning or error for the rest. It is what keeps four subtle tints apart from each other at a glance." },
+    { "property": "Label", "type": "Theming", "description": "body/small at 14px, held at foreground/primary for every status. Only the fill, the border and the leading element move." }
+  ],
+  "visualReference": {
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3717-5570",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6403-297",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6413-213",
+    "perAxis": {
+      "neutral, indicator": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6403-147",
+      "negative, icon": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6403-277",
+      "positive, none, sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6403-234"
+    }
+  },
+  "issues": [
+    { "severity": "warn", "source": "metadata Layout vs structure", "detail": "The metadata says 'neutral draws interactive/neutral/background/default'. As built, neutral's fill is feedback/neutral/background/subtle (the new neutral feedback token), alongside border/default and a foreground/primary dot." },
+    { "severity": "warn", "source": "code (packages/web-components zds-status-label)", "detail": "The experimental element still fills neutral with interactive/neutral/background/default. It should move to feedback/neutral/background/subtle to match Figma." },
+    { "severity": "note", "source": "structure", "detail": "The neutral dot and neutral icon use foreground/primary, not the new feedback/neutral/foreground. The metadata only says 'in the status colour', so either reads as intended; recorded so the choice is explicit." },
+    { "severity": "note", "source": "structure vs metadata Content & Slot", "detail": "The nested Icon is marked exposed in Figma, so its glyph swap is reachable on an instance, while the metadata says the glyph is fixed and 'not a slot a consumer fills'. In code the glyph follows status." },
+    { "severity": "note", "source": "metadata", "detail": "Positive and negative are the design names; the tokens are success and error. No motion and no interaction states, by the metadata's own statement. The set has no description." }
+  ]
+}

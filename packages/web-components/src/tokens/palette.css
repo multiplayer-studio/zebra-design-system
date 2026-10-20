@@ -37,9 +37,10 @@
   --palette-fill-default: var(--primitives-color-pure-white);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-30);
   --palette-fill-elevated: var(--primitives-color-neutral-cool-10);
+  --palette-fill-hover: var(--primitives-color-neutral-cool-70);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-90);
-  --palette-fill-inversehover: var(--primitives-color-neutral-cool-80);
-  --palette-fill-inversepressed: var(--primitives-color-neutral-cool-100);
+  --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-100);
+  --palette-fill-inverse-sunken: var(--primitives-color-neutral-cool-80);
   --palette-fill-overlay: var(--primitives-color-pure-white);
   --palette-fill-scrim: var(--primitives-color-alpha-dark-60);
   --palette-fill-selection: var(--primitives-color-brand-main-20);
@@ -54,6 +55,8 @@
   --palette-gradient-strong-start: var(--primitives-color-accent-1-80);
   --palette-gradient-subtle-end: var(--primitives-color-extend-4-40);
   --palette-gradient-subtle-start: var(--primitives-color-accent-1-50);
+  --palette-ink-always-blank: var(--primitives-color-neutral-cool-100);
+  --palette-ink-always-white: var(--primitives-color-pure-white);
   --palette-ink-brand: var(--primitives-color-brand-main-70);
   --palette-ink-disabled: var(--primitives-color-neutral-cool-50);
   --palette-ink-high: var(--primitives-color-neutral-cool-100);
@@ -63,11 +66,11 @@
   --palette-ink-medium: var(--primitives-color-neutral-cool-70);
   --palette-ink-selection: var(--primitives-color-neutral-cool-100);
   --palette-line-default: var(--primitives-color-neutral-cool-40);
-  --palette-line-focus: var(--primitives-color-brand-main-60);
+  --palette-line-focus: var(--primitives-color-brand-main-50);
   --palette-line-inverse: var(--primitives-color-pure-white);
   --palette-line-selection: var(--primitives-color-brand-main-60);
   --palette-line-strong: var(--primitives-color-neutral-cool-60);
-  --palette-line-stronger: var(--primitives-color-neutral-cool-80);
+  --palette-line-stronger: var(--primitives-color-neutral-cool-70);
   --palette-line-subtle: var(--primitives-color-neutral-cool-30);
   --palette-status-error-deep: var(--primitives-color-system-negative-80);
   --palette-status-error-default: var(--primitives-color-system-negative-60);
@@ -84,6 +87,11 @@
   --palette-status-info-faint: var(--primitives-color-system-info-10);
   --palette-status-info-strong: var(--primitives-color-system-info-70);
   --palette-status-info-subtle: var(--primitives-color-system-info-50);
+  --palette-status-neutral-deep: var(--primitives-color-neutral-cool-80);
+  --palette-status-neutral-default: var(--primitives-color-neutral-cool-60);
+  --palette-status-neutral-faint: var(--primitives-color-neutral-cool-10);
+  --palette-status-neutral-strong: var(--primitives-color-neutral-cool-70);
+  --palette-status-neutral-subtle: var(--primitives-color-neutral-cool-50);
   --palette-status-success-deep: var(--primitives-color-system-positive-80);
   --palette-status-success-default: var(--primitives-color-system-positive-60);
   --palette-status-success-faint: var(--primitives-color-system-positive-10);

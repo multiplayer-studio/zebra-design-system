@@ -1,0 +1,781 @@
+{
+  "component": {
+    "name": "Slider",
+    "slug": "slider",
+    "source": {
+      "fileKey": "EScHXxXDQU7qys4ru4ijLg",
+      "setId": "6132:3190",
+      "key": "99ca66c5f446ae58a74cdffebda372031fe0f8e8",
+      "page": "Slider",
+      "pageNodeId": "6125:1084",
+      "metadataFrameId": "6159:833",
+      "url": "https://www.figma.com/design/EScHXxXDQU7qys4ru4ijLg/Slider?node-id=6125-1084",
+      "extractedAt": "2026-10-14",
+      "variantCount": 2,
+      "defaultVariant": "Shape=rounded",
+      "extractionNote": "Six sets on the page, all extracted in full: Slider (2 variants), _Active Track (4), _Thumb (8), Step Indicators (1, with a SLOT property), _Dot Indicator (1), and Slider Input Field (1, a separate public composition). Slider itself exposes only Shape; State, Stepped and Range live on the nested _Active Track instance, so the State/Range/Steps axes were read from _Active Track and _Thumb. Nested-instance geometry (thumb shape per Slider variant, step-indicator span) was read in a second pass.",
+      "tokenSource": "tokens/",
+      "revision": "Re-extracted 2026-10-14 (second pass). Changes since the first: _Active Track's 'Show Steps' is renamed 'Stepped' (same property id); the metadata was revised (summary, Stepped intent, States table, Behavior, Anatomy, Accessibility, Layout & Theming). The structure is otherwise unchanged; Slider still exposes only Shape. Then updated 2026-10-14 with designer clarifications on hover (per thumb) and on pressed/focus (shared selected look); see designerClarifications. The designer clarifications were then written into the Figma metadata frame (2026-10-14); the verbatim sections here quote the updated text."
+    }
+  },
+  "summary": "A control for choosing a value along a range by dragging a thumb. State, Stepped and Range are the slider's own properties, and the track, the step indicators and the thumb all take their appearance from them rather than being set individually. Stepped marks the valid stops, and Range adds a second thumb so a span can be chosen instead of a single value.",
+  "api": {
+    "shape": {
+      "type": "enum",
+      "figmaName": "Shape",
+      "values": [
+        "rounded",
+        "sharp"
+      ],
+      "default": "rounded",
+      "controls": [
+        "variant",
+        "track.radius",
+        "thumb.radius"
+      ],
+      "intent": {
+        "rounded": "Match the contour of the controls around the slider. It reaches the track ends and the thumb together, so the two never disagree.",
+        "sharp": "The square-cornered pairing, for surfaces built from sharp controls."
+      }
+    },
+    "state": {
+      "type": "enum",
+      "figmaName": "State (on the nested _Active Track, not exposed on Slider)",
+      "exposedInFigma": false,
+      "via": "_Active Track",
+      "values": [
+        "default",
+        "hover",
+        "selected",
+        "disabled"
+      ],
+      "default": "default",
+      "controls": [
+        "activeFill.fill",
+        "thumb.fill",
+        "thumb.size",
+        "startThumb"
+      ],
+      "intent": {
+        "default": "The resting control. State belongs to the slider and the track, the thumb and the step indicators all inherit it, so it is never set on the parts individually.",
+        "hover": "Pointer over a thumb. Only that thumb grows; the fill and, in range mode, the other thumb hold. It is the only state that depends on a pointer being present.",
+        "selected": "A thumb is pressed or has keyboard focus. The active fill and both thumbs take the selected foreground, and only the thumb under the pointer takes the larger size. This is the state to show while a drag is in progress.",
+        "disabled": "The value cannot be changed. Both the track and the thumb drop to the disabled foreground, so the control still reads as a slider rather than disappearing."
+      },
+      "clarifiedIntent": {
+        "hover": "Only the hovered thumb grows.",
+        "selected": "Colour only, on the fill and both thumbs; triggered by pressing (dragging) or keyboard focus. The larger size goes only to the hovered or dragged thumb.",
+        "size": "control/icon-md for the thumb under the pointer (or being dragged); control/icon-sm for every other thumb, in every state."
+      }
+    },
+    "stepped": {
+      "type": "boolean",
+      "figmaName": "Stepped#6132:1 (on the nested _Active Track, not exposed on Slider)",
+      "exposedInFigma": false,
+      "via": "_Active Track",
+      "default": true,
+      "controls": [
+        "steps"
+      ],
+      "intent": {
+        "true": "Used when specific values are assignable in the range and also marks the valid stops along the track. Without the dots the control implies anything in the range is reachable smoothly.",
+        "false": "A continuous range with no stops drawn and a smooth transition between values, allowing finer adjustments."
+      }
+    },
+    "range": {
+      "type": "boolean",
+      "figmaName": "Range#6154:6 (on the nested _Active Track, not exposed on Slider)",
+      "exposedInFigma": false,
+      "via": "_Active Track",
+      "default": false,
+      "controls": [
+        "startThumb"
+      ],
+      "intent": {
+        "false": "A single value, with one thumb.",
+        "true": "A span rather than a value. A second thumb marks the start, so both ends are chosen on the same track and each needs its own value."
+      }
+    }
+  },
+  "internalVariations": [],
+  "contentInputs": [
+    {
+      "part": "activeFill",
+      "input": "value",
+      "note": "Not modelled as a property in Figma: the value is the active fill's width (the sample sits at 50%, measuredFillWidthPx 200 of 400). There is no min, max or step input either; see issues."
+    },
+    {
+      "part": "steps",
+      "input": "stop count",
+      "sampleCount": 5,
+      "via": "Step Indicators › Dot Slots (SLOT)",
+      "note": "The metadata says the count 'arrives with the content rather than from a number on the slider'. In Figma the dots are slot content; in code the count normally derives from min, max and step."
+    }
+  ],
+  "anatomy": [
+    {
+      "id": "root",
+      "figmaLayer": "Shape=…",
+      "kind": "container",
+      "number": 1,
+      "role": "Two layers. The base runs the full width, and the active fill runs from the minimum to the value.",
+      "_roleNote": "The Anatomy's 'Track' entry covers both root (the base) and activeFill.",
+      "sizing": {
+        "h": "fixed",
+        "v": "fixed"
+      },
+      "measuredSizePx": {
+        "w": 400,
+        "h": 4
+      },
+      "radius": {
+        "rounded": "radius/xs",
+        "sharp": "radius/none"
+      },
+      "paint": {
+        "fill": "surface/track"
+      },
+      "layout": {
+        "direction": "horizontal",
+        "gap": "raw (see gaps)",
+        "crossAxisAlign": "center"
+      },
+      "_note": "The root is the base track. Its only child is the absolutely positioned active-track group, so the layout gap has no visible effect."
+    },
+    {
+      "id": "activeFill",
+      "figmaLayer": "_Active Track/Track",
+      "kind": "shape",
+      "shape": "rectangle",
+      "position": {
+        "mode": "absolute",
+        "anchor": "start, vertically centred",
+        "spans": "from the minimum to the value"
+      },
+      "radius": {
+        "rounded": "radius/xs",
+        "sharp": "radius/none"
+      },
+      "paint": {
+        "fill": "see variants: activeFill.fill"
+      },
+      "_note": "_Active Track's own fill has no radius; each Slider variant sets it on the nested instance (radius/xs when rounded, radius/none when sharp). The metadata says the fill is square-ended on both; see issues."
+    },
+    {
+      "id": "steps",
+      "figmaLayer": "_Active Track/Step Indicators",
+      "number": 2,
+      "kind": "instance",
+      "ref": "Step Indicators",
+      "role": "The dots marking each stop. They span the full track, so they sit above the active fill and the base alike and below the thumb.",
+      "visibleWhen": "stepped",
+      "position": {
+        "mode": "absolute",
+        "anchor": "fills the track horizontally, vertically centred"
+      },
+      "layout": {
+        "direction": "horizontal",
+        "mainAxisAlign": "space-between",
+        "crossAxisAlign": "center",
+        "paddingInline": "space/2xs"
+      },
+      "_note": "In Figma this group is a child of the active fill and scales with it, sized at twice the fill's width. It spans the full track only while the value sits at 50% (see issues). The metadata intent, 'spaced evenly across the full track width', is what to build."
+    },
+    {
+      "id": "dot",
+      "figmaLayer": "_Dot Indicator/Ellipse 1",
+      "kind": "shape",
+      "shape": "ellipse",
+      "measuredSizePx": {
+        "w": 2,
+        "h": 2
+      },
+      "paint": {
+        "fill": "foreground/inverse"
+      },
+      "_note": "Dot size has no token (see gaps)."
+    },
+    {
+      "id": "thumb",
+      "figmaLayer": "_Active Track/_Thumb",
+      "number": 3,
+      "kind": "instance",
+      "ref": "_Thumb",
+      "role": "Sits at the value, above everything else. A second thumb marks the start of the span in range mode.",
+      "position": {
+        "mode": "absolute",
+        "anchor": "centred on the active fill's trailing edge, vertically centred on the track"
+      },
+      "size": "see variants: thumb.size",
+      "radius": {
+        "rounded": "radius/pill",
+        "sharp": "none"
+      },
+      "paint": {
+        "fill": "see variants: thumb.fill"
+      }
+    },
+    {
+      "id": "startThumb",
+      "figmaLayer": "_Active Track/Start Thumb",
+      "kind": "instance",
+      "ref": "_Thumb",
+      "visibleWhen": "range",
+      "position": {
+        "mode": "absolute",
+        "anchor": "at the active fill's leading edge, vertically centred"
+      },
+      "_note": "Identical to thumb in size, colour and shape at every state (Layout & Theming: 'Matches the first thumb in size, colour and shape')."
+    }
+  ],
+  "stacking": [
+    "root (base track)",
+    "activeFill",
+    "steps",
+    "thumb / startThumb"
+  ],
+  "variants": {
+    "axes": [
+      "state",
+      "shape"
+    ],
+    "base": {
+      "state": "default",
+      "shape": "rounded"
+    },
+    "_note": "The two axes are orthogonal: state carries every colour; shape carries only the corner radii (base track, active fill, thumb). Thumb size is per thumb: control/icon-md for the thumb under the pointer (or being dragged), control/icon-sm otherwise, in every state (designerClarifications). Cells are token names; the one ending Px is a measurement.",
+    "state": [
+      {
+        "state": "default",
+        "activeFill.fill": "interactive/neutral/foreground/default",
+        "thumb.fill": "interactive/neutral/foreground/default",
+        "thumb.size": "control/icon-sm",
+        "thumb.measuredSizePx": 16,
+        "figmaNode": "6132:3415"
+      },
+      {
+        "state": "hover",
+        "activeFill.fill": "interactive/neutral/foreground/default",
+        "thumb.fill": "interactive/neutral/foreground/default",
+        "thumb.size": "control/icon-md",
+        "thumb.measuredSizePx": 20,
+        "figmaNode": "6132:3410",
+        "scope": "the hovered thumb only; activeFill and the other thumb keep their default values"
+      },
+      {
+        "state": "selected",
+        "activeFill.fill": "interactive/ghost/foreground/default",
+        "thumb.fill": "interactive/ghost/foreground/default",
+        "thumb.size": "control/icon-sm; control/icon-md for the thumb under the pointer or being dragged",
+        "thumb.measuredSizePx": "16 (20 when hovered or dragged)",
+        "figmaNode": "6132:3405",
+        "trigger": "pressed (dragging) or keyboard focus",
+        "scope": "colour: the active fill and both thumbs; size: the hovered or dragged thumb only"
+      },
+      {
+        "state": "disabled",
+        "activeFill.fill": "interactive/neutral/foreground/disabled",
+        "thumb.fill": "interactive/neutral/foreground/disabled",
+        "thumb.size": "control/icon-sm",
+        "thumb.measuredSizePx": 16,
+        "figmaNode": "6132:3390"
+      }
+    ],
+    "shape": [
+      {
+        "shape": "rounded",
+        "track.radius": "radius/xs",
+        "thumb.radius": "radius/pill",
+        "figmaNode": "6132:3158",
+        "activeFill.radius": "radius/xs"
+      },
+      {
+        "shape": "sharp",
+        "track.radius": "radius/none",
+        "thumb.radius": "none",
+        "figmaNode": "6132:3739",
+        "activeFill.radius": "radius/none"
+      }
+    ]
+  },
+  "subcomponents": [
+    {
+      "name": "_Active Track",
+      "private": true,
+      "setId": "6132:2535",
+      "api": {
+        "state": {
+          "type": "enum",
+          "values": [
+            "default",
+            "hover",
+            "selected",
+            "disabled"
+          ],
+          "default": "default"
+        },
+        "stepped": {
+          "type": "boolean",
+          "figmaName": "Stepped#6132:1",
+          "default": true,
+          "controls": [
+            "Step Indicators"
+          ]
+        },
+        "range": {
+          "type": "boolean",
+          "default": false,
+          "controls": [
+            "Start Thumb"
+          ]
+        }
+      },
+      "anatomy": [
+        "Track (activeFill, fills the group's width)",
+        "Step Indicators (absolute, scales with the group)",
+        "_Thumb (absolute, trailing edge)",
+        "Start Thumb (absolute, leading edge, visibleWhen range)"
+      ],
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/-md",
+        "_note": "Only Track is in flow, so the negative gap has no visible effect."
+      },
+      "note": "Holds every state-driven part. It has no Shape property; each Slider variant sets the nested thumbs' Shape directly."
+    },
+    {
+      "name": "_Thumb",
+      "private": true,
+      "setId": "6131:2467",
+      "api": {
+        "state": {
+          "type": "enum",
+          "values": [
+            "default",
+            "selected",
+            "disabled",
+            "hover"
+          ],
+          "default": "default"
+        },
+        "shape": {
+          "type": "enum",
+          "values": [
+            "sharp",
+            "rounded"
+          ],
+          "default": "rounded"
+        }
+      },
+      "anatomy": [
+        "Thumb (rectangle; height bound to control/icon-sm or control/icon-md, width unbound)"
+      ],
+      "variants": "see the main variants table: thumb.fill, thumb.size, thumb.radius"
+    },
+    {
+      "name": "Step Indicators",
+      "private": false,
+      "setId": "6132:2568",
+      "api": {
+        "dotSlots": {
+          "type": "slot",
+          "figmaName": "Dot Slots#6132:0",
+          "expects": "_Dot Indicator instances",
+          "sampleCount": 5
+        }
+      },
+      "layout": {
+        "direction": "horizontal",
+        "mainAxisAlign": "space-between",
+        "paddingInline": "space/2xs"
+      },
+      "note": "Public by name but only used inside Slider."
+    },
+    {
+      "name": "_Dot Indicator",
+      "private": true,
+      "setId": "6132:2551",
+      "anatomy": [
+        "an ellipse in foreground/inverse (measuredSizePx 2 x 2)"
+      ]
+    }
+  ],
+  "siblingsOnPage": [
+    {
+      "name": "Slider Input Field",
+      "setId": "6154:5813",
+      "key": "c21f894751fdb9d0902494db65cbedd37aa5f877",
+      "private": false,
+      "note": "A separate public composition, with no metadata of its own: a label above a Slider, with min and max captions beneath it and a value box beside it. Spec it separately once it has a metadata frame.",
+      "observed": {
+        "label": {
+          "typography": "label/medium",
+          "fill": "raw (see gaps)",
+          "sample": "Label"
+        },
+        "row": {
+          "direction": "horizontal",
+          "gap": "space/gutter",
+          "crossAxisAlign": "center"
+        },
+        "sliderColumn": {
+          "direction": "vertical",
+          "gap": "space/lg",
+          "paddingTop": "space/sm",
+          "measuredWidthPx": 416,
+          "contains": "Slider (Shape=rounded, fills width) above a min/max caption row"
+        },
+        "minMaxCaptions": {
+          "typography": "indicator/medium",
+          "fill": "foreground/secondary",
+          "samples": [
+            "0",
+            "100"
+          ],
+          "layout": "space-between"
+        },
+        "valueBox": {
+          "height": "control/md",
+          "measuredWidthPx": 56,
+          "paddingInline": "space/md",
+          "radius": "radius/sm",
+          "fill": "interactive/neutral/background/default",
+          "stroke": "interactive/neutral/border/default @ stroke/thin, inside",
+          "text": {
+            "typography": "body/medium",
+            "fill": "foreground/primary",
+            "sample": "50"
+          }
+        }
+      }
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ — names below resolve there; see tokens/manifest.json for collections, modes and the extension graph",
+    "rule": "This spec names tokens only. Resolved values live in tokens/ and are deliberately not duplicated here.",
+    "color": [
+      "surface/track",
+      "interactive/neutral/foreground/default",
+      "interactive/neutral/foreground/disabled",
+      "interactive/ghost/foreground/default",
+      "foreground/inverse"
+    ],
+    "dimension": [
+      "radius/xs",
+      "radius/none",
+      "radius/pill",
+      "control/icon-sm",
+      "control/icon-md",
+      "space/2xs",
+      "space/-md"
+    ],
+    "typography": [],
+    "effect": [],
+    "siblingsOnPage": {
+      "color": [
+        "foreground/secondary",
+        "foreground/primary",
+        "interactive/neutral/background/default",
+        "interactive/neutral/border/default"
+      ],
+      "dimension": [
+        "space/gutter",
+        "space/lg",
+        "space/sm",
+        "space/md",
+        "space/none",
+        "control/md",
+        "radius/sm",
+        "stroke/thin"
+      ],
+      "typography": [
+        "label/medium",
+        "indicator/medium",
+        "body/medium"
+      ]
+    },
+    "missingFromExport": [],
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "extensions": "tokens/extensions/ (companion, target, condensed)"
+    }
+  },
+  "states": [
+    {
+      "State": "default",
+      "Trigger": "—",
+      "Duration": "—",
+      "What changes": "The resting control. Nothing is emphasised and the thumb sits at its base size."
+    },
+    {
+      "State": "hover",
+      "Trigger": "Pointer over a thumb",
+      "Duration": "—",
+      "What changes": "Only the hovered thumb grows. The active fill and, in range mode, the other thumb hold, so that thumb carries the whole change and the track looks untouched."
+    },
+    {
+      "State": "selected",
+      "Trigger": "A thumb is pressed or has keyboard focus",
+      "Duration": "—",
+      "What changes": "The active fill and both thumbs shift to the selected foreground. Only the thumb under the pointer takes the larger size; the other keeps its base size."
+    },
+    {
+      "State": "disabled",
+      "Trigger": "—",
+      "Duration": "—",
+      "What changes": "The active fill and the thumb both drop to the disabled foreground, and the thumb returns to its base size."
+    },
+    {
+      "State": "Stepped",
+      "Trigger": "Stepped set to true",
+      "Duration": "—",
+      "What changes": "Dots appear along the track marking each valid stop. Nothing else moves, because they sit above both track layers rather than between them."
+    },
+    {
+      "State": "Range",
+      "Trigger": "Range set to true",
+      "Duration": "—",
+      "What changes": "A second thumb appears at the start of the active fill. Both thumbs run on the same track and carry the same state."
+    }
+  ],
+  "behavior": [
+    {
+      "Type": "Motion",
+      "Description": "No transition is defined. Moving the thumb is a width change on the active fill, with nothing specified between one position and the next."
+    },
+    {
+      "Type": "Value",
+      "Description": "The active fill's width is the value, and the thumb is pinned to its trailing edge. Position and fill move together rather than being set as two separate things."
+    }
+  ],
+  "content": [
+    {
+      "Property": "Step indicators",
+      "Type": "slot, dots supplied with the content",
+      "Description": "Holds the dots marking each stop. The count arrives with the content rather than from a number on the slider, and the dots are spaced evenly across the full track so they cross the active fill and the base alike."
+    },
+    {
+      "Property": "Thumb",
+      "Type": "fixed element, inherits state and shape",
+      "Description": "One thumb at the value, and a second at the start when range is on. Its colour follows the slider's state and its size follows the pointer, so it is never styled on its own."
+    },
+    {
+      "Property": "Track",
+      "Type": "fixed element, two layers",
+      "Description": "A full-width base and an active fill that runs from the minimum to the value. Neither takes content, and the base is the only part that does not change with state."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Reach for it where the range matters more than the exact figure. A value that has to be precise is quicker to type than to drag.",
+      "Turn steps on whenever only certain values are valid, so the dots say where the thumb can land."
+    ],
+    "dont": [
+      "Don't set state on the track or the thumb separately. State is the slider's, and the parts follow it.",
+      "Don't use Shape to carry meaning. It matches the controls around the slider and says nothing about the value."
+    ]
+  },
+  "accessibility": [
+    "The value is carried by position and fill alone. It has to be exposed as a number together with its minimum and maximum.",
+    "Keyboard focus shows the selected colour on the fill and both thumbs, and the focused thumb also takes a ring, so in range mode it is clear which end the keys will move.",
+    "Hover is answered by the hovered thumb growing while the track holds. Anyone not using a pointer gets no size change; the focus ring stands in for it.",
+    "The step dots use foreground/inverse across the whole track, so their contrast differs either side of the value.",
+    "In range mode two thumbs share one track. Each needs its own name and its own value, or the pair reads as a single control.",
+    "Disabled is carried by colour on both the track and the thumb, with no change of size or shape to back it up."
+  ],
+  "layoutTheming": [
+    {
+      "Property": "Size",
+      "Type": "Fixed",
+      "Description": "400 wide and 4 tall. The width is the track, and the thumb overhangs it above and below."
+    },
+    {
+      "Property": "Radius",
+      "Type": "Per Shape",
+      "Description": "radius/xs on the base track when rounded and radius/none when sharp. The thumb takes radius/pill when rounded and square corners when sharp. The active fill is square-ended on both variants, so on a rounded slider its end meets the rounded base."
+    },
+    {
+      "Property": "Track",
+      "Type": "Theming",
+      "Description": "The base is surface/track across the full width. The active fill is interactive/neutral/foreground/default, moving to interactive/ghost/foreground/default when selected and interactive/neutral/foreground/disabled when disabled."
+    },
+    {
+      "Property": "Thumb",
+      "Type": "Per State",
+      "Description": "16 square at rest. 20 only for the thumb under the pointer or being dragged, in any state. Centred on the track in every case."
+    },
+    {
+      "Property": "Step indicators",
+      "Type": "Fixed",
+      "Description": "Dots of 2 by 2 in foreground/inverse, spaced evenly across the full track width with space/2xs held at each end."
+    },
+    {
+      "Property": "Stacking",
+      "Type": "Fixed",
+      "Description": "Base track, active fill, step indicators, thumb, from back to front. The dots sit above both track layers and below the thumb."
+    },
+    {
+      "Property": "Second thumb",
+      "Type": "Per Range",
+      "Description": "Matches the first thumb in colour and shape, and sits at the start of the active fill. It takes the larger size only when it is the one under the pointer."
+    }
+  ],
+  "designerClarifications": [
+    {
+      "date": "2026-10-14",
+      "topic": "hover",
+      "statement": "The hover is on the Thumb being hovered not both thumb on the range. Thumb gets bigger on hover.",
+      "resolved": "Hover enlarges only the thumb under the pointer. The active fill, the base track and, in range mode, the other thumb don't change. Hovering bare track changes nothing.",
+      "inMetadata": true
+    },
+    {
+      "date": "2026-10-14",
+      "topic": "pressed and focus",
+      "statement": "both gets the blue focus or pressed.",
+      "resolved": "Pressed (an active drag) and keyboard focus both put the slider in the selected state: the active fill and both thumbs take interactive/ghost/foreground/default. Selected is colour only; size follows the pointer (next clarification).",
+      "inMetadata": true
+    },
+    {
+      "date": "2026-10-14",
+      "topic": "size on focus and pressed",
+      "statement": "I also noticed the size increase on the focus state of the second thumb in the range slide. only the one hovered should have the increased size.",
+      "resolved": "The larger size (control/icon-md) goes only to the thumb under the pointer, which includes the thumb being dragged, in every state. Focus and pressed never enlarge the other thumb. A thumb focused from the keyboard keeps its base size (control/icon-sm) unless it is also hovered.",
+      "inMetadata": true
+    }
+  ],
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/EScHXxXDQU7qys4ru4ijLg/Slider?node-id=6125-1084",
+    "componentSet": "https://www.figma.com/design/EScHXxXDQU7qys4ru4ijLg/Slider?node-id=6132-3190",
+    "metadata": "https://www.figma.com/design/EScHXxXDQU7qys4ru4ijLg/Slider?node-id=6159-833",
+    "shapes": {
+      "rounded": "https://www.figma.com/design/EScHXxXDQU7qys4ru4ijLg/Slider?node-id=6132-3158",
+      "sharp": "https://www.figma.com/design/EScHXxXDQU7qys4ru4ijLg/Slider?node-id=6132-3739"
+    },
+    "states (_Active Track)": {
+      "default": "https://www.figma.com/design/EScHXxXDQU7qys4ru4ijLg/Slider?node-id=6132-3415",
+      "hover": "https://www.figma.com/design/EScHXxXDQU7qys4ru4ijLg/Slider?node-id=6132-3410",
+      "selected": "https://www.figma.com/design/EScHXxXDQU7qys4ru4ijLg/Slider?node-id=6132-3405",
+      "disabled": "https://www.figma.com/design/EScHXxXDQU7qys4ru4ijLg/Slider?node-id=6132-3390"
+    },
+    "thumb": "https://www.figma.com/design/EScHXxXDQU7qys4ru4ijLg/Slider?node-id=6131-2467",
+    "stepIndicators": "https://www.figma.com/design/EScHXxXDQU7qys4ru4ijLg/Slider?node-id=6132-2568",
+    "sliderInputField": "https://www.figma.com/design/EScHXxXDQU7qys4ru4ijLg/Slider?node-id=6154-5813"
+  },
+  "issues": [
+    {
+      "severity": "blocker",
+      "source": "API vs Property Breakdown",
+      "detail": "Slider exposes only Shape in Figma. The revised metadata now states outright that 'State, Stepped and Range are the slider's own properties', but in Figma they still exist only on the nested _Active Track and are not exposed on Slider, so a designer can only set them by reaching into the nested instance, which the metadata's own 'Don't set state on the track or the thumb separately' rules out. This spec lists them in api with exposedInFigma: false; build them as slider properties."
+    },
+    {
+      "severity": "blocker",
+      "source": "structure vs metadata",
+      "detail": "There is no input for the value, minimum, maximum or step. The value exists only as the active fill's width (a fixed 50% in the sample), and the step count only as however many dot instances sit in the slot. The accessibility guidelines require 'a number together with its minimum and maximum'. Implementations must add value, min, max and step (two values in range mode) with no Figma reference for their names or defaults."
+    },
+    {
+      "severity": "warn",
+      "source": "designer clarification vs structure",
+      "detail": "Figma's state is set on _Active Track, so its hover and selected variants grow BOTH thumbs (each to control/icon-md). Figma can't show one thumb enlarged while the other rests. The metadata now states the intent (only the thumb under the pointer, or being dragged, grows, in every state; selected is colour only, on both), but the component's own variants still contradict it. Build to the metadata."
+    },
+    {
+      "severity": "warn",
+      "source": "structure vs metadata",
+      "detail": "Range mode can't show a span that doesn't start at the minimum. The active fill is pinned to the start of the track and the start thumb is pinned to the fill's leading edge, so the 'start' of the span is always the minimum. A real range needs the active fill to run between the two thumbs. Build to the intent ('a span rather than a value'), not to the structure."
+    },
+    {
+      "severity": "warn",
+      "source": "structure vs metadata",
+      "detail": "The step indicators span the full track only by coincidence. They are a child of the active fill, sized at twice its width, and scale with it, so they line up with the full track only while the value sits at exactly 50%. At any other value they stretch or shrink with the fill. The metadata says 'spaced evenly across the full track width'; build that."
+    },
+    {
+      "severity": "warn",
+      "source": "contrast",
+      "detail": "The base track (surface/track, via fill/sunken) is 1.19:1 against surface/page in Light and 1.24:1 in Dark. The unfilled part of the range is close to invisible, below the 3:1 WCAG asks for a part needed to understand the control."
+    },
+    {
+      "severity": "warn",
+      "source": "contrast",
+      "detail": "The step dots (foreground/inverse) are 1.24:1 on the base track in Light and 1.45:1 in Dark, so they are invisible on the unfilled side of the value (on the active fill they are well above 3:1). The metadata acknowledges the difference ('their contrast differs either side of the value') but not that one side is invisible."
+    },
+    {
+      "severity": "note",
+      "source": "designer clarification",
+      "detail": "Focus is now defined in the metadata: keyboard focus shows the selected colour on the fill and both thumbs, and the focused thumb takes a ring. Figma has no focus variant and no ring to draw it, so the ring is the implementer's: border/focus at stroke/thick in the reference implementations."
+    },
+    {
+      "severity": "warn",
+      "source": "descriptionDrift",
+      "detail": "control/icon-sm says '= 20px, source: scale/7' but resolves to 16 (the thumb at rest, which the metadata confirms as 16). control/icon-md says '= 24px' but resolves to 20 (the thumb when hovered or selected). radius/none says '= 2px, source: scale/1' but resolves to 0. space/-md says '= 32px, source: scale/10' but aliases scale/-3, a negative value. Sibling-only: control/md says '= 48px'; the value box renders 40 tall."
+    },
+    {
+      "severity": "warn",
+      "source": "gaps",
+      "detail": "The track height (4), the dot size (2 x 2) and the thumb's width are raw. The thumb binds its height to control/icon-sm or control/icon-md but not its width, so a size mode could make it non-square. The slider's width (400) is a measurement; in use the track should fill its container."
+    },
+    {
+      "severity": "warn",
+      "source": "gaps",
+      "detail": "Slider's root has a raw layout gap of 10 and Step Indicators' root also uses 10. Both are inert (one child in flow, or space-between), but they are untokened. In Slider Input Field, the label's text fill is raw with no token, and a gap of 344 is raw but inert under space-between."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs structure",
+      "detail": "The revised Layout & Theming says 'The active fill is square-ended on both variants, so on a rounded slider its end meets the rounded base.' The rounded Slider binds radius/xs on all four corners of its nested active fill (the sharp one binds radius/none), so the fill is rounded wherever the base is. _Active Track's own fill has no radius; the rounding is a per-variant override in Slider. Decide which is intended. (Supersedes this spec's earlier note that the fill is square-ended in both shapes, which was read from _Active Track rather than from Slider.)"
+    },
+    {
+      "severity": "note",
+      "source": "bindingDrift",
+      "detail": "Step Indicators' root alignment differs by state on the nested instance: space-between at default, start at hover, selected and disabled. It has no visible effect, since its only child (the dot slot) fills it, but the variants have drifted apart."
+    },
+    {
+      "severity": "note",
+      "source": "metadata",
+      "detail": "The revised States & Triggers table lists Stepped and Range as rows alongside the interaction states. They are properties, not states: nothing triggers them at run time. The thumb sizes it used to quote (16, 20) now appear only in Layout & Theming."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "Thumb and active fill share one token at every state, so the thumb is told apart from the fill only by overhanging the track. It has no border, ring or shadow."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "The start thumb sits 2 off-centre from the fill's leading edge (its centre is at 2, not 0, at both sizes), while the end thumb is exactly centred on the trailing edge. The step dots are inset by space/2xs at each end, which the revised metadata now states as intended ('space/2xs held at each end'), so the first and last dots sit just inside the minimum and maximum rather than on them."
+    },
+    {
+      "severity": "note",
+      "source": "token semantics",
+      "detail": "The thumb is sized with icon tokens (control/icon-sm, control/icon-md), and selected uses the ghost button's foreground (interactive/ghost/foreground/default). Both are bound consistently, but a change to icon sizes or ghost buttons will move the slider."
+    },
+    {
+      "severity": "note",
+      "source": "API",
+      "detail": "_Thumb orders State as default, selected, disabled, hover; _Active Track orders it as default, hover, selected, disabled. The spec uses _Active Track's order, which matches the metadata. In code, hover and selected are interaction states (pointer over, dragging), not props, and disabled is the only one to set."
+    },
+    {
+      "severity": "note",
+      "source": "behavior",
+      "detail": "The metadata says outright that no motion is defined. Thumb size changes (16 to 20) and colour changes have no transition specified."
+    },
+    {
+      "severity": "note",
+      "source": "dependencies",
+      "detail": "Step Indicators is public by name but used only inside Slider. Slider Input Field is a separate public composition on the same page with no metadata; it's recorded under siblingsOnPage, not specced. Its frames are unnamed (Frame 1, Frame 2), its only variant property is a placeholder ('Property 1' = 'Default'), and its value box is a styled frame, not an input component. No component set on the page has a native Figma description."
+    },
+    {
+      "severity": "note",
+      "source": "spec vs token export",
+      "detail": "Resolved 2026-10-14: tokens/ was re-exported from EScHXxXDQU7qys4ru4ijLg and now contains surface/track (aliases palette fill/sunken) and space/-md. The CSS build collapses the leading dash, so space/-md emits as --space-md and collides with the positive token; the positive one wins. Slider doesn't need it, since the gap that binds it has no visible effect."
+    }
+  ]
+}

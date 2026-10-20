@@ -17,10 +17,7 @@ const themed: Decorator = (Story, ctx) => {
   ].filter(Boolean).join(" ");
 
   return (
-    <div
-      className={className}
-      style={{ padding: 24, background: "var(--surface-page)", color: "var(--foreground-primary)" }}
-    >
+    <div className={className} style={{ padding: 24, background: "var(--surface-page)" }}>
       <Story />
     </div>
   );

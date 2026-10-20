@@ -25,6 +25,11 @@ export default css`
     justify-content: center;
     box-sizing: border-box;
     gap: var(--space-none);
+    /* :host is the flex item a layout like zds-card-footer stretches
+       (::slotted(*) { flex: 1 1 0 }) — this is what actually fills that
+       width, since the host's own display (inline-flex) only governs how it
+       lays out this button, not how the host itself is sized externally. */
+    flex: 1 1 auto;
     height: var(--control-sm);
     padding: var(--space-xs) var(--space-md);
     border-style: solid;
@@ -46,7 +51,7 @@ export default css`
     cursor: pointer;
     /* Colour-only transitions: the spec records no scale, shadow or elevation
        shift on any flavour, so a transition must read as a tint change. */
-    transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+    transition: background-color 120ms ease, background-position 120ms ease, border-color 120ms ease, color 120ms ease;
   }
 
   /* The label wrapper's own padding is what separates icon from text; the row
@@ -105,18 +110,22 @@ export default css`
     --zds-button-border: var(--interactive-destructive-border-default);
     --zds-button-fg: var(--interactive-destructive-foreground-default);
   }
+  /* subtle, outline-subtle, text and text-gradient sit on the ghost scrim
+     (spec 2026-10-18): interactive/ghost/background/*, whose own alpha is
+     the scrim (0 at rest, 5% hover, 10% pressed). Figma also sets a paint
+     opacity on top, which squares it away (spec issue "gaps"). */
   :host([flavour="subtle"]) {
-    --zds-button-bg: var(--interactive-neutral-background-default);
+    --zds-button-bg: var(--interactive-ghost-background-default);
     --zds-button-border: var(--interactive-neutral-border-default);
     --zds-button-fg: var(--interactive-neutral-foreground-default);
   }
   :host([flavour="text"]) {
-    --zds-button-bg: transparent;
+    --zds-button-bg: var(--interactive-ghost-background-default);
     --zds-button-border: var(--interactive-ghost-border-default);
     --zds-button-fg: var(--interactive-ghost-foreground-default);
   }
   :host([flavour="outline-subtle"]) {
-    --zds-button-bg: var(--interactive-neutral-background-default);
+    --zds-button-bg: var(--interactive-ghost-background-default);
     --zds-button-border: var(--interactive-neutral-border-default);
     --zds-button-fg: var(--interactive-neutral-foreground-default);
   }
@@ -125,29 +134,51 @@ export default css`
     --zds-button-border: var(--interactive-ghost-border-default);
     --zds-button-fg: var(--interactive-ghost-foreground-default);
   }
+  /* The gradient flavours never swap their gradient for a flat colour on
+     hover or press (spec: Gradient transition) — a gradient cannot be
+     interpolated to a solid fill, so that swap flickers. Instead one
+     gradient three times the size of the fill holds the two stops in its
+     middle third: at rest the middle third shows (start at 0%, end at 87%
+     of the fill, as before); hover slides to the last third, pure end;
+     press to the first, pure start. The background position is what
+     transitions. */
   :host([flavour="gradient"]) {
     --zds-button-bg: linear-gradient(
       135deg,
       var(--surface-gradient-start) 0%,
-      var(--surface-gradient-end) 87%
+      var(--surface-gradient-start) 33.333%,
+      var(--surface-gradient-end) 62.333%,
+      var(--surface-gradient-end) 100%
     );
     --zds-button-border: var(--interactive-primary-border-default);
     --zds-button-fg: var(--interactive-primary-foreground-default);
   }
+  :host([flavour="gradient"]) button {
+    background-size: 300% 300%;
+    background-position: 50% 50%;
+  }
   :host([flavour="text-gradient"]) {
-    --zds-button-bg: transparent;
+    --zds-button-bg: var(--interactive-ghost-background-default);
     --zds-button-border: var(--interactive-ghost-border-default);
     --zds-button-fg: var(--foreground-gradient-start);
   }
-  :host([flavour="text-gradient"]) .label {
+  /* text-gradient runs the same slide across the label's own text, and the
+     icons take it too, since the icon follows the label. */
+  :host([flavour="text-gradient"]) .label,
+  :host([flavour="text-gradient"]) .icon {
     background: linear-gradient(
       90deg,
       var(--foreground-gradient-start) 0%,
+      var(--foreground-gradient-start) 33.333%,
+      var(--foreground-gradient-end) 66.667%,
       var(--foreground-gradient-end) 100%
     );
+    background-size: 300% 100%;
+    background-position: 50% 0;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    transition: background-position 120ms ease;
   }
 
   /* outline and outline-subtle are the only flavours with a resting border */
@@ -169,23 +200,27 @@ export default css`
     --zds-button-bg: var(--interactive-destructive-background-hover);
     --zds-button-border: var(--interactive-destructive-border-hover);
   }
-  :host([flavour="subtle"]) button:hover,
+  /* outline keeps its border and shifts a neutral background underneath. */
   :host([flavour="outline"]) button:hover {
     --zds-button-bg: var(--interactive-neutral-background-hover);
   }
-  :host([flavour="outline-subtle"]) button:hover {
-    --zds-button-bg: var(--interactive-neutral-background-hover);
-    --zds-button-border: var(--interactive-neutral-border-hover);
-  }
-  /* Text flavours raise a ghost scrim from fully transparent. The 5% / 10%
-     opacities are the component's only untokenised values — see the Button
-     spec's issue 2. */
+  /* The scrim flavours raise the ghost background from transparent. */
+  :host([flavour="subtle"]) button:hover,
   :host([flavour="text"]) button:hover,
   :host([flavour="text-gradient"]) button:hover {
-    --zds-button-bg: color-mix(in srgb, var(--interactive-neutral-foreground-default) 5%, transparent);
+    --zds-button-bg: var(--interactive-ghost-background-hover);
   }
+  :host([flavour="outline-subtle"]) button:hover {
+    --zds-button-bg: var(--interactive-ghost-background-hover);
+    --zds-button-border: var(--interactive-neutral-border-hover);
+  }
+  /* Gradient flavours: slide until the end colour covers 100%. */
   :host([flavour="gradient"]) button:hover {
-    --zds-button-bg: var(--surface-gradient-end);
+    background-position: 100% 100%;
+  }
+  :host([flavour="text-gradient"]) button:hover .label,
+  :host([flavour="text-gradient"]) button:hover .icon {
+    background-position: 100% 0;
   }
 
   /* ---- pressed ------------------------------------------------------- */
@@ -201,20 +236,25 @@ export default css`
     --zds-button-bg: var(--interactive-destructive-background-pressed);
     --zds-button-border: var(--interactive-destructive-border-pressed);
   }
-  :host([flavour="subtle"]) button:active,
   :host([flavour="outline"]) button:active {
     --zds-button-bg: var(--interactive-neutral-background-pressed);
   }
-  :host([flavour="outline-subtle"]) button:active {
-    --zds-button-bg: var(--interactive-neutral-background-pressed);
-    --zds-button-border: var(--interactive-neutral-border-pressed);
-  }
+  :host([flavour="subtle"]) button:active,
   :host([flavour="text"]) button:active,
   :host([flavour="text-gradient"]) button:active {
-    --zds-button-bg: color-mix(in srgb, var(--interactive-neutral-foreground-default) 10%, transparent);
+    --zds-button-bg: var(--interactive-ghost-background-pressed);
   }
+  :host([flavour="outline-subtle"]) button:active {
+    --zds-button-bg: var(--interactive-ghost-background-pressed);
+    --zds-button-border: var(--interactive-neutral-border-pressed);
+  }
+  /* Gradient flavours: slide the other way, until the start colour covers 100%. */
   :host([flavour="gradient"]) button:active {
-    --zds-button-bg: var(--surface-gradient-start);
+    background-position: 0% 0%;
+  }
+  :host([flavour="text-gradient"]) button:active .label,
+  :host([flavour="text-gradient"]) button:active .icon {
+    background-position: 0% 0;
   }
 
   /* ---- focus --------------------------------------------------------- */
@@ -235,17 +275,22 @@ export default css`
   }
   :host([flavour="text"]) button:disabled,
   :host([flavour="text-gradient"]) button:disabled {
-    --zds-button-bg: transparent;
+    --zds-button-bg: var(--interactive-ghost-background-disabled);
     --zds-button-fg: var(--interactive-ghost-foreground-disabled);
   }
-  :host([flavour="text-gradient"]) button:disabled .label {
+  :host([flavour="text-gradient"]) button:disabled .label,
+  :host([flavour="text-gradient"]) button:disabled .icon {
     background: none;
     color: var(--interactive-ghost-foreground-disabled);
   }
-  :host([flavour="outline"]) button:disabled,
+  :host([flavour="outline"]) button:disabled {
+    --zds-button-bg: var(--interactive-neutral-background-disabled);
+    --zds-button-border: var(--interactive-ghost-border-disabled);
+    --zds-button-fg: var(--interactive-neutral-foreground-disabled);
+  }
   :host([flavour="outline-subtle"]) button:disabled,
   :host([flavour="subtle"]) button:disabled {
-    --zds-button-bg: var(--interactive-neutral-background-disabled);
+    --zds-button-bg: var(--interactive-ghost-background-disabled);
     --zds-button-border: var(--interactive-neutral-border-disabled);
     --zds-button-fg: var(--interactive-neutral-foreground-disabled);
   }

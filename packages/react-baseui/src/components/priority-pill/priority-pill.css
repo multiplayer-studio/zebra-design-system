@@ -1,0 +1,120 @@
+/* priority-pill — ported rule for rule from packages/web-components
+   priority-pill.styles.ts.
+   Every value is a semantic token. Sections follow the spec's level, size,
+   variant and leading tables.
+  
+   Spec: specs/badges/priority-pill.spec.json
+ 
+   */
+
+  .zds-priority-pill {
+    /* ---- level (low default) ------------------------------------------- */
+    /* pill = the fill; ink = the circle's fill and the label (the circle is
+       a knockout: its glyph or number takes the pill's fill). */
+    --zds-priority-pill: var(--foreground-secondary);
+    --zds-priority-ink: var(--foreground-inverse);
+    /* ---- size (large default) ------------------------------------------ */
+    --zds-priority-pad: var(--space-xs);
+    --zds-priority-circle: var(--control-icon-md);
+    --zds-priority-label-end: var(--space-xs);
+    display: inline-flex;
+    vertical-align: middle;
+  }
+  .zds-priority-pill[hidden] {
+    display: none;
+  }
+  /* Medium and urgent borrow button 'on' tokens, as Figma binds them (spec
+     warn; foreground/on-strong now covers them). */
+  .zds-priority-pill[data-level="medium"] {
+    --zds-priority-pill: var(--feedback-info-background-strong);
+    --zds-priority-ink: var(--interactive-primary-foreground-default);
+  }
+  .zds-priority-pill[data-level="high"] {
+    --zds-priority-pill: var(--feedback-warning-background-strong);
+    --zds-priority-ink: var(--foreground-inverse);
+  }
+  .zds-priority-pill[data-level="urgent"] {
+    --zds-priority-pill: var(--feedback-error-background-strong);
+    --zds-priority-ink: var(--interactive-destructive-foreground-default);
+  }
+
+  /* ---- pill ------------------------------------------------------------- */
+  .zds-priority-pill__root {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding-block: var(--zds-priority-pad);
+    /* A wider trailing edge so the label clears the end of the pill. */
+    padding-inline: var(--zds-priority-pad) var(--space-sm);
+    border-radius: var(--radius-pill);
+    background: var(--zds-priority-pill);
+  }
+
+  /* ---- circle (knockout) -------------------------------------------------- */
+  .zds-priority-pill__circle {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--zds-priority-circle);
+    block-size: var(--zds-priority-circle);
+    border-radius: var(--radius-pill);
+    background: var(--zds-priority-ink);
+    color: var(--zds-priority-pill);
+  }
+  /* Glyph: Icon Size=small (16) at large; scaled to the circle less space/2xs
+     each side (12) at small — spec warn, no 12 icon token. */
+  .zds-priority-pill__circle {
+    /* The React Icon is sized from --zds-glyph (inline style). Large: 20 − 4 = 16, the web
+       component's Icon Size=small; small: 16 − 4 = 12. */
+    --zds-glyph: calc(var(--zds-priority-circle) - 2 * var(--space-2xs));
+  }
+  .zds-priority-pill__rank {
+    font-family: var(--indicator-medium-font-family), system-ui, sans-serif;
+    font-size: var(--indicator-medium-font-size);
+    font-weight: var(--indicator-medium-font-weight);
+    line-height: var(--indicator-medium-line-height);
+    letter-spacing: var(--indicator-medium-letter-spacing);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---- label --------------------------------------------------------------- */
+  .zds-priority-pill__label {
+    padding-inline-end: var(--zds-priority-label-end);
+    color: var(--zds-priority-ink);
+    font-family: var(--body-small-font-family), system-ui, sans-serif;
+    font-size: var(--body-small-font-size);
+    font-weight: var(--body-small-font-weight);
+    line-height: var(--body-small-line-height);
+    letter-spacing: var(--body-small-letter-spacing);
+    white-space: nowrap;
+  }
+
+  /* ---- size: small ----------------------------------------------------------- */
+  .zds-priority-pill[data-size="small"] {
+    --zds-priority-pad: var(--space-2xs);
+    --zds-priority-circle: var(--control-icon-sm);
+    --zds-priority-label-end: var(--space-2xs);
+  }
+  .zds-priority-pill[data-size="small"] .zds-priority-pill__rank,
+  .zds-priority-pill[data-size="small"] .zds-priority-pill__label {
+    font-family: var(--indicator-small-font-family), system-ui, sans-serif;
+    font-size: var(--indicator-small-font-size);
+    font-weight: var(--indicator-small-font-weight);
+    line-height: var(--indicator-small-line-height);
+    letter-spacing: var(--indicator-small-letter-spacing);
+  }
+
+  /* ---- variant: badge — the circle alone, an even square ----------------------- */
+  .zds-priority-pill[data-variant="badge"] .zds-priority-pill__root {
+    padding-inline: var(--zds-priority-pad);
+  }
+  .zds-priority-pill[data-variant="badge"] .zds-priority-pill__label {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }

@@ -1,0 +1,1543 @@
+{
+  "component": {
+    "name": "Input",
+    "slug": "input",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "6331:31902",
+      "key": "f0aa6ed8cbe31bc315988e93f45b4d57e7b7ee57",
+      "page": "Input",
+      "pageNodeId": "6288:997",
+      "metadataFrameIds": {
+        "Input": "6340:1177",
+        "Input Field": "6340:1444"
+      },
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6288-997",
+      "extractedAt": "2026-10-15",
+      "variantCount": {
+        "Input": 1,
+        "Input / Text": 243,
+        "Input / Number": 243,
+        "Input / Password": 243,
+        "Input / Date": 243,
+        "Input / Time": 243,
+        "Input Label": 6,
+        "Input Hint": 3
+      },
+      "extractionNote": "The page holds an assembly (Input, a single component) and seven on-page sets: five field types (243 variants each = Size 3 x Shape 3 x State 9 x Flavour 3, complete) plus Input Label and Input Hint. At 1,215 field variants the stock extract-structure.js output would exceed the response cap many times over, so the same reading (paints, strokes, weights, radius, padding, gap, size tokens, text styles, instance glyphs and glyph fills, property bindings) was run in-file and summarised: Input / Text was read in full and tabulated by axis (size and shape from base, all 27 state x flavour cells), an independence check confirmed Size and Shape never change colour or visibility (one exception, see issues), and the other four field sets were diffed against Text variant by variant with identical differences aggregated. The assembly, Label and Hint were read in full. Two metadata frames are present: 'Input Metadata' (assembly) and 'Input Field Metadata' (field). Updated 2026-10-15 after review: four metadata rows corrected in Figma (assembly Size and Colour; field Border and Icons and controls), and the optional leading/trailing icons in every disabled variant of Text, Number and Password bound to interactive/neutral/foreground/disabled (108 icons). Owner decisions recorded under issues. Updated again 2026-10-15: every icon and control in all five field sets (leading, trailing, type control, clear; 2,025 glyphs) bound to foreground/primary, and foreground/disabled in disabled variants, replacing interactive/neutral/foreground/* and the unbound defaults; two metadata rows extended to say so."
+    }
+  },
+  "summary": {
+    "input": "The full field assembly, a label above, the field itself and a hint below, stacked and spaced as one unit. Type chooses which of the five field types sits in the middle, and the label and the hint can each be turned off. Reach for it wherever a field needs a name or supporting text, and reach for Input Field on its own where it needs neither.",
+    "inputField": "The text entry control on its own, without a label or hint around it. One model covers five input types, Text, Number, Password, Date and Time, which share the same Size, Shape, State and Flavour and differ only in their placeholder and in the control sitting at the trailing edge. Reach for it directly when a field needs no label or supporting text, and reach for Input when it does."
+  },
+  "api": {
+    "type": {
+      "type": "slot",
+      "figmaName": "Type#6331:8",
+      "default": "Input / Text (Size=medium, Shape=rounded, State=enabled, Flavour=default)",
+      "accepts": [
+        "Input / Text",
+        "Input / Number",
+        "Input / Password",
+        "Input / Date",
+        "Input / Time"
+      ],
+      "controls": [
+        "field"
+      ],
+      "intent": "Chooses which field fills the middle of the stack, from text, number, password, date and time. The choice brings its own placeholder and its own trailing control, so picking the type is most of the work of configuring the field. Input Field Metadata covers what each one carries.",
+      "note": "An INSTANCE_SWAP with five preferred values (the five field sets). In code this reads naturally as a type enum on one field component; see subcomponents.inputField."
+    },
+    "showLabel": {
+      "type": "boolean",
+      "figmaName": "Show Label#6331:9",
+      "default": true,
+      "controls": [
+        "label"
+      ],
+      "intent": {
+        "true": "The label sits above the field and names it. Keep it on, because the field carries no name of its own and the placeholder is gone as soon as someone types.",
+        "false": "Drops the label from the stack. Only safe where something else nearby already names the field, and the name still has to reach assistive technology some other way."
+      }
+    },
+    "showHint": {
+      "type": "boolean",
+      "figmaName": "Show Hint#6331:10",
+      "default": true,
+      "controls": [
+        "hint"
+      ],
+      "intent": {
+        "true": "Keeps the supporting line below the field. This is where a validation message lands, so leaving it on reserves the space before it is needed.",
+        "false": "Drops the line and shortens the stack. A field that can fail validation then has nowhere to put the reason, and turning the line back on later moves everything below it."
+      }
+    },
+    "state": {
+      "type": "enum",
+      "values": [
+        "default",
+        "invalid",
+        "disabled"
+      ],
+      "default": "default",
+      "figmaName": "(none: set per part in Figma)",
+      "controls": [
+        "label.disabled",
+        "field.state",
+        "hint.type"
+      ],
+      "intent": "Decided for code: the assembly surfaces the general states and fans them out, invalid → field State=invalid + hint Type=error, disabled → field State=disabled + label Disabled=true + hint Type=disabled. Figma keeps surfacing the subcomponents' own properties instead.",
+      "metadata": "The assembly own general states which it’s children inherits (Invalid, disabled)."
+    },
+    "partProps": {
+      "type": "passthrough",
+      "intent": "Decided for code: the field's size, shape, flavour, hasLeading/hasTrailing and the label's type / showInformation and hint showIcon are surfaced on the assembly rather than set on nested parts, as Figma does through its nested instance properties."
+    }
+  },
+  "internalVariations": [
+    {
+      "part": "label",
+      "via": "Input Label",
+      "options": {
+        "Type": [
+          "default",
+          "required",
+          "optional"
+        ],
+        "Disabled": [
+          "false",
+          "true"
+        ],
+        "Show Information": [
+          "true",
+          "false"
+        ]
+      },
+      "intent": "The assembly exposes only whether it shows, so the marker, the dimming and the icon are all set on the label.",
+      "arrivesWith": {
+        "Type": "optional",
+        "Disabled": "false",
+        "Show Information": "false"
+      }
+    },
+    {
+      "part": "field",
+      "via": "the chosen field set",
+      "options": {
+        "Size": [
+          "small",
+          "medium",
+          "large"
+        ],
+        "Shape": [
+          "sharp",
+          "rounded",
+          "full"
+        ],
+        "State": [
+          "enabled",
+          "hover",
+          "focus",
+          "selected",
+          "typing",
+          "filled",
+          "invalid",
+          "read-only",
+          "disabled"
+        ],
+        "Flavour": [
+          "default",
+          "gradient",
+          "ghost"
+        ],
+        "hasLeading": [
+          "true",
+          "false"
+        ],
+        "hasTrailing": [
+          "true",
+          "false"
+        ]
+      },
+      "intent": "An Input arrives with it at Size=medium and Shape=rounded, and everything it offers, Size, Shape, State and Flavour, is set on the field rather than surfaced by the assembly. A column of these does not share one size unless every field is set to match.",
+      "arrivesWith": {
+        "Size": "medium",
+        "Shape": "rounded",
+        "State": "enabled",
+        "Flavour": "default",
+        "hasLeading": false,
+        "hasTrailing": false
+      }
+    },
+    {
+      "part": "hint",
+      "via": "Input Hint",
+      "options": {
+        "Type": [
+          "default",
+          "error",
+          "disabled"
+        ],
+        "Show Icon": [
+          "true",
+          "false"
+        ]
+      },
+      "intent": "Its icon is a separate toggle on the hint.",
+      "arrivesWith": {
+        "Type": "default",
+        "Show Icon": true
+      }
+    }
+  ],
+  "contentInputs": [
+    {
+      "part": "label.name",
+      "input": "label",
+      "note": "Not parameterised in Figma (sample 'Field name')."
+    },
+    {
+      "part": "field.text",
+      "input": "value / placeholder",
+      "note": "Not parameterised in Figma. Placeholder per type: 'Placeholder', '0', 'Password', 'mm/dd/yyyy', '--:-- --'."
+    },
+    {
+      "part": "hint.message",
+      "input": "hint",
+      "note": "Not parameterised in Figma (sample 'Default hint message')."
+    }
+  ],
+  "anatomy": [
+    {
+      "id": "root",
+      "kind": "container",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/xs",
+        "padding": "0"
+      },
+      "sizing": {
+        "h": "fixed",
+        "v": "hug"
+      },
+      "note": "Width is tentative (280 in Figma) and not required; the container sets it."
+    },
+    {
+      "id": "label",
+      "kind": "instance",
+      "ref": "Input Label",
+      "visibleWhen": "showLabel",
+      "role": "The field's name, turned on by Show Label. It carries the required or optional marker and the information icon.",
+      "sizing": {
+        "h": "hug",
+        "v": "hug"
+      }
+    },
+    {
+      "id": "field",
+      "kind": "instance",
+      "ref": "Input / <Type>",
+      "content": "type",
+      "role": "The control, chosen by Type. Its own Size, Shape, State and Flavour are set here rather than on the assembly.",
+      "sizing": {
+        "h": "fill",
+        "v": "fixed"
+      }
+    },
+    {
+      "id": "hint",
+      "kind": "instance",
+      "ref": "Input Hint",
+      "visibleWhen": "showHint",
+      "role": "The supporting line, turned on by Show Hint. Guidance at rest, and the validation message when its Type is error.",
+      "sizing": {
+        "h": "hug",
+        "v": "hug"
+      }
+    }
+  ],
+  "variants": {
+    "_note": "The assembly has no variants. Its parts' variant tables are under subcomponents. Measured stack height at the default: label 20 + field 40 + hint 16 + two space/xs gaps = 84 (all Px)."
+  },
+  "subcomponents": {
+    "inputField": {
+      "name": "Input / Text · Number · Password · Date · Time",
+      "private": false,
+      "sets": {
+        "text": {
+          "id": "6306:7940",
+          "key": "d17077e32d74b34d2f692c21290e5cc91390cca5"
+        },
+        "number": {
+          "id": "6307:18854",
+          "key": "52bbadabd7537e3baf2588d8a9247022d4ebcf26"
+        },
+        "password": {
+          "id": "6307:22538",
+          "key": "d2d4a4b99720427f79acee36f903da93a8b9689f"
+        },
+        "date": {
+          "id": "6294:1996",
+          "key": "ddb34b7c43cadf83d6e52efb91f698e71c1d2f68"
+        },
+        "time": {
+          "id": "6295:2185",
+          "key": "2627c9cd78fcadcbaf9632a59365cf0f96754c53"
+        }
+      },
+      "_note": "Five component sets in Figma, one model. The metadata describes them as one Input Field with a Type property; Figma has no Type variant, the type is the set. 'type' below is that model.",
+      "api": {
+        "type": {
+          "type": "enum",
+          "values": [
+            "text",
+            "number",
+            "password",
+            "date",
+            "time"
+          ],
+          "default": "text",
+          "figmaName": "(one set per type)",
+          "intent": {
+            "text": "The general case, a free text value with nothing in the trailing position until one is asked for.",
+            "number": "A numeric value only input.",
+            "password": "A concealed value with a reveal control that cannot be turned off.",
+            "date": "A date, with a calendar control and the expected format in the placeholder.",
+            "time": "A time, with a clock control. Same reasoning as date, the placeholder carries the shape of the value."
+          }
+        },
+        "size": {
+          "type": "enum",
+          "figmaName": "Size",
+          "values": [
+            "small",
+            "medium",
+            "large"
+          ],
+          "default": "medium",
+          "intent": {
+            "medium": "The default, for surfaces and toolbars where the field sits alongside other controls.",
+            "large": "For a field that is the main thing on its surface.",
+            "small": "The tightest, and the only size that also reduces the text."
+          },
+          "note": "Decided: medium (the metadata and the assembly agree). Figma's field sets still default to large, to be fixed in Figma later."
+        },
+        "shape": {
+          "type": "enum",
+          "figmaName": "Shape",
+          "values": [
+            "sharp",
+            "rounded",
+            "full"
+          ],
+          "default": "sharp",
+          "intent": {
+            "sharp": "Match the contour of the controls around the field. It is the only property that should track its container rather than the field itself.",
+            "rounded": "The softened corner, for surfaces built from rounded controls.",
+            "full": "A pill, for a field that reads as its own object on a surface rather than one row of a form."
+          }
+        },
+        "state": {
+          "type": "enum",
+          "figmaName": "State",
+          "values": [
+            "enabled",
+            "hover",
+            "focus",
+            "selected",
+            "typing",
+            "filled",
+            "invalid",
+            "read-only",
+            "disabled"
+          ],
+          "default": "enabled",
+          "intent": {
+            "enabled": "The resting empty field, showing its placeholder and waiting.",
+            "hover": "Pointer over the field. The border is the only thing that answers.",
+            "focus": "The field has keyboard focus and is ready for input. It carries the heaviest border in the set, so it stays findable where several fields sit together.",
+            "selected": "Focus has settled and the cursor is placed. Lighter than focus, for a field already being worked in.",
+            "typing": "A value is being entered. This is the only state that offers a way to clear the field, so it is not interchangeable with filled.",
+            "filled": "A committed value. The field is at rest again but the text stays at full strength, which is what separates it from enabled.",
+            "invalid": "The value failed validation. The border carries the signal and nothing else does, so pairing it with a Hint set to error is what makes the problem readable.",
+            "read-only": "The value is shown but cannot be changed. Reach for it where a person still needs to read or copy the value, and reach for disabled where they do not.",
+            "disabled": "The field cannot be used and is out of the tab order. Both the surface and the border drop away, so it reads as out of play rather than merely empty."
+          }
+        },
+        "flavour": {
+          "type": "enum",
+          "figmaName": "Flavour",
+          "values": [
+            "default",
+            "gradient",
+            "ghost"
+          ],
+          "default": "default",
+          "intent": {
+            "default": "A bordered field on a neutral surface, and the right choice inside a form.",
+            "gradient": "For a unique interaction highlight, such as an AI companion field. It marks the field as special, so using it on an ordinary field spends that signal for nothing.",
+            "ghost": "No visible border at rest, for a field sitting on a surface that already bounds it. On an unbounded surface it stops reading as a field at all."
+          }
+        },
+        "hasLeading": {
+          "type": "boolean",
+          "figmaName": "hasLeading",
+          "default": false,
+          "availableOn": [
+            "text",
+            "number",
+            "password"
+          ],
+          "controls": [
+            "leadingIcon"
+          ],
+          "intent": {
+            "false": "No leading icon, which is where the field starts. The text begins at the padding edge and takes the full width.",
+            "true": "Adds an icon ahead of the text. Reach for it where the icon says something the placeholder cannot, and leave it off where it would only repeat the label above."
+          }
+        },
+        "hasTrailing": {
+          "type": "boolean",
+          "figmaName": "hasTrailing",
+          "default": {
+            "text": false,
+            "number": true
+          },
+          "availableOn": [
+            "text",
+            "number"
+          ],
+          "controls": [
+            "trailingIcon"
+          ],
+          "intent": {
+            "false": "No optional trailing control. The types that define themselves by a control, password, date and time, carry it intrinsically and expose no toggle at all.",
+            "true": "Adds a trailing control to text or number, the two types that leave the position open."
+          }
+        },
+        "leadingGlyph": {
+          "type": "slot",
+          "figmaName": "(nested Icon Name)",
+          "default": "email",
+          "note": "Swappable through the nested Icon's own Name property, not exposed on the set."
+        },
+        "trailingGlyph": {
+          "type": "slot",
+          "figmaName": "(nested Icon Name)",
+          "default": {
+            "text": "info",
+            "number": "dialpad"
+          },
+          "note": "As leadingGlyph."
+        }
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/xs",
+            "padding": "space/sm space/md"
+          },
+          "size": {
+            "h": "control/lg · control/md · control/sm (by size)"
+          },
+          "sizing": {
+            "h": "fixed",
+            "v": "fixed"
+          },
+          "paint": {
+            "fill": "see state table",
+            "stroke": {
+              "color": "see state table",
+              "width": "stroke/thin (stroke/thick at focus; stroke/base on most ghost states)",
+              "align": "inside (outside at focus)"
+            }
+          },
+          "radius": "by shape",
+          "width": "tentative: 280 in Figma, not required; the container sets it"
+        },
+        {
+          "id": "leadingIcon",
+          "kind": "instance",
+          "ref": "Icon",
+          "visibleWhen": "hasLeading",
+          "glyph": "email",
+          "size": "Icon Size=medium (large, medium) · Size=small (small)",
+          "color": "foreground/primary; foreground/disabled when disabled",
+          "role": "Off by default, and an Icon at 20 square when hasLeading turns it on.",
+          "availableOn": [
+            "text",
+            "number",
+            "password"
+          ]
+        },
+        {
+          "id": "text",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/none",
+            "padding": "0 space/xs"
+          },
+          "sizing": {
+            "h": "fill",
+            "v": "hug"
+          },
+          "role": "The placeholder, and then the value once one is entered. It fills whatever width the icons leave.",
+          "children": [
+            {
+              "id": "placeholder",
+              "kind": "text",
+              "visibleWhen": "state in enabled, hover, focus, selected",
+              "text": {
+                "style": "body/medium (body/small at small)",
+                "color": "foreground/disabled"
+              }
+            },
+            {
+              "id": "value",
+              "kind": "text",
+              "visibleWhen": "state in typing, filled, invalid, read-only, disabled",
+              "text": {
+                "style": "body/medium (body/small at small)",
+                "color": "foreground/primary; foreground/disabled when disabled"
+              }
+            },
+            {
+              "id": "cursor",
+              "kind": "text",
+              "visibleWhen": "state in focus, selected, typing",
+              "text": {
+                "content": "|",
+                "style": "body/medium",
+                "color": "foreground/cursor"
+              }
+            }
+          ]
+        },
+        {
+          "id": "trailingIcon",
+          "kind": "instance",
+          "ref": "Icon",
+          "visibleWhen": "hasTrailing and state != typing",
+          "glyph": {
+            "text": "info",
+            "number": "dialpad"
+          },
+          "color": "foreground/primary; foreground/disabled when disabled",
+          "availableOn": [
+            "text",
+            "number"
+          ]
+        },
+        {
+          "id": "typeControl",
+          "kind": "instance",
+          "ref": "Icon",
+          "glyph": {
+            "password": "visibility",
+            "date": "calendar-3-day",
+            "time": "clock-outline"
+          },
+          "color": "foreground/primary; foreground/disabled when disabled",
+          "availableOn": [
+            "password",
+            "date",
+            "time"
+          ],
+          "role": "Occupied from the start on number, password, date and time by the control that defines the type."
+        },
+        {
+          "id": "clear",
+          "kind": "instance",
+          "ref": "Icon",
+          "visibleWhen": "state = typing",
+          "glyph": "cancel",
+          "color": "foreground/primary; foreground/disabled when disabled",
+          "placement": {
+            "text, number": "Replaces the trailing icon while typing.",
+            "password, date, time": "Joins the type control in a 'Trailing' group: clear, vertical Divider, type control; gap space/sm, padding space/none (measured 57 wide at large)."
+          }
+        },
+        {
+          "id": "divider",
+          "kind": "instance",
+          "ref": "Divider (Orientation=vertical)",
+          "visibleWhen": "state = typing (password, date, time only)",
+          "paint": "border/default at stroke/thin, height control/icon-md (the Divider's own bindings)"
+        }
+      ],
+      "variants": {
+        "_note": "Cells are token names, except those ending Px, which are measurements of the rendered file. Tables come from Input / Text; the other four types share them exactly (checked variant by variant) except for the type-specific parts in the anatomy.",
+        "size": {
+          "axis": "size",
+          "base": "large",
+          "table": [
+            {
+              "size": "small",
+              "root.height": "control/sm",
+              "text.style": "body/small",
+              "icons": "Icon Size=small",
+              "measuredHeightPx": 36,
+              "measuredIconPx": 16
+            },
+            {
+              "size": "medium",
+              "root.height": "control/md",
+              "text.style": "body/medium",
+              "icons": "Icon Size=medium",
+              "measuredHeightPx": 40,
+              "measuredIconPx": 20
+            },
+            {
+              "size": "large",
+              "root.height": "control/lg",
+              "text.style": "body/medium",
+              "icons": "Icon Size=medium",
+              "measuredHeightPx": 48,
+              "measuredIconPx": 20
+            }
+          ],
+          "_note2": "Padding (space/sm, space/md), gap (space/xs), stroke and colours hold across sizes."
+        },
+        "shape": {
+          "axis": "shape",
+          "base": "sharp",
+          "table": [
+            {
+              "shape": "sharp",
+              "root.radius": "radius/none"
+            },
+            {
+              "shape": "rounded",
+              "root.radius": "radius/sm"
+            },
+            {
+              "shape": "full",
+              "root.radius": "radius/pill"
+            }
+          ]
+        },
+        "stateFlavour": {
+          "axes": [
+            "flavour",
+            "state"
+          ],
+          "base": {
+            "flavour": "default",
+            "state": "enabled"
+          },
+          "_note": "root.fill / root.stroke / stroke weight and alignment. Text column: what the text part shows. Identical at every size and shape.",
+          "table": [
+            {
+              "flavour": "default",
+              "state": "enabled",
+              "fill": "interactive/neutral/background/default",
+              "stroke": "interactive/neutral/border/default",
+              "weight": "stroke/thin",
+              "align": "inside",
+              "text": "placeholder",
+              "figmaNode": "6306:7941"
+            },
+            {
+              "flavour": "default",
+              "state": "hover",
+              "fill": "interactive/neutral/background/default",
+              "stroke": "interactive/neutral/border/hover",
+              "weight": "stroke/thin",
+              "align": "inside",
+              "text": "placeholder",
+              "figmaNode": "6306:7986"
+            },
+            {
+              "flavour": "default",
+              "state": "focus",
+              "fill": "interactive/neutral/background/default",
+              "stroke": "border/focus",
+              "weight": "stroke/thick",
+              "align": "outside",
+              "text": "placeholder + cursor",
+              "figmaNode": "6306:8031"
+            },
+            {
+              "flavour": "default",
+              "state": "selected",
+              "fill": "interactive/neutral/background/default",
+              "stroke": "border/focus",
+              "weight": "stroke/thin",
+              "align": "inside",
+              "text": "placeholder + cursor",
+              "figmaNode": "6306:8085"
+            },
+            {
+              "flavour": "default",
+              "state": "typing",
+              "fill": "interactive/neutral/background/default",
+              "stroke": "border/focus",
+              "weight": "stroke/thin",
+              "align": "inside",
+              "text": "value + cursor, clear shown",
+              "figmaNode": "6306:8139"
+            },
+            {
+              "flavour": "default",
+              "state": "filled",
+              "fill": "interactive/neutral/background/default",
+              "stroke": "interactive/neutral/border/default",
+              "weight": "stroke/thin",
+              "align": "inside",
+              "text": "value",
+              "figmaNode": "6306:8193"
+            },
+            {
+              "flavour": "default",
+              "state": "invalid",
+              "fill": "interactive/neutral/background/default",
+              "stroke": "border/error",
+              "weight": "stroke/thin",
+              "align": "inside",
+              "text": "value",
+              "figmaNode": "6306:8238"
+            },
+            {
+              "flavour": "default",
+              "state": "read-only",
+              "fill": "interactive/neutral/background/default",
+              "stroke": "border/subtle",
+              "weight": "stroke/thin",
+              "align": "inside",
+              "text": "value",
+              "figmaNode": "6306:8283"
+            },
+            {
+              "flavour": "default",
+              "state": "disabled",
+              "fill": "interactive/neutral/background/disabled",
+              "stroke": "interactive/neutral/border/disabled",
+              "weight": "stroke/thin",
+              "align": "inside",
+              "text": "value in foreground/disabled",
+              "figmaNode": "6306:8328"
+            },
+            {
+              "flavour": "gradient",
+              "state": "enabled",
+              "fill": "interactive/neutral/background/default",
+              "stroke": "linear gradient foreground/gradient/start → foreground/gradient/end",
+              "weight": "stroke/thin",
+              "align": "inside",
+              "text": "placeholder",
+              "figmaNode": "6306:8373"
+            },
+            {
+              "flavour": "gradient",
+              "state": "hover",
+              "fill": "interactive/neutral/background/default",
+              "stroke": "border/gradient/end",
+              "weight": "stroke/thin",
+              "align": "inside",
+              "text": "placeholder",
+              "figmaNode": "6306:8418"
+            },
+            {
+              "flavour": "gradient",
+              "state": "focus",
+              "fill": "interactive/neutral/background/default",
+              "stroke": "border/focus",
+              "weight": "stroke/thick",
+              "align": "outside",
+              "text": "placeholder + cursor",
+              "figmaNode": "6306:8463"
+            },
+            {
+              "flavour": "gradient",
+              "state": "selected",
+              "fill": "interactive/neutral/background/default",
+              "stroke": "border/gradient/start",
+              "weight": "stroke/thin",
+              "align": "inside",
+              "text": "placeholder + cursor",
+              "figmaNode": "6306:8517"
+            },
+            {
+              "flavour": "gradient",
+              "state": "typing",
+              "fill": "interactive/neutral/background/default",
+              "stroke": "border/gradient/start",
+              "weight": "stroke/thin",
+              "align": "inside",
+              "text": "value + cursor, clear shown",
+              "figmaNode": "6306:8571"
+            },
+            {
+              "flavour": "gradient",
+              "state": "filled",
+              "fill": "interactive/neutral/background/default",
+              "stroke": "linear gradient foreground/gradient/start → foreground/gradient/end",
+              "weight": "stroke/thin",
+              "align": "inside",
+              "text": "value",
+              "figmaNode": "6306:8625"
+            },
+            {
+              "flavour": "gradient",
+              "state": "invalid",
+              "fill": "interactive/neutral/background/default",
+              "stroke": "border/error",
+              "weight": "stroke/thin",
+              "align": "inside",
+              "text": "value",
+              "figmaNode": "6306:8670"
+            },
+            {
+              "flavour": "gradient",
+              "state": "read-only",
+              "fill": "interactive/neutral/background/default",
+              "stroke": "border/subtle",
+              "weight": "stroke/thin",
+              "align": "inside",
+              "text": "value",
+              "figmaNode": "6306:8715"
+            },
+            {
+              "flavour": "gradient",
+              "state": "disabled",
+              "fill": "interactive/neutral/background/disabled",
+              "stroke": "interactive/neutral/border/disabled",
+              "weight": "stroke/thin",
+              "align": "inside",
+              "text": "value in foreground/disabled",
+              "figmaNode": "6306:8760"
+            },
+            {
+              "flavour": "ghost",
+              "state": "enabled",
+              "fill": "none",
+              "stroke": "interactive/ghost/border/default",
+              "weight": "stroke/base",
+              "align": "inside",
+              "text": "placeholder",
+              "figmaNode": "6306:8805"
+            },
+            {
+              "flavour": "ghost",
+              "state": "hover",
+              "fill": "none",
+              "stroke": "interactive/neutral/border/hover",
+              "weight": "stroke/base",
+              "align": "inside",
+              "text": "placeholder",
+              "figmaNode": "6306:8850"
+            },
+            {
+              "flavour": "ghost",
+              "state": "focus",
+              "fill": "none",
+              "stroke": "border/focus",
+              "weight": "stroke/thick",
+              "align": "outside",
+              "text": "placeholder + cursor",
+              "figmaNode": "6306:8895"
+            },
+            {
+              "flavour": "ghost",
+              "state": "selected",
+              "fill": "none",
+              "stroke": "border/focus",
+              "weight": "stroke/base",
+              "align": "inside",
+              "text": "placeholder + cursor",
+              "figmaNode": "6306:8949"
+            },
+            {
+              "flavour": "ghost",
+              "state": "typing",
+              "fill": "none",
+              "stroke": "border/focus",
+              "weight": "stroke/base",
+              "align": "inside",
+              "text": "value + cursor, clear shown",
+              "figmaNode": "6306:9003"
+            },
+            {
+              "flavour": "ghost",
+              "state": "filled",
+              "fill": "none",
+              "stroke": "interactive/ghost/border/default",
+              "weight": "stroke/base",
+              "align": "inside",
+              "text": "value",
+              "figmaNode": "6306:9057"
+            },
+            {
+              "flavour": "ghost",
+              "state": "invalid",
+              "fill": "none",
+              "stroke": "border/error",
+              "weight": "stroke/thin",
+              "align": "inside",
+              "text": "value",
+              "figmaNode": "6306:9102"
+            },
+            {
+              "flavour": "ghost",
+              "state": "read-only",
+              "fill": "none",
+              "stroke": "border/subtle",
+              "weight": "stroke/base",
+              "align": "inside",
+              "text": "value",
+              "figmaNode": "6306:9147"
+            },
+            {
+              "flavour": "ghost",
+              "state": "disabled",
+              "fill": "none",
+              "stroke": "interactive/ghost/border/disabled",
+              "weight": "stroke/base",
+              "align": "inside",
+              "text": "value in foreground/disabled",
+              "figmaNode": "6306:9192"
+            }
+          ]
+        },
+        "type": {
+          "axis": "type",
+          "table": [
+            {
+              "type": "text",
+              "placeholder": "Placeholder",
+              "sampleValue": "Value",
+              "leading": "hasLeading (email)",
+              "trailing": "hasTrailing, default off (info)",
+              "typing": "clear replaces the trailing icon"
+            },
+            {
+              "type": "number",
+              "placeholder": "0",
+              "sampleValue": "3",
+              "leading": "hasLeading (email)",
+              "trailing": "hasTrailing, default on (dialpad)",
+              "typing": "clear replaces the trailing icon"
+            },
+            {
+              "type": "password",
+              "placeholder": "Password",
+              "sampleValue": "••••••••",
+              "leading": "hasLeading (email)",
+              "trailing": "visibility, always",
+              "typing": "clear · divider · visibility"
+            },
+            {
+              "type": "date",
+              "placeholder": "mm/dd/yyyy",
+              "sampleValue": "10/14/2026",
+              "leading": "none",
+              "trailing": "calendar-3-day, always",
+              "typing": "clear · divider · calendar-3-day"
+            },
+            {
+              "type": "time",
+              "placeholder": "--:-- --",
+              "sampleValue": "09:30 AM",
+              "leading": "none",
+              "trailing": "clock-outline, always",
+              "typing": "clear · divider · clock-outline"
+            }
+          ]
+        }
+      },
+      "_iconColour": "Every icon and control in the field (leading, trailing, type control, clear) takes the same colour as the value: foreground/primary, and foreground/disabled when the field is disabled. In code they inherit it (currentColor). The placeholder stays foreground/disabled and the cursor foreground/cursor."
+    },
+    "inputLabel": {
+      "name": "Input Label",
+      "id": "6329:31743",
+      "key": "18c1f2f906b8225587fe1c3271dd299199c6e413",
+      "private": false,
+      "api": {
+        "type": {
+          "type": "enum",
+          "values": [
+            "default",
+            "required",
+            "optional"
+          ],
+          "default": "default",
+          "intent": {
+            "default": "The plain name with nothing after it.",
+            "optional": "Reach for it where most of the form is required, so the exception is the thing being marked.",
+            "required": "Adds an asterisk after the name. Reach for it only where submission genuinely fails without a value."
+          }
+        },
+        "disabled": {
+          "type": "boolean",
+          "figmaName": "Disabled (variant)",
+          "values": [
+            "false",
+            "true"
+          ],
+          "default": "false",
+          "intent": {
+            "false": "The name at full strength.",
+            "true": "Dims the name to sit with a disabled field. It does not disable anything, so it has to be set alongside the field's own State rather than instead of it."
+          }
+        },
+        "showInformation": {
+          "type": "boolean",
+          "figmaName": "Show Information#6329:0",
+          "default": true,
+          "intent": {
+            "false": "No information icon, which is what an Input arrives with.",
+            "true": "Adds an information icon after the name, for an explanation the label itself has no room for."
+          }
+        }
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/xs",
+            "padding": "0"
+          },
+          "measuredHeightPx": 20
+        },
+        {
+          "id": "name",
+          "kind": "text",
+          "text": {
+            "style": "label/medium",
+            "color": "foreground/primary; foreground/disabled when Disabled"
+          }
+        },
+        {
+          "id": "requiredMarker",
+          "kind": "text",
+          "visibleWhen": "type = required",
+          "text": {
+            "content": "*",
+            "style": "label/medium",
+            "color": "foreground/error (also when Disabled)"
+          }
+        },
+        {
+          "id": "optionalMarker",
+          "kind": "text",
+          "visibleWhen": "type = optional",
+          "text": {
+            "content": "(optional)",
+            "style": "body/small",
+            "color": "foreground/secondary (also when Disabled)"
+          }
+        },
+        {
+          "id": "information",
+          "kind": "instance",
+          "ref": "Icon",
+          "visibleWhen": "showInformation",
+          "glyph": "info",
+          "size": "Icon Size=medium",
+          "color": "foreground/primary; foreground/disabled when Disabled"
+        }
+      ]
+    },
+    "inputHint": {
+      "name": "Input Hint",
+      "id": "6329:31836",
+      "key": "5df6dcd9389c6930e2f4a8ed291e59f2ada2c505",
+      "private": false,
+      "api": {
+        "type": {
+          "type": "enum",
+          "values": [
+            "default",
+            "error",
+            "disabled"
+          ],
+          "default": "default",
+          "intent": {
+            "default": "The resting supporting line, for guidance about what to enter.",
+            "error": "The validation message that says what went wrong. The field's border carries the signal and this carries the reason, so neither works alone.",
+            "disabled": "Dims the line to sit with a disabled field."
+          }
+        },
+        "showIcon": {
+          "type": "boolean",
+          "figmaName": "Show Icon#6331:4",
+          "default": true,
+          "intent": {
+            "true": "Keeps an icon ahead of the message, which is what makes an error read as an error before the words are read.",
+            "false": "Message only."
+          }
+        }
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/xs",
+            "padding": "0"
+          },
+          "measuredHeightPx": 16
+        },
+        {
+          "id": "icon",
+          "kind": "instance",
+          "ref": "Icon",
+          "visibleWhen": "showIcon",
+          "size": "Icon Size=small",
+          "glyph": {
+            "default": "info",
+            "error": "error",
+            "disabled": "info"
+          },
+          "color": {
+            "default": "foreground/primary",
+            "error": "foreground/error",
+            "disabled": "foreground/disabled"
+          }
+        },
+        {
+          "id": "message",
+          "kind": "text",
+          "text": {
+            "style": "body/xsmall",
+            "color": {
+              "default": "foreground/secondary",
+              "error": "foreground/error",
+              "disabled": "foreground/disabled"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "dependencies": [
+    {
+      "name": "Icon",
+      "id": "2046:15010",
+      "remote": false,
+      "usedAt": [
+        "field.leadingIcon",
+        "field.trailingIcon",
+        "field.typeControl",
+        "field.clear",
+        "label.information",
+        "hint.icon"
+      ],
+      "delivery": "Font glyphs from packages/icons, rounded family: email, info, cancel, dialpad, visibility, calendar-3-day, clock-outline, error. All present in codepoints.json; none rejected."
+    },
+    {
+      "name": "Divider",
+      "id": "2152:8803",
+      "remote": false,
+      "variant": "Orientation=vertical",
+      "usedAt": [
+        "field.divider"
+      ],
+      "spec": "specs/divider/"
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ — names below resolve there; see tokens/manifest.json for collections, modes and the extension graph",
+    "rule": "This spec names tokens only. Resolved values live in tokens/ and are deliberately not duplicated here.",
+    "color": [
+      "interactive/neutral/background/{default,disabled}",
+      "interactive/neutral/border/{default,hover,disabled}",
+      "interactive/ghost/border/{default,disabled}",
+      "border/{focus,error,subtle,default}",
+      "border/gradient/{start,end}",
+      "foreground/gradient/{start,end}",
+      "foreground/{primary,secondary,disabled,cursor,error}"
+    ],
+    "dimension": [
+      "control/{lg,md,sm,icon-md}",
+      "space/{none,xs,sm,md}",
+      "radius/{none,sm,pill}",
+      "stroke/{base,thin,thick}"
+    ],
+    "typography": [
+      "body/medium",
+      "body/small",
+      "body/xsmall",
+      "label/medium"
+    ],
+    "effect": [],
+    "missingFromExport": [],
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "typography": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ],
+      "extensions": "tokens/extensions/ (companion, target, condensed)"
+    }
+  },
+  "states": {
+    "input": [
+      {
+        "state": "disabled",
+        "trigger": "Set on the assembly",
+        "duration": "—",
+        "whatChanges": "The assembly, should handle the disabled state across the components."
+      },
+      {
+        "state": "invalid",
+        "trigger": "Set on the assembly",
+        "duration": "—",
+        "whatChanges": "The same split. The field's State goes to invalid and the hint's Type goes to error. One supplies the signal and the other the message, and neither implies the other."
+      },
+      {
+        "state": "read-only",
+        "trigger": "Set on the field",
+        "duration": "—",
+        "whatChanges": "Only the field carries this. The label stays at full strength, which is right, because the name of a value worth reading is still worth reading."
+      },
+      {
+        "state": "hover, focus, typing",
+        "trigger": "Set on the field",
+        "duration": "—",
+        "whatChanges": "The field runs these on its own and nothing above or below it changes."
+      }
+    ],
+    "inputField": [
+      {
+        "state": "enabled",
+        "trigger": "—",
+        "duration": "—",
+        "whatChanges": "The resting empty field. interactive/neutral/border/default at 1px on an interactive/neutral/background/default surface, with the placeholder at foreground/disabled."
+      },
+      {
+        "state": "hover",
+        "trigger": "Pointer over the field",
+        "duration": "—",
+        "whatChanges": "The border moves to interactive/neutral/border/hover. Surface and text hold."
+      },
+      {
+        "state": "focus",
+        "trigger": "Keyboard focus",
+        "duration": "—",
+        "whatChanges": "The border becomes border/focus at 2px, double its resting weight. The field is ready for input but the placeholder still reads as a placeholder."
+      },
+      {
+        "state": "selected",
+        "trigger": "Focus settled, cursor placed",
+        "duration": "—",
+        "whatChanges": "The border stays border/focus and returns to 1px. Lighter than focus, for a field already being worked in."
+      },
+      {
+        "state": "typing",
+        "trigger": "Text being entered",
+        "duration": "—",
+        "whatChanges": "The text becomes a real value at foreground/primary and a clear control appears at the trailing edge. The border holds border/focus."
+      },
+      {
+        "state": "filled",
+        "trigger": "A committed value",
+        "duration": "—",
+        "whatChanges": "The border returns to interactive/neutral/border/default while the text stays at foreground/primary. The clear control goes."
+      },
+      {
+        "state": "invalid",
+        "trigger": "Validation failed",
+        "duration": "—",
+        "whatChanges": "The border moves to border/error. The text stays at foreground/primary, so the border carries the whole signal and the Hint beneath it carries the reason."
+      },
+      {
+        "state": "read-only",
+        "trigger": "Presented but not editable",
+        "duration": "—",
+        "whatChanges": "The border drops to border/subtle and the value stays at foreground/primary. Still legible and still selectable, which is what separates it from disabled."
+      },
+      {
+        "state": "disabled",
+        "trigger": "—",
+        "duration": "—",
+        "whatChanges": "Surface and border move to interactive/neutral/background/disabled and interactive/neutral/border/disabled, and the text and every icon drop to foreground/disabled. The whole control recedes."
+      }
+    ]
+  },
+  "behavior": {
+    "input": [
+      {
+        "type": "Motion",
+        "description": "No transition is defined on the assembly. Each part swaps its own tokens."
+      },
+      {
+        "type": "Composition",
+        "description": "Three parts stacked vertically, with the height hugging them. Turning off the label or the hint removes its height rather than leaving a gap, so the stack shortens and whatever sits below it moves up."
+      },
+      {
+        "type": "State coordination",
+        "description": "The assembly own general states which it’s children inherits (Invalid, disabled). Anything that reads as one state across the label, the field and the hint is three independent settings held in agreement by the assembly."
+      }
+    ],
+    "inputField": [
+      {
+        "type": "Motion",
+        "description": "No transition is defined. Each state is a swap of border colour, border weight, text colour and, at typing, the presence of the clear control."
+      },
+      {
+        "type": "Typing lifecycle",
+        "description": "The run is enabled, focus, selected, typing, filled. Only typing carries the clear control, so emptying the field from inside it is available while a value is being entered and not after it is committed."
+      },
+      {
+        "type": "Validation and lock",
+        "description": "invalid and read-only sit outside that run. The surrounding form sets them rather than the field reaching them by interaction, and invalid pairs with the Hint set to error, which carries the reason."
+      }
+    ]
+  },
+  "content": {
+    "input": [
+      {
+        "property": "Label",
+        "type": "Input Label, toggled by Show Label",
+        "description": "The field's name, with an optional required or optional marker and an information icon. The assembly exposes only whether it shows, so the marker, the dimming and the icon are all set on the label."
+      },
+      {
+        "property": "Field",
+        "type": "Input Field, chosen by Type",
+        "description": "The control itself. An Input arrives with it at Size=medium and Shape=rounded, and everything it offers, Size, Shape, State and Flavour, is set on the field rather than surfaced by the assembly. A column of these does not share one size unless every field is set to match."
+      },
+      {
+        "property": "Hint",
+        "type": "Input Hint, toggled by Show Hint",
+        "description": "The supporting line under the field, carrying guidance at rest and the validation message when its Type is error. Its icon is a separate toggle on the hint."
+      },
+      {
+        "property": "Text content",
+        "type": "not parameterised",
+        "description": "The name, the hint and the message are not exposed as inputs on the assembly, so all three come from the implementation."
+      }
+    ],
+    "inputField": [
+      {
+        "property": "Input text",
+        "type": "not parameterised",
+        "description": "The value and the placeholder. Neither is exposed as an input on the field, so both come from the implementation. The placeholder is what distinguishes the types, Placeholder for text, 0 for number, Password, mm/dd/yyyy and --:-- --."
+      },
+      {
+        "property": "Leading icon",
+        "type": "nested Icon, toggled by hasLeading",
+        "description": "Off by default. When on it takes an Icon at Size=medium, 20 square, and the glyph is swappable through the Icon's own Name property."
+      },
+      {
+        "property": "Trailing control",
+        "type": "per type",
+        "description": "Text leaves the trailing position empty and exposes hasTrailing to fill it. Number exposes the same toggle but arrives with a stepper already in place. Password, Date and Time carry a control that defines the type, a reveal, a calendar and a clock, so none of them expose a toggle for it."
+      },
+      {
+        "property": "Clear control",
+        "type": "typing only",
+        "description": "Appears at the trailing position while typing and is the only way to empty the field from within it. Where the type already carries its own control the two sit together in a 57 wide group rather than one replacing the other."
+      }
+    ]
+  },
+  "usage": {
+    "input": {
+      "do": [
+        "Keep Show Label on. The field has no name of its own, and the placeholder that might stand in for one disappears the moment someone starts typing.",
+        "Move the field to invalid and the hint to error together. One carries the signal and the other carries the reason, and either on its own is half a message."
+      ],
+      "dont": [
+        "Don't turn Show Hint off on a field that can fail validation. The message has nowhere to land, and adding the line later pushes everything below it down.",
+        "Don't leave the parts on different states. A full strength label over a disabled field reads as a mistake rather than a style, and nothing in the assembly prevents it."
+      ]
+    },
+    "inputField": {
+      "do": [
+        "Pick the type that matches the value. The placeholder and the trailing control arrive with it, and together they tell a person what is expected before they type anything.",
+        "Pair invalid with a Hint set to error. The border colour is the only thing invalid changes, so on its own it says something is wrong without saying what."
+      ],
+      "dont": [
+        "Don't reach for disabled where a person still needs to read the value. read-only keeps it legible and selectable, disabled puts it out of reach and out of the tab order.",
+        "Don't lean on the placeholder as the label. It clears the moment typing starts, so whatever it was carrying disappears exactly when it is needed."
+      ]
+    }
+  },
+  "accessibility": {
+    "input": [
+      "The label is the field's name. Show Label controls only whether it is visible, so a field without a visible label still needs its name to reach assistive technology.",
+      "The required marker is an asterisk and a colour, and neither is readable on its own. The requirement has to be carried in the field's semantics as well as shown.",
+      "(optional) is a word rather than a symbol, so it reads where the asterisk does not. Mark whichever of required or optional is the exception in the form, not both.",
+      "A validation message in the hint has to be associated with the field, or it is announced as loose text with nothing tying it to what failed.",
+      "The information icon on the label has no text. Where it opens an explanation it is a control, so it needs a name and a target of its own.",
+      "The three parts dim independently. Check the whole stack at one state, because a disabled field under a full strength label is a contrast mismatch that neither part shows on its own."
+    ],
+    "inputField": [
+      "The field carries no label of its own. Input pairs it with Input Label, and a field used on its own still needs a name from the implementation.",
+      "A placeholder is not a label. It clears the moment a value is entered, so anything a reader has to keep is not safe there.",
+      "invalid changes the border colour and nothing else. The reason belongs in the Hint set to error, and the field has to be associated with it for the message to be announced.",
+      "read-only and disabled look alike and behave differently. read-only keeps the value reachable and selectable, disabled takes the control out of the tab order.",
+      "The leading icon, the clear control and any type control are glyphs with no text. Each needs a name, and the clear control needs one that says what it clears.",
+      "At small the text drops to 14px and the control to 36 tall. Check the trailing control still offers a large enough target at that height."
+    ]
+  },
+  "layoutTheming": {
+    "input": [
+      {
+        "property": "Size",
+        "type": "Fixed width, hug height",
+        "description": "280 wide, with the height hugging whatever is turned on. At the default that is a 20 label, a 40 field and a 16 hint, coming to 84."
+      },
+      {
+        "property": "Gap",
+        "type": "Fixed",
+        "description": "space/xs between all three parts. That is the same 4 the field uses internally between its icons and its text, so the stack and its contents share one rhythm."
+      },
+      {
+        "property": "Label",
+        "type": "Hug",
+        "description": "20 tall and hugging its text, with a space/xs gap between the name, any marker and the information icon."
+      },
+      {
+        "property": "Hint",
+        "type": "Hug",
+        "description": "16 tall, body/xsmall at 12px, with a space/xs gap after a 16 square icon. Smaller than the field's own text, which keeps the value the loudest thing in the stack."
+      },
+      {
+        "property": "Field",
+        "type": "Fill",
+        "description": "The field fills the width of the stack while the label and the hint hug their own content, so only the field tracks the container."
+      },
+      {
+        "property": "Colour",
+        "type": "Theming",
+        "description": "Each part draws its own tokens. The label runs foreground/primary and drops to foreground/disabled, the required marker holds foreground/error either way, and the hint text moves between foreground/secondary, foreground/error and foreground/disabled."
+      }
+    ],
+    "inputField": [
+      {
+        "property": "Size",
+        "type": "Fixed",
+        "description": "280 wide and fixed, so the container sets the width rather than the content. Height is bound per size, control/lg at large for 48, control/md at medium for 40 and control/sm at small for 36."
+      },
+      {
+        "property": "Padding and gap",
+        "type": "Fixed",
+        "description": "space/sm top and bottom, space/md left and right, with a space/xs gap between the leading icon, the text and the trailing control. Padding holds across all three sizes, so height alone carries the density."
+      },
+      {
+        "property": "Radius",
+        "type": "Per Shape",
+        "description": "radius/none when sharp, radius/sm when rounded and radius/pill when full. The four corners are bound individually rather than as a single value."
+      },
+      {
+        "property": "Surface",
+        "type": "Per Flavour",
+        "description": "interactive/neutral/background/default on default and gradient, moving to interactive/neutral/background/disabled when disabled. Ghost carries no surface of its own, so whatever sits behind it shows through."
+      },
+      {
+        "property": "Border",
+        "type": "Per Flavour",
+        "description": "Default draws at 1px and rises to 2px on focus. Gradient keeps those weights and draws its border from the gradient tokens: a foreground/gradient/start to foreground/gradient/end gradient at rest and when filled, border/gradient/end on hover and border/gradient/start when selected or typing. Focus, invalid, read-only and disabled use the same tokens as default. Ghost holds a bound border at zero weight, which is a theming hook rather than an absent border, so a high contrast variable set can give it a hard outline."
+      },
+      {
+        "property": "Text",
+        "type": "Theming",
+        "description": "body/medium at 16px for large and medium, body/small at 14px for small. The colour changes with state, which States and Triggers sets out."
+      },
+      {
+        "property": "Icons and controls",
+        "type": "Fixed",
+        "description": "Every icon is Size=medium at 20 square at large and medium, and Size=small at 16 square at small, and the inner text frame fills whatever width they leave. At large one icon costs 24 including its gap, taking the text from 254 to 230, and two take it to 206. Every icon and control, leading, trailing, the type control and clear, draws foreground/primary like the value, and foreground/disabled when the field is disabled."
+      }
+    ]
+  },
+  "visualReference": {
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6288-997",
+    "input": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6331-31902",
+    "inputLabel": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6329-31743",
+    "inputHint": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6329-31836",
+    "fieldSets": {
+      "text": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6306-7940",
+      "number": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6307-18854",
+      "password": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6307-22538",
+      "date": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6294-1996",
+      "time": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6295-2185"
+    },
+    "perAxis": {
+      "focus (default)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6306-8031",
+      "typing (default)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6306-8139",
+      "invalid (default)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6306-8238",
+      "disabled (default)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6306-8328",
+      "gradient, enabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6306-8373",
+      "ghost, enabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6306-8805",
+      "ghost, selected": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6306-8949"
+    }
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "structure · tokens/ (stroke/base)",
+      "detail": "Ghost binds its border weight to stroke/base, which resolves to zero, in every state except focus (stroke/thick) and invalid (stroke/thin). So on ghost the hover, selected, typing, filled, read-only and disabled borders do not render at all: hover gives no feedback, and selected and typing, the two states in which someone is working in the field, show no focus indication beyond the cursor. The metadata's 'theming hook' reasoning covers rest, not these states."
+    },
+    {
+      "severity": "note",
+      "source": "metadata Content & Slot vs structure (Number)",
+      "detail": "The metadata says Number 'arrives with a stepper already in place' and that 'Where the type already carries its own control the two sit together in a 57 wide group rather than one replacing the other.' As built, Number's trailing control is a dialpad glyph (an input-mode hint, not a stepper), it is the optional hasTrailing slot defaulting to on, and while typing the clear control replaces it rather than grouping with it. Only Password, Date and Time build the grouped clear · divider · control. Acknowledged by the owner: no change planned."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "Fixed in Figma: every icon and control in the five field sets now uses foreground/primary, and foreground/disabled when the field is disabled (2,025 glyphs, verified). This replaces the earlier mix of unbound icons (the Icon's own default), interactive/neutral/foreground/default on type controls and clear, and a binding present in one variant per set only."
+    },
+    {
+      "severity": "note",
+      "source": "tokens/ (contrast, Light)",
+      "detail": "The resting border (interactive/neutral/border/default) against the field surface measures 1.51:1 and read-only's border/subtle 1.29:1, below the 3:1 a field's boundary needs to be identified (WCAG 1.4.11). The placeholder (foreground/disabled) is 3.02:1, below 4.5:1 for text. Dark: 2.77, 1.45 and 4.97. In dark mode the error hint (foreground/error on the page) is 3.09:1, below 4.5:1. Acknowledged by the owner: no change planned for now."
+    },
+    {
+      "severity": "note",
+      "source": "decision",
+      "detail": "Decided: in Figma the assembly keeps surfacing the subcomponents' own properties; in code the assembly surfaces them itself, including a general state (default / invalid / disabled) that fans out to the label, field and hint. See api.state and api.partProps."
+    },
+    {
+      "severity": "note",
+      "source": "decision",
+      "detail": "Decided: the field's default size is medium, as the metadata and the assembly say. Figma's field sets still default to large; to be fixed in Figma later."
+    },
+    {
+      "severity": "note",
+      "source": "metadata vs API (Input Label)",
+      "detail": "The assembly places its label at Type=optional with Show Information off, while the Input Label set's own defaults are Type=default and Show Information on. The Property Breakdown marks Show Information=false as the default ('which is what an Input arrives with'), which describes the instance, not the set. When disabled, the '(optional)' marker keeps foreground/secondary and the required asterisk keeps foreground/error (the latter is stated as intended)."
+    },
+    {
+      "severity": "note",
+      "source": "structure (focus)",
+      "detail": "Focus is the only state that changes the stroke's alignment: stroke/thick drawn outside the field's edge, so the 2px ring sits outside the 280 x height box and the text frame does not shift. Every other state draws its stroke inside."
+    },
+    {
+      "severity": "note",
+      "source": "structure (typing)",
+      "detail": "On Text and Number the clear control replaces the trailing icon while typing (when hasTrailing is on, the decorative icon gives way); on Password, Date and Time it joins the type control in a group (clear, vertical Divider, control; gap space/sm). The Divider is the file's Divider component at Orientation=vertical (border/default, stroke/thin, control/icon-md tall)."
+    },
+    {
+      "severity": "note",
+      "source": "structure (independence)",
+      "detail": "Size and Shape never change colour, stroke or visibility: every Size/Shape combination matches the base Size/Shape at the same State and Flavour, apart from the single-variant leading-icon drift above. The type sets match Text variant by variant except for their type-specific parts."
+    },
+    {
+      "severity": "note",
+      "source": "metadata",
+      "detail": "Two metadata frames are present and both are complete. The text content (label, value, placeholder, hint) is not parameterised anywhere, by design. No motion is defined, by the metadata's own statement. None of the sets has a description."
+    }
+  ]
+}

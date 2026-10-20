@@ -18,6 +18,20 @@
         }
       }
     },
+    "disabled": {
+      "$type": "color",
+      "$value": "{palette.line.strong}",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:4142:92",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "aliasOf": "VariableID:72:12"
+        }
+      }
+    },
     "error": {
       "$type": "color",
       "$value": "{palette.status.error.default}",
@@ -130,7 +144,7 @@
     },
     "strong": {
       "$type": "color",
-      "$value": "{palette.line.strong}",
+      "$value": "{palette.line.stronger}",
       "$description": "Higher-contrast border for emphasis, e.g. active outlines or key dividers",
       "$extensions": {
         "com.figma": {
@@ -139,10 +153,9 @@
           "mode": "Base",
           "resolvedType": "COLOR",
           "scopes": [
-            "SHAPE_FILL",
             "STROKE_COLOR"
           ],
-          "aliasOf": "VariableID:72:12"
+          "aliasOf": "VariableID:2061:6745"
         }
       }
     },
@@ -547,20 +560,40 @@
   "feedback": {
     "error": {
       "background": {
-        "$type": "color",
-        "$value": "{palette.status.error.faint}",
-        "$description": "Background fill for error alerts, banners, and inline messages",
-        "$extensions": {
-          "com.figma": {
-            "id": "VariableID:72:463",
-            "collection": "semantics",
-            "mode": "Base",
-            "resolvedType": "COLOR",
-            "scopes": [
-              "FRAME_FILL",
-              "SHAPE_FILL"
-            ],
-            "aliasOf": "VariableID:63:29"
+        "strong": {
+          "$type": "color",
+          "$value": "{palette.status.error.default}",
+          "$description": "Background fill for error alerts, banners, and inline messages",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:5268:3976",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:28"
+            }
+          }
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{palette.status.error.faint}",
+          "$description": "Background fill for error alerts, banners, and inline messages",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:463",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:29"
+            }
           }
         }
       },
@@ -584,20 +617,40 @@
     },
     "info": {
       "background": {
-        "$type": "color",
-        "$value": "{palette.status.info.faint}",
-        "$description": "Background fill for informational alerts, banners, and inline messages",
-        "$extensions": {
-          "com.figma": {
-            "id": "VariableID:72:466",
-            "collection": "semantics",
-            "mode": "Base",
-            "resolvedType": "COLOR",
-            "scopes": [
-              "FRAME_FILL",
-              "SHAPE_FILL"
-            ],
-            "aliasOf": "VariableID:63:203"
+        "strong": {
+          "$type": "color",
+          "$value": "{palette.status.info.default}",
+          "$description": "Background fill for informational alerts, banners, and inline messages",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:5268:3982",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:202"
+            }
+          }
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{palette.status.info.faint}",
+          "$description": "Background fill for informational alerts, banners, and inline messages",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:466",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:203"
+            }
           }
         }
       },
@@ -619,22 +672,99 @@
         }
       }
     },
-    "success": {
+    "neutral": {
       "background": {
+        "strong": {
+          "$type": "color",
+          "$value": "{palette.status.neutral.default}",
+          "$description": "Solid fill for high-emphasis neutral badges and labels",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:6412:2338",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:6412:2340"
+            }
+          }
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{palette.status.neutral.faint}",
+          "$description": "Background fill for neutral (no-status) badges, labels and inline messages",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:6412:2337",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:6412:2341"
+            }
+          }
+        }
+      },
+      "foreground": {
         "$type": "color",
-        "$value": "{palette.status.success.faint}",
-        "$description": "Background fill for success alerts, banners, and inline messages",
+        "$value": "{palette.ink.medium}",
+        "$description": "Icon/text color used inside neutral badges, labels and messages",
         "$extensions": {
           "com.figma": {
-            "id": "VariableID:72:457",
+            "id": "VariableID:6412:2339",
             "collection": "semantics",
             "mode": "Base",
             "resolvedType": "COLOR",
             "scopes": [
-              "FRAME_FILL",
-              "SHAPE_FILL"
+              "TEXT_FILL"
             ],
-            "aliasOf": "VariableID:63:23"
+            "aliasOf": "VariableID:63:17"
+          }
+        }
+      }
+    },
+    "success": {
+      "background": {
+        "strong": {
+          "$type": "color",
+          "$value": "{palette.status.success.default}",
+          "$description": "Background fill for success alerts, banners, and inline messages",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:5268:3980",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:22"
+            }
+          }
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{palette.status.success.faint}",
+          "$description": "Background fill for success alerts, banners, and inline messages",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:457",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:23"
+            }
           }
         }
       },
@@ -658,20 +788,40 @@
     },
     "warning": {
       "background": {
-        "$type": "color",
-        "$value": "{palette.status.warning.faint}",
-        "$description": "Background fill for warning alerts, banners, and inline messages",
-        "$extensions": {
-          "com.figma": {
-            "id": "VariableID:72:460",
-            "collection": "semantics",
-            "mode": "Base",
-            "resolvedType": "COLOR",
-            "scopes": [
-              "FRAME_FILL",
-              "SHAPE_FILL"
-            ],
-            "aliasOf": "VariableID:63:26"
+        "strong": {
+          "$type": "color",
+          "$value": "{palette.status.warning.default}",
+          "$description": "Background fill for warning alerts, banners, and inline messages",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:5268:3978",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:25"
+            }
+          }
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{palette.status.warning.faint}",
+          "$description": "Background fill for warning alerts, banners, and inline messages",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:460",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:26"
+            }
           }
         }
       },
@@ -875,6 +1025,42 @@
             "TEXT_FILL"
           ],
           "aliasOf": "VariableID:63:21"
+        }
+      }
+    },
+    "on-light": {
+      "$type": "color",
+      "$value": "{palette.ink.always-blank}",
+      "$description": "Text/icon color on fills that stay light in every mode. Near-black in every mode.",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:6412:2336",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "aliasOf": "VariableID:6412:2335"
+        }
+      }
+    },
+    "on-strong": {
+      "$type": "color",
+      "$value": "{palette.ink.always-white}",
+      "$description": "Text/icon color on strong, saturated fills (feedback background/strong, selected controls). White in every mode.",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:6412:2333",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "aliasOf": "VariableID:6412:2334"
         }
       }
     },
@@ -1468,7 +1654,7 @@
         },
         "hover": {
           "$type": "color",
-          "$value": "{palette.fill.inversehover}",
+          "$value": "{palette.fill.inverse-sunken}",
           "$description": "Hover state for an inverse-surface interactive element.",
           "$extensions": {
             "com.figma": {
@@ -1486,7 +1672,7 @@
         },
         "pressed": {
           "$type": "color",
-          "$value": "{palette.fill.inversepressed}",
+          "$value": "{palette.fill.inverse-elevated}",
           "$description": "Pressed state for an inverse-surface interactive element.",
           "$extensions": {
             "com.figma": {
@@ -1504,7 +1690,7 @@
         },
         "selected": {
           "$type": "color",
-          "$value": "{palette.fill.inversepressed}",
+          "$value": "{palette.fill.inverse-elevated}",
           "$description": "Selected state for an inverse-surface interactive element.",
           "$extensions": {
             "com.figma": {
@@ -1558,7 +1744,7 @@
         },
         "hover": {
           "$type": "color",
-          "$value": "{palette.fill.inversehover}",
+          "$value": "{palette.fill.inverse-sunken}",
           "$description": "Hover-state border for an inverse-surface interactive element.",
           "$extensions": {
             "com.figma": {
@@ -1575,7 +1761,7 @@
         },
         "pressed": {
           "$type": "color",
-          "$value": "{palette.fill.inversepressed}",
+          "$value": "{palette.fill.inverse-elevated}",
           "$description": "Pressed-state border for an inverse-surface interactive element.",
           "$extensions": {
             "com.figma": {
@@ -2510,6 +2696,226 @@
         }
       }
     },
+    "selection": {
+      "background": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.ink.low}",
+          "$description": "Default state for a neutral, general-purpose interactive element with no semantic meaning.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:4142:1585",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:18"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.fill.disabled}",
+          "$description": "Disabled state for a neutral interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:4142:1590",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:9"
+            }
+          }
+        },
+        "focused": {
+          "$type": "color",
+          "$value": "{palette.fill.default}",
+          "$description": "Focused state for a neutral interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:4142:1588",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:10"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{palette.fill.hover}",
+          "$description": "Hover state for a neutral interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:4142:1586",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:4142:1630"
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.default}",
+          "$description": "Pressed state for a neutral interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:4142:1587",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:2"
+            }
+          }
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{palette.fill.sunken}",
+          "$description": "Selected state for a neutral interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:4142:1589",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:14"
+            }
+          }
+        }
+      },
+      "border": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.line.strong}",
+          "$description": "Default-state border for a neutral interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:4142:1591",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:12"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.line.subtle}",
+          "$description": "Disabled-state border for a neutral interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:4142:1594",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:11"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{palette.line.stronger}",
+          "$description": "Hover-state border for a neutral interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:4142:1592",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:2061:6745"
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{palette.line.selection}",
+          "$description": "Pressed-state border for a neutral interactive element.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:4142:1593",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:63:32"
+            }
+          }
+        }
+      },
+      "foreground": {
+        "default": {
+          "$type": "color",
+          "$value": "{palette.ink.high}",
+          "$description": "Default-state text/icon color on a neutral interactive element's background.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:4142:1595",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "aliasOf": "VariableID:63:16"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{palette.ink.disabled}",
+          "$description": "Disabled-state text/icon color on a neutral interactive element's background.",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:4142:1596",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "aliasOf": "VariableID:63:19"
+            }
+          }
+        }
+      }
+    },
     "subtle": {
       "background": {
         "default": {
@@ -3128,6 +3534,24 @@
             "SHAPE_FILL"
           ],
           "aliasOf": "VariableID:63:13"
+        }
+      }
+    },
+    "track": {
+      "$type": "color",
+      "$value": "{palette.fill.sunken}",
+      "$description": "Background for containers communicating neutral information",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:6125:2408",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:14"
         }
       }
     },

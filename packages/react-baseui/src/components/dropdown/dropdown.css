@@ -1,0 +1,21 @@
+/* Dropdown — the positioning pattern. Per the spec's Layout & theming
+   intents, the template itself carries no fill or elevation (both belong to
+   the Dropdown Menu) and reserves no layout space for the open menu — the
+   menu is positioned absolutely and sits outside the trigger's box. There is
+   nothing state- or token-keyed here beyond that: `Menu.Positioner` supplies
+   the absolute positioning itself, so this file only exists to say so.
+
+   Known gap (found by the visual audit, not in the spec): Menu.Portal mounts
+   to document.body by default, which escapes an .ext-*/.mode-* class scoped
+   to anything narrower than <html>/<body> — the portaled panel then renders
+   in the base (untargeted) theme regardless of the trigger's own scope. Use
+   Dropdown's `portalContainer` prop to point the portal at the themed root
+   when the app scopes theme classes below <body>.
+
+   Spec: specs/dropdown/dropdown.spec.md (Dropdown Template) */
+
+.zds-dropdown__positioner {
+  /* z-index intentionally left to the consuming app / Menu.Portal's stacking
+     context; the spec does not model one. */
+  box-sizing: border-box;
+}

@@ -1,7 +1,7 @@
 {
   "name": "@zebra-design-system/icons",
   "version": "0.1.0",
-  "description": "Zebra Design System icon fonts, generated from Figma by the figma-icon-font skill",
+  "description": "Zebra Design System icon fonts, generated from Figma by the zebra-figma-icon-font skill",
   "type": "module",
   "files": [
     "codepoints.json",
@@ -22,8 +22,8 @@
     "*.css"
   ],
   "scripts": {
-    "generate": "node ../../.claude/skills/figma-icon-font/scripts/build-icon-font.mjs --node 2046:6754 --out .",
-    "generate:dry": "node ../../.claude/skills/figma-icon-font/scripts/build-icon-font.mjs --node 2046:6754 --out . --dry-run"
+    "generate": "node ../../.claude/skills/zebra-figma-icon-font/scripts/build-icon-font.mjs --node 2046:6754 --out .",
+    "generate:dry": "node ../../.claude/skills/zebra-figma-icon-font/scripts/build-icon-font.mjs --node 2046:6754 --out . --dry-run"
   },
   "license": "MIT"
 }
