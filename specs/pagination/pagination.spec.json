@@ -1,0 +1,222 @@
+{
+  "component": {
+    "name": "Pagination",
+    "slug": "pagination",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "4489:1925",
+      "key": "8eace4912a79762a0484a0102a13248f677cb181",
+      "page": "Pagination",
+      "pageNodeId": "3853:1209",
+      "metadataFrameId": "6055:184",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3853-1209",
+      "extractedAt": "2026-10-20",
+      "variantCount": {
+        "Pagination": 4,
+        "_indicators sharp no-outline": 6, "_indicators sharp outline": 6, "_indicators round no-outline": 6, "_indicators round outline": 6,
+        "_controls sharp no-outline": 5, "_controls sharp outline": 5, "_controls round no-outline": 5, "_controls round outline": 5
+      },
+      "extractionNote": "Master (Outline × Rounded) extracted to depth 6; the eight private sets read per state for fills, strokes, radius, size, text and icon. Each Outline × Rounded combination of the master uses its own pair of private sets, so the private sets are one indicator and one control part, four styles each."
+    }
+  },
+
+  "summary": "A horizontal bar of page controls, first/previous/next/last jump buttons, a row of page number indicators, and an optional overflow marker for a long page range. Used inside Table Footer and anywhere else a result set needs to be split across pages. If there is only ever one page of results, do not include it at all, an empty or single page pagination bar signals a feature that was not finished.",
+
+  "api": {
+    "showControls": {
+      "type": "boolean", "figmaName": "Show Controls#4489:13", "default": true, "controls": ["firstPage", "previous", "next", "lastPage"],
+      "intent": {
+        "true": "Shows First Page, Chevron Left, Chevron Right, and Last Page, the four jump controls, as one group. The default.",
+        "false": "Hides all four jump controls at once. Use when only direct page number navigation is offered, no first, last, previous, or next jumping."
+      }
+    },
+    "showMore": {
+      "type": "boolean", "figmaName": "Show More#4489:14", "default": true, "controls": ["overflow", "trailingIndicator"],
+      "intent": {
+        "true": "Shows the overflow control, the \"...\" button, together with the trailing page number indicator that follows it, as one paired group. The default.",
+        "false": "Hides the overflow control and its paired trailing indicator together. Use when the full page range fits without collapsing pages behind an ellipsis."
+      }
+    },
+    "outline": {
+      "type": "enum", "figmaName": "Outline", "values": ["false", "true"], "default": "false", "controls": ["variant"],
+      "intent": {
+        "false": "Every control and indicator renders filled, with no border. The default.",
+        "true": "Every control and indicator gains a 1px border. Applies to the whole bar at once, there is no per-button override."
+      }
+    },
+    "rounded": {
+      "type": "enum", "figmaName": "Rounded", "values": ["false", "true"], "default": "false", "controls": ["variant"],
+      "intent": {
+        "false": "Sharp corners on every control and indicator. The default.",
+        "true": "4px corners on every control and indicator. Applies to the whole bar at once, there is no per-button override."
+      }
+    }
+  },
+
+  "internalVariations": [
+    { "part": "pageNumbers", "via": "Main Slot 1 / Main Slot2 / Main Slot 3 / Main Slot 4 (one per Outline × Rounded)",
+      "intent": "Four separate slot properties exist, Main Slot 1, Main Slot2, Main Slot 3, Main Slot 4, one per Outline × Rounded combination, rather than one shared slot, so custom page number content set under one combination does not carry over when switching Outline or Rounded. Spares the file from a shared-slot mechanism Figma variants do not support, at the cost of re-entering content after changing either axis. A fifth, identically named Main Slot 1 property is also defined but wired to nothing in any of the four variants, an orphaned leftover, ignore it.",
+      "note": "Figma-only. In code the page numbers are one list derived from the current page and the page count." }
+  ],
+
+  "contentInputs": [
+    { "part": "pageNumbers", "input": "page numbers", "sampleCount": 3, "sample": "10, one selected" },
+    { "part": "currentPage", "input": "which indicator is selected", "note": "State=selected on one indicator" }
+  ],
+
+  "anatomy": [
+    { "id": "root", "kind": "container", "layout": { "direction": "horizontal", "gap": "space/sm", "padding": "none", "align": "center" }, "sizing": "hug", "measured": { "widthPx": 388, "heightPx": 36 } },
+    { "id": "firstPage", "kind": "instance", "ref": "_controls", "glyph": "first-page", "visibleWhen": "showControls",
+      "role": "The leading pair of the jump controls group, toggled together with the trailing pair by Show Controls." },
+    { "id": "previous", "kind": "instance", "ref": "_controls", "glyph": "chevron-left", "visibleWhen": "showControls" },
+    { "id": "pageNumbers", "kind": "slot", "ref": "_indicators", "layout": { "direction": "horizontal", "gap": "space/sm" }, "sizing": "hug",
+      "role": "The repeatable indicator slot, one marked selected for the current page." },
+    { "id": "overflow", "kind": "instance", "ref": "_controls", "glyph": "more-horizontal", "visibleWhen": "showMore",
+      "role": "The \"...\" control and its paired trailing indicator, shown or hidden together by Show More." },
+    { "id": "trailingIndicator", "kind": "instance", "ref": "_indicators", "visibleWhen": "showMore", "note": "The last page's number, after the overflow" },
+    { "id": "next", "kind": "instance", "ref": "_controls", "glyph": "chevron-right", "visibleWhen": "showControls",
+      "role": "The trailing pair of the jump controls group, toggled together with the leading pair by Show Controls." },
+    { "id": "lastPage", "kind": "instance", "ref": "_controls", "glyph": "last-page", "visibleWhen": "showControls" }
+  ],
+
+  "variants": {
+    "axis": "outline × rounded", "base": "outline=false, rounded=false",
+    "table": [
+      { "outline": "false", "rounded": "false", "parts": "_controls / _indicators sharp no-outline", "radius": "radius/none", "border": "stroke/base" },
+      { "outline": "true", "rounded": "false", "parts": "_controls / _indicators sharp outline", "radius": "radius/none", "border": "stroke/thin", "_note": "no trailingIndicator — see issues" },
+      { "outline": "false", "rounded": "true", "parts": "_controls / _indicators round no-outline", "radius": "radius/sm", "border": "stroke/base" },
+      { "outline": "true", "rounded": "true", "parts": "_controls / _indicators round outline", "radius": "radius/sm", "border": "stroke/thin" }
+    ],
+    "_note": "Outline and Rounded only pick which private set every part uses; the private sets carry the values."
+  },
+
+  "subcomponents": [
+    {
+      "name": "_controls", "private": true,
+      "sets": { "sharp no-outline": "4484:5928", "sharp outline": "4484:5969", "round no-outline": "4485:1647", "round outline": "4485:1658" },
+      "api": { "state": { "type": "enum", "figmaName": "State", "values": ["enabled", "hover", "pressed", "focused", "disabled"], "default": "enabled" } },
+      "anatomy": [
+        { "id": "root", "kind": "container", "sizing": "fixed square", "size": "control/sm", "layout": { "padding": "space/sm", "align": "center" },
+          "radius": "radius/none (sharp) | radius/sm (round)" },
+        { "id": "icon", "kind": "glyph", "family": "rounded", "iconSize": "Icon Size=medium", "color": "currentColor (follows the text colour)",
+          "note": "Glyph set per instance by the parent: first-page, chevron-left, more-horizontal, chevron-right, last-page." }
+      ],
+      "variants": {
+        "axis": "state (× outline)", "base": "enabled",
+        "table": [
+          { "state": "enabled", "fill": "interactive/neutral/background/default", "border": "interactive/neutral/border/default" },
+          { "state": "hover", "fill": "interactive/neutral/background/hover", "border": "no-outline: interactive/neutral/border/default · outline: interactive/neutral/border/hover" },
+          { "state": "pressed", "fill": "interactive/neutral/background/pressed", "border": "interactive/neutral/border/pressed" },
+          { "state": "focused", "fill": "interactive/neutral/background/default", "border": "border/focus @ stroke/thick (both outline settings)" },
+          { "state": "disabled", "fill": "interactive/neutral/background/disabled", "border": "interactive/neutral/border/disabled" }
+        ],
+        "_note": "Border width: no-outline stroke/base, outline stroke/thin; focused is stroke/thick in both."
+      }
+    },
+    {
+      "name": "_indicators", "private": true,
+      "sets": { "sharp no-outline": "4485:1775", "sharp outline": "4485:1801", "round no-outline": "4489:1815", "round outline": "4489:1828" },
+      "api": { "state": { "type": "enum", "figmaName": "State", "values": ["enabled", "hover", "pressed", "focused", "selected", "disabled"], "default": "enabled" } },
+      "anatomy": [
+        { "id": "root", "kind": "container", "sizing": "fixed square", "size": "control/sm", "layout": { "padding": "space/none", "align": "center" },
+          "radius": "radius/none (sharp) | radius/sm (round)" },
+        { "id": "label", "kind": "text", "text": { "style": "body/small" }, "sample": "10" }
+      ],
+      "variants": {
+        "axis": "state (× outline)", "base": "enabled",
+        "table": [
+          { "state": "enabled", "fill": "interactive/neutral/background/default", "border": "interactive/neutral/border/default", "label": "foreground/primary" },
+          { "state": "hover", "fill": "interactive/neutral/background/hover", "border": "no-outline: interactive/neutral/border/default · outline: interactive/neutral/border/hover", "label": "foreground/primary" },
+          { "state": "pressed", "fill": "interactive/neutral/background/pressed", "border": "no-outline: interactive/neutral/border/default · sharp outline: interactive/neutral/border/pressed · round outline: border/default", "label": "foreground/primary" },
+          { "state": "focused", "fill": "interactive/neutral/background/default", "border": "border/focus @ stroke/thick", "label": "foreground/primary" },
+          { "state": "selected", "fill": "interactive/inverse/background/selected", "border": "no-outline: interactive/inverse/border/default · outline: none", "label": "foreground/inverse" },
+          { "state": "disabled", "fill": "interactive/neutral/background/disabled", "border": "no-outline: interactive/neutral/border/disabled · outline: interactive/primary/border/disabled", "label": "foreground/disabled" }
+        ],
+        "_note": "Border width: no-outline stroke/base, outline stroke/thin; focused stroke/thick."
+      }
+    }
+  ],
+
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "interactive/neutral/background/default", "interactive/neutral/background/hover", "interactive/neutral/background/pressed", "interactive/neutral/background/disabled",
+      "interactive/neutral/border/default", "interactive/neutral/border/hover", "interactive/neutral/border/pressed", "interactive/neutral/border/disabled",
+      "interactive/inverse/background/selected", "interactive/inverse/border/default", "interactive/primary/border/disabled",
+      "border/focus", "border/default", "foreground/primary", "foreground/inverse", "foreground/disabled"
+    ],
+    "dimension": ["control/sm", "space/none", "space/sm", "radius/none", "radius/sm", "stroke/base", "stroke/thin", "stroke/thick"],
+    "typography": ["body/small"],
+    "glyphs": ["first-page", "chevron-left", "chevron-right", "last-page", "more-horizontal"],
+    "themeAxes": {
+      "palette": ["Light", "Dark"],
+      "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
+      "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"]
+    },
+    "_note": "All 29 token names resolve in tokens/; all five glyphs are in packages/icons/codepoints.json and not retired."
+  },
+
+  "states": {
+    "_note": "No States & Triggers section in the metadata. States live on the private parts: _controls (enabled, hover, pressed, focused, disabled), _indicators (the same plus selected)."
+  },
+
+  "behavior": {
+    "_note": "No Behavior & Motion section in the metadata. Which page numbers to show (the window around the current page), when the overflow appears, and what each jump control does at the first or last page are not modelled."
+  },
+
+  "content": [
+    { "property": "Page numbers", "type": "_indicators instances, up to 3 shown, state enabled or selected", "description": "The repeatable part. One indicator carries State=selected for the current page, the rest stay enabled. Consumer owned, but lives inside whichever Main Slot matches the current Outline/Rounded combination, see Property Breakdown." },
+    { "property": "Jump controls", "type": "_controls instances, fixed to First Page, Chevron Left, Chevron Right, Last Page", "description": "Parent owned. The four icons and their order are fixed, Show Controls toggles all four together, there is no way to show only one." },
+    { "property": "Overflow", "type": "_controls instance, fixed to the more_horizontal icon", "description": "Parent owned, fixed glyph. Paired with one trailing _indicators instance under Show More, the two always show or hide together." }
+  ],
+
+  "usage": {
+    "do": [
+      "Use Show Controls and Show More independently, turn off the jump buttons for a short list while keeping the overflow indicator for a long one, or the reverse.",
+      "Set Outline and Rounded once for the whole bar. They are whole-bar styling choices, not something to vary button by button."
+    ],
+    "dont": [
+      "Don’t expect page number content set in the slot to survive switching Outline or Rounded. Each combination owns its own separate slot, re-enter it after changing either.",
+      "Don’t reach for the Main Slot 1 property with key 4489:15, it isn’t wired to any variant. Use whichever Main Slot property your current Outline/Rounded combination actually shows."
+    ]
+  },
+
+  "accessibility": [
+    "Keyboard and focus behaviour belongs to the nested _controls and _indicators states, not to Pagination itself. The overflow control has no visible label, it needs an accessible name supplied in code, something like \"more pages\" rather than reading the glyph."
+  ],
+
+  "layoutTheming": [
+    { "property": "Control size", "type": "36×36 each", "description": "Every control and indicator is the same fixed square, regardless of Outline or Rounded." },
+    { "property": "Gap", "type": "8px, not token bound", "description": "itemSpacing between every top-level item in the bar, controls, the slot, and indicators alike." },
+    { "property": "Corner radius", "type": "Manual, per Outline×Rounded variant", "description": "sharp = 0, rounded = 4, set directly on each variant’s controls and indicators, not bound to a radius variable." },
+    { "property": "Border", "type": "Manual, per Outline×Rounded variant", "description": "Outline=true adds a 1px stroke to every control and indicator, Outline=false removes it entirely. Also not token bound." },
+    { "property": "Container", "type": "Hugs content, 388px at the 3-indicator default", "description": "Width is not fixed, it grows or shrinks with however many page number indicators the active slot holds." }
+  ],
+
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3853-1209",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4489-1925",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6055-184",
+    "subcomponents": {
+      "_controls sharp no-outline": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4484-5928",
+      "_controls round outline": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4485-1658",
+      "_indicators sharp no-outline": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4485-1775",
+      "_indicators round outline": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4489-1828"
+    }
+  },
+
+  "issues": [
+    { "severity": "warn", "source": "variants", "detail": "Outline=true, Rounded=false has no trailing indicator: Show More shows only the overflow there, while the other three variants show the overflow plus the last page's number." },
+    { "severity": "warn", "source": "metadata vs extracted", "detail": "Layout & Theming says gap, corner radius and border are 'not token bound'. They are: gap space/sm; radius radius/none / radius/sm; border width stroke/base (no-outline) / stroke/thin (outline); size control/sm." },
+    { "severity": "warn", "source": "_indicators outline", "detail": "Disabled border is interactive/primary/border/disabled on the outline indicators, where every other disabled border (all controls, the no-outline indicators) is interactive/neutral/border/disabled." },
+    { "severity": "warn", "source": "_indicators round outline", "detail": "Pressed border is border/default; the sharp outline indicator and the outline controls use interactive/neutral/border/pressed." },
+    { "severity": "warn", "source": "behavior", "detail": "Which page numbers appear around the current page, when the overflow shows, and how the jump controls behave at the first and last page aren't modelled (no Behavior section). Decide in code; the Figma sample is three numbers, an overflow and the last page." },
+    { "severity": "note", "source": "_indicators outline", "detail": "The two 'outline' indicator sets name their Outline variant false; only the name says outline. Their strokes are stroke/thin, so they are the outline style." },
+    { "severity": "note", "source": "_indicators", "detail": "Selected drops the border on outline indicators and uses interactive/inverse/border/default on no-outline ones (at stroke/base, so it doesn't show)." },
+    { "severity": "note", "source": "overflow glyph", "detail": "The overflow uses a stand-alone Icon/more_horizontal component, not the Icon set's Name swap. The font has more-horizontal; use it." },
+    { "severity": "note", "source": "internalVariations", "detail": "Four Main Slots plus an orphaned fifth are a Figma workaround; code has one list of page numbers." },
+    { "severity": "note", "source": "_controls", "detail": "Icon glyph colour isn't bound on the drawn vectors (mixed regions); in code it follows the control's text colour via currentColor, dimming with disabled." },
+    { "severity": "note", "source": "coverage", "detail": "No States & Triggers or Behavior & Motion sections; no descriptions on the component sets." }
+  ]
+}

@@ -1,0 +1,1542 @@
+{
+  "component": {
+    "name": "Navigation Rail",
+    "slug": "navigation-rail",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "3453:54061",
+      "key": "fa3659768df88663c24b1341bfe77e519ac951c6",
+      "page": "Navigation Rail",
+      "pageNodeId": "3182:237",
+      "frame": "Navigation Rail (Desktop)",
+      "metadataFrameId": "4762:6539",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3182-237",
+      "extractedAt": "2026-10-21",
+      "variantCount": {
+        "Navigation Rail": 3,
+        "Navigation Rail Item": 10,
+        "Sub Menu Item": 10,
+        "Navigation Header": 4,
+        "Sub Menu Header": 2,
+        "Caret Indicator": 12,
+        "Collapsible Menu Item": 2
+      },
+      "defaultVariant": "Label=false, Expanded=false",
+      "extractionNote": "Re-extracted 2026-10-21 after designer updates. Same seven public component sets (43 variants), same node ids and keys, and the same three metadata frames (4762:6539, 4762:6735, 4762:6931); no set or frame was added or removed. Navigation Rail Item and Sub Menu Item have their own metadata frames and are specced at specs/navigation-rail-item/ and specs/sub-menu-item/. Navigation Header, Sub Menu Header, Caret Indicator and Collapsible Menu Item have no metadata of their own and are specced here under subcomponents; Caret Indicator is also used by Accordion (specs/accordion). All seven sets read in full to depth 12, every Icon instance's glyph read through its swap property, all three metadata frames re-parsed. Changes since 2026-10-20: the Navigation Rail Metadata gained a code-only Shape property and a sentence on shape inheritance in the Sub Menu Header content row; Sub Menu Header's Type=sub page now draws its back affordance as an Icon Button rather than a bare Icon, with a tighter icon-to-title gap. The master set and the other subcomponents are structurally unchanged."
+    }
+  },
+  "summary": "A vertical navigation column for the edge of a desktop view, made of a narrow icon rail and a sub menu panel beside it. It is a container rather than a fixed design, three slots hold the destinations and the variant axes control only the rail's width and whether captions show. Fill the slots with Navigation Rail Item and Sub Menu Item instances. It paints no panel of its own, sitting on surface/section and marking the boundary between rail and panel with a single border.",
+  "api": {
+    "expanded": {
+      "type": "enum",
+      "figmaName": "Expanded",
+      "values": [
+        "false",
+        "true"
+      ],
+      "default": "false",
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "false": "The narrow icon rail. Destinations read as glyphs alone unless Label is on, so it only works where the icons are genuinely recognisable.",
+        "true": "The wide rail, with every item's label beside its icon and the header action becoming a full Button. Reach for it when the destinations cannot be told apart by glyph. It changes the rail's overall width, so the page beside it has to give up the difference."
+      }
+    },
+    "label": {
+      "type": "enum",
+      "figmaName": "Label",
+      "values": [
+        "false",
+        "true"
+      ],
+      "default": "false",
+      "controls": [
+        "variant"
+      ],
+      "validWhen": "expanded = false",
+      "intent": {
+        "false": "Icons only in the narrow rail.",
+        "true": "Adds a caption under each icon in the narrow rail, buying recognition without the width of Expanded. The column stays narrow, so only very short words fit. Content placed in the Menu Slot is held separately per Label setting and does not carry across a change to it."
+      }
+    },
+    "showHeaderAction": {
+      "type": "boolean",
+      "figmaName": "Show Header Action#3388:16",
+      "default": true,
+      "controls": [
+        "headerAction"
+      ],
+      "intent": {
+        "true": "Shows the action under the header, a create or compose entry point rather than a destination.",
+        "false": "Hides it, for a rail that is purely navigational."
+      }
+    },
+    "showToggleItem": {
+      "type": "boolean",
+      "figmaName": "Show Toggle Item#3402:20",
+      "default": true,
+      "controls": [
+        "toggleItem"
+      ],
+      "intent": {
+        "true": "Shows the last footer item, which carries the panel glyph and is how a user moves between the narrow and wide rail.",
+        "false": "Hides it. Only do this when something outside the rail controls Expanded, otherwise the user has no way to change it back."
+      }
+    },
+    "showSubMenu": {
+      "type": "boolean",
+      "figmaName": "Show Sub menu#3404:30",
+      "default": true,
+      "controls": [
+        "subMenu"
+      ],
+      "intent": {
+        "true": "Shows the panel beside the rail, for destinations that have a second level.",
+        "false": "Hides the panel and leaves the icon rail on its own. The rail's overall width drops by the panel's width, so the layout beside it moves."
+      }
+    },
+    "moreRailItems": {
+      "type": "boolean",
+      "figmaName": "More Rail Items#3502:73",
+      "default": true,
+      "controls": [
+        "menuSlot"
+      ],
+      "intent": {
+        "true": "Shows the Menu Slot below the three built-in rail items, which is where additional destinations go.",
+        "false": "Hides the slot along with everything placed in it, leaving only the three built-in items."
+      }
+    },
+    "moreFooterItems": {
+      "type": "boolean",
+      "figmaName": "More Footer Items#3502:77",
+      "default": true,
+      "controls": [
+        "footerSlot"
+      ],
+      "intent": {
+        "true": "Shows the Footer Slot above the fixed footer items.",
+        "false": "Hides the slot along with everything placed in it."
+      }
+    },
+    "shape": {
+      "type": "enum",
+      "figmaName": null,
+      "codeOnly": true,
+      "values": [
+        "rounded",
+        "sharp"
+      ],
+      "default": "rounded",
+      "controls": [
+        "corner shape of every nested component: Navigation Rail Item, Sub Menu Item, Collapsible Menu Item, the header action, and the Buttons and Icon Buttons inside Navigation Header and Sub Menu Header (including the back button). The rail itself has no corners and is unaffected."
+      ],
+      "intent": {
+        "rounded": "Doesn’t appear in Figma, but this controls the shape of all sub items within the rail unless overridden",
+        "sharp": "Hides the slot along with everything placed in it, leaving only the three built-in items."
+      },
+      "observed": "Not a Figma property. As drawn (the rounded default), the rail's placed Navigation Rail Items, Sub Menu Items and its header action (Icon Button / Button Shape=rounded) carry radius/element-sm, which is Button's Shape=rounded radius. The sharp row's description is copied from More Rail Items and says nothing about shape; the token sharp maps to is not stated (Button's Shape=sharp is radius/none). See issues.",
+      "tokens": {
+        "rounded": "radius/sm",
+        "sharp": "radius/none"
+      },
+      "ownerDecision": "Shape reaches every nested component; rounded = radius/sm, sharp = radius/none. A nested Button or Icon Button takes the same-named shape."
+    },
+    "inverse": {
+      "type": "boolean",
+      "figmaName": null,
+      "codeOnly": true,
+      "default": false,
+      "controls": [
+        "the rail's colour mode: the token layer's mode-dark class on the rail root by default, mode-light when true"
+      ],
+      "intent": {
+        "false": "Locked to dark mode, whatever the page's mode. Everything inside the rail (items, headers, sub menu, slotted content) follows the rail, and an .ext-* brand on an ancestor still applies.",
+        "true": "Locked to light mode instead. Still locked: the page's mode does not reach the rail."
+      },
+      "ownerDecision": "Locked to dark mode by default; `inverse` locks it to light."
+    },
+    "menuSlot": {
+      "type": "slot",
+      "figmaName": "Menu Slot#3497:69 (Label=false variants) · Menu Slot#3497:65 (Label=true)",
+      "controls": [
+        "menuSlot"
+      ],
+      "visibleWhen": "moreRailItems",
+      "prefers": "Navigation Rail Item (specs/navigation-rail-item), Divider (specs/divider)",
+      "intent": "Additional destinations below the three built-in rail items. It ships holding a Divider and three items. See the Navigation Rail Item Metadata frame. Its content is stored separately for each Label setting, so switching Label leaves the content behind."
+    },
+    "footerSlot": {
+      "type": "slot",
+      "figmaName": "Footer Slot#3200:16",
+      "controls": [
+        "footerSlot"
+      ],
+      "visibleWhen": "moreFooterItems",
+      "prefers": "Navigation Rail Item (specs/navigation-rail-item), Divider (specs/divider)",
+      "intent": "Destinations pinned to the bottom, above the two fixed footer items. It ships holding a Divider and three items, and the same content is shared by every variant."
+    },
+    "subMenuSlot": {
+      "type": "slot",
+      "figmaName": "Sub Menu Slot#3408:34",
+      "controls": [
+        "subMenuSlot"
+      ],
+      "visibleWhen": "showSubMenu",
+      "prefers": "Sub Menu Item (specs/sub-menu-item), Collapsible Menu Item (below)",
+      "intent": "The second-level list inside the panel. It ships holding one Collapsible Menu Item and four Sub Menu Items, and its content is shared by every variant. See the Sub Menu Item Metadata frame."
+    }
+  },
+  "validCombinations": {
+    "variants": [
+      "Label=false, Expanded=false (default)",
+      "Label=true, Expanded=false",
+      "Label=false, Expanded=true"
+    ],
+    "_note": "Label=true with Expanded=true is not built; in the wide rail labels always show, so label only applies to the narrow rail."
+  },
+  "unwiredProperties": [
+    {
+      "figmaName": "Show Header#3388:12",
+      "type": "boolean",
+      "default": true,
+      "detail": "Bound to no layer in any variant. The header always shows. Not in the metadata."
+    },
+    {
+      "figmaName": "Menu Slot#3200:20",
+      "type": "slot",
+      "detail": "Bound to no layer; the two live Menu Slots are #3497:65 and #3497:69. Orphaned, ignore it."
+    }
+  ],
+  "internalVariations": [
+    {
+      "part": "header",
+      "via": "Navigation Header (below)",
+      "options": [
+        "Type=avatar",
+        "Type=logo"
+      ],
+      "pinned": "Type=avatar; Expanded follows the rail's expanded",
+      "intent": "The header is a Navigation Header showing an avatar. The action below it is an Icon Button in the narrow rail and a Button in the wide one. Neither is a slot, so changing them means overriding the nested instance."
+    },
+    {
+      "part": "subMenuHeader",
+      "via": "Sub Menu Header (below)",
+      "options": [
+        "Type=default",
+        "Type=sub page"
+      ],
+      "pinned": "Type=sub page",
+      "intent": "The panel's title bar, carrying a back affordance, an editable title and a trailing slot of its own holding a Button. The rail leaves the instance exposed, so all of that is reachable without detaching. The shape of all sub elements are inherited from the main rail component.",
+      "note": "In Type=sub page the back affordance is an Icon Button (Size=small, Shape=sharp, Flavour=subtle, glyph arrow-back), not a bare glyph."
+    }
+  ],
+  "contentInputs": [
+    {
+      "part": "railItems",
+      "input": "the three built-in Navigation Rail Item instances (Rail Item 1–3) and Footer Rail Item: label, glyph, state per instance",
+      "sample": "label 'Label', glyph star (placeholder)",
+      "sampleCount": 4
+    },
+    {
+      "part": "toggleItem",
+      "input": "label",
+      "sample": "'Open' (narrow) / 'Close' (wide)"
+    }
+  ],
+  "anatomy": [
+    {
+      "id": "root",
+      "kind": "container",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/none",
+        "padding": "space/none",
+        "align": "top"
+      },
+      "sizing": {
+        "h": "hug",
+        "v": "fixed (drawn; metadata says fill)"
+      },
+      "paint": {
+        "fill": "surface/section"
+      },
+      "measured": {
+        "widthPx": {
+          "narrow": 312,
+          "narrowLabel": 312,
+          "wide": 440
+        },
+        "heightPx": 991,
+        "minWidthPx": 72
+      }
+    },
+    {
+      "id": "mainRail",
+      "kind": "container",
+      "number": 1,
+      "role": "Main Rail — The icon column, holding the header, the action, the menu list and the footer. Its width is what changes between the two Expanded variants.",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/md",
+        "padding": {
+          "top": "space/card",
+          "bottom": "space/card",
+          "left": "space/md",
+          "right": "space/md"
+        },
+        "align": "centre (narrow) / start (wide)"
+      },
+      "sizing": {
+        "h": "fixed",
+        "v": "fill"
+      },
+      "clips": true,
+      "measured": {
+        "widthPx": {
+          "narrow": 72,
+          "wide": 200
+        }
+      }
+    },
+    {
+      "id": "header",
+      "kind": "instance",
+      "parent": "mainRail",
+      "ref": "Navigation Header",
+      "refVariant": "Type=avatar, Expanded=<expanded>"
+    },
+    {
+      "id": "headerAction",
+      "kind": "instance",
+      "parent": "mainRail",
+      "visibleWhen": "showHeaderAction",
+      "ref": {
+        "narrow": "Icon Button (specs/icon-button) Size=large, Shape=rounded, Flavour=primary",
+        "wide": "Button (specs/button) Size=large, Shape=rounded, Flavour=primary, label 'Create', leading icon on"
+      },
+      "glyph": "add-circle-outline",
+      "sizing": {
+        "narrow": "fixed square control/lg",
+        "wide": "fill × control/lg"
+      }
+    },
+    {
+      "id": "menuList",
+      "kind": "container",
+      "number": 2,
+      "parent": "mainRail",
+      "role": "Menu List — The middle of the rail, holding three built-in items and then the Menu Slot. It absorbs whatever height is left between the header block and the footer.",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/xs",
+        "padding": "space/none"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "fill"
+      },
+      "children": [
+        "railItem1",
+        "railItem2",
+        "railItem3",
+        "menuSlot"
+      ]
+    },
+    {
+      "id": "railItem1..3",
+      "kind": "instance",
+      "parent": "menuList",
+      "ref": "Navigation Rail Item (specs/navigation-rail-item)",
+      "refVariant": "State=default, Disabled=false, Expanded=<expanded>; Show Label=<label>",
+      "glyph": "star (placeholder)"
+    },
+    {
+      "id": "menuSlot",
+      "kind": "slot",
+      "parent": "menuList",
+      "visibleWhen": "moreRailItems",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/xs",
+        "padding": {
+          "left": "space/xs (narrow) / space/none (wide)",
+          "right": "space/xs (narrow) / space/none (wide)",
+          "top": "space/none",
+          "bottom": "space/none"
+        }
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "fill (narrow) / hug (wide)"
+      },
+      "clips": true,
+      "sample": "Divider + 3 Navigation Rail Item"
+    },
+    {
+      "id": "footer",
+      "kind": "container",
+      "number": 3,
+      "parent": "mainRail",
+      "role": "Footer — Pinned to the bottom, holding the Footer Slot and two fixed items. The last of them is the toggle a user presses to change the rail's width.",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/xs",
+        "padding": "space/none"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      },
+      "children": [
+        "footerSlot",
+        "footerRailItem",
+        "toggleItem"
+      ]
+    },
+    {
+      "id": "footerSlot",
+      "kind": "slot",
+      "parent": "footer",
+      "visibleWhen": "moreFooterItems",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/xs",
+        "padding": "space/none"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      },
+      "clips": true,
+      "sample": "Divider + 3 Navigation Rail Item"
+    },
+    {
+      "id": "footerRailItem",
+      "kind": "instance",
+      "parent": "footer",
+      "ref": "Navigation Rail Item",
+      "glyph": "star (placeholder)"
+    },
+    {
+      "id": "toggleItem",
+      "kind": "instance",
+      "parent": "footer",
+      "ref": "Navigation Rail Item",
+      "visibleWhen": "showToggleItem",
+      "glyph": {
+        "narrow": "left-panel-open",
+        "wide": "left-panel-close"
+      },
+      "label": {
+        "narrow": "Open",
+        "wide": "Close"
+      },
+      "note": "Pressing it toggles expanded; the rail does not wire that, code does."
+    },
+    {
+      "id": "subMenu",
+      "kind": "container",
+      "number": 4,
+      "visibleWhen": "showSubMenu",
+      "role": "Sub menu — The panel beside the rail, holding the Sub Menu Header and the Sub Menu Slot. It carries the only vertical border in the component, on its leading edge.",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/none",
+        "padding": "space/none"
+      },
+      "sizing": {
+        "h": "fixed",
+        "v": "fill"
+      },
+      "paint": {
+        "stroke": {
+          "color": "border/default",
+          "sides": "left only",
+          "width": "unbound (1Px, see issues)",
+          "align": "inside"
+        }
+      },
+      "measured": {
+        "widthPx": 240,
+        "minWidthPx": 240
+      }
+    },
+    {
+      "id": "subMenuHeader",
+      "kind": "instance",
+      "parent": "subMenu",
+      "ref": "Sub Menu Header",
+      "refVariant": "Type=sub page",
+      "sizing": {
+        "h": "fill",
+        "v": "fixed"
+      },
+      "back": "Icon Button (specs/icon-button) Size=small, Shape=sharp, Flavour=subtle, glyph arrow-back"
+    },
+    {
+      "id": "subMenuSlot",
+      "kind": "slot",
+      "parent": "subMenu",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/xs",
+        "padding": "space/sm"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      },
+      "sample": "1 Collapsible Menu Item (Open=false) + 4 Sub Menu Item (Sub Menu=false)"
+    }
+  ],
+  "variants": {
+    "axis": "label × expanded",
+    "base": "label=false, expanded=false",
+    "_note": "Widths are measured observations, not tokens; the rail's widths come from its children (items at control/lg plus rail padding) and the panel's fixed width.",
+    "table": [
+      {
+        "label": "false",
+        "expanded": "false",
+        "mainRail.widthPx": 72,
+        "root.widthPx": 312,
+        "header": "Navigation Header Expanded=false",
+        "headerAction": "Icon Button",
+        "railItems": "Expanded=false, Show Label=false",
+        "menuSlot.paddingX": "space/xs",
+        "toggleItem": "left-panel-open, 'Open'",
+        "figmaNode": "4654:10599"
+      },
+      {
+        "label": "true",
+        "expanded": "false",
+        "mainRail.widthPx": 72,
+        "root.widthPx": 312,
+        "header": "Navigation Header Expanded=false",
+        "headerAction": "Icon Button",
+        "railItems": "Expanded=false, Show Label=true",
+        "menuSlot": "separate slot content (Menu Slot#3497:65)",
+        "menuSlot.paddingX": "space/xs",
+        "toggleItem": "left-panel-open, 'Open'",
+        "figmaNode": "3453:54097"
+      },
+      {
+        "label": "false",
+        "expanded": "true",
+        "mainRail.widthPx": 200,
+        "root.widthPx": 440,
+        "header": "Navigation Header Expanded=true",
+        "headerAction": "Button 'Create'",
+        "railItems": "Expanded=true (fill width)",
+        "menuSlot.paddingX": "space/none",
+        "mainRail.align": "start",
+        "toggleItem": "left-panel-close, 'Close'",
+        "figmaNode": "3453:54121"
+      }
+    ]
+  },
+  "subcomponents": [
+    {
+      "name": "Navigation Rail Item",
+      "id": "3453:54230",
+      "key": "7848f7c74fc9625bdb578d477e789c9f2480941c",
+      "private": false,
+      "spec": "specs/navigation-rail-item",
+      "usedAs": "railItem1..3, footerRailItem, toggleItem, Menu/Footer Slot content"
+    },
+    {
+      "name": "Sub Menu Item",
+      "id": "3453:54275",
+      "key": "2ab793c034c0de9ea281372bbcd70b44920e11ae",
+      "private": false,
+      "spec": "specs/sub-menu-item",
+      "usedAs": "Sub Menu Slot content; the header row of Collapsible Menu Item"
+    },
+    {
+      "name": "Navigation Header",
+      "id": "3453:54312",
+      "key": "cf4c5052fb861abf49a59730d6cef14907e4bf56",
+      "private": false,
+      "variantCount": 4,
+      "api": {
+        "type": {
+          "type": "enum",
+          "figmaName": "Type",
+          "values": [
+            "avatar",
+            "logo"
+          ],
+          "default": "avatar",
+          "controls": [
+            "variant"
+          ]
+        },
+        "expanded": {
+          "type": "enum",
+          "figmaName": "Expanded",
+          "values": [
+            "true",
+            "false"
+          ],
+          "default": "true",
+          "controls": [
+            "variant"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "figmaName": "Title#3388:1",
+          "default": "Title",
+          "controls": [
+            "title"
+          ]
+        },
+        "showTitle": {
+          "type": "boolean",
+          "figmaName": "Show Title#3388:2",
+          "default": true,
+          "controls": [
+            "title"
+          ],
+          "note": "No effect when expanded=false (title not built there)"
+        },
+        "showIconButton": {
+          "type": "boolean",
+          "figmaName": "Show Icon Button#3388:3",
+          "default": true,
+          "controls": [
+            "action"
+          ],
+          "note": "No effect when expanded=false"
+        }
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "justify": "space-between (expanded) / centre (collapsed)",
+            "align": "centre",
+            "padding": "space/none"
+          },
+          "sizing": {
+            "h": "fixed",
+            "v": "fixed"
+          },
+          "limits": {
+            "minWidth": "control/lg (collapsed only)"
+          },
+          "measured": {
+            "expandedPx": "184×56",
+            "collapsedPx": "48×56"
+          }
+        },
+        {
+          "id": "brand",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/sm",
+            "padding": {
+              "left": "space/xs",
+              "right": "space/xs"
+            }
+          },
+          "sizing": "hug",
+          "children": [
+            "mark",
+            "title"
+          ]
+        },
+        {
+          "id": "mark",
+          "kind": "instance",
+          "parent": "brand",
+          "ref": {
+            "avatar": "Avatar (specs/avatar) Size=small, Show Status=true, Show Ring=false, Show Close=false",
+            "logo": "Icon (specs/icon) Size=large, Framed=true, glyph zebra"
+          },
+          "size": {
+            "logo.height": "control/target-min"
+          }
+        },
+        {
+          "id": "title",
+          "kind": "text",
+          "parent": "brand",
+          "visibleWhen": "showTitle && expanded",
+          "content": "title",
+          "text": {
+            "style": "label/medium",
+            "color": "foreground/primary"
+          },
+          "sizing": "hug"
+        },
+        {
+          "id": "action",
+          "kind": "instance",
+          "visibleWhen": "showIconButton && expanded",
+          "ref": "Icon Button (specs/icon-button) Size=small, Shape=sharp, Flavour=subtle",
+          "glyph": "settings",
+          "size": "control/sm"
+        }
+      ],
+      "variants": {
+        "axis": "type × expanded",
+        "base": "type=avatar, expanded=true",
+        "table": [
+          {
+            "type": "avatar",
+            "expanded": "true",
+            "mark": "Avatar",
+            "title": "shown",
+            "action": "shown",
+            "figmaNode": "3453:54313"
+          },
+          {
+            "type": "avatar",
+            "expanded": "false",
+            "mark": "Avatar",
+            "title": "not built",
+            "action": "not built",
+            "root.minWidth": "control/lg",
+            "figmaNode": "3453:54319"
+          },
+          {
+            "type": "logo",
+            "expanded": "true",
+            "mark": "Icon zebra, Framed",
+            "title": "shown",
+            "action": "shown",
+            "figmaNode": "3453:54322"
+          },
+          {
+            "type": "logo",
+            "expanded": "false",
+            "mark": "Icon zebra, Framed",
+            "title": "not built",
+            "action": "not built",
+            "root.minWidth": "control/lg",
+            "figmaNode": "3453:54328"
+          }
+        ],
+        "_note": "In the collapsed variants the mark sits in a wrapper whose gap is space/xl; with one child it has no effect."
+      },
+      "metadata": "none on the page"
+    },
+    {
+      "name": "Sub Menu Header",
+      "id": "3453:54332",
+      "key": "c40536dd0d3380f01efb8352a1f33e708088ee66",
+      "private": false,
+      "variantCount": 2,
+      "api": {
+        "type": {
+          "type": "enum",
+          "figmaName": "Type",
+          "values": [
+            "default",
+            "sub page"
+          ],
+          "default": "default",
+          "controls": [
+            "variant",
+            "leading element (glyph vs back Icon Button)",
+            "iconAndTitle gap"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "figmaName": "Sub Menu Title#3404:27",
+          "default": "Sub Header",
+          "controls": [
+            "title"
+          ]
+        },
+        "showLeadingIcon": {
+          "type": "boolean",
+          "figmaName": "Show Leading Icon#3402:24",
+          "default": true,
+          "controls": [
+            "leadingIcon"
+          ],
+          "note": "Only wired in Type=default; the sub page's back Icon Button has no visibility binding (see issues)"
+        },
+        "showTrailingActions": {
+          "type": "boolean",
+          "figmaName": "Show Trailing Actions#3480:62",
+          "default": true,
+          "controls": [
+            "trailingActions"
+          ]
+        },
+        "trailingActions": {
+          "type": "slot",
+          "figmaName": "Trailing Actions Slot#3480:59",
+          "controls": [
+            "trailingActions"
+          ],
+          "prefers": "Button, Icon Button, Icon, and one further set (key e5a00b4c…) not found on this page",
+          "sample": "Button Size=small, Shape=sharp, Flavour=text, label 'Button'"
+        }
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "justify": "space-between",
+            "align": "centre",
+            "padding": {
+              "left": "space/lg",
+              "right": "space/lg",
+              "top": "none",
+              "bottom": "none"
+            }
+          },
+          "sizing": {
+            "h": "fixed (fill inside the rail)",
+            "v": "fixed"
+          },
+          "paint": {
+            "stroke": {
+              "color": "border/default",
+              "sides": "bottom only",
+              "width": "unbound (1Px, see issues)",
+              "align": "inside"
+            }
+          },
+          "measured": {
+            "heightPx": 72,
+            "widthPx": 363
+          }
+        },
+        {
+          "id": "iconAndTitle",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/md (default) / space/sm (sub page)",
+            "padding": "space/none"
+          },
+          "sizing": "hug",
+          "children": [
+            "leadingIcon | back",
+            "title"
+          ]
+        },
+        {
+          "id": "leadingIcon",
+          "kind": "glyph",
+          "parent": "iconAndTitle",
+          "validWhen": "type = default",
+          "ref": "Icon Size=medium, Framed=false",
+          "glyph": "verified (placeholder)",
+          "family": "rounded",
+          "color": "currentColor",
+          "visibleWhen": "showLeadingIcon"
+        },
+        {
+          "id": "back",
+          "kind": "instance",
+          "parent": "iconAndTitle",
+          "validWhen": "type = sub page",
+          "ref": "Icon Button (specs/icon-button) Size=small, Shape=sharp, Flavour=subtle, State=default, Disabled=false",
+          "glyph": "arrow-back",
+          "size": "control/sm (from Icon Button Size=small)",
+          "visibleWhen": "always (no binding to showLeadingIcon)",
+          "note": "Changed 2026-10-21: was a bare Icon Size=medium glyph. The Icon Button brings its own hit area, hover/press/focus and disabled states from specs/icon-button."
+        },
+        {
+          "id": "title",
+          "kind": "text",
+          "parent": "iconAndTitle",
+          "content": "title",
+          "text": {
+            "style": "label/medium",
+            "color": "foreground/primary"
+          },
+          "sizing": "hug",
+          "wrapper": "Page Title frame, gap space/sm"
+        },
+        {
+          "id": "trailingActions",
+          "kind": "slot",
+          "visibleWhen": "showTrailingActions",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/xs"
+          },
+          "sizing": "hug"
+        }
+      ],
+      "variants": {
+        "axis": "type",
+        "base": "default",
+        "table": [
+          {
+            "type": "default",
+            "lead": "Icon glyph verified (placeholder), Size=medium",
+            "lead.visibleWhen": "showLeadingIcon",
+            "iconAndTitle.gap": "space/md",
+            "figmaNode": "3453:54333"
+          },
+          {
+            "type": "sub page",
+            "lead": "Icon Button Size=small, Shape=sharp, Flavour=subtle, glyph arrow-back",
+            "lead.visibleWhen": "always (binding missing)",
+            "iconAndTitle.gap": "space/sm",
+            "figmaNode": "3453:54340"
+          }
+        ],
+        "_note": "Changed 2026-10-21: Type=sub page swapped its bare arrow-back Icon for an Icon Button and tightened the icon-to-title gap from space/md to space/sm. Type=default is unchanged."
+      },
+      "metadata": "none on the page"
+    },
+    {
+      "name": "Caret Indicator",
+      "id": "3453:54347",
+      "key": "099d193423ab2c7f6f113094803af7a7f333e5c6",
+      "private": false,
+      "variantCount": 12,
+      "alsoUsedBy": [
+        "Sub Menu Item (specs/sub-menu-item)",
+        "Collapsible Menu Item (via its Sub Menu Item)",
+        "Accordion and Accordion Item (specs/accordion)"
+      ],
+      "api": {
+        "open": {
+          "type": "enum",
+          "figmaName": "Open",
+          "values": [
+            "false",
+            "true"
+          ],
+          "default": "false",
+          "controls": [
+            "variant",
+            "glyph"
+          ]
+        },
+        "direction": {
+          "type": "enum",
+          "figmaName": "Direction",
+          "values": [
+            "vertical",
+            "horizontal"
+          ],
+          "default": "vertical",
+          "controls": [
+            "variant",
+            "glyph"
+          ]
+        },
+        "size": {
+          "type": "enum",
+          "figmaName": "Size",
+          "values": [
+            "small",
+            "medium",
+            "large"
+          ],
+          "default": "small",
+          "controls": [
+            "variant",
+            "glyph size"
+          ]
+        }
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "vertical",
+            "gap": "unbound, one child",
+            "padding": "none"
+          },
+          "sizing": "hug"
+        },
+        {
+          "id": "glyph",
+          "kind": "glyph",
+          "ref": "Icon Framed=false, Size=<size>",
+          "family": "rounded",
+          "color": "currentColor (not bound; follows the surrounding text)",
+          "note": "As drawn in Figma: a glyph swap (open and closed are different glyphs). Owner decision: build it as one glyph that rotates, animated; see ownerDecision below."
+        }
+      ],
+      "variants": {
+        "axis": "open × direction (glyph) and size",
+        "base": "open=false, direction=vertical, size=small",
+        "glyphTable": [
+          {
+            "direction": "vertical",
+            "open": "false",
+            "glyph": "expand-more"
+          },
+          {
+            "direction": "vertical",
+            "open": "true",
+            "glyph": "expand-less"
+          },
+          {
+            "direction": "horizontal",
+            "open": "false",
+            "glyph": "chevron-right"
+          },
+          {
+            "direction": "horizontal",
+            "open": "true",
+            "glyph": "expand-more"
+          }
+        ],
+        "sizeTable": [
+          {
+            "size": "small",
+            "icon": "Icon Size=small",
+            "measuredPx": "16×16"
+          },
+          {
+            "size": "medium",
+            "icon": "Icon Size=medium",
+            "measuredPx": "20×20"
+          },
+          {
+            "size": "large",
+            "icon": "Icon Size=large",
+            "measuredPx": "28×28"
+          }
+        ],
+        "_note": "Size is the nested Icon's own size variant; no token is bound on Caret Indicator itself. Every variant is listed under visualReference."
+      },
+      "inCode": "Owner decision (carried over): one glyph per direction, rotated with animation rather than swapped. vertical: expand-more, rotated 180deg when open (reads as expand-less). horizontal: chevron-right, rotated 90deg clockwise when open (reads as expand-more). The rotation transitions on the animations/spring token (--animations-spring), the motion Switch uses; no transition under prefers-reduced-motion. No state, no colour or size tokens.",
+      "metadata": "none on the page",
+      "ownerDecision": [
+        "Carets and chevrons rotate one glyph with animation rather than swapping glyphs.",
+        "Motion that matches Switch uses the animations/spring token (--animations-spring)."
+      ]
+    },
+    {
+      "name": "Collapsible Menu Item",
+      "id": "3453:54352",
+      "key": "7f862b1894f492b75ce0aa35ee5178b760e11269",
+      "private": false,
+      "variantCount": 2,
+      "api": {
+        "open": {
+          "type": "enum",
+          "figmaName": "Open",
+          "values": [
+            "false",
+            "true"
+          ],
+          "default": "false",
+          "controls": [
+            "variant",
+            "children",
+            "header state",
+            "caret"
+          ]
+        },
+        "children": {
+          "type": "slot",
+          "figmaName": "Sub Menu Slot#3423:58",
+          "controls": [
+            "children"
+          ],
+          "visibleWhen": "open",
+          "prefers": "none set",
+          "sample": "4 Sub Menu Item, Nested=true, Sub Menu=false"
+        }
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "vertical",
+            "gap": "space/none",
+            "padding": "none"
+          },
+          "sizing": {
+            "h": "fill",
+            "v": "hug"
+          },
+          "open": {
+            "radius": "radius/sm",
+            "clips": true
+          }
+        },
+        {
+          "id": "header",
+          "kind": "instance",
+          "ref": "Sub Menu Item (specs/sub-menu-item)",
+          "refVariant": "Nested=false, Sub Menu=true, Show Leading Icon=true; State=default (closed) / active (open)",
+          "caret": "Caret Indicator overridden to Direction=vertical, Size=small, Open=<open>: expand-more closed, expand-less open",
+          "open": {
+            "radius": "radius/sm top, radius/none bottom",
+            "fill": "interactive/ghost/background/pressed (from State=active)"
+          }
+        },
+        {
+          "id": "children",
+          "kind": "slot",
+          "visibleWhen": "open",
+          "layout": {
+            "direction": "vertical",
+            "gap": "space/xs",
+            "padding": "space/sm"
+          },
+          "sizing": {
+            "h": "fill",
+            "v": "hug"
+          },
+          "paint": {
+            "fill": "surface/menu"
+          },
+          "radius": "radius/sm bottom corners",
+          "clips": true
+        }
+      ],
+      "variants": {
+        "axis": "open",
+        "base": "false",
+        "table": [
+          {
+            "open": "false",
+            "header.state": "default",
+            "caret": "expand-more",
+            "children": "hidden",
+            "figmaNode": "3453:54353"
+          },
+          {
+            "open": "true",
+            "header.state": "active",
+            "caret": "expand-less",
+            "children": "shown on surface/menu",
+            "root.radius": "radius/sm",
+            "figmaNode": "3453:54360"
+          }
+        ]
+      },
+      "metadata": "none on the page"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Icon",
+      "id": "2046:15010",
+      "remote": false,
+      "spec": "specs/icon",
+      "usedAs": "every glyph (through Navigation Header, Sub Menu Header, Caret Indicator and the items)"
+    },
+    {
+      "name": "Icon Button",
+      "id": "2338:1763",
+      "key": "aee1f4fe89a3f70a26978e68621194baf1271b8a",
+      "remote": false,
+      "spec": "specs/icon-button",
+      "usedAs": "narrow header action; Navigation Header action; Sub Menu Header back button (Type=sub page, new 2026-10-21)"
+    },
+    {
+      "name": "Button",
+      "id": "2060:15072",
+      "key": "42bf13a5210cd307b7bd4563f2521b78cfd74dae",
+      "remote": false,
+      "spec": "specs/button",
+      "usedAs": "wide header action; Sub Menu Header trailing action"
+    },
+    {
+      "name": "Avatar",
+      "id": "2699:17793",
+      "key": "2e07804eaab26a5fe4db4736c46174b28bb456fc",
+      "remote": false,
+      "spec": "specs/avatar",
+      "usedAs": "Navigation Header mark (Type=avatar)"
+    },
+    {
+      "name": "Divider",
+      "id": "2152:8803",
+      "key": "d0ebc910e87ef304f62d037c99458a69b9eabf39",
+      "remote": false,
+      "spec": "specs/divider",
+      "usedAs": "first item in Menu Slot and Footer Slot samples"
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "surface/section",
+      "surface/menu",
+      "border/default",
+      "foreground/primary",
+      "interactive/primary/background/default",
+      "interactive/primary/border/default",
+      "interactive/ghost/background/default",
+      "interactive/ghost/background/pressed",
+      "interactive/ghost/border/default",
+      "interactive/neutral/border/default"
+    ],
+    "dimension": [
+      "space/none",
+      "space/xs",
+      "space/sm",
+      "space/md",
+      "space/lg",
+      "space/xl",
+      "space/card",
+      "control/sm",
+      "control/lg",
+      "control/target-min",
+      "radius/none",
+      "radius/sm",
+      "radius/element-sm",
+      "stroke/base",
+      "stroke/thin"
+    ],
+    "typography": [
+      "label/medium"
+    ],
+    "glyphs": [
+      "add-circle-outline",
+      "left-panel-open",
+      "left-panel-close",
+      "settings",
+      "zebra",
+      "verified",
+      "arrow-back",
+      "star",
+      "expand-more",
+      "expand-less",
+      "chevron-right"
+    ],
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "typography": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ]
+    },
+    "_note": "Names bound by the master and the four subcomponents specced here; the item tokens are in their own specs. All 26 bound names resolve in tokens/base; all 11 glyphs are in packages/icons/codepoints.json and not retired. animations/spring is not bound in Figma (Figma models no motion); it is named here by owner decision for the Caret Indicator rotation and resolves in tokens/base/size. Theme axes from tokens/manifest.json, which now also lists extension collections (companion, target, condensed) that override some of these names per brand.",
+    "motion": [
+      "animations/spring"
+    ],
+    "extensions": {
+      "companion": "palette (6 overrides)",
+      "target": "primitives (10), palette (17)",
+      "condensed": "typography (34), size (29)"
+    }
+  },
+  "states": [
+    {
+      "state": "Static",
+      "trigger": "—",
+      "duration": "—",
+      "whatChanges": "The rail has no interaction states of its own. Selection, hover, press and disabled all live on the Navigation Rail Item and Sub Menu Item instances inside the slots, so the container never changes appearance."
+    }
+  ],
+  "behavior": [
+    {
+      "type": "Motion",
+      "description": "Figma stores no timing and the rail models no transition. Moving between the narrow and wide rail is a variant switch, an authoring choice rather than something that animates here."
+    },
+    {
+      "type": "Width change",
+      "description": "Expanded and Show Sub menu both change the component's overall width. Whatever sits beside the rail has to absorb the difference, so plan the page for every width you intend to ship."
+    },
+    {
+      "type": "Vertical fill",
+      "description": "The menu list takes whatever height is left between the header block and the footer, so the footer stays pinned to the bottom however many items sit above it."
+    }
+  ],
+  "content": [
+    {
+      "property": "Menu Slot",
+      "type": "slot, holds Navigation Rail Item",
+      "description": "Additional destinations below the three built-in rail items. It ships holding a Divider and three items. See the Navigation Rail Item Metadata frame. Its content is stored separately for each Label setting, so switching Label leaves the content behind."
+    },
+    {
+      "property": "Footer Slot",
+      "type": "slot, holds Navigation Rail Item",
+      "description": "Destinations pinned to the bottom, above the two fixed footer items. It ships holding a Divider and three items, and the same content is shared by every variant."
+    },
+    {
+      "property": "Sub Menu Slot",
+      "type": "slot, holds Sub Menu Item and Collapsible Menu Item",
+      "description": "The second-level list inside the panel. It ships holding one Collapsible Menu Item and four Sub Menu Items, and its content is shared by every variant. See the Sub Menu Item Metadata frame."
+    },
+    {
+      "property": "Sub Menu Header",
+      "type": "exposed nested instance",
+      "description": "The panel's title bar, carrying a back affordance, an editable title and a trailing slot of its own holding a Button. The rail leaves the instance exposed, so all of that is reachable without detaching. The shape of all sub elements are inherited from the main rail component."
+    },
+    {
+      "property": "Header and header action",
+      "type": "fixed nested instances",
+      "description": "The header is a Navigation Header showing an avatar. The action below it is an Icon Button in the narrow rail and a Button in the wide one. Neither is a slot, so changing them means overriding the nested instance."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Fill the Menu Slot and Footer Slot with Navigation Rail Item instances and let the rail handle the spacing and alignment.",
+      "Keep the toggle item visible unless something outside the rail controls Expanded, since it is the only control a user has over the rail's width."
+    ],
+    "dont": [
+      "Don't place Menu Slot content and then switch Label. The two Label settings hold that slot's content separately, so the content will not come with you.",
+      "Don't lean on Label to make destinations readable. The caption sits inside the narrow column and only the shortest words fit, Expanded is the setting that gives labels room."
+    ]
+  },
+  "accessibility": [
+    "The rail is a container and announces nothing itself. The destinations inside carry the meaning, so each needs a clear name even when only its glyph shows.",
+    "Collapsed, destinations are glyph-only unless Label is on. An icon is not a name, so the accessible name has to come from code.",
+    "Exactly one destination should read as selected across the rail and the panel together, and nothing in the component enforces that.",
+    "The panel is separated from the rail by a single border on its leading edge. Check that border/default reads against surface/section, because nothing else marks the boundary.",
+    "The toggle item is the only way a user changes the rail's width. Hiding it without providing another control strands anyone who needs the labels."
+  ],
+  "layoutTheming": [
+    {
+      "property": "Width",
+      "type": "Hug",
+      "description": "312px collapsed and 440px expanded. That is the icon rail at 72px or 200px, plus the sub menu panel at a fixed 240px in both."
+    },
+    {
+      "property": "Height",
+      "type": "Fill",
+      "description": "Fills its parent, drawn at 991px. The icon rail and the panel both fill it, and the menu list absorbs the space left between the header block and the footer."
+    },
+    {
+      "property": "Rail padding",
+      "type": "Fixed",
+      "description": "12px on all four sides of the icon rail, space/md left and right and space/card top and bottom, with a 12px (space/md) gap between the header, the action, the menu list and the footer."
+    },
+    {
+      "property": "Item spacing",
+      "type": "Fixed",
+      "description": "4px (space/xs) between items in both the menu list and the footer. The Menu Slot adds 4px (space/xs) of horizontal padding of its own."
+    },
+    {
+      "property": "Panel padding",
+      "type": "Fixed",
+      "description": "The Sub Menu Slot insets its rows by 8px (space/sm) on all four sides, with a 4px (space/xs) gap between them."
+    },
+    {
+      "property": "Border",
+      "type": "Fixed",
+      "description": "A single 1px border on border/default down the leading edge of the sub menu panel, plus a 1px bottom border on the same token under the Sub Menu Header. Nothing else in the component is stroked."
+    },
+    {
+      "property": "Fill",
+      "type": "Theming",
+      "description": "The component sits on surface/section. Neither the icon rail nor the panel paints a fill of its own, so both show that surface through."
+    },
+    {
+      "property": "Colour",
+      "type": "Theming",
+      "description": "The rail binds only its surface and its two borders. Every other colour comes from the items in the slots."
+    }
+  ],
+  "ownerDecisions": [
+    {
+      "decision": "Carets and chevrons rotate one glyph with animation rather than swapping glyphs.",
+      "appliesTo": "Caret Indicator, and through it Sub Menu Item and Collapsible Menu Item",
+      "figma": "Figma still swaps glyphs per Open variant; the decision overrides that in code."
+    },
+    {
+      "decision": "Motion that matches Switch uses the animations/spring token (--animations-spring).",
+      "appliesTo": "the Caret Indicator rotation",
+      "figma": "Figma models no motion on this page."
+    },
+    {
+      "decision": "Locked to dark mode by default; `inverse` locks it to light.",
+      "appliesTo": "Navigation Rail and everything rendered inside it (items, headers, sub menu, slotted content, popups that leave the tree)",
+      "figma": "Figma has no inverse property; code-only. Implemented as the token layer's mode-dark / mode-light class on the rail root, so .ext-* brands still apply."
+    },
+    {
+      "decision": "Shape reaches every nested component.",
+      "appliesTo": "Navigation Rail Item, Sub Menu Item, Collapsible Menu Item, the header action, and the Buttons and Icon Buttons inside Navigation Header and Sub Menu Header (including the back button). The rail itself is unaffected.",
+      "figma": "Figma pins the header buttons to Shape=sharp and the header action to Shape=rounded; the decision overrides both in code. Items used outside a rail stay rounded."
+    },
+    {
+      "decision": "Shape tokens: rounded = radius/sm, sharp = radius/none.",
+      "appliesTo": "the rail's shape property; a nested Button or Icon Button takes shape=rounded / sharp to match",
+      "figma": "Figma rebinds placed items to radius/element-sm (same value as radius/sm today); code keeps the item sets' own radius/sm."
+    }
+  ],
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3182-237",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54061",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4762-6539",
+    "variants": {
+      "narrow": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4654-10599",
+      "narrow + label": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54097",
+      "wide": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54121"
+    },
+    "subcomponents": {
+      "Navigation Header": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54312",
+      "Sub Menu Header": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54332",
+      "Caret Indicator": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54347",
+      "Collapsible Menu Item (open)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54360",
+      "Navigation Rail Item": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54230",
+      "Sub Menu Item": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54275",
+      "Sub Menu Header (sub page)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54340"
+    },
+    "caretIndicatorVariants": {
+      "vertical closed small": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54348",
+      "vertical open small": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54350",
+      "horizontal closed small": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3476-62257",
+      "horizontal open small": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3476-62261",
+      "vertical closed medium": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5541-9882",
+      "vertical closed large": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5541-10218"
+    },
+    "pageExtras": {
+      "Dev Deviation": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3555-1576",
+      "Navigation Rail Template": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3764-2775",
+      "stray Navigation Rail frame": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5547-2915"
+    }
+  },
+  "notificationIndicatorCopy": {
+    "subject": "Drifted Notification Indicator copy (set 2837:1489, key 5ce87415…) reported by specs/navigation-bar",
+    "usedBy": "Sub Menu Item only, as its badge (Size=medium), in all 10 variants. Every Sub Menu Item instance therefore carries it, including those inside Collapsible Menu Item and the rail's Sub Menu Slot.",
+    "notUsedBy": "Navigation Rail Item's badge is the Badges-page set (3719:6256, Size=small), the specced one. The master, Navigation Header, Sub Menu Header, Caret Indicator and Collapsible Menu Item hold no Notification Indicator of their own.",
+    "instanceCount": "16 direct instances of the medium variant today (specs/navigation-bar recorded 15): 10 in the Sub Menu Item variants, 1 in the Sub Menu Item Metadata anatomy example, 1 in the stray 'Navigation Rail' frame (5547:2915), and 4 in the orphaned Sub Menu Item set 3404:28070, which sits on no page. Small and large have none.",
+    "detail": "See specs/sub-menu-item issues and specs/navigation-bar duplicateCheck for the differences from specs/notification-indicator."
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "api",
+      "detail": "Show Header (#3388:12, boolean, default true) is bound to nothing in any variant: the header always shows. It is also absent from the metadata. Either wire it or remove it."
+    },
+    {
+      "severity": "warn",
+      "source": "slot preferred values",
+      "detail": "Sub Menu Slot's preferred instance is the Sub Menu Item set 3404:28070 (key e97045ae…), an older 4-variant copy (no Nested, no active) that sits on no page. The live set is 3453:54275 (key 2ab793c0…). Collapsible Menu Item's closed variant also still holds four instances of the orphan in its hidden slot."
+    },
+    {
+      "severity": "warn",
+      "source": "slot preferred values",
+      "detail": "Menu Slot and Footer Slot prefer Divider plus a set with key a93b5504…, which is neither this page's Navigation Rail Item (7848f7c7…) nor the Tab Bar page's (356c565c…) and was not found in the library search. The metadata says these slots hold Navigation Rail Item; the picker probably offers a deleted item."
+    },
+    {
+      "severity": "note",
+      "source": "instance overrides",
+      "detail": "Resolved by owner decision: the rail's shape drives the items' radius, rounded = radius/sm (the item sets' own binding; radius/element-sm, which Figma rebinds placed items to, has the same value today), sharp = radius/none."
+    },
+    {
+      "severity": "warn",
+      "source": "gaps",
+      "detail": "Border widths are unbound: the sub menu panel's left border and the Sub Menu Header's bottom border are raw 1Px strokes with colour border/default. Use stroke/thin (the Divider's token) in code."
+    },
+    {
+      "severity": "warn",
+      "source": "Sub Menu Header",
+      "detail": "In Type=sub page the back affordance (now an Icon Button, Size=small, Shape=sharp, Flavour=subtle, glyph arrow-back) is not bound to Show Leading Icon, so it cannot be hidden and the property does nothing in that variant. Unchanged by the 2026-10-21 update."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs extracted",
+      "detail": "Layout & Theming says the rail's height is Fill. The component itself is drawn fixed at 991Px; fill is something the consumer sets on the instance. Build it to fill its container."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs extracted",
+      "detail": "Layout & Theming says the Menu Slot adds space/xs of horizontal padding. That is true in the narrow variants only; in the wide variant its padding is space/none."
+    },
+    {
+      "severity": "warn",
+      "source": "Dev Deviation frame",
+      "detail": "The page records a code deviation: 'Code only supports the collapsed, icon-only rail layout (fixed 64px width). The expanded full-label mode shown in Figma is not available. Menu Slot, Footer Slot — Are not currently implemented slots in code.' Figma's narrow rail measures 72Px; the existing code is behind the design."
+    },
+    {
+      "severity": "warn",
+      "source": "double alpha",
+      "detail": "Collapsible Menu Item's open header fill is interactive/ghost/background/pressed with an extra paint opacity of 0.1, on a token that is already translucent; the same applies to the item scrims (see specs/navigation-rail-item and specs/sub-menu-item). Use the token alone in code."
+    },
+    {
+      "severity": "warn",
+      "source": "behavior",
+      "detail": "Nothing wires the toggle item to Expanded, and nothing enforces a single selected destination across rail and panel (the metadata says so). Code owns both."
+    },
+    {
+      "severity": "note",
+      "source": "metadata (new)",
+      "detail": "Resolved by owner decision: rounded = radius/sm, sharp = radius/none. Figma's sharp description is still copied from More Rail Items ('Hides the slot along with everything placed in it…'); the Figma text needs fixing, the behaviour does not."
+    },
+    {
+      "severity": "note",
+      "source": "metadata vs extracted (new)",
+      "detail": "Resolved by owner decision: the Sub Menu Header's back Icon Button and trailing actions, and Navigation Header's settings Icon Button, follow the rail's shape (Figma, which draws them sharp in the rounded rail, is out of date), as does the header action."
+    },
+    {
+      "severity": "note",
+      "source": "metadata vs extracted (new)",
+      "detail": "Resolved by owner decision: Shape reaches every nested component, including the header action and the header buttons. In code it is a context value (React) / a property the rail sets (web components) that the items read, and the rail forwards it to the Buttons and Icon Buttons it renders."
+    },
+    {
+      "severity": "note",
+      "source": "api",
+      "detail": "Menu Slot#3200:20 is bound to no layer; the live Menu Slots are #3497:69 (Label=false) and #3497:65 (Label=true). The per-Label split is a Figma workaround; in code it is one menuSlot."
+    },
+    {
+      "severity": "note",
+      "source": "variants",
+      "detail": "Only three variants exist: Label=true with Expanded=true is not built (the wide rail always shows labels)."
+    },
+    {
+      "severity": "note",
+      "source": "gaps",
+      "detail": "Unbound gaps of 10 on Navigation Header's collapsed root and on Caret Indicator's root have a single flowing child, so they never render."
+    },
+    {
+      "severity": "note",
+      "source": "internalVariations",
+      "detail": "Header type (avatar or logo) and Sub Menu Header type are swap-only from the rail. The rail pins Type=avatar and Type=sub page; whether they become props is the implementer's call."
+    },
+    {
+      "severity": "note",
+      "source": "Collapsible Menu Item",
+      "detail": "Open=true puts the header row into State=active (ghost pressed scrim) for as long as the group is open, so an open group reads as pressed. It also overrides the Sub Menu Item's caret to Direction=vertical (expand-more/expand-less), where a plain Sub Menu Item uses horizontal (chevron-right)."
+    },
+    {
+      "severity": "note",
+      "source": "coverage",
+      "detail": "Navigation Header, Sub Menu Header, Caret Indicator and Collapsible Menu Item have no metadata frames and no component descriptions; their API above comes from structure only. No focus states anywhere on the page."
+    },
+    {
+      "severity": "note",
+      "source": "page",
+      "detail": "A stray top-level frame named 'Navigation Rail' (5547:2915) holds a detached copy of the sub menu panel (Sub Menu Header instance plus a Sub Menu Slot frame); it is not a component. The 'Navigation Rail Template' frame's details card carries copy pasted from Dropdown ('The full dropdown pattern that composes a trigger with its menu…'), and three of its five instances point at a component named 'Navigation Rail/false/false' that is not this set."
+    },
+    {
+      "severity": "note",
+      "source": "duplicate component",
+      "detail": "The Tab Bar page has its own set named 'Navigation Rail Item' (3635:1151). It is a different component (a horizontal tab item), not a copy of this page's item; see specs/navigation-rail-item duplicateCheck. Not specced."
+    },
+    {
+      "severity": "note",
+      "source": "owner decision vs Figma",
+      "detail": "Caret Indicator still swaps glyphs per Open variant in Figma (expand-more/expand-less, chevron-right/expand-more). The owner decision to rotate one glyph with animation on animations/spring stands; Figma has not been redrawn to match and no motion is modelled."
+    },
+    {
+      "severity": "note",
+      "source": "tokens",
+      "detail": "tokens/manifest.json now lists extension collections (companion: palette; target: primitives, palette; condensed: typography, size). The rail binds names only, so it themes under them without change, but the condensed size/typography overrides can move the measured widths recorded here."
+    }
+  ]
+}

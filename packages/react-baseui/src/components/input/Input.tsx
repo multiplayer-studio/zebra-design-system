@@ -2,6 +2,7 @@ import * as React from "react";
 import { Field } from "@base-ui/react/field";
 import { Icon } from "../icon/Icon.js";
 import { InputField, type InputFieldProps } from "../input-field/InputField.js";
+import { InputHint } from "./InputHint.js";
 import "./input.css";
 
 export type InputState = "default" | "invalid" | "disabled";
@@ -61,12 +62,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Inp
         </Field.Label>
       ) : null}
       <InputField ref={ref} {...fieldProps} size={size} shape={shape} name={name} disabled={disabled} invalid={invalid} required={labelType === "required"} />
-      {hint ? (
-        <Field.Description className="zds-input__hint" data-type={hintType}>
-          {hintIcon ? <Icon className="zds-input__hint-icon" name={hintType === "error" ? "error" : "info"} size="small" iconStyle="rounded" /> : null}
-          <span className="zds-input__message" aria-live={hintType === "error" ? "polite" : undefined}>{hint}</span>
-        </Field.Description>
-      ) : null}
+      {hint ? <InputHint type={hintType} icon={hintIcon}>{hint}</InputHint> : null}
     </Field.Root>
   );
 });

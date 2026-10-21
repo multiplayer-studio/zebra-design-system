@@ -1,4 +1,40 @@
 {
+  "animations": {
+    "smooth": {
+      "$type": "string",
+      "$value": "250ms ease-in-out",
+      "$description": "Smooth motion for opening and closing: ease-in-out over 250ms. Used by every element in Navigation Rail (collapse/expand, sub menu and group open/close). Duration and easing together: transition: width var(--animations-smooth). Turn it off under prefers-reduced-motion.",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:6811:2",
+          "collection": "size",
+          "mode": "Desktop Compact",
+          "resolvedType": "STRING",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--animations-spring)"
+          }
+        }
+      }
+    },
+    "spring": {
+      "$type": "string",
+      "$value": "250ms cubic-bezier(0.34, 1.36, 0.64, 1)",
+      "$description": "Spring motion shared by Switch and Segmented Control: 250ms on cubic-bezier(0.34, 1.36, 0.64, 1), a slight overshoot that settles. Duration and easing together, for transition timing: transition: transform var(--animations-spring). Turn it off under prefers-reduced-motion.",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:6797:2",
+          "collection": "size",
+          "mode": "Desktop Compact",
+          "resolvedType": "STRING",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--animations-spring)"
+          }
+        }
+      }
+    }
+  },
   "container": {
     "default": {
       "$type": "dimension",

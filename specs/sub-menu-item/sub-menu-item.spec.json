@@ -1,0 +1,641 @@
+{
+  "component": {
+    "name": "Sub Menu Item",
+    "slug": "sub-menu-item",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "3453:54275",
+      "key": "2ab793c034c0de9ea281372bbcd70b44920e11ae",
+      "page": "Navigation Rail",
+      "pageNodeId": "3182:237",
+      "frame": "Subcomponents/Navigation Rail",
+      "metadataFrameId": "4762:6931",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54275",
+      "extractedAt": "2026-10-21",
+      "variantCount": 10,
+      "defaultVariant": "State=default, Disabled=false, Nested=false",
+      "extractionNote": "Re-extracted 2026-10-21 after designer updates to the page. Same set (3453:54275, same key), same 10 variants, same property ids, defaults and component description, and the same metadata frame (4762:6931) with identical text; every variant re-read to depth 12 and diffed: no structural, token or copy change. Specced on its own, not as a subcomponent of Navigation Rail (specs/navigation-rail): it is public with its own key, it has its own Sub Menu Item Metadata frame, and the rail's metadata defers to that frame. The nested Icon, Notification Indicator and Caret Indicator read through their own sets."
+    }
+  },
+  "summary": "A row in the Navigation Rail's sub menu panel, with a leading glyph, a label, an optional badge and an optional caret. It is the content the rail's Sub Menu Slot is built around, placed either directly or inside a Collapsible Menu Item. Nesting is a property rather than a layout, indenting the row and quietening its label so one level of hierarchy reads without connector lines.",
+  "componentDescription": "A row inside the Navigation Rail sub-menu panel. Set Nested=true for items that belong under an expandable group header — it applies extra indent, secondary (de-emphasized) text color, and a smaller type size, so nested items read as visually subordinate to their parent group rather than looking like flat, top-level items. The leading icon (Show Leading Icon) and badge/notification indicator behave the same as top-level items.",
+  "api": {
+    "state": {
+      "type": "enum",
+      "figmaName": "State",
+      "values": [
+        "default",
+        "hover",
+        "active",
+        "selected"
+      ],
+      "default": "default",
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "default": "The resting row.",
+        "hover": "Documents the pointer-over treatment. The implementation drives this, so choosing it in a layout freezes the row in a state it should not be in.",
+        "active": "Documents the pointer-down treatment. It also shifts the label token, which hover does not.",
+        "selected": "The row the user is currently on. It is the only state with a background of its own rather than a borrowed scrim, and it recolours the label as well."
+      },
+      "_note": "Figma order is hover, selected, default, active; reordered here into interaction order."
+    },
+    "disabled": {
+      "type": "enum",
+      "figmaName": "Disabled",
+      "values": [
+        "false",
+        "true"
+      ],
+      "default": "false",
+      "controls": [
+        "variant"
+      ],
+      "validWhen": "state = default",
+      "intent": {
+        "false": "The row can be selected.",
+        "true": "The row is unavailable, and nothing on it explains why. Offered on the resting state only, so a row cannot be shown selected and disabled at once."
+      }
+    },
+    "nested": {
+      "type": "enum",
+      "figmaName": "Nested",
+      "values": [
+        "false",
+        "true"
+      ],
+      "default": "false",
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "false": "A first-level row in the panel.",
+        "true": "A child row under a collapsible parent. It indents from the leading edge and steps the label down to a quieter token and a smaller type style, so depth reads without a connector line. Only one level of nesting is built."
+      }
+    },
+    "label": {
+      "type": "string",
+      "figmaName": "Label#2841:4",
+      "default": "Label",
+      "controls": [
+        "label"
+      ],
+      "intent": "The row's name. The row is a fixed width and the text does not truncate or wrap, so a long name overflows rather than shortening."
+    },
+    "showLeadingIcon": {
+      "type": "boolean",
+      "figmaName": "Show Leading Icon#3196:4",
+      "default": true,
+      "controls": [
+        "icon",
+        "badge's inner indicator (see issues)"
+      ],
+      "intent": {
+        "true": "Shows a glyph before the label, which is what keeps rows scannable in a long list.",
+        "false": "Hides it. The label shifts to the leading edge, so a list mixing rows with and without icons loses its alignment."
+      }
+    },
+    "subMenu": {
+      "type": "boolean",
+      "figmaName": "Sub Menu#3408:38",
+      "default": true,
+      "controls": [
+        "trailingSlot"
+      ],
+      "intent": {
+        "true": "Shows the caret at the trailing edge, marking the row as one that opens a further level.",
+        "false": "Hides the caret, for a row that navigates straight to its destination. Leaving it on for a row that opens nothing promises a level that is not there."
+      }
+    },
+    "showBadge": {
+      "type": "boolean",
+      "figmaName": "Show Badge#3409:43",
+      "default": false,
+      "controls": [
+        "badge"
+      ],
+      "intent": {
+        "false": "No badge on the row.",
+        "true": "Reveals a notification indicator between the label and the trailing caret. Unlike the rail item's badge this one sits in the layout, so it takes space from the label."
+      }
+    }
+  },
+  "internalVariations": [
+    {
+      "part": "icon",
+      "via": "Icon (specs/icon)",
+      "pinned": "Size=small, Framed=false",
+      "default": "verified (placeholder)",
+      "intent": "Pinned to Size=small with Framed off and left exposed, so the glyph can be swapped per instance while the sizing stays consistent. See the Icon Metadata frame. It arrives holding Verified, a placeholder rather than a real destination glyph."
+    },
+    {
+      "part": "badge",
+      "via": "Notification Indicator",
+      "pinned": "Size=medium (the counter), value '2'",
+      "intent": "Pinned to Size=medium, which is the counter rather than the bare dot, and left exposed so its value stays editable. This is a different size from the one the rail item pins, so the two badges are not interchangeable.",
+      "inCode": "Likely a badgeCount input. Build it from specs/notification-indicator Size=medium, not from the drifted copy the set uses (see issues)."
+    },
+    {
+      "part": "caret",
+      "via": "Caret Indicator (specs/navigation-rail, subcomponents)",
+      "pinned": "Open=false, Direction=horizontal, Size=small → glyph chevron-right",
+      "intent": "Pinned to the horizontal direction and the closed position, and left exposed so the open state is reachable. Toggled as a whole by Sub Menu.",
+      "note": "Collapsible Menu Item overrides it to Direction=vertical and drives Open.",
+      "inCode": "Owner decision (carried over): one chevron-right glyph rotated 90deg clockwise when open, animated on animations/spring (--animations-spring), rather than Figma's glyph swap. Whatever opens the row drives open; see specs/navigation-rail Caret Indicator."
+    }
+  ],
+  "contentInputs": [],
+  "anatomy": [
+    {
+      "id": "root",
+      "kind": "container",
+      "number": 1,
+      "role": "Row — The outer frame. Fills the width of the slot it sits in and holds a minimum height, so rows in a list line up whatever they contain.",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/sm",
+        "padding": {
+          "top": "space/xs",
+          "bottom": "space/xs",
+          "left": "space/md (nested: space/xl)",
+          "right": "space/md"
+        },
+        "align": "start, centred vertically"
+      },
+      "sizing": {
+        "h": "fixed as drawn, fill in a slot",
+        "v": "hug"
+      },
+      "limits": {
+        "minHeight": "control/lg",
+        "minWidth": "unbound (48Px as drawn)"
+      },
+      "radius": "radius/sm",
+      "paint": {
+        "fill": "per state, see variants"
+      },
+      "measured": {
+        "sizePx": "184×48"
+      }
+    },
+    {
+      "id": "iconAndTitle",
+      "kind": "container",
+      "number": 2,
+      "role": "Icon and Title — The leading glyph and the label, kept together so the label starts at the same place on every row that has an icon.",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/md",
+        "padding": "space/none"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      },
+      "children": [
+        "icon",
+        "label"
+      ]
+    },
+    {
+      "id": "icon",
+      "kind": "glyph",
+      "parent": "iconAndTitle",
+      "visibleWhen": "showLeadingIcon",
+      "ref": "Icon",
+      "refVariant": "Size=small, Framed=false",
+      "glyph": "verified",
+      "family": "rounded",
+      "color": "currentColor — follows the label"
+    },
+    {
+      "id": "label",
+      "kind": "text",
+      "parent": "iconAndTitle",
+      "content": "label",
+      "text": {
+        "style": {
+          "nested=false": "label/medium",
+          "nested=true": "indicator/medium"
+        },
+        "color": "per state, see variants",
+        "truncation": "none",
+        "wrap": "none"
+      },
+      "sizing": "hug",
+      "wrapper": "Page Title frame, gap space/sm"
+    },
+    {
+      "id": "badge",
+      "kind": "instance",
+      "number": 3,
+      "role": "Badge — A notification indicator between the label and the caret. It sits inside the layout, so it takes width rather than overhanging.",
+      "visibleWhen": "showBadge && showLeadingIcon (see issues)",
+      "ref": "Notification Indicator, Size=medium",
+      "refSet": "2837:1489 as drawn (drifted copy); build from specs/notification-indicator",
+      "measured": {
+        "sizePx": "16×16"
+      }
+    },
+    {
+      "id": "trailingSlot",
+      "kind": "container",
+      "number": 4,
+      "role": "Trailing Slot — The caret marking a row that opens a further level. Toggled as a whole by the Sub Menu property.",
+      "visibleWhen": "subMenu",
+      "contains": {
+        "ref": "Caret Indicator",
+        "refVariant": "Open=false, Direction=horizontal, Size=small",
+        "glyph": "chevron-right",
+        "inCode": "one glyph rotated with animation (owner decision), not swapped"
+      },
+      "measured": {
+        "sizePx": "16×16"
+      }
+    }
+  ],
+  "variants": {
+    "axis": "state × disabled × nested",
+    "base": "state=default, disabled=false, nested=false",
+    "_note": "Nested only changes leading padding (space/md → space/xl), label style (label/medium → indicator/medium) and the default label colour. Hover, press and selected fills are ghost tokens with paint opacity, see issues.",
+    "table": [
+      {
+        "state": "default",
+        "disabled": "false",
+        "root.fill": "none",
+        "label.color": "foreground/primary (nested: foreground/secondary)",
+        "figmaNode": {
+          "nested=false": "3453:54294",
+          "nested=true": "3458:1467"
+        }
+      },
+      {
+        "state": "hover",
+        "disabled": "false",
+        "root.fill": "interactive/ghost/background/hover (translucent scrim)",
+        "label.color": "foreground/primary (nested: foreground/secondary)",
+        "figmaNode": {
+          "nested=false": "3453:54276",
+          "nested=true": "3458:1445"
+        }
+      },
+      {
+        "state": "active",
+        "disabled": "false",
+        "root.fill": "interactive/ghost/background/pressed (translucent scrim)",
+        "label.color": "interactive/neutral/foreground/default",
+        "figmaNode": {
+          "nested=false": "3453:54303",
+          "nested=true": "3458:1478"
+        }
+      },
+      {
+        "state": "selected",
+        "disabled": "false",
+        "root.fill": "interactive/ghost/background/selected (translucent)",
+        "label.color": "interactive/ghost/foreground/default",
+        "figmaNode": {
+          "nested=false": "3480:63554",
+          "nested=true": "3480:63563"
+        }
+      },
+      {
+        "state": "default",
+        "disabled": "true",
+        "root.fill": "none",
+        "label.color": "foreground/disabled",
+        "figmaNode": {
+          "nested=false": "3453:54285",
+          "nested=true": "3458:1456"
+        }
+      }
+    ]
+  },
+  "subcomponents": [],
+  "dependencies": [
+    {
+      "name": "Icon",
+      "id": "2046:15010",
+      "key": "a469ac1cf34202af3e094593468d9ef20a37a703",
+      "remote": false,
+      "spec": "specs/icon",
+      "usedAs": "icon"
+    },
+    {
+      "name": "Notification Indicator (drifted copy)",
+      "id": "2837:1489",
+      "key": "5ce874152d457038d8690067738a673cc2b0ad52",
+      "remote": false,
+      "spec": null,
+      "page": "Navigation Bar",
+      "usedAs": "badge, Size=medium, in all 10 variants",
+      "note": "Not the specced set. Use specs/notification-indicator (3719:6256) Size=medium; see issues and specs/navigation-bar duplicateCheck."
+    },
+    {
+      "name": "Caret Indicator",
+      "id": "3453:54347",
+      "key": "099d193423ab2c7f6f113094803af7a7f333e5c6",
+      "remote": false,
+      "spec": "specs/navigation-rail (subcomponents)",
+      "usedAs": "caret in trailingSlot"
+    }
+  ],
+  "usedBy": [
+    {
+      "name": "Navigation Rail",
+      "spec": "specs/navigation-rail",
+      "usedAs": "Sub Menu Slot content"
+    },
+    {
+      "name": "Collapsible Menu Item",
+      "spec": "specs/navigation-rail (subcomponents)",
+      "usedAs": "group header row (Nested=false, State default/active) and child rows (Nested=true, Sub Menu=false)"
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "foreground/primary",
+      "foreground/secondary",
+      "foreground/disabled",
+      "interactive/ghost/background/hover",
+      "interactive/ghost/background/pressed",
+      "interactive/ghost/background/selected",
+      "interactive/ghost/foreground/default",
+      "interactive/neutral/foreground/default"
+    ],
+    "dimension": [
+      "control/lg",
+      "space/none",
+      "space/xs",
+      "space/sm",
+      "space/md",
+      "space/xl",
+      "radius/sm"
+    ],
+    "typography": [
+      "label/medium",
+      "indicator/medium"
+    ],
+    "glyphs": [
+      "verified",
+      "chevron-right"
+    ],
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "typography": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ]
+    },
+    "_note": "Badge tokens belong to specs/notification-indicator. All 17 names resolve in tokens/base; both glyphs are in packages/icons/codepoints.json and not retired. animations/spring is not bound in Figma; it is named by owner decision for the caret's rotation and resolves in tokens/base/size. tokens/manifest.json now also lists extension collections (companion, target, condensed); the row binds names only and themes under them unchanged.",
+    "motion": [
+      "animations/spring"
+    ],
+    "extensions": {
+      "companion": "palette (6 overrides)",
+      "target": "primitives (10), palette (17)",
+      "condensed": "typography (34), size (29)"
+    }
+  },
+  "states": [
+    {
+      "state": "default",
+      "trigger": "Resting",
+      "duration": "—",
+      "whatChanges": "No background at all. The label sits on foreground/primary, or foreground/secondary when nested."
+    },
+    {
+      "state": "hover",
+      "trigger": "Pointer over the row",
+      "duration": "—",
+      "whatChanges": "A ghost scrim at 5 percent opacity appears behind the row. The label does not change."
+    },
+    {
+      "state": "active",
+      "trigger": "Pointer held down",
+      "duration": "—",
+      "whatChanges": "The ghost scrim at 10 percent, and the label moves to interactive/neutral/foreground/default. This is the one state where nested and unnested rows converge on the same label token."
+    },
+    {
+      "state": "selected",
+      "trigger": "Marked as the current row",
+      "duration": "—",
+      "whatChanges": "A background on interactive/ghost/background/selected at 5 percent, the only state with a token of its own rather than a borrowed scrim, with the label on interactive/ghost/foreground/default."
+    },
+    {
+      "state": "disabled",
+      "trigger": "Disabled set to true",
+      "duration": "—",
+      "whatChanges": "The background is dropped entirely and the label moves to foreground/disabled."
+    },
+    {
+      "state": "focus",
+      "trigger": "Not modelled",
+      "duration": "—",
+      "whatChanges": "There is no focus variant. Keyboard focus has to be rendered by the implementation."
+    }
+  ],
+  "behavior": [
+    {
+      "type": "Motion",
+      "description": "Figma stores no timing and no transition is modelled. Every state change is colour or opacity only, with no movement, scale or elevation."
+    },
+    {
+      "type": "Caret",
+      "description": "The caret has its own open and closed states, but this component does not drive them. Whatever expands the row is responsible for turning the caret with it."
+    },
+    {
+      "type": "Badge",
+      "description": "The badge sits inside the row's layout rather than floating over it, so turning it on takes width away from the label."
+    }
+  ],
+  "content": [
+    {
+      "property": "Label",
+      "type": "text property",
+      "description": "The row's name. Fixed row width with no truncation and no wrapping, so length has to be controlled by the writing."
+    },
+    {
+      "property": "Leading icon",
+      "type": "exposed nested Icon instance",
+      "description": "Pinned to Size=small with Framed off and left exposed, so the glyph can be swapped per instance while the sizing stays consistent. See the Icon Metadata frame. It arrives holding Verified, a placeholder rather than a real destination glyph."
+    },
+    {
+      "property": "Badge",
+      "type": "exposed nested Notification Indicator",
+      "description": "Pinned to Size=medium, which is the counter rather than the bare dot, and left exposed so its value stays editable. This is a different size from the one the rail item pins, so the two badges are not interchangeable."
+    },
+    {
+      "property": "Caret",
+      "type": "exposed nested Caret Indicator",
+      "description": "Pinned to the horizontal direction and the closed position, and left exposed so the open state is reachable. Toggled as a whole by Sub Menu."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Turn Sub Menu off for rows that navigate straight to a destination. The caret is a promise that another level exists.",
+      "Keep the leading icon on for every row in a list, or off for all of them. Mixing the two breaks the label alignment down the panel."
+    ],
+    "dont": [
+      "Don't nest more than one level. Only a single indent step is built, so a deeper tree will read as though everything sits at the same depth.",
+      "Don't treat this badge as interchangeable with the rail item's. This one is the counter size and sits in the layout, that one is a bare dot that floats over the glyph."
+    ]
+  },
+  "accessibility": [
+    "Nesting is conveyed by indent, a quieter label token and a smaller type style, with no connector line. The hierarchy has to be expressed in code as well.",
+    "Selection is the only state with a background of its own. Hover and press borrow a translucent scrim and leave the label alone, so neither reaches a keyboard or screen reader user.",
+    "There is no focus variant. Keyboard focus has to be rendered by the implementation.",
+    "Disabled is visual only and nothing on the row explains why it is unavailable.",
+    "The caret marks a row that opens another level but does not describe what is inside it, so the label has to carry that on its own.",
+    "Nested rows drop to a 12px type style, which is small for a navigation target. Check it against your minimum readable size."
+  ],
+  "layoutTheming": [
+    {
+      "property": "Width",
+      "type": "Fill",
+      "description": "Fills the slot it sits in, drawn at 184px. It does not hug its label, so rows in a list are all the same width."
+    },
+    {
+      "property": "Height",
+      "type": "Hug with a floor",
+      "description": "48px, held up by a control/lg minimum so the target never drops below it."
+    },
+    {
+      "property": "Padding",
+      "type": "Fixed per Nested",
+      "description": "4px (space/xs) top and bottom throughout. 12px (space/md) left and right unnested, with the left edge stepping to 24px when nested."
+    },
+    {
+      "property": "Gap",
+      "type": "Fixed",
+      "description": "8px (space/sm) between the icon, the label, the badge and the caret."
+    },
+    {
+      "property": "Radius",
+      "type": "Fixed",
+      "description": "radius/sm on every variant."
+    },
+    {
+      "property": "Icon and caret",
+      "type": "Fixed",
+      "description": "Both 16px, the icon an Icon at Size=small and the caret a Caret Indicator in its horizontal direction."
+    },
+    {
+      "property": "Badge",
+      "type": "In flow",
+      "description": "A 16px Notification Indicator at Size=medium, sitting between the label and the caret rather than overhanging the row."
+    },
+    {
+      "property": "Label type",
+      "type": "Fixed per Nested",
+      "description": "label/medium (14/20, Medium) unnested, indicator/medium (12/14, Medium) nested."
+    },
+    {
+      "property": "Colour",
+      "type": "Theming",
+      "description": "foreground/primary at rest, foreground/secondary when nested, interactive/ghost/foreground/default when selected, interactive/neutral/foreground/default when pressed and foreground/disabled when disabled. Backgrounds come from the interactive/ghost family."
+    }
+  ],
+  "ownerDecisions": [
+    {
+      "decision": "Carets and chevrons rotate one glyph with animation rather than swapping glyphs.",
+      "appliesTo": "the trailing caret (Caret Indicator)",
+      "figma": "Figma still swaps glyphs per Open variant."
+    },
+    {
+      "decision": "Motion that matches Switch uses the animations/spring token (--animations-spring).",
+      "appliesTo": "the caret rotation",
+      "figma": "Figma models no motion on this component."
+    }
+  ],
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3182-237",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54275",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4762-6931",
+    "variants": {
+      "default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54294",
+      "hover": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54276",
+      "active": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54303",
+      "selected": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3480-63554",
+      "disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54285",
+      "nested default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3458-1467",
+      "nested selected": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3480-63563"
+    },
+    "driftedNotificationIndicator": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2837-1489"
+  },
+  "duplicateCheck": {
+    "subject": "Sub Menu Item set 3404:28070 (key e97045ae9b0d9ff60b114c1dbd7dda8d879d16cb)",
+    "verdict": "An older copy that has been removed from every page but is still referenced. It has the same property ids (Label#2841:4, Show Leading Icon#3196:4, Sub Menu#3408:38, Show Badge#3409:43) but only four variants: State hover|selected|default × Disabled, no active and no Nested. It is the Navigation Rail's Sub Menu Slot preferred instance, and Collapsible Menu Item's closed variant still holds four of its instances in its hidden slot. Not specced; this spec is the reference."
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "dependency",
+      "detail": "The badge is an instance of the drifted Notification Indicator copy (2837:1489, Size=medium) in all 10 variants, not the specced Badges-page set (3719:6256). The copy draws a stroke/thin ring, a foreground/inverse count and differs in padding and radius at other sizes (see specs/navigation-bar duplicateCheck). Build the badge from specs/notification-indicator Size=medium."
+    },
+    {
+      "severity": "warn",
+      "source": "property binding",
+      "detail": "The badge frame is bound to Show Badge, but the Notification Indicator inside it is bound to Show Leading Icon. The badge shows only when both are on, and hiding the leading icon also hides the badge. Bind it to Show Badge only."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs extracted",
+      "detail": "Layout & Theming says the gap is space/sm between icon, label, badge and caret. The icon and label sit in their own group with gap space/md; space/sm applies between that group, the badge and the caret."
+    },
+    {
+      "severity": "warn",
+      "source": "gaps",
+      "detail": "Double alpha on the fills. interactive/ghost/background/hover, …/pressed and …/selected already resolve to translucent primitives (alpha 5, 10, 5), and Figma applies a paint opacity of 0.05, 0.1 and 0.05 on top, so the drawn fills are nearly invisible. The metadata's percentages match the tokens alone. In code use the tokens with no extra opacity."
+    },
+    {
+      "severity": "warn",
+      "source": "duplicate component",
+      "detail": "An orphaned older Sub Menu Item set (3404:28070) is still the rail's Sub Menu Slot preferred instance and fills Collapsible Menu Item's hidden slot. See duplicateCheck."
+    },
+    {
+      "severity": "note",
+      "source": "Navigation Rail shape",
+      "detail": "The rail's metadata now adds a code-only Shape property (rounded default, sharp) that 'controls the shape of all sub items within the rail unless overridden'. Placed in the rail, Sub Menu Items carry radius/element-sm (the rounded shape); the set itself uses radius/sm. In code the row's corner radius should follow the rail's shape. What sharp maps to is an open owner decision; see specs/navigation-rail issues."
+    },
+    {
+      "severity": "note",
+      "source": "metadata vs extracted",
+      "detail": "Layout & Theming says Width is Fill. The set's root is fixed at 184Px; it fills only where an instance is set to fill (as the rail does). Build it to fill."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "The five Nested=true variants carry an extra hidden, unbound copy of the trailing slot (with its caret) beside the live one. Leftover layer; ignore it."
+    },
+    {
+      "severity": "note",
+      "source": "gaps",
+      "detail": "Badge and trailing slot wrappers have an unbound gap of 10 with one child, so it never renders. Min width is a raw 48 with no token (min height is control/lg)."
+    },
+    {
+      "severity": "note",
+      "source": "caret",
+      "detail": "The caret never changes with State or Disabled; its colour is not bound, so on a font glyph it follows the label (currentColor)."
+    },
+    {
+      "severity": "note",
+      "source": "coverage",
+      "detail": "No focus state and no motion modelled in Figma. The caret's rotation motion comes from the owner decision (animations/spring), not from Figma."
+    }
+  ]
+}

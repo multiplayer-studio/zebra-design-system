@@ -1,0 +1,277 @@
+{
+  "component": {
+    "name": "Navigation Bar",
+    "slug": "navigation-bar",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "3077:8391",
+      "key": "5f93025f858a0449197b34ff7bd826a85647e868",
+      "page": "Navigation Bar",
+      "pageNodeId": "2835:796",
+      "metadataFrameId": "4750:164",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2835-796",
+      "extractedAt": "2026-10-20",
+      "variantCount": { "Navigation Bar": 4, "Spacer": 1, "Navigation Item": 3, "Notification Indicator (page copy)": 3 },
+      "defaultVariant": "Shrink Items=true, Spacer=false, Show Divider=false",
+      "extractionNote": "The page holds four public components and two metadata frames. Navigation Bar (this spec) and Spacer (below, under subcomponents) have no separate metadata of their own beyond the Navigation Bar Metadata frame; Navigation Item has its own Navigation Item Metadata frame and is specced separately at specs/navigation-item/. The Notification Indicator set on this page (2837:1489) is a drifted duplicate of the Badges-page set specced at specs/notification-indicator/ and is not re-specced; see dependencies and issues. All four Navigation Bar variants read to depth 12; nested Navigation Item, Button and Divider instances read through their own sets."
+    }
+  },
+
+  "summary": "A horizontal bar of top-level destinations, pinned to one edge of a view. It is a container rather than a fixed design, three slots hold the content and the variant axes decide only how that content is arranged across the width. Fill the slots with Navigation Item instances, and turn on the Action Slot when the bar also needs a call to action. It draws no background of its own, so it takes the colour of whatever sits behind it.",
+
+  "api": {
+    "shrinkItems": {
+      "type": "enum", "figmaName": "Shrink Items", "values": ["true", "false"], "default": "true", "controls": ["variant"],
+      "intent": {
+        "true": "Items keep their natural width and the groups sit against the ends of the bar. The right choice when the number of destinations can change, because adding one does not re-space the others.",
+        "false": "The item row stretches to the full width and spreads the items evenly across it. Suits a fixed set of destinations, and looks unbalanced the moment the count changes."
+      }
+    },
+    "spacer": {
+      "type": "enum", "figmaName": "Spacer", "values": ["false", "true"], "default": "false", "controls": ["variant", "rightSlot"],
+      "validWhen": "shrinkItems = true",
+      "intent": {
+        "false": "One group of items flowing from the start of the bar. Use when every destination has equal standing.",
+        "true": "Splits the items into two groups pushed to opposite ends and adds a second slot on the right. Use it to separate primary destinations from account or utility entries. Available only while Shrink Items is true."
+      }
+    },
+    "showDivider": {
+      "type": "enum", "figmaName": "Show Divider", "values": ["false", "true"], "default": "false", "controls": ["variant", "groupDivider"],
+      "validWhen": "spacer = true",
+      "intent": {
+        "false": "No rule between the two groups. The gap alone carries the separation, which is enough on a plain surface.",
+        "true": "Draws a vertical rule between the two groups. Available only when Spacer is true, because without a split there is nothing to divide."
+      }
+    },
+    "showActionSlot": {
+      "type": "boolean", "figmaName": "Show Action Slot#2908:16", "default": false, "controls": ["actionSlot", "actionDivider"],
+      "intent": {
+        "false": "No action alongside the destinations.",
+        "true": "Reveals a slot at the end of the bar for a call to action that is not a destination. Placing an action among the items instead makes it read as another place to go."
+      }
+    },
+    "slot": {
+      "type": "slot", "figmaName": "Slot#2923:28", "controls": ["slot"], "prefers": "Navigation Item (specs/navigation-item)",
+      "intent": "The main group of destinations. It will accept other content, but Navigation Item is what the bar is built around and what sets its height. See the Navigation Item Metadata frame for what each item offers."
+    },
+    "rightSlot": {
+      "type": "slot", "figmaName": "Right Slot#3077:34", "controls": ["rightSlot"], "prefers": "Navigation Item (specs/navigation-item)", "visibleWhen": "spacer = true",
+      "intent": "The second group, present only while Spacer is true. Same content rules as Slot. Switching to a variant without Spacer removes the slot along with anything placed in it."
+    },
+    "actionSlot": {
+      "type": "slot", "figmaName": "Action Slot#2908:11", "controls": ["actionSlot"], "prefers": "Button (specs/button)", "visibleWhen": "showActionSlot",
+      "intent": "A single action rather than a destination, hidden until Show Action Slot is turned on. See the Button Metadata frame. The bar does not constrain which flavour or size goes in, so match it to the surface."
+    }
+  },
+
+  "validCombinations": {
+    "_note": "Only four of the eight Shrink Items × Spacer × Show Divider combinations exist as variants.",
+    "rows": [
+      { "shrinkItems": "true", "spacer": "false", "showDivider": "false" },
+      { "shrinkItems": "false", "spacer": "false", "showDivider": "false" },
+      { "shrinkItems": "true", "spacer": "true", "showDivider": "false" },
+      { "shrinkItems": "true", "spacer": "true", "showDivider": "true" }
+    ]
+  },
+
+  "internalVariations": [],
+
+  "contentInputs": [
+    { "part": "slot", "input": "Navigation Item instances", "sampleCount": 4, "sample": "4 items in single-group variants (first one Active, third with Show Badge), 2 per group when Spacer is true" },
+    { "part": "rightSlot", "input": "Navigation Item instances", "sampleCount": 2, "sample": "first one with Show Badge" },
+    { "part": "actionSlot", "input": "one Button instance", "sampleCount": 1, "sample": "Button Size=small, Shape=rounded, Flavour=primary" }
+  ],
+
+  "anatomy": [
+    { "id": "root", "kind": "container", "number": 1,
+      "role": "Bar — The outer horizontal frame. Fills its parent's width, hugs its content vertically, and carries a top border and nothing else.",
+      "layout": { "direction": "horizontal", "gap": "none (unbound)", "padding": "none (unbound)", "crossAlign": "center",
+        "mainAlign": "space-between when shrinkItems = true; start when shrinkItems = false" },
+      "sizing": { "h": "fill", "v": "hug" },
+      "paint": { "fill": "none", "stroke": { "color": "border/default", "sides": "top only", "width": "unbound (see issues)", "align": "outside" } },
+      "measured": { "widthPx": 555, "heightPx": 72 } },
+    { "id": "slot", "kind": "slot", "number": 2, "ref": "Navigation Item",
+      "role": "Slot and Right Slot — The groups of destinations, holding Navigation Item instances. The right group exists only while Spacer is true.",
+      "layout": { "direction": "horizontal", "gap": "none (raw 0)", "padding": "none", "crossAlign": "center",
+        "mainAlign": "start when shrinkItems = true; space-between when shrinkItems = false" },
+      "sizing": { "h": "hug when shrinkItems = true; fill when shrinkItems = false", "v": "hug" } },
+    { "id": "groupDivider", "kind": "container", "number": 3, "ref": "Divider", "refVariant": "Orientation=vertical", "visibleWhen": "showDivider = true (variant)",
+      "role": "Divider Section — A vertical rule between the two groups, inset from the top and bottom edges. Present only while Show Divider is true.",
+      "layout": { "direction": "vertical", "gap": "space/none", "padding": { "top": "space/sm", "bottom": "space/sm" } },
+      "sizing": { "h": "fixed, zero width", "v": "fill" },
+      "position": "between slot and rightSlot, centred in the free space (root is space-between)",
+      "children": [ { "id": "line", "ref": "Divider", "sizing": { "h": "fixed", "v": "fill" }, "width": "stroke/thin", "radius": "radius/none", "color": "border/default (from the Divider component)" } ] },
+    { "id": "rightSlot", "kind": "slot", "ref": "Navigation Item", "visibleWhen": "spacer = true (variant)",
+      "role": "See Slot and Right Slot (part 2).",
+      "layout": { "direction": "horizontal", "gap": "none (raw 0)", "padding": "none", "crossAlign": "center", "mainAlign": "start" },
+      "sizing": { "h": "hug", "v": "hug" } },
+    { "id": "actionDivider", "kind": "container", "ref": "Divider", "refVariant": "Orientation=vertical", "visibleWhen": "showActionSlot, and only in the showDivider = true variant",
+      "role": "Not described in the metadata. A second Divider Section placed before the Action Slot, bound to Show Action Slot.",
+      "layout": { "direction": "vertical", "gap": "space/none", "padding": { "top": "space/sm", "bottom": "space/sm" } },
+      "sizing": { "h": "fixed, zero width", "v": "fixed" } },
+    { "id": "actionSlot", "kind": "slot", "number": 4, "ref": "Button", "visibleWhen": "showActionSlot",
+      "role": "Action Slot — An end-aligned slot holding a single Button, hidden until Show Action Slot is turned on.",
+      "layout": { "direction": "horizontal", "gap": "unbound (see issues)", "padding": { "left": "space/lg", "right": "space/none", "top": "none", "bottom": "none" }, "crossAlign": "center", "mainAlign": "start" },
+      "sizing": { "h": "hug", "v": "fixed" },
+      "position": "last child; pushed to the trailing end by root's space-between" }
+  ],
+
+  "variants": {
+    "_note": "Cells are token names or layout keywords. Measurements are suffixed Px. Show Divider and Spacer only add parts; nothing changes colour.",
+    "axis": "shrinkItems × spacer × showDivider",
+    "base": "shrinkItems=true, spacer=false, showDivider=false",
+    "table": [
+      { "shrinkItems": "true", "spacer": "false", "showDivider": "false", "root.mainAlign": "space-between", "slot.sizing.h": "hug", "slot.mainAlign": "start", "parts": "slot, actionSlot", "figmaNode": "3077:8392" },
+      { "shrinkItems": "false", "spacer": "false", "showDivider": "false", "root.mainAlign": "start", "slot.sizing.h": "fill", "slot.mainAlign": "space-between", "parts": "slot, actionSlot", "figmaNode": "3077:8667" },
+      { "shrinkItems": "true", "spacer": "true", "showDivider": "false", "root.mainAlign": "space-between", "slot.sizing.h": "hug", "slot.mainAlign": "start", "parts": "slot, rightSlot, actionSlot", "figmaNode": "3077:8752" },
+      { "shrinkItems": "true", "spacer": "true", "showDivider": "true", "root.mainAlign": "space-between", "slot.sizing.h": "hug", "slot.mainAlign": "start", "parts": "slot, groupDivider, rightSlot, actionDivider, actionSlot", "figmaNode": "3077:8813" }
+    ]
+  },
+
+  "subcomponents": [
+    {
+      "name": "Spacer",
+      "private": false,
+      "id": "2920:5097",
+      "key": "65d06d3ea92494060103abba51343372a4a76a30",
+      "kind": "standalone component (no variants)",
+      "metadata": "none — no metadata frame documents it, and the Navigation Bar Metadata never mentions it",
+      "usage": "Not used by any Navigation Bar variant (the Spacer axis is implemented with space-between, not with this component). One instance found in the file, inside Top App Bar (3108:274).",
+      "api": {
+        "showDivider": { "type": "boolean", "figmaName": "Show Divider#2920:27", "default": true, "controls": [], "_note": "Wired to nothing — the Divider inside is not bound to it. See issues." }
+      },
+      "anatomy": [
+        { "id": "root", "kind": "container", "layout": { "direction": "horizontal", "gap": "unbound, one child", "padding": "none", "align": "center" },
+          "sizing": { "h": "fixed", "v": "fixed" }, "measured": { "widthPx": 50, "minWidthPx": 50, "heightPx": 72 }, "paint": { "fill": "none" } },
+        { "id": "divider", "kind": "instance", "ref": "Divider", "refVariant": "Orientation=vertical", "visibleWhen": "always (showDivider not wired)",
+          "width": "stroke/thin", "radius": "radius/none", "color": "border/default (from the Divider component)",
+          "sizing": { "h": "fixed", "v": "fixed" }, "measured": { "heightPx": 40 }, "position": "centred" }
+      ],
+      "variants": null
+    }
+  ],
+
+  "dependencies": [
+    { "name": "Navigation Item", "id": "2841:3535", "key": "50a45b9513bff736d2505106dc5c35fdc359f89b", "remote": false, "spec": "specs/navigation-item", "usedAs": "Slot and Right Slot preferred content; sample items" },
+    { "name": "Button", "id": "2060:15072", "key": "42bf13a5210cd307b7bd4563f2521b78cfd74dae", "remote": false, "spec": "specs/button", "usedAs": "Action Slot preferred content; sample action" },
+    { "name": "Divider", "id": "2152:8803", "key": "d0ebc910e87ef304f62d037c99458a69b9eabf39", "remote": false, "spec": "specs/divider", "usedAs": "groupDivider, actionDivider, Spacer's rule (Orientation=vertical)" },
+    { "name": "Notification Indicator", "id": "3719:6256", "key": "73fe3d069d197d82a934eb2653a74245d4bb29a4", "remote": false, "spec": "specs/notification-indicator", "usedAs": "Indirect, through Navigation Item's badge. The copy on this page (2837:1489) is not used by anything here; see issues." }
+  ],
+
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "rule": "This spec names tokens only. Tokens bound inside Navigation Item, Button and Divider belong to their own specs.",
+    "color": ["border/default"],
+    "dimension": ["space/none", "space/sm", "space/lg", "stroke/thin", "radius/none"],
+    "typography": [],
+    "effect": [],
+    "glyphs": [],
+    "missingFromExport": [],
+    "themeAxes": {
+      "palette": ["Light", "Dark"],
+      "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
+      "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"],
+      "extensions": "tokens/extensions/ (companion, target, condensed)"
+    },
+    "_note": "All 6 names resolve in tokens/base."
+  },
+
+  "states": [
+    { "state": "Static", "trigger": "—", "duration": "—", "whatChanges": "The bar itself has no interaction states. Selection, hover and disabled all live on the Navigation Item instances inside the slots, so the bar never changes appearance on its own." }
+  ],
+
+  "behavior": [
+    { "type": "Motion", "description": "Figma stores no timing, and the bar models no transition. Arrangement changes come from switching a variant, which is an authoring choice rather than something that animates at runtime." },
+    { "type": "Reflow", "description": "Width fills the parent and height is driven by the slot content, so taller items make a taller bar. Under Shrink Items=false, adding or removing an item re-spaces every remaining item immediately." }
+  ],
+
+  "content": [
+    { "property": "Slot", "type": "slot, prefers Navigation Item", "description": "The main group of destinations. It will accept other content, but Navigation Item is what the bar is built around and what sets its height. See the Navigation Item Metadata frame for what each item offers." },
+    { "property": "Right Slot", "type": "slot, prefers Navigation Item", "description": "The second group, present only while Spacer is true. Same content rules as Slot. Switching to a variant without Spacer removes the slot along with anything placed in it." },
+    { "property": "Action Slot", "type": "slot, prefers Button", "description": "A single action rather than a destination, hidden until Show Action Slot is turned on. See the Button Metadata frame. The bar does not constrain which flavour or size goes in, so match it to the surface." },
+    { "property": "Item count", "type": "not constrained", "description": "No slot caps how many items it holds. The bar keeps adding them well past the point where labels stay readable, so that limit is a design decision rather than one the component enforces." }
+  ],
+
+  "usage": {
+    "do": [
+      "Fill the slots with Navigation Item instances and let the bar handle the arrangement. The variant axes exist so items never have to be positioned by hand.",
+      "Turn on Show Action Slot when the bar needs a call to action, rather than dropping a Button in among the destinations."
+    ],
+    "dont": [
+      "Don't use Shrink Items=false when the number of destinations can change. Evenly spread items re-space every time one is added or removed.",
+      "Don't rely on the bar for a background. It has no fill of its own, so it shows whatever surface sits behind it."
+    ]
+  },
+
+  "accessibility": [
+    "The bar is a container and announces nothing itself. The destinations inside carry the meaning, so every Navigation Item needs a clear label.",
+    "Only the top edge is drawn. On a surface close to border/default the bar's boundary disappears, so check that contrast rather than assuming the edge reads.",
+    "Selection lives on the item, not the bar. Exactly one Navigation Item should be Active at a time, and nothing in the component enforces it.",
+    "The Action Slot holds an action rather than a destination. Keeping it visually distinct matters more here than elsewhere, because everything else in the bar navigates."
+  ],
+
+  "layoutTheming": [
+    { "property": "Width", "type": "Fill", "description": "Fills its parent's width at every variant. It is not built to be given a fixed width." },
+    { "property": "Height", "type": "Hug", "description": "72px, driven entirely by the items inside. Nothing sets a height on the bar, so taller slot content makes a taller bar." },
+    { "property": "Padding", "type": "None", "description": "Zero on all four sides. Every inset comes from the items themselves." },
+    { "property": "Gap", "type": "None", "description": "Item spacing is zero. Separation comes from each item's own padding and from the alignment mode, never from a gap on the bar." },
+    { "property": "Arrangement", "type": "Fixed per variant", "description": "Shrink Items=true lets each slot hug its content and spaces the groups apart. Shrink Items=false makes the slot fill the width and distribute its items evenly inside it." },
+    { "property": "Divider", "type": "Fixed", "description": "A vertical Divider inside a Divider Section, inset 8px (space/sm) top and bottom, 1px wide on stroke/thin. Present only while Show Divider is true." },
+    { "property": "Action Slot inset", "type": "Fixed", "description": "16px (space/lg) of padding on its leading edge and an 8px gap, so the action separates from the last destination." },
+    { "property": "Border", "type": "Fixed", "description": "A 1px top border on border/default, drawn outside the bounds. No other edge is drawn, and there is no fill and no shadow." },
+    { "property": "Colour", "type": "Theming", "description": "The bar binds only its border, to border/default. Everything else visible in it is coloured by the items, or by the surface showing through." }
+  ],
+
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2835-796",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3077-8391",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4750-164",
+    "variants": {
+      "shrinkItems=true": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3077-8392",
+      "shrinkItems=false": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3077-8667",
+      "spacer=true": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3077-8752",
+      "spacer=true, showDivider=true": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3077-8813"
+    },
+    "subcomponents": {
+      "Spacer": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2920-5097",
+      "Navigation Item": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2841-3535",
+      "Notification Indicator (page copy, not specced)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2837-1489"
+    }
+  },
+
+  "duplicateCheck": {
+    "subject": "Notification Indicator set on this page",
+    "verdict": "Drifted duplicate. A different component (different node id and key) with the same name, the same property ids and options, whose bindings have since diverged from the Badges-page set. It is not the same component placed here, and not an exact copy. Not re-specced; specs/notification-indicator/ is the reference.",
+    "thisPage": { "id": "2837:1489", "key": "5ce874152d457038d8690067738a673cc2b0ad52", "variantKeys": { "medium": "48408595aa295fb5026d73a911e2435b557d9646", "small": "3a69450c01017b5a2f4689b5a5a7028b57674b05", "large": "7af8726a4936fb0000b2a0d526d3f6e4068c6a10" } },
+    "existingSpec": { "id": "3719:6256", "key": "73fe3d069d197d82a934eb2653a74245d4bb29a4", "page": "Badges", "spec": "specs/notification-indicator" },
+    "same": [
+      "Props: Value#2838:0 (text, default \"2\") and Size (small | medium | large, default large). The identical property id suggests the Badges set was made from this one.",
+      "Fill interactive/destructive/background/default; border colour border/inverse; count text style indicator/medium (same local style).",
+      "Large: minimum width control/icon-lg; padding left and right space/xs.",
+      "Medium: radius/pill, no padding (space/none). Measured 16x16Px in both."
+    ],
+    "different": [
+      { "what": "Border width", "thisPage": "stroke/thin at every size (draws a ring)", "existingSpec": "stroke/base (resolves to zero, a theming hook)" },
+      { "what": "Count colour", "thisPage": "foreground/inverse", "existingSpec": "foreground/on-strong" },
+      { "what": "Large radius", "thisPage": "radius/element-sm", "existingSpec": "radius/pill" },
+      { "what": "Large top/bottom padding", "thisPage": "space/xs", "existingSpec": "raw, unbound" },
+      { "what": "Small size", "thisPage": "space/xs padding all round, measured 10x10Px", "existingSpec": "no padding, measured 8x8Px" },
+      { "what": "Medium", "thisPage": "clips content", "existingSpec": "does not clip" }
+    ],
+    "usage": "Nothing on the Navigation Bar page uses it: Navigation Item's badge is an instance of the Badges set (3719:6256). Its medium variant still has 15 instances, all named Notification Indicator inside Badge frames, mostly on the Navigation Rail page; its small and large variants have none."
+  },
+
+  "issues": [
+    { "severity": "warn", "source": "duplicate component", "detail": "The page carries its own Notification Indicator set (2837:1489, key 5ce87415…) that has drifted from the Badges-page set specced at specs/notification-indicator (3719:6256, key 73fe3d06…). It differs in border width, count colour, large radius, padding and small size (see duplicateCheck). Its medium variant still feeds 15 instances, mostly on the Navigation Rail page, so those render the old look. Retire it or swap those instances to the Badges set." },
+    { "severity": "warn", "source": "Spacer (structure)", "detail": "Spacer's Show Divider boolean (default true) is not bound to anything; its Divider is always visible. Spacer also has no metadata, is not used by any Navigation Bar variant (the Spacer axis uses space-between), and has one instance in the file, inside Top App Bar. It reads as a leftover of an earlier Spacer approach. Decide whether it is a public component at all before building it." },
+    { "severity": "warn", "source": "structure (gaps)", "detail": "The bar's 1px top border width is raw, not bound to a stroke token (metadata states 1px; stroke/thin would match the divider). The Action Slot's 8px gap is raw (metadata states 8px)." },
+    { "severity": "warn", "source": "structure vs metadata", "detail": "In the spacer=true, showDivider=true variant there is a second Divider Section before the Action Slot, bound to Show Action Slot. The metadata does not mention it, and no other variant has it, so turning on the action shows a rule before it only in that one variant." },
+    { "severity": "note", "source": "metadata vs structure", "detail": "Metadata says Shrink Items=false spreads items \"evenly\". As built the slot uses space-between: the first and last items touch the ends and the space falls between them, not around them." },
+    { "severity": "note", "source": "structure", "detail": "The Button sample inside the Action Slot is a layer named \"Navigation Item\"; it is a Button instance. Layer name only." },
+    { "severity": "note", "source": "structure", "detail": "Spacer and Show Divider are variant axes with gaps in the matrix: spacer=true exists only with shrinkItems=true, showDivider=true only with spacer=true. Four of eight combinations exist; in code, ignore or reject the others." },
+    { "severity": "note", "source": "structure", "detail": "Slot, Right Slot and Action Slot are Figma SLOT properties with preferred content (Navigation Item set, Button set), not instance swaps. In code they are children/slot regions." },
+    { "severity": "note", "source": "page", "detail": "A stray top-level instance named Notification Indicator (2837:1490) sits on the page. Its main component is a third Notification Indicator set (2835:1403, Size=Small, Type=Dot, Count length=none, Color=Disabled) that is not on any page. Orphaned; ignore it." },
+    { "severity": "note", "source": "coverage", "detail": "No motion and no interaction states on the bar, by the metadata's own statement. No component set on the page has a description." }
+  ]
+}

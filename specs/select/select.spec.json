@@ -1,0 +1,1581 @@
+{
+  "component": {
+    "name": "Select",
+    "slug": "select",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "6602:712",
+      "key": "c22955dd68d9fe56db80f2de5549df4d113252b8",
+      "page": "Input Select",
+      "pageNodeId": "6597:3495",
+      "metadataFrameIds": {
+        "Select": "6597:6027",
+        "Select Field": "6597:6265"
+      },
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6597-3495",
+      "extractedAt": "2026-10-20",
+      "variantCount": {
+        "Select": 2,
+        "Input / Select": 216
+      },
+      "extractionNote": "The page holds two public sets and two metadata frames, no private subcomponents. Select (2 variants, Open false/true) was extracted in full to depth 12. Input / Select (216 variants = Size 3 x Shape 3 x State 8 x Flavour 3, complete) was extracted with extract-structure.js on a 10-variant sample (all states at medium/rounded/default plus large and small enabled) for anatomy and deltas, then every one of the 216 variants was read in-file for root fill, stroke paint, stroke weight token, stroke align, height and radius tokens, text layers and their colour, and the chevron and leading icon glyph and glyph colour, and tabulated by State x Flavour and by Size x Shape. Each State x Flavour cell was identical at every Size and Shape, and Size and Shape never changed colour, stroke or visibility. Label, Hint and Dropdown Menu are reused from the Input and Dropdown pages and are not re-extracted; see specs/input/ and specs/dropdown/.",
+      "relatedSpecs": [
+        "specs/input/",
+        "specs/dropdown/"
+      ],
+      "experimentalCode": "packages/react-baseui/src/components/select/Select.tsx (story Experimental/Select). packages/web-components has no Select."
+    }
+  },
+  "summary": "The full select assembly: a label above, a Select Field in the middle and a hint below, stacked and spaced as one unit. The Open property switches the assembly between its closed state and its open state, which reveals the dropdown menu overlapping the region below. The label and hint can each be turned off. Reach for it wherever a dropdown needs a name or supporting text, and reach for Select Field on its own where it needs neither.",
+  "api": {
+    "open": {
+      "type": "enum",
+      "figmaName": "Open",
+      "values": [
+        "false",
+        "true"
+      ],
+      "default": "false",
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "false": "The closed state. The nested Select Field is set to State=enabled and the dropdown menu instance is hidden.",
+        "true": "The open state. The nested Select Field switches to State=open and the dropdown menu becomes visible. The menu is absolutely positioned at base . It overlaps the hint region and any content below the element."
+      }
+    },
+    "showLabel": {
+      "type": "boolean",
+      "figmaName": "Show Label#6602:0",
+      "default": true,
+      "controls": [
+        "label"
+      ],
+      "intent": {
+        "true": "The label sits above the field and names it. Keep it on, because the placeholder text disappears the moment a value is selected.",
+        "false": "Drops the label from the stack. Only safe where something else nearby already names the field, and the name must still reach assistive technology through another means."
+      }
+    },
+    "showHint": {
+      "type": "boolean",
+      "figmaName": "Show Hint#6602:3",
+      "default": true,
+      "controls": [
+        "hint"
+      ],
+      "intent": {
+        "true": "Keeps the supporting line below the field. Leaving it on reserves the space before validation is needed and prevents layout shift when an error message appears.",
+        "false": "Drops the hint and shortens the stack. A select that can fail validation then has nowhere to put the reason, and turning the line back on later moves everything below it."
+      }
+    },
+    "_nestedProperties": {
+      "_note": "Not properties of the Select set. The metadata's Property Breakdown documents them because they are set on the nested instances. The field's own Size, Shape, State, Flavour and hasLeading are set on the nested Input / Select (see subcomponents).",
+      "label.type": {
+        "figmaName": "Label / Type",
+        "values": [
+          "default",
+          "optional",
+          "required"
+        ],
+        "default": "default",
+        "placed": "default",
+        "intent": {
+          "default": "The plain name with nothing after it.",
+          "optional": "Appends (optional) after the name. Use when most other selects in the form are required, so the exception is what is marked.",
+          "required": "Adds an asterisk after the name. Use only where submission genuinely fails without a chosen value."
+        }
+      },
+      "label.showInformation": {
+        "figmaName": "Label / Show Information",
+        "default": false,
+        "placed": false,
+        "intent": {
+          "false": "No information icon, which is the default state for Select.",
+          "true": "Adds an information icon after the label name, for context the label itself has no room for. The icon requires a label and target in the implementation."
+        }
+      },
+      "hint.type": {
+        "figmaName": "Hint / Type",
+        "values": [
+          "default",
+          "error",
+          "disabled"
+        ],
+        "default": "default",
+        "placed": "default",
+        "intent": {
+          "default": "The resting supporting line, for guidance about what to choose.",
+          "error": "The validation message that says what went wrong. The Select Field border carries the signal via State=invalid; this carries the reason. Neither works alone.",
+          "disabled": "Dims the hint line to sit with a disabled select field."
+        }
+      },
+      "hint.showIcon": {
+        "figmaName": "Hint / Show Icon",
+        "default": true,
+        "placed": true,
+        "intent": {
+          "true": "Keeps an icon ahead of the hint message. Especially important at Type=error so the validation state is perceived before the words are read.",
+          "false": "Message only, no leading icon."
+        }
+      },
+      "field": {
+        "placed": "Input / Select Size=medium, Shape=rounded, State=enabled (open when Open=true), Flavour=default, hasLeading=false; display text overridden to \"Select an option\""
+      }
+    }
+  },
+  "internalVariations": [
+    {
+      "part": "field",
+      "via": "Input / Select",
+      "options": {
+        "size": [
+          "small",
+          "medium",
+          "large"
+        ],
+        "shape": [
+          "sharp",
+          "rounded",
+          "full"
+        ],
+        "state": [
+          "enabled",
+          "hover",
+          "focus",
+          "open",
+          "filled",
+          "invalid",
+          "read-only",
+          "disabled"
+        ],
+        "flavour": [
+          "default",
+          "gradient",
+          "ghost"
+        ]
+      },
+      "intent": "The control. Size, Shape, State and Flavour are all set on this nested component, not on the assembly. Trailing chevron always present."
+    },
+    {
+      "part": "label",
+      "via": "Input Label",
+      "options": {
+        "type": [
+          "default",
+          "required",
+          "optional"
+        ],
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "showInformation": [
+          false,
+          true
+        ]
+      },
+      "intent": "Set on the label instance; see specs/input/."
+    },
+    {
+      "part": "hint",
+      "via": "Input Hint",
+      "options": {
+        "type": [
+          "default",
+          "error",
+          "disabled"
+        ],
+        "showIcon": [
+          true,
+          false
+        ]
+      },
+      "intent": "Set on the hint instance; see specs/input/."
+    },
+    {
+      "part": "field.leadingIcon",
+      "via": "Icon (Name swap)",
+      "options": "any glyph; ships holding email",
+      "intent": "Off by default. When on it takes an Icon at Size=medium, 20 square, and the glyph is swappable through the Icon's own Name property."
+    }
+  ],
+  "contentInputs": [
+    {
+      "part": "menu.rows",
+      "input": "options (label per row)",
+      "sampleCount": 4,
+      "from": "Menu Item instances in the Dropdown Menu (two built-in rows plus two in its Slot Container)",
+      "sampleLabels": [
+        "Option 1",
+        "Option 2",
+        "Option 3",
+        "Option 4"
+      ]
+    },
+    {
+      "part": "field.displayText",
+      "input": "placeholder / value",
+      "sample": {
+        "placeholder": "Select an option",
+        "value": "Value"
+      }
+    },
+    {
+      "part": "label.name",
+      "input": "label",
+      "sample": "Field name"
+    },
+    {
+      "part": "hint.message",
+      "input": "hint",
+      "sample": "Default hint message"
+    }
+  ],
+  "anatomy": [
+    {
+      "id": "root",
+      "kind": "container",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/xs",
+        "padding": "none",
+        "align": "start"
+      },
+      "sizing": {
+        "h": "fixed",
+        "v": "hug"
+      },
+      "measuredPx": {
+        "w": 280,
+        "h": 84
+      },
+      "role": "Three parts stacked vertically with 4px gap, height hugging all visible parts. Turning off the label or the hint removes its height and the stack shortens. Whatever sits below moves up."
+    },
+    {
+      "id": "label",
+      "number": 1,
+      "kind": "instance",
+      "ref": "Input Label",
+      "refVariant": "Type=default, Disabled=false, Show Information=false",
+      "visibleWhen": "showLabel",
+      "sizing": {
+        "h": "hug",
+        "v": "hug"
+      },
+      "role": "The field's name, turned on by Show Label. Carries the required/optional marker and the information icon."
+    },
+    {
+      "id": "field",
+      "number": 2,
+      "kind": "instance",
+      "ref": "Input / Select",
+      "refVariant": "Size=medium, Shape=rounded, State=enabled, Flavour=default (State=open when open)",
+      "sizing": {
+        "h": "fill",
+        "v": "fixed"
+      },
+      "role": "The control. Size, Shape, State and Flavour are all set on this nested component, not on the assembly. Trailing chevron always present."
+    },
+    {
+      "id": "hint",
+      "number": 3,
+      "kind": "instance",
+      "ref": "Input Hint",
+      "refVariant": "Type=default, Show Icon=true",
+      "visibleWhen": "showHint",
+      "sizing": {
+        "h": "hug",
+        "v": "hug"
+      },
+      "role": "Supporting line, turned on by Show Hint. Guidance at rest; validation message when Type=error on the hint."
+    },
+    {
+      "id": "menu",
+      "number": 4,
+      "kind": "instance",
+      "ref": "Dropdown Menu",
+      "refVariant": "Rounded=true, More Items=true",
+      "visibleWhen": "open",
+      "position": {
+        "mode": "absolute",
+        "anchor": "top-left",
+        "offset": "4px below the field's bottom edge (a position, not token bound)",
+        "measuredPx": {
+          "x": 0,
+          "y": 68,
+          "w": 280
+        }
+      },
+      "sizing": {
+        "h": "fixed (set to the assembly width)",
+        "v": "hug"
+      },
+      "paint": {
+        "fill": "surface/menu",
+        "effects": "Shadow/medium (shadow/soft, shadow/medium/*, shadow/small/*)"
+      },
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/2xs",
+        "padding": "space/card",
+        "radius": "radius/element-md"
+      },
+      "rows": "Menu Item, Type=Icon, Rounded=true, Leading Element off, Trailing Icon off; row 1 State=hover, rows 2-4 State=Default",
+      "role": "Absolutely positioned 4px below the field's bottom edge. Overlaid and does not determine assembly height. Contains Menu Items via slot. Width is inherited from field width."
+    }
+  ],
+  "variants": {
+    "axis": "open",
+    "base": "false",
+    "table": [
+      {
+        "open": "false",
+        "field.state": "enabled",
+        "field.stroke": "interactive/neutral/border/default",
+        "field.chevron": "expand-more",
+        "menu.visible": false,
+        "nodeId": "6602:542"
+      },
+      {
+        "open": "true",
+        "field.state": "open",
+        "field.stroke": "border/focus",
+        "field.chevron": "expand-less",
+        "menu.visible": true,
+        "nodeId": "6602:646",
+        "_note": "Assembly height is unchanged (84 Px measured); the menu overlaps the hint. The field still shows its placeholder."
+      }
+    ]
+  },
+  "subcomponents": [
+    {
+      "name": "Input / Select",
+      "private": false,
+      "setId": "6601:110",
+      "key": "8722b5381c1ec64156913395cd9c4f56f70c2264",
+      "variantCount": 216,
+      "metadataFrameId": "6597:6265",
+      "description": "The field a Select opens from: Input / Text's field with a chevron fixed at the trailing edge and no typing state. Open replaces Input Field's selected state, the list being open, and turns the chevron to expand-less. Size, Shape, Flavour and the remaining states read the same tokens as every other Input field. Used inside Select; on its own only where the label and hint come from elsewhere.",
+      "summary": "The select control on its own, without a label or hint around it. One model covers the select interaction pattern, with Size, Shape, State and Flavour that differ only in border, surface, text strength and chevron orientation. Reach for it directly when a field needs no label or supporting text, and reach for Select when it does.",
+      "reuses": "specs/input/ (Input / Text): identical Size, Shape and Flavour tokens; State x Flavour identical to Input / Text except that open replaces selected and there is no typing state.",
+      "api": {
+        "size": {
+          "type": "enum",
+          "figmaName": "Size",
+          "values": [
+            "small",
+            "medium",
+            "large"
+          ],
+          "default": "medium",
+          "controls": [
+            "variant"
+          ],
+          "intent": {
+            "medium": "The default, for surfaces and toolbars where the field sits alongside other controls.",
+            "large": "For a more prominent field or a roomier control density.",
+            "small": "The tightest, and the only size that also reduces the text."
+          }
+        },
+        "shape": {
+          "type": "enum",
+          "figmaName": "Shape",
+          "values": [
+            "sharp",
+            "rounded",
+            "full"
+          ],
+          "default": "rounded",
+          "controls": [
+            "variant"
+          ],
+          "intent": {
+            "rounded": "The default softened corners, matching the surrounding rounded controls.",
+            "sharp": "Square corners, for surfaces built from sharp-edged controls.",
+            "full": "A pill, for a field that reads as its own object on a surface rather than one row of a form."
+          }
+        },
+        "state": {
+          "type": "enum",
+          "figmaName": "State",
+          "values": [
+            "enabled",
+            "hover",
+            "focus",
+            "open",
+            "filled",
+            "invalid",
+            "read-only",
+            "disabled"
+          ],
+          "default": "enabled",
+          "controls": [
+            "variant"
+          ],
+          "intent": {
+            "enabled": "The resting empty field, showing its placeholder and waiting.",
+            "hover": "Pointer over the field. The border is the only thing that answers.",
+            "focus": "The field has keyboard focus and is ready for input. It carries the heaviest border in the set, so it stays findable where several fields sit together.",
+            "open": "The field is expanded and the chevron points up. The border stays at focus weight and the popup is shown.",
+            "filled": "A committed value. The field is at rest again but the text stays at full strength, which is what separates it from enabled.",
+            "invalid": "The value failed validation. The border carries the signal and nothing else does, so pairing it with a Hint set to error is what makes the problem readable.",
+            "read-only": "The value is shown but cannot be changed. Reach for it where a person still needs to read or copy the value, and reach for disabled where they do not.",
+            "disabled": "The field cannot be used and is out of the tab order. Both the surface and the border drop away, so it reads as out of play rather than merely empty."
+          }
+        },
+        "flavour": {
+          "type": "enum",
+          "figmaName": "Flavour",
+          "values": [
+            "default",
+            "gradient",
+            "ghost"
+          ],
+          "default": "default",
+          "controls": [
+            "variant"
+          ],
+          "intent": {
+            "default": "A bordered field on a neutral surface, and the right choice inside a form.",
+            "gradient": "For a unique interaction highlight, such as an AI companion field. It marks the field as special, so using it on an ordinary field spends that signal for nothing.",
+            "ghost": "No visible border at rest, for a field sitting on a surface that already bounds it. On an unbounded surface it stops reading as a field at all."
+          }
+        },
+        "hasLeading": {
+          "type": "boolean",
+          "figmaName": "hasLeading#6291:0",
+          "default": false,
+          "controls": [
+            "leadingIcon"
+          ],
+          "intent": {
+            "false": "No leading icon, which is where the field starts. The text begins at the padding edge and takes the full width.",
+            "true": "(no row in the metadata)"
+          }
+        }
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/xs",
+            "padding": {
+              "top": "space/sm",
+              "bottom": "space/sm",
+              "left": "space/md",
+              "right": "space/md"
+            },
+            "counterAlign": "center"
+          },
+          "sizing": {
+            "h": "fixed",
+            "v": "fixed"
+          },
+          "measuredPx": {
+            "w": 280
+          },
+          "height": "per size (control/*)",
+          "radius": "per shape (radius/*), four corners bound individually",
+          "paint": {
+            "fill": "per State x Flavour",
+            "stroke": "per State x Flavour"
+          }
+        },
+        {
+          "id": "leadingIcon",
+          "number": 1,
+          "kind": "instance",
+          "ref": "Icon",
+          "glyph": "email",
+          "glyphFamily": "rounded",
+          "visibleWhen": "hasLeading",
+          "size": "Icon Size=medium (large, medium), Size=small (small)",
+          "colour": "follows the text (currentColor); in Figma the hidden instance has no bound colour",
+          "role": "Off by default, and an Icon at Size=medium when hasLeading turns it on."
+        },
+        {
+          "id": "displayText",
+          "number": 2,
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/none",
+            "padding": {
+              "left": "space/xs",
+              "right": "space/xs"
+            }
+          },
+          "sizing": {
+            "h": "fill",
+            "v": "hug"
+          },
+          "clips": true,
+          "children": {
+            "placeholder": {
+              "text": "Placeholder",
+              "style": "body/medium (body/small at small)",
+              "colour": "foreground/disabled",
+              "visibleWhen": "state in enabled, hover, focus, open"
+            },
+            "value": {
+              "text": "Value",
+              "style": "body/medium (body/small at small)",
+              "colour": "foreground/primary, foreground/disabled when disabled",
+              "visibleWhen": "state in filled, invalid, read-only, disabled"
+            }
+          },
+          "role": "The placeholder, and then the value once one is entered. It fills whatever width the icons leave."
+        },
+        {
+          "id": "chevron",
+          "number": 3,
+          "kind": "instance",
+          "ref": "Icon",
+          "glyph": "expand-more; expand-less when state=open",
+          "glyphFamily": "rounded",
+          "size": "Icon Size=medium (large, medium), Size=small (small)",
+          "colour": "foreground/primary; foreground/disabled when disabled (in code: currentColor of the field text)",
+          "role": "Always present, pointing down in all states except open, where it points up."
+        }
+      ],
+      "variants": {
+        "size": {
+          "base": "medium",
+          "table": [
+            {
+              "size": "small",
+              "root.height": "control/sm",
+              "text": "body/small",
+              "icons": "Icon Size=small",
+              "measuredPx": "36 high, 16 icons"
+            },
+            {
+              "size": "medium",
+              "root.height": "control/md",
+              "text": "body/medium",
+              "icons": "Icon Size=medium",
+              "measuredPx": "40 high, 20 icons"
+            },
+            {
+              "size": "large",
+              "root.height": "control/lg",
+              "text": "body/medium",
+              "icons": "Icon Size=medium",
+              "measuredPx": "48 high, 20 icons"
+            }
+          ]
+        },
+        "shape": {
+          "sharp": "radius/none",
+          "rounded": "radius/sm",
+          "full": "radius/pill"
+        },
+        "_independence": "Size and Shape never change colour, stroke, text or chevron (checked across all 216 variants). Padding and gap hold across sizes.",
+        "stateFlavour": {
+          "_note": "Root fill / stroke / weight / align, text and chevron. Identical at every Size and Shape. Rows match specs/input/ Input / Text, with open in place of selected and no typing row.",
+          "table": [
+            {
+              "flavour": "default",
+              "state": "enabled",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "interactive/neutral/border/default",
+              "root.strokeWeight": "stroke/thin",
+              "root.strokeAlign": "inside",
+              "text": "placeholder (foreground/disabled)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:131"
+            },
+            {
+              "flavour": "default",
+              "state": "hover",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "interactive/neutral/border/hover",
+              "root.strokeWeight": "stroke/thin",
+              "root.strokeAlign": "inside",
+              "text": "placeholder (foreground/disabled)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:176"
+            },
+            {
+              "flavour": "default",
+              "state": "focus",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "border/focus",
+              "root.strokeWeight": "stroke/thick",
+              "root.strokeAlign": "outside",
+              "text": "placeholder (foreground/disabled)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:225"
+            },
+            {
+              "flavour": "default",
+              "state": "open",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "border/focus",
+              "root.strokeWeight": "stroke/thin",
+              "root.strokeAlign": "inside",
+              "text": "placeholder (foreground/disabled)",
+              "chevron": "expand-less",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:279"
+            },
+            {
+              "flavour": "default",
+              "state": "filled",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "interactive/neutral/border/default",
+              "root.strokeWeight": "stroke/thin",
+              "root.strokeAlign": "inside",
+              "text": "value (foreground/primary)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:383"
+            },
+            {
+              "flavour": "default",
+              "state": "invalid",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "border/error",
+              "root.strokeWeight": "stroke/thin",
+              "root.strokeAlign": "inside",
+              "text": "value (foreground/primary)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:428"
+            },
+            {
+              "flavour": "default",
+              "state": "read-only",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "border/subtle",
+              "root.strokeWeight": "stroke/thin",
+              "root.strokeAlign": "inside",
+              "text": "value (foreground/primary)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:473"
+            },
+            {
+              "flavour": "default",
+              "state": "disabled",
+              "root.fill": "interactive/neutral/background/disabled",
+              "root.stroke": "interactive/neutral/border/disabled",
+              "root.strokeWeight": "stroke/thin",
+              "root.strokeAlign": "inside",
+              "text": "value (foreground/disabled)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/disabled",
+              "nodeId (medium, rounded)": "6601:518"
+            },
+            {
+              "flavour": "gradient",
+              "state": "enabled",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "linear foreground/gradient/start -> foreground/gradient/end",
+              "root.strokeWeight": "stroke/thin",
+              "root.strokeAlign": "inside",
+              "text": "placeholder (foreground/disabled)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:563"
+            },
+            {
+              "flavour": "gradient",
+              "state": "hover",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "border/gradient/end",
+              "root.strokeWeight": "stroke/thin",
+              "root.strokeAlign": "inside",
+              "text": "placeholder (foreground/disabled)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:608"
+            },
+            {
+              "flavour": "gradient",
+              "state": "focus",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "border/focus",
+              "root.strokeWeight": "stroke/thick",
+              "root.strokeAlign": "outside",
+              "text": "placeholder (foreground/disabled)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:657"
+            },
+            {
+              "flavour": "gradient",
+              "state": "open",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "border/gradient/start",
+              "root.strokeWeight": "stroke/thin",
+              "root.strokeAlign": "inside",
+              "text": "placeholder (foreground/disabled)",
+              "chevron": "expand-less",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:711"
+            },
+            {
+              "flavour": "gradient",
+              "state": "filled",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "linear foreground/gradient/start -> foreground/gradient/end",
+              "root.strokeWeight": "stroke/thin",
+              "root.strokeAlign": "inside",
+              "text": "value (foreground/primary)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:815"
+            },
+            {
+              "flavour": "gradient",
+              "state": "invalid",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "border/error",
+              "root.strokeWeight": "stroke/thin",
+              "root.strokeAlign": "inside",
+              "text": "value (foreground/primary)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:860"
+            },
+            {
+              "flavour": "gradient",
+              "state": "read-only",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "border/subtle",
+              "root.strokeWeight": "stroke/thin",
+              "root.strokeAlign": "inside",
+              "text": "value (foreground/primary)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:905"
+            },
+            {
+              "flavour": "gradient",
+              "state": "disabled",
+              "root.fill": "interactive/neutral/background/disabled",
+              "root.stroke": "interactive/neutral/border/disabled",
+              "root.strokeWeight": "stroke/thin",
+              "root.strokeAlign": "inside",
+              "text": "value (foreground/disabled)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/disabled",
+              "nodeId (medium, rounded)": "6601:950"
+            },
+            {
+              "flavour": "ghost",
+              "state": "enabled",
+              "root.fill": "none",
+              "root.stroke": "interactive/ghost/border/default",
+              "root.strokeWeight": "stroke/base",
+              "root.strokeAlign": "inside",
+              "text": "placeholder (foreground/disabled)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:995"
+            },
+            {
+              "flavour": "ghost",
+              "state": "hover",
+              "root.fill": "none",
+              "root.stroke": "interactive/neutral/border/hover",
+              "root.strokeWeight": "stroke/base",
+              "root.strokeAlign": "inside",
+              "text": "placeholder (foreground/disabled)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:1040"
+            },
+            {
+              "flavour": "ghost",
+              "state": "focus",
+              "root.fill": "none",
+              "root.stroke": "border/focus",
+              "root.strokeWeight": "stroke/thick",
+              "root.strokeAlign": "outside",
+              "text": "placeholder (foreground/disabled)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:1089"
+            },
+            {
+              "flavour": "ghost",
+              "state": "open",
+              "root.fill": "none",
+              "root.stroke": "border/focus",
+              "root.strokeWeight": "stroke/base",
+              "root.strokeAlign": "inside",
+              "text": "placeholder (foreground/disabled)",
+              "chevron": "expand-less",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:1143"
+            },
+            {
+              "flavour": "ghost",
+              "state": "filled",
+              "root.fill": "none",
+              "root.stroke": "interactive/ghost/border/default",
+              "root.strokeWeight": "stroke/base",
+              "root.strokeAlign": "inside",
+              "text": "value (foreground/primary)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:1247"
+            },
+            {
+              "flavour": "ghost",
+              "state": "invalid",
+              "root.fill": "none",
+              "root.stroke": "border/error",
+              "root.strokeWeight": "stroke/thin",
+              "root.strokeAlign": "inside",
+              "text": "value (foreground/primary)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:1292"
+            },
+            {
+              "flavour": "ghost",
+              "state": "read-only",
+              "root.fill": "none",
+              "root.stroke": "border/subtle",
+              "root.strokeWeight": "stroke/base",
+              "root.strokeAlign": "inside",
+              "text": "value (foreground/primary)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/primary",
+              "nodeId (medium, rounded)": "6601:1337"
+            },
+            {
+              "flavour": "ghost",
+              "state": "disabled",
+              "root.fill": "none",
+              "root.stroke": "interactive/ghost/border/disabled",
+              "root.strokeWeight": "stroke/base",
+              "root.strokeAlign": "inside",
+              "text": "value (foreground/disabled)",
+              "chevron": "expand-more",
+              "chevron.colour": "foreground/disabled",
+              "nodeId (medium, rounded)": "6601:1382"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Input Label",
+      "private": false,
+      "setId": "6329:31743",
+      "key": "18c1f2f906b8225587fe1c3271dd299199c6e413",
+      "onPage": false,
+      "spec": "specs/input/",
+      "placedAs": "Type=default, Disabled=false, Show Information=false"
+    },
+    {
+      "name": "Input Hint",
+      "private": false,
+      "setId": "6329:31836",
+      "key": "5df6dcd9389c6930e2f4a8ed291e59f2ada2c505",
+      "onPage": false,
+      "spec": "specs/input/",
+      "placedAs": "Type=default, Show Icon=true (glyph info)"
+    },
+    {
+      "name": "Dropdown Menu",
+      "private": false,
+      "setId": "2666:6863",
+      "key": "941136f1fd11479676c74ed40efe50135018891c",
+      "onPage": false,
+      "spec": "specs/dropdown/",
+      "placedAs": "Rounded=true, More Items=true; holds Menu Item rows"
+    },
+    {
+      "name": "Menu Item",
+      "private": false,
+      "setId": "2402:6508",
+      "key": "c42a9f21fc45d4851390c94be1c1da24ffd1ad17",
+      "onPage": false,
+      "spec": "specs/dropdown/",
+      "placedAs": "State=hover (row 1) / Default (rows 2-4), Type=Icon, Rounded=true, Leading Element=false, Trailing Icon=false"
+    },
+    {
+      "name": "Icon",
+      "private": false,
+      "setId": "2046:15010",
+      "key": "a469ac1cf34202af3e094593468d9ef20a37a703",
+      "onPage": false,
+      "delivery": "icon font glyphs, rounded family"
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "interactive/neutral/background/default",
+      "interactive/neutral/background/disabled",
+      "interactive/neutral/border/default",
+      "interactive/neutral/border/hover",
+      "interactive/neutral/border/disabled",
+      "interactive/ghost/border/default",
+      "interactive/ghost/border/disabled",
+      "border/focus",
+      "border/error",
+      "border/subtle",
+      "border/gradient/start",
+      "border/gradient/end",
+      "foreground/gradient/start",
+      "foreground/gradient/end",
+      "foreground/primary",
+      "foreground/disabled",
+      "foreground/secondary",
+      "surface/menu",
+      "shadow/soft",
+      "interactive/ghost/background/default",
+      "interactive/ghost/background/hover",
+      "interactive/neutral/foreground/default"
+    ],
+    "dimension": [
+      "control/sm",
+      "control/md",
+      "control/lg",
+      "space/none",
+      "space/2xs",
+      "space/xs",
+      "space/sm",
+      "space/md",
+      "space/card",
+      "radius/none",
+      "radius/sm",
+      "radius/pill",
+      "radius/element-md",
+      "stroke/base",
+      "stroke/thin",
+      "stroke/thick",
+      "shadow/medium/blur",
+      "shadow/medium/x",
+      "shadow/medium/y",
+      "shadow/small/blur",
+      "shadow/small/x",
+      "shadow/small/y"
+    ],
+    "typography": [
+      "body/medium",
+      "body/small"
+    ],
+    "effect": [
+      "Shadow/medium (effect style)"
+    ],
+    "glyphs": [
+      "expand-more",
+      "expand-less",
+      "email",
+      "info"
+    ],
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "typography": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ],
+      "extensions": "tokens/extensions/ (companion, target, condensed)"
+    },
+    "_note": "All 46 token names resolve in tokens/base/; body/medium and body/small are text styles whose font size, family, weight, line height and letter spacing are bound to typography variables. All four glyphs are in packages/icons/codepoints.json (setIds 2046:10387, 2046:10382, 2046:8248, 2046:6956), none retired, none rejected. Label and hint colours belong to specs/input/; Menu Item tokens to specs/dropdown/."
+  },
+  "states": {
+    "Select": [
+      {
+        "State": "enabled",
+        "Trigger": "Default / resting",
+        "Duration": "—",
+        "What changes": "Placeholder text visible. Border at interactiveNeutralBorderDefault. Chevron pointing down."
+      },
+      {
+        "State": "hover",
+        "Trigger": "Set on the nested field",
+        "Duration": "—",
+        "What changes": "Only the nested field is affected and behavior is inherited from it"
+      },
+      {
+        "State": "focus",
+        "Trigger": "Set on the nested field",
+        "Duration": "—",
+        "What changes": "Inherited from the nested field"
+      },
+      {
+        "State": "open",
+        "Trigger": "Assembly Open=true + nested field State=open",
+        "Duration": "—",
+        "What changes": "Dropdown menu becomes visible, absolutely positioned at below the field. Assembly height does not grow."
+      },
+      {
+        "State": "filled",
+        "Trigger": "Set on the nested field",
+        "Duration": "—",
+        "What changes": "Text changes from foregroundDisabled (placeholder) to foregroundPrimary (selected value)."
+      },
+      {
+        "State": "invalid",
+        "Trigger": "Set on the element",
+        "Duration": "—",
+        "What changes": "Border switches to borderError. The hint is set to Type=error independently. One supplies the visual signal, the other the reason text — neither implies the other."
+      },
+      {
+        "State": "disabled",
+        "Trigger": "Set on the element",
+        "Duration": "—",
+        "What changes": "Inherited by all nested component"
+      },
+      {
+        "State": "read-only",
+        "Trigger": "Set on the nested field only",
+        "Duration": "—",
+        "What changes": "Only the field carries this state. The label stays at full strength, which is correct: the name of a value worth reading is still worth reading."
+      }
+    ],
+    "Input / Select": [
+      {
+        "State": "enabled",
+        "Trigger": "—",
+        "Duration": "—",
+        "What changes": "The resting empty field. interactive/neutral/border/default at 1px on an interactive/neutral/background/default surface, with the placeholder at foreground/disabled."
+      },
+      {
+        "State": "hover",
+        "Trigger": "Pointer over the field",
+        "Duration": "—",
+        "What changes": "The border moves to interactive/neutral/border/hover. Surface and text hold."
+      },
+      {
+        "State": "focus",
+        "Trigger": "Keyboard focus",
+        "Duration": "—",
+        "What changes": "The border becomes border/focus at 2px, double its resting weight. The field is ready for input but the placeholder still reads as a placeholder."
+      },
+      {
+        "State": "open",
+        "Trigger": "Keyboard open or click",
+        "Duration": "—",
+        "What changes": "The border stays at focus weight and the chevron points up. The popup is shown below the field."
+      },
+      {
+        "State": "filled",
+        "Trigger": "A committed value",
+        "Duration": "—",
+        "What changes": "The border returns to interactive/neutral/border/default while the text stays at foreground/primary. The chevron returns to down."
+      },
+      {
+        "State": "invalid",
+        "Trigger": "Validation failed",
+        "Duration": "—",
+        "What changes": "The border moves to border/error. The text stays at foreground/primary, so the border carries the whole signal and the Hint beneath it carries the reason."
+      },
+      {
+        "State": "read-only",
+        "Trigger": "Presented but not editable",
+        "Duration": "—",
+        "What changes": "The border drops to border/subtle and the value stays at foreground/primary. Still legible and still selectable, which is what separates it from disabled."
+      },
+      {
+        "State": "disabled",
+        "Trigger": "—",
+        "Duration": "—",
+        "What changes": "Surface and border move to interactive/neutral/background/disabled and interactive/neutral/border/disabled, and the text and every icon drop to foreground/disabled. The whole control recedes."
+      }
+    ]
+  },
+  "behavior": {
+    "Select": [
+      {
+        "Type": "Motion",
+        "Description": "No transition is defined on the assembly. Each nested part swaps its own tokens on state change. There are no authored prototype interactions."
+      },
+      {
+        "Type": "Composition",
+        "Description": "Three parts stacked vertically with 4px gap, height hugging all visible parts. Turning off the label or the hint removes its height and the stack shortens. Whatever sits below moves up."
+      },
+      {
+        "Type": "Dropdown overlap",
+        "Description": "When Open=true the dropdown menu is absolutely positioned 4px below the field's bottom edge, inheriting the select width and clips content. The assembly height does not increase; the menu is overlaid and does not determine assembly height. Implementations must reserve z-order and spacing so the open menu does not obscure adjacent content."
+      },
+      {
+        "Type": "Dropdown width",
+        "Description": "The dropdown menu has a flexible width, matching the assembly."
+      },
+      {
+        "Type": "State coordination",
+        "Description": "These ae the assembly-level state that cascades to nested parts. Invalid, disabled and read-only."
+      },
+      {
+        "Type": "Chevron direction",
+        "Description": "Closed variants use ExpandMore (chevron down). Open variants use ExpandLess (chevron up). This swap is authored in the component variants."
+      }
+    ],
+    "Input / Select": [
+      {
+        "Type": "Motion",
+        "Description": "No transition is defined. Each state is a swap of border colour, border weight, text colour and, at open, chevron orientation."
+      },
+      {
+        "Type": "Keyboard behavior",
+        "Description": "Open on Alt+Down or Enter, navigate with Up/Down, commit with Enter and close with Escape. The field itself does not implement this behavior; the parent Select handles keyboard interaction."
+      },
+      {
+        "Type": "Expanded semantics",
+        "Description": "The field is the trigger, but the popup and options belong to the parent Select. The field itself has no option slots or menu."
+      },
+      {
+        "Type": "Validation association",
+        "Description": "invalid changes the border colour and nothing else. The reason belongs in the Hint set to error, and the field has to be associated with it for the message to be announced."
+      }
+    ]
+  },
+  "content": {
+    "Select": [
+      {
+        "Slot": "Label",
+        "Component": "Input Label, toggled by Show Label",
+        "Description": "The field's name. Carries required/optional marker and information icon. The assembly exposes only its visibility; the marker, dimming and icon are all set on the label sub-component directly."
+      },
+      {
+        "Slot": "Field",
+        "Component": "Input / Select",
+        "Description": "The control. Arrives at Size=medium, Shape=rounded, State=enabled, Flavour=default, hasLeading=false, placeholder \"Select an option.\" All of its own properties (Size, Shape, State, Flavour, hasLeading) are set here."
+      },
+      {
+        "Slot": "Dropdown Menu",
+        "Component": "Dropdown Menu, Rounded=true",
+        "Description": "Absolutely positioned 4px below the field's bottom edge. Visible only when Open=true. Contains slot containers for options. Option labels, values and slot content come from the implementation."
+      },
+      {
+        "Slot": "Hint",
+        "Component": "Input Hint, toggled by Show Hint",
+        "Description": "Supporting line below the field. Guidance at rest; the validation reason when its Type is error. The icon toggle is on the hint sub-component, not the assembly."
+      },
+      {
+        "Slot": "Placeholder vs Value",
+        "Component": "Text in field — not parameterised",
+        "Description": "Enabled/focus states show placeholder (\"Select an option\") in foregroundDisabled. Filled/open states show the selected value in foregroundPrimary. The actual label text, hint text, option labels, selected value and error message are all implementation concerns, not assembly inputs."
+      }
+    ],
+    "Input / Select": [
+      {
+        "Property": "Display text",
+        "Type": "not parameterised",
+        "Description": "The placeholder before selection and the chosen value afterward. Neither is exposed as an input on the field, so both come from the implementation."
+      },
+      {
+        "Property": "Leading icon",
+        "Type": "nested Icon, toggled by hasLeading",
+        "Description": "Off by default. When on it takes an Icon at Size=medium, 20 square, and the glyph is swappable through the Icon's own Name property."
+      },
+      {
+        "Property": "Trailing chevron",
+        "Type": "always present",
+        "Description": "Points down in all states except open, where it points up. It is decorative within a single trigger and does not expose a separate toggle."
+      }
+    ]
+  },
+  "usage": {
+    "Select": {
+      "do": [
+        "Keep Show Label on. The placeholder disappears as soon as a value is selected, leaving nothing to name the field. Always pair Show Hint=true on fields that can be validated so space is reserved before a message is needed.",
+        "Set the nested field to State=invalid and the hint to Type=error together. The field border carries the visual signal; the hint carries the reason. Either alone is an incomplete message."
+      ],
+      "dont": [
+        "Don't remove the label from a visible select. There is no built-in name for the field once the placeholder is gone, and assistive technology has nothing to announce.",
+        "Don't leave the label at full strength while the field is disabled. Set Label Disabled=true and Hint Type=disabled together. There is no automatic coordination — mismatched states create contrast inconsistencies."
+      ]
+    },
+    "Input / Select": {
+      "do": [
+        "Pair invalid with a Hint set to error. The border colour is the only thing invalid changes, so on its own it says something is wrong without saying what.",
+        "Use read-only when the value should remain legible and selectable, but not editable. Native select has no readonly attribute; use an appropriate non-editable presentation pattern instead."
+      ],
+      "dont": [
+        "Don't reach for disabled where a person still needs to read the value. read-only keeps it legible and selectable, disabled puts it out of reach and out of the tab order.",
+        "Don't lean on the placeholder as the label. It clears the moment typing starts, so whatever it was carrying disappears exactly when it is needed."
+      ]
+    }
+  },
+  "accessibility": {
+    "Select": [
+      "The label is the select's accessible name. Show Label controls only visual presence. A select without a visible label still needs its name to reach assistive technology — use aria-label or aria-labelledby in the implementation.",
+      "The placeholder \"Select an option\" is decorative until a value is chosen. Do not rely on it as an accessible name; it disappears from view once State=filled.",
+      "Keyboard behavior is an implementation requirement: Space or Enter should open the dropdown, Arrow keys should move between options, Enter should confirm, Escape should close and return focus to the trigger.",
+      "The dropdown menu must be associated with the trigger via aria-haspopup=\"listbox\", aria-expanded, and aria-controls in the implementation. The Figma component does not produce these attributes.",
+      "Each menu item requires a role=\"option\" and the selected option aria-selected=\"true\". Visual indication of the selected state is not authored in this component; the implementation must add it.",
+      "The required marker is an asterisk and a color. Neither alone is accessible; the required constraint must be conveyed via aria-required=\"true\" on the control in the implementation.",
+      "A validation message in the hint must be associated with the select via aria-describedby or a live region, otherwise it is announced as loose text with nothing tying it to the field that failed.",
+      "The information icon on the label has no text content. If it triggers a tooltip or disclosure, give it an accessible name and a keyboard-reachable target in the implementation.",
+      "Check the full stack at a given state. A disabled field under a full-strength label is a contrast mismatch and the Figma assembly does not flag it automatically.",
+      "Label text should be concise, noun-first, and sentence case. Avoid starting with a verb. Hint text should be short enough to fit on one line at the field's width; multi-line hints increase the stack height unexpectedly."
+    ],
+    "Input / Select": [
+      "The field carries no label of its own. Select pairs it with Select Label, and a field used on its own still needs a name from the implementation.",
+      "A placeholder is not a label. It clears the moment a value is entered, so anything a reader has to keep is not safe there.",
+      "invalid changes the border colour and nothing else. The reason belongs in the Hint set to error, and the field has to be associated with it for the message to be announced.",
+      "read-only and disabled look alike and behave differently. read-only keeps the value reachable and selectable, disabled takes the control out of the tab order.",
+      "The leading icon and the chevron are glyphs with no text. Each needs a name, and the chevron needs one that says it opens or closes the options.",
+      "At small the text drops to 14px and the control to 36 tall. Check the trailing chevron still offers a large enough target at that height."
+    ]
+  },
+  "layoutTheming": {
+    "Select": [
+      {
+        "Property": "Assembly size",
+        "Type": "Fill width × hug height",
+        "Description": "Assembly height is derived from the nested input/field Size variant plus visible label and hint content, plus the 4px gaps between them. The field fills the assembly width; the label and hint hug their content. The total stack height is relational and depends on which parts are visible."
+      },
+      {
+        "Property": "Gap",
+        "Type": "space/xs = 4",
+        "Description": "4px between all three parts. The same gap the field uses internally between its icons and its text, so the stack and its content share one rhythm."
+      },
+      {
+        "Property": "Label",
+        "Type": "Hug width and height",
+        "Description": "Hugs its text. A space/xs gap between name, any marker and the information icon."
+      },
+      {
+        "Property": "Field",
+        "Type": "Fill width",
+        "Description": "Fills the assembly width. Height is determined by its Size property. Label and hint hug their content; only the field tracks the container width."
+      },
+      {
+        "Property": "Hint",
+        "Type": "Hug width and height",
+        "Description": "Hugs its content. 4px gap between optional icon and message text. Smaller than the field text so the selected value is the loudest element in the stack."
+      },
+      {
+        "Property": "Dropdown Menu",
+        "Type": "Overlaid / out of normal flow",
+        "Description": "The dropdown is absolutely positioned and overlaid. Its top edge is 4px below the field's bottom edge. It does not affect assembly height; the assembly height remains determined by the visible label, field, hint, and gaps. Height is determined by the number of visible menu items."
+      },
+      {
+        "Property": "Colour",
+        "Type": "Semantic tokens",
+        "Description": "Label uses foregroundPrimary, drops to foregroundDisabled when Disabled=true. Field border uses interactiveNeutralBorderDefault at rest, interactiveNeutralBorderHover on hover, borderFocus on focus/open, borderError on invalid, and interactiveNeutralBorderDisabled on disabled. Placeholder text uses foregroundDisabled; selected value uses foregroundPrimary. The dropdown menu surface uses surfaceMenu with a medium shadow."
+      }
+    ],
+    "Input / Select": [
+      {
+        "Property": "Size",
+        "Type": "Fixed",
+        "Description": "280 wide and fixed, so the container sets the width rather than the content. Height is bound per size, control/lg at large for 48, control/md at medium for 40 and control/sm at small for 36."
+      },
+      {
+        "Property": "Padding and gap",
+        "Type": "Fixed",
+        "Description": "space/sm top and bottom, space/md left and right, with a space/xs gap between the leading icon, the text and the trailing control. Padding holds across all three sizes, so height alone carries the density."
+      },
+      {
+        "Property": "Radius",
+        "Type": "Per Shape",
+        "Description": "radius/none when sharp, radius/sm when rounded and radius/pill when full. The four corners are bound individually rather than as a single value."
+      },
+      {
+        "Property": "Surface",
+        "Type": "Per Flavour",
+        "Description": "interactive/neutral/background/default on default and gradient, moving to interactive/neutral/background/disabled when disabled. Ghost carries no surface of its own, so whatever sits behind it shows through."
+      },
+      {
+        "Property": "Border",
+        "Type": "Per Flavour",
+        "Description": "Default draws at 1px and rises to 2px on focus. Gradient keeps those weights and draws its border from the gradient tokens: a foreground/gradient/start to foreground/gradient/end gradient at rest and when filled, border/gradient/end on hover and border/gradient/start when selected or typing. Focus, invalid, read-only and disabled use the same tokens as default. Ghost holds a bound border at zero weight, which is a theming hook rather than an absent border, so a high contrast variable set can give it a hard outline."
+      },
+      {
+        "Property": "Text",
+        "Type": "Theming",
+        "Description": "body/medium at 16px for large and medium, body/small at 14px for small. The colour changes with state, which States and Triggers sets out."
+      },
+      {
+        "Property": "Icons and controls",
+        "Type": "Fixed",
+        "Description": "Every icon is Size=medium at 20 square at large and medium, and Size=small at 16 square at small, and the inner text frame fills whatever width they leave. At large one icon costs 24 including its gap, taking the text from 254 to 230, and two take it to 206. Every icon and control, leading, trailing, the type control and clear, draws foreground/primary like the value, and foreground/disabled when the field is disabled."
+      }
+    ]
+  },
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6597-3495",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6602-712",
+    "variants": {
+      "closed": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6602-542",
+      "open": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6602-646"
+    },
+    "field": {
+      "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6601-110",
+      "sizes": {
+        "large": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6601-116",
+        "medium": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6601-131",
+        "small": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6601-146"
+      },
+      "states": {
+        "enabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6601-131",
+        "hover": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6601-176",
+        "focus": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6601-225",
+        "open": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6601-279",
+        "filled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6601-383",
+        "invalid": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6601-428",
+        "read-only": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6601-473",
+        "disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6601-518"
+      },
+      "flavours": {
+        "gradient": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6601-563",
+        "gradient open": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6601-711",
+        "ghost": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6601-995",
+        "ghost open": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6601-1143"
+      }
+    },
+    "metadata": {
+      "Select": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6597-6027",
+      "Select Field": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6597-6265"
+    },
+    "detailsCards": {
+      "Select Field": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6597-3497",
+      "Select": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6597-4877"
+    }
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "component details card (Select, 6597:4877)",
+      "detail": "The Select card's Description is Input's card text, word for word: \"A labelled text field, pairing a name above the control with a supporting line below it. Type selects which of five input types fills the middle, text, number, password, date or time, …\". Select has no Type and no five input types. Its own set description (on 6602:712) is correct and could replace it."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata frame (Select Metadata, 6597:6027)",
+      "detail": "The frame header reads \"INPUT · COMPONENT METADATA\", copied from Input; it should name Select."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata (Select Field Metadata) — copied from Input Field",
+      "detail": "Several rows still describe Input Field, not the select field: (1) Layout › Border says gradient uses border/gradient/start \"when selected or typing\"; Input / Select has neither state, and it is open that uses border/gradient/start. (2) Layout › Icons and controls talks about \"two\" icons and \"leading, trailing, the type control and clear\"; the select field has a leading icon and the chevron only. (3) How to use › Don't: \"It clears the moment typing starts\"; a select is never typed in. (4) Accessibility: \"Select pairs it with Select Label\"; the label is Input Label, there is no Select Label."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs API (Select Field)",
+      "detail": "Property Breakdown has no hasLeading=true row; only false is described."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata (Select) vs structure",
+      "detail": "Open=true shows the placeholder in the field (\"Select an option\" in foreground/disabled), but Content & Slot says \"Filled/open states show the selected value in foregroundPrimary\". The Select States table's \"filled\" row is also a field state; the assembly has no filled variant."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata (Select) vs description vs structure — selected row",
+      "detail": "The Select set description says \"Mark the chosen row with State=selected and a check-mark trailing icon\". Accessibility says \"Visual indication of the selected state is not authored in this component\". The open variant has no selected row and no check mark: row 1 is Menu Item State=hover and the rest Default, all with Trailing Icon off. Decide which is right. Menu Item does have a selected state (see specs/dropdown/)."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata — keyboard contradiction",
+      "detail": "Select Metadata says \"Space or Enter should open the dropdown\". Select Field Metadata says \"Open on Alt+Down or Enter\". Pick one model (listbox-style select: Space, Enter, Alt+Down and ArrowDown all open)."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata (Select) — assembly state",
+      "detail": "Behavior › State coordination says invalid, disabled and read-only are an \"assembly-level state that cascades to nested parts\", and States lists invalid and disabled as \"Set on the element\". Select exposes no State property; in Figma each state is set part by part on the field, label and hint. specs/input/ settled the same question for Input in code, where the assembly owns a general state. Select should follow that."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata (Select) — truncated text",
+      "detail": "Property Breakdown Open=true reads \"The menu is absolutely positioned at base .\" and States › open reads \"absolutely positioned at below the field\". A value is missing in both. Behavior and Anatomy give it as 4px below the field's bottom edge."
+    },
+    {
+      "severity": "warn",
+      "source": "Input / Select ghost borders",
+      "detail": "Inherited from Input (see specs/input/): ghost binds border weight to stroke/base (zero) in every state except focus and invalid. On a select this also hides the open state, which is border/focus at stroke/base. Only the chevron flip shows that the list is open."
+    },
+    {
+      "severity": "warn",
+      "source": "experimental code vs Figma",
+      "topic": "Field state for an open list",
+      "figma": "Input / Select has its own State=open (border/focus at stroke/thin; gradient border/gradient/start; ghost border/focus at stroke/base) and has no selected or typing state.",
+      "code": "The trigger is given Input Field's data-state=\"selected\" while open (\"open → selected\"). This gives the same tokens, but under a different name. The InputFieldState type the code borrows also carries focus, selected and typing, none of which exist on Input / Select."
+    },
+    {
+      "severity": "warn",
+      "source": "experimental code vs Figma",
+      "topic": "Chevron",
+      "figma": "Glyph swap authored per variant: expand-more when closed, expand-less at State=open. Size follows the field (Icon medium; small at small). Colour foreground/primary, foreground/disabled when disabled.",
+      "code": "Always the expand-more glyph, turned 180 degrees with CSS when [data-popup-open]. The glyph swap is replaced by a rotation. Size and colour match: the colour is inherited as currentColor from the field text."
+    },
+    {
+      "severity": "warn",
+      "source": "experimental code vs Figma",
+      "topic": "List positioning",
+      "figma": "Dropdown Menu is a child of the assembly, absolutely positioned 4 Px below the field. Its width equals the field's (fixed 280). It overlaps the hint. It always opens below and has no max height or scroll.",
+      "code": "The list is portalled to document.body (or portalContainer) through Base UI's Positioner, with sideOffset = --space-xs (4 Px fallback) and alignItemWithTrigger=false. Width is min-inline-size: var(--anchor-width), so it is at least as wide as the trigger and can be wider. Height is capped at --available-height and scrolls. Collision flipping can open the list above the field. z-index is 1."
+    },
+    {
+      "severity": "warn",
+      "source": "experimental code vs Figma",
+      "topic": "List shape",
+      "figma": "Dropdown Menu always Rounded=true, including under a sharp field.",
+      "code": "data-rounded = shape !== \"sharp\": a sharp field opens a sharp list with sharp rows."
+    },
+    {
+      "severity": "warn",
+      "source": "experimental code vs Figma",
+      "topic": "Missing in code",
+      "figma": "Input Label Show Information (information icon); Input Hint Show Icon (toggle); Input Label Disabled is set on its own.",
+      "code": "There is no information-icon option and no way to hide the hint icon. Label dimming follows state=disabled through input.css rather than its own flag."
+    },
+    {
+      "severity": "warn",
+      "source": "experimental code vs Figma",
+      "topic": "Placeholder default",
+      "figma": "\"Select an option\" (set on the nested field in Select; the field set itself says \"Placeholder\").",
+      "code": "placeholder defaults to \"Select…\"."
+    },
+    {
+      "severity": "note",
+      "source": "component details card (Select Field, 6597:3497)",
+      "detail": "The Search description an earlier look found is gone; the card now describes a select. It lists \"default, hover, focus, open, disabled, and error states\": Figma names these enabled and invalid, and the card leaves out filled and read-only."
+    },
+    {
+      "severity": "note",
+      "source": "component details cards (both)",
+      "detail": "Both change logs still carry \"Haashir · Aug 10, 26 @ 3:00 PM · Created\" and a Created date of Aug 10, 2026. The page was built Oct 14–15, so these look carried over from the card template or the Input page."
+    },
+    {
+      "severity": "note",
+      "source": "structure — dropdown width and shape",
+      "detail": "The menu's width is a fixed 280 Px set to match the assembly. It is not bound to the field, and an absolutely positioned child cannot fill. The metadata's \"flexible width, matching the assembly\" is an intent for code. The menu is always Rounded=true, including under a sharp field."
+    },
+    {
+      "severity": "note",
+      "source": "structure — 4px menu offset",
+      "detail": "The menu sits 4 Px below the field (measured y 68 = field bottom 64 + 4). It is a position, not a bindable gap, so no token is bound. The value equals space/xs, and code uses space/xs."
+    },
+    {
+      "severity": "note",
+      "source": "metadata vs structure — assembly sizing",
+      "detail": "Layout says \"Fill width × hug height\". The Select set's variants are fixed 280 wide with hug height. A component root cannot fill in Figma; treat fill as the intent."
+    },
+    {
+      "severity": "note",
+      "source": "metadata — typo",
+      "detail": "Behavior › State coordination: \"These ae the assembly-level state\" (verbatim)."
+    },
+    {
+      "severity": "note",
+      "source": "Input / Select default text",
+      "detail": "The set's own display text is \"Placeholder\". Select overrides it to \"Select an option\", which is what the metadata documents."
+    },
+    {
+      "severity": "note",
+      "source": "Input / Select vs Input / Text",
+      "detail": "The field rows match specs/input/ exactly, except that open (border/focus at stroke/thin, gradient border/gradient/start, ghost border/focus at stroke/base) takes the place of Input Field's selected with the same tokens, and there is no typing state and no clear control. The chevron is foreground/primary and foreground/disabled when disabled, matching every other Input icon. Size and Shape never change colour, stroke or visibility (all 216 checked). No gaps and no binding drift were found."
+    },
+    {
+      "severity": "note",
+      "source": "labels placed",
+      "detail": "Select places Input Label at Type=default with Show Information=false, which turns off the label set's own default of Show Information=true, and Input Hint at Type=default with Show Icon=true."
+    },
+    {
+      "severity": "note",
+      "source": "coverage",
+      "detail": "Both metadata frames are complete (What, Property Breakdown, States, Behavior, Content, Anatomy, How to use, Accessibility, Layout). No motion is defined. No private subcomponents are on the page. Label, Hint, Dropdown Menu, Menu Item and Icon are reused from other pages."
+    },
+    {
+      "severity": "note",
+      "source": "web components",
+      "detail": "packages/web-components has no Select (no zds-select). The only implementation is the experimental React one."
+    },
+    {
+      "severity": "note",
+      "source": "experimental code vs Figma",
+      "topic": "Status / spec pointer",
+      "figma": "A Figma spec now exists: Select 6602:712 and Input / Select 6601:110 on page Input Select.",
+      "code": "Select.tsx docblock says \"EXPERIMENTAL — no Figma spec yet\" and \"@spec none — experimental. Composes specs/input and specs/dropdown\"; select.css says \"Spec: none yet\"; the story's docs say \"no Figma spec\". All of these are now stale."
+    },
+    {
+      "severity": "note",
+      "source": "experimental code vs Figma",
+      "topic": "State precedence",
+      "figma": "One State value per variant; there is no invalid+open or read-only+open combination.",
+      "code": "disabled > open > invalid > read-only > filled > enabled. While open, an invalid field draws border/focus and the error border disappears until it closes."
+    },
+    {
+      "severity": "note",
+      "source": "experimental code vs Figma",
+      "topic": "Focus",
+      "figma": "State=focus: border/focus at stroke/thick, drawn outside.",
+      "code": "Not a data-state. It is drawn from :focus-visible as an outline of stroke/thick in border/focus, with the inside border made transparent. This matches visually, but the data-state never becomes focus."
+    },
+    {
+      "severity": "note",
+      "source": "experimental code vs Figma",
+      "topic": "Selected row",
+      "figma": "The open sample has no selected row and no check mark (row 1 is shown at hover). The set description says to mark it with State=selected and a check-mark trailing icon. The metadata says the selected indication is not authored.",
+      "code": "Base UI's ItemIndicator draws a trailing check-mark glyph, and menu-item.css tints [data-selected] rows with interactive/ghost/background/selected. This follows the set description."
+    },
+    {
+      "severity": "note",
+      "source": "experimental code vs Figma",
+      "topic": "Props: the assembly API",
+      "figma": "Select exposes only Open (variant), Show Label and Show Hint. Size, Shape, State, Flavour and hasLeading are set on the nested Input / Select. Label Type and Show Information are set on the nested Input Label, and Hint Type and Show Icon on the nested Input Hint.",
+      "code": "The code puts them all on the assembly: options[], value/defaultValue/onValueChange, open/defaultOpen/onOpenChange, placeholder, label (an empty value hides it, standing in for showLabel), labelType, hint (an empty value hides it, standing in for showHint), state (default|invalid|disabled), readOnly (boolean), name, leadingIcon, size, shape, flavour, portalContainer and aria-label. This is in line with the decision recorded in specs/input/."
+    },
+    {
+      "severity": "note",
+      "source": "experimental code vs Figma",
+      "topic": "Hover",
+      "figma": "State=hover (interactive/neutral/border/hover; gradient border/gradient/end; ghost interactive/neutral/border/hover at stroke/base).",
+      "code": "Comes from input-field.css :hover, which applies only on data-state enabled and filled. So hover gives no feedback at invalid or read-only, which the Figma field also does not model."
+    },
+    {
+      "severity": "note",
+      "source": "experimental code vs Figma",
+      "topic": "Leading icon",
+      "figma": "hasLeading boolean, default false. The glyph ships as email and is swapped through Icon Name.",
+      "code": "leadingIcon: IconName | null, default null. A chosen option's own icon replaces it, which Figma does not model, and options can carry icons that show in the rows."
+    },
+    {
+      "severity": "note",
+      "source": "experimental code vs Figma",
+      "topic": "Defaults: size, shape, flavour",
+      "figma": "Input / Select defaults to Size=medium, Shape=rounded, Flavour=default.",
+      "code": "size=\"medium\", shape=\"rounded\", flavour=\"default\". These match."
+    },
+    {
+      "severity": "note",
+      "source": "experimental code vs Figma",
+      "topic": "Width",
+      "figma": "The field is fixed at 280 wide, and the metadata says the container sets it.",
+      "code": "inline-size: 100% of the container. This matches the intent."
+    },
+    {
+      "severity": "note",
+      "source": "experimental code vs Figma",
+      "topic": "Keyboard",
+      "figma": "The metadata disagrees with itself: Space or Enter (Select), or Alt+Down or Enter (field).",
+      "code": "Base UI Select: listbox semantics, typeahead, arrow navigation, Enter or Space to commit, Escape to close with focus returning to the trigger."
+    },
+    {
+      "severity": "note",
+      "source": "experimental code vs Figma",
+      "topic": "Read-only",
+      "figma": "State=read-only uses border/subtle with the value at foreground/primary; the label stays at full strength.",
+      "code": "readOnly is passed to Base UI and the field gets data-state read-only (cursor: default). This matches."
+    }
+  ]
+}

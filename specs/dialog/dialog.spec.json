@@ -1,0 +1,917 @@
+{
+  "component": {
+    "name": "Dialog",
+    "slug": "dialog",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "2896:877",
+      "key": "a5cfdb5c64d2368a30331c613e7a186bc8fcd6d3",
+      "page": "Dialog",
+      "pageNodeId": "2526:316",
+      "metadataFrameId": "6087:317",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2526-316",
+      "extractedAt": "2026-10-20",
+      "variantCount": {
+        "Dialog": 10,
+        "_Dialog Header": 1,
+        "_Dialog Footer": 4
+      },
+      "extractionNote": "Master (Flavour x Shape, 10 variants) and both private parts extracted to depth 12. Flavour and Shape change nothing at the Dialog's own level except root radius; every visible difference lives in nested-instance overrides (leading glyph, glyph family, footer button Shape), which were read per variant separately. The page also holds a 'Dev Deviation' note on the master board, read verbatim."
+    }
+  },
+  "summary": "A modal message that interrupts the current task until the user responds or dismisses it. A header carries the message's flavour and title, a body holds the message itself, and an optional footer offers one to three action buttons or two custom slots. Turning showFooter off removes the footer, leaving an informational dialog with nothing to decide.",
+  "boardDescription": "A popup dialog used to convey a message to the user, with a customizable interface and functionality. Flavour communicates intent (default, error, info, success, warning), Shape sets round or sharp corners, and showFooter toggles the action row.",
+  "devDeviation": [
+    "Code implementation uses a the same dialog component for both dialogs and modals. We have split them into separate components given they have independent use cases and visual treatments.",
+    "Code implementation does not allow for the clear icon to be hidden. This has been introduced in the new build.",
+    "confirmButtonFlavor from code has not been implemented: slots are used, with buttons in actions. Button flavour can be changed at the component level properties.",
+    "Figma’s dialog component exposes an explicit showFooter boolean."
+  ],
+  "api": {
+    "flavour": {
+      "type": "enum",
+      "figmaName": "Flavour",
+      "values": [
+        "default",
+        "error",
+        "info",
+        "success",
+        "warning"
+      ],
+      "default": "default",
+      "controls": [
+        "header.leadingIcon glyph (nested override)"
+      ],
+      "glyphByValue": {
+        "default": "block",
+        "error": "error",
+        "info": "info",
+        "success": "verified",
+        "warning": "warning"
+      },
+      "intent": {
+        "default": "The dialog's neutral baseline, with no severity implied. Use it for confirmations and other messages that are not warning the user about anything.",
+        "error": "The header icon switches to the error glyph. Use it only when the message reports something that failed or blocks the user from continuing, not for a milder warning.",
+        "info": "The header icon switches to the info glyph. Use it for a message the user should read but that needs no decision or urgency attached to it.",
+        "success": "The header icon switches to the success glyph. Use it to confirm that an action already completed, not to ask the user to confirm one.",
+        "warning": "The header icon switches to the warning glyph. Use it when the user can still proceed but should be made aware of a consequence first."
+      },
+      "_note": "Flavour changes only which glyph the header's leading icon shows. Icon colour stays foreground/primary for every value; surface, border, body and footer are identical across all five."
+    },
+    "shape": {
+      "type": "enum",
+      "figmaName": "Shape",
+      "values": [
+        "round",
+        "sharp"
+      ],
+      "default": "round",
+      "controls": [
+        "root.radius",
+        "header.leadingIcon glyph family (rounded | sharp)",
+        "footer buttons Shape (rounded | sharp)"
+      ],
+      "intent": {
+        "round": "Matches the surrounding surface and its other rounded controls. Also sets the shape of every button in the footer, the two cannot be mixed within one dialog.",
+        "sharp": "Matches a square surface. Carries through to the footer’s action buttons as well."
+      },
+      "_note": "Figma stores the options as sharp, round; order here follows the metadata. Shape does not reach the close glyph, which stays in the rounded family in sharp dialogs (see issues)."
+    },
+    "showFooter": {
+      "type": "boolean",
+      "figmaName": "showFooter#2896:37",
+      "default": true,
+      "controls": [
+        "footer"
+      ],
+      "intent": {
+        "true": "Shows the footer and its action buttons.",
+        "false": "Removes the footer entirely, the dialog hugs to the header and body alone. Use it only for a message with nothing for the user to decide."
+      }
+    }
+  },
+  "internalVariations": [
+    {
+      "part": "footer",
+      "via": "_Dialog Footer",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "custom"
+      ],
+      "pinned": "3",
+      "intent": "Fixed to a single Footer instance, hidden entirely when showFooter is off. Every variant uses the same three button layout, a Tertiary action on one side and a Secondary and Primary pair on the other. Which layout shows is fixed by Dialog, not an exposed property.",
+      "_note": "Reachable only by changing Actions on the nested footer instance. The How to use guidance refers to the one-button preset and the custom slots, so authors are expected to use it."
+    },
+    {
+      "part": "header.leadingIcon / header.close",
+      "via": "_Dialog Header",
+      "options": {
+        "showLeadingIcon": [
+          true,
+          false
+        ],
+        "showClose": [
+          true,
+          false
+        ]
+      },
+      "intent": "Fixed to a single Header instance in every variant, holding a leading icon, the title and a close icon. Both the icon and the close icon are always shown, Dialog does not expose either as a property. The leading icon's glyph changes with Flavour, set directly by Dialog rather than through an exposed binding.",
+      "_note": "The header's own booleans exist but Dialog pins both true and does not promote them."
+    }
+  ],
+  "contentInputs": [
+    {
+      "part": "header.title",
+      "input": "title (text)",
+      "sample": "Dialog Title"
+    },
+    {
+      "part": "body",
+      "input": "children (any content)",
+      "sample": "one paragraph of placeholder copy"
+    },
+    {
+      "part": "footer actions",
+      "input": "label + action per button (Tertiary, Secondary, Primary)",
+      "sample": "\"Button\" on each"
+    }
+  ],
+  "anatomy": [
+    {
+      "id": "root",
+      "kind": "container",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/none",
+        "padding": "space/md",
+        "align": "start"
+      },
+      "sizing": {
+        "h": "hug",
+        "v": "hug"
+      },
+      "paint": {
+        "fill": "surface/dialog",
+        "stroke": {
+          "color": "border/default",
+          "width": "stroke/thin",
+          "align": "inside"
+        },
+        "effects": "none"
+      },
+      "radius": "radius/element-md (round) | radius/none (sharp)",
+      "measured": {
+        "widthPx": 506,
+        "heightPx": 222,
+        "heightWithoutFooterPx": 158
+      },
+      "role": "Outer padding — 12px on every side of the dialog itself, independent of each section’s own padding."
+    },
+    {
+      "id": "header",
+      "number": 1,
+      "kind": "instance",
+      "ref": "_Dialog Header",
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      },
+      "pinned": {
+        "showLeadingIcon": true,
+        "showClose": true
+      },
+      "role": "Header — A single Dialog Header instance, fixed in every variant. Holds the leading icon, the title and the close icon."
+    },
+    {
+      "id": "body",
+      "number": 2,
+      "kind": "container",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/none",
+        "padding": {
+          "top": "space/md",
+          "right": "space/md",
+          "bottom": "space/section",
+          "left": "space/md"
+        },
+        "align": "center"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      },
+      "limits": {
+        "minWidthPx": 480,
+        "_note": "raw, no token"
+      },
+      "role": "Body — An open content area with no fixed structure of its own in this file."
+    },
+    {
+      "id": "body.content",
+      "kind": "container",
+      "parent": "body",
+      "layout": {
+        "direction": "vertical",
+        "gap": "none (raw 0)",
+        "padding": "none"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      },
+      "clips": true,
+      "children": [
+        {
+          "id": "body.text",
+          "kind": "text",
+          "text": {
+            "style": "body/medium",
+            "color": "foreground/primary",
+            "align": "start",
+            "wrap": true
+          },
+          "sizing": {
+            "h": "fixed (432Px measured, inside a 456Px content box)",
+            "v": "hug"
+          },
+          "sample": true
+        }
+      ]
+    },
+    {
+      "id": "footer",
+      "number": 3,
+      "kind": "instance",
+      "ref": "_Dialog Footer",
+      "refVariant": "Actions=3",
+      "visibleWhen": "showFooter",
+      "sizing": {
+        "h": "fixed (480Px measured)",
+        "v": "hug"
+      },
+      "limits": {
+        "minWidthPx": 480
+      },
+      "overrides": {
+        "buttons.shape": "follows Dialog shape: round -> Button Shape=rounded, sharp -> Button Shape=sharp"
+      },
+      "role": "Footer — A single Dialog Footer instance, hidden entirely when showFooter is off."
+    }
+  ],
+  "variants": {
+    "axes": [
+      "flavour",
+      "shape"
+    ],
+    "base": "flavour=default, shape=round",
+    "table": [
+      {
+        "flavour": "default",
+        "header.leadingIcon": "block"
+      },
+      {
+        "flavour": "error",
+        "header.leadingIcon": "error"
+      },
+      {
+        "flavour": "info",
+        "header.leadingIcon": "info"
+      },
+      {
+        "flavour": "success",
+        "header.leadingIcon": "verified"
+      },
+      {
+        "flavour": "warning",
+        "header.leadingIcon": "warning"
+      }
+    ],
+    "shapeTable": [
+      {
+        "shape": "round",
+        "root.radius": "radius/element-md",
+        "header.leadingIcon.family": "rounded",
+        "header.close.family": "rounded",
+        "footer.buttons.shape": "rounded"
+      },
+      {
+        "shape": "sharp",
+        "root.radius": "radius/none",
+        "header.leadingIcon.family": "sharp",
+        "header.close.family": "rounded (not switched — see issues)",
+        "footer.buttons.shape": "sharp"
+      }
+    ],
+    "_note": "The two axes are independent: glyph name from flavour, glyph family from shape. Every flavour x shape cell is otherwise identical (same surface, border, padding, footer preset, icon colour)."
+  },
+  "subcomponents": [
+    {
+      "name": "_Dialog Header",
+      "private": true,
+      "id": "2644:3298",
+      "key": "fb7620b3c1024e4c8c49822030abf99d9457b921",
+      "type": "component (no variants)",
+      "api": {
+        "showLeadingIcon": {
+          "type": "boolean",
+          "figmaName": "showLeadingIcon#2644:20",
+          "default": true,
+          "controls": [
+            "leadingIcon"
+          ]
+        },
+        "showClose": {
+          "type": "boolean",
+          "figmaName": "showClose#2886:2",
+          "default": true,
+          "controls": [
+            "close"
+          ]
+        }
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/sm",
+            "padding": "space/md",
+            "align": "center"
+          },
+          "height": "control/lg",
+          "radius": "radius/none",
+          "sizing": {
+            "h": "fixed in the master, fill inside Dialog",
+            "v": "hug"
+          },
+          "paint": "none (transparent)"
+        },
+        {
+          "id": "titleGroup",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/sm",
+            "padding": "space/none",
+            "align": "center"
+          },
+          "sizing": {
+            "h": "fill",
+            "v": "hug"
+          }
+        },
+        {
+          "id": "leadingIcon",
+          "kind": "glyph",
+          "parent": "titleGroup",
+          "visibleWhen": "showLeadingIcon",
+          "glyph": "set by Dialog per flavour (block | error | info | verified | warning); master default block",
+          "family": "follows Dialog shape (rounded | sharp)",
+          "color": "foreground/primary (currentColor)",
+          "size": "raw glyph component placed directly, not via the Icon component; 24x24Px measured, no size token (see issues)"
+        },
+        {
+          "id": "title",
+          "kind": "text",
+          "parent": "titleGroup",
+          "text": {
+            "style": "title/large",
+            "color": "foreground/primary",
+            "wrap": "none (hugs width, no truncation set)"
+          },
+          "sample": "Dialog Title"
+        },
+        {
+          "id": "close",
+          "kind": "instance",
+          "ref": "Icon",
+          "refVariant": "Size=medium, Framed=false",
+          "visibleWhen": "showClose",
+          "glyph": "close",
+          "family": "rounded (in every Dialog variant)",
+          "size": "Icon Size=medium (height bound to control/icon-md)",
+          "color": "foreground/primary (currentColor)",
+          "_note": "A bare Icon, not an Icon Button: no hit area, states or focus treatment are drawn."
+        }
+      ]
+    },
+    {
+      "name": "_Dialog Footer",
+      "private": true,
+      "id": "2644:3185",
+      "key": "99231d8b29786df5ff4df6050316d91f7d7ae8ab",
+      "type": "component set (4 variants)",
+      "api": {
+        "actions": {
+          "type": "enum",
+          "figmaName": "Actions",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "custom"
+          ],
+          "default": "3",
+          "controls": [
+            "variant"
+          ],
+          "_note": "Figma order is 2, 3, 1, custom."
+        },
+        "leftAction": {
+          "type": "slot",
+          "figmaName": "Left Action#2903:8",
+          "visibleWhen": "actions = custom",
+          "preferredContent": [
+            "Button (specs/button)",
+            "Icon Button (specs/icon-button)"
+          ],
+          "minChildren": null,
+          "maxChildren": null
+        },
+        "rightAction": {
+          "type": "slot",
+          "figmaName": "Right Action#2896:32",
+          "visibleWhen": "actions = custom",
+          "preferredContent": [
+            "Button (specs/button)",
+            "Icon Button (specs/icon-button)"
+          ],
+          "minChildren": null,
+          "maxChildren": null
+        }
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "padding": "space/md",
+            "align": "center"
+          },
+          "sizing": {
+            "h": "fixed (480Px measured)",
+            "v": "hug"
+          },
+          "limits": {
+            "minWidthPx": 480
+          },
+          "paint": "none (transparent)",
+          "measured": {
+            "heightPx": 64
+          }
+        },
+        {
+          "id": "tertiary",
+          "kind": "instance",
+          "ref": "Button",
+          "refVariant": "Size=medium, Flavour=text",
+          "visibleIn": [
+            "3"
+          ]
+        },
+        {
+          "id": "trailingGroup",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/sm",
+            "padding": "space/none"
+          },
+          "visibleIn": [
+            "3"
+          ]
+        },
+        {
+          "id": "secondary",
+          "kind": "instance",
+          "ref": "Button",
+          "refVariant": "Size=medium, Flavour=outline-subtle",
+          "visibleIn": [
+            "3",
+            "2"
+          ]
+        },
+        {
+          "id": "primary",
+          "kind": "instance",
+          "ref": "Button",
+          "refVariant": "Size=medium, Flavour=primary",
+          "visibleIn": [
+            "3",
+            "2",
+            "1"
+          ]
+        },
+        {
+          "id": "leftAction",
+          "kind": "slot",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/sm",
+            "padding": "space/none"
+          },
+          "visibleIn": [
+            "custom"
+          ]
+        },
+        {
+          "id": "rightAction",
+          "kind": "slot",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/sm",
+            "padding": "space/none"
+          },
+          "visibleIn": [
+            "custom"
+          ]
+        }
+      ],
+      "variants": {
+        "axis": "actions",
+        "base": "3",
+        "table": [
+          {
+            "actions": "1",
+            "root.justify": "end",
+            "root.gap": "space/sm",
+            "children": "primary"
+          },
+          {
+            "actions": "2",
+            "root.justify": "end",
+            "root.gap": "space/sm",
+            "children": "secondary, primary"
+          },
+          {
+            "actions": "3",
+            "root.justify": "space-between",
+            "root.gap": "n/a (space-between)",
+            "children": "tertiary | [secondary, primary] in trailingGroup (gap space/sm)"
+          },
+          {
+            "actions": "custom",
+            "root.justify": "space-between",
+            "root.gap": "n/a (space-between; raw 8 set, no token)",
+            "children": "leftAction slot | rightAction slot"
+          }
+        ],
+        "_note": "Buttons are pinned Size=medium, no leading/trailing icon, label 'Button'. Their Shape is overridden by Dialog's shape. Button paint tokens come from specs/button."
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Button",
+      "id": "2060:15072",
+      "key": "42bf13a5210cd307b7bd4563f2521b78cfd74dae",
+      "remote": false,
+      "spec": "specs/button",
+      "usedAt": [
+        "footer.tertiary",
+        "footer.secondary",
+        "footer.primary",
+        "footer slots (preferred)"
+      ],
+      "pinned": "Size=medium, Flavour=text | outline-subtle | primary, State=default, Disabled=false, Leading/Trailing Icon off; Shape follows Dialog (rounded | sharp)"
+    },
+    {
+      "name": "Icon Button",
+      "id": "2338:1763",
+      "key": "aee1f4fe89a3f70a26978e68621194baf1271b8a",
+      "remote": false,
+      "spec": "specs/icon-button",
+      "usedAt": [
+        "footer slots (preferred content only)"
+      ],
+      "_note": "Not used for the close control — the header uses a bare Icon."
+    },
+    {
+      "name": "Icon",
+      "id": "2046:15010",
+      "key": "a469ac1cf34202af3e094593468d9ef20a37a703",
+      "remote": false,
+      "spec": "specs/icon",
+      "usedAt": [
+        "header.close"
+      ],
+      "pinned": "Size=medium, Framed=false, glyph close"
+    },
+    {
+      "name": "Icon glyphs (font)",
+      "spec": "packages/icons/codepoints.json",
+      "usedAt": [
+        "header.leadingIcon",
+        "header.close"
+      ],
+      "glyphs": [
+        "block",
+        "error",
+        "info",
+        "verified",
+        "warning",
+        "close"
+      ]
+    },
+    {
+      "name": "Divider",
+      "spec": "specs/divider",
+      "usedAt": [],
+      "_note": "Not used. Header, body and footer sit flush with no divider between them."
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "surface/dialog",
+      "border/default",
+      "foreground/primary"
+    ],
+    "dimension": [
+      "space/none",
+      "space/sm",
+      "space/md",
+      "space/section",
+      "radius/element-md",
+      "radius/none",
+      "stroke/thin",
+      "control/lg",
+      "control/icon-md"
+    ],
+    "typography": [
+      "title/large",
+      "body/medium"
+    ],
+    "glyphs": [
+      "block",
+      "error",
+      "info",
+      "verified",
+      "warning",
+      "close"
+    ],
+    "viaButton": {
+      "_note": "Bound inside the footer's Button instances; owned by specs/button, listed so a reskin can check them.",
+      "color": [
+        "interactive/ghost/background/default",
+        "interactive/ghost/border/default",
+        "interactive/ghost/foreground/default",
+        "interactive/neutral/border/default",
+        "interactive/neutral/foreground/default",
+        "interactive/primary/background/default",
+        "interactive/primary/border/default",
+        "interactive/primary/foreground/default"
+      ],
+      "dimension": [
+        "control/md",
+        "space/xs",
+        "space/md",
+        "radius/element-sm",
+        "stroke/base",
+        "stroke/thin"
+      ]
+    },
+    "notBound": {
+      "_note": "Present in tokens/ but not referenced by anything on this page; candidates only, see issues.",
+      "backdrop": [
+        "overlay/modal",
+        "overlay/scrim"
+      ],
+      "elevation": [
+        "shadow/soft",
+        "shadow/hard"
+      ]
+    },
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "typography": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ]
+    },
+    "_note": "All 14 own names (3 colour, 9 dimension, 2 type styles whose font variables also resolve) and all 14 Button-side names resolve in tokens/base; all six glyphs are in packages/icons/codepoints.json, not retired and not in the inventory's rejected list."
+  },
+  "states": {
+    "_note": "The metadata has no States & Triggers section, and neither Dialog nor its private parts model any state. Interactive states live only in the nested Buttons (specs/button). Open/closed is not modelled."
+  },
+  "behavior": [
+    {
+      "type": "Motion",
+      "description": "No transition is defined for the dialog's own header, body or footer arrangement across any of its variants."
+    }
+  ],
+  "modalExpectations": {
+    "_note": "What the page says, or doesn't, about modal behaviour. Code builds on Base UI's Dialog, which supplies these; the design file only constrains the panel.",
+    "overlayBackdrop": "Not modelled. No backdrop, scrim or overlay layer exists on the page, and the component binds no overlay token. The summary calls it 'A modal message that interrupts the current task', which implies a backdrop, but its colour and opacity are unspecified (see issues for the token candidates).",
+    "focusTrapAndReturn": "Explicitly unspecified: 'Nothing in this file marks how the dialog traps focus or returns it when it closes, so that behaviour needs confirming outside Figma.'",
+    "dismissal": "Partly implied, not specified. A close glyph sits in every header, and the summary says the dialog stays 'until the user responds or dismisses it'. Escape, outside-click/backdrop dismissal, and whether dismissal is allowed when the footer asks for a decision are not stated. The close control is a bare Icon with no accessible name, hit area or states drawn.",
+    "stacking": "Not modelled. Nothing about z-order, nested dialogs, or what happens when a second dialog opens.",
+    "elevation": "None. The panel has no drop shadow or effect style; it is separated from the page only by surface/dialog and a stroke/thin border/default border.",
+    "sizingAndPlacement": "Hugs its content (506Px wide with the default content). No max width, max height, viewport placement, or scroll behaviour for long body content is defined; the body content frame clips.",
+    "dialogVsModal": "The Dev Deviation note says code used one component for dialogs and modals and that Figma has split them into separate components. Only Dialog is on this page; no Modal spec exists in specs/."
+  },
+  "content": [
+    {
+      "property": "Header",
+      "type": "Dialog Header instance",
+      "description": "Fixed to a single Header instance in every variant, holding a leading icon, the title and a close icon. Both the icon and the close icon are always shown, Dialog does not expose either as a property. The leading icon's glyph changes with Flavour, set directly by Dialog rather than through an exposed binding."
+    },
+    {
+      "property": "Body",
+      "type": "Any content",
+      "description": "Holds whatever content the message needs to show, with no fixed type or structure of its own in this file."
+    },
+    {
+      "property": "Footer",
+      "type": "Dialog Footer instance",
+      "description": "Fixed to a single Footer instance, hidden entirely when showFooter is off. Every variant uses the same three button layout, a Tertiary action on one side and a Secondary and Primary pair on the other. Which layout shows is fixed by Dialog, not an exposed property."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Keep the footer to one clear action when only one response is needed. The Actions preset for one button exists for exactly this case.",
+      "Turn showFooter off only for a message the user reads with nothing to decide. The footer is removed entirely, not replaced with an empty bar."
+    ],
+    "dont": [
+      "Don't rely on Flavour to recolour anything beyond the header icon. Every value binds that icon to the same colour token, so the body and the footer's buttons need their own styling if the message calls for it.",
+      "Don't reach for the custom Actions value for a plain one, two or three button footer. The fixed presets already set each button's role and position, the custom slots exist for content that does not fit them."
+    ]
+  },
+  "accessibility": [
+    "The dialog's own header, body and footer carry no keyboard or focus behaviour beyond what the close icon and the footer's buttons already define on their own. Nothing in this file marks how the dialog traps focus or returns it when it closes, so that behaviour needs confirming outside Figma."
+  ],
+  "layoutTheming": [
+    {
+      "property": "Width",
+      "type": "Hug",
+      "description": "Hugs its content rather than holding a fixed width. 506px with the default content, from 12px padding on each side plus the 480px wide header, body and footer."
+    },
+    {
+      "property": "Height",
+      "type": "Hug",
+      "description": "Hugs the stack of header, body and footer with no gap between them. Shrinks by the footer’s own height, 64px, when showFooter is off."
+    },
+    {
+      "property": "Padding",
+      "type": "Fixed",
+      "description": "12px on every side of the dialog itself. The header, body and footer sit flush against each other inside it."
+    },
+    {
+      "property": "Header padding and gap",
+      "type": "Fixed",
+      "description": "12px on every side, 8px between the leading icon, title and close icon."
+    },
+    {
+      "property": "Body padding",
+      "type": "Fixed",
+      "description": "12px on three sides and 24px at the bottom, wider than the others to keep the footer’s buttons clear of the last line of content."
+    },
+    {
+      "property": "Footer",
+      "type": "Fixed width, fixed padding",
+      "description": "Holds its own width fixed at 480px rather than hugging, with 12px padding on every side. Its content is pushed to the two opposite ends rather than spaced evenly."
+    },
+    {
+      "property": "Radius",
+      "type": "Fixed per Shape",
+      "description": "0 for sharp, 6px for round. Chosen per dialog rather than inherited, and it sets the corner radius of every button in the footer as well."
+    },
+    {
+      "property": "Header icon colour",
+      "type": "Fixed",
+      "description": "Every Flavour value binds the leading icon to the same foreground/primary token. Flavour changes which glyph shows, never its colour."
+    }
+  ],
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2526-316",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2896-877",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6087-317",
+    "devDeviation": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2896-4096",
+    "variants": {
+      "flavour (round)": {
+        "default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2886-839",
+        "error": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2909-6564",
+        "info": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2909-6653",
+        "success": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2909-6713",
+        "warning": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2909-6773"
+      },
+      "flavour (sharp)": {
+        "default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2909-6445",
+        "error": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2909-6623",
+        "info": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2909-6683",
+        "success": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2909-6743",
+        "warning": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2909-6803"
+      }
+    },
+    "subcomponents": {
+      "board": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4586-6948",
+      "_Dialog Header": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2644-3298",
+      "_Dialog Footer": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2644-3185",
+      "_Dialog Footer actions": {
+        "1": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2644-3243",
+        "2": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2644-3186",
+        "3": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2622-3169",
+        "custom": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2896-4920"
+      }
+    }
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "modal behaviour",
+      "detail": "Backdrop, focus trap/return, dismissal (Escape, outside click, close) and stacking are not specified anywhere on the page; the Accessibility section says so for focus. Base UI's Dialog defaults will stand in until design decides — flag each as a design decision rather than a spec fact."
+    },
+    {
+      "severity": "warn",
+      "source": "tokens (backdrop)",
+      "detail": "No backdrop token is bound. The obvious candidate overlay/modal ('Semi-transparent dimming layer behind a modal dialog') aliases palette fill/overlay — the same opaque value as surface/dialog (white in Light, neutral cool 80 in Dark) — so using it as a backdrop paints an opaque panel colour. overlay/scrim aliases palette fill/scrim (alpha dark 60, described in palette as 'Backdrop behind modals') but its semantic description scopes it to drawers/sheets. Needs a token decision."
+    },
+    {
+      "severity": "warn",
+      "source": "close control",
+      "detail": "The close control is a bare Icon (Size=medium, glyph close), not an Icon Button: no hit area, hover/pressed/focus states or accessible name are drawn. In code it must be an interactive control (Base UI Dialog.Close) with a label; specs/icon-button is the nearest drawn treatment."
+    },
+    {
+      "severity": "warn",
+      "source": "Shape vs close glyph",
+      "detail": "Shape=sharp switches the leading glyph to the sharp family and the footer buttons to Shape=sharp, but the close glyph stays Style=rounded in all five sharp variants."
+    },
+    {
+      "severity": "warn",
+      "source": "Dev Deviation vs API",
+      "detail": "The deviation note says hiding the close icon 'has been introduced in the new build', but Dialog pins the header's showClose (and showLeadingIcon) true and does not expose either; the Content & Slot row confirms 'Dialog does not expose either as a property'. Decide whether code exposes them."
+    },
+    {
+      "severity": "warn",
+      "source": "descriptionDrift",
+      "detail": "radius/element-md description says '= 16px, source: scale/6' but it resolves to scale/4, which matches the metadata's 6px round radius. The token's description is stale."
+    },
+    {
+      "severity": "warn",
+      "source": "footer sizing",
+      "detail": "Header and body fill the dialog's width, but the footer holds a fixed width (480Px measured, matching the metadata). Wider body content would leave the footer narrower than the dialog. Body and footer also carry a raw minimum width of 480Px with no token."
+    },
+    {
+      "severity": "warn",
+      "source": "footer actions not exposed",
+      "detail": "Dialog pins the footer to Actions=3; the 1, 2 and custom presets (and the custom slots) are reachable only on the nested footer. How to use relies on them ('The Actions preset for one button exists for exactly this case'). Decide in code whether actions become a prop or are composed as children."
+    },
+    {
+      "severity": "note",
+      "source": "metadata wording",
+      "detail": "How to use says 'Every value binds that icon to the same colour token' under a Don't about recolouring 'beyond the header icon'; extraction confirms Flavour does not recolour the icon at all (foreground/primary everywhere). Flavour is glyph-only."
+    },
+    {
+      "severity": "note",
+      "source": "metadata vs measured",
+      "detail": "Width 506Px is 12 + 480 + 12 = 504 plus the stroke/thin border on both sides (the stroke is included in layout); the metadata's arithmetic omits the border."
+    },
+    {
+      "severity": "note",
+      "source": "leading icon sizing",
+      "detail": "The leading glyph is placed as a raw glyph component (24x24Px measured), not through the Icon component, so it has no size token; the close glyph uses Icon Size=medium (control/icon-md). The two header glyphs render at different sizes."
+    },
+    {
+      "severity": "note",
+      "source": "elevation",
+      "detail": "The panel has no shadow or effect style. shadow/soft and shadow/hard exist in tokens/ but are not used."
+    },
+    {
+      "severity": "note",
+      "source": "body text",
+      "detail": "The sample body text is fixed width (432Px) inside a 456Px content box that fills; in code the body is free content and should fill its container. The content box clips; long-content scrolling isn't modelled."
+    },
+    {
+      "severity": "note",
+      "source": "bindingDrift (_Dialog Footer)",
+      "detail": "Root radius is bound to radius/none in Actions=1, 2 and custom but unbound (raw 0) in Actions=3; root gap is bound to space/sm only in Actions=1 and 2 (Actions=custom has a raw 8 gap under space-between, so it is inert). No visible effect."
+    },
+    {
+      "severity": "note",
+      "source": "coverage",
+      "detail": "No States & Triggers section; Behavior has only a 'no motion' row (no enter/exit transition). No component has a native Figma description. Title truncation/wrapping for long titles isn't modelled."
+    },
+    {
+      "severity": "note",
+      "source": "page",
+      "detail": "Dialog vs Modal: the Dev Deviation says they were split into separate components; there is no Modal on this page and no specs/modal. The page itself is complete: master board, Subcomponents/Dialog board (Header + Footer), Dialog Metadata."
+    }
+  ]
+}

@@ -1,0 +1,769 @@
+{
+  "component": {
+    "name": "Button Group",
+    "slug": "button-group",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "5833:912",
+      "key": "c87b8a109dcdac60edf0c6fc8e7ce07fd6d6edb6",
+      "page": "Button Group",
+      "pageNodeId": "5763:1251",
+      "metadataFrameId": "5928:448",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5763-1251",
+      "extractedAt": "2026-10-20",
+      "variantCount": {
+        "Button Group": 6,
+        "_Group Button Small": 5,
+        "_Group Button Medium": 5,
+        "_Group Button Large": 5
+      },
+      "extractionNote": "21 variants on the page = 6 on the public Button Group (Size x Shape) + 5 on each of the three private wrapper sets. All four sets extracted in full (every variant, depth 12; instances not entered). Nested Button instances were then read for their overrides, icons and label style, and the master's slot children for their wrapper variants. The private wrappers are one part (a subtle Button plus a trailing Divider) built three times, once per Size, so they are specced as one subcomponent with a per-size table.",
+      "tokenSource": "tokens/"
+    }
+  },
+  "summary": "A row of related actions sharing one bordered surface, where each carries equal weight rather than one leading. The group owns the fill, the outline and the rules between items, and the items themselves are Figma-only wrappers around the subtle Button. Reach for a single Button when one action is clearly the primary one.",
+  "api": {
+    "size": {
+      "type": "enum",
+      "figmaName": "Size",
+      "values": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "default": "medium",
+      "figmaOrder": [
+        "medium",
+        "large",
+        "small"
+      ],
+      "controls": [
+        "variant",
+        "item size (every item inherits it)",
+        "which Items Slot is live"
+      ],
+      "intent": {
+        "medium": "Match the density of the controls around the group. Size is the group's call and every button inherits it, so it is never set per item. It also decides which of the three slots is live, which is an authoring arrangement rather than part of the component.",
+        "small": "For dense toolbars and compact surfaces where the actions are secondary to the content.",
+        "large": "For touch targets and action rows that need to be reached without aiming."
+      }
+    },
+    "shape": {
+      "type": "enum",
+      "figmaName": "Shape",
+      "values": [
+        "sharp",
+        "rounded"
+      ],
+      "default": "sharp",
+      "controls": [
+        "variant",
+        "root radius",
+        "outer corners of the first and last item"
+      ],
+      "intent": {
+        "sharp": "Match the contour of the surface the group sits on. It reaches the group's own outline and nothing else.",
+        "rounded": "The rounded pairing. Only the group's outline rounds. The buttons inside keep square corners in every wrapper variant, which never shows because they carry no fill of their own."
+      },
+      "_note": "The extraction contradicts the rounded intent: the rounded start/end wrappers bind radius/sm on the nested Button's outer corners. See issues."
+    },
+    "items": {
+      "type": "slot",
+      "figmaName": [
+        "Items Slot Small#5923:6",
+        "Items Slot Medium#5833:1",
+        "Items Slot large#5923:10"
+      ],
+      "controls": [
+        "items"
+      ],
+      "expects": "Button at flavour=subtle, size = the group's size, shape left to the group (see Group item subcomponent)",
+      "minimum": "2 in Figma (one fixed item before the slot, one after); not a component limit per the metadata",
+      "_note": "Figma has three SLOT properties, one per Size, each present only in that Size's variants. They collapse to one items slot in code; the split is an authoring arrangement (Content & Slot)."
+    }
+  },
+  "internalVariations": [
+    {
+      "part": "item",
+      "via": "_Group Button Small / Medium / Large",
+      "options": {
+        "position": [
+          "default",
+          "start",
+          "end"
+        ],
+        "shape": [
+          "sharp",
+          "rounded"
+        ]
+      },
+      "intent": "Each wrapper carries a divider at its trailing edge, and the Position=end variant is the one that drops it. Setting the last item to end is a Figma authoring step, because the parent owns the rules between items.",
+      "_note": "In code, position is derived from the item's index (first / middle / last), not set by the consumer."
+    }
+  ],
+  "contentInputs": [
+    {
+      "part": "item",
+      "input": "label",
+      "via": "Button label",
+      "sample": "Button",
+      "sampleCount": 4
+    },
+    {
+      "part": "item",
+      "input": "leadingIcon",
+      "via": "Button leading icon",
+      "defaultGlyph": "verified"
+    },
+    {
+      "part": "item",
+      "input": "trailingIcon",
+      "via": "Button trailing icon",
+      "defaultGlyph": "expand-more"
+    }
+  ],
+  "anatomy": [
+    {
+      "n": 1,
+      "id": "root",
+      "kind": "container",
+      "name": "Group",
+      "role": "The outer frame. A horizontal auto-layout hugging its items, and the only part carrying the fill and the outline.",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/none",
+        "padding": "none",
+        "align": "center"
+      },
+      "sizing": {
+        "h": "hug",
+        "v": "hug"
+      },
+      "radius": {
+        "sharp": "none (literal, untokened — see issues)",
+        "rounded": "radius/sm"
+      },
+      "clips": false,
+      "paint": {
+        "fill": "surface/section",
+        "stroke": {
+          "color": "border/default",
+          "width": "untokened (see gaps)",
+          "align": "outside"
+        }
+      }
+    },
+    {
+      "n": 2,
+      "id": "firstItem",
+      "kind": "instance",
+      "ref": "Group item",
+      "name": "Group buttons (leading)",
+      "role": "The fixed wrappers at each end, each holding a subtle Button and a trailing divider.",
+      "position": "start",
+      "sizing": {
+        "h": "hug",
+        "v": "hug"
+      }
+    },
+    {
+      "n": 3,
+      "id": "items",
+      "kind": "slot",
+      "name": "Items Slot",
+      "role": "The middle region for any further actions, matched to the chosen Size.",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "per size, see variants",
+        "padding": "none"
+      },
+      "sizing": "per size, see variants",
+      "sample": "2 x Group item at position=default, shape=sharp"
+    },
+    {
+      "n": 2,
+      "id": "lastItem",
+      "kind": "instance",
+      "ref": "Group item",
+      "name": "Group buttons (trailing)",
+      "role": "The fixed wrappers at each end, each holding a subtle Button and a trailing divider.",
+      "position": "end (drops the divider)",
+      "sizing": {
+        "h": "hug",
+        "v": "hug"
+      }
+    }
+  ],
+  "variants": {
+    "axis": "size x shape",
+    "base": "size=medium, shape=sharp",
+    "_note": "Size changes the row height (through the nested Button's control/* height), which wrapper set and which slot is used. Shape changes only the root radius and the outer corners of the end items. measured.* values are observations of the shipped variants with four items, not values to build.",
+    "size": [
+      {
+        "size": "small",
+        "wrapper": "_Group Button Small",
+        "item.height": "control/sm",
+        "items.gap": "none (untokened literal)",
+        "items.sizing": "fixed width, children fill (see issues)",
+        "measured": {
+          "widthPx": 435,
+          "heightPx": 36
+        }
+      },
+      {
+        "size": "medium",
+        "wrapper": "_Group Button Medium",
+        "item.height": "control/md",
+        "items.gap": "space/neg/xs (items overlap, see issues)",
+        "items.sizing": "hug",
+        "measured": {
+          "widthPx": 522,
+          "heightPx": 40
+        }
+      },
+      {
+        "size": "large",
+        "wrapper": "_Group Button Large",
+        "item.height": "control/lg",
+        "items.gap": "none (untokened literal)",
+        "items.sizing": "hug",
+        "measured": {
+          "widthPx": 555,
+          "heightPx": 48
+        }
+      }
+    ],
+    "shape": [
+      {
+        "shape": "sharp",
+        "root.radius": "none (literal, no token)",
+        "firstItem": "position=start, shape=sharp",
+        "lastItem": "position=end, shape=sharp"
+      },
+      {
+        "shape": "rounded",
+        "root.radius": "radius/sm (all four corners)",
+        "firstItem": "position=start, shape=rounded",
+        "lastItem": "position=end, shape=rounded"
+      }
+    ],
+    "asShipped": [
+      {
+        "variant": "Size=small, Shape=sharp",
+        "id": "5833:913",
+        "firstItem": "start, rounded",
+        "lastItem": "end, rounded",
+        "_note": "rounded wrappers in a sharp group"
+      },
+      {
+        "variant": "Size=small, Shape=rounded",
+        "id": "5923:5290",
+        "firstItem": "start, rounded",
+        "lastItem": "end, rounded"
+      },
+      {
+        "variant": "Size=medium, Shape=sharp",
+        "id": "5828:263",
+        "firstItem": "default, sharp",
+        "lastItem": "end, sharp",
+        "_note": "default instead of start; renders the same for sharp"
+      },
+      {
+        "variant": "Size=medium, Shape=rounded",
+        "id": "5923:5302",
+        "firstItem": "end, rounded",
+        "lastItem": "end, rounded",
+        "_note": "first item is end: no divider after it, and its rounded corners are on the wrong side"
+      },
+      {
+        "variant": "Size=large, Shape=sharp",
+        "id": "5833:955",
+        "firstItem": "start, sharp",
+        "lastItem": "end, sharp"
+      },
+      {
+        "variant": "Size=large, Shape=rounded",
+        "id": "5923:5296",
+        "firstItem": "start, rounded",
+        "lastItem": "end, rounded"
+      }
+    ]
+  },
+  "subcomponents": [
+    {
+      "name": "Group item",
+      "figmaSets": {
+        "small": "_Group Button Small (5915:4775)",
+        "medium": "_Group Button Medium (5915:4823)",
+        "large": "_Group Button Large (5915:4861)"
+      },
+      "keys": {
+        "small": "fde0368143658498b71fc76b14897cfcd12e85b0",
+        "medium": "651e458e8f3817ba223a4f530c689e30490833fc",
+        "large": "587ea8a2ed3a640ea18755b1db7486452a564bf9"
+      },
+      "private": true,
+      "figmaOnly": "These are just wrappers for the subtle variant of Button and a divider. They satisfy a Figma-only need. The parent group has the fill, the outline, and owns the divider between elements. Small, Medium and Large differ only in the height they are built at, and each carries a Position axis whose end value drops the trailing divider.",
+      "duplicatesButton": "No. Each wrapper holds a real instance of Button (2060:15072, specs/button), not a redrawn copy, plus an instance of Divider (2152:8803, specs/divider). The only overrides are the outer-corner radius in the rounded start/end variants and the icon instance sizing inside the Button. Icon Button is not used.",
+      "api": {
+        "position": {
+          "type": "enum",
+          "figmaName": "Position",
+          "values": [
+            "default",
+            "start",
+            "end"
+          ],
+          "default": "default",
+          "_note": "Small's set names two of its options Position5 and Position4 instead of having start/end at sharp; see issues."
+        },
+        "shape": {
+          "type": "enum",
+          "figmaName": "Shape",
+          "values": [
+            "sharp",
+            "rounded"
+          ],
+          "default": "sharp"
+        }
+      },
+      "variantsPresent": {
+        "medium, large": [
+          "default/sharp",
+          "start/sharp",
+          "end/sharp",
+          "start/rounded",
+          "end/rounded"
+        ],
+        "small": [
+          "default/sharp",
+          "Position5/sharp (= end)",
+          "Position4/sharp (= default/start)",
+          "start/rounded",
+          "end/rounded"
+        ]
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "none (literal 0)",
+            "padding": "none",
+            "align": "center"
+          },
+          "sizing": {
+            "h": "hug",
+            "v": "hug"
+          },
+          "paint": "none"
+        },
+        {
+          "id": "button",
+          "kind": "instance",
+          "ref": "Button",
+          "spec": "specs/button",
+          "refVariant": "Flavour=subtle, State=default, Disabled=false, Shape=sharp, Size = the wrapper's size",
+          "instanceProps": {
+            "label": "Button",
+            "leadingIcon": true,
+            "trailingIcon": true
+          },
+          "icons": {
+            "leading": "verified",
+            "trailing": "expand-more",
+            "family": "rounded",
+            "color": "currentColor (follows the label, interactive/neutral/foreground/default)"
+          },
+          "paint": {
+            "fill": "interactive/ghost/background/default (Button's own subtle scrim)",
+            "border": "interactive/neutral/border/default at stroke/base (Button's own; draws nothing)"
+          },
+          "_note": "Height, padding, label style and icon size are Button's own for that size, not overridden by the wrapper."
+        },
+        {
+          "id": "divider",
+          "kind": "instance",
+          "ref": "Divider",
+          "spec": "specs/divider",
+          "refVariant": "Orientation=vertical",
+          "size": {
+            "width": "stroke/thin",
+            "height": "fill"
+          },
+          "visibleWhen": "position != end"
+        }
+      ],
+      "variants": {
+        "bySize": [
+          {
+            "size": "small",
+            "button.size": "small",
+            "height": "control/sm",
+            "paddingInline": "space/md",
+            "paddingBlock": "space/xs",
+            "label": "label/medium",
+            "icon": "Icon Size=small",
+            "measured": {
+              "widthPx": 109
+            }
+          },
+          {
+            "size": "medium",
+            "button.size": "medium",
+            "height": "control/md",
+            "paddingInline": "space/md",
+            "paddingBlock": "space/xs",
+            "label": "label/large",
+            "icon": "Icon Size=medium",
+            "measured": {
+              "widthPx": 131
+            }
+          },
+          {
+            "size": "large",
+            "button.size": "large",
+            "height": "control/lg",
+            "paddingInline": "space/lg",
+            "paddingBlock": "space/xs",
+            "label": "label/large",
+            "icon": "Icon Size=medium",
+            "measured": {
+              "widthPx": 139
+            }
+          }
+        ],
+        "byPosition": [
+          {
+            "position": "default",
+            "shape": "sharp",
+            "divider": true,
+            "button.radius": "radius/none (all)"
+          },
+          {
+            "position": "start",
+            "shape": "sharp",
+            "divider": true,
+            "button.radius": "radius/none (all)",
+            "_note": "identical to default"
+          },
+          {
+            "position": "end",
+            "shape": "sharp",
+            "divider": false,
+            "button.radius": "radius/none (all)"
+          },
+          {
+            "position": "start",
+            "shape": "rounded",
+            "divider": true,
+            "button.radius": "top-left, bottom-left radius/sm; others radius/none"
+          },
+          {
+            "position": "end",
+            "shape": "rounded",
+            "divider": false,
+            "button.radius": "top-right, bottom-right radius/sm; others radius/none"
+          }
+        ]
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Button",
+      "id": "2060:15072",
+      "key": "42bf13a5210cd307b7bd4563f2521b78cfd74dae",
+      "remote": false,
+      "spec": "specs/button",
+      "usedAs": "the action inside every Group item, pinned to flavour=subtle, state=default, disabled=false, shape=sharp; size follows the group"
+    },
+    {
+      "name": "Icon Button",
+      "id": "2338:1763",
+      "remote": false,
+      "spec": "specs/icon-button",
+      "used": false,
+      "usedAs": "not used on this page. Recorded because an icon-only group is the obvious extension; the slot's preferred values do not include it, and nothing on the page models an icon-only item."
+    },
+    {
+      "name": "Divider",
+      "id": "2152:8803",
+      "key": "d0ebc910e87ef304f62d037c99458a69b9eabf39",
+      "remote": false,
+      "spec": "specs/divider",
+      "usedAs": "vertical rule at the trailing edge of each Group item except position=end"
+    },
+    {
+      "name": "Icon",
+      "id": "2046:15010",
+      "remote": false,
+      "spec": "specs/icon",
+      "usedAs": "inside Button only; glyphs verified (setId 2046:7116) and expand-more (setId 2046:10387), rounded family"
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "group": {
+      "color": [
+        "surface/section",
+        "border/default"
+      ],
+      "dimension": [
+        "space/none",
+        "space/neg/xs",
+        "radius/sm"
+      ]
+    },
+    "item": {
+      "dimension": [
+        "radius/sm",
+        "radius/none",
+        "stroke/thin"
+      ],
+      "_note": "radius/* bound on the nested Button's corners by the rounded wrappers; stroke/thin is the Divider's width."
+    },
+    "inheritedFromButton": {
+      "color": [
+        "interactive/ghost/background/default",
+        "interactive/neutral/border/default",
+        "interactive/neutral/foreground/default"
+      ],
+      "dimension": [
+        "control/sm",
+        "control/md",
+        "control/lg",
+        "space/xs",
+        "space/md",
+        "space/lg",
+        "stroke/base"
+      ],
+      "typography": [
+        "label/medium",
+        "label/large"
+      ],
+      "_note": "Bound inside Button at flavour=subtle/state=default; listed so the group can be checked, not restated. Hover, pressed, focus and disabled colours are Button's (specs/button)."
+    },
+    "glyphs": [
+      "verified",
+      "expand-more"
+    ],
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "typography": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ]
+    },
+    "_note": "All 19 names resolve in tokens/base (label/medium and label/large as the typography groups label.medium / label.large); both glyphs are in packages/icons/codepoints.json and not retired."
+  },
+  "states": [
+    {
+      "State": "Static",
+      "Trigger": "—",
+      "Duration": "—",
+      "What changes": "The group declares no hover, focus, pressed or disabled axis. Interaction belongs to the nested Button, whose own State is left at default in every wrapper."
+    },
+    {
+      "State": "Size",
+      "Trigger": "The Size axis",
+      "Duration": "—",
+      "What changes": "Changes the row height and swaps in a different wrapper and a different slot. Nothing else about the group changes."
+    }
+  ],
+  "behavior": [
+    {
+      "Type": "Motion",
+      "Description": "Figma stores no timing and no transition is authored. Nothing in the set changes over time."
+    },
+    {
+      "Type": "Item count",
+      "Description": "The count is structural rather than a property. One wrapper sits before the slot and one after, so a group always holds at least two actions and a third means filling the slot. That arrangement is how the group is assembled in Figma, not a limit the component imposes."
+    },
+    {
+      "Type": "Dividers",
+      "Description": "Each wrapper carries a divider at its trailing edge, and the Position=end variant is the one that drops it. Setting the last item to end is a Figma authoring step, because the parent owns the rules between items."
+    }
+  ],
+  "content": [
+    {
+      "Property": "Items Slot",
+      "Type": "Figma only, one slot per Size",
+      "Description": "Small, Medium and large each have their own slot so a designer can drop an item in without resetting that button's Size every time. The split exists for authoring and is not a property of the component. Content placed in one slot does not carry across when Size changes, and the large slot is named in lower case where the other two are capitalised."
+    },
+    {
+      "Property": "Group buttons",
+      "Type": "Figma only, fixed wrappers outside the slot",
+      "Description": "One wrapper before the slot and one after, placed directly in each variant. They hold a Button and its trailing divider for authoring and are not components to reach for on their own. Only the subtle Button belongs inside, so swapping in another flavour breaks the single surface the group is built on."
+    },
+    {
+      "Property": "Button properties",
+      "Type": "split between the group and the consumer",
+      "Description": "Size, Shape and Flavour belong to the group and are not set per item, or the row stops reading as one control. The label and the icons are the consumer's. The trailing icon ships as Expand More and the leading as Verified, and either can be swapped where the action calls for something else."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Use it where several actions are peers. If one is clearly the main action, a single Button says so more plainly.",
+      "Set the last item's Position to end. That is what removes the trailing divider and leaves the group a clean edge."
+    ],
+    "dont": [
+      "Don't change Size after filling the slot. Each Size has its own slot, so the content does not travel with it.",
+      "Don't expect Shape to round the buttons. It rounds the group's outline only, and every wrapper holds a square button."
+    ]
+  },
+  "accessibility": [
+    "The group is a set of related actions. It needs a group role and a name saying what the actions have in common.",
+    "No focus state exists on the group or on the wrappers, so focus order and a visible focus ring both have to come from code.",
+    "Items are told apart by a 1px divider and nothing else. Where the group's fill is close to the surface behind it, the outline is doing all the work of bounding the group.",
+    "The nested Button ships with a Verified leading icon and an Expand More trailing icon. Icons beside a label need to be decorative or separately named, not read out twice.",
+    "Nothing marks an action as current or chosen. A group that needs that is not modelled here."
+  ],
+  "layoutTheming": [
+    {
+      "Property": "Size",
+      "Type": "Hug both axes",
+      "Description": "Height is fixed per Size, 36 at small, 40 at medium and 48 at large. Width hugs the items, running from 435 at small to 555 at large as shipped."
+    },
+    {
+      "Property": "Padding and gap",
+      "Type": "Fixed",
+      "Description": "Zero padding, with the gap bound to space/none so items butt directly against each other."
+    },
+    {
+      "Property": "Radius",
+      "Type": "Per Shape",
+      "Description": "radius/sm on all four corners when rounded. When sharp the radius is a literal 0 with no token behind it."
+    },
+    {
+      "Property": "Fill",
+      "Type": "Theming",
+      "Description": "surface/section on the group. The wrappers carry no fill of their own, so the group's surface shows through every item."
+    },
+    {
+      "Property": "Border",
+      "Type": "Fixed",
+      "Description": "A 1px stroke bound to border/default on every variant, regardless of Shape."
+    },
+    {
+      "Property": "Dividers",
+      "Type": "Per Position",
+      "Description": "A 1px vertical Divider sits at the trailing edge of each wrapper. Position=end is the only variant that omits it."
+    },
+    {
+      "Property": "Nested button",
+      "Type": "Fixed",
+      "Description": "A Button at Flavour=subtle with its Size matched to the group. Its own Shape stays sharp in all five wrapper variants, including the rounded ones."
+    }
+  ],
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5763-1251",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5833-912",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5928-448",
+    "variants": {
+      "small/sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5833-913",
+      "small/rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5923-5290",
+      "medium/sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5828-263",
+      "medium/rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5923-5302",
+      "large/sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5833-955",
+      "large/rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5923-5296"
+    },
+    "subcomponents": {
+      "_Group Button Small": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5915-4775",
+      "_Group Button Medium": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5915-4823",
+      "_Group Button Large": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5915-4861",
+      "medium start/rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5923-5561",
+      "medium end/rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5923-5564"
+    }
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "variants (master)",
+      "detail": "Size=medium, Shape=rounded places _Group Button Medium Position=end, Shape=rounded as its FIRST item. It has no trailing divider (confirmed visually: no rule between items 1 and 2) and its rounded corners face the inside. It should be Position=start."
+    },
+    {
+      "severity": "warn",
+      "source": "variants (master)",
+      "detail": "Size=small, Shape=sharp uses the Shape=rounded start/end wrappers, so the nested Buttons get radius/sm outer corners inside a square group. Invisible at rest (no fill) but it would show in Button's focus ring or hover scrim."
+    },
+    {
+      "severity": "note",
+      "source": "variants (master)",
+      "detail": "Size=medium, Shape=sharp uses Position=default for the first item where the others use start. Renders identically at sharp, since start/sharp and default/sharp have no difference."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs extracted",
+      "detail": "Property Breakdown and Layout & Theming say the buttons 'keep square corners in every wrapper variant' and 'Its own Shape stays sharp'. Button's Shape prop does stay sharp, but the rounded start/end wrappers override the Button's outer corners to radius/sm (start: top-left/bottom-left; end: top-right/bottom-right). The Don't 'every wrapper holds a square button' is likewise inaccurate."
+    },
+    {
+      "severity": "warn",
+      "source": "_Group Button Small",
+      "detail": "The Position axis offers default | start | end | Position5 | Position4, and the set has no start/sharp or end/sharp variants. Position5 (sharp) behaves as end (no divider) and Position4 (sharp) as default. Medium and Large have the expected start/sharp and end/sharp. Unnamed options leak into the published API."
+    },
+    {
+      "severity": "warn",
+      "source": "items slot",
+      "detail": "The slot differs per size: medium binds its gap to space/neg/xs (items overlap by one stroke, so the next Button sits over the previous item's divider), small and large use an untokened 0. Small's slot is fixed width with its items set to fill and its cross-axis aligned to start, while medium and large hug. A third item added to the small slot would squeeze rather than extend the group. Metadata says the gap is space/none and items butt directly."
+    },
+    {
+      "severity": "warn",
+      "source": "gaps",
+      "detail": "Root border width is a raw 1 (untokened) on all six variants; only its colour (border/default) is bound. Metadata reads 'A 1px stroke bound to border/default', true of the colour only. The stroke is drawn outside the bounds, so it adds to the measured size."
+    },
+    {
+      "severity": "warn",
+      "source": "bindingDrift",
+      "detail": "Root radius is bound (radius/sm) only on the three rounded variants; sharp has a literal 0 with no token. Metadata states this, so it is intentional, but code should bind radius/none for sharp."
+    },
+    {
+      "severity": "warn",
+      "source": "accessibility",
+      "detail": "No focus, selected or disabled behaviour is modelled on the group. Roving focus vs tab-per-button, the group role/name, and any toggle/selection mode are code decisions. A selection-mode group needs a different component (Segmented Control is specced separately)."
+    },
+    {
+      "severity": "note",
+      "source": "items slot",
+      "detail": "Items Slot Medium lists a preferred value with key 874222d43d4e4fe3a0870bd764a7f77b7bac225e that does not resolve in the file (deleted or unpublished set). The small and large slots prefer only their own wrapper set."
+    },
+    {
+      "severity": "note",
+      "source": "api",
+      "detail": "Three Figma SLOT properties (one per Size, large named in lower case) collapse to one items slot. Figma's Size option order is medium, large, small; the spec orders by size."
+    },
+    {
+      "severity": "note",
+      "source": "dependencies",
+      "detail": "The private wrappers do not duplicate Button: they nest the real Button instance (subtle, state default) and the real Divider. They exist only so Figma can draw a per-item trailing rule; in code, items are plain Buttons and the group draws the dividers. Icon Button is not used anywhere on the page, so an icon-only group is unmodelled."
+    },
+    {
+      "severity": "note",
+      "source": "dependencies",
+      "detail": "Rounded wrappers bind radius/sm on the Button's corners, where Button's own rounded shape uses radius/element-sm. If those tokens diverge, the group's inner corners and a standalone rounded Button will differ."
+    },
+    {
+      "severity": "note",
+      "source": "icon font",
+      "detail": "Default glyphs verified and expand-more resolve in packages/icons/codepoints.json (setIds 2046:7116, 2046:10387), not retired, rounded family pinned by the Button's Icon. Colour is currentColor; both icon instances carry a fill override on their vector, which the font makes moot."
+    },
+    {
+      "severity": "note",
+      "source": "coverage",
+      "detail": "Motion: none authored ('Figma stores no timing'). No states on the group. The page's Component Details says Web, Flutter and Android are 'Pending development'. No native component description on any of the four sets."
+    }
+  ]
+}

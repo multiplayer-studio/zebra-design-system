@@ -21,10 +21,11 @@ export default css`
     --zds-switch-gap: var(--space-sm);
 
     /* --- motion -------------------------------------------------------- */
-    /* Literals by necessity: tokens/ has no motion collection (spec note
-       "motion values are literal in the metadata"). */
-    --zds-switch-duration: 250ms;
-    --zds-switch-ease-spring: cubic-bezier(0.34, 1.36, 0.64, 1);
+    /* The spring is the animations/spring token (size collection): 250ms on
+       cubic-bezier(0.34, 1.36, 0.64, 1), shared with Segmented Control. The
+       stretch's trailing edge keeps its own slower-starting curve, which has
+       no token; its 250ms matches animations/spring's duration. */
+    --zds-switch-trailing-duration: 250ms;
 
     display: inline-block;
     vertical-align: middle;
@@ -156,21 +157,21 @@ export default css`
     --zds-switch-ease-trailing: cubic-bezier(0.5, 1.1, 0.64, 1);
   }
   .track.animated {
-    transition: background-color var(--zds-switch-duration) var(--zds-switch-ease-spring);
+    transition: background-color var(--animations-spring);
   }
   /* Turning on: the end edge leads. */
   :host([checked]) .animated .thumb {
     transition:
-      inset-inline-end var(--zds-switch-duration) var(--zds-switch-ease-spring),
-      inset-inline-start var(--zds-switch-duration) var(--zds-switch-ease-trailing),
-      background-color var(--zds-switch-duration) var(--zds-switch-ease-spring);
+      inset-inline-end var(--animations-spring),
+      inset-inline-start var(--zds-switch-trailing-duration) var(--zds-switch-ease-trailing),
+      background-color var(--animations-spring);
   }
   /* Turning off: the start edge leads. */
   :host(:not([checked])) .animated .thumb {
     transition:
-      inset-inline-start var(--zds-switch-duration) var(--zds-switch-ease-spring),
-      inset-inline-end var(--zds-switch-duration) var(--zds-switch-ease-trailing),
-      background-color var(--zds-switch-duration) var(--zds-switch-ease-spring);
+      inset-inline-start var(--animations-spring),
+      inset-inline-end var(--zds-switch-trailing-duration) var(--zds-switch-ease-trailing),
+      background-color var(--animations-spring);
   }
   /* The focus ring appears on keyboard focus only and never animates. */
 

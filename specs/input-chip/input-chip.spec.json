@@ -1,0 +1,214 @@
+{
+  "component": {
+    "name": "Input Chip",
+    "slug": "input-chip",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "5125:3467",
+      "key": "6a7648682ad756f2a261277c3f2db509c870f7aa",
+      "page": "Chip",
+      "pageNodeId": "5122:2783",
+      "boardId": "5122:2784",
+      "metadataFrameId": "5689:234",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5125-3467",
+      "extractedAt": "2026-10-20",
+      "variantCount": 8,
+      "extractionNote": "One of four independent components on the Chip page, each with its own board and its own metadata frame; this spec covers Input Chip only. All 8 variants extracted to full depth and diffed against the default; nested Avatar and Icon read from their instance properties. No on-page private subcomponents."
+    }
+  },
+
+  "summary": "Represents a person, entity or value someone has entered or picked, such as a recipient on a message, so it can be reviewed and removed without retyping. It belongs inside input and selection fields. Reach for a filter chip to narrow content, or an assist chip to offer an action.",
+
+  "api": {
+    "label": {
+      "type": "string", "figmaName": "Label#5200:9", "default": "Label", "controls": ["label"],
+      "intent": "The value the chip stands for, usually a name or a term someone entered. Keep it to the entity itself. A chip that needs explaining is carrying a sentence that belongs in the field's helper text."
+    },
+    "showAvatar": {
+      "type": "boolean", "figmaName": "Show Avatar#5200:18", "default": true, "controls": ["avatar"],
+      "intent": {
+        "true": "Show a face or initials when the value is a person, which is what makes a row of recipients scannable. Leave it on only when every chip in the field can supply one, because a mix of some with and some without reads as broken alignment.",
+        "false": "For values that are not people, such as a tag or a typed term. The chip closes up around the label and the remove control."
+      }
+    },
+    "state": {
+      "type": "enum", "figmaName": "State", "values": ["default", "hover", "focus"], "default": "default", "controls": ["root"],
+      "intent": {
+        "default": "The resting chip, and where placed instances should stay. This axis records the interaction treatment rather than driving it.",
+        "hover": "Pointer over the chip. Setting it by hand pins the chip into a hovered look that never clears.",
+        "focus": "Keyboard focus. The one state a keyboard user depends on, so check it survives whatever surface the field sits on."
+      },
+      "note": "Interaction state. In code it comes from pointer and focus, not from a prop."
+    },
+    "disabled": {
+      "type": "boolean", "figmaName": "disabled", "figmaType": "VARIANT (false|true)", "default": false, "controls": ["root", "label"],
+      "intent": {
+        "false": "The usual case.",
+        "true": "The value is fixed. Pair it with an explanation nearby, because the remove control stays visible and a control that looks available but will not respond reads as broken rather than locked."
+      }
+    },
+    "rounded": {
+      "type": "boolean", "figmaName": "Rounded", "figmaType": "VARIANT (true|false)", "default": true, "controls": ["root"],
+      "intent": {
+        "true": "Match the contour of the field the chips sit in rather than deciding per chip.",
+        "false": "The square-cornered pairing, for forms built from sharp controls."
+      }
+    }
+  },
+
+  "internalVariations": [],
+  "contentInputs": [
+    { "part": "avatar", "input": "src / initials", "note": "The nested Avatar's own content (photo, initials or icon) is set on the Avatar, not on the chip. See specs/avatar." }
+  ],
+
+  "anatomy": [
+    {
+      "id": "root", "kind": "container", "number": 1,
+      "role": "The component frame. A horizontal auto-layout that hugs its content at a fixed height, carrying the fill and the border.",
+      "layout": { "direction": "horizontal", "gap": "space/sm", "padding": { "top": "space/xs", "bottom": "space/xs", "left": "space/sm", "right": "space/sm" }, "align": "start", "crossAlign": "center" },
+      "sizing": { "h": "hug", "v": "fixed", "height": "control/target-min" },
+      "radius": "radius/pill (rounded=true) | radius/none (rounded=false)",
+      "paint": {
+        "fill": "interactive/ghost/background/default",
+        "stroke": { "color": "interactive/neutral/border/default", "width": "stroke/thin", "align": "inside", "includedInLayout": true }
+      },
+      "measured": { "widthPx": 109, "heightPx": 40 }
+    },
+    {
+      "id": "avatar", "kind": "instance", "number": 2, "ref": "Avatar", "refVariant": "Size=xxxsmall",
+      "role": "The optional leading identity, present when Show Avatar is on.",
+      "pinnedProps": { "size": "xxxsmall", "showStatus": false, "showRing": false, "showClose": false },
+      "sizing": "fixed", "measured": { "sizePx": 24 },
+      "visibleWhen": "showAvatar"
+    },
+    {
+      "id": "label", "kind": "text",
+      "role": "Label",
+      "content": "label",
+      "sizing": "hug",
+      "text": { "style": "label/medium", "color": "interactive/neutral/foreground/default", "leadingTrim": "none" }
+    },
+    {
+      "id": "remove", "kind": "instance", "number": 3, "ref": "Icon", "refVariant": "Size=small, Framed=false",
+      "role": "The trailing close icon. Always present, with no property to hide it.",
+      "glyph": "close", "family": "rounded", "iconSize": "Icon Size=small (pinned by the chip)",
+      "color": "currentColor (the Icon's own fill; not a token on the chip)",
+      "measured": { "sizePx": 16 }
+    }
+  ],
+
+  "variants": {
+    "axis": "state × disabled × rounded",
+    "base": "state=default, disabled=false, rounded=true",
+    "_note": "8 of the 12 combinations are built: disabled=true exists only with state=default. Rounded changes only the four corner radii. Height is control/target-min in every variant; width is measured and hugs content.",
+    "table": [
+      { "state": "default", "disabled": false, "root.fill": "interactive/ghost/background/default", "root.stroke": "interactive/neutral/border/default @ stroke/thin, inside", "label.color": "interactive/neutral/foreground/default", "measuredWidthPx": 109, "figmaNode": "5125:3466" },
+      { "state": "hover", "disabled": false, "root.fill": "interactive/ghost/background/hover", "root.stroke": "interactive/neutral/border/default @ stroke/thin, inside", "label.color": "interactive/neutral/foreground/default", "measuredWidthPx": 109, "figmaNode": "5125:3468" },
+      { "state": "focus", "disabled": false, "root.fill": "interactive/ghost/background/focused", "root.stroke": "focus/outline @ stroke/thick, outside", "label.color": "interactive/neutral/foreground/default", "measuredWidthPx": 107, "figmaNode": "5125:3494" },
+      { "state": "default", "disabled": true, "root.fill": "interactive/neutral/background/disabled", "root.stroke": "none", "label.color": "interactive/neutral/foreground/disabled", "measuredWidthPx": 107, "figmaNode": "5125:3481" }
+    ],
+    "rounded": [
+      { "rounded": true, "root.radius": "radius/pill", "figmaNode": "5125:3466" },
+      { "rounded": false, "root.radius": "radius/none", "figmaNode": "5125:3507" }
+    ]
+  },
+
+  "subcomponents": [
+    { "name": "Avatar", "id": "4906:1172", "key": "3eb24fa7d8592c9e3c93ee7adbca3b64aa0e01ea", "private": false, "remote": false, "spec": "specs/avatar/avatar.spec.json", "usedAt": ["avatar"] },
+    { "name": "Icon", "id": "2046:15010", "key": "a469ac1cf34202af3e094593468d9ef20a37a703", "private": false, "remote": false, "spec": "specs/icon/icon.spec.json", "usedAt": ["remove"], "glyphs": ["close"] }
+  ],
+
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "interactive/ghost/background/default", "interactive/ghost/background/hover", "interactive/ghost/background/focused",
+      "interactive/neutral/background/disabled", "interactive/neutral/border/default",
+      "interactive/neutral/foreground/default", "interactive/neutral/foreground/disabled", "focus/outline"
+    ],
+    "dimension": ["control/target-min", "space/none", "space/xs", "space/sm", "radius/pill", "radius/none", "stroke/thin", "stroke/thick"],
+    "typography": ["label/medium"],
+    "glyphs": ["close"],
+    "themeAxes": {
+      "palette": ["Light", "Dark"],
+      "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
+      "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"]
+    },
+    "extensions": { "companion": "palette", "target": "primitives, palette", "condensed": "typography, size" },
+    "_note": "All 17 token names (label/medium as one style, bound through its five typography variables) resolve in tokens/base. The glyph close is in packages/icons/codepoints.json (setId 2046:10352), not retired, not rejected."
+  },
+
+  "states": [
+    { "state": "default", "trigger": "—", "duration": "—", "whatChanges": "Background interactive/ghost/background/default with a 1px inside border in interactive/neutral/border/default." },
+    { "state": "hover", "trigger": "Pointer over the chip", "duration": "—", "whatChanges": "Background moves to interactive/ghost/background/hover. Border, label and both icons are unchanged." },
+    { "state": "focus", "trigger": "Keyboard focus", "duration": "—", "whatChanges": "Background moves to interactive/ghost/background/focused and the border is replaced by a 2px focus/outline drawn outside the chip, so nothing reflows." },
+    { "state": "disabled", "trigger": "disabled set to true", "duration": "—", "whatChanges": "Background becomes interactive/neutral/background/disabled, the label drops to interactive/neutral/foreground/disabled, and the border is removed entirely." }
+  ],
+
+  "behavior": [
+    { "type": "Motion", "description": "Figma stores no timing and no transition is authored. Every state change is a flat swap of fill, border or text colour." },
+    { "type": "Removal", "description": "The remove control is always present and the set models no removed state. What activating it does, and whether the value can be restored, belongs to the implementation." },
+    { "type": "Coverage", "description": "Eight of the twelve possible combinations are built. disabled appears only alongside State=default, so there is no disabled hover or disabled focus to point at." }
+  ],
+
+  "content": [
+    { "property": "Label", "type": "text property", "description": "Plain text set per instance, defaulting to Label. The only text the chip takes." },
+    { "property": "Avatar", "type": "nested instance, toggled by Show Avatar", "description": "An Avatar at Size=xxxsmall with its own Status, Ring and Close all switched off, so only the face or initials shows. Its visibility is the one child property the chip surfaces." },
+    { "property": "Remove control", "type": "fixed nested Icon", "description": "An Icon at Size=small swapped to Close. There is no property to hide it, so every input chip shows a remove affordance whether or not the value can be removed." }
+  ],
+
+  "usage": {
+    "do": [
+      "Use one chip per value, inside the field the value was entered in. A row of chips is how someone checks what they have picked.",
+      "Turn Show Avatar off for values that are not people. A placeholder face on a tag is worse than no face at all."
+    ],
+    "dont": [
+      "Don't use an input chip to filter a list. That is a filter chip, and the remove icon here promises deletion rather than toggling.",
+      "Don't leave a chip disabled without saying why nearby. The remove control stays visible, so it reads as broken rather than locked."
+    ]
+  },
+
+  "accessibility": [
+    "The remove control is an icon with no text. It needs an accessible name that includes the value it removes, not just Remove.",
+    "Focus is the only state with a visible outline and it is drawn outside the chip. Check it is not clipped by the field around it.",
+    "Removing a chip changes what the field contains. That change has to be announced, or a keyboard user loses track of what is left.",
+    "Disabled chips drop the border entirely and rely on fill and text colour alone. Check both against the field background.",
+    "The label uses label/medium at 14px and carries the actual value, so it should not be reduced further."
+  ],
+
+  "layoutTheming": [
+    { "property": "Size", "type": "Hug width, fixed height", "description": "40 tall across all eight variants. Width hugs the avatar, label and remove control." },
+    { "property": "Padding and gap", "type": "Fixed", "description": "space/xs top and bottom, space/sm left and right, with a space/sm gap between the three parts." },
+    { "property": "Radius", "type": "Per Rounded", "description": "radius/pill when true and radius/none when false, bound on all four corners." },
+    { "property": "Fill", "type": "Theming", "description": "interactive/ghost/background at default, hover and focused. disabled uses interactive/neutral/background/disabled." },
+    { "property": "Border", "type": "Per state", "description": "1px inside interactive/neutral/border/default at rest and on hover. Focus replaces it with 2px focus/outline drawn outside. Disabled carries no border." },
+    { "property": "Label", "type": "Theming", "description": "label/medium, IBM Plex Sans Medium 14 over a 20px line, in interactive/neutral/foreground/default and dropping to the disabled token." },
+    { "property": "Child sizes", "type": "Fixed", "description": "Avatar 24 square, remove icon 16 square." }
+  ],
+
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5122-2783",
+    "board": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5122-2784",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5125-3467",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5689-234",
+    "variants": {
+      "default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5125-3466",
+      "hover": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5125-3468",
+      "focus": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5125-3494",
+      "disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5125-3481",
+      "rounded=false": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5125-3507"
+    }
+  },
+
+  "issues": [
+    { "severity": "warn", "source": "gaps (paint opacity)", "detail": "The ghost fills carry a paint-level opacity on top of the token: 0 at default and focus, 0.05 at hover. interactive/ghost/background/hover already resolves to a 5% alpha colour (palette status/ghost/faint), so hover renders at about 0.25% and is effectively invisible. Build with the token alone (drop the extra opacity) and confirm with design; the opacity on default/focused is harmless because those tokens are already fully transparent." },
+    { "severity": "warn", "source": "metadata vs extracted", "detail": "States & Triggers says focus changes 'so nothing reflows'. In Figma the inside 1px border is included in layout at rest, and the outside 2px focus border is not, so the chip is 2px narrower at focus and disabled (measured 109 → 107) and its content shifts 1px. In code keep the border out of layout (e.g. draw it as an inset ring) so state changes do not move content." },
+    { "severity": "warn", "source": "descriptionDrift", "detail": "control/target-min (the chip height) says '= 44px' in its description but resolves to 40px (primitives scale/13). The metadata's '40 tall' matches the resolved value." },
+    { "severity": "warn", "source": "api / accessibility", "detail": "The remove control is a fixed nested Icon with no property, no accessible-name input and no removable/fixed switch. Code needs a remove handler and an accessible name that includes the label (metadata: 'not just Remove'). Whether a non-removable chip hides the control is undecided; Figma always shows it, even when disabled." },
+    { "severity": "note", "source": "bindingDrift", "detail": "Stroke-weight bindings are absent in the two disabled variants only because the stroke is removed there. Expected, not drift." },
+    { "severity": "note", "source": "api", "detail": "State is recorded in Figma as a variant; in code hover and focus come from interaction. disabled and Rounded are true/false variants and are modelled as booleans." },
+    { "severity": "note", "source": "coverage", "detail": "No disabled hover/focus, no removed or pressed state, no motion. Removal behaviour is left to the implementation (metadata Behavior: Removal)." },
+    { "severity": "note", "source": "relation to other specs", "detail": "The nested Avatar is pinned to xxxsmall with Status, Ring and Close off; see specs/avatar. The Avatar spec's own Show Close mentions 'a multi-select chip list' as a use case, which overlaps this chip's remove control: in a chip, use this chip's remove control, not the Avatar's close badge." },
+    { "severity": "note", "source": "page", "detail": "A stray remote Notification Indicator instance (5122:2980, Size=Small Type=Dot Color=Disabled) sits loose at the page's top level, outside every board. It is not part of any chip." }
+  ]
+}

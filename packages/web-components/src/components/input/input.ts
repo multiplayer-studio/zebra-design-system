@@ -1,6 +1,7 @@
 import { LitElement, html, nothing, type PropertyValues } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
 import styles from "./input.styles.js";
+import { inputHintStyles, renderInputHint } from "./input-hint.js";
 import "../icon/icon.js";
 import "../input-field/input-field.js";
 import type { ZdsInputField, InputFieldType, InputFieldSize, InputFieldShape, InputFieldFlavour } from "../input-field/input-field.js";
@@ -40,7 +41,7 @@ export type InputLabelType = "default" | "required" | "optional";
  */
 @customElement("zds-input")
 export class ZdsInput extends LitElement {
-  static styles = styles;
+  static styles = [styles, inputHintStyles];
   static formAssociated = true;
   static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
 
@@ -135,10 +136,7 @@ export class ZdsInput extends LitElement {
         @input=${this.onFieldInput}
         @change=${(e: Event) => { e.stopPropagation(); this.dispatchEvent(new Event("change", { bubbles: true, composed: true })); }}
       ></zds-input-field>
-      ${this.hint ? html`<div part="hint" class="hint ${hintType}">
-        ${this.hintIcon ? html`<zds-icon class="hint-icon" name=${hintType === "error" ? "error" : "info"} size="small" .iconStyle=${"rounded"} aria-hidden="true"></zds-icon>` : nothing}
-        <span class="message" aria-live=${hintType === "error" ? "polite" : "off"}>${this.hint}</span>
-      </div>` : nothing}`;
+      ${this.hint ? renderInputHint(hintType, this.hint, this.hintIcon) : nothing}`;
   }
 }
 

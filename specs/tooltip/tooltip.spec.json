@@ -1,0 +1,207 @@
+{
+  "component": {
+    "name": "Tooltip",
+    "slug": "tooltip",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "5508:57",
+      "key": "a7d9446f23daac1a7bacac96d2dfdbd36b9ebf60",
+      "page": "Tooltip",
+      "pageNodeId": "5470:1664",
+      "metadataFrameId": "5530:33",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5470-1664",
+      "extractedAt": "2026-10-20",
+      "variantCount": { "Tooltip": 8 },
+      "extractionNote": "One public set, no subcomponents, no nested instances. All eight variants extracted in full; Pointer vector paths read per Shape to confirm the tip geometry."
+    },
+    "figmaDescription": "Tooltips display informative text when users hover over, focus on, or tap an element.\n\nPoint sets which edge the arrow sits on. Shape follows the Contourable contract: rounded gives a 4px corner radius and a rounded arrow tip, sharp gives square corners and a triangular tip.\n\nCode: <zeta-tooltip> (zeta-web) — point, rounded."
+  },
+
+  "summary": "A short floating message that names what an adjacent control does. Point decides which edge the arrow sits on, which is how the bubble anchors to its trigger from any of four sides. It holds one run of text and nothing else, so for status that stays on screen and sits inline, reach for Status Label instead.",
+
+  "api": {
+    "label": {
+      "type": "string", "figmaName": "Label#5508:0", "default": "Label", "controls": ["label (characters)"],
+      "intent": "The whole message. Name the control's action in a few words. A tooltip that needs a full sentence is usually carrying information that belongs in the interface itself rather than in a transient hint."
+    },
+    "point": {
+      "type": "enum", "figmaName": "Point", "values": ["bottom", "top", "left", "right"], "default": "bottom", "controls": ["variant"],
+      "meaning": "The edge of the bubble the pointer sits on (the edge facing the trigger), not the side of the trigger the bubble appears on.",
+      "intent": {
+        "bottom": "Picks the edge the arrow sits on, which is the edge facing the trigger, so bottom puts the bubble above the thing it describes. The right choice wherever there is clear space above the trigger.",
+        "top": "Puts the bubble below its trigger. Use where the trigger sits near the top of its container and a bubble above it would be cut off.",
+        "left": "Puts the bubble to the right of its trigger. Use in a vertical list or rail, where going above or below would cover the neighbouring rows.",
+        "right": "Puts the bubble to the left of its trigger. The mirror of left, for a control sitting against the right edge of its container."
+      }
+    },
+    "shape": {
+      "type": "enum", "figmaName": "Shape", "values": ["rounded", "sharp"], "default": "rounded", "controls": ["variant"],
+      "intent": {
+        "rounded": "Follow the contour the surrounding controls already use rather than deciding per tooltip. Mixing both contours on one screen reads as a mistake rather than a distinction.",
+        "sharp": "The square-cornered pairing, for surfaces built from sharp controls. It changes the arrow tip as well as the corners, so the bubble stays internally consistent either way."
+      }
+    }
+  },
+
+  "internalVariations": [],
+
+  "contentInputs": [
+    { "part": "label", "input": "label", "sample": "Label", "note": "Plain text only; no icon slot." }
+  ],
+
+  "anatomy": [
+    {
+      "id": "bubble", "figmaLayer": "root (component frame)", "kind": "container",
+      "layout": { "direction": "horizontal", "gap": "none", "padding": { "block": "space/xs", "inline": "space/sm" }, "align": "center" },
+      "sizing": "hug (both axes)", "clips": false,
+      "fill": "surface/inverse",
+      "radius": "radius/sm (rounded) | radius/none (sharp), bound on all four corners",
+      "elevation": { "style": "Shadow/medium", "layers": [
+        { "color": "shadow/soft", "x": "shadow/medium/x", "y": "shadow/medium/y", "blur": "shadow/medium/blur" },
+        { "color": "shadow/soft", "x": "shadow/small/x", "y": "shadow/small/y", "blur": "shadow/small/blur" }
+      ] },
+      "measured": { "widthPx": 46, "heightPx": 24, "_note": "At the default label, Desktop size mode, base theme." },
+      "role": "The component frame itself. A horizontal auto-layout that hugs the label and carries the fill, the corner radius and the shadow."
+    },
+    {
+      "id": "label", "figmaLayer": "Label", "kind": "text", "boundTo": "label",
+      "text": { "style": "label/small", "color": "foreground/inverse", "wrap": "none (auto width, single line)", "align": "start" },
+      "sizing": "hug",
+      "role": "The one text property, centred on both axes inside the padding. A single run of text with nothing else allowed beside it."
+    },
+    {
+      "id": "pointer", "figmaLayer": "Pointer", "kind": "shape",
+      "fill": "surface/inverse",
+      "position": { "mode": "absolute, outside the bubble's bounds", "anchor": "centred on the edge named by point" },
+      "geometry": {
+        "sharp": "isosceles triangle, base along the bubble edge, apex pointing away",
+        "rounded": "same triangle with the apex rounded off (curve stops short of the apex)"
+      },
+      "measured": {
+        "topBottom": { "widthPx": 8, "heightPx": 4, "roundedHeightPx": 3.59 },
+        "leftRight": { "widthPx": 4, "heightPx": 8, "roundedWidthPx": 3.59 },
+        "_note": "Fixed vector size; no size token. See issues."
+      },
+      "role": "A vector drawn outside the frame's bounds rather than inside them. Which edge it sits on and which tip it takes both come from the variant."
+    }
+  ],
+
+  "variants": {
+    "axis": "point × shape", "base": "point=bottom, shape=rounded",
+    "table": [
+      { "point": "bottom", "pointerEdge": "bottom", "pointerAnchor": "bottom-centre", "pointerOrientation": "horizontal base, apex down", "bubblePlacement": "above trigger" },
+      { "point": "top", "pointerEdge": "top", "pointerAnchor": "top-centre", "pointerOrientation": "horizontal base, apex up", "bubblePlacement": "below trigger" },
+      { "point": "left", "pointerEdge": "left", "pointerAnchor": "left-middle", "pointerOrientation": "vertical base, apex left", "bubblePlacement": "right of trigger" },
+      { "point": "right", "pointerEdge": "right", "pointerAnchor": "right-middle", "pointerOrientation": "vertical base, apex right", "bubblePlacement": "left of trigger" }
+    ],
+    "shapeTable": [
+      { "shape": "rounded", "radius": "radius/sm", "pointerTip": "rounded" },
+      { "shape": "sharp", "radius": "radius/none", "pointerTip": "pointed" }
+    ],
+    "_note": "Point only moves and rotates the pointer; Shape only swaps the radius token and the pointer tip. Fill, padding, type and elevation are identical across all eight variants."
+  },
+
+  "subcomponents": [],
+
+  "dependencies": [],
+
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": ["surface/inverse", "foreground/inverse", "shadow/soft"],
+    "dimension": [
+      "space/xs", "space/sm", "radius/sm", "radius/none",
+      "shadow/medium/x", "shadow/medium/y", "shadow/medium/blur",
+      "shadow/small/x", "shadow/small/y", "shadow/small/blur"
+    ],
+    "typography": ["label/small"],
+    "typographyVariables": [
+      "label/small/font family", "label/small/font size", "label/small/font weight",
+      "label/small/line height", "label/small/letter spacing"
+    ],
+    "effect": ["Shadow/medium"],
+    "glyphs": [],
+    "themeAxes": {
+      "palette": ["Light", "Dark"],
+      "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
+      "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"]
+    },
+    "extensionsTouching": {
+      "condensed": "Overrides space/xs, space/sm, radius/sm (size) and label/small/font size, label/small/line height (typography), so the bubble shrinks under condensed. The pointer does not (not token bound)."
+    },
+    "_note": "All 18 variable names resolve in tokens/base/**. label/small and Shadow/medium are a text style and an effect style whose every property is bound to the variables listed. No glyphs: the component holds no icon instance."
+  },
+
+  "states": {
+    "table": [
+      { "state": "Static", "trigger": "—", "duration": "—", "whatChanges": "The set carries no hover, focus, pressed or disabled axis. All eight variants render the same way, and the only differences between them are which edge the arrow sits on and which contour the corners take." },
+      { "state": "Shown or hidden", "trigger": "Owned by the trigger", "duration": "—", "whatChanges": "Nothing in the set models appearing or disappearing. A tooltip is either placed or it is not, so whatever reveals and dismisses it lives outside this component." }
+    ]
+  },
+
+  "behavior": [
+    { "type": "Motion", "description": "Figma stores no timing and no transition is authored here. Any fade, delay or dismissal on appearance belongs entirely to the implementation." },
+    { "type": "Placement", "description": "Point names the edge the arrow sits on, but nothing in the set positions the bubble against a real trigger. Choosing a variant states the intended side, and the actual anchoring has to be done wherever the tooltip is placed." }
+  ],
+
+  "content": [
+    { "property": "Label", "type": "text property", "description": "The only content the set exposes, and plain text at that. There is no instance-swap slot anywhere in the component, so an icon cannot be placed beside the text or in place of it without detaching the instance." },
+    { "property": "Pointer", "type": "fixed part", "description": "Not a slot. Which edge it sits on and which tip it takes both follow the variant, and there is no property to hide it or move it from an instance." }
+  ],
+
+  "usage": {
+    "do": [
+      "Write the label as a short action phrase. A tooltip earns its place by naming the control, not by describing it.",
+      "Pick Point from where the trigger actually sits. The arrow is the only thing tying the bubble to its control, so the wrong edge breaks the connection."
+    ],
+    "dont": [
+      "Don't mix rounded and sharp across one screen. The contour belongs to the surface the tooltip opens over, not to the individual hint.",
+      "Don't rely on it as the only description of a control. It carries no focus state, so anyone who never hovers never gets the message."
+    ]
+  },
+
+  "accessibility": [
+    "The set models no focus state, so the keyboard path to whatever reveals the tooltip has to be built in code.",
+    "A tooltip that is the only description of a control is unreachable for anyone who never hovers. Give the control its own accessible name as well.",
+    "The bubble is surface/inverse carrying foreground/inverse text. Check that pairing still clears contrast against whatever surface it floats above.",
+    "Content is one run of text with no wrapping authored, so a long label becomes a layout problem before it becomes a reading problem.",
+    "Nothing here times out or dismisses itself. Persistence and dismissal both belong to the implementation."
+  ],
+
+  "layoutTheming": [
+    { "property": "Size", "type": "Hug both axes", "description": "The bubble hugs its label on both axes, so the width follows the text. At the default Label it measures 46 by 24, and the height holds at 24 because one 16px line sits inside 4px of vertical padding." },
+    { "property": "Padding", "type": "Fixed", "description": "space/xs top and bottom, space/sm left and right. Identical across all eight variants." },
+    { "property": "Radius", "type": "Per Shape", "description": "radius/sm on rounded and radius/none on sharp, bound on all four corners. Both are tokens, so the value follows the theme and only the choice between them is made per instance." },
+    { "property": "Pointer", "type": "Fixed, absolute", "description": "Absolutely positioned, centred on its edge and drawn outside the bubble, which is why the component does not clip its contents. 8 by 4 on top and bottom, 4 by 8 on left and right. The rounded tips measure 3.586 on the pointing axis rather than 4, because the curve stops short of the point the sharp triangle reaches." },
+    { "property": "Fill", "type": "Theming", "description": "surface/inverse on the bubble and on the pointer, so the two read as one shape. The label is foreground/inverse." },
+    { "property": "Type", "type": "Theming", "description": "label/small, which is IBM Plex Sans Medium at 12 over a 16px line. Bound to the label/small typography variables as well as the text style, so it follows the responsive modes." },
+    { "property": "Elevation", "type": "Fixed", "description": "Shadow/medium on every variant, a two-layer drop shadow whose colour, blur and offsets are all bound to tokens." }
+  ],
+
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5470-1664",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5508-57",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5530-33",
+    "variants": {
+      "point=bottom, shape=rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5508-33",
+      "point=top, shape=rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5508-36",
+      "point=left, shape=rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5508-39",
+      "point=right, shape=rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5508-42",
+      "point=bottom, shape=sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5508-45",
+      "point=top, shape=sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5508-48",
+      "point=left, shape=sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5508-51",
+      "point=right, shape=sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5508-54"
+    }
+  },
+
+  "issues": [
+    { "severity": "warn", "source": "pointer", "detail": "The pointer is a fixed-size vector (8×4 / 4×8) with no size token. Under the condensed extension space/xs, space/sm, radius/sm and label/small shrink but the pointer does not, so its proportion to the bubble changes. Decide in code whether the pointer scales with the bubble; Layout & Theming calls it 'Fixed, absolute', so fixed is the stated intent." },
+    { "severity": "warn", "source": "layout", "detail": "No maximum width and no wrapping are authored (label is auto width, single line). Accessibility notes say a long label 'becomes a layout problem'. Pick a max width and wrap rule in code." },
+    { "severity": "warn", "source": "point naming", "detail": "Point names the pointer's edge, not the placement: point=bottom means the bubble sits above the trigger. A positioning library's 'top' placement maps to point=bottom (and so on). Keep the naming or invert it deliberately, but don't map it one-to-one." },
+    { "severity": "note", "source": "component description", "detail": "The set description quotes '4px corner radius' (true for radius/sm in all base size modes, but condensed overrides radius/sm) and names '<zeta-tooltip> (zeta-web) — point, rounded', a boolean 'rounded' where the set exposes a 'shape' enum. The spec follows the set (shape)." },
+    { "severity": "note", "source": "behavior", "detail": "Reveal, dismissal, delay, motion and keyboard access are all intentionally unmodelled ('belongs entirely to the implementation'). The component is the static bubble only." },
+    { "severity": "note", "source": "accessibility", "detail": "Metadata asks for a contrast check of foreground/inverse on surface/inverse and of the bubble against the surface below. Not verified here." },
+    { "severity": "note", "source": "cross-check", "detail": "Metadata and Figma agree: properties, options and defaults (point=bottom, shape=rounded, label 'Label'); padding, radius, fill, type, elevation tokens; the 46×24 default box; pointer 8×4 with the rounded tip at 3.59. No token gaps, no binding drift; all 18 variable names resolve in tokens/." },
+    { "severity": "note", "source": "coverage", "detail": "No subcomponents, no icon instances, no slots. Every metadata section is present and filled." }
+  ]
+}

@@ -1,0 +1,335 @@
+{
+  "component": {
+    "name": "Notification Item",
+    "slug": "notification-item",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "6032:3093",
+      "key": "472e4161b33b7464c11d080548c316175f1cf603",
+      "page": "Notification Item",
+      "pageNodeId": "6020:1488",
+      "metadataFrameId": "6064:124",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6020-1488",
+      "extractedAt": "2026-10-20",
+      "variantCount": { "Notification Item": 2, "_Leading Visual": 3 },
+      "defaultVariant": "Read=false",
+      "extractionNote": "Both sets extracted in full (2 + 3 variants) in one pass; property wiring confirmed by walking every node's componentPropertyReferences; nested instance overrides (Notification Indicator, Icon Indicator, Icon glyphs, Avatar toggles, Button) read per instance. Page holds two documentation boards (Notification Item, Subcomponents/Notification item), each with a Component Details card, plus the Notification Item Metadata frame. The three layers named 'Metadata' that discover reports are the header's timestamp row (one per variant, plus one inside an instance on the page), not documentation frames."
+    }
+  },
+
+  "summary": "A single entry in a notification list, carrying who or what it came from, a title and message, an optional attachment, and an action. Read is the only variant and decides whether the entry still looks unseen. Everything else is a toggle, so a single component covers the range a real list throws at it.",
+
+  "api": {
+    "read": {
+      "type": "enum", "figmaName": "Read", "values": ["false", "true"], "default": "false", "controls": ["variant"],
+      "intent": {
+        "false": "The unseen entry, and the state the component is drawn around.",
+        "true": "The entry has been seen. The card drops its surface and sits flush on the list background, which is what tells it apart from an unread entry at a glance."
+      }
+    },
+    "group": {
+      "type": "boolean", "figmaName": "Group#6032:4", "default": false, "controls": ["groupIndicator"],
+      "note": "Wired only in Read=false; Read=true has no group indicator layer, so the prop does nothing there.",
+      "intent": {
+        "false": "A standalone entry.",
+        "true": "Marks the entry as standing for several collapsed together. It applies while the entry is unread, and a read entry shows no group bar."
+      }
+    },
+    "showAttachment": {
+      "type": "boolean", "figmaName": "Show Attachment#6032:7", "default": true, "controls": ["attachment"],
+      "intent": {
+        "true": "Show the attached file's name and icon. Turn it on only when a file is genuinely attached, because the row is not a placeholder and reads as a broken link when empty.",
+        "false": "No attachment row, and the card shortens to match."
+      }
+    },
+    "showActions": {
+      "type": "boolean", "figmaName": "Show Actions#6032:13", "default": true, "controls": ["actions"],
+      "intent": {
+        "true": "Show the action slot. It is the only place an entry offers something to do, so switching it off makes the item read-only.",
+        "false": "No action row. Reach for this on entries that are purely informational."
+      }
+    },
+    "showUrgencyIndicator": {
+      "type": "boolean", "figmaName": "Show Urgency Indicator#6032:16", "default": true, "controls": [],
+      "note": "Defined on the set but bound to no layer in either variant: the urgency indicator is always visible in Figma. Implement visibleWhen from the intent below; see issues.",
+      "intent": {
+        "true": "Flag the entry as needing attention before the rest. Reserve it, because an indicator on every item in a list signals nothing.",
+        "false": "The ordinary case, and what most entries in a list should use."
+      }
+    },
+    "title": {
+      "type": "string", "figmaName": "Title#6060:19", "default": "Urgent Message", "controls": ["title"]
+    },
+    "timestamp": {
+      "type": "string", "figmaName": "Time Stamp#6060:22", "default": "Just now", "controls": ["timestamp"]
+    },
+    "actions": {
+      "type": "slot", "figmaName": "Action Slots#6032:10", "controls": ["actions"],
+      "default": "one Button (Size=small, Shape=rounded, Flavour=outline, label \"User Action\")",
+      "accepts": ["Button (specs/button)", "Icon (specs/icon)", "unresolved component set key aee1f4fe89a3f70a26978e68621194baf1271b8a"],
+      "slotSettings": { "allowPreferredValuesOnly": true, "minChildren": null, "maxChildren": null, "stretchChildOnInsert": false }
+    }
+  },
+
+  "internalVariations": [
+    {
+      "part": "leadingVisual", "via": "_Leading Visual", "options": ["avatar", "image", "icon"], "default": "avatar",
+      "intent": "Flavour belongs to the leading visual rather than to the notification, so it is decided where the visual is supplied.",
+      "note": "Not an exposed property on Notification Item; reached by changing the nested _Leading Visual's Flavour. Whether it becomes a prop (or a leading slot) in code is the implementer's call."
+    }
+  ],
+
+  "contentInputs": [
+    { "part": "leadingVisual", "input": "avatar: name/initials or photo src (via Avatar) · image: artwork src · icon: glyph name", "sample": "Avatar initials 'AA'; image fill sample; icon 'verified'" },
+    { "part": "body", "input": "message text", "sample": "New urgent message from Phil Starr that spans multiple line count caps at the most two lines", "note": "Not a Figma property ('not parameterised' per metadata); in code it has to be an input." },
+    { "part": "attachmentFilename", "input": "filename text", "sample": "Spring-donation-drive.pdf", "note": "Not a Figma property; only its visibility is (showAttachment)." }
+  ],
+
+  "anatomy": [
+    {
+      "id": "root", "kind": "container", "number": null,
+      "layout": { "direction": "horizontal", "gap": "space/sm", "padding": { "top": "space/gutter", "bottom": "space/gutter", "left": "space/card", "right": "space/card" }, "align": "start" },
+      "sizing": { "h": "fixed", "v": "hug" }, "measured": { "widthPx": 360, "heightPx": 164 },
+      "radius": "radius/md",
+      "paint": { "fill": "surface/card (Read=false only)", "stroke": { "color": "border/default", "width": "stroke/base", "align": "inside" } }
+    },
+    {
+      "id": "leadingVisual", "kind": "instance", "number": 1, "ref": "_Leading Visual", "refVariant": "Flavour=avatar",
+      "role": "The square slot standing for whoever or whatever the entry came from. Its Flavour picks an avatar, an image or an icon, and it is circular in all three.",
+      "size": "control/sm", "radius": "radius/pill", "sizing": "fixed"
+    },
+    {
+      "id": "content", "kind": "container", "number": 2,
+      "role": "The column holding the header, the message, the attachment row and the action slot.",
+      "layout": { "direction": "vertical", "gap": "space/sm", "padding": "none" }, "sizing": { "h": "fill", "v": "hug" }
+    },
+    {
+      "id": "message", "kind": "container", "parent": "content",
+      "layout": { "direction": "vertical", "gap": "space/xs", "padding": "none" }, "sizing": { "h": "fill", "v": "hug" }
+    },
+    {
+      "id": "header", "kind": "container", "parent": "message",
+      "layout": { "direction": "horizontal", "gap": "space/sm", "padding": "none", "crossAlign": "center" }, "sizing": { "h": "fill", "v": "hug" }
+    },
+    {
+      "id": "unreadDot", "kind": "instance", "parent": "header", "ref": "Notification Indicator", "refVariant": "Size=small", "spec": "specs/notification-indicator",
+      "visibleWhen": "read == false",
+      "wrapper": { "figmaName": "Frame 1", "sizing": { "h": "fixed", "v": "hug" }, "measured": { "widthPx": 8 }, "padding": { "top": "space/sm", "bottom": "space/sm" } },
+      "paint": { "fill": "interactive/primary/background/default (instance override)", "stroke": { "color": "border/inverse", "width": "stroke/base" } },
+      "note": "A plain dot (Size=small hides the count). The fill is overridden from the Notification Indicator's own interactive/destructive/background/default."
+    },
+    {
+      "id": "title", "kind": "text", "parent": "header", "boundTo": "title",
+      "text": { "style": "label/large (Read=false) · body/medium (Read=true)", "color": "foreground/primary", "wrap": "wraps, no line cap" },
+      "sizing": { "h": "fill", "v": "hug" }
+    },
+    {
+      "id": "meta", "kind": "container", "parent": "header", "figmaName": "Metadata",
+      "layout": { "direction": "horizontal", "gap": "space/xs", "padding": { "top": "space/2xs", "bottom": "space/2xs" }, "crossAlign": "center" }, "sizing": "hug"
+    },
+    {
+      "id": "timestamp", "kind": "text", "parent": "meta", "boundTo": "timestamp",
+      "text": { "style": "label/small", "color": "foreground/tertiary", "wrap": "single line, hugs" }
+    },
+    {
+      "id": "urgencyIndicator", "kind": "instance", "parent": "meta", "ref": "Icon Indicator", "refVariant": "Size=small", "spec": "specs/badges/icon-indicator.spec.json",
+      "visibleWhen": "showUrgencyIndicator (intended; not wired in Figma)",
+      "size": "control/icon-sm", "glyph": "important-notification",
+      "paint": { "fill": "interactive/destructive/background/default (instance override)" },
+      "note": "Both the glyph (Icon Indicator's fixed clock) and the fill (its foreground/secondary) are overridden on this instance."
+    },
+    {
+      "id": "body", "kind": "text", "parent": "message",
+      "text": { "style": "body/small", "color": "foreground/primary", "maxLines": 2, "truncation": "ending" },
+      "sizing": { "h": "fill", "v": "hug" }
+    },
+    {
+      "id": "attachment", "kind": "container", "parent": "content", "visibleWhen": "showAttachment",
+      "layout": { "direction": "horizontal", "gap": "space/xs", "padding": "none", "crossAlign": "center" }, "sizing": { "h": "fill", "v": "hug" }
+    },
+    {
+      "id": "attachmentIcon", "kind": "instance", "parent": "attachment", "ref": "Icon", "refVariant": "Size=small, Framed=false", "spec": "specs/icon",
+      "glyph": "attachment", "family": "bound to the shape token (rounded by default)", "color": "currentColor (glyph fill not bound)"
+    },
+    {
+      "id": "attachmentFilename", "kind": "text", "parent": "attachment",
+      "text": { "style": "label/small", "color": "foreground/link", "wrap": "single line, hugs" }
+    },
+    {
+      "id": "actions", "kind": "slot", "parent": "content", "visibleWhen": "showActions", "boundTo": "actions",
+      "layout": { "direction": "horizontal", "gap": "space/xs", "padding": { "top": "space/none", "bottom": "space/none" }, "mainAlign": "end", "crossAlign": "center" },
+      "sizing": { "h": "fill", "v": "hug" },
+      "default": { "ref": "Button", "spec": "specs/button", "refVariant": "Size=small, Shape=rounded, Flavour=outline, State=default, Disabled=false", "label": "User Action", "leadingIcon": false, "trailingIcon": false }
+    },
+    {
+      "id": "groupIndicator", "kind": "shape", "number": 3, "visibleWhen": "group && read == false",
+      "role": "The bar marking a collapsed group. Hidden until Group is turned on, and present only while the entry is unread.",
+      "position": { "mode": "absolute", "anchor": "bottom-center", "constraints": { "horizontal": "CENTER", "vertical": "MAX" } },
+      "measured": { "widthPx": 336, "heightPx": 4, "offsetFromRootTopPx": 164 },
+      "radius": { "topLeft": "none (unbound)", "topRight": "none (unbound)", "bottomLeft": "radius/md", "bottomRight": "radius/md" },
+      "paint": { "fill": "border/focus" },
+      "note": "Fixed width (root width less 24 by observation), starting at the root's bottom edge, so it hangs just below the card rather than overlapping it."
+    }
+  ],
+
+  "variants": {
+    "axis": "read", "base": "false",
+    "table": [
+      { "read": "false", "root.fill": "surface/card", "unreadDot": "shown", "title.style": "label/large", "groupIndicator": "present (visible when group)", "figmaNode": "6032:3092" },
+      { "read": "true", "root.fill": "none", "unreadDot": "removed", "title.style": "body/medium", "groupIndicator": "removed", "figmaNode": "6032:3125" }
+    ],
+    "heightByRows": {
+      "_note": "Measured observations at the default content, not values to implement; the card hugs.",
+      "allRowsPx": 164, "noAttachmentPx": 140, "noActionsPx": 120
+    }
+  },
+
+  "subcomponents": [
+    {
+      "name": "_Leading Visual", "private": true, "setId": "6032:3319", "key": "02746586a3aac4e11f6c948dc989c9cd0ad6ae25",
+      "description": "The part that makes up Notification Item. _Leading Visual is the square slot at the start of each entry, with Flavour choosing between an avatar for a person, an image for something with artwork of its own, and an icon for everything else.",
+      "api": {
+        "flavour": {
+          "type": "enum", "figmaName": "Flavour", "values": ["avatar", "image", "icon"], "default": "avatar", "controls": ["variant"],
+          "figmaOrder": ["icon", "avatar", "image"],
+          "intent": {
+            "avatar": "A person, and the default. Carries an Avatar at Size=xxsmall with its own Status, Ring and Close turned off, so only the face or initials shows. Flavour belongs to the leading visual rather than to the notification, so it is decided where the visual is supplied.",
+            "image": "Something with artwork of its own, such as a product or a file preview. The artwork is the slot's background rather than a separate element inside it.",
+            "icon": "A system or category source with neither a face nor artwork. It tells entries apart least well of the three, so it is the fallback rather than the first choice."
+          }
+        }
+      },
+      "anatomy": [
+        { "id": "root", "kind": "container", "size": "control/sm", "radius": "radius/pill", "layout": { "direction": "vertical", "gap": "space/none", "align": "center" }, "sizing": "fixed square" },
+        { "id": "avatar", "kind": "instance", "ref": "Avatar", "spec": "specs/avatar", "refVariant": "Size=xxsmall", "visibleWhen": "flavour == avatar",
+          "overrides": { "showStatus": false, "showRing": false, "showClose": false }, "measured": { "sizePx": 32 } },
+        { "id": "artwork", "kind": "fill", "visibleWhen": "flavour == image", "paint": { "fill": "image, scale mode fill (cover)" } },
+        { "id": "icon", "kind": "instance", "ref": "Icon", "spec": "specs/icon", "refVariant": "Size=medium, Framed=false", "visibleWhen": "flavour == icon",
+          "glyph": "verified (sample default)", "family": "bound to the shape token (rounded by default)", "color": "currentColor (glyph fill not bound)" }
+      ],
+      "variants": {
+        "axis": "flavour", "base": "avatar",
+        "table": [
+          { "flavour": "avatar", "content": "Avatar Size=xxsmall", "root.width": "control/sm", "root.stroke": "none", "figmaNode": "6032:3318" },
+          { "flavour": "image", "content": "image fill on root", "root.width": "hug (unbound, measured 36Px)", "root.stroke": "none", "figmaNode": "6032:3317" },
+          { "flavour": "icon", "content": "Icon Size=medium", "root.width": "control/sm", "root.stroke": "border/default, weight unbound (gap)", "figmaNode": "6032:3316" }
+        ]
+      }
+    }
+  ],
+
+  "dependencies": [
+    { "name": "Avatar", "id": "4906:1172", "key": "3eb24fa7d8592c9e3c93ee7adbca3b64aa0e01ea", "remote": false, "spec": "specs/avatar", "usedAt": ["_Leading Visual/avatar"], "pinned": "Size=xxsmall; Show Status, Show Ring, Show Close off" },
+    { "name": "Notification Indicator", "id": "3719:6256", "key": "73fe3d069d197d82a934eb2653a74245d4bb29a4", "remote": false, "spec": "specs/notification-indicator", "usedAt": ["unreadDot"], "pinned": "Size=small; fill overridden to interactive/primary/background/default" },
+    { "name": "Icon Indicator", "id": "6407:416", "key": "acae5ebfdc98891caa204cafe99553e6416611b2", "remote": false, "spec": "specs/badges/icon-indicator.spec.json", "usedAt": ["urgencyIndicator"], "pinned": "Size=small; glyph overridden to important-notification; fill overridden to interactive/destructive/background/default" },
+    { "name": "Icon", "id": "2046:15010", "key": "a469ac1cf34202af3e094593468d9ef20a37a703", "remote": false, "spec": "specs/icon", "usedAt": ["attachmentIcon", "_Leading Visual/icon"], "delivery": "Font glyphs 'attachment' and 'verified', family from the shape token" },
+    { "name": "Button", "id": "2060:15072", "key": "42bf13a5210cd307b7bd4563f2521b78cfd74dae", "remote": false, "spec": "specs/button", "usedAt": ["actions (default slot content)"], "pinned": "Size=small, Shape=rounded, Flavour=outline" }
+  ],
+
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "surface/card", "border/default", "border/focus", "foreground/primary", "foreground/tertiary", "foreground/link",
+      "interactive/primary/background/default", "interactive/destructive/background/default", "border/inverse"
+    ],
+    "dimension": ["space/none", "space/2xs", "space/xs", "space/sm", "space/card", "space/gutter", "radius/md", "radius/pill", "stroke/base", "control/sm", "control/icon-sm"],
+    "typography": ["label/large", "label/small", "body/small", "body/medium"],
+    "string": ["shape"],
+    "glyphs": ["important-notification", "attachment", "verified"],
+    "themeAxes": {
+      "palette": ["Light", "Dark"],
+      "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
+      "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"]
+    },
+    "_note": "Names bound on Notification Item and _Leading Visual themselves, plus the two fill overrides on nested indicators. Tokens internal to Avatar, Button, Icon and the indicators belong to their own specs. All names resolve in tokens/base (typography names are text styles whose font size/family/weight/line height/letter spacing variables resolve). All three glyphs are in packages/icons/codepoints.json and not retired."
+  },
+
+  "states": [
+    { "state": "Static", "trigger": "—", "duration": "—", "whatChanges": "The notification itself has no hover, focus, pressed or disabled state. The only interactive part is the Button in the action slot, which carries its own." },
+    { "state": "Read", "trigger": "Read", "duration": "—", "whatChanges": "Read=false fills the card with surface/card and shows the indicator dot in the header. Read=true removes both. Nothing else changes." },
+    { "state": "Grouped", "trigger": "Group set to true", "duration": "—", "whatChanges": "A bar appears pinned to the bottom edge of the card. It is absolutely positioned, so the card's height does not change." }
+  ],
+
+  "behavior": [
+    { "type": "Motion", "description": "No transition is defined. Marking an entry read is a fill disappearing, with nothing specified between the two states." },
+    { "type": "Height", "description": "The card hugs its content. Hiding the attachment takes some space off and hiding the actions takes a small button height off, and because both sit in the same column the two shorten it independently." },
+    { "type": "Grouping", "description": "The group bar appears on unread entries only, so the grouping affordance applies while an entry is still unseen." }
+  ],
+
+  "content": [
+    { "property": "Action Slots", "type": "slot, one Button by default", "description": "Holds whatever the entry offers to do and fills the width of the content column. It takes a single Button by default." },
+    { "property": "Leading Visual", "type": "Flavour=avatar", "description": "A person, and the default. Carries an Avatar at Size=xxsmall with its own Status, Ring and Close turned off, so only the face or initials shows. Flavour belongs to the leading visual rather than to the notification, so it is decided where the visual is supplied." },
+    { "property": "Leading Visual", "type": "Flavour=image", "description": "Something with artwork of its own, such as a product or a file preview. The artwork is the slot's background rather than a separate element inside it." },
+    { "property": "Leading Visual", "type": "Flavour=icon", "description": "A system or category source with neither a face nor artwork. It tells entries apart least well of the three, so it is the fallback rather than the first choice." },
+    { "property": "Title and timestamp", "type": "text inputs", "description": "The two pieces of text the component takes. Title carries what happened and defaults to Urgent Message, Time Stamp carries when and defaults to Just now." },
+    { "property": "Body and filename", "type": "not parameterised", "description": "The message body is part of the component's content rather than inputs it accepts. Only the title, attachment and timestamp are parameterized." }
+  ],
+
+  "usage": {
+    "do": [
+      "Keep the title to the event and the body to the detail. The body truncates, so the title has to carry the meaning on its own.",
+      "Switch off the rows you have no content for. An empty attachment row reads as a failed load rather than an absence."
+    ],
+    "dont": [
+      "Don't rely on Group on a read entry. The bar appears only while the entry is unread.",
+      "Don't use Read as a general status. It carries two values, and anything past seen and unseen needs another mechanism."
+    ]
+  },
+
+  "accessibility": [
+    "Unread is carried by a fill and a small dot, both visual only. The unread state has to be exposed in the markup as well.",
+    "The notification has no focus state of its own. Only the Button in the action slot is focusable by default, so reaching the entry itself comes from code.",
+    "The border sits at zero weight by default and is bound to border/default, so a high-contrast theme can raise it to a hard outline. At the default weight an entry is bounded by its fill and the spacing around it.",
+    "The leading visual carries no text in any of its three flavours, and on the image flavour the artwork is a background rather than an element of its own. The source has to be named in the title or described alongside the image.",
+    "The urgency indicator is an icon with no text. It needs a name, or the urgency is invisible to anyone not seeing the glyph.",
+    "The body truncates rather than wrapping on. The full message has to be reachable some other way."
+  ],
+
+  "layoutTheming": [
+    { "property": "Size", "type": "Fixed width, hug height", "description": "360 wide, and 164 tall with every row shown. Hiding the attachment takes it to 140 and hiding the actions to 120." },
+    { "property": "Padding and gap", "type": "Fixed", "description": "space/gutter top and bottom, space/card left and right, with a space/sm gap between the leading visual and the content column." },
+    { "property": "Radius", "type": "Fixed", "description": "radius/md on all four corners, identical on both variants. There is no shape property." },
+    { "property": "Fill", "type": "Per Read", "description": "surface/card when Read is false. Read=true carries no fill at all." },
+    { "property": "Border", "type": "Theming", "description": "A stroke bound to border/default sits on both variants at zero weight. The weight is a theming hook rather than an omission, so a high-contrast variable set can give every main component a hard outline, including elements that carry none by default." },
+    { "property": "Group Indicator", "type": "Fixed, absolute", "description": "Component width less 24 by 4 height, centered and pinned to the bottom edge, filled with border/focus and rounded to radius/md. Being absolute it does not affect the card's height." },
+    { "property": "Leading Visual", "type": "Fixed", "description": "36 square on all three flavours, with radius/pill on every one so the slot is always circular. The Avatar sits at Size=xxsmall and the Icon at Size=medium, both centered inside the frame." },
+    { "property": "Type", "type": "Theming", "description": "Title uses label/large and Body body/small, both over foreground/primary. Timestamp is label/small over foreground/tertiary and the attachment filename label/small over foreground/link." }
+  ],
+
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6020-1488",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6032-3093",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6064-124",
+    "variants": {
+      "read=false": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6032-3092",
+      "read=true": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6032-3125",
+      "groupIndicator (hidden by default)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6032-3815"
+    },
+    "subcomponents": {
+      "_Leading Visual": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6032-3319",
+      "flavour=avatar": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6032-3318",
+      "flavour=image": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6032-3317",
+      "flavour=icon": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6032-3316"
+    }
+  },
+
+  "issues": [
+    { "severity": "warn", "source": "API wiring", "detail": "Show Urgency Indicator#6032:16 is bound to no layer in either variant, so the Icon Indicator is always shown and the toggle does nothing in Figma. The metadata describes it as a visibility toggle; implement it as visibleWhen on urgencyIndicator." },
+    { "severity": "warn", "source": "API default vs metadata", "detail": "Show Urgency Indicator defaults to true (Figma and metadata agree), yet the metadata says false is 'what most entries in a list should use' and to 'Reserve it'. A default of true flags every entry as urgent; consider defaulting to false." },
+    { "severity": "warn", "source": "metadata vs extracted", "detail": "States says Read=true removes the fill and dot and 'Nothing else changes', and Layout & Theming says 'Title uses label/large'. As built, Read=true also switches the title from label/large to body/medium (unread titles are heavier). Also, Read=true removes the group indicator layer." },
+    { "severity": "warn", "source": "dependency overrides", "detail": "The unread dot is a Notification Indicator (Size=small) with its fill overridden to interactive/primary/background/default; that component's own fill is interactive/destructive/background/default (specs/notification-indicator). Code needs a way to recolour it, or the item draws its own dot." },
+    { "severity": "warn", "source": "dependency overrides", "detail": "The urgency indicator is an Icon Indicator whose glyph is swapped to important-notification and whose fill is overridden to interactive/destructive/background/default. specs/badges/icon-indicator.spec.json describes a fixed clock glyph on foreground/secondary ('A different meaning has to come from a different component'). Either Icon Indicator gains glyph/tone inputs or the item draws its own." },
+    { "severity": "warn", "source": "slot preferred values", "detail": "Action Slots accepts only preferred values (allowPreferredValuesOnly): Button, Icon, and a third component set with key aee1f4fe89a3f70a26978e68621194baf1271b8a that cannot be resolved in this file (deleted or unpublished). Icon as action content is odd for an action row; metadata mentions only Button." },
+    { "severity": "warn", "source": "gaps (_Leading Visual)", "detail": "Flavour=icon has a border/default stroke at weight 1 with no stroke token; the metadata does not mention a border on the icon flavour." },
+    { "severity": "warn", "source": "bindingDrift (_Leading Visual)", "detail": "Root width is bound to control/sm in avatar and icon but not in image, where it is HUG with no children (renders 36). Height stays bound. Use control/sm for all three." },
+    { "severity": "note", "source": "gaps", "detail": "Header wrapper 'Frame 1' (around the unread dot) has an unbound gap of 10. It holds one child so the gap is inert; the layer is also unnamed." },
+    { "severity": "note", "source": "metadata vs extracted", "detail": "Group Indicator: only the bottom corners are bound to radius/md (top corners 0), and it sits at y = card height, i.e. hanging just below the card's bottom edge rather than inside it. Its width is fixed at 336 with a CENTER constraint, so 'component width less 24' holds only at the default 360 width." },
+    { "severity": "note", "source": "metadata vs extracted", "detail": "Avatar inside the 36 leading slot renders at 32 (Size=xxsmall), leaving a ring of space; metadata's '36 square' refers to the slot, which is correct." },
+    { "severity": "note", "source": "Content & Slot", "detail": "Body and attachment filename are not Figma properties; the metadata line 'Only the title, attachment and timestamp are parameterized' means attachment visibility, not its filename. In code both need to be inputs." },
+    { "severity": "note", "source": "Property Breakdown coverage", "detail": "Title, Time Stamp and Action Slots are absent from the Property Breakdown table; they are covered under Content & Slot instead. Leading Visual Flavour is swap-only (internalVariations)." },
+    { "severity": "note", "source": "icons", "detail": "Glyph fills on the nested Icons are not bound; in code the glyphs take currentColor. Icon family is bound to the shape string token (rounded by default), so a sharp theme switches all three glyphs. All three glyph names exist in codepoints.json and are not retired." },
+    { "severity": "note", "source": "accessibility vs tokens", "detail": "The root border is bound to stroke/base, which resolves to zero in the base export, matching the metadata's 'zero weight' theming hook." },
+    { "severity": "note", "source": "coverage", "detail": "No motion is defined (stated in metadata). Neither component set has a Figma description; the Component Details cards carry the description text." }
+  ]
+}

@@ -1,0 +1,48 @@
+import { css } from "lit";
+
+/** AssistChip — every value is a semantic token. Geometry, border, focus
+   ring, shape and disabled come from chip/chip-base.styles.ts; this file sets the
+   chip's own size, type and colours. Sections follow the spec's anatomy and
+   variant table. Kept rule-for-rule with packages/react-baseui
+   assist-chip.css.
+
+   Spec: specs/assist-chip/assist-chip.spec.md */
+export default css`
+
+/* ---- root -------------------------------------------------------------- */
+.zds-assist-chip {
+  --zds-chip-bg: var(--interactive-neutral-background-default);
+  --zds-chip-border: var(--interactive-neutral-border-default);
+  --zds-chip-fg: var(--interactive-neutral-foreground-default);
+  gap: var(--space-xs);
+  /* spec issue "Height jumps between states": Figma is 34px at rest and 32px
+     at focus and disabled because its inside border counts in layout. The
+     spec's fix is 32px throughout with the border out of layout (chip.css
+     draws it as an inset shadow). 32 = space/sm above and below a
+     control/icon-sm row, so it holds with or without the leading icon. */
+  height: calc(var(--space-sm) * 2 + var(--control-icon-sm));
+  padding: var(--space-sm) var(--space-md);
+  cursor: pointer;
+}
+
+/* ---- label: indicator/medium ------------------------------------------- */
+.zds-assist-chip .zds-chip__label {
+  font-family: var(--indicator-medium-font-family), system-ui, sans-serif;
+  font-size: var(--indicator-medium-font-size);
+  font-weight: var(--indicator-medium-font-weight);
+  line-height: var(--indicator-medium-line-height);
+  letter-spacing: var(--indicator-medium-letter-spacing);
+}
+
+/* ---- state ------------------------------------------------------------- */
+.zds-assist-chip:hover:not([data-disabled]) {
+  --zds-chip-bg: var(--interactive-neutral-background-hover);
+}
+.zds-assist-chip:focus-visible:not([data-disabled]) {
+  --zds-chip-bg: var(--interactive-neutral-background-focused);
+}
+/* Not built: State=selected (spec issue "selected on an action chip" — an
+   action does not stay selected; a sticky chip is a FilterChip), the
+   single-value "active" axis (unfinished copy from Filter Chip), and
+   State=dragged (belongs to a reorder interaction this chip does not own). */
+`;

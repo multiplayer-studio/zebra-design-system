@@ -1,0 +1,199 @@
+{
+  "component": {
+    "name": "Navigation Item",
+    "slug": "navigation-item",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "2841:3535",
+      "key": "50a45b9513bff736d2505106dc5c35fdc359f89b",
+      "page": "Navigation Bar",
+      "pageNodeId": "2835:796",
+      "frame": "Subcomponents/Navigation Bar",
+      "metadataFrameId": "4750:360",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2841-3535",
+      "extractedAt": "2026-10-20",
+      "variantCount": 3,
+      "defaultVariant": "Active=false, Disabled=false",
+      "extractionNote": "Specced on its own, not as a subcomponent of Navigation Bar: it is public (no underscore, own key), it has its own full Navigation Item Metadata frame, and the Navigation Bar Metadata points to that frame rather than describing the item itself. It sits in the page's Subcomponents/Navigation Bar frame and is used as Navigation Bar's preferred slot content (specs/navigation-bar). All 3 variants read to depth 12; the nested icon's vector region paints read separately because the vector's node-level fills are mixed."
+    }
+  },
+
+  "summary": "A single destination inside a Navigation Bar, shown as an icon above a label with an optional badge. It is the content the bar's slots are built around, and the bar sets nothing on it, so every property here is yours to set per instance. Selection is expressed with Active, and exactly one item in a bar should carry it.",
+
+  "api": {
+    "active": {
+      "type": "enum", "figmaName": "Active", "values": ["false", "true"], "default": "false", "controls": ["variant"],
+      "intent": {
+        "false": "The resting destination, reading as available rather than chosen.",
+        "true": "Marks the destination the user is currently on. Exactly one item in a bar should carry it, and nothing in the component enforces that, so a bar with two active items or none is easy to ship."
+      }
+    },
+    "disabled": {
+      "type": "enum", "figmaName": "Disabled", "values": ["false", "true"], "default": "false", "controls": ["variant"],
+      "validWhen": "active = false",
+      "intent": {
+        "false": "The destination can be selected.",
+        "true": "The destination is unavailable. Nothing on the item explains why, so if the reason matters it has to come from the surrounding context. Offered on inactive items."
+      }
+    },
+    "label": {
+      "type": "string", "figmaName": "Label#2841:4", "default": "Label", "controls": ["label"],
+      "intent": "The destination's name, and the only text on the item. One or two words, because the item hugs its label and a long one makes that destination wider than the rest of the row."
+    },
+    "showBadge": {
+      "type": "boolean", "figmaName": "Show Badge#3196:0", "default": false, "controls": ["badge"],
+      "intent": {
+        "false": "No badge on the icon.",
+        "true": "Reveals a Notification Indicator over the icon's top-right corner, signalling that something is waiting. It sits outside the layout, so turning it on never changes the item's size or shifts its neighbours."
+      }
+    }
+  },
+
+  "internalVariations": [
+    { "part": "icon", "via": "Icon (exposed nested instance)", "options": "any glyph in packages/icons", "default": "star",
+      "intent": "Navigation Item pins Icon to Size=medium with Framed off and leaves the instance exposed, so the glyph can be swapped per instance while the sizing stays consistent. See the Icon Metadata frame. It arrives holding Star, a placeholder rather than a real destination glyph." },
+    { "part": "badge", "via": "Notification Indicator (exposed nested instance)", "options": { "size": ["small", "medium", "large"], "value": "string" }, "default": "size small",
+      "intent": "Navigation Item exposes only its visibility and pins it to Size=small, the dot with no number, where the Notification Indicator's own default is large. The instance stays exposed, so its Value and Size remain reachable. At this size the dot signals that something is there, not how much." }
+  ],
+
+  "contentInputs": [],
+
+  "anatomy": [
+    { "id": "root", "kind": "container", "number": 1,
+      "role": "Item — The outer vertical frame. Hugs its label horizontally and holds a fixed height, so every item in a bar lines up regardless of label length.",
+      "layout": { "direction": "vertical", "gap": "space/sm", "padding": { "top": "space/sm", "bottom": "space/sm", "left": "space/lg", "right": "space/lg" }, "align": "center" },
+      "sizing": { "h": "hug", "v": "fixed" },
+      "paint": { "fill": "interactive/ghost/background/default (paint opacity zero, so nothing renders)" },
+      "measured": { "widthPx": 67, "heightPx": 72 } },
+    { "id": "iconBox", "kind": "container", "number": 2,
+      "role": "Icon box — The 20px box holding the icon, and the anchor the badge is positioned against. It does not clip, which is what lets the badge overhang its corner.",
+      "layout": { "direction": "vertical", "gap": "unbound, one flowing child", "padding": "none" },
+      "sizing": { "h": "hug", "v": "hug" }, "clips": false,
+      "measured": { "sizePx": "20 x 20" } },
+    { "id": "icon", "kind": "glyph", "parent": "iconBox", "ref": "Icon", "refVariant": "Size=medium, Framed=false",
+      "glyph": "star", "family": "rounded",
+      "color": "currentColor — follows the label colour (see variants and issues)",
+      "iconSize": "pinned by the nested Icon's Size=medium; not a token on this component" },
+    { "id": "badge", "kind": "instance", "parent": "iconBox", "ref": "Notification Indicator (specs/notification-indicator)", "refVariant": "Size=small", "visibleWhen": "showBadge",
+      "position": { "mode": "absolute", "anchor": "top-right of iconBox, overhanging", "constraints": "centre / centre", "offsetPx": { "x": 16, "y": -4 } },
+      "measured": { "sizePx": "8 x 8" } },
+    { "id": "label", "kind": "text", "number": 3, "content": "label",
+      "role": "Label — The destination's name, sitting under the icon and taking the same colour as it in every state.",
+      "text": { "style": "Body/body small", "color": "foreground/primary", "wrap": "none", "truncation": "none" },
+      "sizing": { "h": "hug", "v": "hug" } }
+  ],
+
+  "variants": {
+    "_note": "Cells are token names. icon.color as drawn in Figma differs from label.color; with a font glyph on currentColor the icon follows label.color, which is what the metadata asks for (see issues).",
+    "axis": "active × disabled",
+    "base": "active=false, disabled=false",
+    "table": [
+      { "active": "false", "disabled": "false", "label.color": "foreground/primary", "icon.color (as drawn)": "foreground/primary", "figmaNode": "2838:3508" },
+      { "active": "true", "disabled": "false", "label.color": "interactive/subtle/foreground/default", "icon.color (as drawn)": "interactive/ghost/foreground/default", "figmaNode": "2841:3536" },
+      { "active": "false", "disabled": "true", "label.color": "interactive/subtle/foreground/disabled", "icon.color (as drawn)": "foreground/disabled", "figmaNode": "2841:3544" }
+    ]
+  },
+
+  "subcomponents": [],
+
+  "dependencies": [
+    { "name": "Icon", "id": "2046:15010", "key": "a469ac1cf34202af3e094593468d9ef20a37a703", "remote": false, "spec": "specs/icon", "usedAs": "icon, Size=medium, Framed=false, glyph star (Style=rounded)" },
+    { "name": "Notification Indicator", "id": "3719:6256", "key": "73fe3d069d197d82a934eb2653a74245d4bb29a4", "remote": false, "spec": "specs/notification-indicator", "usedAs": "badge, Size=small. This is the Badges-page set, not the drifted copy on the Navigation Bar page (2837:1489)." }
+  ],
+
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "rule": "This spec names tokens only. The badge's own tokens belong to specs/notification-indicator.",
+    "color": [
+      "interactive/ghost/background/default",
+      "foreground/primary", "interactive/subtle/foreground/default", "interactive/subtle/foreground/disabled",
+      "interactive/ghost/foreground/default", "foreground/disabled"
+    ],
+    "dimension": ["space/sm", "space/lg"],
+    "typography": ["Body/body small"],
+    "effect": [],
+    "glyphs": ["star"],
+    "missingFromExport": ["type/body/small/font-size", "type/body/small/font-family", "type/body/small/font-weight", "type/body/small/line-height"],
+    "themeAxes": {
+      "palette": ["Light", "Dark"],
+      "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
+      "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"],
+      "extensions": "tokens/extensions/ (companion, target, condensed)"
+    },
+    "_note": "All 8 colour and dimension names resolve in tokens/base. The label's text style Body/body small and its four type/body/small/* variables come from another library (remote) and are not in the export; the local equivalent is body/small (body/small/font size, font family, font weight, line height in tokens/base/typography). The two icon-only colours are listed because Figma binds them, but in code the glyph takes the label colour. Glyph star is in packages/icons/codepoints.json and not retired."
+  },
+
+  "states": [
+    { "state": "default", "trigger": "Resting", "duration": "—", "whatChanges": "Icon and label both sit on foreground/primary." },
+    { "state": "active", "trigger": "Active set to true", "duration": "—", "whatChanges": "Icon and label both move to interactive/subtle/foreground/default. Nothing else changes, there is no background, underline or indicator bar, so colour alone carries selection." },
+    { "state": "disabled", "trigger": "Disabled set to true", "duration": "—", "whatChanges": "Icon and label both move to interactive/subtle/foreground/disabled. Offered on inactive items." },
+    { "state": "badge shown", "trigger": "Show Badge set to true", "duration": "—", "whatChanges": "A Notification Indicator appears over the icon's top-right corner. It is absolutely positioned, so the item's footprint does not change." },
+    { "state": "hover and pressed", "trigger": "Not modelled", "duration": "—", "whatChanges": "The component has no hover or pressed variants. Any pointer feedback comes from the implementation rather than from here." }
+  ],
+
+  "behavior": [
+    { "type": "Motion", "description": "Figma stores no timing and no transition is modelled. Moving between states is a colour change only, with no movement, scale or elevation." },
+    { "type": "Badge", "description": "The badge sits outside the layout flow, so showing or hiding it never reflows the item or the bar around it." },
+    { "type": "Reflow", "description": "The item re-hugs its label whenever the text changes, which shifts every item beside it in the bar." }
+  ],
+
+  "content": [
+    { "property": "Label", "type": "text property", "description": "The destination's name. There is no truncation and no wrapping, the item simply grows." },
+    { "property": "Icon", "type": "exposed nested Icon instance", "description": "Navigation Item pins Icon to Size=medium with Framed off and leaves the instance exposed, so the glyph can be swapped per instance while the sizing stays consistent. See the Icon Metadata frame. It arrives holding Star, a placeholder rather than a real destination glyph." },
+    { "property": "Badge", "type": "exposed nested Notification Indicator, toggled by Show Badge", "description": "Navigation Item exposes only its visibility and pins it to Size=small, the dot with no number, where the Notification Indicator's own default is large. The instance stays exposed, so its Value and Size remain reachable. At this size the dot signals that something is there, not how much." }
+  ],
+
+  "usage": {
+    "do": [
+      "Set exactly one item in a bar to Active. Selection is the item's job, and the bar does nothing to manage it.",
+      "Swap the icon on every item. It ships holding a Star placeholder, which says nothing about where the destination goes."
+    ],
+    "dont": [
+      "Don't use Show Badge to show a count. It is pinned to the small size, which is a dot with no readable number in it.",
+      "Don't give items long labels. Each one hugs its own text, so a single long name makes that destination wider than everything beside it."
+    ]
+  },
+
+  "accessibility": [
+    "Selection is carried by colour alone. There is no underline, background or indicator bar, so the active destination has to be conveyed in code as well.",
+    "The icon repeats the label rather than adding to it, so the label has to stand on its own.",
+    "Disabled is visual only, and nothing on the item explains why a destination is unavailable.",
+    "The badge is a dot with no number at the size this component pins, so whatever it signals needs a text equivalent.",
+    "Icon and label move together between states, so they stay consistent with each other. Check interactive/subtle/foreground/disabled against the surface the bar sits on."
+  ],
+
+  "layoutTheming": [
+    { "property": "Width", "type": "Hug", "description": "Hugs the label, so an item is as wide as its text plus 16px (space/lg) of padding each side. Items in a row are not equal width unless their labels are." },
+    { "property": "Height", "type": "Fixed", "description": "72px at every variant. This is what sets the Navigation Bar's height, because the bar hugs its content." },
+    { "property": "Padding", "type": "Fixed", "description": "8px (space/sm) top and bottom, 16px (space/lg) left and right." },
+    { "property": "Gap", "type": "Fixed", "description": "8px (space/sm) between the icon box and the label." },
+    { "property": "Icon", "type": "Fixed", "description": "A 20px Icon at Size=medium with Framed off, sitting in a 20px box that does not clip its content." },
+    { "property": "Badge", "type": "Absolute", "description": "An 8px Notification Indicator at Size=small, placed at 16,-4 against the 20px icon box so it overhangs the top-right corner. It is outside the layout flow." },
+    { "property": "Label type", "type": "Fixed", "description": "Body/body small (14/20), IBM Plex Sans Regular." },
+    { "property": "Colour", "type": "Theming", "description": "foreground/primary at rest, interactive/subtle/foreground/default when Active, interactive/subtle/foreground/disabled when Disabled. Icon and label take the same token in every state, and the item has no fill of its own." }
+  ],
+
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2835-796",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2841-3535",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4750-360",
+    "variants": {
+      "default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2838-3508",
+      "active": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2841-3536",
+      "disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2841-3544"
+    }
+  },
+
+  "issues": [
+    { "severity": "warn", "source": "metadata vs structure", "detail": "Metadata says icon and label take the same token in every state. As drawn they don't: active icon is interactive/ghost/foreground/default (label interactive/subtle/foreground/default); disabled icon is foreground/disabled (label interactive/subtle/foreground/disabled). Build the glyph on currentColor so it follows the label, as the metadata intends, and fix the vector bindings in Figma." },
+    { "severity": "warn", "source": "spec vs token export", "detail": "The label uses a remote text style, Body/body small, bound to four remote variables (type/body/small/font-size, font-family, font-weight, line-height) from a collection named Semantics in another library. None are in tokens/. The local equivalent is body/small. Use that, and rebind the label in Figma." },
+    { "severity": "warn", "source": "structure (gaps)", "detail": "The fixed item height (measured 72Px; metadata says 72px) is raw, not bound to a size token. The icon box carries a raw gap of 10 that does nothing (its only flowing child is the icon)." },
+    { "severity": "note", "source": "metadata vs structure", "detail": "Metadata says the item has no fill of its own. It has one bound to interactive/ghost/background/default at paint opacity zero, so nothing renders. Harmless, but it is a hook if hover or pressed are added later." },
+    { "severity": "note", "source": "structure", "detail": "Active and Disabled are two variant axes, but active=true, disabled=true doesn't exist (\"Offered on inactive items\"). In code, disabled applies only to inactive items, or model one state enum: default | active | disabled." },
+    { "severity": "note", "source": "coverage", "detail": "No hover, pressed or focus states are modelled (the metadata says so for hover and pressed; focus isn't mentioned). Keyboard focus treatment has to be decided in code." },
+    { "severity": "note", "source": "dependency", "detail": "The badge is an instance of the Badges-page Notification Indicator (3719:6256, specs/notification-indicator), not the drifted copy on this page (2837:1489). See specs/navigation-bar duplicateCheck." },
+    { "severity": "note", "source": "structure", "detail": "The badge's constraints are centre/centre inside a non-clipping 20px box; its 16,-4 offset is a measurement, not a token. In code, pin it to the icon's top-right corner." },
+    { "severity": "note", "source": "coverage", "detail": "No component description on the set." }
+  ]
+}

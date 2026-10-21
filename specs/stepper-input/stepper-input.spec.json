@@ -1,0 +1,256 @@
+{
+  "component": {
+    "name": "Stepper Input",
+    "slug": "stepper-input",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "5643:2489",
+      "key": "06e40747bb02022a88e8b862132ef8298df73924",
+      "page": "Stepper Input",
+      "pageNodeId": "5595:122",
+      "metadataFrameId": "6102:10988",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5595-122",
+      "extractedAt": "2026-10-20",
+      "variantCount": { "Stepper Input": 8, "_Hint text": 2 },
+      "extractionNote": "Both sets extracted in full (all 8 master variants, both _Hint text variants). Nested instances (Icon Button, Input / Text, Icon) were then read per variant for their pinned variant properties, glyph swaps, value text, and alignment overrides, since variant deltas don't look inside nested instances. Size × Rounded × Disabled is complete (2 × 2 × 2)."
+    }
+  },
+
+  "summary": "A numeric value with a button on either side to decrease or increase it. The value itself is fixed text rather than a property, the two buttons are locked step controls with no properties of their own reachable from here, and an optional line of hint text can sit below the whole control.",
+
+  "api": {
+    "size": {
+      "type": "enum", "figmaName": "Size", "values": ["medium", "large"], "default": "medium", "controls": ["variant"],
+      "intent": {
+        "medium": "The default, for a step control sitting among other medium fields. The value and the gap around it stay the same at every size, only the two buttons grow.",
+        "large": "For a step control that needs to be easy to tap without precision."
+      }
+    },
+    "rounded": {
+      "type": "enum", "figmaName": "Rounded", "values": ["false", "true"], "default": "false", "controls": ["variant"],
+      "intent": {
+        "false": "Square corners on the two step buttons, to match a square surrounding surface.",
+        "true": "Rounded corners on the two step buttons only, the value between them stays square either way."
+      }
+    },
+    "disabled": {
+      "type": "enum", "figmaName": "Disabled", "values": ["false", "true"], "default": "false", "controls": ["variant"],
+      "_note": "Figma stores the options as true, false; listed here default first. Behaves as a boolean.",
+      "intent": {
+        "false": "The control accepts input, and shows the hint text when Hint is on.",
+        "true": "The two step buttons switch to a primary fill, and the hint text is removed entirely rather than hidden. Turning Hint on has no effect while Disabled is on."
+      }
+    },
+    "showHint": {
+      "type": "boolean", "figmaName": "Hint#5643:0", "default": false, "controls": ["hint"],
+      "intent": {
+        "false": "No hint text below the control.",
+        "true": "Adds a line of hint text below the control. Only ever shows the hint message, never the error one this part also offers, and has no effect while Disabled is on."
+      }
+    }
+  },
+
+  "internalVariations": [
+    { "part": "hint", "via": "_Hint text", "options": ["hint", "error"], "pinned": "hint",
+      "intent": "Always the hint message, never the error one.",
+      "note": "Message=error exists on the private part but is never placed by Stepper Input. Whether code exposes an error/invalid hint is the implementer's call; see issues." },
+    { "part": "decrement, increment", "via": "Icon Button", "options": "Icon Button's own API (flavour, state, shape, size, disabled)", "pinned": "flavour outline-subtle (enabled) / primary + disabled (disabled); state default; shape and size follow the parent",
+      "intent": "Locked to outline-subtle at rest, switching to primary when Disabled is on. None of Icon Button’s own properties are reachable from here." }
+  ],
+
+  "contentInputs": [
+    { "part": "value", "input": "value", "sample": "1", "note": "Static text on the nested Input / Text layer, not a component property. In code this is the component's numeric value." },
+    { "part": "hint.message", "input": "hint", "sample": "Hint text", "note": "Not parameterised in Figma." }
+  ],
+
+  "anatomy": [
+    { "id": "root", "kind": "container", "layout": { "direction": "vertical", "gap": "space/sm", "padding": "space/none", "align": "start" },
+      "sizing": { "h": "fixed", "v": "hug" }, "measured": { "widthPx": { "medium": 168, "large": 184 }, "heightPx": { "medium": 40, "large": 48 } } },
+    { "id": "control", "kind": "container", "figmaName": "Stepper Input Container",
+      "layout": { "direction": "horizontal", "gap": "space/sm", "padding": "space/none", "align": "center" }, "sizing": { "h": "fill", "v": "hug" } },
+    { "id": "decrement", "kind": "instance", "ref": "Icon Button", "glyph": "remove", "number": 1,
+      "pinned": { "size": "follows size", "shape": "sharp | rounded (follows rounded)", "flavour": "outline-subtle | primary (disabled)", "state": "default", "disabled": "follows disabled" },
+      "sizing": "fixed square", "size": { "medium": "control/md", "large": "control/lg" },
+      "role": "A fixed Icon Button at the Remove glyph. Locked to outline-subtle, none of its own properties reachable from here." },
+    { "id": "value", "kind": "instance", "ref": "Input / Text", "number": 2,
+      "pinned": { "size": "follows size", "shape": "sharp | rounded (follows rounded)", "state": "filled | disabled (follows disabled)", "flavour": "default", "hasLeading": false, "hasTrailing": false },
+      "sizing": { "h": "fixed", "v": "fixed" }, "height": { "medium": "control/md", "large": "control/lg" }, "measured": { "widthPx": 72 },
+      "layout": { "padding": { "block": "space/sm", "inline": "space/md" }, "justify": "center", "align": "center" },
+      "text": { "style": "body/medium", "color": { "enabled": "foreground/primary", "disabled": "foreground/disabled" }, "align": "center (the inner text frame is centred by override)" },
+      "role": "A plain number on the layer, not an exposed text property." },
+    { "id": "increment", "kind": "instance", "ref": "Icon Button", "glyph": "add", "number": 3,
+      "pinned": "same as decrement",
+      "role": "The same fixed treatment as Remove, with the Add glyph." },
+    { "id": "hint", "kind": "instance", "ref": "_Hint text", "refVariant": "Message=hint", "number": 4,
+      "visibleWhen": "showHint && !disabled", "presentWhen": "!disabled",
+      "role": "Shown as a whole by Hint, and only present when Disabled is off. Always the hint message, never the error one." }
+  ],
+
+  "variants": {
+    "axis": "size × rounded × disabled", "base": "size=medium, rounded=false, disabled=false",
+    "_note": "Cells are token names unless suffixed Px (measurements of the rendered file). The axes are independent: size changes only the step-button and value heights; rounded only radii; disabled only paint and the hint's presence.",
+    "size": {
+      "table": [
+        { "size": "medium", "buttons.size": "control/md", "value.height": "control/md", "measuredWidthPx": 168, "measuredHeightPx": 40, "measuredHeightWithHintPx": 64 },
+        { "size": "large", "buttons.size": "control/lg", "value.height": "control/lg", "measuredWidthPx": 184, "measuredHeightPx": 48, "measuredHeightWithHintPx": 72 }
+      ],
+      "_note": "Value width (72Px measured, raw), value text style body/medium, the glyph (Icon Size=medium) and both gaps hold across sizes."
+    },
+    "rounded": {
+      "table": [
+        { "rounded": "false", "buttons.radius": "radius/none", "value.radius": "radius/none" },
+        { "rounded": "true", "buttons.radius": "radius/element-sm", "value.radius": "radius/sm", "_note": "value rounds too — contradicts metadata, see issues" }
+      ]
+    },
+    "disabled": {
+      "table": [
+        { "disabled": "false", "buttons.fill": "interactive/ghost/background/default", "buttons.border": "interactive/neutral/border/default", "buttons.borderWidth": "stroke/thin",
+          "value.fill": "interactive/neutral/background/default", "value.border": "interactive/neutral/border/default", "value.borderWidth": "stroke/thin", "value.text": "foreground/primary", "hint": "present (toggled by showHint)" },
+        { "disabled": "true", "buttons.fill": "interactive/primary/background/disabled", "buttons.border": "interactive/primary/border/disabled", "buttons.borderWidth": "stroke/base",
+          "value.fill": "interactive/neutral/background/disabled", "value.border": "interactive/neutral/border/disabled", "value.borderWidth": "stroke/thin", "value.text": "foreground/disabled", "hint": "absent" }
+      ],
+      "_note": "Disabled buttons are Icon Button flavour=primary, disabled=true; stroke/base resolves to zero width, so they show no border. Glyph colour comes from Icon Button's own flavour/disabled styling (currentColor in the font)."
+    }
+  },
+
+  "subcomponents": [
+    {
+      "name": "_Hint text", "id": "5643:2473", "key": "46527fd4f4253574a507d6e50be9534eed138fd7", "private": true,
+      "api": {
+        "message": { "type": "enum", "figmaName": "Message", "values": ["hint", "error"], "default": "hint" }
+      },
+      "anatomy": [
+        { "id": "root", "kind": "container", "layout": { "direction": "horizontal", "gap": "space/xs", "padding": "space/none", "align": "center" }, "sizing": "hug", "measured": { "heightPx": 16 } },
+        { "id": "icon", "kind": "instance", "ref": "Icon", "size": "Icon Size=small", "family": "rounded",
+          "glyph": { "hint": "info", "error": "error" }, "color": "unbound in Figma; currentColor in code (see issues)" },
+        { "id": "message", "kind": "text", "text": { "style": "body/xsmall", "color": { "hint": "foreground/secondary", "error": "foreground/error" } },
+          "sample": { "hint": "Hint text", "error": "Error text" },
+          "note": "The error variant swaps in a separate text layer ('Error text') rather than recolouring the same one." }
+      ],
+      "variants": {
+        "axis": "message", "base": "hint",
+        "table": [
+          { "message": "hint", "icon.glyph": "info", "message.color": "foreground/secondary" },
+          { "message": "error", "icon.glyph": "error", "message.color": "foreground/error", "_note": "never placed by Stepper Input" }
+        ]
+      },
+      "_note": "Near-duplicate of Input Hint on the Input page (specs/input, subcomponents.inputHint), which has default / error / disabled and a Show Icon toggle. See issues."
+    }
+  ],
+
+  "dependencies": [
+    { "name": "Icon Button", "id": "2338:1763", "key": "aee1f4fe89a3f70a26978e68621194baf1271b8a", "remote": false, "spec": "specs/icon-button",
+      "usedAt": ["decrement", "increment"],
+      "pinned": "size medium|large, shape sharp|rounded, flavour outline-subtle (enabled) or primary (disabled), state default, disabled follows parent; glyphs remove / add, Icon Size=medium at both sizes" },
+    { "name": "Input / Text", "id": "6306:7940", "key": "d17077e32d74b34d2f692c21290e5cc91390cca5", "remote": false, "spec": "specs/input",
+      "specPart": "subcomponents.inputField (type text)", "usedAt": ["value"],
+      "pinned": "size medium|large, shape sharp|rounded, state filled (enabled) or disabled, flavour default, hasLeading false, hasTrailing false; width overridden to a fixed 72Px; inner text frame centred" },
+    { "name": "Icon", "id": "2046:15010", "key": "a469ac1cf34202af3e094593468d9ef20a37a703", "remote": false, "spec": "specs/icon",
+      "usedAt": ["_Hint text.icon", "inside Icon Button"],
+      "delivery": "Font glyphs from packages/icons, rounded family: remove, add, info, error. All in codepoints.json, none retired or rejected." },
+    { "name": "Button", "remote": false, "spec": "specs/button", "usedAt": [], "note": "Not used. Neither Button nor any Button instance appears in Stepper Input." }
+  ],
+
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "interactive/ghost/background/default",
+      "interactive/neutral/background/default", "interactive/neutral/background/disabled",
+      "interactive/neutral/border/default", "interactive/neutral/border/disabled",
+      "interactive/primary/background/disabled", "interactive/primary/border/disabled",
+      "foreground/primary", "foreground/disabled", "foreground/secondary", "foreground/error"
+    ],
+    "dimension": [
+      "control/md", "control/lg",
+      "space/none", "space/xs", "space/sm", "space/md",
+      "radius/none", "radius/sm", "radius/element-sm",
+      "stroke/thin", "stroke/base"
+    ],
+    "typography": ["body/medium", "body/xsmall"],
+    "glyphs": ["remove", "add", "info", "error"],
+    "themeAxes": {
+      "palette": ["Light", "Dark"],
+      "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
+      "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"]
+    },
+    "_note": "All 24 token names resolve in tokens/base/ (body/xsmall is bound both as the text style and as its five body/xsmall/* variables). foreground/primary, foreground/disabled and body/medium come from the nested Input / Text variant, not from bindings on Stepper Input itself. All four glyphs are in packages/icons/codepoints.json, not retired, not rejected."
+  },
+
+  "states": {
+    "_note": "No States & Triggers section in the metadata. The only state on the component is Disabled. Hover, pressed and focus are Icon Button and Input / Text states; every instance here is pinned to State=default / filled, so they are not modelled on Stepper Input."
+  },
+
+  "behavior": [
+    { "type": "Motion", "description": "No transition is defined for the hint text appearing or disappearing, or for Disabled or Rounded changing." }
+  ],
+
+  "content": [
+    { "property": "Value", "type": "Static text, not a property", "description": "A plain number on the layer itself, not exposed as a text property. Changing it means editing the layer directly rather than through this component’s properties panel." },
+    { "property": "Remove button", "type": "Fixed Icon Button, Remove glyph", "description": "Locked to outline-subtle at rest, switching to primary when Disabled is on. None of Icon Button’s own properties are reachable from here." },
+    { "property": "Add button", "type": "Fixed Icon Button, Add glyph", "description": "The same fixed treatment as Remove, on the opposite side of the value." },
+    { "property": "Hint text", "type": "Fixed instance, hint message only", "description": "Shown or hidden as a whole by Hint, and only present at all when Disabled is off." }
+  ],
+
+  "usage": {
+    "do": [
+      "Reach for Large on a touch surface where the buttons need to be easy to hit without precision.",
+      "Turn Hint on to explain a constraint on the value, such as a minimum or a maximum."
+    ],
+    "dont": [
+      "Don't expect Hint to show anything while Disabled is on, there is no hint text node to toggle on a disabled instance.",
+      "Don't expect the error version of the hint text from this component, every instance uses the hint message, the error one is never placed."
+    ]
+  },
+
+  "accessibility": [
+    "Nothing in this file marks the value as a live region or states how it is announced when it changes. Whether screen readers hear the new value, and how the two buttons are labelled, needs confirming outside Figma."
+  ],
+
+  "layoutTheming": [
+    { "property": "Width", "type": "Fixed per Size", "description": "168px at medium, 184px at large. Grows by exactly the amount the two buttons grow, the value area stays the same width." },
+    { "property": "Height", "type": "Fixed per Size, hug for Hint", "description": "40px at medium, 48px at large, plus 24px and an 8px gap when Hint is on." },
+    { "property": "Gap", "type": "Fixed", "description": "8px between the step control and the hint text when both are present." },
+    { "property": "Value width", "type": "Fixed", "description": "72px at both sizes, with 12px padding on the left and the top only." },
+    { "property": "Value type", "type": "Fixed", "description": "16px IBM Plex Sans Regular, 24px line height. Unchanged between medium and large." },
+    { "property": "Button radius", "type": "Fixed per Rounded", "description": "0 square for false, 4px for true. Set on the two step buttons only, not on the control’s outer edge." }
+  ],
+
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5595-122",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5643-2489",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6102-10988",
+    "variants": {
+      "medium, sharp, enabled (base)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5643-2488",
+      "medium, rounded, enabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5643-2490",
+      "medium, sharp, disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5644-2536",
+      "medium, rounded, disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5644-2569",
+      "large, sharp, enabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5643-2487",
+      "large, rounded, enabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5643-2513",
+      "large, sharp, disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5644-2592",
+      "large, rounded, disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5644-2615"
+    },
+    "subcomponents": {
+      "_Hint text": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5643-2473",
+      "_Hint text Message=error": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5643-2471"
+    }
+  },
+
+  "issues": [
+    { "severity": "warn", "source": "metadata vs extracted", "detail": "Rounded: metadata says the value \"stays square either way\" and the radius is \"Set on the two step buttons only\". Extracted: at Rounded=true the value field is Input / Text Shape=rounded with radius/sm, so it rounds too (buttons radius/element-sm). Both tokens resolve to the same scale step today. Decide which is intended; this spec records what the file does." },
+    { "severity": "warn", "source": "metadata vs extracted", "detail": "Value width row says \"12px padding on the left and the top only\". Extracted: the field's padding is space/sm on top and bottom, space/md on left and right, and the value text is centred horizontally and vertically (inner frame alignment overridden to centre)." },
+    { "severity": "warn", "source": "metadata vs extracted", "detail": "Height row says \"plus 24px and an 8px gap when Hint is on\". Measured: the hint line is 16Px high and the gap space/sm, so Hint adds 24Px in total (64Px at medium, 72Px at large), not 24 plus 8." },
+    { "severity": "warn", "source": "behavior", "detail": "No value model: there is no value, min, max or step property, and nothing says what happens at a bound (e.g. whether the decrement button disables at the minimum), whether the value is typeable or only steppable, or how long-press repeats. Decide in code." },
+    { "severity": "warn", "source": "gaps", "detail": "Value field width is a raw fixed 72px override on the Input / Text instance; no token." },
+    { "severity": "note", "source": "metadata vs extracted", "detail": "Gap rows say \"Fixed\" and \"8px\"; both gaps (control-to-hint, and between the buttons and the value) are bound to space/sm, so they follow the size theme axis." },
+    { "severity": "note", "source": "internalVariations", "detail": "No invalid/error state. _Hint text has Message=error but it is never placed, and the value field is pinned to filled/disabled (Input / Text's invalid state is unused). Whether code adds one is a product decision." },
+    { "severity": "note", "source": "disabled", "detail": "Hint is removed from disabled variants rather than hidden, so showHint controls nothing when disabled is true. In code: render the hint only when showHint && !disabled." },
+    { "severity": "note", "source": "disabled", "detail": "Disabled step buttons switch flavour to primary (interactive/primary/background/disabled fill, interactive/primary/border/disabled at stroke/base, i.e. no visible border), while enabled ones are outline-subtle. The value field stays on the neutral disabled tokens." },
+    { "severity": "note", "source": "dependencies", "detail": "The value is built on Input / Text, not Input / Number, although the content is numeric. Input / Number would bring its own trailing control (specs/input)." },
+    { "severity": "note", "source": "dependencies", "detail": "_Hint text duplicates Input Hint on the Input page (same body/xsmall, foreground/secondary / foreground/error, info / error glyphs). In code, reuse the Input hint part rather than building a second one." },
+    { "severity": "note", "source": "_Hint text", "detail": "The hint icon's colour is not bound (glyph vector fill unbound); Input Hint binds foreground/primary. With the font it is currentColor; pick the colour in code (Input Hint's is the closest precedent)." },
+    { "severity": "note", "source": "states", "detail": "Hover, pressed and focus are not shown: every Icon Button is pinned to State=default and the field to filled. Use Icon Button's and Input's own interaction states in code." },
+    { "severity": "note", "source": "board", "detail": "The details-card description on the board differs in wording from the metadata's 'What this component does' (\"present only while it is enabled\" vs \"can sit below the whole control\"). The spec uses the metadata text." },
+    { "severity": "note", "source": "coverage", "detail": "No States & Triggers section; Behavior & Motion has only the Motion row. No description on either component set. Platform status on the board: Web, Flutter and Android all 'Pending development'." }
+  ]
+}

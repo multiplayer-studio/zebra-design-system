@@ -1,0 +1,184 @@
+{
+  "component": {
+    "name": "Status Chip",
+    "slug": "status-chip",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "5126:3791",
+      "key": "365897dbcf51777e658621c36528b21a779082c9",
+      "page": "Chip",
+      "pageNodeId": "5122:2783",
+      "boardId": "5194:4942",
+      "metadataFrameId": "5689:626",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5126-3791",
+      "extractedAt": "2026-10-20",
+      "variantCount": 10,
+      "extractionNote": "One of four independent components on the Chip page, each with its own board and its own metadata frame; this spec covers Status Chip only. All 10 variants (status 5 × Rounded 2, complete) extracted and diffed against the default. A single frame with one text child; no instances, no subcomponents."
+    }
+  },
+
+  "summary": "Shows a read-only state or attribute of an item, such as its progress or availability, so it can be scanned at a glance. It is not interactive and carries no states of its own. Use a filter or assist chip when someone needs to act on it.",
+
+  "api": {
+    "label": {
+      "type": "string", "figmaName": "Label#5200:57", "default": "Label", "controls": ["label"],
+      "intent": "The state being reported, in a word or two. The chip carries no icon, so the word does all the work and an abbreviation that only makes sense in context will not survive being scanned."
+    },
+    "status": {
+      "type": "enum", "figmaName": "status", "values": ["default", "success", "warning", "negative", "info"], "default": "default", "controls": ["root"],
+      "intent": {
+        "default": "No particular standing, for an attribute that is a plain fact rather than good or bad news. Its background is currently an interactive hover token rather than a neutral surface, so it can read as something pressable.",
+        "success": "A finished or healthy state. The label still has to name what succeeded, because the colour does not.",
+        "warning": "Something needs attention but has not failed.",
+        "negative": "A failed or blocking state. Reserve it for something that has to be dealt with, or it stops reading as urgent.",
+        "info": "Neutral supporting information, where the other four would overstate it."
+      }
+    },
+    "rounded": {
+      "type": "boolean", "figmaName": "Rounded", "figmaType": "VARIANT (true|false)", "default": true, "controls": ["root"],
+      "intent": {
+        "true": "Match the contour of the surface the chip sits on. This chip takes a gentler corner than the other three chip types, so a row that mixes them will not line up.",
+        "false": "The square-cornered pairing, for surfaces built from sharp controls."
+      }
+    }
+  },
+
+  "internalVariations": [],
+  "contentInputs": [],
+
+  "anatomy": [
+    {
+      "id": "root", "kind": "container", "number": 1,
+      "role": "The component frame. A horizontal auto-layout hugging the label at a fixed height.",
+      "layout": { "direction": "horizontal", "gap": "space/xs", "padding": { "top": "space/xs", "bottom": "space/xs", "left": "space/sm", "right": "space/sm" }, "align": "start", "crossAlign": "center" },
+      "sizing": { "h": "hug", "v": "hug" },
+      "radius": "radius/element-sm (rounded=true) | radius/none (rounded=false)",
+      "paint": {
+        "fill": "per status (see variants)",
+        "stroke": { "color": "interactive/neutral/border/default", "width": "stroke/base", "align": "inside", "renders": false }
+      },
+      "measured": { "widthPx": 46, "heightPx": 24 },
+      "note": "The gap separates nothing: the label is the only child."
+    },
+    {
+      "id": "background", "kind": "paint", "number": 3,
+      "role": "The status signal itself. It is the frame's own fill rather than a separate layer, which is why there is nothing to restyle independently.",
+      "of": "root"
+    },
+    {
+      "id": "label", "kind": "text", "number": 2,
+      "role": "The status word. The only content, and the only part that names the state.",
+      "content": "label",
+      "sizing": "hug",
+      "text": { "style": "body/xsmall", "color": "interactive/neutral/foreground/default", "leadingTrim": "none" }
+    }
+  ],
+
+  "variants": {
+    "axis": "status × rounded",
+    "base": "rounded=true, status=default",
+    "_note": "Complete grid (10 of 10). Only the fill and the radius change; label colour, padding, gap and height are identical everywhere.",
+    "table": [
+      { "status": "default", "root.fill": "interactive/neutral/background/hover", "figmaNode": "5126:3792" },
+      { "status": "success", "root.fill": "feedback/success/background/subtle", "figmaNode": "5194:5051" },
+      { "status": "warning", "root.fill": "feedback/warning/background/subtle", "figmaNode": "5194:5055" },
+      { "status": "negative", "root.fill": "feedback/error/background/subtle", "figmaNode": "5194:5060" },
+      { "status": "info", "root.fill": "feedback/info/background/subtle", "figmaNode": "5194:5065" }
+    ],
+    "rounded": [
+      { "rounded": true, "root.radius": "radius/element-sm", "figmaNode": "5126:3792" },
+      { "rounded": false, "root.radius": "radius/none", "figmaNode": "5126:3804" }
+    ]
+  },
+
+  "subcomponents": [],
+
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "interactive/neutral/background/hover",
+      "feedback/success/background/subtle", "feedback/warning/background/subtle", "feedback/error/background/subtle", "feedback/info/background/subtle",
+      "interactive/neutral/foreground/default", "interactive/neutral/border/default"
+    ],
+    "dimension": ["space/xs", "space/sm", "radius/element-sm", "radius/none", "stroke/base"],
+    "typography": ["body/xsmall"],
+    "glyphs": [],
+    "themeAxes": {
+      "palette": ["Light", "Dark"],
+      "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
+      "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"]
+    },
+    "extensions": { "companion": "palette", "target": "primitives, palette", "condensed": "typography, size" },
+    "_note": "All 13 token names resolve in tokens/base. interactive/neutral/border/default and stroke/base are bound on a stroke that renders at zero width; drop both if the border is removed (see issues)."
+  },
+
+  "states": [
+    { "state": "Static", "trigger": "—", "duration": "—", "whatChanges": "The set declares no hover, focus, pressed or disabled axis. A status chip is a label, not a control." },
+    { "state": "status", "trigger": "The status axis", "duration": "—", "whatChanges": "The only things that change across the ten variants are the background token and the corner radius. The label colour stays at interactive/neutral/foreground/default for all five statuses." }
+  ],
+
+  "behavior": [
+    { "type": "Motion", "description": "Figma stores no timing and nothing transitions. A status chip is replaced when the underlying state changes rather than animated into a new one." },
+    { "type": "Not interactive", "description": "There is no state axis and no nested control. If the chip has to be clicked, it is the wrong component." }
+  ],
+
+  "content": [
+    { "property": "Label", "type": "text property", "description": "Plain text set per instance, defaulting to Label. The only content the chip takes." },
+    { "property": "Leading icon", "type": "not provided", "description": "There is no icon slot. Status is carried by background colour and the word alone, which is why the word has to be explicit." }
+  ],
+
+  "usage": {
+    "do": [
+      "Keep the label to the state itself, such as Shipped or Overdue. The colour supports the word, it does not replace it.",
+      "Use one status chip per item. A row of them turns a scannable attribute into a puzzle."
+    ],
+    "dont": [
+      "Don't make a status chip clickable. It has no states, so it will not respond to hover or focus.",
+      "Don't use status=default for a real status. Its background is an interactive hover token, so it reads as a control rather than a label."
+    ]
+  },
+
+  "accessibility": [
+    "Status is carried by background colour and the label. The label has to name the state in words, because the colour is not available to everyone.",
+    "The label colour is the same token for all five statuses, so contrast varies with the background. Check interactive/neutral/foreground/default against each feedback background.",
+    "The chip is not focusable and carries no role. If a screen reader should announce the status, it has to be associated with the item it describes.",
+    "The label uses body/xsmall at 12px, the smallest text across the four chip types. Avoid reducing it further.",
+    "status=default renders on an interactive hover background, which can read as a control that can be pressed."
+  ],
+
+  "layoutTheming": [
+    { "property": "Size", "type": "Hug width, fixed height", "description": "24 tall across all ten variants, the shortest of the four chip types. Width hugs the label." },
+    { "property": "Padding and gap", "type": "Fixed", "description": "space/xs top and bottom, space/sm left and right, with a space/xs gap that currently separates nothing because the label is the only child." },
+    { "property": "Radius", "type": "Per Rounded", "description": "radius/element-sm when true and radius/none when false. The other three chip types use radius/pill in the same place." },
+    { "property": "Fill", "type": "Per status", "description": "feedback/success, warning, error and info backgrounds for those four values. status=default uses interactive/neutral/background/hover, an interactive token rather than a surface." },
+    { "property": "Border", "type": "Dead", "description": "A stroke bound to interactive/neutral/border/default sits on all ten variants at zero weight, so it never renders. Give it a weight or remove it." },
+    { "property": "Label", "type": "Theming", "description": "body/xsmall at 12 over a 16px line, in interactive/neutral/foreground/default on every status." }
+  ],
+
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5122-2783",
+    "board": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5194-4942",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5126-3791",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5689-626",
+    "variants": {
+      "default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5126-3792",
+      "success": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5194-5051",
+      "warning": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5194-5055",
+      "negative": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5194-5060",
+      "info": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5194-5065",
+      "rounded=false": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5126-3804"
+    }
+  },
+
+  "issues": [
+    { "severity": "warn", "source": "duplicate of specs/badges/status-label", "detail": "Status Chip does the same job as Status Label (Badges page, set 6403:297): a read-only, non-interactive state word with five standings and the same four feedback/*/background/subtle fills (status Label: neutral/info/positive/warning/negative; this chip: default/info/success/warning/negative). Status Label is the richer one (per-status border, optional dot or icon, body/small text, radius/pill, a feedback/neutral fill for neutral). Both metadata frames describe the same intent ('Shows a read-only state…' vs 'Reports a read-only state…'). Decide which survives before building both; if both stay, share one status→token map." },
+    { "severity": "warn", "source": "metadata (default status)", "detail": "status=default fills with interactive/neutral/background/hover, an interactive token, so it reads as pressable (the metadata flags this itself). Status Label uses feedback/neutral/background/subtle for the same role; that is the likely fix." },
+    { "severity": "warn", "source": "dead border", "detail": "A stroke bound to interactive/neutral/border/default at stroke/base sits on all ten variants and never renders: stroke/base resolves to 0px (primitives scale/0). Omit the border in code." },
+    { "severity": "warn", "source": "descriptionDrift", "detail": "stroke/base's description says '= 1px' but it resolves to 0px." },
+    { "severity": "note", "source": "accessibility", "detail": "One label colour (interactive/neutral/foreground/default) on five backgrounds; contrast per status is unverified here. Check in both palette modes." },
+    { "severity": "note", "source": "layout", "detail": "Gap space/xs is set but separates nothing (single child). Root hugs vertically; the 24px height is padding plus the body/xsmall line, not a fixed size, so it scales with the size and typography modes." },
+    { "severity": "note", "source": "consistency", "detail": "Rounded uses radius/element-sm here and radius/pill on the other three chips, and the label is body/xsmall (Regular) where the others use a Medium label style. A mixed row will not line up (metadata says so too)." },
+    { "severity": "note", "source": "coverage", "detail": "No interaction states by design; no motion. Name difference to reconcile if merged with Status Label: success↔positive, default↔neutral." }
+  ]
+}

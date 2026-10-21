@@ -165,6 +165,6 @@ No images are stored. Pull a fresh shot from these links:
 - The on track uses an interaction-state token (`…/pressed`) to mean "selected". The thumb and track draw from different token families.
 - The root's gap (`space/sm`) has no visible effect, because only the thumb is in flow.
 - `space/sm`, `space/xs` and `stroke/thick` name stale source scale steps in their descriptions. Their px values still match.
-- The motion curve and duration are literals in the metadata only, because `tokens/` has no motion collection.
+- The motion curve and duration are literals in the metadata. They now have a token: `animations/spring` (size collection, `250ms cubic-bezier(0.34, 1.36, 0.64, 1)`), shared with Segmented Control. The stretch's trailing curve has no token.
 - The accessibility text refers to a "[label]", but Switch has no label part, so the name must come from an external label.
 - There are no on-page subcomponents. The component set has no native Figma description.

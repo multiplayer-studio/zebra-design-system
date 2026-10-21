@@ -70,10 +70,91 @@ export { Snackbar } from "./components/snackbar/Snackbar.js";
 export type { SnackbarProps, SnackbarVariant, SnackbarFlavour, SnackbarShape, SnackbarCloseReason } from "./components/snackbar/Snackbar.js";
 
 export { Select } from "./components/select/Select.js";
-export type { SelectProps, SelectOption } from "./components/select/Select.js";
+export type { SelectProps, SelectOption, SelectFieldState, SelectSize, SelectShape, SelectFlavour, SelectState, SelectLabelType } from "./components/select/Select.js";
 
 export { MessageInput } from "./components/message-input/MessageInput.js";
 export type {
   MessageInputProps, MessageInputAction, MessageInputPreview,
   MessageAttachment, MessageAttachmentKind, MessageVoiceNote, MessageSubmission,
 } from "./components/message-input/MessageInput.js";
+
+export { Table, useTableShape } from "./components/table/Table.js";
+export type {
+  TableProps, TableColumn, TableRow, TableCellValue, TableAvatarCell, TableSort, TableSortDirection, TableShape,
+} from "./components/table/Table.js";
+
+export { Pagination, paginationWindow } from "./components/pagination/Pagination.js";
+export type { PaginationProps } from "./components/pagination/Pagination.js";
+
+export { Tooltip } from "./components/tooltip/Tooltip.js";
+export type { TooltipProps, TooltipPoint, TooltipShape } from "./components/tooltip/Tooltip.js";
+
+export { ProgressBar } from "./components/progress-bar/ProgressBar.js";
+export type { ProgressBarProps, ProgressBarShape, ProgressBarSize } from "./components/progress-bar/ProgressBar.js";
+export { ProgressCircle } from "./components/progress-circle/ProgressCircle.js";
+export type { ProgressCircleProps, ProgressCircleSize } from "./components/progress-circle/ProgressCircle.js";
+
+export type { ChipShape } from "./components/chip/chip.js";
+export { InputChip } from "./components/input-chip/InputChip.js";
+export type { InputChipProps } from "./components/input-chip/InputChip.js";
+export { FilterChip } from "./components/filter-chip/FilterChip.js";
+export type { FilterChipProps } from "./components/filter-chip/FilterChip.js";
+export { StatusChip } from "./components/status-chip/StatusChip.js";
+export type { StatusChipProps, StatusChipStatus } from "./components/status-chip/StatusChip.js";
+export { AssistChip } from "./components/assist-chip/AssistChip.js";
+export type { AssistChipProps } from "./components/assist-chip/AssistChip.js";
+
+export { SegmentedControl } from "./components/segmented-control/SegmentedControl.js";
+export type {
+  SegmentedControlProps, SegmentedControlOption, SegmentedControlShape, SegmentedControlFlavour,
+} from "./components/segmented-control/SegmentedControl.js";
+
+export { InputHint } from "./components/input/InputHint.js";
+export type { InputHintProps, InputHintType } from "./components/input/InputHint.js";
+export { StepperInput } from "./components/stepper-input/StepperInput.js";
+export type { StepperInputProps, StepperInputSize, StepperInputShape } from "./components/stepper-input/StepperInput.js";
+
+export { Accordion, AccordionItem } from "./components/accordion/Accordion.js";
+export type { AccordionProps, AccordionItemProps } from "./components/accordion/Accordion.js";
+
+export { ButtonGroup } from "./components/button-group/ButtonGroup.js";
+export type { ButtonGroupProps, ButtonGroupSize, ButtonGroupShape } from "./components/button-group/ButtonGroup.js";
+
+export { NotificationItem } from "./components/notification-item/NotificationItem.js";
+export type { NotificationItemProps, NotificationLeadingFlavour } from "./components/notification-item/NotificationItem.js";
+
+export { Dialog } from "./components/dialog/Dialog.js";
+export type {
+  DialogProps, DialogFlavour, DialogShape, DialogAction, DialogOpenChangeReason,
+} from "./components/dialog/Dialog.js";
+
+export { ScreenHeaderBar } from "./components/screen-header-bar/ScreenHeaderBar.js";
+export type {
+  ScreenHeaderBarProps, ScreenHeaderBarShape, ScreenHeaderBarHeadingLevel,
+} from "./components/screen-header-bar/ScreenHeaderBar.js";
+
+export { NavigationItem } from "./components/navigation-item/NavigationItem.js";
+export type { NavigationItemProps, NavigationItemBadge } from "./components/navigation-item/NavigationItem.js";
+export { NavigationBar, NavigationBarSpacer } from "./components/navigation-bar/NavigationBar.js";
+export type {
+  NavigationBarProps, NavigationBarSpacerProps, NavigationBarDistribution,
+} from "./components/navigation-bar/NavigationBar.js";
+
+export { CaretIndicator } from "./components/caret-indicator/CaretIndicator.js";
+export type {
+  CaretIndicatorProps, CaretIndicatorDirection, CaretIndicatorSize,
+} from "./components/caret-indicator/CaretIndicator.js";
+export { NavigationRailItem } from "./components/navigation-rail-item/NavigationRailItem.js";
+export type { NavigationRailItemProps } from "./components/navigation-rail-item/NavigationRailItem.js";
+export { SubMenuItem } from "./components/sub-menu-item/SubMenuItem.js";
+export type { SubMenuItemProps, SubMenuItemBadge } from "./components/sub-menu-item/SubMenuItem.js";
+export { NavigationRail } from "./components/navigation-rail/NavigationRail.js";
+export type { NavigationRailProps } from "./components/navigation-rail/NavigationRail.js";
+export { useNavigationRailShape, useNavigationRailModeClass } from "./components/navigation-rail/context.js";
+export type { NavigationRailShape, NavigationRailModeClass } from "./components/navigation-rail/context.js";
+export { NavigationHeader } from "./components/navigation-rail/NavigationHeader.js";
+export type { NavigationHeaderProps, NavigationHeaderType } from "./components/navigation-rail/NavigationHeader.js";
+export { SubMenuHeader } from "./components/navigation-rail/SubMenuHeader.js";
+export type { SubMenuHeaderProps, SubMenuHeaderType } from "./components/navigation-rail/SubMenuHeader.js";
+export { CollapsibleMenuItem } from "./components/navigation-rail/CollapsibleMenuItem.js";
+export type { CollapsibleMenuItemProps } from "./components/navigation-rail/CollapsibleMenuItem.js";

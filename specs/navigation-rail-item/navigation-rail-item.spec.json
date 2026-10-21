@@ -1,0 +1,678 @@
+{
+  "component": {
+    "name": "Navigation Rail Item",
+    "slug": "navigation-rail-item",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "3453:54230",
+      "key": "7848f7c74fc9625bdb578d477e789c9f2480941c",
+      "page": "Navigation Rail",
+      "pageNodeId": "3182:237",
+      "frame": "Subcomponents/Navigation Rail",
+      "metadataFrameId": "4762:6735",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54230",
+      "extractedAt": "2026-10-21",
+      "variantCount": 10,
+      "defaultVariant": "State=default, Disabled=false, Expanded=false",
+      "extractionNote": "Re-extracted 2026-10-21 after designer updates to the page. Same set (3453:54230, same key), same 10 variants, same property ids and defaults, and the same metadata frame (4762:6735) with identical text; every variant re-read to depth 12 and diffed: no structural, token or copy change. Specced on its own, not as a subcomponent of Navigation Rail (specs/navigation-rail): it is public with its own key, it has its own Navigation Rail Item Metadata frame, and the rail's metadata defers to that frame for the item. The Tab Bar page's set of the same name was not re-read; duplicateCheck carries over from 2026-10-20."
+    }
+  },
+  "summary": "A single destination in a Navigation Rail, shown as a glyph in a square target or, in the wide form, a glyph and label on one row. It is the content the rail's Menu and Footer slots are built around, and the rail sets nothing on it beyond visibility, so every property here is yours per instance. Selection recolours the glyph and label rather than laying a scrim behind them, which is what keeps it distinct from hover and press.",
+  "api": {
+    "state": {
+      "type": "enum",
+      "figmaName": "State",
+      "values": [
+        "default",
+        "hover",
+        "active",
+        "selected"
+      ],
+      "default": "default",
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "default": "The resting destination.",
+        "hover": "Documents the pointer-over treatment. The implementation drives this, so choosing it in a layout freezes the item in a state it should not be in.",
+        "active": "Documents the pointer-down treatment, with the same caveat as hover.",
+        "selected": "The destination the user is currently on. It is the only state that recolours the glyph and label instead of laying a scrim behind them, so it stays legible whatever the rail sits on. Exactly one item across the rail should carry it."
+      },
+      "_note": "Figma stores the options as hover, selected, default, active; reordered here into interaction order. hover and active are interaction states for code to drive, selected is a prop."
+    },
+    "disabled": {
+      "type": "enum",
+      "figmaName": "Disabled",
+      "values": [
+        "false",
+        "true"
+      ],
+      "default": "false",
+      "controls": [
+        "variant"
+      ],
+      "validWhen": "state = default",
+      "intent": {
+        "false": "The destination can be selected.",
+        "true": "The destination is unavailable, and nothing on the item explains why. Offered on the resting state only, so an item cannot be shown selected and disabled at once."
+      }
+    },
+    "expanded": {
+      "type": "enum",
+      "figmaName": "Expanded",
+      "values": [
+        "false",
+        "true"
+      ],
+      "default": "false",
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "false": "The narrow form, a glyph in a square target with the caption hidden unless Show Label is on.",
+        "true": "The wide form, glyph and label side by side on a single row. This should match the rail the item sits in, since the rail sets its own width independently."
+      }
+    },
+    "label": {
+      "type": "string",
+      "figmaName": "Label#2841:4",
+      "default": "Label",
+      "controls": [
+        "label"
+      ],
+      "intent": "The destination's name. It always shows in the wide form, and in the narrow form only when Show Label is on, where the column is too narrow for anything but a very short word."
+    },
+    "showLabel": {
+      "type": "boolean",
+      "figmaName": "Show Label#3196:8",
+      "default": false,
+      "controls": [
+        "label (narrow form only)"
+      ],
+      "intent": {
+        "false": "Glyph only in the narrow form.",
+        "true": "Adds the caption under the glyph in the narrow form. It has no effect in the wide form, where the label shows regardless."
+      }
+    },
+    "showIcon": {
+      "type": "boolean",
+      "figmaName": "Show Icon#3199:12",
+      "default": true,
+      "controls": [
+        "iconBox (glyph and badge together)"
+      ],
+      "intent": {
+        "true": "Shows the glyph.",
+        "false": "Hides it. In the narrow form with Show Label off this leaves an empty target with nothing to read, so only turn it off in the wide form."
+      }
+    },
+    "showBadge": {
+      "type": "boolean",
+      "figmaName": "Show Badge#3196:4",
+      "default": false,
+      "controls": [
+        "badge"
+      ],
+      "intent": {
+        "false": "No badge on the glyph.",
+        "true": "Reveals a notification dot over the glyph's top-right corner. It sits outside the layout, so turning it on never changes the item's size or shifts its neighbours."
+      }
+    }
+  },
+  "unwiredProperties": [
+    {
+      "figmaName": "Collapsible#3416:48",
+      "type": "boolean",
+      "default": false,
+      "detail": "Bound to no layer in any variant and absent from the metadata. There is no caret on this item."
+    }
+  ],
+  "internalVariations": [
+    {
+      "part": "icon",
+      "via": "Icon (specs/icon)",
+      "pinned": "Size=small, Framed=false",
+      "default": "star (placeholder)",
+      "intent": "The item pins Icon to Size=small with Framed off and leaves the instance exposed, so the glyph can be swapped per instance while the sizing stays consistent. See the Icon Metadata frame. It arrives holding Star, a placeholder rather than a real destination glyph.",
+      "inCode": "A glyph name; likely an icon prop. Implementer's call."
+    },
+    {
+      "part": "badge",
+      "via": "Notification Indicator (specs/notification-indicator, set 3719:6256)",
+      "pinned": "Size=small (the dot)",
+      "intent": "Pinned to Size=small, the dot with no number. The item does not leave this instance exposed, so its value and size cannot be changed without detaching. At this size the dot signals that something is waiting, not how much."
+    }
+  ],
+  "contentInputs": [],
+  "anatomy": [
+    {
+      "id": "root",
+      "kind": "container",
+      "number": 1,
+      "role": "Item — The outer frame. Vertical and hugging in the narrow form, horizontal and fixed-width in the wide one, with a minimum on both axes so the target never shrinks below it.",
+      "layout": {
+        "narrow": {
+          "direction": "vertical",
+          "gap": "space/none",
+          "padding": {
+            "top": "space/sm",
+            "bottom": "space/sm",
+            "left": "space/xs",
+            "right": "space/xs"
+          },
+          "align": "centre"
+        },
+        "wide": {
+          "direction": "horizontal",
+          "gap": "space/lg",
+          "padding": {
+            "top": "space/sm",
+            "bottom": "space/sm",
+            "left": "space/lg",
+            "right": "space/lg"
+          },
+          "align": "start, centred vertically"
+        }
+      },
+      "sizing": {
+        "narrow": "hug × hug",
+        "wide": "fixed × hug (fill inside the wide rail)"
+      },
+      "limits": {
+        "minWidth": "control/lg",
+        "minHeight": "control/lg"
+      },
+      "radius": "radius/sm",
+      "paint": {
+        "fill": "per state, see variants"
+      },
+      "measured": {
+        "narrowPx": "48×48",
+        "widePx": "176×48"
+      }
+    },
+    {
+      "id": "iconBox",
+      "kind": "container",
+      "number": 2,
+      "role": "Icon box — The box holding the glyph, and the anchor the badge is positioned against. It does not clip, which is what lets the badge overhang its corner.",
+      "visibleWhen": "showIcon",
+      "layout": {
+        "direction": "vertical",
+        "gap": "unbound, one flowing child",
+        "padding": "none"
+      },
+      "sizing": "hug",
+      "clips": false,
+      "measured": {
+        "sizePx": "16×16"
+      }
+    },
+    {
+      "id": "icon",
+      "kind": "glyph",
+      "parent": "iconBox",
+      "ref": "Icon",
+      "refVariant": "Size=small, Framed=false",
+      "glyph": "star",
+      "family": "rounded",
+      "color": "currentColor — follows the label (the glyph's colour is not bound on this component)",
+      "iconSize": "pinned by the nested Icon's Size=small; not a token here"
+    },
+    {
+      "id": "badge",
+      "kind": "instance",
+      "parent": "iconBox",
+      "ref": "Notification Indicator (specs/notification-indicator)",
+      "refVariant": "Size=small",
+      "visibleWhen": "showBadge && showIcon",
+      "position": {
+        "mode": "absolute",
+        "anchor": "top-right of iconBox, overhanging",
+        "constraints": "centre / centre",
+        "offsetPx": {
+          "x": 12,
+          "y": -4
+        }
+      },
+      "measured": {
+        "sizePx": "8×8"
+      }
+    },
+    {
+      "id": "label",
+      "kind": "text",
+      "number": 3,
+      "content": "label",
+      "role": "Label — The destination's name. Hidden by default in the narrow form and always shown in the wide one, with a different text style in each.",
+      "visibleWhen": "narrow: showLabel · wide: always",
+      "text": {
+        "style": {
+          "narrow": "indicator/small",
+          "wide": "label/medium"
+        },
+        "color": "per state, see variants",
+        "align": "centre",
+        "truncation": "ending, one line (as drawn; see issues)"
+      },
+      "sizing": {
+        "narrow": "fill × fixed",
+        "wide": "hug × hug"
+      }
+    }
+  ],
+  "variants": {
+    "axis": "state × disabled (× expanded)",
+    "base": "state=default, disabled=false",
+    "_note": "Colours are identical in both forms; expanded changes only layout, padding, gap, sizing and the label style (see anatomy). The scrims are drawn with paint opacity on the ghost tokens, see issues.",
+    "table": [
+      {
+        "state": "default",
+        "disabled": "false",
+        "root.fill": "interactive/ghost/background/default (paint opacity zero, renders nothing)",
+        "label.color": "interactive/neutral/foreground/default",
+        "figmaNode": {
+          "narrow": "3453:54231",
+          "wide": "4654:10555"
+        }
+      },
+      {
+        "state": "hover",
+        "disabled": "false",
+        "root.fill": "interactive/ghost/background/hover (translucent scrim)",
+        "label.color": "interactive/neutral/foreground/default",
+        "figmaNode": {
+          "narrow": "3453:54236",
+          "wide": "4654:10550"
+        }
+      },
+      {
+        "state": "active",
+        "disabled": "false",
+        "root.fill": "interactive/ghost/background/pressed (translucent scrim)",
+        "label.color": "interactive/neutral/foreground/default",
+        "figmaNode": {
+          "narrow": "3480:85366",
+          "wide": "4654:10545"
+        }
+      },
+      {
+        "state": "selected",
+        "disabled": "false",
+        "root.fill": "interactive/ghost/background/default (renders nothing)",
+        "label.color": "interactive/subtle/foreground/default",
+        "figmaNode": {
+          "narrow": "3453:54264",
+          "wide": "4654:10540"
+        }
+      },
+      {
+        "state": "default",
+        "disabled": "true",
+        "root.fill": "none",
+        "label.color": "interactive/subtle/foreground/disabled",
+        "figmaNode": {
+          "narrow": "3453:54241",
+          "wide": "4654:10535"
+        }
+      }
+    ]
+  },
+  "subcomponents": [],
+  "dependencies": [
+    {
+      "name": "Icon",
+      "id": "2046:15010",
+      "key": "a469ac1cf34202af3e094593468d9ef20a37a703",
+      "remote": false,
+      "spec": "specs/icon",
+      "usedAs": "icon"
+    },
+    {
+      "name": "Notification Indicator",
+      "id": "3719:6256",
+      "key": "73fe3d069d197d82a934eb2653a74245d4bb29a4",
+      "remote": false,
+      "spec": "specs/notification-indicator",
+      "usedAs": "badge (Size=small). This is the specced Badges-page set, not the drifted copy 2837:1489."
+    }
+  ],
+  "usedBy": [
+    {
+      "name": "Navigation Rail",
+      "spec": "specs/navigation-rail",
+      "usedAs": "built-in rail items, footer items, the toggle item, and Menu/Footer Slot content"
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "interactive/ghost/background/default",
+      "interactive/ghost/background/hover",
+      "interactive/ghost/background/pressed",
+      "interactive/neutral/foreground/default",
+      "interactive/subtle/foreground/default",
+      "interactive/subtle/foreground/disabled"
+    ],
+    "dimension": [
+      "control/lg",
+      "space/none",
+      "space/xs",
+      "space/sm",
+      "space/lg",
+      "radius/sm"
+    ],
+    "typography": [
+      "indicator/small",
+      "label/medium"
+    ],
+    "glyphs": [
+      "star"
+    ],
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "typography": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ]
+    },
+    "_note": "Badge tokens (interactive/destructive/background/default, border/inverse, radius/pill, stroke/base) belong to specs/notification-indicator. All 14 names resolve in tokens/base; star is in packages/icons/codepoints.json and not retired. tokens/manifest.json now also lists extension collections (companion, target, condensed); the item binds names only and themes under them unchanged.",
+    "extensions": {
+      "companion": "palette (6 overrides)",
+      "target": "primitives (10), palette (17)",
+      "condensed": "typography (34), size (29)"
+    }
+  },
+  "states": [
+    {
+      "state": "default",
+      "trigger": "Resting",
+      "duration": "—",
+      "whatChanges": "A fully transparent ghost background, with glyph and label on interactive/neutral/foreground/default."
+    },
+    {
+      "state": "hover",
+      "trigger": "Pointer over the item",
+      "duration": "—",
+      "whatChanges": "The ghost background rises to 5 percent opacity. Glyph and label do not change, so the scrim alone carries the feedback."
+    },
+    {
+      "state": "active",
+      "trigger": "Pointer held down",
+      "duration": "—",
+      "whatChanges": "The same scrim at 10 percent. Glyph and label still do not change."
+    },
+    {
+      "state": "selected",
+      "trigger": "Marked as the current destination",
+      "duration": "—",
+      "whatChanges": "No scrim at all. The glyph and label move to interactive/subtle/foreground/default instead, which is what separates selection from hover and press."
+    },
+    {
+      "state": "disabled",
+      "trigger": "Disabled set to true",
+      "duration": "—",
+      "whatChanges": "The background fill is dropped entirely and glyph and label move to interactive/subtle/foreground/disabled."
+    },
+    {
+      "state": "focus",
+      "trigger": "Not modelled",
+      "duration": "—",
+      "whatChanges": "There is no focus variant. Keyboard focus has to be rendered by the implementation."
+    }
+  ],
+  "behavior": [
+    {
+      "type": "Motion",
+      "description": "Figma stores no timing and no transition is modelled. Every state change is colour or opacity only, with no movement, scale or elevation."
+    },
+    {
+      "type": "Badge",
+      "description": "The badge is positioned absolutely over the glyph and sits outside the layout, so showing or hiding it never reflows the item or the rail."
+    },
+    {
+      "type": "Form change",
+      "description": "Switching Expanded changes the layout direction, the padding and the text style all at once. It is a different shape rather than a resize, so it is set by the rail rather than animated."
+    }
+  ],
+  "content": [
+    {
+      "property": "Label",
+      "type": "text property",
+      "description": "The destination's name. There is no truncation and no wrapping, so in the narrow form a long word simply overflows its column."
+    },
+    {
+      "property": "Icon",
+      "type": "exposed nested Icon instance",
+      "description": "The item pins Icon to Size=small with Framed off and leaves the instance exposed, so the glyph can be swapped per instance while the sizing stays consistent. See the Icon Metadata frame. It arrives holding Star, a placeholder rather than a real destination glyph."
+    },
+    {
+      "property": "Badge",
+      "type": "nested Notification Indicator, toggled by Show Badge",
+      "description": "Pinned to Size=small, the dot with no number. The item does not leave this instance exposed, so its value and size cannot be changed without detaching. At this size the dot signals that something is waiting, not how much."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Set exactly one item across the whole rail to selected. Selection is the item's job and neither the rail nor the panel manages it.",
+      "Swap the glyph on every item. It ships holding a Star placeholder, which says nothing about where the destination goes."
+    ],
+    "dont": [
+      "Don't turn Show Icon off in the narrow form. With the caption hidden too, the item becomes an empty target with nothing to read.",
+      "Don't rely on Show Label to hide labels in the wide form. It only controls the narrow one, where the label is hidden by default anyway."
+    ]
+  },
+  "accessibility": [
+    "In the narrow form the destination is a glyph alone unless Show Label is on. An icon is not a name, so the accessible name has to come from code.",
+    "Selection is carried by colour on the glyph and label, with no scrim, underline or indicator bar. It needs to be conveyed in code as well.",
+    "Hover and press are carried by a translucent scrim alone and leave the glyph and label unchanged, so neither reaches a keyboard or screen reader user.",
+    "There is no focus variant. Keyboard focus has to be rendered by the implementation.",
+    "Disabled is visual only and nothing on the item explains why a destination is unavailable.",
+    "The badge is a dot with no number at the size this component pins, so whatever it signals needs a text equivalent."
+  ],
+  "layoutTheming": [
+    {
+      "property": "Width",
+      "type": "Hug in the narrow form, fixed in the wide one",
+      "description": "48px collapsed, growing only if a caption is wider. 176px expanded, fixed regardless of label length."
+    },
+    {
+      "property": "Height",
+      "type": "Hug with a floor",
+      "description": "48px in both forms, held up by a control/lg minimum on both axes so the target never drops below it."
+    },
+    {
+      "property": "Padding",
+      "type": "Fixed per form",
+      "description": "8px (space/sm) top and bottom in both. 4px (space/xs) left and right collapsed, 16px (space/lg) expanded."
+    },
+    {
+      "property": "Gap",
+      "type": "Fixed per form",
+      "description": "None collapsed, where the caption sits directly under the glyph. 16px (space/lg) expanded, between glyph and label."
+    },
+    {
+      "property": "Radius",
+      "type": "Fixed",
+      "description": "radius/sm on every variant."
+    },
+    {
+      "property": "Icon",
+      "type": "Fixed",
+      "description": "A 16px Icon at Size=small with Framed off, in a 16px box that does not clip its content."
+    },
+    {
+      "property": "Badge",
+      "type": "Absolute",
+      "description": "An 8px Notification Indicator at Size=small, placed at 12,-4 against the 16px glyph box so it overhangs the top-right corner, outside the layout flow."
+    },
+    {
+      "property": "Label type",
+      "type": "Fixed per form",
+      "description": "indicator/small (10/12, Regular) collapsed, label/medium (14/20, Medium) expanded."
+    },
+    {
+      "property": "Colour",
+      "type": "Theming",
+      "description": "interactive/neutral/foreground/default at rest, hover and press. interactive/subtle/foreground/default when selected, interactive/subtle/foreground/disabled when disabled. Backgrounds come from the interactive/ghost family. Glyph and label take the same token in every state."
+    }
+  ],
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3182-237",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54230",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4762-6735",
+    "variants": {
+      "narrow default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54231",
+      "narrow hover": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54236",
+      "narrow active": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3480-85366",
+      "narrow selected": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54264",
+      "narrow disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54241",
+      "wide default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4654-10555",
+      "wide selected": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4654-10540",
+      "wide disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4654-10535"
+    },
+    "tabBarNamesake": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3635-1151"
+  },
+  "duplicateCheck": {
+    "subject": "The set named 'Navigation Rail Item' on the Tab Bar page (3607:237)",
+    "verdict": "A different component that shares the name. Not this component placed elsewhere (different node id and key), not a copy, and not a drifted duplicate: its props, variant axes, structure, size and tokens are those of a horizontal tab item. Nothing on the Navigation Rail page uses it, and this page's item is not used on Tab Bar. Not specced (Tab Bar is out of scope); it should be renamed (e.g. Tab Item) so the two stop colliding in the asset panel.",
+    "thisPage": {
+      "id": "3453:54230",
+      "key": "7848f7c74fc9625bdb578d477e789c9f2480941c",
+      "variants": 10,
+      "props": [
+        "Label (text)",
+        "Show Badge",
+        "Show Label",
+        "Show Icon",
+        "Collapsible (unwired)",
+        "State: hover|selected|default|active",
+        "Disabled",
+        "Expanded"
+      ]
+    },
+    "tabBar": {
+      "id": "3635:1151",
+      "key": "356c565c0809256330a140ad6aa3793cd336c765",
+      "parentFrame": "Tap Bar (3607:238)",
+      "variants": 4,
+      "props": [
+        "Show Leading Icon#3635:0",
+        "Show Badge#3635:5",
+        "State: hover|selected|default|disabled",
+        "Disabled",
+        "Selected"
+      ],
+      "usedBy": "Tab Bar (3640:2127), flavours condensed and full width; 27 instances in all"
+    },
+    "same": [
+      "Name only, plus shared building blocks: a minimum height of control/lg, the interactive/ghost background family for default and hover, the Badges-page Notification Indicator (3719:6256) as its badge, a star placeholder glyph, label/medium in the wide/tab label."
+    ],
+    "different": [
+      {
+        "what": "Property ids and axes",
+        "thisPage": "Label text prop, Show Label, Show Icon, Collapsible, Expanded; State has active",
+        "tabBar": "no text prop (label is fixed copy 'Tab Item'), Show Leading Icon, Selected axis; State has disabled instead of active, and Disabled and Selected duplicate State"
+      },
+      {
+        "what": "Layout",
+        "thisPage": "vertical 48×48Px square (narrow) or 176Px row (wide), gap space/none / space/lg, padding space/sm × space/xs / space/lg",
+        "tabBar": "horizontal row, fill width (152×48Px drawn), gap space/sm, padding space/md × space/gutter"
+      },
+      {
+        "what": "Radius",
+        "thisPage": "radius/sm",
+        "tabBar": "radius/none"
+      },
+      {
+        "what": "Selection",
+        "thisPage": "label/glyph recolour to interactive/subtle/foreground/default, no scrim",
+        "tabBar": "bottom border interactive/primary/border/default at stroke/thick, fill interactive/ghost/background/focused, label interactive/neutral/foreground/default"
+      },
+      {
+        "what": "Rest label colour",
+        "thisPage": "interactive/neutral/foreground/default",
+        "tabBar": "foreground/secondary"
+      },
+      {
+        "what": "Disabled label colour",
+        "thisPage": "interactive/subtle/foreground/disabled",
+        "tabBar": "interactive/neutral/foreground/disabled"
+      },
+      {
+        "what": "Icon",
+        "thisPage": "Icon 2046:15010 Size=small",
+        "tabBar": "Icon Size=medium; its default variant points at a different Icon set (3629:677)"
+      },
+      {
+        "what": "Badge",
+        "thisPage": "Notification Indicator Size=small, absolute over the glyph",
+        "tabBar": "Notification Indicator Size=large, in flow after the label"
+      }
+    ]
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "api",
+      "detail": "Collapsible (#3416:48, boolean, default false) is bound to nothing and is not in the metadata. The item has no caret; a collapsible rail item is not built."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs extracted",
+      "detail": "Content & Slot says the label has 'no truncation and no wrapping'. In both forms the label is set to end-truncate on one line. Decide which is intended; the drawn setting truncates."
+    },
+    {
+      "severity": "warn",
+      "source": "gaps",
+      "detail": "Double alpha on the scrims. interactive/ghost/background/hover and …/pressed already resolve to translucent primitives (alpha.dark.5 / alpha.dark.10 in Light, alpha.light.* in Dark), and Figma applies a paint opacity of 0.05 and 0.1 on top, so the drawn scrim is a twentieth / tenth of what the token says and practically invisible. The metadata's '5 percent' and '10 percent' match the tokens alone. In code use the tokens with no extra opacity."
+    },
+    {
+      "severity": "warn",
+      "source": "naming",
+      "detail": "The Tab Bar page has a different component also named 'Navigation Rail Item' (3635:1151). See duplicateCheck."
+    },
+    {
+      "severity": "note",
+      "source": "api",
+      "detail": "Show Icon is bound to the icon box, which also holds the badge, so hiding the icon hides the badge as well."
+    },
+    {
+      "severity": "note",
+      "source": "measured",
+      "detail": "In the narrow form the label box measures 40×7Px, shorter than indicator/small's line height. It renders correctly (checked with a screenshot of the rail's Label=true variant); build it to its line height."
+    },
+    {
+      "severity": "note",
+      "source": "usedBy",
+      "detail": "Inside Navigation Rail the placed items rebind their radius to radius/element-sm; the set uses radius/sm. Same value today. The rail's metadata now adds a code-only Shape property (rounded default, sharp) that 'controls the shape of all sub items within the rail unless overridden', so in code the item's corner radius should come from the rail's shape rather than a fixed radius/sm. What sharp maps to is an open owner decision; see specs/navigation-rail issues."
+    },
+    {
+      "severity": "note",
+      "source": "icon colour",
+      "detail": "The glyph's colour is not bound on this component. The metadata says glyph and label share a token in every state; a font glyph on currentColor does that."
+    },
+    {
+      "severity": "note",
+      "source": "gaps",
+      "detail": "The icon box has an unbound gap of 10 with a single flowing child, so it never renders."
+    },
+    {
+      "severity": "note",
+      "source": "coverage",
+      "detail": "No focus state and no motion modelled; the set has no component description."
+    }
+  ]
+}

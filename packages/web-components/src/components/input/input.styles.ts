@@ -53,33 +53,7 @@ export default css`
     color: var(--foreground-disabled);
   }
 
-  /* ---- hint (Input Hint) ------------------------------------------------ */
-  .hint {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xs);
-    font-family: var(--body-xsmall-font-family), system-ui, sans-serif;
-    font-size: var(--body-xsmall-font-size);
-    font-weight: var(--body-xsmall-font-weight);
-    line-height: var(--body-xsmall-line-height);
-    letter-spacing: var(--body-xsmall-letter-spacing);
-  }
-  .hint-icon {
-    flex: none;
-  }
-  /* default: message foreground/secondary, icon foreground/primary. */
-  .hint.default .message {
-    color: var(--foreground-secondary);
-  }
-  .hint.default .hint-icon {
-    color: var(--foreground-primary);
-  }
-  .hint.error {
-    color: var(--foreground-error);
-  }
-  .hint.disabled {
-    color: var(--foreground-disabled);
-  }
+  /* ---- hint (Input Hint): input-hint.ts, shared with Stepper Input --- */
 
   /* No transitions: the spec defines no motion. */
 `;

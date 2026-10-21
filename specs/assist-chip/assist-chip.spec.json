@@ -1,0 +1,218 @@
+{
+  "component": {
+    "name": "Assist Chip",
+    "slug": "assist-chip",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "5161:4423",
+      "key": "d7c538b840a4cf9028b29d5c99b1ec2ec7b25956",
+      "page": "Chip",
+      "pageNodeId": "5122:2783",
+      "boardId": "5194:4833",
+      "metadataFrameId": "5689:822",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5161-4423",
+      "extractedAt": "2026-10-20",
+      "variantCount": 12,
+      "extractionNote": "One of four independent components on the Chip page, each with its own board and its own metadata frame; this spec covers Assist Chip only. All 12 variants extracted to full depth and diffed against the default; heights, stroke alignment and strokes-in-layout read per variant. No on-page private subcomponents."
+    }
+  },
+
+  "summary": "Offers a contextual action related to nearby content, such as adding an event to a calendar, when the action helps but is not the main task. Reach for a button when the action is the primary next step, and a filter chip when the control narrows content rather than doing something.",
+
+  "api": {
+    "label": {
+      "type": "string", "figmaName": "Label#5200:44", "default": "Label", "controls": ["label"],
+      "intent": "The action, phrased as a verb. An assist chip whose label names a noun reads as a filter or a tag instead."
+    },
+    "showLeadingIcon": {
+      "type": "boolean", "figmaName": "Show Leading Icon#5126:0", "default": true, "controls": ["icon"],
+      "intent": {
+        "true": "Show the glyph naming the action's domain, which is what separates an assist chip from a filter chip at a glance. Keep it consistent across a row, because one chip without an icon among several with them looks misaligned rather than different.",
+        "false": "Text only, for an action with no settled icon. Prefer this to inventing one."
+      }
+    },
+    "state": {
+      "type": "enum", "figmaName": "State", "values": ["default", "hover", "focus", "selected", "dragged"], "default": "default", "controls": ["root"],
+      "intent": {
+        "default": "The resting chip, and where placed instances should stay.",
+        "hover": "Pointer over the chip.",
+        "focus": "Keyboard focus, and the only state carrying a visible outline.",
+        "selected": "A chosen or sticky appearance. Worth questioning on a chip that performs an action, because an action does not usually stay selected afterwards.",
+        "dragged": "The chip while it is being moved. It reuses the pressed background rather than carrying a token of its own."
+      },
+      "note": "hover and focus are interaction states in code; dragged comes from a reorder interaction; selected is questioned by the metadata (see issues)."
+    },
+    "disabled": {
+      "type": "boolean", "figmaName": "disabled", "figmaType": "VARIANT (false|true)", "default": false, "controls": ["root", "label"],
+      "intent": {
+        "false": "The usual case.",
+        "true": "The action is unavailable. Say why nearby, because the chip itself gives no other clue."
+      }
+    },
+    "rounded": {
+      "type": "boolean", "figmaName": "Rounded", "figmaType": "VARIANT (true|false)", "default": true, "controls": ["root"],
+      "intent": {
+        "true": "Match the contour of the controls around the chip rather than deciding per chip.",
+        "false": "The square-cornered pairing, for surfaces built from sharp controls."
+      }
+    }
+  },
+
+  "internalVariations": [
+    {
+      "part": "icon", "via": "Icon (nested, Name swap)", "options": "any glyph in packages/icons", "default": "star",
+      "intent": "An Icon at Size=small, shipped swapped to Star. The swap runs through the Icon's own Name property, so the glyph can be changed per instance, while visibility is the one thing the chip itself surfaces.",
+      "note": "Not a chip property in Figma. In code an `icon` (glyph name) input is the natural shape; see issues."
+    }
+  ],
+  "contentInputs": [],
+
+  "anatomy": [
+    {
+      "id": "root", "kind": "container", "number": 1,
+      "role": "The component frame. A horizontal auto-layout hugging its content, carrying the fill and the border.",
+      "layout": { "direction": "horizontal", "gap": "space/xs", "padding": { "top": "space/sm", "bottom": "space/sm", "left": "space/md", "right": "space/md" }, "align": "start", "crossAlign": "center" },
+      "sizing": { "h": "hug", "v": "hug" },
+      "radius": "radius/pill (rounded=true) | radius/none (rounded=false)",
+      "paint": {
+        "fill": "interactive/neutral/background/default",
+        "stroke": { "color": "interactive/neutral/border/default", "width": "stroke/thin", "align": "inside", "includedInLayout": true }
+      },
+      "measured": { "widthPx": 76, "heightPx": 34 }
+    },
+    {
+      "id": "icon", "kind": "instance", "number": 2, "ref": "Icon", "refVariant": "Size=small, Framed=false",
+      "role": "The optional glyph naming the action's domain, present when Show Leading Icon is on.",
+      "glyph": "star (default; swappable per instance)", "family": "rounded", "iconSize": "Icon Size=small (pinned by the chip)",
+      "color": "currentColor (follows the label colour; not a token on the chip)",
+      "measured": { "sizePx": 16 },
+      "visibleWhen": "showLeadingIcon"
+    },
+    {
+      "id": "label", "kind": "text", "number": 3,
+      "role": "The action itself, and the only text the chip takes.",
+      "content": "label",
+      "sizing": "hug",
+      "text": { "style": "indicator/medium", "color": "interactive/neutral/foreground/default", "leadingTrim": "cap-height" }
+    }
+  ],
+
+  "variants": {
+    "axis": "state × disabled × rounded (active pinned to false)",
+    "base": "state=default, disabled=false, rounded=true, active=false",
+    "_note": "12 of 20 combinations are built: disabled=true only with state=default. The active axis has one option (false) and is omitted from the API. Rounded changes only the four corner radii. Height hugs and is measured, not a token.",
+    "table": [
+      { "state": "default", "disabled": false, "root.fill": "interactive/neutral/background/default", "root.stroke": "interactive/neutral/border/default @ stroke/thin, inside", "label.color": "interactive/neutral/foreground/default", "measuredHeightPx": 34, "figmaNode": "5161:4424" },
+      { "state": "hover", "disabled": false, "root.fill": "interactive/neutral/background/hover", "root.stroke": "interactive/neutral/border/default @ stroke/thin, inside", "label.color": "interactive/neutral/foreground/default", "measuredHeightPx": 34, "figmaNode": "5161:4427" },
+      { "state": "focus", "disabled": false, "root.fill": "interactive/neutral/background/focused", "root.stroke": "focus/outline @ stroke/thick, outside", "label.color": "interactive/neutral/foreground/default", "measuredHeightPx": 32, "figmaNode": "5161:4436" },
+      { "state": "selected", "disabled": false, "root.fill": "interactive/neutral/background/selected", "root.stroke": "interactive/neutral/border/default @ stroke/thin, inside", "label.color": "interactive/neutral/foreground/default", "measuredHeightPx": 34, "figmaNode": "5161:4460" },
+      { "state": "dragged", "disabled": false, "root.fill": "interactive/neutral/background/pressed", "root.stroke": "interactive/neutral/border/default @ stroke/thin, inside", "label.color": "interactive/neutral/foreground/default", "measuredHeightPx": 34, "figmaNode": "5161:4466" },
+      { "state": "default", "disabled": true, "root.fill": "interactive/neutral/background/disabled", "root.stroke": "none", "label.color": "interactive/neutral/foreground/disabled", "measuredHeightPx": 32, "figmaNode": "5161:4433" }
+    ],
+    "rounded": [
+      { "rounded": true, "root.radius": "radius/pill", "figmaNode": "5161:4424" },
+      { "rounded": false, "root.radius": "radius/none", "figmaNode": "5161:4439" }
+    ]
+  },
+
+  "subcomponents": [
+    { "name": "Icon", "id": "2046:15010", "key": "a469ac1cf34202af3e094593468d9ef20a37a703", "private": false, "remote": false, "spec": "specs/icon/icon.spec.json", "usedAt": ["icon"], "glyphs": ["star"] }
+  ],
+
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "interactive/neutral/background/default", "interactive/neutral/background/hover", "interactive/neutral/background/focused",
+      "interactive/neutral/background/selected", "interactive/neutral/background/pressed", "interactive/neutral/background/disabled",
+      "interactive/neutral/border/default", "interactive/neutral/foreground/default", "interactive/neutral/foreground/disabled",
+      "focus/outline"
+    ],
+    "dimension": ["space/xs", "space/sm", "space/md", "radius/pill", "radius/none", "stroke/thin", "stroke/thick"],
+    "typography": ["indicator/medium"],
+    "glyphs": ["star"],
+    "themeAxes": {
+      "palette": ["Light", "Dark"],
+      "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
+      "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"]
+    },
+    "extensions": { "companion": "palette", "target": "primitives, palette", "condensed": "typography, size" },
+    "_note": "All 18 token names resolve in tokens/base. The default glyph star is in packages/icons/codepoints.json (setId 2046:10784), not retired, not rejected."
+  },
+
+  "states": [
+    { "state": "default", "trigger": "—", "duration": "—", "whatChanges": "interactive/neutral/background/default behind a 1px inside border in interactive/neutral/border/default." },
+    { "state": "hover", "trigger": "Pointer over the chip", "duration": "—", "whatChanges": "Background moves to interactive/neutral/background/hover. Nothing else changes." },
+    { "state": "focus", "trigger": "Keyboard focus", "duration": "—", "whatChanges": "Background moves to interactive/neutral/background/focused and the border becomes 2px focus/outline drawn outside. The chip is also 2px shorter than at rest, which looks like a drafting slip rather than an intended change." },
+    { "state": "selected", "trigger": "State set to selected", "duration": "—", "whatChanges": "Background moves to interactive/neutral/background/selected. Border, icon and label are unchanged." },
+    { "state": "dragged", "trigger": "Chip being reordered", "duration": "—", "whatChanges": "Background moves to interactive/neutral/background/pressed." },
+    { "state": "disabled", "trigger": "disabled set to true", "duration": "—", "whatChanges": "Background becomes interactive/neutral/background/disabled, the label drops to the disabled foreground, the border is removed, and the chip is 2px shorter than at rest." }
+  ],
+
+  "behavior": [
+    { "type": "Motion", "description": "Figma stores no timing and no transition is authored. Every state change is a flat swap of fill, border or text colour." },
+    { "type": "Action", "description": "Nothing in the set records what the chip does or what happens afterwards. An assist chip is a trigger, and the result belongs entirely to the implementation." },
+    { "type": "Coverage", "description": "Twelve of the twenty possible combinations are built. disabled appears only with State=default, and active offers a single value, so neither can be combined freely." }
+  ],
+
+  "content": [
+    { "property": "Label", "type": "text property", "description": "Plain text set per instance, defaulting to Label. Phrase it as the action itself." },
+    { "property": "Leading Icon", "type": "nested Icon, toggled by Show Leading Icon", "description": "An Icon at Size=small, shipped swapped to Star. The swap runs through the Icon's own Name property, so the glyph can be changed per instance, while visibility is the one thing the chip itself surfaces." },
+    { "property": "Trailing content", "type": "not provided", "description": "There is no trailing slot. An assist chip cannot carry a count, a caret or a remove control without detaching." }
+  ],
+
+  "usage": {
+    "do": [
+      "Phrase the label as a verb. The chip is a thing to do, not a thing to pick.",
+      "Keep Show Leading Icon consistent across a row. One chip without an icon among several with them looks misaligned."
+    ],
+    "dont": [
+      "Don't reach for an assist chip when the action is the main one on the screen. That is a button.",
+      "Don't use State=selected to mean an action has stuck. A chip that stays selected is usually a filter chip in disguise."
+    ]
+  },
+
+  "accessibility": [
+    "The chip is a control. It needs a button role and a name stating the action, not just the label text.",
+    "Focus is the only state with a visible outline and it is drawn outside the chip, so check it is not clipped by a scrolling row.",
+    "The leading icon sits next to the label and is decorative. If it ever carries meaning the label does not, that meaning has to be in text.",
+    "Disabled chips lose the border and rely on fill and text colour alone. Check both against the surface behind them.",
+    "The label uses indicator/medium at 12px over a 14px line. It is the action's only name, so it should not be shortened to an abbreviation."
+  ],
+
+  "layoutTheming": [
+    { "property": "Size", "type": "Hug width, fixed height", "description": "34 tall at default, hover, selected and dragged, but 32 at focus and disabled. That 2px difference is unintended and makes a mixed row sit unevenly." },
+    { "property": "Padding and gap", "type": "Fixed", "description": "space/sm top and bottom, space/md left and right, with a space/xs gap between the icon and the label." },
+    { "property": "Radius", "type": "Per Rounded", "description": "radius/pill when true and radius/none when false." },
+    { "property": "Fill", "type": "Per state", "description": "interactive/neutral/background at default, hover, focused, selected and disabled, with pressed reused for dragged." },
+    { "property": "Border", "type": "Per state", "description": "1px inside interactive/neutral/border/default at rest. Focus swaps to 2px focus/outline drawn outside. Disabled carries none, and its strokeAlign is left at CENTER where every other variant is INSIDE." },
+    { "property": "Label", "type": "Theming", "description": "indicator/medium, IBM Plex Sans Medium 12 over a 14px line, in interactive/neutral/foreground/default and dropping to the disabled token." },
+    { "property": "Leading icon", "type": "Fixed", "description": "Icon at Size=small, 16 square." }
+  ],
+
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5122-2783",
+    "board": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5194-4833",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5161-4423",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5689-822",
+    "variants": {
+      "default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5161-4424",
+      "focus": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5161-4436",
+      "selected": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5161-4460",
+      "dragged": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5161-4466",
+      "disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5161-4433",
+      "rounded=false": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5161-4439"
+    }
+  },
+
+  "issues": [
+    { "severity": "warn", "source": "metadata vs extracted (height)", "detail": "34px at rest, hover, selected, dragged; 32px at focus and disabled. Cause found: the root hugs vertically and its 1px inside border is included in layout, so the border adds 2px; the outside focus border and the missing disabled border do not. Build it as 32 tall at every state (padding space/sm + 16px icon) with the border kept out of layout. Filter Chip avoids this only because its height is fixed." },
+    { "severity": "warn", "source": "api (active axis)", "detail": "active offers one value (false), so it is not a real property; it looks copied from Filter Chip and left unfinished (metadata says so). Omitted from the spec's API." },
+    { "severity": "warn", "source": "api (selected)", "detail": "State=selected gives an action chip a sticky look; the metadata questions it and says a chip that stays selected is a filter chip in disguise. Recommend leaving selected out of code until design confirms a use." },
+    { "severity": "note", "source": "internalVariations", "detail": "The leading glyph is reachable only through the nested Icon's Name swap, not a chip property. In code an `icon` glyph-name input is the obvious shape; that is the implementer's call. Default glyph star." },
+    { "severity": "note", "source": "stroke", "detail": "Disabled variants have no stroke and strokeAlign is left at CENTER (metadata notes it). Invisible today; stroke-weight bindings missing there are expected, not drift." },
+    { "severity": "note", "source": "text", "detail": "The label uses cap-height leading trim (text box measured 8px against a 14px line), so the 16px icon sets the content height." },
+    { "severity": "note", "source": "coverage", "detail": "No disabled hover/focus, no pressed state (dragged reuses pressed), no motion; the action's result is left to the implementation." },
+    { "severity": "note", "source": "relation to other specs", "detail": "No duplicate among existing specs. Button covers the primary action; this chip is the secondary, contextual one." }
+  ]
+}

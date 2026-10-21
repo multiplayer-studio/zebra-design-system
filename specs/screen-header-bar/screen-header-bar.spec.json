@@ -1,0 +1,244 @@
+{
+  "component": {
+    "name": "Screen Header Bar",
+    "slug": "screen-header-bar",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "5712:3566",
+      "key": "879831ac3c15510dfabe13974e18f2e6cfdeb63f",
+      "page": "Screen Header Bar",
+      "pageNodeId": "5712:290",
+      "metadataFrameId": "5719:46",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5712-290",
+      "extractedAt": "2026-10-20",
+      "variantCount": { "Screen Header Bar": 2 },
+      "extractionNote": "Both variants extracted in full (depth 12, instances not entered). The Leading Icon instance was then opened by hand to resolve its nested Icon and glyph, and its exposed-instance flags read. No private subcomponents on the page. Top App Bar and Global header pages read for set names and properties only, not specced."
+    }
+  },
+
+  "summary": "The bar at the top of a screen, carrying a back affordance, the screen's title and one action. It holds a single slot on the right, so it suits a screen with exactly one primary action rather than a toolbar of several. Reach for Top App Bar when the screen needs more than one action or a different leading control.",
+
+  "api": {
+    "title": {
+      "type": "string", "figmaName": "Title#5712:0", "default": "Add Subscribers", "controls": ["title"],
+      "intent": "The screen's name, and the thing a reader orients by. Name the screen rather than the task in progress, because the bar does not change as someone works and a title implying progress goes stale the moment they act."
+    },
+    "showLeadingIcon": {
+      "type": "boolean", "figmaName": "Show Leading Icon#5712:6", "default": true, "controls": ["leadingIcon"],
+      "intent": {
+        "true": "Show the back affordance. Leave it on for any screen pushed on top of another, which is the case this bar is drawn for.",
+        "false": "Drop it on a root screen with nowhere to go back to. The heading takes the reclaimed space, so nothing else needs adjusting."
+      }
+    },
+    "rounded": {
+      "type": "enum", "figmaName": "Rounded", "values": ["true", "false"], "default": "true", "controls": ["variant"],
+      "intent": {
+        "true": "Despite the name this does not round the bar. It sets the contour of the action button in the slot, so pick the value matching the buttons used elsewhere on the screen.",
+        "false": "The sharp pairing for that same button. It reaches only the button shipped in the slot, so replacing the slot content drops the connection entirely."
+      },
+      "reach": "Only the default Button in actionSlot (Shape=rounded ↔ Shape=sharp). The leading Icon Button is Shape=sharp in both variants."
+    },
+    "actionSlot": {
+      "type": "slot", "figmaName": "Action Slot#5712:3", "controls": ["actionSlot"],
+      "default": "One Button (Size=medium, Shape=rounded|sharp per rounded, Flavour=primary, State=default, Disabled=false, label \"Button\", no leading/trailing icon)",
+      "accepts": { "preferred": ["Button", "Icon Button"], "allowPreferredValuesOnly": false, "minChildren": null, "maxChildren": null, "stretchChildOnInsert": false, "displayEmptyByDefault": false },
+      "intent": "Holds the trailing action and hugs whatever is placed in it. It ships a Button at Size=medium and Flavour=primary. Nothing limits it to one control, so a crowded slot is possible and is the thing to watch."
+    }
+  },
+
+  "internalVariations": [
+    {
+      "part": "leadingIcon", "via": "Icon Button (exposed nested instance)",
+      "options": "Icon Button's own props (flavour, size, shape, state, disabled) and its nested Icon's Name swap",
+      "pinned": { "size": "medium", "shape": "sharp", "flavour": "subtle", "state": "default", "disabled": "false", "glyph": "chevron-left" },
+      "intent": "An Icon at Size=medium swapped to Chevron Left. Only its visibility is surfaced, so the glyph cannot be changed from an instance without detaching.",
+      "note": "The intent text is contradicted by the file: Leading Icon is an Icon Button marked as an exposed instance, and its Icon is exposed too, so glyph and button props are reachable from an instance. See issues."
+    }
+  ],
+
+  "contentInputs": [
+    { "part": "title", "input": "label", "sample": "Add Subscribers" },
+    { "part": "actionSlot", "input": "children", "sampleCount": 1, "sample": "one primary Button labelled \"Button\"" }
+  ],
+
+  "anatomy": [
+    {
+      "id": "root", "kind": "container",
+      "layout": { "direction": "horizontal", "gap": "space/xs", "padding": { "top": "space/md", "right": "space/md", "bottom": "space/md", "left": "space/sm" }, "mainAlign": "start", "crossAlign": "center" },
+      "sizing": { "h": "fixed", "v": "hug" },
+      "radius": "none (no radius set, no token)",
+      "paint": { "fill": { "color": "interactive/ghost/background/default", "paintOpacity": "zero — see issues" }, "stroke": "none", "effects": "none" },
+      "measured": { "widthPx": 474, "heightPx": 64 }
+    },
+    {
+      "id": "leadingIcon", "kind": "instance", "ref": "Icon Button", "spec": "specs/icon-button",
+      "refVariant": { "size": "medium", "shape": "sharp", "flavour": "subtle", "state": "default", "disabled": "false" },
+      "glyph": "chevron-left", "glyphFamily": "rounded", "iconSize": "Icon Size=medium (pinned by Icon Button size=medium)", "iconColor": "currentColor",
+      "visibleWhen": "showLeadingIcon",
+      "sizing": { "h": "fixed", "v": "fixed" }, "size": "control/md",
+      "overridesSeen": { "fill": "interactive/ghost/background/default (paint opacity zero)", "border": "interactive/neutral/border/default @ stroke/base", "padding": "space/xs", "radius": "radius/none" },
+      "role": "The back chevron, present when Show Leading Icon is on. A locked Icon instance with only its visibility exposed."
+    },
+    {
+      "id": "headingContent", "kind": "container",
+      "layout": { "direction": "vertical", "gap": "space/2xs", "padding": "none", "mainAlign": "start", "crossAlign": "start" },
+      "sizing": { "h": "fill", "v": "hug" },
+      "role": "The title wrapper. It fills the space between the icon and the slot, which is what holds the action hard right."
+    },
+    {
+      "id": "titleRow", "kind": "container", "parent": "headingContent",
+      "layout": { "direction": "horizontal", "gap": "space/xs", "padding": "none" },
+      "sizing": { "h": "hug", "v": "hug" },
+      "note": "Single child (title); its gap has nothing to separate."
+    },
+    {
+      "id": "title", "kind": "text", "parent": "titleRow",
+      "text": { "style": "title/large", "color": "foreground/primary", "align": "left", "autoResize": "width-and-height", "truncation": "none" },
+      "boundTo": "title",
+      "sizing": { "h": "hug", "v": "hug" }
+    },
+    {
+      "id": "actionSlot", "kind": "slot",
+      "layout": { "direction": "horizontal", "gap": "space/xs", "padding": "none", "mainAlign": "start", "crossAlign": "center" },
+      "sizing": { "h": "hug", "v": "hug" },
+      "default": { "ref": "Button", "spec": "specs/button", "refVariant": { "size": "medium", "shape": "rounded (rounded=true) | sharp (rounded=false)", "flavour": "primary", "state": "default", "disabled": "false" }, "label": "Button", "leadingIcon": false, "trailingIcon": false },
+      "role": "The trailing region a consumer fills. It hugs its content, so the heading absorbs whatever width is left."
+    }
+  ],
+
+  "variants": {
+    "axis": "rounded", "base": "true",
+    "table": [
+      { "rounded": "true", "actionSlot.button.shape": "rounded", "actionSlot.button.radius": "radius/element-sm", "leadingIcon.shape": "sharp" },
+      { "rounded": "false", "actionSlot.button.shape": "sharp", "actionSlot.button.radius": "radius/none", "leadingIcon.shape": "sharp" }
+    ],
+    "_note": "Nothing else differs between the two variants: root layout, size, fill and the leading Icon Button are identical."
+  },
+
+  "subcomponents": [],
+
+  "dependencies": [
+    { "name": "Icon Button", "id": "2338:1763", "key": "aee1f4fe89a3f70a26978e68621194baf1271b8a", "remote": false, "spec": "specs/icon-button", "usedAs": "leadingIcon; also a preferred actionSlot value" },
+    { "name": "Button", "id": "2060:15072", "key": "42bf13a5210cd307b7bd4563f2521b78cfd74dae", "remote": false, "spec": "specs/button", "usedAs": "actionSlot default content; preferred actionSlot value" },
+    { "name": "Icon", "id": "2046:15010", "remote": false, "spec": "specs/icon", "usedAs": "nested inside leadingIcon (Size=medium, Framed=false, Name=Chevron Left)" }
+  ],
+
+  "relatedComponents": {
+    "_note": "Pages in the same file without metadata frames; names and properties read only, not specced.",
+    "topAppBar": {
+      "page": "Top App Bar", "pageNodeId": "3108:191", "setId": "3116:1217", "variantCount": 12,
+      "props": { "Page Title": "text, default \"Title\"", "Contextual Control Slot": "slot", "Trailing Slot": "slot", "Type": "default | centered | contextual | contextual alt | search | extended", "Shape": "rounded | sharp (default sharp)" },
+      "overlap": "Same job (screen-level title bar with a leading control and trailing actions). Screen Header Bar's own summary names Top App Bar as the alternative for more than one action or a different leading control. Its Type=default/contextual covers this bar's layout; Screen Header Bar is effectively a narrow single-action preset of it, with a different shape-axis name (Rounded true/false vs Shape rounded/sharp) and a different default title."
+    },
+    "globalHeader": {
+      "page": "Global header", "pageNodeId": "2314:3348", "setId": "2356:5644", "variantCount": 2,
+      "props": { "AppSwitcher": "boolean", "SearchBar": "boolean", "Dividers": "boolean", "ActionMenu": "boolean", "MenuItems": "boolean", "PlatformName": "text", "Show Platform Name": "boolean", "Show Logo": "boolean", "Slot-Menu-Items": "slot", "Slot-Menu-Actions": "slot", "Slot Logo": "slot", "Rounded": "true | false (default false)" },
+      "privateSets": ["_Brand Logo Horizontal", "_User Profile"],
+      "overlap": "Little. Global Header is the application-level (platform) header: logo, platform name, app switcher, search, menu items and a user profile. Screen Header Bar sits below it at screen level. They share only the Rounded naming pattern."
+    }
+  },
+
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "interactive/ghost/background/default",
+      "foreground/primary",
+      "interactive/neutral/border/default",
+      "interactive/primary/background/default",
+      "interactive/primary/border/default"
+    ],
+    "dimension": ["space/2xs", "space/xs", "space/sm", "space/md", "space/none", "control/md", "radius/none", "radius/element-sm", "stroke/base"],
+    "typography": ["title/large", "title/large/font size", "title/large/font family", "title/large/font weight", "title/large/line height", "title/large/letter spacing"],
+    "glyphs": ["chevron-left"],
+    "ownVsNested": "The bar itself binds interactive/ghost/background/default, foreground/primary, title/large, space/2xs, space/xs, space/sm, space/md. The rest are overrides or defaults on the nested Icon Button and Button instances and are owned by those specs.",
+    "themeAxes": {
+      "palette": ["Light", "Dark"],
+      "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
+      "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"]
+    },
+    "_note": "All 20 token names resolve in tokens/base/; title/large is a local text style. chevron-left is in packages/icons/codepoints.json (setId 2046:10342), not retired, not in inventory.json rejected."
+  },
+
+  "states": [
+    { "state": "Static", "trigger": "—", "duration": "—", "whatChanges": "The set declares no hover, focus, pressed or disabled axis. The two variants render identically apart from the corners of the action button." },
+    { "state": "Leading icon", "trigger": "Show Leading Icon toggled off", "duration": "—", "whatChanges": "The back affordance is removed and the heading absorbs the 28px it occupied. Nothing else moves, because the bar's width is fixed." }
+  ],
+
+  "behavior": [
+    { "type": "Motion", "description": "Figma stores no timing and no transition is authored. Nothing in the set changes over time." },
+    { "type": "Navigation", "description": "The leading chevron is a locked Icon instance with no state of its own. What it does on activation, and whether it is reachable at all, belongs to the implementation." },
+    { "type": "Reach of Rounded", "description": "Rounded is a variant on this set rather than a property passed down, so it restyles the shipped action button and nothing else. Slot content put there later will not follow it." }
+  ],
+
+  "content": [
+    { "property": "Title", "type": "text property", "description": "Plain text set per instance, defaulting to Add Subscribers. The heading wrapper is built with a gap for a second line, but no subtitle property exists to fill it." },
+    { "property": "Action Slot", "type": "slot, one Button as shipped", "description": "Holds the trailing action and hugs whatever is placed in it. It ships a Button at Size=medium and Flavour=primary. Nothing limits it to one control, so a crowded slot is possible and is the thing to watch." },
+    { "property": "Leading icon", "type": "fixed nested Icon, toggled by Show Leading Icon", "description": "An Icon at Size=medium swapped to Chevron Left. Only its visibility is surfaced, so the glyph cannot be changed from an instance without detaching." }
+  ],
+
+  "usage": {
+    "do": [
+      "Use it as the top bar of a pushed screen, with the back chevron on and a single action on the right.",
+      "Match Rounded to the buttons used elsewhere on the screen. It exists to keep the action button consistent, not to shape the bar."
+    ],
+    "dont": [
+      "Don't put more than one control in the Action Slot. It will hug them, but the bar was drawn around a single action.",
+      "Don't assume the bar stretches to the screen. It ships at a fixed width, so it has to be set to fill wherever it is placed."
+    ]
+  },
+
+  "accessibility": [
+    "The leading chevron is a locked icon with no label and no state. It needs an accessible name and a keyboard path, neither of which is modelled here.",
+    "No focus state exists anywhere in the set, so focus order and a visible focus ring both have to come from code.",
+    "The title uses title/large at 20px. It names the screen, so it should map to a real heading in the markup rather than being styled text.",
+    "The bar's fill is interactive/ghost/background/default, an interactive token on a static container. Check it against the screen behind it and against the action button sitting on it.",
+    "Turning the leading icon off removes the only back affordance. On a pushed screen something else then has to provide one."
+  ],
+
+  "layoutTheming": [
+    { "property": "Size", "type": "Fixed width, hug height", "description": "474 wide and 56 tall in both variants. The width is fixed rather than filling, so a placed instance will not stretch to its container on its own." },
+    { "property": "Padding and gap", "type": "Fixed", "description": "space/sm top and bottom, space/lg left and right, with a space/sm gap between the icon, the heading and the slot." },
+    { "property": "Alignment", "type": "Fixed", "description": "Horizontal auto-layout, items centred on the cross axis and packed from the start. The heading fills, which pushes the slot hard right." },
+    { "property": "Radius", "type": "None", "description": "Zero on both variants with no token bound. The Rounded axis does not touch it." },
+    { "property": "Fill", "type": "Theming", "description": "interactive/ghost/background/default, an interactive token on a static container. No border and no shadow." },
+    { "property": "Title", "type": "Theming", "description": "title/large, IBM Plex Sans Medium 20 over a 24px line, in foreground/primary. This style resolves to a remote library rather than a local one." },
+    { "property": "Leading icon", "type": "Fixed", "description": "Icon at Size=medium, 20 square. Hiding it returns 28px to the heading, the icon plus one gap." }
+  ],
+
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5712-290",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5712-3566",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5719-46",
+    "variants": {
+      "rounded=true": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5712-3565",
+      "rounded=false": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5712-3567"
+    },
+    "parts": {
+      "leadingIcon": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5712-1372",
+      "actionSlot": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5712-3583"
+    },
+    "related": {
+      "topAppBar": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3116-1217",
+      "globalHeader": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2356-5644"
+    }
+  },
+
+  "issues": [
+    { "severity": "warn", "source": "metadata vs extracted (leading icon)", "detail": "Metadata describes the leading icon as a locked Icon at Size=medium, 20 square, with no state. It is an Icon Button (Size=medium, Shape=sharp, Flavour=subtle), sized control/md with space/xs padding, wrapping that Icon. So it is a control with its own state axis, and it is about twice the size the metadata states." },
+    { "severity": "warn", "source": "metadata vs extracted (exposed instance)", "detail": "Metadata says only the leading icon's visibility is surfaced and the glyph can't change without detaching. Leading Icon is an exposed nested instance and its Icon is exposed too, so the glyph and the Icon Button's flavour/shape/state are editable from an instance." },
+    { "severity": "warn", "source": "metadata vs extracted (size)", "detail": "Layout & Theming says '474 wide and 56 tall'. Measured height is 64Px in both variants (space/md top and bottom around a control/md icon button and button). Width (474Px measured) matches." },
+    { "severity": "warn", "source": "metadata vs extracted (padding & gap)", "detail": "Layout & Theming says 'space/sm top and bottom, space/lg left and right, with a space/sm gap'. Bound tokens are padding top/right/bottom space/md, left space/sm, gap space/xs. space/lg is not used anywhere." },
+    { "severity": "warn", "source": "metadata vs extracted (reclaimed width)", "detail": "States & Layout say hiding the leading icon returns 28px (icon plus one gap). It returns control/md plus the space/xs gap." },
+    { "severity": "warn", "source": "remote variables", "detail": "Several bindings point at remote library copies of same-named variables instead of the local ones: the root fill interactive/ghost/background/default, foreground/primary, space/2xs, space/xs on headingContent/titleRow/actionSlot, and all five title/large/* font variables. The local text style title/large is applied, but its variables are rebound remotely on the title node. Names all resolve in tokens/, so code is unaffected; the Figma file should be relinked to local variables." },
+    { "severity": "note", "source": "metadata (title style)", "detail": "Metadata says the title style 'resolves to a remote library'. The text style title/large is local; only the variables bound on the title node are remote (see previous issue)." },
+    { "severity": "note", "source": "root fill", "detail": "The root fill (and the leading Icon Button's fill override) carries paint-level opacity zero on interactive/ghost/background/default, so the bar paints nothing whatever the token resolves to. Treat the bar as transparent; the accessibility note about checking the fill against the screen behind it applies only if the opacity is restored." },
+    { "severity": "note", "source": "rounded reach", "detail": "Rounded swaps only the slot Button's shape (radius/element-sm vs radius/none). The leading Icon Button is Shape=sharp in both variants, so a Rounded=true bar pairs a rounded action with a sharp back button. Decide in code whether rounded should reach it." },
+    { "severity": "note", "source": "API vs Property Breakdown", "detail": "Action Slot is missing from the Property Breakdown table; it is described only under Content & Slot. Defaults for Title, Show Leading Icon (true) and Rounded (true) match Figma." },
+    { "severity": "note", "source": "actionSlot", "detail": "Slot is native (SLOT property) with Button and Icon Button as preferred values, preferred-only off, no min/max children. 'One action' is guidance only; enforce or allow in code." },
+    { "severity": "note", "source": "headingContent", "detail": "headingContent has a space/2xs vertical gap and titleRow a space/xs gap, both with a single child. Metadata confirms the subtitle line was planned but no property exists; not part of the API." },
+    { "severity": "note", "source": "sizing", "detail": "Root width is fixed (474Px measured). Usage says to set it to fill wherever placed; implement as full-width of its container." },
+    { "severity": "note", "source": "overlap", "detail": "Overlaps Top App Bar (3116:1217, 12 variants, Type × Shape, Page Title, two slots), which covers the same screen-level role with more layouts. Screen Header Bar is a single-action preset of that idea with a different shape-axis name. Global Header is the platform-level header and does not overlap meaningfully." },
+    { "severity": "note", "source": "coverage", "detail": "No description on the component set. No hover/focus/pressed/disabled states and no motion, by design per the metadata. Back-button activation and its accessible name are left to code." }
+  ]
+}

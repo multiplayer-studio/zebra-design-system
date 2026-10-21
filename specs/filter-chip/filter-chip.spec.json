@@ -1,0 +1,217 @@
+{
+  "component": {
+    "name": "Filter Chip",
+    "slug": "filter-chip",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "5126:3677",
+      "key": "92d35734068d5f58f93935e738351004185f74d0",
+      "page": "Chip",
+      "pageNodeId": "5122:2783",
+      "boardId": "5194:4509",
+      "metadataFrameId": "5689:430",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5126-3677",
+      "extractedAt": "2026-10-20",
+      "variantCount": 16,
+      "extractionNote": "One of four independent components on the Chip page, each with its own board and its own metadata frame; this spec covers Filter Chip only. All 16 variants extracted to full depth and diffed against the default. The check mark exists only in active=true variants (an added node, not a hidden one). No on-page private subcomponents."
+    }
+  },
+
+  "summary": "Lets someone narrow a set of content by switching criteria on and off, such as categories in a list of results. Use them in groups where more than one can be on at once. Reach for an assist chip when the control triggers an action rather than a filter.",
+
+  "api": {
+    "label": {
+      "type": "string", "figmaName": "Label#5200:27", "default": "Label", "controls": ["label"],
+      "intent": "The criterion the chip switches. Name the filter, not the result. A chip reading Show only items in stock is doing a sentence's work."
+    },
+    "active": {
+      "type": "boolean", "figmaName": "active", "figmaType": "VARIANT (false|true)", "default": false, "controls": ["root", "check", "label"],
+      "intent": {
+        "false": "The filter is off and the chip shows its label alone.",
+        "true": "The filter is on. This is the real switch for a filter chip, and the only value that both adds the check mark and flips to the inverse palette. Built only alongside State=default and State=focus, so an active chip has no hover or dragged appearance."
+      }
+    },
+    "state": {
+      "type": "enum", "figmaName": "State", "values": ["default", "hover", "focus", "selected", "dragged"], "default": "default", "controls": ["root"],
+      "intent": {
+        "default": "The resting chip, and where placed instances should stay.",
+        "hover": "Pointer over the chip.",
+        "focus": "Keyboard focus, and the only state carrying a visible outline.",
+        "selected": "A second way to show a chosen chip, separate from active. It darkens the background without adding the check mark, so a row mixing selected and active will not read consistently. Prefer active until that overlap is resolved.",
+        "dragged": "The chip while it is being moved, for filter rows that can be reordered. It reuses the pressed background rather than carrying a token of its own."
+      },
+      "note": "hover and focus are interaction states in code; dragged comes from a reorder interaction; selected overlaps active (see issues)."
+    },
+    "disabled": {
+      "type": "boolean", "figmaName": "disabled", "figmaType": "VARIANT (false|true)", "default": false, "controls": ["root", "label"],
+      "intent": {
+        "false": "The usual case.",
+        "true": "The criterion cannot be switched right now. Say why nearby, because the chip itself gives no other clue."
+      }
+    },
+    "rounded": {
+      "type": "boolean", "figmaName": "Rounded", "figmaType": "VARIANT (true|false)", "default": true, "controls": ["root"],
+      "intent": {
+        "true": "Match the contour of the controls around the filter row rather than deciding per chip.",
+        "false": "The square-cornered pairing, for surfaces built from sharp controls."
+      }
+    }
+  },
+
+  "internalVariations": [],
+  "contentInputs": [],
+
+  "anatomy": [
+    {
+      "id": "root", "kind": "container", "number": 1,
+      "role": "The component frame. A horizontal auto-layout hugging its content at a fixed height.",
+      "layout": { "direction": "horizontal", "gap": "space/xs (active=false) | space/sm (active=true)", "padding": { "top": "space/sm (active=false) | space/xs (active=true)", "bottom": "space/sm (active=false) | space/xs (active=true)", "left": "space/md", "right": "space/md" }, "align": "start", "crossAlign": "center" },
+      "sizing": { "h": "hug", "v": "fixed", "height": "unbound (gap; measured 32Px)" },
+      "radius": "radius/pill (rounded=true) | radius/none (rounded=false)",
+      "paint": {
+        "fill": "interactive/neutral/background/default",
+        "stroke": { "color": "interactive/neutral/border/default", "width": "stroke/thin", "align": "inside", "includedInLayout": true }
+      },
+      "measured": { "widthPx": 56, "heightPx": 32 }
+    },
+    {
+      "id": "check", "kind": "instance", "number": 2, "ref": "Icon", "refVariant": "Size=small, Framed=false",
+      "role": "The leading icon, present only when active is true. It is what makes the on state readable without colour.",
+      "glyph": "check-mark", "family": "rounded", "iconSize": "Icon Size=small (pinned by the chip)",
+      "color": "currentColor (follows the label colour; not a token on the chip)",
+      "measured": { "sizePx": 16 },
+      "visibleWhen": "active"
+    },
+    {
+      "id": "label", "kind": "text", "number": 3,
+      "role": "The criterion itself, and the only content the chip takes.",
+      "content": "label",
+      "sizing": "hug",
+      "text": { "style": "indicator/medium", "color": "interactive/neutral/foreground/default", "leadingTrim": "cap-height" },
+      "note": "The text box is trimmed to cap height (measured 8Px tall against a 14Px line). In CSS this is text-box-trim / leading-trim; without it the label is taller and the fixed height still holds."
+    }
+  ],
+
+  "variants": {
+    "axis": "active × state × disabled × rounded",
+    "base": "state=default, disabled=false, rounded=true, active=false",
+    "_note": "16 of 40 combinations are built. active=true exists only with state=default and state=focus; disabled=true only with state=default and active=false. Rounded changes only the four corner radii. Height is a fixed 32Px everywhere (unbound).",
+    "table": [
+      { "active": false, "state": "default", "disabled": false, "root.fill": "interactive/neutral/background/default", "root.stroke": "interactive/neutral/border/default @ stroke/thin, inside", "label.color": "interactive/neutral/foreground/default", "measuredWidthPx": 56, "figmaNode": "5126:3678" },
+      { "active": false, "state": "hover", "disabled": false, "root.fill": "interactive/neutral/background/hover", "root.stroke": "interactive/neutral/border/default @ stroke/thin, inside", "label.color": "interactive/neutral/foreground/default", "measuredWidthPx": 56, "figmaNode": "5126:3682" },
+      { "active": false, "state": "focus", "disabled": false, "root.fill": "interactive/neutral/background/focused", "root.stroke": "focus/outline @ stroke/thick, outside", "label.color": "interactive/neutral/foreground/default", "measuredWidthPx": 54, "figmaNode": "5126:3690" },
+      { "active": false, "state": "selected", "disabled": false, "root.fill": "interactive/neutral/background/selected", "root.stroke": "interactive/neutral/border/default @ stroke/thin, inside", "label.color": "interactive/neutral/foreground/default", "measuredWidthPx": 56, "figmaNode": "5161:4401" },
+      { "active": false, "state": "dragged", "disabled": false, "root.fill": "interactive/neutral/background/pressed", "root.stroke": "interactive/neutral/border/default @ stroke/thin, inside", "label.color": "interactive/neutral/foreground/default", "measuredWidthPx": 56, "figmaNode": "5161:4412" },
+      { "active": false, "state": "default", "disabled": true, "root.fill": "interactive/neutral/background/disabled", "root.stroke": "none", "label.color": "interactive/neutral/foreground/disabled", "measuredWidthPx": 54, "figmaNode": "5126:3686" },
+      { "active": true, "state": "default", "disabled": false, "root.fill": "interactive/inverse/background/selected", "root.stroke": "interactive/inverse/border/pressed @ stroke/thin, inside", "label.color": "interactive/inverse/foreground/default", "check": "shown", "root.gap": "space/sm", "root.paddingY": "space/xs", "measuredWidthPx": 80, "figmaNode": "5161:4390" },
+      { "active": true, "state": "focus", "disabled": false, "root.fill": "interactive/inverse/background/selected", "root.stroke": "focus/outline @ stroke/thick, outside", "label.color": "interactive/inverse/foreground/default", "check": "shown", "root.gap": "space/sm", "root.paddingY": "space/xs", "measuredWidthPx": 78, "figmaNode": "5161:4380" }
+    ],
+    "rounded": [
+      { "rounded": true, "root.radius": "radius/pill", "figmaNode": "5126:3678" },
+      { "rounded": false, "root.radius": "radius/none", "figmaNode": "5126:3694" }
+    ]
+  },
+
+  "subcomponents": [
+    { "name": "Icon", "id": "2046:15010", "key": "a469ac1cf34202af3e094593468d9ef20a37a703", "private": false, "remote": false, "spec": "specs/icon/icon.spec.json", "usedAt": ["check"], "glyphs": ["check-mark"] }
+  ],
+
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "interactive/neutral/background/default", "interactive/neutral/background/hover", "interactive/neutral/background/focused",
+      "interactive/neutral/background/selected", "interactive/neutral/background/pressed", "interactive/neutral/background/disabled",
+      "interactive/neutral/border/default", "interactive/neutral/foreground/default", "interactive/neutral/foreground/disabled",
+      "interactive/inverse/background/selected", "interactive/inverse/border/pressed", "interactive/inverse/foreground/default",
+      "focus/outline"
+    ],
+    "dimension": ["space/xs", "space/sm", "space/md", "radius/pill", "radius/none", "stroke/thin", "stroke/thick"],
+    "typography": ["indicator/medium"],
+    "glyphs": ["check-mark"],
+    "themeAxes": {
+      "palette": ["Light", "Dark"],
+      "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
+      "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"]
+    },
+    "extensions": { "companion": "palette", "target": "primitives, palette", "condensed": "typography, size" },
+    "_note": "All 21 token names resolve in tokens/base. The glyph check-mark is in packages/icons/codepoints.json (setId 2046:6876), not retired, not rejected."
+  },
+
+  "states": [
+    { "state": "default", "trigger": "—", "duration": "—", "whatChanges": "interactive/neutral/background/default behind a 1px inside border in interactive/neutral/border/default." },
+    { "state": "hover", "trigger": "Pointer over the chip", "duration": "—", "whatChanges": "Background moves to interactive/neutral/background/hover. Nothing else changes." },
+    { "state": "focus", "trigger": "Keyboard focus", "duration": "—", "whatChanges": "Background moves to interactive/neutral/background/focused and the border becomes 2px focus/outline drawn outside the chip." },
+    { "state": "selected", "trigger": "State set to selected", "duration": "—", "whatChanges": "Background moves to interactive/neutral/background/selected. Border and label are unchanged and no check mark appears." },
+    { "state": "dragged", "trigger": "Chip being reordered", "duration": "—", "whatChanges": "Background moves to interactive/neutral/background/pressed, the same token a pressed state would use." },
+    { "state": "disabled", "trigger": "disabled set to true", "duration": "—", "whatChanges": "Background becomes interactive/neutral/background/disabled, the label drops to the disabled foreground, and the border is removed." }
+  ],
+
+  "behavior": [
+    { "type": "Motion", "description": "Figma stores no timing and no transition is authored. Turning a filter on is a flat swap of fill, text colour and the presence of the check mark." },
+    { "type": "Turning on", "description": "active is what switches the filter. It replaces the neutral palette with interactive/inverse and inserts a leading check mark, which also changes the chip's vertical padding and its gap." },
+    { "type": "Coverage", "description": "Sixteen of the forty possible combinations are built. active=true exists only with State=default and State=focus, so hovering or dragging an active chip is not drawn." }
+  ],
+
+  "content": [
+    { "property": "Label", "type": "text property", "description": "Plain text set per instance, defaulting to Label. The only text the chip takes." },
+    { "property": "Selected Icon", "type": "nested Icon, present when active is true", "description": "An Icon at Size=small swapped to Check Mark, inserted before the label. It is not a slot and carries no property of its own on the chip." },
+    { "property": "Trailing content", "type": "not provided", "description": "There is no trailing slot. A filter chip cannot carry a count or a remove control without detaching." }
+  ],
+
+  "usage": {
+    "do": [
+      "Use active to turn a filter on. It is the only value that both recolours the chip and shows the check mark.",
+      "Keep filter chips in a group where more than one can be on. A single chip that toggles is usually a switch or a checkbox."
+    ],
+    "dont": [
+      "Don't mix State=selected with active in one row. They are two different ways to look chosen and they do not match.",
+      "Don't rely on the colour flip alone for the on state. The check mark is what carries it."
+    ]
+  },
+
+  "accessibility": [
+    "An active chip carries a check mark as well as the inverse palette, which is what keeps the on state readable without colour. Do not remove it.",
+    "State=selected shows a chosen chip through colour alone with no check mark, so it fails that test. Prefer active.",
+    "Focus is the only state with a visible outline and it is drawn outside the chip, so check it is not clipped by a scrolling filter row.",
+    "Each chip is an on and off control. Expose a pressed or checked state, not just a label.",
+    "The label uses indicator/medium at 12px over a 14px line. Check it against the inverse palette as well as the neutral one."
+  ],
+
+  "layoutTheming": [
+    { "property": "Size", "type": "Hug width, fixed height", "description": "32 tall across all sixteen variants. Width hugs the label, plus the check mark when active." },
+    { "property": "Padding", "type": "Per active", "description": "space/md left and right throughout. Vertically space/sm when active is false and space/xs when it is true, because the 16px check is taller than the label." },
+    { "property": "Gap", "type": "Per active", "description": "space/xs when active is false, space/sm when true." },
+    { "property": "Radius", "type": "Per Rounded", "description": "radius/pill when true and radius/none when false." },
+    { "property": "Fill", "type": "Per state", "description": "interactive/neutral/background at default, hover, focused, selected and disabled, with pressed reused for dragged. active=true overrides all of it with interactive/inverse/background/selected." },
+    { "property": "Border", "type": "Per state", "description": "1px inside interactive/neutral/border/default at rest. Focus swaps to 2px focus/outline drawn outside. active=true uses interactive/inverse/border/pressed. Disabled carries none." },
+    { "property": "Label", "type": "Theming", "description": "indicator/medium, IBM Plex Sans Medium 12 over a 14px line, in interactive/neutral/foreground/default, dropping to the disabled token and flipping to interactive/inverse/foreground/default when active." }
+  ],
+
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5122-2783",
+    "board": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5194-4509",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5126-3677",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5689-430",
+    "variants": {
+      "default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5126-3678",
+      "focus": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5126-3690",
+      "selected": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5161-4401",
+      "dragged": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5161-4412",
+      "disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5126-3686",
+      "active": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5161-4390",
+      "active focus": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5161-4380"
+    }
+  },
+
+  "issues": [
+    { "severity": "warn", "source": "api (selected vs active)", "detail": "Two ways to look chosen: State=selected (fill only, no check) and active=true (inverse palette plus check). The metadata itself says to prefer active. Recommend modelling only active (as a pressed/checked toggle) in code and leaving selected out until design resolves the overlap." },
+    { "severity": "warn", "source": "coverage", "detail": "active=true has no hover, dragged or disabled variant; disabled has no hover/focus. Code needs a decision for hovering an active chip (e.g. keep the active fill) and for an active chip that is disabled." },
+    { "severity": "warn", "source": "gaps", "detail": "Root height is a fixed 32px with no token, in all 16 variants. Input Chip binds its height to control/target-min; this one is raw. Hug the content in code (padding plus the 16px icon gives the same height when active) or add a control token." },
+    { "severity": "note", "source": "layout", "detail": "The 1px inside border is included in layout and the 2px outside focus border is not, so focused and disabled chips are 2px narrower (measured 56 → 54) and content shifts 1px horizontally. Height is fixed, so only width moves. In code keep borders out of layout." },
+    { "severity": "note", "source": "text", "detail": "The label uses cap-height leading trim (text box measured 8px tall against a 14px line). That is why padding space/sm plus the label lands inside 32px. Without trim, content is taller; the fixed height still holds." },
+    { "severity": "note", "source": "bindingDrift", "detail": "Stroke-weight bindings are absent in the two disabled variants only because the stroke is removed there (and strokeAlign is left at CENTER). Expected." },
+    { "severity": "note", "source": "content", "detail": "No trailing slot (no count, no remove) and no leading slot other than the fixed check mark." },
+    { "severity": "note", "source": "relation to other specs", "detail": "No duplicate among existing specs. Closest neighbours are Checkbox and Switch for a single on/off; the metadata routes single toggles there." }
+  ]
+}
