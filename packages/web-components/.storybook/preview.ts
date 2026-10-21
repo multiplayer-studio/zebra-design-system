@@ -74,6 +74,12 @@ const preview: Preview = {
   parameters: {
     controls: { expanded: true },
     options: { storySort: { order: ["Theming", "Components", "Icons"] } },
+    // Accessibility checks run when asked (Accessibility panel → Run test),
+    // not after every render. Automatic runs scan the whole <body> once per
+    // rendered story, so a docs page re-scans itself once per story — the
+    // Table, Navigation Rail and Select docs pinned a CPU core indefinitely —
+    // and every result is kept, growing the heap as you browse.
+    a11y: { manual: true },
   },
 };
 export default preview;

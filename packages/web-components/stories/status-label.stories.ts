@@ -6,7 +6,7 @@ const STATUSES = ["neutral", "info", "positive", "warning", "negative"] as const
 const title = (s: string) => s[0].toUpperCase() + s.slice(1);
 
 const meta: Meta = {
-  title: "Components/Status Label",
+  title: "Components/Badges/Status Label",
   component: "zds-status-label",
   tags: ["autodocs"],
   argTypes: {

@@ -205,9 +205,10 @@
 
 /* ---- speaking: the orb and the spoken words --------------------------- */
 /* The whole composer gives way to the orb, the reply as it is spoken, and
-   one stop control. --zds-orb-level (0–1) is written by MessageInput every
-   frame from the speech's loudness; registered so it can also be animated
-   when there is nothing to listen to. */
+   one stop control. --zds-orb-level (0–1) is written by MessageInput from
+   the speech's loudness, only when it moves. It is never animated itself:
+   animating a property the rings' calc()s read restyles and repaints the
+   orb every frame. */
 @property --zds-orb-level {
   syntax: "<number>";
   inherits: true;
@@ -224,36 +225,43 @@
 /* Outlines only: six rings stroked with the brand gradient pair. Each has
    its own shape (set in the markup), tilt and spin speed (from --ring), and
    swells by its own amount with the level, so loud speech pulls them apart
-   and quiet lets them settle into one sphere. A faint glow follows. */
+   and quiet lets them settle into one sphere. A faint glow follows.
+   Everything that moves is `rotate`, `scale` or `opacity` on an element, so
+   the compositor animates it; nothing here repaints per frame. */
 .zds-message-input__orb {
+  position: relative;
   display: block;
   inline-size: calc(1.75 * var(--control-lg));
   aspect-ratio: 1;
-  filter: drop-shadow(0 0 calc(var(--zds-orb-level) * var(--space-md)) var(--surface-gradient-start));
 }
-.zds-message-input__orb-svg {
-  display: block;
-  inline-size: 100%;
-  block-size: 100%;
-  overflow: visible;
+/* The glow: a soft halo band around the rings, in place of a drop-shadow
+   filter (a filter re-rasterises every frame the rings move). */
+.zds-message-input__orb::before {
+  content: "";
+  position: absolute;
+  inset: -6%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, transparent 62%, var(--surface-gradient-start) 82%, transparent);
+  opacity: calc(0.2 + var(--zds-orb-level) * 0.6);
+  scale: calc(0.94 + var(--zds-orb-level) * 0.12);
 }
 .zds-message-input__orb-stop-start { stop-color: var(--surface-gradient-start); }
 .zds-message-input__orb-stop-end { stop-color: var(--surface-gradient-end); }
 .zds-message-input__ring {
-  transform-box: view-box;
-  transform-origin: 50% 50%;
-  transform: rotate(calc(var(--ring) * 30deg));
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: visible;
+  /* Inner rings swell more, so they part when loud (relative to the resting
+     size drawn into each ellipse). */
+  scale: calc(1 + var(--zds-orb-level) * (0.12 + var(--ring) * 0.04) / (0.7 + var(--ring) * 0.05));
+  opacity: calc(0.45 + var(--zds-orb-level) * 0.55);
 }
 .zds-message-input__ring ellipse {
   fill: none;
-  /* SVG user units: the orb's 100-unit box; the line thickens a little when loud. */
-  stroke-width: calc(1.25 + var(--zds-orb-level));
+  stroke-width: 1.5;
   vector-effect: non-scaling-stroke;
-  opacity: calc(0.45 + var(--zds-orb-level) * 0.55);
-  transform-box: view-box;
-  transform-origin: 50% 50%;
-  /* Inner rings sit smaller and swell more, so they part when loud. */
-  transform: scale(calc(0.7 + var(--ring) * 0.05 + var(--zds-orb-level) * (0.12 + var(--ring) * 0.04)));
 }
 
 /* The reply, word by word: the spoken word at full strength, the ones
@@ -403,25 +411,32 @@
    own pace (alternate rings the other way); with no source it breathes.
    Words fade in as spoken and out as they recede. */
 @media (prefers-reduced-motion: no-preference) {
-  .zds-message-input__orb { transition: --zds-orb-level 90ms linear; }
-  .zds-message-input__orb:not([data-reactive]) { animation: zds-message-input-breathe 2.4s ease-in-out infinite; }
+  .zds-message-input__orb::before,
+  .zds-message-input__orb[data-reactive] .zds-message-input__ring { transition: scale 90ms linear, opacity 90ms linear; }
   .zds-message-input__ring { animation: zds-message-input-turn calc(9s + var(--ring) * 2.3s) linear infinite; }
   .zds-message-input__ring:nth-child(odd of .zds-message-input__ring) { animation-direction: reverse; }
+  /* No source: the rings breathe, each on its own period so they drift
+     apart and back together. */
+  .zds-message-input__orb:not([data-reactive]) { --zds-orb-level: 0.1; }
+  .zds-message-input__orb:not([data-reactive]) .zds-message-input__ring {
+    animation:
+      zds-message-input-turn calc(9s + var(--ring) * 2.3s) linear infinite,
+      zds-message-input-breathe calc(2.4s + var(--ring) * 0.35s) ease-in-out infinite;
+  }
+  .zds-message-input__orb:not([data-reactive]) .zds-message-input__ring:nth-child(odd of .zds-message-input__ring) { animation-direction: reverse, normal; }
   .zds-message-input__word { transition: opacity 250ms ease-out, color 250ms ease-out; }
 }
 /* Reduced motion: the rings hold still at their tilts and sizes; only their
    strength and the glow follow the voice. Words change without fading. */
 @media (prefers-reduced-motion: reduce) {
-  .zds-message-input__ring ellipse { transform: scale(0.88); }
   .zds-message-input__orb:not([data-reactive]) { --zds-orb-level: 0.4; }
 }
 @keyframes zds-message-input-turn {
-  from { transform: rotate(calc(var(--ring) * 30deg)); }
-  to { transform: rotate(calc(var(--ring) * 30deg + 1turn)); }
+  from { rotate: 0turn; }
+  to { rotate: 1turn; }
 }
 @keyframes zds-message-input-breathe {
-  0%, 100% { --zds-orb-level: 0.1; }
-  50% { --zds-orb-level: 0.55; }
+  50% { scale: 1.12; opacity: 0.8; }
 }
 @keyframes zds-message-input-spin { to { transform: rotate(1turn); } }
 /* The recording dot only fades: its size never changes. */

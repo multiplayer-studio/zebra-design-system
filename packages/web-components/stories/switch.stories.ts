@@ -4,7 +4,7 @@ import "../src/components/switch/switch.js";
 import { iconNames } from "@zebra-design-system/icons/names";
 
 const meta: Meta = {
-  title: "Components/Switch",
+  title: "Components/Form/Switch",
   component: "zds-switch",
   tags: ["autodocs"],
   argTypes: {

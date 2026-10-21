@@ -13,7 +13,7 @@ const Col = ({ cap, children }: { cap: string; children: React.ReactNode }) => (
 );
 
 const meta: Meta<NavigationRailItemProps> = {
-  title: "Components/NavigationRailItem",
+  title: "Components/Navigation Rail/Navigation Rail Item",
   component: NavigationRailItem,
   tags: ["autodocs"],
   args: { label: "Inbox", icon: "inbox", selected: false, disabled: false, expanded: false, showLabel: false, showIcon: true, badge: false, shape: "rounded" },

@@ -402,6 +402,7 @@
     },
     "_note": "Badge tokens belong to specs/notification-indicator. All 17 names resolve in tokens/base; both glyphs are in packages/icons/codepoints.json and not retired. animations/spring is not bound in Figma; it is named by owner decision for the caret's rotation and resolves in tokens/base/size. tokens/manifest.json now also lists extension collections (companion, target, condensed); the row binds names only and themes under them unchanged.",
     "motion": [
+      "animations/smooth",
       "animations/spring"
     ],
     "extensions": {
@@ -451,7 +452,8 @@
   "behavior": [
     {
       "type": "Motion",
-      "description": "Figma stores no timing and no transition is modelled. Every state change is colour or opacity only, with no movement, scale or elevation."
+      "description": "Figma stores no timing and no transition is modelled. Every state change is colour or opacity only, with no movement, scale or elevation.",
+      "inRail": "In the rail, rows open and close with their group (Collapsible Menu Item rows' height) and with the sub menu panel on animations/smooth (ease-in-out, 250ms), by owner decision; the caret turns on smooth there too, and on animations/spring outside the rail. Off under prefers-reduced-motion."
     },
     {
       "type": "Caret",
@@ -559,6 +561,21 @@
       "decision": "Motion that matches Switch uses the animations/spring token (--animations-spring).",
       "appliesTo": "the caret rotation",
       "figma": "Figma models no motion on this component."
+    },
+    {
+      "decision": "Every opening and closing in the rail uses animations/smooth (ease-in-out, 250ms), caret included.",
+      "appliesTo": "group rows opening and closing, the sub menu panel, and the caret turn inside the rail",
+      "figma": "Owner decision recorded in the Navigation Rail metadata; see specs/navigation-rail."
+    },
+    {
+      "decision": "A Collapsible Menu Item never widens the sub menu: it fills the width the panel's other content gives it (min 240px), its header and row labels truncate, and a truncated label shows in full in a tooltip after a 3s hover.",
+      "appliesTo": "Collapsible Menu Item (its header and nested Sub Menu Item rows)",
+      "figma": "Figma has no truncation or tooltip here. In code: contain: inline-size on the group; the tooltip opens only while the label is actually truncated, repeats the accessible name without adding a description (describe={false} / no-describe), and follows the rail's mode."
+    },
+    {
+      "decision": "Every Sub Menu Item shows its full label in a tooltip after a 3s hover while the label is truncated — inside a group, or capped by the rail's subMenuMaxWidth.",
+      "appliesTo": "Sub Menu Item (all rows) and the Collapsible Menu Item header",
+      "figma": "Figma has no tooltip here; code-only. Untruncated labels show none."
     }
   ],
   "visualReference": {

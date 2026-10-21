@@ -7,7 +7,7 @@ const t = (s: string) => s[0].toUpperCase() + s.slice(1);
 const Row = ({ children }: { children: React.ReactNode }) => <div style={{ display: "flex", flexWrap: "wrap", gap: 12, alignItems: "center" }}>{children}</div>;
 
 const meta: Meta<typeof StatusLabel> = {
-  title: "Components/Status Label", component: StatusLabel, tags: ["autodocs"],
+  title: "Components/Badges/Status Label", component: StatusLabel, tags: ["autodocs"],
   argTypes: { status: { control: "select", options: STATUSES }, leading: { control: "inline-radio", options: ["indicator", "icon", "none"] }, shape: { control: "inline-radio", options: ["rounded", "sharp"] } },
   args: { status: "info", leading: "indicator", shape: "rounded", children: "Ongoing" },
 };

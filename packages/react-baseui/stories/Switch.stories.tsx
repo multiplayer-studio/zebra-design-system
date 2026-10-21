@@ -4,7 +4,7 @@ import { Switch } from "../src/index.js";
 import { iconNames } from "@zebra-design-system/icons/names";
 
 const meta: Meta<typeof Switch> = {
-  title: "Components/Switch",
+  title: "Components/Form/Switch",
   component: Switch,
   tags: ["autodocs"],
   parameters: {

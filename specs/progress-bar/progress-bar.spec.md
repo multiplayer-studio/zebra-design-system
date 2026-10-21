@@ -18,9 +18,9 @@ Progress Bar and [Progress Circle](../progress-circle/progress-circle.spec.md) s
 | `showMoreDetails` | boolean | true, false | `false` | trailingSlot |
 | `trailing` | slot | any | empty | trailingSlot |
 
-**progress** — 0% to 100%: "The bar reports one value that grows from empty to full. Figma offers it as four fixed steps only because a variant cannot hold a number, so pick the nearest when laying out and let the implementation drive the real value. The steps are samples, not thresholds worth designing around." · Indeterminate: "Work is happening but its extent is unknown. The indicator becomes a short segment that a real implementation slides along the track, so it should never sit still in a shipped screen." · Buffering: "Work is happening and part of the span ahead is already secured, as when a stream loads in advance. It adds a third band between the indicator and the track, and is the only value that changes the bar's anatomy."
+**progress** — 0% to 100%: "The bar reports one value that grows from empty to full. Figma offers it as four fixed steps only because a variant cannot hold a number, so pick the nearest when laying out and let the implementation drive the real value. The steps are samples, not thresholds worth designing around." · Indeterminate: "Work is happening but its extent is unknown. The indicator becomes a short segment that a real implementation slides along the track, so it should never sit still in a shipped screen." · Buffering: "Code only: a band shows how much has preloaded; the indicator never runs past it. Determinate bars only, never indeterminate."
 
-In code: a numeric value with a max, a mode (determinate, indeterminate, buffering) and, for buffering, a buffer value.
+In code: a numeric value with a max, a mode (determinate, indeterminate, buffering) and, for buffering, a buffer value. **Owner decision:** the band (`buffer`) is what has preloaded and shows only when `buffering` is on, and never on an indeterminate bar; the value never runs past it.
 
 **shape** — rounded: "Softened ends on both the track and the fill, matching the system's rounded controls." · sharp: "Square ends, for a bar sitting flush against square surfaces. Beside rounded controls the two treatments read as different components."
 
@@ -91,7 +91,7 @@ None. The only nested instance is the hidden `Icon` default content of the trail
 |---|---|---|---|
 | Static | — | — | "The bar has no hover, pressed, focus or disabled states. It reports a value rather than accepting input, so the only thing that changes its appearance is the Progress value itself." |
 | Indeterminate | Progress set to Indeterminate | — | "The indicator becomes a short fixed-length segment rather than a measured fill. Figma draws it in one position, a real implementation moves it along the track." |
-| Buffering | Progress set to Buffering | — | "The same short indicator, plus a translucent band covering the buffered span between it and the end of the track." |
+| Buffering | Progress set to Buffering | — | "A band shows how much has preloaded; the indicator never runs past it. No band on an indeterminate bar; don't build Figma's moving segment over the band." |
 
 - **Motion** — "Figma stores no timing and the bar models no transition. Every Progress value is a static snapshot, so the fill growing, and the indeterminate segment travelling, both belong to the implementation."
 - **Indeterminate and Buffering** — "Both are drawn frozen in a single position. Shipping either as a still misrepresents them, because their whole meaning is that they are moving."

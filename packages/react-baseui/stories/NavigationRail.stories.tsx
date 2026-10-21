@@ -85,7 +85,7 @@ const Composed = (p: NavigationRailProps & { panel?: boolean; open?: boolean }) 
 type Args = NavigationRailProps & { panel?: boolean };
 
 const meta: Meta<Args> = {
-  title: "Components/NavigationRail",
+  title: "Components/Navigation Rail/Navigation Rail",
   component: NavigationRail,
   tags: ["autodocs"],
   args: { defaultExpanded: false, showLabels: false, showToggleItem: true, shape: "rounded", inverse: false, panel: true },
@@ -93,6 +93,8 @@ const meta: Meta<Args> = {
     expanded: { control: "boolean" },
     shape: { control: "inline-radio", options: ["rounded", "sharp"] },
     inverse: { control: "boolean" },
+    railMaxWidth: { control: "text", description: "Caps the wide rail. A CSS length, or a number in px." },
+    subMenuMaxWidth: { control: "text", description: "Caps the hugged sub menu. A CSS length, or a number in px." },
     showLabels: { control: "boolean" },
     showToggleItem: { control: "boolean" },
     panel: { control: "boolean", name: "sub menu (fills the subMenu slots)" },
@@ -123,6 +125,37 @@ export const Expanded: Story = {
       ))}
     </Row>
   ),
+};
+
+/**
+ * railMaxWidth / subMenuMaxWidth (code-only): caps on the wide rail and the
+ * hugged sub menu. Capped rows truncate; hover one for 3s for its full label.
+ */
+export const MaxWidths: Story = {
+  render: () => {
+    const longRow = (
+      <>
+        <SubMenu />
+        <SubMenuItem label="Quarterly inventory reconciliation reports" icon="folder" href="#quarterly" />
+      </>
+    );
+    return (
+      <Row>
+        {([
+          ["no caps", {}],
+          ["subMenuMaxWidth=220", { subMenuMaxWidth: 220 }],
+          ["expanded, railMaxWidth=160, subMenuMaxWidth=220", { defaultExpanded: true, railMaxWidth: 160, subMenuMaxWidth: 220 }],
+        ] as const).map(([cap, p]) => (
+          <div key={cap} style={{ display: "grid", gap: 8 }}>
+            <Cap>{cap}</Cap>
+            <Frame>
+              <Composed {...p} subMenu={longRow} />
+            </Frame>
+          </div>
+        ))}
+      </Row>
+    );
+  },
 };
 
 /**

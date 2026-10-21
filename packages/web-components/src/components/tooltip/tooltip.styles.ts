@@ -23,7 +23,7 @@ export default css`
   }
   /* Closed: hidden outright, so the host — the trigger's aria-describedby
      target — is itself the hidden node a description may read through. */
-  :host([data-anchored]:not([open])) {
+  :host([data-anchored]:not([open]):not([data-closing])) {
     display: none;
   }
 
@@ -134,5 +134,34 @@ export default css`
     --zds-tooltip-pointer-tip: var(--radius-none);
   }
 
-  /* Motion: none authored in Figma, and none added — it appears and goes. */
+  /* Motion (owner decision; none in Figma): fades in while sliding toward
+     the trigger, from the side away from the tip, and fades out, on
+     animations/smooth. The slide is the pointer's depth (--space-xs), read
+     off the side the positioner placed the bubble on ([data-side]). display
+     and overlay transition discretely, so the popover stays in the top layer
+     until the fade-out ends; the host holds [data-closing] for that long. */
+  .bubble[popover] {
+    transition:
+      opacity var(--animations-smooth),
+      translate var(--animations-smooth),
+      display var(--animations-smooth) allow-discrete,
+      overlay var(--animations-smooth) allow-discrete;
+  }
+  .bubble[popover]:not(:popover-open) {
+    opacity: 0;
+  }
+  @starting-style {
+    .bubble[popover]:popover-open {
+      opacity: 0;
+    }
+    .bubble[popover]:popover-open[data-side="top"] { translate: 0 calc(-1 * var(--space-xs)); }
+    .bubble[popover]:popover-open[data-side="bottom"] { translate: 0 var(--space-xs); }
+    .bubble[popover]:popover-open[data-side="left"] { translate: calc(-1 * var(--space-xs)) 0; }
+    .bubble[popover]:popover-open[data-side="right"] { translate: var(--space-xs) 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bubble[popover] {
+      transition: none;
+    }
+  }
 `;

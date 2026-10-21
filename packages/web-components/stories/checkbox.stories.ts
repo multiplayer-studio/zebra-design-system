@@ -5,7 +5,7 @@ import "../src/components/checkbox/checkbox.js";
 const SIZES = ["large", "medium"] as const;
 
 const meta: Meta = {
-  title: "Components/Checkbox",
+  title: "Components/Form/Checkbox",
   component: "zds-checkbox",
   tags: ["autodocs"],
   parameters: {

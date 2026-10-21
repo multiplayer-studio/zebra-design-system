@@ -7,7 +7,7 @@ const Row = ({ children }: { children: React.ReactNode }) => <div style={{ displ
 const Cap = ({ children }: { children: React.ReactNode }) => <div style={{ font: "500 12px/1.4 system-ui", opacity: 0.7 }}>{children}</div>;
 
 const meta: Meta<typeof FilterChip> = {
-  title: "Components/Filter Chip", component: FilterChip, tags: ["autodocs"],
+  title: "Components/Chips/Filter Chip", component: FilterChip, tags: ["autodocs"],
   argTypes: { shape: { control: "inline-radio", options: ["rounded", "sharp"] }, onActiveChange: { action: "activeChange" } },
   args: { children: "In stock", active: false, disabled: false, shape: "rounded" },
 };

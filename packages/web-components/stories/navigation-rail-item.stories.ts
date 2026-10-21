@@ -13,7 +13,7 @@ const w = (e: boolean, c: unknown) => html`<div style="width:${e ? "176px" : "au
 type Args = { label: string; icon: string; selected: boolean; disabled: boolean; expanded: boolean; showLabel: boolean; showIcon: boolean; badge: boolean; shape: "rounded" | "sharp" };
 
 const meta: Meta<Args> = {
-  title: "Components/NavigationRailItem",
+  title: "Components/Navigation Rail/Navigation Rail Item",
   component: "zds-navigation-rail-item",
   tags: ["autodocs"],
   args: { label: "Inbox", icon: "inbox", selected: false, disabled: false, expanded: false, showLabel: false, showIcon: true, badge: false, shape: "rounded" },

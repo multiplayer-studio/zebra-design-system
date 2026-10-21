@@ -18,7 +18,7 @@ const fileItems = () => [
 ];
 
 const meta: Meta<typeof ButtonGroup> = {
-  title: "Components/Button Group",
+  title: "Components/Buttons/Button Group",
   component: ButtonGroup,
   tags: ["autodocs"],
   parameters: { docs: { description: { component: "A row of peer actions on one bordered surface. Items are Button / IconButton; the group sets their size, pins them to subtle and draws a divider between every pair. Spec: specs/button-group." } } },

@@ -21,7 +21,7 @@ const CHANNELS: SelectOption[] = [
 ];
 
 const meta: Meta<typeof Select> = {
-  title: "Components/Select",
+  title: "Components/Form/Select",
   component: Select,
   tags: ["autodocs"],
   parameters: {

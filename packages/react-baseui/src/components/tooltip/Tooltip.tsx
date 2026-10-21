@@ -44,6 +44,14 @@ export interface TooltipProps {
   /** Milliseconds before it closes after the pointer leaves. */
   closeDelay?: number;
   /**
+   * Wire the bubble up as the trigger's description (`aria-describedby`).
+   * Default true. Set false when the bubble only repeats the trigger's own
+   * accessible name — a truncated label shown in full — so a screen reader
+   * does not hear it twice. Off, the bubble is also not kept mounted while
+   * closed (nothing needs it there).
+   */
+  describe?: boolean;
+  /**
    * Where `Tooltip.Portal` mounts the bubble. Defaults to `document.body`,
    * which escapes an `.ext-*` / `.mode-*` class scoped below `<body>` (the
    * same gap Dropdown documents) — pass the themed root when the app scopes
@@ -93,6 +101,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(function T
     onOpenChange,
     delay = 600,
     closeDelay = 0,
+    describe = true,
     portalContainer,
     className,
   },
@@ -125,8 +134,8 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(function T
       defaultOpen={defaultOpen}
       onOpenChange={onOpenChange ? (next) => onOpenChange(next) : undefined}
     >
-      <BaseTooltip.Trigger render={trigger} delay={delay} closeDelay={closeDelay} aria-describedby={id} />
-      <BaseTooltip.Portal container={portalContainer} keepMounted>
+      <BaseTooltip.Trigger render={trigger} delay={delay} closeDelay={closeDelay} aria-describedby={describe ? id : undefined} />
+      <BaseTooltip.Portal container={portalContainer} keepMounted={describe}>
         <BaseTooltip.Positioner ref={positionerRef} className="zds-tooltip__positioner" side={side} sideOffset={sideOffset}>
           <BaseTooltip.Popup
             ref={ref}

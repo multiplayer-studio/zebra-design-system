@@ -13,7 +13,7 @@ const col = (t: string, c: unknown) => html`<div style="display:grid;gap:4px">${
 type Args = { label: string; icon: string; showLeadingIcon: boolean; selected: boolean; disabled: boolean; nested: boolean; badge: string; subMenu: boolean; open: boolean; shape: "rounded" | "sharp" };
 
 const meta: Meta<Args> = {
-  title: "Components/SubMenuItem",
+  title: "Components/Navigation Rail/Sub Menu Item",
   component: "zds-sub-menu-item",
   tags: ["autodocs"],
   args: { label: "Analytics", icon: "analytics", showLeadingIcon: true, selected: false, disabled: false, nested: false, badge: "", subMenu: false, open: false, shape: "rounded" },

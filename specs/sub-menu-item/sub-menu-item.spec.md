@@ -90,7 +90,7 @@ The rail's Sub Menu Slot and Collapsible Menu Item use this item.
 - **Dimension:** `control/lg`, `space/{none, xs, sm, md, xl}`, `radius/sm`.
 - **Typography:** `label/medium`, `indicator/medium` (nested).
 - **Glyphs:** `verified`, `chevron-right`.
-- **Motion (owner decision, not bound in Figma):** `animations/spring`, for the caret rotation.
+- **Motion (owner decision, not bound in Figma):** `animations/smooth` inside the Navigation Rail (rows opening and closing, the caret turn); `animations/spring` for the caret rotation elsewhere.
 - **Theme axes:** palette (Light, Dark); size and typography (Desktop, Mobile, Tablet, Desktop Compact).
 - **Extensions** (tokens/manifest.json, new since the last extraction): companion (palette), target (primitives, palette), condensed (typography, size). Names only are bound here, so they theme unchanged.
 
@@ -108,6 +108,7 @@ All 17 names resolve in `tokens/`, and both glyphs are in the font.
 | focus | Not modelled | — | "There is no focus variant. Keyboard focus has to be rendered by the implementation." |
 
 - **Motion**: "Figma stores no timing and no transition is modelled. Every state change is colour or opacity only, with no movement, scale or elevation."
+  - **In the rail (owner decision):** rows open and close with their group (Collapsible Menu Item rows' height) and with the sub menu panel on `animations/smooth` (ease-in-out, 250ms), by owner decision; the caret turns on smooth there too, and on `animations/spring` outside the rail. Off under prefers-reduced-motion.
 - **Caret**: "The caret has its own open and closed states, but this component does not drive them. Whatever expands the row is responsible for turning the caret with it."
 - **Badge**: "The badge sits inside the row's layout rather than floating over it, so turning it on takes width away from the label."
 
@@ -153,8 +154,11 @@ All 17 names resolve in `tokens/`, and both glyphs are in the font.
 
 ## Owner decisions
 
+- **Every row shows its full label in a tooltip after a 3s hover while it is truncated**, inside a group or capped by the rail's `subMenuMaxWidth`. Code-only; an untruncated label shows none.
+- **A Collapsible Menu Item never widens the sub menu.** It fills the width the panel's other content gives it (min 240px); its header and row labels truncate, and a truncated label shows in full in a tooltip after a 3s hover. Figma has no truncation or tooltip here. The tooltip opens only while the label is truncated, repeats the accessible name without adding a description, and follows the rail's mode.
 - Carets and chevrons rotate one glyph with animation rather than swapping glyphs. Figma still swaps.
-- Motion that matches Switch uses the `animations/spring` token (`--animations-spring`). It applies to the caret rotation.
+- Motion that matches Switch uses the `animations/spring` token (`--animations-spring`). It applies to the caret rotation outside the rail.
+- Every opening and closing in the rail uses `animations/smooth` (ease-in-out, 250ms), caret included.
 
 ## Duplicate check: orphaned Sub Menu Item (3404:28070)
 

@@ -9,7 +9,7 @@ const Cap = ({ children }: { children: React.ReactNode }) => <div style={{ font:
 const noop = () => {};
 
 const meta: Meta<typeof InputChip> = {
-  title: "Components/Input Chip", component: InputChip, tags: ["autodocs"],
+  title: "Components/Chips/Input Chip", component: InputChip, tags: ["autodocs"],
   argTypes: { shape: { control: "inline-radio", options: ["rounded", "sharp"] }, onRemove: { action: "remove" } },
   args: { children: "Ada Alden", showAvatar: true, avatarSrc: PHOTO, disabled: false, shape: "rounded", removable: true },
 };

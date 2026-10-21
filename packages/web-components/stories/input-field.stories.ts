@@ -10,7 +10,7 @@ const PLACEHOLDER = { text: "Placeholder", number: "0", password: "Password", da
 const VALUE = { text: "Value", number: "3", password: "secret12", date: "2026-10-14", time: "09:30" } as const;
 
 const meta: Meta = {
-  title: "Components/Input Field",
+  title: "Components/Form/Input Field",
   component: "zds-input-field",
   tags: ["autodocs"],
   parameters: { docs: { description: { component: "The field alone. Use `<zds-input>` when it needs a label or hint. Hover, focus, selected and typing come from interaction; invalid, read-only and disabled from properties." } } },

@@ -6,6 +6,14 @@ import { NavigationRailItem } from "../navigation-rail-item/NavigationRailItem.j
 import { NavigationRailContext, type NavigationRailModeClass, type NavigationRailShape } from "./context.js";
 import "./navigation-rail.css";
 
+/** The first duration in an element's computed `transition-duration`, in ms (0 under reduced motion or before the rail is ready). */
+function motionMs(el: Element | null): number {
+  if (!el) return 0;
+  const d = getComputedStyle(el).transitionDuration.split(",")[0]?.trim() ?? "0s";
+  const n = parseFloat(d);
+  return Number.isFinite(n) ? (d.endsWith("ms") ? n : n * 1000) : 0;
+}
+
 export interface NavigationRailProps
   extends Omit<React.HTMLAttributes<HTMLElement>, "className" | "children"> {
   /** The wide rail (labels beside glyphs) — controlled. */
@@ -45,6 +53,18 @@ export interface NavigationRailProps
    * an `.ext-*` brand on an ancestor still applies. Code-only (owner decision).
    */
   inverse?: boolean;
+  /**
+   * Caps the wide rail's width (Figma's 200px); the narrow icon rail is
+   * unaffected. A CSS length, or a number in px. Wide labels truncate.
+   */
+  railMaxWidth?: number | string;
+  /**
+   * Caps the sub menu panel's width. The panel still hugs its list, up to
+   * this width; longer rows truncate (full label in a tooltip after a 3s
+   * hover). A cap below 240px also lowers the 240px minimum. A CSS length,
+   * or a number in px.
+   */
+  subMenuMaxWidth?: number | string;
   /** Accessible name of the `<nav>` landmark. */
   navLabel?: string;
   /** Top of the rail: normally a NavigationHeader (it follows `expanded`). */
@@ -72,6 +92,10 @@ export interface NavigationRailProps
   subMenu?: React.ReactNode;
   className?: string;
 }
+
+/** A width prop as CSS: a bare number (`180` or "180") is px, any other string passes through. */
+const cssLength = (v: number | string | undefined) =>
+  v === undefined || v === "" ? undefined : /^\d+(\.\d+)?$/.test(String(v)) ? `${v}px` : String(v);
 
 /**
  * A vertical navigation column for the edge of a desktop view: a narrow icon
@@ -114,6 +138,8 @@ export const NavigationRail = React.forwardRef<HTMLElement, NavigationRailProps>
     collapseLabel = "Close",
     shape = "rounded",
     inverse = false,
+    railMaxWidth,
+    subMenuMaxWidth,
     navLabel = "Main",
     header,
     actionLabel,
@@ -123,6 +149,7 @@ export const NavigationRail = React.forwardRef<HTMLElement, NavigationRailProps>
     subMenuHeader,
     subMenu,
     className,
+    style,
     children,
     ...rest
   },
@@ -130,13 +157,45 @@ export const NavigationRail = React.forwardRef<HTMLElement, NavigationRailProps>
 ) {
   const [innerExpanded, setInnerExpanded] = React.useState(defaultExpanded);
   const expanded = expandedProp ?? innerExpanded;
+  const railRef = React.useRef<HTMLDivElement>(null);
+
+  // Motion (owner decision: animations/smooth). The rail's width animates on
+  // [data-expanded]; its content keeps the wide layout until a collapse has
+  // finished (`wide`), laid out at its final width and clipped by the
+  // narrowing rail, so labels never reflow or wrap mid-animation. Expanding
+  // switches the content at once and the widening rail reveals it. With no
+  // transition (reduced motion, first render) the switch is immediate.
+  const [wideLatch, setWideLatch] = React.useState(expanded);
+  React.useEffect(() => {
+    if (expanded) {
+      setWideLatch(true);
+      return;
+    }
+    const ms = motionMs(railRef.current);
+    if (!ms) {
+      setWideLatch(false);
+      return;
+    }
+    const t = setTimeout(() => setWideLatch(false), ms);
+    return () => clearTimeout(t);
+  }, [expanded]);
+  const wide = expanded || wideLatch;
+
+  // Transitions only after the first paint, so nothing animates on mount.
+  const [ready, setReady] = React.useState(false);
+  React.useEffect(() => {
+    const id = requestAnimationFrame(() => setReady(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
   // Locked colour mode (owner decision): the class is the token layer's own,
   // so the rail's subtree re-resolves every semantic token in that mode, and
   // an .ext-* ancestor still applies (.ext-companion .mode-dark …). Only the
   // root sets it — no part inside pins a mode of its own, so light and dark
   // rules never meet.
   const modeClass: NavigationRailModeClass = inverse ? "mode-light" : "mode-dark";
-  const ctx = React.useMemo(() => ({ expanded, showLabels, shape, modeClass }), [expanded, showLabels, shape, modeClass]);
+  // Items take the content form (`wide`), not the target, so they hold the
+  // wide layout through a collapse.
+  const ctx = React.useMemo(() => ({ expanded: wide, showLabels, shape, modeClass }), [wide, showLabels, shape, modeClass]);
   const hasPanel = subMenu != null || subMenuHeader != null;
   const toggle = () => {
     if (expandedProp === undefined) setInnerExpanded(!expanded);
@@ -150,12 +209,20 @@ export const NavigationRail = React.forwardRef<HTMLElement, NavigationRailProps>
       {...rest}
       className={["zds-navigation-rail", modeClass, className].filter(Boolean).join(" ")}
       data-expanded={expanded ? "" : undefined}
+      data-wide={wide ? "" : undefined}
+      data-ready={ready ? "" : undefined}
       data-show-labels={showLabels ? "" : undefined}
       data-shape={shape}
       data-inverse={inverse ? "" : undefined}
+      style={{
+        ...style,
+        // Unset, the variables stay undeclared and the CSS falls back to no cap.
+        "--zds-navigation-rail-max-width": cssLength(railMaxWidth),
+        "--zds-navigation-rail-sub-menu-max-width": cssLength(subMenuMaxWidth),
+      } as React.CSSProperties}
     >
       <NavigationRailContext.Provider value={ctx}>
-        <div className="zds-navigation-rail__rail">
+        <div ref={railRef} className="zds-navigation-rail__rail">
           {header != null || actionLabel ? (
             <div className="zds-navigation-rail__header">
               {header}
@@ -163,7 +230,7 @@ export const NavigationRail = React.forwardRef<HTMLElement, NavigationRailProps>
                 // Size=large, Flavour=primary in both forms (spec). Figma pins
                 // Shape=rounded; the rail's shape now sets it (owner decision:
                 // every nested component follows the rail).
-                expanded ? (
+                wide ? (
                   <Button className="zds-navigation-rail__action" size="large" shape={shape} flavour="primary" leadingIcon={actionIcon} onClick={onAction}>
                     {actionLabel}
                   </Button>
@@ -189,12 +256,12 @@ export const NavigationRail = React.forwardRef<HTMLElement, NavigationRailProps>
             </div>
           ) : null}
         </div>
-        {hasPanel ? (
-          <div className="zds-navigation-rail__panel">
-            {subMenuHeader}
-            {subMenu != null ? <div className="zds-navigation-rail__sub-menu">{subMenu}</div> : null}
-          </div>
-        ) : null}
+        {/* Always rendered so it can animate open and closed (width, on
+            [data-open]); closed it is zero-width and visibility: hidden. */}
+        <div className="zds-navigation-rail__panel" data-open={hasPanel ? "" : undefined}>
+          {subMenuHeader}
+          {subMenu != null ? <div className="zds-navigation-rail__sub-menu">{subMenu}</div> : null}
+        </div>
       </NavigationRailContext.Provider>
     </nav>
   );

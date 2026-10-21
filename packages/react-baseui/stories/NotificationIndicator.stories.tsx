@@ -5,7 +5,7 @@ import { NotificationIndicator } from "../src/index.js";
 const SIZES = ["small", "medium", "large"] as const;
 
 const meta: Meta<typeof NotificationIndicator> = {
-  title: "Components/Notification Indicator",
+  title: "Components/Badges/Notification Indicator",
   component: NotificationIndicator,
   tags: ["autodocs"],
   parameters: {

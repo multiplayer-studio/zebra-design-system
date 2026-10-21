@@ -5,7 +5,7 @@ import "../src/components/priority-pill/priority-pill.js";
 const LEVELS = ["low", "medium", "high", "urgent"] as const;
 
 const meta: Meta = {
-  title: "Components/Priority Pill",
+  title: "Components/Badges/Priority Pill",
   component: "zds-priority-pill",
   tags: ["autodocs"],
   argTypes: {

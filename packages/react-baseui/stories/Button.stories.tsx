@@ -8,7 +8,7 @@ const SIZES = ["small","medium","large"] as const;
 const SHAPES = ["sharp","rounded","full"] as const;
 
 const meta: Meta<typeof Button> = {
-  title: "Components/Button",
+  title: "Components/Buttons/Button",
   component: Button,
   tags: ["autodocs"],
   parameters: {

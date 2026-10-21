@@ -5,7 +5,7 @@ import { Slider } from "../src/index.js";
 const SHAPES = ["rounded", "sharp"] as const;
 
 const meta: Meta<typeof Slider> = {
-  title: "Components/Slider",
+  title: "Components/Form/Slider",
   component: Slider,
   tags: ["autodocs"],
   parameters: {

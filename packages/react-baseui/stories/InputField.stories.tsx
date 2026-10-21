@@ -11,7 +11,7 @@ const VALUE: Record<string, string> = { text: "Value", number: "3", password: "s
 const leading = (t: string) => (t === "text" || t === "number" || t === "password" ? "email" : null);
 
 const meta: Meta<typeof InputField> = {
-  title: "Components/Input Field",
+  title: "Components/Form/Input Field",
   component: InputField,
   tags: ["autodocs"],
   parameters: { docs: { description: { component: "The field alone. Use Input when it needs a label or hint. Hover, focus, selected and typing come from interaction; invalid, readOnly and disabled from props." } } },

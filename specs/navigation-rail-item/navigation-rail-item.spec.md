@@ -106,6 +106,7 @@ All 14 names resolve in `tokens/`, and `star` is in the font. The badge's own to
 | focus | Not modelled | — | "There is no focus variant. Keyboard focus has to be rendered by the implementation." |
 
 - **Motion**: "Figma stores no timing and no transition is modelled. Every state change is colour or opacity only, with no movement, scale or elevation."
+  - **In the rail (owner decision):** the wide form's label reveal and leave (rail collapse / expand) uses `animations/smooth` (ease-in-out, 250ms) by owner decision: the item is laid out at its final form and the rail's moving edge clips it, so the label never reflows or wraps mid-animation. Off under prefers-reduced-motion. The item itself still animates nothing.
 - **Badge**: "The badge is positioned absolutely over the glyph and sits outside the layout, so showing or hiding it never reflows the item or the rail."
 - **Form change**: "Switching Expanded changes the layout direction, the padding and the text style all at once. It is a different shape rather than a resize, so it is set by the rail rather than animated."
 

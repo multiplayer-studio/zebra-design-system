@@ -8,7 +8,7 @@ const SIZES = ["small", "medium", "large"] as const;
 const FLAVOURS = ["default", "gradient", "ghost"] as const;
 
 const meta: Meta = {
-  title: "Components/Search",
+  title: "Components/Form/Search",
   component: "zds-search",
   tags: ["autodocs"],
   argTypes: {

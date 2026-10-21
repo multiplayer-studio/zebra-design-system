@@ -14,7 +14,7 @@ const Col = ({ cap, children }: { cap: string; children: React.ReactNode }) => (
 );
 
 const meta: Meta<SubMenuItemProps> = {
-  title: "Components/SubMenuItem",
+  title: "Components/Navigation Rail/Sub Menu Item",
   component: SubMenuItem,
   tags: ["autodocs"],
   args: { label: "Analytics", icon: "analytics", showLeadingIcon: true, selected: false, disabled: false, nested: false, badge: null, subMenu: false, open: false, shape: "rounded" },

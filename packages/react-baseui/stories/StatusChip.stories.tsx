@@ -7,7 +7,7 @@ const Row = ({ children }: { children: React.ReactNode }) => <div style={{ displ
 const Cap = ({ children }: { children: React.ReactNode }) => <div style={{ font: "500 12px/1.4 system-ui", opacity: 0.7 }}>{children}</div>;
 
 const meta: Meta<typeof StatusChip> = {
-  title: "Components/Status Chip", component: StatusChip, tags: ["autodocs"],
+  title: "Components/Chips/Status Chip", component: StatusChip, tags: ["autodocs"],
   argTypes: { status: { control: "select", options: STATUSES.map(([s]) => s) }, shape: { control: "inline-radio", options: ["rounded", "sharp"] } },
   args: { children: "Shipped", status: "success", shape: "rounded" },
 };

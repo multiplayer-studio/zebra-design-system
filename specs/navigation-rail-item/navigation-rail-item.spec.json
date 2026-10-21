@@ -392,7 +392,10 @@
       "companion": "palette (6 overrides)",
       "target": "primitives (10), palette (17)",
       "condensed": "typography (34), size (29)"
-    }
+    },
+    "motion": [
+      "animations/smooth"
+    ]
   },
   "states": [
     {
@@ -435,7 +438,8 @@
   "behavior": [
     {
       "type": "Motion",
-      "description": "Figma stores no timing and no transition is modelled. Every state change is colour or opacity only, with no movement, scale or elevation."
+      "description": "Figma stores no timing and no transition is modelled. Every state change is colour or opacity only, with no movement, scale or elevation.",
+      "inRail": "In the rail, the wide form's label reveal and leave (rail collapse / expand) uses animations/smooth (ease-in-out, 250ms) by owner decision: the item is laid out at its final form and the rail's moving edge clips it, so the label never reflows or wraps mid-animation. Off under prefers-reduced-motion. The item itself still animates nothing."
     },
     {
       "type": "Badge",
@@ -673,6 +677,13 @@
       "severity": "note",
       "source": "coverage",
       "detail": "No focus state and no motion modelled; the set has no component description."
+    }
+  ],
+  "ownerDecisions": [
+    {
+      "decision": "Every opening and closing in the rail uses animations/smooth (ease-in-out, 250ms), caret included.",
+      "appliesTo": "the label reveal and leave when the rail collapses or expands",
+      "figma": "Owner decision recorded in the Navigation Rail metadata; see specs/navigation-rail."
     }
   ]
 }

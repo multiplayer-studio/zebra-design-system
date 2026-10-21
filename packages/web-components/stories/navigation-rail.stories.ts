@@ -49,14 +49,19 @@ const subMenu = (open = true, shape = "rounded") => html`
   <zds-sub-menu-item slot="sub-menu" label="Files" icon="folder" href="#files"></zds-sub-menu-item>`;
 
 type Shape = "rounded" | "sharp";
-type Opts = { expanded?: boolean; showLabels?: boolean; showToggleItem?: boolean; shape?: Shape; inverse?: boolean; panel?: boolean; open?: boolean };
-const composed = ({ expanded = false, showLabels = false, showToggleItem = true, shape = "rounded", inverse = false, panel = true, open = true }: Opts = {}) => html`
-  <zds-navigation-rail ?expanded=${expanded} ?show-labels=${showLabels} .showToggleItem=${showToggleItem} shape=${shape} ?inverse=${inverse} action-label="Create">
+type Opts = {
+  expanded?: boolean; showLabels?: boolean; showToggleItem?: boolean; shape?: Shape; inverse?: boolean; panel?: boolean; open?: boolean;
+  railMaxWidth?: string; subMenuMaxWidth?: string; longRow?: boolean;
+};
+const composed = ({ expanded = false, showLabels = false, showToggleItem = true, shape = "rounded", inverse = false, panel = true, open = true, railMaxWidth, subMenuMaxWidth, longRow = false }: Opts = {}) => html`
+  <zds-navigation-rail ?expanded=${expanded} ?show-labels=${showLabels} .showToggleItem=${showToggleItem} shape=${shape} ?inverse=${inverse} action-label="Create"
+    rail-max-width=${railMaxWidth || nothing} sub-menu-max-width=${subMenuMaxWidth || nothing}>
     ${header()} ${menu} ${footer} ${panel ? subMenu(open, shape) : nothing}
+    ${panel && longRow ? html`<zds-sub-menu-item slot="sub-menu" label="Quarterly inventory reconciliation reports" icon="folder" href="#quarterly"></zds-sub-menu-item>` : nothing}
   </zds-navigation-rail>`;
 
 const meta: Meta<Opts> = {
-  title: "Components/NavigationRail",
+  title: "Components/Navigation Rail/Navigation Rail",
   component: "zds-navigation-rail",
   tags: ["autodocs"],
   args: { expanded: false, showLabels: false, showToggleItem: true, shape: "rounded", inverse: false, panel: true },
@@ -64,6 +69,8 @@ const meta: Meta<Opts> = {
     expanded: { control: "boolean" },
     shape: { control: "inline-radio", options: ["rounded", "sharp"] },
     inverse: { control: "boolean" },
+    railMaxWidth: { control: "text", name: "rail-max-width", description: "Caps the wide rail. A CSS length, or a number in px." },
+    subMenuMaxWidth: { control: "text", name: "sub-menu-max-width", description: "Caps the hugged sub menu. A CSS length, or a number in px." },
     showLabels: { control: "boolean" },
     showToggleItem: { control: "boolean" },
     panel: { control: "boolean", name: "sub menu (fills the sub-menu slots)" },
@@ -77,6 +84,22 @@ export const Playground: Story = { render: (a) => frame(composed(a)) };
 /** expanded: the narrow icon rail vs the wide labelled one. The toggle item switches between them. */
 export const Expanded: Story = {
   render: () => row([false, true].map((e) => col(`expanded=${e}`, frame(composed({ expanded: e }))))),
+};
+
+/**
+ * rail-max-width / sub-menu-max-width (code-only): caps on the wide rail and
+ * the hugged sub menu. Capped rows truncate; hover one for 3s for its full
+ * label.
+ */
+export const MaxWidths: Story = {
+  render: () =>
+    row(
+      ([
+        ["no caps", {}],
+        ["sub-menu-max-width=220", { subMenuMaxWidth: "220" }],
+        ["expanded, rail-max-width=160, sub-menu-max-width=220", { expanded: true, railMaxWidth: "160", subMenuMaxWidth: "220" }],
+      ] as const).map(([cap, o]) => col(cap, frame(composed({ ...o, longRow: true })))),
+    ),
 };
 
 /**

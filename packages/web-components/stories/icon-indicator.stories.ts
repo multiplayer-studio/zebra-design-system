@@ -3,7 +3,7 @@ import { html, nothing } from "lit";
 import "../src/components/icon-indicator/icon-indicator.js";
 
 const meta: Meta = {
-  title: "Components/Icon Indicator",
+  title: "Components/Badges/Icon Indicator",
   component: "zds-icon-indicator",
   tags: ["autodocs"],
   parameters: { docs: { description: { component: "Clock on foreground/secondary by default (spec). The host can set icon, fill and foreground (owner decision)." } } },

@@ -7,7 +7,7 @@ const stack = (c: unknown) => html`<div style="display:grid;gap:16px;justify-ite
 const cap = (t: string) => html`<div style="font:500 12px/1.4 system-ui;opacity:.7">${t}</div>`;
 
 const meta: Meta = {
-  title: "Components/Stepper Input",
+  title: "Components/Form/Stepper Input",
   component: "zds-stepper-input",
   tags: ["autodocs"],
   argTypes: {

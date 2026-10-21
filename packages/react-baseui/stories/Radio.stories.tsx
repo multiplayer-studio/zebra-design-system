@@ -5,7 +5,7 @@ import { Radio, RadioGroup } from "../src/index.js";
 const SIZES = ["large", "medium"] as const;
 
 const meta: Meta<typeof Radio> = {
-  title: "Components/Radio",
+  title: "Components/Form/Radio",
   component: Radio,
   tags: ["autodocs"],
   parameters: {

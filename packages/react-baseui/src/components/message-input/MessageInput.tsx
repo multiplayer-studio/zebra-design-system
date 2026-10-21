@@ -165,20 +165,27 @@ function listenTo(source: HTMLMediaElement | MediaStream, onLevel: (level: numbe
   analyser.fftSize = 512;
   node.connect(analyser);
   const data = new Uint8Array(analyser.fftSize);
-  let smoothed = 0, raf = 0;
+  let smoothed = 0, sent = -1, raf = 0;
   const tick = () => {
+    raf = 0;
+    // A paused media element has nothing to measure: stop until it plays.
+    if (!(source instanceof MediaStream) && source.paused) { smoothed = 0; if (sent !== 0) onLevel((sent = 0)); return; }
     analyser.getByteTimeDomainData(data);
     let sum = 0;
     for (const v of data) { const x = (v - 128) / 128; sum += x * x; }
     const rms = Math.min(1, Math.sqrt(sum / data.length) * 4);
     // Rise fast, fall slowly, so the orb swells on a syllable and eases back.
     smoothed = rms > smoothed ? smoothed + (rms - smoothed) * 0.6 : smoothed + (rms - smoothed) * 0.12;
-    onLevel(smoothed);
+    // Only write when the level visibly moves, so silence restyles nothing.
+    if (Math.abs(smoothed - sent) > 0.004) onLevel((sent = smoothed));
     raf = requestAnimationFrame(tick);
   };
+  const resume = () => { if (!raf) tick(); };
+  if (!(source instanceof MediaStream)) source.addEventListener("play", resume);
   tick();
   return () => {
     cancelAnimationFrame(raf);
+    if (!(source instanceof MediaStream)) source.removeEventListener("play", resume);
     try { node.disconnect(analyser); } catch { /* already gone */ }
     if (source instanceof MediaStream) node.disconnect();
     onLevel(0);
@@ -189,6 +196,10 @@ function listenTo(source: HTMLMediaElement | MediaStream, onLevel: (level: numbe
  * The speaking orb: outlined rings in the brand gradient, no fill. Each ring
  * has its own shape, tilt and slow spin (CSS, keyed off --ring), and swells
  * by its own amount with --zds-orb-level, so louder speech pulls them apart.
+ *
+ * Each ring is its own <svg>, with its tilt and resting size drawn into the
+ * ellipse, so the spin and the swell are CSS `rotate` / `scale` on an element
+ * the compositor can move: an idle orb costs no paint per frame.
  */
 const RINGS = [
   { rx: 44, ry: 44 }, { rx: 46, ry: 30 }, { rx: 30, ry: 46 },
@@ -198,19 +209,19 @@ const Orb = React.forwardRef<HTMLSpanElement, { reactive: boolean }>(function Or
   const gid = `${React.useId()}-orb`;
   return (
     <span ref={ref} className="zds-message-input__orb" data-reactive={reactive || undefined} aria-hidden="true">
-      <svg viewBox="0 0 100 100" className="zds-message-input__orb-svg">
-        <defs>
-          <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" className="zds-message-input__orb-stop-start" />
-            <stop offset="1" className="zds-message-input__orb-stop-end" />
-          </linearGradient>
-        </defs>
-        {RINGS.map((r, i) => (
-          <g key={i} className="zds-message-input__ring" style={{ "--ring": i } as React.CSSProperties}>
-            <ellipse cx="50" cy="50" rx={r.rx} ry={r.ry} stroke={`url(#${gid})`} />
-          </g>
-        ))}
-      </svg>
+      {RINGS.map((r, i) => (
+        <svg key={i} viewBox="0 0 100 100" className="zds-message-input__ring" style={{ "--ring": i } as React.CSSProperties}>
+          <defs>
+            <linearGradient id={`${gid}-${i}`} x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" className="zds-message-input__orb-stop-start" />
+              <stop offset="1" className="zds-message-input__orb-stop-end" />
+            </linearGradient>
+          </defs>
+          {/* Tilt 30° per ring; inner rings rest smaller (0.7 + 0.05 per ring). */}
+          <ellipse cx="50" cy="50" rx={r.rx} ry={r.ry} stroke={`url(#${gid}-${i})`}
+            transform={`rotate(${i * 30} 50 50) translate(50 50) scale(${0.7 + i * 0.05}) translate(-50 -50)`} />
+        </svg>
+      ))}
     </span>
   );
 });
@@ -236,13 +247,15 @@ function SpokenCaption({ text, charIndex, media }: { text: string; charIndex?: n
   const [fromMedia, setFromMedia] = React.useState(-1);
   React.useEffect(() => {
     if (charIndex !== undefined || !media) return;
+    // Follow playback every frame while it plays; idle while paused.
     let raf = 0;
-    const tick = () => {
-      if (media.duration > 0) setFromMedia(wordAt(words, (media.currentTime / media.duration) * text.length));
-      raf = requestAnimationFrame(tick);
-    };
+    const read = () => { if (media.duration > 0) setFromMedia(wordAt(words, (media.currentTime / media.duration) * text.length)); };
+    const tick = () => { read(); raf = media.paused ? 0 : requestAnimationFrame(tick); };
+    const start = () => { if (!raf) tick(); };
+    media.addEventListener("play", start);
+    media.addEventListener("seeked", read);
     tick();
-    return () => cancelAnimationFrame(raf);
+    return () => { cancelAnimationFrame(raf); media.removeEventListener("play", start); media.removeEventListener("seeked", read); };
   }, [charIndex, media, words, text.length]);
   const known = charIndex !== undefined || !!media;
   const current = charIndex !== undefined ? wordAt(words, charIndex) : media ? fromMedia : words.length - 1;

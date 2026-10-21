@@ -7,7 +7,7 @@ const t = (s: string) => s[0].toUpperCase() + s.slice(1);
 const Row = ({ children }: { children: React.ReactNode }) => <div style={{ display: "flex", flexWrap: "wrap", gap: 12, alignItems: "center" }}>{children}</div>;
 
 const meta: Meta<typeof BadgeLabel> = {
-  title: "Components/Badge Label", component: BadgeLabel, tags: ["autodocs"],
+  title: "Components/Badges/Badge Label", component: BadgeLabel, tags: ["autodocs"],
   parameters: { docs: { description: { component: "Figma's \"Label\" badge: a fixed category in a word or two, solid fill." } } },
   argTypes: { variant: { control: "select", options: VARIANTS }, shape: { control: "inline-radio", options: ["rounded", "sharp"] } },
   args: { variant: "positive", shape: "rounded", children: "New" },

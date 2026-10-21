@@ -3,7 +3,7 @@ import { html, nothing } from "lit";
 import "../src/components/input/input.js";
 
 const meta: Meta = {
-  title: "Components/Input",
+  title: "Components/Form/Input",
   component: "zds-input",
   tags: ["autodocs"],
   parameters: { docs: { description: { component: "Label, field and hint as one unit. `state` keeps the three parts in agreement; the field's own properties are set here too." } } },

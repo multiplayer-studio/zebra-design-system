@@ -5,7 +5,7 @@ import { Checkbox } from "../src/index.js";
 const SIZES = ["large", "medium"] as const;
 
 const meta: Meta<typeof Checkbox> = {
-  title: "Components/Checkbox",
+  title: "Components/Form/Checkbox",
   component: Checkbox,
   tags: ["autodocs"],
   parameters: { docs: { description: { component: "Behaviour from Base UI's Checkbox; everything visual from the shared token layer. The spec's Checked axis (false, true, indeterminate) is `checked` + `indeterminate`; indeterminate is set from a mixed set of children, never chosen." } } },

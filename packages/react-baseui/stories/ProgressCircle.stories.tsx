@@ -5,7 +5,7 @@ import { ProgressCircle } from "../src/index.js";
 const SIZES = ["xxsmall", "xsmall", "small", "medium", "large"] as const;
 
 const meta: Meta<typeof ProgressCircle> = {
-  title: "Components/ProgressCircle",
+  title: "Components/Progress Indicators/Progress Circle",
   component: ProgressCircle,
   tags: ["autodocs"],
   parameters: {

@@ -6,7 +6,7 @@ const VARIANTS = ["neutral", "info", "positive", "warning", "negative"] as const
 const title = (s: string) => s[0].toUpperCase() + s.slice(1);
 
 const meta: Meta = {
-  title: "Components/Badge Label",
+  title: "Components/Badges/Badge Label",
   component: "zds-badge-label",
   tags: ["autodocs"],
   parameters: { docs: { description: { component: "Figma's \"Label\" badge: a fixed category in a word or two, solid fill." } } },

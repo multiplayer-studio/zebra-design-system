@@ -118,15 +118,20 @@ export default css`
 
   /* ---- progress: indeterminate ------------------------------------------- */
   /* A segment the length Figma draws (143 of 408px, ~35%) travelling the
-     track. Figma draws it frozen; the spec says it must move. */
+     track. Figma draws it frozen; the spec says it must move. It travels by
+     transform, not by its inset, so the compositor runs the loop without a
+     layout per frame. Translate is a share of the segment's own width: -100%
+     puts it just before the track, 100% / 35% just past its end. */
   .indicator[data-indeterminate] {
+    --zds-progress-bar-dir: 1;
     inline-size: 35%;
     animation: zds-progress-bar-slide 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   }
+  :host(:dir(rtl)) .indicator[data-indeterminate] { --zds-progress-bar-dir: -1; }
 
   @keyframes zds-progress-bar-slide {
-    from { inset-inline-start: -35%; }
-    to { inset-inline-start: 100%; }
+    from { transform: translateX(calc(var(--zds-progress-bar-dir) * -100%)); }
+    to { transform: translateX(calc(var(--zds-progress-bar-dir) * 100% / 0.35)); }
   }
 
   /* Reduced motion: no travel and no growth transition. The segment rests

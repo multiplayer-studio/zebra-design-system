@@ -6,7 +6,7 @@ const Stack = ({ children }: { children: React.ReactNode }) => <div style={{ dis
 const Cap = ({ children }: { children: React.ReactNode }) => <div style={{ font: "500 12px/1.4 system-ui", opacity: 0.7 }}>{children}</div>;
 
 const meta: Meta<typeof StepperInput> = {
-  title: "Components/Stepper Input", component: StepperInput, tags: ["autodocs"],
+  title: "Components/Form/Stepper Input", component: StepperInput, tags: ["autodocs"],
   argTypes: {
     size: { control: "inline-radio", options: ["medium", "large"] },
     shape: { control: "inline-radio", options: ["sharp", "rounded"] },

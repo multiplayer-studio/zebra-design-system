@@ -24,7 +24,10 @@ export default css`
   }
 
   .glyph {
-    transition: transform var(--zds-caret-indicator-duration) var(--zds-caret-indicator-ease);
+    /* Hook: --zds-caret-indicator-motion (duration + timing, e.g.
+       var(--animations-smooth)) overrides the spring for a scope — the
+       Navigation Rail family sets it. Unset, the default spring applies. */
+    transition: transform var(--zds-caret-indicator-motion, var(--zds-caret-indicator-duration) var(--zds-caret-indicator-ease));
   }
 
   /* ---- open: one glyph turned, in place of Figma's glyph swap ----------- */

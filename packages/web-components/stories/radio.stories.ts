@@ -5,7 +5,7 @@ import "../src/components/radio/radio.js";
 const SIZES = ["large", "medium"] as const;
 
 const meta: Meta = {
-  title: "Components/Radio",
+  title: "Components/Form/Radio",
   component: "zds-radio",
   tags: ["autodocs"],
   parameters: {

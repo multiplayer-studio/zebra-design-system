@@ -5,7 +5,7 @@ import "../src/components/notification-indicator/notification-indicator.js";
 const SIZES = ["small", "medium", "large"] as const;
 
 const meta: Meta = {
-  title: "Components/Notification Indicator",
+  title: "Components/Badges/Notification Indicator",
   component: "zds-notification-indicator",
   tags: ["autodocs"],
   argTypes: {

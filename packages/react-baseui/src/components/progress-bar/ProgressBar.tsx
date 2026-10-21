@@ -20,11 +20,12 @@ export interface ProgressBarProps
   /** Upper bound of `value` and `buffer`. */
   max?: number;
   /**
-   * The buffered extent, in the same units as `value` (Figma's Buffering).
-   * When set, a band covers the track from the start up to it, under the
-   * indicator. Combine with `value={null}` for Figma's drawing (moving segment
-   * plus band) or with a number for a stream that plays while it loads.
+   * Turns on Figma's Buffering: a band shows how much has preloaded
+   * (`buffer`), and `value` never runs past it. Off, or with no `value`
+   * (indeterminate), `buffer` is ignored.
    */
+  buffering?: boolean;
+  /** How much has preloaded, in the units of `value`; the band's extent while `buffering`. */
   buffer?: number | null;
   /**
    * Text in the row above the bar, naming the task ("Uploading report.pdf").
@@ -79,6 +80,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(fu
     value = 0,
     min = 0,
     max = 100,
+    buffering: bufferingProp = false,
     buffer = null,
     label,
     showLabel = true,
@@ -93,8 +95,11 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(fu
 ) {
   const labelId = React.useId();
   const determinate = value != null && Number.isFinite(value);
-  const percent = determinate ? clampPercent(value, min, max) : null;
-  const buffering = buffer != null && Number.isFinite(buffer);
+  // Indeterminate has no buffer (owner decision).
+  const buffering = bufferingProp && determinate && buffer != null && Number.isFinite(buffer);
+  // The value never runs past what has preloaded (owner decision).
+  const shown = determinate && buffering ? Math.min(value, buffer as number) : value;
+  const percent = determinate ? clampPercent(shown as number, min, max) : null;
   // The same default text Base UI's Progress.Value would render.
   const fallback = percent != null ? new Intl.NumberFormat(undefined, { style: "percent" }).format(percent / 100) : null;
   const text = label ?? fallback;
@@ -122,7 +127,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(fu
         aria-busy={determinate ? undefined : true}
         {...rest}
         className="zds-progress-bar__bar"
-        value={determinate ? value : null}
+        value={determinate ? shown : null}
         min={min}
         max={max}
       >

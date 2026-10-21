@@ -5,7 +5,7 @@ import "../src/components/slider/slider.js";
 const SHAPES = ["rounded", "sharp"] as const;
 
 const meta: Meta = {
-  title: "Components/Slider",
+  title: "Components/Form/Slider",
   component: "zds-slider",
   tags: ["autodocs"],
   argTypes: {

@@ -25,6 +25,23 @@ export const railStyles = css`
     /* Fills its parent's height (spec warn "Height": Figma draws 991px
        fixed). With no definite parent height it hugs its content. */
     height: 100%;
+    /* Figma's measured widths; no width tokens exist, so they are literals,
+       named once. Wide rail: 176px items + padding. Panel: hugs its list,
+       never narrower than Figma's 240px minimum. */
+    /* rail-max-width / sub-menu-max-width set --zds-navigation-rail-max-width
+       and --zds-navigation-rail-sub-menu-max-width on the host; unset, there
+       is no cap. A cap below a minimum lowers the minimum, so the cap always
+       applies. */
+    --zds-navigation-rail-wide-width: min(200px, var(--zds-navigation-rail-max-width, 200px));
+    --zds-navigation-rail-panel-max-width: var(--zds-navigation-rail-sub-menu-max-width, calc(infinity * 1px));
+    --zds-navigation-rail-panel-min-width: min(240px, var(--zds-navigation-rail-panel-max-width));
+    /* Lets the panel animate to and from its content width (width: max-content). */
+    interpolate-size: allow-keywords;
+    /* Every opening and closing in the rail uses animations/smooth (owner
+       decision), the caret included: zds-caret-indicator reads this hook
+       (it inherits into slotted content and shadow roots) and keeps its own
+       spring everywhere else. */
+    --zds-caret-indicator-motion: var(--animations-smooth);
   }
   :host([inverse]) {
     color-scheme: light;
@@ -61,11 +78,13 @@ export const railStyles = css`
        collapsed-only build; Figma and the tokens say 72.) */
     width: calc(var(--control-lg) + 2 * var(--space-md));
     overflow: hidden; /* clips (spec) */
+    /* Clip at the content edge where supported, so wide content held
+       through a collapse leaves nothing in the padding at the end. */
+    overflow: clip;
+    overflow-clip-margin: content-box;
   }
   :host([expanded]) .rail {
-    /* Wide: Figma's measured 200px (176px items + padding). No width token
-       exists; carried as a literal. */
-    width: 200px;
+    width: var(--zds-navigation-rail-wide-width);
   }
 
   .header {
@@ -75,13 +94,15 @@ export const railStyles = css`
     align-items: center;
     gap: var(--space-md);
   }
-  :host([expanded]) .header {
+  /* The content's form follows [data-wide], not [expanded]: the rail holds
+     the wide layout until a collapse has finished. */
+  .root[data-wide] .header {
     align-items: stretch;
   }
   .action {
     flex: none;
   }
-  :host([expanded]) .action {
+  .root[data-wide] .action {
     width: 100%; /* the wide Button fills (spec) */
   }
 
@@ -107,34 +128,86 @@ export const railStyles = css`
   .footer {
     flex: none;
   }
-  :host([expanded]) :is(.menu, .footer) {
+  .root[data-wide] :is(.menu, .footer) {
     align-items: stretch;
   }
   :is(.menu, .footer) ::slotted(zds-divider) {
     align-self: stretch;
   }
+  /* Wide content is laid out at its final width whatever the rail's current
+     width, so the animating rail clips it (no reflow, no wrapping). */
+  .root[data-wide] :is(.header, .menu, .footer) {
+    min-width: calc(var(--zds-navigation-rail-wide-width) - 2 * var(--space-md));
+  }
 
   /* ---- sub menu panel --------------------------------------------------- */
+  /* Hug: one column as wide as the widest of the header and the rows (at
+     least the 240px minimum), every one stretched to it, so rows share one
+     width. The column keeps that size while the panel's own width animates,
+     so the moving edge clips the content rather than reflowing it. Rows:
+     the header, then the list, which shrinks and scrolls when the rail is
+     short. */
   .panel {
     box-sizing: border-box;
-    display: flex;
+    display: grid;
     flex: none;
-    flex-direction: column;
+    grid-template-columns: max-content;
+    grid-template-rows: auto minmax(0, max-content);
+    align-content: start; /* spare height stays below the list, not in the header */
     gap: var(--space-none);
-    /* Figma's fixed 240px (min 240px); no width token exists. */
-    width: 240px;
+    width: max-content;
     /* The one vertical border, on the leading edge. Figma's width is a raw
        1px (spec warn "Unbound border widths"): stroke/thin. */
     border-inline-start: var(--stroke-thin) solid var(--border-default);
     overflow: hidden;
   }
+  /* Closed (no sub menu slot filled): zero-width and out of the
+     accessibility tree, so the overall width follows. Its height is the
+     rail's, never zero. */
+  .panel:not([data-open]) {
+    width: 0;
+    border-inline-start-width: 0;
+    visibility: hidden;
+  }
+  /* The panel's two grid items: the slotted header (only that slot — the
+     rows in the sub-menu slot are the list's children, not the panel's) and
+     the list. */
+  .panel > .sub-menu,
+  .panel > slot[name="sub-menu-header"]::slotted(*) {
+    grid-row: 1;
+    /* Border-box, so the list's padding sits inside the minimum and the cap. */
+    box-sizing: border-box;
+    min-width: calc(var(--zds-navigation-rail-panel-min-width) - var(--stroke-thin));
+    /* The cap clamps each item's contribution to the hugged column, so the
+       column stops at it and labels truncate rather than being clipped. */
+    max-width: calc(var(--zds-navigation-rail-panel-max-width) - var(--stroke-thin));
+  }
+  .panel > .sub-menu { grid-row: 2; }
   .sub-menu {
     display: flex;
-    flex: 0 1 auto;
     flex-direction: column;
     gap: var(--space-xs);
     padding: var(--space-sm);
     overflow-y: auto;
+  }
+
+  /* ---- motion: animations/smooth (owner decision) ----------------------- */
+  /* Only once the rail has painted ([data-ready]), so nothing animates on
+     the first render; each transition runs once per change, never
+     continuously. */
+  .root[data-ready] .rail {
+    transition: width var(--animations-smooth);
+  }
+  .root[data-ready] .panel {
+    transition:
+      width var(--animations-smooth),
+      border-inline-start-width var(--animations-smooth),
+      visibility var(--animations-smooth);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .root[data-ready] :is(.rail, .panel) {
+      transition: none;
+    }
   }
 `;
 
@@ -259,11 +332,18 @@ export const collapsibleStyles = [
       gap: var(--space-none);
       width: 100%;
       min-width: 0;
+      /* Never widens the sub menu (owner decision): its content does not
+         count toward the panel's hugged width, and it stretches to the width
+         the panel's other content (min 240px) gives it. Its labels truncate. */
+      contain: inline-size;
       /* Shape=rounded (the default) is radius/sm, sharp radius/none — the
          rail's shape, code-only (owner decision). One value for the open
          group's corners, the header's top corners (via the row) and the
          children's. */
       --zds-collapsible-menu-item-radius: var(--radius-sm);
+      /* The caret turns on animations/smooth with the rows (owner
+         decision), inside a rail or not. */
+      --zds-caret-indicator-motion: var(--animations-smooth);
     }
     :host([shape="sharp"]) {
       --zds-collapsible-menu-item-radius: var(--radius-none);
@@ -285,6 +365,25 @@ export const collapsibleStyles = [
     }
     .panel[hidden] {
       display: none;
+    }
+    /* Open and close: the rows' height on animations/smooth (owner
+       decision). The element measures the rows into
+       --collapsible-panel-height (auto at rest), marks the first and last
+       frames with [data-starting-style] / [data-ending-style], and holds
+       hidden until the transition ends — Base UI Collapsible's contract, so
+       these rules match the React build's. No transition on first render. */
+    .panel {
+      height: var(--collapsible-panel-height);
+      overflow: hidden;
+      transition: height var(--animations-smooth);
+    }
+    .panel:is([data-starting-style], [data-ending-style]) {
+      height: 0;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .panel {
+        transition: none;
+      }
     }
     .children {
       box-sizing: border-box;

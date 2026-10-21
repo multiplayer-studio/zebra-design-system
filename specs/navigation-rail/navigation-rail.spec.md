@@ -31,6 +31,8 @@ The page has seven public components (43 variants) and three metadata frames, th
 | `moreFooterItems` | boolean | true, false | `true` | footerSlot |
 | `shape` | enum (code only, not in Figma) | rounded, sharp | `rounded` | corner shape of every nested component (`radius/sm` / `radius/none`) |
 | `inverse` | boolean (code only, not in Figma) | false, true | `false` | the rail's locked colour mode: dark, or light when true |
+| `railMaxWidth` | length (code only, not in Figma) | CSS length or px number | unset | caps the wide rail (Figma's 200px); the narrow rail is unaffected |
+| `subMenuMaxWidth` | length (code only, not in Figma) | CSS length or px number | unset | caps the hugged sub menu; a cap below 240px lowers the minimum |
 | `menuSlot` | slot | Navigation Rail Item, Divider | — | menuSlot |
 | `footerSlot` | slot | Navigation Rail Item, Divider | — | footerSlot |
 | `subMenuSlot` | slot | Sub Menu Item, Collapsible Menu Item | — | subMenuSlot |
@@ -49,9 +51,13 @@ The page has seven public components (43 variants) and three metadata frames, th
 
 **moreFooterItems**: true: "Shows the Footer Slot above the fixed footer items." · false: "Hides the slot along with everything placed in it."
 
-**shape** (code only): rounded: "Doesn’t appear in Figma, but this controls the shape of all sub items within the rail unless overridden" · sharp: the Figma text is copied from More Rail Items (see notes). **Owner decision:** shape reaches every nested component (Navigation Rail Item, Sub Menu Item, Collapsible Menu Item, the header action, and the Buttons and Icon Buttons inside Navigation Header and Sub Menu Header, including the back button); rounded = `radius/sm`, sharp = `radius/none`, and a nested Button or Icon Button takes the same-named shape. The rail itself has no corners and is unaffected. Items used outside a rail stay rounded.
+**shape** (code only): rounded: "Code only, not drawn in Figma. Gives everything inside the rail rounded corners (radius/sm): rail items, sub menu rows, Collapsible Menu Items, the header action, and the buttons in both headers, including back. The rail's own edges never change." · sharp: "Square corners (radius/none) on everything inside the rail."
 
-**inverse** (code only, owner decision): false: the rail is locked to dark mode, whatever the page's mode. true: it is locked to light mode instead. Either way everything inside the rail (items, headers, sub menu, slotted content, popups) follows the rail, not the page. Implemented as the token layer's `mode-dark` / `mode-light` class on the rail's root, so an `.ext-*` brand on an ancestor still applies.
+**inverse** (code only): false: "Code only. The rail always shows in dark mode, whatever the page's mode. Everything inside it follows the rail, and brand extensions still apply." · true: "Shows the rail in light mode instead, still regardless of the page's mode." Built as the token layer's `mode-dark` / `mode-light` class on the rail's root.
+
+**railMaxWidth** (code only): none: "Code only. The wide rail is 200px." · length: "Caps the wide rail's width. Labels that no longer fit end in an ellipsis. The narrow rail is not affected."
+
+**subMenuMaxWidth** (code only): none: "Code only. The sub menu sizes to its content, never narrower than 240px." · length: "Caps the sub menu's width. Rows that no longer fit end in an ellipsis. A cap below 240px also lowers the 240px minimum."
 
 Only three variants exist: narrow, narrow with labels, and wide. `label=true` with `expanded=true` is not built.
 
@@ -90,7 +96,7 @@ Root: horizontal, gap `space/none`, padding `space/none`, fill `surface/section`
    - **footerSlot** (visible when `moreFooterItems`): vertical, gap `space/xs`, clips. Sample content: a Divider and three items.
    - **Footer Rail Item**: a Navigation Rail Item.
    - **toggleItem** (visible when `showToggleItem`): a Navigation Rail Item showing `left-panel-open` "Open" when narrow and `left-panel-close` "Close" when wide. Code wires it to `expanded`.
-4. **Sub menu** (visible when `showSubMenu`): "The panel beside the rail, holding the Sub Menu Header and the Sub Menu Slot. It carries the only vertical border in the component, on its leading edge." Vertical, gap `space/none`, fixed width (240Px, min 240Px) × fill height. It has a left-edge stroke in `border/default`, with an unbound width (see issues).
+4. **Sub menu** (visible when `showSubMenu`): "The panel beside the rail, holding the Sub Menu Header and the Sub Menu Slot. It carries the only vertical border in the component, on its leading edge." Vertical, gap `space/none`, fixed width (240Px, min 240Px) × fill height. **In code (owner decision): hugs its list, min 240px.** It has a left-edge stroke in `border/default`, with an unbound width (see issues).
    - **subMenuHeader**: Sub Menu Header, Type=sub page; fill × fixed. Its back button is an Icon Button (`arrow-back`).
    - **subMenuSlot**: vertical, gap `space/xs`, padding `space/sm`, fill × hug. Sample content: one Collapsible Menu Item and four Sub Menu Items.
 
@@ -180,7 +186,7 @@ It is one glyph (an Icon with Framed=false, rounded family, currentColor) in a h
 
 Size sets the nested Icon's own size: small is 16Px, medium 20Px and large 28Px (all measured).
 
-**In code (owner decision, carried over):** carets and chevrons rotate one glyph with animation rather than swapping glyphs. Use `expand-more` for `vertical`, turned 180deg when open, and `chevron-right` for `horizontal`, turned 90deg clockwise when open; both end states match the glyphs Figma swaps to. The rotation transitions on `animations/spring` (`--animations-spring`), the motion Switch uses, and is switched off under prefers-reduced-motion. Figma has not been redrawn to rotate.
+**In code (owner decision, carried over):** carets and chevrons rotate one glyph with animation rather than swapping glyphs. Use `expand-more` for `vertical`, turned 180deg when open, and `chevron-right` for `horizontal`, turned 90deg clockwise when open; both end states match the glyphs Figma swaps to. The rotation transitions on `animations/spring` (`--animations-spring`), the motion Switch uses — inside the Navigation Rail on `animations/smooth` instead (owner decision, via the `--zds-caret-indicator-motion` hook) — and is switched off under prefers-reduced-motion. Figma has not been redrawn to rotate.
 
 ### Collapsible Menu Item
 Set 3453:54352 · 2 variants · no metadata.
@@ -228,21 +234,28 @@ The medium variant has 16 direct instances today (the navigation-bar spec record
 - **Colour:** `surface/section`, `surface/menu`, `border/default`, `foreground/primary`, `interactive/primary/{background, border}/default`, `interactive/ghost/background/{default, pressed}`, `interactive/ghost/border/default`, `interactive/neutral/border/default`.
 - **Dimension:** `space/{none, xs, sm, md, lg, xl, card}`, `control/{sm, lg, target-min}`, `radius/{none, sm, element-sm}`, `stroke/{base, thin}`.
 - **Typography:** `label/medium`.
-- **Motion (owner decision, not bound in Figma):** `animations/spring`, for the Caret Indicator rotation.
+- **Motion (owner decision):** `animations/smooth` (250ms ease-in-out) for every opening and closing in the rail, the caret included; `animations/spring` stays the Caret Indicator's default outside the rail.
 - **Glyphs:** `add-circle-outline`, `left-panel-open`, `left-panel-close`, `settings`, `zebra`, `verified`, `arrow-back`, `star`, `expand-more`, `expand-less`, `chevron-right`.
 - **Theme axes:** palette (Light, Dark); size and typography (Desktop, Mobile, Tablet, Desktop Compact).
 - **Extensions** (tokens/manifest.json, new since the last extraction): companion (palette), target (primitives, palette), condensed (typography, size). The rail binds names only, so it themes under them unchanged; condensed can move the measured widths.
 
-All 26 bound token names, plus `animations/spring`, resolve in `tokens/` and all 11 glyphs are in the font (none retired). The two item specs list their own tokens.
+All 26 bound token names, plus `animations/smooth` and `animations/spring`, resolve in `tokens/` and all 11 glyphs are in the font (none retired). The two item specs list their own tokens.
 
 ## States, behavior & motion
 
 | State | Trigger | Duration | What changes |
 |---|---|---|---|
 | Static | — | — | "The rail has no interaction states of its own. Selection, hover, press and disabled all live on the Navigation Rail Item and Sub Menu Item instances inside the slots, so the container never changes appearance." |
+| Collapse / expand | The Toggle item, or Expanded set from outside | `animations/smooth` | The icon rail widens or narrows, labels appear or leave, and whatever sits beside the rail moves with it. |
+| Sub menu open / close | Show Sub menu, or choosing a destination with a second level | `animations/smooth` | The panel opens or closes beside the rail, and the overall width follows. |
+| Group open / close | A Collapsible Menu Item header | `animations/smooth` | The group's rows reveal or hide, and its caret turns. |
 
-- **Motion**: "Figma stores no timing and the rail models no transition. Moving between the narrow and wide rail is a variant switch, an authoring choice rather than something that animates here."
+All three use `animations/smooth` (ease-in-out, 250ms). Turn motion off under prefers-reduced-motion.
+
+- **Motion**: every opening and closing uses `animations/smooth`, the caret's turn included. **In code:** width (rail, panel) and height (group rows) transition once per change, never on first render. Labels and panel content keep their final layout and are clipped by the moving edge, so text never reflows or wraps mid-animation. The Caret Indicator takes smooth inside the rail through its `--zds-caret-indicator-motion` hook and keeps its spring elsewhere.
 - **Width change**: "Expanded and Show Sub menu both change the component's overall width. Whatever sits beside the rail has to absorb the difference, so plan the page for every width you intend to ship."
+- **Truncated labels**: "Sub menu labels that don't fit end in an ellipsis. Hovering a cut-off label for 3 seconds shows it in full in a tooltip; keyboard focus shows it at once. Labels that fit show no tooltip, and the tooltip is not announced a second time to screen readers."
+- **Caret**: "Carets turn a single glyph rather than swapping between two. Figma shows each end state with its own glyph; build one glyph that rotates, on animations/smooth inside the rail."
 - **Vertical fill**: "The menu list takes whatever height is left between the header block and the footer, so the footer stays pinned to the bottom however many items sit above it."
 
 ## Content & slots
@@ -275,22 +288,47 @@ All 26 bound token names, plus `animations/spring`, resolve in `tokens/` and all
 
 | Property | Type | Description |
 |---|---|---|
-| Width | Hug | "312px collapsed and 440px expanded. That is the icon rail at 72px or 200px, plus the sub menu panel at a fixed 240px in both." |
+| Width | Hug | "The narrow rail is 72px and the wide rail 200px; Rail Max Width can cap the wide rail. The sub menu sizes to its content: as wide as its widest top-level row or its header, never narrower than 240px, and all rows share that width. A Collapsible Menu Item never makes it wider. Sub Menu Max Width can cap it. Figma draws the sub menu at a fixed 240px; build it to size to its content." |
 | Height | Fill | "Fills its parent, drawn at 991px. The icon rail and the panel both fill it, and the menu list absorbs the space left between the header block and the footer." |
 | Rail padding | Fixed | "12px on all four sides of the icon rail, space/md left and right and space/card top and bottom, with a 12px (space/md) gap between the header, the action, the menu list and the footer." |
 | Item spacing | Fixed | "4px (space/xs) between items in both the menu list and the footer. The Menu Slot adds 4px (space/xs) of horizontal padding of its own." |
 | Panel padding | Fixed | "The Sub Menu Slot insets its rows by 8px (space/sm) on all four sides, with a 4px (space/xs) gap between them." |
 | Border | Fixed | "A single 1px border on border/default down the leading edge of the sub menu panel, plus a 1px bottom border on the same token under the Sub Menu Header. Nothing else in the component is stroked." |
-| Fill | Theming | "The component sits on surface/section. Neither the icon rail nor the panel paints a fill of its own, so both show that surface through." |
+| Fill | Theming | "The rail always shows in dark mode, whatever the page's mode; Inverse shows it in light mode. It sits on surface/section, and neither the icon rail nor the panel paints a fill of its own." |
 | Colour | Theming | "The rail binds only its surface and its two borders. Every other colour comes from the items in the slots." |
 
-## Owner decisions
+## Changes in code (not in Figma)
 
-- Carets and chevrons rotate one glyph with animation rather than swapping glyphs (Caret Indicator, and through it Sub Menu Item and Collapsible Menu Item). Figma still swaps.
-- Motion that matches Switch uses the `animations/spring` token (`--animations-spring`). It applies to the caret rotation. Figma models no motion on this page.
-- **Locked to dark mode by default; `inverse` locks it to light.** Code-only: the rail's root carries the token layer's `mode-dark` (or `mode-light`) class, so everything inside follows the rail and `.ext-*` brands still apply..
-- **Shape reaches every nested component.** Slot items, Collapsible Menu Item, the header action, and the Buttons and Icon Buttons inside Navigation Header and Sub Menu Header, including the back button. Figma draws the header buttons sharp and the header action rounded; the decision overrides both. The rail itself is unaffected.
-- **Shape tokens: rounded = `radius/sm`, sharp = `radius/none`.** Figma rebinds placed items to `radius/element-sm` (the same value today); code keeps the item sets' own `radius/sm`.
+Owner decisions made after the Figma extraction. Each one overrides or adds to what Figma draws; build these, not the Figma value.
+
+### New properties
+
+| Property (React / web component) | Values | Default | What it does |
+|---|---|---|---|
+| `shape` / `shape` | `rounded`, `sharp` | `rounded` | Sets the corners of everything inside the rail: rail items, sub menu rows, Collapsible Menu Items, the header action, and the buttons in both headers (including the back button). Rounded uses `radius/sm`, sharp uses `radius/none`. The rail's own edges never change. |
+| `inverse` / `inverse` | true, false | false | The rail always shows in dark mode, whatever the page's mode. `inverse` shows it in light mode instead. Either way, everything inside the rail follows the rail, and brand extensions still apply. |
+| `railMaxWidth` / `rail-max-width` | a CSS length, or a number in px | none | Caps the width of the wide rail (normally 200px). The narrow rail is not affected. Labels that no longer fit end in an ellipsis. |
+| `subMenuMaxWidth` / `sub-menu-max-width` | a CSS length, or a number in px | none | Caps the width of the sub menu. Rows that no longer fit end in an ellipsis. A cap below 240px also lowers the 240px minimum. |
+
+### Sub menu width
+
+- The sub menu sizes to its content: it is as wide as its widest top-level row or its header, and never narrower than 240px. Figma draws it at a fixed 240px.
+- All rows share that one width.
+- A Collapsible Menu Item never makes the sub menu wider. It takes the width the other rows give it, and its labels end in an ellipsis when they don't fit.
+
+### Truncated labels
+
+- When a sub menu label is cut off, hovering it for 3 seconds shows the full label in a tooltip. This applies to every Sub Menu Item and to Collapsible Menu Item headers.
+- Labels that fit show no tooltip.
+- Keyboard focus shows it at once.
+- The tooltip repeats the row's name, so it is not announced a second time to screen readers.
+- The tooltip follows the rail's dark or light mode.
+
+### Motion
+
+- Every opening and closing in the rail uses `animations/smooth` (250ms, ease-in-out): the rail collapsing and expanding, the sub menu showing and hiding, and Collapsible Menu Items opening and closing.
+- Carets turn a single glyph rather than swapping glyphs (Figma swaps). Inside the rail they turn on `animations/smooth`; elsewhere, Caret Indicator uses `animations/spring`.
+- Nothing animates on first render, and all motion is turned off for users who prefer reduced motion.
 
 ## Visual reference
 
@@ -313,7 +351,7 @@ All 26 bound token names, plus `animations/spring`, resolve in `tokens/` and all
 - **Behaviour code must own.** Nothing wires the toggle item to `expanded`, and nothing enforces a single selected destination.
 
 **Note**
-- **Shape (resolved by owner decision).** Rounded = `radius/sm`, sharp = `radius/none`, and it reaches every nested component, including the header action and the header buttons that Figma still draws sharp. Figma's sharp description is still copied from More Rail Items and needs fixing in Figma; the behaviour does not.
+- **Shape (resolved by owner decision).** Rounded = `radius/sm`, sharp = `radius/none`, and it reaches every nested component, including the header action and the header buttons that Figma still draws sharp. The Figma metadata's sharp row was fixed on 2026-10-21 and now describes square corners (radius/none).
 - **Radius rebound in the rail (resolved).** Placed items rebind to `radius/element-sm` while the item sets use `radius/sm`; same value today. Code follows the rail's shape with the item sets' own `radius/sm` for rounded.
 - `Menu Slot#3200:20` is an orphan, and the per-Label Menu Slots are a Figma workaround.
 - Label=true with Expanded=true is not built.
@@ -325,6 +363,6 @@ All 26 bound token names, plus `animations/spring`, resolve in `tokens/` and all
   - A stray "Navigation Rail" frame (5547:2915) holds a detached copy of the panel.
   - The Template frame's card carries Dropdown copy.
   - Three Template instances point at an old "Navigation Rail/false/false" component.
-- Caret Indicator still swaps glyphs in Figma. The owner decision to rotate one glyph on `animations/spring` stands.
+- Caret Indicator still swaps glyphs in Figma. The owner decision to rotate one glyph stands: on `animations/smooth` inside the rail, `animations/spring` elsewhere. The metadata now names the timing, so the old "Figma stores no timing" gap is resolved.
 - `tokens/manifest.json` now lists extension collections (companion, target, condensed). The condensed size and typography overrides can move the measured widths recorded here.
 - The Tab Bar page has a different component also called "Navigation Rail Item" (3635:1151). See [navigation-rail-item duplicateCheck](../navigation-rail-item/navigation-rail-item.spec.md#duplicate-check-tab-bar).

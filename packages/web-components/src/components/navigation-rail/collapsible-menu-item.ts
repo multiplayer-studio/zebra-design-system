@@ -2,9 +2,16 @@ import { LitElement, html, nothing, type PropertyValues } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import type { IconName } from "@zebra-design-system/icons/names";
 import { collapsibleStyles } from "./navigation-rail.styles.js";
-import { subMenuRowContent, type SubMenuItemBadge } from "../sub-menu-item/sub-menu-item.js";
+import { subMenuRowContent, truncatedLabelTooltip, type SubMenuItemBadge } from "../sub-menu-item/sub-menu-item.js";
 import type { ZdsSubMenuItem } from "../sub-menu-item/sub-menu-item.js";
 import type { NavigationRailShape } from "./navigation-rail.js";
+
+/** The first duration in an element's computed `transition-duration`, in ms (0 under reduced motion). */
+function motionMs(el: Element): number {
+  const d = getComputedStyle(el).transitionDuration.split(",")[0]?.trim() ?? "0s";
+  const n = parseFloat(d);
+  return Number.isFinite(n) ? (d.endsWith("ms") ? n : n * 1000) : 0;
+}
 
 /**
  * A Sub Menu Item that opens a group of nested rows beneath it.
@@ -16,7 +23,10 @@ import type { NavigationRailShape } from "./navigation-rail.js";
  * one glyph, owner decision). Open, the header takes the ghost pressed fill
  * as Figma draws (State=active), the token alone (spec warn "Double alpha"),
  * and the rows sit on surface/menu. The group sets `nested` and its `shape`
- * on its rows.
+ * on its rows. Opening and closing animate the rows' height on
+ * animations/smooth (owner decision), with the same state attributes Base
+ * UI's Collapsible gives the React build; not on first render, and not
+ * under prefers-reduced-motion.
  *
  * @slot - zds-sub-menu-item rows.
  * @fires zds-open-change - The header was pressed. `detail.open` is the new value (already applied).
@@ -82,14 +92,66 @@ export class ZdsCollapsibleMenuItem extends LitElement {
           open: this.open,
         })}
       </button>
-      <div part="panel" id="panel" class="panel" role="region" aria-labelledby="header" ?hidden=${!this.open}>
+      <!-- A truncated header label shows in full after a 3s hover, as on the rows. -->
+      ${truncatedLabelTooltip({ anchorId: "header", label: this.label, shape: this.shape, root: this.renderRoot as ShadowRoot })}
+      <div part="panel" id="panel" class="panel" role="region" aria-labelledby="header">
         <div class="children"><slot @slotchange=${this.#nest}></slot></div>
       </div>
     `;
   }
 
+  #motionTimer: ReturnType<typeof setTimeout> | undefined;
+
+  private get panel() {
+    return this.renderRoot.querySelector<HTMLElement>(".panel")!;
+  }
+
+  protected firstUpdated() {
+    // `hidden` is managed here, not bound in the template, so a close can
+    // hold the rows visible until its transition ends.
+    this.panel.hidden = !this.open;
+  }
+
   protected updated(changed: PropertyValues<this>) {
     if (changed.has("shape")) this.#nestRows();
+    // A real change only (the previous value is a boolean): no motion on first render.
+    if (changed.has("open") && typeof changed.get("open") === "boolean") this.#animatePanel();
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    clearTimeout(this.#motionTimer);
+    if (this.hasUpdated) this.#settle();
+  }
+
+  /** The resting state: no motion attributes, auto height, `hidden` while closed. */
+  #settle() {
+    const panel = this.panel;
+    panel.removeAttribute("data-starting-style");
+    panel.removeAttribute("data-ending-style");
+    panel.style.setProperty("--collapsible-panel-height", "auto");
+    panel.hidden = !this.open;
+  }
+
+  /** One transition per change, from the measured height to 0 or back; settles when it ends. */
+  #animatePanel() {
+    const panel = this.panel;
+    clearTimeout(this.#motionTimer);
+    const ms = motionMs(panel);
+    if (!ms) return this.#settle();
+    if (this.open) {
+      panel.removeAttribute("data-ending-style");
+      panel.hidden = false;
+      panel.setAttribute("data-starting-style", "");
+      panel.style.setProperty("--collapsible-panel-height", `${panel.scrollHeight}px`);
+      void panel.offsetHeight; // commit the starting frame
+      panel.removeAttribute("data-starting-style");
+    } else {
+      panel.style.setProperty("--collapsible-panel-height", `${panel.scrollHeight}px`);
+      void panel.offsetHeight; // commit the measured height
+      panel.setAttribute("data-ending-style", "");
+    }
+    this.#motionTimer = setTimeout(() => this.#settle(), ms);
   }
 
   #nest = () => this.#nestRows();

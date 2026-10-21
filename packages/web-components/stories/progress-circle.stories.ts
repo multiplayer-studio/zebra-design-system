@@ -35,7 +35,7 @@ const ring = (a: Partial<Args>) => html`<zds-progress-circle
 ></zds-progress-circle>`;
 
 const meta: Meta<Args> = {
-  title: "Components/ProgressCircle",
+  title: "Components/Progress Indicators/Progress Circle",
   component: "zds-progress-circle",
   tags: ["autodocs"],
   parameters: {

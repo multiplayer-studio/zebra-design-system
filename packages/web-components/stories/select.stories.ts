@@ -22,7 +22,7 @@ const CHANNELS: SelectOption[] = [
 ];
 
 const meta: Meta = {
-  title: "Components/Select",
+  title: "Components/Form/Select",
   component: "zds-select",
   tags: ["autodocs"],
   parameters: {

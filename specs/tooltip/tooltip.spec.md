@@ -69,7 +69,7 @@ All 18 variable names resolve in `tokens/`.
 | Static | — | — | "The set carries no hover, focus, pressed or disabled axis. All eight variants render the same way, and the only differences between them are which edge the arrow sits on and which contour the corners take." |
 | Shown or hidden | Owned by the trigger | — | "Nothing in the set models appearing or disappearing. A tooltip is either placed or it is not, so whatever reveals and dismisses it lives outside this component." |
 
-- **Motion** — "Figma stores no timing and no transition is authored here. Any fade, delay or dismissal on appearance belongs entirely to the implementation."
+- **Motion** — "Code only: fades in while sliding toward its trigger (from the side away from the tip), and fades out, on animations/smooth. No motion under reduced motion."
 - **Placement** — "Point names the edge the arrow sits on, but nothing in the set positions the bubble against a real trigger. Choosing a variant states the intended side, and the actual anchoring has to be done wherever the tooltip is placed."
 
 ## Content & slots

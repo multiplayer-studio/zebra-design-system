@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { IconIndicator } from "../src/index.js";
 
 const meta: Meta<typeof IconIndicator> = {
-  title: "Components/Icon Indicator", component: IconIndicator, tags: ["autodocs"],
+  title: "Components/Badges/Icon Indicator", component: IconIndicator, tags: ["autodocs"],
   parameters: { docs: { description: { component: "Clock on foreground/secondary by default (spec). The host can set icon, fill and foreground (owner decision)." } } },
   argTypes: { size: { control: "inline-radio", options: ["small", "medium", "large"] } },
   args: { size: "small", label: "Pending" },

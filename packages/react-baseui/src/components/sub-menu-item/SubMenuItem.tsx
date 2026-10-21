@@ -5,7 +5,13 @@ import {
   type NotificationIndicatorSize,
 } from "../notification-indicator/NotificationIndicator.js";
 import { CaretIndicator, type CaretIndicatorDirection } from "../caret-indicator/CaretIndicator.js";
-import { NavigationRailContext, NestedMenuContext, type NavigationRailShape } from "../navigation-rail/context.js";
+import { Tooltip } from "../tooltip/Tooltip.js";
+import {
+  NavigationRailContext,
+  NestedMenuContext,
+  useNavigationRailModeClass,
+  type NavigationRailShape,
+} from "../navigation-rail/context.js";
 import "./sub-menu-item.css";
 
 /** A count. `0`, `""`, `null` and `undefined` show nothing; above 99 reads "99+". */
@@ -77,7 +83,9 @@ export function SubMenuRowContent({
   badgeLabel,
   caret,
   open,
+  labelRef,
 }: {
+  labelRef?: React.Ref<HTMLSpanElement>;
   label: string;
   icon: IconName;
   showLeadingIcon: boolean;
@@ -95,7 +103,7 @@ export function SubMenuRowContent({
           single space/sm). */}
       <span className="zds-sub-menu-item__lead">
         {showLeadingIcon ? <Icon className="zds-sub-menu-item__icon" name={icon} size="small" /> : null}
-        <span className="zds-sub-menu-item__label">{label}</span>
+        <span ref={labelRef} className="zds-sub-menu-item__label">{label}</span>
       </span>
       {b ? <NotificationIndicator className="zds-sub-menu-item__badge" size={b.size} value={b.value} aria-hidden="true" /> : null}
       {sr ? <span className="zds-sub-menu-item__sr">{`, ${sr}`}</span> : null}
@@ -104,11 +112,55 @@ export function SubMenuRowContent({
   );
 }
 
+/** A label actually cut off by its ellipsis. Measured when asked, never observed. */
+function isTruncated(el: HTMLElement | null) {
+  return !!el && el.scrollWidth > el.clientWidth;
+}
+
+/**
+ * @internal The full label of a row (or a Collapsible Menu Item header), in a
+ * Tooltip after a 3s hover — only when the label is truncated (owner
+ * decision). Controlled: Base UI asks to open after the delay (or at once on
+ * keyboard focus) and the label is measured then, so a resize or a label
+ * change is always current; the row is never remounted. `describe={false}`:
+ * the bubble repeats the row's own accessible name. The popup portals to
+ * `body`, so it carries the rail's mode class to stay in the rail's mode.
+ */
+export function TruncatedLabelTooltip({
+  label,
+  labelRef,
+  shape,
+  trigger,
+}: {
+  label: string;
+  labelRef: React.RefObject<HTMLSpanElement | null>;
+  shape: NavigationRailShape;
+  trigger: React.ReactElement;
+}) {
+  const modeClass = useNavigationRailModeClass();
+  const [open, setOpen] = React.useState(false);
+  return (
+    <Tooltip
+      trigger={trigger}
+      open={open}
+      onOpenChange={(next) => setOpen(next && isTruncated(labelRef.current))}
+      delay={3000}
+      point="left"
+      shape={shape}
+      describe={false}
+      className={modeClass ?? undefined}
+    >
+      {label}
+    </Tooltip>
+  );
+}
+
 /**
  * A row in the Navigation Rail's sub menu panel: leading glyph, label, an
  * optional counter badge and an optional caret.
  *
  * A plain `<a>` / `<button>`; inside a CollapsibleMenuItem it renders nested.
+ * A truncated label shows in full in a tooltip after a 3s hover.
  * Hover, pressed and selected fills are the ghost tokens alone (spec warn
  * "Double alpha"). Kept in step with `<zds-sub-menu-item>`.
  *
@@ -140,6 +192,7 @@ export const SubMenuItem = React.forwardRef<HTMLElement, SubMenuItemProps>(funct
   const nested = groupShape !== null || nestedProp;
   const shape = rail ? rail.shape : (groupShape ?? shapeProp);
   const isSelected = selected && !disabled;
+  const labelRef = React.useRef<HTMLSpanElement>(null);
   const shared = {
     ...rest,
     className: ["zds-sub-menu-item", className].filter(Boolean).join(" "),
@@ -158,9 +211,10 @@ export const SubMenuItem = React.forwardRef<HTMLElement, SubMenuItemProps>(funct
       badgeLabel={badgeLabel}
       caret={subMenu ? "horizontal" : null}
       open={open}
+      labelRef={labelRef}
     />
   );
-  return href !== undefined ? (
+  const row = href !== undefined ? (
     <a
       ref={ref as React.Ref<HTMLAnchorElement>}
       {...shared}
@@ -176,4 +230,7 @@ export const SubMenuItem = React.forwardRef<HTMLElement, SubMenuItemProps>(funct
       {content}
     </button>
   );
+  // Every row gets the truncation tooltip: it opens only while the label is
+  // actually cut off (a group's width, or the rail's subMenuMaxWidth).
+  return <TruncatedLabelTooltip label={label} labelRef={labelRef} shape={shape} trigger={row} />;
 });

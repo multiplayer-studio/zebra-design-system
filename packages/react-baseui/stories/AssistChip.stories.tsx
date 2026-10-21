@@ -8,7 +8,7 @@ const Row = ({ children }: { children: React.ReactNode }) => <div style={{ displ
 const Cap = ({ children }: { children: React.ReactNode }) => <div style={{ font: "500 12px/1.4 system-ui", opacity: 0.7 }}>{children}</div>;
 
 const meta: Meta<typeof AssistChip> = {
-  title: "Components/Assist Chip", component: AssistChip, tags: ["autodocs"],
+  title: "Components/Chips/Assist Chip", component: AssistChip, tags: ["autodocs"],
   argTypes: { icon: { control: "select", options: iconNames }, shape: { control: "inline-radio", options: ["rounded", "sharp"] }, onClick: { action: "click" } },
   args: { children: "Add to calendar", icon: "calendar", showLeadingIcon: true, disabled: false, shape: "rounded" },
 };

@@ -15,8 +15,9 @@ const clampPercent = (v: number, min: number, max: number) =>
  *
  * `value` is a real number between `min` and `max` (Figma's 0/25/50/100%
  * variants are samples of it); `value = null` (or removing the attribute) is
- * indeterminate, a short segment sliding along the track. `buffer` adds
- * Figma's Buffering band from the start of the track up to that value.
+ * indeterminate, a short segment sliding along the track. `buffering` turns
+ * on Figma's Buffering band (determinate only), from the start of the track up to `buffer` (how
+ * much has preloaded); `value` never runs past it.
  *
  * Accessibility mirrors Base UI's Progress (the React package): the bar is a
  * `role="progressbar"` with `aria-valuemin/max/now` and an `aria-valuetext`
@@ -48,7 +49,14 @@ export class ZdsProgressBar extends LitElement {
   /** Upper bound of `value` and `buffer`. */
   @property({ type: Number }) max = 100;
 
-  /** The buffered extent, in the units of `value`. When set, the buffer band shows. */
+  /**
+   * Turns on Figma's Buffering: a band shows how much has preloaded
+   * (`buffer`), and `value` never runs past it. Off, or with no `value`
+   * (indeterminate), `buffer` is ignored.
+   */
+  @property({ type: Boolean, reflect: true }) buffering = false;
+
+  /** How much has preloaded, in the units of `value`; the band's extent while `buffering`. */
   @property({ type: Number }) buffer: number | null = null;
 
   /**
@@ -85,12 +93,15 @@ export class ZdsProgressBar extends LitElement {
 
   protected render() {
     const determinate = this.value != null && Number.isFinite(this.value);
-    const percent = determinate ? clampPercent(this.value as number, this.min, this.max) : null;
-    const buffering = this.buffer != null && Number.isFinite(this.buffer);
+    // Indeterminate has no buffer (owner decision).
+    const buffering = this.buffering && determinate && this.buffer != null && Number.isFinite(this.buffer);
+    // The value never runs past what has preloaded (owner decision).
+    const shown = determinate && buffering ? Math.min(this.value as number, this.buffer as number) : this.value;
+    const percent = determinate ? clampPercent(shown as number, this.min, this.max) : null;
     const formatted = percent != null ? new Intl.NumberFormat(undefined, { style: "percent" }).format(percent / 100) : "";
     const text = this.label || formatted;
     const showText = this.showLabel && text !== "";
-    const valueNow = determinate ? Math.min(this.max, Math.max(this.min, this.value as number)) : null;
+    const valueNow = determinate ? Math.min(this.max, Math.max(this.min, shown as number)) : null;
 
     return html`
       <div class="label-row" ?hidden=${!this.showLabel || (!showText && !this.hasTrailing)}>

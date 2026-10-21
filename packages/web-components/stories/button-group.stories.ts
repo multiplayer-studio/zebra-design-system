@@ -18,7 +18,7 @@ const fileItems = () => html`
 `;
 
 const meta: Meta = {
-  title: "Components/Button Group",
+  title: "Components/Buttons/Button Group",
   component: "zds-button-group",
   tags: ["autodocs"],
   parameters: { docs: { description: { component: "A row of peer actions on one bordered surface. Items are slotted `<zds-button>` / `<zds-icon-button>`; the group sets their size, pins them to subtle and draws a divider between every pair. Spec: specs/button-group." } } },

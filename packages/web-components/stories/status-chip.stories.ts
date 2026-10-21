@@ -7,7 +7,7 @@ const row = (c: unknown) => html`<div style="display:flex;flex-wrap:wrap;gap:8px
 const cap = (t: string) => html`<div style="font:500 12px/1.4 system-ui;opacity:.7">${t}</div>`;
 
 const meta: Meta = {
-  title: "Components/Status Chip",
+  title: "Components/Chips/Status Chip",
   component: "zds-status-chip",
   tags: ["autodocs"],
   argTypes: { status: { control: "select", options: STATUSES.map(([s]) => s) }, shape: { control: "inline-radio", options: ["rounded", "sharp"] } },

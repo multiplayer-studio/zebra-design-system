@@ -6,6 +6,7 @@ import type { NavigationRailShape } from "../navigation-rail/navigation-rail.js"
 import "../icon/icon.js";
 import "../notification-indicator/notification-indicator.js";
 import "../caret-indicator/caret-indicator.js";
+import "../tooltip/tooltip.js";
 import type { NotificationIndicatorSize } from "../notification-indicator/notification-indicator.js";
 import type { CaretIndicatorDirection } from "../caret-indicator/caret-indicator.js";
 
@@ -43,13 +44,37 @@ export function subMenuRowContent(o: {
   `;
 }
 
+/** A label actually cut off by its ellipsis. Measured when asked, never observed. */
+function isTruncated(el: HTMLElement | null | undefined) {
+  return !!el && el.scrollWidth > el.clientWidth;
+}
+
+/**
+ * @internal The full label of a row (or a zds-collapsible-menu-item header), in a
+ * zds-tooltip after a 3s hover — only when the label is truncated (owner
+ * decision). `canOpen` measures the label at hover start, when the delay
+ * ends and on keyboard focus, so a resize or a label change is always
+ * current. `no-describe`: the bubble repeats the row's own accessible name.
+ * The bubble stays in this shadow tree, so it inherits the rail's mode.
+ */
+export function truncatedLabelTooltip(o: {
+  anchorId: string;
+  label: string;
+  shape: NavigationRailShape;
+  root: ShadowRoot | null;
+}): TemplateResult {
+  const canOpen = () => isTruncated(o.root?.querySelector<HTMLElement>(`#${o.anchorId} .label`));
+  return html`<zds-tooltip for=${o.anchorId} delay="3000" point="left" shape=${o.shape} no-describe .canOpen=${canOpen}>${o.label}</zds-tooltip>`;
+}
+
 /**
  * A row in the Navigation Rail's sub menu panel: leading glyph, label, an
  * optional counter badge and an optional caret.
  *
  * Renders an `<a>` when `href` is set, otherwise a `<button type="button">`;
  * `selected` sets `aria-current="page"`. Inside a zds-collapsible-menu-item
- * the group sets `nested`. Hover, pressed and selected fills are the ghost
+ * the group sets `nested`. A truncated label shows in full in a tooltip
+ * after a 3s hover. Hover, pressed and selected fills are the ghost
  * tokens alone (spec warn "Double alpha"). Kept in step with React
  * `<SubMenuItem>`.
  *
@@ -118,6 +143,13 @@ export class ZdsSubMenuItem extends LitElement {
   @property({ type: String }) rel: string | null = null;
 
   protected render() {
+    // Every row gets the truncation tooltip: it opens only while the label is
+    // actually cut off (a group's width, or the rail's sub-menu-max-width).
+    const tip = truncatedLabelTooltip({ anchorId: "row", label: this.label, shape: this.shape, root: this.renderRoot as ShadowRoot });
+    return html`${this.#row()}${tip}`;
+  }
+
+  #row() {
     const isSelected = this.selected && !this.disabled;
     const d = (b: boolean) => (b ? "" : nothing);
     const content = subMenuRowContent({
@@ -132,6 +164,7 @@ export class ZdsSubMenuItem extends LitElement {
     if (this.href !== null) {
       return html`<a
         part="item"
+        id="row"
         class="row"
         href=${this.disabled ? nothing : this.href}
         target=${this.target ?? nothing}
@@ -147,6 +180,7 @@ export class ZdsSubMenuItem extends LitElement {
     }
     return html`<button
       part="item"
+      id="row"
       class="row"
       type="button"
       ?disabled=${this.disabled}

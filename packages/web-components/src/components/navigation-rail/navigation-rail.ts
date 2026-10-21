@@ -1,4 +1,4 @@
-import { LitElement, html, nothing } from "lit";
+import { LitElement, html, nothing, type PropertyValues } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import type { IconName } from "@zebra-design-system/icons/names";
 import { railStyles } from "./navigation-rail.styles.js";
@@ -22,6 +22,14 @@ export type NavigationRailShape = "rounded" | "sharp";
 /** The parts the rail hands its state to. */
 const RAIL_PARTS = "zds-navigation-rail-item, zds-navigation-header, zds-sub-menu-header, zds-sub-menu-item, zds-collapsible-menu-item";
 type RailPart = ZdsNavigationRailItem | ZdsNavigationHeader | ZdsSubMenuHeader | ZdsSubMenuItem | ZdsCollapsibleMenuItem;
+
+/** The first duration in an element's computed `transition-duration`, in ms (0 under reduced motion or before the rail is ready). */
+function motionMs(el: Element | null): number {
+  if (!el) return 0;
+  const d = getComputedStyle(el).transitionDuration.split(",")[0]?.trim() ?? "0s";
+  const n = parseFloat(d);
+  return Number.isFinite(n) ? (d.endsWith("ms") ? n : n * 1000) : 0;
+}
 
 const hasContent = (slot: HTMLSlotElement) =>
   slot
@@ -108,6 +116,20 @@ export class ZdsNavigationRail extends LitElement {
    */
   @property({ type: Boolean, reflect: true }) inverse = false;
 
+  /**
+   * Caps the wide rail's width (Figma's 200px); the narrow icon rail is
+   * unaffected. A CSS length, or a number in px. Wide labels truncate.
+   */
+  @property({ attribute: "rail-max-width" }) railMaxWidth: string | number | null = null;
+
+  /**
+   * Caps the sub menu panel's width. The panel still hugs its list, up to
+   * this width; longer rows truncate (full label in a tooltip after a 3s
+   * hover). A cap below 240px also lowers the 240px minimum. A CSS length,
+   * or a number in px.
+   */
+  @property({ attribute: "sub-menu-max-width" }) subMenuMaxWidth: string | number | null = null;
+
   /** Accessible name of the `<nav>` landmark. */
   @property({ type: String, attribute: "nav-label" }) navLabel = "Main";
 
@@ -125,11 +147,29 @@ export class ZdsNavigationRail extends LitElement {
   @state() private hasSubMenuHeader = false;
   @state() private hasSubMenu = false;
 
+  /**
+   * Motion (owner decision: animations/smooth). The rail's width animates on
+   * `[expanded]`; its content keeps the wide layout until a collapse has
+   * finished (`wideLatch`), laid out at its final width and clipped by the
+   * narrowing rail, so labels never reflow or wrap mid-animation. Expanding
+   * switches the content at once and the widening rail reveals it.
+   */
+  @state() private wideLatch = false;
+  /** Transitions only after the first paint, so nothing animates on mount. */
+  @state() private ready = false;
+  #latchTimer: ReturnType<typeof setTimeout> | undefined;
+  #readyFrame: number | undefined;
+
+  /** The content's form: wide while expanded, and through a collapse. */
+  private get wide() {
+    return this.expanded || this.wideLatch;
+  }
+
   protected render() {
     const showHeader = this.hasHeader || !!this.actionLabel;
     const showFooter = this.hasFooter || this.showToggleItem;
     const showPanel = this.hasSubMenuHeader || this.hasSubMenu;
-    return html`<nav part="nav" class="root" aria-label=${this.navLabel}>
+    return html`<nav part="nav" class="root" aria-label=${this.navLabel} data-wide=${this.wide ? "" : nothing} data-ready=${this.ready ? "" : nothing}>
       <div part="rail" class="rail">
         <div class="header" ?hidden=${!showHeader}>
           <slot name="header" @slotchange=${this.#onSlot}></slot>
@@ -143,7 +183,7 @@ export class ZdsNavigationRail extends LitElement {
                 class="toggle"
                 icon=${this.expanded ? "left-panel-close" : "left-panel-open"}
                 label=${this.expanded ? this.collapseLabel : this.expandLabel}
-                ?expanded=${this.expanded}
+                ?expanded=${this.wide}
                 ?show-label=${this.showLabels}
                 shape=${this.shape}
                 .toggleExpanded=${this.expanded}
@@ -152,7 +192,9 @@ export class ZdsNavigationRail extends LitElement {
             : nothing}
         </div>
       </div>
-      <div part="panel" class="panel" ?hidden=${!showPanel}>
+      <!-- Always rendered so it can animate open and closed (width, on
+           [data-open]); closed it is zero-width and visibility: hidden. -->
+      <div part="panel" class="panel" data-open=${showPanel ? "" : nothing}>
         <slot name="sub-menu-header" @slotchange=${this.#onSlot}></slot>
         <div class="sub-menu" ?hidden=${!this.hasSubMenu}><slot name="sub-menu" @slotchange=${this.#onSlot}></slot></div>
       </div>
@@ -163,7 +205,7 @@ export class ZdsNavigationRail extends LitElement {
     // Size=large, Flavour=primary in both forms (spec). Figma pins
     // Shape=rounded; the rail's shape now sets it (owner decision: every
     // nested component follows the rail).
-    return this.expanded
+    return this.wide
       ? html`<zds-button class="action" size="large" shape=${this.shape} flavour="primary" leading-icon=${this.actionIcon} @click=${this.#onAction}>${this.actionLabel}</zds-button>`
       : html`<zds-icon-button class="action" size="large" shape=${this.shape} flavour="primary" icon=${this.actionIcon} label=${this.actionLabel ?? ""} @click=${this.#onAction}></zds-icon-button>`;
   }
@@ -171,12 +213,40 @@ export class ZdsNavigationRail extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this.#syncMode();
+    if (this.hasUpdated) this.#armReady();
   }
 
-  protected willUpdate() {
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    if (this.#readyFrame !== undefined) cancelAnimationFrame(this.#readyFrame);
+    clearTimeout(this.#latchTimer);
+    this.#readyFrame = undefined;
+    this.ready = false;
+    this.wideLatch = this.expanded;
+  }
+
+  protected firstUpdated() {
+    this.#armReady();
+  }
+
+  #armReady() {
+    this.#readyFrame = requestAnimationFrame(() => {
+      this.#readyFrame = undefined;
+      this.ready = true;
+    });
+  }
+
+  protected willUpdate(changed: PropertyValues<this>) {
     // Every update, not only when `inverse` changes: a framework that rewrites
     // the host's class attribute would otherwise drop the mode class.
     this.#syncMode();
+    if (changed.has("railMaxWidth") || changed.has("subMenuMaxWidth")) this.#syncWidths();
+    if (changed.has("expanded")) {
+      clearTimeout(this.#latchTimer);
+      const ms = this.expanded || !this.hasUpdated ? 0 : motionMs(this.renderRoot.querySelector(".rail"));
+      if (this.expanded || !ms) this.wideLatch = this.expanded;
+      else this.#latchTimer = setTimeout(() => (this.wideLatch = false), ms);
+    }
   }
 
   protected updated() {
@@ -193,13 +263,26 @@ export class ZdsNavigationRail extends LitElement {
     this.classList.toggle("mode-light", this.inverse);
   }
 
-  /** Hand the rail's width form and shape down to the parts inside it (not into a nested rail). */
+  /**
+   * The width caps, as custom properties on the host — where the stylesheet
+   * derives the wide width and the panel's minimum from them. Unset, the
+   * property is removed and the CSS falls back to no cap.
+   */
+  #syncWidths() {
+    // A bare number — `180` or the attribute string "180" — is px.
+    const set = (name: string, v: string | number | null) =>
+      v === null || v === "" ? this.style.removeProperty(name) : this.style.setProperty(name, /^\d+(\.\d+)?$/.test(String(v)) ? `${v}px` : String(v));
+    set("--zds-navigation-rail-max-width", this.railMaxWidth);
+    set("--zds-navigation-rail-sub-menu-max-width", this.subMenuMaxWidth);
+  }
+
+  /** Hand the rail's content form and shape down to the parts inside it (not into a nested rail). */
   #sync() {
     for (const el of this.querySelectorAll<RailPart>(RAIL_PARTS)) {
       if (el.closest("zds-navigation-rail") !== this) continue;
       el.shape = this.shape;
       if (el.localName === "zds-navigation-rail-item" || el.localName === "zds-navigation-header") {
-        (el as ZdsNavigationRailItem | ZdsNavigationHeader).expanded = this.expanded;
+        (el as ZdsNavigationRailItem | ZdsNavigationHeader).expanded = this.wide;
       }
       if (el.localName === "zds-navigation-rail-item") (el as ZdsNavigationRailItem).showLabel = this.showLabels;
     }

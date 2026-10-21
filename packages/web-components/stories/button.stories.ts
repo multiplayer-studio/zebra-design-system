@@ -8,7 +8,7 @@ const SIZES = ["small","medium","large"] as const;
 const SHAPES = ["sharp","rounded","full"] as const;
 
 const meta: Meta = {
-  title: "Components/Button",
+  title: "Components/Buttons/Button",
   component: "zds-button",
   tags: ["autodocs"],
   argTypes: {

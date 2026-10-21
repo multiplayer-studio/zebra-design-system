@@ -26,6 +26,21 @@
   /* The only fill: rail and panel both show this surface through. */
   background: var(--surface-section);
   color: var(--foreground-primary);
+  /* Figma's measured widths; no width tokens exist, so they are literals,
+     named once. Wide rail: 176px items + padding. Panel: hugs its list,
+     never narrower than Figma's 240px minimum. */
+  /* railMaxWidth / subMenuMaxWidth set --zds-navigation-rail-max-width and
+     --zds-navigation-rail-sub-menu-max-width; unset, there is no cap. A cap
+     below a minimum lowers the minimum, so the cap always applies. */
+  --zds-navigation-rail-wide-width: min(200px, var(--zds-navigation-rail-max-width, 200px));
+  --zds-navigation-rail-panel-max-width: var(--zds-navigation-rail-sub-menu-max-width, calc(infinity * 1px));
+  --zds-navigation-rail-panel-min-width: min(240px, var(--zds-navigation-rail-panel-max-width));
+  /* Lets the panel animate to and from its content width (width: max-content). */
+  interpolate-size: allow-keywords;
+  /* Every opening and closing in the rail uses animations/smooth (owner
+     decision), the caret included: Caret Indicator reads this hook and
+     keeps its own spring everywhere else. */
+  --zds-caret-indicator-motion: var(--animations-smooth);
 }
 
 .zds-navigation-rail[data-inverse] {
@@ -45,12 +60,13 @@
      build; Figma and the tokens say 72.) */
   width: calc(var(--control-lg) + 2 * var(--space-md));
   overflow: hidden; /* clips (spec) */
+  /* Clip at the content edge where supported, so wide content held through
+     a collapse leaves nothing in the padding at the end. */
+  overflow: clip;
+  overflow-clip-margin: content-box;
 }
 .zds-navigation-rail[data-expanded] .zds-navigation-rail__rail {
-  /* Wide: Figma's measured 200px (176px items + padding). No width token
-     exists; the nearest intent is the item's own fixed width, so it is
-     carried as a literal. */
-  width: 200px;
+  width: var(--zds-navigation-rail-wide-width);
 }
 
 .zds-navigation-rail__header {
@@ -60,13 +76,15 @@
   align-items: center;
   gap: var(--space-md);
 }
-.zds-navigation-rail[data-expanded] .zds-navigation-rail__header {
+/* The content's form follows [data-wide], not [data-expanded]: the rail
+   holds the wide layout until a collapse has finished. */
+.zds-navigation-rail[data-wide] .zds-navigation-rail__header {
   align-items: stretch;
 }
 .zds-navigation-rail__action {
   flex: none;
 }
-.zds-navigation-rail[data-expanded] .zds-navigation-rail__action {
+.zds-navigation-rail[data-wide] .zds-navigation-rail__action {
   width: 100%; /* the wide Button fills (spec) */
 }
 
@@ -92,34 +110,80 @@
 .zds-navigation-rail__footer {
   flex: none;
 }
-.zds-navigation-rail[data-expanded] :is(.zds-navigation-rail__menu, .zds-navigation-rail__footer) {
+.zds-navigation-rail[data-wide] :is(.zds-navigation-rail__menu, .zds-navigation-rail__footer) {
   align-items: stretch;
 }
 .zds-navigation-rail :is(.zds-navigation-rail__menu, .zds-navigation-rail__footer) > .zds-divider {
   align-self: stretch;
 }
+/* Wide content is laid out at its final width whatever the rail's current
+   width, so the animating rail clips it (no reflow, no wrapping). */
+.zds-navigation-rail[data-wide] :is(.zds-navigation-rail__header, .zds-navigation-rail__menu, .zds-navigation-rail__footer) {
+  min-width: calc(var(--zds-navigation-rail-wide-width) - 2 * var(--space-md));
+}
 
 /* ---- sub menu panel ----------------------------------------------------- */
+/* Hug: one column as wide as the widest of the header and the rows (at least
+   the 240px minimum), every one stretched to it, so rows share one width.
+   The column keeps that size while the panel's own width animates, so the
+   moving edge clips the content rather than reflowing it. Rows: the header,
+   then the list, which shrinks and scrolls when the rail is short. */
 .zds-navigation-rail__panel {
   box-sizing: border-box;
-  display: flex;
+  display: grid;
   flex: none;
-  flex-direction: column;
+  grid-template-columns: max-content;
+  grid-template-rows: auto minmax(0, max-content);
+  align-content: start; /* spare height stays below the list, not in the header */
   gap: var(--space-none);
-  /* Figma's fixed 240px (min 240px); no width token exists. */
-  width: 240px;
+  width: max-content;
   /* The one vertical border, on the leading edge. Figma's width is a raw
      1px (spec warn "Unbound border widths"): stroke/thin. */
   border-inline-start: var(--stroke-thin) solid var(--border-default);
   overflow: hidden;
 }
+/* Closed (no sub menu slot filled): zero-width and out of the
+   accessibility tree, so the overall width follows. Its height is the
+   rail's, never zero. */
+.zds-navigation-rail__panel:not([data-open]) {
+  width: 0;
+  border-inline-start-width: 0;
+  visibility: hidden;
+}
+.zds-navigation-rail__panel > * {
+  grid-row: 1;
+  /* Border-box, so the list's padding sits inside the minimum and the cap. */
+  box-sizing: border-box;
+  min-width: calc(var(--zds-navigation-rail-panel-min-width) - var(--stroke-thin));
+  /* The cap clamps each item's contribution to the hugged column, so the
+     column stops at it and labels truncate rather than being clipped. */
+  max-width: calc(var(--zds-navigation-rail-panel-max-width) - var(--stroke-thin));
+}
+.zds-navigation-rail__panel > .zds-navigation-rail__sub-menu { grid-row: 2; }
 .zds-navigation-rail__sub-menu {
   display: flex;
-  flex: 0 1 auto;
   flex-direction: column;
   gap: var(--space-xs);
   padding: var(--space-sm);
   overflow-y: auto;
+}
+
+/* ---- motion: animations/smooth (owner decision) ------------------------- */
+/* Only once the rail has painted ([data-ready]), so nothing animates on the
+   first render; each transition runs once per change, never continuously. */
+.zds-navigation-rail[data-ready] .zds-navigation-rail__rail {
+  transition: width var(--animations-smooth);
+}
+.zds-navigation-rail[data-ready] .zds-navigation-rail__panel {
+  transition:
+    width var(--animations-smooth),
+    border-inline-start-width var(--animations-smooth),
+    visibility var(--animations-smooth);
+}
+@media (prefers-reduced-motion: reduce) {
+  .zds-navigation-rail[data-ready] :is(.zds-navigation-rail__rail, .zds-navigation-rail__panel) {
+    transition: none;
+  }
 }
 
 /* ======================================================================== */
@@ -232,10 +296,17 @@
   gap: var(--space-none);
   width: 100%;
   min-width: 0;
+  /* Never widens the sub menu (owner decision): its content does not count
+     toward the panel's hugged width, and it stretches to the width the
+     panel's other content (min 240px) gives it. Its labels truncate. */
+  contain: inline-size;
   /* Shape=rounded (the default) is radius/sm, sharp radius/none — the rail's
      shape, code-only (owner decision). One value for the open group's
      corners, the header's top corners (via the row) and the children's. */
   --zds-collapsible-menu-item-radius: var(--radius-sm);
+  /* The caret turns on animations/smooth with the rows (owner decision),
+     inside a rail or not. */
+  --zds-caret-indicator-motion: var(--animations-smooth);
 }
 .zds-collapsible-menu-item[data-shape="sharp"] {
   --zds-collapsible-menu-item-radius: var(--radius-none);
@@ -251,6 +322,24 @@
   --zds-sub-menu-item-bg: var(--interactive-ghost-background-pressed);
   border-end-start-radius: var(--radius-none);
   border-end-end-radius: var(--radius-none);
+}
+/* Open and close: the rows' height on animations/smooth (owner decision).
+   Base UI's Collapsible measures the rows into --collapsible-panel-height
+   (auto at rest), marks the first and last frames with
+   [data-starting-style] / [data-ending-style], and holds `hidden` until the
+   transition ends. It skips the transition on first render. */
+.zds-collapsible-menu-item__panel {
+  height: var(--collapsible-panel-height);
+  overflow: hidden;
+  transition: height var(--animations-smooth);
+}
+.zds-collapsible-menu-item__panel:is([data-starting-style], [data-ending-style]) {
+  height: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .zds-collapsible-menu-item__panel {
+    transition: none;
+  }
 }
 .zds-collapsible-menu-item__children {
   box-sizing: border-box;

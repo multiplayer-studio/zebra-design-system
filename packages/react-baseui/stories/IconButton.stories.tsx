@@ -5,7 +5,7 @@ import { IconButton } from "../src/index.js";
 const FLAVOURS = ["primary", "positive", "negative", "subtle", "text", "outline-subtle", "outline", "gradient", "text-gradient"] as const;
 
 const meta: Meta<typeof IconButton> = {
-  title: "Components/Icon Button",
+  title: "Components/Buttons/Icon Button",
   component: IconButton,
   tags: ["autodocs"],
   parameters: { docs: { description: { component: "A single glyph, no label: square at every size, with Button's nine flavours, three shapes and four states. Every instance needs `label`, its accessible name. Spec: specs/icon-button." } } },

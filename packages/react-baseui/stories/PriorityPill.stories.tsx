@@ -6,7 +6,7 @@ const LEVELS = ["low", "medium", "high", "urgent"] as const;
 const Row = ({ children }: { children: React.ReactNode }) => <div style={{ display: "flex", flexWrap: "wrap", gap: 12, alignItems: "center" }}>{children}</div>;
 
 const meta: Meta<typeof PriorityPill> = {
-  title: "Components/Priority Pill", component: PriorityPill, tags: ["autodocs"],
+  title: "Components/Badges/Priority Pill", component: PriorityPill, tags: ["autodocs"],
   argTypes: { level: { control: "inline-radio", options: LEVELS }, variant: { control: "inline-radio", options: ["lozenge", "badge"] }, size: { control: "inline-radio", options: ["large", "small"] }, leading: { control: "inline-radio", options: ["icon", "number"] } },
   args: { level: "high", variant: "lozenge", size: "large", leading: "icon" },
 };

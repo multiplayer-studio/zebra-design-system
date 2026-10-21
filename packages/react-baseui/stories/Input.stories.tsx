@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Input } from "../src/index.js";
 
 const meta: Meta<typeof Input> = {
-  title: "Components/Input",
+  title: "Components/Form/Input",
   component: Input,
   tags: ["autodocs"],
   parameters: { docs: { description: { component: "Label, field and hint as one unit, on Base UI's Field. `state` keeps the three parts in agreement; the field's own props are set here too." } } },

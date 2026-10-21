@@ -2,6 +2,13 @@ import { LitElement, html, nothing, type PropertyValues } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
 import styles from "./tooltip.styles.js";
 
+/** The first duration in an element's computed `transition-duration`, in ms (0 under reduced motion). */
+function motionMs(el: Element): number {
+  const d = getComputedStyle(el).transitionDuration.split(",")[0]?.trim() ?? "0s";
+  const n = parseFloat(d);
+  return Number.isFinite(n) ? (d.endsWith("ms") ? n : n * 1000) : 0;
+}
+
 /** The edge of the bubble the pointer sits on — the edge facing the trigger, not the side the bubble appears on. */
 export type TooltipPoint = "bottom" | "top" | "left" | "right";
 export type TooltipShape = "rounded" | "sharp";
@@ -83,6 +90,21 @@ export class ZdsTooltip extends LitElement {
   /** Milliseconds before it closes after the pointer leaves. */
   @property({ type: Number, attribute: "close-delay" }) closeDelay = 0;
 
+  /**
+   * Don't wire the bubble up as the trigger's description (`aria-describedby`).
+   * For a bubble that only repeats the trigger's own accessible name — a
+   * truncated label shown in full — so a screen reader does not hear it twice.
+   */
+  @property({ type: Boolean, attribute: "no-describe" }) noDescribe = false;
+
+  /**
+   * Asked before every open (hover start, keyboard focus, and when the delay
+   * ends); returning false keeps the bubble shut. Unset, it always may open.
+   * For a tooltip that only applies sometimes, such as a label that is
+   * truncated right now.
+   */
+  @property({ attribute: false }) canOpen: (() => boolean) | null = null;
+
   @query(".bubble") private bubbleEl!: HTMLElement;
   @query(".pointer") private pointerEl!: HTMLElement;
 
@@ -102,10 +124,15 @@ export class ZdsTooltip extends LitElement {
     this.unbindAnchor();
     this.stopTracking();
     clearTimeout(this.timer);
+    this.endClosing();
   }
 
   protected willUpdate(changed: PropertyValues<this>) {
     if (changed.has("anchor") || changed.has("htmlFor")) this.bindAnchor();
+    else if (changed.has("noDescribe") && this.anchorEl) {
+      this.unbindAnchor();
+      this.bindAnchor();
+    }
   }
 
   protected updated() {
@@ -135,6 +162,10 @@ export class ZdsTooltip extends LitElement {
     next.addEventListener("focusout", this.onFocusOut);
     next.addEventListener("pointerdown", this.onPress);
 
+    if (this.noDescribe) {
+      this.requestUpdate();
+      return;
+    }
     const ids = (next.getAttribute("aria-describedby") ?? "").split(/\s+/).filter(Boolean);
     if (!ids.includes(this.id)) next.setAttribute("aria-describedby", [...ids, this.id].join(" "));
 
@@ -177,6 +208,7 @@ export class ZdsTooltip extends LitElement {
 
   private setOpen(next: boolean) {
     clearTimeout(this.timer);
+    if (next && this.canOpen && !this.canOpen()) return;
     if (next === this.open) return;
     this.open = next;
     this.dispatchEvent(new CustomEvent("zds-open-change", { detail: { open: next }, bubbles: true, composed: true }));
@@ -191,7 +223,7 @@ export class ZdsTooltip extends LitElement {
   private onAnchorEnter = (e: PointerEvent) => {
     if (e.pointerType === "touch") return;
     if (this.open) clearTimeout(this.timer);
-    else this.schedule(true, this.delay);
+    else if (!this.canOpen || this.canOpen()) this.schedule(true, this.delay);
   };
 
   private onBubbleEnter = () => {
@@ -228,13 +260,27 @@ export class ZdsTooltip extends LitElement {
     if (!bubble || !this.anchorEl || !bubble.showPopover) return;
     const shown = bubble.matches(":popover-open");
     if (this.open && !shown) {
+      this.endClosing();
       bubble.showPopover();
       this.startTracking();
     } else if (!this.open && shown) {
+      // Keep the host rendered while the bubble fades out. Set before anything
+      // reads style: a recalc with the host hidden would skip the fade.
+      this.toggleAttribute("data-closing", true);
       bubble.hidePopover();
       this.stopTracking();
+      const ms = motionMs(bubble); // 0 under reduced motion
+      if (ms) this.closingTimer = setTimeout(() => this.endClosing(), ms);
+      else this.endClosing();
     }
     if (this.open) this.place();
+  }
+
+  private closingTimer: ReturnType<typeof setTimeout> | undefined;
+  private endClosing() {
+    clearTimeout(this.closingTimer);
+    this.closingTimer = undefined;
+    this.removeAttribute("data-closing");
   }
 
   private tracking = false;

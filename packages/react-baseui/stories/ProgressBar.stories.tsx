@@ -3,19 +3,20 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { ProgressBar, Icon } from "../src/index.js";
 
 const meta: Meta<typeof ProgressBar> = {
-  title: "Components/ProgressBar",
+  title: "Components/Progress Indicators/Progress Bar",
   component: ProgressBar,
   tags: ["autodocs"],
   parameters: {
     docs: {
       description: {
         component:
-          "A horizontal track that fills to show how far a process has got. `value` is a real number (null = indeterminate, a sliding segment); `buffer` adds the buffered band. Base UI Progress. Spec: specs/progress-bar.",
+          "A horizontal track that fills to show how far a process has got. `value` is a real number (null = indeterminate, a sliding segment); `buffering` turns on the band, up to `buffer` (preloaded); `value` never runs past it. Base UI Progress. Spec: specs/progress-bar.",
       },
     },
   },
   argTypes: {
     value: { control: { type: "number", min: 0, max: 100 } },
+    buffering: { control: "boolean" },
     buffer: { control: { type: "number", min: 0, max: 100 } },
     shape: { control: "inline-radio", options: ["rounded", "sharp"] },
     size: { control: "inline-radio", options: ["small", "medium"] },
@@ -40,8 +41,10 @@ export const Progress: Story = {
       <ProgressBar {...a} value={50} label="50% complete" />
       <ProgressBar {...a} value={100} label="Complete" />
       <ProgressBar {...a} value={null} label="Uploading photos" />
-      <ProgressBar {...a} value={null} buffer={75} label="Loading video" />
-      <ProgressBar {...a} value={30} buffer={75} label="Playing — 30% watched, 75% buffered" />
+      <ProgressBar {...a} value={null} buffering buffer={75} label="Indeterminate: no band, even with buffering on" />
+      <ProgressBar {...a} value={30} buffering buffer={75} label="Playing — 30% watched, 75% buffered" />
+      <ProgressBar {...a} value={90} buffering buffer={60} label="Value 90, preloaded 60: stops at 60" />
+      <ProgressBar {...a} value={30} buffer={75} label="buffer set, buffering off: no band" />
     </Stack>
   ),
 };
@@ -85,7 +88,7 @@ export const ShowTrack: Story = {
     <Stack>
       <Cap>showTrack</Cap><ProgressBar {...a} value={40} label="Downloading maps" />
       <Cap>showTrack=false</Cap><ProgressBar {...a} value={40} showTrack={false} label="Downloading maps" />
-      <Cap>showTrack=false · buffering</Cap><ProgressBar {...a} value={null} buffer={75} showTrack={false} label="Loading video" />
+      <Cap>showTrack=false · buffering</Cap><ProgressBar {...a} value={30} buffering buffer={75} showTrack={false} label="Playing video" />
     </Stack>
   ),
 };
@@ -107,7 +110,7 @@ export const ThemingCascade: Story = {
         <div key={cls} className={cls} style={{ padding: 16, background: "var(--surface-page)", color: "var(--foreground-primary)", display: "grid", gap: 16 }}>
           <Cap>{cls || "base / light"}</Cap>
           <ProgressBar {...a} value={55} label="Uploading report.pdf" />
-          <ProgressBar {...a} value={null} buffer={75} size="medium" label="Loading video" />
+          <ProgressBar {...a} value={30} buffering buffer={75} size="medium" label="Playing video" />
         </div>
       ))}
     </div>
