@@ -130,7 +130,7 @@ A card whose body opens and closes behind a header that is always visible. The h
 
 **Accessibility:** the chevron direction alone doesn't convey expanded/collapsed to AT, expose state in code · the header toggles the card but isn't modeled as a button here, build the target/focus/keyboard behavior · the gradient outline is decorative only · collapsed content should be genuinely hidden from AT when closed.
 
-**Layout & theming:** Width fixed 385px, every variant · Height hugs (78/257px default, 82/261px gradient) · Header padding 16px (`space/lg`) top/bottom, 24px (`space/xl`) sides, 8px (`space/sm`) icon-to-heading gap · Body padding none while collapsed, 24px (`space/xl`) left/right/bottom when expanded (nothing on top) · Heading spacing 2px (`space/2xs`) title-to-description, 4px (`space/xs`) inside the title row · Radius per shape · Outline: gradient flavour only, 2px (`stroke/thick`), `foreground/gradient/start`→`foreground/gradient/end` · Fill `surface/card`, header sits on transparent `interactive/ghost/background/default` · Leading icon 28px `Icon` at `Size=large`, `Framed=false` · Description text on `foreground/secondary`.
+**Layout & theming:** Width fixed 385px, every variant · Height hugs (78/257px default, 82/261px gradient) · Header padding 16px (`space/lg`) top/bottom, 24px (`space/xl`) sides, 8px (`space/sm`) icon-to-heading gap · Body padding none while collapsed, 24px (`space/xl`) left/right/bottom when expanded (nothing on top) · Heading spacing 2px (`space/2xs`) title-to-description, 4px (`space/xxs`) inside the title row · Radius per shape · Outline: gradient flavour only, 2px (`stroke/thick`), `foreground/gradient/start`→`foreground/gradient/end` · Fill `surface/card`, header sits on transparent `interactive/ghost/background/default` · Leading icon 28px `Icon` at `Size=large`, `Framed=false` · Description text on `foreground/secondary`.
 
 ---
 
@@ -191,7 +191,7 @@ A ready-made collapsible card built on Collapsible Card, with the body already f
 ## Tokens & theming
 
 - **Color:** `surface/card`, `border/default`, `foreground/primary`, `foreground/secondary`, `foreground/error`, `foreground/gradient/start`, `foreground/gradient/end`, `interactive/ghost/background/default`, `interactive/ghost/background/hover`, `interactive/ghost/border/default`, `interactive/primary/background/default`, `interactive/primary/border/default`, `interactive/neutral/background/default`.
-- **Dimension:** `space/none`, `space/2xs`, `space/xs`, `space/sm`, `space/md`, `space/lg`, `space/xl`, `radius/none`, `radius/sm`, `stroke/thin`, `stroke/base`, `stroke/thick`, `control/sm`, `control/md`, `control/lg`.
+- **Dimension:** `space/none`, `space/2xs`, `space/xxs`, `space/sm`, `space/md`, `space/lg`, `space/xl`, `radius/none`, `radius/sm`, `stroke/thin`, `stroke/base`, `stroke/thick`, `control/sm`, `control/md`, `control/lg`.
 - **Typography:** `title/large`, `title/medium`, `body/small`.
 - **Theme axes:** `palette` (Light, Dark) · `size` (Desktop, Mobile, Tablet, Desktop Compact) · `typography` (Desktop, Tablet, Mobile, Desktop Compact).
 - **Source:** `tokens/` (see `tokens/manifest.json`).

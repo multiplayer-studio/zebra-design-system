@@ -11,7 +11,7 @@
       "boardId": "5194:4509",
       "metadataFrameId": "5689:430",
       "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5126-3677",
-      "extractedAt": "2026-10-20",
+      "extractedAt": "2026-10-26",
       "variantCount": 16,
       "extractionNote": "One of four independent components on the Chip page, each with its own board and its own metadata frame; this spec covers Filter Chip only. All 16 variants extracted to full depth and diffed against the default. The check mark exists only in active=true variants (an added node, not a hidden one). No on-page private subcomponents."
     }
@@ -65,7 +65,7 @@
     {
       "id": "root", "kind": "container", "number": 1,
       "role": "The component frame. A horizontal auto-layout hugging its content at a fixed height.",
-      "layout": { "direction": "horizontal", "gap": "space/xs (active=false) | space/sm (active=true)", "padding": { "top": "space/sm (active=false) | space/xs (active=true)", "bottom": "space/sm (active=false) | space/xs (active=true)", "left": "space/md", "right": "space/md" }, "align": "start", "crossAlign": "center" },
+      "layout": { "direction": "horizontal", "gap": "space/xxs (active=false) | space/sm (active=true)", "padding": { "top": "space/sm (active=false) | space/xxs (active=true)", "bottom": "space/sm (active=false) | space/xxs (active=true)", "left": "space/md", "right": "space/md" }, "align": "start", "crossAlign": "center" },
       "sizing": { "h": "hug", "v": "fixed", "height": "unbound (gap; measured 32Px)" },
       "radius": "radius/pill (rounded=true) | radius/none (rounded=false)",
       "paint": {
@@ -103,8 +103,8 @@
       { "active": false, "state": "selected", "disabled": false, "root.fill": "interactive/neutral/background/selected", "root.stroke": "interactive/neutral/border/default @ stroke/thin, inside", "label.color": "interactive/neutral/foreground/default", "measuredWidthPx": 56, "figmaNode": "5161:4401" },
       { "active": false, "state": "dragged", "disabled": false, "root.fill": "interactive/neutral/background/pressed", "root.stroke": "interactive/neutral/border/default @ stroke/thin, inside", "label.color": "interactive/neutral/foreground/default", "measuredWidthPx": 56, "figmaNode": "5161:4412" },
       { "active": false, "state": "default", "disabled": true, "root.fill": "interactive/neutral/background/disabled", "root.stroke": "none", "label.color": "interactive/neutral/foreground/disabled", "measuredWidthPx": 54, "figmaNode": "5126:3686" },
-      { "active": true, "state": "default", "disabled": false, "root.fill": "interactive/inverse/background/selected", "root.stroke": "interactive/inverse/border/pressed @ stroke/thin, inside", "label.color": "interactive/inverse/foreground/default", "check": "shown", "root.gap": "space/sm", "root.paddingY": "space/xs", "measuredWidthPx": 80, "figmaNode": "5161:4390" },
-      { "active": true, "state": "focus", "disabled": false, "root.fill": "interactive/inverse/background/selected", "root.stroke": "focus/outline @ stroke/thick, outside", "label.color": "interactive/inverse/foreground/default", "check": "shown", "root.gap": "space/sm", "root.paddingY": "space/xs", "measuredWidthPx": 78, "figmaNode": "5161:4380" }
+      { "active": true, "state": "default", "disabled": false, "root.fill": "interactive/inverse/background/selected", "root.stroke": "interactive/inverse/border/pressed @ stroke/thin, inside", "label.color": "interactive/inverse/foreground/default", "check": "shown", "root.gap": "space/sm", "root.paddingY": "space/xxs", "measuredWidthPx": 80, "figmaNode": "5161:4390" },
+      { "active": true, "state": "focus", "disabled": false, "root.fill": "interactive/inverse/background/selected", "root.stroke": "focus/outline @ stroke/thick, outside", "label.color": "interactive/inverse/foreground/default", "check": "shown", "root.gap": "space/sm", "root.paddingY": "space/xxs", "measuredWidthPx": 78, "figmaNode": "5161:4380" }
     ],
     "rounded": [
       { "rounded": true, "root.radius": "radius/pill", "figmaNode": "5126:3678" },
@@ -125,7 +125,7 @@
       "interactive/inverse/background/selected", "interactive/inverse/border/pressed", "interactive/inverse/foreground/default",
       "focus/outline"
     ],
-    "dimension": ["space/xs", "space/sm", "space/md", "radius/pill", "radius/none", "stroke/thin", "stroke/thick"],
+    "dimension": ["space/xxs", "space/sm", "space/md", "radius/pill", "radius/none", "stroke/thin", "stroke/thick"],
     "typography": ["indicator/medium"],
     "glyphs": ["check-mark"],
     "themeAxes": {
@@ -205,6 +205,7 @@
   },
 
   "issues": [
+    { "severity": "warn", "source": "metadata vs extracted (spacing)", "detail": "Metadata says space/xs for the active vertical padding and the inactive gap. The bindings are space/xxs, the old 4px space/xs after the rename." },
     { "severity": "warn", "source": "api (selected vs active)", "detail": "Two ways to look chosen: State=selected (fill only, no check) and active=true (inverse palette plus check). The metadata itself says to prefer active. Recommend modelling only active (as a pressed/checked toggle) in code and leaving selected out until design resolves the overlap." },
     { "severity": "warn", "source": "coverage", "detail": "active=true has no hover, dragged or disabled variant; disabled has no hover/focus. Code needs a decision for hovering an active chip (e.g. keep the active fill) and for an active chip that is disabled." },
     { "severity": "warn", "source": "gaps", "detail": "Root height is a fixed 32px with no token, in all 16 variants. Input Chip binds its height to control/target-min; this one is raw. Hug the content in code (padding plus the 16px icon gives the same height when active) or add a control token." },

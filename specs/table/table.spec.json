@@ -453,7 +453,7 @@
             "anchor": "bottom, stretches horizontally"
           },
           "layout": {
-            "padding": "space/xs"
+            "padding": "space/xxs"
           }
         }
       ],
@@ -928,7 +928,7 @@
           "kind": "container",
           "layout": {
             "direction": "horizontal",
-            "gap": "space/xs",
+            "gap": "space/xxs",
             "align": "center"
           },
           "children": [
@@ -1276,7 +1276,7 @@
     ],
     "dimension": [
       "space/none",
-      "space/xs",
+      "space/xxs",
       "space/sm",
       "space/md",
       "space/lg",

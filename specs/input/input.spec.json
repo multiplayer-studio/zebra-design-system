@@ -214,7 +214,7 @@
       "kind": "container",
       "layout": {
         "direction": "vertical",
-        "gap": "space/xs",
+        "gap": "space/xxs",
         "padding": "0"
       },
       "sizing": {
@@ -258,7 +258,7 @@
     }
   ],
   "variants": {
-    "_note": "The assembly has no variants. Its parts' variant tables are under subcomponents. Measured stack height at the default: label 20 + field 40 + hint 16 + two space/xs gaps = 84 (all Px)."
+    "_note": "The assembly has no variants. Its parts' variant tables are under subcomponents. Measured stack height at the default: label 20 + field 40 + hint 16 + two space/xxs gaps = 84 (all Px)."
   },
   "subcomponents": {
     "inputField": {
@@ -438,7 +438,7 @@
           "kind": "container",
           "layout": {
             "direction": "horizontal",
-            "gap": "space/xs",
+            "gap": "space/xxs",
             "padding": "space/sm space/md"
           },
           "size": {
@@ -480,7 +480,7 @@
           "layout": {
             "direction": "horizontal",
             "gap": "space/none",
-            "padding": "0 space/xs"
+            "padding": "0 space/xxs"
           },
           "sizing": {
             "h": "fill",
@@ -601,7 +601,7 @@
               "measuredIconPx": 20
             }
           ],
-          "_note2": "Padding (space/sm, space/md), gap (space/xs), stroke and colours hold across sizes."
+          "_note2": "Padding (space/sm, space/md), gap (space/xxs), stroke and colours hold across sizes."
         },
         "shape": {
           "axis": "shape",
@@ -1001,7 +1001,7 @@
           "kind": "container",
           "layout": {
             "direction": "horizontal",
-            "gap": "space/xs",
+            "gap": "space/xxs",
             "padding": "0"
           },
           "measuredHeightPx": 20
@@ -1081,7 +1081,7 @@
           "kind": "container",
           "layout": {
             "direction": "horizontal",
-            "gap": "space/xs",
+            "gap": "space/xxs",
             "padding": "0"
           },
           "measuredHeightPx": 16
@@ -1158,7 +1158,7 @@
     ],
     "dimension": [
       "control/{lg,md,sm,icon-md}",
-      "space/{none,xs,sm,md}",
+      "space/{none,xxs,sm,md}",
       "radius/{none,sm,pill}",
       "stroke/{base,thin,thick}"
     ],
@@ -1400,17 +1400,17 @@
       {
         "property": "Gap",
         "type": "Fixed",
-        "description": "space/xs between all three parts. That is the same 4 the field uses internally between its icons and its text, so the stack and its contents share one rhythm."
+        "description": "space/xxs between all three parts. That is the same 4 the field uses internally between its icons and its text, so the stack and its contents share one rhythm."
       },
       {
         "property": "Label",
         "type": "Hug",
-        "description": "20 tall and hugging its text, with a space/xs gap between the name, any marker and the information icon."
+        "description": "20 tall and hugging its text, with a space/xxs gap between the name, any marker and the information icon."
       },
       {
         "property": "Hint",
         "type": "Hug",
-        "description": "16 tall, body/xsmall at 12px, with a space/xs gap after a 16 square icon. Smaller than the field's own text, which keeps the value the loudest thing in the stack."
+        "description": "16 tall, body/xsmall at 12px, with a space/xxs gap after a 16 square icon. Smaller than the field's own text, which keeps the value the loudest thing in the stack."
       },
       {
         "property": "Field",
@@ -1432,7 +1432,7 @@
       {
         "property": "Padding and gap",
         "type": "Fixed",
-        "description": "space/sm top and bottom, space/md left and right, with a space/xs gap between the leading icon, the text and the trailing control. Padding holds across all three sizes, so height alone carries the density."
+        "description": "space/sm top and bottom, space/md left and right, with a space/xxs gap between the leading icon, the text and the trailing control. Padding holds across all three sizes, so height alone carries the density."
       },
       {
         "property": "Radius",

@@ -11,7 +11,7 @@ export default css`
     /* Width is the container's (spec decision: Figma's 280 is tentative). */
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
   }
   :host([hidden]) {
     display: none;
@@ -21,7 +21,7 @@ export default css`
   .label {
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
   }
   .name,
   .required {

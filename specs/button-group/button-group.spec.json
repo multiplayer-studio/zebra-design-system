@@ -402,7 +402,7 @@
             "button.size": "small",
             "height": "control/sm",
             "paddingInline": "space/md",
-            "paddingBlock": "space/xs",
+            "paddingBlock": "space/xxs",
             "label": "label/medium",
             "icon": "Icon Size=small",
             "measured": {
@@ -414,7 +414,7 @@
             "button.size": "medium",
             "height": "control/md",
             "paddingInline": "space/md",
-            "paddingBlock": "space/xs",
+            "paddingBlock": "space/xxs",
             "label": "label/large",
             "icon": "Icon Size=medium",
             "measured": {
@@ -426,7 +426,7 @@
             "button.size": "large",
             "height": "control/lg",
             "paddingInline": "space/lg",
-            "paddingBlock": "space/xs",
+            "paddingBlock": "space/xxs",
             "label": "label/large",
             "icon": "Icon Size=medium",
             "measured": {
@@ -534,7 +534,7 @@
         "control/sm",
         "control/md",
         "control/lg",
-        "space/xs",
+        "space/xxs",
         "space/md",
         "space/lg",
         "stroke/base"

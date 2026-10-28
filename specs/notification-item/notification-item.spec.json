@@ -105,7 +105,7 @@
     },
     {
       "id": "message", "kind": "container", "parent": "content",
-      "layout": { "direction": "vertical", "gap": "space/xs", "padding": "none" }, "sizing": { "h": "fill", "v": "hug" }
+      "layout": { "direction": "vertical", "gap": "space/xxs", "padding": "none" }, "sizing": { "h": "fill", "v": "hug" }
     },
     {
       "id": "header", "kind": "container", "parent": "message",
@@ -125,7 +125,7 @@
     },
     {
       "id": "meta", "kind": "container", "parent": "header", "figmaName": "Metadata",
-      "layout": { "direction": "horizontal", "gap": "space/xs", "padding": { "top": "space/2xs", "bottom": "space/2xs" }, "crossAlign": "center" }, "sizing": "hug"
+      "layout": { "direction": "horizontal", "gap": "space/xxs", "padding": { "top": "space/2xs", "bottom": "space/2xs" }, "crossAlign": "center" }, "sizing": "hug"
     },
     {
       "id": "timestamp", "kind": "text", "parent": "meta", "boundTo": "timestamp",
@@ -145,7 +145,7 @@
     },
     {
       "id": "attachment", "kind": "container", "parent": "content", "visibleWhen": "showAttachment",
-      "layout": { "direction": "horizontal", "gap": "space/xs", "padding": "none", "crossAlign": "center" }, "sizing": { "h": "fill", "v": "hug" }
+      "layout": { "direction": "horizontal", "gap": "space/xxs", "padding": "none", "crossAlign": "center" }, "sizing": { "h": "fill", "v": "hug" }
     },
     {
       "id": "attachmentIcon", "kind": "instance", "parent": "attachment", "ref": "Icon", "refVariant": "Size=small, Framed=false", "spec": "specs/icon",
@@ -157,7 +157,7 @@
     },
     {
       "id": "actions", "kind": "slot", "parent": "content", "visibleWhen": "showActions", "boundTo": "actions",
-      "layout": { "direction": "horizontal", "gap": "space/xs", "padding": { "top": "space/none", "bottom": "space/none" }, "mainAlign": "end", "crossAlign": "center" },
+      "layout": { "direction": "horizontal", "gap": "space/xxs", "padding": { "top": "space/none", "bottom": "space/none" }, "mainAlign": "end", "crossAlign": "center" },
       "sizing": { "h": "fill", "v": "hug" },
       "default": { "ref": "Button", "spec": "specs/button", "refVariant": "Size=small, Shape=rounded, Flavour=outline, State=default, Disabled=false", "label": "User Action", "leadingIcon": false, "trailingIcon": false }
     },
@@ -232,7 +232,7 @@
       "surface/card", "border/default", "border/focus", "foreground/primary", "foreground/tertiary", "foreground/link",
       "interactive/primary/background/default", "interactive/destructive/background/default", "border/inverse"
     ],
-    "dimension": ["space/none", "space/2xs", "space/xs", "space/sm", "space/card", "space/gutter", "radius/md", "radius/pill", "stroke/base", "control/sm", "control/icon-sm"],
+    "dimension": ["space/none", "space/2xs", "space/xxs", "space/sm", "space/card", "space/gutter", "radius/md", "radius/pill", "stroke/base", "control/sm", "control/icon-sm"],
     "typography": ["label/large", "label/small", "body/small", "body/medium"],
     "string": ["shape"],
     "glyphs": ["important-notification", "attachment", "verified"],

@@ -136,11 +136,11 @@
           "paint": { "fill": "surface/menu", "radius": "radius/none (Rounded=false) / radius/element-md (Rounded=true)",
             "effects": { "style": "Shadow/medium", "tokens": ["shadow/soft", "shadow/medium/blur", "shadow/medium/x", "shadow/medium/y", "shadow/small/blur", "shadow/small/x", "shadow/small/y"] } } },
         { "id": "content", "kind": "container", "role": "The vertical stack inside the padding, holding the two built-in rows and then the slot.",
-          "layout": { "direction": "vertical", "gap": "space/xs" }, "sizing": { "h": "hug", "v": "hug" } },
+          "layout": { "direction": "vertical", "gap": "space/xxs" }, "sizing": { "h": "hug", "v": "hug" } },
         { "id": "builtInRow[1]", "kind": "instance", "ref": "Menu Item", "refVariant": "State=Default, Type=Icon, Rounded=<inherits panel's Rounded>", "sizing": { "h": "fill (per intent; Figma reports FIXED on Rounded=false — see issues)", "v": "fixed" } },
         { "id": "builtInRow[2]", "kind": "instance", "ref": "Menu Item", "refVariant": "State=Default, Type=Icon, Rounded=<inherits panel's Rounded>", "sizing": { "h": "fill (per intent; Figma reports FIXED on Rounded=false — see issues)", "v": "fixed" } },
         { "id": "slotContainer", "kind": "slot", "visibleWhen": "moreItems", "role": "The open region for additional Menu Item rows. More Items hides it as a whole, along with anything inside it.",
-          "layout": { "direction": "vertical", "gap": "space/xs" }, "sizing": { "h": "fill", "v": "hug" },
+          "layout": { "direction": "vertical", "gap": "space/xxs" }, "sizing": { "h": "fill", "v": "hug" },
           "content": { "default": ["Menu Item", "Menu Item"] } }
       ],
       "variants": {
@@ -184,7 +184,7 @@
       "layoutTheming": [
         { "property": "Size", "type": "Hug on both axes", "description": "213×196px as drawn, growing with whatever is placed inside. There is no fixed width, so the longest row sets the panel width." },
         { "property": "Padding", "type": "Fixed", "description": "12px (space/card) on all four sides." },
-        { "property": "Gap", "type": "Fixed", "description": "4px (space/xs) between rows, both in the built-in stack and inside the slot. The panel's own item spacing is 2px (space/2xs) but it holds a single content frame, so that spacing never shows." },
+        { "property": "Gap", "type": "Fixed", "description": "4px (space/xxs) between rows, both in the built-in stack and inside the slot. The panel's own item spacing is 2px (space/2xs) but it holds a single content frame, so that spacing never shows." },
         { "property": "Radius", "type": "Fixed per Rounded", "description": "radius/none when Rounded is false, radius/element-md when true. The rows inside take radius/none and radius/sm respectively, a lighter step than the panel itself." },
         { "property": "Elevation", "type": "Fixed", "description": "The Shadow/medium effect style, two stacked drop shadows. Applied to the panel only and unchanged by any property." },
         { "property": "Colour", "type": "Theming", "description": "The panel is surface/menu and binds nothing else. Every other colour in the menu comes from the rows." }
@@ -263,7 +263,7 @@
       "anatomy": [
         { "id": "root", "kind": "container",
           "role": "The outer horizontal frame. Fills the width of the menu that holds it and keeps a fixed height, so rows line up whatever they contain.",
-          "layout": { "direction": "horizontal", "gap": "space/sm", "padding": { "top": "space/xs", "right": "space/md", "bottom": "space/xs", "left": "space/md" } },
+          "layout": { "direction": "horizontal", "gap": "space/sm", "padding": { "top": "space/xxs", "right": "space/md", "bottom": "space/xxs", "left": "space/md" } },
           "sizing": { "h": "fill (per intent; Figma's own default-variant sizing mode reads FIXED — see issues)", "v": "fixed" },
           "paint": { "fill": "interactive/ghost/background/<state>", "radius": "radius/none (Rounded=false) / radius/sm (Rounded=true)",
             "stroke": { "color": "border/focus", "width": "stroke/thin (0 at rest) / 1px (focus, selected focus)", "align": "inside" } } },
@@ -274,7 +274,7 @@
           "role": "Replaces the leading Icon when Type is custom. Ships empty." },
         { "id": "label", "kind": "container",
           "role": "A wrapper frame holding the text. Its own padding sets the text away from the leading element and reserves room on the trailing side.",
-          "layout": { "direction": "horizontal", "padding": { "left": "space/xs", "right": "space/xl" } },
+          "layout": { "direction": "horizontal", "padding": { "left": "space/xxs", "right": "space/xl" } },
           "sizing": { "h": "fill", "v": "hug" } },
         { "id": "label.text", "kind": "text", "parent": "label",
           "text": { "style": "label/medium", "fontFamily": "IBM Plex Sans", "fontStyle": "Medium" },
@@ -341,9 +341,9 @@
       "layoutTheming": [
         { "property": "Width", "type": "Fill", "description": "Fills the menu that holds it, drawn at 221px. The row never hugs its label, so the menu's width sets it." },
         { "property": "Height", "type": "Fixed", "description": "40px on control/md at every variant." },
-        { "property": "Padding", "type": "Fixed", "description": "4px (space/xs) top and bottom, 12px (space/md) left and right." },
+        { "property": "Padding", "type": "Fixed", "description": "4px (space/xxs) top and bottom, 12px (space/md) left and right." },
         { "property": "Gap", "type": "Fixed", "description": "8px (space/sm) between the leading element, the label and the trailing icon." },
-        { "property": "Label inset", "type": "Fixed", "description": "The label wrapper adds 4px (space/xs) on its leading edge and reserves 24px (space/xl) on its trailing edge, which keeps labels clear of a trailing icon even when one is not shown." },
+        { "property": "Label inset", "type": "Fixed", "description": "The label wrapper adds 4px (space/xxs) on its leading edge and reserves 24px (space/xl) on its trailing edge, which keeps labels clear of a trailing icon even when one is not shown." },
         { "property": "Radius", "type": "Fixed per Rounded", "description": "radius/none when false, radius/sm when true." },
         { "property": "Leading and trailing icons", "type": "Fixed", "description": "Both 16px Icon instances at Size=small with Framed off." },
         { "property": "Border", "type": "Fixed per State", "description": "None at rest. Focus and selected focus add a 1px ring on border/focus, drawn on all four edges inside the row." },
@@ -365,7 +365,7 @@
       "border/focus", "surface/menu", "shadow/soft"
     ],
     "dimension": [
-      "control/sm", "control/md", "space/none", "space/2xs", "space/xs", "space/sm", "space/md", "space/xl", "space/card",
+      "control/sm", "control/md", "space/none", "space/2xs", "space/xxs", "space/sm", "space/md", "space/xl", "space/card",
       "radius/none", "radius/sm", "radius/element-sm", "radius/element-md",
       "stroke/base", "stroke/thin",
       "shadow/medium/blur", "shadow/medium/x", "shadow/medium/y", "shadow/small/blur", "shadow/small/x", "shadow/small/y"

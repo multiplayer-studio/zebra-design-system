@@ -61,7 +61,7 @@ export default css`
     flex: 0 0 auto;
     display: inline-flex;
     align-items: center;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
     padding: var(--space-none);
     margin-inline-start: auto;
     color: var(--foreground-secondary);

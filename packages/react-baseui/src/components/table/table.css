@@ -111,7 +111,7 @@
 .zds-table__filter {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-xxs);
   margin: 0;
   padding: 0;
   border: 0;

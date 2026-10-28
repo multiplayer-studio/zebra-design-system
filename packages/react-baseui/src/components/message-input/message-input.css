@@ -1,6 +1,6 @@
 /* Message Input (EXPERIMENTAL) — every value is a semantic token. Buttons
-   are IconButton and take their colours from button.css; this file lays
-   out the composer and draws the parts that are its own: the chips, the
+   are IconButton and chips are AssistChip, each themed by its own CSS; this file lays
+   out the composer and draws the parts that are its own: the
    voice bar, the waveform, the spinner and the recording dot. Keyed off
    data-state on the root (empty, filled, tray, listening, transcribing,
    recording, playback, speaking).
@@ -35,7 +35,7 @@
   max-block-size: calc(8 * var(--body-medium-line-height));
   field-sizing: content;
   margin: 0;
-  padding: var(--space-xs) var(--space-md);
+  padding: var(--space-xxs) var(--space-md);
   border: 0;
   outline: none;
   resize: none;
@@ -61,51 +61,22 @@
 .zds-message-input__chips {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs);
+  gap: var(--space-xxs);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .zds-message-input__chip {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
+  display: flex;
   max-inline-size: 100%;
-  padding: var(--space-2xs) var(--space-xs) var(--space-2xs) var(--space-sm);
-  border: var(--stroke-thin) solid var(--border-default);
-  border-radius: var(--radius-pill);
-  color: var(--foreground-primary);
-  font-family: var(--label-medium-font-family), system-ui, sans-serif;
-  font-size: var(--label-medium-font-size);
-  font-weight: var(--label-medium-font-weight);
-  line-height: var(--label-medium-line-height);
-  letter-spacing: var(--label-medium-letter-spacing);
 }
-.zds-message-input__chip[data-kind="dictated"] {
-  border-color: var(--border-info);
-  color: var(--foreground-info);
+/* The chip is Assist Chip (discardable); only a long file name needs help. */
+.zds-message-input__chip .zds-chip {
+  max-inline-size: 100%;
 }
-.zds-message-input__chip-label {
+.zds-message-input__chip .zds-chip__label {
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.zds-message-input__chip-remove {
-  display: inline-flex;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: var(--radius-pill);
-  background: transparent;
-  color: inherit;
-  cursor: pointer;
-}
-.zds-message-input__chip-remove:hover {
-  background: var(--interactive-ghost-background-hover);
-}
-.zds-message-input__chip-remove:focus-visible {
-  outline: var(--stroke-thick) solid var(--border-focus);
-  outline-offset: var(--space-2xs);
 }
 
 /* ---- voice bar: listening, transcribing, recording, playback, speaking -- */
@@ -119,14 +90,14 @@
   align-items: center;
   gap: var(--space-sm);
   min-block-size: var(--control-lg);
-  padding: var(--space-xs) var(--space-xs) var(--space-xs) var(--space-md);
+  padding: var(--space-xxs) var(--space-xxs) var(--space-xxs) var(--space-md);
   border-radius: var(--radius-element-md);
   /* A sunken well inside the card (fill/sunken, as the open tray toggle). */
   background: var(--surface-track);
   color: var(--foreground-primary);
 }
 .zds-message-input[data-state="playback"] .zds-message-input__bar {
-  padding-inline-start: var(--space-xs);
+  padding-inline-start: var(--space-xxs);
 }
 .zds-message-input__bar-label {
   flex: 1 1 auto;
@@ -193,14 +164,10 @@
   background: var(--foreground-error);
 }
 
+/* Transcribing: Progress Circle, indeterminate (it owns the spin and its
+   reduced-motion fallback). */
 .zds-message-input__spinner {
   flex: none;
-  box-sizing: border-box;
-  inline-size: var(--control-icon-lg);
-  block-size: var(--control-icon-lg);
-  border: var(--stroke-heavy) solid var(--interactive-primary-background-default);
-  border-inline-end-color: transparent;
-  border-radius: var(--radius-pill);
 }
 
 /* ---- speaking: the orb and the spoken words --------------------------- */
@@ -219,7 +186,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-md);
-  padding-block: var(--space-md) var(--space-xs);
+  padding-block: var(--space-md) var(--space-xxs);
 }
 
 /* Outlines only: six rings stroked with the brand gradient pair. Each has
@@ -323,7 +290,7 @@
 .zds-message-input__actions {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-xxs);
 }
 .zds-message-input__tools { flex-wrap: wrap; }
 /* Tools are neutral glyphs, not the text flavour's brand colour; send and
@@ -354,10 +321,10 @@
 .zds-message-input__tray-items {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-xxs);
   min-inline-size: 0;
   overflow: clip;
-  overflow-clip-margin: var(--space-xs);
+  overflow-clip-margin: var(--space-xxs);
 }
 .zds-message-input__tray-items > * {
   opacity: 0;
@@ -404,7 +371,6 @@
     transition: background-color var(--zds-message-input-duration) var(--zds-message-input-ease-spring),
       border-color 120ms ease, color 120ms ease;
   }
-  .zds-message-input__spinner { animation: zds-message-input-spin 0.8s linear infinite; }
   .zds-message-input[data-state="recording"] .zds-message-input__rec-dot { animation: zds-message-input-fade 1.2s ease-in-out infinite; }
 }
 /* The orb: a short glide between measured levels, each ring turning at its
@@ -438,6 +404,5 @@
 @keyframes zds-message-input-breathe {
   50% { scale: 1.12; opacity: 0.8; }
 }
-@keyframes zds-message-input-spin { to { transform: rotate(1turn); } }
 /* The recording dot only fades: its size never changes. */
 @keyframes zds-message-input-fade { 50% { opacity: 0; } }

@@ -150,7 +150,7 @@
       "role": "The bar: a horizontal row holding Content and Controls.",
       "layout": {
         "direction": "horizontal",
-        "padding": "space/xs top and bottom; space/lg leading; space/xs trailing",
+        "padding": "space/xxs top and bottom; space/lg leading; space/xxs trailing",
         "gap": "space/lg (content to controls)",
         "counterAlign": "center"
       },
@@ -214,7 +214,7 @@
       "role": "The action and the close.",
       "layout": {
         "direction": "horizontal",
-        "gap": "space/xs"
+        "gap": "space/xxs"
       }
     },
     {
@@ -408,7 +408,7 @@
     ],
     "dimension": [
       "control/lg",
-      "space/{xs,sm,md,lg}",
+      "space/{xxs,sm,md,lg}",
       "radius/{pill,md,none}"
     ],
     "typography": [
@@ -549,7 +549,7 @@
     {
       "property": "Padding and gap",
       "type": "Fixed",
-      "description": "space/xs top and bottom, space/lg on the leading edge and space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/xs and opens the gap to space/lg so a bordered control sits closer to the end."
+      "description": "space/xxs top and bottom, space/lg on the leading edge and space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/xxs and opens the gap to space/lg so a bordered control sits closer to the end."
     },
     {
       "property": "Content",
@@ -604,7 +604,7 @@
     {
       "severity": "warn",
       "source": "metadata Layout & Theming vs structure (padding)",
-      "detail": "'space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/xs and opens the gap to space/lg' — every variant now has space/xs trailing and space/lg between content and controls."
+      "detail": "'space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/xxs and opens the gap to space/lg' — every variant now has space/xxs trailing and space/lg between content and controls."
     },
     {
       "severity": "warn",
@@ -619,7 +619,7 @@
     {
       "severity": "warn",
       "source": "structure (action size)",
-      "detail": "contextual / action uses a small Button when rounded and a medium one when sharp; every other action is medium. The small one sits off-centre against the bar's space/xs trailing edge (control/sm is shorter than control/md)."
+      "detail": "contextual / action uses a small Button when rounded and a medium one when sharp; every other action is medium. The small one sits off-centre against the bar's space/xxs trailing edge (control/sm is shorter than control/md)."
     },
     {
       "severity": "note",

@@ -9,13 +9,13 @@
 /* ---- size: a fixed square, never hugging its content ------------- */
 .zds-button.zds-icon-button {
   width: var(--control-sm);
-  padding: var(--space-xs);
+  padding: var(--space-xxs);
 }
 .zds-button.zds-icon-button[data-size="medium"] {
   width: var(--control-md);
-  padding: var(--space-xs);
+  padding: var(--space-xxs);
 }
 .zds-button.zds-icon-button[data-size="large"] {
   width: var(--control-lg);
-  padding: var(--space-xs);
+  padding: var(--space-xxs);
 }

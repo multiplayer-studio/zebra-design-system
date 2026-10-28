@@ -2,7 +2,7 @@
 
 A small circular marker carrying a fixed glyph, sized to sit beside text or on its own. Size is its only property and moves the circle and the glyph together. It says one thing and names nothing, so whatever it refers to has to be named beside it.
 
-Source: [Badges page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6407-416) · component set `6407:416` · extracted 2026-10-15 · 3 variants · default `Size=small`
+Source: [Badges page](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6407-416) · component set `6407:416` · extracted 2026-10-22 (re-verified, unchanged) · 3 variants · default `Size=small`
 
 > **No blockers, 3 warnings.** See [Issues](#issues).
 
@@ -96,8 +96,8 @@ Every token resolves in the export.
 
 ## Visual reference
 
-- [Page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3717-5570) · [Component set](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6407-416) · [Metadata](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6413-917)
-- [small](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6407-400) · [medium](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6407-405) · [large](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6407-410)
+- [Page](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=3717-5570) · [Component set](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6407-416) · [Metadata](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6413-917)
+- [small](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6407-400) · [medium](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6407-405) · [large](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6407-410)
 
 ## Issues
 

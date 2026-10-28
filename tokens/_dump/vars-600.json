@@ -1,1 +1,1867 @@
-[{"i": "VariableID:72:376", "n": "interactive/secondary/border/default", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:3"}}, "s": ["STROKE_COLOR"], "d": "Default-state border for a secondary interactive element."}, {"i": "VariableID:72:377", "n": "interactive/secondary/border/hover", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:72:2"}}, "s": ["STROKE_COLOR"], "d": "Hover-state border for a secondary interactive element."}, {"i": "VariableID:72:378", "n": "interactive/secondary/border/pressed", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:72:3"}}, "s": ["STROKE_COLOR"], "d": "Pressed-state border for a secondary interactive element."}, {"i": "VariableID:72:381", "n": "interactive/secondary/border/disabled", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:72:11"}}, "s": ["STROKE_COLOR"], "d": "Disabled-state border for a secondary interactive element."}, {"i": "VariableID:72:386", "n": "brand/primary/subtle", "t": "COLOR", "c": "VariableCollectionId:3:4", "v": {"*": {"a": "VariableID:30:1318"}}}, {"i": "VariableID:72:387", "n": "brand/primary/deep", "t": "COLOR", "c": "VariableCollectionId:3:4", "v": {"3:2": {"a": "VariableID:30:1320"}, "145:0": {"a": "VariableID:30:1317"}}}, {"i": "VariableID:72:388", "n": "interactive/primary/background/hover", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:72:386"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Hover state for the primary interactive element."}, {"i": "VariableID:72:389", "n": "interactive/primary/background/pressed", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:72:387"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Pressed state for the primary interactive element."}, {"i": "VariableID:72:390", "n": "interactive/primary/background/selected", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:72:387"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Selected state for the primary interactive element."}, {"i": "VariableID:72:391", "n": "interactive/primary/border/hover", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:72:386"}}, "s": ["STROKE_COLOR"], "d": "Hover-state border for the primary interactive element."}, {"i": "VariableID:72:392", "n": "interactive/primary/border/pressed", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:72:387"}}, "s": ["STROKE_COLOR"], "d": "Pressed-state border for the primary interactive element."}, {"i": "VariableID:72:394", "n": "interactive/ghost/background/default", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:3147:3871"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Default state for a ghost interactive element, minimal in styling with no fill, for low-emphasis actions."}, {"i": "VariableID:72:395", "n": "interactive/ghost/background/hover", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:3147:3872"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Hover state for a ghost interactive element."}, {"i": "VariableID:72:396", "n": "interactive/ghost/background/pressed", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:3147:3873"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Pressed state for a ghost interactive element."}, {"i": "VariableID:72:397", "n": "interactive/ghost/background/focused", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:3147:3871"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Focused state for a ghost interactive element."}, {"i": "VariableID:72:398", "n": "interactive/ghost/background/selected", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:3147:3872"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Selected state for a ghost interactive element."}, {"i": "VariableID:72:399", "n": "interactive/ghost/background/disabled", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:3147:3871"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Disabled state for a ghost interactive element."}, {"i": "VariableID:72:4", "n": "brand/secondary/faint", "t": "COLOR", "c": "VariableCollectionId:3:4", "v": {"3:2": {"a": "VariableID:38:2"}, "145:0": {"a": "VariableID:38:11"}}}, {"i": "VariableID:72:404", "n": "interactive/ghost/foreground/default", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:121:6194"}}, "s": ["SHAPE_FILL", "TEXT_FILL"], "d": "Default-state text/icon color on a ghost interactive element&#39;s background."}, {"i": "VariableID:72:409", "n": "interactive/ghost/foreground/disabled", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:19"}}, "s": ["SHAPE_FILL", "TEXT_FILL"], "d": "Disabled-state text/icon color on a ghost interactive element&#39;s background."}, {"i": "VariableID:72:414", "n": "interactive/destructive/background/default", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:28"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Default state for a destructive interactive element, signaling a harmful or irreversible action such as Delete."}, {"i": "VariableID:72:415", "n": "interactive/destructive/background/hover", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:72:5"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Hover state for a destructive interactive element."}, {"i": "VariableID:72:416", "n": "interactive/destructive/background/pressed", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:30"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Pressed state for a destructive interactive element."}, {"i": "VariableID:72:417", "n": "interactive/destructive/background/focused", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:28"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Focused state for a destructive interactive element."}, {"i": "VariableID:72:418", "n": "interactive/destructive/background/selected", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:30"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Selected state for a destructive interactive element."}, {"i": "VariableID:72:419", "n": "interactive/destructive/background/disabled", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:72:9"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Disabled state for a destructive interactive element."}, {"i": "VariableID:72:424", "n": "interactive/destructive/foreground/default", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:7"}}, "s": ["SHAPE_FILL", "TEXT_FILL"], "d": "Default-state text/icon color on a destructive interactive element&#39;s background."}, {"i": "VariableID:72:429", "n": "interactive/destructive/foreground/disabled", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:19"}}, "s": ["SHAPE_FILL", "TEXT_FILL"], "d": "Disabled-state text/icon color on a destructive interactive element&#39;s background."}, {"i": "VariableID:72:434", "n": "interactive/inverse/background/default", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:13"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Default state for an interactive element placed on a dark or inverse-colored surface."}, {"i": "VariableID:72:435", "n": "interactive/inverse/background/hover", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:72:7"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Hover state for an inverse-surface interactive element."}, {"i": "VariableID:72:436", "n": "interactive/inverse/background/pressed", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:72:8"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Pressed state for an inverse-surface interactive element."}, {"i": "VariableID:72:437", "n": "interactive/inverse/background/focused", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:13"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Focused state for an inverse-surface interactive element."}, {"i": "VariableID:72:438", "n": "interactive/inverse/background/selected", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:72:8"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Selected state for an inverse-surface interactive element."}, {"i": "VariableID:72:439", "n": "interactive/inverse/background/disabled", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:72:9"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Disabled state for an inverse-surface interactive element."}, {"i": "VariableID:72:444", "n": "interactive/inverse/foreground/default", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:20"}}, "s": ["SHAPE_FILL", "TEXT_FILL"], "d": "Default-state text/icon color on an inverse-surface interactive element&#39;s background."}, {"i": "VariableID:72:449", "n": "interactive/inverse/foreground/disabled", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:19"}}, "s": ["SHAPE_FILL", "TEXT_FILL"], "d": "Disabled-state text/icon color on an inverse-surface interactive element&#39;s background."}, {"i": "VariableID:72:455", "n": "overlay/scrim", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:15"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Semi-transparent dimming layer behind a drawer, sheet, or side panel"}, {"i": "VariableID:72:456", "n": "overlay/modal", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:12"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Semi-transparent dimming layer behind a modal dialog, to focus attention on it"}, {"i": "VariableID:72:457", "n": "feedback/success/background/subtle", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:23"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Background fill for success alerts, banners, and inline messages"}, {"i": "VariableID:72:458", "n": "feedback/success/foreground", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:22"}}, "s": ["TEXT_FILL"], "d": "Icon/text color used inside success alerts and messages"}, {"i": "VariableID:72:460", "n": "feedback/warning/background/subtle", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:26"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Background fill for warning alerts, banners, and inline messages"}, {"i": "VariableID:72:461", "n": "feedback/warning/foreground", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:25"}}, "s": ["TEXT_FILL"], "d": "Icon/text color used inside warning alerts and messages"}, {"i": "VariableID:72:463", "n": "feedback/error/background/subtle", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:29"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Background fill for error alerts, banners, and inline messages"}, {"i": "VariableID:72:464", "n": "feedback/error/foreground", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:28"}}, "s": ["TEXT_FILL"], "d": "Icon/text color used inside error alerts and messages"}, {"i": "VariableID:72:466", "n": "feedback/info/background/subtle", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:203"}}, "s": ["FRAME_FILL", "SHAPE_FILL"], "d": "Background fill for informational alerts, banners, and inline messages"}, {"i": "VariableID:72:467", "n": "feedback/info/foreground", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:63:202"}}, "s": ["TEXT_FILL"], "d": "Icon/text color used inside informational alerts and messages"}, {"i": "VariableID:72:474", "n": "focus/ring", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:2535:3742"}}, "s": ["STROKE_COLOR", "EFFECT_COLOR"], "d": "Soft glow/ring drawn just outside the focus outline, reinforcing keyboard focus"}, {"i": "VariableID:72:475", "n": "focus/outline", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:2535:3742"}}, "s": ["STROKE_COLOR"], "d": "Solid outline drawn directly around an element on keyboard focus, for accessibility"}, {"i": "VariableID:72:480", "n": "chart/series/1", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:2061:6747"}}, "s": ["SHAPE_FILL", "STROKE_COLOR"], "d": "1st color in the categorical data-series palette, assigned in order across multiple series."}, {"i": "VariableID:72:481", "n": "chart/series/2", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:2061:6748"}}, "s": ["SHAPE_FILL", "STROKE_COLOR"], "d": "2nd data series color"}, {"i": "VariableID:72:482", "n": "chart/series/3", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:2061:6749"}}, "s": ["SHAPE_FILL", "STROKE_COLOR"], "d": "3rd data series color"}, {"i": "VariableID:72:483", "n": "chart/series/4", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:2061:6750"}}, "s": ["SHAPE_FILL", "STROKE_COLOR"], "d": "4th data series color"}, {"i": "VariableID:72:484", "n": "chart/series/5", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:2061:6751"}}, "s": ["SHAPE_FILL", "STROKE_COLOR"], "d": "5th data series color"}, {"i": "VariableID:72:485", "n": "chart/series/6", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:2061:6752"}}, "s": ["SHAPE_FILL", "STROKE_COLOR"], "d": "6th data series color"}, {"i": "VariableID:72:486", "n": "chart/series/7", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:2061:6753"}}, "s": ["SHAPE_FILL", "STROKE_COLOR"], "d": "7th data series color"}, {"i": "VariableID:72:487", "n": "chart/series/8", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:2061:6754"}}, "s": ["SHAPE_FILL", "STROKE_COLOR"], "d": "8th data series color"}, {"i": "VariableID:72:488", "n": "chart/series/9", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:2061:6755"}}, "s": ["SHAPE_FILL", "STROKE_COLOR"], "d": "9th data series color"}, {"i": "VariableID:72:489", "n": "chart/series/10", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:2061:6756"}}, "s": ["SHAPE_FILL", "STROKE_COLOR"], "d": "10th data series color"}, {"i": "VariableID:72:490", "n": "chart/series/11", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:2061:6757"}}, "s": ["SHAPE_FILL", "STROKE_COLOR"], "d": "11th data series color"}, {"i": "VariableID:72:491", "n": "chart/series/12", "t": "COLOR", "c": "VariableCollectionId:2:3", "v": {"2:1": {"a": "VariableID:2061:6758"}}, "s": ["SHAPE_FILL", "STROKE_COLOR"], "d": "12th data series color"}]
+[
+ {
+  "i": "VariableID:72:307",
+  "n": "surface/tooltip",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:13"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Background of tooltips"
+ },
+ {
+  "i": "VariableID:72:308",
+  "n": "surface/brand",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:5"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Brand-colored background, e.g. hero sections or marketing highlights"
+ },
+ {
+  "i": "VariableID:72:309",
+  "n": "surface/inverse",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:13"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Dark/inverse background for high-contrast sections"
+ },
+ {
+  "i": "VariableID:72:310",
+  "n": "surface/success",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:23"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Background for containers communicating a success state"
+ },
+ {
+  "i": "VariableID:72:311",
+  "n": "surface/warning",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:26"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Background for containers communicating a warning state"
+ },
+ {
+  "i": "VariableID:72:312",
+  "n": "surface/error",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:29"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Background for containers communicating an error state"
+ },
+ {
+  "i": "VariableID:72:313",
+  "n": "surface/info",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:203"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Background for containers communicating neutral information"
+ },
+ {
+  "i": "VariableID:72:314",
+  "n": "foreground/primary",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:16"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "The default color for body text and primary icons, used as the highest-emphasis content color."
+ },
+ {
+  "i": "VariableID:72:315",
+  "n": "foreground/secondary",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:17"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Lower-emphasis text/icon color, e.g. captions or supporting copy"
+ },
+ {
+  "i": "VariableID:72:316",
+  "n": "foreground/tertiary",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:18"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Lowest-emphasis text/icon color, e.g. placeholders or metadata"
+ },
+ {
+  "i": "VariableID:72:317",
+  "n": "foreground/disabled",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:19"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Text/icon color for disabled, non-interactive elements"
+ },
+ {
+  "i": "VariableID:72:318",
+  "n": "foreground/inverse",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:20"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Text/icon color for use on dark or inverse-colored surfaces"
+ },
+ {
+  "i": "VariableID:72:319",
+  "n": "foreground/link",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:21"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Color for hyperlinks and other clickable inline text"
+ },
+ {
+  "i": "VariableID:72:320",
+  "n": "foreground/success",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:22"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Text/icon color that communicates success"
+ },
+ {
+  "i": "VariableID:72:321",
+  "n": "foreground/warning",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:25"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Text/icon color that communicates a warning"
+ },
+ {
+  "i": "VariableID:72:322",
+  "n": "foreground/error",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:28"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Text/icon color that communicates an error, paired with feedback/error tokens"
+ },
+ {
+  "i": "VariableID:72:323",
+  "n": "foreground/info",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:202"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Text/icon color that communicates neutral information"
+ },
+ {
+  "i": "VariableID:72:324",
+  "n": "border/default",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:10"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "STROKE_COLOR"
+  ],
+  "d": "Default border color for inputs, cards, and dividers at rest"
+ },
+ {
+  "i": "VariableID:72:325",
+  "n": "border/subtle",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:11"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "STROKE_COLOR"
+  ],
+  "d": "Faint border for low-emphasis separation, e.g. nested cards"
+ },
+ {
+  "i": "VariableID:72:326",
+  "n": "border/strong",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:2061:6745"
+   }
+  },
+  "s": [
+   "STROKE_COLOR"
+  ],
+  "d": "Higher-contrast border for emphasis, e.g. active outlines or key dividers"
+ },
+ {
+  "i": "VariableID:72:327",
+  "n": "border/focus",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:2535:3742"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "STROKE_COLOR"
+  ],
+  "d": "Border applied when an element receives keyboard focus, for accessibility"
+ },
+ {
+  "i": "VariableID:72:328",
+  "n": "border/success",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:22"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "STROKE_COLOR"
+  ],
+  "d": "Border color for inputs/fields confirmed valid or successful"
+ },
+ {
+  "i": "VariableID:72:329",
+  "n": "border/warning",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:25"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "STROKE_COLOR"
+  ],
+  "d": "Border color for elements flagged with a warning"
+ },
+ {
+  "i": "VariableID:72:330",
+  "n": "border/error",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:28"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "STROKE_COLOR"
+  ],
+  "d": "Border color for inputs/fields in an invalid or error state"
+ },
+ {
+  "i": "VariableID:72:331",
+  "n": "border/info",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:202"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "STROKE_COLOR"
+  ],
+  "d": "Border color for elements conveying neutral, informational context"
+ },
+ {
+  "i": "VariableID:72:332",
+  "n": "interactive/primary/background/default",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:2"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Default state for the primary interactive element, the main and highest-emphasis action or control on a screen."
+ },
+ {
+  "i": "VariableID:72:333",
+  "n": "interactive/primary/background/focused",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:2"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Focused state for the primary interactive element."
+ },
+ {
+  "i": "VariableID:72:334",
+  "n": "interactive/primary/background/disabled",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:9"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Disabled state for the primary interactive element."
+ },
+ {
+  "i": "VariableID:72:335",
+  "n": "interactive/primary/background/loading",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:2"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:336",
+  "n": "interactive/primary/background/visited",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:2"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:337",
+  "n": "interactive/primary/background/dragged",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:2"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:338",
+  "n": "interactive/primary/background/droptarget",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:5"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:339",
+  "n": "interactive/primary/foreground/default",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:7"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Default-state text/icon color on the primary interactive element&#39;s background."
+ },
+ {
+  "i": "VariableID:72:344",
+  "n": "interactive/primary/foreground/disabled",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:19"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Disabled-state text/icon color on the primary interactive element&#39;s background."
+ },
+ {
+  "i": "VariableID:72:349",
+  "n": "interactive/primary/border/default",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:2"
+   }
+  },
+  "s": [
+   "STROKE_COLOR"
+  ],
+  "d": "Default-state border for the primary interactive element."
+ },
+ {
+  "i": "VariableID:72:351",
+  "n": "interactive/primary/border/disabled",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:11"
+   }
+  },
+  "s": [
+   "STROKE_COLOR"
+  ],
+  "d": "Disabled-state border for the primary interactive element."
+ },
+ {
+  "i": "VariableID:72:355",
+  "n": "interactive/primary/border/droptarget",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:5"
+   }
+  },
+  "s": [
+   "STROKE_COLOR"
+  ]
+ },
+ {
+  "i": "VariableID:72:356",
+  "n": "interactive/secondary/background/default",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:3"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Default state for a secondary interactive element, an alternative and less prominent action alongside primary."
+ },
+ {
+  "i": "VariableID:72:357",
+  "n": "interactive/secondary/background/hover",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:3"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Hover state for a secondary interactive element."
+ },
+ {
+  "i": "VariableID:72:358",
+  "n": "interactive/secondary/background/pressed",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:7198:20128"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Pressed state for a secondary interactive element."
+ },
+ {
+  "i": "VariableID:72:359",
+  "n": "interactive/secondary/background/focused",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:3"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Focused state for a secondary interactive element."
+ },
+ {
+  "i": "VariableID:72:360",
+  "n": "interactive/secondary/background/selected",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:7198:20128"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Selected state for a secondary interactive element."
+ },
+ {
+  "i": "VariableID:72:361",
+  "n": "interactive/secondary/background/disabled",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:9"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Disabled state for a secondary interactive element."
+ },
+ {
+  "i": "VariableID:72:362",
+  "n": "interactive/secondary/background/loading",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:3"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:363",
+  "n": "interactive/secondary/background/visited",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:3"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:364",
+  "n": "interactive/secondary/background/dragged",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:3"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:365",
+  "n": "interactive/secondary/background/droptarget",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:4"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:366",
+  "n": "interactive/secondary/foreground/default",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:8"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Default-state text/icon color on a secondary interactive element&#39;s background."
+ },
+ {
+  "i": "VariableID:72:371",
+  "n": "interactive/secondary/foreground/disabled",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:19"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Disabled-state text/icon color on a secondary interactive element&#39;s background."
+ },
+ {
+  "i": "VariableID:72:376",
+  "n": "interactive/secondary/border/default",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:3"
+   }
+  },
+  "s": [
+   "STROKE_COLOR"
+  ],
+  "d": "Default-state border for a secondary interactive element."
+ },
+ {
+  "i": "VariableID:72:377",
+  "n": "interactive/secondary/border/hover",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:3"
+   }
+  },
+  "s": [
+   "STROKE_COLOR"
+  ],
+  "d": "Hover-state border for a secondary interactive element."
+ },
+ {
+  "i": "VariableID:72:378",
+  "n": "interactive/secondary/border/pressed",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:7198:20128"
+   }
+  },
+  "s": [
+   "STROKE_COLOR"
+  ],
+  "d": "Pressed-state border for a secondary interactive element."
+ },
+ {
+  "i": "VariableID:72:381",
+  "n": "interactive/secondary/border/disabled",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:11"
+   }
+  },
+  "s": [
+   "STROKE_COLOR"
+  ],
+  "d": "Disabled-state border for a secondary interactive element."
+ },
+ {
+  "i": "VariableID:72:385",
+  "n": "interactive/secondary/border/droptarget",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:4"
+   }
+  },
+  "s": [
+   "STROKE_COLOR"
+  ]
+ },
+ {
+  "i": "VariableID:72:386",
+  "n": "brand/primary/subtle",
+  "t": "COLOR",
+  "c": "VariableCollectionId:3:4",
+  "v": {
+   "*": {
+    "a": "VariableID:30:1318"
+   }
+  }
+ },
+ {
+  "i": "VariableID:72:387",
+  "n": "brand/primary/strong",
+  "t": "COLOR",
+  "c": "VariableCollectionId:3:4",
+  "v": {
+   "*": {
+    "a": "VariableID:30:1320"
+   }
+  }
+ },
+ {
+  "i": "VariableID:72:388",
+  "n": "interactive/primary/background/hover",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:387"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Hover state for the primary interactive element."
+ },
+ {
+  "i": "VariableID:72:389",
+  "n": "interactive/primary/background/pressed",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:7198:20127"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Pressed state for the primary interactive element."
+ },
+ {
+  "i": "VariableID:72:390",
+  "n": "interactive/primary/background/selected",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:7198:20127"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Selected state for the primary interactive element."
+ },
+ {
+  "i": "VariableID:72:391",
+  "n": "interactive/primary/border/hover",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:387"
+   }
+  },
+  "s": [
+   "STROKE_COLOR"
+  ],
+  "d": "Hover-state border for the primary interactive element."
+ },
+ {
+  "i": "VariableID:72:392",
+  "n": "interactive/primary/border/pressed",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:7198:20127"
+   }
+  },
+  "s": [
+   "STROKE_COLOR"
+  ],
+  "d": "Pressed-state border for the primary interactive element."
+ },
+ {
+  "i": "VariableID:72:394",
+  "n": "interactive/ghost/background/default",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:3147:3871"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Default state for a ghost interactive element, minimal in styling with no fill, for low-emphasis actions."
+ },
+ {
+  "i": "VariableID:72:395",
+  "n": "interactive/ghost/background/hover",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:3147:3872"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Hover state for a ghost interactive element."
+ },
+ {
+  "i": "VariableID:72:396",
+  "n": "interactive/ghost/background/pressed",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:3147:3873"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Pressed state for a ghost interactive element."
+ },
+ {
+  "i": "VariableID:72:397",
+  "n": "interactive/ghost/background/focused",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:3147:3871"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Focused state for a ghost interactive element."
+ },
+ {
+  "i": "VariableID:72:398",
+  "n": "interactive/ghost/background/selected",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:3147:3872"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Selected state for a ghost interactive element."
+ },
+ {
+  "i": "VariableID:72:399",
+  "n": "interactive/ghost/background/disabled",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:3147:3871"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Disabled state for a ghost interactive element."
+ },
+ {
+  "i": "VariableID:72:4",
+  "n": "brand/secondary/faint",
+  "t": "COLOR",
+  "c": "VariableCollectionId:3:4",
+  "v": {
+   "3:2": {
+    "a": "VariableID:38:2"
+   },
+   "145:0": {
+    "a": "VariableID:38:11"
+   }
+  }
+ },
+ {
+  "i": "VariableID:72:400",
+  "n": "interactive/ghost/background/loading",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:13"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:401",
+  "n": "interactive/ghost/background/visited",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:13"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:402",
+  "n": "interactive/ghost/background/dragged",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:13"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:403",
+  "n": "interactive/ghost/background/droptarget",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:5"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:404",
+  "n": "interactive/ghost/foreground/default",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:121:6194"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Default-state text/icon color on a ghost interactive element&#39;s background."
+ },
+ {
+  "i": "VariableID:72:409",
+  "n": "interactive/ghost/foreground/disabled",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:19"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Disabled-state text/icon color on a ghost interactive element&#39;s background."
+ },
+ {
+  "i": "VariableID:72:414",
+  "n": "interactive/destructive/background/default",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:28"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Default state for a destructive interactive element, signaling a harmful or irreversible action such as Delete."
+ },
+ {
+  "i": "VariableID:72:415",
+  "n": "interactive/destructive/background/hover",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:6"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Hover state for a destructive interactive element."
+ },
+ {
+  "i": "VariableID:72:416",
+  "n": "interactive/destructive/background/pressed",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:30"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Pressed state for a destructive interactive element."
+ },
+ {
+  "i": "VariableID:72:417",
+  "n": "interactive/destructive/background/focused",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:28"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Focused state for a destructive interactive element."
+ },
+ {
+  "i": "VariableID:72:418",
+  "n": "interactive/destructive/background/selected",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:30"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Selected state for a destructive interactive element."
+ },
+ {
+  "i": "VariableID:72:419",
+  "n": "interactive/destructive/background/disabled",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:9"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Disabled state for a destructive interactive element."
+ },
+ {
+  "i": "VariableID:72:420",
+  "n": "interactive/destructive/background/loading",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:28"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:421",
+  "n": "interactive/destructive/background/visited",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:28"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:422",
+  "n": "interactive/destructive/background/dragged",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:28"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:423",
+  "n": "interactive/destructive/background/droptarget",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:29"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:424",
+  "n": "interactive/destructive/foreground/default",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:7"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Default-state text/icon color on a destructive interactive element&#39;s background."
+ },
+ {
+  "i": "VariableID:72:429",
+  "n": "interactive/destructive/foreground/disabled",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:19"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Disabled-state text/icon color on a destructive interactive element&#39;s background."
+ },
+ {
+  "i": "VariableID:72:434",
+  "n": "interactive/inverse/background/default",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:13"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Default state for an interactive element placed on a dark or inverse-colored surface."
+ },
+ {
+  "i": "VariableID:72:435",
+  "n": "interactive/inverse/background/hover",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:7"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Hover state for an inverse-surface interactive element."
+ },
+ {
+  "i": "VariableID:72:436",
+  "n": "interactive/inverse/background/pressed",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:8"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Pressed state for an inverse-surface interactive element."
+ },
+ {
+  "i": "VariableID:72:437",
+  "n": "interactive/inverse/background/focused",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:13"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Focused state for an inverse-surface interactive element."
+ },
+ {
+  "i": "VariableID:72:438",
+  "n": "interactive/inverse/background/selected",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:8"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Selected state for an inverse-surface interactive element."
+ },
+ {
+  "i": "VariableID:72:439",
+  "n": "interactive/inverse/background/disabled",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:9"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Disabled state for an inverse-surface interactive element."
+ },
+ {
+  "i": "VariableID:72:440",
+  "n": "interactive/inverse/background/loading",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:13"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:441",
+  "n": "interactive/inverse/background/visited",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:13"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:442",
+  "n": "interactive/inverse/background/dragged",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:13"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:443",
+  "n": "interactive/inverse/background/droptarget",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:72:7"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:444",
+  "n": "interactive/inverse/foreground/default",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:20"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Default-state text/icon color on an inverse-surface interactive element&#39;s background."
+ },
+ {
+  "i": "VariableID:72:449",
+  "n": "interactive/inverse/foreground/disabled",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:19"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Disabled-state text/icon color on an inverse-surface interactive element&#39;s background."
+ },
+ {
+  "i": "VariableID:72:454",
+  "n": "overlay/backdrop",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:15"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ]
+ },
+ {
+  "i": "VariableID:72:455",
+  "n": "overlay/scrim",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:15"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Semi-transparent dimming layer behind a drawer, sheet, or side panel"
+ },
+ {
+  "i": "VariableID:72:456",
+  "n": "overlay/modal",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:12"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Semi-transparent dimming layer behind a modal dialog, to focus attention on it"
+ },
+ {
+  "i": "VariableID:72:457",
+  "n": "feedback/success/background/subtle",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:23"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Background fill for success alerts, banners, and inline messages"
+ },
+ {
+  "i": "VariableID:72:458",
+  "n": "feedback/success/foreground",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:22"
+   }
+  },
+  "s": [
+   "TEXT_FILL"
+  ],
+  "d": "Icon/text color used inside success alerts and messages"
+ },
+ {
+  "i": "VariableID:72:459",
+  "n": "feedback/success/icon",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:22"
+   }
+  },
+  "s": [
+   "SHAPE_FILL"
+  ],
+  "d": "Icon color used inside success alerts and messages"
+ },
+ {
+  "i": "VariableID:72:460",
+  "n": "feedback/warning/background/subtle",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:26"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Background fill for warning alerts, banners, and inline messages"
+ },
+ {
+  "i": "VariableID:72:461",
+  "n": "feedback/warning/foreground",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:25"
+   }
+  },
+  "s": [
+   "TEXT_FILL"
+  ],
+  "d": "Icon/text color used inside warning alerts and messages"
+ },
+ {
+  "i": "VariableID:72:462",
+  "n": "feedback/warning/icon",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:25"
+   }
+  },
+  "s": [
+   "SHAPE_FILL"
+  ],
+  "d": "Icon color used inside warning alerts and messages"
+ },
+ {
+  "i": "VariableID:72:463",
+  "n": "feedback/error/background/subtle",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:29"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Background fill for error alerts, banners, and inline messages"
+ },
+ {
+  "i": "VariableID:72:464",
+  "n": "feedback/error/foreground",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:28"
+   }
+  },
+  "s": [
+   "TEXT_FILL"
+  ],
+  "d": "Icon/text color used inside error alerts and messages"
+ },
+ {
+  "i": "VariableID:72:465",
+  "n": "feedback/error/icon",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:28"
+   }
+  },
+  "s": [
+   "SHAPE_FILL"
+  ],
+  "d": "Icon color used inside error alerts and messages"
+ },
+ {
+  "i": "VariableID:72:466",
+  "n": "feedback/info/background/subtle",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:203"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Background fill for informational alerts, banners, and inline messages"
+ },
+ {
+  "i": "VariableID:72:467",
+  "n": "feedback/info/foreground",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:202"
+   }
+  },
+  "s": [
+   "TEXT_FILL"
+  ],
+  "d": "Icon/text color used inside informational alerts and messages"
+ },
+ {
+  "i": "VariableID:72:468",
+  "n": "feedback/info/icon",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:202"
+   }
+  },
+  "s": [
+   "SHAPE_FILL"
+  ],
+  "d": "Icon color used inside informational alerts and messages"
+ },
+ {
+  "i": "VariableID:72:469",
+  "n": "navigation/background",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:10"
+   }
+  },
+  "s": [
+   "FRAME_FILL",
+   "SHAPE_FILL"
+  ],
+  "d": "Background color for navigation surfaces (nav bars, sidebars)."
+ },
+ {
+  "i": "VariableID:72:470",
+  "n": "navigation/item/default",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:17"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Default (unselected) navigation item text/icon color."
+ },
+ {
+  "i": "VariableID:72:471",
+  "n": "navigation/item/active",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:2"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Navigation item color for the current/active route."
+ },
+ {
+  "i": "VariableID:72:472",
+  "n": "navigation/item/hover",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:16"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Navigation item color on hover."
+ },
+ {
+  "i": "VariableID:72:473",
+  "n": "navigation/item/selected",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:63:2"
+   }
+  },
+  "s": [
+   "SHAPE_FILL",
+   "TEXT_FILL"
+  ],
+  "d": "Navigation item color when selected."
+ },
+ {
+  "i": "VariableID:72:474",
+  "n": "focus/ring",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:2535:3742"
+   }
+  },
+  "s": [
+   "STROKE_COLOR",
+   "EFFECT_COLOR"
+  ],
+  "d": "Soft glow/ring drawn just outside the focus outline, reinforcing keyboard focus"
+ },
+ {
+  "i": "VariableID:72:475",
+  "n": "focus/outline",
+  "t": "COLOR",
+  "c": "VariableCollectionId:2:3",
+  "v": {
+   "2:1": {
+    "a": "VariableID:2535:3742"
+   }
+  },
+  "s": [
+   "STROKE_COLOR"
+  ],
+  "d": "Solid outline drawn directly around an element on keyboard focus, for accessibility"
+ }
+]

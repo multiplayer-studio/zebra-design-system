@@ -9,11 +9,11 @@
 /* ---- anatomy: bubble ---------------------------------------------------- */
 .zds-tooltip {
   /* Pointer geometry. spec issue "Pointer isn't token sized": Figma draws a
-     fixed 8x4 vector; here its depth is --space-xs (4px, the bubble's own
+     fixed 8x4 vector; here its depth is --space-xxs (4px, the bubble's own
      block padding) and its base twice that, so a theme that shrinks the
      bubble's padding shrinks the pointer with it. It is drawn as a square of
      side depth*sqrt(2) rotated 45deg and half-buried in the bubble edge. */
-  --zds-tooltip-pointer-depth: var(--space-xs);
+  --zds-tooltip-pointer-depth: var(--space-xxs);
   --zds-tooltip-pointer-box: calc(var(--zds-tooltip-pointer-depth) * 1.41421);
   --zds-tooltip-pointer-tip: var(--radius-none);
 
@@ -22,7 +22,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-xs) var(--space-sm);
+  padding: var(--space-xxs) var(--space-sm);
   border-radius: var(--radius-sm);
   background: var(--surface-inverse);
   color: var(--foreground-inverse);
@@ -126,7 +126,7 @@
 
 /* Motion (owner decision; none in Figma): fades in while sliding toward the
    trigger, from the side away from the tip, and fades out, on
-   animations/smooth. The slide is the pointer's depth (--space-xs). Base UI
+   animations/smooth. The slide is the pointer's depth (--space-xxs). Base UI
    marks the first frame open ([data-starting-style]), the closing frames
    ([data-ending-style]) and the side it placed the bubble on ([data-side]),
    and waits for the fade before hiding the popup. */
@@ -136,10 +136,10 @@
 .zds-tooltip:is([data-starting-style], [data-ending-style]) {
   opacity: 0;
 }
-.zds-tooltip[data-starting-style][data-side="top"] { translate: 0 calc(-1 * var(--space-xs)); }
-.zds-tooltip[data-starting-style][data-side="bottom"] { translate: 0 var(--space-xs); }
-.zds-tooltip[data-starting-style][data-side="left"] { translate: calc(-1 * var(--space-xs)) 0; }
-.zds-tooltip[data-starting-style][data-side="right"] { translate: var(--space-xs) 0; }
+.zds-tooltip[data-starting-style][data-side="top"] { translate: 0 calc(-1 * var(--space-xxs)); }
+.zds-tooltip[data-starting-style][data-side="bottom"] { translate: 0 var(--space-xxs); }
+.zds-tooltip[data-starting-style][data-side="left"] { translate: calc(-1 * var(--space-xxs)) 0; }
+.zds-tooltip[data-starting-style][data-side="right"] { translate: var(--space-xxs) 0; }
 @media (prefers-reduced-motion: reduce) {
   .zds-tooltip:not(.zds-tooltip--static) {
     transition: none;

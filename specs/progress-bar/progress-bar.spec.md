@@ -45,7 +45,7 @@ No swap-only variations. Content inputs: the **label** string (baked per variant
 1. **Bar (root)** — "The outer frame. Fixed width, stacking the label row above the indicator group with a gap between them, and hugging whatever height the chosen Size produces." Vertical, gap `space/lg`, no padding, radius `radius/none`, clips. Fixed width (408Px measured), hugs height (44Px small, 52Px medium).
 2. **Label row** — "Holds the text that reports the state and, when Show More Details is on, a trailing slot beside it." Horizontal, centred, fills width, hugs height; gap is a raw value (issues). Visible when `showLabel`.
    - **Label** — `label/medium`, colour `foreground/secondary`, start-aligned, fills width, wraps.
-   - **Trailing slot** — horizontal, gap `space/xs`, padding `space/none`, hugs. Visible when `showMoreDetails`. Default content is a hidden glyph `hourglass` (rounded family, Icon Size=small, currentColor); in code the slot is empty by default.
+   - **Trailing slot** — horizontal, gap `space/xxs`, padding `space/none`, hugs. Visible when `showMoreDetails`. Default content is a hidden glyph `hourglass` (rounded family, Icon Size=small, currentColor); in code the slot is empty by default.
 3. **Indicator group** — "The track, the indicator that fills it, and on Buffering a third band covering the buffered span." Fills width; fixed thickness per size (not token-bound). Stacking bottom to top: track, buffer, indicator.
    - **Track** — fills the group, fill `surface/track`, radius per shape × size. Visible when `showTrack`.
    - **Buffer** (Buffering only) — anchored left, width = buffer value (sampled at three quarters), fill `surface/subtle` (unresolvable, see issues), radius per shape × size. Visible when `showTrack`.
@@ -79,7 +79,7 @@ None. The only nested instance is the hidden `Icon` default content of the trail
 ## Tokens & theming
 
 - **Colour:** `foreground/link`, `foreground/secondary`, `surface/track`, `surface/subtle` (missing from tokens/, see issues).
-- **Dimension:** `space/{lg, xs, none}`, `radius/{none, sm, md}`.
+- **Dimension:** `space/{lg, xxs, none}`, `radius/{none, sm, md}`.
 - **Typography:** `label/medium`. **Glyphs:** `hourglass`.
 - **Theme axes:** palette (Light, Dark); size and typography (Desktop, Mobile, Tablet, Desktop Compact).
 

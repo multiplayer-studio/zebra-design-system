@@ -1,8 +1,8 @@
 # Label
 
-Names a category on an item in a word or two, filled solid in one of five colours. Variant carries the standing of that category and Shape matches the surface it sits on. Reach for it where the thing shown is a fixed category, and for Status Label where it is a state that changes over time.
+Names a category on an item in a word or two. Variant carries the standing of that category, and Bold and Outlined decide how hard it pushes, from a solid fill down to a tint with no visible edge. It reports and never responds, which is the line between it and Chip.
 
-Source: [Badges page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6404-328) · component set `6404:328` · extracted 2026-10-15 · 10 variants · default `Variant=neutral, Shape=rounded`
+Source: [Badges page](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6404-328) · component set `6404:328` · extracted 2026-10-22 · 30 variants · default `Variant=neutral, Shape=rounded, Bold=true, Outlined=false`
 
 > **No blockers, 2 warnings.** See [Issues](#issues).
 
@@ -13,40 +13,72 @@ Source: [Badges page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-
 | `label` | string |  | `Label` |
 | `variant` | enum | `neutral`, `info`, `positive`, `warning`, `negative` | `neutral` |
 | `shape` | enum | `rounded`, `sharp` | `rounded` |
+| `bold` | boolean |  | `true` |
+| `outlined` | boolean | applies only when `bold` is false | `false` |
 
-**label**: The category being named. One or two words, because the component hugs its text at 12px and a phrase turns into a wide bar.
+**label**: The category name, in one or two words.
 
 **variant**
-- `neutral`: No category colour. Reach for it where the label names something carrying no standing of its own, such as a type or a tag.
-- `info`: Informational standing, carrying no judgement either way.
-- `positive`: A good or completed standing.
-- `warning`: A standing that needs attention without having failed.
-- `negative`: A failed or blocking standing. The strongest of the five, so spending it widely leaves nothing above it.
+- `neutral`: Use for a category with no standing, such as a type or a topic.
+- `info`: Use for a category that informs and asks for no action.
+- `positive`: Use for a category that marks a finished or successful outcome.
+- `warning`: Use for a category that needs attention but has not failed.
+- `negative`: Use for a category that has failed or is blocking.
 
 **shape**
-- `rounded`: Match the contour of the surface the label sits on.
-- `sharp`: The square-cornered pair, for dense surfaces built from square corners such as a table cell.
+- `rounded`: Use by default, and wherever the surrounding components have rounded corners.
+- `sharp`: Use on square-cornered surfaces such as table cells. Never mix both shapes in one view.
+
+**bold**
+- `true`: Solid fill with light text, the strongest form, for a label that must be spotted at a glance. Keep Outlined false, because Bold and Outlined together is not built.
+- `false`: Tinted fill with dark text, for a label that supports the item rather than leads it. Pair with Outlined to choose between the edged and the plain form.
+
+**outlined**
+- `false`: No visible border. With Bold false this is the quietest form, for surfaces that already set the label apart.
+- `true`: Adds a 1px border to the tinted fill, for a label that must stay findable without dominating. Use only with Bold false.
+
+### Emphasis forms
+
+Bold and Outlined combine into three forms, not four. Bold=true with Outlined=true is not built; in code bold wins and outlined is ignored.
+
+| Form | bold | outlined | Fill | Stroke | Label | measuredHeightPx |
+|---|---|---|---|---|---|---|
+| bold | true | false | strong, per variant | same token as the fill, stroke/thin, inside and in layout | knocked out, per variant | 26 |
+| outlined | false | true | subtle, per variant | per variant, stroke/thin, centred on the edge | foreground/primary | 24 |
+| plain | false | false | subtle, per variant | per variant at stroke/base (zero weight), a theming hook | foreground/primary | 24 |
 
 ## Anatomy
 
 | Part | Kind | Details |
 |---|---|---|
-| `root` | container | Fill: A solid background per Variant. A strong fill rather than a tint, so the text knocks out of it. Border: A 1px stroke on the same token as the fill, keeping the edge flush and giving a theming set something to raise. · radius: radius/element-sm (rounded) · radius/none (sharp) · layout: direction horizontal; gap space/2xs; padding space/xs · paint: fill per variant; stroke {"color": "same token as the fill", "width": "stroke/thin", "align": "inside, included in layout"} |
-| `label` | text | The category name, set through Label. It decides the width of the whole component. · content: label · text: style indicator/medium; color per variant |
+| `root` | container | Fill: A background per Variant, solid on the bold form and a tint on the other two. Border: Visible only on the outlined form. The same bound stroke sits on the plain form at zero weight, held as a theming hook. · radius: radius/element-sm (rounded) · radius/none (sharp) · layout: horizontal; gap space/2xs; padding space/xxs · stroke: stroke/thin (bold, outlined) · stroke/base (plain) |
+| `label` | text | The category name, set through Label. It decides the width of the whole component. · text: style body/xsmall; colour per variant on bold, foreground/primary otherwise |
 
 ## Variants
 
 Cells are token names. Shape changes only the radius.
 
-### variant
+### Bold form (Bold=true, Outlined=false)
 
-| variant | fill+border | label.fill | figmaNode |
+| variant | fill + stroke | label.fill | figmaNode |
 |---|---|---|---|
 | neutral | foreground/secondary | foreground/inverse | 6404:308 |
 | info | feedback/info/background/strong | interactive/primary/foreground/default | 6404:312 |
 | positive | feedback/success/background/strong | interactive/primary/foreground/default | 6404:316 |
 | warning | feedback/warning/background/strong | foreground/inverse | 6404:320 |
 | negative | feedback/error/background/strong | interactive/destructive/foreground/default | 6404:324 |
+
+### Outlined and plain forms (Bold=false)
+
+Outlined decides whether the stroke shows. Everything else is shared.
+
+| variant | fill | stroke | label.fill | figmaNode (outlined / plain) |
+|---|---|---|---|---|
+| neutral | surface/subtle | border/strong | foreground/primary | 7046:912 / 7046:933 |
+| info | feedback/info/background/subtle | feedback/info/background/strong | foreground/primary | 7046:916 / 7046:937 |
+| positive | feedback/success/background/subtle | border/success | foreground/primary | 7046:920 / 7046:941 |
+| warning | feedback/warning/background/subtle | border/warning | foreground/primary | 7046:924 / 7046:945 |
+| negative | feedback/error/background/subtle | border/error | foreground/primary | 7046:928 / 7046:949 |
 
 ### shape
 
@@ -59,22 +91,23 @@ Cells are token names. Shape changes only the radius.
 
 Names only; values live in `tokens/`.
 
-- **Color:** `foreground/{secondary,inverse}`, `feedback/{info,success,warning,error}/background/strong`, `interactive/primary/foreground/default`, `interactive/destructive/foreground/default`
-- **Dimension:** `space/{xs,2xs}`, `radius/{element-sm,none}`, `stroke/thin`
-- **Typography:** `indicator/medium`
+- **Color:** `foreground/{secondary,inverse,primary}`, `feedback/{info,success,warning,error}/background/{strong,subtle}`, `surface/subtle`, `border/{strong,success,warning,error}`, `interactive/primary/foreground/default`, `interactive/destructive/foreground/default`
+- **Dimension:** `space/{xxs,2xs}`, `radius/{element-sm,none}`, `stroke/{thin,base}`
+- **Typography:** `body/xsmall`
 - **Theme axes:** palette Light, Dark · size Desktop, Mobile, Tablet, Desktop Compact · typography Desktop, Tablet, Mobile, Desktop Compact · extensions tokens/extensions/ (companion, target, condensed)
 
-Every token resolves in the export.
+Every token resolves in the export (surface/subtle added on 2026-10-22).
 
 ## States, behavior & motion
 
 | State | Trigger | What changes |
 |---|---|---|
-| Static | — | The component has no interaction states. It names a category rather than offering an action. |
-| Variant | The Variant value | Fill, border and text colour move together. Nothing else changes. |
+| Static | — | The component has no interaction states. Nothing answers hover, focus or press, because it names a category rather than offering one. |
+| Variant and emphasis | Variant, Bold or Outlined | Fill, border and text colour move together. Variant chooses the colour family and the two emphasis properties decide how much of it shows. |
 
 - **Motion:** No transition is defined. A variant change is a swap of fill, border and text colour.
-- **Not interactive:** There is nothing to press. Where a category can be acted on, such as removing a tag, that belongs to Chip rather than here.
+- **Read only:** A badge reports and never responds. There is nothing to press, no selected form and no interaction states, which is the line between this and Chip. Where a category can be chosen, removed or filtered by, that is Chip's job rather than this one's.
+- **Emphasis model:** Bold and Outlined give three forms rather than four. Bold alone is the solid one, Outlined alone is the edged one, neither gives the quiet tint, and the two together are not built.
 
 ## Content & slots
 
@@ -86,44 +119,47 @@ Every token resolves in the export.
 
 **Do**
 - Keep it to one or two words. The component hugs its text at 12px, so a phrase becomes a wide bar in a narrow column.
-- Reach for Label where the thing shown is a fixed category, and Status Label where it is a state that moves.
+- Pick one emphasis and hold it down a column. Mixing solid and tinted labels in one list reads as two kinds of thing rather than one scale.
 
 **Don't**
-- Don't use it for a status that changes. Status Label carries a leading indicator for exactly that, and this has no room for one.
-- Don't lean on the colour to carry the category. At 12px on a strong fill the word is doing the work and the colour is reinforcement.
+- Don't use a label where a person can act on the category. Choosing, removing and filtering belong to Chip, and a label that looks pressable but is not is worse than either.
+- Don't lean on the colour to carry the category. At 12px the word is doing the work and the colour is reinforcement.
 
 ## Accessibility
 
 - The label text is the accessible name and the only thing that names the category. The fill reinforces it and never replaces it.
-- Text is 12px knocked out of a strong fill. Check contrast per variant, because the pairing differs between them rather than following one rule.
+- It is not focusable and not a control. Nothing about it should suggest otherwise, because a person who tries to press it gets no answer.
+- The bold form knocks 12px text out of a strong fill. Check contrast per variant, because the pairing differs between them rather than following one rule.
+- The plain form carries no visible edge, so on a tinted surface it can lose its boundary. The zero weight border is the hook that gives it one in a high contrast set.
 - neutral and the four feedback variants are separated by colour alone. A reader who cannot tell them apart relies entirely on the word inside.
-- Nothing here is focusable. Where a category can be removed or filtered by, that interaction belongs to a different component.
 
 ## Layout & theming intents
 
 | Property | Type | Description |
 |---|---|---|
-| Size | Hug width, fixed height | 18 tall at every variant, hugging its text. The smallest of the badges on this page, sized to sit inline with running text rather than beside it. |
-| Padding and gap | Fixed | space/xs on all four sides, with a space/2xs gap held for anything placed beside the text. |
+| Size | Hug width, fixed height | 24 tall on the outlined and plain forms and 26 on bold, the difference being a 1px stroke drawn inside the box rather than centred on its edge. The width hugs the text in every form. |
+| Padding and gap | Fixed | space/xxs on all four sides, with a space/2xs gap held for anything placed beside the text. |
 | Radius | Per Shape | radius/element-sm when rounded and radius/none when sharp. Softer than a pill, so it reads as a block of text rather than as a token. |
-| Fill and border | Per Variant | neutral draws foreground/secondary. The rest draw feedback/info, success, warning and error at background/strong. The 1px border takes the same token as the fill, so the two move together and the edge stays flush. |
-| Label | Theming | indicator/medium at 12px, with the colour paired per variant so the text always knocks out of the fill rather than sitting on it. |
+| Fill | Per Variant and emphasis | bold takes feedback/info, success, warning or error at background/strong, with neutral on foreground/secondary. The other two forms take the matching background/subtle, with neutral on surface/subtle. |
+| Border | Per emphasis | outlined draws a 1px stroke centred on the edge, border/strong for neutral and the matching border token otherwise. The plain form carries that same bound stroke at zero weight, which is a theming hook rather than an absent border, so a high contrast set can give every label an edge. bold's stroke matches its own fill. |
+| Label | Theming | body/xsmall at 12px in every form. bold knocks the text out of its fill, foreground/inverse on neutral and the matching foreground token elsewhere, while the other two hold foreground/primary. |
 
 ## Visual reference
 
-- [Page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3717-5570) · [Component set](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6404-328) · [Metadata](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6413-565)
-- [neutral](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6404-308) · [warning](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6404-320) · [negative, sharp](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6404-326)
+- [Page](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=3717-5570) · [Component set](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6404-328) · [Metadata](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6413-565)
+- [bold, neutral](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6404-308) · [outlined, info](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=7046-916) · [plain, warning](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=7046-945) · [bold, neutral, sharp](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6404-310)
 
 ## Issues
 
 ### Warn
 
-- *structure vs tokens (line height)*: The metadata gives the label as 18 tall. The text is bound to indicator/medium, whose line height token resolves to 14 in the export, but Figma reports the text box at 8 tall, which is what makes 18 add up (space/xs top and bottom, a 1px border each side, 8 of text). Built from the tokens (padding space/xs, border stroke/thin, line height indicator/medium) the label is 24 tall, not 18. Either the line height should drop for this component, or the padding should, or 24 is the intended height; it needs a decision before code can match Figma.
-- *tokens*: Text on info, positive and negative borrows button tokens (interactive/primary/foreground/default, interactive/destructive/foreground/default), and neutral and warning use foreground/inverse. The export now has foreground/on-strong (always white), which covers info, positive and negative; warning still needs a mode-aware 'on' colour because its strong fill lightens in dark mode.
+- *metadata Layout vs structure (outlined border)*: The metadata says outlined takes "the matching border token" for the four feedback variants. positive, warning and negative do, but info strokes with feedback/info/background/strong, not border/info. The plain form's zero-weight stroke carries the same token. Code follows Figma.
+- *metadata Layout vs structure (bold text)*: The metadata says bold text is "foreground/inverse on neutral and the matching foreground token elsewhere". As built, info and positive take interactive/primary/foreground/default, negative takes interactive/destructive/foreground/default and warning takes foreground/inverse. foreground/on-strong would cover info, positive and negative; warning needs a mode-aware "on" colour. Code follows Figma.
 
 ### Note
 
-- *tokens/ (contrast, Light)*: White text on info, positive and warning strong fills measures 4.40, 4.47 and 4.34:1, below 4.5:1 at 12px; negative is 5.19:1. Recorded earlier and acknowledged by the owner.
-- *metadata Layout vs structure*: The space/2xs gap is set but there is only one child, so it has no effect today. The metadata says it is 'held for anything placed beside the text'.
-- *code (packages/web-components zds-badge-label)*: The experimental element matches the radius and colours, but uses label/small text with space/2xs x space/xs padding, so it comes to 22 tall by its tokens, matching neither 18 nor 24, and it carries a low-footprint variant Figma does not have. Align once the height question above is settled.
-- *metadata*: No motion and no interaction states, by the metadata's own statement. The set has no description.
+- *tokens/ (export)*: surface/subtle was missing from tokens/. Added on 2026-10-22 as `{palette.fill.sunken}`, matching Figma's VariableID:6680:11902, and the CSS layer regenerated.
+- *api (emphasis)*: Bold=true with Outlined=true is not built. In code Bold wins and Outlined has no effect while Bold is true.
+- *tokens/ (contrast, Light)*: White text on info, positive and warning strong fills measures 4.40, 4.47 and 4.34:1, below 4.5:1 at 12px; negative is 5.19:1. Bold form only. Acknowledged by the owner.
+- *metadata Layout vs structure*: The space/2xs gap has only one child, so it has no effect today. The metadata says it is "held for anything placed beside the text".
+- *metadata*: Positive and negative are the design names; the tokens are success and error. No motion and no interaction states. The set has no description.

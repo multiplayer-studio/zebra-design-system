@@ -31,7 +31,7 @@ export const rowStyles = css`
     /* Figma's min width is a raw 48px; control/lg is the same intent. */
     min-width: var(--control-lg);
     min-height: var(--control-lg);
-    padding: var(--space-xs) var(--space-md);
+    padding: var(--space-xxs) var(--space-md);
     /* Shape=rounded (the default); sharp is below. */
     border-radius: var(--radius-sm);
 

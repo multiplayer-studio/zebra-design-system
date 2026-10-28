@@ -104,14 +104,14 @@
 
 /* The selectable row: leading control, then the selection target. */
 .zds-accordion__header[data-selectable] {
-  gap: var(--space-xs);
+  gap: var(--space-xxs);
   padding: var(--space-sm);
 }
 .zds-accordion__control {
   flex: none;
 }
 .zds-accordion__select {
-  gap: var(--space-xs);
+  gap: var(--space-xxs);
   align-self: stretch;
   padding: var(--space-none);
 }

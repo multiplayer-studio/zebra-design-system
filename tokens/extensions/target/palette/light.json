@@ -180,20 +180,19 @@
           }
         }
       },
-      "on": {
+      "deep": {
         "$type": "color",
-        "$value": "{primitives.color.neutral.warm.10}",
-        "$description": "Foreground on top of Brand/Primary (theme.color.brand.onPrimary)",
+        "$value": "{primitives.color.extend.4.80}",
         "$extensions": {
           "com.figma": {
-            "id": "VariableID:63:7",
-            "overrides": "palette.brand.primary.on",
+            "id": "VariableID:7198:20127",
+            "overrides": "palette.brand.primary.deep",
             "extension": "target",
             "mode": "Light",
             "resolvedType": "COLOR",
             "scopes": [],
             "parentMode": "Light",
-            "aliasOf": "VariableID:30:1304"
+            "aliasOf": "VariableID:38:59"
           }
         }
       },
@@ -213,13 +212,13 @@
           }
         }
       },
-      "deep": {
+      "strong": {
         "$type": "color",
         "$value": "{primitives.color.extend.4.70}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:72:387",
-            "overrides": "palette.brand.primary.deep",
+            "overrides": "palette.brand.primary.strong",
             "extension": "target",
             "mode": "Light",
             "resolvedType": "COLOR",
@@ -264,13 +263,13 @@
           }
         }
       },
-      "deep": {
+      "strong": {
         "$type": "color",
         "$value": "{primitives.color.extend.3.70}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:72:3",
-            "overrides": "palette.brand.secondary.deep",
+            "overrides": "palette.brand.secondary.strong",
             "extension": "target",
             "mode": "Light",
             "resolvedType": "COLOR",

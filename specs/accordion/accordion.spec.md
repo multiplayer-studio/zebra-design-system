@@ -94,14 +94,14 @@ In Figma both changes are glyph swaps through Caret Indicator's Open variant. By
 
 | | plain | selectable |
 |---|---|---|
-| layout | horizontal, centred, gap `space/sm`, padding `space/lg` | horizontal, centred, gap `space/xs`, padding `space/sm` |
+| layout | horizontal, centred, gap `space/sm`, padding `space/lg` | horizontal, centred, gap `space/xxs`, padding `space/sm` |
 | order | title, then the trailing caret | leading control, then the title, then the selection mark |
 | fill, Default | `interactive/ghost/background/default` | same |
 | fill, hover | `interactive/ghost/background/hover` | same |
 
 The header has no border and no radius. Standalone, the plain header measures 381×52Px and the selectable one 381×56Px.
 
-- **Title:** `title/medium` (was `title/large` before 2026-10-21), colour `foreground/primary`. It hugs, with no truncation. It sits in a heading column (gap `space/2xs`, fill) and a title row (gap `space/xs`).
+- **Title:** `title/medium` (was `title/large` before 2026-10-21), colour `foreground/primary`. It hugs, with no truncation. It sits in a heading column (gap `space/2xs`, fill) and a title row (gap `space/xxs`).
 - **Caret (plain header only):** Caret Indicator, Size=medium. Glyph `expand-more`, or `expand-less` when open. Rounded family, `currentColor`.
 - **Leading control (selectable header only):** Icon Button, Size=medium (`control/md`), Flavour=subtle. Shape is sharp, or rounded when the Accordion's `rounded` is true. It holds a small Caret Indicator; the glyphs are in the item table above.
 - **Selection mark (selectable header only, when `selected`):** Icon, Framed=true, height `control/target-min`. Glyph `check-mark`, rounded family, `currentColor`. When it shows, the heading column narrows (measured 321→277Px).
@@ -116,7 +116,7 @@ The header has no border and no radius. Standalone, the plain header measures 38
 ## Tokens & theming
 
 - **Colour:** `border/default`, `interactive/ghost/background/{default, hover}`, `foreground/primary`.
-- **Dimension:** `space/{none, 2xs, xs, sm, lg}`, `radius/{lg, none}`, `stroke/thin`, `control/md`, `control/target-min`.
+- **Dimension:** `space/{none, 2xs, xxs, sm, lg}`, `radius/{lg, none}`, `stroke/thin`, `control/md`, `control/target-min`.
 - **Typography:** `title/medium`. **Motion:** `animations/spring` (owner decision; not bound in Figma). **Glyphs:** `expand-more`, `expand-less`, `chevron-right`, `check-mark`.
 - **From dependencies:** `interactive/neutral/border/default` and `stroke/base` are Icon Button's own bindings.
 - **Theme axes:**
@@ -226,7 +226,7 @@ Quoted verbatim. The two lines about `title/large` at 20px are stale: the title 
 |---|---|---|
 | Size | Fill width, hug height | "Fills its container. The header is 56 tall and a row carrying its divider is 57. Open rows grow to whatever the content needs." |
 | Padding | Per Selectable | "space/lg on all four sides of the header without Selectable, and space/sm with it, because the leading control is taller than the title." |
-| Gap | Per Selectable | "space/sm between the title and the caret without Selectable, space/xs between the control, the title and the mark with it." |
+| Gap | Per Selectable | "space/sm between the title and the caret without Selectable, space/xxs between the control, the title and the mark with it." |
 | Background | Theming | "interactive/ghost/background/default at rest and interactive/ghost/background/hover on hover. No border and no corner radius." |
 | Title | Theming | "title/large, IBM Plex Sans Medium 20 over a 24px line, in foreground/primary." |
 | Caret | Fixed | "Caret Indicator at Size=medium, 20 square, trailing the title when Selectable is off." |

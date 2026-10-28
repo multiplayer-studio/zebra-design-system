@@ -17,7 +17,7 @@
   align-items: center;
   box-sizing: border-box;
   min-inline-size: calc(8 * var(--control-sm));
-  gap: var(--space-xs);
+  gap: var(--space-xxs);
   padding: var(--space-sm) var(--space-md);
   block-size: var(--control-lg);
   border-radius: var(--zds-search-radius);
@@ -59,7 +59,7 @@
      adds to the field's space/xs gap; with no icon it adds to the field's
      space/md padding (spec designerClarifications, "text padding"). */
   padding-block: 0;
-  padding-inline: var(--space-xs);
+  padding-inline: var(--space-xxs);
   box-sizing: border-box;
   border: 0;
   outline: none;

@@ -5,7 +5,7 @@ import { iconGlyphs, iconFamily, type IconStyle } from "@zebra-design-system/ico
 import type { IconName } from "@zebra-design-system/icons/names";
 
 export type { IconName, IconStyle };
-export type IconSize = "small" | "medium" | "large";
+export type IconSize = "xsmall" | "small" | "medium" | "large";
 
 /**
  * A glyph from the Zebra icon font.
@@ -19,7 +19,7 @@ export type IconSize = "small" | "medium" | "large";
  * Colour comes from `currentColor` — the whole reason to ship icons as a
  * font: an icon inside a button inherits that button's colour with no extra
  * rule and no per-flavour wiring. `size` binds the glyph's own dimension
- * token (`control-icon-sm/md/lg`); `framed` pads it to a fixed 40px
+ * token (`control-icon-xs/sm/md/lg`); `framed` pads it to a fixed 40px
  * (`control-target-min`) touch target for a standalone tappable icon. A
  * component that already provides its own target area, like Button, locks
  * both rather than leaving them open to the consumer.

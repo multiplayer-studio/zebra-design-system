@@ -3,65 +3,194 @@
     "name": "Notification Indicator",
     "slug": "notification-indicator",
     "source": {
-      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "fileKey": "ygOr6iyTBCNEMI62lqKDp1",
       "setId": "3719:6256",
-      "key": "73fe3d069d197d82a934eb2653a74245d4bb29a4",
+      "key": "3f6a9936141cd6a38a8c080d39ccf96040642242",
       "page": "Badges",
       "pageNodeId": "3717:5570",
       "metadataFrameId": "6413:741",
-      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3719-6256",
-      "extractedAt": "2026-10-15",
+      "url": "https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=3719-6256",
+      "extractedAt": "2026-10-22",
       "variantCount": 3,
       "defaultVariant": "Size=large",
-      "extractionNote": "Re-extracted 2026-10-15 (first extraction 2026-09-23, when the page had no metadata frame). The Badges page now holds five independent components with their own metadata frames; the other four are specced under specs/badges/. All 3 variants read in-file as token signatures; the text node's line height probed separately. Since the first extraction: a metadata frame now exists, the large radius is now bound (radius/pill), and the count's colour is foreground/on-strong."
+      "extractionNote": "Re-extracted 2026-10-15 (first extraction 2026-09-23, when the page had no metadata frame). The Badges page now holds five independent components with their own metadata frames; the other four are specced under specs/badges/. All 3 variants read in-file as token signatures; the text node's line height probed separately. Since the first extraction: a metadata frame now exists, the large radius is now bound (radius/pill), and the count's colour is foreground/on-strong. Re-verified against ygOr6iyTBCNEMI62lqKDp1 on 2026-10-22: properties, padding and token bindings unchanged."
     }
   },
   "summary": "Marks that something is waiting on whatever it is pinned to, optionally with a count. Size decides whether that count is shown at all, with small reducing to a plain dot that says only that something is new. It carries one fixed colour, so it reports how many and never what kind.",
   "api": {
-    "value": { "type": "string", "figmaName": "Value#2838:0", "default": "2", "controls": ["value"], "visibleWhen": "size != small", "intent": "The count shown inside the indicator. Carried at large and medium, and dropped entirely at small." },
-    "size": { "type": "enum", "figmaName": "Size", "values": ["small", "medium", "large"], "default": "large", "controls": ["surround", "value"],
+    "value": {
+      "type": "string",
+      "figmaName": "Value#2838:0",
+      "default": "2",
+      "controls": [
+        "value"
+      ],
+      "visibleWhen": "size != small",
+      "intent": "The count shown inside the indicator. Carried at large and medium, and dropped entirely at small."
+    },
+    "size": {
+      "type": "enum",
+      "figmaName": "Size",
+      "values": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "default": "large",
+      "controls": [
+        "surround",
+        "value"
+      ],
       "intent": {
         "large": "The widest form, for a count that may run to more than one digit.",
         "medium": "A fixed square holding a single digit. Reach for it where space is tight but the number still matters.",
         "small": "A plain dot with no count. It says something is new without saying how much, so reaching for it where the number matters loses the number silently."
-      } }
+      }
+    }
   },
   "internalVariations": [],
   "contentInputs": [],
   "anatomy": [
-    { "id": "surround", "kind": "container", "role": "A fully round fill in one fixed colour, sized by Size.", "layout": { "direction": "vertical", "gap": "space/none" }, "radius": "radius/pill", "paint": { "fill": "interactive/destructive/background/default", "stroke": { "color": "border/inverse", "width": "stroke/base", "align": "inside, included in layout" } } },
-    { "id": "border", "kind": "stroke", "role": "A zero weight stroke bound to border/inverse, held as a theming hook so a high contrast set can outline the indicator against what sits behind it." },
-    { "id": "value", "kind": "text", "role": "The count, set through Value. Carried at large and medium and absent at small.", "visibleWhen": "size != small", "content": "value", "text": { "style": "indicator/medium", "color": "foreground/on-strong" } }
+    {
+      "id": "surround",
+      "kind": "container",
+      "role": "A fully round fill in one fixed colour, sized by Size.",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/none"
+      },
+      "radius": "radius/pill",
+      "paint": {
+        "fill": "interactive/destructive/background/default",
+        "stroke": {
+          "color": "border/inverse",
+          "width": "stroke/base",
+          "align": "inside, included in layout"
+        }
+      }
+    },
+    {
+      "id": "border",
+      "kind": "stroke",
+      "role": "A zero weight stroke bound to border/inverse, held as a theming hook so a high contrast set can outline the indicator against what sits behind it."
+    },
+    {
+      "id": "value",
+      "kind": "text",
+      "role": "The count, set through Value. Carried at large and medium and absent at small.",
+      "visibleWhen": "size != small",
+      "content": "value",
+      "text": {
+        "style": "indicator/medium",
+        "color": "foreground/on-strong"
+      }
+    }
   ],
   "variants": {
     "_note": "Cells are token names, except those ending Px, which are measurements of the rendered file.",
-    "size": { "axis": "size", "base": "large", "table": [
-      { "size": "small", "surround.size": "unbound", "measuredPx": "8 x 8", "padding": "0 (unbound)", "value": "removed", "figmaNode": "3719:6259" },
-      { "size": "medium", "surround.size": "unbound", "measuredPx": "16 x 16", "padding": "space/none", "value": "shown, single digit", "figmaNode": "3719:6257" },
-      { "size": "large", "surround.size": "min width control/icon-lg, hugs the value", "measuredPx": "28 x 20", "padding": "3 (raw) top and bottom, space/xs left and right", "value": "shown", "figmaNode": "3719:6260" }
-    ] }
+    "size": {
+      "axis": "size",
+      "base": "large",
+      "table": [
+        {
+          "size": "small",
+          "surround.size": "unbound",
+          "measuredPx": "8 x 8",
+          "padding": "0 (unbound)",
+          "value": "removed",
+          "figmaNode": "3719:6259"
+        },
+        {
+          "size": "medium",
+          "surround.size": "unbound",
+          "measuredPx": "16 x 16",
+          "padding": "space/none",
+          "value": "shown, single digit",
+          "figmaNode": "3719:6257"
+        },
+        {
+          "size": "large",
+          "surround.size": "min width control/icon-lg, hugs the value",
+          "measuredPx": "28 x 20",
+          "padding": "3 (raw) top and bottom, space/xxs left and right",
+          "value": "shown",
+          "figmaNode": "3719:6260"
+        }
+      ]
+    }
   },
   "subcomponents": [],
   "dependencies": [],
   "tokens": {
     "source": "tokens/ — names below resolve there; see tokens/manifest.json",
     "rule": "This spec names tokens only.",
-    "color": ["interactive/destructive/background/default", "border/inverse", "foreground/on-strong"],
-    "dimension": ["space/{none,xs}", "radius/pill", "stroke/base", "control/icon-lg"],
-    "typography": ["indicator/medium"],
+    "color": [
+      "interactive/destructive/background/default",
+      "border/inverse",
+      "foreground/on-strong"
+    ],
+    "dimension": [
+      "space/{none,xxs}",
+      "radius/pill",
+      "stroke/base",
+      "control/icon-lg"
+    ],
+    "typography": [
+      "indicator/medium"
+    ],
     "effect": [],
     "missingFromExport": [],
-    "themeAxes": { "palette": ["Light", "Dark"], "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"], "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"], "extensions": "tokens/extensions/ (companion, target, condensed)" }
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "typography": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ],
+      "extensions": "tokens/extensions/ (companion, target, condensed)"
+    }
   },
   "states": [
-    { "state": "Static", "trigger": "—", "duration": "—", "whatChanges": "The component has no interaction states. It reports that something is waiting rather than offering a way to deal with it." },
-    { "state": "Size", "trigger": "The Size value", "duration": "—", "whatChanges": "The only thing that changes is whether the count is shown. The colour holds across all three." }
+    {
+      "state": "Static",
+      "trigger": "—",
+      "duration": "—",
+      "whatChanges": "The component has no interaction states. It reports that something is waiting rather than offering a way to deal with it."
+    },
+    {
+      "state": "Size",
+      "trigger": "The Size value",
+      "duration": "—",
+      "whatChanges": "The only thing that changes is whether the count is shown. The colour holds across all three."
+    }
   ],
   "behavior": [
-    { "type": "Motion", "description": "No transition is defined. A change in the count is a text swap." },
-    { "type": "Count and size", "description": "small carries no count at all. Moving between small and the other two changes what is being said rather than only the scale, so the choice follows whether the number is worth reading." }
+    {
+      "type": "Motion",
+      "description": "No transition is defined. A change in the count is a text swap."
+    },
+    {
+      "type": "Count and size",
+      "description": "small carries no count at all. Moving between small and the other two changes what is being said rather than only the scale, so the choice follows whether the number is worth reading."
+    }
   ],
-  "content": [ { "property": "Value", "type": "text property", "description": "Consumer owned, set through Value and shown at large and medium. Keep it short, because only large grows with its text." } ],
+  "content": [
+    {
+      "property": "Value",
+      "type": "text property",
+      "description": "Consumer owned, set through Value and shown at large and medium. Keep it short, because only large grows with its text."
+    }
+  ],
   "usage": {
     "do": [
       "Reach for small where the fact that something is new is the whole message. It is the only form that makes no claim about quantity.",
@@ -79,29 +208,77 @@
     "Nothing here is focusable and a change in the count does not announce itself. The structure around it has to report that the number moved."
   ],
   "layoutTheming": [
-    { "property": "Size", "type": "Fixed per Size", "description": "28 by 20 at large, a 16 square at medium and an 8 dot at small." },
-    { "property": "Padding", "type": "Per Size", "description": "space/xs left and right at large with 3 above and below. medium and small carry none, because their content is centred inside a fixed square." },
-    { "property": "Radius", "type": "Fixed", "description": "radius/pill at all three sizes, so every form is fully round whether or not it holds a number." },
-    { "property": "Fill", "type": "Fixed", "description": "interactive/destructive/background/default at every size. One colour throughout, which does not vary with the count." },
-    { "property": "Border", "type": "Theming", "description": "A stroke bound to border/inverse sits on all three sizes at zero weight. The weight is a theming hook rather than an omission, so a high contrast set can give the indicator a hard outline where it overlaps whatever it is pinned to." },
-    { "property": "Value", "type": "Theming", "description": "indicator/medium at 12px in interactive/destructive/foreground/default. Present at large and medium, absent at small." }
+    {
+      "property": "Size",
+      "type": "Fixed per Size",
+      "description": "28 by 20 at large, a 16 square at medium and an 8 dot at small."
+    },
+    {
+      "property": "Padding",
+      "type": "Per Size",
+      "description": "space/xxs left and right at large with 3 above and below. medium and small carry none, because their content is centred inside a fixed square."
+    },
+    {
+      "property": "Radius",
+      "type": "Fixed",
+      "description": "radius/pill at all three sizes, so every form is fully round whether or not it holds a number."
+    },
+    {
+      "property": "Fill",
+      "type": "Fixed",
+      "description": "interactive/destructive/background/default at every size. One colour throughout, which does not vary with the count."
+    },
+    {
+      "property": "Border",
+      "type": "Theming",
+      "description": "A stroke bound to border/inverse sits on all three sizes at zero weight. The weight is a theming hook rather than an omission, so a high contrast set can give the indicator a hard outline where it overlaps whatever it is pinned to."
+    },
+    {
+      "property": "Value",
+      "type": "Theming",
+      "description": "indicator/medium at 12px in interactive/destructive/foreground/default. Present at large and medium, absent at small."
+    }
   ],
   "visualReference": {
-    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3717-5570",
-    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3719-6256",
-    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6413-741",
+    "page": "https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=3717-5570",
+    "componentSet": "https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=3719-6256",
+    "metadata": "https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6413-741",
     "perAxis": {
-      "large": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3719-6260",
-      "medium": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3719-6257",
-      "small": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3719-6259"
+      "large": "https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=3719-6260",
+      "medium": "https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=3719-6257",
+      "small": "https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=3719-6259"
     }
   },
   "issues": [
-    { "severity": "warn", "source": "metadata Layout vs structure", "detail": "The metadata gives the count's colour as interactive/destructive/foreground/default. As built it is foreground/on-strong. Both resolve light on the destructive fill; one of the two needs to change so they agree." },
-    { "severity": "warn", "source": "structure (gaps)", "detail": "The large size's top and bottom padding is a raw 3 with no token (the metadata states 3 as intended), and the medium (16) and small (8) squares have no size tokens. Large binds its minimum width to control/icon-lg." },
-    { "severity": "warn", "source": "code (packages/web-components zds-notification-indicator)", "detail": "The shipped element colours the count with interactive/destructive/foreground/default (what the metadata says, not what Figma now draws), still carries a raw 3px vertical padding, and its doc comment says no metadata frame exists. Update once the colour question above is settled." },
-    { "severity": "note", "source": "structure", "detail": "The border is real and bound (border/inverse at stroke/base) on all three sizes, but stroke/base resolves to zero, so it never renders by default; the metadata states this as a deliberate theming hook." },
-    { "severity": "note", "source": "resolved since 2026-09-23", "detail": "The page now has a metadata frame (previously a blocker), and the large radius is now bound to radius/pill (previously a raw 10)." },
-    { "severity": "note", "source": "metadata", "detail": "No motion and no interaction states, by the metadata's own statement. The set has no description." }
+    {
+      "severity": "warn",
+      "source": "metadata Layout vs structure",
+      "detail": "The metadata gives the count's colour as interactive/destructive/foreground/default. As built it is foreground/on-strong. Both resolve light on the destructive fill; one of the two needs to change so they agree."
+    },
+    {
+      "severity": "warn",
+      "source": "structure (gaps)",
+      "detail": "The large size's top and bottom padding is a raw 3 with no token (the metadata states 3 as intended), and the medium (16) and small (8) squares have no size tokens. Large binds its minimum width to control/icon-lg."
+    },
+    {
+      "severity": "warn",
+      "source": "code (packages/web-components zds-notification-indicator)",
+      "detail": "The shipped element colours the count with interactive/destructive/foreground/default (what the metadata says, not what Figma now draws), still carries a raw 3px vertical padding, and its doc comment says no metadata frame exists. Update once the colour question above is settled."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "The border is real and bound (border/inverse at stroke/base) on all three sizes, but stroke/base resolves to zero, so it never renders by default; the metadata states this as a deliberate theming hook."
+    },
+    {
+      "severity": "note",
+      "source": "resolved since 2026-09-23",
+      "detail": "The page now has a metadata frame (previously a blocker), and the large radius is now bound to radius/pill (previously a raw 10)."
+    },
+    {
+      "severity": "note",
+      "source": "metadata",
+      "detail": "No motion and no interaction states, by the metadata's own statement. The set has no description."
+    }
   ]
 }

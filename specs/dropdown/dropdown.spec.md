@@ -69,7 +69,7 @@ The surface a dropdown opens onto, a floating panel holding a list of Menu Item 
 **Anatomy**
 
 1. **Panel** (root) — "The outer frame. Hugs its content on both axes and carries the menu surface, the radius and the elevation." Fill `surface/menu`, radius `radius/none`→`radius/element-md`, effect style `Shadow/medium`.
-2. **Content** — "The vertical stack inside the padding, holding the two built-in rows and then the slot." Gap `space/xs`.
+2. **Content** — "The vertical stack inside the padding, holding the two built-in rows and then the slot." Gap `space/xxs`.
 3. **Built-in rows ×2** — fixed Menu Item instances, pinned to the panel's own Rounded.
 4. **Slot Container** — "The open region for additional Menu Item rows. More Items hides it as a whole, along with anything inside it." Ships holding 2 Menu Item instances by default.
 
@@ -88,7 +88,7 @@ The surface a dropdown opens onto, a floating panel holding a list of Menu Item 
 
 **Accessibility** — Panel announces nothing itself; rows carry the meaning. Elevation is the only separation from the surface behind — check contrast. Panel neither traps focus nor caps height. Keyboard movement between rows must be built in code.
 
-**Layout & theming** — 213×196px hug; padding 12px (space/card) all sides; gap 4px (space/xs) between rows; radius per Rounded; Shadow/medium fixed; colour `surface/menu` only — everything else comes from the rows.
+**Layout & theming** — 213×196px hug; padding 12px (space/card) all sides; gap 4px (space/xxs) between rows; radius per Rounded; Shadow/medium fixed; colour `surface/menu` only — everything else comes from the rows.
 
 ### Menu Item
 
@@ -118,7 +118,7 @@ A single row inside a Dropdown Menu, with a leading element, a label and an opti
 
 **Anatomy**
 
-1. **Row** (root) — "The outer horizontal frame. Fills the width of the menu that holds it and keeps a fixed height, so rows line up whatever they contain." Fill `interactive/ghost/background/<state>`, gap `space/sm`, padding `space/xs` / `space/md`.
+1. **Row** (root) — "The outer horizontal frame. Fills the width of the menu that holds it and keeps a fixed height, so rows line up whatever they contain." Fill `interactive/ghost/background/<state>`, gap `space/sm`, padding `space/xxs` / `space/md`.
 2. **Leading element** — "An exposed Icon for the Icon, radio and checkbox types, and an empty slot for custom."
 3. **Label** — "A wrapper frame holding the text. Its own padding sets the text away from the leading element and reserves room on the trailing side." Text style `label/medium`, colour `interactive/neutral/foreground/default` (→ `.../disabled`).
 4. **Trailing Icon** — "An exposed Icon at the trailing edge, hidden until its toggle is turned on."
@@ -150,7 +150,7 @@ A single row inside a Dropdown Menu, with a leading element, a label and an opti
 
 **Accessibility** — Selection tint needs to be conveyed in code too. Focus ring is the only bordered state. Radio/checkbox are named roles only — set the real role in code. Disabled is contrast-only. Icon decorates, doesn't replace, the label.
 
-**Layout & theming** — Width fill (221px drawn); height fixed 40px (control/md); padding 4px/12px (space/xs, space/md); gap 8px (space/sm); label inset 4px/24px (space/xs, space/xl); radius per Rounded; icons 16px @ Size=small; border 1px `border/focus` on focus states only; type `label/medium` (14/20, IBM Plex Sans Medium); colour from `interactive/ghost/*` + `interactive/neutral/foreground/*`.
+**Layout & theming** — Width fill (221px drawn); height fixed 40px (control/md); padding 4px/12px (space/xxs, space/md); gap 8px (space/sm); label inset 4px/24px (space/xxs, space/xl); radius per Rounded; icons 16px @ Size=small; border 1px `border/focus` on focus states only; type `label/medium` (14/20, IBM Plex Sans Medium); colour from `interactive/ghost/*` + `interactive/neutral/foreground/*`.
 
 ## External dependencies
 
@@ -161,7 +161,7 @@ A single row inside a Dropdown Menu, with a leading element, a label and an opti
 
 **Colour**: `interactive/primary/background/default`, `interactive/primary/border/default`, `interactive/ghost/background/{default,hover,selected,focused,disabled}`, `interactive/neutral/foreground/{default,disabled}`, `border/focus`, `surface/menu`, `shadow/soft`
 
-**Dimension**: `control/{sm,md}`, `space/{none,2xs,xs,sm,md,xl,card}`, `radius/{none,sm,element-sm,element-md}`, `stroke/{base,thin}`, `shadow/medium/{blur,x,y}`, `shadow/small/{blur,x,y}`
+**Dimension**: `control/{sm,md}`, `space/{none,2xs,xxs,sm,md,xl,card}`, `radius/{none,sm,element-sm,element-md}`, `stroke/{base,thin}`, `shadow/medium/{blur,x,y}`, `shadow/small/{blur,x,y}`
 
 **Typography**: `label/medium/{font size,font family,font weight,line height,letter spacing}`
 

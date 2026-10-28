@@ -63,10 +63,10 @@ Values anywhere in this document are token names. The only literals are inside v
 
 ## Anatomy
 
-The root is a horizontal row: `space/sm` block padding, `space/md` inline padding, a `space/xs` gap and centred items. It's fixed at `measuredWidthPx` 280, with the height per size.
+The root is a horizontal row: `space/sm` block padding, `space/md` inline padding, a `space/xxs` gap and centred items. It's fixed at `measuredWidthPx` 280, with the height per size.
 
 1. **Leading icon**: "The magnifier, present unless hasLeading is off." The `search` glyph, Rounded family. Icon Size=medium at large and medium, small at small. Visible when `hasLeading`.
-2. **Input**: "The query text, taking the width left between the two icons." Fills the width, with a `space/2xs` gap. Inline padding is `space/xs` on both sides, per the designer clarification below. Icon to text is `space/xs` + `space/xs`; border to text, with no icon on that side, is `space/md` + `space/xs`.
+2. **Input**: "The query text, taking the width left between the two icons." Fills the width, with a `space/2xs` gap. Inline padding is `space/xxs` on both sides, per the designer clarification below. Icon to text is `space/xxs` + `space/xxs`; border to text, with no icon on that side, is `space/md` + `space/xxs`.
    - **text**: typography per size; colour per state.
    - **cursor**: `foreground/cursor`, shown at focus, selected and typing. In code this is the caret colour.
 3. **Trailing area**: "The trailing control, defaulting to voice input and open to any icon and function. While typing it becomes a group with a clear control and a divider. Both are pressable, and each claims a target wider than its glyph so the surrounding space counts as part of the control."
@@ -138,7 +138,7 @@ It's a horizontal row that hugs its content, with a `space/sm` gap when both are
   - `border/focus`, `border/gradient/{start,end}`, `foreground/gradient/{start,end}`
   - `foreground/{primary,disabled,cursor}`
   - `interactive/neutral/foreground/{default,disabled}` (typing group and disabled icons as built; see issues)
-- **Dimension:** `control/{sm,md,lg}`, `space/{none,2xs,xs,sm,md}`, `radius/{none,sm,pill}` (and `radius/element-sm` in 3 variants), `stroke/{base,thin,thick}`
+- **Dimension:** `control/{sm,md,lg}`, `space/{none,2xs,xxs,sm,md}`, `radius/{none,sm,pill}` (and `radius/element-sm` in 3 variants), `stroke/{base,thin,thick}`
 - **Typography:** `body/medium`, `body/small`
 
 Every token resolves in `tokens/`.
@@ -200,7 +200,7 @@ Theme axes, from `tokens/manifest.json`:
 | Property | Type | Description |
 |---|---|---|
 | Size | Fixed | 280 wide at every size. 48 tall at large, 40 at medium and 36 at small. |
-| Padding and gap | Fixed | space/sm top and bottom, space/md left and right, with a space/xs gap between the icons and the input. These hold at every size. |
+| Padding and gap | Fixed | space/sm top and bottom, space/md left and right, with a space/xxs gap between the icons and the input. These hold at every size. |
 | Radius | Per Shape | radius/none when sharp, radius/sm when rounded and radius/pill when full. |
 | Surface | Per Flavour | interactive/neutral/background/default on default and gradient, interactive/ghost/background/default on ghost. Disabled moves each to its own disabled token. |
 | Border | Per Flavour | Default draws at 1px and focus at 2px. Gradient keeps those weights with foreground/gradient/start. Ghost holds every weight at zero, and its focus outline is optional so the container can carry focus instead. |
@@ -211,7 +211,7 @@ Theme axes, from `tokens/manifest.json`:
 
 These were given directly and are recorded apart from the verbatim metadata above.
 
-- **Text padding (2026-10-14):** "The text within the input should have a padding left right of 4px. such that the icon to text end up at 8px but when no icon that extra 4 is included in the gap between the outline and text." The input carries `space/xs` inline padding on both sides, on Search and Input alike.
+- **Text padding (2026-10-14):** "The text within the input should have a padding left right of 4px. such that the icon to text end up at 8px but when no icon that extra 4 is included in the gap between the outline and text." The input carries `space/xxs` inline padding on both sides, on Search and Input alike.
 
 ## Visual reference
 
@@ -257,7 +257,7 @@ No blockers.
 
 ### Note
 
-- **Resolved since 2026-10-14:** Figma's Input Text frame now carries `space/xs` inline padding, as the designer clarification asked. The metadata's Layout row still describes only the gap.
+- **Resolved since 2026-10-14:** Figma's Input Text frame now carries `space/xxs` inline padding, as the designer clarification asked. The metadata's Layout row still describes only the gap.
 
 - Focus draws `stroke/thick` outside the field; every other border is inside. Selected returns to `stroke/thin` inside.
 - The fixed 280 width is the sample width; in use the field normally fills its container.

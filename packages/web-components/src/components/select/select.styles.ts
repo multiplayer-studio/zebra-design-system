@@ -50,7 +50,7 @@ export default css`
   .value {
     flex: 1 1 auto;
     min-inline-size: 0;
-    padding: 0 var(--space-xs);
+    padding: 0 var(--space-xxs);
     color: var(--zds-input-fg);
     font-family: var(--body-medium-font-family), system-ui, sans-serif;
     font-size: var(--body-medium-font-size);
@@ -96,7 +96,7 @@ export default css`
 
   /* ---- list: Dropdown Menu, Rounded=true -------------------------------- */
   /* A manual popover in the top layer, placed in viewport coordinates by the
-     element: as wide as the field, --space-xs below it (spec issue 13).
+     element: as wide as the field, --space-xxs below it (spec issue 13).
      Height is capped at the room left in the viewport and scrolls — Figma
      has no cap, but an uncapped list runs off screen. Resets the UA popover
      box. */
@@ -131,7 +131,7 @@ export default css`
     align-items: center;
     inline-size: 100%;
     block-size: var(--control-md);
-    padding: var(--space-xs) var(--space-md);
+    padding: var(--space-xxs) var(--space-md);
     gap: var(--space-sm);
     border: var(--stroke-thin) solid transparent;
     border-radius: var(--radius-sm);
@@ -153,7 +153,7 @@ export default css`
   .item-label {
     flex: 1 1 auto;
     min-inline-size: 0;
-    padding-inline: var(--space-xs) var(--space-xl);
+    padding-inline: var(--space-xxs) var(--space-xl);
     font-family: var(--label-medium-font-family), system-ui, sans-serif;
     font-size: var(--label-medium-font-size);
     font-weight: var(--label-medium-font-weight);

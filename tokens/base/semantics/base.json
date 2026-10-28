@@ -557,6 +557,59 @@
       }
     }
   },
+  "color": {
+    "border": {
+      "primary": {
+        "$type": "color",
+        "$value": "#ced2db",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:2157:19",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": []
+          }
+        }
+      }
+    }
+  },
+  "contrast": {
+    "high": {
+      "$type": "color",
+      "$value": "{palette.ink.high}",
+      "$description": "Highest-contrast text/icon color, alias of foreground/primary.",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:476",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "TEXT_FILL"
+          ],
+          "aliasOf": "VariableID:63:16"
+        }
+      }
+    },
+    "low": {
+      "$type": "color",
+      "$value": "{palette.ink.low}",
+      "$description": "Lowest-contrast text/icon color, alias of foreground/tertiary.",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:477",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "TEXT_FILL"
+          ],
+          "aliasOf": "VariableID:63:18"
+        }
+      }
+    }
+  },
   "feedback": {
     "error": {
       "background": {
@@ -609,6 +662,23 @@
             "resolvedType": "COLOR",
             "scopes": [
               "TEXT_FILL"
+            ],
+            "aliasOf": "VariableID:63:28"
+          }
+        }
+      },
+      "icon": {
+        "$type": "color",
+        "$value": "{palette.status.error.default}",
+        "$description": "Icon color used inside error alerts and messages",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:465",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL"
             ],
             "aliasOf": "VariableID:63:28"
           }
@@ -666,6 +736,23 @@
             "resolvedType": "COLOR",
             "scopes": [
               "TEXT_FILL"
+            ],
+            "aliasOf": "VariableID:63:202"
+          }
+        }
+      },
+      "icon": {
+        "$type": "color",
+        "$value": "{palette.status.info.default}",
+        "$description": "Icon color used inside informational alerts and messages",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:468",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL"
             ],
             "aliasOf": "VariableID:63:202"
           }
@@ -784,6 +871,23 @@
             "aliasOf": "VariableID:63:22"
           }
         }
+      },
+      "icon": {
+        "$type": "color",
+        "$value": "{palette.status.success.default}",
+        "$description": "Icon color used inside success alerts and messages",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:459",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL"
+            ],
+            "aliasOf": "VariableID:63:22"
+          }
+        }
       }
     },
     "warning": {
@@ -837,6 +941,23 @@
             "resolvedType": "COLOR",
             "scopes": [
               "TEXT_FILL"
+            ],
+            "aliasOf": "VariableID:63:25"
+          }
+        }
+      },
+      "icon": {
+        "$type": "color",
+        "$value": "{palette.status.warning.default}",
+        "$description": "Icon color used inside warning alerts and messages",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:462",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL"
             ],
             "aliasOf": "VariableID:63:25"
           }
@@ -939,7 +1060,7 @@
     "gradient": {
       "end": {
         "$type": "color",
-        "$value": "{palette.gradient.default.end}",
+        "$value": "{palette.gradient.strong.end}",
         "$description": "Ending color stop for text/icons using a gradient treatment",
         "$extensions": {
           "com.figma": {
@@ -951,13 +1072,13 @@
               "SHAPE_FILL",
               "TEXT_FILL"
             ],
-            "aliasOf": "VariableID:2315:9012"
+            "aliasOf": "VariableID:2315:9014"
           }
         }
       },
       "start": {
         "$type": "color",
-        "$value": "{palette.gradient.default.start}",
+        "$value": "{palette.gradient.strong.start}",
         "$description": "Starting color stop for text/icons using a gradient treatment",
         "$extensions": {
           "com.figma": {
@@ -969,7 +1090,7 @@
               "SHAPE_FILL",
               "TEXT_FILL"
             ],
-            "aliasOf": "VariableID:2315:9011"
+            "aliasOf": "VariableID:2315:9013"
           }
         }
       }
@@ -1194,6 +1315,40 @@
             }
           }
         },
+        "dragged": {
+          "$type": "color",
+          "$value": "{palette.status.error.default}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:422",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:28"
+            }
+          }
+        },
+        "droptarget": {
+          "$type": "color",
+          "$value": "{palette.status.error.faint}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:423",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:29"
+            }
+          }
+        },
         "focused": {
           "$type": "color",
           "$value": "{palette.status.error.default}",
@@ -1214,7 +1369,7 @@
         },
         "hover": {
           "$type": "color",
-          "$value": "{palette.status.error.subtle}",
+          "$value": "{palette.status.error.strong}",
           "$description": "Hover state for a destructive interactive element.",
           "$extensions": {
             "com.figma": {
@@ -1226,7 +1381,24 @@
                 "FRAME_FILL",
                 "SHAPE_FILL"
               ],
-              "aliasOf": "VariableID:72:5"
+              "aliasOf": "VariableID:72:6"
+            }
+          }
+        },
+        "loading": {
+          "$type": "color",
+          "$value": "{palette.status.error.default}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:420",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:28"
             }
           }
         },
@@ -1263,6 +1435,23 @@
                 "SHAPE_FILL"
               ],
               "aliasOf": "VariableID:63:30"
+            }
+          }
+        },
+        "visited": {
+          "$type": "color",
+          "$value": "{palette.status.error.default}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:421",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:28"
             }
           }
         }
@@ -1304,7 +1493,7 @@
         },
         "hover": {
           "$type": "color",
-          "$value": "{palette.status.error.subtle}",
+          "$value": "{palette.status.error.strong}",
           "$description": "Hover-state border for a destructive interactive element.",
           "$extensions": {
             "com.figma": {
@@ -1315,13 +1504,13 @@
               "scopes": [
                 "STROKE_COLOR"
               ],
-              "aliasOf": "VariableID:72:5"
+              "aliasOf": "VariableID:72:6"
             }
           }
         },
         "pressed": {
           "$type": "color",
-          "$value": "{palette.status.error.strong}",
+          "$value": "{palette.status.error.deep}",
           "$description": "Pressed-state border for a destructive interactive element.",
           "$extensions": {
             "com.figma": {
@@ -1332,7 +1521,7 @@
               "scopes": [
                 "STROKE_COLOR"
               ],
-              "aliasOf": "VariableID:72:6"
+              "aliasOf": "VariableID:63:30"
             }
           }
         }
@@ -1414,6 +1603,40 @@
             }
           }
         },
+        "dragged": {
+          "$type": "color",
+          "$value": "{palette.fill.transparent}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:402",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:13"
+            }
+          }
+        },
+        "droptarget": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.faint}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:403",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:5"
+            }
+          }
+        },
         "focused": {
           "$type": "color",
           "$value": "{palette.status.ghost.default}",
@@ -1450,6 +1673,23 @@
             }
           }
         },
+        "loading": {
+          "$type": "color",
+          "$value": "{palette.fill.transparent}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:400",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:13"
+            }
+          }
+        },
         "pressed": {
           "$type": "color",
           "$value": "{palette.status.ghost.deep}",
@@ -1483,6 +1723,23 @@
                 "SHAPE_FILL"
               ],
               "aliasOf": "VariableID:3147:3872"
+            }
+          }
+        },
+        "visited": {
+          "$type": "color",
+          "$value": "{palette.fill.transparent}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:401",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:13"
             }
           }
         }
@@ -1541,7 +1798,7 @@
         },
         "pressed": {
           "$type": "color",
-          "$value": "{palette.brand.primary.deep}",
+          "$value": "{palette.brand.primary.strong}",
           "$description": "Pressed-state border for a ghost interactive element.",
           "$extensions": {
             "com.figma": {
@@ -1634,6 +1891,40 @@
             }
           }
         },
+        "dragged": {
+          "$type": "color",
+          "$value": "{palette.fill.inverse}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:442",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:13"
+            }
+          }
+        },
+        "droptarget": {
+          "$type": "color",
+          "$value": "{palette.fill.inverse-sunken}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:443",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:7"
+            }
+          }
+        },
         "focused": {
           "$type": "color",
           "$value": "{palette.fill.inverse}",
@@ -1670,6 +1961,23 @@
             }
           }
         },
+        "loading": {
+          "$type": "color",
+          "$value": "{palette.fill.inverse}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:440",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:13"
+            }
+          }
+        },
         "pressed": {
           "$type": "color",
           "$value": "{palette.fill.inverse-elevated}",
@@ -1703,6 +2011,23 @@
                 "SHAPE_FILL"
               ],
               "aliasOf": "VariableID:72:8"
+            }
+          }
+        },
+        "visited": {
+          "$type": "color",
+          "$value": "{palette.fill.inverse}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:441",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:13"
             }
           }
         }
@@ -1854,6 +2179,40 @@
             }
           }
         },
+        "dragged": {
+          "$type": "color",
+          "$value": "{palette.fill.transparent}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:98:10",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:13"
+            }
+          }
+        },
+        "droptarget": {
+          "$type": "color",
+          "$value": "{palette.fill.canvas}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:98:11",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:9"
+            }
+          }
+        },
         "focused": {
           "$type": "color",
           "$value": "{palette.fill.default}",
@@ -1887,6 +2246,23 @@
                 "SHAPE_FILL"
               ],
               "aliasOf": "VariableID:63:9"
+            }
+          }
+        },
+        "loading": {
+          "$type": "color",
+          "$value": "{palette.fill.transparent}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:98:8",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:13"
             }
           }
         },
@@ -1925,6 +2301,23 @@
               "aliasOf": "VariableID:63:14"
             }
           }
+        },
+        "visited": {
+          "$type": "color",
+          "$value": "{palette.fill.transparent}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:98:9",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:13"
+            }
+          }
         }
       },
       "border": {
@@ -1959,6 +2352,22 @@
                 "STROKE_COLOR"
               ],
               "aliasOf": "VariableID:72:11"
+            }
+          }
+        },
+        "droptarget": {
+          "$type": "color",
+          "$value": "{palette.line.default}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:98:16",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:10"
             }
           }
         },
@@ -2074,6 +2483,40 @@
             }
           }
         },
+        "dragged": {
+          "$type": "color",
+          "$value": "{palette.status.success.default}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3367",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:22"
+            }
+          }
+        },
+        "droptarget": {
+          "$type": "color",
+          "$value": "{palette.status.success.faint}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3368",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:23"
+            }
+          }
+        },
         "focused": {
           "$type": "color",
           "$value": "{palette.status.success.default}",
@@ -2094,7 +2537,7 @@
         },
         "hover": {
           "$type": "color",
-          "$value": "{palette.status.success.subtle}",
+          "$value": "{palette.status.success.strong}",
           "$description": "Hover state for a high-emphasis positive-confirmation interactive element.",
           "$extensions": {
             "com.figma": {
@@ -2106,7 +2549,24 @@
                 "FRAME_FILL",
                 "SHAPE_FILL"
               ],
-              "aliasOf": "VariableID:143:10455"
+              "aliasOf": "VariableID:114:2"
+            }
+          }
+        },
+        "loading": {
+          "$type": "color",
+          "$value": "{palette.status.success.default}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3365",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:22"
             }
           }
         },
@@ -2143,6 +2603,23 @@
                 "SHAPE_FILL"
               ],
               "aliasOf": "VariableID:63:24"
+            }
+          }
+        },
+        "visited": {
+          "$type": "color",
+          "$value": "{palette.status.success.default}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3366",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:22"
             }
           }
         }
@@ -2182,9 +2659,25 @@
             }
           }
         },
+        "droptarget": {
+          "$type": "color",
+          "$value": "{palette.status.success.faint}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:111:6",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:63:23"
+            }
+          }
+        },
         "hover": {
           "$type": "color",
-          "$value": "{palette.status.success.default}",
+          "$value": "{palette.status.success.strong}",
           "$description": "Hover-state border for a high-emphasis positive-confirmation interactive element.",
           "$extensions": {
             "com.figma": {
@@ -2195,7 +2688,7 @@
               "scopes": [
                 "STROKE_COLOR"
               ],
-              "aliasOf": "VariableID:63:22"
+              "aliasOf": "VariableID:114:2"
             }
           }
         },
@@ -2294,6 +2787,40 @@
             }
           }
         },
+        "dragged": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.default}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:337",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:2"
+            }
+          }
+        },
+        "droptarget": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.faint}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:338",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:5"
+            }
+          }
+        },
         "focused": {
           "$type": "color",
           "$value": "{palette.brand.primary.default}",
@@ -2314,7 +2841,7 @@
         },
         "hover": {
           "$type": "color",
-          "$value": "{palette.brand.primary.subtle}",
+          "$value": "{palette.brand.primary.strong}",
           "$description": "Hover state for the primary interactive element.",
           "$extensions": {
             "com.figma": {
@@ -2326,7 +2853,24 @@
                 "FRAME_FILL",
                 "SHAPE_FILL"
               ],
-              "aliasOf": "VariableID:72:386"
+              "aliasOf": "VariableID:72:387"
+            }
+          }
+        },
+        "loading": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.default}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:335",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:2"
             }
           }
         },
@@ -2344,7 +2888,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL"
               ],
-              "aliasOf": "VariableID:72:387"
+              "aliasOf": "VariableID:7198:20127"
             }
           }
         },
@@ -2362,7 +2906,24 @@
                 "FRAME_FILL",
                 "SHAPE_FILL"
               ],
-              "aliasOf": "VariableID:72:387"
+              "aliasOf": "VariableID:7198:20127"
+            }
+          }
+        },
+        "visited": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.default}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:336",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:2"
             }
           }
         }
@@ -2402,9 +2963,25 @@
             }
           }
         },
+        "droptarget": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.faint}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:355",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:63:5"
+            }
+          }
+        },
         "hover": {
           "$type": "color",
-          "$value": "{palette.brand.primary.subtle}",
+          "$value": "{palette.brand.primary.strong}",
           "$description": "Hover-state border for the primary interactive element.",
           "$extensions": {
             "com.figma": {
@@ -2415,7 +2992,7 @@
               "scopes": [
                 "STROKE_COLOR"
               ],
-              "aliasOf": "VariableID:72:386"
+              "aliasOf": "VariableID:72:387"
             }
           }
         },
@@ -2432,7 +3009,7 @@
               "scopes": [
                 "STROKE_COLOR"
               ],
-              "aliasOf": "VariableID:72:387"
+              "aliasOf": "VariableID:7198:20127"
             }
           }
         }
@@ -2514,6 +3091,40 @@
             }
           }
         },
+        "dragged": {
+          "$type": "color",
+          "$value": "{palette.brand.secondary.default}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:364",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:3"
+            }
+          }
+        },
+        "droptarget": {
+          "$type": "color",
+          "$value": "{palette.brand.secondary.faint}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:365",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:72:4"
+            }
+          }
+        },
         "focused": {
           "$type": "color",
           "$value": "{palette.brand.secondary.default}",
@@ -2534,7 +3145,7 @@
         },
         "hover": {
           "$type": "color",
-          "$value": "{palette.brand.secondary.subtle}",
+          "$value": "{palette.brand.secondary.strong}",
           "$description": "Hover state for a secondary interactive element.",
           "$extensions": {
             "com.figma": {
@@ -2546,7 +3157,24 @@
                 "FRAME_FILL",
                 "SHAPE_FILL"
               ],
-              "aliasOf": "VariableID:72:2"
+              "aliasOf": "VariableID:72:3"
+            }
+          }
+        },
+        "loading": {
+          "$type": "color",
+          "$value": "{palette.brand.secondary.default}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:362",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:3"
             }
           }
         },
@@ -2564,7 +3192,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL"
               ],
-              "aliasOf": "VariableID:72:3"
+              "aliasOf": "VariableID:7198:20128"
             }
           }
         },
@@ -2582,7 +3210,24 @@
                 "FRAME_FILL",
                 "SHAPE_FILL"
               ],
-              "aliasOf": "VariableID:72:3"
+              "aliasOf": "VariableID:7198:20128"
+            }
+          }
+        },
+        "visited": {
+          "$type": "color",
+          "$value": "{palette.brand.secondary.default}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:363",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:3"
             }
           }
         }
@@ -2622,9 +3267,25 @@
             }
           }
         },
+        "droptarget": {
+          "$type": "color",
+          "$value": "{palette.brand.secondary.faint}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:72:385",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:72:4"
+            }
+          }
+        },
         "hover": {
           "$type": "color",
-          "$value": "{palette.brand.secondary.subtle}",
+          "$value": "{palette.brand.secondary.strong}",
           "$description": "Hover-state border for a secondary interactive element.",
           "$extensions": {
             "com.figma": {
@@ -2635,7 +3296,7 @@
               "scopes": [
                 "STROKE_COLOR"
               ],
-              "aliasOf": "VariableID:72:2"
+              "aliasOf": "VariableID:72:3"
             }
           }
         },
@@ -2652,7 +3313,7 @@
               "scopes": [
                 "STROKE_COLOR"
               ],
-              "aliasOf": "VariableID:72:3"
+              "aliasOf": "VariableID:7198:20128"
             }
           }
         }
@@ -2954,6 +3615,40 @@
             }
           }
         },
+        "dragged": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.faint}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3379",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:5"
+            }
+          }
+        },
+        "droptarget": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.muted}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3380",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:6"
+            }
+          }
+        },
         "focused": {
           "$type": "color",
           "$value": "{palette.brand.primary.faint}",
@@ -2990,6 +3685,23 @@
             }
           }
         },
+        "loading": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.faint}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3377",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:5"
+            }
+          }
+        },
         "pressed": {
           "$type": "color",
           "$value": "{palette.brand.primary.subtle}",
@@ -3023,6 +3735,23 @@
                 "SHAPE_FILL"
               ],
               "aliasOf": "VariableID:72:386"
+            }
+          }
+        },
+        "visited": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.faint}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:114:3378",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "aliasOf": "VariableID:63:5"
             }
           }
         }
@@ -3062,6 +3791,22 @@
             }
           }
         },
+        "droptarget": {
+          "$type": "color",
+          "$value": "{palette.brand.primary.faint}",
+          "$extensions": {
+            "com.figma": {
+              "id": "VariableID:111:21",
+              "collection": "semantics",
+              "mode": "Base",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "aliasOf": "VariableID:63:5"
+            }
+          }
+        },
         "hover": {
           "$type": "color",
           "$value": "{palette.brand.primary.subtle}",
@@ -3081,7 +3826,7 @@
         },
         "pressed": {
           "$type": "color",
-          "$value": "{palette.brand.primary.deep}",
+          "$value": "{palette.brand.primary.strong}",
           "$description": "Pressed-state border for a subtle interactive element.",
           "$extensions": {
             "com.figma": {
@@ -3137,7 +3882,118 @@
       }
     }
   },
+  "navigation": {
+    "background": {
+      "$type": "color",
+      "$value": "{palette.fill.default}",
+      "$description": "Background color for navigation surfaces (nav bars, sidebars).",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:469",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:10"
+        }
+      }
+    },
+    "item": {
+      "active": {
+        "$type": "color",
+        "$value": "{palette.brand.primary.default}",
+        "$description": "Navigation item color for the current/active route.",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:471",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL"
+            ],
+            "aliasOf": "VariableID:63:2"
+          }
+        }
+      },
+      "default": {
+        "$type": "color",
+        "$value": "{palette.ink.medium}",
+        "$description": "Default (unselected) navigation item text/icon color.",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:470",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL"
+            ],
+            "aliasOf": "VariableID:63:17"
+          }
+        }
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{palette.ink.high}",
+        "$description": "Navigation item color on hover.",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:472",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL"
+            ],
+            "aliasOf": "VariableID:63:16"
+          }
+        }
+      },
+      "selected": {
+        "$type": "color",
+        "$value": "{palette.brand.primary.default}",
+        "$description": "Navigation item color when selected.",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:473",
+            "collection": "semantics",
+            "mode": "Base",
+            "resolvedType": "COLOR",
+            "scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL"
+            ],
+            "aliasOf": "VariableID:63:2"
+          }
+        }
+      }
+    }
+  },
   "overlay": {
+    "backdrop": {
+      "$type": "color",
+      "$value": "{palette.fill.scrim}",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:72:454",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:15"
+        }
+      }
+    },
     "modal": {
       "$type": "color",
       "$value": "{palette.fill.overlay}",
@@ -3498,6 +4354,24 @@
             "SHAPE_FILL"
           ],
           "aliasOf": "VariableID:63:12"
+        }
+      }
+    },
+    "subtle": {
+      "$type": "color",
+      "$value": "{palette.fill.sunken}",
+      "$description": "Background for containers communicating neutral information",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:6680:11902",
+          "collection": "semantics",
+          "mode": "Base",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "aliasOf": "VariableID:63:14"
         }
       }
     },

@@ -31,11 +31,11 @@ Values anywhere in this document are token names. The only literals are inside v
 
 ## Anatomy
 
-Root: horizontal, gap `space/xs`, padding top/right/bottom `space/md`, left `space/sm`; items start-packed, centred on the cross axis. Width fixed, height hugs (474×64Px measured). Fill `interactive/ghost/background/default` at paint opacity zero (transparent); no border, no shadow, no radius.
+Root: horizontal, gap `space/xxs`, padding top/right/bottom `space/md`, left `space/sm`; items start-packed, centred on the cross axis. Width fixed, height hugs (474×64Px measured). Fill `interactive/ghost/background/default` at paint opacity zero (transparent); no border, no shadow, no radius.
 
-1. **Leading icon**: Icon Button ([specs/icon-button](../icon-button/)) at size medium, shape sharp, flavour subtle, square `control/md`. Glyph `chevron-left`, rounded family, Icon Size=medium, colour `currentColor`. Visible when `showLeadingIcon`. Instance overrides seen: border `interactive/neutral/border/default` @ `stroke/base`, padding `space/xs`, radius `radius/none`. "The back chevron, present when Show Leading Icon is on. A locked Icon instance with only its visibility exposed."
-2. **Heading content**: vertical, gap `space/2xs`, no padding, fills horizontally, hugs vertically. Holds a title row (horizontal, gap `space/xs`, hug) with the title text: `title/large` in `foreground/primary`, left-aligned, auto width, no truncation. "The title wrapper. It fills the space between the icon and the slot, which is what holds the action hard right."
-3. **Action slot**: horizontal, gap `space/xs`, centred, hugs. Default content: Button ([specs/button](../button/)) size medium, flavour primary, shape per `rounded`, label "Button", no icons. "The trailing region a consumer fills. It hugs its content, so the heading absorbs whatever width is left."
+1. **Leading icon**: Icon Button ([specs/icon-button](../icon-button/)) at size medium, shape sharp, flavour subtle, square `control/md`. Glyph `chevron-left`, rounded family, Icon Size=medium, colour `currentColor`. Visible when `showLeadingIcon`. Instance overrides seen: border `interactive/neutral/border/default` @ `stroke/base`, padding `space/xxs`, radius `radius/none`. "The back chevron, present when Show Leading Icon is on. A locked Icon instance with only its visibility exposed."
+2. **Heading content**: vertical, gap `space/2xs`, no padding, fills horizontally, hugs vertically. Holds a title row (horizontal, gap `space/xxs`, hug) with the title text: `title/large` in `foreground/primary`, left-aligned, auto width, no truncation. "The title wrapper. It fills the space between the icon and the slot, which is what holds the action hard right."
+3. **Action slot**: horizontal, gap `space/xxs`, centred, hugs. Default content: Button ([specs/button](../button/)) size medium, flavour primary, shape per `rounded`, label "Button", no icons. "The trailing region a consumer fills. It hugs its content, so the heading absorbs whatever width is left."
 
 ## Variants
 
@@ -64,7 +64,7 @@ None on the page. Dependencies on already-specced components:
 ## Tokens & theming
 
 - **Color**: `interactive/ghost/background/default`, `foreground/primary`; nested: `interactive/neutral/border/default`, `interactive/primary/background/default`, `interactive/primary/border/default`
-- **Dimension**: `space/2xs`, `space/xs`, `space/sm`, `space/md`, `space/none`, `control/md`, `radius/none`, `radius/element-sm`, `stroke/base`
+- **Dimension**: `space/2xs`, `space/xxs`, `space/sm`, `space/md`, `space/none`, `control/md`, `radius/none`, `radius/element-sm`, `stroke/base`
 - **Typography**: `title/large` (font size / family / weight / line height / letter spacing variables)
 - **Glyphs**: `chevron-left`
 - **Theme axes**: palette (Light, Dark) · size (Desktop, Mobile, Tablet, Desktop Compact) · typography (Desktop, Tablet, Mobile, Desktop Compact)
@@ -125,12 +125,12 @@ All 20 names resolve in `tokens/base/`. `chevron-left` is in `packages/icons/cod
 ## Issues
 
 **Warn**
-- **Leading icon (metadata vs extracted)**: The metadata calls it a locked Icon at Size=medium, 20 square, with no state. It is actually an Icon Button (medium, sharp, subtle) sized `control/md` with `space/xs` padding, wrapping that Icon. That makes it a control with its own state axis, about twice the size the metadata states.
+- **Leading icon (metadata vs extracted)**: The metadata calls it a locked Icon at Size=medium, 20 square, with no state. It is actually an Icon Button (medium, sharp, subtle) sized `control/md` with `space/xxs` padding, wrapping that Icon. That makes it a control with its own state axis, about twice the size the metadata states.
 - **Exposed instance**: The metadata says only visibility is surfaced. Leading Icon is an exposed nested instance and its Icon is exposed too, so the glyph and button props are editable per instance.
 - **Size**: The metadata says "56 tall". Measured height is 64Px (`space/md` top and bottom around `control/md` controls). Width matches.
-- **Padding & gap**: The metadata says `space/sm` top/bottom, `space/lg` left/right, `space/sm` gap. Bound: top/right/bottom `space/md`, left `space/sm`, gap `space/xs`. `space/lg` is unused.
-- **Reclaimed width**: The metadata says hiding the icon returns 28px. It returns `control/md` plus the `space/xs` gap.
-- **Remote variables**: The root fill, `foreground/primary`, `space/2xs`, `space/xs` on the heading, title row and slot, and all five `title/large/*` font variables are bound to remote library copies of same-named variables. Every name resolves in `tokens/`, so code is unaffected. The Figma file should be relinked to its local variables.
+- **Padding & gap**: The metadata says `space/sm` top/bottom, `space/lg` left/right, `space/sm` gap. Bound: top/right/bottom `space/md`, left `space/sm`, gap `space/xxs`. `space/lg` is unused.
+- **Reclaimed width**: The metadata says hiding the icon returns 28px. It returns `control/md` plus the `space/xxs` gap.
+- **Remote variables**: The root fill, `foreground/primary`, `space/2xs`, `space/xxs` on the heading, title row and slot, and all five `title/large/*` font variables are bound to remote library copies of same-named variables. Every name resolves in `tokens/`, so code is unaffected. The Figma file should be relinked to its local variables.
 
 **Note**
 - The metadata says the title style "resolves to a remote library". The `title/large` text style is local; only the variables bound on the title node are remote.
@@ -138,7 +138,7 @@ All 20 names resolve in `tokens/base/`. `chevron-left` is in `packages/icons/cod
 - `rounded` reaches only the slot Button; the leading Icon Button stays sharp in both variants, so `rounded=true` pairs a rounded action with a sharp back button.
 - Action Slot is missing from the Property Breakdown table; it appears only under Content & Slot. The other defaults match Figma.
 - The slot is a native SLOT property with Button and Icon Button as preferred values. Preferred-only is off and it has no min/max, so "one action" is guidance only.
-- The heading wrapper (`space/2xs`) and title row (`space/xs`) have gaps but only a single child each; no subtitle property exists.
+- The heading wrapper (`space/2xs`) and title row (`space/xxs`) have gaps but only a single child each; no subtitle property exists.
 - The root width is fixed (474Px measured). Usage says to set it to fill; implement it as the full width of its container.
 - It overlaps Top App Bar, which covers the same role with more layouts. Global Header does not overlap.
 - The set has no description. No interactive states or motion exist, by design. The back button's activation and accessible name are left to code.

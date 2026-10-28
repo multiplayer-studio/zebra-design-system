@@ -13,7 +13,7 @@
       "extractedAt": "2026-10-15",
       "variantCount": 189,
       "defaultVariant": "Shape=sharp, State=enabled, Size=large, Flavour=default",
-      "extractionNote": "189 variants = 3 Shape x 7 State x 3 Size x 3 Flavour. All 189 were walked. A dependence check over all of them confirmed that colour depends only on Flavour x State, and geometry on Size x Shape, except stroke weight and alignment, which follow Flavour x State, plus two binding slips listed in issues. So the variant tables below are a Size x Shape geometry table (at Flavour=default, State=enabled) and a Flavour x State colour/stroke table (at Size=large, Shape=sharp), and between them they cover every variant. The on-page subcomponent Trailing (3 variants) was extracted in full. Updated 2026-10-15: all 189 variants re-read as per-part token signatures and diffed against this spec, and the metadata re-read (unchanged). Changes: the resting icons (magnifier, trailing control) now bind foreground/primary in every flavour; the typing group's icons and every disabled icon are unchanged; the Input Text frame now carries space/xs inline padding. Everything else matches.",
+      "extractionNote": "189 variants = 3 Shape x 7 State x 3 Size x 3 Flavour. All 189 were walked. A dependence check over all of them confirmed that colour depends only on Flavour x State, and geometry on Size x Shape, except stroke weight and alignment, which follow Flavour x State, plus two binding slips listed in issues. So the variant tables below are a Size x Shape geometry table (at Flavour=default, State=enabled) and a Flavour x State colour/stroke table (at Size=large, Shape=sharp), and between them they cover every variant. The on-page subcomponent Trailing (3 variants) was extracted in full. Updated 2026-10-15: all 189 variants re-read as per-part token signatures and diffed against this spec, and the metadata re-read (unchanged). Changes: the resting icons (magnifier, trailing control) now bind foreground/primary in every flavour; the typing group's icons and every disabled icon are unchanged; the Input Text frame now carries space/xxs inline padding. Everything else matches.",
       "tokenSource": "tokens/",
       "revision": "Updated 2026-10-14 with a designer clarification on text padding (designerClarifications); the icon-colour correction is recorded in issues."
     }
@@ -176,7 +176,7 @@
       "figmaLayer": "Shape=…, State=…, Size=…, Flavour=…",
       "layout": {
         "direction": "horizontal",
-        "gap": "space/xs",
+        "gap": "space/xxs",
         "padding": {
           "block": "space/sm",
           "inline": "space/md"
@@ -233,10 +233,10 @@
         "v": "hug"
       },
       "padding": {
-        "inline": "space/xs",
+        "inline": "space/xxs",
         "block": "space/none"
       },
-      "_note": "The text carries space/xs on both sides (designer clarification 2026-10-14), now built in Figma too. Next to an icon it adds to the root's space/xs gap, so icon to text is space/xs + space/xs; with no icon on that side it adds to the root's space/md padding."
+      "_note": "The text carries space/xxs on both sides (designer clarification 2026-10-14), now built in Figma too. Next to an icon it adds to the root's space/xxs gap, so icon to text is space/xxs + space/xxs; with no icon on that side it adds to the root's space/md padding."
     },
     {
       "id": "text",
@@ -324,7 +324,7 @@
           "rootMeasuredHeightPx": 48
         }
       ],
-      "_note": "Padding (space/sm block, space/md inline) and gap (space/xs) hold at every size, except two binding slips (see issues). The input adds space/xs inline padding of its own (designerClarifications)."
+      "_note": "Padding (space/sm block, space/md inline) and gap (space/xxs) hold at every size, except two binding slips (see issues). The input adds space/xxs inline padding of its own (designerClarifications)."
     },
     "shape": {
       "axis": "shape",
@@ -641,7 +641,7 @@
     ],
     "dimension": [
       "control/{sm,md,lg}",
-      "space/{none,2xs,xs,sm,md}",
+      "space/{none,2xs,xxs,sm,md}",
       "radius/{none,sm,pill}",
       "radius/element-sm (3 variants only; see issues)",
       "stroke/{base,thin,thick}"
@@ -779,7 +779,7 @@
     {
       "Property": "Padding and gap",
       "Type": "Fixed",
-      "Description": "space/sm top and bottom, space/md left and right, with a space/xs gap between the icons and the input. These hold at every size."
+      "Description": "space/sm top and bottom, space/md left and right, with a space/xxs gap between the icons and the input. These hold at every size."
     },
     {
       "Property": "Radius",
@@ -812,7 +812,7 @@
       "date": "2026-10-14",
       "topic": "text padding",
       "statement": "The text within the input should have a padding left right of 4px. such that the icon to text end up at 8px but when no icon that extra 4 is included in the gap between the outline and text.",
-      "resolved": "The input carries space/xs inline padding on both sides. Icon to text = the root gap (space/xs) + space/xs; border to text with no icon on that side = the root padding (space/md) + space/xs. Applies to Search and Input alike."
+      "resolved": "The input carries space/xxs inline padding on both sides. Icon to text = the root gap (space/xxs) + space/xxs; border to text with no icon on that side = the root padding (space/md) + space/xxs. Applies to Search and Input alike."
     }
   ],
   "visualReference": {
@@ -942,7 +942,7 @@
     {
       "severity": "note",
       "source": "resolved since 2026-10-14",
-      "detail": "Figma's Input Text frame now carries space/xs inline padding, as the designer clarification asked; the warning about the missing padding is closed. The metadata's Layout row still describes only the gap."
+      "detail": "Figma's Input Text frame now carries space/xxs inline padding, as the designer clarification asked; the warning about the missing padding is closed. The metadata's Layout row still describes only the gap."
     }
   ]
 }

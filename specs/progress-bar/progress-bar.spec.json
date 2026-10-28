@@ -216,7 +216,7 @@
       "slotProp": "trailing",
       "layout": {
         "direction": "horizontal",
-        "gap": "space/xs",
+        "gap": "space/xxs",
         "padding": "space/none",
         "align": "center"
       },
@@ -398,7 +398,7 @@
     ],
     "dimension": [
       "space/lg",
-      "space/xs",
+      "space/xxs",
       "space/none",
       "radius/none",
       "radius/sm",

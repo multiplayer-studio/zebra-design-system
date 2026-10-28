@@ -69,14 +69,14 @@ Set `4416:123` on the *Subcomponents/Progress indicator* board. One prop, `stop`
 | true | hidden | shown |
 
 - **Readout** — text `indicator/medium`, centred, sample "75%". Colour is unbound (see issues).
-- **Cancel** — an [Icon Button](../icon-button/) at Size=small, Shape=full, Flavour=subtle, pinned to State=hover; glyph `close` (rounded family, Icon Size=small, currentColor). As drawn it resolves to `control/sm`, `interactive/ghost/background/hover`, `radius/pill`, `space/xs`, border `interactive/neutral/border/default` at `stroke/base`; in code use Icon Button with its own states.
+- **Cancel** — an [Icon Button](../icon-button/) at Size=small, Shape=full, Flavour=subtle, pinned to State=hover; glyph `close` (rounded family, Icon Size=small, currentColor). As drawn it resolves to `control/sm`, `interactive/ghost/background/hover`, `radius/pill`, `space/xxs`, border `interactive/neutral/border/default` at `stroke/base`; in code use Icon Button with its own states.
 
 Dependencies: Icon Button (`specs/icon-button/`), Icon (`specs/icon/`, delivered as a glyph).
 
 ## Tokens & theming
 
 - **Colour:** `border/info`, `border/subtle`, `foreground/link` (bound, never rendered); via Icon Button: `interactive/ghost/background/hover`, `interactive/neutral/border/default`.
-- **Dimension:** `stroke/heavy`, `radius/none` (bound on the track, no effect); via Icon Button: `control/sm`, `space/{none, xs}`, `radius/pill`, `stroke/base`.
+- **Dimension:** `stroke/heavy`, `radius/none` (bound on the track, no effect); via Icon Button: `control/sm`, `space/{none, xxs}`, `radius/pill`, `stroke/base`.
 - **Typography:** `indicator/medium`. **Glyphs:** `close`.
 - **Theme axes:** palette (Light, Dark); size and typography (Desktop, Mobile, Tablet, Desktop Compact).
 

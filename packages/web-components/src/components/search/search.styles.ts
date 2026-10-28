@@ -28,7 +28,7 @@ export default css`
     display: flex;
     align-items: center;
     box-sizing: border-box;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
     /* space/sm block padding at every size (spec warn: two medium/rounded
        variants bind space/2xs; space/sm is the stated intent). */
     padding: var(--space-sm) var(--space-md);
@@ -57,7 +57,7 @@ export default css`
        adds to the field's space/xs gap; with no icon it adds to the field's
        space/md padding (spec designerClarifications, "text padding"). */
     padding-block: 0;
-    padding-inline: var(--space-xs);
+    padding-inline: var(--space-xxs);
     box-sizing: border-box;
     border: 0;
     outline: none;

@@ -162,7 +162,7 @@ export default css`
   .head {
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
   }
 
   /* ---- _Label --------------------------------------------------------- */
@@ -186,7 +186,7 @@ export default css`
     flex: 1 1 auto;
     display: inline-flex;
     align-items: center;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
     min-inline-size: 0;
   }
 

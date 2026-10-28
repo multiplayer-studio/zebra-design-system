@@ -6,7 +6,7 @@ const POSITIONS = ["bottom", "top", "right", "left"] as const;
 const ALIGNS = ["left", "right", "bottom", "top"] as const;
 
 const meta: Meta<typeof Dropdown> = {
-  title: "Components/Dropdown",
+  title: "Components/Dropdown/Dropdown",
   component: Dropdown,
   tags: ["autodocs"],
   parameters: {

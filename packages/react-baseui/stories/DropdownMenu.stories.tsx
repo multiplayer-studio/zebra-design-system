@@ -43,7 +43,7 @@ const MenuHost = ({ children }: { children: React.ReactNode }) => {
 };
 
 const meta: Meta<typeof DropdownMenu> = {
-  title: "Components/DropdownMenu",
+  title: "Components/Dropdown/Dropdown Menu",
   component: DropdownMenu,
   tags: ["autodocs"],
   parameters: {

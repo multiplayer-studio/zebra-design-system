@@ -94,7 +94,7 @@ The two axes are independent and every other value is the same in all 10 cells.
 - **Colour:** `surface/dialog`, `border/default`, `foreground/primary`.
 - **Dimension:** `space/{none, sm, md, section}`, `radius/{element-md, none}`, `stroke/thin`, `control/lg`, `control/icon-md`.
 - **Typography:** `title/large`, `body/medium`. **Glyphs:** `block`, `error`, `info`, `verified`, `warning`, `close`.
-- **Via Button (owned by `specs/button`):** `interactive/{ghost, neutral, primary}/…` background, border and foreground defaults; `control/md`, `space/xs`, `radius/element-sm`, `stroke/base`.
+- **Via Button (owned by `specs/button`):** `interactive/{ghost, neutral, primary}/…` background, border and foreground defaults; `control/md`, `space/xxs`, `radius/element-sm`, `stroke/base`.
 - **Not bound, candidates only:** backdrop `overlay/modal` and `overlay/scrim`; elevation `shadow/soft` and `shadow/hard`. See issues.
 - **Theme axes:** palette (Light, Dark); size and typography (Desktop, Mobile, Tablet, Desktop Compact).
 

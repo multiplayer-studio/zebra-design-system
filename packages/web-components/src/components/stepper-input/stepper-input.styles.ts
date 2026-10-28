@@ -48,7 +48,7 @@ export default css`
     font-size: var(--body-medium-font-size);
     inline-size: max(
       calc(2 * var(--control-sm)),
-      calc(var(--zds-stepper-input-chars, 3) * 1ch + 2 * var(--space-md) + 2 * var(--space-xs) + 2 * var(--stroke-thin))
+      calc(var(--zds-stepper-input-chars, 3) * 1ch + 2 * var(--space-md) + 2 * var(--space-xxs) + 2 * var(--stroke-thin))
     );
   }
   .value input {

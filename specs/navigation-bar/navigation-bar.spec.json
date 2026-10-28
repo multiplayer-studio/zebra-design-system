@@ -248,15 +248,15 @@
     "same": [
       "Props: Value#2838:0 (text, default \"2\") and Size (small | medium | large, default large). The identical property id suggests the Badges set was made from this one.",
       "Fill interactive/destructive/background/default; border colour border/inverse; count text style indicator/medium (same local style).",
-      "Large: minimum width control/icon-lg; padding left and right space/xs.",
+      "Large: minimum width control/icon-lg; padding left and right space/xxs.",
       "Medium: radius/pill, no padding (space/none). Measured 16x16Px in both."
     ],
     "different": [
       { "what": "Border width", "thisPage": "stroke/thin at every size (draws a ring)", "existingSpec": "stroke/base (resolves to zero, a theming hook)" },
       { "what": "Count colour", "thisPage": "foreground/inverse", "existingSpec": "foreground/on-strong" },
       { "what": "Large radius", "thisPage": "radius/element-sm", "existingSpec": "radius/pill" },
-      { "what": "Large top/bottom padding", "thisPage": "space/xs", "existingSpec": "raw, unbound" },
-      { "what": "Small size", "thisPage": "space/xs padding all round, measured 10x10Px", "existingSpec": "no padding, measured 8x8Px" },
+      { "what": "Large top/bottom padding", "thisPage": "space/xxs", "existingSpec": "raw, unbound" },
+      { "what": "Small size", "thisPage": "space/xxs padding all round, measured 10x10Px", "existingSpec": "no padding, measured 8x8Px" },
       { "what": "Medium", "thisPage": "clips content", "existingSpec": "does not clip" }
     ],
     "usage": "Nothing on the Navigation Bar page uses it: Navigation Item's badge is an instance of the Badges set (3719:6256). Its medium variant still has 15 instances, all named Notification Indicator inside Badge frames, mostly on the Navigation Rail page; its small and large variants have none."

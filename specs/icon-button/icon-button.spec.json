@@ -149,7 +149,7 @@
       "role": "The button's own frame, fixed square at every size. Carries the background, the border and the radius, and never hugs its content.",
       "layout": {
         "direction": "horizontal",
-        "padding": "space/xs on all four sides",
+        "padding": "space/xxs on all four sides",
         "primaryAlign": "center",
         "counterAlign": "center"
       },
@@ -187,7 +187,7 @@
         {
           "size": "small",
           "root.size": "control/sm",
-          "root.padding": "space/xs",
+          "root.padding": "space/xxs",
           "icon": "Icon Size=small",
           "iconPx": 16,
           "figmaNode": "2338:1764"
@@ -195,7 +195,7 @@
         {
           "size": "medium",
           "root.size": "control/md",
-          "root.padding": "space/xs",
+          "root.padding": "space/xxs",
           "icon": "Icon Size=medium",
           "iconPx": 20,
           "figmaNode": "2338:1779"
@@ -203,7 +203,7 @@
         {
           "size": "large",
           "root.size": "control/lg",
-          "root.padding": "space/xs",
+          "root.padding": "space/xxs",
           "icon": "Icon Size=medium",
           "iconPx": 20,
           "figmaNode": "2338:1794"
@@ -811,7 +811,7 @@
       "control/sm",
       "control/md",
       "control/lg",
-      "space/xs",
+      "space/xxs",
       "radius/none",
       "radius/element-sm",
       "radius/pill",
@@ -930,7 +930,7 @@
     {
       "property": "Padding",
       "type": "Fixed",
-      "description": "4px (space/xs) on all four sides at every size."
+      "description": "4px (space/xxs) on all four sides at every size."
     },
     {
       "property": "Radius",
@@ -1018,12 +1018,12 @@
     {
       "severity": "warn",
       "source": "tokens",
-      "detail": "stroke/base resolves to 0px although its description reads '= 1px, source: scale/0', so seven flavours carry a bound but invisible border. control/sm, control/md, control/lg, space/xs and radius/element-sm also carry descriptions that state the wrong px value (see the Button spec's descriptionDrift issue); build from the resolved values, which match the metadata."
+      "detail": "stroke/base resolves to 0px although its description reads '= 1px, source: scale/0', so seven flavours carry a bound but invisible border. control/sm, control/md, control/lg, space/xxs and radius/element-sm also carry descriptions that state the wrong px value (see the Button spec's descriptionDrift issue); build from the resolved values, which match the metadata."
     },
     {
       "severity": "note",
       "source": "code (packages/web-components zds-icon-button, packages/react-baseui IconButton)",
-      "detail": "Built 2026-10-18 in both packages: <zds-icon-button> (web components) and IconButton (react-baseui, on Base UI's Button). Both reuse Button's colour, border, shape, focus and disabled rules and add only the square geometry (control/sm|md|lg, space/xs), with the glyph at Icon small / medium / medium and more-horizontal as the default glyph; label is the required accessible name. They follow the label-colour rule rather than three bindings flagged above (subtle's glyph on foreground/primary; positive and negative disabled glyphs from another family), and text-gradient's glyph is the flat foreground/gradient/start, since a font glyph carries no label to run the gradient across. Web and React were compared in a browser: identical box, radius, glyph size and colours for every flavour at rest, hover, pressed and disabled."
+      "detail": "Built 2026-10-18 in both packages: <zds-icon-button> (web components) and IconButton (react-baseui, on Base UI's Button). Both reuse Button's colour, border, shape, focus and disabled rules and add only the square geometry (control/sm|md|lg, space/xxs), with the glyph at Icon small / medium / medium and more-horizontal as the default glyph; label is the required accessible name. They follow the label-colour rule rather than three bindings flagged above (subtle's glyph on foreground/primary; positive and negative disabled glyphs from another family), and text-gradient's glyph is the flat foreground/gradient/start, since a font glyph carries no label to run the gradient across. Web and React were compared in a browser: identical box, radius, glyph size and colours for every flavour at rest, hover, pressed and disabled."
     },
     {
       "severity": "note",

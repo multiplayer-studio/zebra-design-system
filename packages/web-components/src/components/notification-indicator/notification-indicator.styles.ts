@@ -62,7 +62,7 @@ export default css`
   :host([size="large"]) .root {
     min-width: var(--control-icon-lg);
     height: 20px; /* no token in Figma for this dimension — spec issue */
-    padding: 3px var(--space-xs); /* top/bottom 3px has no token in Figma — spec issue */
+    padding: 3px var(--space-xxs); /* top/bottom 3px has no token in Figma — spec issue */
     border-radius: 10px; /* no token in Figma for this radius — spec issue */
   }
   :host([size="large"]) .label {

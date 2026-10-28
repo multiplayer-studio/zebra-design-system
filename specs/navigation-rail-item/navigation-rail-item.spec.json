@@ -157,8 +157,8 @@
           "padding": {
             "top": "space/sm",
             "bottom": "space/sm",
-            "left": "space/xs",
-            "right": "space/xs"
+            "left": "space/xxs",
+            "right": "space/xxs"
           },
           "align": "centre"
         },
@@ -357,7 +357,7 @@
     "dimension": [
       "control/lg",
       "space/none",
-      "space/xs",
+      "space/xxs",
       "space/sm",
       "space/lg",
       "radius/sm"
@@ -499,7 +499,7 @@
     {
       "property": "Padding",
       "type": "Fixed per form",
-      "description": "8px (space/sm) top and bottom in both. 4px (space/xs) left and right collapsed, 16px (space/lg) expanded."
+      "description": "8px (space/sm) top and bottom in both. 4px (space/xxs) left and right collapsed, 16px (space/lg) expanded."
     },
     {
       "property": "Gap",
@@ -592,7 +592,7 @@
       },
       {
         "what": "Layout",
-        "thisPage": "vertical 48×48Px square (narrow) or 176Px row (wide), gap space/none / space/lg, padding space/sm × space/xs / space/lg",
+        "thisPage": "vertical 48×48Px square (narrow) or 176Px row (wide), gap space/none / space/lg, padding space/sm × space/xxs / space/lg",
         "tabBar": "horizontal row, fill width (152×48Px drawn), gap space/sm, padding space/md × space/gutter"
       },
       {

@@ -2,9 +2,9 @@
 
 Lets someone narrow a set of content by switching criteria on and off, such as categories in a list of results. Use them in groups where more than one can be on at once. Reach for an assist chip when the control triggers an action rather than a filter.
 
-Source: [Chip page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5122-2783) · component set `5126:3677` · extracted 2026-10-20 · 16 variants · default `State=default, disabled=false, Rounded=true, active=false`
+Source: [Chip page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5122-2783) · component set `5126:3677` · extracted 2026-10-26 · 16 variants · default `State=default, disabled=false, Rounded=true, active=false`
 
-> **No blockers, 3 warnings.** See [Issues](#issues). One of four chips on the Chip page, each with its own board and metadata frame (see also [input-chip](../input-chip/input-chip.spec.md), [status-chip](../status-chip/status-chip.spec.md), [assist-chip](../assist-chip/assist-chip.spec.md)).
+> **No blockers, 4 warnings.** See [Issues](#issues). One of three chips on the Chip page, each with its own board and metadata frame (see also [input-chip](../input-chip/input-chip.spec.md), [assist-chip](../assist-chip/assist-chip.spec.md)).
 
 ## API
 
@@ -34,7 +34,7 @@ None. The check mark is fixed to `check-mark` and appears only with `active`.
 
 ## Anatomy
 
-1. **Chip (root)**: "The component frame. A horizontal auto-layout hugging its content at a fixed height." Horizontal, cross-axis centred. Padding `space/md` left/right; `space/sm` top/bottom when inactive, `space/xs` when active. Gap `space/xs` inactive, `space/sm` active. Width hugs; height fixed and unbound (32Px measured, see issues). Radius `radius/pill` (rounded) or `radius/none`. Fill `interactive/neutral/background/default`; border `interactive/neutral/border/default` at `stroke/thin`, inside.
+1. **Chip (root)**: "The component frame. A horizontal auto-layout hugging its content at a fixed height." Horizontal, cross-axis centred. Padding `space/md` left/right; `space/sm` top/bottom when inactive, `space/xxs` when active. Gap `space/xxs` inactive, `space/sm` active. Width hugs; height fixed and unbound (32Px measured, see issues). Radius `radius/pill` (rounded) or `radius/none`. Fill `interactive/neutral/background/default`; border `interactive/neutral/border/default` at `stroke/thin`, inside.
 2. **Check mark**: "The leading icon, present only when active is true. It is what makes the on state readable without colour." Glyph `check-mark` (rounded family), Icon Size=small pinned (16Px). Colour is `currentColor`, following the label.
 3. **Label**: "The criterion itself, and the only content the chip takes." Text `indicator/medium`, colour `interactive/neutral/foreground/default`, cap-height leading trim.
 
@@ -53,7 +53,7 @@ None. The check mark is fixed to `check-mark` and appears only with `active`.
 | true | default | false | interactive/inverse/background/selected | interactive/inverse/border/pressed @ stroke/thin, inside | interactive/inverse/foreground/default | 80Px | `5161:4390` |
 | true | focus | false | interactive/inverse/background/selected | focus/outline @ stroke/thick, outside | interactive/inverse/foreground/default | 78Px | `5161:4380` |
 
-Active rows also show the check mark and switch to gap `space/sm`, vertical padding `space/xs`.
+Active rows also show the check mark and switch to gap `space/sm`, vertical padding `space/xxs`.
 
 ## Subcomponents
 
@@ -62,7 +62,7 @@ No on-page private subcomponents. Library dependency: **Icon** (`2046:15010`), s
 ## Tokens & theming
 
 - **Colour:** interactive/neutral/background/default, interactive/neutral/background/hover, interactive/neutral/background/focused, interactive/neutral/background/selected, interactive/neutral/background/pressed, interactive/neutral/background/disabled, interactive/neutral/border/default, interactive/neutral/foreground/default, interactive/neutral/foreground/disabled, interactive/inverse/background/selected, interactive/inverse/border/pressed, interactive/inverse/foreground/default, focus/outline
-- **Dimension:** space/xs, space/sm, space/md, radius/pill, radius/none, stroke/thin, stroke/thick
+- **Dimension:** space/xxs, space/sm, space/md, radius/pill, radius/none, stroke/thin, stroke/thick
 - **Typography:** indicator/medium
 - **Glyphs:** check-mark
 
@@ -126,6 +126,7 @@ Visual reference: [component set](https://www.figma.com/design/hvRmnZZOZrmTW0wf8
 ## Issues
 
 **Warn**
+- **Spacing quotes are stale.** Metadata says space/xs for the active vertical padding and the inactive gap. The bindings are `space/xxs`, the old 4px space/xs after the rename.
 - **selected overlaps active.** Two ways to look chosen; the metadata says prefer active. Model only `active` (a pressed/checked toggle) in code until design resolves it.
 - **Missing combinations.** No hover, dragged or disabled for an active chip; no disabled hover/focus. Decide in code.
 - **Height is raw.** Fixed 32px with no token in all 16 variants (Input Chip binds `control/target-min`). Hug in code or add a token.

@@ -34,7 +34,6 @@ export * from "./components/progress-circle/progress-circle.js";
 export type { ChipShape } from "./components/chip/chip.js";
 export * from "./components/input-chip/input-chip.js";
 export * from "./components/filter-chip/filter-chip.js";
-export * from "./components/status-chip/status-chip.js";
 export * from "./components/assist-chip/assist-chip.js";
 export * from "./components/segmented-control/segmented-control.js";
 export * from "./components/input/input-hint.js";

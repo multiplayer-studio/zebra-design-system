@@ -96,7 +96,7 @@ export const ShowTrack: Story = {
 /** Figma's Right Slot (Show More Details): supporting detail at the trailing end of the label row. */
 export const Trailing: Story = {
   render: (a) => col(html`
-    ${bar({ ...a, value: 62, label: "Uploading 12 photos" }, html`<span slot="trailing" style="display:inline-flex;align-items:center;gap:var(--space-xs)"><zds-icon name="hourglass" size="small"></zds-icon> 2 min left</span>`)}
+    ${bar({ ...a, value: 62, label: "Uploading 12 photos" }, html`<span slot="trailing" style="display:inline-flex;align-items:center;gap:var(--space-xxs)"><zds-icon name="hourglass" size="small"></zds-icon> 2 min left</span>`)}
     ${bar({ ...a, value: 62, label: "Uploading 12 photos" }, html`<span slot="trailing">7 of 12</span>`)}
   `),
 };

@@ -81,14 +81,14 @@ export default css`
 
   /* The selectable row: leading control, then the selection target. */
   .zds-accordion__header[data-selectable] {
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
     padding: var(--space-sm);
   }
   .zds-accordion__control {
     flex: none;
   }
   .zds-accordion__select {
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
     align-self: stretch;
     padding: var(--space-none);
   }
@@ -145,7 +145,7 @@ export default css`
     width: var(--control-md);
     height: var(--control-md);
     margin: 0;
-    padding: var(--space-xs);
+    padding: var(--space-xxs);
     border-style: solid;
     border-width: var(--stroke-base);
     border-radius: var(--radius-none);

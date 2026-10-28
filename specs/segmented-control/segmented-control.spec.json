@@ -92,8 +92,8 @@
       "figmaName": "root",
       "layout": {
         "direction": "horizontal",
-        "gap": "space/xs",
-        "padding": "space/xs",
+        "gap": "space/xxs",
+        "padding": "space/xxs",
         "justify": "start",
         "align": "center"
       },
@@ -135,7 +135,7 @@
       "figmaName": "More items Slot",
       "layout": {
         "direction": "horizontal",
-        "gap": "space/xs",
+        "gap": "space/xxs",
         "padding": "none",
         "align": "center"
       },
@@ -255,7 +255,7 @@
             "align": "center",
             "justify": "center",
             "padding": {
-              "block": "space/xs",
+              "block": "space/xxs",
               "start": "per flavour",
               "end": "space/lg"
             },
@@ -309,7 +309,7 @@
               "parts": "icon + label",
               "paddingStart": "space/md",
               "paddingEnd": "space/lg",
-              "gap": "space/xs",
+              "gap": "space/xxs",
               "measuredWidthPx": 80
             },
             {
@@ -329,7 +329,7 @@
               "measuredWidthPx": 48
             }
           ],
-          "_note": "Block padding space/xs and min-height control/sm in every flavour; measured height 36Px throughout. The gap on text only and icon only separates nothing (one child)."
+          "_note": "Block padding space/xxs and min-height control/sm in every flavour; measured height 36Px throughout. The gap on text only and icon only separates nothing (one child)."
         },
         "state": {
           "axis": "state",
@@ -443,12 +443,12 @@
         {
           "property": "Padding",
           "type": "Per Flavour",
-          "description": "space/xs top and bottom throughout. Horizontally space/md on the default flavour and space/lg on both text only and icon only, so dropping a part widens the padding rather than narrowing the segment."
+          "description": "space/xxs top and bottom throughout. Horizontally space/md on the default flavour and space/lg on both text only and icon only, so dropping a part widens the padding rather than narrowing the segment."
         },
         {
           "property": "Gap",
           "type": "Per Flavour",
-          "description": "space/xs on the default flavour. Text only and icon only declare space/sm, which separates nothing because each has a single child."
+          "description": "space/xxs on the default flavour. Text only and icon only declare space/sm, which separates nothing because each has a single child."
         },
         {
           "property": "Radius",
@@ -492,7 +492,7 @@
       "foreground/secondary"
     ],
     "dimension": [
-      "space/xs",
+      "space/xxs",
       "space/sm",
       "space/md",
       "space/lg",
@@ -611,7 +611,7 @@
     {
       "property": "Padding and gap",
       "type": "Fixed",
-      "description": "space/xs on all four sides of the track, with a space/xs gap between segments."
+      "description": "space/xxs on all four sides of the track, with a space/xxs gap between segments."
     },
     {
       "property": "Radius",

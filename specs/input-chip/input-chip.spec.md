@@ -2,9 +2,9 @@
 
 Represents a person, entity or value someone has entered or picked, such as a recipient on a message, so it can be reviewed and removed without retyping. It belongs inside input and selection fields. Reach for a filter chip to narrow content, or an assist chip to offer an action.
 
-Source: [Chip page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5122-2783) · component set `5125:3467` · extracted 2026-10-20 · 8 variants · default `State=default, disabled=false, Rounded=true`
+Source: [Chip page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5122-2783) · component set `5125:3467` · extracted 2026-10-26 · 8 variants · default `State=default, disabled=false, Rounded=true, Size=medium`
 
-> **No blockers, 4 warnings.** See [Issues](#issues). One of four chips on the Chip page; each has its own board and metadata frame, so each has its own spec (see also [filter-chip](../filter-chip/filter-chip.spec.md), [status-chip](../status-chip/status-chip.spec.md), [assist-chip](../assist-chip/assist-chip.spec.md)).
+> **No blockers, 6 warnings.** See [Issues](#issues). One of three chips on the Chip page; each has its own board and metadata frame, so each has its own spec (see also [filter-chip](../filter-chip/filter-chip.spec.md), [assist-chip](../assist-chip/assist-chip.spec.md)).
 
 ## API
 
@@ -15,6 +15,7 @@ Source: [Chip page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-De
 | `state` | enum (interaction) | `default`, `hover`, `focus` | `default` | root |
 | `disabled` | boolean | true, false | `false` | root, label |
 | `rounded` | boolean | true, false | `true` | root |
+| `size` | enum | `medium` | `medium` | root |
 
 **label**: "The value the chip stands for, usually a name or a term someone entered. Keep it to the entity itself. A chip that needs explaining is carrying a sentence that belongs in the field's helper text."
 
@@ -23,6 +24,8 @@ Source: [Chip page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-De
 **state**: default: "The resting chip, and where placed instances should stay. This axis records the interaction treatment rather than driving it." · hover: "Pointer over the chip. Setting it by hand pins the chip into a hovered look that never clears." · focus: "Keyboard focus. The one state a keyboard user depends on, so check it survives whatever surface the field sits on." In code it comes from pointer and focus, not from a prop.
 
 **disabled**: false: "The usual case." · true: "The value is fixed. Pair it with an explanation nearby, because the remove control stays visible and a control that looks available but will not respond reads as broken rather than locked."
+
+**size**: Figma has a Size axis with one value, `medium`. The metadata does not describe it (see issues).
 
 **rounded**: true: "Match the contour of the field the chips sit in rather than deciding per chip." · false: "The square-cornered pairing, for forms built from sharp controls."
 
@@ -34,7 +37,7 @@ None on the chip itself. The avatar's photo or initials are the nested [Avatar](
 
 ## Anatomy
 
-1. **Chip (root)**: "The component frame. A horizontal auto-layout that hugs its content at a fixed height, carrying the fill and the border." Horizontal, gap `space/sm`, padding `space/xs` top/bottom and `space/sm` left/right, cross-axis centred. Width hugs, height `control/target-min`. Radius `radius/pill` (rounded) or `radius/none`. Fill `interactive/ghost/background/default`; border `interactive/neutral/border/default` at `stroke/thin`, inside.
+1. **Chip (root)**: "The component frame. A horizontal auto-layout that hugs its content at a fixed height, carrying the fill and the border." Horizontal, gap `space/sm`, padding `space/xxs` top/bottom and `space/sm` left/right, cross-axis centred. Width hugs, height `control/target-min`. Radius `radius/pill` (rounded) or `radius/none`. Fill `interactive/ghost/background/default`; border `interactive/neutral/border/default` at `stroke/thin`, inside.
 2. **Avatar**: "The optional leading identity, present when Show Avatar is on." [Avatar](../avatar/avatar.spec.md) pinned to `size=xxxsmall`, `showStatus`, `showRing` and `showClose` all false (24Px measured). Visible when `showAvatar`.
 3. **Label**: text `label/medium`, colour `interactive/neutral/foreground/default`, hugs. Content from `label`.
 4. **Remove control**: "The trailing close icon. Always present, with no property to hide it." Glyph `close` (rounded family), Icon Size=small pinned by the chip (16Px). Colour is `currentColor`.
@@ -64,7 +67,7 @@ No on-page private subcomponents. Library dependencies in the same file:
 ## Tokens & theming
 
 - **Colour:** interactive/ghost/background/default, interactive/ghost/background/hover, interactive/ghost/background/focused, interactive/neutral/background/disabled, interactive/neutral/border/default, interactive/neutral/foreground/default, interactive/neutral/foreground/disabled, focus/outline
-- **Dimension:** control/target-min, space/none, space/xs, space/sm, radius/pill, radius/none, stroke/thin, stroke/thick
+- **Dimension:** control/target-min, space/none, space/xxs, space/sm, radius/pill, radius/none, stroke/thin, stroke/thick
 - **Typography:** label/medium
 - **Glyphs:** close
 
@@ -126,6 +129,8 @@ Visual reference: [component set](https://www.figma.com/design/hvRmnZZOZrmTW0wf8
 ## Issues
 
 **Warn**
+- **Size has one value and no intent.** Figma added a Size axis with only `medium`. The metadata does not mention it. Keep the prop for later sizes, or leave it out until a second size exists.
+- **Padding quote is stale.** Metadata says space/xs top and bottom. The binding is `space/xxs`, the old 4px space/xs after the rename.
 - **Hover is effectively invisible.** The ghost fills carry a paint opacity on top of the token (0 at default/focus, 0.05 at hover). `interactive/ghost/background/hover` is already a 5% alpha colour, so hover renders at about 0.25%. Build with the token alone and confirm with design.
 - **Focus does reflow.** The 1px inside border is included in layout at rest and the 2px outside focus border is not, so the chip narrows by 2px at focus and disabled (109 → 107 measured) and content shifts 1px, contrary to the metadata's "nothing reflows". In code keep borders out of layout.
 - **Stale token description.** `control/target-min` says "= 44px" but resolves to 40px.

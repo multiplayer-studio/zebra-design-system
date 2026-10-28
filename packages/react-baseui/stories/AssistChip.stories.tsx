@@ -4,13 +4,15 @@ import { iconNames } from "@zebra-design-system/icons/names";
 import { AssistChip } from "../src/index.js";
 
 const ACTIONS = [["calendar", "Add to calendar"], ["share", "Share"], ["star", "Save"], ["location", "Get directions"]] as const;
+const COLORS = ["neutral", "green", "orange", "blue", "red"] as const;
+const FILES = [["document", "Brief.pdf", "red"], ["document", "Budget.xlsx", "green"], ["document", "Notes.docx", "blue"], ["camera", "Photo.jpg", "orange"], ["video", "Clip.mp4", "neutral"]] as const;
 const Row = ({ children }: { children: React.ReactNode }) => <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>{children}</div>;
 const Cap = ({ children }: { children: React.ReactNode }) => <div style={{ font: "500 12px/1.4 system-ui", opacity: 0.7 }}>{children}</div>;
 
 const meta: Meta<typeof AssistChip> = {
   title: "Components/Chips/Assist Chip", component: AssistChip, tags: ["autodocs"],
-  argTypes: { icon: { control: "select", options: iconNames }, shape: { control: "inline-radio", options: ["rounded", "sharp"] }, onClick: { action: "click" } },
-  args: { children: "Add to calendar", icon: "calendar", showLeadingIcon: true, disabled: false, shape: "rounded" },
+  argTypes: { icon: { control: "select", options: iconNames }, shape: { control: "inline-radio", options: ["rounded", "sharp"] }, color: { control: "select", options: COLORS }, discardable: { control: "boolean" }, foreground: { control: "text" }, background: { control: "text" }, border: { control: "text" }, onClick: { action: "click" } },
+  args: { children: "Add to calendar", icon: "calendar", showLeadingIcon: true, disabled: false, shape: "rounded", color: "neutral", discardable: false },
 };
 export default meta;
 type Story = StoryObj<typeof AssistChip>;
@@ -27,7 +29,7 @@ export const ShowLeadingIcon: Story = {
   ),
 };
 
-/** Hover and focus come from interaction. 32px tall in every state. */
+/** Hover and focus come from interaction. 28px tall in every state. */
 export const State: Story = {
   render: () => <Row>{ACTIONS.map(([i, l]) => <AssistChip key={l} icon={i}>{l}</AssistChip>)}</Row>,
 };
@@ -43,6 +45,30 @@ export const Shape: Story = {
     <div style={{ display: "grid", gap: 12 }}>
       {(["rounded", "sharp"] as const).map((s) => <Row key={s}>{ACTIONS.map(([i, l]) => <AssistChip key={l} icon={i} shape={s}>{l}</AssistChip>)}</Row>)}
     </div>
+  ),
+};
+
+/** Five status colours set the border and the label. Use one per kind of item. */
+export const Color: Story = {
+  render: () => <Row>{COLORS.map((c) => <AssistChip key={c} icon="star" color={c}>{c[0].toUpperCase() + c.slice(1)}</AssistChip>)}</Row>,
+};
+
+/** A remove control after the label, for an item someone can discard. Removing it is the caller's job. */
+export const Discardable: Story = {
+  render: function Render() {
+    const [files, setFiles] = React.useState<readonly (typeof FILES)[number][]>(FILES);
+    return <Row>{files.map(([i, l, c]) => <AssistChip key={l} icon={i} color={c} onDiscard={() => setFiles((f) => f.filter((x) => x[1] !== l))}>{l}</AssistChip>)}</Row>;
+  },
+};
+
+/** Code-only overrides beat color and state. Token paths or CSS colours. */
+export const Overrides: Story = {
+  render: () => (
+    <Row>
+      <AssistChip icon="document" discardable background="feedback/error/background/subtle" color="red">Brief.pdf</AssistChip>
+      <AssistChip icon="document" discardable background="feedback/success/background/subtle" color="green">Budget.xlsx</AssistChip>
+      <AssistChip icon="document" discardable foreground="feedback/info/foreground" border="border/info" background="feedback/info/background/subtle">Notes.docx</AssistChip>
+    </Row>
   ),
 };
 

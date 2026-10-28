@@ -98,7 +98,7 @@
       "layout": {
         "direction": "horizontal",
         "gap": "space/sm",
-        "padding": "space/xs",
+        "padding": "space/xxs",
         "mainAxisAlign": {
           "switch=off": "start",
           "switch=on": "end"
@@ -160,7 +160,7 @@
       },
       "layout": {
         "direction": "horizontal",
-        "padding": "space/xs",
+        "padding": "space/xxs",
         "mainAxisAlign": "space-between",
         "crossAxisAlign": "center"
       },
@@ -360,7 +360,7 @@
       "foreground/disabled"
     ],
     "dimension": [
-      "space/xs",
+      "space/xxs",
       "space/sm",
       "radius/pill",
       "stroke/base",
@@ -583,7 +583,7 @@
     {
       "severity": "note",
       "source": "descriptionDrift",
-      "detail": "space/sm, space/xs and stroke/thick name a stale source scale step in their descriptions (scale/4, scale/2, scale/1); they alias scale/5, scale/3 and scale/2. The stated px values still match."
+      "detail": "space/sm, space/xxs and stroke/thick name a stale source scale step in their descriptions (scale/4, scale/2, scale/1); they alias scale/5, scale/3 and scale/2. The stated px values still match."
     },
     {
       "severity": "note",

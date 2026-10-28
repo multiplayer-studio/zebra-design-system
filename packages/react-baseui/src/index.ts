@@ -73,6 +73,14 @@ export { Select } from "./components/select/Select.js";
 export type { SelectProps, SelectOption, SelectFieldState, SelectSize, SelectShape, SelectFlavour, SelectState, SelectLabelType } from "./components/select/Select.js";
 
 export { MessageInput } from "./components/message-input/MessageInput.js";
+export {
+  ChatMessage, ChatText, ChatFile, ChatImages, ChatCard, ChatAudio, ChatVideo, ChatChoices, ChatSources,
+  ChatTyping, ChatDivider, ChatThread, chatActions, fileKindOf, useChatShape, CHAT_REACTIONS,
+} from "./components/chat/Chat.js";
+export type {
+  ChatMessageProps, ChatRole, ChatPosition, ChatStatus, ChatAuthor, ChatReaction, ChatAction,
+  ChatFileProps, ChatFileKind, ChatImage, ChatCardProps, ChatChoice, ChatShape, ChatFill, ChatThreadProps,
+} from "./components/chat/Chat.js";
 export type {
   MessageInputProps, MessageInputAction, MessageInputPreview,
   MessageAttachment, MessageAttachmentKind, MessageVoiceNote, MessageSubmission,
@@ -99,10 +107,8 @@ export { InputChip } from "./components/input-chip/InputChip.js";
 export type { InputChipProps } from "./components/input-chip/InputChip.js";
 export { FilterChip } from "./components/filter-chip/FilterChip.js";
 export type { FilterChipProps } from "./components/filter-chip/FilterChip.js";
-export { StatusChip } from "./components/status-chip/StatusChip.js";
-export type { StatusChipProps, StatusChipStatus } from "./components/status-chip/StatusChip.js";
 export { AssistChip } from "./components/assist-chip/AssistChip.js";
-export type { AssistChipProps } from "./components/assist-chip/AssistChip.js";
+export type { AssistChipProps, AssistChipColor } from "./components/assist-chip/AssistChip.js";
 
 export { SegmentedControl } from "./components/segmented-control/SegmentedControl.js";
 export type {

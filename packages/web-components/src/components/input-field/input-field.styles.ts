@@ -24,7 +24,7 @@ export default css`
     display: flex;
     align-items: center;
     box-sizing: border-box;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
     padding: var(--space-sm) var(--space-md);
     block-size: var(--zds-input-height);
     border-radius: var(--zds-input-radius);
@@ -47,7 +47,7 @@ export default css`
     flex: 1 1 auto;
     min-inline-size: 0;
     margin: 0;
-    padding: 0 var(--space-xs);
+    padding: 0 var(--space-xxs);
     box-sizing: border-box;
     border: 0;
     outline: none;

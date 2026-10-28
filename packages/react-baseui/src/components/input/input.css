@@ -7,7 +7,7 @@
     /* Width is the container's (spec decision: Figma's 280 is tentative). */
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
   }
   .zds-input[hidden] {
     display: none;
@@ -18,7 +18,7 @@
     margin: 0;
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
   }
   .zds-input__name,
   .zds-input__required {
@@ -55,7 +55,7 @@
     margin: 0;
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
     font-family: var(--body-xsmall-font-family), system-ui, sans-serif;
     font-size: var(--body-xsmall-font-size);
     font-weight: var(--body-xsmall-font-weight);

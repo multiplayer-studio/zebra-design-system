@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Icon } from "../src/index.js";
 import { iconNames } from "@zebra-design-system/icons/names";
 
-const SIZES = ["small", "medium", "large"] as const;
+const SIZES = ["xsmall", "small", "medium", "large"] as const;
 const STYLES = ["rounded", "sharp"] as const;
 
 const meta: Meta<typeof Icon> = {

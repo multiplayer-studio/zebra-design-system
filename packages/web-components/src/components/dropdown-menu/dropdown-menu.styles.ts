@@ -22,7 +22,7 @@ export default css`
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
     padding: var(--space-card);
     border-radius: var(--radius-none);
 

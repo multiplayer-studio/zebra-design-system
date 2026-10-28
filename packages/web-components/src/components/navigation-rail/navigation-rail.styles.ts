@@ -115,7 +115,7 @@ export const railStyles = css`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
   }
   .menu {
     flex: 1 1 auto;
@@ -186,7 +186,7 @@ export const railStyles = css`
   .sub-menu {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
     padding: var(--space-sm);
     overflow-y: auto;
   }
@@ -239,7 +239,7 @@ export const headerStyles = css`
     align-items: center;
     gap: var(--space-sm);
     min-width: 0;
-    padding-inline: var(--space-xs);
+    padding-inline: var(--space-xxs);
   }
   .logo {
     height: var(--control-target-min);
@@ -316,7 +316,7 @@ export const subMenuHeaderStyles = css`
     display: flex;
     flex: none;
     align-items: center;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
   }
 `;
 
@@ -389,7 +389,7 @@ export const collapsibleStyles = [
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
-      gap: var(--space-xs);
+      gap: var(--space-xxs);
       padding: var(--space-sm);
       background: var(--surface-menu);
       border-end-start-radius: var(--zds-collapsible-menu-item-radius);

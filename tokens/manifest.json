@@ -1,55 +1,8 @@
 {
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
-  "extractedAt": "2026-10-18",
-  "source": "Figma Plugin API via use_figma (zebra-figma-token-export skill) · 5 rows (space/neg/lg, space/neg/xl, scale/-4, scale/-5, scale/-6) taken from working file UZuTdXUhuybNkybf1NZuOt (Avatar Rail), which is the main library plus these additions; not yet in hvRmnZZOZrmTW0wf8hbrt5",
+  "extractedAt": "2026-10-26",
+  "source": "Figma Plugin API via use_figma (zebra-figma-token-export skill)",
   "collections": [
-    {
-      "name": "primitives",
-      "slug": "primitives",
-      "id": "VariableCollectionId:2:2",
-      "modes": [
-        "Value"
-      ],
-      "defaultMode": "Value",
-      "variableCount": 263,
-      "isExtension": false,
-      "hiddenFromPublishing": true,
-      "files": [
-        "base/primitives/value.json"
-      ]
-    },
-    {
-      "name": "semantics",
-      "slug": "semantics",
-      "id": "VariableCollectionId:2:3",
-      "modes": [
-        "Base"
-      ],
-      "defaultMode": "Base",
-      "variableCount": 195,
-      "isExtension": false,
-      "hiddenFromPublishing": false,
-      "files": [
-        "base/semantics/base.json"
-      ]
-    },
-    {
-      "name": "palette",
-      "slug": "palette",
-      "id": "VariableCollectionId:3:4",
-      "modes": [
-        "Light",
-        "Dark"
-      ],
-      "defaultMode": "Light",
-      "variableCount": 98,
-      "isExtension": false,
-      "hiddenFromPublishing": false,
-      "files": [
-        "base/palette/light.json",
-        "base/palette/dark.json"
-      ]
-    },
     {
       "name": "size",
       "slug": "size",
@@ -61,7 +14,7 @@
         "Desktop Compact"
       ],
       "defaultMode": "Desktop",
-      "variableCount": 56,
+      "variableCount": 58,
       "isExtension": false,
       "hiddenFromPublishing": false,
       "files": [
@@ -91,6 +44,53 @@
         "base/typography/mobile.json",
         "base/typography/desktop-compact.json"
       ]
+    },
+    {
+      "name": "primitives",
+      "slug": "primitives",
+      "id": "VariableCollectionId:2:2",
+      "modes": [
+        "Value"
+      ],
+      "defaultMode": "Value",
+      "variableCount": 263,
+      "isExtension": false,
+      "hiddenFromPublishing": true,
+      "files": [
+        "base/primitives/value.json"
+      ]
+    },
+    {
+      "name": "semantics",
+      "slug": "semantics",
+      "id": "VariableCollectionId:2:3",
+      "modes": [
+        "Base"
+      ],
+      "defaultMode": "Base",
+      "variableCount": 246,
+      "isExtension": false,
+      "hiddenFromPublishing": false,
+      "files": [
+        "base/semantics/base.json"
+      ]
+    },
+    {
+      "name": "palette",
+      "slug": "palette",
+      "id": "VariableCollectionId:3:4",
+      "modes": [
+        "Light",
+        "Dark"
+      ],
+      "defaultMode": "Light",
+      "variableCount": 105,
+      "isExtension": false,
+      "hiddenFromPublishing": false,
+      "files": [
+        "base/palette/light.json",
+        "base/palette/dark.json"
+      ]
     }
   ],
   "extensions": [
@@ -106,7 +106,7 @@
         "name": "palette",
         "id": "VariableCollectionId:3:4"
       },
-      "overrideCount": 6,
+      "overrideCount": 11,
       "modeMap": [
         {
           "mode": "Light",
@@ -157,7 +157,7 @@
         "name": "palette",
         "id": "VariableCollectionId:3:4"
       },
-      "overrideCount": 17,
+      "overrideCount": 18,
       "modeMap": [
         {
           "mode": "Light",
@@ -250,8 +250,8 @@
   "counts": {
     "collections": 5,
     "extensions": 5,
-    "tokens": 1230,
-    "overrideTokens": 136,
+    "tokens": 1311,
+    "overrideTokens": 148,
     "files": 27
   },
   "conventions": {
@@ -264,7 +264,6 @@
     "palette/Dark name collisions: ['fill/transparent/elevate']",
     "Extension 'condensed' mode 'Mobile' overrides nothing; no file written",
     "Extension 'condensed' mode 'Tablet' overrides nothing; no file written",
-    "Extension 'condensed' mode 'Desktop Compact' overrides nothing; no file written",
-    "5 variables come from working file UZuTdXUhuybNkybf1NZuOt, not the main library: space/neg/lg, space/neg/xl, scale/-4, scale/-5, scale/-6. Re-pull from the main library once they are published there."
+    "Extension 'condensed' mode 'Desktop Compact' overrides nothing; no file written"
   ]
 }

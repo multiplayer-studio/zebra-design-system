@@ -13,7 +13,7 @@
   box-sizing: border-box;
   gap: var(--space-none);
   height: var(--control-sm);
-  padding: var(--space-xs) var(--space-md);
+  padding: var(--space-xxs) var(--space-md);
   border-style: solid;
   border-width: var(--stroke-base);
   border-radius: var(--radius-none);
@@ -40,7 +40,7 @@
 .zds-button__label {
   display: inline-flex;
   align-items: center;
-  padding-inline: var(--space-xs);
+  padding-inline: var(--space-xxs);
 }
 
 .zds-button__icon {
@@ -57,7 +57,7 @@
 }
 .zds-button[data-size="large"] {
   height: var(--control-lg);
-  padding: var(--space-xs) var(--space-lg);
+  padding: var(--space-xxs) var(--space-lg);
   font-family: var(--label-large-font-family), system-ui, sans-serif;
   font-size: var(--label-large-font-size);
   line-height: var(--label-large-line-height);

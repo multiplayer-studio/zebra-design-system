@@ -11,9 +11,9 @@
       "boardId": "5122:2784",
       "metadataFrameId": "5689:234",
       "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5125-3467",
-      "extractedAt": "2026-10-20",
+      "extractedAt": "2026-10-26",
       "variantCount": 8,
-      "extractionNote": "One of four independent components on the Chip page, each with its own board and its own metadata frame; this spec covers Input Chip only. All 8 variants extracted to full depth and diffed against the default; nested Avatar and Icon read from their instance properties. No on-page private subcomponents."
+      "extractionNote": "One of four independent components on the Chip page, each with its own board and its own metadata frame; this spec covers Input Chip only. All 8 variants extracted to full depth and diffed against the default; nested Avatar and Icon read from their instance properties. No on-page private subcomponents. Re-read on 2026-10-26: structure and tokens unchanged; a Size axis (medium only) was added."
     }
   },
 
@@ -47,6 +47,7 @@
         "true": "The value is fixed. Pair it with an explanation nearby, because the remove control stays visible and a control that looks available but will not respond reads as broken rather than locked."
       }
     },
+    "size": { "type": "enum", "figmaName": "Size", "values": ["medium"], "default": "medium", "controls": ["root"], "note": "One value. Not described in the metadata." },
     "rounded": {
       "type": "boolean", "figmaName": "Rounded", "figmaType": "VARIANT (true|false)", "default": true, "controls": ["root"],
       "intent": {
@@ -65,7 +66,7 @@
     {
       "id": "root", "kind": "container", "number": 1,
       "role": "The component frame. A horizontal auto-layout that hugs its content at a fixed height, carrying the fill and the border.",
-      "layout": { "direction": "horizontal", "gap": "space/sm", "padding": { "top": "space/xs", "bottom": "space/xs", "left": "space/sm", "right": "space/sm" }, "align": "start", "crossAlign": "center" },
+      "layout": { "direction": "horizontal", "gap": "space/sm", "padding": { "top": "space/xxs", "bottom": "space/xxs", "left": "space/sm", "right": "space/sm" }, "align": "start", "crossAlign": "center" },
       "sizing": { "h": "hug", "v": "fixed", "height": "control/target-min" },
       "radius": "radius/pill (rounded=true) | radius/none (rounded=false)",
       "paint": {
@@ -125,7 +126,7 @@
       "interactive/neutral/background/disabled", "interactive/neutral/border/default",
       "interactive/neutral/foreground/default", "interactive/neutral/foreground/disabled", "focus/outline"
     ],
-    "dimension": ["control/target-min", "space/none", "space/xs", "space/sm", "radius/pill", "radius/none", "stroke/thin", "stroke/thick"],
+    "dimension": ["control/target-min", "space/none", "space/xxs", "space/sm", "radius/pill", "radius/none", "stroke/thin", "stroke/thick"],
     "typography": ["label/medium"],
     "glyphs": ["close"],
     "themeAxes": {
@@ -201,6 +202,8 @@
   },
 
   "issues": [
+    { "severity": "warn", "source": "api vs metadata (Size)", "detail": "Figma added a Size axis with only medium. The metadata does not mention it." },
+    { "severity": "warn", "source": "metadata vs extracted (padding)", "detail": "Metadata says space/xs top and bottom. The binding is space/xxs, the old 4px space/xs after the rename." },
     { "severity": "warn", "source": "gaps (paint opacity)", "detail": "The ghost fills carry a paint-level opacity on top of the token: 0 at default and focus, 0.05 at hover. interactive/ghost/background/hover already resolves to a 5% alpha colour (palette status/ghost/faint), so hover renders at about 0.25% and is effectively invisible. Build with the token alone (drop the extra opacity) and confirm with design; the opacity on default/focused is harmless because those tokens are already fully transparent." },
     { "severity": "warn", "source": "metadata vs extracted", "detail": "States & Triggers says focus changes 'so nothing reflows'. In Figma the inside 1px border is included in layout at rest, and the outside 2px focus border is not, so the chip is 2px narrower at focus and disabled (measured 109 → 107) and its content shifts 1px. In code keep the border out of layout (e.g. draw it as an inset ring) so state changes do not move content." },
     { "severity": "warn", "source": "descriptionDrift", "detail": "control/target-min (the chip height) says '= 44px' in its description but resolves to 40px (primitives scale/13). The metadata's '40 tall' matches the resolved value." },

@@ -16,7 +16,7 @@ export default css`
        at every size mode rather than at one: height is the thumb plus its
        padding; width is padding + two thumb-widths + the root's own gap,
        which is exactly 64 at the default size. */
-    --zds-switch-pad: var(--space-xs);
+    --zds-switch-pad: var(--space-xxs);
     --zds-switch-thumb: var(--control-xs);
     --zds-switch-gap: var(--space-sm);
 

@@ -69,9 +69,9 @@ Anatomy: a horizontal container (no gap, no padding, no fill, hugs) holding:
 
 | size | Button size | height | padding inline / block | label | icon | measured width |
 |---|---|---|---|---|---|---|
-| small | small | `control/sm` | `space/md` / `space/xs` | `label/medium` | Icon small | 109Px |
-| medium | medium | `control/md` | `space/md` / `space/xs` | `label/large` | Icon medium | 131Px |
-| large | large | `control/lg` | `space/lg` / `space/xs` | `label/large` | Icon medium | 139Px |
+| small | small | `control/sm` | `space/md` / `space/xxs` | `label/medium` | Icon small | 109Px |
+| medium | medium | `control/md` | `space/md` / `space/xxs` | `label/large` | Icon medium | 131Px |
+| large | large | `control/lg` | `space/lg` / `space/xxs` | `label/large` | Icon medium | 139Px |
 
 (All Button's own values for that size; the wrapper doesn't override them.)
 
@@ -98,7 +98,7 @@ Small's set has `Position5` and `Position4` instead of start/sharp and end/sharp
 
 - **Group:** colour `surface/section`, `border/default`; dimension `space/none`, `space/neg/xs`, `radius/sm`.
 - **Item:** `radius/sm`, `radius/none` (on Button's corners), `stroke/thin` (Divider width).
-- **From Button (subtle, default state), for checking only:** `interactive/ghost/background/default`, `interactive/neutral/border/default`, `interactive/neutral/foreground/default`, `control/{sm,md,lg}`, `space/{xs,md,lg}`, `stroke/base`, `label/medium`, `label/large`. Hover, pressed, focus and disabled colours are Button's.
+- **From Button (subtle, default state), for checking only:** `interactive/ghost/background/default`, `interactive/neutral/border/default`, `interactive/neutral/foreground/default`, `control/{sm,md,lg}`, `space/{xxs,md,lg}`, `stroke/base`, `label/medium`, `label/large`. Hover, pressed, focus and disabled colours are Button's.
 - **Glyphs:** `verified`, `expand-more`.
 - **Theme axes:** palette (Light, Dark); size and typography (Desktop, Mobile, Tablet, Desktop Compact).
 

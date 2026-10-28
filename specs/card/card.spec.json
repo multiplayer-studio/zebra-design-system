@@ -192,7 +192,7 @@
         { "property": "Height", "type": "Hug", "description": "78px collapsed and 257px expanded at the default flavour. Gradient adds 4px to both, 82px and 261px, because its outline is drawn on the frame itself." },
         { "property": "Header padding", "type": "Fixed", "description": "16px (space/lg) top and bottom, 24px (space/xl) left and right, with 8px (space/sm) between the leading icon and the heading block." },
         { "property": "Body padding", "type": "Fixed per State", "description": "None while collapsed, since the slot is hidden. Expanded it insets 24px (space/xl) left, right and bottom, with nothing on top so the body sits tight under the header." },
-        { "property": "Heading spacing", "type": "Fixed", "description": "2px (space/2xs) between the title and the description, and 4px (space/xs) inside the title row." },
+        { "property": "Heading spacing", "type": "Fixed", "description": "2px (space/2xs) between the title and the description, and 4px (space/xxs) inside the title row." },
         { "property": "Radius", "type": "Fixed per Shape", "description": "radius/none when sharp, radius/sm when rounded. The card clips to it." },
         { "property": "Outline", "type": "Fixed per Flavor", "description": "None at the default flavour. Gradient draws a 2px (stroke/thick) linear gradient from foreground/gradient/start to foreground/gradient/end around all four edges." },
         { "property": "Fill", "type": "Theming", "description": "surface/card on the card. The header sits on a fully transparent interactive/ghost/background/default, so the card surface shows through it." },
@@ -398,7 +398,7 @@
       "interactive/neutral/background/default"
     ],
     "dimension": [
-      "space/none", "space/2xs", "space/xs", "space/sm", "space/md", "space/lg", "space/xl",
+      "space/none", "space/2xs", "space/xxs", "space/sm", "space/md", "space/lg", "space/xl",
       "radius/none", "radius/sm", "stroke/thin", "stroke/base", "stroke/thick",
       "control/sm", "control/md", "control/lg"
     ],

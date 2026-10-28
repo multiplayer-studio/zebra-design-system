@@ -66,8 +66,8 @@ export default css`
        issue: the offset was untokenised). A count badge grows outward from
        that anchor, away from the glyph, instead of covering it. */
     position: absolute;
-    top: calc(-1 * var(--space-xs));
-    inset-inline-start: calc(100% - var(--space-xs));
+    top: calc(-1 * var(--space-xxs));
+    inset-inline-start: calc(100% - var(--space-xxs));
   }
 
   /* ---- label ----------------------------------------------------------- */

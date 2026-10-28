@@ -55,7 +55,7 @@ Values anywhere in this document are token names. The only literals are inside v
 
 1. **Row** (root): "The outer frame. Fills the width of the slot it sits in and holds a minimum height, so rows in a list line up whatever they contain."
    - Horizontal, gap `space/sm`, radius `radius/sm`.
-   - Padding: `space/xs` top and bottom, `space/md` on the right, and `space/md` on the left (`space/xl` when nested).
+   - Padding: `space/xxs` top and bottom, `space/md` on the right, and `space/md` on the left (`space/xl` when nested).
    - Min height `control/lg`. The min width is unbound.
    - Drawn fixed at 184×48Px; it fills inside a slot.
 2. **Icon and Title**: "The leading glyph and the label, kept together so the label starts at the same place on every row that has an icon." Horizontal, gap `space/md`, fill × hug.
@@ -87,7 +87,7 @@ The rail's Sub Menu Slot and Collapsible Menu Item use this item.
 ## Tokens & theming
 
 - **Colour:** `foreground/{primary, secondary, disabled}`, `interactive/ghost/background/{hover, pressed, selected}`, `interactive/ghost/foreground/default`, `interactive/neutral/foreground/default`.
-- **Dimension:** `control/lg`, `space/{none, xs, sm, md, xl}`, `radius/sm`.
+- **Dimension:** `control/lg`, `space/{none, xxs, sm, md, xl}`, `radius/sm`.
 - **Typography:** `label/medium`, `indicator/medium` (nested).
 - **Glyphs:** `verified`, `chevron-right`.
 - **Motion (owner decision, not bound in Figma):** `animations/smooth` inside the Navigation Rail (rows opening and closing, the caret turn); `animations/spring` for the caret rotation elsewhere.
@@ -144,7 +144,7 @@ All 17 names resolve in `tokens/`, and both glyphs are in the font.
 |---|---|---|
 | Width | Fill | "Fills the slot it sits in, drawn at 184px. It does not hug its label, so rows in a list are all the same width." |
 | Height | Hug with a floor | "48px, held up by a control/lg minimum so the target never drops below it." |
-| Padding | Fixed per Nested | "4px (space/xs) top and bottom throughout. 12px (space/md) left and right unnested, with the left edge stepping to 24px when nested." |
+| Padding | Fixed per Nested | "4px (space/xxs) top and bottom throughout. 12px (space/md) left and right unnested, with the left edge stepping to 24px when nested." |
 | Gap | Fixed | "8px (space/sm) between the icon, the label, the badge and the caret." |
 | Radius | Fixed | "radius/sm on every variant." |
 | Icon and caret | Fixed | "Both 16px, the icon an Icon at Size=small and the caret a Caret Indicator in its horizontal direction." |

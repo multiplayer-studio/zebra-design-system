@@ -210,8 +210,8 @@
         "direction": "horizontal",
         "gap": "space/none",
         "padding": {
-          "top": "space/xs",
-          "bottom": "space/xs",
+          "top": "space/xxs",
+          "bottom": "space/xxs",
           "left": "space/md",
           "right": "space/md"
         },
@@ -270,8 +270,8 @@
         "direction": "horizontal",
         "gap": "space/none",
         "padding": {
-          "left": "space/xs",
-          "right": "space/xs",
+          "left": "space/xxs",
+          "right": "space/xxs",
           "top": 0,
           "bottom": 0,
           "_note": "left/right are token-bound; top/bottom are simply unset (0), not a token"
@@ -348,8 +348,8 @@
           "size": "small",
           "root.height": "control/sm",
           "root.paddingX": "space/md",
-          "root.paddingY": "space/xs",
-          "label.paddingX": "space/xs",
+          "root.paddingY": "space/xxs",
+          "label.paddingX": "space/xxs",
           "label.text.style": "label/medium",
           "icon.refVariant": "Size=small, Framed=false",
           "icon.renderedSizePx": 16,
@@ -359,7 +359,7 @@
           "size": "medium",
           "root.height": "control/md",
           "root.paddingX": "space/md",
-          "root.paddingY": "space/xs",
+          "root.paddingY": "space/xxs",
           "label.paddingX": "space/sm",
           "label.text.style": "label/large",
           "icon.refVariant": "Size=medium, Framed=false",
@@ -370,7 +370,7 @@
           "size": "large",
           "root.height": "control/lg",
           "root.paddingX": "space/lg",
-          "root.paddingY": "space/xs",
+          "root.paddingY": "space/xxs",
           "label.paddingX": "space/sm",
           "label.text.style": "label/large",
           "icon.refVariant": "Size=medium, Framed=false",
@@ -1070,7 +1070,7 @@
       "control/md",
       "control/lg",
       "space/none",
-      "space/xs",
+      "space/xxs",
       "space/sm",
       "space/md",
       "space/lg",
@@ -1245,12 +1245,12 @@
     {
       "property": "Vertical padding",
       "type": "Fixed",
-      "description": "4px (space/xs) at every size. The fixed height does the real work."
+      "description": "4px (space/xxs) at every size. The fixed height does the real work."
     },
     {
       "property": "Gap",
       "type": "None on the row",
-      "description": "Item spacing is space/none. The visible separation between an icon and the label comes from the Label wrapper's own horizontal padding, 4px (space/xs) at small and 8px (space/sm) at medium and large."
+      "description": "Item spacing is space/none. The visible separation between an icon and the label comes from the Label wrapper's own horizontal padding, 4px (space/xxs) at small and 8px (space/sm) at medium and large."
     },
     {
       "property": "Radius",

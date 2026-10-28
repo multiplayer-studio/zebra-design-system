@@ -10,7 +10,8 @@
   --control-icon-lg: var(--primitives-scale-10);
   --control-icon-md: var(--primitives-scale-8);
   --control-icon-sm: var(--primitives-scale-7);
-  --control-icon-xs: var(--primitives-scale-5);
+  --control-icon-xs: var(--primitives-scale-6);
+  --control-icon-xxs: var(--primitives-scale-5);
   --control-lg: var(--primitives-scale-15);
   --control-md: var(--primitives-scale-13);
   --control-sm: var(--primitives-scale-12);
@@ -55,7 +56,8 @@
   --space-section: var(--primitives-scale-9);
   --space-sm: var(--primitives-scale-5);
   --space-xl: var(--primitives-scale-9);
-  --space-xs: var(--primitives-scale-3);
+  --space-xs: var(--primitives-scale-4);
+  --space-xxs: var(--primitives-scale-3);
   --stroke-base: var(--primitives-scale-0);
   --stroke-heavy: var(--primitives-scale-3);
   --stroke-thick: var(--primitives-scale-2);

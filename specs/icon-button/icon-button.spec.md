@@ -63,7 +63,7 @@ Source: [The Zebra Design System › Button page](https://www.figma.com/design/h
 ## Anatomy
 
 1. **root** (container) — *"The button's own frame, fixed square at every size. Carries the background, the border and the radius, and never hugs its content."*  
-   layout: {"direction": "horizontal", "padding": "space/xs on all four sides", "primaryAlign": "center", "counterAlign": "center"} · sizing: {"h": "fixed", "v": "fixed", "widthToken": "control/sm (small) \u00b7 control/md (medium) \u00b7 control/lg (large)", "heightToken": "same as width"} · clips: true · radius: per shape · paint: {"fill": "per flavour \u00d7 state", "stroke": "per flavour \u00d7 state, inside; focus outside"}
+   layout: {"direction": "horizontal", "padding": "space/xxs on all four sides", "primaryAlign": "center", "counterAlign": "center"} · sizing: {"h": "fixed", "v": "fixed", "widthToken": "control/sm (small) \u00b7 control/md (medium) \u00b7 control/lg (large)", "heightToken": "same as width"} · clips: true · radius: per shape · paint: {"fill": "per flavour \u00d7 state", "stroke": "per flavour \u00d7 state, inside; focus outside"}
 2. **icon** (instance) — *"A single Icon instance, always visible and centred. Icon Button sets its size and leaves the instance exposed."*  
    ref: Icon · glyph: more-horizontal (default) · size: Icon Size=small at small (16), Size=medium at medium and large (20) · color: per flavour × state (overridden on the Icon's glyph) · exposed: true
 
@@ -75,9 +75,9 @@ Cells are token names; …Px cells are measurements. Geometry depends only on Si
 
 | size | root (both axes) | padding | icon | iconPx |
 |---|---|---|---|---|
-| small | `control/sm` | `space/xs` | Icon Size=small | 16 |
-| medium | `control/md` | `space/xs` | Icon Size=medium | 20 |
-| large | `control/lg` | `space/xs` | Icon Size=medium | 20 |
+| small | `control/sm` | `space/xxs` | Icon Size=small | 16 |
+| medium | `control/md` | `space/xxs` | Icon Size=medium | 20 |
+| large | `control/lg` | `space/xxs` | Icon Size=medium | 20 |
 
 ### By shape
 
@@ -146,7 +146,7 @@ Colour only; identical at every Size and Shape. stroke/base draws nothing (see i
 ## Tokens & theming
 
 - **color:** `interactive/{primary,positive,destructive}/background/{default,hover,pressed,focused,disabled}`, `interactive/{primary,positive,destructive}/border/{default,hover,pressed,disabled}`, `interactive/{primary,positive,destructive}/foreground/{default,disabled}`, `interactive/neutral/background/{default,hover,pressed,focused}`, `interactive/neutral/border/{default,hover,pressed,disabled}`, `interactive/neutral/foreground/{default,disabled}`, `interactive/ghost/background/{default,hover,pressed,focused,disabled}`, `interactive/ghost/border/{default,hover,pressed,disabled}`, `interactive/ghost/foreground/{default,disabled}`, `interactive/secondary/border/disabled`, `border/focus`, `surface/gradient/{start,end}`, `foreground/gradient/{start,end}`, `foreground/primary`
-- **dimension:** `control/sm`, `control/md`, `control/lg`, `space/xs`, `radius/none`, `radius/element-sm`, `radius/pill`, `stroke/base`, `stroke/thin`, `stroke/thick`
+- **dimension:** `control/sm`, `control/md`, `control/lg`, `space/xxs`, `radius/none`, `radius/element-sm`, `radius/pill`, `stroke/base`, `stroke/thin`, `stroke/thick`
 - **Theme axes:** palette (Light, Dark) · size and typography modes (no effect on this component) · extensions in tokens/extensions/
 
 ## States, behavior & motion
@@ -194,7 +194,7 @@ Colour only; identical at every Size and Shape. stroke/base draws nothing (see i
 | Property | Type | Description |
 |---|---|---|
 | Size | Fixed square per Size | 36×36 at small (control/sm), 40×40 at medium (control/md), 48×48 at large (control/lg). Both axes bind to the same token, so it is always square and never hugs its content. |
-| Padding | Fixed | 4px (space/xs) on all four sides at every size. |
+| Padding | Fixed | 4px (space/xxs) on all four sides at every size. |
 | Radius | Fixed per Shape | 0 (radius/none) for sharp, 4px (radius/element-sm) for rounded, 9999 (radius/pill) for full, which gives a circle. All three are token-bound, so match the container rather than overriding on the instance. |
 | Border | Fixed per Flavour | 1px drawn inside on outline and outline-subtle, none on the other seven at rest. Focus replaces it with a 2px ring drawn outside the bounds. |
 | Glyph size | Fixed per Size | 16px at small, 20px at medium and large. Large reuses Icon's medium step, so the glyph does not grow between medium and large even though the button does. |
@@ -225,14 +225,14 @@ Colour only; identical at every Size and Shape. stroke/base draws nothing (see i
 4. *structure vs Button (outline disabled)*: outline at Disabled=true draws interactive/ghost/background/disabled @ 0 with an interactive/ghost/foreground/disabled glyph at every size; Button's outline disabled draws interactive/neutral/background/disabled with interactive/neutral/foreground/disabled at eight of nine sizes. The two components disagree.
 5. *structure vs metadata (hover grouping)*: States & Triggers groups outline-subtle with outline ('hold their border and shift a neutral background underneath'); in the file outline-subtle and subtle raise the ghost scrim like text. Only outline shifts a neutral background.
 6. *gaps*: The scrim flavours (text, text-gradient, subtle, outline-subtle) set a paint-level opacity of 0 / 0.05 / 0.10 on interactive/ghost/background/*. Those tokens already carry the scrim in their own alpha (default and disabled 0%, hover 5%, pressed 10%, in Light and Dark), so Figma applies it twice: the hover scrim renders at about 0.25% and pressed at 1%, practically invisible. Code binds the tokens directly with no paint opacity (the intended 5% / 10%); the Figma paints should drop their opacity to 1.
-7. *tokens*: stroke/base resolves to 0px although its description reads '= 1px, source: scale/0', so seven flavours carry a bound but invisible border. control/sm, control/md, control/lg, space/xs and radius/element-sm also carry descriptions that state the wrong px value (see the Button spec's descriptionDrift issue); build from the resolved values, which match the metadata.
+7. *tokens*: stroke/base resolves to 0px although its description reads '= 1px, source: scale/0', so seven flavours carry a bound but invisible border. control/sm, control/md, control/lg, space/xxs and radius/element-sm also carry descriptions that state the wrong px value (see the Button spec's descriptionDrift issue); build from the resolved values, which match the metadata.
 
 ### Note
 
 - *code (gradient transition)*: Built 2026-10-18 in <zds-button>, <zds-icon-button>, react-baseui Button and IconButton: the gradient flavours no longer swap to a flat colour. One gradient three times the size of the fill holds the two stops in its middle third (the resting look is unchanged: start at 0%, end at 87%); hover slides its position until the end colour covers 100%, press until the start colour covers 100%, and the position transitions with the other flavours' tints. text-gradient runs the same slide across the label's text and the icons. Web and React were compared in a browser: pixel-identical at rest, hover and pressed.
 - *structure (gradient transition)*: The gradient variants agree with the intended transition (corrected 2026-10-18: hover slides to the end colour, press to the start). gradient hover binds surface/gradient/end and pressed surface/gradient/start; text-gradient hover foreground/gradient/end and pressed foreground/gradient/start. Each variant shows where its slide ends, as the metadata says. Focus also binds the start colour; the metadata gives focus only the ring, so code keeps the resting gradient at focus.
 
-- *code (packages/web-components zds-icon-button, packages/react-baseui IconButton)*: Built 2026-10-18 in both packages: <zds-icon-button> (web components) and IconButton (react-baseui, on Base UI's Button). Both reuse Button's colour, border, shape, focus and disabled rules and add only the square geometry (control/sm|md|lg, space/xs), with the glyph at Icon small / medium / medium and more-horizontal as the default glyph; label is the required accessible name. They follow the label-colour rule rather than three bindings flagged above (subtle's glyph on foreground/primary; positive and negative disabled glyphs from another family), and text-gradient's glyph is the flat foreground/gradient/start, since a font glyph carries no label to run the gradient across. Web and React were compared in a browser: identical box, radius, glyph size and colours for every flavour at rest, hover, pressed and disabled.
+- *code (packages/web-components zds-icon-button, packages/react-baseui IconButton)*: Built 2026-10-18 in both packages: <zds-icon-button> (web components) and IconButton (react-baseui, on Base UI's Button). Both reuse Button's colour, border, shape, focus and disabled rules and add only the square geometry (control/sm|md|lg, space/xxs), with the glyph at Icon small / medium / medium and more-horizontal as the default glyph; label is the required accessible name. They follow the label-colour rule rather than three bindings flagged above (subtle's glyph on foreground/primary; positive and negative disabled glyphs from another family), and text-gradient's glyph is the flat foreground/gradient/start, since a font glyph carries no label to run the gradient across. Web and React were compared in a browser: identical box, radius, glyph size and colours for every flavour at rest, hover, pressed and disabled.
 
 9. *api*: Disabled is a two-option VARIANT axis and State is documentation-only; in code disabled is a boolean and hover/pressed/focus are interaction states. Figma returns options in creation order (Size: large, medium, small); the metadata's order is the order to ship.
 10. *api (accessible name)*: There is no label property in Figma; the metadata requires an accessible name in code on every instance, recorded here as the code-only `label`.

@@ -1,8 +1,8 @@
 # Status Label
 
-Reports a read-only state on an item, such as Active, Overdue or Failed. Status sets the fill, the border and the leading element together while the label text holds one colour throughout, and Leading decides whether the status also shows as a dot, an icon or nothing at all. Reach for it where a state is being reported, and for Label where the thing shown is a category rather than a state.
+Reports a read-only state on an item, such as Active or Overdue. Status sets the fill, the border and the leading element together while the label text holds one colour throughout, and Leading decides whether the status also shows as a dot, an icon or nothing. Discardable adds the one control anywhere in the badge family, a dismiss that removes the label rather than selecting it.
 
-Source: [Badges page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6403-297) · component set `6403:297` · extracted 2026-10-15 · 30 variants · default `Status=neutral, Leading=indicator, Shape=rounded`
+Source: [Badges page](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6403-297) · component set `6403:297` · extracted 2026-10-22 · 30 variants · default `Status=neutral, Leading=indicator, Shape=rounded`
 
 > **No blockers, 2 warnings.** See [Issues](#issues).
 
@@ -14,6 +14,7 @@ Source: [Badges page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-
 | `status` | enum | `neutral`, `info`, `positive`, `warning`, `negative` | `neutral` |
 | `leading` | enum | `indicator`, `icon`, `none` | `indicator` |
 | `shape` | enum | `rounded`, `sharp` | `rounded` |
+| `discardable` | boolean |  | `false` |
 
 **label**: The state being reported. Keep it to the state itself and two words at most, because the component hugs its text and a sentence becomes a wide block inside a narrow column.
 
@@ -33,19 +34,24 @@ Source: [Badges page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-
 - `rounded`: Match the contour of the surface the label sits on.
 - `sharp`: The square-cornered pair, for dense surfaces built from square corners such as a table cell.
 
+**discardable**
+- `false`: No discard control, which is where the label starts. It reports a state and offers nothing to act on.
+- `true`: Adds a single control that removes the label. It dismisses rather than selects, so it does not turn the label into a Chip, and it is the only thing in the badge family a person can press.
+
 **Internal variation, `leading (icon)`** (via Icon (nested, exposed)): `info`, `check-circle`, `warning`, `error`. An Icon at Size=small whose glyph is fixed per status. The component chooses it and surfaces none of the Icon's own properties, so it is not a slot a consumer fills. The nested Icon is marked exposed in Figma, so its Name swap is reachable on an instance even though the metadata calls it fixed. Driven by Status; not a prop.
 
 ## Anatomy
 
 | Part | Kind | Details |
 |---|---|---|
-| `surround` | container | The fill and the border, both following Status. Together they carry the status even when the leading element is off. · radius: radius/pill (rounded) · radius/none (sharp) · layout: direction horizontal; gap space/none; padding space/xs · paint: fill per status; stroke {"color": "per status", "width": "stroke/thin", "align": "inside, included in layout"} |
-| `leading` | container | instance | A dot or an icon in the status colour, chosen by Leading and absent when it is none. The component draws it from Status rather than taking one in. · visibleWhen: leading != none · indicator: box control/icon-sm square, padding space/none; dot control/icon-xs ellipse, fill per status · icon: ref Icon; size Icon Size=small; glyph per status; color per status (the glyph's own fill; in code currentColor) |
-| `label` | text | The state being reported, set through Label. It decides the width of the whole component. · content: label · text: style body/small; color foreground/primary · container: padding 0 space/xs; gap space/none |
+| `surround` | container | The fill and the border, both following Status. Together they carry the status even when the leading element is off. · radius: radius/pill (rounded) · radius/none (sharp) · layout: direction horizontal; gap space/none; padding space/2xs space/xxs (vertical, horizontal) · measured 24 tall · paint: fill per status; stroke {"color": "per status", "width": "stroke/thin", "align": "inside, included in layout"} |
+| `leading` | container | instance | A dot or an icon in the status colour, chosen by Leading and absent when it is none. The component draws it from Status rather than taking one in. · visibleWhen: leading != none · indicator: box control/icon-sm square, padding space/none; dot control/icon-xxs ellipse, fill per status · icon: ref Icon; size Icon Size=small; glyph per status; color per status (the glyph's own fill; in code currentColor) |
+| `label` | text | The state being reported, set through Label. It decides the width of the whole component. · content: label · text: style body/small; color foreground/primary · container: padding 0 space/xxs; gap space/none |
+| `discard` | instance | A Close glyph at Size=small, 16 square, sitting after the label. The component draws it from Discardable rather than taking one in, so the glyph is not a slot a consumer fills. · visibleWhen: discardable = true · ref Icon; Size=small; glyph close (rounded); colour currentColor in code · interactive: removes the label |
 
 ## Variants
 
-Cells are token names. Shape changes only the radius; Leading only which leading element is drawn. Neither changes colour.
+Cells are token names, except those ending Px. Shape changes only the radius; Leading only which leading element is drawn; Discardable only adds the close control after the label. None of them change colour.
 
 ### status
 
@@ -61,7 +67,7 @@ Cells are token names. Shape changes only the radius; Leading only which leading
 
 | leading | leading.part | measuredWidthPx | figmaNode |
 |---|---|---|---|
-| indicator | control/icon-sm box with a control/icon-xs dot | 69 | 6403:147 |
+| indicator | control/icon-sm box with a control/icon-xxs dot | 69 | 6403:147 |
 | icon | Icon Size=small | 69 | 6403:157 |
 | none | removed | 53 | 6403:171 |
 
@@ -72,16 +78,23 @@ Cells are token names. Shape changes only the radius; Leading only which leading
 | rounded | radius/pill |  |
 | sharp | radius/none | 6403:152 |
 
+### discardable
+
+| discardable | discard | widthAddedPx |
+|---|---|---|
+| false | hidden | 0 |
+| true | Icon close, Size=small, after the label | 16 |
+
 ## Dependencies
 
-- **Icon** (`2046:15010`, local): Font glyphs, rounded family: info, check-circle, warning, error. All present in codepoints.json; none rejected.
+- **Icon** (`2046:15010`, local): Font glyphs, rounded family: info, check-circle, warning, error (leading) and close (discard). All present in codepoints.json; none rejected.
 
 ## Tokens & theming
 
 Names only; values live in `tokens/`.
 
 - **Color:** `feedback/{neutral,info,success,warning,error}/background/subtle`, `border/{default,info,success,warning,error}`, `foreground/{primary,info,success,warning,error}`
-- **Dimension:** `space/{none,xs}`, `radius/{pill,none}`, `stroke/thin`, `control/{icon-sm,icon-xs}`
+- **Dimension:** `space/{none,2xs,xxs}`, `radius/{pill,none}`, `stroke/thin`, `control/{icon-sm,icon-xxs}`
 - **Typography:** `body/small`
 - **Theme axes:** palette Light, Dark · size Desktop, Mobile, Tablet, Desktop Compact · typography Desktop, Tablet, Mobile, Desktop Compact · extensions tokens/extensions/ (companion, target, condensed)
 
@@ -91,11 +104,11 @@ Every token resolves in the export.
 
 | State | Trigger | What changes |
 |---|---|---|
-| Static | — | The component has no interaction states. Nothing answers hover, focus or press, because it reports a state rather than offering one. |
+| Static | — | The label has no interaction states. Nothing answers hover, focus or press. Where Discardable turns the dismiss on, that control carries its own states rather than the label gaining any. |
 | Status | The Status value | Fill, border and the leading element all move together. The label colour does not, so a status change is carried entirely by the surround. |
 
 - **Motion:** No transition is defined. A status change is a swap of fill, border and the leading element.
-- **Not interactive:** There is nothing to press. Where a reader needs to act on the state, the action belongs on the row around the label rather than on the label itself.
+- **Read only, with one exception:** A badge reports and never responds, which is the line between this family and Chip. Status Label is the one member that can carry a control, and only to dismiss itself. Nothing here selects, filters or toggles.
 
 ## Content & slots
 
@@ -104,6 +117,7 @@ Every token resolves in the export.
 | Label | text property | Consumer owned, set through the Label property. It hugs, so the length of the text decides the width of the whole component. |
 | Leading indicator | drawn, per Status | An 8 dot in the status colour inside a 16 box. The component draws it from Status, so there is nothing to pass in. |
 | Leading icon | nested Icon, per Status | An Icon at Size=small whose glyph is fixed per status. The component chooses it and surfaces none of the Icon's own properties, so it is not a slot a consumer fills. |
+| Discard control | nested Icon, toggled by Discardable | A Close glyph at Size=small, 16 square, sitting after the label. The component draws it from Discardable rather than taking one in, so the glyph is not a slot a consumer fills. |
 
 ## Usage
 
@@ -112,7 +126,7 @@ Every token resolves in the export.
 - Reach for Leading=icon where the status has to survive greyscale. The dot and the fill are colour alone, the glyph differs in shape as well.
 
 **Don't**
-- Don't make it pressable. It reports a state and offers nothing, so any action belongs on the row around it.
+- Don't reach for a status label where a person chooses or filters by the value. That is Chip. The only thing this offers is a dismiss, and only when Discardable is on.
 - Don't reach for neutral to mean normal. It is the absence of a status, and spending it that way leaves no way to say that nothing is known.
 
 ## Accessibility
@@ -121,33 +135,36 @@ Every token resolves in the export.
 - Set Leading to icon where the status has to survive greyscale or low vision. The glyph differs per status in shape, not only in colour.
 - The label text is the accessible name. Where it carries only a colour word or an internal code, the status is unreadable to anyone not already fluent in the convention.
 - neutral and info both carry the Info glyph. Where the two appear in one view, the label is the only thing separating them.
-- Nothing here is focusable and nothing announces itself. Where a status changes while a person is on the page, the surrounding structure has to announce it.
+- The discard control is a real target with no text of its own. It needs a name that says what it removes, and it has to be reachable by keyboard, because it is the only thing here a person can act on.
+- Nothing else here is focusable and nothing announces itself. Where a status changes while a person is on the page, the surrounding structure has to announce it.
 
 ## Layout & theming intents
 
 | Property | Type | Description |
 |---|---|---|
 | Size | Hug width, fixed height | 28 tall at every status. The width hugs the label, running 69 with a leading element and 53 without, so the component is as wide as its text needs. |
-| Padding and gap | Fixed | space/xs on all four sides, with no gap between the leading element and the label. The leading element is a 16 square box carrying an 8 dot or a 16 icon, and that box supplies the separation on its own. |
+| Padding and gap | Fixed | space/xxs on all four sides, with no gap between the leading element and the label. The leading element is a 16 square box carrying an 8 dot or a 16 icon, and that box supplies the separation on its own. |
 | Radius | Per Shape | radius/pill when rounded and radius/none when sharp. Nothing else moves between the two. |
 | Fill | Per Status | neutral draws interactive/neutral/background/default. The other four draw feedback/info, success, warning and error at background/subtle, so all four sit at one tint strength rather than escalating with severity. |
 | Border | Per Status | A 1px stroke tracking the fill, border/default for neutral and border/info, success, warning or error for the rest. It is what keeps four subtle tints apart from each other at a glance. |
 | Label | Theming | body/small at 14px, held at foreground/primary for every status. Only the fill, the border and the leading element move. |
+| Discard control | Fixed | A 16 square after the label when Discardable is on, adding 16 to the width. It takes no gap of its own, because the component runs at space/none and the padding does the separating. |
 
 ## Visual reference
 
-- [Page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3717-5570) · [Component set](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6403-297) · [Metadata](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6413-213)
-- [neutral, indicator](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6403-147) · [negative, icon](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6403-277) · [positive, none, sharp](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6403-234)
+- [Page](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=3717-5570) · [Component set](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6403-297) · [Metadata](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6413-213)
+- [neutral, indicator](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6403-147) · [negative, icon](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6403-277) · [positive, none, sharp](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6403-234)
 
 ## Issues
 
 ### Warn
 
-- *metadata Layout vs structure*: The metadata says 'neutral draws interactive/neutral/background/default'. As built, neutral's fill is feedback/neutral/background/subtle (the new neutral feedback token), alongside border/default and a foreground/primary dot.
-- *code (packages/web-components zds-status-label)*: The experimental element still fills neutral with interactive/neutral/background/default. It should move to feedback/neutral/background/subtle to match Figma.
+- *metadata Layout vs structure (size and padding)*: The metadata says "28 tall" and "space/xxs on all four sides". As built the surround pads space/2xs top and bottom and space/xxs left and right, so it measures 24 tall. Code follows Figma.
+- *metadata Layout vs structure (neutral fill)*: The metadata says "neutral draws interactive/neutral/background/default". As built, neutral's fill is feedback/neutral/background/subtle, alongside border/default and a foreground/primary dot. Code follows Figma.
 
 ### Note
 
-- *structure*: The neutral dot and neutral icon use foreground/primary, not the new feedback/neutral/foreground. The metadata only says 'in the status colour', so either reads as intended; recorded so the choice is explicit.
-- *structure vs metadata Content & Slot*: The nested Icon is marked exposed in Figma, so its glyph swap is reachable on an instance, while the metadata says the glyph is fixed and 'not a slot a consumer fills'. In code the glyph follows status.
-- *metadata*: Positive and negative are the design names; the tokens are success and error. No motion and no interaction states, by the metadata's own statement. The set has no description.
+- *structure (discard control)*: The Close icon has no colour override and no hover, focus or pressed treatment in Figma. In code the glyph takes currentColor (the label's foreground/primary), and the control gets a keyboard focus ring and a hit area larger than the 16 glyph. Neither is designed yet.
+- *structure*: The neutral dot and neutral icon use foreground/primary, not feedback/neutral/foreground. The metadata only says "in the status colour", so either reads as intended; recorded so the choice is explicit.
+- *structure vs metadata Content & Slot*: The nested Icon is marked exposed in Figma, so its glyph swap is reachable on an instance, while the metadata says the glyph is fixed and "not a slot a consumer fills". In code the glyph follows status.
+- *metadata*: Positive and negative are the design names; the tokens are success and error. No motion is defined. The set has no description.

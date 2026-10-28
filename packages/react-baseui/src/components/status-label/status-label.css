@@ -39,18 +39,19 @@
     --zds-status-lead: var(--foreground-error);
   }
 
-  /* ---- surround ------------------------------------------------------ */
+  /* ---- surround: space/2xs top and bottom, space/xs left and right (24 tall;
+     the metadata's "28" and "space/xs on all four sides" are stale) ------ */
   .zds-status-label__root {
     display: inline-flex;
     align-items: center;
     gap: var(--space-none);
-    padding: var(--space-xs);
+    padding: var(--space-2xs) var(--space-xxs);
     border: var(--stroke-thin) solid var(--zds-status-border);
     border-radius: var(--radius-pill);
     background: var(--zds-status-fill);
   }
 
-  /* ---- leading: a control/icon-sm box with a control/icon-xs dot, or an
+  /* ---- leading: a control/icon-sm box with a control/icon-xxs dot, or an
      Icon at Size=small, in the status colour --------------------------- */
   .zds-status-label__lead {
     display: inline-flex;
@@ -62,15 +63,15 @@
     color: var(--zds-status-lead);
   }
   .zds-status-label__dot {
-    inline-size: var(--control-icon-xs);
-    block-size: var(--control-icon-xs);
+    inline-size: var(--control-icon-xxs);
+    block-size: var(--control-icon-xxs);
     border-radius: var(--radius-pill);
     background: currentColor;
   }
 
   /* ---- label: body/small, foreground/primary at every status ----------- */
   .zds-status-label__label {
-    padding-inline: var(--space-xs);
+    padding-inline: var(--space-xxs);
     color: var(--foreground-primary);
     font-family: var(--body-small-font-family), system-ui, sans-serif;
     font-size: var(--body-small-font-size);
@@ -78,6 +79,34 @@
     line-height: var(--body-small-line-height);
     letter-spacing: var(--body-small-letter-spacing);
     white-space: nowrap;
+  }
+
+  /* ---- discard: Icon close, small (16), after the label, currentColor --- */
+  /* Figma has no states for it yet (spec note); the focus ring and the 24px
+     hit area are the minimum a real target needs. */
+  .zds-status-label__discard {
+    position: relative;
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: none;
+    color: var(--foreground-primary);
+    font: inherit;
+    cursor: pointer;
+  }
+  .zds-status-label__discard::before {
+    content: "";
+    position: absolute;
+    inset: calc(var(--space-xxs) * -1);
+  }
+  .zds-status-label__discard:focus-visible {
+    outline: var(--stroke-thick) solid var(--focus-outline);
+    outline-offset: var(--stroke-thin);
   }
 
   /* ---- shape ----------------------------------------------------------- */

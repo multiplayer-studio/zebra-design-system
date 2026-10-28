@@ -360,7 +360,7 @@
       "role": "Menu List — The middle of the rail, holding three built-in items and then the Menu Slot. It absorbs whatever height is left between the header block and the footer.",
       "layout": {
         "direction": "vertical",
-        "gap": "space/xs",
+        "gap": "space/xxs",
         "padding": "space/none"
       },
       "sizing": {
@@ -389,10 +389,10 @@
       "visibleWhen": "moreRailItems",
       "layout": {
         "direction": "vertical",
-        "gap": "space/xs",
+        "gap": "space/xxs",
         "padding": {
-          "left": "space/xs (narrow) / space/none (wide)",
-          "right": "space/xs (narrow) / space/none (wide)",
+          "left": "space/xxs (narrow) / space/none (wide)",
+          "right": "space/xxs (narrow) / space/none (wide)",
           "top": "space/none",
           "bottom": "space/none"
         }
@@ -412,7 +412,7 @@
       "role": "Footer — Pinned to the bottom, holding the Footer Slot and two fixed items. The last of them is the toggle a user presses to change the rail's width.",
       "layout": {
         "direction": "vertical",
-        "gap": "space/xs",
+        "gap": "space/xxs",
         "padding": "space/none"
       },
       "sizing": {
@@ -432,7 +432,7 @@
       "visibleWhen": "moreFooterItems",
       "layout": {
         "direction": "vertical",
-        "gap": "space/xs",
+        "gap": "space/xxs",
         "padding": "space/none"
       },
       "sizing": {
@@ -511,7 +511,7 @@
       "parent": "subMenu",
       "layout": {
         "direction": "vertical",
-        "gap": "space/xs",
+        "gap": "space/xxs",
         "padding": "space/sm"
       },
       "sizing": {
@@ -534,7 +534,7 @@
         "header": "Navigation Header Expanded=false",
         "headerAction": "Icon Button",
         "railItems": "Expanded=false, Show Label=false",
-        "menuSlot.paddingX": "space/xs",
+        "menuSlot.paddingX": "space/xxs",
         "toggleItem": "left-panel-open, 'Open'",
         "figmaNode": "4654:10599"
       },
@@ -547,7 +547,7 @@
         "headerAction": "Icon Button",
         "railItems": "Expanded=false, Show Label=true",
         "menuSlot": "separate slot content (Menu Slot#3497:65)",
-        "menuSlot.paddingX": "space/xs",
+        "menuSlot.paddingX": "space/xxs",
         "toggleItem": "left-panel-open, 'Open'",
         "figmaNode": "3453:54097"
       },
@@ -670,8 +670,8 @@
             "direction": "horizontal",
             "gap": "space/sm",
             "padding": {
-              "left": "space/xs",
-              "right": "space/xs"
+              "left": "space/xxs",
+              "right": "space/xxs"
             }
           },
           "sizing": "hug",
@@ -898,7 +898,7 @@
           "visibleWhen": "showTrailingActions",
           "layout": {
             "direction": "horizontal",
-            "gap": "space/xs"
+            "gap": "space/xxs"
           },
           "sizing": "hug"
         }
@@ -1118,7 +1118,7 @@
           "visibleWhen": "open",
           "layout": {
             "direction": "vertical",
-            "gap": "space/xs",
+            "gap": "space/xxs",
             "padding": "space/sm"
           },
           "sizing": {
@@ -1213,7 +1213,7 @@
     ],
     "dimension": [
       "space/none",
-      "space/xs",
+      "space/xxs",
       "space/sm",
       "space/md",
       "space/lg",
@@ -1386,12 +1386,12 @@
     {
       "property": "Item spacing",
       "type": "Fixed",
-      "description": "4px (space/xs) between items in both the menu list and the footer. The Menu Slot adds 4px (space/xs) of horizontal padding of its own."
+      "description": "4px (space/xxs) between items in both the menu list and the footer. The Menu Slot adds 4px (space/xxs) of horizontal padding of its own."
     },
     {
       "property": "Panel padding",
       "type": "Fixed",
-      "description": "The Sub Menu Slot insets its rows by 8px (space/sm) on all four sides, with a 4px (space/xs) gap between them."
+      "description": "The Sub Menu Slot insets its rows by 8px (space/sm) on all four sides, with a 4px (space/xxs) gap between them."
     },
     {
       "property": "Border",
@@ -1535,7 +1535,7 @@
     {
       "severity": "warn",
       "source": "metadata vs extracted",
-      "detail": "Layout & Theming says the Menu Slot adds space/xs of horizontal padding. That is true in the narrow variants only; in the wide variant its padding is space/none."
+      "detail": "Layout & Theming says the Menu Slot adds space/xxs of horizontal padding. That is true in the narrow variants only; in the wide variant its padding is space/none."
     },
     {
       "severity": "warn",

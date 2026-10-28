@@ -3,15 +3,15 @@
     "primary": {
       "deep": {
         "$type": "color",
-        "$value": "{primitives.color.brand.main.40}",
+        "$value": "{primitives.color.brand.main.80}",
         "$extensions": {
           "com.figma": {
-            "id": "VariableID:72:387",
+            "id": "VariableID:7198:20127",
             "collection": "palette",
             "mode": "Dark",
             "resolvedType": "COLOR",
             "scopes": [],
-            "aliasOf": "VariableID:30:1317"
+            "aliasOf": "VariableID:30:1321"
           }
         }
       },
@@ -62,7 +62,7 @@
       },
       "on": {
         "$type": "color",
-        "$value": "{primitives.color.neutral.cool.10}",
+        "$value": "{primitives.color.pure.white}",
         "$description": "Foreground on top of Brand/Primary (theme.color.brand.onPrimary)",
         "$extensions": {
           "com.figma": {
@@ -71,7 +71,21 @@
             "mode": "Dark",
             "resolvedType": "COLOR",
             "scopes": [],
-            "aliasOf": "VariableID:30:1293"
+            "aliasOf": "VariableID:61:355"
+          }
+        }
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{primitives.color.brand.main.70}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:387",
+            "collection": "palette",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "aliasOf": "VariableID:30:1320"
           }
         }
       },
@@ -93,15 +107,15 @@
     "secondary": {
       "deep": {
         "$type": "color",
-        "$value": "{primitives.color.brand.alternative.40}",
+        "$value": "{primitives.color.brand.alternative.80}",
         "$extensions": {
           "com.figma": {
-            "id": "VariableID:72:3",
+            "id": "VariableID:7198:20128",
             "collection": "palette",
             "mode": "Dark",
             "resolvedType": "COLOR",
             "scopes": [],
-            "aliasOf": "VariableID:38:5"
+            "aliasOf": "VariableID:38:9"
           }
         }
       },
@@ -136,7 +150,7 @@
       },
       "on": {
         "$type": "color",
-        "$value": "{primitives.color.neutral.warm.10}",
+        "$value": "{primitives.color.pure.white}",
         "$description": "Foreground on top of Brand/Secondary (theme.color.brand.onSecondary)",
         "$extensions": {
           "com.figma": {
@@ -145,7 +159,21 @@
             "mode": "Dark",
             "resolvedType": "COLOR",
             "scopes": [],
-            "aliasOf": "VariableID:30:1304"
+            "aliasOf": "VariableID:61:355"
+          }
+        }
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{primitives.color.brand.alternative.70}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:3",
+            "collection": "palette",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "aliasOf": "VariableID:38:8"
           }
         }
       },
@@ -167,16 +195,16 @@
     "tertiary": {
       "deep": {
         "$type": "color",
-        "$value": "{primitives.color.accent.5.40}",
+        "$value": "{primitives.color.accent.5.80}",
         "$description": "Tertiary brand color (theme.color.brand.tertiary)",
         "$extensions": {
           "com.figma": {
-            "id": "VariableID:2456:2614",
+            "id": "VariableID:7198:20129",
             "collection": "palette",
             "mode": "Dark",
             "resolvedType": "COLOR",
             "scopes": [],
-            "aliasOf": "VariableID:38:15"
+            "aliasOf": "VariableID:38:19"
           }
         }
       },
@@ -212,7 +240,7 @@
       },
       "on": {
         "$type": "color",
-        "$value": "{primitives.color.neutral.cool.10}",
+        "$value": "{primitives.color.pure.white}",
         "$description": "Foreground on top of Brand/Primary (theme.color.brand.onPrimary)",
         "$extensions": {
           "com.figma": {
@@ -221,7 +249,22 @@
             "mode": "Dark",
             "resolvedType": "COLOR",
             "scopes": [],
-            "aliasOf": "VariableID:30:1293"
+            "aliasOf": "VariableID:61:355"
+          }
+        }
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.5.70}",
+        "$description": "Tertiary brand color (theme.color.brand.tertiary)",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:2456:2614",
+            "collection": "palette",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "aliasOf": "VariableID:38:18"
           }
         }
       },
@@ -619,40 +662,43 @@
       },
       "elevate": {
         "$type": "color",
-        "$value": "#00000026",
+        "$value": "{primitives.color.alpha.light.10}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2053:15065",
             "collection": "palette",
             "mode": "Dark",
             "resolvedType": "COLOR",
-            "scopes": []
+            "scopes": [],
+            "aliasOf": "VariableID:3147:3914"
           }
         }
       },
       "emphasis": {
         "$type": "color",
-        "$value": "#0000000d",
+        "$value": "{primitives.color.alpha.light.5}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2053:15066",
             "collection": "palette",
             "mode": "Dark",
             "resolvedType": "COLOR",
-            "scopes": []
+            "scopes": [],
+            "aliasOf": "VariableID:3147:3913"
           }
         }
       },
       "obsure": {
         "$type": "color",
-        "$value": "#00000073",
+        "$value": "{primitives.color.alpha.light.30}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2053:15067",
             "collection": "palette",
             "mode": "Dark",
             "resolvedType": "COLOR",
-            "scopes": []
+            "scopes": [],
+            "aliasOf": "VariableID:3147:3916"
           }
         }
       }
@@ -662,7 +708,7 @@
     "default": {
       "end": {
         "$type": "color",
-        "$value": "{primitives.color.extend.4.50}",
+        "$value": "{primitives.color.extend.4.60}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2315:9012",
@@ -670,7 +716,7 @@
             "mode": "Dark",
             "resolvedType": "COLOR",
             "scopes": [],
-            "aliasOf": "VariableID:38:56"
+            "aliasOf": "VariableID:38:57"
           }
         }
       },
@@ -813,7 +859,7 @@
     },
     "high": {
       "$type": "color",
-      "$value": "{primitives.color.neutral.cool.10}",
+      "$value": "{primitives.color.pure.white}",
       "$description": "High-emphasis text/icon color (theme.color.content.high)",
       "$extensions": {
         "com.figma": {
@@ -822,7 +868,7 @@
           "mode": "Dark",
           "resolvedType": "COLOR",
           "scopes": [],
-          "aliasOf": "VariableID:30:1293"
+          "aliasOf": "VariableID:61:355"
         }
       }
     },
@@ -1008,7 +1054,7 @@
     "error": {
       "deep": {
         "$type": "color",
-        "$value": "{primitives.color.system.negative.30}",
+        "$value": "{primitives.color.system.negative.80}",
         "$description": "Error solid/strong emphasis (theme.color.error.strong)",
         "$extensions": {
           "com.figma": {
@@ -1017,7 +1063,7 @@
             "mode": "Dark",
             "resolvedType": "COLOR",
             "scopes": [],
-            "aliasOf": "VariableID:30:1346"
+            "aliasOf": "VariableID:30:1351"
           }
         }
       },
@@ -1051,12 +1097,26 @@
           }
         }
       },
-      "strong": {
+      "hover": {
+        "$type": "color",
+        "$value": "{primitives.color.system.negative.70}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:2061:6765",
+            "collection": "palette",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "aliasOf": "VariableID:30:1350"
+          }
+        }
+      },
+      "pressed": {
         "$type": "color",
         "$value": "{primitives.color.system.negative.40}",
         "$extensions": {
           "com.figma": {
-            "id": "VariableID:72:6",
+            "id": "VariableID:2061:6766",
             "collection": "palette",
             "mode": "Dark",
             "resolvedType": "COLOR",
@@ -1065,9 +1125,23 @@
           }
         }
       },
-      "subtle": {
+      "strong": {
         "$type": "color",
         "$value": "{primitives.color.system.negative.70}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:6",
+            "collection": "palette",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "aliasOf": "VariableID:30:1350"
+          }
+        }
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{primitives.color.system.negative.50}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:72:5",
@@ -1075,7 +1149,7 @@
             "mode": "Dark",
             "resolvedType": "COLOR",
             "scopes": [],
-            "aliasOf": "VariableID:30:1350"
+            "aliasOf": "VariableID:30:1348"
           }
         }
       }
@@ -1158,7 +1232,7 @@
     "info": {
       "deep": {
         "$type": "color",
-        "$value": "{primitives.color.system.info.30}",
+        "$value": "{primitives.color.system.info.80}",
         "$description": "Info solid/strong emphasis (theme.color.info.strong)",
         "$extensions": {
           "com.figma": {
@@ -1167,7 +1241,7 @@
             "mode": "Dark",
             "resolvedType": "COLOR",
             "scopes": [],
-            "aliasOf": "VariableID:30:1366"
+            "aliasOf": "VariableID:30:1371"
           }
         }
       },
@@ -1203,7 +1277,7 @@
       },
       "strong": {
         "$type": "color",
-        "$value": "{primitives.color.system.info.40}",
+        "$value": "{primitives.color.system.info.70}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2057:6746",
@@ -1211,7 +1285,7 @@
             "mode": "Dark",
             "resolvedType": "COLOR",
             "scopes": [],
-            "aliasOf": "VariableID:30:1367"
+            "aliasOf": "VariableID:30:1370"
           }
         }
       },
@@ -1308,7 +1382,7 @@
     "success": {
       "deep": {
         "$type": "color",
-        "$value": "{primitives.color.system.positive.40}",
+        "$value": "{primitives.color.system.positive.80}",
         "$description": "Success solid/strong emphasis (theme.color.success.strong)",
         "$extensions": {
           "com.figma": {
@@ -1317,7 +1391,7 @@
             "mode": "Dark",
             "resolvedType": "COLOR",
             "scopes": [],
-            "aliasOf": "VariableID:30:1337"
+            "aliasOf": "VariableID:30:1341"
           }
         }
       },
@@ -1351,9 +1425,37 @@
           }
         }
       },
-      "strong": {
+      "hover": {
         "$type": "color",
         "$value": "{primitives.color.system.positive.40}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:2061:6762",
+            "collection": "palette",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "aliasOf": "VariableID:30:1337"
+          }
+        }
+      },
+      "pressed": {
+        "$type": "color",
+        "$value": "{primitives.color.system.positive.40}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:2061:6763",
+            "collection": "palette",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "aliasOf": "VariableID:30:1337"
+          }
+        }
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{primitives.color.system.positive.70}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:114:2",
@@ -1361,7 +1463,7 @@
             "mode": "Dark",
             "resolvedType": "COLOR",
             "scopes": [],
-            "aliasOf": "VariableID:30:1337"
+            "aliasOf": "VariableID:30:1340"
           }
         }
       },

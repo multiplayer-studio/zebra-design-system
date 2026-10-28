@@ -8,8 +8,8 @@ const Row = ({ children }: { children: React.ReactNode }) => <div style={{ displ
 
 const meta: Meta<typeof StatusLabel> = {
   title: "Components/Badges/Status Label", component: StatusLabel, tags: ["autodocs"],
-  argTypes: { status: { control: "select", options: STATUSES }, leading: { control: "inline-radio", options: ["indicator", "icon", "none"] }, shape: { control: "inline-radio", options: ["rounded", "sharp"] } },
-  args: { status: "info", leading: "indicator", shape: "rounded", children: "Ongoing" },
+  argTypes: { status: { control: "select", options: STATUSES }, leading: { control: "inline-radio", options: ["indicator", "icon", "none"] }, shape: { control: "inline-radio", options: ["rounded", "sharp"] }, discardable: { control: "boolean" } },
+  args: { status: "info", leading: "indicator", shape: "rounded", discardable: false, children: "Ongoing" },
 };
 export default meta;
 type Story = StoryObj<typeof StatusLabel>;
@@ -20,3 +20,10 @@ export const Status: Story = { render: () => <Row>{STATUSES.map((s) => <StatusLa
 /** A dot, a glyph fixed per status (survives greyscale), or nothing. */
 export const Leading: Story = { render: () => <div style={{ display: "grid", gap: 12 }}>{(["indicator", "icon", "none"] as const).map((l) => <Row key={l}>{STATUSES.map((s) => <StatusLabel key={s} status={s} leading={l}>{t(s)}</StatusLabel>)}</Row>)}</div> };
 export const Shape: Story = { render: () => <div style={{ display: "grid", gap: 12 }}>{(["rounded", "sharp"] as const).map((sh) => <Row key={sh}>{STATUSES.map((s) => <StatusLabel key={s} status={s} shape={sh}>{t(s)}</StatusLabel>)}</Row>)}</div> };
+/** Adds a dismiss after the label, the one control in the badge family. Removing the label is the caller's job. */
+export const Discardable: Story = {
+  render: function Render() {
+    const [shown, setShown] = React.useState<readonly string[]>(STATUSES);
+    return <Row>{STATUSES.filter((s) => shown.includes(s)).map((s) => <StatusLabel key={s} status={s as (typeof STATUSES)[number]} onDiscard={() => setShown((xs) => xs.filter((x) => x !== s))}>{t(s)}</StatusLabel>)}</Row>;
+  },
+};

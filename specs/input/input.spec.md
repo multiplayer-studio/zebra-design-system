@@ -33,7 +33,7 @@ Source: [Input page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-D
 
 | Part | What it is |
 |---|---|
-| `root` | Vertical stack, gap `space/xs`, no padding. Width is tentative (280 in Figma) and not required; the container sets it. Hugs height. |
+| `root` | Vertical stack, gap `space/xxs`, no padding. Width is tentative (280 in Figma) and not required; the container sets it. Hugs height. |
 | `label` | Input Label, shown by `showLabel`. The field's name, turned on by Show Label. It carries the required or optional marker and the information icon. |
 | `field` | The chosen field set, fills the width. The control, chosen by Type. Its own Size, Shape, State and Flavour are set here rather than on the assembly. |
 | `hint` | Input Hint, shown by `showHint`. The supporting line, turned on by Show Hint. Guidance at rest, and the validation message when its Type is error. |
@@ -103,9 +103,9 @@ Both icon glyphs are swappable through the nested Icon's own Name property, not 
 
 | Part | What it is |
 |---|---|
-| `root` | Horizontal, padding `space/sm` (top, bottom) `space/md` (sides), gap `space/xs`. Height by size; width tentative (280 in Figma), set by the container. Fill, stroke and radius per the tables below. |
+| `root` | Horizontal, padding `space/sm` (top, bottom) `space/md` (sides), gap `space/xxs`. Height by size; width tentative (280 in Figma), set by the container. Fill, stroke and radius per the tables below. |
 | `leadingIcon` | Icon, shown by `hasLeading` (text, number, password). Off by default, and an Icon at 20 square when hasLeading turns it on. Colour: `foreground/primary`, `foreground/disabled` when disabled. |
-| `text` | Fills the width, padding `0 space/xs`. The placeholder, and then the value once one is entered. It fills whatever width the icons leave. Holds `placeholder` (`foreground/disabled`), `value` (`foreground/primary`, `foreground/disabled` when disabled) and, at focus/selected/typing, a `cursor` (`|`, `foreground/cursor`). Style `body/medium`, `body/small` at small. |
+| `text` | Fills the width, padding `0 space/xxs`. The placeholder, and then the value once one is entered. It fills whatever width the icons leave. Holds `placeholder` (`foreground/disabled`), `value` (`foreground/primary`, `foreground/disabled` when disabled) and, at focus/selected/typing, a `cursor` (`|`, `foreground/cursor`). Style `body/medium`, `body/small` at small. |
 | `trailingIcon` | Icon, shown by `hasTrailing` (text: `info`; number: `dialpad`, on by default). `foreground/primary`, `foreground/disabled` when disabled. Hidden while typing. |
 | `typeControl` | Icon, always present on password (`visibility`), date (`calendar-3-day`), time (`clock-outline`). `foreground/primary`, `foreground/disabled` when disabled. |
 | `clear` | Icon `cancel`, typing only, `foreground/primary`. On text and number it replaces the trailing icon; on password, date and time it joins the type control in a group: clear · vertical Divider · control, gap `space/sm` (57 Px at large). |
@@ -183,7 +183,7 @@ Text: placeholder at enabled, hover, focus and selected; value at typing, filled
 - Show Information `false`: No information icon, which is what an Input arrives with. `true`: Adds an information icon after the name, for an explanation the label itself has no room for.
 
 Parts:
-- **Layout:** horizontal, gap `space/xs`, measured 20 Px tall.
+- **Layout:** horizontal, gap `space/xxs`, measured 20 Px tall.
 - **Name:** `label/medium`, `foreground/primary` → `foreground/disabled`.
 - **`*`:** `label/medium`, `foreground/error`, also when disabled.
 - **`(optional)`:** `body/small`, `foreground/secondary`, also when disabled.
@@ -200,7 +200,7 @@ Parts:
 - Show Icon `true`: Keeps an icon ahead of the message, which is what makes an error read as an error before the words are read. `false`: Message only.
 
 Parts:
-- **Layout:** horizontal, gap `space/xs`, measured 16 Px tall.
+- **Layout:** horizontal, gap `space/xxs`, measured 16 Px tall.
 - **Icon:** Icon at Size=small, depending on type:
   - default: `info` in `foreground/primary`;
   - error: `error` in `foreground/error`;
@@ -222,7 +222,7 @@ Names only; values live in `tokens/` (see `tokens/manifest.json`).
   - `interactive/ghost/border/{default,disabled}`
   - `border/{focus,error,subtle,default}`, `border/gradient/{start,end}`, `foreground/gradient/{start,end}`
   - `foreground/{primary,secondary,disabled,cursor,error}`
-- **Dimension:** `control/{lg,md,sm,icon-md}`, `space/{none,xs,sm,md}`, `radius/{none,sm,pill}`, `stroke/{base,thin,thick}`
+- **Dimension:** `control/{lg,md,sm,icon-md}`, `space/{none,xxs,sm,md}`, `radius/{none,sm,pill}`, `stroke/{base,thin,thick}`
 - **Typography:** `body/medium`, `body/small`, `body/xsmall`, `label/medium`
 - **Theme axes:** palette Light/Dark · size and typography Desktop/Mobile/Tablet/Desktop Compact · extensions companion, target, condensed
 
@@ -318,9 +318,9 @@ Every token resolves in the export.
 | Property | Type | Description |
 |---|---|---|
 | Size | Fixed width, hug height | 280 wide, with the height hugging whatever is turned on. At the default that is a 20 label, a 40 field and a 16 hint, coming to 84. |
-| Gap | Fixed | space/xs between all three parts. That is the same 4 the field uses internally between its icons and its text, so the stack and its contents share one rhythm. |
-| Label | Hug | 20 tall and hugging its text, with a space/xs gap between the name, any marker and the information icon. |
-| Hint | Hug | 16 tall, body/xsmall at 12px, with a space/xs gap after a 16 square icon. Smaller than the field's own text, which keeps the value the loudest thing in the stack. |
+| Gap | Fixed | space/xxs between all three parts. That is the same 4 the field uses internally between its icons and its text, so the stack and its contents share one rhythm. |
+| Label | Hug | 20 tall and hugging its text, with a space/xxs gap between the name, any marker and the information icon. |
+| Hint | Hug | 16 tall, body/xsmall at 12px, with a space/xxs gap after a 16 square icon. Smaller than the field's own text, which keeps the value the loudest thing in the stack. |
 | Field | Fill | The field fills the width of the stack while the label and the hint hug their own content, so only the field tracks the container. |
 | Colour | Theming | Each part draws its own tokens. The label runs foreground/primary and drops to foreground/disabled, the required marker holds foreground/error either way, and the hint text moves between foreground/secondary, foreground/error and foreground/disabled. |
 
@@ -329,7 +329,7 @@ Every token resolves in the export.
 | Property | Type | Description |
 |---|---|---|
 | Size | Fixed | 280 wide and fixed, so the container sets the width rather than the content. Height is bound per size, control/lg at large for 48, control/md at medium for 40 and control/sm at small for 36. |
-| Padding and gap | Fixed | space/sm top and bottom, space/md left and right, with a space/xs gap between the leading icon, the text and the trailing control. Padding holds across all three sizes, so height alone carries the density. |
+| Padding and gap | Fixed | space/sm top and bottom, space/md left and right, with a space/xxs gap between the leading icon, the text and the trailing control. Padding holds across all three sizes, so height alone carries the density. |
 | Radius | Per Shape | radius/none when sharp, radius/sm when rounded and radius/pill when full. The four corners are bound individually rather than as a single value. |
 | Surface | Per Flavour | interactive/neutral/background/default on default and gradient, moving to interactive/neutral/background/disabled when disabled. Ghost carries no surface of its own, so whatever sits behind it shows through. |
 | Border | Per Flavour | Default draws at 1px and rises to 2px on focus. Gradient keeps those weights and draws its border from the gradient tokens: a foreground/gradient/start to foreground/gradient/end gradient at rest and when filled, border/gradient/end on hover and border/gradient/start when selected or typing. Focus, invalid, read-only and disabled use the same tokens as default. Ghost holds a bound border at zero weight, which is a theming hook rather than an absent border, so a high contrast variable set can give it a hard outline. |

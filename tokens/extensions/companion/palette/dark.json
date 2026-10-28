@@ -1,4 +1,76 @@
 {
+  "ink": {
+    "brand": {
+      "$type": "color",
+      "$value": "{primitives.color.accent.1.40}",
+      "$description": "Hyperlink text color (theme.color.content.link)",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:121:6194",
+          "overrides": "palette.ink.brand",
+          "extension": "companion",
+          "mode": "Dark",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Dark",
+          "aliasOf": "VariableID:30:1377"
+        }
+      }
+    },
+    "link": {
+      "$type": "color",
+      "$value": "{primitives.color.accent.1.50}",
+      "$description": "Hyperlink text color (theme.color.content.link)",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:63:21",
+          "overrides": "palette.ink.link",
+          "extension": "companion",
+          "mode": "Dark",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Dark",
+          "aliasOf": "VariableID:30:1378"
+        }
+      }
+    }
+  },
+  "line": {
+    "focus": {
+      "$type": "color",
+      "$value": "{primitives.color.accent.1.60}",
+      "$description": "Selected item border/outline (theme.color.selection.border)",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2535:3742",
+          "overrides": "palette.line.focus",
+          "extension": "companion",
+          "mode": "Dark",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Dark",
+          "aliasOf": "VariableID:30:1379"
+        }
+      }
+    },
+    "selection": {
+      "$type": "color",
+      "$value": "{primitives.color.accent.1.50}",
+      "$description": "Selected item border/outline (theme.color.selection.border)",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:63:32",
+          "overrides": "palette.line.selection",
+          "extension": "companion",
+          "mode": "Dark",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Dark",
+          "aliasOf": "VariableID:30:1378"
+        }
+      }
+    }
+  },
   "brand": {
     "primary": {
       "default": {
@@ -52,6 +124,22 @@
           }
         }
       },
+      "deep": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.80}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:7198:20127",
+            "overrides": "palette.brand.primary.deep",
+            "extension": "companion",
+            "mode": "Dark",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Dark",
+            "aliasOf": "VariableID:30:1381"
+          }
+        }
+      },
       "subtle": {
         "$type": "color",
         "$value": "{primitives.color.accent.1.50}",
@@ -68,20 +156,39 @@
           }
         }
       },
-      "deep": {
+      "strong": {
         "$type": "color",
-        "$value": "{primitives.color.accent.1.40}",
+        "$value": "{primitives.color.accent.1.70}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:72:387",
-            "overrides": "palette.brand.primary.deep",
+            "overrides": "palette.brand.primary.strong",
             "extension": "companion",
             "mode": "Dark",
             "resolvedType": "COLOR",
             "scopes": [],
             "parentMode": "Dark",
-            "aliasOf": "VariableID:30:1377"
+            "aliasOf": "VariableID:30:1380"
           }
+        }
+      }
+    }
+  },
+  "fill": {
+    "selection": {
+      "$type": "color",
+      "$value": "{primitives.color.accent.1.90}",
+      "$description": "Selected item/text background (theme.color.selection.background)",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:63:31",
+          "overrides": "palette.fill.selection",
+          "extension": "companion",
+          "mode": "Dark",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Dark",
+          "aliasOf": "VariableID:30:1382"
         }
       }
     }

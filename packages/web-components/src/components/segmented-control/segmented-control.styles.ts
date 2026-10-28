@@ -15,9 +15,9 @@ export default css`
   display: inline-flex;
   flex: none;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-xxs);
   box-sizing: border-box;
-  padding: var(--space-xs);
+  padding: var(--space-xxs);
   vertical-align: middle;
   border-radius: var(--radius-sm);
   background: var(--interactive-neutral-background-pressed);
@@ -55,7 +55,7 @@ export default css`
   flex: none;
   align-items: center;
   justify-content: center;
-  gap: var(--space-xs);
+  gap: var(--space-xxs);
   box-sizing: border-box;
   min-height: var(--control-sm);
   /* spec issue "Padding misstated": the metadata says space/md on both sides
@@ -63,7 +63,7 @@ export default css`
      space/lg at the end, and the measured 80px width only adds up with the
      bound values. The bound tokens are kept — the smaller start padding
      optically balances the glyph's side bearing against the label's end. */
-  padding: var(--space-xs) var(--space-lg) var(--space-xs) var(--space-md);
+  padding: var(--space-xxs) var(--space-lg) var(--space-xxs) var(--space-md);
   border-radius: var(--radius-sm);
   background: var(--zds-seg-bg);
   color: var(--zds-seg-fg);

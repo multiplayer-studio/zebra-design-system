@@ -31,7 +31,7 @@ export default css`
        lays out this button, not how the host itself is sized externally. */
     flex: 1 1 auto;
     height: var(--control-sm);
-    padding: var(--space-xs) var(--space-md);
+    padding: var(--space-xxs) var(--space-md);
     border-style: solid;
     border-width: var(--stroke-base);
     border-radius: var(--radius-none);
@@ -59,7 +59,7 @@ export default css`
   .label {
     display: inline-flex;
     align-items: center;
-    padding-inline: var(--space-xs);
+    padding-inline: var(--space-xxs);
   }
 
   ::slotted(*),
@@ -70,7 +70,7 @@ export default css`
   /* ---- size ---------------------------------------------------------- */
   :host([size="medium"]) button {
     height: var(--control-md);
-    padding: var(--space-xs) var(--space-md);
+    padding: var(--space-xxs) var(--space-md);
     font-size: var(--label-large-font-size);
     line-height: var(--label-large-line-height);
     letter-spacing: var(--label-large-letter-spacing);
@@ -78,7 +78,7 @@ export default css`
   }
   :host([size="large"]) button {
     height: var(--control-lg);
-    padding: var(--space-xs) var(--space-lg);
+    padding: var(--space-xxs) var(--space-lg);
     font-size: var(--label-large-font-size);
     line-height: var(--label-large-line-height);
     letter-spacing: var(--label-large-letter-spacing);

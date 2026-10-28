@@ -61,7 +61,7 @@ Props: `columnPosition` (default | frozen), `horizontalScroll` (false | true), `
 |---|---|---|
 | default | false | 2 fixed columns + slotContainer (gap `space/none`, clips) |
 | frozen | false | frozenSlotContainer (end stroke `border/default` @ `stroke/thin`) + scrollable columns |
-| frozen | true | as above + `Shadow/medium-horizontal` on the frozen side + horizontal Scrollbar pinned to the bottom (padding `space/xs`) |
+| frozen | true | as above + `Shadow/medium-horizontal` on the frozen side + horizontal Scrollbar pinned to the bottom (padding `space/xxs`) |
 
 default × true isn't modelled.
 
@@ -98,7 +98,7 @@ Props: `state` (enabled | hover | selected | disabled), `content` (slot, default
 | disabled | none (content not dimmed — see issues) |
 
 ### _Label
-Props: `state` (enabled | disabled), `sort` (unbound), `hasTrailing`. Text `label/medium` `foreground/primary` (disabled `foreground/disabled`) with `_Sort` after it (gap `space/xs`); trailing glyph `filter`, rounded family, Icon Size=small, colour follows the text.
+Props: `state` (enabled | disabled), `sort` (unbound), `hasTrailing`. Text `label/medium` `foreground/primary` (disabled `foreground/disabled`) with `_Sort` after it (gap `space/xxs`); trailing glyph `filter`, rounded family, Icon Size=small, colour follows the text.
 
 ### _Sort
 Props: `state` (default | hover | disabled), `direction` (default | ascending | descending). A drawn 16Px vector with two carets, each its own colour token: inactive `foreground/tertiary` (hover `foreground/secondary`, disabled `foreground/disabled`); active direction `foreground/cursor`.
@@ -114,7 +114,7 @@ Prop: `slot`. A centring wrapper (gap `space/sm`, 36Px tall measured) offered as
 ## Tokens & theming
 
 - **Colour:** `surface/section`; `interactive/neutral/background/{default, hover, focused, selected, disabled}`, `interactive/neutral/border/default`, `interactive/ghost/background/default`; `border/{default, subtle, focus}`; `foreground/{primary, secondary, tertiary, disabled, cursor}`; `shadow/soft`.
-- **Dimension:** `space/{none, xs, sm, md, lg}`, `stroke/{base, thin, thick}`, `radius/{none, element-md}`, `control/sm`, `shadow/medium/{x, y, blur}`, `shadow/small/{x, y, blur}`.
+- **Dimension:** `space/{none, xxs, sm, md, lg}`, `stroke/{base, thin, thick}`, `radius/{none, element-md}`, `control/sm`, `shadow/medium/{x, y, blur}`, `shadow/small/{x, y, blur}`.
 - **Typography:** `body/small`, `body/xsmall`, `label/medium`.
 - **Effect style:** `Shadow/medium-horizontal`. **Glyph:** `filter`.
 - **Theme axes:** palette (Light, Dark); size (Desktop, Mobile, Tablet, Desktop Compact); typography (Desktop, Tablet, Mobile, Desktop Compact).

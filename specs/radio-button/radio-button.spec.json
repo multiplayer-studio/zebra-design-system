@@ -223,7 +223,7 @@
           "size": "large",
           "ring.measuredSizePx": 24,
           "dot.measuredSizePx": 12,
-          "ring.padding": "space/xs",
+          "ring.padding": "space/xxs",
           "ringSizeTokenMatch": "control/xs (unbound)"
         }
       ],
@@ -322,7 +322,7 @@
     ],
     "dimension": [
       "control/{target-min,icon-sm}",
-      "space/{none,2xs,xs}",
+      "space/{none,2xs,xxs}",
       "radius/{none,pill}",
       "stroke/thick"
     ],

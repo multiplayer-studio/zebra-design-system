@@ -4,21 +4,24 @@
 */
 
 :root {
-  --palette-brand-primary-deep: var(--primitives-color-brand-main-70);
+  --palette-brand-primary-deep: var(--primitives-color-brand-main-80);
   --palette-brand-primary-default: var(--primitives-color-brand-main-60);
   --palette-brand-primary-faint: var(--primitives-color-brand-main-10);
   --palette-brand-primary-muted: var(--primitives-color-brand-main-20);
-  --palette-brand-primary-on: var(--primitives-color-neutral-cool-10);
+  --palette-brand-primary-on: var(--primitives-color-pure-white);
+  --palette-brand-primary-strong: var(--primitives-color-brand-main-70);
   --palette-brand-primary-subtle: var(--primitives-color-brand-main-50);
-  --palette-brand-secondary-deep: var(--primitives-color-brand-alternative-70);
+  --palette-brand-secondary-deep: var(--primitives-color-brand-alternative-80);
   --palette-brand-secondary-default: var(--primitives-color-brand-alternative-60);
   --palette-brand-secondary-faint: var(--primitives-color-brand-alternative-10);
-  --palette-brand-secondary-on: var(--primitives-color-neutral-warm-10);
+  --palette-brand-secondary-on: var(--primitives-color-pure-white);
+  --palette-brand-secondary-strong: var(--primitives-color-brand-alternative-70);
   --palette-brand-secondary-subtle: var(--primitives-color-brand-alternative-50);
-  --palette-brand-tertiary-deep: var(--primitives-color-accent-5-70);
+  --palette-brand-tertiary-deep: var(--primitives-color-accent-5-80);
   --palette-brand-tertiary-default: var(--primitives-color-accent-5-60);
   --palette-brand-tertiary-faint: var(--primitives-color-accent-5-10);
-  --palette-brand-tertiary-on: var(--primitives-color-neutral-cool-10);
+  --palette-brand-tertiary-on: var(--primitives-color-pure-white);
+  --palette-brand-tertiary-strong: var(--primitives-color-accent-5-70);
   --palette-brand-tertiary-subtle: var(--primitives-color-accent-5-50);
   --palette-data-1: var(--primitives-color-brand-main-60);
   --palette-data-10: var(--primitives-color-extend-2-60);
@@ -60,7 +63,7 @@
   --palette-ink-brand: var(--primitives-color-brand-main-70);
   --palette-ink-disabled: var(--primitives-color-neutral-cool-50);
   --palette-ink-high: var(--primitives-color-neutral-cool-100);
-  --palette-ink-inverse: var(--primitives-color-neutral-cool-10);
+  --palette-ink-inverse: var(--primitives-color-pure-white);
   --palette-ink-link: var(--primitives-color-brand-main-60);
   --palette-ink-low: var(--primitives-color-neutral-cool-60);
   --palette-ink-medium: var(--primitives-color-neutral-cool-70);
@@ -75,6 +78,8 @@
   --palette-status-error-deep: var(--primitives-color-system-negative-80);
   --palette-status-error-default: var(--primitives-color-system-negative-60);
   --palette-status-error-faint: var(--primitives-color-system-negative-10);
+  --palette-status-error-hover: var(--primitives-color-system-negative-50);
+  --palette-status-error-pressed: var(--primitives-color-system-negative-70);
   --palette-status-error-strong: var(--primitives-color-system-negative-70);
   --palette-status-error-subtle: var(--primitives-color-system-negative-50);
   --palette-status-ghost-deep: var(--primitives-color-alpha-dark-10);
@@ -95,6 +100,8 @@
   --palette-status-success-deep: var(--primitives-color-system-positive-80);
   --palette-status-success-default: var(--primitives-color-system-positive-60);
   --palette-status-success-faint: var(--primitives-color-system-positive-10);
+  --palette-status-success-hover: var(--primitives-color-system-positive-70);
+  --palette-status-success-pressed: var(--primitives-color-system-positive-80);
   --palette-status-success-strong: var(--primitives-color-system-positive-70);
   --palette-status-success-subtle: var(--primitives-color-system-positive-50);
   --palette-status-warning-deep: var(--primitives-color-system-warning-80);

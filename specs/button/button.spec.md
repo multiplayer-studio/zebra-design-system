@@ -73,11 +73,11 @@ There are no sample-content sets on this page.
 Numbering follows the metadata frame's anatomy diagram.
 
 1. **Container** (`root`, auto-layout frame) — *"The button's own horizontal auto-layout frame. Carries the background, the border and the radius, and holds the height fixed for the chosen Size."*
-   Horizontal, `gap: space/none`, padding `space/xs` top/bottom and `space/md` left/right at small, both axes centred. Width **hugs**, height **fixed** to `control/sm`. Clips content. Radius and paint come from `shape` and `flavour` below.
+   Horizontal, `gap: space/none`, padding `space/xxs` top/bottom and `space/md` left/right at small, both axes centred. Width **hugs**, height **fixed** to `control/sm`. Clips content. Radius and paint come from `shape` and `flavour` below.
 2. **Leading Icon** (`leadingIcon`, instance of Icon) — *"An Icon instance before the label, hidden until Leading Icon is turned on. Button sets its size and leaves the instance exposed."*
    Hidden by default; `visibleWhen: leadingIcon`. Sized by `control/icon-sm` at small (see the size table). Icon binds its glyph to `foreground/primary`; since 2026-10-18 Button overrides that fill in every flavour and in disabled, so the icon follows the label — see Issues for what could not be read.
 3. **Label wrapper** (`label`, frame) + **Label text** (`label/text`) — *"A wrapper frame around the text. Its own horizontal padding is what separates the text from the icons, the row itself has no gap."*
-   Wrapper: horizontal, `gap: space/none`, padding-x `space/xs` at small. Text: style `label/medium` (family, weight, size, line height and letter spacing all token-bound), auto-resizes both axes, **no truncation, no wrapping**, fill from `flavour` below.
+   Wrapper: horizontal, `gap: space/none`, padding-x `space/xxs` at small. Text: style `label/medium` (family, weight, size, line height and letter spacing all token-bound), auto-resizes both axes, **no truncation, no wrapping**, fill from `flavour` below.
 4. **Trailing Icon** (`trailingIcon`, instance of Icon) — *"An Icon instance after the label, hidden until Trailing Icon is turned on."*
    Same mechanics as the leading slot, after the label.
 
@@ -87,9 +87,9 @@ Numbering follows the metadata frame's anatomy diagram.
 
 | size | height | padding-x | padding-y | label wrapper padding-x | type | icon | measured width @ "Button" |
 |---|---|---|---|---|---|---|---|
-| small | `control/sm` | `space/md` | `space/xs` | `space/xs` | `label/medium` | Icon `small` | 76 |
-| medium | `control/md` | `space/md` | `space/xs` | `space/sm` | `label/large` | Icon `medium` | 90 |
-| large | `control/lg` | `space/lg` | `space/xs` | `space/sm` | `label/large` | Icon `medium` | 98 |
+| small | `control/sm` | `space/md` | `space/xxs` | `space/xxs` | `label/medium` | Icon `small` | 76 |
+| medium | `control/md` | `space/md` | `space/xxs` | `space/sm` | `label/large` | Icon `medium` | 90 |
+| large | `control/lg` | `space/lg` | `space/xxs` | `space/sm` | `label/large` | Icon `medium` | 98 |
 
 The last column is a measurement of the rendered default label, not an authored value — every other cell is a token name. Resolve them in [tokens/](../../tokens/).
 
@@ -173,7 +173,7 @@ Its glyph vector binds `foreground/primary`. Button uses only `small` and `mediu
 
 **Colour** — the five `interactive/*` families (`primary`, `positive`, `destructive`, `neutral`, `ghost`), each with `background`, `border` and `foreground` sub-groups across `default` / `hover` / `pressed` / `focused` / `disabled`; plus `interactive/secondary/border/disabled`, `border/focus`, `surface/gradient/{start,end}`, `foreground/gradient/{start,end}` and `foreground/primary` (the icon glyph).
 
-**Dimension** — `control/{sm,md,lg}`, `space/{none,xs,sm,md,lg}`, `radius/{none,element-sm,pill}`, `stroke/{base,thin,thick}`.
+**Dimension** — `control/{sm,md,lg}`, `space/{none,xxs,sm,md,lg}`, `radius/{none,element-sm,pill}`, `stroke/{base,thin,thick}`.
 
 **Typography** — `label/medium/*` and `label/large/*` (text styles `label/medium`, `label/large`).
 
@@ -242,8 +242,8 @@ Its glyph vector binds `foreground/primary`. Button uses only `small` and `mediu
 | Width | Hug | Always hugs the label and any visible icons, never fixed. Small grows by 16px for each icon shown, medium and large by 20px. |
 | Height | Fixed per Size | 36px at small (control/sm), 40px at medium (control/md), 48px at large (control/lg). Not resizable independently of Size. |
 | Horizontal padding | Fixed per Size | 12px (space/md) at small and medium, 16px (space/lg) at large. |
-| Vertical padding | Fixed | 4px (space/xs) at every size. The fixed height does the real work. |
-| Gap | None on the row | Item spacing is space/none. The visible separation between an icon and the label comes from the Label wrapper's own horizontal padding, 4px (space/xs) at small and 8px (space/sm) at medium and large. |
+| Vertical padding | Fixed | 4px (space/xxs) at every size. The fixed height does the real work. |
+| Gap | None on the row | Item spacing is space/none. The visible separation between an icon and the label comes from the Label wrapper's own horizontal padding, 4px (space/xxs) at small and 8px (space/sm) at medium and large. |
 | Radius | Fixed per Shape | 0 (radius/none) for sharp, 4px (radius/element-sm) for rounded, 9999 (radius/pill) for full. All three are token-bound, so match the container rather than overriding on the instance. |
 | Border | Fixed per Flavour | 1px drawn inside on outline and outline-subtle, none on the other seven at rest. Focus replaces it with a 2px ring drawn outside the bounds. |
 | Icon size | Fixed per Size | 16px at small, 20px at medium and large. Large reuses Icon's medium step, so Icon's own large (28px) never appears inside a Button. |

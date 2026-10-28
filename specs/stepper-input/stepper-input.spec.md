@@ -67,7 +67,7 @@ The glyph colour comes from Icon Button's own flavour styling (currentColor with
 ## Subcomponents
 
 ### _Hint text (private)
-Horizontal, gap `space/xs`, hugs (16Px high). It holds an Icon (Size=small, rounded family) and a `body/xsmall` message.
+Horizontal, gap `space/xxs`, hugs (16Px high). It holds an Icon (Size=small, rounded family) and a `body/xsmall` message.
 
 | message | glyph | text colour |
 |---|---|---|
@@ -85,7 +85,7 @@ The icon colour is unbound. It is a near-duplicate of Input Hint ([specs/input](
 ## Tokens & theming
 
 - **Colour:** `interactive/ghost/background/default`, `interactive/neutral/background/{default, disabled}`, `interactive/neutral/border/{default, disabled}`, `interactive/primary/background/disabled`, `interactive/primary/border/disabled`, `foreground/{primary, disabled, secondary, error}`.
-- **Dimension:** `control/{md, lg}`, `space/{none, xs, sm, md}`, `radius/{none, sm, element-sm}`, `stroke/{thin, base}`.
+- **Dimension:** `control/{md, lg}`, `space/{none, xxs, sm, md}`, `radius/{none, sm, element-sm}`, `stroke/{thin, base}`.
 - **Typography:** `body/medium` (value), `body/xsmall` (hint). **Glyphs:** `remove`, `add`, `info`, `error`.
 - **Theme axes:** palette (Light, Dark). Size and typography each have Desktop, Mobile, Tablet and Desktop Compact.
 

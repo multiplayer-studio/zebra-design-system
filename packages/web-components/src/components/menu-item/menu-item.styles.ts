@@ -26,7 +26,7 @@ export default css`
     width: 100%;
     height: var(--control-md);
     gap: var(--space-sm);
-    padding: var(--space-xs) var(--space-md);
+    padding: var(--space-xxs) var(--space-md);
     border-radius: var(--radius-none);
     border: var(--stroke-thin) solid transparent;
 
@@ -46,7 +46,7 @@ export default css`
     display: flex;
     align-items: center;
     min-width: 0;
-    padding-left: var(--space-xs);
+    padding-left: var(--space-xxs);
     padding-right: var(--space-xl);
 
     /* type: fixed per every variant */

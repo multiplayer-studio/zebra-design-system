@@ -14,7 +14,7 @@ const defaultRows = html`
 `;
 
 const meta: Meta = {
-  title: "Components/Dropdown",
+  title: "Components/Dropdown/Dropdown",
   component: "zds-dropdown",
   tags: ["autodocs"],
   argTypes: {

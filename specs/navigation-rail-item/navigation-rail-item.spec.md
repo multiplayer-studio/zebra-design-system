@@ -55,7 +55,7 @@ Values anywhere in this document are token names. The only literals are inside v
 ## Anatomy
 
 1. **Item** (root): "The outer frame. Vertical and hugging in the narrow form, horizontal and fixed-width in the wide one, with a minimum on both axes so the target never shrinks below it." Min width and height are `control/lg`, and the radius is `radius/sm`.
-   - Narrow: vertical and centred, gap `space/none`, padding `space/sm` top/bottom and `space/xs` left/right. Hugs (48×48Px).
+   - Narrow: vertical and centred, gap `space/none`, padding `space/sm` top/bottom and `space/xxs` left/right. Hugs (48×48Px).
    - Wide: horizontal, gap `space/lg`, padding `space/sm` top/bottom and `space/lg` left/right. Fixed width (176×48Px), and fills inside the wide rail.
 2. **Icon box** (visible when `showIcon`): "The box holding the glyph, and the anchor the badge is positioned against. It does not clip, which is what lets the badge overhang its corner." Hugs (16×16Px). It holds:
    - **icon**: glyph `star`, rounded family. The nested Icon's Size=small sets its size. Its colour is currentColor, following the label.
@@ -86,7 +86,7 @@ Colours are the same in both forms. Expanded only changes the layout (see anatom
 ## Tokens & theming
 
 - **Colour:** `interactive/ghost/background/{default, hover, pressed}`, `interactive/neutral/foreground/default`, `interactive/subtle/foreground/{default, disabled}`.
-- **Dimension:** `control/lg`, `space/{none, xs, sm, lg}`, `radius/sm`.
+- **Dimension:** `control/lg`, `space/{none, xxs, sm, lg}`, `radius/sm`.
 - **Typography:** `indicator/small` (narrow), `label/medium` (wide).
 - **Glyph:** `star`.
 - **Theme axes:** palette (Light, Dark); size and typography (Desktop, Mobile, Tablet, Desktop Compact).
@@ -141,7 +141,7 @@ All 14 names resolve in `tokens/`, and `star` is in the font. The badge's own to
 |---|---|---|
 | Width | Hug in the narrow form, fixed in the wide one | "48px collapsed, growing only if a caption is wider. 176px expanded, fixed regardless of label length." |
 | Height | Hug with a floor | "48px in both forms, held up by a control/lg minimum on both axes so the target never drops below it." |
-| Padding | Fixed per form | "8px (space/sm) top and bottom in both. 4px (space/xs) left and right collapsed, 16px (space/lg) expanded." |
+| Padding | Fixed per form | "8px (space/sm) top and bottom in both. 4px (space/xxs) left and right collapsed, 16px (space/lg) expanded." |
 | Gap | Fixed per form | "None collapsed, where the caption sits directly under the glyph. 16px (space/lg) expanded, between glyph and label." |
 | Radius | Fixed | "radius/sm on every variant." |
 | Icon | Fixed | "A 16px Icon at Size=small with Framed off, in a 16px box that does not clip its content." |

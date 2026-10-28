@@ -121,7 +121,7 @@ export const PlainHtml: Story = {
   render: () => html`
     <style>
       .demo-btn {
-        height: var(--control-sm); padding: var(--space-xs) var(--space-md);
+        height: var(--control-sm); padding: var(--space-xxs) var(--space-md);
         border: var(--stroke-base) solid var(--interactive-primary-border-default);
         border-radius: var(--radius-element-sm);
         background: var(--interactive-primary-background-default);

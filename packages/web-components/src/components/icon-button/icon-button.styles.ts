@@ -17,15 +17,15 @@ export default [
     /* ---- size: a fixed square, never hugging its content ------------- */
     button {
       width: var(--control-sm);
-      padding: var(--space-xs);
+      padding: var(--space-xxs);
     }
     :host([size="medium"]) button {
       width: var(--control-md);
-      padding: var(--space-xs);
+      padding: var(--space-xxs);
     }
     :host([size="large"]) button {
       width: var(--control-lg);
-      padding: var(--space-xs);
+      padding: var(--space-xxs);
     }
   `,
 ];

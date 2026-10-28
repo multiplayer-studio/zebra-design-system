@@ -1,7 +1,8 @@
 import * as React from "react";
-import { Toggle } from "@base-ui/react/toggle";
-import { Icon, type IconName } from "../icon/Icon.js";
+import type { IconName } from "../icon/Icon.js";
 import { IconButton } from "../icon-button/IconButton.js";
+import { AssistChip, type AssistChipColor } from "../assist-chip/AssistChip.js";
+import { ProgressCircle } from "../progress-circle/ProgressCircle.js";
 import "../button/button.css";
 import "./message-input.css";
 
@@ -60,6 +61,8 @@ export interface MessageInputProps {
   extraActions?: MessageInputAction[];
   /** Longest voice message, in seconds. */
   maxRecordingSeconds?: number;
+  /** Assist Chip colour per attachment. Defaults to PDF red, spreadsheets green, documents blue, video orange, everything else neutral. */
+  attachmentColor?: (attachment: MessageAttachment) => AssistChipColor;
   /**
    * Turns a dictation recording into text. Without it, dictation uses the
    * browser's speech recognition where there is one; with neither, the
@@ -123,6 +126,15 @@ const getRecognition = (): (new () => SpeechRecognitionLike) | null => {
 const kindOf = (f: File): MessageAttachmentKind =>
   f.type.startsWith("image/") ? "image" : f.type.startsWith("video/") ? "video" : f.type.startsWith("audio/") ? "audio" : "document";
 const KIND_ICON: Record<MessageAttachmentKind, IconName> = { document: "document", image: "camera", video: "video", audio: "audio" };
+/** Colour marks the kind of file (Assist Chip spec "Colour overrides"): PDF red, spreadsheets green, documents blue, video orange (as the Figma attachment state). */
+export const defaultAttachmentColor = (a: MessageAttachment): AssistChipColor => {
+  const ext = a.file.name.split(".").pop()?.toLowerCase() ?? "";
+  if (ext === "pdf") return "red";
+  if (["xls", "xlsx", "csv", "numbers", "ods"].includes(ext)) return "green";
+  if (["doc", "docx", "txt", "rtf", "pages", "odt", "md"].includes(ext)) return "blue";
+  if (a.kind === "video") return "orange";
+  return "neutral";
+};
 const clock = (ms: number) => { const s = Math.max(0, Math.floor(ms / 1000)); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`; };
 let uid = 0;
 const newId = () => `att-${Date.now().toString(36)}-${uid++}`;
@@ -303,8 +315,8 @@ const resample = (peaks: number[], n: number) =>
  * or playback is live, with a hint line under it. Speaking replaces the
  * whole composer with an orb that reacts to the speech and one stop button.
  *
- * Behaviour: buttons are IconButton (Base UI Button); the read-aloud control
- * is Base UI's Toggle. Recording uses MediaRecorder and an AnalyserNode for
+ * Behaviour: buttons are IconButton (Base UI Button), the read-aloud control
+ * an IconButton with aria-pressed, and chips are AssistChip. Recording uses MediaRecorder and an AnalyserNode for
  * the live waveform; dictation uses the `transcribe` prop or the browser's
  * speech recognition. Enter sends, Shift+Enter adds a line. Everything
  * visual comes from the token layer via `message-input.css`.
@@ -315,7 +327,7 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
   {
     onSend, placeholder = "Message", value: valueProp, defaultValue = "", onValueChange,
     defaultAttachments = [], defaultVoiceNote = null, defaultDictated = false, defaultTrayOpen = false,
-    accept, extraActions = [], maxRecordingSeconds = 120, transcribe, lang,
+    accept, extraActions = [], maxRecordingSeconds = 120, attachmentColor = defaultAttachmentColor, transcribe, lang,
     speakResponse: speakProp, defaultSpeakResponse, onSpeakResponseChange, speaking = false, onStopSpeaking,
     speakingSource = null, speakingLevel, speakingText, speakingCharIndex,
     preview, disabled = false, "aria-label": ariaLabel = "Message", className,
@@ -548,7 +560,7 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
   } else if (mode === "transcribing") {
     hint = "Usually takes a second or two.";
     bar = <>
-      <span className="zds-message-input__spinner" aria-hidden="true" />
+      <ProgressCircle className="zds-message-input__spinner" value={null} size="xxsmall" label="Transcribing" />
       <span className="zds-message-input__bar-label">Transcribing…</span>
       <IconButton flavour="text" shape="full" icon="close" label="Cancel transcription" onClick={cancelVoice} />
     </>;
@@ -606,7 +618,7 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
           ) : null}
           {/* Announced once, whole; the word-by-word caption is visual only. */}
           <span className="zds-message-input__sr-only" role="status">{speakingText ? `Speaking: ${speakingText}` : "Speaking the reply"}</span>
-          <IconButton className="zds-message-input__stop-speaking" flavour="subtle" shape="full" size="medium" icon="stop"
+          <IconButton className="zds-message-input__stop-speaking" flavour="subtle" shape="full" icon="stop"
             label="Stop speaking" onClick={onStopSpeaking} />
         </div>
       </div>
@@ -621,22 +633,14 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
         <ul className="zds-message-input__chips" aria-label="Attached">
           {dictated ? (
             <li className="zds-message-input__chip" data-kind="dictated">
-              <Icon name="microphone" size="small" iconStyle="rounded" />
-              <span className="zds-message-input__chip-label">Dictated</span>
-              <button type="button" className="zds-message-input__chip-remove" aria-label="Undo dictation"
-                onClick={() => { setText(dictated.before); setDictated(null); }}>
-                <Icon name="close" size="small" iconStyle="rounded" />
-              </button>
+              <AssistChip icon="microphone" color="blue" discardLabel="Undo dictation"
+                onDiscard={() => { setText(dictated.before); setDictated(null); }}>Dictated</AssistChip>
             </li>
           ) : null}
           {attachments.map((a) => (
             <li key={a.id} className="zds-message-input__chip" data-kind={a.kind}>
-              <Icon name={KIND_ICON[a.kind]} size="small" iconStyle="rounded" />
-              <span className="zds-message-input__chip-label">{a.file.name}</span>
-              <button type="button" className="zds-message-input__chip-remove" aria-label={`Remove ${a.file.name}`}
-                onClick={() => setAttachments((list) => list.filter((x) => x.id !== a.id))}>
-                <Icon name="close" size="small" iconStyle="rounded" />
-              </button>
+              <AssistChip icon={KIND_ICON[a.kind]} color={attachmentColor(a)}
+                onDiscard={() => setAttachments((list) => list.filter((x) => x.id !== a.id))}>{a.file.name}</AssistChip>
             </li>
           ))}
         </ul>
@@ -675,19 +679,18 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
         </div>
         <div className="zds-message-input__actions">
           {showSpeakToggle ? (
-            <Toggle className="zds-button zds-icon-button zds-message-input__speak" data-flavour="text" data-size="small" data-shape="full"
-              aria-label="Read replies aloud" pressed={speakOn} onPressedChange={setSpeak} disabled={disabled}>
-              <Icon className="zds-button__icon" name={speakOn ? "volume-up" : "volume-off"} size="small" iconStyle="rounded" />
-            </Toggle>
+            <IconButton className="zds-message-input__speak" flavour="text" shape="full"
+              icon={speakOn ? "volume-up" : "volume-off"} label="Read replies aloud"
+              aria-pressed={speakOn} data-pressed={speakOn || undefined} disabled={disabled} onClick={() => setSpeak(!speakOn)} />
           ) : null}
           {mode === "listening" || mode === "recording" ? (
-            <IconButton flavour="primary" shape="full" size="medium" icon="stop"
+            <IconButton flavour="primary" shape="full" icon="stop"
               label={mode === "listening" ? "Stop and transcribe" : "Stop recording"}
               onClick={() => void (mode === "listening" ? finishDictation() : finishVoiceNote())} />
           ) : canDictate && mode !== "playback" ? (
             <IconButton flavour="text" shape="full" icon="microphone" label="Dictate" disabled={disabled || busy || speaking} onClick={() => void startDictation()} />
           ) : null}
-          <IconButton className="zds-message-input__send" flavour="primary" shape="full" size="medium" icon="send" label="Send"
+          <IconButton className="zds-message-input__send" flavour="primary" shape="full" icon="send" label="Send"
             disabled={!canSend} onClick={send} />
         </div>
       </div>

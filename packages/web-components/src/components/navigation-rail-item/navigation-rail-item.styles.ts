@@ -42,7 +42,7 @@ export default css`
     align-items: center;
     justify-content: center;
     gap: var(--space-none);
-    padding: var(--space-sm) var(--space-xs);
+    padding: var(--space-sm) var(--space-xxs);
     min-width: var(--control-lg);
     min-height: var(--control-lg);
     max-width: 100%;
@@ -85,8 +85,8 @@ export default css`
     /* Figma's 12,-4 against the 16px box: overhang the top-right corner by
        space/xs on both axes. Absolute, so it never reflows the item. */
     position: absolute;
-    top: calc(-1 * var(--space-xs));
-    inset-inline-start: calc(100% - var(--space-xs));
+    top: calc(-1 * var(--space-xxs));
+    inset-inline-start: calc(100% - var(--space-xxs));
   }
 
   /* ---- label ------------------------------------------------------------ */

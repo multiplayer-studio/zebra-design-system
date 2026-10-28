@@ -1,4 +1,76 @@
 {
+  "ink": {
+    "brand": {
+      "$type": "color",
+      "$value": "{primitives.color.accent.1.70}",
+      "$description": "Hyperlink text color (theme.color.content.link)",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:121:6194",
+          "overrides": "palette.ink.brand",
+          "extension": "companion",
+          "mode": "Light",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Light",
+          "aliasOf": "VariableID:30:1380"
+        }
+      }
+    },
+    "link": {
+      "$type": "color",
+      "$value": "{primitives.color.accent.1.60}",
+      "$description": "Hyperlink text color (theme.color.content.link)",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:63:21",
+          "overrides": "palette.ink.link",
+          "extension": "companion",
+          "mode": "Light",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Light",
+          "aliasOf": "VariableID:30:1379"
+        }
+      }
+    }
+  },
+  "line": {
+    "focus": {
+      "$type": "color",
+      "$value": "{primitives.color.accent.1.50}",
+      "$description": "Selected item border/outline (theme.color.selection.border)",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2535:3742",
+          "overrides": "palette.line.focus",
+          "extension": "companion",
+          "mode": "Light",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Light",
+          "aliasOf": "VariableID:30:1378"
+        }
+      }
+    },
+    "selection": {
+      "$type": "color",
+      "$value": "{primitives.color.accent.1.60}",
+      "$description": "Selected item border/outline (theme.color.selection.border)",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:63:32",
+          "overrides": "palette.line.selection",
+          "extension": "companion",
+          "mode": "Light",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Light",
+          "aliasOf": "VariableID:30:1379"
+        }
+      }
+    }
+  },
   "brand": {
     "primary": {
       "default": {
@@ -52,20 +124,19 @@
           }
         }
       },
-      "on": {
+      "deep": {
         "$type": "color",
-        "$value": "{primitives.color.neutral.cool.10}",
-        "$description": "Foreground on top of Brand/Primary (theme.color.brand.onPrimary)",
+        "$value": "{primitives.color.accent.1.80}",
         "$extensions": {
           "com.figma": {
-            "id": "VariableID:63:7",
-            "overrides": "palette.brand.primary.on",
+            "id": "VariableID:7198:20127",
+            "overrides": "palette.brand.primary.deep",
             "extension": "companion",
             "mode": "Light",
             "resolvedType": "COLOR",
             "scopes": [],
             "parentMode": "Light",
-            "aliasOf": "VariableID:30:1293"
+            "aliasOf": "VariableID:30:1381"
           }
         }
       },
@@ -85,13 +156,13 @@
           }
         }
       },
-      "deep": {
+      "strong": {
         "$type": "color",
         "$value": "{primitives.color.accent.1.70}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:72:387",
-            "overrides": "palette.brand.primary.deep",
+            "overrides": "palette.brand.primary.strong",
             "extension": "companion",
             "mode": "Light",
             "resolvedType": "COLOR",
@@ -99,6 +170,25 @@
             "parentMode": "Light",
             "aliasOf": "VariableID:30:1380"
           }
+        }
+      }
+    }
+  },
+  "fill": {
+    "selection": {
+      "$type": "color",
+      "$value": "{primitives.color.accent.1.20}",
+      "$description": "Selected item/text background (theme.color.selection.background)",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:63:31",
+          "overrides": "palette.fill.selection",
+          "extension": "companion",
+          "mode": "Light",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Light",
+          "aliasOf": "VariableID:30:1375"
         }
       }
     }

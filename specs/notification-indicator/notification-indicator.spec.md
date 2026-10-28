@@ -2,7 +2,7 @@
 
 Marks that something is waiting on whatever it is pinned to, optionally with a count. Size decides whether that count is shown at all, with small reducing to a plain dot that says only that something is new. It carries one fixed colour, so it reports how many and never what kind.
 
-Source: [Badges page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3719-6256) · component set `3719:6256` · extracted 2026-10-15 · 3 variants · default `Size=large`
+Source: [Badges page](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=3719-6256) · component set `3719:6256` · extracted 2026-10-22 (re-verified, unchanged) · 3 variants · default `Size=large`
 
 > **No blockers, 3 warnings.** See [Issues](#issues).
 
@@ -38,14 +38,14 @@ Cells are token names, except those ending Px, which are measurements of the ren
 |---|---|---|---|---|---|
 | small | unbound | 8 x 8 | 0 (unbound) | removed | 3719:6259 |
 | medium | unbound | 16 x 16 | space/none | shown, single digit | 3719:6257 |
-| large | min width control/icon-lg, hugs the value | 28 x 20 | 3 (raw) top and bottom, space/xs left and right | shown | 3719:6260 |
+| large | min width control/icon-lg, hugs the value | 28 x 20 | 3 (raw) top and bottom, space/xxs left and right | shown | 3719:6260 |
 
 ## Tokens & theming
 
 Names only; values live in `tokens/`.
 
 - **Color:** `interactive/destructive/background/default`, `border/inverse`, `foreground/on-strong`
-- **Dimension:** `space/{none,xs}`, `radius/pill`, `stroke/base`, `control/icon-lg`
+- **Dimension:** `space/{none,xxs}`, `radius/pill`, `stroke/base`, `control/icon-lg`
 - **Typography:** `indicator/medium`
 - **Theme axes:** palette Light, Dark · size Desktop, Mobile, Tablet, Desktop Compact · typography Desktop, Tablet, Mobile, Desktop Compact · extensions tokens/extensions/ (companion, target, condensed)
 
@@ -89,7 +89,7 @@ Every token resolves in the export.
 | Property | Type | Description |
 |---|---|---|
 | Size | Fixed per Size | 28 by 20 at large, a 16 square at medium and an 8 dot at small. |
-| Padding | Per Size | space/xs left and right at large with 3 above and below. medium and small carry none, because their content is centred inside a fixed square. |
+| Padding | Per Size | space/xxs left and right at large with 3 above and below. medium and small carry none, because their content is centred inside a fixed square. |
 | Radius | Fixed | radius/pill at all three sizes, so every form is fully round whether or not it holds a number. |
 | Fill | Fixed | interactive/destructive/background/default at every size. One colour throughout, which does not vary with the count. |
 | Border | Theming | A stroke bound to border/inverse sits on all three sizes at zero weight. The weight is a theming hook rather than an omission, so a high contrast set can give the indicator a hard outline where it overlaps whatever it is pinned to. |
@@ -97,8 +97,8 @@ Every token resolves in the export.
 
 ## Visual reference
 
-- [Page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3717-5570) · [Component set](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3719-6256) · [Metadata](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6413-741)
-- [large](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3719-6260) · [medium](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3719-6257) · [small](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3719-6259)
+- [Page](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=3717-5570) · [Component set](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=3719-6256) · [Metadata](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6413-741)
+- [large](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=3719-6260) · [medium](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=3719-6257) · [small](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=3719-6259)
 
 ## Issues
 

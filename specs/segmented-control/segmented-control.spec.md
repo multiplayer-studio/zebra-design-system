@@ -23,9 +23,9 @@ Values anywhere in this document are token names. The only literals are inside v
 
 ## Anatomy
 
-1. **Track** (root): horizontal, gap `space/xs`, padding `space/xs`, centred; hugs both axes (289×44Px measured with three segments). Fill `interactive/neutral/background/pressed`, no border, no shadow; radius `radius/sm` (rounded) or `radius/none` (sharp). "The outer frame. A horizontal auto-layout hugging its segments, carrying the background and the corner radius."
+1. **Track** (root): horizontal, gap `space/xxs`, padding `space/xxs`, centred; hugs both axes (289×44Px measured with three segments). Fill `interactive/neutral/background/pressed`, no border, no shadow; radius `radius/sm` (rounded) or `radius/none` (sharp). "The outer frame. A horizontal auto-layout hugging its segments, carrying the background and the corner radius."
 2. **Fixed segments**: two `_Segmented item` instances (Item 1 active, Item 2 default, flavour default). "The first two segments, placed directly in the variant rather than in the slot."
-3. **More items Slot**: horizontal, gap `space/xs`, no padding, hugs; holds one `_Segmented item` (Item 3) as shipped. "The trailing region holding any further segments. It sits last in the row and hugs its content."
+3. **More items Slot**: horizontal, gap `space/xxs`, no padding, hugs; holds one `_Segmented item` (Item 3) as shipped. "The trailing region holding any further segments. It sits last in the row and hugs its content."
 
 **Active indicator (intent only, not drawn).** The Motion row says the active background "is not tied to the segmented item but bound to the control, so it moves easily across items". On the canvas it is the active segment's own fill, `interactive/neutral/background/focused`, with the segment's radius. Build it as one control-level element that slides to the chosen segment.
 
@@ -60,7 +60,7 @@ Nothing else changes between the two. Segments added to the slot are not reached
 
 ### Anatomy
 
-1. **Segment** (root): horizontal, centred both ways; block padding `space/xs`; hugs, min-height `control/sm`; radius `radius/sm` / `radius/none` by `rounded`. "The component frame. A horizontal auto-layout hugging its content, and the surface that carries the fill on the chosen state."
+1. **Segment** (root): horizontal, centred both ways; block padding `space/xxs`; hugs, min-height `control/sm`; radius `radius/sm` / `radius/none` by `rounded`. "The component frame. A horizontal auto-layout hugging its content, and the surface that carries the fill on the chosen state."
 2. **Icon**: glyph `star`, rounded family, Icon Size=small (16Px measured); colour is currentColor, following the label. Visible on default and icon only. "The leading glyph, present on the default and icon only flavours."
 3. **Label**: text style `label/medium`, content from `label`. Visible on default and text only. "The option's name, present on the default and text only flavours."
 
@@ -68,7 +68,7 @@ Nothing else changes between the two. Segments added to the slot are not reached
 
 | flavour | parts | padding start | padding end | gap | measured width |
 |---|---|---|---|---|---|
-| default | icon + label | `space/md` | `space/lg` | `space/xs` | 80Px |
+| default | icon + label | `space/md` | `space/lg` | `space/xxs` | 80Px |
 | text only | label | `space/lg` | `space/lg` | `space/sm` (no effect, one child) | 64Px |
 | icon only | icon | `space/lg` | `space/lg` | `space/sm` (no effect, one child) | 48Px |
 
@@ -120,8 +120,8 @@ Nothing else changes between the two. Segments added to the slot are not reached
 | Property | Type | Description |
 |---|---|---|
 | Size | Hug width, fixed height | "36 tall in all eighteen variants. Width follows the content, 80 at the default flavour, 64 at text only and 48 at icon only with the shipped label." |
-| Padding | Per Flavour | "space/xs top and bottom throughout. Horizontally space/md on the default flavour and space/lg on both text only and icon only, so dropping a part widens the padding rather than narrowing the segment." |
-| Gap | Per Flavour | "space/xs on the default flavour. Text only and icon only declare space/sm, which separates nothing because each has a single child." |
+| Padding | Per Flavour | "space/xxs top and bottom throughout. Horizontally space/md on the default flavour and space/lg on both text only and icon only, so dropping a part widens the padding rather than narrowing the segment." |
+| Gap | Per Flavour | "space/xxs on the default flavour. Text only and icon only declare space/sm, which separates nothing because each has a single child." |
 | Radius | Per Rounded | "radius/sm when true and radius/none when false." |
 | Fill | Per State | "Only active carries one, interactive/neutral/background/focused. default and hover have no fill at all." |
 | Label | Theming | "label/medium, IBM Plex Sans Medium 14 over a 20px line. foreground/secondary at default, foreground/primary on both hover and active." |
@@ -134,7 +134,7 @@ Nothing else changes between the two. Segments added to the slot are not reached
 ## Tokens & theming
 
 - **Colour:** `interactive/neutral/background/{pressed, focused}`, `foreground/{primary, secondary}`.
-- **Dimension:** `space/{xs, sm, md, lg}`, `radius/{sm, none}`, `control/sm`.
+- **Dimension:** `space/{xxs, sm, md, lg}`, `radius/{sm, none}`, `control/sm`.
 - **Typography:** `label/medium` (bound to `label/medium/{font size, font family, font weight, line height, letter spacing}`). **Glyphs:** `star`.
 - **Theme axes:** palette (Light, Dark); size and typography (Desktop, Mobile, Tablet, Desktop Compact). Extensions (companion, target) are listed in `tokens/manifest.json`.
 
@@ -184,7 +184,7 @@ No motion token exists in `tokens/`, so the duration and easing above have nothi
 | Property | Type | Description |
 |---|---|---|
 | Size | Hug both axes | "289 by 44 as shipped with three segments. Width follows the segments, so it grows with their labels." |
-| Padding and gap | Fixed | "space/xs on all four sides of the track, with a space/xs gap between segments." |
+| Padding and gap | Fixed | "space/xxs on all four sides of the track, with a space/xxs gap between segments." |
 | Radius | Per Rounded | "radius/sm when true and radius/none when false, on the track and on every segment it places." |
 | Fill | Theming | "interactive/neutral/background/pressed on the track. No border and no shadow." |
 | Segments | Hug | "Each segment hugs its own content, so the track is the sum of the labels rather than an equal-width grid. Segments are not the same width as each other." |

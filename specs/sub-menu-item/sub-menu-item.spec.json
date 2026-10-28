@@ -156,8 +156,8 @@
         "direction": "horizontal",
         "gap": "space/sm",
         "padding": {
-          "top": "space/xs",
-          "bottom": "space/xs",
+          "top": "space/xxs",
+          "bottom": "space/xxs",
           "left": "space/md (nested: space/xl)",
           "right": "space/md"
         },
@@ -368,7 +368,7 @@
     "dimension": [
       "control/lg",
       "space/none",
-      "space/xs",
+      "space/xxs",
       "space/sm",
       "space/md",
       "space/xl",
@@ -518,7 +518,7 @@
     {
       "property": "Padding",
       "type": "Fixed per Nested",
-      "description": "4px (space/xs) top and bottom throughout. 12px (space/md) left and right unnested, with the left edge stepping to 24px when nested."
+      "description": "4px (space/xxs) top and bottom throughout. 12px (space/md) left and right unnested, with the left edge stepping to 24px when nested."
     },
     {
       "property": "Gap",

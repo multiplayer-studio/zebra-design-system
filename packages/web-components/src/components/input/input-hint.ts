@@ -17,7 +17,7 @@ export const inputHintStyles = css`
   .hint {
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
     font-family: var(--body-xsmall-font-family), system-ui, sans-serif;
     font-size: var(--body-xsmall-font-size);
     font-weight: var(--body-xsmall-font-weight);

@@ -24,6 +24,9 @@ export default css`
     width: var(--zds-icon-box);
     height: var(--zds-icon-box);
   }
+  :host([size="xsmall"]) {
+    --zds-icon-box: var(--control-icon-xs);
+  }
   :host([size="medium"]) {
     --zds-icon-box: var(--control-icon-md);
   }

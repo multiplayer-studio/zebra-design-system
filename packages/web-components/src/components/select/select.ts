@@ -63,7 +63,7 @@ let uid = 0;
  *
  * The list is a manual popover in the top layer, clear of any `overflow:
  * hidden` ancestor and still inside the theme cascade (it stays in this
- * shadow tree). It is as wide as the field, sits `--space-xs` below it and
+ * shadow tree). It is as wide as the field, sits `--space-xxs` below it and
  * flips above only when there is no room below (spec issue 13).
  *
  * Form-associated: submits `value` under `name`; a required label makes an
@@ -371,9 +371,9 @@ export class ZdsSelect extends LitElement {
     const list = this.listEl;
     if (!field || !list) return;
     const a = field.getBoundingClientRect();
-    // The 4 Px under the field is --space-xs, read at the list's place in the
+    // The 4 Px under the field is --space-xxs, read at the list's place in the
     // cascade so a theme scope that changes the token moves it.
-    const px = parseFloat(getComputedStyle(list).getPropertyValue("--space-xs"));
+    const px = parseFloat(getComputedStyle(list).getPropertyValue("--space-xxs"));
     const gap = Number.isFinite(px) ? px : 4;
     const vh = document.documentElement.clientHeight;
     const pad = COLLISION_PADDING;

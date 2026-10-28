@@ -3,7 +3,7 @@
     "smooth": {
       "$type": "string",
       "$value": "250ms ease-in-out",
-      "$description": "Smooth motion for opening and closing: ease-in-out over 250ms. Used by every element in Navigation Rail (collapse/expand, sub menu and group open/close). Duration and easing together: transition: width var(--animations-smooth). Turn it off under prefers-reduced-motion.",
+      "$description": "Smooth motion for opening and closing: ease-in-out over 250ms. Used by every element in Navigation Rail (collapse/expand, sub menu open/close). Duration and curve in one value; use directly in a CSS transition.",
       "$extensions": {
         "com.figma": {
           "id": "VariableID:6811:2",
@@ -12,7 +12,7 @@
           "resolvedType": "STRING",
           "scopes": [],
           "codeSyntax": {
-            "WEB": "var(--animations-spring)"
+            "WEB": "var(--animations-smooth)"
           }
         }
       }
@@ -107,6 +107,23 @@
       }
     },
     "icon-xs": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.6}",
+      "$description": "= 20px, source: scale/7",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:7211:20273",
+          "collection": "size",
+          "mode": "Mobile",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "aliasOf": "VariableID:2004:6"
+        }
+      }
+    },
+    "icon-xxs": {
       "$type": "dimension",
       "$value": "{primitives.scale.5}",
       "$description": "= 20px, source: scale/7",
@@ -895,6 +912,23 @@
       }
     },
     "xs": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.4}",
+      "$description": "= 4px, source: scale/2",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:7074:754",
+          "collection": "size",
+          "mode": "Mobile",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "aliasOf": "VariableID:2004:4"
+        }
+      }
+    },
+    "xxs": {
       "$type": "dimension",
       "$value": "{primitives.scale.3}",
       "$description": "= 4px, source: scale/2",

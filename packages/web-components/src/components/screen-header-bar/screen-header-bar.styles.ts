@@ -18,7 +18,7 @@ export default css`
     width: 100%;
     /* Spec issue (padding & gap): the bound tokens, not the metadata's
        space/sm + space/lg + space/sm gap. Height hugs: 64 around control/md. */
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
     padding: var(--space-md) var(--space-md) var(--space-md) var(--space-sm);
     /* Figma binds interactive/ghost/background/default at paint opacity 0, so
        the bar is transparent and sits on whatever surface the screen provides. */
@@ -61,7 +61,7 @@ export default css`
     flex: none;
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
   }
 
   .action[hidden] {

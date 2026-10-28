@@ -48,7 +48,7 @@
 .zds-notification-indicator[data-size="large"] {
   min-width: var(--control-icon-lg);
   height: 20px; /* no token in Figma for this dimension — spec issue */
-  padding: 3px var(--space-xs); /* top/bottom 3px has no token in Figma — spec issue */
+  padding: 3px var(--space-xxs); /* top/bottom 3px has no token in Figma — spec issue */
   border-radius: 10px; /* no token in Figma for this radius — spec issue */
 }
 .zds-notification-indicator[data-size="large"] .zds-notification-indicator__label {

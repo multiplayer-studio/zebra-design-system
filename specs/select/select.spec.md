@@ -43,7 +43,7 @@ Values anywhere in this document are token names. The only literals are inside v
 
 ### Anatomy
 
-Root: vertical, gap `space/xs`, no padding, start-aligned. It is fixed width and hugs its height (280 × 84 Px measured at the default).
+Root: vertical, gap `space/xxs`, no padding, start-aligned. It is fixed width and hugs its height (280 × 84 Px measured at the default).
 
 1. **Label** — Input Label, `Type=default, Disabled=false, Show Information=false`; hugs; visible when `showLabel`. "The field's name, turned on by Show Label. Carries the required/optional marker and the information icon."
 2. **Field** — Input / Select; fills the width, with height set by its Size. "The control. Size, Shape, State and Flavour are all set on this nested component, not on the assembly. Trailing chevron always present."
@@ -111,9 +111,9 @@ Metadata: "The select control on its own, without a label or hint around it. One
 
 | Part | What it is |
 |---|---|
-| `root` | Horizontal, centred on the cross axis. Padding `space/sm` top and bottom, `space/md` at the sides; gap `space/xs`. Height by size; width 280 Px in Figma and set by the container. Fill, stroke and radius follow the tables below. |
+| `root` | Horizontal, centred on the cross axis. Padding `space/sm` top and bottom, `space/md` at the sides; gap `space/xxs`. Height by size; width 280 Px in Figma and set by the container. Fill, stroke and radius follow the tables below. |
 | 1 `leadingIcon` | Icon, shown by `hasLeading`; glyph `email` (rounded family) by default, swappable. "Off by default, and an Icon at Size=medium when hasLeading turns it on." Follows the text colour. |
-| 2 `displayText` | Fills the width, padding `0 space/xs`, clips. "The placeholder, and then the value once one is entered. It fills whatever width the icons leave." The `placeholder` is `foreground/disabled`; the `value` is `foreground/primary`, or `foreground/disabled` when disabled. Style `body/medium`, `body/small` at small. |
+| 2 `displayText` | Fills the width, padding `0 space/xxs`, clips. "The placeholder, and then the value once one is entered. It fills whatever width the icons leave." The `placeholder` is `foreground/disabled`; the `value` is `foreground/primary`, or `foreground/disabled` when disabled. Style `body/medium`, `body/small` at small. |
 | 3 `chevron` | Icon, always present. `expand-more`, or `expand-less` at open; rounded family. Colour `foreground/primary`, `foreground/disabled` when disabled; in code it inherits the text colour. "Always present, pointing down in all states except open, where it points up." |
 
 No clear control and no cursor: a select is never typed into.
@@ -183,7 +183,7 @@ Names only; values live in `tokens/` (see `tokens/manifest.json`).
   - `border/{focus,error,subtle}`, `border/gradient/{start,end}`, `foreground/gradient/{start,end}`
   - `foreground/{primary,disabled,secondary}`
   - menu: `surface/menu`, `shadow/soft`, `interactive/ghost/background/{default,hover}`, `interactive/neutral/foreground/default`
-- **Dimension:** `control/{sm,md,lg}`, `space/{none,2xs,xs,sm,md,card}`, `radius/{none,sm,pill,element-md}`, `stroke/{base,thin,thick}`, `shadow/{medium,small}/{blur,x,y}`
+- **Dimension:** `control/{sm,md,lg}`, `space/{none,2xs,xxs,sm,md,card}`, `radius/{none,sm,pill,element-md}`, `stroke/{base,thin,thick}`, `shadow/{medium,small}/{blur,x,y}`
 - **Typography:** `body/medium`, `body/small`. **Effect style:** Shadow/medium.
 - **Glyphs:** `expand-more`, `expand-less`, `email`, `info`.
 - **Theme axes:** palette Light/Dark · size and typography Desktop/Mobile/Tablet/Desktop Compact · extensions companion, target, condensed.
@@ -291,8 +291,8 @@ All 46 names resolve in `tokens/base/`. No gaps and no binding drift on either s
 | Property | Type | Description |
 |---|---|---|
 | Assembly size | Fill width × hug height | Assembly height is derived from the nested input/field Size variant plus visible label and hint content, plus the 4px gaps between them. The field fills the assembly width; the label and hint hug their content. The total stack height is relational and depends on which parts are visible. |
-| Gap | space/xs = 4 | 4px between all three parts. The same gap the field uses internally between its icons and its text, so the stack and its content share one rhythm. |
-| Label | Hug width and height | Hugs its text. A space/xs gap between name, any marker and the information icon. |
+| Gap | space/xxs = 4 | 4px between all three parts. The same gap the field uses internally between its icons and its text, so the stack and its content share one rhythm. |
+| Label | Hug width and height | Hugs its text. A space/xxs gap between name, any marker and the information icon. |
 | Field | Fill width | Fills the assembly width. Height is determined by its Size property. Label and hint hug their content; only the field tracks the container width. |
 | Hint | Hug width and height | Hugs its content. 4px gap between optional icon and message text. Smaller than the field text so the selected value is the loudest element in the stack. |
 | Dropdown Menu | Overlaid / out of normal flow | The dropdown is absolutely positioned and overlaid. Its top edge is 4px below the field's bottom edge. It does not affect assembly height; the assembly height remains determined by the visible label, field, hint, and gaps. Height is determined by the number of visible menu items. |
@@ -303,7 +303,7 @@ All 46 names resolve in `tokens/base/`. No gaps and no binding drift on either s
 | Property | Type | Description |
 |---|---|---|
 | Size | Fixed | 280 wide and fixed, so the container sets the width rather than the content. Height is bound per size, control/lg at large for 48, control/md at medium for 40 and control/sm at small for 36. |
-| Padding and gap | Fixed | space/sm top and bottom, space/md left and right, with a space/xs gap between the leading icon, the text and the trailing control. Padding holds across all three sizes, so height alone carries the density. |
+| Padding and gap | Fixed | space/sm top and bottom, space/md left and right, with a space/xxs gap between the leading icon, the text and the trailing control. Padding holds across all three sizes, so height alone carries the density. |
 | Radius | Per Shape | radius/none when sharp, radius/sm when rounded and radius/pill when full. The four corners are bound individually rather than as a single value. |
 | Surface | Per Flavour | interactive/neutral/background/default on default and gradient, moving to interactive/neutral/background/disabled when disabled. Ghost carries no surface of its own, so whatever sits behind it shows through. |
 | Border | Per Flavour | Default draws at 1px and rises to 2px on focus. Gradient keeps those weights and draws its border from the gradient tokens: a foreground/gradient/start to foreground/gradient/end gradient at rest and when filled, border/gradient/end on hover and border/gradient/start when selected or typing. Focus, invalid, read-only and disabled use the same tokens as default. Ghost holds a bound border at zero weight, which is a theming hook rather than an absent border, so a high contrast variable set can give it a hard outline. |
@@ -348,7 +348,7 @@ All 46 names resolve in `tokens/base/`. No gaps and no binding drift on either s
 
 11. **The state name for an open list differs.** Figma's Input / Select has `State=open` and no selected or typing state. The code sets Input Field's `data-state="selected"` while open. The tokens are the same, but the name is not, and the `InputFieldState` type the code borrows also carries focus, selected and typing.
 12. **Chevron:** Figma swaps the glyph, `expand-more` closed and `expand-less` open. The code always draws `expand-more` and rotates it 180 degrees on `[data-popup-open]`. Size and colour match: Icon medium (small at small), with currentColor taking `foreground/primary` and `foreground/disabled`.
-13. **List positioning is different in four ways.** Figma has the menu as a child of the assembly, absolutely positioned 4 Px under the field. In code it is portalled to `document.body`, using Base UI's Positioner with `sideOffset` set to `--space-xs` (the same 4 Px).
+13. **List positioning is different in four ways.** Figma has the menu as a child of the assembly, absolutely positioned 4 Px under the field. In code it is portalled to `document.body`, using Base UI's Positioner with `sideOffset` set to `--space-xxs` (the same 4 Px).
     - **Width:** in Figma it equals the field's. In code it is `min-inline-size: var(--anchor-width)`, so it can be wider.
     - **Height:** Figma has no cap. In code it is capped at `--available-height` and scrolls.
     - **Direction:** Figma always opens below. Code can flip above on collision.
@@ -376,7 +376,7 @@ All 46 names resolve in `tokens/base/`. No gaps and no binding drift on either s
   - Both cards' change logs still show "Haashir · Aug 10, 26 · Created" and a Created date of Aug 10, 2026. These look carried over from a template.
 - **Menu:**
   - Its width is a fixed 280 Px set by hand, not bound to the field (an absolute child cannot fill).
-  - The 4 Px offset is a position, not a token. Its value equals `space/xs`.
+  - The 4 Px offset is a position, not a token. Its value equals `space/xxs`.
 - **Assembly sizing:** the metadata says "Fill width". The variants are fixed 280 wide and hug their height, because a Figma root cannot fill.
 - **Placeholder text:** Input / Select's own text is "Placeholder"; Select overrides it to "Select an option".
 - **Label default:** Select places Input Label with Show Information off, where the label set's own default is on.

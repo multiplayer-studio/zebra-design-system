@@ -557,7 +557,7 @@
             "align": "center",
             "gap": {
               "plain": "space/sm",
-              "selectable": "space/xs"
+              "selectable": "space/xxs"
             },
             "padding": {
               "plain": "space/lg",
@@ -621,7 +621,7 @@
           "kind": "container",
           "layout": {
             "direction": "horizontal",
-            "gap": "space/xs"
+            "gap": "space/xxs"
           },
           "sizing": "hug"
         },
@@ -731,7 +731,7 @@
     "dimension": [
       "space/none",
       "space/2xs",
-      "space/xs",
+      "space/xxs",
       "space/sm",
       "space/lg",
       "radius/lg",
@@ -990,7 +990,7 @@
       {
         "property": "Gap",
         "type": "Per Selectable",
-        "description": "space/sm between the title and the caret without Selectable, space/xs between the control, the title and the mark with it."
+        "description": "space/sm between the title and the caret without Selectable, space/xxs between the control, the title and the mark with it."
       },
       {
         "property": "Background",

@@ -120,7 +120,7 @@
         "message": { "type": "enum", "figmaName": "Message", "values": ["hint", "error"], "default": "hint" }
       },
       "anatomy": [
-        { "id": "root", "kind": "container", "layout": { "direction": "horizontal", "gap": "space/xs", "padding": "space/none", "align": "center" }, "sizing": "hug", "measured": { "heightPx": 16 } },
+        { "id": "root", "kind": "container", "layout": { "direction": "horizontal", "gap": "space/xxs", "padding": "space/none", "align": "center" }, "sizing": "hug", "measured": { "heightPx": 16 } },
         { "id": "icon", "kind": "instance", "ref": "Icon", "size": "Icon Size=small", "family": "rounded",
           "glyph": { "hint": "info", "error": "error" }, "color": "unbound in Figma; currentColor in code (see issues)" },
         { "id": "message", "kind": "text", "text": { "style": "body/xsmall", "color": { "hint": "foreground/secondary", "error": "foreground/error" } },
@@ -162,7 +162,7 @@
     ],
     "dimension": [
       "control/md", "control/lg",
-      "space/none", "space/xs", "space/sm", "space/md",
+      "space/none", "space/xxs", "space/sm", "space/md",
       "radius/none", "radius/sm", "radius/element-sm",
       "stroke/thin", "stroke/base"
     ],

@@ -74,7 +74,7 @@ Specced separately in [specs/navigation-item](../navigation-item/navigation-item
 
 The page's set (2837:1489, key `5ce874152d457038d8690067738a673cc2b0ad52`) is **a drifted duplicate**. It is not the Badges-page component placed here (3719:6256, key `73fe3d069d197d82a934eb2653a74245d4bb29a4`), and it is not an exact copy.
 
-- **Same:** the props are `Value#2838:0` (default "2") and Size (small | medium | large, default large). The property ids match, which suggests the Badges set was made from this one. Both use fill `interactive/destructive/background/default`, border colour `border/inverse` and text style `indicator/medium`. Both give large a minimum width of `control/icon-lg` and side padding `space/xs`. Medium is `radius/pill` with no padding.
+- **Same:** the props are `Value#2838:0` (default "2") and Size (small | medium | large, default large). The property ids match, which suggests the Badges set was made from this one. Both use fill `interactive/destructive/background/default`, border colour `border/inverse` and text style `indicator/medium`. Both give large a minimum width of `control/icon-lg` and side padding `space/xxs`. Medium is `radius/pill` with no padding.
 - **Different:**
 
 | | This page (2837:1489) | specs/notification-indicator (3719:6256) |
@@ -82,8 +82,8 @@ The page's set (2837:1489, key `5ce874152d457038d8690067738a673cc2b0ad52`) is **
 | Border width | `stroke/thin`, which draws a ring | `stroke/base`, zero, a theming hook |
 | Count colour | `foreground/inverse` | `foreground/on-strong` |
 | Large radius | `radius/element-sm` | `radius/pill` |
-| Large top/bottom padding | `space/xs` | raw, unbound |
-| Small | `space/xs` padding, 10×10Px | no padding, 8×8Px |
+| Large top/bottom padding | `space/xxs` | raw, unbound |
+| Small | `space/xxs` padding, 10×10Px | no padding, 8×8Px |
 | Medium | clips | doesn't clip |
 
 - **Usage:** nothing on this page uses it, because Navigation Item's badge is the Badges set. Its medium variant still has 15 instances, mostly on the Navigation Rail page. Small and large have none.

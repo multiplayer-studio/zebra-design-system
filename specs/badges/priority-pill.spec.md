@@ -2,7 +2,7 @@
 
 Shows where an item sits on a four step scale, from low to urgent. Level sets the fill, the circle and the glyph together, Variant decides whether the name appears beside the circle or the circle stands alone, and Leading swaps the glyph for a rank number. Reach for it where items compete for attention and the order between them is the point.
 
-Source: [Badges page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6406-410) · component set `6406:410` · extracted 2026-10-15 · 32 variants · default `Level=low, Variant=lozenge, Size=large, Leading=icon`
+Source: [Badges page](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6406-410) · component set `6406:410` · extracted 2026-10-22 (re-verified, unchanged) · 32 variants · default `Level=low, Variant=lozenge, Size=large, Leading=icon`
 
 > **No blockers, 3 warnings.** See [Issues](#issues).
 
@@ -45,11 +45,11 @@ Source: [Badges page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-
 
 | Part | Kind | Details |
 |---|---|---|
-| `pill` | container | The surround, filled per Level. On badge this is the whole component. · radius: radius/pill · layout: direction horizontal; gap space/xs (lozenge); padding large: space/xs, trailing space/sm · small: space/2xs, trailing space/sm · badge: even (space/xs large, space/2xs small) · paint: fill per level |
+| `pill` | container | The surround, filled per Level. On badge this is the whole component. · radius: radius/pill · layout: direction horizontal; gap space/xxs (lozenge); padding large: space/xxs, trailing space/sm · small: space/2xs, trailing space/sm · badge: even (space/xxs large, space/2xs small) · paint: fill per level |
 | `circle` | container | A knockout disc carrying either a direction glyph or a rank number. It takes the label's colour while its contents take the pill's. · size: control/icon-md (large) · control/icon-sm (small) · radius: radius/pill · layout: padding space/none; align center · paint: fill per level (the label's colour) |
 | `glyph` | instance | visibleWhen: leading = icon · size: Icon Size=small (large: 16, exact) · scaled to 12 at small (unbound) · color: the pill's fill token |
 | `rank` | text | visibleWhen: leading = number · content: priorityNumber · text: style indicator/medium (large; bound per property, no text style) · indicator/small (small); color the pill's fill token |
-| `label` | text | The priority name, set through Label and present on lozenge only. · visibleWhen: variant = lozenge · content: label · text: style body/small (large) · indicator/small (small); color per level · container: padding trailing space/xs (large) · space/2xs (small) |
+| `label` | text | The priority name, set through Label and present on lozenge only. · visibleWhen: variant = lozenge · content: label · text: style body/small (large) · indicator/small (small); color per level · container: padding trailing space/xxs (large) · space/2xs (small) |
 
 ## Variants
 
@@ -69,7 +69,7 @@ Cells are token names, except those ending Px, which are measurements of the ren
 | size | pill.padding | circle | glyphPx | label | rank | measuredHeightPx | figmaNode |
 |---|---|---|---|---|---|---|---|
 | small | space/2xs, trailing space/sm | control/icon-sm | 12 | indicator/small, trailing space/2xs | indicator/small | 20 | 6406:247 |
-| large | space/xs, trailing space/sm | control/icon-md | 16 | body/small, trailing space/xs | indicator/medium | 28 | 6406:234 |
+| large | space/xxs, trailing space/sm | control/icon-md | 16 | body/small, trailing space/xxs | indicator/medium | 28 | 6406:234 |
 
 ### variant
 
@@ -94,7 +94,7 @@ Cells are token names, except those ending Px, which are measurements of the ren
 Names only; values live in `tokens/`.
 
 - **Color:** `foreground/{secondary,inverse}`, `feedback/{info,warning,error}/background/strong`, `interactive/primary/foreground/default`, `interactive/destructive/foreground/default`
-- **Dimension:** `space/{none,2xs,xs,sm}`, `radius/pill`, `control/{icon-md,icon-sm}`
+- **Dimension:** `space/{none,2xs,xxs,sm}`, `radius/pill`, `control/{icon-md,icon-sm}`
 - **Typography:** `body/small`, `indicator/medium`, `indicator/small`
 - **Theme axes:** palette Light, Dark · size Desktop, Mobile, Tablet, Desktop Compact · typography Desktop, Tablet, Mobile, Desktop Compact · extensions tokens/extensions/ (companion, target, condensed)
 
@@ -142,7 +142,7 @@ Every token resolves in the export.
 | Property | Type | Description |
 |---|---|---|
 | Size | Hug on lozenge, fixed on badge | Lozenge is 28 tall at large and 20 at small, hugging its label. Badge is a fixed square at the same two heights, 28 and 20, because it carries no label to hug. |
-| Padding and gap | Fixed | space/xs around the lozenge at large and space/2xs at small, with a wider trailing edge at both so the label clears the end of the pill. The circle and the label are separated by space/xs at both sizes. |
+| Padding and gap | Fixed | space/xxs around the lozenge at large and space/2xs at small, with a wider trailing edge at both so the label clears the end of the pill. The circle and the label are separated by space/xxs at both sizes. |
 | Radius | Fixed | radius/pill on every level, variant and size. There is no square cornered form. |
 | Fill | Per Level | low draws foreground/secondary. medium, high and urgent draw feedback/info, warning and error at background/strong. low is the only level not taking a feedback colour, which is what keeps it reading as ordinary rather than good. |
 | Circle | Knockout | 20 at large and 16 at small, filled with the same token as the label. Whatever sits inside it, glyph or number, is drawn in the pill's own background colour, so the circle reads as a hole punched through the pill. |
@@ -150,15 +150,15 @@ Every token resolves in the export.
 
 ## Visual reference
 
-- [Page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3717-5570) · [Component set](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6406-410) · [Metadata](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6413-389)
-- [low, lozenge, large, icon](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6406-234) · [urgent](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6406-366) · [small](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6406-247) · [badge](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6406-260) · [number](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6406-242) · [small, badge, number](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6406-275)
+- [Page](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=3717-5570) · [Component set](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6406-410) · [Metadata](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6413-389)
+- [low, lozenge, large, icon](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6406-234) · [urgent](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6406-366) · [small](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6406-247) · [badge](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6406-260) · [number](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6406-242) · [small, badge, number](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Message-prompt?node-id=6406-275)
 
 ## Issues
 
 ### Warn
 
 - *metadata Accessibility vs structure*: The metadata says that at small 'the glyph is 16'. As built, the small glyph is the Icon at Size=small scaled to 12 to fit the 16 circle (the circle less space/2xs each side), with no size token. At large the glyph is the Icon at Size=small, 16, exactly.
-- *code (packages/web-components zds-priority-pill)*: The experimental element differs from Figma in two places: the circle-to-label gap at large is 6 (space/xs + space/2xs) where Figma and the metadata use space/xs, and the small label is label/small (12) where Figma uses indicator/small (10). Everything else matches (padding, trailing label space, circle sizes and colours, glyphs, rank styles).
+- *code (packages/web-components zds-priority-pill)*: The experimental element differs from Figma in two places: the circle-to-label gap at large is 6 (space/xxs + space/2xs) where Figma and the metadata use space/xxs, and the small label is label/small (12) where Figma uses indicator/small (10). Everything else matches (padding, trailing label space, circle sizes and colours, glyphs, rank styles).
 - *tokens*: Medium and urgent borrow button tokens for the circle and label (interactive/primary/foreground/default, interactive/destructive/foreground/default); low and high use foreground/inverse. foreground/on-strong now exists for text on strong fills and covers medium and urgent; high (warning) still needs a mode-aware 'on' colour because its fill lightens in dark mode.
 
 ### Note

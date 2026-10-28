@@ -54,7 +54,7 @@ export default css`
     align-items: center;
     gap: var(--space-md);
     min-block-size: var(--control-lg);
-    padding-block: var(--space-xs);
+    padding-block: var(--space-xxs);
     padding-inline: var(--space-lg);
     border-radius: var(--zds-snackbar-radius);
     background: var(--zds-snackbar-bg);
@@ -71,7 +71,7 @@ export default css`
      gap equals the top gap, space/xs, so the last control sits concentric
      in the bar's end. */
   .surface[data-end] {
-    padding-inline-end: var(--space-xs);
+    padding-inline-end: var(--space-xxs);
   }
 
   .lead {
@@ -107,8 +107,8 @@ export default css`
     flex: none;
     display: inline-flex;
     align-items: center;
-    gap: var(--space-xs);
-    margin-inline-start: var(--space-xs);
+    gap: var(--space-xxs);
+    margin-inline-start: var(--space-xxs);
   }
 
   /* The close's glyph takes the bar's text colour like every icon here,

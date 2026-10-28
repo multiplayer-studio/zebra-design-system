@@ -14,9 +14,9 @@
     --zds-priority-pill: var(--foreground-secondary);
     --zds-priority-ink: var(--foreground-inverse);
     /* ---- size (large default) ------------------------------------------ */
-    --zds-priority-pad: var(--space-xs);
+    --zds-priority-pad: var(--space-xxs);
     --zds-priority-circle: var(--control-icon-md);
-    --zds-priority-label-end: var(--space-xs);
+    --zds-priority-label-end: var(--space-xxs);
     display: inline-flex;
     vertical-align: middle;
   }
@@ -42,7 +42,7 @@
   .zds-priority-pill__root {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
     padding-block: var(--zds-priority-pad);
     /* A wider trailing edge so the label clears the end of the pill. */
     padding-inline: var(--zds-priority-pad) var(--space-sm);

@@ -3,9 +3,10 @@ import { iconGlyphs, iconFamily, type IconStyle } from "@zebra-design-system/ico
 import type { IconName } from "@zebra-design-system/icons/names";
 
 export type { IconName, IconStyle };
-export type IconSize = "small" | "medium" | "large";
+export type IconSize = "xsmall" | "small" | "medium" | "large";
 
 const BOX: Record<IconSize, string> = {
+  xsmall: "var(--control-icon-xs)",
   small: "var(--control-icon-sm)",
   medium: "var(--control-icon-md)",
   large: "var(--control-icon-lg)",

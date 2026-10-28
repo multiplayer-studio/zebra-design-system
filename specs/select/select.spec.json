@@ -237,7 +237,7 @@
       "kind": "container",
       "layout": {
         "direction": "vertical",
-        "gap": "space/xs",
+        "gap": "space/xxs",
         "padding": "none",
         "align": "start"
       },
@@ -460,7 +460,7 @@
           "kind": "container",
           "layout": {
             "direction": "horizontal",
-            "gap": "space/xs",
+            "gap": "space/xxs",
             "padding": {
               "top": "space/sm",
               "bottom": "space/sm",
@@ -503,8 +503,8 @@
             "direction": "horizontal",
             "gap": "space/none",
             "padding": {
-              "left": "space/xs",
-              "right": "space/xs"
+              "left": "space/xxs",
+              "right": "space/xxs"
             }
           },
           "sizing": {
@@ -945,7 +945,7 @@
       "control/lg",
       "space/none",
       "space/2xs",
-      "space/xs",
+      "space/xxs",
       "space/sm",
       "space/md",
       "space/card",
@@ -1244,13 +1244,13 @@
       },
       {
         "Property": "Gap",
-        "Type": "space/xs = 4",
+        "Type": "space/xxs = 4",
         "Description": "4px between all three parts. The same gap the field uses internally between its icons and its text, so the stack and its content share one rhythm."
       },
       {
         "Property": "Label",
         "Type": "Hug width and height",
-        "Description": "Hugs its text. A space/xs gap between name, any marker and the information icon."
+        "Description": "Hugs its text. A space/xxs gap between name, any marker and the information icon."
       },
       {
         "Property": "Field",
@@ -1282,7 +1282,7 @@
       {
         "Property": "Padding and gap",
         "Type": "Fixed",
-        "Description": "space/sm top and bottom, space/md left and right, with a space/xs gap between the leading icon, the text and the trailing control. Padding holds across all three sizes, so height alone carries the density."
+        "Description": "space/sm top and bottom, space/md left and right, with a space/xxs gap between the leading icon, the text and the trailing control. Padding holds across all three sizes, so height alone carries the density."
       },
       {
         "Property": "Radius",
@@ -1422,7 +1422,7 @@
       "source": "experimental code vs Figma",
       "topic": "List positioning",
       "figma": "Dropdown Menu is a child of the assembly, absolutely positioned 4 Px below the field. Its width equals the field's (fixed 280). It overlaps the hint. It always opens below and has no max height or scroll.",
-      "code": "The list is portalled to document.body (or portalContainer) through Base UI's Positioner, with sideOffset = --space-xs (4 Px fallback) and alignItemWithTrigger=false. Width is min-inline-size: var(--anchor-width), so it is at least as wide as the trigger and can be wider. Height is capped at --available-height and scrolls. Collision flipping can open the list above the field. z-index is 1."
+      "code": "The list is portalled to document.body (or portalContainer) through Base UI's Positioner, with sideOffset = --space-xxs (4 Px fallback) and alignItemWithTrigger=false. Width is min-inline-size: var(--anchor-width), so it is at least as wide as the trigger and can be wider. Height is capped at --available-height and scrolls. Collision flipping can open the list above the field. z-index is 1."
     },
     {
       "severity": "warn",
@@ -1463,7 +1463,7 @@
     {
       "severity": "note",
       "source": "structure — 4px menu offset",
-      "detail": "The menu sits 4 Px below the field (measured y 68 = field bottom 64 + 4). It is a position, not a bindable gap, so no token is bound. The value equals space/xs, and code uses space/xs."
+      "detail": "The menu sits 4 Px below the field (measured y 68 = field bottom 64 + 4). It is a position, not a bindable gap, so no token is bound. The value equals space/xxs, and code uses space/xxs."
     },
     {
       "severity": "note",

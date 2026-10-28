@@ -13,9 +13,10 @@ const meta: Meta = {
     status: { control: "select", options: STATUSES },
     leading: { control: "inline-radio", options: ["indicator", "icon", "none"] },
     shape: { control: "inline-radio", options: ["rounded", "sharp"] },
+    discardable: { control: "boolean" },
   },
-  args: { status: "info", leading: "indicator", shape: "rounded", label: "Ongoing" },
-  render: (a) => html`<zds-status-label status=${a.status} leading=${a.leading} shape=${a.shape}>${a.label}</zds-status-label>`,
+  args: { status: "info", leading: "indicator", shape: "rounded", discardable: false, label: "Ongoing" },
+  render: (a) => html`<zds-status-label status=${a.status} leading=${a.leading} shape=${a.shape} ?discardable=${a.discardable}>${a.label}</zds-status-label>`,
 };
 export default meta;
 type Story = StoryObj;
@@ -34,6 +35,11 @@ export const Leading: Story = {
 
 export const Shape: Story = {
   render: () => html`<div style="display:grid;gap:12px">${(["rounded", "sharp"] as const).map((sh) => row(STATUSES.map((s) => html`<zds-status-label status=${s} shape=${sh}>${title(s)}</zds-status-label>`)))}</div>`,
+};
+
+/** Adds a dismiss after the label, the one control in the badge family. It fires zds-discard; removing the element is the caller's job. */
+export const Discardable: Story = {
+  render: () => row(STATUSES.map((s) => html`<zds-status-label status=${s} discardable @zds-discard=${(e: Event) => (e.currentTarget as HTMLElement).remove()}>${title(s)}</zds-status-label>`)),
 };
 
 export const ThemingCascade: Story = {

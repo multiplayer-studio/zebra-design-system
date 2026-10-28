@@ -152,14 +152,14 @@
         }
       }
     },
-    "xs": {
+    "xxs": {
       "$type": "dimension",
       "$value": "{primitives.scale.2}",
       "$description": "= 4px, source: scale/2",
       "$extensions": {
         "com.figma": {
           "id": "VariableID:2016:7",
-          "overrides": "size.space.xs",
+          "overrides": "size.space.xxs",
           "extension": "condensed",
           "mode": "Desktop",
           "resolvedType": "FLOAT",
@@ -382,14 +382,14 @@
         }
       }
     },
-    "icon-xs": {
+    "icon-xxs": {
       "$type": "dimension",
       "$value": "{primitives.scale.4}",
       "$description": "= 20px, source: scale/7",
       "$extensions": {
         "com.figma": {
           "id": "VariableID:5278:4183",
-          "overrides": "size.control.icon-xs",
+          "overrides": "size.control.icon-xxs",
           "extension": "condensed",
           "mode": "Desktop",
           "resolvedType": "FLOAT",

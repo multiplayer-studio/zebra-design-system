@@ -146,11 +146,11 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(function 
   const iconSize = size === "small" ? "small" : "medium";
   const shownIcon = chosen?.icon ?? leadingIcon;
 
-  // Positioner offsets take a number, never a CSS value: resolve --space-xs
+  // Positioner offsets take a number, never a CSS value: resolve --space-xxs
   // (the spec's 4 Px under the field) at the field's place in the cascade.
   const sideOffset = React.useCallback(() => {
-    if (typeof window === "undefined") return 4; // SSR fallback: --space-xs's shipped 4px.
-    const px = parseFloat(getComputedStyle(rootRef.current ?? document.documentElement).getPropertyValue("--space-xs"));
+    if (typeof window === "undefined") return 4; // SSR fallback: --space-xxs's shipped 4px.
+    const px = parseFloat(getComputedStyle(rootRef.current ?? document.documentElement).getPropertyValue("--space-xxs"));
     return Number.isFinite(px) ? px : 4;
   }, []);
 

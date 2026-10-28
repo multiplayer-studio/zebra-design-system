@@ -1,4 +1,4 @@
-/** Shared by the four chips: <zds-input-chip>, <zds-filter-chip>, <zds-assist-chip>, <zds-status-chip>. */
+/** Shared by the three chips: <zds-input-chip>, <zds-filter-chip>, <zds-assist-chip>. */
 
 /** Pill (rounded, the default) or square (sharp) corners. Spec: the `rounded` boolean. */
 export type ChipShape = "rounded" | "sharp";

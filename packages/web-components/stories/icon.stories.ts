@@ -3,7 +3,7 @@ import { html } from "lit";
 import "../src/components/icon/icon.js";
 import { iconNames } from "@zebra-design-system/icons/names";
 
-const SIZES = ["small", "medium", "large"] as const;
+const SIZES = ["xsmall", "small", "medium", "large"] as const;
 const STYLES = ["rounded", "sharp"] as const;
 
 const meta: Meta = {

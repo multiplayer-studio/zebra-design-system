@@ -10,7 +10,7 @@ const rows = (rounded: boolean) => html`
 `;
 
 const meta: Meta = {
-  title: "Components/DropdownMenu",
+  title: "Components/Dropdown/Dropdown Menu",
   component: "zds-dropdown-menu",
   tags: ["autodocs"],
   argTypes: {

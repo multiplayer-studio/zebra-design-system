@@ -85,7 +85,7 @@
         "direction": "horizontal",
         "gap": "none",
         "padding": {
-          "block": "space/xs",
+          "block": "space/xxs",
           "inline": "space/sm"
         },
         "align": "center"
@@ -218,7 +218,7 @@
       "shadow/soft"
     ],
     "dimension": [
-      "space/xs",
+      "space/xxs",
       "space/sm",
       "radius/sm",
       "radius/none",
@@ -262,12 +262,12 @@
       ]
     },
     "extensionsTouching": {
-      "condensed": "Overrides space/xs, space/sm, radius/sm (size) and label/small/font size, label/small/line height (typography), so the bubble shrinks under condensed. The pointer does not (not token bound)."
+      "condensed": "Overrides space/xxs, space/sm, radius/sm (size) and label/small/font size, label/small/line height (typography), so the bubble shrinks under condensed. The pointer does not (not token bound)."
     },
     "_note": "All 18 variable names resolve in tokens/base/**. label/small and Shadow/medium are a text style and an effect style whose every property is bound to the variables listed. No glyphs: the component holds no icon instance.",
     "motion": [
       "animations/smooth",
-      "space/xs (slide distance)"
+      "space/xxs (slide distance)"
     ]
   },
   "states": {
@@ -334,7 +334,7 @@
     {
       "property": "Padding",
       "type": "Fixed",
-      "description": "space/xs top and bottom, space/sm left and right. Identical across all eight variants."
+      "description": "space/xxs top and bottom, space/sm left and right. Identical across all eight variants."
     },
     {
       "property": "Radius",
@@ -382,7 +382,7 @@
     {
       "severity": "warn",
       "source": "pointer",
-      "detail": "The pointer is a fixed-size vector (8×4 / 4×8) with no size token. Under the condensed extension space/xs, space/sm, radius/sm and label/small shrink but the pointer does not, so its proportion to the bubble changes. Decide in code whether the pointer scales with the bubble; Layout & Theming calls it 'Fixed, absolute', so fixed is the stated intent."
+      "detail": "The pointer is a fixed-size vector (8×4 / 4×8) with no size token. Under the condensed extension space/xxs, space/sm, radius/sm and label/small shrink but the pointer does not, so its proportion to the bubble changes. Decide in code whether the pointer scales with the bubble; Layout & Theming calls it 'Fixed, absolute', so fixed is the stated intent."
     },
     {
       "severity": "warn",

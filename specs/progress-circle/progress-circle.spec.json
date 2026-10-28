@@ -123,7 +123,7 @@
           "refVariant": "Size=small, Shape=full, Flavour=subtle, State=hover, Disabled=false",
           "glyph": "close", "family": "rounded", "iconSize": "Icon Size=small", "color": "currentColor",
           "position": { "mode": "free", "anchor": "fills parent (scale)" },
-          "resolvedFromInstance": { "size": "control/sm", "fill": "interactive/ghost/background/hover", "radius": "radius/pill", "padding": "space/xs", "border": "interactive/neutral/border/default @ stroke/base" },
+          "resolvedFromInstance": { "size": "control/sm", "fill": "interactive/ghost/background/hover", "radius": "radius/pill", "padding": "space/xxs", "border": "interactive/neutral/border/default @ stroke/base" },
           "note": "Pinned to State=hover. In code use Icon Button's own spec (specs/icon-button/) at small, full, subtle, and let it run its own states." }
       ],
       "variants": {
@@ -144,7 +144,7 @@
   "tokens": {
     "source": "tokens/ (see tokens/manifest.json)",
     "color": ["border/info", "border/subtle", "foreground/link", "interactive/ghost/background/hover", "interactive/neutral/border/default"],
-    "dimension": ["stroke/heavy", "radius/none", "control/sm", "space/none", "space/xs", "radius/pill", "stroke/base"],
+    "dimension": ["stroke/heavy", "radius/none", "control/sm", "space/none", "space/xxs", "radius/pill", "stroke/base"],
     "typography": ["indicator/medium"],
     "glyphs": ["close"],
     "themeAxes": {
