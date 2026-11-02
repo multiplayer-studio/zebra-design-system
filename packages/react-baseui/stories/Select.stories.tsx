@@ -38,7 +38,7 @@ const meta: Meta<typeof Select> = {
   args: {
     options: COUNTRIES, label: "Country", hint: "Where the order ships to", placeholder: "Select an option",
     labelType: "default", information: false, hintIcon: true,
-    size: "medium", shape: "rounded", flavour: "default", state: "default", readOnly: false,
+    size: "medium", shape: "rounded", flavour: "default", state: "default", readOnly: false, compact: false,
   },
   render: (a) => <div style={{ maxInlineSize: 320, minBlockSize: 120 }}><Select {...a} /></div>,
 };
@@ -58,6 +58,16 @@ export const Open: Story = {
     <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(240px, 300px))", gap: 24, minBlockSize: 300, alignItems: "start" }}>
       <Select label="Closed" hint="Where the order ships to" options={COUNTRIES} />
       <Select label="Open" hint="Where the order ships to" options={COUNTRIES} defaultValue="ie" defaultOpen />
+    </div>
+  ),
+};
+
+/** Compact: the list opens on the compact Dropdown Menu, a space/xs inset with no gap between rows. */
+export const Compact: Story = {
+  render: () => (
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(240px, 300px))", gap: 24, minBlockSize: 300, alignItems: "start" }}>
+      <Select label="Default" options={COUNTRIES} defaultValue="ie" defaultOpen />
+      <Select label="Compact" options={COUNTRIES} defaultValue="ie" defaultOpen compact />
     </div>
   ),
 };

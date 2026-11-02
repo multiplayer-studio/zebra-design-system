@@ -5,7 +5,10 @@ import "./button.css";
 
 export type ButtonFlavour =
   | "primary" | "positive" | "negative" | "subtle" | "text"
-  | "outline-subtle" | "outline" | "gradient" | "text-gradient";
+  | "outline-subtle" | "outline" | "gradient" | "text-gradient"
+  /** `contrast` is the strongest neutral against the
+      page; `outline-contrast` is its outline sibling. Both follow the mode. */
+  | "contrast" | "outline-contrast";
 export type ButtonSize = "small" | "medium" | "large";
 export type ButtonShape = "sharp" | "rounded" | "full";
 

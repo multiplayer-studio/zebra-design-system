@@ -19,6 +19,8 @@ export interface DropdownProps
   align?: DropdownAlign;
   /** Softens the menu panel's corners. The spec pins this `true` on the nested Dropdown Menu. */
   rounded?: boolean;
+  /** Tightens the menu panel's inset for a cramped rail. */
+  compact?: boolean;
   /** Menu Item rows (or any content) rendered inside the Dropdown Menu's slot. */
   children?: React.ReactNode;
   /**
@@ -80,6 +82,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(function
     position = "bottom",
     align = "left",
     rounded = true,
+    compact = false,
     open,
     defaultOpen,
     onOpenChange,
@@ -111,7 +114,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(function
           align={ALIGN_TO_BASE_UI[align]}
           sideOffset={sideOffset}
         >
-          <DropdownMenu rounded={rounded} className={className}>
+          <DropdownMenu rounded={rounded} compact={compact} className={className}>
             {children}
           </DropdownMenu>
         </Menu.Positioner>

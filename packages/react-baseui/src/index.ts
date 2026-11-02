@@ -55,6 +55,8 @@ export { InputField } from "./components/input-field/InputField.js";
 export type { InputFieldProps, InputFieldType, InputFieldSize, InputFieldShape, InputFieldFlavour, InputFieldState } from "./components/input-field/InputField.js";
 export { Input } from "./components/input/Input.js";
 export type { InputProps, InputState, InputLabelType } from "./components/input/Input.js";
+export { PhoneInput, PHONE_COUNTRIES } from "./components/phone-input/PhoneInput.js";
+export type { PhoneInputProps, PhoneInputDetail, PhoneCountry } from "./components/phone-input/PhoneInput.js";
 export { Checkbox } from "./components/checkbox/Checkbox.js";
 export type { CheckboxProps, CheckboxSize } from "./components/checkbox/Checkbox.js";
 export { StatusLabel } from "./components/status-label/StatusLabel.js";
@@ -68,6 +70,8 @@ export type { IconIndicatorProps, IconIndicatorSize } from "./components/icon-in
 
 export { Snackbar } from "./components/snackbar/Snackbar.js";
 export type { SnackbarProps, SnackbarVariant, SnackbarFlavour, SnackbarShape, SnackbarCloseReason } from "./components/snackbar/Snackbar.js";
+export { SystemBanner } from "./components/system-banner/SystemBanner.js";
+export type { SystemBannerProps, SystemBannerLayout, SystemBannerStatus, SystemBannerShape } from "./components/system-banner/SystemBanner.js";
 
 export { Select } from "./components/select/Select.js";
 export type { SelectProps, SelectOption, SelectFieldState, SelectSize, SelectShape, SelectFlavour, SelectState, SelectLabelType } from "./components/select/Select.js";
@@ -75,7 +79,7 @@ export type { SelectProps, SelectOption, SelectFieldState, SelectSize, SelectSha
 export { MessageInput } from "./components/message-input/MessageInput.js";
 export {
   ChatMessage, ChatText, ChatFile, ChatImages, ChatCard, ChatAudio, ChatVideo, ChatChoices, ChatSources,
-  ChatTyping, ChatDivider, ChatThread, chatActions, fileKindOf, useChatShape, CHAT_REACTIONS,
+  ChatTyping, ChatDivider, ChatThread, ChatHeader, ChatImageViewer, chatActions, fileKindOf, useChatShape, CHAT_REACTIONS,
 } from "./components/chat/Chat.js";
 export type {
   ChatMessageProps, ChatRole, ChatPosition, ChatStatus, ChatAuthor, ChatReaction, ChatAction,
@@ -89,6 +93,7 @@ export type {
 export { Table, useTableShape } from "./components/table/Table.js";
 export type {
   TableProps, TableColumn, TableRow, TableCellValue, TableAvatarCell, TableSort, TableSortDirection, TableShape,
+  TableAction, TableColumnSettings,
 } from "./components/table/Table.js";
 
 export { Pagination, paginationWindow } from "./components/pagination/Pagination.js";
@@ -134,6 +139,16 @@ export type {
   DialogProps, DialogFlavour, DialogShape, DialogAction, DialogOpenChangeReason,
 } from "./components/dialog/Dialog.js";
 
+export { GridMenuItem } from "./components/grid-menu-item/GridMenuItem.js";
+export type { GridMenuItemProps } from "./components/grid-menu-item/GridMenuItem.js";
+export { UserProfile } from "./components/user-profile/UserProfile.js";
+export type { UserProfileProps } from "./components/user-profile/UserProfile.js";
+export { BottomSheet } from "./components/bottom-sheet/BottomSheet.js";
+export type { BottomSheetProps, BottomSheetContentType, BottomSheetHeaderAlignment } from "./components/bottom-sheet/BottomSheet.js";
+export { TopAppBar } from "./components/top-app-bar/TopAppBar.js";
+export type { TopAppBarProps, TopAppBarType, TopAppBarShape, TopAppBarHeadingLevel } from "./components/top-app-bar/TopAppBar.js";
+export { GlobalHeader } from "./components/global-header/GlobalHeader.js";
+export type { GlobalHeaderMode, GlobalHeaderProps } from "./components/global-header/GlobalHeader.js";
 export { ScreenHeaderBar } from "./components/screen-header-bar/ScreenHeaderBar.js";
 export type {
   ScreenHeaderBarProps, ScreenHeaderBarShape, ScreenHeaderBarHeadingLevel,
@@ -164,3 +179,9 @@ export { SubMenuHeader } from "./components/navigation-rail/SubMenuHeader.js";
 export type { SubMenuHeaderProps, SubMenuHeaderType } from "./components/navigation-rail/SubMenuHeader.js";
 export { CollapsibleMenuItem } from "./components/navigation-rail/CollapsibleMenuItem.js";
 export type { CollapsibleMenuItemProps } from "./components/navigation-rail/CollapsibleMenuItem.js";
+export { TabBar, TabItem } from "./components/tab-bar/TabBar.js";
+export type { TabBarProps, TabBarFlavour, TabItemProps, TabItemBadge } from "./components/tab-bar/TabBar.js";
+export { Stepper } from "./components/stepper/Stepper.js";
+export type { StepperProps, StepperStep, StepStatus, StepperOrientation, StepperLayout } from "./components/stepper/Stepper.js";
+export { Breadcrumb } from "./components/breadcrumb/Breadcrumb.js";
+export type { BreadcrumbProps, BreadcrumbItem, BreadcrumbFlavour, BreadcrumbShape } from "./components/breadcrumb/Breadcrumb.js";

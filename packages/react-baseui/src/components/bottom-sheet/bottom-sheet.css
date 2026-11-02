@@ -1,0 +1,91 @@
+/* BottomSheet — every value is a semantic token, except the handle bar's
+   height, which has none (spec issue).
+
+   Spec: specs/bottom-sheet/bottom-sheet.spec.md */
+
+.zds-bottom-sheet {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-block-end: var(--space-card);
+  background: var(--surface-sheet);
+  border-start-start-radius: var(--radius-container);
+  border-start-end-radius: var(--radius-container);
+}
+
+/* ---- handle ------------------------------------------------------------- */
+.zds-bottom-sheet__handle {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-lg) var(--space-section);
+}
+
+.zds-bottom-sheet__bar {
+  inline-size: var(--control-target-min);
+  block-size: 4px; /* no token — spec gap */
+  border-radius: var(--radius-pill);
+  background: var(--border-default);
+}
+
+/* ---- header ------------------------------------------------------------- */
+.zds-bottom-sheet__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xxs);
+  padding: var(--space-sm) var(--space-lg);
+  color: var(--foreground-primary);
+}
+
+.zds-bottom-sheet__icon {
+  flex: none;
+}
+
+.zds-bottom-sheet__title {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  margin: 0;
+  font-family: var(--title-medium-font-family), system-ui, sans-serif;
+  font-size: var(--title-medium-font-size);
+  font-weight: var(--title-medium-font-weight);
+  line-height: var(--title-medium-line-height);
+  letter-spacing: var(--title-medium-letter-spacing);
+}
+
+.zds-bottom-sheet[data-header-alignment="center"] .zds-bottom-sheet__header {
+  gap: var(--space-gutter);
+  padding: var(--space-gutter) var(--space-lg);
+}
+
+.zds-bottom-sheet[data-header-alignment="center"] .zds-bottom-sheet__title {
+  text-align: center;
+}
+
+.zds-bottom-sheet[data-header-alignment="center"] .zds-bottom-sheet__icon {
+  position: absolute;
+  inset-inline-start: var(--space-lg);
+}
+
+/* ---- content ------------------------------------------------------------ */
+.zds-bottom-sheet__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-gutter);
+}
+
+.zds-bottom-sheet[data-content-type="list"] .zds-bottom-sheet__content {
+  gap: var(--space-xxs);
+  padding-inline: var(--space-lg);
+}
+
+.zds-bottom-sheet[data-content-type="grid"] .zds-bottom-sheet__content {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.zds-bottom-sheet__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xxs);
+}

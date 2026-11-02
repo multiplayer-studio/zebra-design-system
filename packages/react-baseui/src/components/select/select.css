@@ -16,6 +16,11 @@
   text-align: start;
   cursor: pointer;
 }
+/* --zds-select-field-min-inline-size lowers Input Field's minimum where a
+   short value needs little room, such as a table's rows per page. */
+.zds-input-field.zds-select__trigger {
+  min-inline-size: var(--zds-select-field-min-inline-size, calc(6 * var(--control-sm)));
+}
 .zds-select__trigger[data-state="read-only"] { cursor: default; }
 .zds-select__trigger[data-state="disabled"] { cursor: not-allowed; }
 
@@ -68,6 +73,9 @@
   display: block;
   box-sizing: border-box;
   inline-size: var(--anchor-width);
+  /* As wide as the field; --zds-select-list-min-inline-size lets it grow to
+     fit its rows when the field is narrow. */
+  min-inline-size: var(--zds-select-list-min-inline-size, auto);
   max-block-size: var(--available-height);
   overflow-y: auto;
   outline: none;

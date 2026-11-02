@@ -7,6 +7,8 @@ export interface DropdownMenuProps
   extends Omit<React.ComponentPropsWithoutRef<typeof Menu.Popup>, "className"> {
   /** Softens the panel's corners; the rows round with it. */
   rounded?: boolean;
+  /** Tightens the inset (`space/xs` instead of `space/card`) for a menu with little room to spare. Rows keep their size. */
+  compact?: boolean;
   className?: string;
 }
 
@@ -36,13 +38,14 @@ export interface DropdownMenuProps
  * @spec specs/dropdown/dropdown.spec.md (Dropdown Menu subcomponent)
  */
 export const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
-  function DropdownMenu({ rounded = false, className, children, ...rest }, ref) {
+  function DropdownMenu({ rounded = false, compact = false, className, children, ...rest }, ref) {
     return (
       <Menu.Popup
         ref={ref}
         {...rest}
         className={["zds-dropdown-menu", className].filter(Boolean).join(" ")}
         data-rounded={rounded}
+        data-compact={compact}
       >
         <div className="zds-dropdown-menu__content">
           <MenuItemRoundedContext.Provider value={rounded}>{children}</MenuItemRoundedContext.Provider>

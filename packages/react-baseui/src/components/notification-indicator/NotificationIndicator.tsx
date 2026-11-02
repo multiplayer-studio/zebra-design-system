@@ -6,14 +6,13 @@ export type NotificationIndicatorSize = "small" | "medium" | "large";
 export interface NotificationIndicatorProps
   extends Omit<React.HTMLAttributes<HTMLSpanElement>, "className"> {
   /**
-   * Fits the badge to its context. Figma's own default is the largest
-   * option (spec issue — most size axes in this file default to the
-   * smallest); kept as extracted rather than silently switched.
+   * Fits the badge to its context. Defaults to large, as Figma does.
    */
   size?: NotificationIndicatorSize;
   /**
    * The count or short label shown inside the badge. Only rendered at
    * medium and large — small is a plain dot with no label part at all.
+   * It holds 3 characters at most, and anything above 99 reads 99+.
    */
   value?: string;
   className?: string;
@@ -23,16 +22,16 @@ export interface NotificationIndicatorProps
  * A small badge that flags unread or pending activity on an icon or
  * navigation item.
  *
- * No Component Metadata frame exists for this component in Figma (spec
- * issue) — states, behaviour, content and accessibility guidance are not
- * modeled there. Since its whole purpose is to flag unread/pending
- * activity, a consumer should expose the count to assistive tech
- * themselves, e.g. an `aria-label` on whatever it's attached to.
+ * Marks that something is waiting on whatever it is pinned to, optionally
+ * with a count; small is a plain dot. It carries one fixed colour, so it
+ * reports how many and never what kind. The count is its only text, so what
+ * it refers to has to be named by whatever it is pinned to.
  *
  * @spec specs/notification-indicator/notification-indicator.spec.md
  */
 export const NotificationIndicator = React.forwardRef<HTMLSpanElement, NotificationIndicatorProps>(
   function NotificationIndicator({ size = "large", value = "2", className, ...rest }, ref) {
+    const count = Number(value) > 99 ? "99+" : value.slice(0, 3);
     return (
       <span
         ref={ref}
@@ -41,7 +40,7 @@ export const NotificationIndicator = React.forwardRef<HTMLSpanElement, Notificat
         data-size={size}
       >
         {size !== "small" ? (
-          <span className="zds-notification-indicator__label">{value}</span>
+          <span className="zds-notification-indicator__label">{count}</span>
         ) : null}
       </span>
     );

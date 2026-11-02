@@ -39,7 +39,7 @@ const meta: Meta<typeof MenuItem> = {
     docs: {
       description: {
         component:
-          "Behaviour — roving highlight, keyboard navigation, disabled semantics — from Base UI's Menu.Item. Icon/checkbox/radio share the same exposed Icon glyph with no drawn control (see the spec's internalVariations issue).",
+          "Behaviour — roving highlight, keyboard navigation, disabled semantics — from Base UI's Menu.Item. Checkbox and radio rows lead with the real control, and the whole row is its click target.",
       },
     },
   },
@@ -52,25 +52,38 @@ const meta: Meta<typeof MenuItem> = {
     leadingIcon: { control: "select", options: [undefined, ...iconNames] },
     trailingIcon: { control: "select", options: [undefined, ...iconNames] },
   },
-  args: { type: "icon", rounded: false, disabled: false, selected: false, leadingIcon: "verified", children: "Menu Item" },
+  args: { type: "icon", rounded: false, disabled: false, leadingIcon: "verified", children: "Menu Item" },
 };
 export default meta;
 type Story = StoryObj<typeof MenuItem>;
 
 export const Playground: Story = {};
 
-/** Icon, checkbox and radio share one exposed Icon instance — the glyph you pick is the only difference; custom swaps in an arbitrary `leadingSlot`. */
+/**
+ * Checkbox and radio lead with the real control and drop the row gap. The
+ * whole row is the click target: click a checkbox row to toggle it, a radio
+ * row to choose it. Custom swaps in an arbitrary `leadingSlot`.
+ */
 export const Types: Story = {
-  render: (args) => (
-    <>
-      <MenuItem {...args} type="icon" leadingIcon="verified">Icon</MenuItem>
-      <MenuItem {...args} type="checkbox" leadingIcon="check-mark">Checkbox (glyph-only)</MenuItem>
-      <MenuItem {...args} type="radio" leadingIcon="check-mark">Radio (glyph-only)</MenuItem>
-      <MenuItem {...args} type="custom" leadingSlot={<span style={{ width: 16, height: 16, borderRadius: "50%", background: "var(--interactive-primary-background-default)" }} />}>
-        Custom
-      </MenuItem>
-    </>
-  ),
+  render: function Types(args) {
+    const [choice, setChoice] = React.useState("Radio one");
+    const radio = (label: string) => (
+      <MenuItem {...args} type="radio" selected={choice === label} onSelectedChange={() => setChoice(label)}>{label}</MenuItem>
+    );
+    return (
+      <>
+        <MenuItem {...args} type="icon" leadingIcon="verified">Icon</MenuItem>
+        <MenuItem {...args} type="checkbox" defaultSelected>Checkbox one</MenuItem>
+        <MenuItem {...args} type="checkbox">Checkbox two</MenuItem>
+        {radio("Radio one")}
+        {radio("Radio two")}
+        <MenuItem {...args} type="checkbox" disabled>Checkbox disabled</MenuItem>
+        <MenuItem {...args} type="custom" leadingSlot={<span style={{ width: 16, height: 16, borderRadius: "50%", background: "var(--interactive-primary-background-default)" }} />}>
+          Custom
+        </MenuItem>
+      </>
+    );
+  },
 };
 
 /** Square (rounded=false) matches a square panel; rounded=true matches a floating rounded one. Match the panel, don't mix. */

@@ -156,9 +156,23 @@
   transition: background-position 120ms ease;
 }
 
-/* outline and outline-subtle are the only flavours with a resting border */
+/* contrast is the strongest neutral against the page;
+   outline-contrast is its outline sibling. Both follow the mode. */
+.zds-button[data-flavour="contrast"] {
+  --zds-button-bg: var(--interactive-inverse-background-default);
+  --zds-button-border: var(--interactive-inverse-border-default);
+  --zds-button-fg: var(--interactive-inverse-foreground-default);
+}
+.zds-button[data-flavour="outline-contrast"] {
+  --zds-button-bg: var(--interactive-ghost-background-default);
+  --zds-button-border: var(--interactive-inverse-border-default);
+  --zds-button-fg: var(--foreground-primary);
+}
+
+/* outline, outline-subtle and outline-contrast are the only flavours with a resting border */
 .zds-button[data-flavour="outline"],
-.zds-button[data-flavour="outline-subtle"] {
+.zds-button[data-flavour="outline-subtle"],
+.zds-button[data-flavour="outline-contrast"] {
   border-width: var(--stroke-thin);
 }
 
@@ -174,6 +188,16 @@
 .zds-button[data-flavour="negative"]:hover:not([data-disabled]) {
   --zds-button-bg: var(--interactive-destructive-background-hover);
   --zds-button-border: var(--interactive-destructive-border-hover);
+}
+.zds-button[data-flavour="contrast"]:hover:not([data-disabled]) {
+  --zds-button-bg: var(--interactive-inverse-background-hover);
+  --zds-button-border: var(--interactive-inverse-border-hover);
+}
+/* outline-contrast steps its border and raises the ghost scrim. The ghost
+   tokens carry the scrim in their own alpha, so no extra opacity. */
+.zds-button[data-flavour="outline-contrast"]:hover:not([data-disabled]) {
+  --zds-button-bg: var(--interactive-ghost-background-hover);
+  --zds-button-border: var(--interactive-inverse-border-hover);
 }
 /* outline keeps its border and shifts a neutral background underneath. */
 .zds-button[data-flavour="outline"]:hover:not([data-disabled]) {
@@ -210,6 +234,14 @@
 .zds-button[data-flavour="negative"]:active:not([data-disabled]) {
   --zds-button-bg: var(--interactive-destructive-background-pressed);
   --zds-button-border: var(--interactive-destructive-border-pressed);
+}
+.zds-button[data-flavour="contrast"]:active:not([data-disabled]) {
+  --zds-button-bg: var(--interactive-inverse-background-pressed);
+  --zds-button-border: var(--interactive-inverse-border-pressed);
+}
+.zds-button[data-flavour="outline-contrast"]:active:not([data-disabled]) {
+  --zds-button-bg: var(--interactive-ghost-background-pressed);
+  --zds-button-border: var(--interactive-inverse-border-pressed);
 }
 .zds-button[data-flavour="outline"]:active:not([data-disabled]) {
   --zds-button-bg: var(--interactive-neutral-background-pressed);
@@ -269,4 +301,14 @@
   --zds-button-bg: var(--interactive-ghost-background-disabled);
   --zds-button-border: var(--interactive-neutral-border-disabled);
   --zds-button-fg: var(--interactive-neutral-foreground-disabled);
+}
+.zds-button[data-flavour="contrast"][data-disabled] {
+  --zds-button-bg: var(--interactive-inverse-background-disabled);
+  --zds-button-border: var(--interactive-inverse-border-disabled);
+  --zds-button-fg: var(--interactive-inverse-foreground-disabled);
+}
+.zds-button[data-flavour="outline-contrast"][data-disabled] {
+  --zds-button-bg: var(--interactive-ghost-background-disabled);
+  --zds-button-border: var(--border-disabled);
+  --zds-button-fg: var(--interactive-inverse-foreground-disabled);
 }

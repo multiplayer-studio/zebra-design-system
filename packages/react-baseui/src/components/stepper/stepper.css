@@ -1,0 +1,174 @@
+/* Stepper — EXPERIMENTAL, no spec yet. Every value is the semantic token the
+   "Stepper Experimental" Figma page binds. Keyed off [data-orientation],
+   [data-layout] and each step's [data-status]. */
+
+.zds-stepper {
+  color: var(--foreground-primary);
+}
+
+.zds-stepper__list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---- step ---------------------------------------------------------------- */
+.zds-stepper__step {
+  --zds-step-fill: var(--interactive-neutral-background-default);
+  --zds-step-ring: var(--border-default);
+  --zds-step-mark: var(--foreground-primary);
+  --zds-step-label: var(--foreground-tertiary);
+  --zds-step-sub: var(--foreground-tertiary);
+  display: flex;
+  min-width: 0;
+}
+.zds-stepper__step[data-status="complete"] {
+  --zds-step-fill: var(--feedback-success-background-subtle);
+  --zds-step-ring: var(--border-success);
+  --zds-step-mark: var(--foreground-success);
+}
+.zds-stepper__step[data-status="partial"] {
+  --zds-step-fill: var(--feedback-success-background-subtle);
+  --zds-step-ring: var(--border-success);
+}
+.zds-stepper__step[data-status="active"] {
+  --zds-step-fill: var(--interactive-primary-background-default);
+  --zds-step-ring: var(--interactive-primary-background-default);
+  --zds-step-mark: var(--interactive-primary-foreground-default);
+  --zds-step-label: var(--foreground-primary);
+}
+.zds-stepper__step[data-status="error"] {
+  --zds-step-fill: var(--feedback-error-background-subtle);
+  --zds-step-ring: var(--border-error);
+  --zds-step-mark: var(--foreground-error);
+  --zds-step-label: var(--foreground-error);
+}
+.zds-stepper__step[data-status="disabled"] {
+  --zds-step-fill: var(--border-subtle);
+  --zds-step-ring: var(--border-subtle);
+  --zds-step-mark: var(--foreground-disabled);
+  --zds-step-label: var(--foreground-disabled);
+  --zds-step-sub: var(--foreground-disabled);
+}
+
+/* ---- indicator ----------------------------------------------------------- */
+.zds-stepper__indicator {
+  box-sizing: border-box;
+  display: grid;
+  flex: none;
+  place-items: center;
+  inline-size: var(--control-icon-lg);
+  block-size: var(--control-icon-lg);
+  border: var(--stroke-thick) solid var(--zds-step-ring);
+  border-radius: var(--radius-pill);
+  background: var(--zds-step-fill);
+  color: var(--zds-step-mark);
+  font-family: var(--label-small-font-family), system-ui, sans-serif;
+  font-size: var(--label-small-font-size);
+  font-weight: var(--label-small-font-weight);
+  line-height: var(--label-small-line-height);
+}
+/* Partial: the ring is dashed, started but not done. */
+.zds-stepper__step[data-status="partial"] .zds-stepper__indicator { border-style: dashed; }
+
+/* ---- line ---------------------------------------------------------------- */
+.zds-stepper__line { flex: 1 1 auto; background: var(--border-default); }
+.zds-stepper__line[data-done] { background: var(--border-success); }
+
+/* ---- text ---------------------------------------------------------------- */
+.zds-stepper__text { display: flex; min-width: 0; flex-direction: column; }
+.zds-stepper__label {
+  color: var(--zds-step-label);
+  font-family: var(--label-large-font-family), system-ui, sans-serif;
+  font-size: var(--label-large-font-size);
+  font-weight: var(--label-large-font-weight);
+  line-height: var(--label-large-line-height);
+}
+.zds-stepper__subtitle {
+  color: var(--zds-step-sub, var(--foreground-tertiary));
+  font-family: var(--body-small-font-family), system-ui, sans-serif;
+  font-size: var(--body-small-font-size);
+  line-height: var(--body-small-line-height);
+}
+.zds-stepper__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.zds-stepper__button {
+  /* A button centres its content and would stretch to the step's height. */
+  align-self: flex-start;
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+.zds-stepper__button:hover .zds-stepper__label { text-decoration: underline; }
+.zds-stepper__button:focus-visible { outline: var(--stroke-thick) solid var(--border-focus); outline-offset: var(--stroke-thin); }
+
+/* ---- vertical: rail on the start side, label beside the marker ----------- */
+.zds-stepper[data-orientation="vertical"] .zds-stepper__list { flex-direction: column; }
+.zds-stepper[data-orientation="vertical"] .zds-stepper__step { gap: var(--space-xl); }
+.zds-stepper[data-orientation="vertical"] .zds-stepper__rail {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+}
+/* Each step draws only the line after its marker; the next one starts at its own marker. */
+.zds-stepper[data-orientation="vertical"] .zds-stepper__line[data-side="before"] { display: none; }
+/* Marker plus a space/2xl line: the step's height, as Figma draws it. */
+.zds-stepper[data-orientation="vertical"] .zds-stepper__line { inline-size: var(--stroke-thick); min-block-size: var(--space-2xl); }
+/* The last step has no line; it keeps the same height so the list stays even. */
+.zds-stepper[data-orientation="vertical"] .zds-stepper__step:last-child .zds-stepper__rail::after { min-block-size: var(--space-2xl); content: ""; }
+.zds-stepper[data-orientation="vertical"] .zds-stepper__text { padding-block-start: var(--space-2xs); }
+
+/* ---- horizontal: marker on a line across, label under it ----------------- */
+.zds-stepper[data-orientation="horizontal"] .zds-stepper__step {
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  text-align: center;
+}
+.zds-stepper[data-orientation="horizontal"] .zds-stepper__rail { display: flex; align-self: stretch; align-items: center; }
+.zds-stepper[data-orientation="horizontal"] .zds-stepper__line { block-size: var(--stroke-thick); }
+/* The end steps keep an empty half so every marker sits in its column's middle. */
+.zds-stepper[data-orientation="horizontal"] .zds-stepper__step:first-child .zds-stepper__rail::before,
+.zds-stepper[data-orientation="horizontal"] .zds-stepper__step:last-child .zds-stepper__rail::after { flex: 1 1 auto; content: ""; }
+.zds-stepper[data-orientation="horizontal"] .zds-stepper__text { align-items: center; }
+.zds-stepper[data-orientation="horizontal"] .zds-stepper__button { text-align: center; }
+
+/* ---- mobile: summary and segmented bar ----------------------------------- */
+.zds-stepper[data-layout="mobile"] { display: flex; flex-direction: column; gap: var(--space-md); }
+.zds-stepper__summary { display: flex; flex-direction: column; }
+.zds-stepper__count {
+  color: var(--foreground-tertiary);
+  font-family: var(--label-small-font-family), system-ui, sans-serif;
+  font-size: var(--label-small-font-size);
+  font-weight: var(--label-small-font-weight);
+  line-height: var(--label-small-line-height);
+  text-transform: uppercase;
+}
+.zds-stepper[data-layout="mobile"] .zds-stepper__label { color: var(--foreground-primary); }
+.zds-stepper__segments { display: flex; gap: var(--space-xs); margin: 0; padding: 0; list-style: none; }
+.zds-stepper__segment {
+  flex: 1 1 0;
+  block-size: var(--space-2xs);
+  border-radius: var(--radius-pill);
+  background: var(--border-default);
+}
+.zds-stepper__segment:is([data-status="complete"], [data-status="partial"]) { background: var(--border-success); }
+.zds-stepper__segment[data-status="active"] { background: var(--interactive-primary-background-default); }
+.zds-stepper__segment[data-status="error"] { background: var(--border-error); }

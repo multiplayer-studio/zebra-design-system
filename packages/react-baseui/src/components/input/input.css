@@ -4,10 +4,16 @@
    Spec: specs/input/input.spec.md */
 
   .zds-input {
-    /* Width is the container's (spec decision: Figma's 280 is tentative). */
+    /* 280 is a start width, not a fixed one (spec decision): the field never
+       outgrows its container, and block fills it. */
     display: flex;
     flex-direction: column;
     gap: var(--space-xxs);
+    inline-size: 280px;
+    max-inline-size: 100%;
+  }
+  .zds-input[data-block] {
+    inline-size: 100%;
   }
   .zds-input[hidden] {
     display: none;

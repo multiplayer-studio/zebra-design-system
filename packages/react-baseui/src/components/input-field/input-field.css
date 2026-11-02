@@ -4,9 +4,15 @@
    Spec: specs/input/input.spec.md (subcomponents.inputField) */
 
   .zds-input-field {
-    /* Width is the container's (spec decision: Figma's 280 is tentative). */
+    /* 280 is a start width, not a fixed one (spec decision): the field never
+       outgrows its container, and block fills it. */
     display: block;
-    min-inline-size: calc(6 * var(--control-sm));
+    inline-size: 280px;
+    max-inline-size: 100%;
+    min-inline-size: min(calc(6 * var(--control-sm)), 100%);
+  }
+  .zds-input-field[data-block] {
+    inline-size: 100%;
   }
   .zds-input-field[hidden] {
     display: none;
@@ -33,6 +39,22 @@
 
   .zds-input-field__icon {
     flex: none;
+  }
+  .zds-input-field__leading-content {
+    flex: none;
+    padding-inline-start: var(--space-xxs);
+    font-family: var(--body-medium-font-family), system-ui, sans-serif;
+    font-size: var(--body-medium-font-size);
+    font-weight: var(--body-medium-font-weight);
+    line-height: var(--body-medium-line-height);
+    letter-spacing: var(--body-medium-letter-spacing);
+  }
+  .zds-input-field[data-size="small"] .zds-input-field__leading-content {
+    font-family: var(--body-small-font-family), system-ui, sans-serif;
+    font-size: var(--body-small-font-size);
+    font-weight: var(--body-small-font-weight);
+    line-height: var(--body-small-line-height);
+    letter-spacing: var(--body-small-letter-spacing);
   }
 
   /* ---- text (padding 0 space/xs) --------------------------------------- */

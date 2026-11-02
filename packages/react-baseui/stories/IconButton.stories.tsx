@@ -2,13 +2,13 @@ import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { IconButton } from "../src/index.js";
 
-const FLAVOURS = ["primary", "positive", "negative", "subtle", "text", "outline-subtle", "outline", "gradient", "text-gradient"] as const;
+const FLAVOURS = ["primary", "positive", "negative", "subtle", "text", "outline-subtle", "outline", "gradient", "text-gradient", "contrast", "outline-contrast"] as const;
 
 const meta: Meta<typeof IconButton> = {
   title: "Components/Buttons/Icon Button",
   component: IconButton,
   tags: ["autodocs"],
-  parameters: { docs: { description: { component: "A single glyph, no label: square at every size, with Button's nine flavours, three shapes and four states. Every instance needs `label`, its accessible name. Spec: specs/icon-button." } } },
+  parameters: { docs: { description: { component: "A single glyph, no label: square at every size, with Button's eleven flavours, three shapes and four states. Every instance needs `label`, its accessible name. Spec: specs/icon-button." } } },
   argTypes: {
     flavour: { control: "select", options: FLAVOURS },
     size: { control: "inline-radio", options: ["small", "medium", "large"] },

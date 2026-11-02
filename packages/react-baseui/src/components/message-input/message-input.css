@@ -406,3 +406,8 @@
 }
 /* The recording dot only fades: its size never changes. */
 @keyframes zds-message-input-fade { 50% { opacity: 0; } }
+
+/* AAA modes keep spoken words at full strength, because dimming them drops the caption below 7:1. */
+:is(.mode-aaa-light, .mode-aaa-dark, [data-theme-mode^="aaa-"]) .zds-message-input__word[data-when="past"] {
+  opacity: 1;
+}

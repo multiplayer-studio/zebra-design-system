@@ -13,6 +13,8 @@ export interface SearchProps
   extends Omit<React.ComponentPropsWithoutRef<typeof BaseInput>, "className" | "children" | "size" | "value" | "defaultValue" | "onValueChange"> {
   /** Match the contour of the controls around the field. Changes only the corners. */
   shape?: SearchShape;
+  /** Fills the container's width. Without it the field starts at 280 and narrows to fit its container. */
+  block?: boolean;
   /** Fits the field to its surface. Only `small` also reduces the text. */
   size?: SearchSize;
   /** `default` in a form, `ghost` on a surface that already bounds it, `gradient` for a distinct interaction such as an AI companion. */
@@ -73,6 +75,7 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(function S
     size = "large",
     flavour = "default",
     hideFocusOutline = false,
+    block = false,
     value: valueProp,
     defaultValue = "",
     onValueChange,
@@ -152,6 +155,7 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(function S
       data-state={state}
       data-disabled={disabled ? "" : undefined}
       data-hide-focus-outline={hideFocusOutline ? "" : undefined}
+      data-block={block ? "" : undefined}
       onPointerDown={() => { pointerPressed.current = true; }}
     >
       {leadingIcon ? <Icon className="zds-search__leading" name={leadingIcon} size={iconSize} iconStyle="rounded" /> : null}

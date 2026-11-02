@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Menu } from "@base-ui/react/menu";
 import { Icon, type IconName } from "../icon/Icon.js";
+import "../checkbox/checkbox.css";
+import "../radio/radio.css";
 import "./menu-item.css";
 
 export type MenuItemType = "icon" | "checkbox" | "radio" | "custom";
@@ -19,16 +21,12 @@ export const MenuItemRoundedContext = React.createContext(false);
 export interface MenuItemProps
   extends Omit<React.ComponentPropsWithoutRef<typeof Menu.Item>, "className"> {
   /**
-   * Naming convention only — per the spec's `internalVariations`, Icon,
-   * checkbox and radio share the exact same exposed Icon instance with no
-   * anatomy difference; Figma models no visual delta between them. This
-   * package treats `type` as a real prop anyway (a documentation hook for
-   * consumers and a hook for `data-type` in CSS) rather than dropping it,
-   * but it draws no checkbox/radio control — set a checkmark/radio glyph on
-   * `leadingIcon` yourself if you want one to read as chosen.
+   * What leads the row. `icon` takes `leadingIcon`; `checkbox` and `radio`
+   * lead with the real Checkbox / Radio at size medium, checked when the row
+   * is `selected` and disabled with it; `custom` takes `leadingSlot`.
    */
   type?: MenuItemType;
-  /** Glyph in the leading position. Undefined hides it (spec: `leadingElement`). Ignored when `type="custom"`. */
+  /** Glyph in the leading position for `type="icon"`. Undefined hides it (spec: `leadingElement`). */
   leadingIcon?: IconName;
   /** Glyph at the trailing edge — a submenu arrow or external-link mark. Undefined hides it (spec: `trailingIcon`). */
   trailingIcon?: IconName;
@@ -46,13 +44,20 @@ export interface MenuItemProps
    */
   rounded?: boolean;
   /**
-   * Marks the row as the currently-chosen option. Base UI's plain `Menu.Item`
-   * carries no selection state of its own (that lives on `CheckboxItem` /
-   * `RadioItem`, which the spec explicitly says not to use here since
-   * `type=checkbox`/`radio` draw no real control) — so selection is tracked
-   * as a plain prop and painted as the spec's faint background tint.
+   * Marks the row as the currently-chosen option, painted as the spec's 10%
+   * brand tint. For `checkbox` and `radio` it also checks the control and
+   * sets `aria-checked`.
    */
   selected?: boolean;
+  /** Uncontrolled starting value of `selected`. */
+  defaultSelected?: boolean;
+  /**
+   * The whole row is the control's click target: a `checkbox` row toggles
+   * and a `radio` row selects itself. Called with the new value; with a
+   * controlled `selected`, update it from here. Radio rows clear each other
+   * through their own `selected` props, as a group does.
+   */
+  onSelectedChange?: (selected: boolean) => void;
   className?: string;
 }
 
@@ -69,6 +74,42 @@ export interface MenuItemProps
  *
  * @spec specs/dropdown/dropdown.spec.md
  */
+/*
+ * The leading Checkbox / Radio only shows the row's state. The row is the
+ * interactive element, and Base UI's controls render a <button> (and Radio
+ * needs a RadioGroup), so this draws the same markup their stylesheets key
+ * off, inert and hidden from assistive technology. Figma leaves the control
+ * unchecked in every state (spec warn); code follows the row.
+ */
+function MenuItemControl({ type, checked, disabled }: { type: "checkbox" | "radio"; checked: boolean; disabled: boolean }) {
+  const state = { "data-checked": checked ? "" : undefined, "data-unchecked": checked ? undefined : "", "data-disabled": disabled ? "" : undefined };
+  if (type === "checkbox") {
+    const markStyle = { width: "var(--zds-checkbox-mark)", height: "var(--zds-checkbox-mark)", fontSize: "var(--zds-checkbox-mark)" };
+    return (
+      <span className="zds-checkbox zds-menu-item__control" data-size="medium" aria-hidden="true">
+        <span className="zds-checkbox__target">
+          <span className="zds-checkbox__box" {...state}>
+            {checked ? (
+              <span className="zds-checkbox__mark">
+                <Icon name="check-mark" iconStyle="rounded" style={markStyle} />
+              </span>
+            ) : null}
+          </span>
+        </span>
+      </span>
+    );
+  }
+  return (
+    <span className="zds-radio zds-menu-item__control" data-size="medium" aria-hidden="true">
+      <span className="zds-radio__target">
+        <span className="zds-radio__ring" {...state}>
+          <span className="zds-radio__dot" {...state} />
+        </span>
+      </span>
+    </span>
+  );
+}
+
 export const MenuItem = React.forwardRef<HTMLElement, MenuItemProps>(function MenuItem(
   {
     type = "icon",
@@ -76,7 +117,11 @@ export const MenuItem = React.forwardRef<HTMLElement, MenuItemProps>(function Me
     trailingIcon,
     leadingSlot,
     rounded,
-    selected = false,
+    selected: selectedProp,
+    defaultSelected = false,
+    onSelectedChange,
+    closeOnClick,
+    onClick,
     className,
     children,
     ...rest
@@ -86,8 +131,21 @@ export const MenuItem = React.forwardRef<HTMLElement, MenuItemProps>(function Me
   const inheritedRounded = React.useContext(MenuItemRoundedContext);
   const isRounded = rounded ?? inheritedRounded;
 
+  const choice = type === "checkbox" || type === "radio";
+  const [ownSelected, setOwnSelected] = React.useState(defaultSelected);
+  const selected = selectedProp ?? ownSelected;
+  const activate: MenuItemProps["onClick"] = (event) => {
+    onClick?.(event);
+    if (!choice || rest.disabled || event.defaultPrevented) return;
+    const next = type === "checkbox" ? !selected : true;
+    if (next === selected) return;
+    if (selectedProp === undefined) setOwnSelected(next);
+    onSelectedChange?.(next);
+  };
   const leading =
-    type === "custom" ? leadingSlot ?? null : leadingIcon ? <Icon name={leadingIcon} /> : null;
+    type === "custom" ? leadingSlot ?? null
+    : choice ? <MenuItemControl type={type} checked={selected} disabled={Boolean(rest.disabled)} />
+    : leadingIcon ? <Icon name={leadingIcon} /> : null;
 
   return (
     <Menu.Item
@@ -96,7 +154,12 @@ export const MenuItem = React.forwardRef<HTMLElement, MenuItemProps>(function Me
       className={["zds-menu-item", className].filter(Boolean).join(" ")}
       data-type={type}
       data-rounded={isRounded}
+      // A choice keeps the menu open, so several options can be set in one go.
+      closeOnClick={closeOnClick ?? !choice}
+      onClick={activate}
       data-selected={selected || undefined}
+      role={choice ? (type === "checkbox" ? "menuitemcheckbox" : "menuitemradio") : undefined}
+      aria-checked={choice ? selected : undefined}
     >
       {leading ? <span className="zds-menu-item__leading">{leading}</span> : null}
       <span className="zds-menu-item__label">{children}</span>

@@ -1,5 +1,5 @@
 /* Dropdown Menu — every value is a semantic token from the shared token
-   layer. Keyed off the `data-rounded` attribute DropdownMenu sets. The panel
+   layer. Keyed off the `data-rounded` and `data-compact` attributes DropdownMenu sets. The panel
    has no interaction states of its own (see the spec's States note) — hover,
    selection, focus and disabled all live on the Menu Item rows inside it, so
    there is nothing state-keyed in this file.
@@ -13,13 +13,19 @@
   padding: var(--space-card);
   background: var(--surface-menu);
   border-radius: var(--radius-none);
-  box-shadow: var(--shadow-medium-x) var(--shadow-medium-y) var(--shadow-medium-blur) var(--shadow-soft);
+  /* "Shadow/medium" style: two stacked drop shadows on one colour token,
+     matching the web-components panel. */
+  box-shadow:
+    var(--shadow-medium-x) var(--shadow-medium-y) var(--shadow-medium-blur) var(--shadow-soft),
+    var(--shadow-small-x) var(--shadow-small-y) var(--shadow-small-blur) var(--shadow-soft);
 }
 
 .zds-dropdown-menu__content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2xs);
+  /* Between rows (spec Gap). The panel's own item spacing (space/2xs, none
+     when compact) never shows: it holds this one content frame. */
+  gap: var(--space-xxs);
 }
 
 /* ---- rounded ----------------------------------------------------------
@@ -28,4 +34,13 @@
    it, a consumer passes the same `rounded` value to both). */
 .zds-dropdown-menu[data-rounded="true"] {
   border-radius: var(--radius-element-md);
+}
+
+/* ---- compact ----------------------------------------------------------
+   space/xs inset and no gap between rows; radii are unchanged (spec). */
+.zds-dropdown-menu[data-compact="true"] {
+  padding: var(--space-xs);
+}
+.zds-dropdown-menu[data-compact="true"] .zds-dropdown-menu__content {
+  gap: var(--space-none);
 }

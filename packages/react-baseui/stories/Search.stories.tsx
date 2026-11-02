@@ -23,8 +23,7 @@ const meta: Meta<typeof Search> = {
     leadingIcon: { control: "select", options: [null, ...iconNames], description: "The spec's hasLeading. null drops it." },
     trailingIcon: { control: "select", options: [undefined, ...iconNames], description: "The spec's hasTrailing. Give it a function and a trailingLabel." },
   },
-  args: { shape: "sharp", size: "large", flavour: "default", disabled: false, hideFocusOutline: false, leadingIcon: "search", trailingIcon: "microphone", trailingLabel: "Search by voice", "aria-label": "Search" },
-  decorators: [(Story) => <div style={{ maxWidth: 320 }}><Story /></div>],
+  args: { shape: "sharp", size: "large", flavour: "default", disabled: false, block: false, hideFocusOutline: false, leadingIcon: "search", trailingIcon: "microphone", trailingLabel: "Search by voice", "aria-label": "Search" },
 };
 export default meta;
 type Story = StoryObj<typeof Search>;
@@ -35,6 +34,17 @@ const Labelled = ({ text, children }: { text: string; children: React.ReactNode 
 );
 
 export const Playground: Story = {};
+
+/** Starts at 280 and narrows to fit its container. `block` fills the container. */
+export const Block: Story = {
+  render: () => (
+    <div style={{ display: "grid", gap: 16, maxWidth: 640 }}>
+      <Labelled text="default"><Search aria-label="Default" /></Labelled>
+      <Labelled text="block"><Search block aria-label="Block" /></Labelled>
+      <Labelled text="default, 200 container"><div style={{ inlineSize: 200 }}><Search aria-label="Narrow" /></div></Labelled>
+    </div>
+  ),
+};
 
 /** Height, text and icon size move together. Only small reduces the text. */
 export const Sizes: Story = {

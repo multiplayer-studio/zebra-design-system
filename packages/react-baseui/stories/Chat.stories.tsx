@@ -2,7 +2,7 @@ import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import {
   ChatMessage, ChatText, ChatFile, ChatImages, ChatCard, ChatAudio, ChatVideo, ChatChoices, ChatSources,
-  ChatTyping, ChatDivider, ChatThread, chatActions, CHAT_REACTIONS, StatusLabel, MessageInput,
+  ChatTyping, ChatDivider, ChatThread, ChatHeader, ChatImageViewer, chatActions, CHAT_REACTIONS, StatusLabel, MessageInput, Button,
   type ChatReaction, type ChatImage, type IconName, type MessageSubmission,
 } from "../src/index.js";
 
@@ -360,4 +360,120 @@ export const Shape: Story = {
       ))}
     </div>
   ),
+};
+
+/* ---- review attached content ------------------------------------------------ */
+
+type Sent = { id: number; text?: string; file?: { name: string; meta: string } };
+const DELIVERY: ChatImage[] = [
+  { alt: "Delivery beside a planter in a modern apartment" }, { alt: "Apartment delivery location" }, { alt: "Apartment delivery location, wide" },
+];
+
+/**
+ * The "Review Attached Content" frame, with its behaviours: older messages
+ * fold their controls into one Message actions menu (items depend on the
+ * content), the newest message keeps the full row, the photos fan out and
+ * open a viewer, the receipt downloads with progress, the voice note plays,
+ * and your messages can be edited, replied to or deleted from the composer.
+ */
+export const ReviewAttachedContent: Story = {
+  parameters: { layout: "fullscreen" },
+  render: function Review() {
+    const [draft, setDraft] = React.useState("");
+    const [sent, setSent] = React.useState<Sent[]>([]);
+    const [mine, setMine] = React.useState("Perfect, thank you. Is the receipt in the bag?");
+    const [liked, setLiked] = React.useState(false);
+    const [viewing, setViewing] = React.useState<number | null>(null);
+    const [receipt, setReceipt] = React.useState<number | undefined>(undefined);
+    const [looksGood, setLooksGood] = React.useState<ChatReaction[]>([{ icon: "like", label: "Looks good", text: "Looks good", count: 3 }]);
+
+    React.useEffect(() => {
+      if (receipt === undefined || receipt >= 100) return;
+      const t = window.setTimeout(() => setReceipt((p) => Math.min(100, (p ?? 0) + 5)), 150);
+      return () => window.clearTimeout(t);
+    }, [receipt]);
+
+    const download = () => setReceipt(0);
+    const reply = (to: string) => setDraft(`Replying to ${to}: `);
+    const quiet = sent.length > 0; // once you have answered, the voice note folds its controls too
+    const send = (m: MessageSubmission) => {
+      const files = m.attachments.map((a) => ({ id: Date.now() + Math.random(), file: { name: a.file.name, meta: `${Math.max(1, Math.round(a.file.size / 1024))} KB · Uploaded` } }));
+      setSent((s) => [...s, ...files, ...(m.text.trim() ? [{ id: Date.now(), text: m.text.trim() }] : [])]);
+      setDraft("");
+    };
+
+    return (
+      <div style={{ display: "grid", gridTemplateRows: "auto 1fr auto", inlineSize: 760, blockSize: "100vh", marginInline: "auto", background: "var(--surface-section)" }}>
+        <ChatHeader author={AMARA} presence="Online" online actions={<Button flavour="outline-subtle" size="small">Details</Button>} />
+
+        <ChatThread style={{ overflow: "auto", padding: "var(--space-md)", display: "grid", alignContent: "start", gap: "var(--space-lg)" }}>
+          <ChatDivider>Today</ChatDivider>
+
+          <div>
+            <ChatMessage role="other" author={AMARA} time="09:41" position="first" actionsPosition="menu"
+              actions={chatActions.forOther({ onCopy: noop, onReply: () => reply("Amara"), liked, onLike: () => setLiked((l) => !l), onMore: noop })}>
+              <ChatText>Chilled delivery is in at door 2.</ChatText>
+            </ChatMessage>
+            <ChatMessage role="other" author={AMARA} position="middle" actionsPosition="menu" actions={chatActions.forOther({ onCopy: noop, onReply: () => reply("Amara") })}>
+              <ChatText>Placed to the right of the planter.</ChatText>
+            </ChatMessage>
+            <ChatMessage role="other" author={AMARA} position="middle" actionsPosition="menu" actions={chatActions.forOther({ onCopy: noop, onReply: () => reply("Amara") })}>
+              <ChatText>I took a few photos so you can spot it.</ChatText>
+            </ChatMessage>
+            <ChatMessage role="other" author={AMARA} position="last" footer={false} actionsPosition="menu"
+              reactions={looksGood} onReact={() => setLooksGood((r) => r.map((x) => ({ ...x, mine: !x.mine, count: x.count + (x.mine ? -1 : 1) })))}
+              actions={chatActions.forAttachment("image", { onDownload: noop, onReply: () => reply("the photos"), onMore: noop })}>
+              <ChatImages images={DELIVERY} onOpen={setViewing} />
+            </ChatMessage>
+          </div>
+
+          <ChatMessage role="me" time="09:44" header status="read" footer={false} editableText={mine} onEdit={setMine} actionsPosition="menu"
+            actions={chatActions.forMine({ onReply: () => reply("your message"), onDelete: noop })}>
+            <ChatText>{mine}</ChatText>
+          </ChatMessage>
+
+          <div>
+            <ChatMessage role="other" author={AMARA} time="09:46" position="first" actionsPosition="menu"
+              actions={chatActions.forAttachment("file", { onDownload: download, onReply: () => reply("the receipt"), onMore: noop })}>
+              <ChatText>Yes, and I’ve attached a digital copy too.</ChatText>
+              <ChatFile name="Delivery receipt.pdf" meta="PDF · 248 KB" progress={receipt} transfer="download" onDownload={download} />
+            </ChatMessage>
+            <ChatMessage role="other" author={AMARA} position="last" footer={false} actionsPosition={quiet ? "menu" : "below"}
+              actions={quiet
+                ? chatActions.forAttachment("audio", { onDownload: noop, onReply: () => reply("the voice note"), onMore: noop })
+                : [...chatActions.forOther({ onCopy: noop, onReply: () => reply("the voice note") }), { id: "refresh", icon: "refresh", label: "Refresh", onSelect: noop },
+                   ...chatActions.forOther({ liked, onLike: () => setLiked((l) => !l), onMore: noop })]}>
+              <ChatText>One more thing — listen when you have a moment.</ChatText>
+              <ChatAudio src={tone} duration={8} />
+            </ChatMessage>
+          </div>
+
+          {sent.length ? (
+            <div>
+              {sent.map((m, i) => {
+                const last = i === sent.length - 1;
+                const position = sent.length === 1 ? "single" : i === 0 ? "first" : last ? "last" : "middle";
+                const remove = () => setSent((s) => s.filter((x) => x.id !== m.id));
+                return (
+                  <ChatMessage key={m.id} role="me" time={i === 0 ? "now" : undefined} header={i === 0} position={position}
+                    status={last ? "read" : undefined} actionsPosition={last ? "below" : "menu"}
+                    actions={m.text
+                      ? chatActions.forMine({ onEdit: () => setDraft(m.text!), onReply: () => reply("your message"), onDelete: remove })
+                      : chatActions.forAttachment("file", { onDownload: noop, onReply: () => reply(m.file!.name), onDelete: remove })}>
+                    {m.text ? <ChatText>{m.text}</ChatText> : <ChatFile name={m.file!.name} meta={m.file!.meta} />}
+                  </ChatMessage>
+                );
+              })}
+            </div>
+          ) : null}
+        </ChatThread>
+
+        <div style={{ padding: "var(--space-sm) var(--space-md)", borderBlockStart: "var(--stroke-thin) solid var(--border-default)" }}>
+          <MessageInput placeholder="Message Amara…" value={draft} onValueChange={setDraft} onSend={send} defaultSpeakResponse={false} />
+        </div>
+
+        <ChatImageViewer images={DELIVERY} index={viewing} onIndexChange={setViewing} onClose={() => setViewing(null)} />
+      </div>
+    );
+  },
 };

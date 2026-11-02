@@ -8,6 +8,7 @@ import { CardHeading } from "../card-heading/CardHeading.js";
 import { CardBody } from "../card-body/CardBody.js";
 import { CardFooter } from "../card-footer/CardFooter.js";
 import { Divider } from "../divider/Divider.js";
+import { Dialog } from "../dialog/Dialog.js";
 import { Dropdown } from "../dropdown/Dropdown.js";
 import { FilterChip } from "../filter-chip/FilterChip.js";
 import { Icon, type IconName } from "../icon/Icon.js";
@@ -45,6 +46,8 @@ export interface ChatReaction {
   icon: IconName;
   label: string;
   count: number;
+  /** Words instead of the glyph, e.g. "Looks good". The glyph still keys the reaction. */
+  text?: string;
   /** The current user added this one; selecting it again takes it away. */
   mine?: boolean;
 }
@@ -154,8 +157,13 @@ export interface ChatMessageProps extends Omit<React.HTMLAttributes<HTMLElement>
   onEdit?: (text: string) => void;
   /** Keep the action toolbar visible instead of on hover and focus only (touch layouts). */
   actionsVisible?: boolean;
-  /** `float` (others and you) shows the controls on hover beside the bubble; `below` (the assistant) keeps them in a row under it. */
-  actionsPosition?: "float" | "below";
+  /**
+   * `float` (others and you) shows the controls on hover beside the bubble;
+   * `below` (the assistant) keeps them in a row under it; `menu` folds them
+   * into one Message actions control on hover, the quiet form for older
+   * messages once a newer one carries the row.
+   */
+  actionsPosition?: "float" | "below" | "menu";
   className?: string;
 }
 
@@ -181,6 +189,8 @@ export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(funct
   const [editing, setEditing] = React.useState(false);
   const [draft, setDraft] = React.useState(editableText ?? "");
   const [picking, setPicking] = React.useState(false);
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const placement = actionsPosition ?? (role === "assistant" ? "below" : "float");
   const leads = position === "single" || position === "first";
   const ends = position === "single" || position === "last";
   const showHeader = header === undefined ? leads && role !== "me" && !!author : header !== false;
@@ -215,8 +225,8 @@ export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(funct
         data-fill={fill}
         data-status={status}
         data-avatar={showAvatar ? "" : undefined}
-        data-actions-visible={actionsVisible || picking ? "" : undefined}
-        data-actions={actionsPosition ?? (role === "assistant" ? "below" : "float")}
+        data-actions-visible={actionsVisible || picking || menuOpen ? "" : undefined}
+        data-actions={placement}
       >
         {showAvatar ? (
           <div className="zds-chat-message__gutter" aria-hidden="true">
@@ -251,7 +261,7 @@ export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(funct
               {editing ? (
                 <ChatBubble>
                   <form className="zds-chat-message__edit" onSubmit={(e) => { e.preventDefault(); onEdit?.(draft.trim()); setEditing(false); }}>
-                    <Input aria-label="Edit message" shape={btnShape(shape)} value={draft} autoFocus
+                    <Input aria-label="Edit message" block shape={btnShape(shape)} value={draft} autoFocus
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDraft(e.target.value)}
                       onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => { if (e.key === "Escape") setEditing(false); }} />
                     <div className="zds-chat-message__edit-actions">
@@ -276,9 +286,15 @@ export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(funct
             </div>
 
             {allActions.length && !editing && !thinking ? (
-              <div className="zds-chat-message__toolbar" role="toolbar" aria-label="Message actions">
-                {allActions.map((a) => <ChatActionButton key={a.id} action={a} shape={shape} />)}
-              </div>
+              placement === "menu" ? (
+                <div className="zds-chat-message__toolbar">
+                  <ChatActionsMenu actions={allActions} shape={shape} onOpenChange={setMenuOpen} />
+                </div>
+              ) : (
+                <div className="zds-chat-message__toolbar" role="toolbar" aria-label="Message actions">
+                  {allActions.map((a) => <ChatActionButton key={a.id} action={a} shape={shape} />)}
+                </div>
+              )
             ) : null}
           </div>
 
@@ -295,10 +311,10 @@ export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(funct
             <div className="zds-chat-message__reactions">
               {reactions.map((r) => (
                 // Assist Chips: a glyph and a count, blue when one of them is yours. Selecting toggles yours.
-                <AssistChip key={r.icon} shape={shape} icon={r.icon} showLeadingIcon discardable={false}
+                <AssistChip key={r.icon} shape={shape} icon={r.icon} showLeadingIcon={!r.text} discardable={false}
                   color={r.mine ? "blue" : "neutral"} disabled={!onReact} aria-pressed={!!r.mine}
-                  aria-label={`${r.label}, ${r.count}${r.mine ? ", including you" : ""}`}
-                  onClick={() => onReact?.(r.icon)}>{r.count}</AssistChip>
+                  aria-label={`${r.text ?? r.label}, ${r.count}${r.mine ? ", including you" : ""}`}
+                  onClick={() => onReact?.(r.icon)}>{r.text ? `${r.text} ${r.count}` : r.count}</AssistChip>
               ))}
             </div>
           ) : null}
@@ -340,6 +356,21 @@ function ChatActionButton({ action, shape }: { action: ChatAction; shape: ChatSh
   return <Tooltip point="bottom" shape={shape} trigger={button}>{action.label}</Tooltip>;
 }
 
+/**
+ * Every action folded into one Message actions control: a chevron that opens
+ * a menu. Follow-ups under More are listed in place, and a pressed toggle
+ * reads as selected.
+ */
+function ChatActionsMenu({ actions, shape, onOpenChange }: { actions: ChatAction[]; shape: ChatShape; onOpenChange: (open: boolean) => void }) {
+  const items = actions.flatMap((a) => a.menu ? a.menu.map((m) => ({ ...m, pressed: undefined as boolean | undefined })) : [{ id: a.id, icon: a.icon, label: a.label, onSelect: a.onSelect, pressed: a.pressed }]);
+  return (
+    <Dropdown rounded={shape === "rounded"} position="bottom" align="left" onOpenChange={(open: boolean) => onOpenChange(open)}
+      trigger={<IconButton flavour="text" size="small" shape={btnShape(shape)} icon="expand-more" label="Message actions" />}>
+      {items.map((m) => <MenuItem key={m.id} leadingIcon={m.icon} selected={!!m.pressed} onClick={m.onSelect}>{m.label}</MenuItem>)}
+    </Dropdown>
+  );
+}
+
 const STATUS_TEXT: Record<ChatStatus, string> = {
   sending: "Sending", sent: "Sent", delivered: "Delivered", read: "Seen", failed: "Not sent",
 };
@@ -359,7 +390,22 @@ function ChatStatusMark({ status, shape }: { status: ChatStatus; shape: ChatShap
 
 /** Ready-made action sets. Pass handlers for the ones you support; the rest are left out. */
 export const chatActions = {
-  forMine: (h: { onReply?: () => void; onCopy?: () => void; onForward?: () => void; onPin?: () => void; onDelete?: () => void }): ChatAction[] => [
+  /** Someone else's message: copy, reply, like and more. */
+  forOther: (h: { onCopy?: () => void; onReply?: () => void; liked?: boolean; onLike?: () => void; onMore?: () => void }): ChatAction[] => [
+    h.onCopy && { id: "copy", icon: "copy-file" as IconName, label: "Copy", onSelect: h.onCopy },
+    h.onReply && { id: "reply", icon: "reply" as IconName, label: "Reply", onSelect: h.onReply },
+    h.onLike && { id: "like", icon: "like" as IconName, label: h.liked ? "Unlike" : "Like", pressed: !!h.liked, onSelect: h.onLike },
+    h.onMore && { id: "more", icon: "more-horizontal" as IconName, label: "More options", onSelect: h.onMore },
+  ].filter(Boolean) as ChatAction[],
+  /** An image, file or audio message: the save action named for what it saves, then reply, delete and more. */
+  forAttachment: (kind: "image" | "file" | "audio", h: { onDownload?: () => void; onReply?: () => void; onDelete?: () => void; onMore?: () => void }): ChatAction[] => [
+    h.onDownload && { id: "download", icon: (kind === "audio" ? "save" : "download") as IconName, label: kind === "image" ? "Download image" : kind === "file" ? "Download file" : "Save audio", onSelect: h.onDownload },
+    h.onReply && { id: "reply", icon: "reply" as IconName, label: "Reply", onSelect: h.onReply },
+    h.onDelete && { id: "delete", icon: "delete" as IconName, label: "Delete", onSelect: h.onDelete },
+    h.onMore && { id: "more", icon: "more-horizontal" as IconName, label: "More options", onSelect: h.onMore },
+  ].filter(Boolean) as ChatAction[],
+  forMine: (h: { onEdit?: () => void; onReply?: () => void; onCopy?: () => void; onForward?: () => void; onPin?: () => void; onDelete?: () => void }): ChatAction[] => [
+    h.onEdit && { id: "edit", icon: "edit" as IconName, label: "Edit", onSelect: h.onEdit },
     h.onReply && { id: "reply", icon: "reply" as IconName, label: "Reply", onSelect: h.onReply },
     h.onCopy && { id: "copy", icon: "copy-file" as IconName, label: "Copy", onSelect: h.onCopy },
     { id: "more", icon: "more-horizontal" as IconName, label: "More", menu: [
@@ -417,22 +463,31 @@ export interface ChatFileProps {
   /** e.g. "2.4 MB · PDF". */
   meta?: string;
   kind?: ChatFileKind;
-  /** 0–100 while uploading; the controls wait until it is done. */
+  /** 0–100 while transferring; the controls wait until it is done. */
   progress?: number;
+  /** What `progress` measures. A download says so, shows the percentage, then "Download complete". */
+  transfer?: "upload" | "download";
   onOpen?: () => void;
   onDownload?: () => void;
 }
 
 /** A file attachment on a card tile: the type's glyph, the name, size, and open / download controls. */
-export function ChatFile({ name, meta, kind, progress, onOpen, onDownload }: ChatFileProps) {
+export function ChatFile({ name, meta, kind, progress, transfer = "upload", onOpen, onDownload }: ChatFileProps) {
   const shape = useChatShape();
   const uploading = progress !== undefined && progress < 100;
+  const downloaded = transfer === "download" && progress !== undefined && progress >= 100;
   return (
     <div className="zds-chat-file">
       <span className="zds-chat-file__tile" aria-hidden="true"><Icon name={FILE_ICON[kind ?? fileKindOf(name)]} size="medium" iconStyle={glyphStyle(shape)} /></span>
       <span className="zds-chat-file__body">
         <span className="zds-chat-file__name">{name}</span>
-        {uploading ? <ProgressBar value={progress} shape={shape} label={`Uploading ${name}`} showLabel={false} size="small" /> : meta ? <span className="zds-chat-file__meta">{meta}</span> : null}
+        {uploading && transfer === "download" ? (
+          <>
+            <span className="zds-chat-file__meta zds-chat-file__progress" aria-hidden="true"><span>Downloading…</span><span>{Math.round(progress!)}%</span></span>
+            <ProgressBar value={progress} shape={shape} label={`Downloading ${name}`} showLabel={false} size="small" />
+          </>
+        ) : uploading ? <ProgressBar value={progress} shape={shape} label={`Uploading ${name}`} showLabel={false} size="small" />
+          : <span className="zds-chat-file__meta">{downloaded ? <span role="status">{meta ? `${meta} · ` : ""}Download complete</span> : meta}</span>}
       </span>
       {onOpen && !uploading ? <IconButton flavour="text" shape={btnShape(shape)} icon="open-in-new-window" label={`Open ${name}`} onClick={onOpen} /> : null}
       {onDownload && !uploading ? <IconButton flavour="text" shape={btnShape(shape)} icon="download" label={`Download ${name}`} onClick={onDownload} /> : null}
@@ -450,25 +505,51 @@ function ChatPicture({ image, shape }: { image?: ChatImage; shape: ChatShape }) 
 }
 
 /**
- * One image, or several as a stack: the first on top and plain card layers
- * behind it, with a count. Open shows the first; a viewer pages from there.
+ * One image, or several as a fanned stack: up to three real pictures, each
+ * slightly offset and turned, lifting on hover, with a count. Every picture
+ * is its own control when `onOpen` is set, so any of them opens the viewer.
  */
-export function ChatImages({ images, onOpen }: { images: ChatImage[]; onOpen?: (index: number) => void }) {
+export function ChatImages({ images, onOpen, noun = "photos" }: { images: ChatImage[]; onOpen?: (index: number) => void; noun?: string }) {
   const shape = useChatShape();
   if (!images.length) return null;
   const stacked = images.length > 1;
-  const label = stacked ? `${images.length} images, starting with ${images[0].alt}` : images[0].alt;
+  // Drawn back to front, so the first image ends up on top.
+  const shown = images.slice(0, 3).map((image, index) => ({ image, index })).reverse();
   return (
-    <figure className="zds-chat-images" data-stacked={stacked ? "" : undefined}>
-      {stacked ? <><span className="zds-chat-images__layer" data-depth="2" aria-hidden="true" /><span className="zds-chat-images__layer" data-depth="1" aria-hidden="true" /></> : null}
-      {onOpen ? (
-        // The picture is the control: tap it to open the viewer.
-        <button type="button" className="zds-chat-images__top" aria-label={`Open ${label}`} onClick={() => onOpen(0)}><ChatPicture image={images[0]} shape={shape} /></button>
+    <figure className="zds-chat-images" data-stacked={stacked ? "" : undefined} aria-label={stacked ? `${images.length} ${noun}` : undefined}>
+      {shown.map(({ image, index }) => onOpen ? (
+        <button key={index} type="button" className="zds-chat-images__photo" data-depth={index} aria-label={`Open ${image.alt}`} onClick={() => onOpen(index)}>
+          <ChatPicture image={image} shape={shape} />
+        </button>
       ) : (
-        <span className="zds-chat-images__top" role="img" aria-label={label}><ChatPicture image={images[0]} shape={shape} /></span>
-      )}
-      {stacked ? <span className="zds-chat-images__count" aria-hidden="true"><BadgeLabel variant="neutral" bold={false} shape={btnShape(shape)}>{`${images.length} images`}</BadgeLabel></span> : null}
+        <span key={index} className="zds-chat-images__photo" data-depth={index} role="img" aria-label={image.alt}><ChatPicture image={image} shape={shape} /></span>
+      ))}
+      {stacked ? <span className="zds-chat-images__count" aria-hidden="true"><BadgeLabel variant="neutral" bold={false} shape={btnShape(shape)}>{`${images.length} ${noun}`}</BadgeLabel></span> : null}
     </figure>
+  );
+}
+
+/** A full-size view of a message's images in a library Dialog, paging between them. */
+export function ChatImageViewer({ images, index, onIndexChange, onClose }: {
+  images: ChatImage[]; index: number | null; onIndexChange?: (index: number) => void; onClose: () => void;
+}) {
+  const shape = useChatShape();
+  const image = index === null ? undefined : images[index];
+  return (
+    <Dialog open={index !== null} onOpenChange={(open) => { if (!open) onClose(); }} shape={shape} showFooter={false}
+      heading={images.length > 1 && index !== null ? `${index + 1} of ${images.length}` : "Photo"} className="zds-chat-viewer">
+      {image ? (
+        <div className="zds-chat-viewer__stage">
+          <span className="zds-chat-viewer__image" role="img" aria-label={image.alt}><ChatPicture image={image} shape={shape} /></span>
+          {images.length > 1 ? (
+            <div className="zds-chat-viewer__nav">
+              <IconButton flavour="subtle" shape={btnShape(shape)} icon="chevron-left" label="Previous photo" disabled={index === 0} onClick={() => onIndexChange?.(index! - 1)} />
+              <IconButton flavour="subtle" shape={btnShape(shape)} icon="chevron-right" label="Next photo" disabled={index === images.length - 1} onClick={() => onIndexChange?.(index! + 1)} />
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+    </Dialog>
   );
 }
 
@@ -600,6 +681,32 @@ export function ChatSources({ sources }: { sources: { title: string; href?: stri
         </AssistChip>
       ))}
     </div>
+  );
+}
+
+/* ---- conversation header -------------------------------------------------- */
+
+/** Who the conversation is with: avatar, name, presence in words, and actions at the end. */
+export function ChatHeader({ author, presence, online, actions }: {
+  author: ChatAuthor;
+  /** e.g. "Online", "Last seen 09:12". */
+  presence?: string;
+  /** Adds the available dot to the avatar. */
+  online?: boolean;
+  /** Buttons at the trailing edge, e.g. Details. */
+  actions?: React.ReactNode;
+}) {
+  const initials = author.initials ?? author.name.split(/\s+/).map((w) => w[0]).slice(0, 2).join("");
+  return (
+    <header className="zds-chat-header">
+      <Avatar size="small" type={author.src ? "photo" : "initials"} src={author.src} initials={initials}
+        showClose={false} showRing={false} showStatus={!!online} status="available" statusLabel={online ? "Online" : undefined} />
+      <div className="zds-chat-header__text">
+        <span className="zds-chat-header__name">{author.name}</span>
+        {presence ? <span className="zds-chat-header__presence">{presence}</span> : null}
+      </div>
+      {actions ? <div className="zds-chat-header__actions">{actions}</div> : null}
+    </header>
   );
 }
 

@@ -10,13 +10,15 @@
 
 .zds-search {
   /* --- geometry: size axis ---------------------------------------------- */
-  /* The spec's 280 is the sample width (spec note); the field fills its
-     container. space/sm block padding at every size (spec warn: two
+  /* 280 is a start width, not a fixed one (spec note): the field never
+     outgrows its container, and block fills it. space/sm block padding at every size (spec warn: two
      medium/rounded variants bind space/2xs). */
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  min-inline-size: calc(8 * var(--control-sm));
+  inline-size: 280px;
+  max-inline-size: 100%;
+  min-inline-size: min(calc(6 * var(--control-sm)), 100%);
   gap: var(--space-xxs);
   padding: var(--space-sm) var(--space-md);
   block-size: var(--control-lg);
@@ -49,6 +51,10 @@
 
 .zds-search__leading {
   flex: none;
+}
+
+.zds-search[data-block] {
+  inline-size: 100%;
 }
 
 .zds-search__input {

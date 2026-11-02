@@ -239,6 +239,8 @@
   box-shadow: none;
 }
 .zds-chat-message[data-role="me"][data-actions="below"] .zds-chat-message__toolbar { margin-inline: 0 calc(var(--space-xxs) * -1); }
+/* Menu: one Message actions chevron on hover, with no surface of its own. */
+.zds-chat-message[data-actions="menu"] .zds-chat-message__toolbar { padding: 0; background: none; box-shadow: none; }
 /* Touch has no hover: the toolbar sits in the flow under the message instead. */
 @media (hover: none) {
   .zds-chat-message__row { flex-direction: column; align-items: inherit; gap: var(--space-xxs); }
@@ -353,39 +355,59 @@
   color: var(--foreground-secondary);
 }
 
-/* ---- images: one, or a stack of card layers behind the first ----------- */
+/* ---- images: one, or a fanned stack of up to three real pictures ------- */
 .zds-chat-images {
   position: relative;
   box-sizing: border-box;
   inline-size: calc(var(--control-lg) * 6);
   max-inline-size: 100%;
   margin: 0;
+  /* Keeps the fan's layering inside the stack, so menus open over it. */
+  isolation: isolate;
 }
-.zds-chat-images[data-stacked] { padding: var(--space-xs) var(--space-xs) 0 0; }
-.zds-chat-images__top,
-.zds-chat-images__layer {
+/* Room for the pictures behind to fan out down and to the end. */
+.zds-chat-images[data-stacked] { padding: 0 var(--space-lg) var(--space-md) 0; }
+.zds-chat-images__photo {
   display: block;
   box-sizing: border-box;
-  overflow: hidden;
-  border: var(--stroke-thin) solid var(--border-default);
-  border-radius: var(--zds-chat-r-md);
-  background: var(--surface-card);
-}
-.zds-chat-images__top { position: relative; inline-size: 100%; aspect-ratio: 4 / 3; }
-button.zds-chat-images__top {
+  inline-size: 100%;
+  aspect-ratio: 4 / 3;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  border: var(--stroke-thick) solid var(--surface-card);
+  border-radius: var(--zds-chat-r-md);
+  background: var(--surface-card);
+  box-shadow: 0 var(--shadow-medium-y) var(--shadow-medium-blur) var(--shadow-soft);
   font: inherit;
   color: inherit;
-  cursor: pointer;
+  /* Each picture behind sits a step further down and to the end, turned a
+     little either way. The turn has no token; it is the fan's own geometry. */
+  --zds-chat-fan-x: calc(var(--space-sm) * var(--zds-chat-depth));
+  --zds-chat-fan-y: calc(var(--space-xs) * var(--zds-chat-depth));
+  --zds-chat-fan-turn: calc((var(--zds-chat-depth) - 1) * 1.5deg);
+  transform: translate(var(--zds-chat-fan-x), var(--zds-chat-fan-y)) rotate(var(--zds-chat-fan-turn));
+  transition: transform var(--animations-smooth);
 }
-button.zds-chat-images__top:focus-visible { outline: var(--stroke-thick) solid var(--focus-outline); outline-offset: var(--stroke-thin); }
-.zds-chat-images__layer { position: absolute; }
-.zds-chat-images__layer[data-depth="1"] { inset: calc(var(--space-xs) / 2) calc(var(--space-xs) / 2) calc(var(--space-xs) / 2) calc(var(--space-xs) / 2); }
-.zds-chat-images__layer[data-depth="2"] { inset: 0 0 var(--space-xs) var(--space-xs); }
+.zds-chat-images__photo[data-depth="0"] { --zds-chat-depth: 0; position: relative; z-index: 3; }
+.zds-chat-images__photo[data-depth="1"] { --zds-chat-depth: 1; position: absolute; inset: 0 var(--space-lg) var(--space-md) 0; z-index: 2; }
+.zds-chat-images__photo[data-depth="2"] { --zds-chat-depth: 2; position: absolute; inset: 0 var(--space-lg) var(--space-md) 0; z-index: 1; }
+.zds-chat-images:not([data-stacked]) .zds-chat-images__photo { transform: none; box-shadow: none; border: var(--stroke-thin) solid var(--border-default); }
+/* Hover lifts a picture and straightens it, so it reads as the one you are about to open. */
+button.zds-chat-images__photo { cursor: pointer; }
+button.zds-chat-images__photo:hover { transform: translate(var(--zds-chat-fan-x), calc(var(--zds-chat-fan-y) - var(--space-2xs))); }
+button.zds-chat-images__photo:focus-visible { outline: var(--stroke-thick) solid var(--focus-outline); outline-offset: var(--stroke-thin); }
+@media (prefers-reduced-motion: reduce) { .zds-chat-images__photo { transition: none; } }
 .zds-chat-images img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
-.zds-chat-images__count { position: absolute; inset: auto auto var(--space-xs) var(--space-xs); }
+.zds-chat-images__count { position: absolute; z-index: 4; inset: auto var(--space-lg) calc(var(--space-md) + var(--space-xs)) auto; margin-inline-end: var(--space-xs); }
 
+/* ---- image viewer ---------------------------------------------------------- */
+/* Wider than a standard dialog: the picture is the content. */
+.zds-dialog.zds-chat-viewer { --zds-dialog-width: calc(var(--control-lg) * 14); }
+.zds-chat-viewer__stage { display: grid; gap: var(--space-sm); justify-items: center; }
+.zds-chat-viewer__image { display: block; inline-size: 100%; max-block-size: 70vh; aspect-ratio: 4 / 3; overflow: hidden; border-radius: var(--zds-chat-r-md); background: var(--surface-card); }
+.zds-chat-viewer__image img { display: block; inline-size: 100%; block-size: 100%; object-fit: contain; }
+.zds-chat-viewer__nav { display: flex; gap: var(--space-xs); }
 
 /* ---- card ---------------------------------------------------------------- */
 .zds-chat-card { inline-size: calc(var(--control-lg) * 7); max-inline-size: 100%; color: var(--foreground-primary); }
@@ -477,3 +499,36 @@ button.zds-chat-images__top:focus-visible { outline: var(--stroke-thick) solid v
 .zds-chat-divider > .zds-divider { flex: 1; }
 .zds-chat-divider[data-tone="unread"] { color: var(--foreground-primary); font-weight: var(--label-small-font-weight); }
 .zds-chat-divider[data-tone="system"] { justify-content: center; }
+
+/* ---- file transfer --------------------------------------------------------- */
+.zds-chat-file__progress { display: flex; justify-content: space-between; gap: var(--space-sm); }
+
+/* ---- conversation header --------------------------------------------------- */
+.zds-chat-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-block-end: var(--stroke-thin) solid var(--border-default);
+  background: var(--surface-section);
+  color: var(--foreground-primary);
+}
+.zds-chat-header__text { display: flex; flex: 1; min-inline-size: 0; flex-direction: column; }
+.zds-chat-header__name {
+  font-family: var(--label-large-font-family), system-ui, sans-serif;
+  font-size: var(--label-large-font-size);
+  font-weight: var(--label-large-font-weight);
+  line-height: var(--label-large-line-height);
+}
+.zds-chat-header__presence {
+  color: var(--foreground-secondary);
+  font-family: var(--body-xsmall-font-family), system-ui, sans-serif;
+  font-size: var(--body-xsmall-font-size);
+  line-height: var(--body-xsmall-line-height);
+}
+.zds-chat-header__actions { display: flex; flex: none; gap: var(--space-xs); }
+
+/* Desktop Compact: a width from a control size shrinks faster than the name it holds. */
+:is(.bp-desktop-compact, [data-size-mode="compact"]) .zds-chat-file {
+  inline-size: calc(var(--control-lg) * 7);
+}

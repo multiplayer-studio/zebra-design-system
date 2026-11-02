@@ -68,6 +68,8 @@ export interface SelectProps {
   shape?: SelectShape;
   /** `default` inside a form, `ghost` on a surface that already bounds it, `gradient` for a distinct interaction. */
   flavour?: SelectFlavour;
+  /** Opens the list on the compact Dropdown Menu: a space/xs inset and no gap between rows, for a cramped spot. */
+  compact?: boolean;
   /**
    * Where the list mounts. Defaults to the Select's own root, so the list
    * stays inside any `.ext-*` / `.mode-*` scope the Select sits in; it is
@@ -117,7 +119,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(function 
     open: openProp, defaultOpen = false, onOpenChange,
     placeholder = "Select an option", label, labelType = "default", information = false, informationLabel = "More information",
     hint, hintIcon = true, state = "default", readOnly = false,
-    name, leadingIcon = null, size = "medium", shape = "rounded", flavour = "default",
+    name, leadingIcon = null, size = "medium", shape = "rounded", flavour = "default", compact = false,
     portalContainer, "aria-label": ariaLabel, className,
   },
   ref,
@@ -196,7 +198,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(function 
           <BaseSelect.Positioner className="zds-select__positioner" alignItemWithTrigger={false}
             side="bottom" align="start" sideOffset={sideOffset} positionMethod="fixed">
             {/* Spec issue 14: the Dropdown Menu is always Rounded=true. */}
-            <BaseSelect.Popup className="zds-dropdown-menu zds-select__popup" data-rounded="true">
+            <BaseSelect.Popup className="zds-dropdown-menu zds-select__popup" data-rounded="true" data-compact={compact}>
               <BaseSelect.List className="zds-dropdown-menu__content">
                 {options.map((o) => (
                   <BaseSelect.Item key={o.value} value={o.value} disabled={o.disabled}

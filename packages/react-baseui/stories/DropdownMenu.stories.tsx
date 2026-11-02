@@ -57,8 +57,9 @@ const meta: Meta<typeof DropdownMenu> = {
   decorators: [(Story) => <MenuHost><Story /></MenuHost>],
   argTypes: {
     rounded: { control: "boolean" },
+    compact: { control: "boolean" },
   },
-  args: { rounded: false },
+  args: { rounded: false, compact: false },
 };
 export default meta;
 type Story = StoryObj<typeof DropdownMenu>;
@@ -87,6 +88,17 @@ export const Rounded: Story = {
     <div style={{ display: "flex", gap: 24 }}>
       <DropdownMenu rounded={false}><DefaultRows /></DropdownMenu>
       <DropdownMenu rounded={true}><DefaultRows /></DropdownMenu>
+    </div>
+  ),
+};
+
+/** Spec `compact`: the inset drops from space/card to space/xs; rows, gaps and radii hold. */
+export const Compact: Story = {
+  render: () => (
+    <div style={{ display: "flex", gap: 24 }}>
+      <DropdownMenu><DefaultRows /></DropdownMenu>
+      <DropdownMenu compact><DefaultRows /></DropdownMenu>
+      <DropdownMenu rounded compact><DefaultRows /></DropdownMenu>
     </div>
   ),
 };

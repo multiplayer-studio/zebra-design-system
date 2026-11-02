@@ -44,10 +44,10 @@ function shapeAction(node: React.ReactNode, shape: ScreenHeaderBarShape): React.
  * trailing action. Reach for it on a pushed screen with exactly one primary
  * action.
  *
- * Overlaps Top App Bar (Figma `3116:1217`, not built yet), which covers the
- * same screen-level role with more layouts and slots; this is effectively its
- * single-action preset. Use Top App Bar once it exists when a screen needs
- * more than one action or a different leading control.
+ * Overlaps `TopAppBar`, which covers the same screen-level role with
+ * more layouts and slots; this is effectively its single-action preset. Use
+ * Top App Bar when a screen needs more than one action or a different leading
+ * control.
  *
  * Departures from Figma, each a spec issue:
  * - The leading control is an `IconButton` (medium, subtle, `chevron-left`)

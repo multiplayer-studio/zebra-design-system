@@ -66,7 +66,7 @@ function pageIsDark(el: Element | null) {
  * A brief message about something the app just did, carrying at most one
  * action. Variant chooses between a contextual pill, where Flavour sets the
  * tint, the leading glyph and the controls together, and a plain standard
- * bar. Experimental, as marked on the Figma set.
+ * bar.
  *
  * Primitive: Base UI's Toast is built around a toast manager (a provider and
  * a viewport own queueing, placement and timers), which does not fit the

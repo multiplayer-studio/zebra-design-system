@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Table, IconButton, useTableShape, type TableColumn, type TableRow, type TableSort } from "../src/index.js";
+import { Table, IconButton, useTableShape, type TableAction, type TableColumn, type TableRow, type TableSort } from "../src/index.js";
 
 const COLUMNS: TableColumn[] = [
   { key: "name", header: "Name", width: 240, sortable: true },
@@ -149,3 +149,61 @@ export const ThemingCascade: Story = {
     </div>
   ),
 };
+
+// ---- spec additions: selection, actions, menus, client-side, resizing ------
+
+const FIRST = ["Amara", "Jonas", "Priya", "Tomás", "Mei", "Fatima", "Gus"];
+const LAST = ["Okafor", "Weber", "Raman"];
+const MANY: TableRow[] = Array.from({ length: 21 }, (_, i) => {
+  const name = `${FIRST[i % 7]} ${LAST[i % 3]}`;
+  return {
+    key: `m${i + 1}`,
+    cells: {
+      name: { title: name, subtitle: `${name.toLowerCase().replace(" ", ".")}@example.com`, avatar: { initials: name.split(" ").map((p) => p[0]).join("") } },
+      role: ["Store manager", "Picker", "Shift lead", "Driver", "Analyst"][i % 5],
+      site: ["Leeds", "Manchester", "Bristol"][i % 3],
+      device: ["TC58", "TC22", "MC9400", "ET40"][i % 4],
+      lastSeen: `${i + 1} days ago`,
+    },
+  };
+});
+const ACTIONS: TableAction[] = [
+  { key: "view", label: "View", icon: "visibility" },
+  { key: "edit", label: "Edit", icon: "edit" },
+  { key: "share", label: "Share", icon: "share" },
+  { key: "delete", label: "Delete", icon: "delete" },
+];
+
+/**
+ * Everything the spec adds, client-side over 21 rows: selection with its
+ * count, row actions (Delete disabled on one row), filter menus on Role and
+ * Site, rows per page, column settings, resizable columns, a disabled row and
+ * the first column frozen. Narrow a column and hover cut-off text for its
+ * tooltip.
+ */
+export const AllFeatures: Story = {
+  render: function Render(a) {
+    // Page size and the column settings are controlled here, so the story starts at 5 rows and one frozen column.
+    const [pageSize, setPageSize] = React.useState(5);
+    const [settings, setSettings] = React.useState({ hiddenColumns: [] as string[], frozenColumns: 1 });
+    return (
+      <Table columns={COLUMNS} caption="Team members" shape={a.shape} controls={<Controls />}
+        clientSide selectable resizable columnConfigure
+        pageSize={pageSize} onPageSizeChange={setPageSize} pageSizeOptions={[5, 10, 20]}
+        hiddenColumns={settings.hiddenColumns} frozenColumns={settings.frozenColumns} onColumnSettingsChange={setSettings}
+        rows={MANY.map((r, i) => (i === 1 ? { ...r, actions: ACTIONS.map((x) => (x.key === "delete" ? { ...x, disabled: true } : x)) } : r))}
+        rowActions={ACTIONS} disabledRows={["m4"]} onRowAction={(key, row) => console.log(`${key}: ${row.key}`)} />
+    );
+  },
+};
+
+/** `maxHeight` caps the content; rows scroll under a header that sticks to the top. */
+export const StickyHeader: Story = {
+  render: (a) => <Table columns={COLUMNS} rows={MANY} caption="Team members" shape={a.shape} clientSide selectable maxHeight={320} pageSize={20} frozenColumns={1} />,
+};
+
+/** With nothing to show, one row spanning every column reads the empty label. */
+export const Empty: Story = {
+  render: (a) => <Table columns={COLUMNS} rows={MANY} caption="Team members" shape={a.shape} clientSide selectable rowActions={ACTIONS} searchValue="zzz" />,
+};
+

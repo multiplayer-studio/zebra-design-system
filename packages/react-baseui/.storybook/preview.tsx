@@ -4,20 +4,28 @@ import "../src/tokens/index.css";
 import "@zebra-design-system/icons/icons.css"; // registers the @font-face blocks
 
 /**
- * Theming is pure CSS: an `ext-*` class picks the brand extension, a `mode-*`
- * class picks light/dark. They are applied to a wrapper here exactly as a
- * consuming app would — there is no theme provider and nothing re-renders.
+ * Theming is pure CSS: data attributes pick the brand extension, the mode and the
+ * size. They are applied to a wrapper here exactly as a consuming app would — there
+ * is no theme provider and nothing re-renders. The ext-*, mode-* and bp-* classes
+ * are the same scopes.
  */
 const themed: Decorator = (Story, ctx) => {
   const { extension, mode, breakpoint } = ctx.globals;
-  const className = [
-    extension === "base" ? "" : `ext-${extension}`,
-    `mode-${mode}`,
-    breakpoint === "desktop" ? "" : `bp-${breakpoint}`,
-  ].filter(Boolean).join(" ");
+  const scope = {
+    "data-theme-mode": mode,
+    "data-theme-ext": extension,
+    "data-size-mode": breakpoint.replace(/^desktop-/, ""),
+  };
+
+  // Portalled menus mount on <body>, outside this wrapper, so the root carries the scope too, as an app's would.
+  React.useEffect(() => {
+    const root = document.documentElement;
+    Object.entries(scope).forEach(([name, value]) => root.setAttribute(name, value));
+    return () => Object.keys(scope).forEach((name) => root.removeAttribute(name));
+  }, [mode, extension, breakpoint]);
 
   return (
-    <div className={className} style={{ padding: 24, background: "var(--surface-page)" }}>
+    <div {...scope} style={{ padding: 24, background: "var(--surface-page)", color: "var(--foreground-primary)" }}>
       <Story />
     </div>
   );
@@ -27,7 +35,7 @@ const preview: Preview = {
   decorators: [themed],
   globalTypes: {
     extension: {
-      description: "Brand extension — adds an ext-* class",
+      description: "Brand extension — sets data-theme-ext",
       defaultValue: "base",
       toolbar: {
         title: "Extension", icon: "paintbrush", dynamicTitle: true,
@@ -39,15 +47,20 @@ const preview: Preview = {
       },
     },
     mode: {
-      description: "Light / dark — adds a mode-* class",
+      description: "Light / dark — sets data-theme-mode",
       defaultValue: "light",
       toolbar: {
         title: "Mode", icon: "circlehollow", dynamicTitle: true,
-        items: [{ value: "light", title: "Light" }, { value: "dark", title: "Dark" }],
+        items: [
+          { value: "light", title: "Light" },
+          { value: "dark", title: "Dark" },
+          { value: "aaa-light", title: "AAA Light" },
+          { value: "aaa-dark", title: "AAA Dark" },
+        ],
       },
     },
     breakpoint: {
-      description: "Size/typography mode — adds a bp-* class",
+      description: "Size/typography mode — sets data-size-mode",
       defaultValue: "desktop",
       toolbar: {
         title: "Breakpoint", icon: "mobile", dynamicTitle: true,

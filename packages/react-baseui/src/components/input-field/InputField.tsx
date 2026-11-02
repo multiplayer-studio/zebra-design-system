@@ -18,6 +18,8 @@ export interface InputFieldProps
   size?: InputFieldSize;
   /** Corners. Match the controls around the field. */
   shape?: InputFieldShape;
+  /** Fills the container's width. Without it the field starts at 280 and narrows to fit its container. */
+  block?: boolean;
   /** `default` inside a form, `ghost` on a surface that already bounds it, `gradient` for a distinct interaction. */
   flavour?: InputFieldFlavour;
   /** The value failed validation. Changes the border only; pair it with an error hint. */
@@ -29,6 +31,8 @@ export interface InputFieldProps
   onClear?: () => void;
   /** Leading icon (the spec's hasLeading). Text, number and password only. */
   leadingIcon?: IconName | null;
+  /** Content between the leading icon and the text, such as a dial code. It reads with the value. */
+  leadingContent?: React.ReactNode;
   /** Trailing icon on text and number (hasTrailing). Number defaults to `dialpad`; `null` for none. */
   trailingIcon?: IconName | null;
   /** Accessible name of the clear control. */
@@ -56,9 +60,10 @@ export interface InputFieldProps
  */
 export const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(function InputField(
   {
-    type = "text", size = "medium", shape = "sharp", flavour = "default", invalid = false,
+    type = "text", size = "medium", shape = "sharp", flavour = "default", invalid = false, block = false,
     value: valueProp, defaultValue = "", onValueChange, onClear,
-    leadingIcon = null, trailingIcon, clearLabel = "Clear",
+    leadingIcon = null, leadingContent, trailingIcon, clearLabel = "Clear",
+    inputMode, autoComplete,
     disabled = false, readOnly = false, className, onFocus, onBlur,
     children: _children,
     ...rest
@@ -124,18 +129,19 @@ export const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(fu
 
   return (
     <div ref={rootRef} className={["zds-input-field", className].filter(Boolean).join(" ")}
-      data-type={type} data-size={size} data-shape={shape} data-flavour={flavour} data-state={state}
+      data-type={type} data-size={size} data-shape={shape} data-flavour={flavour} data-state={state} data-block={block ? "" : undefined}
       onPointerDown={() => { pointerPressed.current = true; }}>
       {showLeading ? <Icon className="zds-input-field__icon" name={leadingIcon!} size={iconSize} iconStyle="rounded" /> : null}
+      {leadingContent ? <span className="zds-input-field__leading-content">{leadingContent}</span> : null}
       <BaseInput ref={setRefs} {...rest}
         className="zds-input-field__input"
         type={type === "password" && revealed ? "text" : type}
         value={value}
         disabled={disabled}
         readOnly={readOnly}
-        inputMode={type === "number" ? "decimal" : undefined}
+        inputMode={inputMode ?? (type === "number" ? "decimal" : undefined)}
         aria-invalid={invalid || undefined}
-        autoComplete={type === "password" ? "current-password" : "off"}
+        autoComplete={autoComplete ?? (type === "password" ? "current-password" : "off")}
         onValueChange={(v) => setValue(v)}
         onFocus={(e) => { setFocused(true); setKeyboardFocus(!pointerPressed.current); pointerPressed.current = false; onFocus?.(e); }}
         onBlur={(e) => { leaveIfOutside(e); onBlur?.(e); }}

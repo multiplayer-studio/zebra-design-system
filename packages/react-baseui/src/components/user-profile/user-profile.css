@@ -1,0 +1,53 @@
+/* UserProfile — every value is a semantic token.
+   Spec: specs/global-header/global-header.spec.md (_User Profile) */
+
+.zds-user-profile {
+  appearance: none;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xxs);
+  block-size: var(--control-md);
+  margin: 0;
+  padding: var(--space-xxs) var(--space-sm);
+  border: var(--stroke-base) solid var(--interactive-neutral-border-default);
+  border-radius: var(--radius-none);
+  background: var(--interactive-neutral-background-default);
+  color: var(--foreground-primary);
+  font: inherit;
+  cursor: pointer;
+}
+
+.zds-user-profile[data-rounded] {
+  border-radius: var(--radius-sm);
+}
+
+.zds-user-profile:not([data-disabled]):hover {
+  background: var(--interactive-neutral-background-hover);
+}
+
+.zds-user-profile:not([data-disabled]):active {
+  background: var(--interactive-neutral-background-pressed);
+}
+
+.zds-user-profile:focus-visible {
+  background: var(--interactive-neutral-background-focused);
+  border: var(--stroke-thin) solid var(--border-focus);
+  outline: none;
+}
+
+.zds-user-profile[data-disabled] {
+  background: var(--interactive-neutral-background-disabled);
+  border-color: var(--interactive-neutral-border-disabled);
+  color: var(--interactive-ghost-foreground-disabled);
+  cursor: not-allowed;
+}
+
+.zds-user-profile__username {
+  font-family: var(--label-small-font-family), system-ui, sans-serif;
+  font-size: var(--label-small-font-size);
+  font-weight: var(--label-small-font-weight);
+  line-height: var(--label-small-line-height);
+  letter-spacing: var(--label-small-letter-spacing);
+  white-space: nowrap;
+}

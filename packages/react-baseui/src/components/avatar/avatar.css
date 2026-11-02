@@ -59,8 +59,8 @@
   font-weight: var(--label-large-font-weight);
   line-height: 1;
   letter-spacing: var(--label-large-letter-spacing);
-  /* Raw white — the spec records no token or style on this fill (spec issue). */
-  color: #ffffff;
+  /* White in Light and Dark. The spec records no token or style on this fill (spec issue). */
+  color: var(--foreground-on-strong);
 }
 
 .zds-avatar__content-icon {

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "../src/index.js";
 import { iconNames } from "@zebra-design-system/icons/names";
 
-const FLAVOURS = ["primary","positive","negative","subtle","text","outline-subtle","outline","gradient","text-gradient"] as const;
+const FLAVOURS = ["primary","positive","negative","subtle","text","outline-subtle","outline","gradient","text-gradient","contrast","outline-contrast"] as const;
 const SIZES = ["small","medium","large"] as const;
 const SHAPES = ["sharp","rounded","full"] as const;
 
@@ -33,7 +33,7 @@ const Row = ({ children }: { children: React.ReactNode }) => (
 
 export const Playground: Story = {};
 
-/** Nine flavours. Use one primary per view; everything else steps down. */
+/** Eleven flavours. Use one primary per view; everything else steps down. */
 export const Flavours: Story = {
   render: () => <Row>{FLAVOURS.map((f) => <Button key={f} flavour={f} shape="rounded">{f}</Button>)}</Row>,
 };

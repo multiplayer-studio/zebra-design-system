@@ -15,7 +15,7 @@ const meta: Meta<typeof Input> = {
     shape: { control: "inline-radio", options: ["sharp", "rounded", "full"] },
     flavour: { control: "inline-radio", options: ["default", "gradient", "ghost"] },
   },
-  args: { label: "Field name", labelType: "optional", information: false, hint: "Default hint message", hintIcon: true, state: "default", type: "text", size: "medium", shape: "rounded", flavour: "default", placeholder: "Placeholder" },
+  args: { label: "Field name", labelType: "optional", information: false, hint: "Default hint message", hintIcon: true, state: "default", type: "text", size: "medium", shape: "rounded", flavour: "default", block: false, placeholder: "Placeholder" },
   render: (a) => <div style={{ maxInlineSize: 320 }}><Input {...a} /></div>,
 };
 export default meta;
@@ -70,6 +70,17 @@ export const Types: Story = {
         <Input key={t} label={t} type={t} hint="Hint" placeholder={t === "number" ? "0" : t === "password" ? "Password" : t === "text" ? "Placeholder" : undefined} />
       ))}
     </Row>
+  ),
+};
+
+/** Starts at 280 and narrows to fit its container. `block` fills the container. */
+export const Block: Story = {
+  render: () => (
+    <div style={{ display: "grid", gap: 16, maxWidth: 640 }}>
+      <Input label="Default" placeholder="Placeholder" />
+      <Input block label="Block" placeholder="Placeholder" />
+      <div style={{ inlineSize: 200 }}><Input label="Default, 200 container" placeholder="Placeholder" /></div>
+    </div>
   ),
 };
 

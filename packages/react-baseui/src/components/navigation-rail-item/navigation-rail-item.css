@@ -147,3 +147,8 @@
   outline: var(--stroke-thick) solid var(--border-focus);
   outline-offset: calc(-1 * var(--stroke-thick));
 }
+
+/* Desktop Compact: the narrow caption doesn't shrink with the controls, so the column keeps its Desktop width. */
+:is(.bp-desktop-compact, [data-size-mode="compact"]) .zds-navigation-rail-item:not([data-expanded]) {
+  --control-lg: var(--primitives-scale-15);
+}

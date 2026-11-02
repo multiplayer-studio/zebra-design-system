@@ -44,7 +44,7 @@ export interface InputProps extends Omit<InputFieldProps, "invalid" | "disabled"
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
   {
     label, labelType = "default", information = false, informationLabel = "More information",
-    hint, hintIcon = true, state = "default", size = "medium", shape = "rounded", name, className, ...fieldProps
+    hint, hintIcon = true, state = "default", size = "medium", shape = "rounded", block = false, name, className, ...fieldProps
   },
   ref,
 ) {
@@ -52,7 +52,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Inp
   const invalid = state === "invalid";
   const hintType = disabled ? "disabled" : invalid ? "error" : "default";
   return (
-    <Field.Root className={["zds-input", className].filter(Boolean).join(" ")} name={name} disabled={disabled} invalid={invalid} data-state={state}>
+    <Field.Root className={["zds-input", className].filter(Boolean).join(" ")} name={name} disabled={disabled} invalid={invalid} data-state={state} data-block={block ? "" : undefined}>
       {label ? (
         <Field.Label className="zds-input__label">
           <span className="zds-input__name">{label}</span>
@@ -61,7 +61,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Inp
           {information ? <Icon className="zds-input__information" name="info" size="medium" iconStyle="rounded" label={informationLabel} /> : null}
         </Field.Label>
       ) : null}
-      <InputField ref={ref} {...fieldProps} size={size} shape={shape} name={name} disabled={disabled} invalid={invalid} required={labelType === "required"} />
+      <InputField ref={ref} {...fieldProps} block size={size} shape={shape} name={name} disabled={disabled} invalid={invalid} required={labelType === "required"} />
       {hint ? <InputHint type={hintType} icon={hintIcon}>{hint}</InputHint> : null}
     </Field.Root>
   );
