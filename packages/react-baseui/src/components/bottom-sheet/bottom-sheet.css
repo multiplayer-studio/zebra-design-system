@@ -32,7 +32,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: var(--space-xxs);
+  gap: var(--space-2xs);
   padding: var(--space-sm) var(--space-lg);
   color: var(--foreground-primary);
 }
@@ -75,7 +75,7 @@
 }
 
 .zds-bottom-sheet[data-content-type="list"] .zds-bottom-sheet__content {
-  gap: var(--space-xxs);
+  gap: var(--space-2xs);
   padding-inline: var(--space-lg);
 }
 
@@ -87,5 +87,5 @@
 .zds-bottom-sheet__list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xxs);
+  gap: var(--space-2xs);
 }

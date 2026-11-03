@@ -54,14 +54,14 @@
   flex: 1 0 auto;
   display: flex;
   align-items: center;
-  gap: var(--space-2xs);
+  gap: var(--space-3xs);
 }
 
 .zds-global-header__actions {
   flex: none;
   display: flex;
   align-items: center;
-  gap: var(--space-2xs);
+  gap: var(--space-3xs);
 }
 
 /* Fills what's spare up to 280 (raw in Figma, spec gap), down to the width

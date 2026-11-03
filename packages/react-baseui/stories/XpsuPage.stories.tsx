@@ -31,7 +31,7 @@ function ToggleRow({ id, title, children, checked, onChange, disabled }: {
 }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: "var(--space-xl)" }}>
-      <div style={{ flex: 1, minInlineSize: 0, display: "grid", gap: "var(--space-xxs)" }}>
+      <div style={{ flex: 1, minInlineSize: 0, display: "grid", gap: "var(--space-2xs)" }}>
         <span id={`${id}-label`} style={{ ...type("label-large"), color: disabled ? "var(--foreground-disabled)" : "var(--foreground-primary)" }}>{title}</span>
         <span id={`${id}-desc`} style={{ ...type("body-xsmall"), color: disabled ? "var(--foreground-disabled)" : "var(--foreground-tertiary)" }}>{children}</span>
       </div>
@@ -91,7 +91,7 @@ function PhoneStatusBar({ banner }: { banner: "info" | "warning" | null }) {
       transition: "background-color 400ms ease, color 400ms ease",
     }}>
       <span style={{ ...type("label-medium"), fontVariantNumeric: "tabular-nums" }}>9:41</span>
-      <span aria-label="Signal, Wi-Fi and battery" style={{ display: "flex", alignItems: "center", gap: "var(--space-xxs)" }}>
+      <span aria-label="Signal, Wi-Fi and battery" style={{ display: "flex", alignItems: "center", gap: "var(--space-2xs)" }}>
         <Icon name="cellular-signal" size="small" />
         <Icon name="wifi" size="small" />
         <Icon name="battery" size="small" />

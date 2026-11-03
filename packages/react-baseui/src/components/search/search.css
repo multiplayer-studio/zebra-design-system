@@ -12,14 +12,14 @@
   /* --- geometry: size axis ---------------------------------------------- */
   /* 280 is a start width, not a fixed one (spec note): the field never
      outgrows its container, and block fills it. space/sm block padding at every size (spec warn: two
-     medium/rounded variants bind space/2xs). */
+     medium/rounded variants bind space/3xs). */
   display: flex;
   align-items: center;
   box-sizing: border-box;
   inline-size: 280px;
   max-inline-size: 100%;
   min-inline-size: min(calc(6 * var(--control-sm)), 100%);
-  gap: var(--space-xxs);
+  gap: var(--space-2xs);
   padding: var(--space-sm) var(--space-md);
   block-size: var(--control-lg);
   border-radius: var(--zds-search-radius);
@@ -65,7 +65,7 @@
      adds to the field's space/xs gap; with no icon it adds to the field's
      space/md padding (spec designerClarifications, "text padding"). */
   padding-block: 0;
-  padding-inline: var(--space-xxs);
+  padding-inline: var(--space-2xs);
   box-sizing: border-box;
   border: 0;
   outline: none;
@@ -95,13 +95,13 @@
 
 /* 3. Trailing area: one control, or (while typing) clear + divider +
    control, space/sm apart. The divider's measured height (24) has no token:
-   the glyph box plus space/2xs above and below. */
+   the glyph box plus space/3xs above and below. */
 .zds-search__trailing {
   flex: none;
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  block-size: calc(var(--control-icon-md) + 2 * var(--space-2xs));
+  block-size: calc(var(--control-icon-md) + 2 * var(--space-3xs));
 }
 .zds-search__divider {
   align-self: stretch;
@@ -130,7 +130,7 @@
 }
 .zds-search__control:focus-visible {
   outline: var(--stroke-thick) solid var(--border-focus);
-  outline-offset: var(--space-2xs);
+  outline-offset: var(--space-3xs);
 }
 .zds-search__control:disabled {
   cursor: not-allowed;

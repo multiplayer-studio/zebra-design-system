@@ -42,7 +42,7 @@
   align-items: center;
   gap: var(--space-md);
   min-block-size: var(--control-lg);
-  padding-block: var(--space-xxs);
+  padding-block: var(--space-2xs);
   padding-inline: var(--space-lg);
   border-radius: var(--zds-snackbar-radius);
   background: var(--zds-snackbar-bg);
@@ -58,7 +58,7 @@
 /* Controls at the end (Button and IconButton, both control/md): the end gap
    equals the top gap, space/xs, so the last control sits concentric. */
 .zds-snackbar__surface[data-end] {
-  padding-inline-end: var(--space-xxs);
+  padding-inline-end: var(--space-2xs);
 }
 
 .zds-snackbar__lead {
@@ -83,8 +83,8 @@
   flex: none;
   display: inline-flex;
   align-items: center;
-  gap: var(--space-xxs);
-  margin-inline-start: var(--space-xxs);
+  gap: var(--space-2xs);
+  margin-inline-start: var(--space-2xs);
 }
 
 /* The close's glyph takes the bar's text colour like every icon here,

@@ -57,8 +57,8 @@
   .zds-badge-label__root {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-2xs);
-    padding: var(--space-xxs);
+    gap: var(--space-3xs);
+    padding: var(--space-2xs);
     border: var(--stroke-base) solid var(--zds-badge-edge);
     border-radius: var(--radius-element-sm);
     background: var(--zds-badge-subtle);

@@ -14,7 +14,7 @@
   width: 100%;
   /* Spec issue (padding & gap): the bound tokens, not the metadata's
      space/sm + space/lg + space/sm gap. Height hugs: 64 around control/md. */
-  gap: var(--space-xxs);
+  gap: var(--space-2xs);
   padding: var(--space-md) var(--space-md) var(--space-md) var(--space-sm);
   /* Figma binds interactive/ghost/background/default at paint opacity 0, so
      the bar is transparent and sits on whatever surface the screen provides. */
@@ -32,7 +32,7 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-2xs);
+  gap: var(--space-3xs);
 }
 
 .zds-screen-header-bar__title {
@@ -53,5 +53,5 @@
   flex: none;
   display: flex;
   align-items: center;
-  gap: var(--space-xxs);
+  gap: var(--space-2xs);
 }

@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button, Divider, IconButton, ScreenHeaderBar, Stepper, TabBar, TabItem } from "../src/index.js";
+import { Button, Divider, IconButton, ScreenHeaderBar, StepVertical, TabBar, TabItem, VerticalStepper } from "../src/index.js";
 import { ZebraLogo } from "./zebra-logo.js";
 
 /* A mock desktop page, not a component: step one of the Zebra Nucleus
@@ -114,7 +114,7 @@ const Step = ({ n, label, state }: { n: number; label: string; state: "current" 
   );
 };
 
-/** `stepper` swaps the card stack on the left for the experimental Stepper. */
+/** `stepper` swaps the card stack on the left for Vertical Stepper. */
 function NucleusConnectorPage({ theme, stepper = false }: { theme?: "mode-light" | "mode-dark"; stepper?: boolean }) {
   const [step, setStep] = React.useState(0);
   // The Stepper is its own nav landmark, so the rail around it is a plain div.
@@ -144,11 +144,13 @@ function NucleusConnectorPage({ theme, stepper = false }: { theme?: "mode-light"
       <div style={{ flex: 1, minBlockSize: 0, display: "grid", gridTemplateColumns: "324px 1fr" }}>
         <SideRail aria-label={stepper ? undefined : "Wizard steps"} style={{ background: "var(--surface-page)", padding: "var(--space-md)" }}>
           {stepper ? (
-            <Stepper orientation="vertical" label="Wizard steps" onStepSelect={(i) => { if (i < step) setStep(i); }}
-              steps={STEPS.map((label, i) => ({
-                label, subtitle: i === step ? STEP_HINTS[i] : undefined,
-                status: i === step ? "active" : i < step ? "complete" : "upcoming",
-              }))} style={{ paddingBlockStart: "var(--space-sm)", paddingInlineStart: "var(--space-xs)" }} />
+            <VerticalStepper aria-label="Wizard steps" style={{ paddingBlockStart: "var(--space-sm)", paddingInlineStart: "var(--space-xs)" }}>
+              {STEPS.map((label, i) => (
+                <StepVertical key={label} label={label} subtitle={i === step ? STEP_HINTS[i] : undefined}
+                  status={i === step ? "active" : i < step ? "complete" : "default"}
+                  onSelect={i < step ? () => setStep(i) : undefined} />
+              ))}
+            </VerticalStepper>
           ) : (
             <ol style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: "var(--space-md)" }}>
               {STEPS.map((label, i) => (
@@ -220,5 +222,5 @@ export const Light: Story = {};
 
 export const Dark: Story = { args: { theme: "mode-dark" } };
 
-/** Alternative layout: the experimental Stepper in place of the card stack. Completed steps can be revisited. */
+/** Alternative layout: Vertical Stepper in place of the card stack. Completed steps can be revisited. */
 export const WithStepper: Story = { args: { stepper: true } };

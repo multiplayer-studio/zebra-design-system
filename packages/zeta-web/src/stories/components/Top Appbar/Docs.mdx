@@ -1,0 +1,26 @@
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+import * as Appbar from "./top-appbar.stories";
+
+<Meta of={Appbar} title="Top Appbar" />
+
+<Title />
+<Canvas of={Appbar.Playground} />
+<Description of="zeta-top-appbar" />
+<ArgTypes of={Appbar} />
+
+# Types
+
+`type` picks one of six arrangements, each drawing its own leading control and content. Listen for `leading-click`, and for `trailing-click` on `centered`.
+
+<Canvas of={Appbar.Types} />
+
+# Actions
+
+Slot actions into `trailing` on `default` and `extended`, and into `contextual-controls` on `contextual` and `contextual alt`.
+`centered` draws one fixed control, and `search` takes none.
+
+# Slotted content
+
+Without `type`, content goes in the default, `leading` and `trailing` slots. `centered` and `extended` still work, and slotted content replaces anything `type` draws.
+
+<Canvas of={Appbar.Slotted} />

@@ -1,0 +1,30 @@
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+import * as BottomSheet from "./bottom-sheet.stories";
+
+<Meta of={BottomSheet} title="Bottom Sheet" />
+
+<Title />
+<Description of="zeta-bottom-sheet" />
+<ArgTypes of={BottomSheet.BottomSheetList} />
+
+## Bottom Sheet List
+
+Placing `zeta-dropdown-menu-item`s or `zeta-list-item`s inside `zeta-bottom-sheet` creates a list of rows.
+
+<Canvas of={BottomSheet.BottomSheetList} />
+
+## Bottom Sheet Grid
+
+Placing `zeta-grid-menu-item`s inside `zeta-bottom-sheet` creates a grid of tiles, three to a row.
+
+<Canvas of={BottomSheet.BottomSheetGrid} />
+
+## Bottom Sheet Generic Content
+
+Any other content is rendered as it is, inside the sheet's padding. Set `contentType` to choose the arrangement yourself.
+
+## Header and footer
+
+Set `headerIcon` to show the leading button, name it with `leadingLabel`, and listen for `leading-click`. Slot footer actions into `actions`.
+
+<Canvas of={BottomSheet.BottomSheetGenericContent} />

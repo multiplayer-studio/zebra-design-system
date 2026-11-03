@@ -19,10 +19,11 @@ import { ProgressBar } from "../progress-bar/ProgressBar.js";
 import { Tooltip } from "../tooltip/Tooltip.js";
 import "./chat.css";
 
-/* EXPERIMENTAL — no Figma spec. Chat elements built only from the library's
-   own components, icon font and semantic tokens: no emoji, no generated
-   colour, no hand-built controls. chat.css only lays things out and paints
-   the chat's own surfaces from tokens.
+/* EXPERIMENTAL — no spec yet. Follows the Chat Experimental Figma page
+   (2GFIWOxSrIPRwEewSQtXUj, node 7517:535). Chat elements built only from the
+   library's own components, icon font and semantic tokens: no emoji, no
+   generated colour, no hand-built controls. chat.css only lays things out and
+   paints the chat's own surfaces from tokens.
 
    Shape flows down: a thread or message is rounded (default) or sharp, and
    every nested component takes the matching variant through
@@ -34,6 +35,8 @@ export type ChatStatus = "sending" | "sent" | "delivered" | "read" | "failed";
 export type ChatShape = "rounded" | "sharp";
 /** `light` tints the bubble; `solid` fills it and flips everything inside to the opposite theme. */
 export type ChatFill = "light" | "solid";
+/** How your own messages read: `bubble` at the end for a conversation, `plain` at the start like everyone else's for a channel. */
+export type ChatOwnStyle = "bubble" | "plain";
 
 export interface ChatAuthor {
   name: string;
@@ -74,6 +77,7 @@ export interface ChatAction {
 
 const ChatShapeContext = React.createContext<ChatShape>("rounded");
 const ChatFillContext = React.createContext<ChatFill>("light");
+const ChatOwnStyleContext = React.createContext<ChatOwnStyle>("bubble");
 /** True inside a card: text there is card body copy, not another bubble. */
 const ChatInCardContext = React.createContext(false);
 /** The shape the nearest thread or message has set; nested components follow it. */
@@ -117,10 +121,15 @@ function ChatDots() {
   return <span className="zds-chat-dots" aria-hidden="true"><span /><span /><span /></span>;
 }
 
+/** The status line: dots, then a label with a highlight sweeping across it. */
+function ChatProgress({ label }: { label: string }) {
+  return <span className="zds-chat-progress" role="status"><ChatDots /><span className="zds-chat-progress__label">{label}</span></span>;
+}
+
 /* ---- message ------------------------------------------------------------ */
 
 export interface ChatMessageProps extends Omit<React.HTMLAttributes<HTMLElement>, "className"> {
-  /** Who sent it. `me` sits on the right on the brand fill, `other` on the left on a neutral fill, `assistant` on the left with no bubble at all. */
+  /** Who sent it. `me` is a bubble at the end, unless `ownStyle` is `plain`. `other` and `assistant` are text on the page at the start, with no bubble. */
   role?: ChatRole;
   author?: ChatAuthor;
   /** Sits in the header when there is one, otherwise in the footer. Read by assistive tech on every message. */
@@ -133,8 +142,10 @@ export interface ChatMessageProps extends Omit<React.HTMLAttributes<HTMLElement>
   avatar?: boolean;
   /** Edited mark, time (when there is no header) and delivery status in words. On by default for the last message of a group. A node replaces the status text. */
   footer?: boolean | React.ReactNode;
-  /** `light` (default) or `solid`. Solid fills the bubble and switches everything inside it to the opposite theme. */
+  /** `light` (default) or `solid`, for your bubble. Solid fills it and switches everything inside to the opposite theme. */
   fill?: ChatFill;
+  /** `bubble` or `plain`, for your own messages. Defaults to the thread's. */
+  ownStyle?: ChatOwnStyle;
   /** Rounded or sharp. Defaults to the thread's; every component inside follows it. */
   shape?: ChatShape;
   /** Delivery state, for `me` only. `failed` shows a retry. */
@@ -158,7 +169,7 @@ export interface ChatMessageProps extends Omit<React.HTMLAttributes<HTMLElement>
   /** Keep the action toolbar visible instead of on hover and focus only (touch layouts). */
   actionsVisible?: boolean;
   /**
-   * `float` (others and you) shows the controls on hover beside the bubble;
+   * `float` (others and you) shows the quick bar on the row's top-end corner on hover;
    * `below` (the assistant) keeps them in a row under it; `menu` folds them
    * into one Message actions control on hover, the quiet form for older
    * messages once a newer one carries the row.
@@ -178,7 +189,7 @@ export interface ChatMessageProps extends Omit<React.HTMLAttributes<HTMLElement>
  */
 export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(function ChatMessage(
   {
-    role = "other", author, time, position = "single", header, avatar, footer, fill = "light", shape: shapeProp,
+    role = "other", author, time, position = "single", header, avatar, footer, fill: fillProp = "light", ownStyle: ownStyleProp, shape: shapeProp,
     status, onRetry, edited, replyTo, reactions, onReact, actions, thinking, streaming, editableText, onEdit,
     actionsVisible, actionsPosition, className, children, ...rest
   },
@@ -186,6 +197,12 @@ export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(funct
 ) {
   const inherited = useChatShape();
   const shape = shapeProp ?? inherited;
+  const inheritedOwnStyle = React.useContext(ChatOwnStyleContext);
+  // Plain is text on the page: everyone else's messages, and yours in a channel.
+  const plain = role !== "me" || (ownStyleProp ?? inheritedOwnStyle) === "plain";
+  // A channel sets lines at text height; a conversation gives each one a control-height slot.
+  const channel = (role === "me" ? ownStyleProp ?? inheritedOwnStyle : inheritedOwnStyle) === "plain";
+  const fill = plain ? "light" : fillProp;
   const [editing, setEditing] = React.useState(false);
   const [draft, setDraft] = React.useState(editableText ?? "");
   const [picking, setPicking] = React.useState(false);
@@ -193,8 +210,8 @@ export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(funct
   const placement = actionsPosition ?? (role === "assistant" ? "below" : "float");
   const leads = position === "single" || position === "first";
   const ends = position === "single" || position === "last";
-  const showHeader = header === undefined ? leads && role !== "me" && !!author : header !== false;
-  const showAvatar = avatar ?? role !== "me";
+  const showHeader = header === undefined ? leads && plain : header !== false;
+  const showAvatar = avatar ?? plain;
   const showFooter = footer === undefined ? ends : footer !== false;
   const failed = status === "failed";
   const name = author?.name ?? (role === "me" ? "You" : role === "assistant" ? "Assistant" : "");
@@ -208,6 +225,18 @@ export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(funct
     else { const more = allActions.findIndex((x) => x.menu); allActions.splice(more >= 0 ? more : allActions.length, 0, edit); }
   }
 
+  const toolbar = allActions.length && !editing && !thinking ? (
+    placement === "menu" ? (
+      <div className="zds-chat-message__toolbar">
+        <ChatActionsMenu actions={allActions} shape={shape} onOpenChange={setMenuOpen} />
+      </div>
+    ) : (
+      <div className="zds-chat-message__toolbar" role="toolbar" aria-label="Message actions">
+        {allActions.map((a) => <ChatActionButton key={a.id} action={a} shape={shape} onOpenChange={setMenuOpen} />)}
+      </div>
+    )
+  ) : null;
+
   const label = [author?.name ?? (role === "me" ? "You" : role === "assistant" ? "Assistant" : "Message"), time].filter(Boolean).join(", ");
 
   return (
@@ -220,6 +249,9 @@ export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(funct
         aria-busy={thinking || streaming ? true : undefined}
         className={cx("zds-chat-message", className)}
         data-role={role}
+        data-side={plain ? "start" : "end"}
+        data-plain={plain ? "" : undefined}
+        data-style={channel ? "channel" : "conversation"}
         data-position={position}
         data-shape={shape}
         data-fill={fill}
@@ -248,54 +280,36 @@ export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(funct
             </div>
           ) : null}
 
-          <div className="zds-chat-message__row">
-            <div className="zds-chat-message__blocks">
-              {replyTo ? (
-                <div className="zds-chat-message__quote">
-                  <Icon name="reply" size="xsmall" iconStyle={glyphStyle(shape)} />
-                  <span className="zds-chat-message__quote-author">{replyTo.author}</span>
-                  <span className="zds-chat-message__quote-text">{replyTo.text}</span>
-                </div>
-              ) : null}
-
-              {editing ? (
-                <ChatBubble>
-                  <form className="zds-chat-message__edit" onSubmit={(e) => { e.preventDefault(); onEdit?.(draft.trim()); setEditing(false); }}>
-                    <Input aria-label="Edit message" block shape={btnShape(shape)} value={draft} autoFocus
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDraft(e.target.value)}
-                      onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => { if (e.key === "Escape") setEditing(false); }} />
-                    <div className="zds-chat-message__edit-actions">
-                      <Button flavour="text" size="small" shape={btnShape(shape)} type="button" onClick={() => setEditing(false)}>Cancel</Button>
-                      <Button flavour="primary" size="small" shape={btnShape(shape)} type="submit" disabled={!draft.trim()}>Save</Button>
-                    </div>
-                  </form>
-                </ChatBubble>
-              ) : thinking ? (
-                // People typing get a bubble of dots; the assistant says what it is doing in plain text.
-                role === "assistant" ? (
-                  <span className="zds-chat-progress" role="status"><ChatDots />{typeof thinking === "string" ? `${thinking}…` : "Thinking…"}</span>
-                ) : (
-                  <ChatBubble role="status"><ChatDots /><span className="zds-chat-sr">{typeof thinking === "string" ? thinking : "Typing"}</span></ChatBubble>
-                )
-              ) : (
-                <>
-                  {children}
-                  {streaming ? <span className="zds-chat-progress" role="status"><ChatDots /><span className="zds-chat-sr">Writing</span></span> : null}
-                </>
-              )}
-            </div>
-
-            {allActions.length && !editing && !thinking ? (
-              placement === "menu" ? (
-                <div className="zds-chat-message__toolbar">
-                  <ChatActionsMenu actions={allActions} shape={shape} onOpenChange={setMenuOpen} />
-                </div>
-              ) : (
-                <div className="zds-chat-message__toolbar" role="toolbar" aria-label="Message actions">
-                  {allActions.map((a) => <ChatActionButton key={a.id} action={a} shape={shape} />)}
-                </div>
-              )
+          <div className="zds-chat-message__blocks">
+            {replyTo ? (
+              <div className="zds-chat-message__quote">
+                <Icon name="reply" size="xsmall" iconStyle={glyphStyle(shape)} />
+                <span className="zds-chat-message__quote-author">{replyTo.author}</span>
+                <span className="zds-chat-message__quote-text">{replyTo.text}</span>
+              </div>
             ) : null}
+
+            {editing ? (
+              <ChatBubble>
+                <form className="zds-chat-message__edit" onSubmit={(e) => { e.preventDefault(); onEdit?.(draft.trim()); setEditing(false); }}>
+                  <Input aria-label="Edit message" block shape={btnShape(shape)} value={draft} autoFocus
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDraft(e.target.value)}
+                    onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => { if (e.key === "Escape") setEditing(false); }} />
+                  <div className="zds-chat-message__edit-actions">
+                    <Button flavour="text" size="small" shape={btnShape(shape)} type="button" onClick={() => setEditing(false)}>Cancel</Button>
+                    <Button flavour="primary" size="small" shape={btnShape(shape)} type="submit" disabled={!draft.trim()}>Save</Button>
+                  </div>
+                </form>
+              </ChatBubble>
+            ) : thinking ? (
+              // A status line, not a message: the label names the step.
+              <ChatProgress label={typeof thinking === "string" ? thinking : "Thinking"} />
+            ) : (
+              <>
+                {children}
+                {streaming ? <span className="zds-chat-progress" role="status"><ChatDots /><span className="zds-chat-sr">Writing</span></span> : null}
+              </>
+            )}
           </div>
 
           {picking && onReact ? (
@@ -319,6 +333,8 @@ export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(funct
             </div>
           ) : null}
 
+          {toolbar && placement === "below" ? toolbar : null}
+
           {failed ? (
             <div className="zds-chat-message__failed" role="alert">
               <Icon name="error" size="small" iconStyle={glyphStyle(shape)} />
@@ -334,13 +350,15 @@ export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(funct
             </div>
           ) : null}
         </div>
+
+        {toolbar && placement !== "below" ? toolbar : null}
       </article>
     </ChatFillContext.Provider>
     </ChatShapeContext.Provider>
   );
 });
 
-function ChatActionButton({ action, shape }: { action: ChatAction; shape: ChatShape }) {
+function ChatActionButton({ action, shape, onOpenChange }: { action: ChatAction; shape: ChatShape; onOpenChange: (open: boolean) => void }) {
   const button = (
     <IconButton flavour="text" shape={btnShape(shape)} icon={action.icon} label={action.label}
       aria-pressed={action.pressed === undefined || action.menu ? undefined : action.pressed}
@@ -348,7 +366,7 @@ function ChatActionButton({ action, shape }: { action: ChatAction; shape: ChatSh
   );
   if (action.menu) {
     return (
-      <Dropdown rounded={shape === "rounded"} position="bottom" align="left" trigger={button}>
+      <Dropdown rounded={shape === "rounded"} position="bottom" align="right" trigger={button} onOpenChange={(open: boolean) => onOpenChange(open)}>
         {action.menu.map((m) => <MenuItem key={m.id} leadingIcon={m.icon} onClick={m.onSelect}>{m.label}</MenuItem>)}
       </Dropdown>
     );
@@ -414,8 +432,8 @@ export const chatActions = {
       h.onDelete && { id: "delete", icon: "delete" as IconName, label: "Delete", onSelect: h.onDelete },
     ].filter(Boolean) as NonNullable<ChatAction["menu"]> },
   ].filter(Boolean) as ChatAction[],
-  /** Copy, rate and regenerate stay in view; reading aloud and the Improve rewrites wait under More. */
-  forAssistant: (h: { liked?: "like" | "dislike" | null; onLike?: () => void; onDislike?: () => void; onCopy?: () => void; onRegenerate?: () => void; onImprove?: (how: string) => void; onSpeak?: () => void }): ChatAction[] => {
+  /** Copy, reply, rate and regenerate stay in view; reading aloud and the Improve rewrites wait under More. */
+  forAssistant: (h: { liked?: "like" | "dislike" | null; onLike?: () => void; onDislike?: () => void; onCopy?: () => void; onReply?: () => void; onRegenerate?: () => void; onImprove?: (how: string) => void; onSpeak?: () => void }): ChatAction[] => {
     const more = [
       h.onSpeak && { id: "speak", icon: "volume-up" as IconName, label: "Read aloud", onSelect: h.onSpeak },
       ...(h.onImprove ? [
@@ -426,6 +444,7 @@ export const chatActions = {
     ].filter(Boolean) as NonNullable<ChatAction["menu"]>;
     return [
       h.onCopy && { id: "copy", icon: "copy-file" as IconName, label: "Copy", onSelect: h.onCopy },
+      h.onReply && { id: "reply", icon: "reply" as IconName, label: "Reply", onSelect: h.onReply },
       h.onLike && { id: "like", icon: "like" as IconName, label: "Good response", pressed: h.liked === "like", onSelect: h.onLike },
       h.onDislike && { id: "dislike", icon: "dislike" as IconName, label: "Bad response", pressed: h.liked === "dislike", onSelect: h.onDislike },
       h.onRegenerate && { id: "regenerate", icon: "refresh" as IconName, label: "Regenerate", onSelect: h.onRegenerate },
@@ -501,30 +520,32 @@ export interface ChatImage { src?: string; alt: string }
 function ChatPicture({ image, shape }: { image?: ChatImage; shape: ChatShape }) {
   return image?.src
     ? <img src={image.src} alt="" loading="lazy" />
-    : <span className="zds-chat-placeholder"><Icon name="image" size="large" iconStyle={glyphStyle(shape)} /></span>;
+    : <span className="zds-chat-placeholder"><Icon name="image" size="medium" iconStyle={glyphStyle(shape)} /></span>;
 }
 
 /**
- * One image, or several as a fanned stack: up to three real pictures, each
- * slightly offset and turned, lifting on hover, with a count. Every picture
- * is its own control when `onOpen` is set, so any of them opens the viewer.
+ * Photos sent together: one alone, two side by side, three as one large and
+ * two stacked. Past three, the last shows a count of the rest. Every photo is
+ * its own control when `onOpen` is set, so any of them opens the viewer.
  */
 export function ChatImages({ images, onOpen, noun = "photos" }: { images: ChatImage[]; onOpen?: (index: number) => void; noun?: string }) {
   const shape = useChatShape();
   if (!images.length) return null;
-  const stacked = images.length > 1;
-  // Drawn back to front, so the first image ends up on top.
-  const shown = images.slice(0, 3).map((image, index) => ({ image, index })).reverse();
+  const shown = images.slice(0, 3);
+  const more = images.length - shown.length;
+  const label = images.length > 1 ? `${images.length} ${noun}` : undefined;
   return (
-    <figure className="zds-chat-images" data-stacked={stacked ? "" : undefined} aria-label={stacked ? `${images.length} ${noun}` : undefined}>
-      {shown.map(({ image, index }) => onOpen ? (
-        <button key={index} type="button" className="zds-chat-images__photo" data-depth={index} aria-label={`Open ${image.alt}`} onClick={() => onOpen(index)}>
-          <ChatPicture image={image} shape={shape} />
-        </button>
-      ) : (
-        <span key={index} className="zds-chat-images__photo" data-depth={index} role="img" aria-label={image.alt}><ChatPicture image={image} shape={shape} /></span>
-      ))}
-      {stacked ? <span className="zds-chat-images__count" aria-hidden="true"><BadgeLabel variant="neutral" bold={false} shape={btnShape(shape)}>{`${images.length} ${noun}`}</BadgeLabel></span> : null}
+    <figure className="zds-chat-images" data-count={shown.length} aria-label={label}>
+      {shown.map((image, index) => {
+        const count = more && index === shown.length - 1 ? <span className="zds-chat-chip" aria-hidden="true">{`+${more}`}</span> : null;
+        return onOpen ? (
+          <button key={index} type="button" className="zds-chat-images__photo" aria-label={`Open ${image.alt}`} onClick={() => onOpen(index)}>
+            <ChatPicture image={image} shape={shape} />{count}
+          </button>
+        ) : (
+          <span key={index} className="zds-chat-images__photo" role="img" aria-label={image.alt}><ChatPicture image={image} shape={shape} />{count}</span>
+        );
+      })}
     </figure>
   );
 }
@@ -588,11 +609,11 @@ export function ChatAudio({ src, duration, peaks, label = "Voice message" }: { s
   const audio = React.useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = React.useState(false);
   const [at, setAt] = React.useState(0);
-  const bars = peaks ?? Array.from({ length: 28 }, (_, i) => 0.3 + 0.7 * Math.abs(Math.sin(i * 1.7) * Math.cos(i * 0.6)));
+  const bars = peaks ?? Array.from({ length: 18 }, (_, i) => 0.3 + 0.7 * Math.abs(Math.sin(i * 1.7) * Math.cos(i * 0.6)));
   const progress = duration ? at / duration : 0;
   return (
-    <ChatBubble className="zds-chat-audio" role="group" aria-label={label}>
-      <IconButton flavour="text" shape={btnShape(shape)} icon={playing ? "pause" : "play"} label={playing ? "Pause" : `Play ${label.toLowerCase()}`}
+    <div className="zds-chat-audio" role="group" aria-label={label}>
+      <IconButton className="zds-chat-audio__play" flavour="text" shape={shape === "sharp" ? "sharp" : "full"} icon={playing ? "pause" : "play"} label={playing ? "Pause" : `Play ${label.toLowerCase()}`}
         onClick={() => { const a = audio.current; if (!a) return; if (a.paused) void a.play(); else a.pause(); }} />
       <div className="zds-chat-audio__wave" aria-hidden="true">
         {bars.map((p, i) => <span key={i} style={{ blockSize: `${Math.round(p * 100)}%` }} data-played={i / bars.length < progress ? "" : undefined} />)}
@@ -601,7 +622,7 @@ export function ChatAudio({ src, duration, peaks, label = "Voice message" }: { s
       <audio ref={audio} src={src} preload="metadata"
         onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}
         onEnded={() => { setPlaying(false); setAt(0); }} onTimeUpdate={(e) => setAt(e.currentTarget.currentTime)} />
-    </ChatBubble>
+    </div>
   );
 }
 
@@ -615,11 +636,11 @@ export function ChatVideo({ src, poster, duration, label = "Video" }: { src: str
         <video src={src} poster={poster} controls autoPlay aria-label={label} />
       ) : (
         <div className="zds-chat-video__poster">
-          {poster ? <img src={poster} alt="" /> : <span className="zds-chat-placeholder"><Icon name="video" size="large" iconStyle={glyphStyle(shape)} /></span>}
+          {poster ? <img src={poster} alt="" /> : <span className="zds-chat-placeholder"><Icon name="video" size="medium" iconStyle={glyphStyle(shape)} /></span>}
           <span className="zds-chat-video__play">
-            <IconButton flavour="subtle" shape={shape === "sharp" ? "sharp" : "full"} size="medium" icon="play" label={`Play ${label}${duration ? `, ${clock(duration)}` : ""}`} onClick={() => setStarted(true)} />
+            <IconButton flavour="text" shape={shape === "sharp" ? "sharp" : "full"} size="large" icon="play" label={`Play ${label}${duration ? `, ${clock(duration)}` : ""}`} onClick={() => setStarted(true)} />
           </span>
-          {duration ? <span className="zds-chat-video__duration" aria-hidden="true"><BadgeLabel variant="neutral" bold={false} shape={btnShape(shape)}>{clock(duration)}</BadgeLabel></span> : null}
+          {duration ? <span className="zds-chat-video__duration zds-chat-chip" aria-hidden="true">{clock(duration)}</span> : null}
         </div>
       )}
     </div>
@@ -733,14 +754,18 @@ export function ChatDivider({ children, tone = "neutral" }: { children: React.Re
 export interface ChatThreadProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "className"> {
   /** Rounded (default) or sharp, for every message and component in the thread. */
   shape?: ChatShape;
+  /** `bubble` (default) for a conversation between a few people; `plain` for a channel or larger conversation. */
+  ownStyle?: ChatOwnStyle;
   className?: string;
 }
 
 /** The scrolling column of messages. */
-export const ChatThread = React.forwardRef<HTMLDivElement, ChatThreadProps>(function ChatThread({ shape = "rounded", className, ...rest }, ref) {
+export const ChatThread = React.forwardRef<HTMLDivElement, ChatThreadProps>(function ChatThread({ shape = "rounded", ownStyle = "bubble", className, ...rest }, ref) {
   return (
     <ChatShapeContext.Provider value={shape}>
+    <ChatOwnStyleContext.Provider value={ownStyle}>
       <div ref={ref} role="log" aria-live="polite" {...rest} className={cx("zds-chat-thread", className)} data-shape={shape} />
+    </ChatOwnStyleContext.Provider>
     </ChatShapeContext.Provider>
   );
 });

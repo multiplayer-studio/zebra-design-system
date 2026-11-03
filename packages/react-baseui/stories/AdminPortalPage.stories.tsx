@@ -95,7 +95,7 @@ const CardTools = ({ title, expanded, onExpand }: { title: string; expanded: boo
 
 /** The subheading in body/xsmall, space/xs below the title, on one line with its info mark, so every card's heading is the same height. */
 const Sub = ({ children }: { children: React.ReactNode }) => (
-  <span style={{ ...type("body-xsmall"), display: "flex", alignItems: "center", gap: "var(--space-2xs)", whiteSpace: "nowrap", marginBlockStart: "var(--space-xs)" }}>
+  <span style={{ ...type("body-xsmall"), display: "flex", alignItems: "center", gap: "var(--space-3xs)", whiteSpace: "nowrap", marginBlockStart: "var(--space-xs)" }}>
     <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>{children}</span><Icon name="info" size="xsmall" />
   </span>
 );
@@ -331,7 +331,7 @@ function SetupBanner() {
       <CardBody style={{ display: "flex", alignItems: "center", gap: "var(--space-xl)" }}>
         <div style={{ flex: 1, minInlineSize: 0, display: "grid", gap: "var(--space-sm)" }}>
           <span style={type("title-medium")}>You haven’t finished setting up your experience yet.</span>
-          <ol style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: `repeat(${SETUP.length}, minmax(0, 104px))`, gap: "var(--space-2xs)" }}>
+          <ol style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: `repeat(${SETUP.length}, minmax(0, 104px))`, gap: "var(--space-3xs)" }}>
             {SETUP.map((s) => (
               <li key={s.step} style={{ display: "grid", gap: "var(--space-xs)" }}>
                 <span aria-hidden="true" style={{ blockSize: "var(--space-xl)", borderRadius: "var(--radius-sm)", background: FILL[s.state] }} />

@@ -5,10 +5,11 @@
    uses the animation tokens.
 
    Keyed off data attributes on .zds-chat-message: role (me / other /
-   assistant), position (single / first / middle / last), fill (light /
-   solid), shape (rounded / sharp), status and avatar (present or not).
+   assistant), side (start / end), plain (present or not), position (single /
+   first / middle / last), fill (light / solid), shape (rounded / sharp),
+   style (conversation / channel), status and avatar (present or not).
 
-   Spec: none yet — built from the library's own elements. */
+   Spec: none yet — follows the Chat Experimental Figma page. */
 
 /* ---- shape: every chat surface reads these; sharp squares them all ------ */
 .zds-chat-thread,
@@ -17,6 +18,7 @@
   --zds-chat-r-md: var(--radius-md);
   --zds-chat-r-sm: var(--radius-sm);
   --zds-chat-r-xs: var(--radius-xs);
+  --zds-chat-r-tile: var(--radius-element-md);
 }
 .zds-chat-thread[data-shape="sharp"],
 .zds-chat-message[data-shape="sharp"] {
@@ -24,65 +26,69 @@
   --zds-chat-r-md: var(--radius-none);
   --zds-chat-r-sm: var(--radius-none);
   --zds-chat-r-xs: var(--radius-none);
+  --zds-chat-r-tile: var(--radius-none);
 }
 
 /* ---- thread ------------------------------------------------------------- */
 .zds-chat-thread {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xxs);
   padding: var(--space-md);
   color: var(--foreground-primary);
 }
-.zds-chat-thread > .zds-chat-message:is([data-position="single"], [data-position="first"]) {
-  margin-block-start: var(--space-md);
-}
-.zds-chat-thread > :first-child { margin-block-start: 0; }
+/* Rows sit flush: their own padding is the gap between messages. */
 
-/* ---- message ------------------------------------------------------------ */
+/* ---- message: a row that tints on hover and carries the quick bar -------- */
 .zds-chat-message {
-  --zds-chat-bubble-bg: var(--surface-subtle);
+  --zds-chat-bubble-bg: var(--surface-brand);
   --zds-chat-bubble-fg: var(--foreground-primary);
+  --zds-chat-tint: var(--surface-subtle);
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   column-gap: var(--space-sm);
   align-items: start;
+  box-sizing: border-box;
   max-inline-size: 100%;
+  padding: var(--space-sm);
+  border-radius: var(--zds-chat-r-md);
+  transition: background-color var(--animations-smooth);
 }
-.zds-chat-message[data-avatar] { grid-template-columns: var(--control-icon-lg) minmax(0, 1fr); }
-/* Light fill: both bubbles are light surfaces with the primary text colour —
-   a faint brand tint for mine, the subtle neutral for others. */
-.zds-chat-message[data-role="me"] {
-  --zds-chat-bubble-bg: var(--surface-brand);
-  justify-items: end;
-}
-.zds-chat-message[data-role="me"][data-avatar] { grid-template-columns: minmax(0, 1fr) var(--control-icon-lg); }
-.zds-chat-message[data-role="me"] .zds-chat-message__gutter { grid-column: 2; grid-row: 1; }
-.zds-chat-message[data-role="me"] .zds-chat-message__main { grid-column: 1; grid-row: 1; }
-.zds-chat-message[data-role="assistant"] { --zds-chat-bubble-bg: transparent; }
+.zds-chat-message:is(:hover, :focus-within, [data-actions-visible]):not([aria-busy]) { background: var(--interactive-ghost-background-hover); }
+/* Grouped messages read as one: the joins close up to the group's gap. */
+.zds-chat-message:is([data-position="first"], [data-position="middle"]) { padding-block-end: var(--space-xs); }
+.zds-chat-message:is([data-position="middle"], [data-position="last"]) { padding-block-start: 0; }
+.zds-chat-message[data-avatar] { grid-template-columns: var(--control-sm) minmax(0, 1fr); }
+/* The sender's tint, on file and voice tiles. A channel keeps yours. */
+.zds-chat-message[data-role="me"] { --zds-chat-tint: var(--surface-brand); }
+.zds-chat-message[data-side="end"] { justify-items: end; }
+.zds-chat-message[data-side="end"][data-avatar] { grid-template-columns: minmax(0, 1fr) var(--control-sm); }
+.zds-chat-message[data-side="end"] .zds-chat-message__gutter { grid-column: 2; grid-row: 1; }
+.zds-chat-message[data-side="end"] .zds-chat-message__main { grid-column: 1; grid-row: 1; }
 /* Solid fill: the bubble colour is resolved here, in the page's theme; the
    bubble itself carries the theme class that matches the fill (dark inside a
    dark fill), so its text and every component inside read against it. */
-.zds-chat-message[data-fill="solid"] { --zds-chat-bubble-bg: var(--surface-inverse); }
-.zds-chat-message[data-fill="solid"][data-role="me"] { --zds-chat-bubble-bg: var(--interactive-primary-background-default); }
+.zds-chat-message[data-fill="solid"] { --zds-chat-bubble-bg: var(--interactive-primary-background-default); }
 .zds-chat-message__gutter { display: flex; justify-content: center; }
+/* People sit on the quiet brand tint; the assistant keeps its own swatch. */
+.zds-chat-message:not([data-role="assistant"]) .zds-avatar__swatch { background: var(--surface-brand); }
+.zds-chat-message:not([data-role="assistant"]) .zds-avatar__initials { color: var(--foreground-link); }
 
 .zds-chat-message__main {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xxs);
+  gap: var(--space-xs);
   min-inline-size: 0;
   max-inline-size: min(100%, calc(var(--control-lg) * 12));
 }
-.zds-chat-message[data-role="me"] .zds-chat-message__main { align-items: flex-end; }
+.zds-chat-message[data-side="end"] .zds-chat-message__main { gap: var(--space-2xs); align-items: flex-end; }
 .zds-chat-message[data-role="assistant"] .zds-chat-message__main { max-inline-size: min(100%, calc(var(--control-lg) * 15)); }
 
-/* ---- header: name and time above the bubble ----------------------------- */
+/* ---- header: name and time above the message ---------------------------- */
 .zds-chat-message__header {
   display: flex;
   align-items: baseline;
   gap: var(--space-xs);
-  padding-inline: var(--space-xxs);
   color: var(--foreground-secondary);
   font-family: var(--body-xsmall-font-family), system-ui, sans-serif;
   font-size: var(--body-xsmall-font-size);
@@ -92,32 +98,23 @@
   color: var(--foreground-primary);
   font-family: var(--label-medium-font-family), system-ui, sans-serif;
   font-size: var(--label-medium-font-size);
+  font-weight: var(--label-medium-font-weight);
   line-height: var(--label-medium-line-height);
 }
 
-/* The row hugs the blocks, so the toolbar can sit against the bubble's edge. */
-.zds-chat-message__row {
-  position: relative;
-  display: flex;
-  align-self: flex-start;
-  max-inline-size: 100%;
-}
-.zds-chat-message[data-role="me"] .zds-chat-message__row { align-self: flex-end; }
-
-/* ---- blocks: the bubble and any attachments, stacked on the sender's side */
+/* ---- blocks: the text and any attachments, stacked on the sender's side -- */
 .zds-chat-message__blocks {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-xxs);
+  gap: var(--space-xs);
   min-inline-size: 0;
   max-inline-size: 100%;
 }
-.zds-chat-message[data-role="me"] .zds-chat-message__blocks { align-items: flex-end; }
-.zds-chat-message[data-role="assistant"] .zds-chat-message__blocks { gap: var(--space-sm); }
+.zds-chat-message[data-side="end"] .zds-chat-message__blocks { gap: var(--space-2xs); align-items: flex-end; }
 
-/* ---- bubble: the one surface a message paints. Corners tighten on the
-   sender's side where it joins the next message. ------------------------- */
+/* ---- bubble: your surface. Everyone else's text sits on the page. Corners
+   tighten on your side where it joins the next message. ------------------- */
 .zds-chat-bubble {
   display: flex;
   align-items: center;
@@ -131,40 +128,49 @@
   color: var(--zds-chat-bubble-fg);
   overflow-wrap: anywhere;
 }
+.zds-chat-message[data-plain] .zds-chat-bubble { padding: 0; border-radius: 0; background: none; }
+/* Conversation: every line, bubble or plain, takes a control-height slot, so
+   everyone's lines keep the same rhythm. A channel sets them at text height. */
+.zds-chat-message[data-style="conversation"] .zds-chat-bubble { min-block-size: var(--control-md); }
 .zds-chat-message[data-fill="solid"] .zds-chat-bubble { color: var(--foreground-primary); }
-.zds-chat-message[data-role="assistant"]:not([data-fill="solid"]) .zds-chat-bubble { padding-inline: 0; }
-.zds-chat-message[data-role="other"][data-position="first"] .zds-chat-bubble { border-end-start-radius: var(--zds-chat-r-xs); }
-.zds-chat-message[data-role="other"][data-position="middle"] .zds-chat-bubble { border-start-start-radius: var(--zds-chat-r-xs); border-end-start-radius: var(--zds-chat-r-xs); }
-.zds-chat-message[data-role="other"][data-position="last"] .zds-chat-bubble { border-start-start-radius: var(--zds-chat-r-xs); }
-.zds-chat-message[data-role="me"][data-position="first"] .zds-chat-bubble { border-end-end-radius: var(--zds-chat-r-xs); }
-.zds-chat-message[data-role="me"][data-position="middle"] .zds-chat-bubble { border-start-end-radius: var(--zds-chat-r-xs); border-end-end-radius: var(--zds-chat-r-xs); }
-.zds-chat-message[data-role="me"][data-position="last"] .zds-chat-bubble { border-start-end-radius: var(--zds-chat-r-xs); }
-.zds-chat-message[data-status="failed"] .zds-chat-bubble {
+.zds-chat-message[data-side="end"][data-position="first"] .zds-chat-bubble { border-end-end-radius: var(--zds-chat-r-xs); }
+.zds-chat-message[data-side="end"][data-position="middle"] .zds-chat-bubble { border-start-end-radius: var(--zds-chat-r-xs); border-end-end-radius: var(--zds-chat-r-xs); }
+.zds-chat-message[data-side="end"][data-position="last"] .zds-chat-bubble { border-start-end-radius: var(--zds-chat-r-xs); }
+.zds-chat-message[data-side="end"][data-status="failed"] .zds-chat-bubble {
   background: var(--surface-card);
   color: var(--foreground-primary);
   box-shadow: inset 0 0 0 var(--stroke-thin) var(--border-error);
 }
 
-/* ---- progress: dots for typing, thinking and writing -------------------- */
+/* ---- status line: dots and a label that a highlight sweeps across -------- */
 .zds-chat-progress {
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
-  color: var(--foreground-secondary);
-  font-family: var(--body-small-font-family), system-ui, sans-serif;
-  font-size: var(--body-small-font-size);
-  line-height: var(--body-small-line-height);
+  min-block-size: var(--control-xs);
+  color: var(--foreground-tertiary);
+  font-family: var(--label-small-font-family), system-ui, sans-serif;
+  font-size: var(--label-small-font-size);
+  font-weight: var(--label-small-font-weight);
+  line-height: var(--label-small-line-height);
 }
+.zds-chat-progress__label {
+  background: linear-gradient(90deg, var(--foreground-tertiary) 35%, var(--foreground-primary) 50%, var(--foreground-tertiary) 65%) 100% 0 / 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: zds-chat-sweep 2s linear infinite;
+}
+@keyframes zds-chat-sweep { to { background-position: 0 0; } }
 .zds-chat-dots {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2xs);
-  block-size: var(--body-medium-line-height);
-  color: var(--foreground-secondary);
+  gap: var(--space-3xs);
+  color: var(--foreground-tertiary);
 }
 .zds-chat-dots span {
-  inline-size: var(--space-xs);
-  block-size: var(--space-xs);
+  inline-size: var(--space-2xs);
+  block-size: var(--space-2xs);
   border-radius: var(--radius-pill);
   background: currentColor;
   opacity: 0.35;
@@ -175,6 +181,7 @@
 @keyframes zds-chat-dot { 30% { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
   .zds-chat-dots span { animation: none; opacity: 0.6; }
+  .zds-chat-progress__label { animation: none; background: none; color: inherit; }
 }
 .zds-chat-sr {
   position: absolute;
@@ -185,40 +192,46 @@
   white-space: nowrap;
 }
 
-/* ---- reply quote: one quiet line above the bubble ----------------------- */
+/* ---- reply quote: one quiet line above the message --------------------- */
 .zds-chat-message__quote {
   display: flex;
   align-items: center;
-  gap: var(--space-xxs);
+  gap: var(--space-2xs);
   max-inline-size: 100%;
-  padding-inline: var(--space-xxs);
   color: var(--foreground-secondary);
   font-family: var(--body-xsmall-font-family), system-ui, sans-serif;
   font-size: var(--body-xsmall-font-size);
   line-height: var(--body-xsmall-line-height);
 }
-.zds-chat-message__quote-author { flex: none; color: var(--foreground-primary); font-weight: var(--label-small-font-weight); }
+.zds-chat-message__quote-author {
+  flex: none;
+  color: var(--foreground-primary);
+  font-family: var(--label-small-font-family), system-ui, sans-serif;
+  font-size: var(--label-small-font-size);
+  font-weight: var(--label-small-font-weight);
+  line-height: var(--label-small-line-height);
+}
 .zds-chat-message__quote-text { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-/* ---- action toolbar and reaction picker: menu surfaces ------------------ */
+/* ---- quick bar and reaction picker: menu surfaces ----------------------- */
 .zds-chat-message__toolbar,
 .zds-chat-message__picker {
   display: flex;
   flex: none;
-  gap: var(--space-2xs);
-  padding: var(--space-2xs);
+  gap: var(--space-3xs);
+  padding: var(--space-3xs);
   border-radius: var(--zds-chat-r-md);
   background: var(--surface-menu);
-  box-shadow: 0 var(--shadow-small-y) var(--shadow-small-blur) var(--shadow-soft);
+  box-shadow: 0 var(--shadow-xsmall-y) var(--shadow-xsmall-blur) var(--shadow-soft);
 }
 .zds-chat-message__picker { align-self: flex-start; }
-.zds-chat-message[data-role="me"] .zds-chat-message__picker { align-self: flex-end; }
-/* Floats against the bubble's outer edge so showing it never moves the thread. */
+.zds-chat-message[data-side="end"] .zds-chat-message__picker { align-self: flex-end; }
+/* Floats over the row's top-end corner, so showing it never moves the thread. */
 .zds-chat-message__toolbar {
   position: absolute;
   z-index: 1;
-  inset-block-start: 0;
-  inset-inline-start: calc(100% + var(--space-xxs));
+  inset-block-start: calc(var(--space-md) * -1);
+  inset-inline-end: var(--space-sm);
   visibility: hidden;
   opacity: 0;
   transition: opacity var(--animations-smooth), visibility var(--animations-smooth);
@@ -228,23 +241,21 @@
   opacity: 1;
 }
 /* Below: the controls sit in a quiet row under the message, always reachable (the assistant's default). */
-.zds-chat-message[data-actions="below"] .zds-chat-message__row { flex-direction: column; align-items: inherit; gap: var(--space-2xs); }
-.zds-chat-message[data-role="me"] .zds-chat-message__toolbar { inset-inline: auto calc(100% + var(--space-xxs)); }
 .zds-chat-message[data-actions="below"] .zds-chat-message__toolbar {
   position: static;
+  align-self: flex-start;
+  padding: 0;
   visibility: visible;
   opacity: 1;
-  margin-inline-start: calc(var(--space-xxs) * -1);
   background: none;
   box-shadow: none;
 }
-.zds-chat-message[data-role="me"][data-actions="below"] .zds-chat-message__toolbar { margin-inline: 0 calc(var(--space-xxs) * -1); }
+.zds-chat-message[data-side="end"][data-actions="below"] .zds-chat-message__toolbar { align-self: flex-end; }
 /* Menu: one Message actions chevron on hover, with no surface of its own. */
 .zds-chat-message[data-actions="menu"] .zds-chat-message__toolbar { padding: 0; background: none; box-shadow: none; }
-/* Touch has no hover: the toolbar sits in the flow under the message instead. */
+/* Touch has no hover: the bar sits in the flow under the message instead. */
 @media (hover: none) {
-  .zds-chat-message__row { flex-direction: column; align-items: inherit; gap: var(--space-xxs); }
-  .zds-chat-message__toolbar { position: static; visibility: visible; opacity: 1; }
+  .zds-chat-message__toolbar { position: static; grid-column: 1 / -1; justify-self: start; margin-block-start: var(--space-xs); visibility: visible; opacity: 1; }
 }
 /* Tools are neutral glyphs, here and in file tiles; a pressed toggle gets the ghost pressed fill. */
 .zds-chat-message__toolbar .zds-button[data-flavour="text"]:not([data-disabled]),
@@ -259,15 +270,15 @@
 }
 
 /* ---- reactions: Assist Chips carrying a glyph and a count --------------- */
-.zds-chat-message__reactions { display: flex; flex-wrap: wrap; gap: var(--space-xxs); }
+.zds-chat-message__reactions { display: flex; flex-wrap: wrap; gap: var(--space-2xs); }
+.zds-chat-message[data-side="end"] .zds-chat-message__reactions { justify-content: flex-end; }
 
 /* ---- meta, status, failure --------------------------------------------- */
 .zds-chat-message__meta,
 .zds-chat-message__failed {
   display: flex;
   align-items: center;
-  gap: var(--space-xxs);
-  padding-inline: var(--space-xxs);
+  gap: var(--space-2xs);
   color: var(--foreground-secondary);
   font-family: var(--body-xsmall-font-family), system-ui, sans-serif;
   font-size: var(--body-xsmall-font-size);
@@ -286,30 +297,32 @@
 }
 .zds-chat-message__edit-actions { display: flex; justify-content: flex-end; gap: var(--space-xs); }
 
-/* ---- text --------------------------------------------------------------- */
+/* ---- text: body/small on label/medium/line height, as no one style pairs them */
 .zds-chat-text {
   margin: 0;
   white-space: pre-wrap;
-  font-family: var(--body-medium-font-family), system-ui, sans-serif;
-  font-size: var(--body-medium-font-size);
-  line-height: var(--body-medium-line-height);
-  letter-spacing: var(--body-medium-letter-spacing);
+  font-family: var(--body-small-font-family), system-ui, sans-serif;
+  font-size: var(--body-small-font-size);
+  line-height: var(--label-medium-line-height);
+  letter-spacing: var(--body-small-letter-spacing);
 }
 
-/* ---- file: a card tile with a neutral glyph ----------------------------- */
+/* ---- file: the sender's tint, with the type on a card tile --------------- */
 .zds-chat-file {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
   box-sizing: border-box;
-  inline-size: calc(var(--control-lg) * 6);
+  inline-size: fit-content;
+  min-inline-size: min(calc(var(--control-lg) * 4), 100%);
   max-inline-size: 100%;
   padding: var(--space-xs);
-  border-radius: var(--zds-chat-r-md);
-  background: var(--surface-card);
-  box-shadow: inset 0 0 0 var(--stroke-thin) var(--border-default);
+  border-radius: var(--zds-chat-r-lg);
+  background: var(--zds-chat-tint);
   color: var(--foreground-primary);
 }
+/* The corner that meets your bubble tightens, as a group's does. */
+.zds-chat-message[data-side="end"] .zds-chat-bubble + :is(.zds-chat-file, .zds-chat-audio) { border-start-end-radius: var(--zds-chat-r-xs); }
 .zds-chat-file__tile {
   display: inline-flex;
   flex: none;
@@ -317,15 +330,14 @@
   justify-content: center;
   inline-size: var(--control-sm);
   block-size: var(--control-sm);
-  border-radius: var(--zds-chat-r-sm);
-  background: var(--surface-subtle);
-  color: var(--foreground-secondary);
+  border-radius: var(--zds-chat-r-tile);
+  background: var(--surface-card);
+  color: var(--foreground-link);
 }
 .zds-chat-file__body {
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: var(--space-2xs);
   min-inline-size: 0;
 }
 .zds-chat-file__name {
@@ -338,71 +350,63 @@
   font-weight: var(--label-medium-font-weight);
 }
 .zds-chat-file__meta {
-  color: var(--foreground-secondary);
+  color: var(--foreground-tertiary);
   font-family: var(--body-xsmall-font-family), system-ui, sans-serif;
   font-size: var(--body-xsmall-font-size);
   line-height: var(--body-xsmall-line-height);
 }
 
-/* ---- placeholder: a card tile with the image or video glyph ------------- */
+/* ---- placeholder: a tile with the image or video glyph ------------------ */
 .zds-chat-placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
   inline-size: 100%;
   block-size: 100%;
-  background: var(--surface-card);
+  background: var(--surface-subtle);
   color: var(--foreground-secondary);
 }
 
-/* ---- images: one, or a fanned stack of up to three real pictures ------- */
+/* ---- photos: one, two side by side, or one large and two stacked --------- */
 .zds-chat-images {
-  position: relative;
-  box-sizing: border-box;
+  display: grid;
+  gap: var(--space-3xs);
   inline-size: calc(var(--control-lg) * 6);
   max-inline-size: 100%;
   margin: 0;
-  /* Keeps the fan's layering inside the stack, so menus open over it. */
-  isolation: isolate;
+  aspect-ratio: 3 / 2;
 }
-/* Room for the pictures behind to fan out down and to the end. */
-.zds-chat-images[data-stacked] { padding: 0 var(--space-lg) var(--space-md) 0; }
+.zds-chat-images[data-count="2"] { grid-template-columns: 1fr 1fr; aspect-ratio: 2 / 1; }
+.zds-chat-images[data-count="3"] { grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; }
+.zds-chat-images[data-count="3"] .zds-chat-images__photo:first-child { grid-row: span 2; }
 .zds-chat-images__photo {
+  position: relative;
   display: block;
-  box-sizing: border-box;
-  inline-size: 100%;
-  aspect-ratio: 4 / 3;
-  margin: 0;
+  min-inline-size: 0;
+  min-block-size: 0;
   padding: 0;
   overflow: hidden;
-  border: var(--stroke-thick) solid var(--surface-card);
-  border-radius: var(--zds-chat-r-md);
-  background: var(--surface-card);
-  box-shadow: 0 var(--shadow-medium-y) var(--shadow-medium-blur) var(--shadow-soft);
-  font: inherit;
-  color: inherit;
-  /* Each picture behind sits a step further down and to the end, turned a
-     little either way. The turn has no token; it is the fan's own geometry. */
-  --zds-chat-fan-x: calc(var(--space-sm) * var(--zds-chat-depth));
-  --zds-chat-fan-y: calc(var(--space-xs) * var(--zds-chat-depth));
-  --zds-chat-fan-turn: calc((var(--zds-chat-depth) - 1) * 1.5deg);
-  transform: translate(var(--zds-chat-fan-x), var(--zds-chat-fan-y)) rotate(var(--zds-chat-fan-turn));
-  transition: transform var(--animations-smooth);
+  border: 0;
+  border-radius: var(--zds-chat-r-lg);
+  background: var(--surface-subtle);
 }
-.zds-chat-images__photo[data-depth="0"] { --zds-chat-depth: 0; position: relative; z-index: 3; }
-.zds-chat-images__photo[data-depth="1"] { --zds-chat-depth: 1; position: absolute; inset: 0 var(--space-lg) var(--space-md) 0; z-index: 2; }
-.zds-chat-images__photo[data-depth="2"] { --zds-chat-depth: 2; position: absolute; inset: 0 var(--space-lg) var(--space-md) 0; z-index: 1; }
-.zds-chat-images:not([data-stacked]) .zds-chat-images__photo { transform: none; box-shadow: none; border: var(--stroke-thin) solid var(--border-default); }
-/* Hover lifts a picture and straightens it, so it reads as the one you are about to open. */
 button.zds-chat-images__photo { cursor: pointer; }
-button.zds-chat-images__photo:hover { transform: translate(var(--zds-chat-fan-x), calc(var(--zds-chat-fan-y) - var(--space-2xs))); }
 button.zds-chat-images__photo:focus-visible { outline: var(--stroke-thick) solid var(--focus-outline); outline-offset: var(--stroke-thin); }
-@media (prefers-reduced-motion: reduce) { .zds-chat-images__photo { transition: none; } }
 .zds-chat-images img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
-.zds-chat-images__count { position: absolute; z-index: 4; inset: auto var(--space-lg) calc(var(--space-md) + var(--space-xs)) auto; margin-inline-end: var(--space-xs); }
+/* A count or a duration, on an inverse pill at the bottom-end corner. */
+.zds-chat-chip {
+  position: absolute;
+  inset: auto var(--space-xs) var(--space-xs) auto;
+  padding: var(--space-3xs) var(--space-xs);
+  border-radius: var(--radius-pill);
+  background: var(--surface-inverse);
+  color: var(--foreground-inverse);
+  font-family: var(--body-xsmall-font-family), system-ui, sans-serif;
+  font-size: var(--body-xsmall-font-size);
+  line-height: var(--body-xsmall-line-height);
+  font-variant-numeric: tabular-nums;
+}
 
-/* ---- image viewer ---------------------------------------------------------- */
-/* Wider than a standard dialog: the picture is the content. */
 .zds-dialog.zds-chat-viewer { --zds-dialog-width: calc(var(--control-lg) * 14); }
 .zds-chat-viewer__stage { display: grid; gap: var(--space-sm); justify-items: center; }
 .zds-chat-viewer__image { display: block; inline-size: 100%; max-block-size: 70vh; aspect-ratio: 4 / 3; overflow: hidden; border-radius: var(--zds-chat-r-md); background: var(--surface-card); }
@@ -415,49 +419,68 @@ button.zds-chat-images__photo:focus-visible { outline: var(--stroke-thick) solid
 .zds-chat-card__media img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
 .zds-chat-card__actions { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
 
-/* ---- audio: bars rest on the border colour and fill with the text ------- */
+/* ---- audio: the sender's tint, bars fill with the primary colour --------- */
 .zds-chat-audio {
-  --zds-chat-wave-rest: var(--border-strong);
-  padding-inline-start: var(--space-xs);
-  inline-size: calc(var(--control-lg) * 5);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  box-sizing: border-box;
+  inline-size: fit-content;
   max-inline-size: 100%;
+  padding: var(--space-xs);
+  border-radius: var(--zds-chat-r-lg);
+  background: var(--zds-chat-tint);
+  color: var(--foreground-primary);
+}
+.zds-button.zds-chat-audio__play {
+  --zds-button-bg: var(--surface-card);
+  --zds-button-border: var(--surface-card);
+  flex: none;
+  inline-size: var(--control-xs);
+  min-inline-size: var(--control-xs);
+  block-size: var(--control-xs);
+  padding: 0;
 }
 .zds-chat-audio__wave {
   display: flex;
-  flex: 1;
+  flex: none;
   align-items: center;
-  gap: var(--space-2xs);
+  gap: var(--space-3xs);
   block-size: var(--control-icon-md);
 }
 .zds-chat-audio__wave span {
-  flex: 1;
+  inline-size: var(--stroke-thick);
   min-block-size: var(--stroke-thick);
-  border-radius: var(--zds-chat-r-xs);
-  background: var(--zds-chat-wave-rest);
+  border-radius: var(--radius-pill);
+  background: var(--foreground-tertiary);
   transition: background-color var(--animations-smooth);
 }
-.zds-chat-audio__wave span[data-played] { background: currentColor; }
+.zds-chat-audio__wave span[data-played] { background: var(--interactive-primary-background-default); }
 .zds-chat-audio__time {
+  color: var(--foreground-tertiary);
   font-family: var(--body-xsmall-font-family), system-ui, sans-serif;
   font-size: var(--body-xsmall-font-size);
   line-height: var(--body-xsmall-line-height);
   font-variant-numeric: tabular-nums;
 }
 
-/* ---- video --------------------------------------------------------------- */
+/* ---- video: no tint, whoever sent it ------------------------------------- */
 .zds-chat-video {
   inline-size: calc(var(--control-lg) * 6);
   max-inline-size: 100%;
   overflow: hidden;
-  border: var(--stroke-thin) solid var(--border-default);
-  border-radius: var(--zds-chat-r-md);
-  background: var(--surface-card);
+  border-radius: var(--zds-chat-r-lg);
+  background: var(--surface-subtle);
 }
 .zds-chat-video video { display: block; inline-size: 100%; }
-.zds-chat-video__poster { position: relative; aspect-ratio: 16 / 9; }
+.zds-chat-video__poster { position: relative; aspect-ratio: 3 / 2; }
 .zds-chat-video__poster img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
 .zds-chat-video__play { position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%); }
-.zds-chat-video__duration { position: absolute; inset: auto var(--space-xs) var(--space-xs) auto; }
+.zds-chat-video__play .zds-button {
+  --zds-button-bg: var(--surface-card);
+  --zds-button-border: var(--surface-card);
+  --zds-button-fg: var(--interactive-neutral-foreground-default);
+}
 
 /* ---- choices, sources ---------------------------------------------------- */
 .zds-chat-choices {
@@ -473,17 +496,17 @@ button.zds-chat-images__photo:focus-visible { outline: var(--stroke-thick) solid
   font-size: var(--label-medium-font-size);
   line-height: var(--label-medium-line-height);
 }
-.zds-chat-choices__list { display: flex; flex-wrap: wrap; gap: var(--space-xxs); }
+.zds-chat-choices__list { display: flex; flex-wrap: wrap; gap: var(--space-2xs); }
 .zds-chat-choices__answer {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-xxs);
+  gap: var(--space-2xs);
   color: var(--foreground-secondary);
   font-family: var(--body-small-font-family), system-ui, sans-serif;
   font-size: var(--body-small-font-size);
   line-height: var(--body-small-line-height);
 }
-.zds-chat-sources { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xxs); }
+.zds-chat-sources { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2xs); }
 
 /* ---- divider ------------------------------------------------------------- */
 .zds-chat-divider {
@@ -527,8 +550,3 @@ button.zds-chat-images__photo:focus-visible { outline: var(--stroke-thick) solid
   line-height: var(--body-xsmall-line-height);
 }
 .zds-chat-header__actions { display: flex; flex: none; gap: var(--space-xs); }
-
-/* Desktop Compact: a width from a control size shrinks faster than the name it holds. */
-:is(.bp-desktop-compact, [data-size-mode="compact"]) .zds-chat-file {
-  inline-size: calc(var(--control-lg) * 7);
-}

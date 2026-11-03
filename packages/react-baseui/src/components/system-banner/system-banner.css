@@ -46,7 +46,7 @@
   padding: var(--space-lg);
 }
 .zds-system-banner[data-layout="mobile"] .zds-system-banner__row {
-  gap: var(--space-xxs);
+  gap: var(--space-2xs);
   padding: var(--space-sm);
 }
 
@@ -118,12 +118,12 @@
 .zds-system-banner[data-layout="desktop"][data-content="multiline"] .zds-system-banner__content {
   flex-direction: column;
   align-items: flex-start;
-  padding-block: var(--space-xxs);
+  padding-block: var(--space-2xs);
 }
 .zds-system-banner[data-layout="desktop"][data-content="multiline"] .zds-system-banner__text {
   align-self: stretch;
-  gap: var(--space-xxs);
-  padding-block: var(--space-xxs);
+  gap: var(--space-2xs);
+  padding-block: var(--space-2xs);
 }
 
 /* mobile: a column of title, description and the action row beneath. The
@@ -148,4 +148,4 @@
   -webkit-line-clamp: 2;
   line-clamp: 2;
 }
-.zds-system-banner[data-layout="mobile"] .zds-system-banner__actions { padding-block: var(--space-xxs); }
+.zds-system-banner[data-layout="mobile"] .zds-system-banner__actions { padding-block: var(--space-2xs); }

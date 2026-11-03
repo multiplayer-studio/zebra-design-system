@@ -83,7 +83,7 @@ export {
 } from "./components/chat/Chat.js";
 export type {
   ChatMessageProps, ChatRole, ChatPosition, ChatStatus, ChatAuthor, ChatReaction, ChatAction,
-  ChatFileProps, ChatFileKind, ChatImage, ChatCardProps, ChatChoice, ChatShape, ChatFill, ChatThreadProps,
+  ChatFileProps, ChatFileKind, ChatImage, ChatCardProps, ChatChoice, ChatShape, ChatFill, ChatOwnStyle, ChatThreadProps,
 } from "./components/chat/Chat.js";
 export type {
   MessageInputProps, MessageInputAction, MessageInputPreview,
@@ -181,7 +181,9 @@ export { CollapsibleMenuItem } from "./components/navigation-rail/CollapsibleMen
 export type { CollapsibleMenuItemProps } from "./components/navigation-rail/CollapsibleMenuItem.js";
 export { TabBar, TabItem } from "./components/tab-bar/TabBar.js";
 export type { TabBarProps, TabBarFlavour, TabItemProps, TabItemBadge } from "./components/tab-bar/TabBar.js";
-export { Stepper } from "./components/stepper/Stepper.js";
-export type { StepperProps, StepperStep, StepStatus, StepperOrientation, StepperLayout } from "./components/stepper/Stepper.js";
+export { StepHorizontal, StepVertical, StepCard, StepSegment } from "./components/stepper/Step.js";
+export type { StepProps, StepLineProps, StepHorizontalProps, StepVerticalProps, StepCardProps, StepCardShape, StepSegmentProps, StepStatus } from "./components/stepper/Step.js";
+export { HorizontalStepper, VerticalStepper } from "./components/stepper/Stepper.js";
+export type { HorizontalStepperProps, HorizontalStepperSize, VerticalStepperProps } from "./components/stepper/Stepper.js";
 export { Breadcrumb } from "./components/breadcrumb/Breadcrumb.js";
 export type { BreadcrumbProps, BreadcrumbItem, BreadcrumbFlavour, BreadcrumbShape } from "./components/breadcrumb/Breadcrumb.js";

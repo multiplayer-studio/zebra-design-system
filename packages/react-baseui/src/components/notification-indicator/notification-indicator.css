@@ -1,5 +1,5 @@
 /* NotificationIndicator — colour, radius and the dimensions Figma binds
-   (control/icon-lg, space/xxs) are semantic tokens. The root sizes have no
+   (control/icon-lg, space/2xs) are semantic tokens. The root sizes have no
    token, a gap the spec records, so they stay as the literal px it measured.
 
    Spec: specs/notification-indicator/notification-indicator.spec.md */
@@ -49,7 +49,7 @@
 .zds-notification-indicator[data-size="large"] {
   min-width: var(--control-icon-lg);
   height: 20px; /* no token — spec gap */
-  padding: 0 var(--space-xxs);
+  padding: 0 var(--space-2xs);
   border-radius: var(--radius-pill);
 }
 .zds-notification-indicator[data-size="large"] .zds-notification-indicator__label {

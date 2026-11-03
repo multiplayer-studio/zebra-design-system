@@ -248,7 +248,7 @@ function TableMenu({ trigger, align, label, shape, container, children }: {
       <Menu.Trigger render={trigger} />
       <Menu.Portal container={container}>
         <Menu.Positioner className="zds-table__menu" side="bottom" align={align} positionMethod="fixed"
-          sideOffset={() => readPx(container.current, "--space-xxs")}>
+          sideOffset={() => readPx(container.current, "--space-2xs")}>
           <DropdownMenu compact rounded={shape === "rounded"} aria-label={label}>{children}</DropdownMenu>
         </Menu.Positioner>
       </Menu.Portal>

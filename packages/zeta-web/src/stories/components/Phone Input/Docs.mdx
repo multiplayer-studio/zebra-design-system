@@ -1,0 +1,40 @@
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+import * as PhoneInput from "./phone-input.stories";
+
+<Meta of={PhoneInput} title="Phone Input" />
+
+<Title />
+
+<Description of="zeta-phone-input" />
+
+<Canvas of={PhoneInput.PhoneInput} />
+
+<ArgTypes of={PhoneInput} />
+
+## States
+
+`error` turns the number red and swaps `hintText` for `errorText`. The country control stays neutral, so it is clear which part needs fixing.
+
+<Canvas of={PhoneInput.States} />
+
+## Flavors
+
+<Canvas of={PhoneInput.Flavors} />
+
+## Countries
+
+Each country brings its dial code and grouping. Set `countries` for your own list, and give an entry a `format` with `#` per digit to group its number.
+
+<Canvas of={PhoneInput.Countries} />
+
+## Flags
+
+The flag is the system's emoji by default. Windows draws those as letters, so set `flag` to real artwork where that matters.
+
+<Canvas of={PhoneInput.Flags} />
+
+## Value
+
+`value` is the national digits. `value-change` carries them with the country and the whole number in E.164, and a `name` submits the E.164 number in a form.
+
+Grouping does not check that a number exists, so pair this with validation.

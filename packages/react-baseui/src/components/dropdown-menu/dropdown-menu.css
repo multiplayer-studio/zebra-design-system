@@ -23,9 +23,9 @@
 .zds-dropdown-menu__content {
   display: flex;
   flex-direction: column;
-  /* Between rows (spec Gap). The panel's own item spacing (space/2xs, none
+  /* Between rows (spec Gap). The panel's own item spacing (space/3xs, none
      when compact) never shows: it holds this one content frame. */
-  gap: var(--space-xxs);
+  gap: var(--space-2xs);
 }
 
 /* ---- rounded ----------------------------------------------------------

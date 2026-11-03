@@ -32,9 +32,9 @@ const Phone = ({ children, className }: { children: React.ReactNode; className?:
 );
 
 const Mine = ({ m }: { m: Msg }) => (
-  <div style={{ display: "grid", justifyItems: "end", gap: "var(--space-xxs)" }}>
+  <div style={{ display: "grid", justifyItems: "end", gap: "var(--space-2xs)" }}>
     {m.attachments?.length ? (
-      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "end", gap: "var(--space-xxs)" }}>
+      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "end", gap: "var(--space-2xs)" }}>
         {m.attachments.map((a) => <AssistChip key={a.id} icon={a.kind === "image" ? "camera" : a.kind === "video" ? "video" : "document"} color={/\.pdf$/i.test(a.file.name) ? "red" : "neutral"}>{a.file.name}</AssistChip>)}
       </div>
     ) : null}
@@ -80,7 +80,7 @@ const DeliveryCard = () => (
   <Card shape="rounded" hasFooter={false} header={<CardHeading heading="Inbound delivery" subheading="Door 2 · Chilled" trailingContent={<StatusLabel status="warning" leading="icon">Delayed</StatusLabel>} />}>
     <CardBody style={{ display: "grid", gap: "var(--space-sm)" }}>
       <p style={{ ...body("small"), margin: 0 }}>The 09:30 chilled delivery is now due at 10:15. Restocking bays 4–7 can wait until it arrives.</p>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--space-xxs)" }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--space-2xs)" }}>
         <AssistChip icon="document" color="red">Manifest.pdf</AssistChip>
         <AssistChip icon="document" color="green">Bay_plan.xlsx</AssistChip>
       </div>
@@ -96,7 +96,7 @@ const Theirs = ({ m, onSuggest }: { m: Msg; onSuggest: (t: string) => void }) =>
       {m.rich === "tasks" ? <TasksCard /> : null}
       {m.rich === "delivery" ? <DeliveryCard /> : null}
       {m.rich ? (
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--space-xxs)" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--space-2xs)" }}>
           {(m.rich === "tasks"
             ? [["calendar", "Plan my break"], ["location", "Route me to Aisle 1"], ["check-circle", "Mark returns done"]]
             : [["clock", "Remind me at 10:15"], ["chat", "Message the driver"]]

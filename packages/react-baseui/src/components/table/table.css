@@ -152,7 +152,7 @@
 .zds-table__filter {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-xxs);
+  gap: var(--space-2xs);
   margin: 0;
   padding: 0;
   border: 0;
@@ -330,7 +330,7 @@
 /* Sized from the widest option (digits, padding, gap, chevron); the list
    grows to fit its rows. */
 .zds-table__page-size-select {
-  --zds-select-field-min-inline-size: calc(var(--zds-table-digits) * 1ch + 2 * var(--space-md) + var(--space-xxs) + var(--control-icon-sm));
+  --zds-select-field-min-inline-size: calc(var(--zds-table-digits) * 1ch + 2 * var(--space-md) + var(--space-2xs) + var(--control-icon-sm));
   --zds-select-list-min-inline-size: max-content;
   display: block;
   inline-size: max-content;
@@ -385,7 +385,7 @@
   flex-direction: column;
 }
 .zds-table__menu-heading {
-  padding: var(--space-xs) var(--space-md) var(--space-xxs);
+  padding: var(--space-xs) var(--space-md) var(--space-2xs);
   color: var(--foreground-secondary);
   font-family: var(--label-small-font-family), system-ui, sans-serif;
   font-size: var(--label-small-font-size);

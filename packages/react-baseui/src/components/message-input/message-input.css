@@ -35,7 +35,7 @@
   max-block-size: calc(8 * var(--body-medium-line-height));
   field-sizing: content;
   margin: 0;
-  padding: var(--space-xxs) var(--space-md);
+  padding: var(--space-2xs) var(--space-md);
   border: 0;
   outline: none;
   resize: none;
@@ -61,7 +61,7 @@
 .zds-message-input__chips {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xxs);
+  gap: var(--space-2xs);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -90,14 +90,14 @@
   align-items: center;
   gap: var(--space-sm);
   min-block-size: var(--control-lg);
-  padding: var(--space-xxs) var(--space-xxs) var(--space-xxs) var(--space-md);
+  padding: var(--space-2xs) var(--space-2xs) var(--space-2xs) var(--space-md);
   border-radius: var(--radius-element-md);
   /* A sunken well inside the card (fill/sunken, as the open tray toggle). */
   background: var(--surface-track);
   color: var(--foreground-primary);
 }
 .zds-message-input[data-state="playback"] .zds-message-input__bar {
-  padding-inline-start: var(--space-xxs);
+  padding-inline-start: var(--space-2xs);
 }
 .zds-message-input__bar-label {
   flex: 1 1 auto;
@@ -136,7 +136,7 @@
   flex: none;
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2xs);
+  gap: var(--space-3xs);
   block-size: var(--control-icon-md);
 }
 .zds-message-input__wave > .zds-message-input__level {
@@ -186,7 +186,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-md);
-  padding-block: var(--space-md) var(--space-xxs);
+  padding-block: var(--space-md) var(--space-2xs);
 }
 
 /* Outlines only: six rings stroked with the brand gradient pair. Each has
@@ -290,7 +290,7 @@
 .zds-message-input__actions {
   display: flex;
   align-items: center;
-  gap: var(--space-xxs);
+  gap: var(--space-2xs);
 }
 .zds-message-input__tools { flex-wrap: wrap; }
 /* Tools are neutral glyphs, not the text flavour's brand colour; send and
@@ -321,10 +321,10 @@
 .zds-message-input__tray-items {
   display: flex;
   align-items: center;
-  gap: var(--space-xxs);
+  gap: var(--space-2xs);
   min-inline-size: 0;
   overflow: clip;
-  overflow-clip-margin: var(--space-xxs);
+  overflow-clip-margin: var(--space-2xs);
 }
 .zds-message-input__tray-items > * {
   opacity: 0;

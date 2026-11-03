@@ -19,7 +19,7 @@ const meta: Meta<typeof ProgressBar> = {
     buffering: { control: "boolean" },
     buffer: { control: { type: "number", min: 0, max: 100 } },
     shape: { control: "inline-radio", options: ["rounded", "sharp"] },
-    size: { control: "inline-radio", options: ["small", "medium"] },
+    size: { control: "inline-radio", options: ["small", "large"] },
     label: { control: "text" },
   },
   args: { value: 40, label: "Uploading quarterly-report.pdf", showLabel: true, showTrack: true, shape: "rounded", size: "small" },
@@ -55,7 +55,7 @@ export const Shape: Story = {
       {(["rounded", "sharp"] as const).map((s) => (
         <React.Fragment key={s}><Cap>shape={s}</Cap>
           <ProgressBar {...a} shape={s} size="small" label="Syncing contacts" value={60} />
-          <ProgressBar {...a} shape={s} size="medium" label="Syncing contacts" value={60} /></React.Fragment>
+          <ProgressBar {...a} shape={s} size="large" label="Syncing contacts" value={60} /></React.Fragment>
       ))}
     </Stack>
   ),
@@ -64,7 +64,7 @@ export const Shape: Story = {
 export const Size: Story = {
   render: (a) => (
     <Stack>
-      {(["small", "medium"] as const).map((s) => (
+      {(["small", "large"] as const).map((s) => (
         <React.Fragment key={s}><Cap>size={s}</Cap><ProgressBar {...a} size={s} label="Installing update" value={70} /></React.Fragment>
       ))}
     </Stack>
@@ -110,7 +110,7 @@ export const ThemingCascade: Story = {
         <div key={cls} className={cls} style={{ padding: 16, background: "var(--surface-page)", color: "var(--foreground-primary)", display: "grid", gap: 16 }}>
           <Cap>{cls || "base / light"}</Cap>
           <ProgressBar {...a} value={55} label="Uploading report.pdf" />
-          <ProgressBar {...a} value={30} buffering buffer={75} size="medium" label="Playing video" />
+          <ProgressBar {...a} value={30} buffering buffer={75} size="large" label="Playing video" />
         </div>
       ))}
     </div>

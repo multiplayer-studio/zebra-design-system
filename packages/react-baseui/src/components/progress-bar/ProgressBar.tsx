@@ -3,7 +3,7 @@ import { Progress } from "@base-ui/react/progress";
 import "./progress-bar.css";
 
 export type ProgressBarShape = "rounded" | "sharp";
-export type ProgressBarSize = "small" | "medium";
+export type ProgressBarSize = "small" | "large";
 
 type RootProps = React.ComponentPropsWithoutRef<typeof Progress.Root>;
 
@@ -44,7 +44,7 @@ export interface ProgressBarProps
   showTrack?: boolean;
   /** Softened (rounded) or square (sharp) ends on the track, band and indicator. */
   shape?: ProgressBarShape;
-  /** small (8px bar) for everyday use, medium (16px) when progress is the main thing on the surface. */
+  /** small (8px bar) for everyday use, large (16px) when progress is the main thing on the surface. */
   size?: ProgressBarSize;
   /**
    * Supporting content at the trailing end of the label row (Figma's Right

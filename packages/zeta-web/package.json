@@ -1,0 +1,184 @@
+{
+  "name": "@zebra-fed/zeta-web",
+  "version": "1.3.6",
+  "files": [
+    "dist",
+    "custom-elements.json",
+    "assets",
+    "LICENSE-3RD-PARTY"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "default": "./dist/react/index.js"
+    },
+    "./assets/*": "./assets/*",
+    "./events.js": "./dist/events.js",
+    "./components/*": "./dist/components/*",
+    "./custom-elements.json": "./custom-elements.json",
+    "./index.css": "./dist/index.css",
+    "./jsx.d.ts": "./dist/jsx.d.ts",
+    "./primitives.css": "./dist/primitives.css",
+    "./semantics.css": "./dist/semantics.css"
+  },
+  "description": "Zebra Zeta Design System - Web Components",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zebratechnologies/zebra-design-system.git",
+    "directory": "packages/zeta-web"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Zebra Front-end Development Team",
+  "license": "MIT",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "declaration": "true",
+  "declarationMap": "true",
+  "customElements": "custom-elements.json",
+  "scripts": {
+    "analyze": "cem analyze",
+    "build-storybook:with-output-dir": "yarn run build && storybook build -o ",
+    "build": "yarn prebuild && node scripts/build.js",
+    "check": "yarn analyze && yarn lint && yarn lint:lit-analyzer && yarn test",
+    "create": "cd scripts && node makeWebComponentTemplate.js",
+    "lint:lit-analyzer": "lit-analyzer src/components/**/* src/stories/**/* src/mixins/**/* src/test/**/* src/utils/**/* --quiet",
+    "lint": "eslint -f unix \"src/**/*.{ts,tsx}\" --config src/eslint.config.*",
+    "localize:build": "lit-localize build --config src/lit-localize.json",
+    "localize:extract": "lit-localize extract --config src/lit-localize.json",
+    "prebuild": "yarn run analyze && node scripts/make-index.js",
+    "prepack": "yarn run build",
+    "prepare": "yarn run build",
+    "prettier": "prettier src --write --ignore-unknown",
+    "storybook:build": "yarn run build && storybook build",
+    "storybook:test": "test-storybook",
+    "storybook": "cem analyze && storybook dev -p 6006",
+    "test:count": "npx tsx scripts/test/test_counter.ts",
+    "tokens": "node ../web-components/scripts/build-tokens-css.mjs ../../tokens src/generated/zebra-tokens --profile=zeta --shadowed=border-default,border-disabled,border-info,border-subtle,border-warning,radius-none,radius-xl,surface-info,surface-warning",
+    "icons": "node scripts/zebra-icons.mjs ../icons src/generated/zebra-icons",
+    "pretest:package": "yarn pack --pack-destination ./test && cd test && yarn install && cd ..",
+    "test:package": "cd test && yarn run dev",
+    "test:watch": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --watch --config src/test/web-test-runner.config.*",
+    "test": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --config src/test/web-test-runner.config.*"
+  },
+  "devDependencies": {
+    "@actions/core": "^1.11.1",
+    "@custom-elements-manifest/analyzer": "^0.11.0",
+    "@eslint/js": "^9.39.4",
+    "@etchteam/storybook-addon-status": "^5.0.0",
+    "@figma/code-connect": "^1.4.8",
+    "@lit/localize-tools": "^0.8.2",
+    "@open-wc/lit-helpers": "^0.7.0",
+    "@open-wc/testing": "^4.0.0",
+    "@playwright/test": "^1.61.1",
+    "@remcovaes/web-test-runner-vite-plugin": "^1.4.1",
+    "@storybook/addon-a11y": "^8.6.18",
+    "@storybook/addon-actions": "^8.6.18",
+    "@storybook/addon-designs": "^8.2.1",
+    "@storybook/addon-docs": "^8.6.18",
+    "@storybook/addon-essentials": "^8.6.18",
+    "@storybook/addon-links": "^8.6.18",
+    "@storybook/blocks": "^8.6.18",
+    "@storybook/manager-api": "^8.6.18",
+    "@storybook/test": "^8.6.18",
+    "@storybook/test-runner": "^0.24.4",
+    "@storybook/theming": "^8.6.18",
+    "@storybook/web-components": "^8.6.18",
+    "@storybook/web-components-vite": "^8.6.18",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^22.20.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@typescript-eslint/eslint-plugin": "^8.62.1",
+    "@typescript-eslint/parser": "^8.62.1",
+    "@wc-toolkit/type-parser": "^1.2.1",
+    "@web/test-runner": "^0.20.2",
+    "@web/test-runner-commands": "^0.9.0",
+    "@web/test-runner-junit-reporter": "^0.8.0",
+    "@web/test-runner-playwright": "^0.11.1",
+    "axe-playwright": "^2.2.2",
+    "cem-plugin-better-lit-types": "^0.2.1",
+    "cem-plugin-custom-jsdoc-tags": "^1.2.0",
+    "custom-element-jsx-integration": "^1.6.0",
+    "dompurify": "^3.4.11",
+    "dts-minify": "^0.3.3",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-formatter-unix": "^9.0.1",
+    "eslint-plugin-lit": "^2.3.1",
+    "eslint-plugin-lit-a11y": "^5.1.1",
+    "eslint-plugin-storybook": "^0.12.0",
+    "eslint-plugin-tsdoc": "^0.5.2",
+    "eslint-plugin-wc": "^3.1.0",
+    "lit-analyzer": "^2.0.3",
+    "prettier": "3.9.4",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "sinon": "^22.0.0",
+    "storybook": "^8.6.18",
+    "ts-lit-plugin": "^2.0.2",
+    "ts-morph": "^27.0.2",
+    "typedoc": "^0.28.19",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.62.1",
+    "vite": "^6.4.3"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-sans": "^5.2.8",
+    "@lit/localize": "^0.12.2",
+    "@zebra-fed/zeta-icons": "1.9.6",
+    "lit": "^3.3.3"
+  },
+  "typesVersions": {
+    "*": {
+      "react": [
+        "dist/react/index.d.ts"
+      ]
+    }
+  },
+  "overrides": {
+    "@storybook/blocks": {
+      "react": "$react"
+    },
+    "@storybook/addon-designs": {
+      "react": "$react"
+    }
+  },
+  "resolutions": {
+    "react-router-dom": "^6.3.0",
+    "react-router": "^6.3.0",
+    "@isaacs/brace-expansion": "^5.0.1",
+    "@xmldom/xmldom": "^0.8.13",
+    "picomatch": "^4.0.2",
+    "undici": "^7.19.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "packageManager": "yarn@4.17.0"
+}

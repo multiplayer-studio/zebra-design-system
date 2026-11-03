@@ -97,7 +97,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-xxs);
+  gap: var(--space-2xs);
 }
 .zds-navigation-rail__menu {
   flex: 1 1 auto;
@@ -163,7 +163,7 @@
 .zds-navigation-rail__sub-menu {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xxs);
+  gap: var(--space-2xs);
   padding: var(--space-sm);
   overflow-y: auto;
 }
@@ -211,7 +211,7 @@
   align-items: center;
   gap: var(--space-sm);
   min-width: 0;
-  padding-inline: var(--space-xxs);
+  padding-inline: var(--space-2xs);
 }
 .zds-navigation-header__logo {
   height: var(--control-target-min);
@@ -283,7 +283,7 @@
   display: flex;
   flex: none;
   align-items: center;
-  gap: var(--space-xxs);
+  gap: var(--space-2xs);
 }
 
 /* ======================================================================== */
@@ -345,7 +345,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: var(--space-xxs);
+  gap: var(--space-2xs);
   padding: var(--space-sm);
   background: var(--surface-menu);
   border-end-start-radius: var(--zds-collapsible-menu-item-radius);

@@ -1,110 +1,99 @@
 import * as React from "react";
-import { Icon } from "../icon/Icon.js";
+import { StepCardShapeContext, StepShowSubtitleContext } from "./context.js";
 import "./stepper.css";
 
-/* EXPERIMENTAL — no spec yet. Built from the "Stepper Experimental" Figma page
-   (Stepper + _Step, _Step Indicator, _Step Line): every value is the token
-   that page binds. */
+export type HorizontalStepperSize = "default" | "compact";
 
-/** Where a step stands. `partial` is started but not finished; `error` needs attention. */
-export type StepStatus = "upcoming" | "complete" | "partial" | "active" | "error" | "disabled";
-export type StepperOrientation = "horizontal" | "vertical";
-/** `desktop` lists every step; `mobile` shows only the current one with a segmented progress bar. */
-export type StepperLayout = "desktop" | "mobile";
+const cx = (...c: Array<string | false | undefined>) => c.filter(Boolean).join(" ");
 
-export interface StepperStep {
-  label: string;
-  /** A line under the label. Figma shows it on the active step. */
-  subtitle?: string;
-  status: StepStatus;
-}
-
-export interface StepperProps extends Omit<React.HTMLAttributes<HTMLElement>, "className"> {
-  steps: StepperStep[];
-  orientation?: StepperOrientation;
-  layout?: StepperLayout;
-  /** Called with a step's index when it is chosen. Steps already reached (complete, partial, error) become buttons; upcoming, active and disabled ones stay text. */
-  onStepSelect?: (index: number) => void;
-  /** Accessible name of the list. */
-  label?: string;
+export interface HorizontalStepperProps extends Omit<React.HTMLAttributes<HTMLElement>, "className"> {
+  /**
+   * `default` names every step, each label under its indicator. `compact`, for
+   * mobile, names only the current step above a bar of segments.
+   */
+  size?: HorizontalStepperSize;
+  /**
+   * The steps: `StepHorizontal` on default, one `StepSegment` per step on
+   * compact. Set each step's own status.
+   */
+  children?: React.ReactNode;
+  /** Compact: the current step number in "STEP n OF m". */
+  currentStep?: React.ReactNode;
+  /** Compact: the total number of steps in "STEP n OF m". */
+  totalSteps?: React.ReactNode;
+  /** Compact: the current step's title. */
+  label?: React.ReactNode;
+  /** Compact: the current step's subtitle. */
+  subtitle?: React.ReactNode;
+  /** Draws subtitles: the current step's on compact, every step's on default. Off hides them all, whatever each step sets. */
+  showSubtitle?: boolean;
   className?: string;
 }
 
-const STATUS_TEXT: Record<StepStatus, string> = {
-  upcoming: "not started", complete: "complete", partial: "in progress", active: "current step", error: "needs attention", disabled: "unavailable",
-};
-
 /**
- * Progress through a fixed sequence: a numbered marker per step joined by a
- * line, the label beside or under it. Complete steps show a check and a green
- * line behind them; the active step is filled; an error shows the priority
- * glyph. On mobile it collapses to "Step n of m", the current step's name and
- * a segmented bar.
+ * Shows where a person is in a fixed sequence of steps, in a row. A
+ * navigation landmark holding an ordered list; the active step carries
+ * `aria-current="step"`. Name it with `aria-label`.
  *
- * An ordered list; the active step carries `aria-current="step"` and every
- * marker's meaning is also in words for assistive tech. With `onStepSelect`
- * the steps already reached become buttons, for going back to them.
+ * On compact the bar holds no text and is hidden from assistive tech, so the
+ * count and title above it are what is announced.
+ *
+ * @spec specs/stepper/stepper.spec.md
  */
-export const Stepper = React.forwardRef<HTMLElement, StepperProps>(function Stepper(
-  { steps, orientation = "horizontal", layout = "desktop", onStepSelect, label = "Progress", className, ...rest },
+export const HorizontalStepper = React.forwardRef<HTMLElement, HorizontalStepperProps>(function HorizontalStepper(
+  { size = "default", children, currentStep, totalSteps, label, subtitle, showSubtitle = true, className, ...rest },
   ref,
 ) {
-  const current = Math.max(0, steps.findIndex((s) => s.status === "active"));
-  const cls = ["zds-stepper", className].filter(Boolean).join(" ");
-
-  if (layout === "mobile") {
-    const step = steps[current];
-    return (
-      <nav ref={ref} {...rest} className={cls} data-layout="mobile" aria-label={label}>
-        <div className="zds-stepper__summary">
-          <span className="zds-stepper__count">{`Step ${current + 1} of ${steps.length}`}</span>
-          <span className="zds-stepper__label" data-status="active">{step?.label}</span>
-          {step?.subtitle ? <span className="zds-stepper__subtitle">{step.subtitle}</span> : null}
-        </div>
-        <ol className="zds-stepper__segments">
-          {steps.map((s, i) => (
-            <li key={i} className="zds-stepper__segment" data-status={s.status}>
-              <span className="zds-stepper__sr">{`${s.label}, ${STATUS_TEXT[s.status]}`}</span>
-            </li>
-          ))}
-        </ol>
-      </nav>
-    );
-  }
-
   return (
-    <nav ref={ref} {...rest} className={cls} data-layout="desktop" data-orientation={orientation} aria-label={label}>
-      <ol className="zds-stepper__list">
-        {steps.map((s, i) => {
-          const marker = (
-            <span className="zds-stepper__indicator" aria-hidden="true">
-              {s.status === "complete" ? <Icon name="check-mark" size="small" />
-                : s.status === "error" ? <Icon name="priority" size="small" />
-                : i + 1}
-            </span>
-          );
-          const text = (
-            <span className="zds-stepper__text">
-              <span className="zds-stepper__label">{s.label}</span>
-              {s.subtitle ? <span className="zds-stepper__subtitle">{s.subtitle}</span> : null}
-              <span className="zds-stepper__sr">{`, ${STATUS_TEXT[s.status]}`}</span>
-            </span>
-          );
-          const interactive = onStepSelect && (s.status === "complete" || s.status === "partial" || s.status === "error");
-          return (
-            <li key={i} className="zds-stepper__step" data-status={s.status} aria-current={s.status === "active" ? "step" : undefined}>
-              <span className="zds-stepper__rail">
-                {i > 0 ? <span className="zds-stepper__line" data-side="before" data-done={steps[i - 1].status === "complete" || steps[i - 1].status === "partial" ? "" : undefined} /> : null}
-                {marker}
-                {i < steps.length - 1 ? <span className="zds-stepper__line" data-side="after" data-done={s.status === "complete" || s.status === "partial" ? "" : undefined} /> : null}
-              </span>
-              {interactive ? (
-                <button type="button" className="zds-stepper__button" onClick={() => onStepSelect(i)}>{text}</button>
-              ) : text}
-            </li>
-          );
-        })}
-      </ol>
+    <nav aria-label="Progress" ref={ref} {...rest} className={cx("zds-stepper", className)} data-orientation="horizontal" data-size={size}>
+      {size === "compact" ? (
+        <>
+          <div className="zds-stepper__summary">
+            <p className="zds-stepper__step-info">
+              <span>STEP</span> <span>{currentStep}</span> <span>OF</span> <span>{totalSteps}</span>
+            </p>
+            <div className="zds-stepper__heading">
+              <p className="zds-stepper__title">{label}</p>
+              {showSubtitle && subtitle != null ? <p className="zds-stepper__subtitle">{subtitle}</p> : null}
+            </div>
+          </div>
+          <ol className="zds-stepper__segments" aria-hidden="true">{children}</ol>
+        </>
+      ) : (
+        <StepShowSubtitleContext.Provider value={showSubtitle}>
+          <ol className="zds-stepper__steps">{children}</ol>
+        </StepShowSubtitleContext.Provider>
+      )}
+    </nav>
+  );
+});
+
+export interface VerticalStepperProps extends Omit<React.HTMLAttributes<HTMLElement>, "className"> {
+  /** A column of `StepCard`s instead of a rail of `StepVertical`s. Adds a gap between steps. */
+  card?: boolean;
+  /** Card corners: rounded (Step Card/Round) or sharp (Step Card/Sharp). Only applies with `card`. */
+  rounded?: boolean;
+  /** The steps: `StepVertical`, or `StepCard` with `card`. Set each step's own status. */
+  children?: React.ReactNode;
+  className?: string;
+}
+
+/**
+ * Shows where a person is in a fixed sequence of steps, in a column: a rail,
+ * or a column of cards. A navigation landmark holding an ordered list; the
+ * active step carries `aria-current="step"`. Name it with `aria-label`.
+ *
+ * @spec specs/stepper/stepper.spec.md
+ */
+export const VerticalStepper = React.forwardRef<HTMLElement, VerticalStepperProps>(function VerticalStepper(
+  { card = false, rounded = false, children, className, ...rest },
+  ref,
+) {
+  return (
+    <nav aria-label="Progress" ref={ref} {...rest} className={cx("zds-stepper", className)} data-orientation="vertical" data-card={card ? "" : undefined}>
+      <StepCardShapeContext.Provider value={rounded ? "rounded" : "sharp"}>
+        <ol className="zds-stepper__steps">{children}</ol>
+      </StepCardShapeContext.Provider>
     </nav>
   );
 });

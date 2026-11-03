@@ -1,0 +1,91 @@
+import { html, LitElement, type PropertyValues } from "lit";
+import { customElement, property } from "lit/decorators.js";
+import { Contourable } from "../../mixins/mixins.js";
+import styles from "./accordion.styles.js";
+import type { ZetaAccordionItem } from "./accordion-item/accordion-item.js";
+
+/**
+ * A vertical stack of Accordion Items, each a header that opens and closes its own content. By default one item is
+ * open at a time; `expandMultiple` lets several stay open. The container has no fill of its own. In a card (`inCard`)
+ * it takes a thin border and divides its items; `rounded` curves the card's corners.
+ *
+ * @slot - children should be `zeta-accordion-item` elements.
+ *
+ * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5529-33
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-accordion--docs
+ */
+@customElement("zeta-accordion")
+export class ZetaAccordion extends Contourable(LitElement) {
+  /** Determines if the ZetaAccordion should be in a card container. */
+  @property({ type: Boolean, reflect: true }) inCard = false;
+
+  /** Determines if multiple items can be open at the same time.
+  When `false`, only one accordion item can be open at a time. */
+  @property({ type: Boolean, reflect: true }) expandMultiple = false;
+
+  /** Determines if multiple accordion items can be selected. */
+  @property({ type: Boolean, reflect: true }) selectMultiple = false;
+
+  protected firstUpdated(_changedProperties: PropertyValues) {
+    super.firstUpdated(_changedProperties);
+    this.addEventListener("item-expanded", this.handleItemExpanded);
+    this.addEventListener("item-selected", this.handleItemSelected);
+  }
+
+  public disconnectedCallback(): void {
+    this.removeEventListener("item-expanded", this.handleItemExpanded);
+    this.removeEventListener("item-selected", this.handleItemSelected);
+
+    // @ts-expect-error-next-line
+    if (super.disconnectedCallback) super.disconnectedCallback();
+  }
+
+  private handleItemExpanded = (event: Event) => {
+    const customEvent = event as CustomEvent;
+    if (!this.expandMultiple) {
+      const expandedItem = customEvent.target as ZetaAccordionItem;
+      const items = this.getAccordionItems();
+
+      items.forEach(item => {
+        if (item !== expandedItem && item.expanded) {
+          item.expanded = false;
+        }
+      });
+    }
+  };
+
+  private handleItemSelected = (event: Event) => {
+    const customEvent = event as CustomEvent;
+    if (!this.selectMultiple) {
+      const selectedItem = customEvent.target as ZetaAccordionItem;
+      const items = this.getAccordionItems();
+
+      items.forEach(item => {
+        if (item !== selectedItem && item.selected) {
+          item.selected = false;
+        }
+      });
+    }
+  };
+
+  private getAccordionItems(): ZetaAccordionItem[] {
+    const slot = this.shadowRoot?.querySelector("slot");
+    if (!slot) return [];
+
+    return slot.assignedElements({ flatten: true }).filter(element => element.tagName.toLowerCase() === "zeta-accordion-item") as ZetaAccordionItem[];
+  }
+
+  protected render() {
+    return html`<div class="accordion contourable-target">
+      <slot> </slot>
+    </div>`;
+  }
+
+  static styles = [styles, super.styles || []];
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "zeta-accordion": ZetaAccordion;
+  }
+}

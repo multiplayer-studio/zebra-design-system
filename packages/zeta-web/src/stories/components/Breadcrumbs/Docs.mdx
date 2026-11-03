@@ -1,0 +1,78 @@
+import { Canvas, Meta, Description, ArgTypes, Title, Source, Story } from "@storybook/blocks";
+import * as Breadcrumb from "./breadcrumb.stories";
+import * as BreadcrumbItem from "./breadcrumb-item.stories";
+
+<Meta of={Breadcrumb} title="Breadcrumb" />
+
+<Title />
+
+<Description of="zeta-breadcrumb" />
+
+<div style={{padding: '15px', display: "flex"}}>
+ 
+> "You leave a trail of breadcrumbs any wolf could follow, then act shocked when a wolf is outside your door." - Victor LaValle
+
+</div>
+
+## Breadcrumb Items
+
+To display breadcrumb items you must place the `<zeta-breadcrumb-item>` component inside the `<zeta-breadcrumb>` component.
+
+The breadcrumb puts a chevron after each item except the last, and marks the last item as the current page. It is text, not a link, even with an `href`.
+
+Use the `<zeta-icon>` component with the slot name "icon" to place an icon in a breadcrumb item.
+
+Like this:
+
+<Canvas of={BreadcrumbItem.BreadcrumbItem} />
+
+```html
+<zeta-breadcrumb-item>
+  <zeta-icon slot="icon">location</zeta-icon>
+  Dock 4
+</zeta-breadcrumb-item>
+```
+
+<ArgTypes of={BreadcrumbItem} />
+
+---
+
+---
+
+# Breadcrumb
+
+## 2 Items
+
+<Canvas of={Breadcrumb.Breadcrumb2Items} />
+
+## 3 Items
+
+<Canvas of={Breadcrumb.Breadcrumb3Items} />
+
+## 4 Items
+
+<Canvas of={Breadcrumb.Breadcrumb4Items} />
+
+## Truncated
+
+<Canvas of={Breadcrumb.BreadcrumbTruncated} />
+
+The `maxItems` prop sets how many items show before the middle collapses: the first item, then the rest from the end. The minimum is 2, and 0 shows every item.
+
+Specify maxItems like this: `<zeta-breadcrumb maxItems="4">...</zeta-breadcrumb>`
+
+The overflow control opens a compact menu of the hidden items. Arrow keys move through the rows, Enter or Space follows one, and Escape closes the menu.
+
+## Accent
+
+`flavor="accent"` sets the current page and its icon in blue.
+
+<Canvas of={Breadcrumb.BreadcrumbAccent} />
+
+## Wrapping
+
+A long trail wraps, and each new line starts on a crumb.
+
+<Canvas of={Breadcrumb.BreadcrumbWrapping} />
+
+<ArgTypes of={Breadcrumb} />

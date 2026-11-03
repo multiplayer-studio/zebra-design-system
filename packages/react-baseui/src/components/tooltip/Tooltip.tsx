@@ -61,13 +61,13 @@ export interface TooltipProps {
   className?: string;
 }
 
-// The gap between trigger and bubble: the pointer's depth (--space-xxs) plus
+// The gap between trigger and bubble: the pointer's depth (--space-2xs) plus
 // the same again as clearance, so the tip stops short of the trigger.
 // `sideOffset` only takes a number, so the token is read at the positioner's
 // own position in the cascade — a condensed or nested theme scope moves it.
 function readOffset(el: Element | null) {
-  if (!el) return 8; // 2 x --space-xxs's shipped 4px, fallback only (SSR / unmounted)
-  const px = parseFloat(getComputedStyle(el).getPropertyValue("--space-xxs"));
+  if (!el) return 8; // 2 x --space-2xs's shipped 4px, fallback only (SSR / unmounted)
+  const px = parseFloat(getComputedStyle(el).getPropertyValue("--space-2xs"));
   return 2 * (Number.isFinite(px) ? px : 4);
 }
 

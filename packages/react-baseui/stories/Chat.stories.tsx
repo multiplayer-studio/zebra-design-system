@@ -40,7 +40,7 @@ const meta: Meta<typeof ChatMessage> = {
   title: "Experimental/Chat",
   component: ChatMessage,
   parameters: {
-    docs: { description: { component: "**Experimental — no Figma spec.** Chat elements built only from the library's components, icon font and tokens: `ChatMessage` (roles, grouping, reply quotes, glyph reactions, an action toolbar, inline edit, delivery status) and content blocks that stack inside it — text, files, images (a stack when there are several), cards, audio, video, interactive choices and AI sources — plus typing and dividers. `shape` on the thread or message flows to every nested component. Hover or tab into a message to see its actions." } },
+    docs: { description: { component: "**Experimental — no spec yet.** Follows the Chat Experimental Figma page. Chat elements built only from the library's components, icon font and tokens: `ChatMessage` (roles, grouping, reply quotes, glyph reactions, an action toolbar, inline edit, delivery status) and content blocks that stack inside it — text, files, images (a stack when there are several), cards, audio, video, interactive choices and AI sources — plus typing and dividers. `shape` on the thread or message flows to every nested component. Hover or tab into a message to see its actions." } },
   },
 };
 export default meta;
@@ -50,6 +50,7 @@ type Story = StoryObj<typeof ChatMessage>;
 
 interface PlaygroundArgs {
   sender: "me" | "other" | "assistant";
+  ownStyle: "bubble" | "plain";
   avatar: boolean;
   header: boolean;
   footer: boolean;
@@ -84,7 +85,7 @@ function PlaygroundView(a: PlaygroundArgs) {
   ];
   return (
     <Column>
-      <ChatThread shape={a.shape}>
+      <ChatThread shape={a.shape} ownStyle={a.ownStyle}>
         {texts.map((t, i) => {
           const first = i === 0, last = i === texts.length - 1;
           return (
@@ -111,12 +112,13 @@ function PlaygroundView(a: PlaygroundArgs) {
 /** Every part of a message on a switch: sender, avatar, header, footer, controls, grouping, content, fill and shape. */
 export const Playground: StoryObj<PlaygroundArgs> = {
   args: {
-    sender: "other", avatar: true, header: true, footer: true, controls: "below", grouped: false,
+    sender: "other", ownStyle: "bubble", avatar: true, header: true, footer: true, controls: "below", grouped: false,
     reply: false, reactions: false, content: "text", status: "read", fill: "light", shape: "rounded",
   },
   argTypes: {
     sender: { control: "inline-radio", options: ["me", "other", "assistant"], description: "Who sent it: you (right), someone else (left), or the assistant (no bubble)." },
-    avatar: { control: "boolean", description: "Avatar beside the bubble, on the sender's side." },
+    ownStyle: { control: "inline-radio", options: ["bubble", "plain"], description: "How your own messages read: a bubble at the end for a conversation, plain at the start for a channel.", if: { arg: "sender", eq: "me" } },
+    avatar: { control: "boolean", description: "Avatar beside the message, on the sender's side." },
     header: { control: "boolean", description: "Name and time above the bubble (first in a group)." },
     footer: { control: "boolean", description: "Time and delivery status under the bubble (last in a group)." },
     controls: { control: "inline-radio", options: ["none", "on hover", "below"], description: "Copy, reply, regenerate, like and more: floating on hover, or a row under the message." },
@@ -130,6 +132,72 @@ export const Playground: StoryObj<PlaygroundArgs> = {
   },
   parameters: { controls: { expanded: true, sort: "none" } },
   render: (a) => <PlaygroundView {...a} />,
+};
+
+/** Your own messages: a bubble at the end for a conversation, plain at the start like everyone else's for a channel. */
+export const ConversationAndChannel: Story = {
+  render: () => (
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--space-xl)" }}>
+      {(["bubble", "plain"] as const).map((ownStyle) => (
+        <Column key={ownStyle}>
+          <ChatThread ownStyle={ownStyle}>
+            <ChatMessage role="other" author={AMARA} time="09:41"><ChatText>Chilled delivery is in at door 2.</ChatText></ChatMessage>
+            <ChatMessage role="me" author={{ name: "You", initials: "ME" }} time="09:42" status="read"><ChatText>On my way.</ChatText></ChatMessage>
+            <ChatMessage role="assistant" time="09:42"><ChatText>Bays 4–7 are free for this delivery.</ChatText></ChatMessage>
+          </ChatThread>
+        </Column>
+      ))}
+    </div>
+  ),
+};
+
+/** Each row at rest, then with its controls showing, then the assistant working. Hover any row to see it live. */
+export const RowStates: Story = {
+  render: () => {
+    const bar = [{ id: "reply", icon: "reply" as IconName, label: "Reply", onSelect: noop }, { id: "more", icon: "more-horizontal" as IconName, label: "More", menu: [{ id: "copy", icon: "copy-file" as IconName, label: "Copy", onSelect: noop }, { id: "pin", icon: "pin" as IconName, label: "Pin", onSelect: noop }] }];
+    return (
+      <Column>
+        <ChatThread>
+          <ChatMessage role="other" author={AMARA} time="09:41" actions={bar} onReact={noop}><ChatText>At rest, until you hover it.</ChatText></ChatMessage>
+          <ChatMessage role="other" author={AMARA} time="09:41" actions={bar} onReact={noop} actionsVisible><ChatText>The row tints, and the quick bar sits on its top-end corner.</ChatText></ChatMessage>
+          <ChatMessage role="me" time="09:42" status="read" actions={bar} onReact={noop} actionsVisible><ChatText>Your bubble tints the same way.</ChatText></ChatMessage>
+          <ChatMessage role="assistant" time="09:42" actions={chatActions.forAssistant({ onCopy: noop, onReply: noop, onRegenerate: noop })} actionsVisible><ChatText>The assistant keeps its controls below.</ChatText></ChatMessage>
+          <ChatMessage role="assistant" time="09:43" thinking="Searching deliveries" />
+        </ChatThread>
+      </Column>
+    );
+  },
+};
+
+/** Photos, files, voice notes and video from someone else and from you. The tint follows the sender; video takes none. */
+export const Attachments: Story = {
+  render: () => (
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--space-xl)" }}>
+      <Column>
+        <ChatThread>
+          {[1, 2, 3, PHOTOS.length].map((n) => (
+            <ChatMessage key={n} role="other" author={AMARA} time="09:41" position={n === 1 ? "first" : n === PHOTOS.length ? "last" : "middle"} header={n === 1}>
+              <ChatImages images={PHOTOS.slice(0, n)} onOpen={noop} />
+            </ChatMessage>
+          ))}
+        </ChatThread>
+      </Column>
+      <Column>
+        <ChatThread>
+          <ChatMessage role="other" author={AMARA} time="09:41">
+            <ChatFile name="Delivery receipt.pdf" meta="PDF · 248 KB" onDownload={noop} />
+            <ChatAudio src={tone} duration={8} />
+            <ChatVideo src="" duration={8} />
+          </ChatMessage>
+          <ChatMessage role="me" time="09:42" status="read">
+            <ChatText>Here is the receipt.</ChatText>
+            <ChatFile name="Delivery receipt.pdf" meta="PDF · 248 KB" onDownload={noop} />
+            <ChatAudio src={tone} duration={8} />
+          </ChatMessage>
+        </ChatThread>
+      </Column>
+    </div>
+  ),
 };
 
 /** A whole conversation you can use: send, react, reply, edit, answer the choices, rate the assistant. */
