@@ -146,7 +146,7 @@ Never edit `tokens.css`, `icons.json` or the zips by hand. Commit them (and the 
 
 `zebra-design-system-prototyping.zip` is the kit to hand to someone who only builds prototypes. It holds a single `zebra-design-system-prototyping/` folder containing `atoms/`, `molecules/`, `organisms/`, `prototypes/`, `DESIGN.md`, `PROTOTYPE.md`, `icons.json` and `tokens.css`. It also includes `CLAUDE.md` (from `PRODUCTION.CLAUDE.md`, prototypes section only), and `PROTOTYPING.README.md` saved as `README.md`. Run the script after regenerating the token or icon files, so the zip carries the latest versions.
 
-`zebra-design-system-production.zip` is the kit to drop into a project repo. It holds a single `zebra-design-system-production/` folder (rename it to `design-system/` in the project, as `AGENTS.md` expects) containing `atoms/`, `molecules/`, `organisms/`, `DESIGN.md`, `AGENTS.md`, `icons.json`, `tokens.css`, the two generators in `scripts/`, and `CLAUDE.md` (production-builds section only).
+`zebra-design-system-production.zip` is the kit to drop into a project repo. It holds a `zebra-design-system-production/` folder with one `design-system/` folder inside (the name `AGENTS.md` expects), so you can copy that inner folder straight into the project. It contains `atoms/`, `molecules/`, `organisms/`, `DESIGN.md`, `AGENTS.md`, `icons.json`, `tokens.css`, the two generators in `scripts/`, and `CLAUDE.md` (production-builds section only).
 
 The current docs version is the `version` field in the `DESIGN.md` frontmatter.
 

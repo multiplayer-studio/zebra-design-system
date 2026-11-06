@@ -2,7 +2,7 @@
 
 Usage: python3 scripts/production-zip.py
 
-The zip holds one folder, zebra-design-system-production/ (rename it to design-system/ in the project, per AGENTS.md Setup), with:
+The zip holds zebra-design-system-production/, containing one folder, design-system/ (the name AGENTS.md's Setup expects), with:
   atoms/ molecules/ organisms/               as-is
   DESIGN.md AGENTS.md icons.json tokens.css  as-is
   scripts/tokens-css.py scripts/icons-json.py   the generators AGENTS.md asks projects to keep
@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _bundle import claude_md, write_zip
 
 write_zip(
-    'zebra-design-system-production.zip', 'zebra-design-system-production',
+    'zebra-design-system-production.zip', 'zebra-design-system-production/design-system',
     ['atoms', 'molecules', 'organisms'],
     ['DESIGN.md', 'AGENTS.md', 'icons.json', 'tokens.css', 'scripts/tokens-css.py', 'scripts/icons-json.py'],
     {},
