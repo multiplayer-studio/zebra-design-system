@@ -171,6 +171,8 @@ Never edit either file by hand.
 
 Prototypes are viewed **only inside the Claude desktop app** (its Browser pane). Never open them in an external browser: do not run `open`, `start`, `xdg-open` or any command that launches Chrome, Safari or Edge.
 
+Open the prototype in the Browser pane straight from `file://`; it renders styles and fonts there. Never add a server, a `.claude/launch.json` or any other file to serve it. If a prototype renders wrong, fix the prototype or tell the user what's broken. Don't work around it with tooling.
+
 ## Rules
 
 - **Clarity first.** Optimise for the design idea: layout, hierarchy, spacing, colour, typography, states and flow.
