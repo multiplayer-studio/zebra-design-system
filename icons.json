@@ -1,0 +1,6853 @@
+{
+  "package": "@zebra-fed/zeta-icons",
+  "version": "1.9.8",
+  "count": 715,
+  "icons": {
+    "aac_attach": {
+      "label": "AAC Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "achievement_sync": {
+      "label": "Achievement Sync",
+      "category": "general",
+      "searchTerms": []
+    },
+    "achievement_sync_outline": {
+      "label": "Achievement Sync Outline",
+      "category": "general",
+      "searchTerms": []
+    },
+    "activity": {
+      "label": "Activity",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "activity",
+        "chart",
+        "line",
+        "log",
+        "history"
+      ]
+    },
+    "add": {
+      "label": "Add",
+      "category": "content",
+      "searchTerms": [
+        "Plus",
+        "add",
+        "create",
+        "request"
+      ]
+    },
+    "add_alert": {
+      "label": "Add Alert",
+      "category": "alert",
+      "searchTerms": [
+        "Notification"
+      ]
+    },
+    "add_box": {
+      "label": "Add Box",
+      "category": "content",
+      "searchTerms": [
+        "Plus"
+      ]
+    },
+    "add_call": {
+      "label": "Add Call",
+      "category": "communication",
+      "searchTerms": [
+        "Call",
+        "Telephone",
+        "IC"
+      ]
+    },
+    "add_circle": {
+      "label": "Add Circle",
+      "category": "content",
+      "searchTerms": [
+        "Plus"
+      ]
+    },
+    "add_circle_outline": {
+      "label": "Add Circle Outline",
+      "category": "content",
+      "searchTerms": [
+        "Plus"
+      ]
+    },
+    "add_group": {
+      "label": "Add Group",
+      "category": "social",
+      "searchTerms": [
+        "More",
+        "People"
+      ]
+    },
+    "add_person": {
+      "label": "Add Person",
+      "category": "social",
+      "searchTerms": [
+        "Add",
+        "User",
+        "Account",
+        "person",
+        "new hire",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "add_task": {
+      "label": "Add Task",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "add",
+        "task",
+        "complete",
+        "check"
+      ]
+    },
+    "adjustments": {
+      "label": "Adjustments",
+      "category": "image",
+      "searchTerms": [
+        "settings",
+        "tune",
+        "configuration",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "ai_attach": {
+      "label": "AI Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "ai_measure": {
+      "label": "AI Measure",
+      "category": "ai",
+      "searchTerms": [
+        "Unchecked"
+      ]
+    },
+    "ai_single_star": {
+      "label": "AI Single Star",
+      "category": "ai",
+      "searchTerms": [
+        "Unchecked"
+      ]
+    },
+    "ai_stars": {
+      "label": "AI Stars",
+      "category": "ai",
+      "searchTerms": [
+        "Unchecked"
+      ]
+    },
+    "alarm": {
+      "label": "Alarm",
+      "category": "action",
+      "searchTerms": [
+        "Watch",
+        "Time"
+      ]
+    },
+    "alert": {
+      "label": "Alert",
+      "category": "alert",
+      "searchTerms": [
+        "Notification",
+        "alert",
+        "bell",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "alert_active": {
+      "label": "Alert Active",
+      "category": "alert",
+      "searchTerms": [
+        "Alert",
+        "notification",
+        "bell"
+      ]
+    },
+    "alert_outline": {
+      "label": "Alert Outline",
+      "category": "alert",
+      "searchTerms": [
+        "notification",
+        "alert",
+        "bell",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "align_center": {
+      "label": "Align Center",
+      "category": "editor",
+      "searchTerms": [
+        "Type",
+        "Format"
+      ]
+    },
+    "align_horizontal_center": {
+      "label": "Align Horizontal Center",
+      "category": "editor",
+      "searchTerms": [
+        "Middle"
+      ]
+    },
+    "align_horizontal_left": {
+      "label": "Align Horizontal Left",
+      "category": "editor",
+      "searchTerms": []
+    },
+    "align_horizontal_right": {
+      "label": "Align Horizontal Right",
+      "category": "editor",
+      "searchTerms": []
+    },
+    "align_left": {
+      "label": "Align Left",
+      "category": "editor",
+      "searchTerms": [
+        "Type",
+        "Format"
+      ]
+    },
+    "align_right": {
+      "label": "Align Right",
+      "category": "editor",
+      "searchTerms": [
+        "Type",
+        "Format"
+      ]
+    },
+    "align_vertical_bottom": {
+      "label": "Align Vertical Bottom",
+      "category": "editor",
+      "searchTerms": []
+    },
+    "align_vertical_center": {
+      "label": "Align Vertical Center",
+      "category": "editor",
+      "searchTerms": [
+        "Middle"
+      ]
+    },
+    "align_vertical_top": {
+      "label": "Align Vertical Top",
+      "category": "editor",
+      "searchTerms": []
+    },
+    "analytics": {
+      "label": "Analytics",
+      "category": "charts",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "(used to display chart",
+        "report",
+        "analytics",
+        "not denote which type of chart is being used) report",
+        "chart",
+        "performance",
+        "graphic"
+      ]
+    },
+    "android": {
+      "label": "Android",
+      "category": "content",
+      "searchTerms": [
+        "OS"
+      ]
+    },
+    "antenna": {
+      "label": "Antenna",
+      "category": "device",
+      "searchTerms": [
+        "Frequency",
+        "Radio"
+      ]
+    },
+    "api": {
+      "label": "API",
+      "category": "technology",
+      "searchTerms": []
+    },
+    "api_collection": {
+      "label": "API Collection",
+      "category": "technology",
+      "searchTerms": []
+    },
+    "app_edit": {
+      "label": "App Edit",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "app edit"
+      ]
+    },
+    "app_setup": {
+      "label": "App Setup",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "app edit"
+      ]
+    },
+    "apps": {
+      "label": "Apps",
+      "category": "navigation",
+      "searchTerms": [
+        "3x3",
+        "menu",
+        "dashboard",
+        "grid",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "ar": {
+      "label": "AR",
+      "category": "action",
+      "searchTerms": [
+        "Augmented",
+        "Reality",
+        "Cube",
+        "3D"
+      ]
+    },
+    "arrow_back": {
+      "label": "Arrow Back",
+      "category": "navigation",
+      "searchTerms": [
+        "Left",
+        "arrow",
+        "back",
+        "previous",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "arrow_down": {
+      "label": "Arrow Down",
+      "category": "navigation",
+      "searchTerms": []
+    },
+    "arrow_forward": {
+      "label": "Arrow Forward",
+      "category": "navigation",
+      "searchTerms": [
+        "Right",
+        "arrow",
+        "forward",
+        "next",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "arrow_up": {
+      "label": "Arrow Up",
+      "category": "navigation",
+      "searchTerms": []
+    },
+    "asp_attach": {
+      "label": "ASP Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "attach_3ds": {
+      "label": "Attach 3DS",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "attachment": {
+      "label": "Attachment",
+      "category": "editor",
+      "searchTerms": [
+        "File",
+        "Document",
+        "attachment",
+        "paperchip",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "au_attach": {
+      "label": "AU Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "audio": {
+      "label": "Audio",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "audio",
+        "voice",
+        "message",
+        "sound",
+        "recording",
+        "record voice",
+        "sound bar",
+        "audio wave"
+      ]
+    },
+    "audit_activity": {
+      "label": "Audit Activity",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "audit activity"
+      ]
+    },
+    "auto": {
+      "label": "AUTO",
+      "category": "image",
+      "searchTerms": [
+        "Picture",
+        "Mode"
+      ]
+    },
+    "auto_delete": {
+      "label": "Auto Delete",
+      "category": "alert",
+      "searchTerms": [
+        "Trash",
+        "Bin",
+        "Time"
+      ]
+    },
+    "average_current_status": {
+      "label": "Average Current Status",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "write",
+        "edit",
+        "request",
+        "complete",
+        "change",
+        "compose"
+      ]
+    },
+    "avi_attach": {
+      "label": "AVI Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "award_star": {
+      "label": "Award Star",
+      "category": "general",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "awb": {
+      "label": "AWB",
+      "category": "image",
+      "searchTerms": [
+        "Picture",
+        "Mode",
+        "Auto",
+        "White",
+        "Balance"
+      ]
+    },
+    "backspace": {
+      "label": "Backspace",
+      "category": "content",
+      "searchTerms": [
+        "Delete",
+        "clear",
+        "remove",
+        "backspace",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "bad_mood": {
+      "label": "Bad Mood",
+      "category": "social",
+      "searchTerms": [
+        "Sad",
+        "Unhappy"
+      ]
+    },
+    "barcode": {
+      "label": "Barcode",
+      "category": "enterprise",
+      "searchTerms": [
+        "Scan",
+        "Bar",
+        "Laser",
+        "Stock",
+        "Inventory"
+      ]
+    },
+    "barcode_bluetooth": {
+      "label": "Barcode Bluetooth",
+      "category": "enterprise",
+      "searchTerms": [
+        "Pill",
+        "Connection",
+        "Scanner"
+      ]
+    },
+    "barcode_done": {
+      "label": "Barcode Done",
+      "category": "enterprise",
+      "searchTerms": [
+        "Check",
+        "Complete"
+      ]
+    },
+    "barcode_image_scan": {
+      "label": "Barcode Image Scan",
+      "category": "enterprise",
+      "searchTerms": [
+        "Box",
+        "Bounding"
+      ]
+    },
+    "barcode_qr_code": {
+      "label": "Barcode QR Code",
+      "category": "enterprise",
+      "searchTerms": []
+    },
+    "barcode_scanner_down": {
+      "label": "Barcode Scanner Down",
+      "category": "enterprise",
+      "searchTerms": []
+    },
+    "barcode_settings": {
+      "label": "Barcode Settings",
+      "category": "enterprise",
+      "searchTerms": [
+        "Gear",
+        "Cog",
+        "Bar"
+      ]
+    },
+    "basket": {
+      "label": "Basket",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "shift basket"
+      ]
+    },
+    "battery": {
+      "label": "Battery",
+      "category": "device",
+      "searchTerms": [
+        "Charged",
+        "Full"
+      ]
+    },
+    "battery_alert": {
+      "label": "Battery Alert",
+      "category": "device",
+      "searchTerms": [
+        "Down",
+        "Alert",
+        "Warning"
+      ]
+    },
+    "battery_charging": {
+      "label": "Battery Charging",
+      "category": "device",
+      "searchTerms": [
+        "Full"
+      ]
+    },
+    "bin_attach": {
+      "label": "BIN Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "block": {
+      "label": "Block",
+      "category": "communication",
+      "searchTerms": [
+        "Block",
+        "delete",
+        "prevent",
+        "do not disturb",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "blog": {
+      "label": "Blog",
+      "category": "social",
+      "searchTerms": [
+        "Social",
+        "Media"
+      ]
+    },
+    "bluetooth": {
+      "label": "Bluetooth",
+      "category": "device",
+      "searchTerms": []
+    },
+    "bluetooth_disabled": {
+      "label": "Bluetooth Disabled",
+      "category": "device",
+      "searchTerms": [
+        "Off"
+      ]
+    },
+    "bluetooth_searching": {
+      "label": "Bluetooth Searching",
+      "category": "device",
+      "searchTerms": [
+        "Find",
+        "Wave"
+      ]
+    },
+    "bmp_attach": {
+      "label": "BMP Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "bold": {
+      "label": "Bold",
+      "category": "editor",
+      "searchTerms": [
+        "Format",
+        "Text",
+        "Font"
+      ]
+    },
+    "bookmark": {
+      "label": "Bookmark",
+      "category": "action",
+      "searchTerms": [
+        "Remind",
+        "Reminder"
+      ]
+    },
+    "bookmark_outline": {
+      "label": "Bookmark Outline",
+      "category": "action",
+      "searchTerms": [
+        "Remind",
+        "Reminder"
+      ]
+    },
+    "brightness": {
+      "label": "Brightness",
+      "category": "device",
+      "searchTerms": [
+        "Medium",
+        "Mid"
+      ]
+    },
+    "broadcast": {
+      "label": "Broadcast",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "broadcast",
+        "announcement",
+        "news",
+        "megaphone"
+      ]
+    },
+    "build": {
+      "label": "Build",
+      "category": "action",
+      "searchTerms": [
+        "Wrench"
+      ]
+    },
+    "building": {
+      "label": "Building",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "building",
+        "organization",
+        "company"
+      ]
+    },
+    "bullet_list": {
+      "label": "Bullet List",
+      "category": "editor",
+      "searchTerms": [
+        "Type",
+        "Format",
+        "list",
+        "items",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "bus": {
+      "label": "Bus",
+      "category": "maps",
+      "searchTerms": [
+        "Direction",
+        "Public",
+        "Transport"
+      ]
+    },
+    "cached": {
+      "label": "Cached",
+      "category": "action",
+      "searchTerms": []
+    },
+    "cafe": {
+      "label": "Cafe",
+      "category": "maps",
+      "searchTerms": [
+        "Coffee",
+        "Mug",
+        "Tea",
+        "break",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "calculator": {
+      "label": "Calculator",
+      "category": "enterprise",
+      "searchTerms": [
+        "Math"
+      ]
+    },
+    "calendar": {
+      "label": "Calendar",
+      "category": "action",
+      "searchTerms": [
+        "Date",
+        "Appointment",
+        "Meeting",
+        "calendar",
+        "schedule",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "calendar_3_day": {
+      "label": "Calendar 3 Day",
+      "category": "action",
+      "searchTerms": [
+        "Date",
+        "Dates",
+        "calendar",
+        "three",
+        "3-day",
+        "3 day",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "calendar_alt_1": {
+      "label": "Calendar Alt 1",
+      "category": "action",
+      "searchTerms": [
+        "Date",
+        "Marked",
+        "Event",
+        "Today",
+        "Appointment",
+        "Meeting",
+        "calendar",
+        "schedule",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "calendar_alt_2": {
+      "label": "Calendar Alt 2",
+      "category": "action",
+      "searchTerms": [
+        "Date",
+        "Marked",
+        "Event",
+        "Today",
+        "Appointment",
+        "Meeting",
+        "calendar",
+        "schedule"
+      ]
+    },
+    "calendar_available": {
+      "label": "Calendar Available",
+      "category": "action",
+      "searchTerms": []
+    },
+    "calendar_day": {
+      "label": "Calendar Day",
+      "category": "action",
+      "searchTerms": [
+        "Date",
+        "Marked",
+        "calendar",
+        "day",
+        "daily view",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "calendar_edit": {
+      "label": "Calendar Edit",
+      "category": "action",
+      "searchTerms": []
+    },
+    "calendar_gantt": {
+      "label": "Calendar Gantt",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "calendar",
+        "rollover",
+        "roll-over",
+        "roll over",
+        "split",
+        "carryover",
+        "carry-over",
+        "carry over",
+        "upcoming"
+      ]
+    },
+    "calendar_monthly": {
+      "label": "Calendar Monthly",
+      "category": "action",
+      "searchTerms": [
+        "Date",
+        "Month",
+        "calendar",
+        "monthly",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "calendar_next": {
+      "label": "Calendar Next",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "calendar",
+        "rollover",
+        "roll-over",
+        "roll over",
+        "split",
+        "carryover",
+        "carry-over",
+        "carry over",
+        "upcoming",
+        "upcoming shift"
+      ]
+    },
+    "calendar_range": {
+      "label": "Calendar Range",
+      "category": "action",
+      "searchTerms": [
+        "Date",
+        "Dates",
+        "Span",
+        "Trade",
+        "shift trade",
+        "calendar",
+        "swap",
+        "switch",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "calendar_rollover": {
+      "label": "Calendar Rollover",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "calendar",
+        "rollover",
+        "roll-over",
+        "roll over",
+        "split",
+        "carryover",
+        "carry-over",
+        "carry over",
+        "week split"
+      ]
+    },
+    "calendar_unavailable": {
+      "label": "Calendar Unavailable",
+      "category": "action",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "calendar",
+        "unavailable",
+        "cancel",
+        "absence",
+        "absent",
+        "delete",
+        "schedule not mapped"
+      ]
+    },
+    "calendar_weekly": {
+      "label": "Calendar Weekly",
+      "category": "action",
+      "searchTerms": [
+        "Date",
+        "Week",
+        "calendar",
+        "weekly"
+      ]
+    },
+    "calendar_yearly": {
+      "label": "Calendar Yearly",
+      "category": "action",
+      "searchTerms": [
+        "Date",
+        "Year",
+        "365",
+        "calendar",
+        "yearly",
+        "annual",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "calibrate_media": {
+      "label": "Calibrate Media",
+      "category": "printer",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "swap",
+        "switch",
+        "trade"
+      ]
+    },
+    "call_back": {
+      "label": "Call Back",
+      "category": "communication",
+      "searchTerms": [
+        "Call",
+        "Telephone",
+        "Internet"
+      ]
+    },
+    "camera": {
+      "label": "Camera",
+      "category": "image",
+      "searchTerms": [
+        "Photo",
+        "Image",
+        "camera",
+        "picture",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "camera_shutter": {
+      "label": "Camera Shutter",
+      "category": "image",
+      "searchTerms": []
+    },
+    "camera_switch": {
+      "label": "Camera Switch",
+      "category": "image",
+      "searchTerms": [
+        "camera",
+        "photo",
+        "picture",
+        "flip"
+      ]
+    },
+    "cancel": {
+      "label": "Cancel",
+      "category": "navigation",
+      "searchTerms": [
+        "Close",
+        "X",
+        "cancel",
+        "exit",
+        "delete",
+        "remove"
+      ]
+    },
+    "cancel_outline": {
+      "label": "Cancel Outline",
+      "category": "navigation",
+      "searchTerms": [
+        "Close",
+        "X"
+      ]
+    },
+    "car": {
+      "label": "Car",
+      "category": "maps",
+      "searchTerms": [
+        "Auto",
+        "Automobile"
+      ]
+    },
+    "card_orientation": {
+      "label": "Card Orientation",
+      "category": "enterprise",
+      "searchTerms": [
+        "Printer",
+        "Magnetic",
+        "Strip",
+        "Credit",
+        "Chip"
+      ]
+    },
+    "card_with_chip": {
+      "label": "Card With Chip",
+      "category": "enterprise",
+      "searchTerms": []
+    },
+    "caret_down": {
+      "label": "Caret Down",
+      "category": "navigation",
+      "searchTerms": [
+        "Triangle"
+      ]
+    },
+    "caret_left": {
+      "label": "Caret Left",
+      "category": "navigation",
+      "searchTerms": [
+        "Triangle"
+      ]
+    },
+    "caret_right": {
+      "label": "Caret Right",
+      "category": "navigation",
+      "searchTerms": [
+        "Triangle"
+      ]
+    },
+    "caret_sort": {
+      "label": "Caret Sort",
+      "category": "navigation",
+      "searchTerms": []
+    },
+    "caret_up": {
+      "label": "Caret Up",
+      "category": "navigation",
+      "searchTerms": [
+        "Triangle"
+      ]
+    },
+    "cast": {
+      "label": "Cast",
+      "category": "hardware",
+      "searchTerms": [
+        "Chrome"
+      ]
+    },
+    "cast_connected": {
+      "label": "Cast Connected",
+      "category": "hardware",
+      "searchTerms": [
+        "Chrome"
+      ]
+    },
+    "category": {
+      "label": "Category",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "cellular_signal": {
+      "label": "Cellular Signal",
+      "category": "device",
+      "searchTerms": [
+        "SIM",
+        "Network",
+        "Cell",
+        "GSM"
+      ]
+    },
+    "certificate": {
+      "label": "Certificate",
+      "category": "enterprise",
+      "searchTerms": [
+        "Success",
+        "Badge"
+      ]
+    },
+    "certified": {
+      "label": "Certified",
+      "category": "social",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "verified",
+        "badge",
+        "title",
+        "status",
+        "certified"
+      ]
+    },
+    "chain": {
+      "label": "Chain",
+      "category": "device",
+      "searchTerms": [
+        "Link",
+        "Connect",
+        "Connected"
+      ]
+    },
+    "chart_bar": {
+      "label": "Chart Bar",
+      "category": "charts",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "report",
+        "analytics",
+        "chart",
+        "bar",
+        "bar chart",
+        "bar-chart",
+        "bar graph",
+        "forecast"
+      ]
+    },
+    "chart_bubble": {
+      "label": "Chart Bubble",
+      "category": "charts",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "report",
+        "analytics",
+        "chart",
+        "bubble chart",
+        "bubble-chart",
+        "bubblechart"
+      ]
+    },
+    "chart_bubble_outline": {
+      "label": "Chart Bubble Outline",
+      "category": "charts",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "chart",
+        "bubble"
+      ]
+    },
+    "chart_doughnut": {
+      "label": "Chart Doughnut",
+      "category": "charts",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "report",
+        "analytics",
+        "chart",
+        "doughnut chart",
+        "doughtnut-chart",
+        "doughtnutchart",
+        "donut chart",
+        "donut-chart",
+        "donutchart"
+      ]
+    },
+    "chart_filled": {
+      "label": "Chart Filled",
+      "category": "charts",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "(used to display chart",
+        "report",
+        "analytics",
+        "not denote which type of chart is being used) report",
+        "chart",
+        "performance",
+        "graphic"
+      ]
+    },
+    "chart_gantt": {
+      "label": "Chart Gantt",
+      "category": "charts",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "report",
+        "analytics",
+        "chart",
+        "Gantt chart",
+        "Gantt-chart"
+      ]
+    },
+    "chart_line": {
+      "label": "Chart Line",
+      "category": "charts",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "report",
+        "analytics",
+        "chart",
+        "line chart",
+        "line-chart",
+        "linechart",
+        "trend",
+        "trendline",
+        "line graph"
+      ]
+    },
+    "chart_line_predict": {
+      "label": "Chart Line Predict",
+      "category": "charts",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "report",
+        "analytics",
+        "chart",
+        "predict"
+      ]
+    },
+    "chart_line_stacked": {
+      "label": "Chart Line Stacked",
+      "category": "charts",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "report",
+        "analytics",
+        "chart",
+        "Comparison chart",
+        "Comparison-chart"
+      ]
+    },
+    "chart_outline": {
+      "label": "Chart Outline",
+      "category": "charts",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "report",
+        "analytics",
+        "chart outline",
+        "chart",
+        "Assessment"
+      ]
+    },
+    "chart_pie": {
+      "label": "Chart Pie",
+      "category": "charts",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "report",
+        "analytics",
+        "chart",
+        "pie chart",
+        "pie-chart",
+        "piechart",
+        "Analysis",
+        "pie graph",
+        "balance"
+      ]
+    },
+    "chart_pie_outline": {
+      "label": "Chart Pie Outline",
+      "category": "charts",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "chart",
+        "pie",
+        "pie graph"
+      ]
+    },
+    "chart_scatter_plot": {
+      "label": "Chart Scatter Plot",
+      "category": "charts",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "report",
+        "analytics",
+        "chart",
+        "Scatter",
+        "Scatter chart",
+        "Scatter-chart"
+      ]
+    },
+    "chart_stacked": {
+      "label": "Chart Stacked",
+      "category": "charts",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "report",
+        "analytics",
+        "chart",
+        "bar",
+        "bar chart",
+        "bar-chart",
+        "stacked",
+        "stack",
+        "stacked bar"
+      ]
+    },
+    "chart_waterfall": {
+      "label": "Chart Waterfall",
+      "category": "charts",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "chart",
+        "waterfall"
+      ]
+    },
+    "chat": {
+      "label": "Chat",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "chat",
+        "message",
+        "communication"
+      ]
+    },
+    "chat_bot": {
+      "label": "Chat Bot",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "chat",
+        "message",
+        "communication"
+      ]
+    },
+    "chat_bubble": {
+      "label": "Chat Bubble",
+      "category": "communication",
+      "searchTerms": [
+        "Text",
+        "Message",
+        "comment filled"
+      ]
+    },
+    "chat_bubble_outline": {
+      "label": "Chat Bubble Outline",
+      "category": "communication",
+      "searchTerms": [
+        "Text",
+        "Message",
+        "chat",
+        "communication",
+        "comment",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "chat_message_read": {
+      "label": "Chat Message Read",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "chat",
+        "message",
+        "communication",
+        "read",
+        "complete",
+        "published",
+        "live"
+      ]
+    },
+    "chat_message_unread": {
+      "label": "Chat Message Unread",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "chat",
+        "message",
+        "communication",
+        "unread",
+        "notification",
+        "badge"
+      ]
+    },
+    "chat_search": {
+      "label": "Chat Search",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "chat",
+        "message",
+        "communication",
+        "search",
+        "conversation",
+        "find"
+      ]
+    },
+    "chat_sync": {
+      "label": "Chat Sync",
+      "category": "general",
+      "searchTerms": [
+        "Chat",
+        "chat navigation",
+        "sync navigation",
+        "workcloud"
+      ]
+    },
+    "chat_sync_outline": {
+      "label": "Chat Sync outline",
+      "category": "general",
+      "searchTerms": [
+        "Chat",
+        "chat navigation",
+        "sync navigation",
+        "workcloud"
+      ]
+    },
+    "check_box": {
+      "label": "Check Box",
+      "category": "toggle",
+      "searchTerms": [
+        "Checked"
+      ]
+    },
+    "check_box_empty": {
+      "label": "Check Box Empty",
+      "category": "toggle",
+      "searchTerms": [
+        "Unchecked"
+      ]
+    },
+    "check_circle": {
+      "label": "Check Circle",
+      "category": "action",
+      "searchTerms": [
+        "Done",
+        "Complete",
+        "Mark",
+        "check",
+        "complete",
+        "done",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "check_circle_outline": {
+      "label": "Check Circle Outline",
+      "category": "action",
+      "searchTerms": [
+        "Done",
+        "Complete",
+        "Mark",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "check_circle_outline_alt": {
+      "label": "Check Circle Outline Alt",
+      "category": "action",
+      "searchTerms": [
+        "Done",
+        "Complete",
+        "Mark"
+      ]
+    },
+    "check_mark": {
+      "label": "Check Mark",
+      "category": "action",
+      "searchTerms": [
+        "Done",
+        "Complete",
+        "check",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "checklist": {
+      "label": "Checklist",
+      "category": "editor",
+      "searchTerms": [
+        "list",
+        "items",
+        "tasks",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "chevron_left": {
+      "label": "Chevron Left",
+      "category": "navigation",
+      "searchTerms": [
+        "Arrow",
+        "chevron",
+        "left",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "chevron_right": {
+      "label": "Chevron Right",
+      "category": "navigation",
+      "searchTerms": [
+        "Arrow",
+        "chevron",
+        "right",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "choices": {
+      "label": "Choices",
+      "category": "enterprise",
+      "searchTerms": []
+    },
+    "clipboard": {
+      "label": "Clipboard",
+      "category": "action",
+      "searchTerms": [
+        "Assignment",
+        "To do",
+        "List",
+        "Item"
+      ]
+    },
+    "clipboard_outline": {
+      "label": "Clipboard Outline",
+      "category": "general",
+      "searchTerms": [
+        "clipboard",
+        "note",
+        "workcloud",
+        "wc"
+      ]
+    },
+    "clock": {
+      "label": "Clock",
+      "category": "action",
+      "searchTerms": [
+        "Watch",
+        "Time",
+        "Circle"
+      ]
+    },
+    "clock_available": {
+      "label": "Clock Available",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "available",
+        "complete",
+        "check",
+        "publish"
+      ]
+    },
+    "clock_bid": {
+      "label": "Clock Bid",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "bid"
+      ]
+    },
+    "clock_edit": {
+      "label": "Clock Edit",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "edit",
+        "write",
+        "sign-up",
+        "sign",
+        "register",
+        "pencil",
+        "custom",
+        "request"
+      ]
+    },
+    "clock_flexible": {
+      "label": "Clock Flexible",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "flexible"
+      ]
+    },
+    "clock_in_progress": {
+      "label": "Clock In Progress",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "inprogress",
+        "in-progress",
+        "in progress",
+        "ongoing"
+      ]
+    },
+    "clock_info": {
+      "label": "Clock Info",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "details",
+        "info",
+        "information"
+      ]
+    },
+    "clock_missed": {
+      "label": "Clock Missed",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "missed",
+        "help"
+      ]
+    },
+    "clock_on": {
+      "label": "Clock On",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "available",
+        "on",
+        "active"
+      ]
+    },
+    "clock_outline": {
+      "label": "Clock Outline",
+      "category": "action",
+      "searchTerms": [
+        "Watch",
+        "Time",
+        "clock",
+        "shift",
+        "specific time",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "clock_rollover": {
+      "label": "Clock Rollover",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "over",
+        "overtime",
+        "carryover",
+        "carry over",
+        "carry-over"
+      ]
+    },
+    "clock_segment": {
+      "label": "Clock Segment",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "timer",
+        "time left",
+        "remainder",
+        "remaining",
+        "remain"
+      ]
+    },
+    "clock_start": {
+      "label": "Clock Start",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "start",
+        "initiate",
+        "begin"
+      ]
+    },
+    "clock_stop": {
+      "label": "Clock Stop",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "stop",
+        "end"
+      ]
+    },
+    "clock_switch": {
+      "label": "Clock Switch",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "swap",
+        "switch",
+        "trade"
+      ]
+    },
+    "clock_timer": {
+      "label": "Clock Timer",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "timer",
+        "stopwatch",
+        "stop watch",
+        "on schedule"
+      ]
+    },
+    "clock_upcoming": {
+      "label": "Clock Upcoming",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "swap",
+        "switch",
+        "trade",
+        "open shifts"
+      ]
+    },
+    "close": {
+      "label": "Close",
+      "category": "navigation",
+      "searchTerms": [
+        "X",
+        "close",
+        "cancel",
+        "exit",
+        "delete",
+        "remove",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "closed_caption": {
+      "label": "Closed Caption",
+      "category": "audio_video",
+      "searchTerms": [
+        "Subtitle"
+      ]
+    },
+    "cloud": {
+      "label": "Cloud",
+      "category": "file",
+      "searchTerms": []
+    },
+    "cloud_done": {
+      "label": "Cloud Done",
+      "category": "file",
+      "searchTerms": [
+        "Check",
+        "Check Mark",
+        "Mark"
+      ]
+    },
+    "cloud_download": {
+      "label": "Cloud Download",
+      "category": "file",
+      "searchTerms": [
+        "file",
+        "download",
+        "cloud",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "cloud_off": {
+      "label": "Cloud Off",
+      "category": "file",
+      "searchTerms": [
+        "Offline"
+      ]
+    },
+    "cloud_outline": {
+      "label": "Cloud Outline",
+      "category": "file",
+      "searchTerms": []
+    },
+    "cloud_sync": {
+      "label": "Cloud Sync",
+      "category": "file",
+      "searchTerms": []
+    },
+    "cloud_upload": {
+      "label": "Cloud Upload",
+      "category": "file",
+      "searchTerms": [
+        "file",
+        "upload",
+        "cloud",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "color_fill": {
+      "label": "Color Fill",
+      "category": "editor",
+      "searchTerms": [
+        "Ink",
+        "Reset",
+        "Format",
+        "Print"
+      ]
+    },
+    "columns": {
+      "label": "Columns",
+      "category": "navigation",
+      "searchTerms": [
+        "Table"
+      ]
+    },
+    "com_attach": {
+      "label": "COM Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "comms_chat": {
+      "label": "Comms Chat",
+      "category": "communication",
+      "searchTerms": [
+        "Chat",
+        "Chat feed",
+        "workcloud",
+        "sync",
+        "comment"
+      ]
+    },
+    "comms_chat_new": {
+      "label": "Comms Chat New",
+      "category": "communication",
+      "searchTerms": [
+        "New Chat",
+        "New Chat feed",
+        "workcloud",
+        "sync",
+        "New comment"
+      ]
+    },
+    "comms_chat_unread": {
+      "label": "Comms Chat Unread",
+      "category": "communication",
+      "searchTerms": [
+        "Unread",
+        "Unread Chat",
+        "Chat feed",
+        "workcloud",
+        "sync",
+        "comment"
+      ]
+    },
+    "contactless_pay": {
+      "label": "Contactless Pay",
+      "category": "enterprise",
+      "searchTerms": [
+        "Tap",
+        "Wave"
+      ]
+    },
+    "contacts": {
+      "label": "Contacts",
+      "category": "general",
+      "searchTerms": [
+        "Contacts",
+        "Sync Navigation",
+        "Sync",
+        "Workcloud",
+        "Contacts list",
+        "Address book",
+        "phone book"
+      ]
+    },
+    "contacts_outline": {
+      "label": "Contacts outline",
+      "category": "general",
+      "searchTerms": [
+        "Contacts",
+        "Sync Navigation",
+        "Sync",
+        "Workcloud",
+        "Contacts list",
+        "Address book",
+        "phone book"
+      ]
+    },
+    "content": {
+      "label": "Content",
+      "category": "content",
+      "searchTerms": [
+        "duplicate",
+        "copy",
+        "clipboard",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "contrast": {
+      "label": "Contrast",
+      "category": "image",
+      "searchTerms": []
+    },
+    "conversation": {
+      "label": "Conversation",
+      "category": "communication",
+      "searchTerms": [
+        "Message",
+        "Talk",
+        "Chat",
+        "Bubble"
+      ]
+    },
+    "copy_file": {
+      "label": "Copy File",
+      "category": "content",
+      "searchTerms": []
+    },
+    "create_new_folder": {
+      "label": "Create New Folder",
+      "category": "file",
+      "searchTerms": [
+        "Add"
+      ]
+    },
+    "credit_card": {
+      "label": "Credit Card",
+      "category": "action",
+      "searchTerms": [
+        "Payment",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "credit_card_swipe": {
+      "label": "Credit Card Swipe",
+      "category": "enterprise",
+      "searchTerms": [
+        "Magnetic",
+        "Stripe",
+        "Hand"
+      ]
+    },
+    "crop": {
+      "label": "Crop",
+      "category": "image",
+      "searchTerms": []
+    },
+    "css_attach": {
+      "label": "CSS Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "csv_attach": {
+      "label": "CSV Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "currency_dollar": {
+      "label": "Currency Dollar",
+      "category": "general",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "currency_pound": {
+      "label": "Currency Pound",
+      "category": "general",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "dark_mode": {
+      "label": "Dark Mode",
+      "category": "device",
+      "searchTerms": [
+        "Night",
+        "Moon",
+        "Crescent"
+      ]
+    },
+    "dashboard": {
+      "label": "Dashboard",
+      "category": "navigation",
+      "searchTerms": [
+        "dashboard",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "dat_attach": {
+      "label": "DAT Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "dbf_attach": {
+      "label": "DBF Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "delete": {
+      "label": "Delete",
+      "category": "action",
+      "searchTerms": [
+        "Trash",
+        "Bin",
+        "delete",
+        "remove",
+        "empty",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "delete_forever": {
+      "label": "Delete Forever",
+      "category": "action",
+      "searchTerms": [
+        "Trash",
+        "Bin"
+      ]
+    },
+    "delete_outline": {
+      "label": "Delete Outline",
+      "category": "action",
+      "searchTerms": [
+        "Trash",
+        "Bin"
+      ]
+    },
+    "delete_printer": {
+      "label": "Delete Printer",
+      "category": "printer",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "available",
+        "on",
+        "active"
+      ]
+    },
+    "delete_scanner": {
+      "label": "Delete Scanner",
+      "category": "scanner",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "timecard",
+        "time card",
+        "punch in",
+        "punch-in",
+        "punch out",
+        "punch-out"
+      ]
+    },
+    "desktop": {
+      "label": "Desktop",
+      "category": "hardware",
+      "searchTerms": []
+    },
+    "device_profile_deployment": {
+      "label": "Device Profile Deployment",
+      "category": "hardware",
+      "searchTerms": []
+    },
+    "device_settings": {
+      "label": "Device Settings",
+      "category": "hardware",
+      "searchTerms": []
+    },
+    "devices": {
+      "label": "Devices",
+      "category": "device",
+      "searchTerms": [
+        "Device",
+        "Responsive"
+      ]
+    },
+    "devices_ecosystem": {
+      "label": "Devices Ecosystem",
+      "category": "hardware",
+      "searchTerms": []
+    },
+    "dialpad": {
+      "label": "Dialpad",
+      "category": "communication",
+      "searchTerms": [
+        "Num",
+        "Numpad",
+        "0-9",
+        "Numbers",
+        "keypad",
+        "dial",
+        "dialpad",
+        "number",
+        "ptt",
+        "phone",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "dislike": {
+      "label": "Dislike",
+      "category": "action",
+      "searchTerms": [
+        "Thumbs Down"
+      ]
+    },
+    "distribute_horizontal": {
+      "label": "Distribute Horizontal",
+      "category": "editor",
+      "searchTerms": [
+        "Type",
+        "Format",
+        "Align"
+      ]
+    },
+    "distribute_vertical": {
+      "label": "Distribute Vertical",
+      "category": "editor",
+      "searchTerms": [
+        "Type",
+        "Format",
+        "Align"
+      ]
+    },
+    "dll_attach": {
+      "label": "DLL Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "doc_attach": {
+      "label": "DOC Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "document": {
+      "label": "Document",
+      "category": "action",
+      "searchTerms": []
+    },
+    "docx_attach": {
+      "label": "DOCX Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "dollar": {
+      "label": "Dollar",
+      "category": "communication",
+      "searchTerms": []
+    },
+    "double_arrow_left": {
+      "label": "Double Arrow Left",
+      "category": "navigation",
+      "searchTerms": []
+    },
+    "double_arrow_right": {
+      "label": "Double Arrow Right",
+      "category": "navigation",
+      "searchTerms": []
+    },
+    "download": {
+      "label": "Download",
+      "category": "action",
+      "searchTerms": [
+        "Get",
+        "download",
+        "file",
+        "document",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "downloading": {
+      "label": "Downloading",
+      "category": "file",
+      "searchTerms": []
+    },
+    "drop_down_circle": {
+      "label": "Drop Down Circle",
+      "category": "navigation",
+      "searchTerms": [
+        "Arrow",
+        "Triangle"
+      ]
+    },
+    "dwg_attach": {
+      "label": "DWG Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "eas": {
+      "label": "EAS",
+      "category": "enterprise",
+      "searchTerms": []
+    },
+    "edit": {
+      "label": "Edit",
+      "category": "editor",
+      "searchTerms": [
+        "edit",
+        "write",
+        "change",
+        "create",
+        "request",
+        "complete"
+      ]
+    },
+    "edit_border": {
+      "label": "Edit Border",
+      "category": "editor",
+      "searchTerms": [
+        "Style",
+        "Color",
+        "Colour",
+        "Shape"
+      ]
+    },
+    "email": {
+      "label": "Email",
+      "category": "content",
+      "searchTerms": [
+        "Mail",
+        "@",
+        "email",
+        "e-mail",
+        "envelope",
+        "message",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "email_alt": {
+      "label": "Email Alt",
+      "category": "communication",
+      "searchTerms": [
+        "Mail",
+        "@",
+        "Internet"
+      ]
+    },
+    "email_outline": {
+      "label": "Email Outline",
+      "category": "content",
+      "searchTerms": [
+        "Mail",
+        "@",
+        "email",
+        "e-mail",
+        "envelope",
+        "message",
+        "Workcloud",
+        "WC",
+        "outline"
+      ]
+    },
+    "email_reply_all": {
+      "label": "Email Reply All",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "email",
+        "e-mail",
+        "envelope",
+        "message",
+        "reply",
+        "reply-all",
+        "reply all"
+      ]
+    },
+    "eml_attach": {
+      "label": "EML Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "end_call": {
+      "label": "End Call",
+      "category": "communication",
+      "searchTerms": [
+        "Telephone",
+        "Disconnect"
+      ]
+    },
+    "enterprise_diagnostics": {
+      "label": "Enterprise Diagnostics",
+      "category": "enterprise",
+      "searchTerms": []
+    },
+    "environmental": {
+      "label": "Environmental",
+      "category": "enterprise",
+      "searchTerms": [
+        "Green",
+        "Leaf",
+        "Leaves",
+        "Tree"
+      ]
+    },
+    "eps_attach": {
+      "label": "EPS Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "error": {
+      "label": "Error",
+      "category": "alert",
+      "searchTerms": [
+        "Wrong",
+        "alert",
+        "warning",
+        "info",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "error_outline": {
+      "label": "Error Outline",
+      "category": "alert",
+      "searchTerms": [
+        "Wrong"
+      ]
+    },
+    "ethernet": {
+      "label": "Ethernet",
+      "category": "device",
+      "searchTerms": []
+    },
+    "exe_attach": {
+      "label": "EXE Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "exit": {
+      "label": "Exit",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "exit"
+      ]
+    },
+    "expand_less": {
+      "label": "Expand Less",
+      "category": "navigation",
+      "searchTerms": [
+        "Arrow",
+        "chevron",
+        "up",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "expand_more": {
+      "label": "Expand More",
+      "category": "navigation",
+      "searchTerms": [
+        "Arrow",
+        "chevon",
+        "down",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "export": {
+      "label": "Export",
+      "category": "file",
+      "searchTerms": []
+    },
+    "exposure": {
+      "label": "Exposure",
+      "category": "image",
+      "searchTerms": [
+        "Picture",
+        "Mode"
+      ]
+    },
+    "ext_attach": {
+      "label": "EXT Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "eye_dropper": {
+      "label": "Eye Dropper",
+      "category": "image",
+      "searchTerms": [
+        "Color",
+        "Colorize",
+        "Colorise",
+        "Pick",
+        "Sample"
+      ]
+    },
+    "eye_preview": {
+      "label": "Eye Preview",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "view settings\n\n\nuse this when configuring the display of something"
+      ]
+    },
+    "face_id": {
+      "label": "Face Id",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "activity",
+        "chart",
+        "line",
+        "log",
+        "history"
+      ]
+    },
+    "facebook": {
+      "label": "Facebook",
+      "category": "social",
+      "searchTerms": [
+        "Social",
+        "Media"
+      ]
+    },
+    "factory": {
+      "label": "Factory",
+      "category": "enterprise",
+      "searchTerms": []
+    },
+    "fast_forward": {
+      "label": "Fast Forward",
+      "category": "audio_video",
+      "searchTerms": []
+    },
+    "fast_rewind": {
+      "label": "Fast Rewind",
+      "category": "audio_video",
+      "searchTerms": [
+        "Back"
+      ]
+    },
+    "file": {
+      "label": "File",
+      "category": "file",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "file",
+        "note",
+        "paper"
+      ]
+    },
+    "filter": {
+      "label": "Filter",
+      "category": "action",
+      "searchTerms": [
+        "filter",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "filter_alt": {
+      "label": "Filter Alt",
+      "category": "action",
+      "searchTerms": []
+    },
+    "filter_off": {
+      "label": "Filter Off",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "filter_outlne": {
+      "label": "Filter outlne",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "finished_download": {
+      "label": "Finished Download",
+      "category": "file",
+      "searchTerms": [
+        "Complete",
+        "Success",
+        "Done"
+      ]
+    },
+    "fire": {
+      "label": "Fire",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "vacation",
+        "pto",
+        "request-time",
+        "request time",
+        "time off",
+        "paid time off"
+      ]
+    },
+    "first_page": {
+      "label": "First Page",
+      "category": "navigation",
+      "searchTerms": [
+        "Beginning"
+      ]
+    },
+    "fla_attach": {
+      "label": "FLA Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "flag": {
+      "label": "Flag",
+      "category": "content",
+      "searchTerms": [
+        "flag",
+        "mark",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "flash_auto": {
+      "label": "Flash Auto",
+      "category": "audio_video",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "flash_off": {
+      "label": "Flash Off",
+      "category": "audio_video",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "flash_on": {
+      "label": "Flash On",
+      "category": "audio_video",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "flight": {
+      "label": "Flight",
+      "category": "maps",
+      "searchTerms": [
+        "Plane",
+        "Aeroplane",
+        "Fly"
+      ]
+    },
+    "flight_mode": {
+      "label": "Flight Mode",
+      "category": "device",
+      "searchTerms": [
+        "Airplane"
+      ]
+    },
+    "flip": {
+      "label": "Flip",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "flip",
+        "mirror"
+      ]
+    },
+    "fodg_attach": {
+      "label": "FODG Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "fodp_attach": {
+      "label": "FODP Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "fods_attach": {
+      "label": "FODS Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "folder": {
+      "label": "Folder",
+      "category": "file",
+      "searchTerms": [
+        "folder",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "folder_outline": {
+      "label": "Folder Outline",
+      "category": "file",
+      "searchTerms": []
+    },
+    "font_size_decrease": {
+      "label": "Font Size Decrease",
+      "category": "editor",
+      "searchTerms": [
+        "Text",
+        "Small"
+      ]
+    },
+    "font_size_increase": {
+      "label": "Font Size Increase",
+      "category": "editor",
+      "searchTerms": [
+        "Text",
+        "Big"
+      ]
+    },
+    "format_shapes": {
+      "label": "Format Shapes",
+      "category": "editor",
+      "searchTerms": [
+        "Text",
+        "Bounding",
+        "Box"
+      ]
+    },
+    "forward": {
+      "label": "Forward",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "email",
+        "e-mail",
+        "envelope",
+        "message",
+        "forward"
+      ]
+    },
+    "frame_inspect": {
+      "label": "Frame inspect",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "freezer": {
+      "label": "Freezer",
+      "category": "enterprise",
+      "searchTerms": [
+        "Ice",
+        "Cold",
+        "AC",
+        "Climate"
+      ]
+    },
+    "full_screen": {
+      "label": "Full Screen",
+      "category": "navigation",
+      "searchTerms": [
+        "fullscreen",
+        "enlarge",
+        "maximize",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "full_screen_exit": {
+      "label": "Full Screen Exit",
+      "category": "navigation",
+      "searchTerms": [
+        "fullscreen",
+        "minimize",
+        "shrink",
+        "exit",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "gif": {
+      "label": "GIF",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "gif"
+      ]
+    },
+    "gif_attach": {
+      "label": "GIF Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "glossary": {
+      "label": "Glossary",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "glossary"
+      ]
+    },
+    "google_drive": {
+      "label": "google drive",
+      "category": "social",
+      "searchTerms": []
+    },
+    "grid_off": {
+      "label": "Grid Off",
+      "category": "image",
+      "searchTerms": []
+    },
+    "grid_on": {
+      "label": "Grid On",
+      "category": "image",
+      "searchTerms": []
+    },
+    "grid_view": {
+      "label": "Grid View",
+      "category": "file",
+      "searchTerms": [
+        "2x2"
+      ]
+    },
+    "group": {
+      "label": "Group",
+      "category": "social",
+      "searchTerms": [
+        "People",
+        "profile",
+        "account",
+        "user",
+        "friends",
+        "group",
+        "user multiple",
+        "associates",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "groups": {
+      "label": "Groups",
+      "category": "social",
+      "searchTerms": [
+        "People",
+        "profile",
+        "account",
+        "user",
+        "people",
+        "friends",
+        "group",
+        "department",
+        "team",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "hamburger_menu": {
+      "label": "Hamburger Menu",
+      "category": "navigation",
+      "searchTerms": [
+        "menu",
+        "hamburger",
+        "line",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "hamburger_menu_navigation_rail": {
+      "label": "Hamburger Menu Navigation Rail",
+      "category": "navigation",
+      "searchTerms": [
+        "Narrow",
+        "Squeeze",
+        "Small"
+      ]
+    },
+    "hamburger_menu_thick": {
+      "label": "Hamburger Menu Thick",
+      "category": "navigation",
+      "searchTerms": []
+    },
+    "hand": {
+      "label": "Hand",
+      "category": "action",
+      "searchTerms": [
+        "Raise",
+        "Interact",
+        "Finger"
+      ]
+    },
+    "happy": {
+      "label": "Happy",
+      "category": "social",
+      "searchTerms": [
+        "Happy",
+        "Smiley",
+        "Satisfied"
+      ]
+    },
+    "hdmi": {
+      "label": "HDMI",
+      "category": "device",
+      "searchTerms": []
+    },
+    "hdr": {
+      "label": "HDR",
+      "category": "image",
+      "searchTerms": [
+        "Picture",
+        "Mode"
+      ]
+    },
+    "headphones": {
+      "label": "Headphones",
+      "category": "hardware",
+      "searchTerms": []
+    },
+    "headset": {
+      "label": "Headset",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "headset",
+        "headphone",
+        "support"
+      ]
+    },
+    "help": {
+      "label": "Help",
+      "category": "navigation",
+      "searchTerms": [
+        "Question",
+        "Mark",
+        "help",
+        "question",
+        "info",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "help_outline": {
+      "label": "Help Outline",
+      "category": "navigation",
+      "searchTerms": [
+        "Question",
+        "Mark"
+      ]
+    },
+    "history": {
+      "label": "History",
+      "category": "action",
+      "searchTerms": [
+        "Watch",
+        "Time",
+        "Earlier",
+        "Previously",
+        "history",
+        "log",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "home": {
+      "label": "Home",
+      "category": "action",
+      "searchTerms": [
+        "Main",
+        "home",
+        "house",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "home_sync": {
+      "label": "Home Sync",
+      "category": "general",
+      "searchTerms": [
+        "Home",
+        "Sync Navigation",
+        "Workcloud",
+        "sync",
+        "home outline",
+        "home solid"
+      ]
+    },
+    "home_sync_outline": {
+      "label": "Home Sync outline",
+      "category": "general",
+      "searchTerms": [
+        "Home",
+        "Sync Navigation",
+        "Workcloud",
+        "sync",
+        "home outline",
+        "home solid"
+      ]
+    },
+    "hourglass": {
+      "label": "Hourglass",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "hourglass",
+        "timer",
+        "time",
+        "wait",
+        "load",
+        "loading"
+      ]
+    },
+    "how_do_i": {
+      "label": "How Do I",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "how do i"
+      ]
+    },
+    "htm_attach": {
+      "label": "HTM Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "html_attach": {
+      "label": "HTML Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "ico_attach": {
+      "label": "ICO Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "image": {
+      "label": "Image",
+      "category": "image",
+      "searchTerms": [
+        "Photo",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "image_library": {
+      "label": "Image Library",
+      "category": "image",
+      "searchTerms": [
+        "Collection",
+        "Set"
+      ]
+    },
+    "import": {
+      "label": "Import",
+      "category": "file",
+      "searchTerms": []
+    },
+    "important_notification": {
+      "label": "Important Notification",
+      "category": "alert",
+      "searchTerms": [
+        "Urgent",
+        "Attention",
+        "priority",
+        "status",
+        "alert",
+        "alarm",
+        "bell",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "inbox": {
+      "label": "Inbox",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "inbox",
+        "feed"
+      ]
+    },
+    "incoming_call": {
+      "label": "Incoming Call",
+      "category": "communication",
+      "searchTerms": [
+        "Incoming call",
+        "call",
+        "workcloud",
+        "sync"
+      ]
+    },
+    "incoming_video": {
+      "label": "Incoming Video",
+      "category": "communication",
+      "searchTerms": [
+        "Incoming video",
+        "video",
+        "workcloud",
+        "sync"
+      ]
+    },
+    "indent_decrease": {
+      "label": "Indent Decrease",
+      "category": "editor",
+      "searchTerms": [
+        "Type",
+        "Format"
+      ]
+    },
+    "indent_increase": {
+      "label": "Indent Increase",
+      "category": "editor",
+      "searchTerms": [
+        "Type",
+        "Format"
+      ]
+    },
+    "indeterminate_check_box": {
+      "label": "Indeterminate Check Box",
+      "category": "toggle",
+      "searchTerms": [
+        "Half"
+      ]
+    },
+    "info": {
+      "label": "Info",
+      "category": "action",
+      "searchTerms": [
+        "information",
+        "details",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "ini_attach": {
+      "label": "INI Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "instagram": {
+      "label": "Instagram",
+      "category": "social",
+      "searchTerms": [
+        "Social",
+        "Media",
+        "Photo"
+      ]
+    },
+    "ios_share": {
+      "label": "iOS Share",
+      "category": "action",
+      "searchTerms": [
+        "Apple",
+        "file",
+        "share",
+        "export",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "iso": {
+      "label": "ISO",
+      "category": "image",
+      "searchTerms": [
+        "Picture",
+        "Mode"
+      ]
+    },
+    "iso_attach": {
+      "label": "ISO Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "issue_audit": {
+      "label": "Issue Audit",
+      "category": "enterprise",
+      "searchTerms": []
+    },
+    "italic": {
+      "label": "Italic",
+      "category": "editor",
+      "searchTerms": [
+        "Format",
+        "Text",
+        "Font"
+      ]
+    },
+    "jar_attach": {
+      "label": "JAR Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "jpeg_attach": {
+      "label": "JPEG Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "jpg_attach": {
+      "label": "JPG Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "js_attach": {
+      "label": "JS Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "json_attach": {
+      "label": "JSON Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "justify": {
+      "label": "Justify",
+      "category": "editor",
+      "searchTerms": [
+        "Type",
+        "Format"
+      ]
+    },
+    "key_attach": {
+      "label": "KEY Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "keyboard": {
+      "label": "Keyboard",
+      "category": "hardware",
+      "searchTerms": [
+        "keyboard",
+        "keypad",
+        "type",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "label": {
+      "label": "Label",
+      "category": "action",
+      "searchTerms": [
+        "Tag"
+      ]
+    },
+    "laptop": {
+      "label": "Laptop",
+      "category": "hardware",
+      "searchTerms": [
+        "Computer"
+      ]
+    },
+    "las": {
+      "label": "LAS",
+      "category": "maps",
+      "searchTerms": []
+    },
+    "last_page": {
+      "label": "Last Page",
+      "category": "navigation",
+      "searchTerms": [
+        "End"
+      ]
+    },
+    "layers": {
+      "label": "Layers",
+      "category": "maps",
+      "searchTerms": []
+    },
+    "left_panel_close": {
+      "label": "Left Panel Close",
+      "category": "action",
+      "searchTerms": []
+    },
+    "left_panel_open": {
+      "label": "Left Panel Open",
+      "category": "action",
+      "searchTerms": []
+    },
+    "light_mode": {
+      "label": "Light Mode",
+      "category": "device",
+      "searchTerms": [
+        "Brightness",
+        "Sun",
+        "light",
+        "day",
+        "morning",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "light_rail_train": {
+      "label": "Light Rail Train",
+      "category": "maps",
+      "searchTerms": [
+        "Tram",
+        "Public",
+        "Transport"
+      ]
+    },
+    "lightbulb": {
+      "label": "Lightbulb",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "lightbulb",
+        "light",
+        "idea",
+        "how",
+        "information",
+        "info"
+      ]
+    },
+    "like": {
+      "label": "Like",
+      "category": "action",
+      "searchTerms": [
+        "Thumbs Up"
+      ]
+    },
+    "line_spacing": {
+      "label": "Line Spacing",
+      "category": "editor",
+      "searchTerms": [
+        "Type",
+        "Format"
+      ]
+    },
+    "link": {
+      "label": "Link",
+      "category": "editor",
+      "searchTerms": [
+        "Chain",
+        "Insert",
+        "hyperlink"
+      ]
+    },
+    "link_add": {
+      "label": "Link Add",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "link",
+        "hyperlink",
+        "add"
+      ]
+    },
+    "linkedin": {
+      "label": "LinkedIn",
+      "category": "social",
+      "searchTerms": [
+        "Social",
+        "Media"
+      ]
+    },
+    "list": {
+      "label": "List",
+      "category": "navigation",
+      "searchTerms": [
+        "list",
+        "details",
+        "information",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "list_alt": {
+      "label": "List Alt",
+      "category": "navigation",
+      "searchTerms": []
+    },
+    "list_bullet_contained": {
+      "label": "List Bullet Contained",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "list",
+        "feedback",
+        "items"
+      ]
+    },
+    "list_feedback": {
+      "label": "List Feedback",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "list",
+        "feedback",
+        "items"
+      ]
+    },
+    "list_form": {
+      "label": "List Form",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "list",
+        "feedback",
+        "items"
+      ]
+    },
+    "local_mall": {
+      "label": "Local Mall",
+      "category": "general",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "local_shipping": {
+      "label": "Local Shipping",
+      "category": "maps",
+      "searchTerms": [
+        "Transport",
+        "Truck",
+        "Loaded"
+      ]
+    },
+    "locate_scanner": {
+      "label": "Locate Scanner",
+      "category": "scanner",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "swap",
+        "switch",
+        "trade"
+      ]
+    },
+    "location": {
+      "label": "Location",
+      "category": "device",
+      "searchTerms": [
+        "Search",
+        "GPS"
+      ]
+    },
+    "location_off": {
+      "label": "Location Off",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "location",
+        "pin",
+        "mark",
+        "here"
+      ]
+    },
+    "location_point": {
+      "label": "Location Point",
+      "category": "device",
+      "searchTerms": [
+        "GPS",
+        "Fixed"
+      ]
+    },
+    "locations": {
+      "label": "Locations",
+      "category": "navigation",
+      "searchTerms": []
+    },
+    "lock": {
+      "label": "Lock",
+      "category": "action",
+      "searchTerms": [
+        "Padlock",
+        "Safe"
+      ]
+    },
+    "lock_alt": {
+      "label": "Lock Alt",
+      "category": "action",
+      "searchTerms": [
+        "Padlock",
+        "Safe",
+        "lock",
+        "security",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "lock_undo": {
+      "label": "Lock Undo",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "lock",
+        "security",
+        "unlock"
+      ]
+    },
+    "log_in": {
+      "label": "Log In",
+      "category": "action",
+      "searchTerms": [
+        "Login",
+        "Entry"
+      ]
+    },
+    "log_out": {
+      "label": "Log Out",
+      "category": "action",
+      "searchTerms": [
+        "Logout",
+        "Exit",
+        "signout",
+        "sign out",
+        "sign-out",
+        "log out",
+        "log-out",
+        "logoff",
+        "log off",
+        "log-off",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "love": {
+      "label": "Love",
+      "category": "action",
+      "searchTerms": [
+        "Like",
+        "Fav",
+        "Favorite",
+        "Favourite"
+      ]
+    },
+    "love_outline": {
+      "label": "Love Outline",
+      "category": "action",
+      "searchTerms": [
+        "Like",
+        "Fav",
+        "Favorite",
+        "Favourite"
+      ]
+    },
+    "maintenance": {
+      "label": "Maintenance",
+      "category": "file",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "maintenance",
+        "repair",
+        "hammer",
+        "wrench",
+        "tools"
+      ]
+    },
+    "map": {
+      "label": "Map",
+      "category": "maps",
+      "searchTerms": [
+        "Fold",
+        "Folding",
+        "alternative work location",
+        "share stores"
+      ]
+    },
+    "mdb_attach": {
+      "label": "MDB Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "meal": {
+      "label": "Meal",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "meal",
+        "break",
+        "lunch",
+        "dinner",
+        "food"
+      ]
+    },
+    "medium": {
+      "label": "Medium",
+      "category": "social",
+      "searchTerms": [
+        "Social",
+        "Media",
+        "Article"
+      ]
+    },
+    "memory": {
+      "label": "Memory",
+      "category": "hardware",
+      "searchTerms": [
+        "Processor",
+        "Microprocessor"
+      ]
+    },
+    "message": {
+      "label": "Message",
+      "category": "communication",
+      "searchTerms": [
+        "Comment",
+        "Message"
+      ]
+    },
+    "microphone": {
+      "label": "Microphone",
+      "category": "audio_video",
+      "searchTerms": [
+        "Voice",
+        "Speaker",
+        "mic",
+        "microphone",
+        "talk",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "microphone_off": {
+      "label": "Microphone Off",
+      "category": "audio_video",
+      "searchTerms": [
+        "Mute",
+        "Voice",
+        "Speaker Mute",
+        "Mute voice",
+        "Mute mic",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "microphone_outline": {
+      "label": "Microphone Outline",
+      "category": "audio_video",
+      "searchTerms": [
+        "Voice",
+        "Speaker",
+        "mic",
+        "microphone",
+        "voice",
+        "talk"
+      ]
+    },
+    "microsd": {
+      "label": "MicroSD",
+      "category": "device",
+      "searchTerms": [
+        "Data",
+        "Expansion",
+        "Disc",
+        "Disk",
+        "External"
+      ]
+    },
+    "missed_call": {
+      "label": "Missed call",
+      "category": "communication",
+      "searchTerms": [
+        "Missed call",
+        "call",
+        "workcloud",
+        "sync"
+      ]
+    },
+    "missed_video": {
+      "label": "Missed Video",
+      "category": "communication",
+      "searchTerms": [
+        "Missed video",
+        "video",
+        "workcloud",
+        "sync"
+      ]
+    },
+    "mkv_attach": {
+      "label": "MKV Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "mobile_friendly": {
+      "label": "Mobile Friendly",
+      "category": "device",
+      "searchTerms": [
+        "GSM",
+        "Smart",
+        "Device",
+        "Check",
+        "Mark"
+      ]
+    },
+    "money_euro": {
+      "label": "Money Euro",
+      "category": "social",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "euro",
+        "money"
+      ]
+    },
+    "money_pound": {
+      "label": "Money Pound",
+      "category": "social",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "pound",
+        "money"
+      ]
+    },
+    "money_usd": {
+      "label": "Money USD",
+      "category": "social",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "USD",
+        "dollar",
+        "money"
+      ]
+    },
+    "monitor": {
+      "label": "Monitor",
+      "category": "hardware",
+      "searchTerms": []
+    },
+    "more_horizontal": {
+      "label": "More Horizontal",
+      "category": "navigation",
+      "searchTerms": [
+        "menu",
+        "dot",
+        "3-dot",
+        "3 dot",
+        "horizontal",
+        "more",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "more_vertical": {
+      "label": "More Vertical",
+      "category": "navigation",
+      "searchTerms": [
+        "menu",
+        "dot",
+        "3-dot",
+        "3 dot",
+        "vertical",
+        "more",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "mov_attach": {
+      "label": "MOV Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "mp3_attach": {
+      "label": "MP3 Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "mp4_attach": {
+      "label": "MP4 Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "mpeg_attach": {
+      "label": "MPEG Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "mpg_attach": {
+      "label": "MPG Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "mpga_attach": {
+      "label": "MPGA Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "my_location": {
+      "label": "My Location",
+      "category": "maps",
+      "searchTerms": [
+        "Find"
+      ]
+    },
+    "navigate": {
+      "label": "Navigate",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "navigation",
+        "channel",
+        "location"
+      ]
+    },
+    "navigation": {
+      "label": "Navigation",
+      "category": "maps",
+      "searchTerms": [
+        "GPS"
+      ]
+    },
+    "near_me": {
+      "label": "Near Me",
+      "category": "maps",
+      "searchTerms": [
+        "Direction",
+        "Arrow"
+      ]
+    },
+    "network_signal": {
+      "label": "Network Signal",
+      "category": "device",
+      "searchTerms": [
+        "Cell",
+        "GSM"
+      ]
+    },
+    "neutral": {
+      "label": "Neutral",
+      "category": "social",
+      "searchTerms": [
+        "Dissatisfied",
+        "Unhappy"
+      ]
+    },
+    "new_chat": {
+      "label": "New Chat",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "new",
+        "create",
+        "start",
+        "chat",
+        "message",
+        "communication",
+        "direct message",
+        "dm",
+        "sms",
+        "add message"
+      ]
+    },
+    "nfc": {
+      "label": "NFC",
+      "category": "device",
+      "searchTerms": [
+        "Near",
+        "Field",
+        "Communication"
+      ]
+    },
+    "nfo_attach": {
+      "label": "NFO Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "night": {
+      "label": "Night",
+      "category": "device",
+      "searchTerms": [
+        "Light",
+        "Dark",
+        "moon",
+        "night",
+        "evening",
+        "mode dark",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "no_color": {
+      "label": "No Color",
+      "category": "editor",
+      "searchTerms": [
+        "Ink",
+        "Reset",
+        "Format",
+        "Print"
+      ]
+    },
+    "no_flash": {
+      "label": "No Flash",
+      "category": "audio_video",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "note": {
+      "label": "Note",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "note",
+        "paper"
+      ]
+    },
+    "notifications_off": {
+      "label": "Notifications Off",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "notification-off",
+        "alert-off",
+        "bell-off"
+      ]
+    },
+    "numbered_list": {
+      "label": "Numbered List",
+      "category": "editor",
+      "searchTerms": [
+        "Type",
+        "Format"
+      ]
+    },
+    "obj_attach": {
+      "label": "OBJ Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "odf_attach": {
+      "label": "ODF Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "odp_attach": {
+      "label": "ODP Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "ods_attach": {
+      "label": "ODS Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "odt_attach": {
+      "label": "ODT Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "oog_attach": {
+      "label": "OOG Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "open_in_full": {
+      "label": "Open In Full",
+      "category": "action",
+      "searchTerms": []
+    },
+    "open_in_new_window": {
+      "label": "Open In New Window",
+      "category": "action",
+      "searchTerms": [
+        "Launch",
+        "Tab",
+        "file",
+        "export",
+        "open in new",
+        "open",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "open_new_off": {
+      "label": "Open New Off",
+      "category": "file",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "file",
+        "do not export",
+        "export",
+        "open in new",
+        "open",
+        "launch"
+      ]
+    },
+    "otf_attach": {
+      "label": "OTF Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "ott_attach": {
+      "label": "OTT Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "outgoing_call": {
+      "label": "Outgoing call",
+      "category": "communication",
+      "searchTerms": [
+        "Outgoing call",
+        "call",
+        "workcloud",
+        "sync"
+      ]
+    },
+    "outgoing_video": {
+      "label": "Outgoing Video",
+      "category": "communication",
+      "searchTerms": [
+        "Outgoing\n video",
+        "video",
+        "workcloud",
+        "sync"
+      ]
+    },
+    "page_detail": {
+      "label": "Page Detail",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "page_height": {
+      "label": "Page Height",
+      "category": "file",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "page height"
+      ]
+    },
+    "page_rotate": {
+      "label": "Page Rotate",
+      "category": "file",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "page rotate"
+      ]
+    },
+    "page_width": {
+      "label": "Page Width",
+      "category": "file",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "page height"
+      ]
+    },
+    "palette": {
+      "label": "Palette",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "art",
+        "palette",
+        "theme"
+      ]
+    },
+    "partner": {
+      "label": "Partner",
+      "category": "social",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "handshake",
+        "partner"
+      ]
+    },
+    "pause": {
+      "label": "Pause",
+      "category": "audio_video",
+      "searchTerms": [
+        "Pause",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "pause_circle": {
+      "label": "Pause Circle",
+      "category": "audio_video",
+      "searchTerms": [
+        "Pause"
+      ]
+    },
+    "payment_card": {
+      "label": "Payment Card",
+      "category": "general",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "pdf_attach": {
+      "label": "PDF Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "pending": {
+      "label": "Pending",
+      "category": "action",
+      "searchTerms": [
+        "Waiting",
+        "More",
+        "Circle",
+        "Dots"
+      ]
+    },
+    "person": {
+      "label": "Person",
+      "category": "social",
+      "searchTerms": [
+        "User",
+        "Account",
+        "profile",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "person_admin": {
+      "label": "Person Admin",
+      "category": "people",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "admin"
+      ]
+    },
+    "person_assign": {
+      "label": "Person Assign",
+      "category": "people",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "person",
+        "user",
+        "assign",
+        "associate"
+      ]
+    },
+    "person_clock": {
+      "label": "Person Clock",
+      "category": "people",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "associate",
+        "person",
+        "clock",
+        "shift",
+        "on-shift",
+        "onshift",
+        "available",
+        "attendance",
+        "punctuality"
+      ]
+    },
+    "person_info": {
+      "label": "Person Info",
+      "category": "people",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "person",
+        "user",
+        "associate",
+        "info",
+        "details"
+      ]
+    },
+    "person_manager": {
+      "label": "Person Manager",
+      "category": "people",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "manager",
+        "user",
+        "person",
+        "employee"
+      ]
+    },
+    "person_move": {
+      "label": "Person Move",
+      "category": "people",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "associate",
+        "person",
+        "user",
+        "trade",
+        "transfer",
+        "borrow",
+        "move",
+        "borrowed employee",
+        "unscheduled labor transfer"
+      ]
+    },
+    "person_outline": {
+      "label": "Person Outline",
+      "category": "social",
+      "searchTerms": [
+        "User",
+        "Account"
+      ]
+    },
+    "person_search": {
+      "label": "Person Search",
+      "category": "communication",
+      "searchTerms": [
+        "Find",
+        "User"
+      ]
+    },
+    "person_swap": {
+      "label": "Person Swap",
+      "category": "people",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "person",
+        "swap",
+        "labor",
+        "transfer",
+        "reassign"
+      ]
+    },
+    "person_walk": {
+      "label": "Person Walk",
+      "category": "people",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "person",
+        "walk",
+        "store walk",
+        "store-walk",
+        "audit"
+      ]
+    },
+    "phone": {
+      "label": "Phone",
+      "category": "communication",
+      "searchTerms": [
+        "Call",
+        "Telephone",
+        "phone",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "phone_android": {
+      "label": "Phone Android",
+      "category": "hardware",
+      "searchTerms": [
+        "Mobile"
+      ]
+    },
+    "phone_bluetooth_speaker": {
+      "label": "Phone Bluetooth Speaker",
+      "category": "communication",
+      "searchTerms": [
+        "Call",
+        "Telephone"
+      ]
+    },
+    "phone_in_talk": {
+      "label": "Phone In Talk",
+      "category": "communication",
+      "searchTerms": [
+        "Call",
+        "Telephone",
+        "Speaker",
+        "Loud"
+      ]
+    },
+    "phone_iphone": {
+      "label": "Phone iPhone",
+      "category": "hardware",
+      "searchTerms": [
+        "Mobile"
+      ]
+    },
+    "phonelink": {
+      "label": "Phonelink",
+      "category": "hardware",
+      "searchTerms": [
+        "Connected"
+      ]
+    },
+    "phrase": {
+      "label": "Phrase",
+      "category": "social",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "broadcast",
+        "announcement",
+        "news",
+        "megaphone"
+      ]
+    },
+    "pin": {
+      "label": "Pin",
+      "category": "action",
+      "searchTerms": [
+        "Place",
+        "Location",
+        "Pin",
+        "mark",
+        "here",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "pkg_attach": {
+      "label": "PKG Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "place": {
+      "label": "Place",
+      "category": "maps",
+      "searchTerms": [
+        "Pin",
+        "Location",
+        "mark",
+        "here",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "place_outline": {
+      "label": "Place outline",
+      "category": "general",
+      "searchTerms": [
+        "Place",
+        "Sync Navigation",
+        "Sync",
+        "Workcloud",
+        "Maps",
+        "Location"
+      ]
+    },
+    "planogram": {
+      "label": "Planogram",
+      "category": "enterprise",
+      "searchTerms": []
+    },
+    "play": {
+      "label": "Play",
+      "category": "audio_video",
+      "searchTerms": [
+        "Play",
+        "Start"
+      ]
+    },
+    "play_circle": {
+      "label": "Play Circle",
+      "category": "audio_video",
+      "searchTerms": [
+        "Play Filled"
+      ]
+    },
+    "play_outline": {
+      "label": "Play Outline",
+      "category": "audio_video",
+      "searchTerms": [
+        "Play Outline"
+      ]
+    },
+    "png_attach": {
+      "label": "PNG Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "point_gift": {
+      "label": "Point Gift",
+      "category": "social",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "point",
+        "prize",
+        "token",
+        "earn",
+        "gift",
+        "present"
+      ]
+    },
+    "point_heart": {
+      "label": "Point Heart",
+      "category": "social",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "point",
+        "prize",
+        "token",
+        "earn",
+        "heart"
+      ]
+    },
+    "point_money": {
+      "label": "Point Money",
+      "category": "social",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "point",
+        "prize",
+        "token",
+        "earn",
+        "money",
+        "offer",
+        "give"
+      ]
+    },
+    "point_scan": {
+      "label": "Point Scan",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "point_star": {
+      "label": "Point Star",
+      "category": "social",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "point",
+        "prize",
+        "token",
+        "earn",
+        "star"
+      ]
+    },
+    "point_token": {
+      "label": "Point Token",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "point",
+        "prize",
+        "token",
+        "earn"
+      ]
+    },
+    "portrait": {
+      "label": "Portrait",
+      "category": "image",
+      "searchTerms": [
+        "Picture",
+        "Mode"
+      ]
+    },
+    "pps_attach": {
+      "label": "PPS Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "ppt_attach": {
+      "label": "PPT Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "pptx_attach": {
+      "label": "PPTX Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "price_or_dollar": {
+      "label": "Price or Dollar",
+      "category": "action",
+      "searchTerms": [
+        "Paid",
+        "Money",
+        "Dollar"
+      ]
+    },
+    "print_configuration_label": {
+      "label": "Print Configuration Label",
+      "category": "printer",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "flexible"
+      ]
+    },
+    "print_directory_list": {
+      "label": "Print Directory List",
+      "category": "printer",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "timecard",
+        "time card",
+        "punch in",
+        "punch-in",
+        "punch out",
+        "punch-out"
+      ]
+    },
+    "print_test_label": {
+      "label": "Print Test Label",
+      "category": "printer",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "calendar",
+        "rollover",
+        "roll-over",
+        "roll over",
+        "split",
+        "carryover",
+        "carry-over",
+        "carry over",
+        "week split"
+      ]
+    },
+    "printer": {
+      "label": "Printer",
+      "category": "hardware",
+      "searchTerms": [
+        "print",
+        "printer",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "printer_profile_deployment": {
+      "label": "Printer Profile Deployment",
+      "category": "printer",
+      "searchTerms": []
+    },
+    "priority": {
+      "label": "Priority",
+      "category": "communication",
+      "searchTerms": [
+        "High",
+        "Important",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "priority_important": {
+      "label": "Priority Important",
+      "category": "general",
+      "searchTerms": []
+    },
+    "priority_urgent": {
+      "label": "Priority Urgent",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "Sync",
+        "Priority",
+        "urgent"
+      ]
+    },
+    "pro": {
+      "label": "PRO",
+      "category": "image",
+      "searchTerms": [
+        "Picture",
+        "Mode"
+      ]
+    },
+    "productivity_apps": {
+      "label": "Productivity Apps",
+      "category": "enterprise",
+      "searchTerms": [
+        "Mobile",
+        "Smart",
+        "Chart"
+      ]
+    },
+    "psd_attach": {
+      "label": "PSD Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "ptt": {
+      "label": "PTT",
+      "category": "communication",
+      "searchTerms": [
+        "ptt",
+        "push to talk",
+        "walkie talkie",
+        "radio"
+      ]
+    },
+    "publish": {
+      "label": "Publish",
+      "category": "file",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "file",
+        "publish"
+      ]
+    },
+    "push_pin": {
+      "label": "Push Pin",
+      "category": "content",
+      "searchTerms": [
+        "pin",
+        "save",
+        "pushpin",
+        "mark",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "push_pin_off": {
+      "label": "Push Pin Off",
+      "category": "content",
+      "searchTerms": [
+        "Workcloud",
+        "sync",
+        "unpin",
+        "push pin"
+      ]
+    },
+    "push_pin_outline": {
+      "label": "Push Pin Outline",
+      "category": "content",
+      "searchTerms": [
+        "pin",
+        "save",
+        "pushpin",
+        "mark",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "qr_code": {
+      "label": "QR Code",
+      "category": "communication",
+      "searchTerms": [
+        "Code",
+        "Barcode",
+        "Scanner. qr",
+        "qr code",
+        "bar",
+        "scan",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "queue": {
+      "label": "Queue",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "add",
+        "queue"
+      ]
+    },
+    "quote": {
+      "label": "Quote",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "radio_button_checked": {
+      "label": "Radio Button Checked",
+      "category": "toggle",
+      "searchTerms": [
+        "radio",
+        "on",
+        "button",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "radio_button_unchecked": {
+      "label": "Radio Button Unchecked",
+      "category": "toggle",
+      "searchTerms": [
+        "radio",
+        "off",
+        "button",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "rar_attach": {
+      "label": "RAR Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "react_add": {
+      "label": "React Add",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "react",
+        "emoji",
+        "add emoji"
+      ]
+    },
+    "react_thumbsup": {
+      "label": "React Thumbsup",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "react",
+        "thumb",
+        "like"
+      ]
+    },
+    "read": {
+      "label": "Read",
+      "category": "general",
+      "searchTerms": []
+    },
+    "reboot_scanner": {
+      "label": "Reboot Scanner",
+      "category": "scanner",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "available",
+        "on",
+        "active"
+      ]
+    },
+    "recall": {
+      "label": "Recall",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "recall",
+        "enter"
+      ]
+    },
+    "receipt": {
+      "label": "Receipt",
+      "category": "enterprise",
+      "searchTerms": [
+        "Bill",
+        "$"
+      ]
+    },
+    "recording": {
+      "label": "Recording",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "recording"
+      ]
+    },
+    "redo": {
+      "label": "Redo",
+      "category": "content",
+      "searchTerms": [
+        "redo",
+        "edit",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "refresh": {
+      "label": "Refresh",
+      "category": "navigation",
+      "searchTerms": [
+        "Reload",
+        "refresh",
+        "turnover",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "remove": {
+      "label": "Remove",
+      "category": "content",
+      "searchTerms": [
+        "Minus",
+        "remove",
+        "delete",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "remove_box": {
+      "label": "Remove Box",
+      "category": "content",
+      "searchTerms": [
+        "Minus"
+      ]
+    },
+    "remove_circle": {
+      "label": "Remove Circle",
+      "category": "content",
+      "searchTerms": [
+        "Minus",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "remove_circle_outline": {
+      "label": "Remove Circle Outline",
+      "category": "content",
+      "searchTerms": [
+        "Minus"
+      ]
+    },
+    "remove_group": {
+      "label": "Remove Group",
+      "category": "social",
+      "searchTerms": [
+        "Less",
+        "People",
+        "Remove"
+      ]
+    },
+    "remove_person": {
+      "label": "Remove Person",
+      "category": "social",
+      "searchTerms": [
+        "Remove",
+        "User Remove"
+      ]
+    },
+    "renew": {
+      "label": "Renew",
+      "category": "action",
+      "searchTerms": [
+        "Refresh",
+        "Reload",
+        "Loop"
+      ]
+    },
+    "reorder": {
+      "label": "Reorder",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "drag",
+        "reorder",
+        "move"
+      ]
+    },
+    "repeat": {
+      "label": "Repeat",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "repeat"
+      ]
+    },
+    "replay": {
+      "label": "Replay",
+      "category": "audio_video",
+      "searchTerms": [
+        "Restart",
+        "Refresh"
+      ]
+    },
+    "reply": {
+      "label": "Reply",
+      "category": "content",
+      "searchTerms": [
+        "email",
+        "e-mail",
+        "envelope",
+        "message",
+        "reply",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "report": {
+      "label": "Report",
+      "category": "charts",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "report",
+        "analytics"
+      ]
+    },
+    "reset_network": {
+      "label": "Reset Network",
+      "category": "printer",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "calendar",
+        "rollover",
+        "roll-over",
+        "roll over",
+        "split",
+        "carryover",
+        "carry-over",
+        "carry over",
+        "upcoming",
+        "upcoming shift"
+      ]
+    },
+    "restart_alt": {
+      "label": "Restart Alt",
+      "category": "device",
+      "searchTerms": [
+        "Start",
+        "Again",
+        "reset",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "restart_printer": {
+      "label": "Restart Printer",
+      "category": "printer",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "calendar",
+        "rollover",
+        "roll-over",
+        "roll over",
+        "split",
+        "carryover",
+        "carry-over",
+        "carry over",
+        "upcoming",
+        "upcoming shift"
+      ]
+    },
+    "restore_network_defaults": {
+      "label": "Restore Network Defaults",
+      "category": "printer",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "calendar",
+        "rollover",
+        "roll-over",
+        "roll over",
+        "split",
+        "carryover",
+        "carry-over",
+        "carry over",
+        "upcoming",
+        "upcoming shift"
+      ]
+    },
+    "restore_printer_defaults": {
+      "label": "Restore Printer Defaults",
+      "category": "printer",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "calendar",
+        "rollover",
+        "roll-over",
+        "roll over",
+        "split",
+        "carryover",
+        "carry-over",
+        "carry over",
+        "upcoming",
+        "upcoming shift"
+      ]
+    },
+    "retrieve_scanner_settings": {
+      "label": "Retrieve Scanner Settings",
+      "category": "scanner",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "clock",
+        "shift",
+        "time",
+        "flexible"
+      ]
+    },
+    "review": {
+      "label": "Review",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "review"
+      ]
+    },
+    "road_map": {
+      "label": "Road Map",
+      "category": "enterprise",
+      "searchTerms": []
+    },
+    "rotate_left": {
+      "label": "Rotate Left",
+      "category": "image",
+      "searchTerms": []
+    },
+    "rotate_right": {
+      "label": "Rotate Right",
+      "category": "image",
+      "searchTerms": []
+    },
+    "rss_feed": {
+      "label": "RSS Feed",
+      "category": "communication",
+      "searchTerms": [
+        "Feeds"
+      ]
+    },
+    "rtf_attach": {
+      "label": "RTF Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "rules": {
+      "label": "Rules",
+      "category": "enterprise",
+      "searchTerms": []
+    },
+    "sad": {
+      "label": "Sad",
+      "category": "social",
+      "searchTerms": [
+        "Dissatisfied",
+        "Unhappy"
+      ]
+    },
+    "satisfied": {
+      "label": "Satisfied",
+      "category": "social",
+      "searchTerms": [
+        "Happy",
+        "smiley"
+      ]
+    },
+    "save": {
+      "label": "Save",
+      "category": "file",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "file",
+        "save"
+      ]
+    },
+    "save_alt": {
+      "label": "Save Alt",
+      "category": "content",
+      "searchTerms": [
+        "save",
+        "file",
+        "import",
+        "download",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "savings": {
+      "label": "Savings",
+      "category": "general",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "scan_document": {
+      "label": "Scan Document",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "scan_rate": {
+      "label": "Scan Rate",
+      "category": "enterprise",
+      "searchTerms": [
+        "Box",
+        "Fast",
+        "Slow",
+        "Speed"
+      ]
+    },
+    "scanner": {
+      "label": "Scanner",
+      "category": "hardware",
+      "searchTerms": [
+        "mobile"
+      ]
+    },
+    "scanner_profile_deployment": {
+      "label": "Scanner Profile Deployment",
+      "category": "scanner",
+      "searchTerms": []
+    },
+    "schedule": {
+      "label": "Schedule",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "calendar",
+        "available",
+        "publish",
+        "live",
+        "check",
+        "complete",
+        "published"
+      ]
+    },
+    "school": {
+      "label": "School",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "school",
+        "graduation",
+        "education",
+        "cap",
+        "academic"
+      ]
+    },
+    "screen_rotation": {
+      "label": "Screen Rotation",
+      "category": "device",
+      "searchTerms": [
+        "Rotate",
+        "Left",
+        "Right",
+        "Vertical",
+        "Horizontal"
+      ]
+    },
+    "sd_card": {
+      "label": "SD Card",
+      "category": "communication",
+      "searchTerms": [
+        "Memory",
+        "Micro"
+      ]
+    },
+    "sdc_attach": {
+      "label": "SDC Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "sdd_attach": {
+      "label": "SDD Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "search": {
+      "label": "Search",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "search_check_2": {
+      "label": "Search Check 2",
+      "category": "general",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "search_checkmark": {
+      "label": "Search Checkmark",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "search_data": {
+      "label": "Search Data",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "search_document": {
+      "label": "Search Document",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "search_file": {
+      "label": "Search File",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "search_image": {
+      "label": "Search Image",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "search_refresh": {
+      "label": "Search Refresh",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "search_settings": {
+      "label": "Search Settings",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "search_star": {
+      "label": "Search Star",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "search_tab": {
+      "label": "Search Tab",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "security": {
+      "label": "Security",
+      "category": "hardware",
+      "searchTerms": [
+        "Protect",
+        "Protection",
+        "Shield"
+      ]
+    },
+    "security_check": {
+      "label": "Security Check",
+      "category": "action",
+      "searchTerms": [
+        "Verify",
+        "Verified",
+        "Shield",
+        "badge",
+        "title",
+        "status",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "send": {
+      "label": "Send",
+      "category": "content",
+      "searchTerms": [
+        "chat",
+        "message",
+        "communication",
+        "send",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "server": {
+      "label": "Server",
+      "category": "enterprise",
+      "searchTerms": []
+    },
+    "setting_tool": {
+      "label": "Setting Tool",
+      "category": "general",
+      "searchTerms": []
+    },
+    "settings": {
+      "label": "Settings",
+      "category": "action",
+      "searchTerms": [
+        "Cog",
+        "Gear",
+        "settings",
+        "configuration",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "shape_recognition": {
+      "label": "Shape Recognition",
+      "category": "enterprise",
+      "searchTerms": [
+        "Circle",
+        "Square",
+        "Multicode"
+      ]
+    },
+    "share": {
+      "label": "Share",
+      "category": "action",
+      "searchTerms": [
+        "share",
+        "social",
+        "file",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "shared_folder": {
+      "label": "Shared Folder",
+      "category": "file",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "project",
+        "folder",
+        "file"
+      ]
+    },
+    "shared_folder_filled": {
+      "label": "Shared Folder Filled",
+      "category": "file",
+      "searchTerms": [
+        "Network",
+        "Access"
+      ]
+    },
+    "ship": {
+      "label": "Ship",
+      "category": "maps",
+      "searchTerms": [
+        "Naval",
+        "Sea",
+        "Ocean",
+        "Water",
+        "Wave"
+      ]
+    },
+    "shopping_basket": {
+      "label": "Shopping Basket",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "side_bar_toggle": {
+      "label": "Side Bar Toggle",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "sim_card": {
+      "label": "SIM Card",
+      "category": "communication",
+      "searchTerms": [
+        "GSM",
+        "Chip",
+        "Micro",
+        "Mini"
+      ]
+    },
+    "siren_check": {
+      "label": "Siren Check",
+      "category": "general",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "skip_next": {
+      "label": "Skip Next",
+      "category": "audio_video",
+      "searchTerms": [
+        "Skip",
+        "end",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "skip_previous": {
+      "label": "Skip Previous",
+      "category": "audio_video",
+      "searchTerms": [
+        "Skip"
+      ]
+    },
+    "slide_show": {
+      "label": "Slide Show",
+      "category": "image",
+      "searchTerms": [
+        "Presentation"
+      ]
+    },
+    "smart_phone": {
+      "label": "Smart Phone",
+      "category": "hardware",
+      "searchTerms": [
+        "Mobile",
+        "phone",
+        "device",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "sms": {
+      "label": "SMS",
+      "category": "communication",
+      "searchTerms": [
+        "Text",
+        "Message"
+      ]
+    },
+    "snooze": {
+      "label": "Snooze",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "snooze"
+      ]
+    },
+    "solutions": {
+      "label": "Solutions",
+      "category": "enterprise",
+      "searchTerms": [
+        "Puzzle"
+      ]
+    },
+    "sort": {
+      "label": "Sort",
+      "category": "content",
+      "searchTerms": [
+        "sort",
+        "reorder"
+      ]
+    },
+    "speaker": {
+      "label": "Speaker",
+      "category": "hardware",
+      "searchTerms": []
+    },
+    "star": {
+      "label": "Star",
+      "category": "toggle",
+      "searchTerms": [
+        "Rating",
+        "favorite",
+        "star",
+        "mark",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "star_half": {
+      "label": "Star Half",
+      "category": "toggle",
+      "searchTerms": [
+        "Rating"
+      ]
+    },
+    "star_outline": {
+      "label": "Star Outline",
+      "category": "toggle",
+      "searchTerms": [
+        "Rating",
+        "Empty",
+        "favorite",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "steps": {
+      "label": "Steps",
+      "category": "enterprise",
+      "searchTerms": []
+    },
+    "sticker": {
+      "label": "Sticker",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "sticker"
+      ]
+    },
+    "stop": {
+      "label": "Stop",
+      "category": "audio_video",
+      "searchTerms": [
+        "Stop",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "stop_circle": {
+      "label": "Stop Circle",
+      "category": "audio_video",
+      "searchTerms": [
+        "Stop"
+      ]
+    },
+    "store": {
+      "label": "Store",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "store",
+        "business",
+        "retail"
+      ]
+    },
+    "store_release": {
+      "label": "Store Release",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "store",
+        "business",
+        "retail",
+        "sync",
+        "switch",
+        "swap",
+        "release",
+        "transfer"
+      ]
+    },
+    "store_swap": {
+      "label": "Store Swap",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "store",
+        "business",
+        "retail",
+        "sync",
+        "switch",
+        "swap",
+        "refresh"
+      ]
+    },
+    "store_transfer": {
+      "label": "Store Transfer",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "store",
+        "business",
+        "retail",
+        "sync",
+        "transfer",
+        "swap"
+      ]
+    },
+    "straighten": {
+      "label": "Straighten",
+      "category": "image",
+      "searchTerms": [
+        "Ruler"
+      ]
+    },
+    "strategy": {
+      "label": "Strategy",
+      "category": "enterprise",
+      "searchTerms": [
+        "Presentation"
+      ]
+    },
+    "strikethrough": {
+      "label": "Strikethrough",
+      "category": "editor",
+      "searchTerms": [
+        "Type",
+        "Format"
+      ]
+    },
+    "subscribe": {
+      "label": "Subscribe",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "subscribe"
+      ]
+    },
+    "svg_attach": {
+      "label": "SVG Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "swap": {
+      "label": "Swap",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "switch",
+        "swap",
+        "transfer",
+        "trade"
+      ]
+    },
+    "swf_attach": {
+      "label": "SWF Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "switch_user": {
+      "label": "Switch User",
+      "category": "social",
+      "searchTerms": [
+        "People"
+      ]
+    },
+    "sync": {
+      "label": "Sync",
+      "category": "communication",
+      "searchTerms": [
+        "Loading",
+        "Refresh",
+        "Reload",
+        "Loop",
+        "sync",
+        "synchronize",
+        "cached",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "sync_disabled": {
+      "label": "Sync Disabled",
+      "category": "communication",
+      "searchTerms": [
+        "Off"
+      ]
+    },
+    "table": {
+      "label": "Table",
+      "category": "charts",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "Table",
+        "analytics"
+      ]
+    },
+    "tablet": {
+      "label": "Tablet",
+      "category": "hardware",
+      "searchTerms": []
+    },
+    "tablet_mac": {
+      "label": "Tablet Mac",
+      "category": "hardware",
+      "searchTerms": [
+        "iPad"
+      ]
+    },
+    "tag": {
+      "label": "Tag",
+      "category": "enterprise",
+      "searchTerms": [
+        "Local",
+        "Discount",
+        "retail",
+        "shop",
+        "offer"
+      ]
+    },
+    "tag_outline": {
+      "label": "Tag Outline",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "tag"
+      ]
+    },
+    "tap_to_pay": {
+      "label": "Tap To Pay",
+      "category": "enterprise",
+      "searchTerms": [
+        "Contactless"
+      ]
+    },
+    "target": {
+      "label": "Target",
+      "category": "general",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "taxi": {
+      "label": "Taxi",
+      "category": "maps",
+      "searchTerms": []
+    },
+    "text_color": {
+      "label": "Text Color",
+      "category": "editor",
+      "searchTerms": [
+        "Type",
+        "Format"
+      ]
+    },
+    "tiers": {
+      "label": "Tiers",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "tiers",
+        "tree"
+      ]
+    },
+    "tif_attach": {
+      "label": "TIF Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "tiff_attach": {
+      "label": "TIFF Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "timecard": {
+      "label": "Timecard",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "timecard",
+        "time card",
+        "punch in",
+        "punch-in",
+        "punch out",
+        "punch-out"
+      ]
+    },
+    "timecard_approve": {
+      "label": "Timecard Approve",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "timecard",
+        "time card",
+        "approve",
+        "complete"
+      ]
+    },
+    "timecard_warning": {
+      "label": "Timecard Warning",
+      "category": "date_time",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "timecard",
+        "time card",
+        "warning",
+        "alert",
+        "attendance management"
+      ]
+    },
+    "timer": {
+      "label": "Timer",
+      "category": "image",
+      "searchTerms": [
+        "Countdown"
+      ]
+    },
+    "to_do": {
+      "label": "To Do",
+      "category": "communication",
+      "searchTerms": [
+        "Todo",
+        "To-do",
+        "To-do Navigation",
+        "todo navigation",
+        "workcloud",
+        "sync",
+        "sync navigation"
+      ]
+    },
+    "to_do_outline": {
+      "label": "To do outline",
+      "category": "general",
+      "searchTerms": [
+        "Todo",
+        "To-do",
+        "To-do Navigation",
+        "todo navigation",
+        "workcloud",
+        "sync",
+        "sync navigation"
+      ]
+    },
+    "toggle_off": {
+      "label": "Toggle Off",
+      "category": "toggle",
+      "searchTerms": [
+        "Switch",
+        "toggle",
+        "off",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "toggle_on": {
+      "label": "Toggle On",
+      "category": "toggle",
+      "searchTerms": [
+        "Switch",
+        "toggle",
+        "on",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "touch": {
+      "label": "Touch",
+      "category": "action",
+      "searchTerms": [
+        "App",
+        "Interact",
+        "With",
+        "Finger",
+        "Zone",
+        "action",
+        "touch",
+        "tap",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "train": {
+      "label": "Train",
+      "category": "maps",
+      "searchTerms": [
+        "Public",
+        "Transport"
+      ]
+    },
+    "transfer": {
+      "label": "Transfer",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "switch",
+        "swap",
+        "transfer",
+        "trade"
+      ]
+    },
+    "trending_down": {
+      "label": "Trending Down",
+      "category": "action",
+      "searchTerms": [
+        "Failure",
+        "Loss"
+      ]
+    },
+    "trending_up": {
+      "label": "Trending Up",
+      "category": "action",
+      "searchTerms": [
+        "Success",
+        "Profit"
+      ]
+    },
+    "ttf_attach": {
+      "label": "TTF Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "tune": {
+      "label": "Tune",
+      "category": "action",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "tv": {
+      "label": "TV",
+      "category": "hardware",
+      "searchTerms": [
+        "Television"
+      ]
+    },
+    "twitter": {
+      "label": "Twitter",
+      "category": "social",
+      "searchTerms": [
+        "Social",
+        "Media",
+        "Tweet"
+      ]
+    },
+    "txt_attach": {
+      "label": "TXT Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "type": {
+      "label": "Type",
+      "category": "editor",
+      "searchTerms": [
+        "Title"
+      ]
+    },
+    "uhf_rfid": {
+      "label": "UHF RFID",
+      "category": "device",
+      "searchTerms": [
+        "Ultra",
+        "High",
+        "Frequency",
+        "Radio",
+        "ID"
+      ]
+    },
+    "underline": {
+      "label": "Underline",
+      "category": "editor",
+      "searchTerms": [
+        "Type",
+        "Format"
+      ]
+    },
+    "undo": {
+      "label": "Undo",
+      "category": "content",
+      "searchTerms": [
+        "undo",
+        "edit",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "unfold_less": {
+      "label": "Unfold Less",
+      "category": "navigation",
+      "searchTerms": []
+    },
+    "unfold_more": {
+      "label": "Unfold More",
+      "category": "navigation",
+      "searchTerms": []
+    },
+    "universal_currency": {
+      "label": "Universal Currency",
+      "category": "general",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "universal_currency_alt": {
+      "label": "Universal Currency Alt",
+      "category": "general",
+      "searchTerms": [
+        "search",
+        "magnifying glass",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "unlock": {
+      "label": "Unlock",
+      "category": "action",
+      "searchTerms": [
+        "Padlock",
+        "Unsafe"
+      ]
+    },
+    "unlock_alt": {
+      "label": "Unlock Alt",
+      "category": "action",
+      "searchTerms": [
+        "Padlock",
+        "Unsafe"
+      ]
+    },
+    "unsubscribe": {
+      "label": "Unsubscribe",
+      "category": "communication",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "unsubscribe"
+      ]
+    },
+    "update": {
+      "label": "Update",
+      "category": "action",
+      "searchTerms": [
+        "Watch",
+        "Time",
+        "Later",
+        "update",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "upload": {
+      "label": "Upload",
+      "category": "action",
+      "searchTerms": [
+        "Get",
+        "file",
+        "upload",
+        "document",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "upload_file": {
+      "label": "Upload File",
+      "category": "file",
+      "searchTerms": []
+    },
+    "usb": {
+      "label": "USB",
+      "category": "device",
+      "searchTerms": []
+    },
+    "usb_alt": {
+      "label": "USB Alt",
+      "category": "device",
+      "searchTerms": []
+    },
+    "user": {
+      "label": "User",
+      "category": "action",
+      "searchTerms": [
+        "Account",
+        "ID",
+        "Identity"
+      ]
+    },
+    "user_circle": {
+      "label": "User Circle",
+      "category": "action",
+      "searchTerms": [
+        "Account",
+        "ID",
+        "Identity",
+        "profile",
+        "user",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "user_minor": {
+      "label": "User Minor",
+      "category": "people",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "user",
+        "person",
+        "minor",
+        "age",
+        "student",
+        "child"
+      ]
+    },
+    "user_settings": {
+      "label": "User Settings",
+      "category": "action",
+      "searchTerms": [
+        "Account",
+        "ID",
+        "Identity",
+        "Cog",
+        "Gear"
+      ]
+    },
+    "vacation": {
+      "label": "Vacation",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "vacation",
+        "pto",
+        "request-time",
+        "request time",
+        "time off",
+        "paid time off"
+      ]
+    },
+    "vcf_attach": {
+      "label": "VCF Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "verified": {
+      "label": "Verified",
+      "category": "action",
+      "searchTerms": [
+        "Checked",
+        "Success"
+      ]
+    },
+    "very_satisfied": {
+      "label": "Very Satisfied",
+      "category": "social",
+      "searchTerms": [
+        "Vey Happy",
+        "Happy"
+      ]
+    },
+    "video": {
+      "label": "Video",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "video",
+        "conference"
+      ]
+    },
+    "video_attach": {
+      "label": "VIDEO Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "video_camera": {
+      "label": "Video Camera",
+      "category": "audio_video",
+      "searchTerms": [
+        "VIdeo",
+        "Cam",
+        "Camcorder"
+      ]
+    },
+    "video_off": {
+      "label": "Video Off",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "video",
+        "hide",
+        "off"
+      ]
+    },
+    "video_play": {
+      "label": "Video Play",
+      "category": "hardware",
+      "searchTerms": []
+    },
+    "visibility": {
+      "label": "Visibility",
+      "category": "action",
+      "searchTerms": [
+        "See",
+        "Eye",
+        "view",
+        "preview",
+        "visibility",
+        "watch",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "visibility_off": {
+      "label": "Visibility Off",
+      "category": "action",
+      "searchTerms": [
+        "See",
+        "Hidden",
+        "Hide",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "volte": {
+      "label": "VOLTE",
+      "category": "device",
+      "searchTerms": [
+        "Signal",
+        "Network",
+        "Voice",
+        "Over"
+      ]
+    },
+    "volume_down": {
+      "label": "Volume Down",
+      "category": "audio_video",
+      "searchTerms": [
+        "Decrease",
+        "Lower"
+      ]
+    },
+    "volume_mute": {
+      "label": "Volume Mute",
+      "category": "audio_video",
+      "searchTerms": [
+        "Mute"
+      ]
+    },
+    "volume_off": {
+      "label": "Volume Off",
+      "category": "audio_video",
+      "searchTerms": [
+        "Mute",
+        "No",
+        "audio-off",
+        "sound-off",
+        "volume-off",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "volume_up": {
+      "label": "Volume Up",
+      "category": "audio_video",
+      "searchTerms": [
+        "Increase",
+        "Higher",
+        "audio",
+        "sound",
+        "volume",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "warning": {
+      "label": "Warning",
+      "category": "alert",
+      "searchTerms": [
+        "Attention",
+        "Error",
+        "Caution",
+        "Alert"
+      ]
+    },
+    "warning_outline": {
+      "label": "Warning Outline",
+      "category": "alert",
+      "searchTerms": [
+        "Attention",
+        "Error",
+        "Caution",
+        "Alert"
+      ]
+    },
+    "watch": {
+      "label": "Watch",
+      "category": "hardware",
+      "searchTerms": [
+        "Smartwatch"
+      ]
+    },
+    "wav_attach": {
+      "label": "WAV Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "wb": {
+      "label": "WB",
+      "category": "image",
+      "searchTerms": [
+        "Picture",
+        "Mode",
+        "White",
+        "Balance"
+      ]
+    },
+    "webm_attach": {
+      "label": "WEBM Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "wifi": {
+      "label": "WiFi",
+      "category": "device",
+      "searchTerms": [
+        "Full",
+        "Network",
+        "WiFi",
+        "Signal",
+        "wifi",
+        "connection",
+        "wi-fi. wi fi",
+        "connected",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "wifi_0": {
+      "label": "WiFi 0",
+      "category": "device",
+      "searchTerms": [
+        "WiFi",
+        "Off",
+        "No",
+        "Signal",
+        "Network"
+      ]
+    },
+    "wifi_1": {
+      "label": "WiFi 1",
+      "category": "device",
+      "searchTerms": [
+        "WiFi",
+        "Weak",
+        "No",
+        "Signal",
+        "Network"
+      ]
+    },
+    "wifi_2": {
+      "label": "WiFi 2",
+      "category": "device",
+      "searchTerms": [
+        "WiFi",
+        "Mid",
+        "Middle",
+        "Signal",
+        "Network"
+      ]
+    },
+    "wifi_alt": {
+      "label": "WiFi Alt",
+      "category": "device",
+      "searchTerms": [
+        "Full Network",
+        "WiFi"
+      ]
+    },
+    "wifi_call": {
+      "label": "WiFi Call",
+      "category": "communication",
+      "searchTerms": [
+        "Call",
+        "Telephone",
+        "Internet"
+      ]
+    },
+    "wifi_off": {
+      "label": "WiFi Off",
+      "category": "device",
+      "searchTerms": [
+        "No",
+        "Network",
+        "WiFi",
+        "Disable",
+        "Signal"
+      ]
+    },
+    "wifi_off_alt": {
+      "label": "WiFi Off Alt",
+      "category": "device",
+      "searchTerms": [
+        "WiFi",
+        "Off",
+        "No",
+        "Signal",
+        "Network"
+      ]
+    },
+    "wmv_attach": {
+      "label": "WMV Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "woff_attach": {
+      "label": "WOFF Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "world": {
+      "label": "World",
+      "category": "maps",
+      "searchTerms": [
+        "Language",
+        "Earth",
+        "Globe",
+        "global",
+        "international",
+        "Workcloud",
+        "WC"
+      ]
+    },
+    "write": {
+      "label": "Write",
+      "category": "general",
+      "searchTerms": [
+        "Workcloud",
+        "WC",
+        "write",
+        "edit",
+        "request",
+        "complete",
+        "change",
+        "compose"
+      ]
+    },
+    "xlff_attach": {
+      "label": "XLFF Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "xliff_attach": {
+      "label": "XLIFF Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "xls_attach": {
+      "label": "XLS Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "xlsb_attach": {
+      "label": "XLSB Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "xlsm_attach": {
+      "label": "XLSM Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "xlsx_attach": {
+      "label": "XLSX Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "xml_attach": {
+      "label": "XML Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "xsd_attach": {
+      "label": "XSD Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "xslt_attach": {
+      "label": "XSLT Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "youtube": {
+      "label": "YouTube",
+      "category": "social",
+      "searchTerms": [
+        "Social",
+        "Media",
+        "Video"
+      ]
+    },
+    "zero_scale": {
+      "label": "Zero Scale",
+      "category": "enterprise",
+      "searchTerms": [
+        "Reset"
+      ]
+    },
+    "zip_attach": {
+      "label": "ZIP Attach",
+      "category": "file_attachments",
+      "searchTerms": [
+        "Type",
+        "File"
+      ]
+    },
+    "zoom_in": {
+      "label": "Zoom In",
+      "category": "action",
+      "searchTerms": []
+    },
+    "zoom_in_map": {
+      "label": "Zoom In Map",
+      "category": "maps",
+      "searchTerms": []
+    },
+    "zoom_out": {
+      "label": "Zoom Out",
+      "category": "action",
+      "searchTerms": []
+    },
+    "zoom_out_map": {
+      "label": "Zoom Out Map",
+      "category": "maps",
+      "searchTerms": []
+    }
+  }
+}

@@ -1,7 +1,0 @@
-*.png
-.github/
-.release-please/
-test/
-**/temp/
-changelog.md
-analysis_options.yaml

@@ -1,31 +1,34 @@
-<!-- nx configuration start-->
-<!-- Leave the start & end comments to automatically receive updates. -->
+# CLAUDE.md
 
-# General Guidelines for working with Nx
+## Design system (always applies)
 
-- For navigating/exploring the workspace, invoke the `nx-workspace` skill first - it has patterns for querying projects, targets, and dependencies
-- When running tasks (for example build, lint, test, e2e, etc.), always prefer running the task through `nx` (i.e. `nx run`, `nx run-many`, `nx affected`) instead of using the underlying tooling directly
-- Prefix nx commands with the workspace's package manager (e.g., `pnpm nx build`, `npm exec nx test`) - avoids using globally installed CLI
-- You have access to the Nx MCP server and its tools, use them to help the user
-- For Nx plugin best practices, check `node_modules/@nx/<plugin>/PLUGIN.md`. Not all plugins have this file - proceed without it if unavailable.
-- NEVER guess CLI flags - always check nx_docs or `--help` first when unsure
+All UI work uses the Zeta Design System defined in this folder. Don't use any other source for how things look.
 
-## Scaffolding & Generators
+- `DESIGN.md` is the foundation. Its frontmatter holds every raw value (colours, spacing, radius, typography, motion, layout and dimensions) for light, dark and high contrast. Its body holds the rules, starting with §2 Token Architecture.
+- `atoms/`, `molecules/` and `organisms/` hold one file per component, each with a `tokens:` block, anatomy, variants, states, sizes, properties and usage. Read a component's file, and the files it `composes`, before building it.
+- `icons.json` lists the only valid icon names. Each key is the ligature name used in the markup. It is generated from the `@zebra-fed/zeta-icons` package.
+- `tokens.css` holds every token as a CSS custom property, generated from `DESIGN.md` and the component files.
+- `scripts/` holds the two generators for those files (`tokens-css.py`, `icons-json.py`). They are for design-system maintainers. Never hand-edit `tokens.css` or `icons.json`; after changing the docs or the icons version, rerun the matching script. Anyone only prototyping needs just Claude desktop, so never ask them to install or run Python, Node or any script.
 
-- For scaffolding tasks (creating apps, libs, project structure, setup), ALWAYS invoke the `nx-generate` skill FIRST before exploring or calling MCP tools
+Rules:
+- Use tokens, never raw values. A value that isn't in the `DESIGN.md` frontmatter doesn't exist in the system.
+- Use existing components before inventing new ones. If nothing fits, ask the questions in `DESIGN.md` §9 Governance.
+- If the docs don't answer a question, ask. Don't guess.
 
-## When to use nx_docs
+**Mode check:** this file should keep exactly one of the two optional sections below. If both are present, or neither is, ask the user whether they're doing production builds or prototypes before any UI work, then do what they choose.
 
-- USE for: advanced config options, unfamiliar flags, migration guides, plugin configuration, edge cases
-- DON'T USE for: basic generator syntax (`nx g @nx/react:app`), standard commands, things you already know
-- The `nx-generate` skill handles generator discovery internally - don't call nx_docs just to look up generator syntax
+---
 
-## Documentation Maintenance
+## Optional: production builds
 
-**Keep the root README.md in sync with the codebase:**
-- The README documents the current state of the design system, including component migration status, token pipeline, and quick-start information
-- When making significant changes (adding/updating components, migrating components to new token system, changing tooling), verify the README reflects reality
-- Specifically: The "Design Token Component Migration" section lists how many components have been updated and their names — update this count when components are migrated
-- Use `git diff main...HEAD --name-only packages/zeta-web/src/components | grep -E "styles|\.scss|\.css" | sort -u` to audit which components have actually been changed in the current branch
+Keep this section when the project builds and maintains a real component library from the design system. Delete it otherwise.
 
-<!-- nx configuration end-->
+@AGENTS.md
+
+---
+
+## Optional: prototypes
+
+Keep this section when the project makes throwaway HTML prototypes to communicate design ideas. Delete it otherwise.
+
+@PROTOTYPE.md

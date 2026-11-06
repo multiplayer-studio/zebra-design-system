@@ -1,8 +1,0 @@
-import Intro from "../../README.md?raw";
-import { Markdown } from "@storybook/blocks";
-
-export const Introduction = ({ content }) => {
-  return content.replace(/<picture[\s\S]*?<\/picture>/gi, "");
-};
-
-<Markdown>{Introduction({ content: Intro })}</Markdown>
