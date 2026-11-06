@@ -25,8 +25,8 @@ The docs are the specification. Every colour, size, space, radius, shadow, font 
 | [`CLAUDE.md`](CLAUDE.md) | Instructions for working on this repo: keep every doc, generated file and zip in sync with each change. Not shipped in the zips. |
 | [`AGENTS.md`](AGENTS.md) | Guide for agents building a **production** component library from these docs. |
 | [`PROTOTYPE.md`](PROTOTYPE.md) | Guide for building **throwaway HTML prototypes** from these docs. |
-| [`PROTOTYPING.JIRA.md`](PROTOTYPING.JIRA.md) | Prototyping add-on: asks for a Jira ticket, reads and comments on it through the `zebra-jira` MCP, and explains how to set the MCP up. Referenced from `PROTOTYPE.md`; prototyping zip only. |
-| [`PROTOTYPING.FIGMA.md`](PROTOTYPING.FIGMA.md) | Prototyping add-on: offers to send a finished prototype to a Figma file the designer links to, through the Figma MCP, and explains how to connect Figma. Referenced from `PROTOTYPE.md`; prototyping zip only. |
+| [`PROTOTYPING.JIRA.md`](PROTOTYPING.JIRA.md) | Prototyping add-on: asks for a Jira ticket, reads and comments on it through the `zebra-jira` MCP, and explains how to set the MCP up. Imported by `PROTOTYPE.md`; prototyping zip only. |
+| [`PROTOTYPING.FIGMA.md`](PROTOTYPING.FIGMA.md) | Prototyping add-on: offers to send a finished prototype to a Figma file the designer links to, through the Figma MCP, and explains how to connect Figma. Imported by `PROTOTYPE.md`; prototyping zip only. |
 | [`PROTOTYPING.README.md`](PROTOTYPING.README.md) | Plain-English setup guide for people who only build prototypes. Shipped as `README.md` inside the prototyping zip. |
 | [`zebra-design-system-prototyping.zip`](zebra-design-system-prototyping.zip) | **Generated.** The prototyping kit to hand to someone who only builds prototypes. |
 | [`zebra-design-system-production.zip`](zebra-design-system-production.zip) | **Generated.** The production kit to drop into a product repo as `design-system/`. |

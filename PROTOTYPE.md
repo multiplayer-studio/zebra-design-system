@@ -2,9 +2,13 @@
 
 Everything produced from this design system is a **prototype**. Its purpose is to communicate design concepts, not to ship. It will be rebuilt as production code later.
 
-**Jira:** at the start of every new prototype, read and follow [`PROTOTYPING.JIRA.md`](PROTOTYPING.JIRA.md). It asks for a Jira ticket, reads it through the `zebra-jira` MCP, and posts the result back.
+**Jira:** at the start of every new prototype, follow these instructions. They ask for a Jira ticket, read it through the `zebra-jira` MCP, and post the result back.
 
-**Figma:** when a prototype is done, read and follow [`PROTOTYPING.FIGMA.md`](PROTOTYPING.FIGMA.md). It offers to send the prototype to a Figma file, asks for the link to put it in, and uses the Figma MCP.
+@PROTOTYPING.JIRA.md
+
+**Figma:** when a prototype is done, follow these instructions. They offer to send the prototype to a Figma file, ask for the link to put it in, and use the Figma MCP.
+
+@PROTOTYPING.FIGMA.md
 
 ## Stack
 
