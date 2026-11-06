@@ -12,7 +12,7 @@ The docs are the specification. Every colour, size, space, radius, shadow, font 
 
 | Path | What it is |
 |---|---|
-| [`DESIGN.md`](DESIGN.md) | The foundation. The **frontmatter** holds every raw value (colours for light, dark and high contrast, spacing, radius, borders, elevation, typography, motion, layout, opacity, component dimensions). The **body** holds the rules: theme, token architecture, colour, typography, components, layout, governance. |
+| [`DESIGN.md`](DESIGN.md) | The foundation. The **frontmatter** holds every raw value (colours for light, dark and high contrast, spacing, radius, borders, elevation, typography, motion, layout, opacity, component dimensions). The **body** holds the rules: theme, token architecture, colour, typography, components, layout, notes for Stitch generation, the component index and governance. |
 | [`atoms/`](atoms/) | 22 basic components: Button, Icon Button, FAB, Icon, Checkbox, Radio Button, Switch, Slider, Avatar, Chips, Tooltip, Progress… |
 | [`molecules/`](molecules/) | 31 components built from atoms: inputs, tabs, segmented control, list items, banners, snackbar, pagination… |
 | [`organisms/`](organisms/) | 18 larger patterns: dialog, bottom sheet, global header, top app bar, navigation rail, stepper, data table… |
@@ -23,6 +23,8 @@ The docs are the specification. Every colour, size, space, radius, shadow, font 
 | [`CLAUDE.md`](CLAUDE.md) | Entry point for Claude. It loads one of the two guides below. |
 | [`AGENTS.md`](AGENTS.md) | Guide for agents building a **production** component library from these docs. |
 | [`PROTOTYPE.md`](PROTOTYPE.md) | Guide for building **throwaway HTML prototypes** from these docs. |
+| [`PROTOTYPING.README.md`](PROTOTYPING.README.md) | Plain-English setup guide for people who only build prototypes. Shipped as `README.md` inside the prototyping zip. |
+| [`zebra-prototyping.zip`](zebra-prototyping.zip) | **Generated.** The prototyping kit to hand to someone who only builds prototypes. |
 
 The full component list, grouped by level and purpose, is in [`DESIGN.md` §8 Component Index](DESIGN.md#8-component-index-atomic).
 
@@ -64,7 +66,7 @@ tokens:
 ---
 ```
 
-The frontmatter is followed by these sections: **Anatomy, Variants, States, Spacing & Sizing, Properties, Usage**.
+The frontmatter is followed by these sections: **Anatomy, Variants, States, Spacing & Sizing, Properties, Usage, Stitch Prompt**.
 
 - **Composites don't restate their children.** A molecule names the child, variant and size it uses (e.g. "Icon Button, outline-subtle, medium"). The child's own tokens style it. The composite's tokens only cover its own parts and deliberate context overrides.
 - **Draft components** (`status: draft`, marked † in the index) have their purpose, anatomy and composition defined, but not their measurements. There are 16 of them, including Data Table, Date Picker, Chat and Dial Pad. Any measurements used for them are placeholders and must be called out as such.
@@ -138,7 +140,7 @@ Only maintainers run these scripts. They need Python 3 with the standard library
 | `python3 scripts/icons-json.py [version]` | changing the `icons` version in the `DESIGN.md` frontmatter (needs internet; verifies the npm tarball's integrity) | `icons.json` |
 | `python3 scripts/prototyping-zip.py` | regenerating either file above, or changing the docs, prototypes, `CLAUDE.md`, `PROTOTYPE.md` or `PROTOTYPING.README.md` | `zebra-prototyping.zip` |
 
-Never edit `tokens.css` or `icons.json` by hand. Commit them after regenerating, so consumers never need tooling.
+Never edit `tokens.css`, `icons.json` or `zebra-prototyping.zip` by hand. Commit them (and the zip) after regenerating, so consumers never need tooling.
 
 `zebra-prototyping.zip` is the kit to hand to someone who only builds prototypes. It holds a single `zebra-prototyping/` folder containing `atoms/`, `molecules/`, `organisms/`, `prototypes/`, `DESIGN.md`, `PROTOTYPE.md`, `icons.json` and `tokens.css`. It also includes `CLAUDE.md` with the production-builds section removed, and `PROTOTYPING.README.md` saved as `README.md`. Run the script after regenerating the token or icon files, so the zip carries the latest versions.
 
