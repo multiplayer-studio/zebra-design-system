@@ -18,7 +18,7 @@ The docs are the specification. Every colour, size, space, radius, shadow, font 
 | [`organisms/`](organisms/) | 18 larger patterns: dialog, bottom sheet, global header, top app bar, navigation rail, stepper, data table… |
 | [`tokens.css`](tokens.css) | **Generated.** Every token as a CSS custom property, with light, dark and high-contrast blocks. |
 | [`icons.json`](icons.json) | **Generated.** The 715 valid icon names from `@zebra-fed/zeta-icons` 1.9.8, keyed by ligature name, with label, category and search terms. |
-| [`scripts/`](scripts/) | The two generators for the files above (maintainers only). |
+| [`scripts/`](scripts/) | Maintainer scripts: the two generators for the files above, and the prototyping-kit bundler. |
 | [`prototypes/`](prototypes/) | HTML prototypes. [`showcase/`](prototypes/showcase/index.html) renders the components in every theme. |
 | [`CLAUDE.md`](CLAUDE.md) | Entry point for Claude. It loads one of the two guides below. |
 | [`AGENTS.md`](AGENTS.md) | Guide for agents building a **production** component library from these docs. |
@@ -130,14 +130,17 @@ New values go into the `DESIGN.md` frontmatter, in the right semantic group. Com
 
 ## Maintaining the design system
 
-Only maintainers run the generators. They need Python 3 with the standard library only. People building prototypes never do.
+Only maintainers run these scripts. They need Python 3 with the standard library only. People building prototypes never do.
 
 | Command | Run after | Writes |
 |---|---|---|
 | `python3 scripts/tokens-css.py` | any change to the `DESIGN.md` frontmatter or a component's `tokens:` | `tokens.css` |
 | `python3 scripts/icons-json.py [version]` | changing the `icons` version in the `DESIGN.md` frontmatter (needs internet; verifies the npm tarball's integrity) | `icons.json` |
+| `python3 scripts/prototyping-zip.py` | regenerating either file above, or changing the docs, prototypes, `CLAUDE.md`, `PROTOTYPE.md` or `PROTOTYPING.README.md` | `zebra-prototyping.zip` |
 
 Never edit `tokens.css` or `icons.json` by hand. Commit them after regenerating, so consumers never need tooling.
+
+`zebra-prototyping.zip` is the kit to hand to someone who only builds prototypes. It holds a single `zebra-prototyping/` folder containing `atoms/`, `molecules/`, `organisms/`, `prototypes/`, `DESIGN.md`, `PROTOTYPE.md`, `icons.json` and `tokens.css`. It also includes `CLAUDE.md` with the production-builds section removed, and `PROTOTYPING.README.md` saved as `README.md`. Run the script after regenerating the token or icon files, so the zip carries the latest versions.
 
 The current docs version is the `version` field in the `DESIGN.md` frontmatter.
 
