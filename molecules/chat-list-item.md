@@ -27,7 +27,7 @@ Measurements to be defined.
 Measurements to be defined.
 
 ## States
-Measurements to be defined. Use the standard Zeta interaction tokens (hover `--chat-list-item-row-background-hover`, pressed `--chat-list-item-row-background-pressed`, focus `--chat-list-item-focus-ring-width` `--chat-list-item-focus-ring-color`) where the item is interactive.
+Measurements to be defined. Use the standard Zebra interaction tokens (hover `--chat-list-item-row-background-hover`, pressed `--chat-list-item-row-background-pressed`, focus `--chat-list-item-focus-ring-width` `--chat-list-item-focus-ring-color`) where the item is interactive.
 
 ## Spacing & Sizing
 Measurements to be defined.

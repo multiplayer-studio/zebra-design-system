@@ -15,7 +15,7 @@ tokens:
 
 > The chat list items and chat lists are used in communication feeds and contact lists
 
-This page is a composition guide built from existing Zeta atoms and molecules. Measurements to be defined.
+This page is a composition guide built from existing Zebra atoms and molecules. Measurements to be defined.
 
 ## Anatomy
 1. Row container – list row (see [List Item](./list-item.md)).
@@ -28,7 +28,7 @@ This page is a composition guide built from existing Zeta atoms and molecules. M
 To be defined.
 
 ## States
-To be defined. Intended: the standard Zeta interaction tokens (hover `--contact-list-item-container-background-hover`, pressed `--contact-list-item-container-background-pressed`, focus `--contact-list-item-focus-ring-width` `--contact-list-item-focus-ring-color`) where the item is interactive.
+To be defined. Intended: the standard Zebra interaction tokens (hover `--contact-list-item-container-background-hover`, pressed `--contact-list-item-container-background-pressed`, focus `--contact-list-item-focus-ring-width` `--contact-list-item-focus-ring-color`) where the item is interactive.
 
 ## Spacing & Sizing
 Measurements to be defined.

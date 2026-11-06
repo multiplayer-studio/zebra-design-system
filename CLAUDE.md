@@ -2,7 +2,7 @@
 
 ## Design system (always applies)
 
-All UI work uses the Zeta Design System defined in this folder. Don't use any other source for how things look.
+All UI work uses the Zebra Design System defined in this folder. Don't use any other source for how things look.
 
 - `DESIGN.md` is the foundation. Its frontmatter holds every raw value (colours, spacing, radius, typography, motion, layout and dimensions) for light, dark and high contrast. Its body holds the rules, starting with §2 Token Architecture.
 - `atoms/`, `molecules/` and `organisms/` hold one file per component, each with a `tokens:` block, anatomy, variants, states, sizes, properties and usage. Read a component's file, and the files it `composes`, before building it.

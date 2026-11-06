@@ -1,6 +1,6 @@
-# Building with the Zeta Design System
+# Building with the Zebra Design System
 
-These instructions are for an AI agent working in a product project that uses the Zeta Design System. Your job is to build and maintain **one component library** in the project's own technology, and to keep that library and the design-system docs in step at all times.
+These instructions are for an AI agent working in a product project that uses the Zebra Design System. Your job is to build and maintain **one component library** in the project's own technology, and to keep that library and the design-system docs in step at all times.
 
 The docs are the specification. The code implements them. Neither changes without the other.
 
@@ -28,7 +28,7 @@ On first use, before writing any component, create the two project-specific file
 
 **`LIBRARY.md`** maps the docs to the code:
 - the technology (e.g. React, SwiftUI, Flutter, Compose, plain CSS);
-- where the component library lives (one folder, e.g. `src/components/zeta/`);
+- where the component library lives (one folder, e.g. `src/components/zebra/`);
 - where the generated token file lives and the command that regenerates it;
 - the name transform from token key to code (e.g. `button-primary-container-background-hover` → `--button-primary-container-background-hover` in CSS, `buttonPrimaryContainerBackgroundHover` in Swift/Dart/Kotlin). Use one mechanical transform everywhere;
 - a table with one row per component built: `| Component | Doc | Code | Status |`.

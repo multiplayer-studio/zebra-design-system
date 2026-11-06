@@ -11,7 +11,7 @@ tokens:
 
 > A slide-up sheet that appears when recording a voice message in chat. It shows the recording time, waveform, and buttons to stop, send, or cancel the memo.
 
-This page is a composition guide built from existing Zeta atoms and molecules. Measurements to be defined.
+This page is a composition guide built from existing Zebra atoms and molecules. Measurements to be defined.
 
 ## Anatomy
 1. Sheet — slide-up surface: a [Bottom Sheet](bottom-sheet.md), which governs its surface, top radius, scrim and motion.
@@ -26,7 +26,7 @@ To be defined.
 recording → stopped (review) → sent / cancelled.
 
 ## Spacing & Sizing
-Measurements to be defined. Stated so far: the Bottom Sheet surface `--bottom-sheet-container-background` with `--bottom-sheet-container-radius` top corners, scrim `--bottom-sheet-scrim-background`. Spacing and borders will use the Zeta semantic scales once defined.
+Measurements to be defined. Stated so far: the Bottom Sheet surface `--bottom-sheet-container-background` with `--bottom-sheet-container-radius` top corners, scrim `--bottom-sheet-scrim-background`. Spacing and borders will use the Zebra semantic scales once defined.
 
 ## Usage
 - Opened from the [Chat](chat.md) composer microphone.

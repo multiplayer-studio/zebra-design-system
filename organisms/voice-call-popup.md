@@ -16,7 +16,7 @@ tokens:
 
 > An overlay shown during an incoming or active voice call.
 
-This page is a composition guide built from existing Zeta atoms and molecules. Measurements to be defined.
+This page is a composition guide built from existing Zebra atoms and molecules. Measurements to be defined.
 
 ## Anatomy
 1. Pop-up surface — elevated card/overlay.
@@ -30,7 +30,7 @@ Measurements to be defined.
 Incoming / active / ended. Measurements to be defined.
 
 ## Spacing & Sizing
-Measurements to be defined. Stated so far: the surface is `--voice-call-popup-container-background` with `--voice-call-popup-container-radius-rounded` corners when rounded and a `--voice-call-popup-container-border-color` border; caller name `--voice-call-popup-title-foreground`, status text `--voice-call-popup-subtitle-foreground`; scrim `--voice-call-popup-scrim-background`. Spacing and elevation will use the Zeta semantic scales once defined.
+Measurements to be defined. Stated so far: the surface is `--voice-call-popup-container-background` with `--voice-call-popup-container-radius-rounded` corners when rounded and a `--voice-call-popup-container-border-color` border; caller name `--voice-call-popup-title-foreground`, status text `--voice-call-popup-subtitle-foreground`; scrim `--voice-call-popup-scrim-background`. Spacing and elevation will use the Zebra semantic scales once defined.
 
 ## Usage
 - Answer/decline must be distinguishable by icon and label, not only green/red.

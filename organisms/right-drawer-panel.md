@@ -22,7 +22,7 @@ tokens:
 
 > A panel that slides in from the edge of the screen to display additional content without navigating away from the current view.
 
-A composition guide built from existing Zeta atoms and molecules. Measurements to be defined.
+A composition guide built from existing Zebra atoms and molecules. Measurements to be defined.
 
 ## Anatomy
 1. Scrim — dims the page when modal.
@@ -43,7 +43,7 @@ The composed buttons, list items and cards govern their own colours, states, rad
 closed (off-screen right) → open (slid in). Dismiss via swipe, tap outside (modal) or close button.
 
 ## Spacing & Sizing
-Measurements to be defined. Intended width `--right-drawer-panel-container-width` (min `--right-drawer-panel-container-min-width`, max `--right-drawer-panel-container-max-width`). Use Zeta tokens only: spacing `--right-drawer-panel-container-spacing-minimum` … `--right-drawer-panel-container-spacing-maximum`; radius `--right-drawer-panel-container-radius-rounded` when rounded; background `--right-drawer-panel-container-background`, text `--right-drawer-panel-content-foreground`, secondary text `--right-drawer-panel-content-foreground-subtle`, dividers `--right-drawer-panel-divider-border-color`; elevation `--right-drawer-panel-container-elevation`; scrim `--right-drawer-panel-scrim-background`.
+Measurements to be defined. Intended width `--right-drawer-panel-container-width` (min `--right-drawer-panel-container-min-width`, max `--right-drawer-panel-container-max-width`). Use Zebra tokens only: spacing `--right-drawer-panel-container-spacing-minimum` … `--right-drawer-panel-container-spacing-maximum`; radius `--right-drawer-panel-container-radius-rounded` when rounded; background `--right-drawer-panel-container-background`, text `--right-drawer-panel-content-foreground`, secondary text `--right-drawer-panel-content-foreground-subtle`, dividers `--right-drawer-panel-divider-border-color`; elevation `--right-drawer-panel-container-elevation`; scrim `--right-drawer-panel-scrim-background`.
 
 ## Usage
 - Use for menus, navigation, settings or contextual details without leaving the current view.

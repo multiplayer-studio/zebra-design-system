@@ -1,8 +1,8 @@
-# Zeta Design System
+# Zebra Design System
 
-The Zeta Design System (Zebra Technologies) written as plain Markdown, so that people and AI agents can both read it and build from it.
+The Zebra Design System written as plain Markdown, so that people and AI agents can both read it and build from it.
 
-Zeta is an enterprise utility language for frontline workers who scan screens quickly, often on rugged handheld devices, with gloves on or in poor light. It uses cool-neutral greys, a single Zebra Blue accent, IBM Plex Sans, a strict mini-unit grid and low, quiet depth. It works in light, dark and high-contrast modes.
+The Zebra Design System is an enterprise utility language for frontline workers who scan screens quickly, often on rugged handheld devices, with gloves on or in poor light. It uses cool-neutral greys, a single Zebra Blue accent, IBM Plex Sans, a strict mini-unit grid and low, quiet depth. It works in light, dark and high-contrast modes.
 
 The docs are the specification. Every colour, size, space, radius, shadow, font and duration is defined once as a token, and every component is described in its own file.
 
@@ -80,7 +80,7 @@ Pick one mode per project. `CLAUDE.md` expects to contain exactly one of the two
 You only need the Claude desktop app. No Python, Node or build tools.
 
 1. Ask Claude for a prototype. It creates `prototypes/<name>/index.html`.
-2. The page links `../../tokens.css` and loads IBM Plex Sans and the Zeta icon fonts from jsDelivr, pinned to exact versions.
+2. The page links `../../tokens.css` and loads IBM Plex Sans and the Zebra icon fonts from jsDelivr, pinned to exact versions.
 3. Open it in the Claude desktop Browser pane. It works over `file://` with no server; it needs internet only for the fonts.
 
 Theming in the markup:

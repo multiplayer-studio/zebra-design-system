@@ -18,7 +18,7 @@ tokens:
 
 > Dial pad gives the user the ability to dial a number and start a call. It also has a quick dial security action and a delete entry action.
 
-This page is a composition guide built from existing Zeta atoms and molecules. Measurements to be defined.
+This page is a composition guide built from existing Zebra atoms and molecules. Measurements to be defined.
 
 ## Anatomy
 1. Number display — the entered digits.
@@ -34,7 +34,7 @@ Measurements to be defined.
 Keys: enabled / pressed / focus. Delete: hidden or disabled when the display is empty.
 
 ## Spacing & Sizing
-Measurements to be defined. Stated so far: background `--dial-pad-container-background`; keys use `--dial-pad-key-radius-rounded` corners when rounded and a `--dial-pad-key-border-color` border, digits `--dial-pad-key-label-foreground`, letters `--dial-pad-key-sublabel-foreground`. Spacing will use the Zeta semantic scale once defined.
+Measurements to be defined. Stated so far: background `--dial-pad-container-background`; keys use `--dial-pad-key-radius-rounded` corners when rounded and a `--dial-pad-key-border-color` border, digits `--dial-pad-key-label-foreground`, letters `--dial-pad-key-sublabel-foreground`. Spacing will use the Zebra semantic scale once defined.
 
 ## Usage
 - Make the security quick-dial clearly distinct from the regular call action to avoid mis-taps.

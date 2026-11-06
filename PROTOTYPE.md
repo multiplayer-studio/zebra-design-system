@@ -121,12 +121,12 @@ Icons come from the Zebra Icons library, the `@zebra-fed/zeta-icons` package (v1
 
 1. Declare the fonts and an `.icon` class once in the `<style>` block:
    ```css
-   @font-face { font-family: "Zeta Icons Round"; src: url("https://cdn.jsdelivr.net/npm/@zebra-fed/zeta-icons@1.9.8/outputs/web/zeta-icons-round.woff2") format("woff2"); }
-   @font-face { font-family: "Zeta Icons Sharp"; src: url("https://cdn.jsdelivr.net/npm/@zebra-fed/zeta-icons@1.9.8/outputs/web/zeta-icons-sharp.woff2") format("woff2"); }
-   .icon { font-family: "Zeta Icons Round"; font-style: normal; font-weight: 400; line-height: 1; letter-spacing: normal;
+   @font-face { font-family: "Zebra Icons Round"; src: url("https://cdn.jsdelivr.net/npm/@zebra-fed/zeta-icons@1.9.8/outputs/web/zeta-icons-round.woff2") format("woff2"); }
+   @font-face { font-family: "Zebra Icons Sharp"; src: url("https://cdn.jsdelivr.net/npm/@zebra-fed/zeta-icons@1.9.8/outputs/web/zeta-icons-sharp.woff2") format("woff2"); }
+   .icon { font-family: "Zebra Icons Round"; font-style: normal; font-weight: 400; line-height: 1; letter-spacing: normal;
      text-transform: none; white-space: nowrap; font-feature-settings: "liga"; flex: none; display: inline-block;
      font-size: var(--icon-size); color: var(--icon-foreground); }
-   .icon.sharp { font-family: "Zeta Icons Sharp"; }
+   .icon.sharp { font-family: "Zebra Icons Sharp"; }
    ```
 2. Use an icon by putting its **ligature name** as the element's text: `<span class="icon" aria-hidden="true">check_circle</span>`.
    - The ligature name is the key in `icons.json` (`check_circle`, `wifi`). It is lowercase snake_case and is not always the lowercased `label` (for example the label `WiFi` has the key `wifi`). Search the `label`, `category` and `searchTerms` fields to find an icon.

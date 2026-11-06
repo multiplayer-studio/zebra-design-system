@@ -18,7 +18,7 @@ tokens:
 
 # Icon
 
-> Zeta icons come from the Zebra Icons library (v1.9.8), a ligature icon font available in rounded and sharp styles.
+> Icons come from the Zebra Icons library (v1.9.8), a ligature icon font available in rounded and sharp styles.
 
 ## Anatomy
 1. Glyph — a font ligature: the icon name (e.g. `add`, `close`) is the text content; the font turns it into the glyph. Alternatively a custom vector glyph in the icon colour.
@@ -79,4 +79,4 @@ Common component sizes: `--icon-size-small` (small button), `--icon-size-medium`
 - Don't rely on icon colour alone to convey status; pair it with text.
 
 ## Stitch Prompt
-Use Zeta icons as simple, solid, single-colour glyphs on a `--icon-size` square, drawn in near-black `--icon-foreground` by default (or white/light `--icon-foreground-inverse` on coloured fills). The default rounded set has softly rounded terminals and corners; the sharp set has square corners for sharp-cornered interfaces. Icons cover Zebra enterprise themes such as barcodes, scanners, printers, RFID, batteries and wifi, alongside the usual navigation, communication, calendar and file-type glyphs. Size them `--icon-size-small` in small controls, `--icon-size-medium` in buttons and chips, and `--icon-size` elsewhere.
+Use Zebra icons as simple, solid, single-colour glyphs on a `--icon-size` square, drawn in near-black `--icon-foreground` by default (or white/light `--icon-foreground-inverse` on coloured fills). The default rounded set has softly rounded terminals and corners; the sharp set has square corners for sharp-cornered interfaces. Icons cover Zebra enterprise themes such as barcodes, scanners, printers, RFID, batteries and wifi, alongside the usual navigation, communication, calendar and file-type glyphs. Size them `--icon-size-small` in small controls, `--icon-size-medium` in buttons and chips, and `--icon-size` elsewhere.

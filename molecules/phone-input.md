@@ -33,4 +33,4 @@ As Text Input.
 - Use the error state with error text for invalid numbers.
 
 ## Stitch Prompt
-Draw a standard Zeta text field (white `--text-input-container-background-enabled`, `--text-input-container-border-width-enabled` `--text-input-container-border-color-enabled` border, `--text-input-container-radius-rounded` corners, `--phone-input-container-height-medium` tall) labelled "Phone number", containing a phone number in `--text-input-value-font-medium` near-black (`--text-input-value-foreground`) text, with a small grey hint line and info icon beneath.
+Draw a standard Zebra text field (white `--text-input-container-background-enabled`, `--text-input-container-border-width-enabled` `--text-input-container-border-color-enabled` border, `--text-input-container-radius-rounded` corners, `--phone-input-container-height-medium` tall) labelled "Phone number", containing a phone number in `--text-input-value-font-medium` near-black (`--text-input-value-foreground`) text, with a small grey hint line and info icon beneath.

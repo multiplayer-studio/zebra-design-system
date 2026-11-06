@@ -1,6 +1,6 @@
-# Prototyping Zeta with Claude
+# Prototyping the Zebra Design System with Claude
 
-Describe a screen in plain English and Claude builds a clickable prototype using the Zeta Design System you can see right in the Claude app. You don't need to write any code.
+Describe a screen in plain English and Claude builds a clickable prototype using the Zebra Design System you can see right in the Claude app. You don't need to write any code.
 
 ---
 

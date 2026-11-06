@@ -22,7 +22,7 @@ tokens:
 
 > A table used to show data in a structured way.
 
-A composition guide built from existing Zeta atoms and molecules. Measurements to be defined.
+A composition guide built from existing Zebra atoms and molecules. Measurements to be defined.
 
 ## Anatomy
 1. Toolbar (optional) — [search bar](../molecules/search-bar.md), filters, actions.
@@ -45,7 +45,7 @@ To be defined (densities, striping, sticky header).
 | sorted column | sort icon shows direction |
 
 ## Spacing & Sizing
-Measurements to be defined. Use Zeta tokens only: spacing `--data-table-container-spacing-minimum` … `--data-table-container-spacing-maximum`; radius `--data-table-container-radius-rounded` when rounded; background `--data-table-container-background`, text `--data-table-content-foreground`, secondary text `--data-table-content-foreground-subtle`, borders `--data-table-container-border-color`; dividers `--data-table-divider-border-color`.
+Measurements to be defined. Use Zebra tokens only: spacing `--data-table-container-spacing-minimum` … `--data-table-container-spacing-maximum`; radius `--data-table-container-radius-rounded` when rounded; background `--data-table-container-background`, text `--data-table-content-foreground`, secondary text `--data-table-content-foreground-subtle`, borders `--data-table-container-border-color`; dividers `--data-table-divider-border-color`.
 
 ## Usage
 - Left-align text, right-align numbers; keep column headers short.

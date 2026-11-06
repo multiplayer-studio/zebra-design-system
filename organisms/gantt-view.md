@@ -21,7 +21,7 @@ tokens:
 
 > A component for visualizing time-based data, such as tasks, schedules, or project plans, along a timeline. Commonly used for planning, tracking progress, and managing timelines in complex workflows.
 
-A composition guide built from existing Zeta atoms and molecules. Measurements to be defined.
+A composition guide built from existing Zebra atoms and molecules. Measurements to be defined.
 
 ## Anatomy
 1. Task list column — task names (like [list items](../molecules/list-item.md)), optional [avatar](../atoms/avatar.md) for assignee.
@@ -38,7 +38,7 @@ To be defined (time scales, bar colours per status).
 Task bar: default / hover (tooltip) / selected / overdue — treatments to be defined.
 
 ## Spacing & Sizing
-Measurements to be defined. Use Zeta tokens only: spacing `--gantt-view-container-spacing-minimum` … `--gantt-view-container-spacing-maximum`; radius `--gantt-view-container-radius-rounded` when rounded; background `--gantt-view-container-background`, text `--gantt-view-content-foreground`, secondary text `--gantt-view-content-foreground-subtle`, borders `--gantt-view-container-border-color`.
+Measurements to be defined. Use Zebra tokens only: spacing `--gantt-view-container-spacing-minimum` … `--gantt-view-container-spacing-maximum`; radius `--gantt-view-container-radius-rounded` when rounded; background `--gantt-view-container-background`, text `--gantt-view-content-foreground`, secondary text `--gantt-view-content-foreground-subtle`, borders `--gantt-view-container-border-color`.
 
 ## Usage
 - Keep task labels readable in the left column; don't rely on bar colour alone for status.

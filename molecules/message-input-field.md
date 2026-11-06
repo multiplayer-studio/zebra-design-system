@@ -11,7 +11,7 @@ tokens:
 
 > Input used for sending messages in a chat or communication interface.
 
-This page is a composition guide built from existing Zeta atoms and molecules. Measurements to be defined.
+This page is a composition guide built from existing Zebra atoms and molecules. Measurements to be defined.
 
 ## Anatomy
 1. Container – bar docked under the conversation.

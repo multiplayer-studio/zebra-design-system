@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Zeta Design System — Showcase</title>
+<title>Zebra Design System — Showcase</title>
 <link rel="stylesheet" href="../../tokens.css">
 <style>
 @font-face { font-family: "IBM Plex Sans"; font-weight: 300; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-300-normal.woff2") format("woff2"); }
 @font-face { font-family: "IBM Plex Sans"; font-weight: 400; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "IBM Plex Sans"; font-weight: 500; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-500-normal.woff2") format("woff2"); }
-@font-face { font-family: "Zeta Icons Round"; src: url("https://cdn.jsdelivr.net/npm/@zebra-fed/zeta-icons@1.9.8/outputs/web/zeta-icons-round.woff2") format("woff2"); }
-@font-face { font-family: "Zeta Icons Sharp"; src: url("https://cdn.jsdelivr.net/npm/@zebra-fed/zeta-icons@1.9.8/outputs/web/zeta-icons-sharp.woff2") format("woff2"); }
+@font-face { font-family: "Zebra Icons Round"; src: url("https://cdn.jsdelivr.net/npm/@zebra-fed/zeta-icons@1.9.8/outputs/web/zeta-icons-round.woff2") format("woff2"); }
+@font-face { font-family: "Zebra Icons Sharp"; src: url("https://cdn.jsdelivr.net/npm/@zebra-fed/zeta-icons@1.9.8/outputs/web/zeta-icons-sharp.woff2") format("woff2"); }
 
 /* ═════════════ PAGE (showcase chrome — page-level, so semantic tokens are fine here) ═════════════ */
 * { box-sizing: border-box; }
@@ -83,11 +83,11 @@ main { flex: 10 1 0; min-width: 0; max-width: 100%; }
 /* ═════════════ COMPONENTS — each styled only with its own tokens + those of what it composes ═════════════ */
 
 /* Icon (atom) */
-.icon { font-family: "Zeta Icons Round"; font-style: normal; font-weight: 400; line-height: 1; letter-spacing: normal;
+.icon { font-family: "Zebra Icons Round"; font-style: normal; font-weight: 400; line-height: 1; letter-spacing: normal;
   text-transform: none; white-space: nowrap; font-feature-settings: "liga"; flex: none; display: inline-block;
   font-size: var(--icon-size); color: var(--icon-foreground); user-select: none;
   transition: color var(--icon-glyph-duration) var(--icon-glyph-easing), transform var(--icon-glyph-duration) var(--icon-glyph-easing); }
-.icon.sharp { font-family: "Zeta Icons Sharp"; }
+.icon.sharp { font-family: "Zebra Icons Sharp"; }
 
 /* Button (atom) */
 .btn { --_bg: var(--button-primary-container-background-enabled); --_bg-h: var(--button-primary-container-background-hover);
@@ -114,7 +114,7 @@ main { flex: 10 1 0; min-width: 0; max-width: 100%; }
 .btn.lg { height: var(--button-container-height-large); padding: var(--button-container-padding-y-large) var(--button-container-padding-x-large); gap: var(--button-container-gap-large); font: var(--button-label-font-large); }
 .btn.lg .icon { font-size: var(--button-icon-size-large); }
 [data-shape="sharp"] .btn, .btn.shape-sharp { border-radius: var(--button-container-radius-sharp); }
-[data-shape="sharp"] .btn .icon { font-family: "Zeta Icons Sharp"; }
+[data-shape="sharp"] .btn .icon { font-family: "Zebra Icons Sharp"; }
 [data-shape="full"] .btn { border-radius: var(--button-container-radius-full); }
 
 /* Icon Button (atom) = square Button, no label */
@@ -146,7 +146,7 @@ main { flex: 10 1 0; min-width: 0; max-width: 100%; }
 .fab .fab-text { font: var(--fab-label-font-extended); color: var(--_label); }
 .fab.full { border-radius: var(--fab-full-container-radius); }
 .fab.sharp { border-radius: var(--fab-sharp-container-radius); }
-.fab.sharp .icon { font-family: "Zeta Icons Sharp"; }
+.fab.sharp .icon { font-family: "Zebra Icons Sharp"; }
 
 /* Checkbox (atom) */
 .checkbox { display: inline-flex; align-items: center; gap: var(--checkbox-container-gap-medium); font: var(--checkbox-label-font-medium);
@@ -289,7 +289,7 @@ main { flex: 10 1 0; min-width: 0; max-width: 100%; }
 .status-label .icon { font-size: var(--status-label-icon-size); color: var(--_icon); }
 .status-label .dot { width: var(--status-label-dot-size); height: var(--status-label-dot-size); border-radius: var(--status-label-container-radius-rounded); background: var(--_icon); }
 .status-label.sharp { border-radius: var(--status-label-container-radius-sharp); }
-.status-label.sharp .icon { font-family: "Zeta Icons Sharp"; }
+.status-label.sharp .icon { font-family: "Zebra Icons Sharp"; }
 .status-label.info { --_border: var(--status-label-info-container-border-color); --_bg: var(--status-label-info-container-background); --_icon: var(--status-label-info-icon-foreground); --_fg: var(--status-label-info-label-foreground); }
 .status-label.positive { --_border: var(--status-label-positive-container-border-color); --_bg: var(--status-label-positive-container-background); --_icon: var(--status-label-positive-icon-foreground); --_fg: var(--status-label-positive-label-foreground); }
 .status-label.warning { --_border: var(--status-label-warning-container-border-color); --_bg: var(--status-label-warning-container-background); --_icon: var(--status-label-warning-icon-foreground); --_fg: var(--status-label-warning-label-foreground); }
@@ -600,7 +600,7 @@ dialog.dialog::backdrop { background: var(--dialog-scrim-background); }
 .fi-trail:disabled { cursor: not-allowed; }
 .fi-sharp .ti-field, .fi-sharp .fi-trail, .fi-sharp .ti-clear { border-radius: var(--text-input-container-radius-sharp); }
 .fi-sharp .btn { border-radius: var(--button-container-radius-sharp); }
-.fi-sharp .btn .icon { font-family: "Zeta Icons Sharp"; }
+.fi-sharp .btn .icon { font-family: "Zebra Icons Sharp"; }
 .fi-frame { position: relative; min-height: calc(var(--spacing-11xl) * 4); }
 .fi-frame.tall { min-height: calc(var(--spacing-11xl) * 5); }
 
@@ -1482,7 +1482,7 @@ th[aria-sort="ascending"] .dtab-sort .icon, th[aria-sort="descending"] .dtab-sor
 <body>
 
 <header class="page-header">
-  <div class="brand">Zeta Design System <small>Showcase · tokens v2026-11-05</small></div>
+  <div class="brand">Zebra Design System <small>Showcase · tokens v2026-11-05</small></div>
   <label class="switch"><input type="checkbox" role="switch" id="toggle-dark"><span class="sw-track"></span>Dark</label>
   <label class="switch"><input type="checkbox" role="switch" id="toggle-contrast"><span class="sw-track"></span>High contrast</label>
 </header>
@@ -1502,7 +1502,7 @@ th[aria-sort="ascending"] .dtab-sort .icon, th[aria-sort="descending"] .dtab-sor
 <!-- ───────────── OVERVIEW ───────────── -->
 <section class="section hero" id="overview">
   <p class="eyebrow">Zebra Technologies</p>
-  <h1>Zeta Design System</h1>
+  <h1>Zebra Design System</h1>
   <p class="lede">An enterprise utility language: calm, precise and built for frontline workers who scan screens quickly, often on rugged handhelds, with gloves on or in bad light. Cool-neutral greys, one confident Zebra Blue, hairline borders and IBM Plex Sans.</p>
   <div class="row">
     <span class="status-label info"><span class="icon" aria-hidden="true">palette</span>Single blue accent</span>
@@ -2283,7 +2283,7 @@ th[aria-sort="ascending"] .dtab-sort .icon, th[aria-sort="descending"] .dtab-sor
         <div class="ti-hint"><span class="icon" aria-hidden="true">info</span>Touch first</div>
       </div>
     </div>
-    <p class="note">Pickers are the browser's native date and time pickers (faked: the Zeta picker is not part of this component). Field display follows your locale.</p>
+    <p class="note">Pickers are the browser's native date and time pickers (faked: the Zebra picker is not part of this component). Field display follows your locale.</p>
   </div>
 </section>
 
@@ -3012,7 +3012,7 @@ th[aria-sort="ascending"] .dtab-sort .icon, th[aria-sort="descending"] .dtab-sor
         </div>
       </div>
     </div>
-    <p class="note">The illustration is a placeholder: the Zeta illustration set is not available in this prototype, so a large icon stands in for it (per-type illustrations are still to be defined in the spec).</p>
+    <p class="note">The illustration is a placeholder: the Zebra illustration set is not available in this prototype, so a large icon stands in for it (per-type illustrations are still to be defined in the spec).</p>
   </div>
   <div class="group">
     <h3>Rounded off (sharp)</h3>
@@ -4290,7 +4290,7 @@ modal.addEventListener('click', function (e) { if (e.target === modal) modal.clo
     });
   });
 
-  // Date / time: icon opens the native picker (mock for the Zeta picker)
+  // Date / time: icon opens the native picker (mock for the Zebra picker)
   all('[data-picker]').forEach(function (b) {
     b.addEventListener('click', function () {
       var i = document.getElementById(b.dataset.picker); i.focus();

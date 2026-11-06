@@ -34,4 +34,4 @@ Measurements to be defined.
 - Use colour plus icon to distinguish destructive actions (end call).
 
 ## Stitch Prompt
-Draw a row of circular communication buttons, each a solid round button with a single centred white or dark line icon: a green phone (answer), a red phone-down (end call), and neutral grey buttons for mute, video and speaker. Use the Zeta style: IBM Plex Sans labels if shown, flat fills, no gradients.
+Draw a row of circular communication buttons, each a solid round button with a single centred white or dark line icon: a green phone (answer), a red phone-down (end call), and neutral grey buttons for mute, video and speaker. Use the Zebra style: IBM Plex Sans labels if shown, flat fills, no gradients.

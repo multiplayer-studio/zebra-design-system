@@ -13,7 +13,7 @@ tokens:
 
 > An alphabetical list that allows users to quickly navigate through a long list of items.
 
-This page is a composition guide built from existing Zeta atoms and molecules. Measurements to be defined.
+This page is a composition guide built from existing Zebra atoms and molecules. Measurements to be defined.
 
 ## Anatomy
 1. Index rail — vertical strip of letters A–Z (and #) on the trailing edge, rendered by the scroller itself.
@@ -27,7 +27,7 @@ To be defined.
 Letter: default / active (being touched) / unavailable (no items).
 
 ## Spacing & Sizing
-Measurements to be defined. Spacing, radius and colours will use the Zeta semantic scales once defined.
+Measurements to be defined. Spacing, radius and colours will use the Zebra semantic scales once defined.
 
 ## Usage
 - Use for long, alphabetically sorted lists such as contacts.

@@ -52,4 +52,4 @@ Same as [Text Input](./text-input.md): label, hint, error and error text, size, 
 - Use the error state with error text for validation failures.
 
 ## Stitch Prompt
-Draw a standard Zeta text field (white, `--text-input-container-border-width-enabled` `--text-input-container-border-color-enabled` border, `--text-input-container-radius-rounded` corners, `--password-input-container-height-medium` tall) labelled "Password", showing a row of masked dots in near-black and, on the right, a `--password-input-toggle-icon-size` grey eye-with-slash icon that toggles to an open eye when the password is revealed. Below, a small grey hint line with an info icon.
+Draw a standard Zebra text field (white, `--text-input-container-border-width-enabled` `--text-input-container-border-color-enabled` border, `--text-input-container-radius-rounded` corners, `--password-input-container-height-medium` tall) labelled "Password", showing a row of masked dots in near-black and, on the right, a `--password-input-toggle-icon-size` grey eye-with-slash icon that toggles to an open eye when the password is revealed. Below, a small grey hint line with an info icon.

@@ -50,4 +50,4 @@ Static, non-interactive.
 - For coloured semantic states use [Label](../atoms/label.md) or [Status Label](../atoms/status-label.md).
 
 ## Stitch Prompt
-Draw a Zeta status chip: a small `--status-chip-container-height`-tall, very light warm-grey (`--status-chip-container-background`) rectangle with `--status-chip-container-radius-rounded` corners and `--status-chip-container-padding-x` side padding, holding one or two words in `--status-chip-label-font` dark text, with no border.
+Draw a Zebra status chip: a small `--status-chip-container-height`-tall, very light warm-grey (`--status-chip-container-background`) rectangle with `--status-chip-container-radius-rounded` corners and `--status-chip-container-padding-x` side padding, holding one or two words in `--status-chip-label-font` dark text, with no border.

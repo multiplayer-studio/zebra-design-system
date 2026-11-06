@@ -18,7 +18,7 @@ tokens:
 
 > A versatile input component for selecting dates, times, or ranges. It provides a calendar interface alongside input fields, supporting single date selection, time selection, date ranges, and week-based selection. Optional presets allow for quick access to common date values like "Today" or "Last 7 Days."
 
-This page is a composition guide built from existing Zeta atoms and molecules. Measurements to be defined.
+This page is a composition guide built from existing Zebra atoms and molecules. Measurements to be defined.
 
 ## Anatomy
 1. Input field(s) — [date input](../molecules/date-input.md) (one, or start + end for ranges); [time input](../molecules/time-input.md) for time selection.
@@ -47,7 +47,7 @@ This page is a composition guide built from existing Zeta atoms and molecules. M
 | disabled | `--date-picker-day-foreground-disabled` |
 
 ## Spacing & Sizing
-Measurements to be defined. Stated so far: the popover is `--date-picker-popover-background` with `--date-picker-popover-radius-rounded` corners when rounded. Spacing, borders, elevation and scrim will use the Zeta semantic scales once defined.
+Measurements to be defined. Stated so far: the popover is `--date-picker-popover-background` with `--date-picker-popover-radius-rounded` corners when rounded. Spacing, borders, elevation and scrim will use the Zebra semantic scales once defined.
 
 ## Properties
 | Property | Options |

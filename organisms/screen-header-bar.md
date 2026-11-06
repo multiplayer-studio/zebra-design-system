@@ -14,7 +14,7 @@ tokens:
 
 > A header bar for screens, typically containing the title and actions.
 
-This page is a composition guide built from existing Zeta atoms and molecules. Measurements to be defined.
+This page is a composition guide built from existing Zebra atoms and molecules. Measurements to be defined.
 
 ## Anatomy
 1. Container — full-width bar at the top of a screen/section.
@@ -29,7 +29,7 @@ Measurements to be defined. The closest measured equivalent is [Top App Bar](top
 Static container; actions carry their own enabled / hover / pressed / focus / disabled states.
 
 ## Spacing & Sizing
-Measurements to be defined. Stated so far: background `--screen-header-bar-container-background` with `--screen-header-bar-container-radius-rounded` corners when rounded; title `--screen-header-bar-title-foreground`; action icons are Icon Button subtle (`--button-subtle-label-foreground`); bottom divider `--screen-header-bar-divider-color`. Spacing will use the Zeta semantic scale once defined.
+Measurements to be defined. Stated so far: background `--screen-header-bar-container-background` with `--screen-header-bar-container-radius-rounded` corners when rounded; title `--screen-header-bar-title-foreground`; action icons are Icon Button subtle (`--button-subtle-label-foreground`); bottom divider `--screen-header-bar-divider-color`. Spacing will use the Zebra semantic scale once defined.
 
 ## Usage
 - Use to title a screen and expose screen-level actions; app-wide navigation stays in the [Global Header](global-header.md).

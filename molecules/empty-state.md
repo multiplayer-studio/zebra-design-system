@@ -23,7 +23,7 @@ tokens:
 
 ## Anatomy
 1. Container – centred column, max width `--empty-state-container-max-width`.
-2. Illustration – a line illustration from the Zeta illustration set (e.g. server disconnect).
+2. Illustration – a line illustration from the Zebra illustration set (e.g. server disconnect).
 3. Title – short heading.
 4. Description – one or two sentences.
 5. Actions – secondary then primary [Button](../atoms/button.md) (flavors outline and primary, size medium; shape follows the Rounded property), side by side, centred. The buttons' own tokens govern their colours, states and radius.

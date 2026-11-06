@@ -1,5 +1,5 @@
 ---
-name: Zeta Design System (Zebra Technologies)
+name: Zebra Design System
 version: '2026-11-05'
 icons: "Zebra Icons 1.9.8 (zeta-icons-round / zeta-icons-sharp), package @zebra-fed/zeta-icons"
 # ── TOKEN ARCHITECTURE ──────────────────────────────────────────────────────────
@@ -15,7 +15,7 @@ icons: "Zebra Icons 1.9.8 (zeta-icons-round / zeta-icons-sharp), package @zebra-
 # In prose a token is written `--<key>`. A component file cites its own tokens and the tokens of
 # the components it composes.
 # ───────────────────────────────────────────────────────────────────────────────
-roles:  # Material-style aliases for Stitch tooling → value of the named Zeta token
+roles:  # Material-style aliases for Stitch tooling → value of the named Zebra token
   background: '#ffffff'          # surface-default
   on-background: '#1d1e23'       # main-default
   primary: '#0073e6'             # state-primary-enabled
@@ -720,7 +720,7 @@ dimensions:  # raw component measurements; referenced ONLY by component tokens (
   dim-upload-item-title-font-size: 14px  # molecules/upload-item.md
 ---
 
-# Design System: Zeta (Zebra Technologies)
+# Zebra Design System
 This file is the **foundation layer**. It covers the tokens, the visual language and the rules. Components are documented atomically in three folders, and each file references the tokens defined here.
 
 ```
@@ -736,7 +736,7 @@ organisms/       ← 18 screen-level sections (dialog, global header, nav rail, 
 
 > **Token rule:** every value in this document is a token reference written as `--<key>`. Raw values live only in the frontmatter above. To read a value, look up `<key>` in the relevant group (`colors`, `spacing`, `rounded`, `border`, `elevation`, `typography`, `font-weight`, `motion`, `layout`, `opacity`). Dark and high-contrast values share the same key in `colors-dark` and `colors-high-contrast`. Component tokens (e.g. `--dialog-width`) are defined in the `tokens:` block of their component file. See §2 Token Architecture.
 
-Zeta is an **enterprise utility language**. It is calm, precise and built for frontline workers who scan screens quickly, often on rugged handheld devices, with gloves on or in bad light. Surfaces are pure white (`--surface-default`) over faintly blue-tinted cool greys. Ink is a near-black graphite (`--main-default`), never pure black. A single confident **Zebra Blue** (`--state-primary-enabled`) carries every primary action and selection. Colour is spent "sparingly … as a means to employ meaning and discretion". Most screens are monochrome greys plus one blue, and red, green, orange and purple appear only when they mean something.
+The Zebra Design System is an **enterprise utility language**. It is calm, precise and built for frontline workers who scan screens quickly, often on rugged handheld devices, with gloves on or in bad light. Surfaces are pure white (`--surface-default`) over faintly blue-tinted cool greys. Ink is a near-black graphite (`--main-default`), never pure black. A single confident **Zebra Blue** (`--state-primary-enabled`) carries every primary action and selection. Colour is spent "sparingly … as a means to employ meaning and discretion". Most screens are monochrome greys plus one blue, and red, green, orange and purple appear only when they mean something.
 
 The geometry is strict and quiet. Everything snaps to the **mini-unit** grid (`--grid-unit`). Corners are barely softened by default (`--radius-minimal`), and every component can switch to fully sharp (`rounded=false`, `--radius-none`) or, for buttons and FABs, to full pills (`--radius-full`). Depth is low: hairline borders (`--border-size-small`) and very soft, cool-grey shadows (`--elevation-1` … `--elevation-6`) rather than dramatic layering. Type is **IBM Plex Sans** (`--type-family-regular`), a humanist-grotesque with an engineered feel. Display sizes use the `--light` weight for an airy look, and all UI labels and titles use `--medium`. The overall impression is *trustworthy industrial software*: dense enough for data, generous enough for touch, and accessible in all four theme modes (light, dark, high-contrast light, high-contrast dark).
 
@@ -752,7 +752,7 @@ The geometry is strict and quiet. Everything snaps to the **mini-unit** grid (`-
 
 ## 2. Token Architecture
 
-Zeta tokens form three layers. Each layer may only reference the layer directly beneath it.
+Zebra Design System tokens form three layers. Each layer may only reference the layer directly beneath it.
 
 | Layer | Lives in | Holds | Example |
 |---|---|---|---|
@@ -795,7 +795,7 @@ In dark mode the same chain resolves through `colors-dark.state-primary-hover`.
 
 ## 3. Color Palette & Roles
 
-Zeta uses a **two-tier token model**:
+The Zebra Design System uses a **two-tier token model**:
 1. **Primitives** (frontmatter `primitives`): 10 hue ramps (cool, warm, blue, green, red, orange, purple, yellow, teal, pink) × 10 steps, where 10 is the lightest and 100 the darkest in light mode, plus `--color-pure-0` / `--color-pure-1000`. A second set (`primitives-dark`) *inverts* every ramp for dark mode. Primitives are for reference only and are never used directly.
 2. **Semantics** (frontmatter `colors`): role tokens (`main-*`, `surface-*`, `border-*`, `state-*`) that point at primitive steps. Products and components only use semantics, never raw values.
 
@@ -984,7 +984,7 @@ Substitute the frontmatter values when sending these prompts to Stitch.
 - Start monochrome (white, greys, graphite), then add blue **only** to the one primary action or selected state per region.
 - When adding status, use the `*-subtle` tint as the background, the coloured `--border-*` hairline and a coloured icon, and keep the text `--main-default`.
 - Keep every radius at `--radius-minimal` unless the element is a pill (chips, avatar, FAB "full" → `--radius-full`) or a sheet top (`--radius-large`).
-- If something looks heavy, remove shadows before removing borders; Zeta prefers hairlines.
+- If something looks heavy, remove shadows before removing borders; the system prefers hairlines.
 - For the dark theme, swap to the `colors-dark` values of the same tokens. Don't invent new hues.
 
 ---
