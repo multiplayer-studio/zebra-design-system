@@ -6,8 +6,8 @@ Describe a screen in plain English and Claude builds a clickable prototype using
 
 ## Step 1: Set up (one time)
 
-1. **Unzip `zebra-prototyping.zip`.**
-   - **Mac:** double-click the `.zip` file. A `zebra-prototyping` folder appears next to it.
+1. **Unzip `zebra-design-system-prototyping.zip`.**
+   - **Mac:** double-click the `.zip` file. A `zebra-design-system-prototyping` folder appears next to it.
    - **Windows:** right-click the `.zip`, choose **Extract All…**, then **Extract**.
 2. **Move the unzipped folder somewhere easy to find**, like Documents. Don't work from inside the `.zip` file.
 3. **Open the Claude desktop app** and sign in. If you don't have it yet, download it from [claude.com/download](https://claude.com/download).
@@ -17,7 +17,7 @@ Describe a screen in plain English and Claude builds a clickable prototype using
 ## Step 2: Open the folder in Claude
 
 1. In the Claude app, open a new chat.
-2. Click on the button with the folder icon above the prompt input to select your working directory and choose the unzipped `zebra-prototyping` folder.
+2. Click on the button with the folder icon above the prompt input to select your working directory and choose the unzipped `zebra-design-system-prototyping` folder.
 3. If Claude asks for permission to work in the folder, click **Allow**.
 
 ---
@@ -47,7 +47,7 @@ After each change you ask for, the prototype updates in the pane.
 
 ## Step 5: Come back later
 
-Close the app whenever you like. Your prototypes are saved in the `prototypes` folder inside `zebra-prototyping`, one folder per prototype. There's already one there, `showcase`, that shows every component; say **"Open the showcase prototype"** to look around. To pick up where you left off, open the same folder again (Step 2) and say: **"Open the prototype I made earlier"** or name it, like **"Open the login prototype."**
+Close the app whenever you like. Your prototypes are saved in the `prototypes` folder inside `zebra-design-system-prototyping`, one folder per prototype. There's already one there, `showcase`, that shows every component; say **"Open the showcase prototype"** to look around. To pick up where you left off, open the same folder again (Step 2) and say: **"Open the prototype I made earlier"** or name it, like **"Open the login prototype."**
 
 ---
 
