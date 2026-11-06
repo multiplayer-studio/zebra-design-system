@@ -4,6 +4,8 @@ Everything produced from this design system is a **prototype**. Its purpose is t
 
 **Jira:** at the start of every new prototype, read and follow [`PROTOTYPING.JIRA.md`](PROTOTYPING.JIRA.md). It asks for a Jira ticket, reads it through the `zebra-jira` MCP, and posts the result back.
 
+**Figma:** when a prototype is done, read and follow [`PROTOTYPING.FIGMA.md`](PROTOTYPING.FIGMA.md). It offers to send the prototype to a Figma file, asks for the link to put it in, and uses the Figma MCP.
+
 ## Stack
 
 Every prototype is a static HTML, CSS and JS app. Do not use any other framework or build tool. The tokens from `DESIGN.md` and the component files are already written out as CSS custom properties in `tokens.css` (see Tokens in CSS), with names identical to the docs so every value can be traced back to its source.
