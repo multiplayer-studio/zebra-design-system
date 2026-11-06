@@ -19,6 +19,7 @@ def write_zip(out, prefix, folders, files, renames, claude):
     """folders/files copy as-is; renames maps repo path -> zip path; claude is the text of the shipped CLAUDE.md."""
     with zipfile.ZipFile(os.path.join(ROOT, out), 'w', zipfile.ZIP_DEFLATED) as z:
         for folder in folders:
+            z.write(os.path.join(ROOT, folder), os.path.join(prefix, folder))  # dir entry, so an empty folder still ships
             for dirpath, dirnames, filenames in os.walk(os.path.join(ROOT, folder)):
                 dirnames.sort()
                 for name in sorted(filenames):
