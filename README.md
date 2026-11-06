@@ -105,6 +105,7 @@ Copy the whole folder into the product repo as `design-system/` and follow [`AGE
 - Generate the token file, never hand-write it. Keep component tokens as aliases so modes flow through.
 - Build bottom-up from the docs. Each component's Properties table is its API, and every documented state and size gets implemented.
 - Screens use library components plus layout tokens only. They never restyle a component.
+- The agent spots layouts repeated across screens and offers to write them as templates in `templates/{project_name}/`.
 - Every change goes **docs first, then code, then log**, in one piece of work. `propose` entries in `CHANGES.md` are offered back upstream.
 
 ---

@@ -14,6 +14,7 @@ design-system/
   atoms/           one .md per component
   molecules/
   organisms/
+  templates/       page-level layouts, one folder per project: templates/{project_name}/ (you write these, see Templates)
   icons.json       the only valid icon names, keyed by ligature name (generated)
   tokens.css       every token as a CSS custom property (generated)
   scripts/         tokens-css.py and icons-json.py, the generators for the two files above
@@ -66,9 +67,28 @@ Work bottom-up. Before building a component, build (or find) everything in its `
 
 ## Building a screen
 
-- Screens are made only of library components plus layout. Layout uses semantic `spacing`, `layout` and `typography` tokens (`DESIGN.md` §6).
+- Screens are made only of library components plus layout. Start from a matching template in `templates/{project_name}/` if one exists. Layout uses semantic `spacing`, `layout` and `typography` tokens (`DESIGN.md` §6).
 - Screens never style a component. No overriding colours, sizes or radii from the outside, no wrapper that restyles a child. If a screen needs a component to look or behave differently, that's a design-system change (below).
 - Icons come only from `icons.json` (each key is an icon's ligature name), via the Icon atom (`atoms/icon.md`). The icon font is package `@zebra-fed/zeta-icons`, at the version in the `DESIGN.md` frontmatter. `icons.json` is generated from that package by `scripts/icons-json.py`; rerun it when the version changes, and never edit it by hand. Use the sharp set for sharp-shaped components and the round set otherwise.
+
+## Templates
+
+A **template** is the atomic-design level above organisms: a page-level layout (regions and the library components that fill them), with placeholder content. It lives in `templates/{project_name}/<template-name>.md`.
+
+**Use them.** Before building a screen, check `templates/{project_name}/`. If a template fits, build the screen from it.
+
+**Spot them.** While you build or read screens, notice when two or more screens share the same arrangement of library components (e.g. a header, a filter row and a data table; a centred form in a card with a primary action). That is a template candidate.
+
+**Offer, don't push.**
+- Ask at a natural stopping point, after finishing the task, never mid-task. One short question naming the pattern and the screens it appears on: "Screens A, B and C share this layout. Want me to write it as a template in `design-system/templates/{project_name}/`?"
+- Write nothing until the developer says yes. If they decline, don't ask about that pattern again.
+- Take `{project_name}` from the project's own name (package or repo name) and confirm it the first time.
+
+**Write it** as a doc in the same format as the component files, with `level: template`, `status`, and `composes:` listing every organism, molecule and atom it uses (paths relative to the template file, e.g. `../../organisms/data-table.md`). Sections: Anatomy (each region and the component, variant and size that fills it), Layout (regions, and only semantic `spacing` and `layout` tokens, as references), Usage (when to use it, which screens use it). Add a `tokens:` block only for layout values the template itself owns, as references.
+
+A template contains only existing library components. If it needs something that doesn't exist, follow the next section first.
+
+Writing a template changes the design system: log it in `CHANGES.md` (Type: new template, Files: the template path, Upstream: `propose` if other projects would benefit, else `project-only`). Templates are docs only; screens stay in the project's code.
 
 ## When something is missing or doesn't fit
 
@@ -96,7 +116,7 @@ The developer may change the system to fit the project. Every change goes **docs
 
    ```markdown
    ## YYYY-MM-DD: <short title>
-   - Type: new component | new variant | new token | token change | context override | fix
+   - Type: new component | new template | new variant | new token | token change | context override | fix
    - Files: atoms/button.md, DESIGN.md (frontmatter: colors)
    - Why: <the project need, in one or two sentences>
    - Upstream: propose | project-only
@@ -135,3 +155,4 @@ The `CHANGES.md` log is what makes the sync possible.
 - [ ] All documented variants, states and sizes are implemented
 - [ ] Token file regenerated, and it renders correctly in light, dark and high contrast
 - [ ] Docs, code, `LIBRARY.md` and `CHANGES.md` all updated in the same change
+- [ ] Offered to write a template if screens repeated a layout
