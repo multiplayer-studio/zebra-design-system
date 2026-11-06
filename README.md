@@ -20,13 +20,15 @@ The docs are the specification. Every colour, size, space, radius, shadow, font 
 | [`icons.json`](icons.json) | **Generated.** The 715 valid icon names from `@zebra-fed/zeta-icons` 1.9.8, keyed by ligature name, with label, category and search terms. |
 | [`scripts/`](scripts/) | Maintainer scripts: the two generators for the files above, and the two zip bundlers (`prototyping-zip.py`, `production-zip.py`, sharing `_bundle.py`). |
 | [`prototypes/`](prototypes/) | HTML prototypes. [`showcase/`](prototypes/showcase/index.html) renders the components in every theme. |
-| [`templates/`](templates/) | Templates shipped in both zips. Currently empty. |
+| [`templates/`](templates/) | Page-level layout templates, one folder per project (`templates/{project_name}/`). The agent offers to write them in both modes (see `AGENTS.md` and `PROTOTYPE.md`). Shipped in both zips. |
 | [`PRODUCTION.CLAUDE.md`](PRODUCTION.CLAUDE.md) | Template `CLAUDE.md` for consuming projects. The zip scripts ship it as `CLAUDE.md` with one section kept. |
 | [`CLAUDE.md`](CLAUDE.md) | Instructions for working on this repo: keep every doc, generated file and zip in sync with each change. Not shipped in the zips. |
 | [`AGENTS.md`](AGENTS.md) | Guide for agents building a **production** component library from these docs. |
 | [`PROTOTYPE.md`](PROTOTYPE.md) | Guide for building **throwaway HTML prototypes** from these docs. |
+| [`PROTOTYPING.JIRA.md`](PROTOTYPING.JIRA.md) | Prototyping add-on: asks for a Jira ticket, reads and comments on it through the `zebra-jira` MCP, and explains how to set the MCP up. Referenced from `PROTOTYPE.md`; prototyping zip only. |
 | [`PROTOTYPING.README.md`](PROTOTYPING.README.md) | Plain-English setup guide for people who only build prototypes. Shipped as `README.md` inside the prototyping zip. |
 | [`zebra-design-system-prototyping.zip`](zebra-design-system-prototyping.zip) | **Generated.** The prototyping kit to hand to someone who only builds prototypes. |
+| [`zebra-design-system-production.zip`](zebra-design-system-production.zip) | **Generated.** The production kit to drop into a product repo as `design-system/`. |
 
 The full component list, grouped by level and purpose, is in [`DESIGN.md` §8 Component Index](DESIGN.md#8-component-index-atomic).
 
@@ -141,12 +143,12 @@ Only maintainers run these scripts. They need Python 3 with the standard library
 |---|---|---|
 | `python3 scripts/tokens-css.py` | any change to the `DESIGN.md` frontmatter or a component's `tokens:` | `tokens.css` |
 | `python3 scripts/icons-json.py [version]` | changing the `icons` version in the `DESIGN.md` frontmatter (needs internet; verifies the npm tarball's integrity) | `icons.json` |
-| `python3 scripts/prototyping-zip.py` | regenerating either file above, or changing the docs, prototypes, `PRODUCTION.CLAUDE.md`, `PROTOTYPE.md` or `PROTOTYPING.README.md` | `zebra-design-system-prototyping.zip` |
+| `python3 scripts/prototyping-zip.py` | regenerating either file above, or changing the docs, prototypes, `PRODUCTION.CLAUDE.md`, `PROTOTYPE.md`, `PROTOTYPING.JIRA.md` or `PROTOTYPING.README.md` | `zebra-design-system-prototyping.zip` |
 | `python3 scripts/production-zip.py` | regenerating either file above, or changing the docs, `PRODUCTION.CLAUDE.md` or `AGENTS.md` | `zebra-design-system-production.zip` |
 
 Never edit `tokens.css`, `icons.json` or the zips by hand. Commit them (and the zips) after regenerating, so consumers never need tooling.
 
-`zebra-design-system-prototyping.zip` is the kit to hand to someone who only builds prototypes. It holds a single `zebra-design-system-prototyping/` folder containing `atoms/`, `molecules/`, `organisms/`, `prototypes/`, `templates/`, `DESIGN.md`, `PROTOTYPE.md`, `icons.json` and `tokens.css`. It also includes `CLAUDE.md` (from `PRODUCTION.CLAUDE.md`, prototypes section only), and `PROTOTYPING.README.md` saved as `README.md`. Run the script after regenerating the token or icon files, so the zip carries the latest versions.
+`zebra-design-system-prototyping.zip` is the kit to hand to someone who only builds prototypes. It holds a single `zebra-design-system-prototyping/` folder containing `atoms/`, `molecules/`, `organisms/`, `prototypes/`, `templates/`, `DESIGN.md`, `PROTOTYPE.md`, `PROTOTYPING.JIRA.md`, `icons.json` and `tokens.css`. It also includes `CLAUDE.md` (from `PRODUCTION.CLAUDE.md`, prototypes section only), and `PROTOTYPING.README.md` saved as `README.md`. Run the script after regenerating the token or icon files, so the zip carries the latest versions.
 
 `zebra-design-system-production.zip` is the kit to drop into a project repo. It holds a `zebra-design-system-production/` folder with one `design-system/` folder inside (the name `AGENTS.md` expects), so you can copy that inner folder straight into the project. It contains `atoms/`, `molecules/`, `organisms/`, `templates/`, `DESIGN.md`, `AGENTS.md`, `icons.json`, `tokens.css`, the two generators in `scripts/`, and `CLAUDE.md` (production-builds section only).
 

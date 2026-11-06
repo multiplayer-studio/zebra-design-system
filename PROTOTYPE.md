@@ -2,11 +2,13 @@
 
 Everything produced from this design system is a **prototype**. Its purpose is to communicate design concepts, not to ship. It will be rebuilt as production code later.
 
+**Jira:** at the start of every new prototype, read and follow [`PROTOTYPING.JIRA.md`](PROTOTYPING.JIRA.md). It asks for a Jira ticket, reads it through the `zebra-jira` MCP, and posts the result back.
+
 ## Stack
 
 Every prototype is a static HTML, CSS and JS app. Do not use any other framework or build tool. The tokens from `DESIGN.md` and the component files are already written out as CSS custom properties in `tokens.css` (see Tokens in CSS), with names identical to the docs so every value can be traced back to its source.
 
-**Claude desktop is the only software needed to build and view a prototype.** Never ask the user to install, or run, Python, Node, npm or any script. `tokens.css` and `icons.json` are generated files that are already committed; only whoever maintains the design system regenerates them (see Generated files below).
+**Claude desktop is the only software needed to build and view a prototype.** Never ask the user to install, or run, Python, Node, npm or any script. The one exception is the optional Jira setup in `PROTOTYPING.JIRA.md`. `tokens.css` and `icons.json` are generated files that are already committed; only whoever maintains the design system regenerates them (see Generated files below).
 
 Prototypes must work when opened by double-click (`file://`), with no server and no Node. That means:
 - Always create prototypes in the `prototypes/` folder at the project root, each in its own folder (`prototypes/<name>/index.html`), and never anywhere else. Create the folder if it's missing.
@@ -23,6 +25,7 @@ Prototypes need an internet connection to load those fonts.
 | `DESIGN.md` frontmatter | All raw values. Semantic groups: `colors`, `colors-dark`, `colors-high-contrast`, `spacing`, `rounded`, `border`, `elevation`, `font-family`, `font-weight`, `typography`, `motion`, `layout`, `opacity` and `dimensions`. |
 | `DESIGN.md` body | Rules, the token architecture (§2), layout principles and usage guidance |
 | `atoms/`, `molecules/`, `organisms/` `*.md` | One file per component, with anatomy, variants, states, sizing, properties, usage and its `tokens:` block |
+| `templates/{project_name}/*.md` | Page-level layouts saved from earlier prototypes (see Templates) |
 | `tokens.css` | Every token as a CSS custom property, generated from `DESIGN.md` and the component files |
 | `icons.json` | The only valid icon names. Each key is the ligature name to use in the markup; the value gives its label, category and search terms. |
 
@@ -99,6 +102,23 @@ A component's `composes:` list says which other components it is built from. Rea
 - Build a composite from its children as the component file describes it, e.g. "Icon Button, outline-subtle, medium". Then apply the composite's own tokens and context overrides on top.
 - Only use the variants, sizes, states and anatomy the component file lists.
 - **Draft components** (`status: draft`, marked † in the `DESIGN.md` index) have no measurements yet. If a prototype needs one, use only the tokens it defines and its composed children. Lay out the rest with the `spacing` scale, and say in the prototype and in your reply that its measurements are placeholders.
+
+## Templates
+
+A **template** is the atomic-design level above organisms: a page-level layout (regions and the components that fill them), with placeholder content. It lives in `templates/{project_name}/<template-name>.md`, next to `prototypes/`.
+
+**Use them.** Before building a prototype, check `templates/`. If a template fits, build the screen from it.
+
+**Spot them.** Notice when the designer has produced a layout that other screens or projects could reuse: the same arrangement of components across two or more prototypes, or one screen that is a common pattern (e.g. a header, a filter row and a data table; a centred form in a card with a primary action; a list with a detail pane). That is a template candidate.
+
+**Offer, don't push.**
+- Ask at a natural stopping point, after finishing the request, never mid-task. One short question naming the pattern and where it appears: "The login and reset-password prototypes share this layout. Want me to save it as a template?"
+- If they say yes, ask for the project name and use it as `{project_name}` (lowercase, hyphenated). Reuse it for later templates in the same project, and confirm it if unsure.
+- Write nothing until the designer says yes. If they decline, don't ask about that pattern again.
+
+**Write it** as a Markdown doc in the same format as the component files, with `level: template`, `status: draft`, and `composes:` listing every organism, molecule and atom it uses (paths relative to the template file, e.g. `../../organisms/data-table.md`). Sections: Anatomy (each region and the component, variant and size that fills it), Layout (regions, and only semantic `spacing` and `layout` tokens, as references), Usage (when to use it, which prototypes use it). Add a `tokens:` block only for layout values the template itself owns, as references.
+
+A template contains only existing components. Never invent one for it; if it needs something missing, say so instead. A template is a doc, not a prototype: the prototype stays in `prototypes/`.
 
 ## Fonts
 

@@ -33,6 +33,8 @@ Type what you want in the message box, in plain English. For example:
 Tips:
 - Say what the screen is for and who will use it. The more context, the better the result.
 - Ask for changes the same way: *"Make the button full width"* or *"Add a message for when there are no results."*
+- If your screen uses a common layout, Claude may offer to save it as a **template** so later prototypes can reuse it. Say yes and give your project name, or say no.
+- Claude will ask if there's a **Jira ticket** for the prototype. Give the key (like `PROJ-123`) or say no. If Jira isn't connected yet, Claude explains how to set it up.
 - If Claude asks to edit a file or run something, click **Allow**. You can choose **Always allow** to stop being asked.
 
 ---
