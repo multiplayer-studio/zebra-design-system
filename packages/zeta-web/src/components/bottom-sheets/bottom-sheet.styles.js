@@ -27,7 +27,7 @@ export default css`
     flex-direction: column;
     align-items: stretch;
     padding-bottom: var(--space-card);
-    background: var(--surface-sheet);
+    background: var(--surface-overlay);
     border-top-right-radius: var(--radius-container);
     border-top-left-radius: var(--radius-container);
     max-height: var(--bottom-sheet-max-height, 90vh);
@@ -61,7 +61,7 @@ export default css`
     position: relative;
     display: flex;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     color: var(--foreground-primary);
     padding: var(--space-sm) var(--space-lg);
     font: var(--text-title-medium);
@@ -87,7 +87,7 @@ export default css`
     display: flex;
     flex-direction: column;
     justify-content: stretch;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     padding: var(--space-md) var(--space-lg);
   }
 

@@ -88,14 +88,14 @@ export default css`
   #action-items slot,
   #menu-items,
   #menu-items slot {
-    gap: var(--space-2xs);
+    gap: var(--space-3xs);
   }
 
   /* The account control: the neutral interactive grounds of _User Profile. */
   #user-info-button::part(button) {
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     height: var(--control-md);
-    padding: var(--space-xxs) var(--space-sm);
+    padding: var(--space-2xs) var(--space-sm);
     background-color: var(--interactive-neutral-background-default);
   }
   #user-info-button:focus-within::part(button) {
@@ -127,7 +127,7 @@ export default css`
 
   /*Style avatar icon*/
   #avatar {
-    margin-inline: var(--space-xxs);
+    margin-inline: var(--space-2xs);
     /* The avatar's white initials fall to 2:1 on the dark mode swatch. */
     --avatar-initials-color: var(--foreground-inverse);
   }

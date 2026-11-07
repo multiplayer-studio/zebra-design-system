@@ -10,10 +10,10 @@ Source: [Badges page](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Messag
 
 | Prop | Type | Values | Default |
 |---|---|---|---|
-| `label` | string |  | `Label` |
+| `label` | string | | `Label` |
 | `variant` | enum | `neutral`, `info`, `positive`, `warning`, `negative` | `neutral` |
 | `shape` | enum | `rounded`, `sharp` | `rounded` |
-| `bold` | boolean |  | `true` |
+| `bold` | boolean | | `true` |
 | `outlined` | boolean | applies only when `bold` is false | `false` |
 
 **label**: The category name, in one or two words.
@@ -51,7 +51,7 @@ Bold and Outlined combine into three forms, not four. Bold=true with Outlined=tr
 
 | Part | Kind | Details |
 |---|---|---|
-| `root` | container | Fill: A background per Variant, solid on the bold form and a tint on the other two. Border: Visible only on the outlined form. The same bound stroke sits on the plain form at zero weight, held as a theming hook. · radius: radius/element-sm (rounded) · radius/none (sharp) · layout: horizontal; gap space/2xs; padding space/xxs · stroke: stroke/thin (bold, outlined) · stroke/base (plain) |
+| `root` | container | Fill: A background per Variant, solid on the bold form and a tint on the other two. Border: Visible only on the outlined form. The same bound stroke sits on the plain form at zero weight, held as a theming hook. · radius: radius/element-sm (rounded) · radius/none (sharp) · layout: horizontal; gap space/3xs; padding space/2xs · stroke: stroke/thin (bold, outlined) · stroke/base (plain) |
 | `label` | text | The category name, set through Label. It decides the width of the whole component. · text: style body/xsmall; colour per variant on bold, foreground/primary otherwise |
 
 ## Variants
@@ -84,7 +84,7 @@ Outlined decides whether the stroke shows. Everything else is shared.
 
 | shape | radius | figmaNode |
 |---|---|---|
-| rounded | radius/element-sm |  |
+| rounded | radius/element-sm | |
 | sharp | radius/none | 6404:310 |
 
 ## Tokens & theming
@@ -138,11 +138,11 @@ Every token resolves in the export (surface/subtle added on 2026-10-22).
 | Property | Type | Description |
 |---|---|---|
 | Size | Hug width, fixed height | 24 tall on the outlined and plain forms and 26 on bold, the difference being a 1px stroke drawn inside the box rather than centred on its edge. The width hugs the text in every form. |
-| Padding and gap | Fixed | space/xxs on all four sides, with a space/2xs gap held for anything placed beside the text. |
+| Padding and gap | Fixed | space/2xs on all four sides, with a space/3xs gap held for anything placed beside the text. |
 | Radius | Per Shape | radius/element-sm when rounded and radius/none when sharp. Softer than a pill, so it reads as a block of text rather than as a token. |
 | Fill | Per Variant and emphasis | bold takes feedback/info, success, warning or error at background/strong, with neutral on foreground/secondary. The other two forms take the matching background/subtle, with neutral on surface/subtle. |
 | Border | Per emphasis | outlined draws a 1px stroke centred on the edge, border/strong for neutral and the matching border token otherwise. The plain form carries that same bound stroke at zero weight, which is a theming hook rather than an absent border, so a high contrast set can give every label an edge. bold's stroke matches its own fill. |
-| Label | Theming | body/xsmall at 12px in every form. bold knocks the text out of its fill, foreground/inverse on neutral and the matching foreground token elsewhere, while the other two hold foreground/primary. |
+| Label | Theming | body/xsmall in every form. bold knocks the text out of its fill, foreground/inverse on neutral and the matching foreground token elsewhere, while the other two hold foreground/primary. |
 
 ## Visual reference
 
@@ -161,5 +161,5 @@ Every token resolves in the export (surface/subtle added on 2026-10-22).
 - *tokens/ (export)*: surface/subtle was missing from tokens/. Added on 2026-10-22 as `{palette.fill.sunken}`, matching Figma's VariableID:6680:11902, and the CSS layer regenerated.
 - *api (emphasis)*: Bold=true with Outlined=true is not built. In code Bold wins and Outlined has no effect while Bold is true.
 - *tokens/ (contrast, Light)*: White text on info, positive and warning strong fills measures 4.40, 4.47 and 4.34:1, below 4.5:1 at 12px; negative is 5.19:1. Bold form only. Acknowledged by the owner.
-- *metadata Layout vs structure*: The space/2xs gap has only one child, so it has no effect today. The metadata says it is "held for anything placed beside the text".
+- *metadata Layout vs structure*: The space/3xs gap has only one child, so it has no effect today. The metadata says it is "held for anything placed beside the text".
 - *metadata*: Positive and negative are the design names; the tokens are success and error. No motion and no interaction states. The set has no description.

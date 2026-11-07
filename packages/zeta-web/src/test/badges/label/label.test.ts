@@ -59,10 +59,10 @@ describe("zeta-label", () => {
       await expect(subject.getBoundingClientRect().height).to.equal(24);
     });
 
-    it("pads by space/xxs and rounds by radius/element-sm", async () => {
+    it("pads by space/2xs and rounds by radius/element-sm", async () => {
       const style = getComputedStyle(container(subject));
       const v = (name: string) => getComputedStyle(subject).getPropertyValue(name).trim();
-      await expect(style.paddingLeft).to.equal(v("--space-xxs"));
+      await expect(style.paddingLeft).to.equal(v("--space-2xs"));
       await expect(style.borderTopLeftRadius).to.equal(v("--radius-element-sm"));
       subject.rounded = false;
       await elementUpdated(subject);

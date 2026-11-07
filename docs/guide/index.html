@@ -1,0 +1,1319 @@
+<title>Zebra DS Playbook</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="dist/zds.css">
+<script>
+  // The viewer's theme drives Zebra's own mode classes, so the page and every zds-* element follow it.
+  (function () {
+    var root = document.documentElement;
+    function sync() {
+      var chosen = root.getAttribute("data-theme");
+      var dark = chosen === "dark" || (chosen !== "light" && matchMedia("(prefers-color-scheme: dark)").matches);
+      root.classList.toggle("mode-dark", dark);
+      root.classList.toggle("mode-light", !dark);
+    }
+    sync();
+    matchMedia("(prefers-color-scheme: dark)").addEventListener("change", sync);
+    new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+  })();
+</script>
+<script src="dist/zds.js" defer></script>
+<style>
+  /* Layout: a brand band, then a fixed index of playbooks beside one long page. Each playbook has the same
+     anatomy, so a returning reader always finds the prompt, the example and the sign-off in the same place.
+     Colour, space and type come from Zebra's semantic tokens, and colour always means something: playbook
+     heads are brand and locked to Dark, prompts are brand tint, terminal commands are dark and sign-off is green. */
+  :root {
+    --bg: var(--surface-page);
+    --panel: var(--surface-subtle);
+    --fg: var(--foreground-primary);
+    --muted: var(--foreground-secondary);
+    --line: var(--border-subtle);
+    --accent: var(--foreground-link);
+    --brand: var(--interactive-primary-background-default);
+    --on-brand: var(--foreground-on-strong);
+    --stripe: color-mix(in srgb, var(--foreground-on-strong) 9%, transparent);
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  }
+  .mode-light { color-scheme: light; }
+  .mode-dark { color-scheme: dark; }
+  body { background: var(--bg); color: var(--fg); font: var(--text-body-medium); }
+  * { box-sizing: border-box; }
+
+  .shell {
+    display: grid;
+    grid-template-columns: 232px minmax(0, 1fr);
+    gap: 56px;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-block: 56px 96px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .brand { position: relative; overflow: hidden; background: var(--brand); color: var(--on-brand); }
+  /* The 45 degree stripes of the logo's head, faded out before they reach the text. */
+  .brand::after {
+    content: ""; position: absolute; inset: 0 0 0 45%; pointer-events: none;
+    background: repeating-linear-gradient(135deg, var(--stripe) 0 22px, transparent 22px 44px);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 70%);
+    mask-image: linear-gradient(90deg, transparent, #000 70%);
+  }
+  .brand-inner {
+    position: relative; z-index: 1; display: grid; gap: 40px; max-width: 1280px; margin-inline: auto;
+    padding-block: 32px 64px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .brand-bar { display: flex; align-items: center; gap: 16px; font: var(--text-label-large); }
+  .brand-bar span { padding-left: 16px; border-left: 1px solid var(--stripe); }
+  .logo { display: block; width: 112px; height: auto; }
+  .brand-copy { display: grid; gap: 16px; max-width: 720px; }
+  .brand-copy p { max-width: 60ch; }
+  .brand-copy code { background: var(--stripe); padding: 1px 5px; border-radius: 4px; }
+  .brand .lede { color: inherit; }
+  .stamp { font: var(--text-body-small); }
+
+  .index { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; display: grid; gap: 4px; }
+  .index p { margin: 0 0 8px; padding-inline: 12px; font: var(--text-label-small); color: var(--muted); }
+  .index a {
+    display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px;
+    color: var(--fg); text-decoration: none; font: var(--text-label-medium);
+  }
+  .index a zds-icon { color: var(--foreground-secondary); }
+  .index a:hover { background: var(--panel); }
+  .index a[aria-current="true"] { background: var(--surface-inverse); color: var(--foreground-inverse); }
+  .index a[aria-current="true"] zds-icon { color: inherit; }
+  .index a:focus-visible, a:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
+  main { display: grid; gap: 96px; min-width: 0; }
+
+  h1, h2, h3 { margin: 0; text-wrap: balance; }
+  h1 { font: var(--text-display-medium); }
+  h2 { font: var(--text-heading-large); }
+  h3 { font: var(--text-label-large); }
+  p { margin: 0; max-width: 68ch; }
+  code { font-family: var(--mono); font-size: .9em; overflow-wrap: anywhere; }
+  .lede { font: var(--text-body-large); color: var(--muted); }
+  .eyebrow { font: var(--text-label-small); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .stack { display: grid; gap: 24px; min-width: 0; }
+  .note { font: var(--text-body-small); color: var(--muted); }
+
+  /* The pipeline, read left to right */
+  .flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .flow > div { display: grid; gap: 8px; align-content: start; padding: 24px; background: var(--surface-brand); border: 1px solid var(--border-info); border-radius: 12px; min-width: 0; }
+  .flow strong { font: var(--text-label-large); display: flex; gap: 10px; align-items: center; }
+  .flow zds-icon { color: var(--accent); }
+  .flow span { font: var(--text-body-small); color: var(--muted); }
+
+  /* One playbook */
+  .plays { gap: 96px; }
+  .play { display: grid; gap: 40px; scroll-margin-top: 24px; }
+  /* Locked to Dark, so every element inside reads on the brand fill in either page theme. */
+  .play-head { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 20px; padding: 28px; border-radius: 12px; background: var(--brand); color: var(--on-brand); }
+  .play-mark { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--stripe); color: var(--on-brand); }
+  .play-head zds-badge-label::part(root) { background: transparent; }
+  .play-text { display: grid; gap: 12px; min-width: 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .columns { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; }
+  ol.do { margin: 0; padding: 0; list-style: none; counter-reset: step; display: grid; gap: 24px; align-content: start; }
+  ol.do > li { counter-increment: step; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 4px 8px; min-width: 0; }
+  ol.do > li::before { content: counter(step); font: var(--text-label-large); color: var(--accent); font-variant-numeric: tabular-nums; }
+  ol.do > li > * { grid-column: 2; }
+  ol.do > li > :first-child { grid-column: 2; grid-row: 1; }
+
+  .lead { display: grid; gap: 16px; padding: 28px; border: 1px solid var(--border-info); border-radius: 12px; background: var(--surface-info); min-width: 0; }
+  .lead .eyebrow { margin: 0; }
+  .lead h3 { font: var(--text-heading-small); }
+  .lead h4 { margin: 8px 0 0; font: var(--text-label-large); }
+  .lead-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 32px; }
+  .stages { margin: 4px 0; padding: 0; list-style: none; counter-reset: stage; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .stages li { counter-increment: stage; display: grid; gap: 4px; align-content: start; padding: 16px; border-radius: 8px; background: var(--surface-page); min-width: 0; }
+  .stages li::before { content: "Stage " counter(stage); font: var(--text-label-small); color: var(--accent); }
+  .stages strong { font: var(--text-label-large); }
+  .stages span { font: var(--text-body-small); color: var(--muted); }
+  .why { margin: 0; padding-left: 20px; display: grid; gap: 6px; max-width: 72ch; }
+  .lead-steps strong { font: var(--text-label-large); }
+  .steps-title { font: var(--text-heading-small); margin-bottom: -16px; }
+  .block { position: relative; margin-top: 8px; border-radius: 8px; min-width: 0; }
+  .block.say { background: var(--surface-brand); border: 1px solid var(--border-info); color: var(--foreground-primary); }
+  .block.run { background: var(--surface-subtle); color: var(--foreground-primary); }
+  .block small { display: block; padding: 14px 56px 0 16px; font: var(--text-label-small); color: var(--foreground-link); }
+  .block pre { margin: 0; padding: 6px 56px 16px 16px; overflow-x: auto; font: 13px/1.6 var(--mono); }
+  .block.say pre { white-space: pre-wrap; overflow-wrap: anywhere; font: var(--text-body-small); }
+  .block zds-icon-button { position: absolute; top: 8px; right: 8px; }
+
+  .example { display: grid; gap: 20px; align-content: start; padding: 24px; background: var(--surface-card); border: 1px solid var(--line); border-radius: 12px; min-width: 0; }
+  .example > .eyebrow { margin: 0; }
+  .row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .wrap-x { overflow-x: auto; }
+  table.plain { border-collapse: collapse; width: 100%; font: var(--text-body-small); }
+  table.plain th { text-align: left; font: var(--text-label-small); color: var(--muted); }
+  table.plain th, table.plain td { padding: 10px 16px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 6px; border: 1px solid var(--line); }
+  td.tab { font-family: var(--mono); font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  .scope { display: grid; gap: 16px; padding: 20px; border-radius: 8px; background: var(--surface-page); color: var(--foreground-primary); border: 1px solid var(--border-subtle); }
+  .controls { display: grid; gap: 12px; }
+  .glyphs { display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: 12px; }
+  .glyphs figure { margin: 0; display: grid; gap: 6px; justify-items: center; text-align: center; font: var(--text-body-xsmall); color: var(--muted); overflow-wrap: anywhere; }
+  .result { display: grid; gap: 12px; }
+
+  /* Tabs: the playbooks, and Figma Status. Both panels share the shell's width and gutters. */
+  .tabs-wrap, .status-panel {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .tabs-wrap { padding-top: 24px; }
+  .tabs-wrap zds-tab-bar { max-width: 480px; }
+  .status-panel { display: grid; gap: 32px; padding-block: 48px 96px; }
+  .status-panel[hidden], .shell[hidden] { display: none; }
+  .status-head { display: grid; gap: 8px; max-width: 760px; }
+  .status-sums { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .status-key { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 0; padding: 0; list-style: none; color: var(--muted); }
+  .status-key strong { color: var(--fg); font: var(--text-label-medium); }
+  .status-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: -16px; }
+  .todo-list { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; max-width: 960px; }
+  .todo {
+    display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 16px 24px; align-items: start;
+    padding: 20px 24px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-card);
+  }
+  .todo-text { display: grid; gap: 6px; min-width: 0; }
+  .todo-text h3 { margin: 0; font: var(--text-title-medium); }
+  .todo-text p { margin: 0; color: var(--muted); }
+  .todo-text .todo-meta { font: var(--text-body-xsmall); color: var(--muted); }
+  .todo-add { display: grid; gap: 16px; max-width: 560px; padding: 24px; border-radius: 12px; background: var(--panel); }
+  .todo-add[hidden], .todo-list:empty { display: none; }
+  .todo-add h3 { margin: 0; font: var(--text-title-medium); }
+  #todo-progress { max-width: 480px; }
+  @media (max-width: 620px) {
+    .todo { grid-template-columns: minmax(0, 1fr); padding: 16px; }
+  }
+  .fig-cell { display: flex; align-items: center; gap: var(--space-sm); min-width: 0; }
+  .fig-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fig-spec { display: inline-flex; color: var(--foreground-tertiary); }
+  .fig-spec.has-spec { color: var(--foreground-success); }
+  @media (max-width: 620px) {
+    .status-sums { grid-template-columns: minmax(0, 1fr); }
+    .status-panel { padding-block: 32px 64px; }
+  }
+
+  .signoff { display: grid; gap: 12px; align-content: start; }
+  .signoff > div { display: grid; gap: 8px; }
+  .signoff.ok { padding: 24px; border: 1px solid var(--border-success); border-radius: 12px; background: var(--surface-success); }
+  .footnote { padding: 32px; border-radius: 12px; background: var(--surface-warning); }
+
+  @media (max-width: 1000px) {
+    .shell { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 32px 64px; }
+    main, .plays { gap: 72px; }
+    .index { position: static; display: flex; overflow-x: auto; padding-bottom: 8px; }
+    .index p { display: none; }
+    .index a { white-space: nowrap; flex: none; background: var(--panel); }
+    .columns, .lead-steps, .stages { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 620px) {
+    .flow { grid-template-columns: minmax(0, 1fr); }
+    h1 { font: var(--text-display-small); }
+    .brand::after { display: none; }
+    .brand-inner { gap: 28px; padding-block: 24px 40px; }
+    .play-head { grid-template-columns: minmax(0, 1fr); padding: 20px; gap: 12px; }
+    .example, .signoff.ok, .footnote, .lead { padding: 16px; }
+  }
+</style>
+
+<header class="brand">
+  <div class="brand-inner">
+    <div class="brand-bar"><svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 121 40" fill="currentColor" role="img" aria-label="Zebra">
+  <defs>
+    <clipPath id="a" clipPathUnits="userSpaceOnUse">
+      <path d="M0 792h1224V0H0Z" />
+    </clipPath>
+  </defs>
+  <path d="M25.94 20.55 23.2 17.8v7.79h2.75Z" />
+  <g clip-path="url(#a)" transform="matrix(.2222 0 0 -.2222 -75.5 107.79)">
+    <path
+      d="M407.08 429.98h30.17l-12.34 12.33-.05.06H409a20.4 20.4 0 0 1-1.92 40.7v-40.75l-33.9 33.79a61 61 0 0 1-10.56-6.97l32.08-31.95v-70.17l24.77-24.77v17.51l-12.39 12.39Z" />
+    <path
+      d="m419.47 429.9-.06-59.82h12.38l.06 47.38zm42.5-24.84-12.39 12.38h-17.73l12.37-12.38Zm-79.66-26.39v53.29l-28.45 28.45a62 62 0 0 1-6.98-10.55l23.04-23.04V409.3l-27.95 27.97a62 62 0 0 1-2.1-15.42s41.05-41.74 42.44-43.18m-42.23 25.46v-17.51l79.4-79.39v17.51zm141.32-18.48h-12.39v-15.66h-12.38a20.4 20.4 0 1 1 40.8 0zm100.88-15.92-9.3-17.67h-57.87l37.63 72.3h-33.32l9.3 17.67h57.88l-37.64-72.3Zm33.61 36.28h29.68v-17.67h-29.68v-18.61h29.68v-17.67h-51.53v89.97h51.53v-17.67h-29.68Zm62.24-38.31h7.96c9.17 0 13.09 3.1 13.09 10.4 0 4.3-1.62 7.41-4.86 9.17-2.43 1.34-4.59 1.61-11.2 1.61h-4.99Zm0 37.1h5.4c9.98 0 14.16 3.1 14.16 10.52 0 7.29-4.18 10.39-14.43 10.39h-5.13Zm8.9 37.23c11.47 0 18.08-1.22 22.94-4.32 6.2-3.77 9.98-11.46 9.98-20.1 0-6.33-2.03-11.6-6.07-15.64-2.57-2.7-4.59-3.92-9.44-5.26 5.53-1.22 7.95-2.43 10.79-5.13 4.04-3.77 6.07-9.04 6.07-15.65 0-8.36-3.38-15.78-9.18-19.69-4.45-2.97-9.84-4.18-19.01-4.18h-36.83v89.97zm71.62-42.89c8.9 0 14.3 4.58 14.3 12.4 0 7.42-5.27 12.55-12.95 12.55h-8.37v-24.95Zm-7.02-47.08h-21.85v89.97h29.14c11.87 0 20.5-2.16 26.43-6.74 6.2-4.86 9.72-12.95 9.72-22.8 0-13.76-5.8-22.8-17.4-27.38l19.82-33.05h-26.16l-19.7 34.8zm80.01 35.39 9.04 28.8 9.02-28.8Zm29.15-35.4h23.71l-29.54 89.98h-27.79l-29.67-89.97h23.04l5.55 17.7h29.16z" />
+  </g>
+</svg><span>Design System</span></div>
+    <div class="brand-copy">
+      <h1>Manager's Playbook</h1>
+      <p class="lede">What to do when something changes in the design system: when to act, what to tell Claude Code, what you should see, and how to sign it off.</p>
+      <p>Every control on this page is a real <code>zds-*</code> component built from the project's source, using its own tokens and icon font.</p>
+      <p class="stamp" id="stamp" hidden></p>
+    </div>
+  </div>
+</header>
+
+<div class="tabs-wrap">
+  <zds-tab-bar id="tabs" flavour="condensed" label="Sections" value="playbooks">
+    <zds-tab-item value="playbooks" label="Playbooks"></zds-tab-item>
+    <zds-tab-item value="figma-status" label="Figma Status"></zds-tab-item>
+    <zds-tab-item value="todo" label="Project Todos"></zds-tab-item>
+  </zds-tab-bar>
+</div>
+
+<div class="shell" id="panel-playbooks">
+  <nav class="index" id="index" aria-label="Playbooks"><p>Playbooks</p></nav>
+
+  <main>
+    <section class="stack" aria-label="How the system works">
+      <div class="flow" aria-label="How work moves through the system">
+        <div><strong><zds-icon name="palette" size="small"></zds-icon>1. Design in Figma</strong><span>Tokens, icons and component pages are the source of design.</span></div>
+        <div><strong><zds-icon name="layers" size="small"></zds-icon>2. Export to the repo</strong><span>Skills read Figma into <code>tokens/</code>, <code>packages/icons/</code> and <code>specs/</code>. They never write back.</span></div>
+        <div><strong><zds-icon name="check-circle" size="small"></zds-icon>3. Build three libraries</strong><span><code>web-components</code>, <code>react-baseui</code> and <code>zeta-web</code> share tokens, icons and specs, but no component code.</span></div>
+      </div>
+    </section>
+
+    <section class="stack" id="find" aria-labelledby="find-title">
+      <div>
+        <h2 id="find-title">What just happened?</h2>
+        <p class="note">Find the situation, then select its row to jump to the playbook.</p>
+      </div>
+      <zds-table id="triggers" caption="Situations and the playbook for each" shape="rounded"></zds-table>
+    </section>
+
+    <div id="plays" class="stack plays"></div>
+
+    <section class="stack footnote" id="gaps" aria-labelledby="gaps-title">
+      <h2 id="gaps-title">Known gaps</h2>
+      <p class="note">Checked on 7 November 2026. Expect these to come up when you run the playbooks.</p>
+      <div class="wrap-x">
+        <table class="plain">
+          <thead><tr><th>Gap</th><th>What it means for you</th></tr></thead>
+          <tbody>
+            <tr><td>AAA in <code>web-components</code></td><td>Avatar initials and System Banner fail. React already has both fixes.</td></tr>
+            <tr><td>AAA in <code>zeta-web</code></td><td>Same two failures, and legacy components ignore AAA modes until they move to Zebra tokens.</td></tr>
+            <tr><td>Condensed extension</td><td>The tokens exist, but no Storybook toolbar offers it yet.</td></tr>
+            <tr><td>Stepper</td><td>Built from <code>specs/stepper</code> in all three packages. Grey rail-step labels are below AA contrast, as designed.</td></tr>
+            <tr><td>Published library</td><td>Behind the Figma file: <code>surface/overlay</code> and <code>surface/shade</code> aren't published yet, so Figma rebuilds still bind <code>surface/dialog</code> for overlays.</td></tr>
+            <tr><td>Inline Banner</td><td>Built from <code>specs/inline-banner</code> in all three packages; in <code>zeta-web</code> it is the refined <code>zeta-in-page-banner</code>. White text on solid neutral, and on solid warning in dark mode, is below AA contrast.</td></tr>
+            <tr><td>Help popovers</td><td>Figma's help popover, a white card with a title and paragraphs, has no component. Tooltip takes one short line, so pages build it from a Card.</td></tr>
+<tr><td>Input clear control</td><td>Input always shows its clear (close) control while you type in a field with a value. It needs a prop to turn it off.</td></tr>
+<tr><td>Block behaviour</td><td>Input and Select both take <code>block</code>. Without it, a field starts at 280px and never grows past its container. With it, the field fills the container. For a form column, set the column's width (Figma's 400px, for example) and let the fields fill it. Then switch rows span the same column, and each switch ends where the fields end.</td></tr>
+<tr><td>Header and rail theme lock</td><td>Global Header and Navigation Rail lock their own mode whatever the page's mode. <code>mode</code> and <code>inverse</code> only swap dark for light. They need a prop to follow the page's mode instead.</td></tr>
+<tr><td>Chat, Message Input</td><td>Experimental, with no spec. Not for product use.</td></tr>
+            <tr><td>Automatic releases</td><td><code>CONTRIBUTING.md</code> describes an Nx release setup that isn't in the repo. Commit types are followed, but version bumps aren't automatic yet.</td></tr>
+            <tr><td>Spec noise</td><td>A 7 November review flagged 43 of 48 specs for noise: extraction diaries, resolved issues kept as changelog, the same prose repeated. Corrections are in <code>specs/spec-noise-corrections.md</code>; new spec writing follows <code>specs/spec-writing-guidance.md</code>. The specs themselves are unchanged.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<section class="status-panel" id="panel-figma-status" aria-labelledby="status-title" hidden>
+  <div class="status-head">
+    <h2 id="status-title">Figma Status</h2>
+    <p>Every main component on the Figma file's component pages, and whether each library builds it from a spec. Subcomponents, the sets in a page's Subcomponents frame, are left out.</p>
+    <p class="note" id="status-stamp"></p>
+  </div>
+  <div class="status-sums" id="status-sums"></div>
+  <ul class="status-key">
+    <li><strong>From spec</strong> The library's source names the spec that covers this component.</li>
+    <li><strong>Experimental</strong> Built as an experiment, with no spec. Not for product use.</li>
+    <li><strong>Not from spec</strong> An element of this name exists, but nothing ties it to a spec.</li>
+    <li><strong>Not built</strong> The library has nothing for it.</li>
+  </ul>
+  <div class="status-chips" id="status-chips" role="group" aria-label="Filter by status"></div>
+  <zds-table id="figma-table" caption="Figma components and their build status" shape="rounded"></zds-table>
+</section>
+
+<section class="status-panel" id="panel-todo" aria-labelledby="todo-title" hidden>
+  <div class="status-head">
+    <h2 id="todo-title">Project Todos</h2>
+    <p>The project's main to-dos and where each one stands. A change made here is saved for everyone who opens the playbook.</p>
+    <p class="note" id="todo-note">Loading the list…</p>
+  </div>
+  <zds-progress-bar id="todo-progress" size="small" hidden></zds-progress-bar>
+  <ol class="todo-list" id="todo-list"></ol>
+  <form class="todo-add" id="todo-add" hidden>
+    <h3>Add a to-do</h3>
+    <zds-input-field id="todo-title-input" label="To-do" placeholder="What needs doing" required block></zds-input-field>
+    <zds-input-field id="todo-detail-input" label="Details" placeholder="Optional" block></zds-input-field>
+    <div><zds-button id="todo-add-button" flavour="primary" size="medium" type="submit">Add to-do</zds-button></div>
+    <p class="note" id="todo-add-note" role="status"></p>
+  </form>
+</section>
+
+<zds-snackbar id="toast" variant="contextual" flavour="positive" duration="2000">Copied</zds-snackbar>
+
+<!-- Live examples, one per playbook -->
+<template id="ex-setup">
+  <p class="eyebrow">Example: what success looks like</p>
+  <div class="wrap-x">
+    <table class="plain">
+      <thead><tr><th>Library</th><th>Opens at</th><th>Elements</th></tr></thead>
+      <tbody>
+        <tr><td><code>web-components</code></td><td class="tab">localhost:6007</td><td><code>zds-*</code></td></tr>
+        <tr><td><code>react-baseui</code></td><td class="tab">localhost:6008</td><td><code>&lt;Button&gt;</code></td></tr>
+        <tr><td><code>zeta-web</code></td><td class="tab">localhost:6006</td><td><code>zeta-*</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">If all three load, setup is finished. A missing one tells you which package to reinstall.</p>
+</template>
+
+<template id="ex-review">
+  <p class="eyebrow">Try it: the same controls as the Storybook toolbar</p>
+  <div class="controls">
+    <zds-segmented-control id="c-ext" label="Extension" flavour="text-only"></zds-segmented-control>
+    <zds-segmented-control id="c-mode" label="Mode" flavour="text-only"></zds-segmented-control>
+    <zds-segmented-control id="c-size" label="Breakpoint" flavour="text-only"></zds-segmented-control>
+  </div>
+  <div class="scope" id="scope">
+    <div class="row">
+      <zds-button flavour="primary" size="medium" shape="rounded">Save</zds-button>
+      <zds-button flavour="outline" size="medium" shape="rounded">Cancel</zds-button>
+      <zds-status-label status="positive">Delivered</zds-status-label>
+    </div>
+    <zds-input label="Store name" value="Bristol" block></zds-input>
+  </div>
+  <p class="note">Only a class on the parent changes here: <code id="scope-class">base</code>. Nothing re-renders, which is why a component that hard-codes a colour stands out when you switch.</p>
+</template>
+
+<template id="ex-tokens">
+  <p class="eyebrow">Example: one token, traced end to end</p>
+  <div class="wrap-x">
+    <table class="plain">
+      <tbody>
+        <tr><th>In Figma</th><td><code>interactive/primary/background/default</code></td></tr>
+        <tr><th>In CSS</th><td><code>--interactive-primary-background-default</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="wrap-x"><table class="plain" id="token-values"></table></div>
+  <div class="row"><zds-button flavour="primary" size="medium" shape="rounded">Reads this token</zds-button></div>
+  <p class="note">Values are read live from the built stylesheet. Change the variable in Figma, export, and every button in all three libraries follows with no component edits.</p>
+</template>
+
+<template id="ex-icons">
+  <p class="eyebrow">Example: glyphs from the icon font</p>
+  <div class="glyphs" id="glyphs"></div>
+  <div class="row"><zds-segmented-control id="c-style" label="Icon style" flavour="text-only"></zds-segmented-control></div>
+  <p class="note">Rounded and sharp share one set of codepoints, so switching style swaps the font and never the content. Icons take their colour from the text around them.</p>
+</template>
+
+<template id="ex-spec">
+  <p class="eyebrow">Example: a spec, and the component built from it</p>
+  <p><strong>Notification Indicator</strong> from <code>specs/notification-indicator</code></p>
+  <div class="wrap-x">
+    <table class="plain">
+      <thead><tr><th>size</th><th>Rendered</th><th>Spec says</th></tr></thead>
+      <tbody>
+        <tr><td><code>large</code></td><td><zds-notification-indicator size="large" value="99+"></zds-notification-indicator></td><td>Up to 3 characters</td></tr>
+        <tr><td><code>medium</code></td><td><zds-notification-indicator size="medium" value="2"></zds-notification-indicator></td><td>A single digit</td></tr>
+        <tr><td><code>small</code></td><td><zds-notification-indicator size="small"></zds-notification-indicator></td><td>A plain dot, no count</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">A spec lists names, not values: <code>interactive/destructive/background/default</code>, never a hex code. Its Issues section records what Figma got wrong, so read it before approving a build.</p>
+</template>
+
+<template id="ex-change">
+  <p class="eyebrow">Example: a good request names the fix and the check</p>
+  <div class="row">
+    <zds-button flavour="primary" size="medium" shape="rounded">Primary</zds-button>
+    <zds-button flavour="subtle" size="medium" shape="rounded">Subtle</zds-button>
+    <zds-button flavour="text" size="medium" shape="rounded">Text</zds-button>
+  </div>
+  <p class="note">Hover these. The fill covers the whole button, which is the rule to check: a hover state paints the full surface the spec names, in light and dark.</p>
+  <div class="wrap-x">
+    <table class="plain">
+      <thead><tr><th>Vague</th><th>Clear</th></tr></thead>
+      <tbody>
+        <tr><td>Button looks off</td><td>Button's text flavour hover stops short of the edge in Zeta. Fix it to match web-components.</td></tr>
+        <tr><td>Update the menu</td><td>Rebuild Dropdown Menu from its spec in all three libraries.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<template id="ex-experiment">
+  <p class="eyebrow">Example: which path a component takes</p>
+  <div class="wrap-x">
+    <table class="plain">
+      <thead><tr><th>In code it is</th><th>Figma link is</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>Experimental</td><td>A branch</td><td><zds-status-label status="positive">Builds</zds-status-label></td></tr>
+        <tr><td>Experimental</td><td>Main</td><td><zds-status-label status="negative">Stops</zds-status-label></td></tr>
+        <tr><td>Has a spec</td><td>Either</td><td><zds-status-label status="negative">Stops</zds-status-label></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">A branch link has <code>/branch/</code> in the URL. The skill won't create a branch or build on main, so make the branch in Figma first.</p>
+</template>
+
+<template id="ex-page">
+  <p class="eyebrow">Example: the end of a build report</p>
+  <p class="note">A desktop flow of 19 screens, built in 8m51s.</p>
+  <div class="wrap-x">
+    <table class="plain">
+      <thead><tr><th>Issue</th><th>What happened</th></tr></thead>
+      <tbody>
+        <tr><td><zds-status-label status="warning">Component gap</zds-status-label></td><td>Figma hides the Dialog header icon; Dialog can't, so page CSS hides it.</td></tr>
+        <tr><td><zds-status-label status="info">Token swap</zds-status-label></td><td>Figma binds <code>ink/high</code>; the page uses <code>foreground/primary</code>.</td></tr>
+        <tr><td><zds-status-label status="info">Figma</zds-status-label></td><td>One prompt says delete where the flow adds. The add wording is used.</td></tr>
+        <tr><td><zds-status-label status="neutral">Not designed</zds-status-label></td><td>Link to your data has no screens, so it stays inert.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<template id="ex-rebuild">
+  <p class="eyebrow">Example: where the rebuild goes</p>
+  <p class="note">Claude Code asks once, before it draws anything. The original is never changed.</p>
+  <div class="wrap-x">
+    <table class="plain">
+      <thead><tr><th>Choice</th><th>Use it for</th></tr></thead>
+      <tbody>
+        <tr><td>Beside the original</td><td>One or two screens. Each rebuild sits to the right of its source.</td></tr>
+        <tr><td>New "Rebuild" section</td><td>A section or a flow. Screens keep their original layout, with stage labels and a Local components row.</td></tr>
+        <tr><td>Existing "Rebuild" section</td><td>Adding more screens to a rebuild already started. The section grows to fit.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<template id="ex-checks">
+  <p class="eyebrow">Example: reading a sweep</p>
+  <p class="note">AAA Dark, stories with no contrast failures, sweep of 1 November 2026.</p>
+  <div class="result" id="sweep"></div>
+  <p class="eyebrow">Example: what a failure looks like</p>
+  <div class="scope mode-aaa-dark">
+    <zds-system-banner status="default" heading="Stock synced" show-close="false" open></zds-system-banner>
+  </div>
+  <p class="note">This is the real web component in AAA Dark: white text on a pale fill, about 1.3:1 against the 7:1 AAA needs. The sweep counts this as a failure, and you can see why.</p>
+</template>
+
+<template id="ex-repo">
+  <p class="eyebrow">Example: which branch is for what</p>
+  <div class="wrap-x">
+    <table class="plain">
+      <thead><tr><th>Branch</th><th>Use</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td><code>design/init</code></td><td>All current work: specs, tokens, icons, the three libraries, skills and this playbook</td><td><zds-badge-label variant="positive">Work here</zds-badge-label></td></tr>
+        <tr><td><code>main</code></td><td>Released code. It takes <code>design/init</code> once the team agrees to merge</td><td><zds-badge-label variant="warning">Don't commit</zds-badge-label></td></tr>
+        <tr><td><code>design-updates</code>, <code>tooling/instructions</code></td><td>Old branches, deleted on GitHub</td><td><zds-badge-label variant="neutral">Gone</zds-badge-label></td></tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<template id="ex-ship">
+  <p class="eyebrow">Example: commit messages</p>
+  <div class="wrap-x">
+    <table class="plain">
+      <thead><tr><th>Message</th><th>Meaning</th><th>Version</th></tr></thead>
+      <tbody>
+        <tr><td><code>fix(select): keep focus on close</code></td><td>Bug fix</td><td><zds-badge-label variant="info">Patch</zds-badge-label></td></tr>
+        <tr><td><code>feat(button): add gradient flavour</code></td><td>New feature</td><td><zds-badge-label variant="positive">Minor</zds-badge-label></td></tr>
+        <tr><td><code>feat!(button): rename variant to type</code></td><td>Breaking change</td><td><zds-badge-label variant="warning">Major</zds-badge-label></td></tr>
+        <tr><td><code>docs(guide): update playbook</code></td><td>No code change</td><td><zds-badge-label variant="neutral">None</zds-badge-label></td></tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<script>
+  var PLAYS = [
+    {
+      id: "setup", title: "Set up a machine", icon: "settings", tags: ["Once per person", "Terminal"],
+      when: "A new laptop, or someone new joining the work.",
+      steps: [
+        { text: "Install Node 24, Google Chrome, Python 3 and Claude Code." },
+        { text: "Get the repo, switch to <code>design/init</code>, where all current work happens, and install each library. There is no shared install, so each one runs separately.",
+          run: "git clone https://github.com/zebratechnologies/zebra-design-system.git\ncd zebra-design-system\ngit switch design/init\ncorepack enable\n(cd packages/web-components && pnpm install)\n(cd packages/react-baseui && pnpm install)\n(cd packages/zeta-web && yarn install)" },
+        { text: "Connect the Figma MCP in Claude Code. Every Figma skill relies on it." },
+        { text: "Ask a developer for a Figma token, and save it in <code>.env</code> at the repo root. Never commit that file.",
+          run: "FIGMA_PERSONAL_ACCESS_TOKEN=\nFIGMA_FILE_KEY=hvRmnZZOZrmTW0wf8hbrt5" },
+        { say: "Start all three Storybooks and tell me if any fail." }
+      ],
+      example: "ex-setup",
+      done: ["All three Storybooks open in a browser", "Claude Code can see the Figma file", "`.env` exists and isn't shown in `git status`"],
+      trouble: [
+        ["pnpm: command not found", "Run <code>corepack enable</code> once, then try again."],
+        ["The token export returns a 403", "The Figma token lacks a scope. Tokens need <code>file_variables:read</code> and icons need <code>file_content:read</code>."]
+      ]
+    },
+    {
+      id: "review", title: "Review a component", icon: "visibility", tags: ["You can do this alone", "Storybook"],
+      when: "A designer or developer asks you to check something, or a build is ready for sign-off.",
+      steps: [
+        { text: "Open the same story in each Storybook. The three should match wherever the spec does." },
+        { text: "Use the toolbar to switch Extension, Mode and Breakpoint. Try Light, Dark and Desktop Compact at the least." },
+        { text: "Hover, focus with the Tab key and press each control. Static screenshots never show these states." },
+        { say: "Compare Select across all three Storybooks in light and dark, and list every difference from specs/select." }
+      ],
+      example: "ex-review",
+      done: ["Matches the spec in Light and Dark", "Hover and focus states checked by hand", "Nothing clipped at Desktop Compact"],
+      trouble: [
+        ["A colour doesn't change with the theme", "The component has a hard-coded value. Send it to Change a component."],
+        ["Stories are under Experimental", "They have no spec yet and must not be used in product. See Experimental Figma Build."]
+      ]
+    },
+    {
+      id: "tokens", title: "Refresh tokens", icon: "palette", tags: ["Affects all three libraries", "Claude Code"],
+      when: "Colour, spacing, type, a mode or a brand extension changed in Figma.",
+      steps: [
+        { text: "Check the change is merged to main in Figma. A branch change won't export." },
+        { say: "/zebra-figma-token-export" },
+        { text: "Read the counts and warnings it reports. Warnings are recorded for you, not fixed." },
+        { say: "Rebuild the token CSS in web-components, react-baseui and zeta-web, then run the checks in each." },
+        { text: "Open Storybook and look at something the change should affect." },
+        { say: "/zebra-figma-token-documenter" },
+        { text: "Read what changed and the description audit in its report. Missing or repeated descriptions are reported for you, not fixed." }
+      ],
+      example: "ex-tokens",
+      done: ["Token count matches the Figma collections", "Every manifest warning read", "Checks pass in all three libraries", "The change is visible in Storybook", "The Figma Tokens page is rebuilt and the change is in tokens/_docs/changelog.md"],
+      trouble: [
+        ["There are more tokens in the repo than in Figma", "Figma's API can return deleted variables. The export filters them and lists them in the manifest."],
+        ["A component looks wrong after an export", "A token it used may have been renamed or deleted in Figma. Ask Claude Code which tokens no longer resolve."],
+        ["Someone wants to edit a token in the repo", "Don't. <code>tokens/</code> is generated. Change it in Figma and export again."],
+        ["Someone edits a frame on the Tokens page", "Frames named <code>Docs /</code> are generated, so the next run replaces their contents. Change the token in Figma instead. Sections and headings are safe, and every run keeps the page spacing even."],
+        ["A new theme or brand was added", "It joins the Extensions section on the Tokens page, and the section widens to fit."]
+      ]
+    },
+    {
+      id: "icons", title: "Refresh icons", icon: "star", tags: ["Affects all three libraries", "Claude Code"],
+      when: "Icons were added or renamed on the Figma icon page.",
+      steps: [
+        { say: "Run the icon font inventory with generate:dry and tell me what's new, changed or rejected." },
+        { text: "Review the list. Icons drawn with strokes or several colours can't become glyphs." },
+        { say: "Generate the icon font, then run yarn icons in zeta-web." },
+        { text: "Open <code>packages/icons/preview.html</code> and find the new icons." }
+      ],
+      example: "ex-icons",
+      done: ["Dry run reviewed", "New icons appear in the preview", "No existing icon changed"],
+      trouble: [
+        ["An icon is missing from the font", "It was rejected, usually for strokes or a non-square canvas. Ask the designer to outline it. Rejected icons are listed in <code>inventory.json</code>."],
+        ["Someone wants to rename an icon", "Names and codepoints stay fixed once shipped, so a rename needs a new icon."]
+      ]
+    },
+    {
+      id: "add", title: "Add a component", icon: "add", tags: ["Figma to three libraries", "Claude Code"],
+      when: "A new component is finished in Figma and has a Component Metadata frame.",
+      steps: [
+        { text: "Check the Figma page has a Component Metadata frame. Without it the spec has no usage guidance." },
+        { say: "Create a spec from <Figma page link>" },
+        { text: "Read the blockers and warnings in the spec. A blocker goes back to the designer." },
+        { say: "Build Tooltip from specs/tooltip in web-components, react-baseui and zeta-web. Build subcomponents first." },
+        { text: "Run Review a component on the result." }
+      ],
+      example: "ex-spec",
+      done: ["Spec has no blockers", "Stories exist in all three Storybooks", "Zeta Web has a Docs.mdx page in the component's story folder", "Visual audit screenshots opened", "Zeta spec coverage passes"],
+      trouble: [
+        ["The spec lists a blocker", "It can't be built faithfully yet. Fix it in Figma and extract the spec again."],
+        ["Figma and the spec disagree", "The spec records it under Issues. Decide with the designer, and don't let it be guessed in code."]
+      ]
+    },
+    {
+      id: "change", title: "Change a component", icon: "edit", tags: ["Bug or design update", "Claude Code"],
+      when: "There's a bug in a library, or a component's Figma page changed.",
+      steps: [
+        { text: "If Figma changed, refresh the spec first, so the code has the right target." },
+        { say: "Update the spec for <Figma page link>" },
+        { text: "Say which libraries, what's wrong and how you'll check it." },
+        { say: "Fix the Select hover fill in zeta-web so it covers the whole row, then check it with hover screenshots in light and dark." },
+        { text: "Run Review a component." }
+      ],
+      example: "ex-change",
+      done: ["Spec updated if the design changed", "Fix checked in light and dark", "Same fix considered for the other two libraries"],
+      trouble: [
+        ["It's fixed in one library but not the others", "The libraries share no component code. Ask for the same fix in each."],
+        ["A change would rename or remove a property", "That's a breaking change. Zeta keeps legacy defaults where changing them would break users, so agree it first."]
+      ]
+    },
+    {
+      id: "experiment", title: "Experimental Figma Build", icon: "layers", tags: ["Figma branch only", "Claude Code"],
+      when: "You have an idea to prove out before committing it to the library, or an experiment in code is ready for design to refine.",
+      lead: {
+        title: "Why experiment, and how to go about it",
+        intro: "An experiment lets you learn from something working before it becomes part of the system. It moves through three stages.",
+        stages: [
+          ["Explore in code", "Try the idea quickly and see if it holds up."],
+          ["Refine in Figma", "Design reviews and improves what you learned."],
+          ["Ingest as a component", "It gets a spec and joins all three libraries."]
+        ],
+        why: [
+          "The idea depends on behaviour or motion a static frame can't show, like Message Input's voice states.",
+          "Nothing in the library fits yet, and you need to find the right shape, as with Chat.",
+          "You want to test it on a real page or with real content before spending design time on it."
+        ],
+        steps: [
+          ["Use what exists", "Compose it from existing components and semantic tokens. A value with no token is a gap to report, not one to hard-code."],
+          ["Build it in React", "It goes in <code>packages/react-baseui/src/components/&lt;name&gt;</code>, where the current experiments live."],
+          ["Mark it", "Put an <code>EXPERIMENTAL</code> note at the top of the component and its CSS, and title its story <code>Experimental/&lt;Name&gt;</code>. The Figma build stops without these."],
+          ["Show every state", "Add a story for each state. The Figma build uses the stories as its list of what to draw."]
+        ],
+        say: "Build an experimental Order Summary component in react-baseui. Use only existing components and semantic tokens, mark it EXPERIMENTAL, add an Experimental/Order Summary story for every state, and list any missing tokens."
+      },
+      stepsTitle: "When the exploration is done, refine it in Figma",
+      steps: [
+        { text: "Check the exploration is finished: the idea has settled, every state has a story, and the team wants to keep it. If not, keep exploring or drop it." },
+        { text: "Create a branch in Figma and copy a link to the target page." },
+        { say: "Build the experimental Chat component into Figma on <Figma branch link>" },
+        { text: "Review the boards with design. Say yes when asked about a metadata frame if it's going forward." },
+        { text: "Once design has refined and merged it, ingest it as a proper component: follow Add a component, then remove the experiment and its story." }
+      ],
+      example: "ex-experiment",
+      done: ["Marked EXPERIMENTAL, with a story under `Experimental/`", "Exploration finished and worth keeping", "Boards built on the branch", "Gaps reported with no new variables added", "Design has refined and merged it", "Ingested through Add a component"],
+      trouble: [
+        ["It refuses to build", "Check the link contains <code>/branch/</code> and the component is marked experimental."],
+        ["It has no permission for the file", "The branch may not be shared with the connected Figma account."]
+      ]
+    },
+    {
+      id: "page", title: "Build a Figma page", icon: "dashboard", tags: ["Flow to Storybook", "Claude Code"],
+      when: "A flow or screen is designed in Figma and you want to click through it, built only from the library.",
+      steps: [
+        { text: "Copy a link to the Figma section that holds the flow." },
+        { say: "Zebra-builder-skill: build this flow in a page called <Page name> <Figma section link>" },
+        { text: "Claude Code reads the screens, exports the images, composes the page from library components and tokens, and checks it in a browser. Text styles, variants and colours follow Figma exactly, at the frame's own size and brand extension." },
+        { text: "Sheets, dialogs, menus and toasts animate in and out even though Figma shows only end states, and turn off with reduced motion." },
+        { text: "Read the report at the end. It gives the build time, what took longest, and the issues: component gaps worked around with page CSS, token swaps, Figma inconsistencies and screens that aren't designed." },
+        { text: "Open the page in React Storybook under <code>Experimental/Pages</code> and click through each branch." },
+        { text: "Take component gaps to Change a component if the library should handle them. The skill never changes a component on its own." }
+      ],
+      example: "ex-page",
+      done: ["Every screen and branch reachable", "Text sizes match Figma", "Overlays animate", "No console errors", "Report read and gaps passed on"],
+      trouble: [
+        ["Something in Figma has no matching component", "It's composed from library parts and reported. If it repeats across pages, it may be a new component."],
+        ["A path isn't designed", "It stays disabled and is listed in the report. Ask design for the screen rather than letting it be invented."],
+        ["Images are missing", "The export reads the Figma token from <code>.env</code>. Check it's there."]
+      ]
+    },
+    {
+      id: "rebuild", title: "Rebuild a design in Zebra", icon: "swap", tags: ["Figma only", "Claude Code"],
+      when: "A screen or flow in Figma uses an old library, or none, and should be made from the Zebra library.",
+      steps: [
+        { text: "Copy a link to the frame, the frame of screens, or the section. Every screen in it is rebuilt." },
+        { say: "Rebuild this design with the Zebra Design System <Figma link>" },
+        { text: "Answer where the rebuild goes: beside the original, a new Rebuild section, or an existing one." },
+        { text: "Claude Code rebuilds each screen in the same file from Zebra components, semantic tokens and text styles. Blocks the library doesn't have become local components made from Zebra parts." },
+        { text: "Two checks run before it reports: an audit that flags anything not from the system, and a side-by-side comparison with the original." },
+        { text: "Read the report: differences from the original, gaps, and up to six recommendations. Pick any to implement; they go on a copy so the faithful rebuild stays." }
+      ],
+      example: "ex-rebuild",
+      done: ["Every screen in the link rebuilt", "Audit clean", "Each screen compared with its original", "Differences and gaps listed", "Recommendations answered"],
+      trouble: [
+        ["A Zebra component won't import", "It isn't published yet, or the file doesn't have the Zebra library enabled. Enable it in the file's libraries."],
+        ["The rebuild uses an older token name", "The published library is behind the file. Publish it, then ask Claude Code to re-point the rebuild."],
+        ["A block has no Zebra match", "It becomes a local component from Zebra parts and is listed as a gap. If it repeats across products, it may be a new component."]
+      ]
+    },
+    {
+      id: "checks", title: "Run quality checks", icon: "contrast", tags: ["Before sign-off", "Claude Code"],
+      when: "Before a release, or when someone raises an accessibility or density question.",
+      steps: [
+        { say: "Run pnpm check in web-components and react-baseui, and yarn check in zeta-web." },
+        { say: "Run the AAA contrast sweep on all three Storybooks and report each library's clean stories and root causes." },
+        { say: "Run the Desktop Compact sweep on all three Storybooks and list anything clipped or overflowing." },
+        { text: "Treat a sweep as a list of causes. Many failures usually share a few roots." }
+      ],
+      example: "ex-checks",
+      done: ["Checks pass in all three libraries", "Sweep results recorded", "Each failure has a cause and an owner"],
+      trouble: [
+        ["A sweep can't connect", "Storybook must be running. The sweeps default to port 6021, so they need the right URL passed in."],
+        ["Stories are marked undetermined", "The tool couldn't judge that text, often over an image. Those need a look by eye."],
+        ["Is a pass enough?", "No. Sweeps cover resting states and open menus. Hover, pressed and focus need Review a component."]
+      ]
+    },
+    {
+      id: "repo", title: "Update the repo", icon: "refresh", tags: ["Every working session", "Claude Code"],
+      when: "Before you start work, and whenever someone else has pushed. All current work lives on <code>design/init</code>.",
+      steps: [
+        { text: "Work only on <code>design/init</code>. Nobody commits to <code>main</code> until the team agrees to merge." },
+        { say: "Check I'm on design/init with nothing uncommitted, then pull the latest from GitHub." },
+        { text: "Or in the terminal:", run: "git switch design/init\ngit pull" },
+        { say: "Tell me what changed since my last pull, and whether any library needs a fresh install." },
+        { text: "If a library's lock file changed, reinstall that library before starting its Storybook.",
+          run: "(cd packages/web-components && pnpm install)\n(cd packages/react-baseui && pnpm install)\n(cd packages/zeta-web && yarn install)" },
+        { text: "When your own work is ready, save it back with Commit and ship." }
+      ],
+      example: "ex-repo",
+      done: ["On `design/init`", "`git status` says up to date with `origin/design/init`", "All three Storybooks still start"],
+      trouble: [
+        ["Pull says local changes would be overwritten", "You have uncommitted work. Ask Claude Code to show it, then commit it with Commit and ship or set it aside, before pulling again."],
+        ["The branches have diverged", "Someone pushed while you had unpushed commits. Ask Claude Code to rebase your commits onto <code>origin/design/init</code> and explain any conflicts before it resolves them."],
+        ["You're on another branch", "Old branches such as <code>design-updates</code> are gone from GitHub. Switch back to <code>design/init</code> rather than working there."]
+      ]
+    },
+    {
+      id: "ship", title: "Commit and ship", icon: "check-circle", tags: ["Hard to undo once pushed", "Claude Code"],
+      when: "Work is reviewed and approved.",
+      steps: [
+        { text: "Check the checks passed. Claude Code only commits when you ask it to." },
+        { say: "Show me what's changed and propose commits. Don't commit yet." },
+        { say: "Commit these using Conventional Commits and push to design/init." },
+        { text: "Merging into <code>main</code> happens once, when the team agrees <code>design/init</code> is ready. It isn't part of everyday work." }
+      ],
+      example: "ex-ship",
+      done: ["No secrets, `.env` or `.env` backup files in the diff", "Commit messages follow the format", "Pushed to `origin/design/init`"],
+      trouble: [
+        ["A secret was committed", "Revoke it first, because deleting the file doesn't remove it from history. Copies such as <code>.env_backup</code> count too."],
+        ["Push is rejected", "Someone pushed first. Run Update the repo, then push again."],
+        ["Which scope should it use?", "The component or package, such as <code>button</code> or <code>tokens</code>. Leave it out if unsure."]
+      ]
+    }
+  ];
+
+  var TRIGGERS = [
+    ["A new laptop, or someone joining", "setup"],
+    ["Someone asks you to check a component", "review"],
+    ["A build is ready for sign-off", "review"],
+    ["A colour, spacing or type value changed in Figma", "tokens"],
+    ["A mode or brand extension was added in Figma", "tokens"],
+    ["Icons were added or renamed in Figma", "icons"],
+    ["A new component is finished in Figma", "add"],
+    ["A component's Figma page changed", "change"],
+    ["Someone found a bug in one library", "change"],
+    ["Someone wants to try an idea with no design yet", "experiment"],
+    ["A code experiment needs design review", "experiment"],
+    ["A flow in Figma should be clickable", "page"],
+    ["An old Figma design should use the Zebra library", "rebuild"],
+    ["A design uses another library's components", "rebuild"],
+    ["Someone asks if it's accessible", "checks"],
+    ["A release is coming up", "checks"],
+    ["Starting work for the day", "repo"],
+    ["Someone else pushed changes", "repo"],
+    ["Work is approved", "ship"]
+  ];
+
+  var SWEEP = [
+    ["react-baseui", 389, 389],
+    ["web-components", 305, 356],
+    ["zeta-web", 155, 195]
+  ];
+
+  var KEY = "zebra-playbook-done";
+  function readDone() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
+  function writeDone(v) { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) {} }
+
+  function el(tag, attrs, html) {
+    var node = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function (k) { node.setAttribute(k, attrs[k]); });
+    if (html != null) node.innerHTML = html;
+    return node;
+  }
+
+  function toast(message) {
+    var bar = document.getElementById("toast");
+    bar.textContent = message;
+    bar.open = false;
+    requestAnimationFrame(function () { bar.open = true; });
+  }
+
+  function copyBlock(kind, label, text) {
+    var block = el("div", { class: "block " + kind + (kind === "run" ? " mode-dark" : "") });
+    block.append(el("small", {}, label));
+    var pre = el("pre");
+    pre.textContent = text;
+    var copy = el("zds-icon-button", { flavour: "text", size: "small", shape: "rounded", icon: "copy-file", label: "Copy: " + text.slice(0, 40) });
+    copy.addEventListener("click", function () {
+      var fallback = function () {
+        var range = document.createRange();
+        range.selectNodeContents(pre);
+        var picked = getSelection();
+        picked.removeAllRanges();
+        picked.addRange(range);
+        toast("Selected. Press Copy on your keyboard.");
+      };
+      if (!navigator.clipboard) return fallback();
+      navigator.clipboard.writeText(text).then(function () { toast("Copied"); }, fallback);
+    });
+    block.append(pre, copy);
+    return block;
+  }
+
+  function renderLead(lead) {
+    var panel = el("div", { class: "lead" });
+    panel.append(el("p", { class: "eyebrow" }, "Start here"), el("h3", {}, lead.title), el("p", {}, lead.intro));
+    var stages = el("ol", { class: "stages" });
+    lead.stages.forEach(function (stage) {
+      stages.append(el("li", {}, "<strong>" + stage[0] + "</strong><span>" + stage[1] + "</span>"));
+    });
+    var why = el("ul", { class: "why" });
+    lead.why.forEach(function (reason) { why.append(el("li", {}, reason)); });
+    panel.append(stages, el("h4", {}, "Why it could be needed"), why, el("h4", {}, "How to explore in code"));
+    var list = el("ol", { class: "do lead-steps" });
+    lead.steps.forEach(function (step) {
+      var item = el("li");
+      item.append(el("strong", {}, step[0]), el("span", {}, step[1]));
+      list.append(item);
+    });
+    panel.append(list, copyBlock("say", "Prompt", lead.say));
+    return panel;
+  }
+
+  function renderPlay(play, index) {
+    var link = el("a", { href: "#" + play.id });
+    link.append(el("zds-icon", { name: play.icon, size: "small" }), document.createTextNode(play.title));
+    index.append(link);
+
+    var section = el("section", { class: "play", id: play.id, "aria-labelledby": play.id + "-title" });
+    var head = el("div", { class: "play-head mode-dark" });
+    var mark = el("span", { class: "play-mark" });
+    mark.append(el("zds-icon", { name: play.icon, size: "medium" }));
+    var text = el("div", { class: "play-text" });
+    text.append(el("h2", { id: play.id + "-title" }, play.title));
+    var tags = el("div", { class: "tags" });
+    play.tags.forEach(function (t) {
+      var badge = el("zds-badge-label", { variant: "neutral", outlined: "" }, t);
+      badge.bold = false;
+      tags.append(badge);
+    });
+    text.append(tags, el("p", {}, "<strong>When:</strong> " + play.when));
+    head.append(mark, text);
+    section.append(head);
+
+    if (play.lead) section.append(renderLead(play.lead));
+    if (play.stepsTitle) section.append(el("h3", { class: "steps-title" }, play.stepsTitle));
+
+    var columns = el("div", { class: "columns" });
+    var list = el("ol", { class: "do" });
+    play.steps.forEach(function (step) {
+      var item = el("li");
+      if (step.text) item.append(el("span", {}, step.text));
+      if (step.say) {
+        if (!step.text) item.append(el("span", {}, "Tell Claude Code:"));
+        item.append(copyBlock("say", "Prompt", step.say));
+      }
+      if (step.run) item.append(copyBlock("run", "Terminal", step.run));
+      list.append(item);
+    });
+    columns.append(list);
+
+    var example = el("div", { class: "example" });
+    example.append(document.getElementById(play.example).content.cloneNode(true));
+    columns.append(example);
+    section.append(columns);
+
+    var saved = readDone();
+    var signoff = el("div", { class: "columns" });
+    var done = el("div", { class: "signoff ok" });
+    done.append(el("h3", {}, "Done when"));
+    var boxes = el("div");
+    play.done.forEach(function (text, i) {
+      var key = play.id + i;
+      var box = el("zds-checkbox", { size: "medium" }, text.replace(/`([^`]+)`/g, "<code>$1</code>"));
+      if (saved[key]) box.setAttribute("checked", "");
+      box.addEventListener("change", function () {
+        var now = readDone();
+        now[key] = box.checked;
+        writeDone(now);
+      });
+      boxes.append(box);
+    });
+    done.append(boxes);
+
+    var help = el("div", { class: "signoff" });
+    help.append(el("h3", {}, "If something goes wrong"));
+    var accordion = el("zds-accordion", { selectable: "false", rounded: "" });
+    play.trouble.forEach(function (t, i) {
+      accordion.append(el("zds-accordion-item", { value: play.id + i, heading: t[0] }, t[1]));
+    });
+    help.append(accordion);
+    signoff.append(done, help);
+    section.append(signoff);
+    return section;
+  }
+
+  function segmented(id, options, value, onChange) {
+    var control = document.getElementById(id);
+    control.options = options;
+    control.value = value;
+    control.addEventListener("zds-value-change", function (e) {
+      onChange((e.detail && e.detail.value) || control.value);
+    });
+  }
+
+  function hex(rgb) {
+    var parts = rgb.match(/[\d.]+/g) || [];
+    return "#" + parts.slice(0, 3).map(function (n) { return Math.round(n).toString(16).padStart(2, "0"); }).join("");
+  }
+
+  function setupExamples() {
+    var chosen = { ext: "", mode: "mode-light", size: "" };
+    function apply() {
+      var classes = [chosen.ext, chosen.mode, chosen.size].filter(Boolean).join(" ");
+      document.getElementById("scope").className = "scope " + classes;
+      document.getElementById("scope-class").textContent = classes;
+    }
+    var pick = function (axis) { return function (v) { chosen[axis] = v === "none" ? "" : v; apply(); }; };
+    segmented("c-ext", [{ value: "none", label: "Base" }, { value: "ext-companion", label: "Companion" }, { value: "ext-target", label: "Target" }], "none", pick("ext"));
+    segmented("c-mode", [{ value: "mode-light", label: "Light" }, { value: "mode-dark", label: "Dark" }, { value: "mode-aaa-light", label: "AAA Light" }, { value: "mode-aaa-dark", label: "AAA Dark" }], "mode-light", pick("mode"));
+    segmented("c-size", [{ value: "none", label: "Desktop" }, { value: "bp-desktop-compact", label: "Compact" }, { value: "bp-tablet", label: "Tablet" }, { value: "bp-mobile", label: "Mobile" }], "none", pick("size"));
+    apply();
+
+    var modes = [["Light", "mode-light"], ["Dark", "mode-dark"], ["AAA Light", "mode-aaa-light"], ["AAA Dark", "mode-aaa-dark"]];
+    var table = document.getElementById("token-values");
+    table.append(el("thead", {}, "<tr><th>Mode</th><th>Value</th></tr>"));
+    var body = el("tbody");
+    modes.forEach(function (m) {
+      var probe = el("i", { class: m[1], style: "color:var(--interactive-primary-background-default)" });
+      document.body.append(probe);
+      var value = hex(getComputedStyle(probe).color);
+      probe.remove();
+      body.append(el("tr", {}, "<td>" + m[0] + "</td><td class=\"tab\"><i class=\"swatch\" style=\"background:" + value + "\"></i>" + value + "</td>"));
+    });
+    table.append(body);
+
+    var names = ["alarm", "search", "settings", "person", "warning", "info", "palette", "layers"];
+    var grid = document.getElementById("glyphs");
+    function drawGlyphs(style) {
+      grid.replaceChildren();
+      names.forEach(function (name) {
+        var figure = el("figure");
+        var icon = el("zds-icon", { name: name, size: "large" });
+        icon.iconStyle = style;
+        figure.append(icon, el("figcaption", {}, name));
+        grid.append(figure);
+      });
+    }
+    segmented("c-style", [{ value: "rounded", label: "Rounded" }, { value: "sharp", label: "Sharp" }], "rounded", drawGlyphs);
+    drawGlyphs("rounded");
+
+    var sweep = document.getElementById("sweep");
+    SWEEP.forEach(function (s) {
+      var bar = el("zds-progress-bar", { label: s[0] + ": " + s[1] + " of " + s[2], value: Math.round((s[1] / s[2]) * 100), size: "small" });
+      sweep.append(bar);
+    });
+  }
+
+  function setupTriggers() {
+    var byId = {};
+    PLAYS.forEach(function (p) { byId[p.id] = p.title; });
+    var table = document.getElementById("triggers");
+    // Two columns where they fit. On a phone the playbook sits under the situation, so neither is cut off.
+    var wide = table.parentElement.clientWidth >= 620;
+    var width = table.parentElement.clientWidth;
+    table.columns = wide
+      ? [{ key: "what", header: "What happened", width: Math.round(width * 0.6) }, { key: "play", header: "Playbook", width: Math.round(width * 0.4) }]
+      : [{ key: "what", header: "What happened", width: width }];
+    table.rows = TRIGGERS.map(function (t, i) {
+      var cells = wide ? { what: t[0], play: byId[t[1]] } : { what: { title: t[0], subtitle: byId[t[1]] } };
+      return { key: t[1] + "-" + i, cells: cells };
+    });
+    table.clientSide = true;
+    table.showSearch = true;
+    table.searchPlaceholder = "Search situations";
+    table.hasFooter = false;
+    table.addEventListener("zds-row-click", function (e) {
+      var row = (e.detail && (e.detail.row || e.detail)) || {};
+      var key = row.key || e.detail.rowKey;
+      if (key) goTo(String(key).split("-")[0]);
+    });
+  }
+
+  var links = {};
+  var heldUntil = 0;
+
+  function markCurrent(id) {
+    Object.keys(links).forEach(function (key) { links[key].removeAttribute("aria-current"); });
+    if (links[id]) links[id].setAttribute("aria-current", "true");
+  }
+
+  // Scrolls to a section and keeps its index item marked while the page travels past the others.
+  function goTo(id) {
+    var calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.getElementById(id).scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "start" });
+    markCurrent(id);
+    heldUntil = Date.now() + 1000;
+    try { history.replaceState(null, "", "#" + id); } catch (e) {}
+  }
+
+  var longDate = function (iso) { return new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "long", year: "numeric" }); };
+
+  function showBuild() {
+    fetch("dist/build.json").then(function (r) { return r.json(); }).then(function (build) {
+      var stamp = document.getElementById("stamp");
+      stamp.textContent = "Last updated " + longDate(build.builtAt) + " from commit " + build.commit;
+      stamp.hidden = false;
+      if (build.figma) setupFigmaStatus(build.figma, build);
+    }).catch(function () {});
+  }
+
+  // Figma Status: every Figma component against the three libraries, worked out at build time (figma-status.mjs).
+  var LIBS = [["react", "React"], ["wc", "Web Components"], ["zeta", "Zeta Web"]];
+  var figmaData = null;
+
+  function setupFigmaStatus(figma, build) {
+    figmaData = figma;
+    document.getElementById("status-stamp").textContent =
+      "Figma read on " + longDate(figma.readAt) + ". Code checked at commit " + build.commit + ". " + figma.rows.length + " components.";
+    var sums = document.getElementById("status-sums");
+    sums.textContent = "";
+    LIBS.forEach(function (lib) {
+      var done = figma.rows.filter(function (r) { return r[lib[0]] === "From spec"; }).length;
+      sums.append(el("zds-progress-bar", {
+        label: lib[1] + ": " + done + " of " + figma.rows.length + " from spec",
+        value: Math.round((done / figma.rows.length) * 100),
+        size: "small"
+      }));
+    });
+    if (!document.getElementById("panel-figma-status").hidden) fillFigmaTable();
+  }
+
+  // A component's overall state: positive when all three build it from a spec, neutral when none build it, info between.
+  var STATES = {
+    built: { key: "built", chip: "From spec", icon: "check-mark", fill: "--feedback-success-background-strong", label: "Built in all three libraries" },
+    partial: { key: "partial", chip: "Partly built", icon: "clock", fill: "--feedback-info-background-strong", label: "Partly built" },
+    none: { key: "none", chip: "Not built", icon: "remove", fill: "--feedback-neutral-background-strong", label: "Not built" }
+  };
+  var allFigmaRows = [];
+  var LIB_STATUS = { "From spec": "positive", "Experimental": "warning", "Not from spec": "info", "Not built": "neutral" };
+
+  // Filter chips narrow the table to one or more overall states; none on shows every component.
+  function setupStatusChips(table) {
+    var box = document.getElementById("status-chips");
+    box.textContent = "";
+    // Each chip is a test on a row; a row shows when it passes any chip that is on.
+    var CHIPS = Object.keys(STATES).map(function (key) {
+      return { key: key, label: STATES[key].chip, test: function (r) { return overall(r).key === key; } };
+    }).concat([{ key: "no-spec", label: "No spec", test: function (r) { return !r.spec; } }]);
+    var on = {};
+    var apply = function () {
+      var active = CHIPS.filter(function (c) { return on[c.key]; });
+      table.rows = active.length
+        ? allFigmaRows.filter(function (row, i) { return active.some(function (c) { return c.test(figmaData.rows[i]); }); })
+        : allFigmaRows;
+      table.page = 1;
+    };
+    CHIPS.forEach(function (c) {
+      var count = figmaData.rows.filter(c.test).length;
+      var chip = el("zds-filter-chip", { value: c.key, shape: "rounded" });
+      chip.textContent = c.label + " (" + count + ")";
+      chip.addEventListener("zds-active-change", function (e) { on[c.key] = e.detail.active; apply(); });
+      box.append(chip);
+    });
+  }
+  function overall(r) {
+    var done = LIBS.filter(function (lib) { return r[lib[0]] === "From spec"; }).length;
+    var none = LIBS.every(function (lib) { return r[lib[0]] === "Not built"; });
+    return done === LIBS.length ? STATES.built : none ? STATES.none : STATES.partial;
+  }
+
+  // At the page's full width the six columns add up to the table's width, so it never scrolls sideways there.
+  // The 8px margin covers the table's own border and padding.
+  function figmaColumns(width) {
+    var status = { sortable: true, filterable: true, filterOptions: ["From spec", "Experimental", "Not from spec", "Not built"] };
+    var plan = [
+      [{ key: "component", header: "Component", sortable: true }, 0.26],
+      [{ key: "page", header: "Figma page", sortable: true, filterable: true }, 0.18],
+      [{ key: "spec", header: "Spec", sortable: true, filterable: true, filterOptions: ["Spec", "No spec"], tooltipOnEllipsisOnly: false }, 0.08]
+    ].concat(LIBS.map(function (lib) { return [Object.assign({ key: lib[0], header: lib[1] }, status), 0.16]; }));
+    var left = Math.floor(width) - 8;
+    var total = left;
+    return plan.map(function (p, i) {
+      var w = i === plan.length - 1 ? left : Math.floor(total * p[1]);
+      left -= w;
+      return Object.assign({ width: w }, p[0]);
+    });
+  }
+
+  // Slotted cells: the component with its Icon Indicator, the spec mark, and each library's Status Label.
+  function slotFigmaCells(table) {
+    figmaData.rows.forEach(function (r, i) {
+      var state = overall(r);
+      var cell = el("span", { class: "fig-cell", slot: "cell-fig-" + i + "-component" });
+      var name = el("span", { class: "fig-name" });
+      name.textContent = r.component;
+      cell.append(el("zds-icon-indicator", { icon: state.icon, fill: state.fill, label: state.label, size: "small" }), name);
+      table.append(cell);
+      // Spec: a check when one covers the component (its path in the tooltip and name), a dash when none does.
+      var spec = el("span", { class: "fig-spec", slot: "cell-fig-" + i + "-spec", title: r.spec ? "specs/" + r.spec : "No spec" });
+      spec.append(el("zds-icon", { name: r.spec ? "check-mark" : "remove", size: "small", label: r.spec ? "Spec: specs/" + r.spec : "No spec" }));
+      if (r.spec) spec.classList.add("has-spec");
+      table.append(spec);
+      // Each library's state as a Status Label: positive from spec, warning when experimental, info when built without a spec, neutral when not built.
+      LIBS.forEach(function (lib) {
+        var label = el("zds-status-label", { status: LIB_STATUS[r[lib[0]]], slot: "cell-fig-" + i + "-" + lib[0] });
+        label.textContent = r[lib[0]];
+        table.append(label);
+      });
+    });
+  }
+
+  // Columns are sized from the panel's width, so the table is filled while the panel shows.
+  function fillFigmaTable() {
+    var table = document.getElementById("figma-table");
+    if (!figmaData || table.dataset.filled) return;
+    table.rows = figmaData.rows.map(function (r, i) {
+      return {
+        key: "fig-" + i,
+        cells: { component: r.component, page: r.page, spec: r.spec ? "Spec" : "No spec", react: r.react, wc: r.wc, zeta: r.zeta }
+      };
+    });
+    allFigmaRows = table.rows;
+    table.columns = figmaColumns(table.clientWidth || table.parentElement.clientWidth);
+    slotFigmaCells(table);
+    setupStatusChips(table);
+    table.clientSide = true;
+    table.showSearch = true;
+    table.searchPlaceholder = "Search components";
+    table.pageSize = 25;
+    table.pageSizeOptions = [25, 50, 100];
+    table.dataset.filled = "true";
+  }
+
+  var PANELS = { playbooks: "panel-playbooks", "figma-status": "panel-figma-status", todo: "panel-todo" };
+
+  function showTab(value, fromHash) {
+    if (!PANELS[value]) value = "playbooks";
+    Object.keys(PANELS).forEach(function (key) { document.getElementById(PANELS[key]).hidden = key !== value; });
+    var tabs = document.getElementById("tabs");
+    if (tabs.value !== value) tabs.value = value;
+    if (value === "figma-status") fillFigmaTable();
+    if (!fromHash) { try { history.replaceState(null, "", value === "playbooks" ? location.pathname + location.search : "#" + value); } catch (e) {} }
+  }
+
+  // To do: the project's to-dos, kept in this artifact's shared database (collection "todos") so every viewer sees
+  // the same list and status changes are saved. Rows are data, written by people: always rendered as text.
+  var TODO_STATUSES = [
+    ["not-started", "Not started", "neutral"],
+    ["in-progress", "In progress", "info"],
+    ["blocked", "Blocked", "negative"],
+    ["done", "Done", "positive"]
+  ];
+  var TODO_BY_KEY = {};
+  TODO_STATUSES.forEach(function (t) { TODO_BY_KEY[t[0]] = t; });
+  var todoWritable = true;
+  var todoDocs = [];
+
+  function todoNote(text) { document.getElementById("todo-note").textContent = text; }
+
+  function renderTodos(db) {
+    var list = document.getElementById("todo-list");
+    list.textContent = "";
+    var done = 0;
+    todoDocs.forEach(function (d) {
+      var t = d.data() || {};
+      var status = TODO_BY_KEY[t.status] || TODO_BY_KEY["not-started"];
+      if (status[0] === "done") done++;
+      var item = el("li", { class: "todo" });
+      var text = el("div", { class: "todo-text" });
+      var label = el("zds-status-label", { status: status[2] });
+      label.textContent = status[1];
+      var title = el("h3");
+      title.textContent = String(t.title || "Untitled");
+      text.append(label, title);
+      if (t.detail) { var detail = el("p"); detail.textContent = String(t.detail); text.append(detail); }
+      if (t.updatedAt) { var meta = el("p", { class: "todo-meta" }); meta.textContent = "Updated " + longDate(t.updatedAt); text.append(meta); }
+      var select = el("zds-select", { label: "Status", size: "small" });
+      select.options = TODO_STATUSES.map(function (o) { return { value: o[0], label: o[1] }; });
+      select.value = status[0];
+      select.readonly = !todoWritable;
+      select.addEventListener("zds-value-change", function (e) {
+        var value = e.detail.value;
+        if (!value || value === t.status) return;
+        select.readonly = true;
+        db.doc("todos/" + d.id).update({ status: value, updatedAt: new Date().toISOString() }).catch(function (err) {
+          if (err && err.code === "invalid_argument") { todoWritable = false; todoNote("You can read this list but not change it."); }
+          else todoNote("That change wasn't saved. Try again in a moment.");
+          select.value = status[0];
+          select.readonly = !todoWritable;
+        });
+      });
+      item.append(text, select);
+      list.append(item);
+    });
+    var bar = document.getElementById("todo-progress");
+    bar.hidden = !todoDocs.length;
+    if (todoDocs.length) {
+      bar.setAttribute("label", "Done: " + done + " of " + todoDocs.length);
+      bar.setAttribute("value", String(Math.round((done / todoDocs.length) * 100)));
+    }
+  }
+
+  function setupTodoForm(db) {
+    var form = document.getElementById("todo-add");
+    var titleInput = document.getElementById("todo-title-input");
+    var detailInput = document.getElementById("todo-detail-input");
+    var note = document.getElementById("todo-add-note");
+    var busy = false;
+    form.hidden = false;
+    var add = function (e) {
+      if (e) e.preventDefault();
+      var title = (titleInput.value || "").trim();
+      if (busy) return;
+      if (!title) { titleInput.invalid = true; note.textContent = "Give the to-do a name."; return; }
+      titleInput.invalid = false;
+      busy = true;
+      var order = todoDocs.reduce(function (m, d) { return Math.max(m, Number((d.data() || {}).order) || 0); }, 0) + 1;
+      db.collection("todos").add({
+        title: title, detail: (detailInput.value || "").trim(), status: "not-started", order: order, updatedAt: new Date().toISOString()
+      }).then(function () {
+        titleInput.value = ""; detailInput.value = ""; note.textContent = "Added.";
+      }).catch(function (err) {
+        if (err && err.code === "invalid_argument") { todoWritable = false; form.hidden = true; todoNote("You can read this list but not change it."); }
+        else if (err && err.code === "quota_exceeded") note.textContent = "The list is full. Remove finished to-dos before adding more.";
+        else note.textContent = "That to-do wasn't saved. Try again in a moment.";
+      }).then(function () { busy = false; });
+    };
+    form.addEventListener("submit", add);
+    document.getElementById("todo-add-button").addEventListener("click", add);
+  }
+
+  function setupTodo() {
+    if (!window.claude || !window.claude.use) { todoNote("The to-do list is saved in Claude. Open the playbook there to see and change it."); return; }
+    window.claude.use("db").then(function (db) {
+      if (!db) { todoNote("The to-do list is saved in Claude. Open the playbook there, signed in, to see and change it."); return; }
+      window.claude.use("user").then(function (user) { return user ? user.can("data.write") : null; }).catch(function () { return null; }).then(function (can) {
+        // null means the platform didn't say: keep the controls and let a refused write decide.
+        todoWritable = can !== false;
+        if (todoWritable) setupTodoForm(db);
+        var loading = setTimeout(function () { todoNote("The list can't be reached yet. It will appear when it loads."); }, 10000);
+        db.collection("todos").orderBy("order").onSnapshot(function (snap) {
+          if (!snap.metadata.fromCache) clearTimeout(loading);
+          todoDocs = snap.docs;
+          todoNote(snap.empty ? "No to-dos yet." : snap.size + (snap.size === 1 ? " to-do." : " to-dos.") + (todoWritable ? "" : " You can read this list but not change it."));
+          renderTodos(db);
+        }, function () {
+          clearTimeout(loading);
+          todoNote("The list couldn't be loaded.");
+        });
+      });
+    });
+  }
+
+  function start() {
+    showBuild();
+    document.getElementById("tabs").addEventListener("zds-value-change", function (e) { showTab(e.detail.value); });
+    var fromHash = function () { var tab = location.hash.slice(1); if (tab === "figma-status" || tab === "todo") showTab(tab, true); };
+    fromHash();
+    window.addEventListener("hashchange", fromHash);
+    setupTodo();
+    var index = document.getElementById("index");
+    var plays = document.getElementById("plays");
+    PLAYS.forEach(function (p) { plays.append(renderPlay(p, index)); });
+    var gaps = el("a", { href: "#gaps" });
+    gaps.append(el("zds-icon", { name: "info", size: "small" }), document.createTextNode("Known gaps"));
+    index.append(gaps);
+    setupExamples();
+    setupTriggers();
+    // Marks where the reader is in the index.
+    index.querySelectorAll("a").forEach(function (a) {
+      var id = a.getAttribute("href").slice(1);
+      links[id] = a;
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        goTo(id);
+      });
+    });
+    var spy = new IntersectionObserver(function (entries) {
+      if (Date.now() < heldUntil) return;
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) markCurrent(entry.target.id);
+      });
+    }, { rootMargin: "-20% 0px -70% 0px" });
+    Object.keys(links).forEach(function (id) { spy.observe(document.getElementById(id)); });
+    if (location.hash) {
+      var target = document.getElementById(location.hash.slice(1));
+      if (target) target.scrollIntoView();
+    }
+  }
+  window.addEventListener("DOMContentLoaded", start);
+</script>

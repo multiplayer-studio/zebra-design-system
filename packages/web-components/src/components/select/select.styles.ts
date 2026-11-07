@@ -23,7 +23,9 @@ export default css`
      inherit" also normalises the button's UA weight so both packages match. */
   .field {
     inline-size: 100%;
-    min-inline-size: calc(6 * var(--control-sm));
+    /* --zds-select-field-min-inline-size lowers it where a short value needs
+       little room, such as a table's rows per page. */
+    min-inline-size: var(--zds-select-field-min-inline-size, calc(6 * var(--control-sm)));
     margin: 0;
     font: inherit;
     text-align: start;
@@ -50,7 +52,7 @@ export default css`
   .value {
     flex: 1 1 auto;
     min-inline-size: 0;
-    padding: 0 var(--space-xxs);
+    padding: 0 var(--space-2xs);
     color: var(--zds-input-fg);
     font-family: var(--body-medium-font-family), system-ui, sans-serif;
     font-size: var(--body-medium-font-size);
@@ -96,7 +98,7 @@ export default css`
 
   /* ---- list: Dropdown Menu, Rounded=true -------------------------------- */
   /* A manual popover in the top layer, placed in viewport coordinates by the
-     element: as wide as the field, --space-xxs below it (spec issue 13).
+     element: as wide as the field, --space-2xs below it (spec issue 13).
      Height is capped at the room left in the viewport and scrolls — Figma
      has no cap, but an uncapped list runs off screen. Resets the UA popover
      box. */
@@ -107,17 +109,27 @@ export default css`
     border: 0;
     box-sizing: border-box;
     flex-direction: column;
-    gap: var(--space-2xs);
+    gap: var(--space-3xs);
     padding: var(--space-card);
     overflow-y: auto;
     outline: none;
     color: inherit;
-    background: var(--surface-menu);
+    background: var(--surface-overlay);
     border-radius: var(--radius-element-md);
     box-shadow: var(--shadow-medium-x) var(--shadow-medium-y) var(--shadow-medium-blur) var(--shadow-soft);
   }
   .list:popover-open {
     display: flex;
+  }
+  /* The list is as wide as the field; --zds-select-list-min-inline-size lets
+     it grow to fit its rows when the field is narrow. */
+  .list {
+    min-inline-size: var(--zds-select-list-min-inline-size, auto);
+  }
+  /* compact: Dropdown Menu's compact, a space/xs inset and no gap between rows. */
+  :host([compact]) .list {
+    gap: var(--space-none);
+    padding: var(--space-xs);
   }
   .list:not(:popover-open) {
     display: none;
@@ -131,7 +143,7 @@ export default css`
     align-items: center;
     inline-size: 100%;
     block-size: var(--control-md);
-    padding: var(--space-xxs) var(--space-md);
+    padding: var(--space-2xs) var(--space-md);
     gap: var(--space-sm);
     border: var(--stroke-thin) solid transparent;
     border-radius: var(--radius-sm);
@@ -153,7 +165,7 @@ export default css`
   .item-label {
     flex: 1 1 auto;
     min-inline-size: 0;
-    padding-inline: var(--space-xxs) var(--space-xl);
+    padding-inline: var(--space-2xs) var(--space-xl);
     font-family: var(--label-medium-font-family), system-ui, sans-serif;
     font-size: var(--label-medium-font-size);
     font-weight: var(--label-medium-font-weight);

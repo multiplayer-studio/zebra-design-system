@@ -56,6 +56,21 @@ describe("zeta-select-input (spec)", () => {
       expect(one(el, ".hint-icon")).to.not.exist;
     });
 
+    it("shows the sub label under the label and describes the field with it", async () => {
+      const el = await select();
+      expect(one(el, ".sub-label")).to.not.exist;
+      el.subLabel = "Where the order ships to";
+      await elementUpdated(el);
+      const sub = one(el, ".sub-label");
+      await expect(sub.textContent).to.equal("Where the order ships to");
+      await expect(one(el, ".input").getAttribute("aria-describedby")).to.equal("sub-label");
+      await expect(getComputedStyle(one(el, ".label-group")).rowGap).to.equal(v(el, "--space-xs"));
+      await expect(getComputedStyle(sub).color).to.equal(colorOf(el, "--foreground-secondary"));
+      el.disabled = true;
+      await elementUpdated(el);
+      await expect(getComputedStyle(sub).color).to.equal(colorOf(el, "--foreground-disabled"));
+    });
+
     it("puts a trailing check mark on the selected option only", async () => {
       const el = await select();
       el.value = "2";
@@ -97,7 +112,7 @@ describe("zeta-select-input (spec)", () => {
       await expect(field()).to.equal(400);
     });
 
-    it("sizes the field from control/sm, control/md and control/lg, and stacks the parts space/xxs apart", async () => {
+    it("sizes the field from control/sm, control/md and control/lg, and stacks the parts space/2xs apart", async () => {
       const el = await select();
       await expect(`${one(el, ".input").getBoundingClientRect().height}px`).to.equal(v(el, "--control-md"));
       el.size = "large";
@@ -106,16 +121,16 @@ describe("zeta-select-input (spec)", () => {
       el.size = "small";
       await elementUpdated(el);
       await expect(`${one(el, ".input").getBoundingClientRect().height}px`).to.equal(v(el, "--control-sm"));
-      await expect(getComputedStyle(one(el, ".wrapper")).rowGap).to.equal(v(el, "--space-xxs"));
+      await expect(getComputedStyle(one(el, ".wrapper")).rowGap).to.equal(v(el, "--space-xs"));
     });
 
-    it("opens the options space/xxs below the field, as wide as it", async () => {
+    it("opens the options space/2xs below the field, as wide as it", async () => {
       const el = await select();
       one(el, ".input").click();
       await elementUpdated(el);
       const field = one(el, ".input").getBoundingClientRect();
       const options = one(el, ".options").getBoundingClientRect();
-      await expect(`${options.top - field.bottom}px`).to.equal(v(el, "--space-xxs"));
+      await expect(`${options.top - field.bottom}px`).to.equal(v(el, "--space-2xs"));
       await expect(options.width).to.equal(field.width);
     });
   });
@@ -165,11 +180,11 @@ describe("zeta-select-input (spec)", () => {
       await expect(getComputedStyle(one(el, ".input")).color).to.equal(colorOf(el, "--foreground-primary"));
     });
 
-    it("sits the options on surface/menu with ghost-filled rows", async () => {
+    it("sits the options on surface/overlay with ghost-filled rows", async () => {
       const el = await select();
       el.open = true;
       await elementUpdated(el);
-      await expect(getComputedStyle(one(el, ".options")).backgroundColor).to.equal(colorOf(el, "--surface-menu"));
+      await expect(getComputedStyle(one(el, ".options")).backgroundColor).to.equal(colorOf(el, "--surface-overlay"));
     });
   });
 

@@ -146,7 +146,7 @@ describe("zeta-breadcrumb", () => {
     it("spaces the trail by space/md", () => {
       const list = subject.shadowRoot?.querySelector(".list") as Element;
       expect(getComputedStyle(list).columnGap).to.equal(token(subject, "--space-md"));
-      expect(getComputedStyle(list).rowGap).to.equal(token(subject, "--space-xxs"));
+      expect(getComputedStyle(list).rowGap).to.equal(token(subject, "--space-2xs"));
     });
 
     it("opens the menu space/sm below the control, left aligned", async () => {

@@ -1,0 +1,1084 @@
+{
+  "component": {
+    "name": "Phone Input",
+    "slug": "phone-input",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "7687:1493",
+      "key": "918ac764930b3bb44278f2b073e418068366d5f4",
+      "page": "Phone Input",
+      "pageNodeId": "7682:19850",
+      "metadataFrameId": "7682:21069",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7687-1493",
+      "extractedAt": "2026-11-01",
+      "variantCount": 83,
+      "defaultVariant": "State=default, Size=medium, Shape=rounded, Open=false, Flavour=default",
+      "extractionNote": "Every variant of Input / Phone and _Phone Country read for fill, stroke, weight, padding, height, radius and text style: each state and flavour resolves to one binding across all sizes and shapes. Every Phone Input variant read for its nested instances, which all match its size, shape, state and flavour."
+    }
+  },
+  "summary": "Takes a phone number, with a country picker joined to its start. The picker sets the flag and dial code, and the field groups digits as they are typed. The whole number is available in E.164.",
+  "api": {
+    "state": {
+      "type": "enum",
+      "figmaName": "State",
+      "values": [
+        "default",
+        "invalid",
+        "disabled"
+      ],
+      "default": "default",
+      "controls": [
+        "label",
+        "countryControl",
+        "number",
+        "hint"
+      ],
+      "intent": {
+        "default": "One state across the label, country control, number and hint.",
+        "invalid": "Marks the number, with the reason in the hint. The error stays on while a person corrects it.",
+        "disabled": "Dims every part and takes the country control and number out of the tab order."
+      }
+    },
+    "size": {
+      "type": "enum",
+      "figmaName": "Size",
+      "values": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "default": "medium",
+      "controls": [
+        "countryControl",
+        "number"
+      ],
+      "intent": {
+        "medium": "Fits the field to its surface. Heights are control/md, control/sm and control/lg.",
+        "small": "The tightest, and the only size that also reduces the text.",
+        "large": "For a field that is the main thing on its surface."
+      }
+    },
+    "shape": {
+      "type": "enum",
+      "figmaName": "Shape",
+      "values": [
+        "rounded",
+        "sharp",
+        "full"
+      ],
+      "default": "rounded",
+      "controls": [
+        "countryControl",
+        "number",
+        "countryMenu"
+      ],
+      "intent": {
+        "rounded": "The softened corner, shared by the country control's start and the number's end.",
+        "sharp": "Matches square surfaces.",
+        "full": "A pill, for a field that reads as its own object."
+      }
+    },
+    "flavour": {
+      "type": "enum",
+      "figmaName": "Flavour",
+      "values": [
+        "default",
+        "gradient",
+        "ghost"
+      ],
+      "default": "default",
+      "controls": [
+        "countryControl",
+        "number"
+      ],
+      "intent": {
+        "default": "A bordered field, and the right choice inside a form.",
+        "gradient": "A distinct interaction. The country control takes foreground/gradient/start, where the number's border starts.",
+        "ghost": "No surface or visible border, for a surface that already bounds it."
+      }
+    },
+    "open": {
+      "type": "enum",
+      "figmaName": "Open",
+      "values": [
+        "false",
+        "true"
+      ],
+      "default": "false",
+      "derived": "from the menu being open",
+      "controls": [
+        "countryMenu"
+      ],
+      "intent": {
+        "false": "The country menu is closed. Figma only: derived from the menu, not a prop.",
+        "true": "Shows the country menu below the control."
+      }
+    },
+    "flag": {
+      "type": "enum",
+      "values": [
+        "emoji",
+        "artwork",
+        "icon"
+      ],
+      "default": "emoji",
+      "metadataOnly": true,
+      "controls": [
+        "flag"
+      ],
+      "intent": {
+        "emoji": "Code's default: the country's system emoji flag. Windows shows letters such as US instead.",
+        "artwork": "Real flag artwork, set with flag on a country. It replaces the emoji everywhere, on every platform.",
+        "icon": "Figma's default: the flag glyph, a placeholder. Swap the exposed Flag instance for a flag component."
+      }
+    },
+    "value": {
+      "type": "string",
+      "codeOnly": true,
+      "intent": "National digits, without the dial code."
+    },
+    "onValueChange": {
+      "type": "function",
+      "codeOnly": true,
+      "intent": "Called on every edit and country change, with the digits, the country and the E.164 number."
+    },
+    "country": {
+      "type": "string",
+      "codeOnly": true,
+      "intent": "The selected country's ISO code. defaultCountry sets the first one."
+    },
+    "countries": {
+      "type": "array",
+      "codeOnly": true,
+      "intent": "The countries offered. Each takes code, name, dialCode, format and flag."
+    },
+    "countryLabel": {
+      "type": "string",
+      "codeOnly": true,
+      "intent": "Accessible name of the country control. The selected country follows it."
+    },
+    "name": {
+      "type": "string",
+      "codeOnly": true,
+      "intent": "Submits the number in E.164 under this name."
+    }
+  },
+  "internalVariations": [
+    {
+      "part": "flag",
+      "via": "Icon",
+      "options": "any glyph, or a flag component",
+      "intent": "Takes real flag artwork. Figma only: the default is the flag glyph as a placeholder, so swap in a flag component wherever the real flag matters. In code, pass flag on a country."
+    }
+  ],
+  "contentInputs": [
+    {
+      "part": "number",
+      "input": "value",
+      "sampleCount": 1,
+      "note": "Sample digits, not API."
+    },
+    {
+      "part": "dialCode",
+      "input": "country",
+      "sampleCount": 1,
+      "note": "Sample + 1, fixed text."
+    },
+    {
+      "part": "countryMenu",
+      "input": "countries",
+      "sampleCount": 2,
+      "note": "Two sample rows."
+    }
+  ],
+  "anatomy": [
+    {
+      "id": "root",
+      "kind": "container",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/2xs"
+      },
+      "sizing": "fixed width, hug height"
+    },
+    {
+      "id": "label",
+      "kind": "instance",
+      "ref": "Input Label",
+      "refVariant": "Type=default, Disabled per state",
+      "role": "The field's name."
+    },
+    {
+      "id": "control",
+      "kind": "container",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "none"
+      },
+      "sizing": "width fill; height hug",
+      "note": "Joins countryControl and number edge to edge."
+    },
+    {
+      "id": "countryControl",
+      "kind": "instance",
+      "ref": "_Phone Country",
+      "role": "The flag and chevron. Opens the country menu."
+    },
+    {
+      "id": "number",
+      "kind": "instance",
+      "ref": "Input / Phone",
+      "sizing": "width fill",
+      "role": "The dial code and digits, grouped as they are typed."
+    },
+    {
+      "id": "hint",
+      "kind": "instance",
+      "ref": "Input Hint",
+      "refVariant": "Type per state",
+      "role": "The supporting line, and the reason when invalid."
+    },
+    {
+      "id": "countryMenu",
+      "kind": "instance",
+      "ref": "Dropdown Menu",
+      "refVariant": "Compact=false, Rounded per shape",
+      "visibleWhen": "open",
+      "position": {
+        "mode": "absolute",
+        "anchor": "below countryControl, left aligned"
+      },
+      "note": "Figma only: drawn inside the component. Sample rows are Menu Items."
+    }
+  ],
+  "variants": {
+    "_note": "Cells are token names, except those ending Px, which are measurements of the rendered file.",
+    "state": {
+      "axis": "state",
+      "base": "default",
+      "table": [
+        {
+          "state": "default",
+          "number.state": "filled",
+          "countryControl.state": "default",
+          "label.disabled": "false",
+          "hint.type": "default",
+          "figmaNode": "7687:640"
+        },
+        {
+          "state": "invalid",
+          "number.state": "invalid",
+          "countryControl.state": "default, flavour default on gradient",
+          "label.disabled": "false",
+          "hint.type": "error",
+          "figmaNode": "7687:665"
+        },
+        {
+          "state": "disabled",
+          "number.state": "disabled",
+          "countryControl.state": "disabled",
+          "label.disabled": "true",
+          "hint.type": "disabled",
+          "figmaNode": "7687:690"
+        }
+      ]
+    },
+    "size": {
+      "axis": "size",
+      "base": "medium",
+      "table": [
+        {
+          "size": "small",
+          "height": "control/sm",
+          "text": "body/small",
+          "measuredHeightPx": "36"
+        },
+        {
+          "size": "medium",
+          "height": "control/md",
+          "text": "body/medium",
+          "measuredHeightPx": "40"
+        },
+        {
+          "size": "large",
+          "height": "control/lg",
+          "text": "body/medium",
+          "measuredHeightPx": "48"
+        }
+      ]
+    },
+    "shape": {
+      "axis": "shape",
+      "base": "rounded",
+      "table": [
+        {
+          "shape": "sharp",
+          "countryControl.startRadius": "radius/none",
+          "number.endRadius": "radius/none",
+          "menu.rounded": "false"
+        },
+        {
+          "shape": "rounded",
+          "countryControl.startRadius": "radius/sm",
+          "number.endRadius": "radius/sm",
+          "menu.rounded": "true"
+        },
+        {
+          "shape": "full",
+          "countryControl.startRadius": "radius/pill",
+          "number.endRadius": "radius/pill",
+          "menu.rounded": "not drawn"
+        }
+      ]
+    },
+    "flavour": {
+      "axis": "flavour",
+      "base": "default",
+      "table": [
+        {
+          "flavour": "default",
+          "figmaNode": "7687:640"
+        },
+        {
+          "flavour": "gradient",
+          "figmaNode": "7689:2952"
+        },
+        {
+          "flavour": "ghost",
+          "figmaNode": "7689:3762"
+        }
+      ]
+    },
+    "open": {
+      "axis": "open",
+      "base": "false",
+      "table": [
+        {
+          "open": "false",
+          "countryControl.state": "per state",
+          "figmaNode": "7687:640"
+        },
+        {
+          "open": "true",
+          "countryControl.state": "open",
+          "countryMenu": "Dropdown Menu, More Items off",
+          "measuredMenuPx": "213 x 108",
+          "measuredOffsetPx": "8",
+          "figmaNode": "7687:1269"
+        }
+      ]
+    }
+  },
+  "subcomponents": [
+    {
+      "name": "Input / Phone",
+      "id": "7682:19934",
+      "key": "17c7bc5a53ca6144f215850a38c95dac49fe0416",
+      "private": false,
+      "variantCount": 243,
+      "summary": "",
+      "api": {
+        "size": {
+          "type": "enum",
+          "values": [
+            "large",
+            "medium",
+            "small"
+          ],
+          "default": "medium"
+        },
+        "shape": {
+          "type": "enum",
+          "values": [
+            "sharp",
+            "rounded",
+            "full"
+          ],
+          "default": "rounded"
+        },
+        "state": {
+          "type": "enum",
+          "values": [
+            "enabled",
+            "hover",
+            "focus",
+            "selected",
+            "typing",
+            "filled",
+            "invalid",
+            "read-only",
+            "disabled"
+          ],
+          "default": "enabled"
+        },
+        "flavour": {
+          "type": "enum",
+          "values": [
+            "default",
+            "gradient",
+            "ghost"
+          ],
+          "default": "default"
+        }
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/2xs",
+            "padding": "space/sm block, space/sm start, space/md end",
+            "align": "center"
+          },
+          "radius": "radius/none at the start, per shape at the end",
+          "height": "per size"
+        },
+        {
+          "id": "inputText",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/2xs",
+            "padding": "space/2xs inline"
+          },
+          "sizing": "width fill"
+        },
+        {
+          "id": "dialCode",
+          "kind": "text",
+          "note": "Fixed text, sample + 1."
+        },
+        {
+          "id": "number",
+          "kind": "text",
+          "note": "Sample digits. Grouped with a cursor while focused."
+        },
+        {
+          "id": "clear",
+          "kind": "instance",
+          "ref": "Icon",
+          "glyph": "cancel",
+          "visibleWhen": "state == typing"
+        }
+      ],
+      "variants": {
+        "_note": "Cells are token names. selected and filled follow the Input family.",
+        "state": {
+          "axis": "state",
+          "base": "enabled",
+          "table": [
+            {
+              "state": "enabled",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "interactive/neutral/border/default at stroke/thin",
+              "number.color": "foreground/disabled",
+              "dialCode.color": "foreground/primary"
+            },
+            {
+              "state": "hover",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "interactive/neutral/border/hover at stroke/thin",
+              "number.color": "foreground/disabled",
+              "dialCode.color": "foreground/primary"
+            },
+            {
+              "state": "focus",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "border/focus at stroke/thick, outside",
+              "number.color": "foreground/disabled",
+              "dialCode.color": "foreground/primary"
+            },
+            {
+              "state": "selected",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "border/focus at stroke/thin",
+              "number.color": "foreground/disabled",
+              "dialCode.color": "foreground/primary"
+            },
+            {
+              "state": "typing",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "border/focus at stroke/thin",
+              "number.color": "foreground/primary",
+              "dialCode.color": "foreground/primary"
+            },
+            {
+              "state": "filled",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "interactive/neutral/border/default at stroke/thin",
+              "number.color": "foreground/primary",
+              "dialCode.color": "foreground/primary"
+            },
+            {
+              "state": "invalid",
+              "root.fill": "feedback/error/background/subtle",
+              "root.stroke": "border/error at stroke/thick",
+              "number.color": "foreground/primary",
+              "dialCode.color": "foreground/primary"
+            },
+            {
+              "state": "read-only",
+              "root.fill": "interactive/neutral/background/default",
+              "root.stroke": "border/subtle at stroke/thin",
+              "number.color": "foreground/primary",
+              "dialCode.color": "foreground/primary"
+            },
+            {
+              "state": "disabled",
+              "root.fill": "interactive/neutral/background/disabled",
+              "root.stroke": "interactive/neutral/border/disabled at stroke/thin",
+              "number.color": "foreground/disabled",
+              "dialCode.color": "foreground/disabled"
+            }
+          ]
+        },
+        "flavour": {
+          "axis": "flavour",
+          "base": "default",
+          "table": [
+            {
+              "flavour": "gradient",
+              "state": "enabled, filled",
+              "root.stroke": "gradient paint from Input at stroke/thin"
+            },
+            {
+              "flavour": "gradient",
+              "state": "hover",
+              "root.stroke": "border/gradient/end at stroke/thin"
+            },
+            {
+              "flavour": "gradient",
+              "state": "selected, typing",
+              "root.stroke": "border/gradient/start at stroke/thin"
+            },
+            {
+              "flavour": "gradient",
+              "state": "focus, invalid, read-only, disabled",
+              "root.stroke": "as default"
+            },
+            {
+              "flavour": "ghost",
+              "state": "enabled, filled, hover, selected, typing, read-only",
+              "root.fill": "none",
+              "root.stroke": "stroke/base, with default's colour except enabled and filled, which take interactive/ghost/border/default"
+            },
+            {
+              "flavour": "ghost",
+              "state": "focus",
+              "root.fill": "none",
+              "root.stroke": "border/focus at stroke/thick, outside"
+            },
+            {
+              "flavour": "ghost",
+              "state": "invalid",
+              "root.fill": "feedback/error/background/subtle",
+              "root.stroke": "border/error at stroke/thick"
+            },
+            {
+              "flavour": "ghost",
+              "state": "disabled",
+              "root.stroke": "interactive/ghost/border/disabled at stroke/base"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "_Phone Country",
+      "id": "7687:639",
+      "key": "2cb4ae2a2ef1e22c02202cdba282c0ce590419d6",
+      "private": true,
+      "variantCount": 162,
+      "summary": "",
+      "api": {
+        "size": {
+          "type": "enum",
+          "values": [
+            "large",
+            "medium",
+            "small"
+          ],
+          "default": "large"
+        },
+        "shape": {
+          "type": "enum",
+          "values": [
+            "sharp",
+            "rounded",
+            "full"
+          ],
+          "default": "sharp"
+        },
+        "state": {
+          "type": "enum",
+          "values": [
+            "default",
+            "hover",
+            "pressed",
+            "focus",
+            "open",
+            "disabled"
+          ],
+          "default": "default"
+        },
+        "flavour": {
+          "type": "enum",
+          "values": [
+            "default",
+            "gradient",
+            "ghost"
+          ],
+          "default": "default"
+        }
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/2xs",
+            "padding": "space/none by space/sm",
+            "align": "center"
+          },
+          "sizing": "hug width",
+          "height": "per size",
+          "radius": "per shape at the start, radius/none at the end",
+          "stroke": "stroke/thin on top, bottom and start, none at the end"
+        },
+        {
+          "id": "flag",
+          "kind": "instance",
+          "ref": "Icon",
+          "refVariant": "Size=medium",
+          "glyph": "flag",
+          "note": "Exposed. Figma-only placeholder."
+        },
+        {
+          "id": "chevron",
+          "kind": "instance",
+          "ref": "Icon",
+          "refVariant": "Size=small",
+          "glyph": "expand-more"
+        }
+      ],
+      "variants": {
+        "_note": "Cells are token names. Stroke weight is stroke/thin, stroke/base on ghost, and stroke/thick outside on focus.",
+        "state": {
+          "axis": "state",
+          "base": "default",
+          "table": [
+            {
+              "state": "default",
+              "default.fill": "interactive/neutral/background/default",
+              "default.stroke": "interactive/neutral/border/default",
+              "gradient.stroke": "foreground/gradient/start",
+              "ghost.fill": "none",
+              "ghost.stroke": "interactive/ghost/border/default"
+            },
+            {
+              "state": "hover",
+              "default.fill": "interactive/neutral/background/hover",
+              "default.stroke": "interactive/neutral/border/default",
+              "gradient.stroke": "foreground/gradient/start",
+              "ghost.fill": "interactive/ghost/background/hover",
+              "ghost.stroke": "interactive/ghost/border/default"
+            },
+            {
+              "state": "pressed",
+              "default.fill": "interactive/neutral/background/pressed",
+              "default.stroke": "interactive/neutral/border/default",
+              "gradient.stroke": "foreground/gradient/start",
+              "ghost.fill": "interactive/ghost/background/pressed",
+              "ghost.stroke": "interactive/ghost/border/default"
+            },
+            {
+              "state": "focus",
+              "default.fill": "interactive/neutral/background/default",
+              "default.stroke": "border/focus",
+              "gradient.stroke": "border/focus",
+              "ghost.fill": "none",
+              "ghost.stroke": "border/focus"
+            },
+            {
+              "state": "open",
+              "default.fill": "interactive/neutral/background/selected",
+              "default.stroke": "interactive/neutral/border/default",
+              "gradient.stroke": "foreground/gradient/start",
+              "ghost.fill": "interactive/ghost/background/selected",
+              "ghost.stroke": "interactive/ghost/border/default"
+            },
+            {
+              "state": "disabled",
+              "default.fill": "interactive/neutral/background/disabled",
+              "default.stroke": "interactive/neutral/border/disabled",
+              "gradient.stroke": "interactive/neutral/border/disabled",
+              "ghost.fill": "none",
+              "ghost.stroke": "interactive/ghost/border/disabled"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Input Label",
+      "id": "6329:31743",
+      "spec": "specs/input",
+      "usedAs": "label, Type=default"
+    },
+    {
+      "name": "Input Hint",
+      "id": "6329:31836",
+      "spec": "specs/input",
+      "usedAs": "hint, Type per state"
+    },
+    {
+      "name": "Dropdown Menu",
+      "id": "2666:6863",
+      "spec": "specs/dropdown",
+      "usedAs": "country menu, Compact=false, More Items off"
+    },
+    {
+      "name": "Menu Item",
+      "id": "2402:6508",
+      "spec": "specs/dropdown",
+      "usedAs": "country rows"
+    },
+    {
+      "name": "Template/Dropdown",
+      "id": "2669:10309",
+      "spec": "specs/dropdown",
+      "usedAs": "named by the metadata as the trigger and menu pattern, not instanced on the page"
+    },
+    {
+      "name": "Icon",
+      "id": "2046:15010",
+      "usedAs": "flag placeholder at medium, chevron at small, clear"
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ — names below resolve there; see tokens/manifest.json",
+    "rule": "This spec names tokens only.",
+    "color": [
+      "interactive/neutral/background/default",
+      "interactive/neutral/background/hover",
+      "interactive/neutral/background/pressed",
+      "interactive/neutral/background/selected",
+      "interactive/neutral/background/disabled",
+      "interactive/neutral/border/default",
+      "interactive/neutral/border/hover",
+      "interactive/neutral/border/disabled",
+      "interactive/ghost/background/hover",
+      "interactive/ghost/background/pressed",
+      "interactive/ghost/background/selected",
+      "interactive/ghost/border/default",
+      "interactive/ghost/border/disabled",
+      "border/focus",
+      "border/error",
+      "border/subtle",
+      "border/gradient/start",
+      "border/gradient/end",
+      "foreground/primary",
+      "foreground/disabled",
+      "foreground/gradient/start",
+      "feedback/error/background/subtle"
+    ],
+    "dimension": [
+      "space/{none,xxs,sm,md}",
+      "radius/{none,sm,pill}",
+      "stroke/{base,thin,thick}",
+      "control/{sm,md,lg}"
+    ],
+    "typography": [
+      "body/medium",
+      "body/small"
+    ],
+    "effect": [],
+    "missingFromExport": [],
+    "namedByMetadataOnly": [
+      "control/icon-md"
+    ],
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "typography": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ],
+      "extensions": "tokens/extensions/ (companion, target, condensed)"
+    }
+  },
+  "states": [
+    {
+      "state": "default",
+      "trigger": "—",
+      "duration": "—",
+      "whatChanges": "Label and hint at rest, with the number in its own state."
+    },
+    {
+      "state": "hover, focus, typing",
+      "trigger": "The number's own states",
+      "duration": "—",
+      "whatChanges": "Hover, focus and typing belong to the number. Typing adds a clear control. Filled, typing and selected are derived from focus and value."
+    },
+    {
+      "state": "invalid",
+      "trigger": "Set on the assembly",
+      "duration": "—",
+      "whatChanges": "The number takes feedback/error/background/subtle and a stroke/thick border/error. The hint becomes the error."
+    },
+    {
+      "state": "disabled",
+      "trigger": "Set on the assembly",
+      "duration": "—",
+      "whatChanges": "Every part dims, and the country control and number leave the tab order."
+    },
+    {
+      "state": "Country control",
+      "trigger": "Pointer or keyboard",
+      "duration": "—",
+      "whatChanges": "Hover, pressed and focus are CSS states. Open comes from the menu."
+    },
+    {
+      "state": "Open",
+      "trigger": "Activating the country control",
+      "duration": "—",
+      "whatChanges": "Opens the country menu. The control reports itself as expanded."
+    }
+  ],
+  "behavior": [
+    {
+      "type": "Motion",
+      "description": "No transition is defined."
+    },
+    {
+      "type": "Grouping",
+      "description": "Digits group by the country's format as they are typed, and the caret stays with its digit. Grouping is visual: it does not check that a number exists."
+    },
+    {
+      "type": "Length",
+      "description": "Digits stop at the format's length. Without a format they stop at the E.164 limit."
+    },
+    {
+      "type": "Country",
+      "description": "Picking a country changes the dial code and format, and keeps the digits. Extra digits are dropped."
+    },
+    {
+      "type": "Value",
+      "description": "value is the national digits. onValueChange also gives the E.164 number, and name submits it."
+    },
+    {
+      "type": "Dropdown",
+      "description": "The country control is the Template/Dropdown trigger. The menu opens below it, left aligned, space/sm away, with one row per country. It scrolls past eight rows."
+    },
+    {
+      "type": "Keyboard",
+      "description": "Enter or Space opens the menu. Arrow keys move through the rows. Escape closes it and returns focus to the control."
+    },
+    {
+      "type": "Flags",
+      "description": "Code uses the system's emoji flag unless a country passes flag. Pass artwork where flags must show everywhere, because Windows has no emoji flags. Artwork replaces the emoji in the control and every row."
+    },
+    {
+      "type": "Portal",
+      "description": "Figma only: the menu is drawn inside the component. In code it mounts in a portal and is positioned against the control, with collision handling."
+    }
+  ],
+  "content": [
+    {
+      "property": "Label",
+      "type": "Input Label, parent owned",
+      "description": "The field's name. It marks required or optional, like Input."
+    },
+    {
+      "property": "Country control",
+      "type": "_Phone Country, parent owned",
+      "description": "The flag and a chevron, joined to the number. It has no visible text, so countryLabel names it."
+    },
+    {
+      "property": "Flag",
+      "type": "Flag instance, exposed",
+      "description": "Takes real flag artwork. Figma only: the default is the flag glyph as a placeholder, so swap in a flag component wherever the real flag matters. In code, pass flag on a country."
+    },
+    {
+      "property": "Number",
+      "type": "Input / Phone, parent owned",
+      "description": "The dial code and digits. Dial Code is fixed text that reads with the value."
+    },
+    {
+      "property": "Hint",
+      "type": "Input Hint, parent owned",
+      "description": "The supporting line, and the reason when invalid."
+    },
+    {
+      "property": "Country menu",
+      "type": "Dropdown Menu, parent owned",
+      "description": "One Menu Item per country, with its flag and dial code. The selected country takes the selected row."
+    },
+    {
+      "property": "Sample digits",
+      "type": "Figma only",
+      "description": "The number, dial code and two menu rows are sample content, not API."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Use real flag artwork in the product. Pass flag on each country, or swap the exposed Flag instance in a design.",
+      "Pair it with validation, and set invalid with the reason in the hint. Grouping alone does not prove a number exists."
+    ],
+    "dont": [
+      "Don't ship the flag glyph as the real thing. It is a placeholder, and it says nothing about the country.",
+      "Don't use the flag as the only sign of the country. The dial code and the country's name in the menu carry it too."
+    ]
+  },
+  "accessibility": [
+    "The label names the number, and the hint is tied to it.",
+    "The country control has no visible text, so countryLabel names it, with the selected country and dial code following.",
+    "Flags are decorative and hidden from assistive tech, whether emoji or artwork.",
+    "Opening the menu moves focus into it, and Escape returns it to the control.",
+    "The number uses a tel input mode and tel-national autocomplete.",
+    "Invalid is not colour alone, because the hint gives the reason."
+  ],
+  "layoutTheming": [
+    {
+      "property": "Size",
+      "type": "Start width, hug height",
+      "description": "Starts 280 wide and narrows to fit its container, and block fills it. Height follows size through control/sm, control/md and control/lg."
+    },
+    {
+      "property": "Join",
+      "type": "No gap",
+      "description": "The country control and number sit edge to edge. The control has no end border, and only the outer corners take the radius."
+    },
+    {
+      "property": "Country control",
+      "type": "Hug",
+      "description": "space/sm at the sides, with space/2xs between flag and chevron. interactive/neutral backgrounds, as the number."
+    },
+    {
+      "property": "Flag",
+      "type": "Set to medium",
+      "description": "control/icon-md wide, emoji or artwork. Artwork keeps its own ratio."
+    },
+    {
+      "property": "Number",
+      "type": "Fill",
+      "description": "space/sm at the start, with space/2xs between the dial code and the digits."
+    },
+    {
+      "property": "Gradient",
+      "type": "Theming",
+      "description": "The control's border is foreground/gradient/start, so it runs into the number's. It goes neutral when invalid."
+    },
+    {
+      "property": "Ghost",
+      "type": "Theming",
+      "description": "No surface, and a stroke/base border. Hover, pressed and open use interactive/ghost backgrounds."
+    }
+  ],
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7682-19850",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7687-1493",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7682-21069",
+    "perAxis": {
+      "default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7687-640",
+      "invalid": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7687-665",
+      "disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7687-690",
+      "small": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7687-855",
+      "large": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7687-1062",
+      "sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7687-717",
+      "full": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7687-786",
+      "gradient": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7689-2952",
+      "ghost": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7689-3762",
+      "open": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7687-1269",
+      "Input / Phone": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7682-19934",
+      "_Phone Country": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7687-639"
+    }
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "gaps",
+      "detail": "The file holds no flag artwork. The Flag instance is the flag glyph, so a real flag needs assets this page does not have."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs structure",
+      "detail": "Flag is in the Property Breakdown, but Figma has no such property. Its emoji and artwork values exist only in the metadata."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs structure",
+      "detail": "The metadata says the error stays on while a person corrects it. Input / Phone has no invalid and focused state, because typing and focus replace invalid."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs structure",
+      "detail": "The Content row says the label marks required or optional, and Layout names block. Neither is a property or a Property Breakdown row."
+    },
+    {
+      "severity": "warn",
+      "source": "structure (gaps)",
+      "detail": "The menu's distance from the control is a raw 8 on an absolute layer, because Figma cannot bind it. The metadata says space/sm."
+    },
+    {
+      "severity": "warn",
+      "source": "structure",
+      "detail": "open is drawn at medium, default state and default flavour only, in rounded and sharp. There is no full open variant, so the menu's radius on full is unspecified."
+    },
+    {
+      "severity": "warn",
+      "source": "structure",
+      "detail": "_Phone Country defaults to large and sharp, while Phone Input and Input / Phone default to medium and rounded. A fresh instance of the part will not match its parent."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "Phone Input has 83 variants: the full 81 of state, size, shape and flavour, plus the two open ones."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "On gradient, an invalid assembly uses the country control's default flavour, so it goes neutral. On ghost the control stays ghost beside the error field."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "Ghost's stroke/base resolves to zero, so hover, selected, typing and read-only change a stroke that draws nothing. Input's spec records the same."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "The gradient border on enabled and filled is a gradient paint from the Input family, not a single token."
+    },
+    {
+      "severity": "note",
+      "source": "metadata",
+      "detail": "control/icon-md is named by the metadata and belongs to the nested Icon, so this page binds it through Size=medium."
+    },
+    {
+      "severity": "note",
+      "source": "metadata",
+      "detail": "Input / Phone and _Phone Country have no description."
+    },
+    {
+      "severity": "note",
+      "source": "metadata",
+      "detail": "No motion, by the metadata's own statement. The Do and Don't picture areas are empty. Layout has no colour or theming row, so scope behaviour and portalContainer are unstated."
+    }
+  ]
+}

@@ -157,7 +157,7 @@ describe("zeta-navigation-rail (spec)", () => {
       );
       const item = inner(el, ".item");
       await expect(`${item.getBoundingClientRect().height}px`).to.equal(v(el, "--control-lg"));
-      await expect(getComputedStyle(item).paddingLeft).to.equal(v(el, "--space-xxs"));
+      await expect(getComputedStyle(item).paddingLeft).to.equal(v(el, "--space-2xs"));
       el.expanded = true;
       await elementUpdated(el);
       await expect(getComputedStyle(item).paddingLeft).to.equal(v(el, "--space-lg"));
@@ -219,6 +219,19 @@ describe("zeta-navigation-rail (spec)", () => {
       root.append(probe);
       await expect(getComputedStyle(root).backgroundColor).to.equal(getComputedStyle(probe).backgroundColor);
       await expect(getComputedStyle(inner(rail, ".panel")).borderInlineStartWidth).to.equal(v(root, "--stroke-thin"));
+    });
+
+    it("sits an open group's rows on surface/subtle", async () => {
+      const group = await fixture<ZetaCollapsibleMenuItem>(
+        html`<zeta-collapsible-menu-item open><span slot="heading">Group</span><zeta-sub-menu-item>Row</zeta-sub-menu-item></zeta-collapsible-menu-item>`
+      );
+      await elementUpdated(group);
+      const children = inner(group, ".children");
+      const probe = document.createElement("div");
+      probe.style.backgroundColor = "var(--surface-subtle)";
+      children.append(probe);
+      await expect(getComputedStyle(children).backgroundColor).to.equal(getComputedStyle(probe).backgroundColor);
+      probe.remove();
     });
 
     it("passes rounded, expanded and showLabels to the parts inside", async () => {

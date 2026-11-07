@@ -32,7 +32,8 @@ export const railStyles = css`
        and --zds-navigation-rail-sub-menu-max-width on the host; unset, there
        is no cap. A cap below a minimum lowers the minimum, so the cap always
        applies. */
-    --zds-navigation-rail-wide-width: min(200px, var(--zds-navigation-rail-max-width, 200px));
+    /* rail-width sets --zds-navigation-rail-width (Figma's 200px by default). */
+    --zds-navigation-rail-wide-width: min(var(--zds-navigation-rail-width, 200px), var(--zds-navigation-rail-max-width, calc(infinity * 1px)));
     --zds-navigation-rail-panel-max-width: var(--zds-navigation-rail-sub-menu-max-width, calc(infinity * 1px));
     --zds-navigation-rail-panel-min-width: min(240px, var(--zds-navigation-rail-panel-max-width));
     /* Lets the panel animate to and from its content width (width: max-content). */
@@ -86,6 +87,19 @@ export const railStyles = css`
   :host([expanded]) .rail {
     width: var(--zds-navigation-rail-wide-width);
   }
+  /* rail-width="fill": wide, the rail takes its container's width (the sub
+     menu panel, when open, shares it), and wide content follows the rail. */
+  :host([rail-width="fill"][expanded]) {
+    inline-size: 100%;
+  }
+  :host([rail-width="fill"][expanded]) .rail {
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
+  }
+  :host([rail-width="fill"]) .root[data-wide] :is(.header, .menu, .footer) {
+    min-width: 0;
+  }
 
   .header {
     display: flex;
@@ -115,7 +129,7 @@ export const railStyles = css`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
   }
   .menu {
     flex: 1 1 auto;
@@ -186,7 +200,7 @@ export const railStyles = css`
   .sub-menu {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     padding: var(--space-sm);
     overflow-y: auto;
   }
@@ -239,7 +253,7 @@ export const headerStyles = css`
     align-items: center;
     gap: var(--space-sm);
     min-width: 0;
-    padding-inline: var(--space-xxs);
+    padding-inline: var(--space-2xs);
   }
   .logo {
     height: var(--control-target-min);
@@ -316,7 +330,7 @@ export const subMenuHeaderStyles = css`
     display: flex;
     flex: none;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
   }
 `;
 
@@ -389,9 +403,9 @@ export const collapsibleStyles = [
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
-      gap: var(--space-xxs);
+      gap: var(--space-2xs);
       padding: var(--space-sm);
-      background: var(--surface-menu);
+      background: var(--surface-subtle);
       border-end-start-radius: var(--zds-collapsible-menu-item-radius);
       border-end-end-radius: var(--zds-collapsible-menu-item-radius);
     }

@@ -19,7 +19,7 @@ Source: [Stepper Input page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5
 
 **disabled**: false: "The control accepts input, and shows the hint text when Hint is on." · true: "The two step buttons switch to a primary fill, and the hint text is removed entirely rather than hidden. Turning Hint on has no effect while Disabled is on."
 
-**showHint** (Figma `Hint`): false: "No hint text below the control." · true: "Adds a line of hint text below the control. Only ever shows the hint message, never the error one this part also offers, and has no effect while Disabled is on."
+**showHint** (Figma `Hint`): true: "Adds a line of hint text below the control. Only ever shows the hint message, never the error one this part also offers, and has no effect while Disabled is on."
 
 Values anywhere in this document are token names. The only literals are inside verbatim metadata quotes and inside issues. Measurements end in Px.
 
@@ -67,7 +67,7 @@ The glyph colour comes from Icon Button's own flavour styling (currentColor with
 ## Subcomponents
 
 ### _Hint text (private)
-Horizontal, gap `space/xxs`, hugs (16Px high). It holds an Icon (Size=small, rounded family) and a `body/xsmall` message.
+Horizontal, gap `space/2xs`, hugs (16Px high). It holds an Icon (Size=small, rounded family) and a `body/xsmall` message.
 
 | message | glyph | text colour |
 |---|---|---|

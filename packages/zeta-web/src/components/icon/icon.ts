@@ -35,9 +35,9 @@ import type { ZetaIconName } from "@zebra-fed/zeta-icons";
  * The embedding component passes its foreground through `--icon-color` (falling back to `--main-default`). The icon is
  * decorative on its own: the meaning has to come from a label beside it or an accessible name on the control around it.
  *
- * `size` picks one of the Zebra icon sizes (`control/icon-sm`, `-md`, `-lg`: 16, 20 and 28px); without it the icon keeps
+ * `size` picks one of the Zebra icon sizes (`control/icon-xs`, `-sm`, `-md`, `-lg`: 12, 16, 20 and 28px); without it the icon keeps
  * `--icon-size` or its 24px default, as every existing embed expects. `framed` pads the glyph to a 40px box
- * (`control/target-min`) so a standalone icon meets the touch target on its own.
+ * (`control/target-min`) so a standalone icon meets the touch target on its own; xsmall frames to 24px (`control/xs`).
  *
  * @cssproperty --icon-size The width/height of the icon
  * @cssproperty --icon-color The color of the icon
@@ -54,10 +54,10 @@ export class ZetaIcon extends Contourable(LitElement) {
    */
   @property({ type: String }) name: ZetaIconName;
 
-  /** Size of the glyph: small (16px), medium (20px) or large (28px). Unset, the icon keeps `--icon-size` or 24px. */
-  @property({ type: String, reflect: true }) size?: "small" | "medium" | "large";
+  /** Size of the glyph: xsmall (12px), small (16px), medium (20px) or large (28px). Unset, the icon keeps `--icon-size` or 24px. */
+  @property({ type: String, reflect: true }) size?: "xsmall" | "small" | "medium" | "large";
 
-  /** Pads the glyph to a fixed 40px box so it meets the minimum touch target on its own. Adds space, nothing visible. */
+  /** Pads the glyph to a fixed box, 40px (24px at xsmall), so it meets the minimum touch target on its own. Adds space, nothing visible. */
   @property({ type: Boolean, reflect: true }) framed: boolean = false;
 
   protected render() {

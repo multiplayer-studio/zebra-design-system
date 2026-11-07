@@ -11,7 +11,7 @@ import { css } from "lit";
  *    apart from info.
  *  - default / action, and every standard bar: the dark bars. They carry
  *    their own colour mode (the host takes .mode-dark, or .mode-light on a
- *    dark page; see snackbar.ts), so surface/popover and foreground/primary
+ *    dark page; see snackbar.ts), so surface/overlay and foreground/primary
  *    here, and every token in the buttons, resolve in that mode.
  * The controls are <zds-button> and <zds-icon-button>, styled by themselves.
  */
@@ -54,7 +54,7 @@ export default css`
     align-items: center;
     gap: var(--space-md);
     min-block-size: var(--control-lg);
-    padding-block: var(--space-xxs);
+    padding-block: var(--space-2xs);
     padding-inline: var(--space-lg);
     border-radius: var(--zds-snackbar-radius);
     background: var(--zds-snackbar-bg);
@@ -71,7 +71,7 @@ export default css`
      gap equals the top gap, space/xs, so the last control sits concentric
      in the bar's end. */
   .surface[data-end] {
-    padding-inline-end: var(--space-xxs);
+    padding-inline-end: var(--space-2xs);
   }
 
   .lead {
@@ -107,8 +107,8 @@ export default css`
     flex: none;
     display: inline-flex;
     align-items: center;
-    gap: var(--space-xxs);
-    margin-inline-start: var(--space-xxs);
+    gap: var(--space-2xs);
+    margin-inline-start: var(--space-2xs);
   }
 
   /* The close's glyph takes the bar's text colour like every icon here,
@@ -134,7 +134,7 @@ export default css`
 
   /* ---- fill per flavour; the dark bars by default ------------------- */
   :host {
-    --zds-snackbar-bg: var(--surface-popover);
+    --zds-snackbar-bg: var(--surface-overlay);
     --zds-snackbar-fg: var(--foreground-primary);
   }
   :host([flavour="info"]:not([variant="standard"])) {

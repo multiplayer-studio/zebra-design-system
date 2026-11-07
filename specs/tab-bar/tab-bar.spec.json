@@ -1,0 +1,554 @@
+{
+  "component": {
+    "name": "Tab Bar",
+    "slug": "tab-bar",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "3640:2127",
+      "key": "7c1310c67f100d80d0a6810494e2f9247155f874",
+      "page": "Tab Bar",
+      "pageNodeId": "3607:237",
+      "frame": "Tap Bar",
+      "metadataFrameId": "7333:420",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3640-2127",
+      "extractedAt": "2026-10-28",
+      "variantCount": 2,
+      "defaultVariant": "Flavour=full width",
+      "extractionNote": "Both sets on the page read in full to depth 12. The tab item set (3635:1151) is specced here as a subcomponent because only Tab Bar uses it."
+    }
+  },
+  "summary": "A row of tabs for switching between views at the same level. Flavour decides whether the row fills its container or hugs its tabs. The tabs arrive through a slot, so the bar sets the arrangement and the product sets how many.",
+  "api": {
+    "flavour": {
+      "type": "enum",
+      "figmaName": "Flavour",
+      "values": [
+        "full width",
+        "condensed"
+      ],
+      "default": "full width",
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "full width": "Tabs divide the row evenly. Use it where the bar owns the full width of its container.",
+        "condensed": "Tabs take only the width they need. Use it where the bar shares a row with other content."
+      }
+    },
+    "tabs": {
+      "type": "slot",
+      "figmaName": " Tab Slot#3640:11",
+      "default": null,
+      "controls": [
+        "tabSlot"
+      ],
+      "expects": "Tab Item (subcomponent, set 3635:1151)",
+      "intent": "Holds the tabs. The bar arranges them, the product decides how many."
+    }
+  },
+  "anatomy": [
+    {
+      "id": "root",
+      "kind": "container",
+      "layout": {
+        "direction": "horizontal",
+        "gap": null,
+        "padding": null,
+        "align": "start",
+        "crossAlign": "center"
+      },
+      "sizing": {
+        "h": "fixed (full width) / hug (condensed)",
+        "v": "hug"
+      },
+      "paint": {
+        "fill": "surface/section"
+      }
+    },
+    {
+      "id": "tabSlot",
+      "kind": "container",
+      "number": 1,
+      "role": "Where the tabs go. Flavour decides whether they fill or hug.",
+      "layout": {
+        "direction": "horizontal",
+        "gap": null,
+        "padding": null,
+        "align": "start",
+        "crossAlign": "center"
+      },
+      "sizing": {
+        "h": "fill (full width) / hug (condensed)",
+        "v": "hug"
+      }
+    },
+    {
+      "id": "tab",
+      "kind": "instance",
+      "number": 2,
+      "ref": "Tab Item",
+      "repeat": "one per tab; drawn with four, the first selected",
+      "role": "Icon, label and an optional badge, carrying its own four states.",
+      "sizing": {
+        "h": "fill (full width) / hug (condensed)",
+        "v": "hug"
+      }
+    },
+    {
+      "id": "underline",
+      "kind": "shape",
+      "number": 3,
+      "partOf": "tab",
+      "role": "A 2px bottom border on every tab, coloured only when selected.",
+      "paint": {
+        "stroke": {
+          "color": "border/transparent (selected: interactive/primary/border/default)",
+          "width": "stroke/thick",
+          "sides": "bottom",
+          "align": "inside"
+        }
+      }
+    }
+  ],
+  "variants": {
+    "axis": "flavour",
+    "base": "full width",
+    "_note": "root.widthPx and tab.widthPx are measured with four tabs, not tokens.",
+    "table": [
+      {
+        "flavour": "full width",
+        "root.sizing": "fixed",
+        "tabSlot.sizing": "fill",
+        "tab.sizing": "fill",
+        "root.widthPx": 708,
+        "tab.widthPx": 177
+      },
+      {
+        "flavour": "condensed",
+        "root.sizing": "hug",
+        "tabSlot.sizing": "hug",
+        "tab.sizing": "hug",
+        "root.widthPx": 472,
+        "tab.widthPx": 118
+      }
+    ]
+  },
+  "subcomponents": [
+    {
+      "name": "Tab Item",
+      "figmaName": "Navigation Rail Item",
+      "private": false,
+      "setId": "3635:1151",
+      "key": "356c565c0809256330a140ad6aa3793cd336c765",
+      "variantCount": 4,
+      "defaultVariant": "State=default, Disabled=false, Selected=false",
+      "api": {
+        "state": {
+          "type": "enum",
+          "figmaName": "State",
+          "values": [
+            "default",
+            "hover",
+            "selected",
+            "disabled"
+          ],
+          "default": "default",
+          "controls": [
+            "variant"
+          ],
+          "_note": "Figma option order is hover, selected, default, disabled."
+        },
+        "selected": {
+          "type": "boolean",
+          "figmaName": "Selected",
+          "default": false,
+          "controls": [
+            "variant"
+          ],
+          "_note": "Variant axis, true only with State=selected."
+        },
+        "disabled": {
+          "type": "boolean",
+          "figmaName": "Disabled",
+          "default": false,
+          "controls": [
+            "variant"
+          ],
+          "_note": "Variant axis, true only with State=disabled."
+        },
+        "showLeadingIcon": {
+          "type": "boolean",
+          "figmaName": "Show Leading Icon#3635:0",
+          "default": true,
+          "controls": [
+            "icon"
+          ]
+        },
+        "showBadge": {
+          "type": "boolean",
+          "figmaName": "Show Badge#3635:5",
+          "default": false,
+          "controls": [
+            "badge"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "figmaName": null,
+          "default": "Tab Item",
+          "controls": [
+            "label"
+          ],
+          "_note": "Not a Figma text property; the label is set in code."
+        },
+        "icon": {
+          "type": "glyph",
+          "figmaName": null,
+          "default": "star",
+          "controls": [
+            "icon"
+          ],
+          "_note": "Swap on the nested Icon (Name#2167:166), default Star set 2046:10784, family rounded."
+        }
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/sm",
+            "padding": {
+              "top": "space/md",
+              "bottom": "space/md",
+              "start": "space/gutter",
+              "end": "space/gutter"
+            },
+            "align": "center",
+            "crossAlign": "center"
+          },
+          "sizing": {
+            "h": "fill",
+            "v": "hug"
+          },
+          "limits": {
+            "minHeight": "control/lg"
+          },
+          "radius": "radius/none",
+          "paint": {
+            "fill": "interactive/ghost/background/default",
+            "stroke": {
+              "color": "border/transparent",
+              "width": "stroke/thick",
+              "sides": "bottom",
+              "align": "inside"
+            }
+          }
+        },
+        {
+          "id": "icon",
+          "kind": "instance",
+          "ref": "Icon",
+          "refVariant": "Size=medium, Framed=false",
+          "glyph": "star",
+          "glyphFamily": "rounded",
+          "visibleWhen": "showLeadingIcon",
+          "paint": {
+            "note": "Font glyph in currentColor; no colour is bound on the tab."
+          }
+        },
+        {
+          "id": "label",
+          "kind": "text",
+          "text": {
+            "style": "label/medium",
+            "color": "foreground/secondary",
+            "content": "label"
+          },
+          "sizing": {
+            "h": "hug",
+            "v": "hug"
+          }
+        },
+        {
+          "id": "badge",
+          "kind": "instance",
+          "ref": "Notification Indicator",
+          "refVariant": "Size=large",
+          "refProps": {
+            "Value": "99+"
+          },
+          "visibleWhen": "showBadge"
+        }
+      ],
+      "variants": {
+        "axis": "state",
+        "base": "default",
+        "table": [
+          {
+            "state": "default",
+            "root.fill": "interactive/ghost/background/default",
+            "root.stroke": "border/transparent",
+            "label.color": "foreground/secondary"
+          },
+          {
+            "state": "hover",
+            "root.fill": "interactive/ghost/background/hover"
+          },
+          {
+            "state": "selected",
+            "root.fill": "interactive/ghost/background/focused",
+            "root.stroke": "interactive/primary/border/default",
+            "label.color": "interactive/neutral/foreground/default"
+          },
+          {
+            "state": "disabled",
+            "label.color": "interactive/neutral/foreground/disabled"
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "name": "Icon",
+          "key": "a469ac1cf34202af3e094593468d9ef20a37a703",
+          "localSetId": "2046:15010",
+          "remoteInstanceId": "3629:677"
+        },
+        {
+          "name": "Notification Indicator",
+          "setId": "3719:6256",
+          "spec": "specs/notification-indicator"
+        }
+      ]
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "surface/section",
+      "interactive/ghost/background/default",
+      "interactive/ghost/background/hover",
+      "interactive/ghost/background/focused",
+      "border/transparent",
+      "interactive/primary/border/default",
+      "foreground/secondary",
+      "interactive/neutral/foreground/default",
+      "interactive/neutral/foreground/disabled"
+    ],
+    "dimension": [
+      "control/lg",
+      "space/sm",
+      "space/md",
+      "space/gutter",
+      "radius/none",
+      "stroke/thick"
+    ],
+    "typography": [
+      "label/medium (text style)",
+      "label/medium/font family",
+      "label/medium/font size",
+      "label/medium/font weight",
+      "label/medium/line height",
+      "label/medium/letter spacing"
+    ],
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ]
+    },
+    "_note": "The badge's tokens belong to Notification Indicator and are listed in its spec."
+  },
+  "states": [
+    {
+      "state": "default",
+      "trigger": "Resting",
+      "duration": "—",
+      "whatChanges": "Ghost surface, label at foreground/secondary, underline transparent."
+    },
+    {
+      "state": "hover",
+      "trigger": "Pointer over the tab",
+      "duration": "—",
+      "whatChanges": "The surface moves to its hover token. Label and underline hold."
+    },
+    {
+      "state": "selected",
+      "trigger": "Tab chosen",
+      "duration": "—",
+      "whatChanges": "The underline takes interactive/primary/border/default and the label darkens."
+    },
+    {
+      "state": "disabled",
+      "trigger": "—",
+      "duration": "—",
+      "whatChanges": "The label drops to its disabled token. The surface does not move, so the label carries it alone."
+    }
+  ],
+  "behavior": [
+    {
+      "type": "Motion",
+      "description": "No transition is defined. Selection is a swap of the underline and label colours."
+    },
+    {
+      "type": "Selection model",
+      "description": "Exactly one tab is selected. Nothing in the component enforces that, so the surrounding structure has to."
+    },
+    {
+      "type": "Flavour and width",
+      "description": "full width divides the row, condensed hugs. Switching changes how tabs size, never how many there are."
+    }
+  ],
+  "content": [
+    {
+      "property": "Tab Slot",
+      "type": "slot, product filled",
+      "description": "Takes the tabs. Four is what it is drawn with, not a limit it enforces."
+    },
+    {
+      "property": "Tab item",
+      "type": "nested, four states",
+      "description": "Each tab carries its own state, icon toggle and badge toggle. The bar exposes none of them, so every tab is set on itself."
+    },
+    {
+      "property": "Tab label",
+      "type": "not parameterised",
+      "description": "Not exposed as an input, so the words come from the implementation."
+    },
+    {
+      "property": "Tab badge",
+      "type": "nested, off by default",
+      "description": "A notification dot on the tab, hidden until Show Badge turns it on."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Keep one tab selected at all times. A bar with none says nothing about where a person is.",
+      "Use condensed where the bar shares a row. full width divides whatever container it is given, however wide."
+    ],
+    "dont": [
+      "Don't use tabs for actions. Tabs switch between views, and one that does something is a button in the wrong clothes.",
+      "Don't disable a tab that has content behind it. A view a person cannot reach needs explaining, not hiding."
+    ]
+  },
+  "accessibility": [
+    "Tab labels are not exposed as inputs, so whatever names each tab comes from the implementation and has to be real words.",
+    "Selection is carried by an underline colour and a label colour, both colour alone. The selected tab has to be marked in the structure as well.",
+    "Disabled changes the label colour and nothing else. The surface holds, so check the label still carries enough contrast to read.",
+    "Arrow keys should move between tabs with the selected one as the tab stop. Nothing in the component provides that.",
+    "The badge is a dot with no text. Where it stands for a count or an alert, that has to be available to a reader some other way."
+  ],
+  "layoutTheming": [
+    {
+      "property": "Size",
+      "type": "Per Flavour",
+      "description": "48 tall. 708 and fixed at full width, hugging to 472 at condensed with four tabs."
+    },
+    {
+      "property": "Surface",
+      "type": "Fixed",
+      "description": "surface/section across the row, with no padding, gap or radius of its own."
+    },
+    {
+      "property": "Tab slot",
+      "type": "Per Flavour",
+      "description": "Tabs fill the row at full width, 177 each with four. At condensed they hug, 118 each."
+    },
+    {
+      "property": "Tab item",
+      "type": "Fixed",
+      "description": "48 tall, space/md top and bottom, space/gutter each side, space/sm between icon and label."
+    },
+    {
+      "property": "Selection underline",
+      "type": "Theming",
+      "description": "A 2px bottom border on every tab, border/transparent until selected and interactive/primary/border/default after. The space is always held, so selecting shifts nothing."
+    },
+    {
+      "property": "Tab label",
+      "type": "Theming",
+      "description": "label/medium. foreground/secondary at rest, interactive/neutral/foreground/default selected, and the disabled token when off."
+    }
+  ],
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3607-237",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3640-2127",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7333-420",
+    "variants": {
+      "flavour": {
+        "full width": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3640-2025",
+        "condensed": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3689-2295"
+      },
+      "tabItemState": {
+        "default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3635-1150",
+        "hover": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3635-1149",
+        "selected": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3635-1148",
+        "disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3635-1147"
+      }
+    }
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "naming",
+      "detail": "The tab item set is named Navigation Rail Item and clashes with the real Navigation Rail Item (3453:54230); rename it Tab Item."
+    },
+    {
+      "severity": "warn",
+      "source": "api",
+      "detail": "State, Disabled and Selected are three variant axes that only form four combinations; State alone carries them."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs structure",
+      "detail": "The metadata calls the badge a dot, but the tab uses Notification Indicator Size=large with a 99+ count."
+    },
+    {
+      "severity": "warn",
+      "source": "dependencies",
+      "detail": "The default variant uses a remote Icon instance (3629:677) while the other variants use the local Icon (2046:15010)."
+    },
+    {
+      "severity": "warn",
+      "source": "coverage",
+      "detail": "No focus state is drawn, though the metadata asks for arrow-key movement between tabs."
+    },
+    {
+      "severity": "note",
+      "source": "tokens",
+      "detail": "Selected binds interactive/ghost/background/focused at paint opacity 0, so it paints nothing."
+    },
+    {
+      "severity": "note",
+      "source": "api",
+      "detail": "The tab label is not a Figma text property; the metadata says it comes from the implementation."
+    },
+    {
+      "severity": "note",
+      "source": "icon font",
+      "detail": "The placeholder glyph is star in the rounded family and exists in codepoints.json."
+    },
+    {
+      "severity": "note",
+      "source": "icon font",
+      "detail": "No icon colour is bound on the tab; as a font glyph it follows the label colour."
+    },
+    {
+      "severity": "note",
+      "source": "coverage",
+      "detail": "Motion is intentionally none, per the metadata."
+    },
+    {
+      "severity": "note",
+      "source": "coverage",
+      "detail": "Neither set has a Figma component description."
+    }
+  ]
+}

@@ -8,21 +8,24 @@
       "key": "9f8a0f752b83da76a56ff94953590b6096227f88",
       "page": "Progress Indicators",
       "pageNodeId": "4275:1344",
-      "boardId": "5041:6579",
-      "metadataFrameId": "5054:336",
-      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5041-6579",
-      "extractedAt": "2026-10-20",
-      "variantCount": { "Progress Circle": 10, "_Upload": 2 },
-      "extractionNote": "All 10 variants (Size × Rounded) and both _Upload variants extracted in full. The page holds two public components with one metadata frame each, so Progress Bar and Progress Circle are specced separately; _Upload (board 'Subcomponents/Progress indicator') is used only by Progress Circle and is specced here."
+      "board": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5041-6579",
+      "extractedAt": "2026-11-07",
+      "variantCount": 10,
+      "defaultVariant": "Size=xxsmall, Rounded=true",
+      "extractionNote": "All 10 variants plus the private _Upload set read in full; intent from the Progress Circle Metadata frame via the 2026-11-06 spec.",
+      "tokenSource": "tokens/"
     }
   },
-
   "summary": "A ring that reports an ongoing process where a bar will not fit, beside an icon or inside a dense row. Five sizes cover inline through to prominent, and Upload turns it into a file-transfer control with a cancel action. Unlike Progress Bar it has no property for the amount of progress, so the arc is fixed here and the real value has to come from the implementation.",
-
   "api": {
     "size": {
-      "type": "enum", "figmaName": "Size", "values": ["xxsmall", "xsmall", "small", "medium", "large"], "default": "xxsmall", "controls": ["variant"],
-      "_note": "Ordered by rendered size. Figma stores them as medium, large, small, xsmall, xxsmall.",
+      "type": "enum",
+      "figmaName": "Size",
+      "default": "xxsmall",
+      "values": ["xxsmall", "xsmall", "small", "medium", "large"],
+      "valuesFigmaOrder": ["medium", "large", "small", "xsmall", "xxsmall"],
+      "orderedBy": "rendered ring (xxsmall 24 < xsmall 36 < small 40 < medium 48 < large 64); Figma stores options in creation order",
+      "controls": ["variant"],
       "intent": {
         "xxsmall": "The smallest ring, for sitting inside a line of text or beside a small icon. The stroke does not thin at this size, so the ring reads as heavy relative to its diameter.",
         "xsmall": "A step up while still inline. The largest size at which the Upload control is not built.",
@@ -32,146 +35,176 @@
       }
     },
     "rounded": {
-      "type": "enum", "figmaName": "Rounded", "values": ["true", "false"], "default": "true", "controls": ["variant"],
+      "type": "enum",
+      "figmaName": "Rounded",
+      "default": "true",
+      "values": ["true", "false"],
+      "controls": ["variant"],
       "intent": {
         "true": "Rounds the ends of the progress arc. Despite the name it is a line cap rather than a corner radius, and it only shows where the arc starts and stops.",
         "false": "Squares the arc ends off, for use alongside sharp-shaped controls. The difference is visible at two points on the ring and nowhere else."
       }
     },
     "upload": {
-      "type": "boolean", "figmaName": "Upload#4416:2", "default": false, "controls": ["uploadControl"],
+      "type": "boolean",
+      "figmaName": "Upload#4416:2",
+      "default": false,
+      "controls": ["uploadControl (visible)"],
       "intent": {
         "false": "A plain progress ring.",
         "true": "Places a file-transfer control at the centre of the ring, reporting the percentage and offering a cancel action. It has no effect at xsmall or xxsmall, where the control is not built."
       }
     },
     "showTrack": {
-      "type": "boolean", "figmaName": "Show Track#4416:3", "default": true, "controls": ["track"],
+      "type": "boolean",
+      "figmaName": "Show Track#4416:3",
+      "default": true,
+      "controls": ["track (visible)"],
       "intent": {
         "true": "Shows the unfilled remainder of the ring, which is what makes the arc's extent readable.",
         "false": "Hides it, leaving the arc floating with nothing to measure it against."
       }
     }
   },
-
   "internalVariations": [
-    { "part": "uploadControl", "via": "_Upload", "options": ["Stop=false", "Stop=true"],
-      "intent": "Its own Stop property swaps that readout for a cancel button.",
-      "note": "Reachable only on the nested instance (exposed for editing), not as a property of the ring. Whether it becomes a prop (e.g. showCancel) in code is the implementer's call." }
-  ],
-
-  "contentInputs": [
-    { "part": "arc", "input": "value (and max)", "sampleCount": 1, "note": "Not a property in Figma. Every variant draws the same arc of about three quarters; in code the arc's sweep is driven by the value, plus an indeterminate mode (spin)." },
-    { "part": "uploadControl.readout", "input": "readout label", "sampleCount": 1, "sample": "75%", "note": "Baked text inside _Upload; overridden per instance." }
-  ],
-
-  "anatomy": [
-    { "id": "root", "kind": "container", "number": 1,
-      "role": "The outer square frame, fixed at the chosen Size, holding the track and the arc concentrically.",
-      "layout": "none (free positioning; children scale with the frame)",
-      "sizing": "fixed square, size per Size (not token-bound — see variants and issues)" },
-    { "id": "track", "kind": "shape", "shape": "ring", "number": 2, "visibleWhen": "showTrack",
-      "role": "Two rings drawn as strokes. The track covers the full circle and the arc covers the portion reported as complete.",
-      "position": { "mode": "free", "anchor": "fills parent (scale)" },
-      "geometry": "full circle, drawn as a stroke on a zero-area ellipse",
-      "paint": { "stroke": { "color": "border/subtle", "width": "stroke/heavy", "align": "center", "cap": "butt" } } },
-    { "id": "arc", "kind": "shape", "shape": "arc", "number": 2,
-      "position": { "mode": "free", "anchor": "fills parent (scale)", "stacking": "above track" },
-      "geometry": "starts at twelve o'clock and runs clockwise; sweep = value (sampled at about three quarters)",
-      "paint": {
-        "stroke": { "color": "border/info", "width": "stroke/heavy", "align": "center", "cap": "round when rounded=true, butt when rounded=false" },
-        "fill": "foreground/link (bound but does not render — zero-area shape; ignore in code)"
-      } },
-    { "id": "uploadControl", "kind": "instance", "ref": "_Upload", "refVariant": "Stop=false", "number": 3, "visibleWhen": "upload",
-      "presentWhen": "size ∈ {small, medium, large}",
-      "role": "A nested control centred in the ring, hidden until Upload is turned on and absent altogether at the two smallest sizes.",
-      "position": { "mode": "free", "anchor": "center" },
-      "sizing": "fixed, same size at every ring size (measured 36Px)" }
-  ],
-
-  "variants": {
-    "axes": ["size", "rounded"],
-    "base": "size=xxsmall, rounded=true",
-    "_note": "Root sizes are measured observations; none is token-bound. Stroke width is stroke/heavy at every size. Rounded changes only the arc's line cap.",
-    "bySize": [
-      { "size": "xxsmall", "root.sizePx": 24, "uploadControl": "absent" },
-      { "size": "xsmall",  "root.sizePx": 36, "uploadControl": "absent" },
-      { "size": "small",   "root.sizePx": 40, "uploadControl": "present (36Px, centred)" },
-      { "size": "medium",  "root.sizePx": 48, "uploadControl": "present (36Px, centred)" },
-      { "size": "large",   "root.sizePx": 64, "uploadControl": "present (36Px, centred)" }
-    ],
-    "byRounded": [
-      { "rounded": "true",  "arc.cap": "round" },
-      { "rounded": "false", "arc.cap": "butt (Figma: none)" }
-    ]
-  },
-
-  "subcomponents": [
     {
-      "name": "_Upload", "private": true, "setId": "4416:123", "key": "aa8de433cdcf0352b371608dc8104e7b818999a7",
-      "board": "Subcomponents/Progress indicator (4598:2243)",
-      "api": {
-        "stop": { "type": "enum", "figmaName": "Stop", "values": ["false", "true"], "default": "false",
-          "intent": "Its own Stop property swaps that readout for a cancel button." }
-      },
-      "anatomy": [
-        { "id": "root", "kind": "container", "sizing": "fixed square (measured 36Px)", "layout": "none (free positioning)" },
-        { "id": "readout", "kind": "text", "visibleWhen": "stop = false", "sample": "75%",
-          "text": { "style": "indicator/medium", "color": "#000000 (raw, no token — see issues)", "align": "center" },
-          "position": { "mode": "free", "anchor": "centred, scales" } },
-        { "id": "cancel", "kind": "instance", "ref": "Icon Button", "visibleWhen": "stop = true",
-          "refVariant": "Size=small, Shape=full, Flavour=subtle, State=hover, Disabled=false",
-          "glyph": "close", "family": "rounded", "iconSize": "Icon Size=small", "color": "currentColor",
-          "position": { "mode": "free", "anchor": "fills parent (scale)" },
-          "resolvedFromInstance": { "size": "control/sm", "fill": "interactive/ghost/background/hover", "radius": "radius/pill", "padding": "space/xxs", "border": "interactive/neutral/border/default @ stroke/base" },
-          "note": "Pinned to State=hover. In code use Icon Button's own spec (specs/icon-button/) at small, full, subtle, and let it run its own states." }
-      ],
-      "variants": {
-        "axis": "stop", "base": "false",
-        "table": [
-          { "stop": "false", "readout": "shown", "cancel": "hidden" },
-          { "stop": "true",  "readout": "hidden", "cancel": "shown" }
-        ]
-      }
+      "part": "uploadControl",
+      "via": "_Upload (4416:123)",
+      "property": "Stop (VARIANT: false, true)",
+      "intent": "Its own Stop property swaps that readout for a cancel button.",
+      "decision": "Not a property of the ring; whether it becomes one in code (for example showCancel) is the implementer's call."
     }
   ],
-
-  "dependencies": [
-    { "name": "Icon Button", "setId": "2338:1763", "key": "aee1f4fe89a3f70a26978e68621194baf1271b8a", "remote": false, "usedAt": "_Upload/cancel", "spec": "specs/icon-button/" },
-    { "name": "Icon", "setId": "2046:15010", "remote": false, "usedAt": "inside Icon Button (glyph close)", "spec": "specs/icon/", "delivery": "glyph from packages/icons, not an SVG" }
+  "contentInputs": [
+    { "part": "arc", "input": "value", "note": "No Figma property; every variant draws about three quarters. Plus an indeterminate mode in code." },
+    { "part": "uploadControl/readout", "input": "text", "sample": "75%" }
   ],
-
+  "anatomy": [
+    {
+      "id": "root",
+      "kind": "container",
+      "figmaName": "<variant>",
+      "role": "The outer square frame, fixed at the chosen Size, holding the track and the arc concentrically.",
+      "sizing": { "h": "fixed", "v": "fixed", "_note": "square per Size, not token-bound; no auto-layout, children scale with the frame" }
+    },
+    {
+      "id": "track",
+      "kind": "shape",
+      "shape": "ellipse",
+      "figmaName": "Track",
+      "role": "Two rings drawn as strokes. The track covers the full circle and the arc covers the portion reported as complete.",
+      "visibleWhen": "showTrack",
+      "paint": {
+        "stroke": { "color": "border/subtle", "width": "stroke/heavy", "align": "center", "cap": "butt" }
+      },
+      "arc": "full circle",
+      "position": { "mode": "free", "constraints": "scale both axes" }
+    },
+    {
+      "id": "arc",
+      "kind": "shape",
+      "shape": "ellipse",
+      "figmaName": "Indicator",
+      "role": "Above the track; starts at twelve o'clock, runs clockwise, sweep = value.",
+      "paint": {
+        "stroke": { "color": "border/info", "width": "stroke/heavy", "align": "center", "cap": "round when rounded=true, butt when false" },
+        "fill": { "token": "foreground/link", "_note": "bound but never renders; ignore" }
+      },
+      "position": { "mode": "free", "constraints": "scale both axes" }
+    },
+    {
+      "id": "uploadControl",
+      "kind": "instance",
+      "ref": "_Upload",
+      "refVariant": "Stop=false",
+      "figmaName": "_Upload",
+      "role": "A nested control centred in the ring, hidden until Upload is turned on and absent altogether at the two smallest sizes.",
+      "visibleWhen": "upload",
+      "presentAt": ["small", "medium", "large"],
+      "boxPx": { "w": 36, "h": 36, "_note": "same size at every ring size, centred" },
+      "position": { "mode": "free", "constraints": "center both axes" }
+    }
+  ],
+  "variants": {
+    "axes": ["size", "rounded"],
+    "base": "xxsmall / true",
+    "bySize": [
+      { "size": "xxsmall", "ringPx": 24, "uploadControl": "absent" },
+      { "size": "xsmall", "ringPx": 36, "uploadControl": "absent" },
+      { "size": "small", "ringPx": 40, "uploadControl": "36Px, centred" },
+      { "size": "medium", "ringPx": 48, "uploadControl": "36Px, centred" },
+      { "size": "large", "ringPx": 64, "uploadControl": "36Px, centred" }
+    ],
+    "byRounded": [
+      { "rounded": "true", "arc.cap": "round" },
+      { "rounded": "false", "arc.cap": "butt (Figma \"none\")" }
+    ],
+    "_note": "Ring sizes are measurements, not tokens. Stroke width is stroke/heavy at every size."
+  },
+  "subcomponents": [
+    {
+      "name": "_Upload",
+      "id": "4416:123",
+      "key": "aa8de433cdcf0352b371608dc8104e7b818999a7",
+      "private": true,
+      "where": "Subcomponents/Progress indicator board",
+      "api": {
+        "stop": { "type": "enum", "figmaName": "Stop", "default": "false", "values": ["false", "true"], "controls": ["variant"] }
+      },
+      "anatomy": [
+        { "id": "root", "kind": "container", "boxPx": { "w": 36, "h": 36 }, "sizing": "fixed square, free positioning" },
+        {
+          "id": "readout",
+          "kind": "text",
+          "visibleWhen": "stop=false",
+          "text": { "sample": "75%", "style": "indicator/medium", "alignH": "center" },
+          "paint": { "fill": { "value": "#000000", "_note": "unbound — see issues" } }
+        },
+        {
+          "id": "cancel",
+          "kind": "instance",
+          "ref": "Icon Button",
+          "refVariant": "Size=small, Shape=full, Flavour=subtle, State=hover, Disabled=false",
+          "visibleWhen": "stop=true",
+          "glyph": "close",
+          "resolvesTo": "control/sm, interactive/ghost/background/hover, radius/pill, space/2xs padding, border interactive/neutral/border/default at stroke/base",
+          "_note": "Pinned to State=hover in Figma; in code use Icon Button with its own states."
+        }
+      ],
+      "variants": [
+        { "stop": "false", "readout": "shown", "cancel": "hidden" },
+        { "stop": "true", "readout": "hidden", "cancel": "shown" }
+      ]
+    },
+    { "name": "Icon Button", "id": "2338:1763", "spec": "specs/icon-button", "usedAt": ["uploadControl/cancel"] },
+    { "name": "Icon", "spec": "specs/icon", "usedAt": ["uploadControl/cancel glyph (close)"] }
+  ],
   "tokens": {
     "source": "tokens/ (see tokens/manifest.json)",
     "color": ["border/info", "border/subtle", "foreground/link", "interactive/ghost/background/hover", "interactive/neutral/border/default"],
-    "dimension": ["stroke/heavy", "radius/none", "control/sm", "space/none", "space/xxs", "radius/pill", "stroke/base"],
+    "dimension": ["stroke/heavy", "radius/none", "control/sm", "space/none", "space/2xs", "radius/pill", "stroke/base"],
     "typography": ["indicator/medium"],
     "glyphs": ["close"],
     "themeAxes": {
-      "palette": ["Light", "Dark"],
+      "palette": ["Light", "Dark", "AAA Light", "AAA Dark"],
       "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
       "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"]
-    },
-    "_note": "All 13 names resolve in tokens/base. foreground/link is bound on the arc but never renders. radius/none is bound on the track ellipse (no effect on an ellipse). The Icon Button tokens are read from its pinned instance and belong to the Icon Button spec. close is in packages/icons/codepoints.json, not retired, not rejected."
+    }
   },
-
   "states": [
-    { "state": "Static", "trigger": "—", "duration": "—", "whatChanges": "The ring has no hover, pressed, focus or disabled states, and no progress states either. Every one of the ten variants draws the same arc." },
-    { "state": "Upload shown", "trigger": "Upload set to true", "duration": "—", "whatChanges": "A control appears centred in the ring, reporting the percentage. Its own Stop property swaps that readout for a cancel button." }
+    { "state": "Static", "trigger": "—", "change": "The ring has no hover, pressed, focus or disabled states, and no progress states either. Every one of the ten variants draws the same arc." },
+    { "state": "Upload shown", "trigger": "Upload set to true", "change": "A control appears centred in the ring, reporting the percentage. Its own Stop property swaps that readout for a cancel button." }
   ],
-
   "behavior": [
     { "type": "Motion", "description": "Figma stores no timing and the ring models no transition. The arc is drawn in one fixed position in every variant, so both a determinate sweep and an indeterminate spin belong entirely to the implementation." },
     { "type": "Progress", "description": "There is no property for the amount. The arc sits at roughly three quarters in every variant, which is a placeholder rather than a value, so nothing here should be read as a real state." },
     { "type": "Upload", "description": "Showing or hiding the control does not resize the ring, because the control is centred inside it rather than stacked with it." }
   ],
-
   "content": [
     { "property": "Upload control", "type": "nested instance, toggled by Upload", "description": "The file-transfer control at the centre, left exposed so its Stop state is reachable from the ring. It is a fixed 36px whatever the ring's size, so at small it nearly fills the ring, and at xsmall and xxsmall it is not present at all." },
     { "property": "Percentage readout", "type": "inside the Upload control", "description": "Part of the nested control rather than a property of the ring. It ships reading 75% and has to be overridden on the instance to say anything else." },
     { "property": "Track and arc", "type": "fixed parts", "description": "Neither is a slot. The arc's sweep is what would encode a value, and it is identical in every variant." }
   ],
-
   "usage": {
     "do": [
       "Use medium or large whenever Upload is on. The control is a fixed size, so the smaller rings leave it almost no margin.",
@@ -179,10 +212,9 @@
     ],
     "dont": [
       "Don't read the arc as a value. It is identical in every variant, so a screen with several rings will show them all at the same apparent progress.",
-      "Don't reach for Upload at xsmall or xxsmall. The property is offered at those sizes but the control is not built, so turning it on does nothing."
+      "Don't use Upload at xsmall or xxsmall. The property is offered at those sizes but the control is not built, so turning it on does nothing."
     ]
   },
-
   "accessibility": [
     "The ring reports progress visually and nothing else. The value, its range and what it refers to all have to be exposed in code.",
     "The ring carries no label of its own, so on its own it signals that something is happening but not what. Pair it with nearby text.",
@@ -190,53 +222,38 @@
     "The arc and the track are separated by colour alone. Check border/info against border/subtle on the surface behind them.",
     "The Upload control's cancel action is a real control. It needs an accessible name and a keyboard path, neither of which is modelled here."
   ],
-
   "layoutTheming": [
     { "property": "Size", "type": "Fixed square per Size", "description": "24, 36, 40, 48 and 64px across the five steps. Always square, and never hugging its content." },
-    { "property": "Stroke weight", "type": "Fixed", "description": "4px (stroke/heavy) at every size. It does not scale, so the ring is roughly a sixth of the diameter at xxsmall and a sixteenth at large." },
+    { "property": "Stroke weight", "type": "Fixed", "description": "stroke/heavy at every size. It does not scale, so the ring is roughly a sixth of the diameter at xxsmall and a sixteenth at large." },
     { "property": "Arc", "type": "Fixed", "description": "The track covers the full circle. The arc begins at twelve o'clock and runs about three quarters of the way round, identically in all ten variants." },
     { "property": "Line cap", "type": "Fixed per Rounded", "description": "The arc's ends are round when Rounded is true and square when it is false. The track's ends are always square, though a full circle hides them." },
     { "property": "Upload control", "type": "Fixed", "description": "36px regardless of the ring's size, centred, and present only at small, medium and large." },
     { "property": "Colour", "type": "Theming", "description": "The arc is border/info and the track border/subtle. The arc also carries a foreground/link fill which does not render, because the shape is drawn with no inner area and the stroke does the visible work." }
   ],
-
   "visualReference": {
-    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
-    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4275-1344",
-    "board": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5041-6579",
     "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4416-77",
     "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5054-336",
     "variants": {
-      "size": {
-        "xxsmall (base)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4416-187",
-        "xsmall": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4416-180",
-        "small": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4416-173",
-        "medium": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4415-75",
-        "large": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4416-78"
-      },
-      "rounded": {
-        "false (large)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4416-240"
-      }
-    },
-    "subcomponents": {
-      "_Upload board": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4598-2243",
-      "_Upload Stop=false": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4416-122",
-      "_Upload Stop=true": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4416-124"
+      "xxsmall": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4416-187",
+      "small": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4416-173",
+      "medium": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4415-75",
+      "large": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4416-78",
+      "roundedFalse": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4416-240",
+      "_upload": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4598-2243"
     }
   },
-
   "issues": [
-    { "severity": "warn", "source": "api", "detail": "Upload is inert at xsmall and xxsmall (the _Upload instance is not built there), and xxsmall is the default size, so the property does nothing on a freshly placed ring. The metadata documents this. In code, either ignore upload below small or warn." },
-    { "severity": "warn", "source": "gaps", "detail": "_Upload readout text fill is a raw #000000 in both variants, no token. It will not flip in Dark. Likely intended foreground/primary; confirm in Figma." },
-    { "severity": "warn", "source": "gaps", "detail": "Ring sizes (24, 36, 40, 48, 64) and the _Upload size (36) are not token-bound." },
-    { "severity": "warn", "source": "api", "detail": "No property carries the progress amount; the arc is a fixed sample of about three quarters in all ten variants. The value, an indeterminate mode, and its motion must be designed in code. The metadata says so explicitly." },
-    { "severity": "warn", "source": "_Upload", "detail": "The cancel Icon Button is pinned to State=hover, so its hover fill shows permanently in Figma. In code it should use Icon Button's normal states." },
-    { "severity": "note", "source": "metadata vs extracted", "detail": "'Square' line cap for Rounded=false is Figma's no-cap (butt): the arc stops exactly at its endpoint, it does not extend by half the stroke width as a CSS/SVG 'square' cap would. Use butt." },
-    { "severity": "note", "source": "metadata vs extracted", "detail": "The Property Breakdown says Upload 'reports the percentage and offers a cancel action'. They are mutually exclusive: _Upload Stop=false shows the readout, Stop=true shows only the cancel button." },
-    { "severity": "note", "source": "_Upload", "detail": "The readout text box is fixed at a height smaller than its line height (indicator/medium), so it relies on overflow to render. In code let it hug." },
-    { "severity": "note", "source": "tokens", "detail": "Progress Circle's arc is border/info and track border/subtle; Progress Bar's indicator is foreground/link and track surface/track. The two progress indicators on one page use different colour tokens for the same roles; worth reconciling in Figma." },
-    { "severity": "note", "source": "tokens", "detail": "The arc's foreground/link fill and the track's radius/none corner bindings have no visible effect (zero-area shape, ellipse). Do not implement them." },
-    { "severity": "note", "source": "structure", "detail": "Track and arc are drawn as rotated (-180°) ellipse arcs; the net result is an arc starting at twelve o'clock running clockwise. Build it as a stroked circle with a dash offset or an SVG arc, not by copying the rotation." },
-    { "severity": "note", "source": "coverage", "detail": "No motion is modelled. No description on the component sets. Cancel action's accessible name and keyboard path are called out in the metadata as unmodelled." }
+    { "severity": "warn", "source": "api", "detail": "Upload is inert at the default size: no _Upload instance exists at xsmall or xxsmall, and xxsmall is the default. Documented in the metadata; decide in code whether to ignore or warn." },
+    { "severity": "warn", "source": "gaps", "detail": "Readout colour is raw: the _Upload readout fill is a raw black with no token, so it won't flip in Dark. Probably meant foreground/primary." },
+    { "severity": "warn", "source": "gaps", "detail": "Sizes aren't tokens: ring sizes and the upload control's size are unbound." },
+    { "severity": "warn", "source": "api", "detail": "No value property: the arc is a fixed sample; the value, indeterminate mode and motion are code's to design (the metadata says so)." },
+    { "severity": "warn", "source": "extracted", "detail": "Cancel pinned to hover: the Icon Button inside _Upload is fixed at State=hover." },
+    { "severity": "note", "source": "extracted", "detail": "\"Square\" cap for Rounded=false is Figma's no-cap, i.e. butt; don't use a square cap that extends past the endpoint." },
+    { "severity": "note", "source": "metadata vs extracted", "detail": "Readout and cancel are mutually exclusive (Stop), not shown together as the Upload description suggests." },
+    { "severity": "note", "source": "extracted", "detail": "The readout text box is shorter than its line height; let it hug in code." },
+    { "severity": "note", "source": "tokens", "detail": "Circle uses border/info / border/subtle; Bar uses foreground/link / surface/track for the same roles." },
+    { "severity": "note", "source": "extracted", "detail": "The arc's foreground/link fill and the track's radius/none have no visible effect." },
+    { "severity": "note", "source": "extracted", "detail": "Track and arc are rotated ellipse arcs in Figma; build them as a stroked circle or SVG arc starting at twelve o'clock." },
+    { "severity": "note", "source": "coverage", "detail": "No motion modelled; no component descriptions; cancel's accessible name and keyboard path unmodelled (metadata says so)." }
   ]
 }

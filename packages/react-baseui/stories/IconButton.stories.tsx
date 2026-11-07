@@ -15,7 +15,7 @@ const meta: Meta<typeof IconButton> = {
     shape: { control: "inline-radio", options: ["sharp", "rounded", "full"] },
     disabled: { control: "boolean" },
   },
-  args: { flavour: "primary", size: "small", shape: "sharp", disabled: false, icon: "more-horizontal", label: "More options" },
+  args: { flavour: "primary", size: "medium", shape: "rounded", disabled: false, icon: "more-horizontal", label: "More options" },
 };
 export default meta;
 type Story = StoryObj<typeof IconButton>;

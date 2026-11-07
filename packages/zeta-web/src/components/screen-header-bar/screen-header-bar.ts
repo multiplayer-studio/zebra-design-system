@@ -8,7 +8,7 @@ import "../button/icon-button/icon-button.js";
  * The bar at the top of a screen: a back button, the screen's title and one action. It suits a screen with exactly
  * one primary action; use Top App Bar for more actions or a different leading control.
  *
- * `rounded` sets the shape of the Buttons and Icon Buttons in the action slot; the back button stays sharp, as drawn.
+ * `rounded` sets the shape of the back button and of the Buttons and Icon Buttons in the action slot.
  * The bar is transparent and fills the width of its container.
  *
  * @slot action - The trailing action, usually one primary Button.
@@ -49,7 +49,7 @@ export class ZetaScreenHeaderBar extends Contourable(LitElement) {
               class="back"
               size="medium"
               flavor="subtle"
-              shape="sharp"
+              shape=${this.rounded ? "rounded" : "sharp"}
               aria-label=${this.backLabel}
               @click=${() => this.dispatchEvent(new CustomEvent("back", { bubbles: true, composed: true }))}
               >chevron_left</zeta-icon-button

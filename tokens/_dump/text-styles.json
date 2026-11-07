@@ -1,0 +1,542 @@
+[
+ {
+  "id": "S:fe6b7751e36025776fe4496cd55b9b44e1628c03,",
+  "key": "fe6b7751e36025776fe4496cd55b9b44e1628c03",
+  "name": "display/large",
+  "description": "",
+  "remote": false,
+  "fontFamily": "IBM Plex Sans",
+  "fontStyle": "Light",
+  "fontSize": 52,
+  "lineHeight": {
+   "unit": "PIXELS",
+   "value": 60
+  },
+  "letterSpacing": {
+   "unit": "PIXELS",
+   "value": 0
+  },
+  "paragraphSpacing": 0,
+  "paragraphIndent": 0,
+  "textCase": "ORIGINAL",
+  "textDecoration": "NONE",
+  "leadingTrim": "NONE",
+  "bound": {
+   "letterSpacing": "VariableID:2207:390",
+   "fontSize": "VariableID:2207:387",
+   "fontStyle": "VariableID:2207:388",
+   "fontFamily": "VariableID:2207:386",
+   "lineHeight": "VariableID:2207:389"
+  }
+ },
+ {
+  "id": "S:aa58953c3797470147c94c383eef62d79932427f,",
+  "key": "aa58953c3797470147c94c383eef62d79932427f",
+  "name": "display/medium",
+  "description": "",
+  "remote": false,
+  "fontFamily": "IBM Plex Sans",
+  "fontStyle": "Light",
+  "fontSize": 44,
+  "lineHeight": {
+   "unit": "PIXELS",
+   "value": 52
+  },
+  "letterSpacing": {
+   "unit": "PIXELS",
+   "value": 0
+  },
+  "paragraphSpacing": 0,
+  "paragraphIndent": 0,
+  "textCase": "ORIGINAL",
+  "textDecoration": "NONE",
+  "leadingTrim": "NONE",
+  "bound": {
+   "letterSpacing": "VariableID:2207:410",
+   "fontSize": "VariableID:2207:407",
+   "fontStyle": "VariableID:2207:408",
+   "fontFamily": "VariableID:2207:406",
+   "lineHeight": "VariableID:2207:409"
+  }
+ },
+ {
+  "id": "S:e3ecc208b920e89d587936367a65e9d7d10ffe50,",
+  "key": "e3ecc208b920e89d587936367a65e9d7d10ffe50",
+  "name": "display/small",
+  "description": "",
+  "remote": false,
+  "fontFamily": "IBM Plex Sans",
+  "fontStyle": "Light",
+  "fontSize": 36,
+  "lineHeight": {
+   "unit": "PIXELS",
+   "value": 40
+  },
+  "letterSpacing": {
+   "unit": "PIXELS",
+   "value": 0
+  },
+  "paragraphSpacing": 0,
+  "paragraphIndent": 0,
+  "textCase": "ORIGINAL",
+  "textDecoration": "NONE",
+  "leadingTrim": "NONE",
+  "bound": {
+   "letterSpacing": "VariableID:2207:415",
+   "fontSize": "VariableID:2207:412",
+   "fontStyle": "VariableID:2207:413",
+   "fontFamily": "VariableID:2207:411",
+   "lineHeight": "VariableID:2207:414"
+  }
+ },
+ {
+  "id": "S:71873deb2b2e5a16b22dab38ea85bf3c9bcecd33,",
+  "key": "71873deb2b2e5a16b22dab38ea85bf3c9bcecd33",
+  "name": "heading/large",
+  "description": "",
+  "remote": false,
+  "fontFamily": "IBM Plex Sans",
+  "fontStyle": "Regular",
+  "fontSize": 32,
+  "lineHeight": {
+   "unit": "PIXELS",
+   "value": 36
+  },
+  "letterSpacing": {
+   "unit": "PIXELS",
+   "value": 0
+  },
+  "paragraphSpacing": 0,
+  "paragraphIndent": 0,
+  "textCase": "ORIGINAL",
+  "textDecoration": "NONE",
+  "leadingTrim": "NONE",
+  "bound": {
+   "letterSpacing": "VariableID:2207:420",
+   "fontSize": "VariableID:2207:417",
+   "fontStyle": "VariableID:2207:418",
+   "fontFamily": "VariableID:2207:416",
+   "lineHeight": "VariableID:2207:419"
+  }
+ },
+ {
+  "id": "S:9a69d8a675f05c5fb71576c29eafbedc81c6dc63,",
+  "key": "9a69d8a675f05c5fb71576c29eafbedc81c6dc63",
+  "name": "heading/medium",
+  "description": "",
+  "remote": false,
+  "fontFamily": "IBM Plex Sans",
+  "fontStyle": "Regular",
+  "fontSize": 28,
+  "lineHeight": {
+   "unit": "PIXELS",
+   "value": 32
+  },
+  "letterSpacing": {
+   "unit": "PIXELS",
+   "value": 0
+  },
+  "paragraphSpacing": 0,
+  "paragraphIndent": 0,
+  "textCase": "ORIGINAL",
+  "textDecoration": "NONE",
+  "leadingTrim": "NONE",
+  "bound": {
+   "letterSpacing": "VariableID:2209:440",
+   "fontSize": "VariableID:2209:437",
+   "fontStyle": "VariableID:2209:438",
+   "fontFamily": "VariableID:2209:436",
+   "lineHeight": "VariableID:2209:439"
+  }
+ },
+ {
+  "id": "S:5db0d4dddbb1587e3ae20fad8f2a06bb1f81e4a8,",
+  "key": "5db0d4dddbb1587e3ae20fad8f2a06bb1f81e4a8",
+  "name": "heading/small",
+  "description": "",
+  "remote": false,
+  "fontFamily": "IBM Plex Sans",
+  "fontStyle": "Regular",
+  "fontSize": 24,
+  "lineHeight": {
+   "unit": "PIXELS",
+   "value": 28
+  },
+  "letterSpacing": {
+   "unit": "PIXELS",
+   "value": 0
+  },
+  "paragraphSpacing": 0,
+  "paragraphIndent": 0,
+  "textCase": "ORIGINAL",
+  "textDecoration": "NONE",
+  "leadingTrim": "NONE",
+  "bound": {
+   "letterSpacing": "VariableID:2209:450",
+   "fontSize": "VariableID:2209:447",
+   "fontStyle": "VariableID:2209:448",
+   "fontFamily": "VariableID:2209:446",
+   "lineHeight": "VariableID:2209:449"
+  }
+ },
+ {
+  "id": "S:13b7259dbb5d6c0cd3b503008712821f8b398837,",
+  "key": "13b7259dbb5d6c0cd3b503008712821f8b398837",
+  "name": "title/large",
+  "description": "",
+  "remote": false,
+  "fontFamily": "IBM Plex Sans",
+  "fontStyle": "Medium",
+  "fontSize": 20,
+  "lineHeight": {
+   "unit": "PIXELS",
+   "value": 24
+  },
+  "letterSpacing": {
+   "unit": "PIXELS",
+   "value": 0
+  },
+  "paragraphSpacing": 0,
+  "paragraphIndent": 0,
+  "textCase": "ORIGINAL",
+  "textDecoration": "NONE",
+  "leadingTrim": "NONE",
+  "bound": {
+   "letterSpacing": "VariableID:2210:460",
+   "fontSize": "VariableID:2210:457",
+   "fontStyle": "VariableID:2210:458",
+   "fontFamily": "VariableID:2210:456",
+   "lineHeight": "VariableID:2210:459"
+  }
+ },
+ {
+  "id": "S:3d6c2597f9c0135658399365b4a3db795040230e,",
+  "key": "3d6c2597f9c0135658399365b4a3db795040230e",
+  "name": "title/medium",
+  "description": "",
+  "remote": false,
+  "fontFamily": "IBM Plex Sans",
+  "fontStyle": "Medium",
+  "fontSize": 16,
+  "lineHeight": {
+   "unit": "PIXELS",
+   "value": 20
+  },
+  "letterSpacing": {
+   "unit": "PIXELS",
+   "value": 0
+  },
+  "paragraphSpacing": 0,
+  "paragraphIndent": 0,
+  "textCase": "ORIGINAL",
+  "textDecoration": "NONE",
+  "leadingTrim": "NONE",
+  "bound": {
+   "letterSpacing": "VariableID:2210:470",
+   "fontSize": "VariableID:2210:467",
+   "fontStyle": "VariableID:2210:468",
+   "fontFamily": "VariableID:2210:466",
+   "lineHeight": "VariableID:2210:469"
+  }
+ },
+ {
+  "id": "S:87d29c9c0bbc488a52328abc2a9c4ced40945989,",
+  "key": "87d29c9c0bbc488a52328abc2a9c4ced40945989",
+  "name": "title/small",
+  "description": "",
+  "remote": false,
+  "fontFamily": "IBM Plex Sans",
+  "fontStyle": "Medium",
+  "fontSize": 12,
+  "lineHeight": {
+   "unit": "PIXELS",
+   "value": 16
+  },
+  "letterSpacing": {
+   "unit": "PIXELS",
+   "value": 0
+  },
+  "paragraphSpacing": 0,
+  "paragraphIndent": 0,
+  "textCase": "ORIGINAL",
+  "textDecoration": "NONE",
+  "leadingTrim": "NONE",
+  "bound": {
+   "letterSpacing": "VariableID:2210:475",
+   "fontSize": "VariableID:2210:472",
+   "fontStyle": "VariableID:2210:473",
+   "fontFamily": "VariableID:2210:471",
+   "lineHeight": "VariableID:2210:474"
+  }
+ },
+ {
+  "id": "S:8bcd259fe8b7bd4977fab3af6caa702be0ed78e0,",
+  "key": "8bcd259fe8b7bd4977fab3af6caa702be0ed78e0",
+  "name": "body/large",
+  "description": "",
+  "remote": false,
+  "fontFamily": "IBM Plex Sans",
+  "fontStyle": "Regular",
+  "fontSize": 20,
+  "lineHeight": {
+   "unit": "PIXELS",
+   "value": 24
+  },
+  "letterSpacing": {
+   "unit": "PIXELS",
+   "value": 0
+  },
+  "paragraphSpacing": 0,
+  "paragraphIndent": 0,
+  "textCase": "ORIGINAL",
+  "textDecoration": "NONE",
+  "leadingTrim": "NONE",
+  "bound": {
+   "letterSpacing": "VariableID:2207:355",
+   "fontSize": "VariableID:2207:352",
+   "fontStyle": "VariableID:2207:353",
+   "fontFamily": "VariableID:2207:351",
+   "lineHeight": "VariableID:2207:354"
+  }
+ },
+ {
+  "id": "S:be357ec4d0602eeace6c16497b7059ad05a672db,",
+  "key": "be357ec4d0602eeace6c16497b7059ad05a672db",
+  "name": "body/medium",
+  "description": "",
+  "remote": false,
+  "fontFamily": "IBM Plex Sans",
+  "fontStyle": "Regular",
+  "fontSize": 16,
+  "lineHeight": {
+   "unit": "PIXELS",
+   "value": 24
+  },
+  "letterSpacing": {
+   "unit": "PIXELS",
+   "value": 0
+  },
+  "paragraphSpacing": 0,
+  "paragraphIndent": 0,
+  "textCase": "ORIGINAL",
+  "textDecoration": "NONE",
+  "leadingTrim": "NONE",
+  "bound": {
+   "letterSpacing": "VariableID:2207:375",
+   "fontSize": "VariableID:2207:372",
+   "fontStyle": "VariableID:2207:373",
+   "fontFamily": "VariableID:2207:371",
+   "lineHeight": "VariableID:2207:374"
+  }
+ },
+ {
+  "id": "S:f35e93b29b2989e5709d5080a8a14b03f8c28c22,",
+  "key": "f35e93b29b2989e5709d5080a8a14b03f8c28c22",
+  "name": "body/small",
+  "description": "",
+  "remote": false,
+  "fontFamily": "IBM Plex Sans",
+  "fontStyle": "Regular",
+  "fontSize": 14,
+  "lineHeight": {
+   "unit": "PIXELS",
+   "value": 18
+  },
+  "letterSpacing": {
+   "unit": "PIXELS",
+   "value": 0
+  },
+  "paragraphSpacing": 0,
+  "paragraphIndent": 0,
+  "textCase": "ORIGINAL",
+  "textDecoration": "NONE",
+  "leadingTrim": "NONE",
+  "bound": {
+   "letterSpacing": "VariableID:2207:380",
+   "fontSize": "VariableID:2207:377",
+   "fontStyle": "VariableID:2207:378",
+   "fontFamily": "VariableID:2207:376",
+   "lineHeight": "VariableID:2207:379"
+  }
+ },
+ {
+  "id": "S:50d17aa9beec2e87a9193a16afdd5f0dad7a4dda,",
+  "key": "50d17aa9beec2e87a9193a16afdd5f0dad7a4dda",
+  "name": "body/xsmall",
+  "description": "",
+  "remote": false,
+  "fontFamily": "IBM Plex Sans",
+  "fontStyle": "Regular",
+  "fontSize": 12,
+  "lineHeight": {
+   "unit": "PIXELS",
+   "value": 16
+  },
+  "letterSpacing": {
+   "unit": "PIXELS",
+   "value": 0
+  },
+  "paragraphSpacing": 0,
+  "paragraphIndent": 0,
+  "textCase": "ORIGINAL",
+  "textDecoration": "NONE",
+  "leadingTrim": "NONE",
+  "bound": {
+   "letterSpacing": "VariableID:2207:385",
+   "fontSize": "VariableID:2207:382",
+   "fontStyle": "VariableID:2207:383",
+   "fontFamily": "VariableID:2207:381",
+   "lineHeight": "VariableID:2207:384"
+  }
+ },
+ {
+  "id": "S:c5e988323a4aa53425b9136e290b7d96e4d6fd34,",
+  "key": "c5e988323a4aa53425b9136e290b7d96e4d6fd34",
+  "name": "indicator/medium",
+  "description": "",
+  "remote": false,
+  "fontFamily": "IBM Plex Sans",
+  "fontStyle": "Medium",
+  "fontSize": 12,
+  "lineHeight": {
+   "unit": "PIXELS",
+   "value": 14
+  },
+  "letterSpacing": {
+   "unit": "PIXELS",
+   "value": 0
+  },
+  "paragraphSpacing": 0,
+  "paragraphIndent": 0,
+  "textCase": "ORIGINAL",
+  "textDecoration": "NONE",
+  "leadingTrim": "CAP_HEIGHT",
+  "bound": {
+   "letterSpacing": "VariableID:2207:350",
+   "fontSize": "VariableID:2207:347",
+   "fontStyle": "VariableID:2207:348",
+   "fontFamily": "VariableID:2207:346",
+   "lineHeight": "VariableID:2207:349"
+  }
+ },
+ {
+  "id": "S:972aa1ebd909429c8bc89a2f7530b642da8b7354,",
+  "key": "972aa1ebd909429c8bc89a2f7530b642da8b7354",
+  "name": "indicator/small",
+  "description": "",
+  "remote": false,
+  "fontFamily": "IBM Plex Sans",
+  "fontStyle": "Regular",
+  "fontSize": 10,
+  "lineHeight": {
+   "unit": "PIXELS",
+   "value": 12
+  },
+  "letterSpacing": {
+   "unit": "PIXELS",
+   "value": 0
+  },
+  "paragraphSpacing": 0,
+  "paragraphIndent": 0,
+  "textCase": "ORIGINAL",
+  "textDecoration": "NONE",
+  "leadingTrim": "CAP_HEIGHT",
+  "bound": {
+   "letterSpacing": "VariableID:4654:10525",
+   "fontSize": "VariableID:4654:10522",
+   "fontStyle": "VariableID:4654:10523",
+   "fontFamily": "VariableID:4654:10521",
+   "lineHeight": "VariableID:4654:10524"
+  }
+ },
+ {
+  "id": "S:bfd71769a1416d4b58bcf7fcc5a3062a41645832,",
+  "key": "bfd71769a1416d4b58bcf7fcc5a3062a41645832",
+  "name": "label/large",
+  "description": "",
+  "remote": false,
+  "fontFamily": "IBM Plex Sans",
+  "fontStyle": "Medium",
+  "fontSize": 16,
+  "lineHeight": {
+   "unit": "PIXELS",
+   "value": 24
+  },
+  "letterSpacing": {
+   "unit": "PIXELS",
+   "value": 0
+  },
+  "paragraphSpacing": 0,
+  "paragraphIndent": 0,
+  "textCase": "ORIGINAL",
+  "textDecoration": "NONE",
+  "leadingTrim": "NONE",
+  "bound": {
+   "letterSpacing": "VariableID:2207:335",
+   "fontSize": "VariableID:2207:332",
+   "fontStyle": "VariableID:2207:333",
+   "fontFamily": "VariableID:2207:330",
+   "lineHeight": "VariableID:2207:334"
+  }
+ },
+ {
+  "id": "S:63b31f862faf7539d76d06419513d0cd4b250ef8,",
+  "key": "63b31f862faf7539d76d06419513d0cd4b250ef8",
+  "name": "label/medium",
+  "description": "",
+  "remote": false,
+  "fontFamily": "IBM Plex Sans",
+  "fontStyle": "Medium",
+  "fontSize": 14,
+  "lineHeight": {
+   "unit": "PIXELS",
+   "value": 20
+  },
+  "letterSpacing": {
+   "unit": "PIXELS",
+   "value": 0
+  },
+  "paragraphSpacing": 0,
+  "paragraphIndent": 0,
+  "textCase": "ORIGINAL",
+  "textDecoration": "NONE",
+  "leadingTrim": "NONE",
+  "bound": {
+   "letterSpacing": "VariableID:2207:340",
+   "fontSize": "VariableID:2207:337",
+   "fontStyle": "VariableID:2207:338",
+   "fontFamily": "VariableID:2207:336",
+   "lineHeight": "VariableID:2207:339"
+  }
+ },
+ {
+  "id": "S:3b99557a2c4c04c6568ac4793fcbeea3d2902259,",
+  "key": "3b99557a2c4c04c6568ac4793fcbeea3d2902259",
+  "name": "label/small",
+  "description": "",
+  "remote": false,
+  "fontFamily": "IBM Plex Sans",
+  "fontStyle": "Medium",
+  "fontSize": 12,
+  "lineHeight": {
+   "unit": "PIXELS",
+   "value": 16
+  },
+  "letterSpacing": {
+   "unit": "PIXELS",
+   "value": 0
+  },
+  "paragraphSpacing": 0,
+  "paragraphIndent": 0,
+  "textCase": "ORIGINAL",
+  "textDecoration": "NONE",
+  "leadingTrim": "NONE",
+  "bound": {
+   "letterSpacing": "VariableID:2207:345",
+   "fontSize": "VariableID:2207:342",
+   "fontStyle": "VariableID:2207:343",
+   "fontFamily": "VariableID:2207:341",
+   "lineHeight": "VariableID:2207:344"
+  }
+ }
+]

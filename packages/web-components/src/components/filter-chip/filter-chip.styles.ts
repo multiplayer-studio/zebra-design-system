@@ -14,7 +14,7 @@ export default css`
   --zds-chip-bg: var(--interactive-neutral-background-default);
   --zds-chip-border: var(--interactive-neutral-border-default);
   --zds-chip-fg: var(--interactive-neutral-foreground-default);
-  gap: var(--space-xxs);
+  gap: var(--space-2xs);
   /* spec issue "Height is raw": Figma fixes the chip at 32px with no token.
      The nearest control token is used — control/sm (36px); control/xs is
      24px. The 4px gap stays open until design adds a 32px control token.

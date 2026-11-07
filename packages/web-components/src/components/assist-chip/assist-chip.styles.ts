@@ -38,9 +38,9 @@ export default css`
   --zds-assist-color-border: var(--border-error);
 }
 
-/* ---- root: space/2xs gap; the label frame adds space/xxs either side ---- */
+/* ---- root: space/3xs gap; the label frame adds space/2xs either side ---- */
 .zds-assist-chip {
-  gap: var(--space-2xs);
+  gap: var(--space-3xs);
   /* spec issue "Height jumps between states": Figma is 30px at rest and 28px
      at focus and disabled because its inside border counts in layout. Built
      28px throughout with the border out of layout (chip-base.styles.ts draws it as an
@@ -53,9 +53,9 @@ export default css`
   cursor: default;
 }
 
-/* ---- label: indicator/medium in a frame padded space/xxs either side ---- */
+/* ---- label: indicator/medium in a frame padded space/2xs either side ---- */
 .zds-assist-chip .zds-chip__label {
-  padding-inline: var(--space-xxs);
+  padding-inline: var(--space-2xs);
   font-family: var(--indicator-medium-font-family), system-ui, sans-serif;
   font-size: var(--indicator-medium-font-size);
   font-weight: var(--indicator-medium-font-weight);
@@ -70,8 +70,8 @@ export default css`
   display: inline-flex;
   flex: none;
   align-items: center;
-  /* The action wraps icon + label, so it repeats the root's space/2xs gap. */
-  gap: var(--space-2xs);
+  /* The action wraps icon + label, so it repeats the root's space/3xs gap. */
+  gap: var(--space-3xs);
   margin: 0;
   padding: 0;
   border: 0;

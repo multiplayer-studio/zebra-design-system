@@ -8,14 +8,12 @@
       "key": "3415745a46ee50613cf0f489fc40bf9f8b4f4caa",
       "page": "Progress Indicators",
       "pageNodeId": "4275:1344",
-      "boardId": "4275:1345",
-      "metadataFrameId": "5054:90",
-      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4275-1345",
-      "extractedAt": "2026-10-20",
-      "variantCount": {
-        "Progress Bar": 24
-      },
-      "extractionNote": "All 24 variants (Progress × Shape × Size) extracted in full. The page holds two public components with one metadata frame each (Progress Bar Metadata, Progress Circle Metadata), so Progress Bar and Progress Circle are specced separately; the page's one private set, _Upload, belongs to Progress Circle and is specced there. Progress Bar uses no private part."
+      "board": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4275-1345",
+      "extractedAt": "2026-11-07",
+      "variantCount": 24,
+      "defaultVariant": "Progress=0%, Shape=rounded, Size=small",
+      "extractionNote": "All 24 variants read in full; intent from the Progress Bar Metadata frame via the 2026-11-06 spec.",
+      "tokenSource": "tokens/"
     }
   },
   "summary": "A horizontal track that fills to show how far an ongoing process has got. Progress is a single value that grows from empty to full, with two further modes for when the extent is not known. An optional label above the bar reports the state in words. Nothing here animates, so both the fill's growth and the indeterminate movement belong to the implementation.",
@@ -23,21 +21,12 @@
     "progress": {
       "type": "enum",
       "figmaName": "Progress",
-      "values": [
-        "0%",
-        "25%",
-        "50%",
-        "100%",
-        "Indeterminate",
-        "Buffering"
-      ],
       "default": "0%",
-      "controls": [
-        "variant"
-      ],
-      "_note": "The four percentage options are samples of one continuous value. In code this is a number (0 to 100, or a value with a max) plus a mode: determinate, indeterminate, buffering. Buffering also needs a second number, the buffered extent.",
+      "values": ["0%", "25%", "50%", "100%", "Indeterminate", "Buffering"],
+      "controls": ["variant"],
+      "codeShape": "a numeric value with a max, a mode (determinate, indeterminate, buffering) and, for buffering, a buffer value",
       "intent": {
-        "0% to 100%": "The bar reports one value that grows from empty to full. Figma offers it as four fixed steps only because a variant cannot hold a number, so pick the nearest when laying out and let the implementation drive the real value. The steps are samples, not thresholds worth designing around.",
+        "0%-100%": "The bar reports one value that grows from empty to full. Figma offers it as four fixed steps only because a variant cannot hold a number, so pick the nearest when laying out and let the implementation drive the real value. The steps are samples, not thresholds worth designing around.",
         "Indeterminate": "Work is happening but its extent is unknown. The indicator becomes a short segment that a real implementation slides along the track, so it should never sit still in a shipped screen.",
         "Buffering": "Code only: a band shows how much has preloaded; the indicator never runs past it. Determinate bars only, never indeterminate."
       }
@@ -45,14 +34,9 @@
     "shape": {
       "type": "enum",
       "figmaName": "Shape",
-      "values": [
-        "rounded",
-        "sharp"
-      ],
       "default": "rounded",
-      "controls": [
-        "variant"
-      ],
+      "values": ["rounded", "sharp"],
+      "controls": ["variant"],
       "intent": {
         "rounded": "Softened ends on both the track and the fill, matching the system's rounded controls.",
         "sharp": "Square ends, for a bar sitting flush against square surfaces. Beside rounded controls the two treatments read as different components."
@@ -61,26 +45,19 @@
     "size": {
       "type": "enum",
       "figmaName": "Size",
-      "values": [
-        "small",
-        "medium"
-      ],
       "default": "small",
-      "controls": [
-        "variant"
-      ],
+      "values": ["small", "large"],
+      "controls": ["variant"],
       "intent": {
         "small": "The everyday bar, thin enough to sit under a label without dominating it.",
-        "medium": "A heavier bar for when progress is the main thing on the surface rather than a detail beside other content."
+        "large": "A heavier bar for when progress is the main thing on the surface rather than a detail beside other content."
       }
     },
     "showLabel": {
       "type": "boolean",
       "figmaName": "Show Label#4335:5",
       "default": true,
-      "controls": [
-        "labelRow"
-      ],
+      "controls": ["labelRow (visible)"],
       "intent": {
         "true": "Shows the text row above the bar. The wording is fixed by the Progress value rather than set as a property, so it changes when the value does.",
         "false": "Hides the row, leaving the bar alone. Only do this where nearby copy already names the task, because a bar on its own reports a proportion and not a subject."
@@ -90,396 +67,163 @@
       "type": "boolean",
       "figmaName": "Show Track#4282:0",
       "default": true,
-      "controls": [
-        "track",
-        "buffer"
-      ],
+      "controls": ["track (visible)", "buffer (visible)"],
       "intent": {
         "true": "Shows the unfilled remainder behind the indicator, which is what makes the proportion readable.",
         "false": "Hides it, leaving only the filled portion. The bar then shows a length with nothing to measure it against."
-      }
+      },
+      "note": "Also hides the Buffering band, which shares the property — see issues."
     },
     "showMoreDetails": {
       "type": "boolean",
       "figmaName": "Show More Details#4411:23",
       "default": false,
-      "controls": [
-        "trailingSlot"
-      ],
+      "controls": ["trailingSlot (visible)"],
       "intent": {
-        "false": "No trailing content in the label row.",
         "true": "Reveals a slot at the trailing end of the label row for supporting detail. It shares the row with the label, so a long label and a filled slot will compete for the same space."
       }
     },
     "trailing": {
       "type": "slot",
       "figmaName": "Right Slot#4411:36",
-      "figmaType": "SLOT",
-      "default": "empty (ships holding one hidden Icon, glyph hourglass)",
-      "preferred": [],
-      "controls": [
-        "trailingSlot"
-      ],
-      "intent": "Trailing content in the label row, revealed by Show More Details. It ships holding a hidden Icon and suggests no components, so it stays empty until filled. One property serves every variant, so content placed here survives a change of Progress, Shape or Size."
+      "default": "empty (ships holding a hidden Icon)",
+      "controls": ["trailingSlot (slotContentId)"],
+      "intent": {
+        "slot": "Trailing content in the label row, revealed by Show More Details. It ships holding a hidden Icon and suggests no components, so it stays empty until filled. One property serves every variant, so content placed here survives a change of Progress, Shape or Size."
+      }
     }
   },
   "internalVariations": [],
   "contentInputs": [
-    {
-      "part": "label",
-      "input": "label",
-      "sampleCount": 6,
-      "sample": {
-        "0%": "0%",
-        "25%": "25% complete",
-        "50%": "50% complete",
-        "100%": "Complete",
-        "Indeterminate": "Uploading...",
-        "Buffering": "Loading..."
-      },
-      "note": "Not a text property: the string is baked into each variant and changes with Progress. In code this is a plain string input, independent of the value."
-    },
-    {
-      "part": "indicator",
-      "input": "value (and max)",
-      "note": "Drives the indicator's width as a share of the track. Figma samples it at 0, 25, 50 and 100 percent."
-    },
-    {
-      "part": "buffer",
-      "input": "buffer value",
-      "note": "Buffering only. Drives the buffered band's width; Figma samples one value (the band covers three quarters of the track)."
-    }
+    { "part": "labelRow/label", "input": "text", "samples": ["0%", "25% complete", "50% complete", "Complete", "Uploading...", "Loading..."], "_note": "Baked per variant in Figma; a plain string in code." },
+    { "part": "indicator", "input": "value", "_note": "Drives the indicator width; on Buffering a second buffer value drives the band." }
   ],
   "anatomy": [
     {
       "id": "root",
       "kind": "container",
-      "number": 1,
+      "figmaName": "<variant>",
       "role": "The outer frame. Fixed width, stacking the label row above the indicator group with a gap between them, and hugging whatever height the chosen Size produces.",
-      "layout": {
-        "direction": "vertical",
-        "gap": "space/lg",
-        "padding": "none",
-        "align": "start"
-      },
-      "sizing": {
-        "h": "fixed",
-        "v": "hug"
-      },
+      "layout": { "direction": "vertical", "gap": "space/lg", "padding": [0, 0, 0, 0] },
+      "sizing": { "h": "fixed", "v": "hug" },
       "radius": "radius/none",
       "clips": true,
-      "measured": {
-        "widthPx": 408,
-        "heightPx": {
-          "small": 44,
-          "medium": 52
-        }
-      }
+      "boxPx": { "w": 408, "hSmall": 44, "hLarge": 52 }
     },
     {
       "id": "labelRow",
       "kind": "container",
-      "number": 2,
-      "visibleWhen": "showLabel",
+      "figmaName": "Details",
       "role": "Holds the text that reports the state and, when Show More Details is on, a trailing slot beside it.",
-      "layout": {
-        "direction": "horizontal",
-        "gap": "10px (raw, no token — see issues)",
-        "padding": "none",
-        "align": "center"
-      },
-      "sizing": {
-        "h": "fill",
-        "v": "hug"
-      }
+      "visibleWhen": "showLabel",
+      "layout": { "direction": "horizontal", "gap": { "value": 10, "_note": "raw, no token — see issues" }, "counterAlign": "center" },
+      "sizing": { "h": "fill", "v": "hug" }
     },
     {
-      "id": "label",
+      "id": "labelRow/label",
       "kind": "text",
-      "parent": "labelRow",
-      "text": {
-        "style": "label/medium",
-        "color": "foreground/secondary",
-        "align": "start",
-        "wrap": true
-      },
-      "sizing": {
-        "h": "fill",
-        "v": "hug"
-      }
+      "figmaName": "Label",
+      "text": { "style": "label/medium", "alignH": "left", "autoResize": "height", "wrap": true },
+      "paint": { "fill": "foreground/secondary" },
+      "sizing": { "h": "fill", "v": "hug" }
     },
     {
-      "id": "trailingSlot",
+      "id": "labelRow/trailingSlot",
       "kind": "slot",
-      "parent": "labelRow",
+      "figmaName": "Right Slot",
       "visibleWhen": "showMoreDetails",
-      "slotProp": "trailing",
-      "layout": {
-        "direction": "horizontal",
-        "gap": "space/xxs",
-        "padding": "space/none",
-        "align": "center"
-      },
-      "sizing": {
-        "h": "hug",
-        "v": "hug"
-      },
-      "defaultContent": {
-        "kind": "glyph",
-        "glyph": "hourglass",
-        "family": "rounded",
-        "iconSize": "Icon Size=small",
-        "framed": false,
-        "visible": false,
-        "color": "currentColor"
-      }
+      "layout": { "direction": "horizontal", "gap": "space/2xs", "padding": "space/none" },
+      "sizing": { "h": "hug", "v": "hug" },
+      "defaultContent": { "ref": "Icon", "refVariant": "Size=small, Framed=false", "glyph": "hourglass", "hidden": true, "_note": "In code the slot is empty by default." }
     },
     {
       "id": "indicatorGroup",
       "kind": "container",
-      "number": 3,
+      "figmaName": "Indicator Group",
       "role": "The track, the indicator that fills it, and on Buffering a third band covering the buffered span.",
-      "layout": {
-        "direction": "vertical",
-        "gap": "space/none",
-        "padding": "none"
-      },
-      "sizing": {
-        "h": "fill",
-        "v": "fixed"
-      },
-      "thickness": "varies by size, no token (see variants and issues)",
-      "radius": "radius/sm at small + rounded; otherwise radius/none or unbound. Does not clip, so it has no visible effect.",
+      "sizing": { "h": "fill", "v": "fixed", "_note": "thickness per size, not token-bound (8Px small, 16Px large)" },
       "stacking": "bottom to top: track, buffer, indicator"
     },
     {
       "id": "track",
       "kind": "shape",
-      "parent": "indicatorGroup",
+      "figmaName": "Track",
       "visibleWhen": "showTrack",
-      "sizing": "fills indicatorGroup",
-      "paint": {
-        "fill": "surface/track"
-      },
+      "sizing": "fills the group",
+      "paint": { "fill": "surface/track" },
       "radius": "per shape × size (see variants)"
     },
     {
       "id": "buffer",
       "kind": "shape",
-      "parent": "indicatorGroup",
-      "presentWhen": "progress = Buffering",
+      "figmaName": "Rail",
+      "presentAt": "Progress=Buffering only",
       "visibleWhen": "showTrack",
-      "position": {
-        "mode": "absolute",
-        "anchor": "left, scales with the track"
-      },
-      "width": "buffer value as a share of the track (sampled at three quarters)",
-      "paint": {
-        "fill": "surface/subtle",
-        "fillNote": "Remote variable from another library, missing from tokens/ — see issues. The paint carries the variable's own alpha."
-      },
-      "radius": "per shape × size (see variants)"
+      "anchor": "left",
+      "width": "buffer value (sampled at three quarters, 306Px of 408Px)",
+      "paint": { "fill": { "token": "surface/shade", "_note": "Figma adds a paint opacity on top of the token's own alpha — apply the token alone, see issues" } },
+      "radius": "per shape × size"
     },
     {
       "id": "indicator",
       "kind": "shape",
-      "parent": "indicatorGroup",
-      "position": {
-        "mode": "absolute",
-        "anchor": "left, top and bottom; scales with the track"
-      },
-      "width": "value as a share of the track; a short fixed-length segment on Indeterminate and Buffering",
-      "paint": {
-        "fill": "foreground/link"
-      },
-      "radius": "per shape × size (see variants)"
+      "figmaName": "Indicator",
+      "anchor": "left",
+      "height": "full group thickness",
+      "width": "value as a share of the track; on Indeterminate and Buffering a short fixed-length segment",
+      "paint": { "fill": "foreground/link" },
+      "radius": "per shape × size"
     }
   ],
   "variants": {
-    "axes": [
-      "progress",
-      "shape",
-      "size"
-    ],
-    "base": "progress=0%, shape=rounded, size=small",
-    "_note": "Measurements (…Px) are rendered observations, not tokens. Shape and Size only change radius and thickness; Progress only changes the label string, the indicator width and the buffer band.",
+    "axes": ["size", "shape", "progress"],
+    "base": "0% / rounded / small",
     "bySize": [
-      {
-        "size": "small",
-        "indicatorGroup.heightPx": 8,
-        "root.heightPx": 44,
-        "radius (rounded)": "radius/sm"
-      },
-      {
-        "size": "medium",
-        "indicatorGroup.heightPx": 16,
-        "root.heightPx": 52,
-        "radius (rounded)": "radius/md"
-      }
+      { "size": "small", "thicknessPx": 8, "rootHeightPx": 44, "radiusWhenRounded": "radius/sm" },
+      { "size": "large", "thicknessPx": 16, "rootHeightPx": 52, "radiusWhenRounded": "radius/md" }
     ],
     "byShape": [
-      {
-        "shape": "rounded",
-        "track.radius": "radius/sm (small) | radius/md (medium)",
-        "indicator.radius": "same as track",
-        "buffer.radius": "same as track"
-      },
-      {
-        "shape": "sharp",
-        "track.radius": "radius/none",
-        "indicator.radius": "radius/none",
-        "buffer.radius": "radius/none"
-      }
+      { "shape": "rounded", "track.buffer.indicator.radius": "radius/sm at small, radius/md at large" },
+      { "shape": "sharp", "track.buffer.indicator.radius": "radius/none" }
     ],
     "byProgress": [
-      {
-        "progress": "0%",
-        "label": "0%",
-        "indicator.widthPx": 0,
-        "indicator.share": "0"
-      },
-      {
-        "progress": "25%",
-        "label": "25% complete",
-        "indicator.widthPx": 102,
-        "indicator.share": "1/4"
-      },
-      {
-        "progress": "50%",
-        "label": "50% complete",
-        "indicator.widthPx": 204,
-        "indicator.share": "1/2"
-      },
-      {
-        "progress": "100%",
-        "label": "Complete",
-        "indicator.widthPx": 408,
-        "indicator.share": "1"
-      },
-      {
-        "progress": "Indeterminate",
-        "label": "Uploading...",
-        "indicator.widthPx": 143,
-        "indicator.xPx": 133,
-        "indicator.note": "segment, drawn mid-travel"
-      },
-      {
-        "progress": "Buffering",
-        "label": "Loading...",
-        "indicator.widthPx": 143,
-        "indicator.xPx": 0,
-        "buffer.widthPx": 306,
-        "buffer.share": "3/4",
-        "added": [
-          "buffer"
-        ]
-      }
+      { "progress": "0%", "labelSample": "0%", "indicator": "0Px" },
+      { "progress": "25%", "labelSample": "25% complete", "indicator": "1/4 (102Px of 408Px)" },
+      { "progress": "50%", "labelSample": "50% complete", "indicator": "1/2 (204Px)" },
+      { "progress": "100%", "labelSample": "Complete", "indicator": "full (408Px)" },
+      { "progress": "Indeterminate", "labelSample": "Uploading...", "indicator": "143Px segment at 133Px from the start" },
+      { "progress": "Buffering", "labelSample": "Loading...", "indicator": "143Px segment at the start, plus buffer band 3/4" }
     ]
   },
-  "subcomponents": [],
-  "dependencies": [
-    {
-      "name": "Icon",
-      "setId": "2046:15010",
-      "key": "a469ac1cf34202af3e094593468d9ef20a37a703",
-      "remote": false,
-      "usedAt": "trailingSlot default content (hidden)",
-      "spec": "specs/icon/",
-      "delivery": "glyph from packages/icons (hourglass), not an SVG"
-    }
+  "subcomponents": [
+    { "name": "Icon", "id": "2046:15010", "spec": "specs/icon", "usedAt": ["labelRow/trailingSlot default (hidden)"], "_note": "Delivered as the glyph hourglass." }
   ],
   "tokens": {
     "source": "tokens/ (see tokens/manifest.json)",
-    "color": [
-      "foreground/link",
-      "foreground/secondary",
-      "surface/track",
-      "surface/subtle"
-    ],
-    "dimension": [
-      "space/lg",
-      "space/xxs",
-      "space/none",
-      "radius/none",
-      "radius/sm",
-      "radius/md"
-    ],
-    "typography": [
-      "label/medium"
-    ],
-    "glyphs": [
-      "hourglass"
-    ],
+    "color": ["foreground/link", "foreground/secondary", "surface/track", "surface/shade"],
+    "dimension": ["space/lg", "space/2xs", "space/none", "radius/none", "radius/sm", "radius/md"],
+    "typography": ["label/medium"],
+    "glyphs": ["hourglass"],
     "themeAxes": {
-      "palette": [
-        "Light",
-        "Dark"
-      ],
-      "size": [
-        "Desktop",
-        "Mobile",
-        "Tablet",
-        "Desktop Compact"
-      ],
-      "typography": [
-        "Desktop",
-        "Tablet",
-        "Mobile",
-        "Desktop Compact"
-      ]
-    },
-    "_note": "10 of 11 token names resolve in tokens/base; surface/subtle does not (remote variable — see issues). label/medium is bound as both a text style and its five font variables. hourglass is in packages/icons/codepoints.json, not retired, not rejected."
+      "palette": ["Light", "Dark", "AAA Light", "AAA Dark"],
+      "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
+      "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"]
+    }
   },
   "states": [
-    {
-      "state": "Static",
-      "trigger": "—",
-      "duration": "—",
-      "whatChanges": "The bar has no hover, pressed, focus or disabled states. It reports a value rather than accepting input, so the only thing that changes its appearance is the Progress value itself."
-    },
-    {
-      "state": "Indeterminate",
-      "trigger": "Progress set to Indeterminate",
-      "duration": "—",
-      "whatChanges": "The indicator becomes a short fixed-length segment rather than a measured fill. Figma draws it in one position, a real implementation moves it along the track."
-    },
-    {
-      "state": "Buffering",
-      "trigger": "Progress set to Buffering",
-      "duration": "—",
-      "whatChanges": "A band shows how much has preloaded; the indicator never runs past it. No band on an indeterminate bar; don't build Figma's moving segment over the band."
-    }
+    { "state": "Static", "trigger": "—", "change": "The bar has no hover, pressed, focus or disabled states. It reports a value rather than accepting input, so the only thing that changes its appearance is the Progress value itself." },
+    { "state": "Indeterminate", "trigger": "Progress set to Indeterminate", "change": "The indicator becomes a short fixed-length segment rather than a measured fill. Figma draws it in one position, a real implementation moves it along the track." },
+    { "state": "Buffering", "trigger": "Progress set to Buffering", "change": "A band shows how much has preloaded; the indicator never runs past it. No band on an indeterminate bar; don't build Figma's moving segment over the band." }
   ],
   "behavior": [
-    {
-      "type": "Motion",
-      "description": "Figma stores no timing and the bar models no transition. Every Progress value is a static snapshot, so the fill growing, and the indeterminate segment travelling, both belong to the implementation."
-    },
-    {
-      "type": "Indeterminate and Buffering",
-      "description": "Both are drawn frozen in a single position. Shipping either as a still misrepresents them, because their whole meaning is that they are moving."
-    },
-    {
-      "type": "Reflow",
-      "description": "Width is fixed and height comes from the chosen Size, so the bar never grows with its content. A long label wraps inside the row above rather than widening the bar."
-    }
+    { "type": "Motion", "description": "Figma stores no timing and the bar models no transition. Every Progress value is a static snapshot, so the fill growing, and the indeterminate segment travelling, both belong to the implementation." },
+    { "type": "Indeterminate and Buffering", "description": "Both are drawn frozen in a single position. Shipping either as a still misrepresents them, because their whole meaning is that they are moving." },
+    { "type": "Reflow", "description": "Width is fixed and height comes from the chosen Size, so the bar never grows with its content. A long label wraps inside the row above rather than widening the bar." }
   ],
   "content": [
-    {
-      "property": "Label",
-      "type": "text baked per Progress value",
-      "description": "The row above the bar. It is not a text property, so its wording is fixed by the Progress value and has to be overridden on the instance to say anything else. The shipped strings read as placeholders, for example Uploading... on Indeterminate."
-    },
-    {
-      "property": "Right Slot",
-      "type": "slot, empty by default",
-      "description": "Trailing content in the label row, revealed by Show More Details. It ships holding a hidden Icon and suggests no components, so it stays empty until filled. One property serves every variant, so content placed here survives a change of Progress, Shape or Size."
-    },
-    {
-      "property": "Track and indicator",
-      "type": "fixed parts",
-      "description": "Neither is a slot. The indicator's width is the value, so in Figma it is set by choosing the nearest step or overriding the width directly, and at runtime it is driven straight from the real number."
-    }
+    { "property": "Label", "type": "text baked per Progress value", "description": "The row above the bar. It is not a text property, so its wording is fixed by the Progress value and has to be overridden on the instance to say anything else. The shipped strings read as placeholders, for example Uploading... on Indeterminate." },
+    { "property": "Right Slot", "type": "slot, empty by default", "description": "Trailing content in the label row, revealed by Show More Details. It ships holding a hidden Icon and suggests no components, so it stays empty until filled. One property serves every variant, so content placed here survives a change of Progress, Shape or Size." },
+    { "property": "Track and indicator", "type": "fixed parts", "description": "Neither is a slot. The indicator's width is the value, so in Figma it is set by choosing the nearest step or overriding the width directly, and at runtime it is driven straight from the real number." }
   ],
   "usage": {
     "do": [
@@ -496,154 +240,42 @@
     "The label wording is fixed per Progress value and the shipped strings read as placeholders. Replace them with copy that names the actual task.",
     "Turning Show Track off removes the reference the fill is measured against, which makes the proportion much harder to judge.",
     "Indeterminate and Buffering convey that work continues through movement. Someone who cannot perceive the animation gets no signal from them, so pair either with text.",
-    "The fill and the track are separated by colour alone. Check foreground/link against border/subtle on the surface you place the bar on."
+    "The fill and the track are separated by colour alone. Check foreground/link against surface/track on the surface you place the bar on."
   ],
   "layoutTheming": [
-    {
-      "property": "Width",
-      "type": "Fixed",
-      "description": "408px as drawn. The bar does not hug its content, so whoever places it decides the width."
-    },
-    {
-      "property": "Height",
-      "type": "Hug per Size",
-      "description": "44px at small and 52px at medium with the label shown. The difference is the indicator group, which is 8px at small and 16px at medium."
-    },
-    {
-      "property": "Gap",
-      "type": "Fixed",
-      "description": "16px (space/lg) between the label row and the indicator group. The label row's own internal gap is a raw 10px rather than a token."
-    },
-    {
-      "property": "Radius",
-      "type": "Fixed per Shape and Size",
-      "description": "The track and indicator take radius/sm at small and radius/md at medium while Shape is rounded, and radius/none while it is sharp. The radius scales with thickness so the ends stay fully round."
-    },
-    {
-      "property": "Indicator width",
-      "type": "Fixed per Progress",
-      "description": "The indicator's width is the value expressed as a share of the 408px track. Figma samples it at 0, 204 and 408px because a variant cannot carry a number, and both Indeterminate and Buffering draw a fixed 143px segment instead."
-    },
-    {
-      "property": "Buffered band",
-      "type": "Fixed",
-      "description": "Buffering adds a 306px band on surface/subtle at 10 percent opacity, between the indicator and the end of the track."
-    },
-    {
-      "property": "Label type",
-      "type": "Fixed",
-      "description": "label/medium (14/20), IBM Plex Sans Medium."
-    },
-    {
-      "property": "Colour",
-      "type": "Theming",
-      "description": "The indicator is foreground/link, the track border/subtle and the label foreground/secondary. The buffered band is the only element relying on an opacity rather than a token value alone."
-    }
+    { "property": "Width", "type": "Fixed", "description": "408px as drawn. The bar does not hug its content, so whoever places it decides the width." },
+    { "property": "Height", "type": "Hug per Size", "description": "44px at small and 52px at large with the label shown. The difference is the indicator group, which is 8px at small and 16px at large." },
+    { "property": "Gap", "type": "Fixed", "description": "space/lg between the label row and the indicator group. The label row's own internal gap is a raw 10px rather than a token." },
+    { "property": "Radius", "type": "Fixed per Shape and Size", "description": "The track and indicator take radius/sm at small and radius/md at large while Shape is rounded, and radius/none while it is sharp. The radius scales with thickness so the ends stay fully round." },
+    { "property": "Indicator width", "type": "Fixed per Progress", "description": "The indicator's width is the value expressed as a share of the 408px track. Figma samples it at 0, 204 and 408px because a variant cannot carry a number, and both Indeterminate and Buffering draw a fixed 143px segment instead." },
+    { "property": "Buffered band", "type": "Fixed", "description": "Buffering adds a 306px band on surface/shade from the start of the track to the buffered point." },
+    { "property": "Label type", "type": "Fixed", "description": "label/medium." },
+    { "property": "Colour", "type": "Theming", "description": "The indicator is foreground/link, the track surface/track, the band surface/shade and the label foreground/secondary." }
   ],
   "visualReference": {
-    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
-    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4275-1344",
-    "board": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4275-1345",
     "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4275-1997",
     "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5054-90",
     "variants": {
-      "progress": {
-        "0% (base)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4275-1998",
-        "50%": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4275-2002",
-        "100%": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4275-2004",
-        "Indeterminate": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4285-2023",
-        "Buffering": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4285-2027"
-      },
-      "shape": {
-        "sharp (50%, small)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4330-2072"
-      },
-      "size": {
-        "medium (50%, rounded)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4411-5171",
-        "medium Buffering (rounded)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4411-5113"
-      }
+      "0% base": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4275-1998",
+      "50%": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4275-2002",
+      "Indeterminate": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4285-2023",
+      "Buffering": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4285-2027",
+      "sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4330-2072",
+      "large": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4411-5171"
     }
   },
   "issues": [
-    {
-      "severity": "blocker",
-      "source": "token export",
-      "detail": "The buffer band's fill is bound to surface/subtle, a remote variable (key 1b92d821c4da714a82af3a2bbfc7c42f61e9c00c, a 'semantics' collection in another library, aliasing color/alpha/dark/10). It is not in tokens/, so the band has no resolvable token in Light or Dark. Its description matches local surface/track word for word, which suggests a stale binding left over from a copied library. Rebind in Figma (to a local token) or add the token to the export."
-    },
-    {
-      "severity": "warn",
-      "source": "metadata vs extracted",
-      "detail": "Layout & Theming (Colour) and Accessibility say the track is border/subtle. The track is bound to surface/track in all 24 variants. The spec uses surface/track; the contrast check the metadata asks for should be foreground/link against surface/track."
-    },
-    {
-      "severity": "warn",
-      "source": "gaps",
-      "detail": "Label row gap is a raw 10px in all 24 variants (the metadata acknowledges this)."
-    },
-    {
-      "severity": "warn",
-      "source": "gaps",
-      "detail": "Bar thickness (indicator group height: 8px small, 16px medium) is not token-bound. Radius is (radius/sm, radius/md), so thickness and radius can drift apart."
-    },
-    {
-      "severity": "warn",
-      "source": "structure",
-      "detail": "The 0% variants fake an empty bar with a raw 408px right padding on the indicator group and an absolutely positioned track; every other value uses an in-flow track that fills the group. Implement 0% as an ordinary zero-width indicator, not by copying the padding."
-    },
-    {
-      "severity": "warn",
-      "source": "showTrack",
-      "detail": "Show Track also hides the Buffering band (it is bound to the same property). The metadata does not say so; with the track hidden, Buffering looks identical to a stuck determinate bar."
-    },
-    {
-      "severity": "note",
-      "source": "bindingDrift",
-      "detail": "Indicator group radius is bound in 20 of 24 variants (radius/sm at small rounded, radius/none elsewhere) and unbound in the rest. The group does not clip, so this has no visual effect; ignore it in code."
-    },
-    {
-      "severity": "note",
-      "source": "metadata vs extracted",
-      "detail": "Layout & Theming says indicator width is sampled at 0, 204 and 408px; there is also a 25% step at 102px."
-    },
-    {
-      "severity": "note",
-      "source": "metadata vs extracted",
-      "detail": "States says the buffered band runs between the indicator and the end of the track. As drawn it starts under the indicator at the left edge and ends at three quarters of the track, which is the usual buffer model (buffer value ≥ progress value)."
-    },
-    {
-      "severity": "note",
-      "source": "metadata vs extracted",
-      "detail": "Layout & Theming calls the band 'surface/subtle at 10 percent opacity'. The paint opacity is the variable's own alpha (it aliases an alpha primitive), not an extra layer opacity; apply the token alone."
-    },
-    {
-      "severity": "note",
-      "source": "structure",
-      "detail": "Buffering variants pin the root's height to fixed; every other variant hugs. Rendered heights are the same."
-    },
-    {
-      "severity": "note",
-      "source": "tokens",
-      "detail": "The indicator fill uses foreground/link (a text-and-shape colour) rather than an interactive or status token. Its scopes allow shape fills, so it is legal; just note that recolouring links recolours every progress bar."
-    },
-    {
-      "severity": "note",
-      "source": "api",
-      "detail": "Right Slot is a native Figma SLOT property. It is not listed in the Property Breakdown table, only under Content & Slot. Its default content is a hidden Icon (glyph hourglass, rounded family, Icon Size=small); in code the slot is empty by default."
-    },
-    {
-      "severity": "note",
-      "source": "api",
-      "detail": "Progress is an enum in Figma only because variants cannot hold numbers. In code: a numeric value with a max, a mode (determinate / indeterminate / buffering) and, for buffering, a buffer value."
-    },
-    {
-      "severity": "note",
-      "source": "coverage",
-      "detail": "No motion is modelled (metadata says so explicitly): indeterminate travel speed, easing, direction and the determinate fill transition are the implementation's to choose. No description on the component set."
-    }
-  ],
-  "ownerDecisions": [
-    {
-      "decision": "The band (buffer) is what has preloaded and shows only when buffering is on, and never on an indeterminate bar; the value never runs past it.",
-      "figma": "Figma draws Buffering as a Progress variant with an indeterminate segment over the band; code does not."
-    }
+    { "severity": "warn", "source": "extracted", "detail": "Band opacity doubled: Figma lays a 10% paint opacity over surface/shade, which is already a 10% alpha, so the band renders at about 1%. Use the token alone." },
+    { "severity": "warn", "source": "gaps", "detail": "Raw gap: the label row gap is a raw value in every variant (the metadata admits it)." },
+    { "severity": "warn", "source": "gaps", "detail": "Thickness has no token: the 8Px / 16Px indicator-group heights are unbound, while radius is bound." },
+    { "severity": "warn", "source": "extracted", "detail": "0% is faked: the 0% variants use a raw right padding the width of the track plus an absolute track; others use an in-flow track. Implement 0% as a zero-width indicator." },
+    { "severity": "warn", "source": "api", "detail": "Show Track hides Buffering too: the band shares the property, so Buffering without a track looks like a stuck bar. Not documented." },
+    { "severity": "note", "source": "bindingDrift", "detail": "Indicator-group radius is bound in 20 of 24 variants, mixing radius/sm and radius/none regardless of Shape. The group doesn't clip, so ignore it." },
+    { "severity": "note", "source": "metadata", "detail": "Metadata lists width samples 0, 204, 408; there is also 25% at 102Px." },
+    { "severity": "note", "source": "extracted", "detail": "Buffering variants fix the root height; others hug. Same rendered height." },
+    { "severity": "note", "source": "tokens", "detail": "The indicator uses foreground/link; recolouring links recolours every bar." },
+    { "severity": "note", "source": "api", "detail": "Right Slot is a native SLOT property, absent from the Property Breakdown table; default content is a hidden hourglass glyph." },
+    { "severity": "note", "source": "api", "detail": "Progress is an enum only because variants can't hold numbers." },
+    { "severity": "note", "source": "coverage", "detail": "No motion modelled (stated in the metadata); no component description." }
   ]
 }

@@ -31,6 +31,7 @@ The page has seven public components (43 variants) and three metadata frames, th
 | `moreFooterItems` | boolean | true, false | `true` | footerSlot |
 | `shape` | enum (code only, not in Figma) | rounded, sharp | `rounded` | corner shape of every nested component (`radius/sm` / `radius/none`) |
 | `inverse` | boolean (code only, not in Figma) | false, true | `false` | the rail's locked colour mode: dark, or light when true |
+| `railWidth` | length or `fill` (code only) | CSS length, px number, or `fill` | `200px` | sets the wide rail's width, or fills its container |
 | `railMaxWidth` | length (code only, not in Figma) | CSS length or px number | unset | caps the wide rail (Figma's 200px); the narrow rail is unaffected |
 | `subMenuMaxWidth` | length (code only, not in Figma) | CSS length or px number | unset | caps the hugged sub menu; a cap below 240px lowers the minimum |
 | `menuSlot` | slot | Navigation Rail Item, Divider | — | menuSlot |
@@ -54,6 +55,8 @@ The page has seven public components (43 variants) and three metadata frames, th
 **shape** (code only): rounded: "Code only, not drawn in Figma. Gives everything inside the rail rounded corners (radius/sm): rail items, sub menu rows, Collapsible Menu Items, the header action, and the buttons in both headers, including back. The rail's own edges never change." · sharp: "Square corners (radius/none) on everything inside the rail."
 
 **inverse** (code only): false: "Code only. The rail always shows in dark mode, whatever the page's mode. Everything inside it follows the rail, and brand extensions still apply." · true: "Shows the rail in light mode instead, still regardless of the page's mode." Built as the token layer's `mode-dark` / `mode-light` class on the rail's root.
+
+**railWidth** (code only): The wide rail's width is tentative; the project sets it, or `fill` takes its container's width. 200px is the default.
 
 **railMaxWidth** (code only): none: "Code only. The wide rail is 200px." · length: "Caps the wide rail's width. Labels that no longer fit end in an ellipsis. The narrow rail is not affected."
 
@@ -81,31 +84,31 @@ Values anywhere in this document are token names. The only literals are inside v
 
 Root: horizontal, gap `space/none`, padding `space/none`, fill `surface/section`. Hugs its width (312Px narrow, 440Px wide, min-width 72Px). Its height is drawn fixed at 991Px and should fill in use.
 
-1. **Main Rail**: "The icon column, holding the header, the action, the menu list and the footer. Its width is what changes between the two Expanded variants." Vertical, gap `space/md`, padding `space/card` top/bottom and `space/md` left/right. Fixed width × fill height; clips. It measures 72Px narrow and 200Px wide.
+1. **Main Rail**: "The icon column, holding the header, the action, the menu list and the footer. Its width is what changes between the two Expanded variants." Vertical, gap `space/md`, padding `space/card` top/bottom and `space/md` left/right. Fixed width × fill height; clips. It measures 72Px narrow and 200Px wide; the wide width is a default that railWidth changes.
    - **header**: Navigation Header, Type=avatar, Expanded matching the rail.
    - **headerAction** (visible when `showHeaderAction`): glyph `add-circle-outline`.
      - Narrow: an Icon Button (Size=large, Shape=rounded, Flavour=primary), square at `control/lg`.
      - Wide: a Button (same size, shape and flavour) labelled "Create" with its leading icon on. It fills the width at height `control/lg`.
-2. **Menu List**: "The middle of the rail, holding three built-in items and then the Menu Slot. It absorbs whatever height is left between the header block and the footer." Vertical, gap `space/xxs`, fill × fill.
+2. **Menu List**: "The middle of the rail, holding three built-in items and then the Menu Slot. It absorbs whatever height is left between the header block and the footer." Vertical, gap `space/2xs`, fill × fill.
    - **Rail Item 1–3**: Navigation Rail Item, with Expanded = `expanded` and Show Label = `label`.
-   - **menuSlot** (visible when `moreRailItems`): vertical, gap `space/xxs`, clips.
-     - Horizontal padding is `space/xxs` narrow and `space/none` wide.
+   - **menuSlot** (visible when `moreRailItems`): vertical, gap `space/2xs`, clips.
+     - Horizontal padding is `space/2xs` narrow and `space/none` wide.
      - It fills its height when narrow and hugs when wide.
      - Sample content: a Divider and three items.
-3. **Footer**: "Pinned to the bottom, holding the Footer Slot and two fixed items. The last of them is the toggle a user presses to change the rail's width." Vertical, gap `space/xxs`, fill × hug.
-   - **footerSlot** (visible when `moreFooterItems`): vertical, gap `space/xxs`, clips. Sample content: a Divider and three items.
+3. **Footer**: "Pinned to the bottom, holding the Footer Slot and two fixed items. The last of them is the toggle a user presses to change the rail's width." Vertical, gap `space/2xs`, fill × hug.
+   - **footerSlot** (visible when `moreFooterItems`): vertical, gap `space/2xs`, clips. Sample content: a Divider and three items.
    - **Footer Rail Item**: a Navigation Rail Item.
    - **toggleItem** (visible when `showToggleItem`): a Navigation Rail Item showing `left-panel-open` "Open" when narrow and `left-panel-close` "Close" when wide. Code wires it to `expanded`.
 4. **Sub menu** (visible when `showSubMenu`): "The panel beside the rail, holding the Sub Menu Header and the Sub Menu Slot. It carries the only vertical border in the component, on its leading edge." Vertical, gap `space/none`, fixed width (240Px, min 240Px) × fill height. **In code (owner decision): hugs its list, min 240px.** It has a left-edge stroke in `border/default`, with an unbound width (see issues).
    - **subMenuHeader**: Sub Menu Header, Type=sub page; fill × fixed. Its back button is an Icon Button (`arrow-back`).
-   - **subMenuSlot**: vertical, gap `space/xxs`, padding `space/sm`, fill × hug. Sample content: one Collapsible Menu Item and four Sub Menu Items.
+   - **subMenuSlot**: vertical, gap `space/2xs`, padding `space/sm`, fill × hug. Sample content: one Collapsible Menu Item and four Sub Menu Items.
 
 ## Variants
 
 | label | expanded | main rail | root | header action | rail items | menu slot padding-x | toggle | node |
 |---|---|---|---|---|---|---|---|---|
-| false | false | 72Px | 312Px | Icon Button | Expanded=false | `space/xxs` | `left-panel-open` "Open" | 4654:10599 |
-| true | false | 72Px | 312Px | Icon Button | Expanded=false, Show Label=true | `space/xxs` (own slot content) | `left-panel-open` "Open" | 3453:54097 |
+| false | false | 72Px | 312Px | Icon Button | Expanded=false | `space/2xs` | `left-panel-open` "Open" | 4654:10599 |
+| true | false | 72Px | 312Px | Icon Button | Expanded=false, Show Label=true | `space/2xs` (own slot content) | `left-panel-open` "Open" | 3453:54097 |
 | false | true | 200Px | 440Px | Button "Create" | Expanded=true, fill | `space/none` | `left-panel-close` "Close" | 3453:54121 |
 
 The widths are measured, not tokens. They come from the items (`control/lg`), the rail padding and the panel's fixed width.
@@ -128,13 +131,13 @@ Set 3453:54312 · 4 variants · no metadata.
 
 **Root:** horizontal, padding `space/none`. It is space-between and fixed (184×56Px) when expanded, and centred with min-width `control/lg` (48×56Px) when collapsed.
 
-**Brand group:** horizontal, gap `space/sm`, padding `space/xxs` on the left and right. It holds:
+**Brand group:** horizontal, gap `space/sm`, padding `space/2xs` on the left and right. It holds:
 - **mark**:
   - avatar: an Avatar (Size=small, Show Status on, Ring and Close off).
   - logo: an Icon (Size=large, Framed=true) with glyph `zebra` and height `control/target-min`.
 - **title**: `label/medium`, `foreground/primary`, hugging. Shown only when expanded.
 
-**Action:** an Icon Button (Size=small, Shape=sharp, Flavour=subtle) with glyph `settings` at `control/sm`. Shown only when expanded.
+**Action:** an Icon Button (Size=small, Shape=sharp, Flavour=subtle) with glyph `settings` at `control/sm` by default. Its glyph and action are set by the consumer (actionIcon). Shown only when expanded.
 
 | type | expanded | content | node |
 |---|---|---|---|
@@ -166,7 +169,7 @@ Set 3453:54332 · 2 variants · no metadata.
 | default | Icon `verified` (placeholder) | `showLeadingIcon` | `space/md` | 3453:54333 |
 | sub page | Icon Button small/sharp/subtle, `arrow-back` | always (binding missing) | `space/sm` | 3453:54340 |
 
-**Trailing actions:** horizontal, gap `space/xxs`.
+**Trailing actions:** horizontal, gap `space/2xs`.
 
 ### Caret Indicator
 Set 3453:54347 · 12 variants · no metadata. **This is the folder Accordion should point to** (specs/accordion currently lists it as unspecced). Sub Menu Item and Collapsible Menu Item use it too.
@@ -202,12 +205,12 @@ Set 3453:54352 · 2 variants · no metadata.
 - Its State is `default` when closed and `active` when open (`interactive/ghost/background/pressed`, with `radius/sm` on the top corners only).
 - It overrides the caret to Direction=vertical, so the glyph is `expand-more` when closed and `expand-less` when open.
 
-**Children** (when open): vertical, gap `space/xxs`, padding `space/sm`, fill `surface/menu`, `radius/sm` on the bottom corners, clips. The sample is four nested Sub Menu Items with Sub Menu=false.
+**Children** (when open): vertical, gap `space/2xs`, padding `space/sm`, fill `surface/subtle`, `radius/sm` on the bottom corners, clips. The sample is four nested Sub Menu Items with Sub Menu=false.
 
 | open | header state | caret | children | node |
 |---|---|---|---|---|
 | false | default | `expand-more` | hidden | 3453:54353 |
-| true | active | `expand-less` | shown on `surface/menu` | 3453:54360 |
+| true | active | `expand-less` | shown on `surface/subtle` | 3453:54360 |
 
 ### Dependencies
 - Icon ([specs/icon](../icon))
@@ -231,7 +234,7 @@ The medium variant has 16 direct instances today (the navigation-bar spec record
 
 ## Tokens & theming
 
-- **Colour:** `surface/section`, `surface/menu`, `border/default`, `foreground/primary`, `interactive/primary/{background, border}/default`, `interactive/ghost/background/{default, pressed}`, `interactive/ghost/border/default`, `interactive/neutral/border/default`.
+- **Colour:** `surface/section`, `surface/subtle`, `border/default`, `foreground/primary`, `interactive/primary/{background, border}/default`, `interactive/ghost/background/{default, pressed}`, `interactive/ghost/border/default`, `interactive/neutral/border/default`.
 - **Dimension:** `space/{none, xxs, sm, md, lg, xl, card}`, `control/{sm, lg, target-min}`, `radius/{none, sm, element-sm}`, `stroke/{base, thin}`.
 - **Typography:** `label/medium`.
 - **Motion (owner decision):** `animations/smooth` (250ms ease-in-out) for every opening and closing in the rail, the caret included; `animations/spring` stays the Caret Indicator's default outside the rail.
@@ -253,6 +256,7 @@ All 26 bound token names, plus `animations/smooth` and `animations/spring`, reso
 All three use `animations/smooth` (ease-in-out, 250ms). Turn motion off under prefers-reduced-motion.
 
 - **Motion**: every opening and closing uses `animations/smooth`, the caret's turn included. **In code:** width (rail, panel) and height (group rows) transition once per change, never on first render. Labels and panel content keep their final layout and are clipped by the moving edge, so text never reflows or wraps mid-animation. The Caret Indicator takes smooth inside the rail through its `--zds-caret-indicator-motion` hook and keeps its spring elsewhere.
+- **Collapse / expand layout**: glyphs stay in place while the rail widens or narrows; only the edge moves, clipping the labels. **In code:** the narrow layout takes over only after the width has finished narrowing. The wide item's glyph starts where the narrow item centres it, which is `space/lg` on desktop. The header action is one Button in both forms, and its label shrinks first so the glyph stays centred.
 - **Width change**: "Expanded and Show Sub menu both change the component's overall width. Whatever sits beside the rail has to absorb the difference, so plan the page for every width you intend to ship."
 - **Truncated labels**: "Sub menu labels that don't fit end in an ellipsis. Hovering a cut-off label for 3 seconds shows it in full in a tooltip; keyboard focus shows it at once. Labels that fit show no tooltip, and the tooltip is not announced a second time to screen readers."
 - **Caret**: "Carets turn a single glyph rather than swapping between two. Figma shows each end state with its own glyph; build one glyph that rotates, on animations/smooth inside the rail."
@@ -290,9 +294,9 @@ All three use `animations/smooth` (ease-in-out, 250ms). Turn motion off under pr
 |---|---|---|
 | Width | Hug | "The narrow rail is 72px and the wide rail 200px; Rail Max Width can cap the wide rail. The sub menu sizes to its content: as wide as its widest top-level row or its header, never narrower than 240px, and all rows share that width. A Collapsible Menu Item never makes it wider. Sub Menu Max Width can cap it. Figma draws the sub menu at a fixed 240px; build it to size to its content." |
 | Height | Fill | "Fills its parent, drawn at 991px. The icon rail and the panel both fill it, and the menu list absorbs the space left between the header block and the footer." |
-| Rail padding | Fixed | "12px on all four sides of the icon rail, space/md left and right and space/card top and bottom, with a 12px (space/md) gap between the header, the action, the menu list and the footer." |
-| Item spacing | Fixed | "4px (space/xxs) between items in both the menu list and the footer. The Menu Slot adds 4px (space/xxs) of horizontal padding of its own." |
-| Panel padding | Fixed | "The Sub Menu Slot insets its rows by 8px (space/sm) on all four sides, with a 4px (space/xxs) gap between them." |
+| Rail padding | Fixed | "12px on all four sides of the icon rail, space/md left and right and space/card top and bottom, with a space/md gap between the header, the action, the menu list and the footer." |
+| Item spacing | Fixed | "space/2xs between items in both the menu list and the footer. The Menu Slot adds space/2xs of horizontal padding of its own." |
+| Panel padding | Fixed | "The Sub Menu Slot insets its rows by space/sm on all four sides, with a space/2xs gap between them." |
 | Border | Fixed | "A single 1px border on border/default down the leading edge of the sub menu panel, plus a 1px bottom border on the same token under the Sub Menu Header. Nothing else in the component is stroked." |
 | Fill | Theming | "The rail always shows in dark mode, whatever the page's mode; Inverse shows it in light mode. It sits on surface/section, and neither the icon rail nor the panel paints a fill of its own." |
 | Colour | Theming | "The rail binds only its surface and its two borders. Every other colour comes from the items in the slots." |
@@ -307,6 +311,7 @@ Owner decisions made after the Figma extraction. Each one overrides or adds to w
 |---|---|---|---|
 | `shape` / `shape` | `rounded`, `sharp` | `rounded` | Sets the corners of everything inside the rail: rail items, sub menu rows, Collapsible Menu Items, the header action, and the buttons in both headers (including the back button). Rounded uses `radius/sm`, sharp uses `radius/none`. The rail's own edges never change. |
 | `inverse` / `inverse` | true, false | false | The rail always shows in dark mode, whatever the page's mode. `inverse` shows it in light mode instead. Either way, everything inside the rail follows the rail, and brand extensions still apply. |
+| `railWidth` / `rail-width` | a CSS length, a number in px, or `fill` | 200px | Sets the width of the wide rail, or fills its container. The narrow rail is not affected. |
 | `railMaxWidth` / `rail-max-width` | a CSS length, or a number in px | none | Caps the width of the wide rail (normally 200px). The narrow rail is not affected. Labels that no longer fit end in an ellipsis. |
 | `subMenuMaxWidth` / `sub-menu-max-width` | a CSS length, or a number in px | none | Caps the width of the sub menu. Rows that no longer fit end in an ellipsis. A cap below 240px also lowers the 240px minimum. |
 
@@ -329,6 +334,9 @@ Owner decisions made after the Figma extraction. Each one overrides or adds to w
 - Every opening and closing in the rail uses `animations/smooth` (250ms, ease-in-out): the rail collapsing and expanding, the sub menu showing and hiding, and Collapsible Menu Items opening and closing.
 - Carets turn a single glyph rather than swapping glyphs (Figma swaps). Inside the rail they turn on `animations/smooth`; elsewhere, Caret Indicator uses `animations/spring`.
 - Nothing animates on first render, and all motion is turned off for users who prefer reduced motion.
+- Glyphs never move during collapse or expand; the moving edge clips the labels.
+- On collapse, the wide layout stays until the width has finished narrowing.
+- The header action is one Button whose label shrinks away, so its glyph is centred when narrow.
 
 ## Visual reference
 
@@ -345,12 +353,13 @@ Owner decisions made after the Figma extraction. Each one overrides or adds to w
 - **Unbound border widths.** The panel's left border and the Sub Menu Header's bottom border are raw 1Px strokes, though their colour is `border/default`. Use `stroke/thin` in code.
 - **Sub Menu Header, Type=sub page.** Show Leading Icon is not wired in this variant, so the back button cannot be hidden. The back arrow is now an Icon Button, but it still has no visibility binding.
 - **Height.** The metadata says the rail fills its height, but the set is drawn fixed at 991Px. Build it to fill.
-- **Menu Slot padding.** The metadata says the Menu Slot adds `space/xxs` of horizontal padding. That is true only in the narrow variants; the wide one uses `space/none`.
+- **Menu Slot padding.** The metadata says the Menu Slot adds `space/2xs` of horizontal padding. That is true only in the narrow variants; the wide one uses `space/none`.
 - **Double alpha.** Collapsible Menu Item's open header, and the item scrims, add a paint opacity on top of an already-translucent ghost token. Use the token alone in code.
 - **Dev Deviation frame.** It records that code "only supports the collapsed, icon-only rail layout (fixed 64px width)" and that the Menu and Footer Slots are not implemented in code. Figma's narrow rail is 72Px.
 - **Behaviour code must own.** Nothing wires the toggle item to `expanded`, and nothing enforces a single selected destination.
 
 **Note**
+- **Collapse / expand jitter (fixed in code).** Switching layout at the start of a collapse made glyphs jump, and swapping the action's Icon Button for a Button made it spill. See Collapse / expand layout.
 - **Shape (resolved by owner decision).** Rounded = `radius/sm`, sharp = `radius/none`, and it reaches every nested component, including the header action and the header buttons that Figma still draws sharp. The Figma metadata's sharp row was fixed on 2026-10-21 and now describes square corners (radius/none).
 - **Radius rebound in the rail (resolved).** Placed items rebind to `radius/element-sm` while the item sets use `radius/sm`; same value today. Code follows the rail's shape with the item sets' own `radius/sm` for rounded.
 - `Menu Slot#3200:20` is an orphan, and the per-Label Menu Slots are a Figma workaround.

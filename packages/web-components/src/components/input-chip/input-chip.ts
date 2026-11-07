@@ -43,6 +43,12 @@ export class ZdsInputChip extends LitElement {
   /** Initials for the avatar. Defaults to the first letters of the label. */
   @property({ type: String, attribute: "avatar-initials" }) avatarInitials: string | null = null;
 
+  /**
+   * The avatar's swatch behind the initials: one of zds-avatar's seven
+   * swatches, a token name (`chart/series/2`), a custom property or any CSS colour.
+   */
+  @property({ type: String, attribute: "avatar-color" }) avatarColor: string | null = null;
+
   /** The value is fixed: the chip greys out and the remove control is hidden. Say why nearby. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
@@ -95,6 +101,7 @@ export class ZdsInputChip extends LitElement {
             type=${this.avatarSrc ? "photo" : "initials"}
             src=${this.avatarSrc ?? nothing}
             initials=${this.avatarInitials ?? initialsOf(this.text)}
+            swatch-color=${this.avatarColor ?? nothing}
             .showStatus=${false}
             .showRing=${false}
             .showClose=${false}

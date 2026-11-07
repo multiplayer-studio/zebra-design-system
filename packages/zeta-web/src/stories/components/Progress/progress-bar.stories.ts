@@ -21,7 +21,7 @@ const meta: Meta<ZetaProgressBar> = {
   },
   argTypes: {
     size: {
-      options: ["small", "medium"],
+      options: ["small", "large"],
       control: {
         type: "select"
       }

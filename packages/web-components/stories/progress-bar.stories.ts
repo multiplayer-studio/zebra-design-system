@@ -8,7 +8,7 @@ const col = (c: unknown) => html`<div style="display:grid;gap:20px;max-width:408
 
 type Args = {
   value: number | null; buffering: boolean; buffer: number | null; label: string; showLabel: boolean; showTrack: boolean;
-  shape: "rounded" | "sharp"; size: "small" | "medium";
+  shape: "rounded" | "sharp"; size: "small" | "large";
 };
 
 const bar = (a: Partial<Args>, extra: unknown = nothing) => html`<zds-progress-bar
@@ -39,7 +39,7 @@ const meta: Meta<Args> = {
     buffering: { control: "boolean" },
     buffer: { control: { type: "number", min: 0, max: 100 } },
     shape: { control: "inline-radio", options: ["rounded", "sharp"] },
-    size: { control: "inline-radio", options: ["small", "medium"] },
+    size: { control: "inline-radio", options: ["small", "large"] },
     label: { control: "text" },
   },
   args: { value: 40, buffering: false, buffer: null, label: "Uploading quarterly-report.pdf", showLabel: true, showTrack: true, shape: "rounded", size: "small" },
@@ -68,11 +68,11 @@ export const Progress: Story = {
 export const Shape: Story = {
   render: (a) => col((["rounded", "sharp"] as const).map((s) => html`${note(`shape=${s}`)}
     ${bar({ ...a, shape: s, size: "small", value: 60, label: "Syncing contacts" })}
-    ${bar({ ...a, shape: s, size: "medium", value: 60, label: "Syncing contacts" })}`)),
+    ${bar({ ...a, shape: s, size: "large", value: 60, label: "Syncing contacts" })}`)),
 };
 
 export const Size: Story = {
-  render: (a) => col((["small", "medium"] as const).map((s) => html`${note(`size=${s}`)}${bar({ ...a, size: s, value: 70, label: "Installing update" })}`)),
+  render: (a) => col((["small", "large"] as const).map((s) => html`${note(`size=${s}`)}${bar({ ...a, size: s, value: 70, label: "Installing update" })}`)),
 };
 
 /** Without a label the row reads the formatted value; hidden, the label still names the bar for assistive tech. */
@@ -96,7 +96,7 @@ export const ShowTrack: Story = {
 /** Figma's Right Slot (Show More Details): supporting detail at the trailing end of the label row. */
 export const Trailing: Story = {
   render: (a) => col(html`
-    ${bar({ ...a, value: 62, label: "Uploading 12 photos" }, html`<span slot="trailing" style="display:inline-flex;align-items:center;gap:var(--space-xxs)"><zds-icon name="hourglass" size="small"></zds-icon> 2 min left</span>`)}
+    ${bar({ ...a, value: 62, label: "Uploading 12 photos" }, html`<span slot="trailing" style="display:inline-flex;align-items:center;gap:var(--space-2xs)"><zds-icon name="hourglass" size="small"></zds-icon> 2 min left</span>`)}
     ${bar({ ...a, value: 62, label: "Uploading 12 photos" }, html`<span slot="trailing">7 of 12</span>`)}
   `),
 };
@@ -107,7 +107,7 @@ export const ThemingCascade: Story = {
       (cls) => html`<div class=${cls} style="padding:16px;background:var(--surface-page);color:var(--foreground-primary);display:grid;gap:16px">
         ${note(cls || "base / light")}
         ${bar({ ...a, value: 55, label: "Uploading report.pdf" })}
-        ${bar({ ...a, value: 30, buffering: true, buffer: 75, size: "medium", label: "Playing video" })}
+        ${bar({ ...a, value: 30, buffering: true, buffer: 75, size: "large", label: "Playing video" })}
       </div>`,
     )}
   </div>`,

@@ -4,7 +4,7 @@ import { Divider } from "../divider/Divider.js";
 import { Dropdown } from "../dropdown/Dropdown.js";
 import { IconButton } from "../icon-button/IconButton.js";
 import { Search } from "../search/Search.js";
-import { UserProfile } from "../user-profile/UserProfile.js";
+import { UserProfile, type UserProfileProps } from "../user-profile/UserProfile.js";
 import "./global-header.css";
 
 export type GlobalHeaderMode = "dark" | "light";
@@ -40,6 +40,8 @@ export interface GlobalHeaderProps extends Omit<React.ComponentPropsWithoutRef<"
   avatarSrc?: string;
   /** Avatar initials, used when there is no photo. */
   initials?: string;
+  /** Any other property of the account Avatar (type, icon, swatchColor, status…); its size stays xxsmall. */
+  avatarProps?: UserProfileProps["avatarProps"];
   /** `MenuItem` rows for the account menu. */
   accountMenu?: React.ReactNode;
   /** The search field's query (controlled). */
@@ -104,7 +106,7 @@ const ZebraLogo = () => (
 export const GlobalHeader = React.forwardRef<HTMLElement, GlobalHeaderProps>(function GlobalHeader(
   {
     mode = "dark", rounded = false, appSwitcher = true, searchBar = true, menuItems = false, menuItemsSlot, actionMenu = false, actionMenuSlot, dividers = false,
-    platformName = "Platform Name", showPlatformName = true, showLogo = true, logoSlot, username = "Username", avatarSrc, initials, accountMenu,
+    platformName = "Platform Name", showPlatformName = true, showLogo = true, logoSlot, username = "Username", avatarSrc, initials, avatarProps, accountMenu,
     searchValue, onSearchChange, onMenuClick, onAppSwitcherClick, menuLabel = "Menu", appSwitcherLabel = "Switch app", navigationLabel = "Main",
     portalContainer, className, ...rest
   },
@@ -127,7 +129,7 @@ export const GlobalHeader = React.forwardRef<HTMLElement, GlobalHeaderProps>(fun
       </div>
       {dividers ? <Divider orientation="vertical" /> : null}
       <div className="zds-global-header__account-group">
-        <Dropdown rounded={rounded} align="right" portalContainer={portalContainer ?? menuHost} trigger={<UserProfile username={username} avatarSrc={avatarSrc} initials={initials} rounded={rounded} />}>
+        <Dropdown rounded={rounded} align="right" portalContainer={portalContainer ?? menuHost} trigger={<UserProfile username={username} avatarSrc={avatarSrc} initials={initials} avatarProps={avatarProps} rounded={rounded} />}>
           {accountMenu}
         </Dropdown>
         {appSwitcher ? <IconButton flavour="subtle" size="medium" shape={shape} icon="apps" label={appSwitcherLabel} onClick={onAppSwitcherClick} /> : null}

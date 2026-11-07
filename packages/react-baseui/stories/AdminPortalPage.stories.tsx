@@ -1,9 +1,10 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { MapContainer, TileLayer, CircleMarker, Tooltip as MapTooltip, useMap } from "react-leaflet";
+import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import {
-  ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, LineChart, Line, Tooltip as ChartTooltip,
+  ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, LineChart, Line, Tooltip as ChartTooltip,
 } from "recharts";
 import {
   AssistChip, Button, Card, CardBody, CardHeading, Divider, FilterChip, GlobalHeader, Icon, IconButton, MenuItem, NavigationHeader,
@@ -15,7 +16,27 @@ import {
    across the top; every widget is a Card with a Card Heading, so titles,
    subheadings and tools share one inset. Layout is inline styles on tokens.
    The map is Leaflet on Esri's gray canvas basemap (light or dark with the
-   theme); the charts are Recharts painted with the chart-series tokens. */
+   theme); the charts are Recharts painted with the chart-series tokens.
+
+   The whole dashboard fits the 1024px frame without scrolling. Tasks is a
+   ranked bar list in one hue rather than a pie: four categories compare
+   faster by length, and the four-hue pie failed the colour-vision checks
+   (blue and purple merge for deutan readers). Card tools are neutral so the
+   data, not the chrome, carries the colour.
+
+   Type uses four roles and nothing else: title/medium for every title,
+   heading/small for the one headline number, body/small for content, and
+   body/xsmall for all secondary text (subheadings, legends, step names, chart
+   axes, tooltips and the map). Numbers that line up use tabular figures. */
+
+/* The charts and the map draw their own text; this pulls it onto body/xsmall. */
+const PAGE_CSS = [
+  ".ap-chart .recharts-cartesian-axis-tick text{font:var(--text-body-xsmall);letter-spacing:var(--body-xsmall-letter-spacing);font-variant-numeric:tabular-nums}",
+  ".ap-map .leaflet-container,.ap-map .leaflet-tooltip,.ap-map .leaflet-control-attribution{font:var(--text-body-xsmall);letter-spacing:var(--body-xsmall-letter-spacing)}",
+  // Leaflet's zoom +/− are 22px bold Helvetica; title/large puts them in the system's family and weight.
+  ".ap-map .leaflet-control-zoom a{font:var(--text-title-large)}",
+  ".ap-map .leaflet-tooltip{color:var(--foreground-primary);background:var(--surface-overlay);border:var(--stroke-thin) solid var(--border-default);border-radius:var(--radius-sm);box-shadow:none}",
+].join("");
 
 const type = (role: string) => ({
   fontFamily: `var(--${role}-font-family), system-ui, sans-serif`,
@@ -87,8 +108,8 @@ const AdminHeader = ({ onMenuClick }: { onMenuClick: () => void }) => (
 
 const CardTools = ({ title, expanded, onExpand }: { title: string; expanded: boolean; onExpand: () => void }) => (
   <>
-    <IconButton flavour="text" size="small" shape="rounded" icon="more-vertical" label={`${title} options`} />
-    <IconButton flavour="text" size="small" shape="rounded" icon={expanded ? "full-screen-exit" : "full-screen"} label={expanded ? `Shrink ${title}` : `Expand ${title}`}
+    <IconButton flavour="subtle" size="small" shape="rounded" icon="more-vertical" label={`${title} options`} />
+    <IconButton flavour="subtle" size="small" shape="rounded" icon={expanded ? "full-screen-exit" : "full-screen"} label={expanded ? `Shrink ${title}` : `Expand ${title}`}
       aria-pressed={expanded} onClick={onExpand} />
   </>
 );
@@ -170,6 +191,16 @@ function FitOnResize() {
   return null;
 }
 
+/** Esri's attribution, without Leaflet's own prefix and flag. */
+function Attribution() {
+  const map = useMap();
+  React.useEffect(() => {
+    const control = L.control.attribution({ prefix: false }).addTo(map);
+    return () => { control.remove(); };
+  }, [map]);
+  return null;
+}
+
 function SiteActivity({ dark }: { dark: boolean }) {
   const [query, setQuery] = React.useState("");
   const [target, setTarget] = React.useState<[number, number] | null>(null);
@@ -187,8 +218,8 @@ function SiteActivity({ dark }: { dark: boolean }) {
             onClear={() => { setQuery(""); setTarget([33, 108]); }} />
         </div>
       </div>
-      <div style={{ flex: 1, minBlockSize: 360, borderRadius: "var(--radius-sm)", overflow: "hidden", isolation: "isolate" }}>
-        <MapContainer center={[33, 108]} zoom={3} minZoom={2} scrollWheelZoom style={{ blockSize: "100%", inlineSize: "100%", background: "var(--surface-page)" }}>
+      <div className="ap-map" style={{ flex: 1, minBlockSize: 280, borderRadius: "var(--radius-sm)", overflow: "hidden", isolation: "isolate" }}>
+        <MapContainer center={[33, 108]} zoom={3} minZoom={2} scrollWheelZoom attributionControl={false} style={{ blockSize: "100%", inlineSize: "100%", background: "var(--surface-page)" }}>
           <TileLayer key={tiles} url={tiles} attribution="Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors" />
           {SITES.map((s) => (
             <CircleMarker key={s.name} center={s.at} radius={4 + s.volume * 0.7}
@@ -198,6 +229,7 @@ function SiteActivity({ dark }: { dark: boolean }) {
           ))}
           <FlyTo target={target} />
           <FitOnResize />
+          <Attribution />
         </MapContainer>
       </div>
     </div>
@@ -205,36 +237,45 @@ function SiteActivity({ dark }: { dark: boolean }) {
 }
 
 const TASKS = [
-  { name: "General", value: 820, color: "var(--chart-series-1)" },
-  { name: "Outages", value: 622, color: "var(--chart-series-6)" },
-  { name: "Alerts", value: 486, color: "var(--chart-series-2)" },
-  { name: "Disruptions", value: 996, color: "var(--chart-series-4)" },
+  { name: "Disruptions", value: 996 },
+  { name: "General", value: 820 },
+  { name: "Outages", value: 622 },
+  { name: "Alerts", value: 486 },
 ];
+const TASK_TOTAL = TASKS.reduce((n, t) => n + t.value, 0);
 
-const axisTick = { fill: "var(--foreground-secondary)", fontSize: 11 };
-const tooltipStyle = { background: "var(--surface-popover)", border: "var(--stroke-thin) solid var(--border-default)", borderRadius: "var(--radius-sm)", color: "var(--foreground-primary)", fontSize: 12 };
+// Axis text takes its size and family from PAGE_CSS (body/xsmall); only the colour is set here.
+const axisTick = { fill: "var(--foreground-secondary)" };
+const tooltipStyle = { background: "var(--surface-overlay)", border: "var(--stroke-thin) solid var(--border-default)", borderRadius: "var(--radius-sm)", color: "var(--foreground-primary)", font: "var(--text-body-xsmall)", fontVariantNumeric: "tabular-nums" };
 
-function TasksPie() {
+/**
+ * Tasks by category: the total, then one row per category, largest first, each
+ * a bar on a track with its count and share. One hue, so the bars compare by
+ * length alone; the names and values are text, never the bar's colour.
+ */
+function TasksBreakdown() {
+  const max = TASKS[0].value;
   return (
     <div style={{ display: "grid", gap: "var(--space-sm)" }}>
-      <div style={{ blockSize: 200 }}>
-        <ResponsiveContainer>
-          <PieChart>
-            <Pie isAnimationActive={false} data={TASKS} dataKey="value" nameKey="name" outerRadius={72} startAngle={90} endAngle={-270} stroke="var(--surface-card)"
-              label={({ name, value, x, y, textAnchor }) => (
-                <text x={x} y={y} textAnchor={textAnchor} fill="var(--foreground-secondary)" fontSize={11}>
-                  <tspan x={x} dy="-0.2em">{name}</tspan><tspan x={x} dy="1.2em">{value}</tspan>
-                </text>
-              )} labelLine={false}>
-              {TASKS.map((t) => <Cell key={t.name} fill={t.color} />)}
-            </Pie>
-            <ChartTooltip contentStyle={tooltipStyle} />
-          </PieChart>
-        </ResponsiveContainer>
+      <div style={{ display: "flex", alignItems: "baseline", gap: "var(--space-xs)" }}>
+        <span style={{ ...type("heading-small"), fontVariantNumeric: "tabular-nums" }}>{TASK_TOTAL.toLocaleString()}</span>
+        <span style={{ ...type("body-small"), color: "var(--foreground-secondary)" }}>tasks</span>
       </div>
-      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "var(--space-md)" }}>
-        {TASKS.map((t) => <Legend key={t.name} swatch={{ inlineSize: 10, blockSize: 10, borderRadius: "var(--radius-xs)", background: t.color }}>{t.name}</Legend>)}
-      </div>
+      <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: "var(--space-xs)" }}>
+        {TASKS.map((t) => (
+          <li key={t.name} title={`${t.name}: ${t.value} tasks`} style={{ display: "grid", gap: "var(--space-2xs)" }}>
+            <span style={{ display: "flex", justifyContent: "space-between", gap: "var(--space-sm)" }}>
+              <span style={type("body-small")}>{t.name}</span>
+              <span style={{ ...type("body-small"), color: "var(--foreground-secondary)", fontVariantNumeric: "tabular-nums" }}>
+                {t.value} · {Math.round((t.value / TASK_TOTAL) * 100)}%
+              </span>
+            </span>
+            <span aria-hidden="true" style={{ blockSize: "var(--space-sm)", borderRadius: "var(--radius-xs)", background: "var(--surface-track)", overflow: "hidden" }}>
+              <span style={{ display: "block", blockSize: "100%", inlineSize: `${(t.value / max) * 100}%`, borderRadius: "var(--radius-xs)", background: "var(--chart-series-1)" }} />
+            </span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -243,12 +284,12 @@ const OUTAGES = [{ d: "Device A", n: 28 }, { d: "Device B", n: 21 }, { d: "Devic
 
 function OutageBars() {
   return (
-    <div style={{ blockSize: 180 }}>
+    <div className="ap-chart" style={{ blockSize: 130 }}>
       <ResponsiveContainer>
         {/* The negative left margin pulls the y-axis labels onto the card's content inset. */}
-        <BarChart data={OUTAGES} margin={{ top: 4, right: 0, bottom: 0, left: -24 }}>
+        <BarChart data={OUTAGES} margin={{ top: 8, right: 0, bottom: 0, left: -24 }}>
           <XAxis dataKey="d" tick={axisTick} axisLine={false} tickLine={false} />
-          <YAxis ticks={[0, 10, 20, 30]} domain={[0, 30]} tick={axisTick} axisLine={false} tickLine={false} />
+          <YAxis ticks={[0, 15, 30]} domain={[0, 30]} interval={0} tick={axisTick} axisLine={false} tickLine={false} />
           <ChartTooltip contentStyle={tooltipStyle} cursor={{ fill: "var(--interactive-ghost-background-hover)" }} />
           {/* Recharts takes a px radius, not a token: radius/sm on the top corners. */}
           <Bar isAnimationActive={false} radius={[4, 4, 0, 0]} dataKey="n" name="Outages" fill="var(--chart-series-9)" />
@@ -291,13 +332,16 @@ function ApplicationUsage() {
             onDiscard={() => setFilters((s) => s.filter((x) => x !== f))}>{f}</AssistChip>
         ))}
         {!filters.length ? <span style={{ ...type("body-small"), color: "var(--foreground-tertiary)" }}>No filters</span> : null}
+        <span style={{ flex: 1 }} />
+        <Legend swatch={{ inlineSize: 16, blockSize: 2, background: "var(--chart-series-1)" }}>Active sessions</Legend>
+        <Legend swatch={{ inlineSize: 16, blockSize: 0, borderBlockStart: "2px dashed var(--foreground-tertiary)" }}>Previous period</Legend>
       </div>
-      <div style={{ blockSize: 220 }}>
+      <div className="ap-chart" style={{ blockSize: 150 }}>
         <ResponsiveContainer>
           <LineChart data={data} margin={{ top: 8, right: 8, bottom: 0, left: -16 }}>
             <CartesianGrid stroke="var(--border-subtle)" vertical horizontal />
             <XAxis dataKey="t" tick={axisTick} axisLine={false} tickLine={false} />
-            <YAxis domain={[0, 100]} ticks={[0, 20, 40, 60, 80, 100]} tick={axisTick} axisLine={false} tickLine={false} />
+            <YAxis domain={[0, 100]} ticks={[0, 50, 100]} interval={0} tick={axisTick} axisLine={false} tickLine={false} />
             <ChartTooltip contentStyle={tooltipStyle} />
             <Line isAnimationActive={false} type="monotone" dataKey="current" name="Active sessions" stroke="var(--chart-series-1)" strokeWidth={2} dot={false} />
             <Line isAnimationActive={false} type="monotone" dataKey="previous" name="Previous period" stroke="var(--foreground-tertiary)" strokeWidth={1.5} strokeDasharray="4 4" dot={false} />
@@ -311,7 +355,12 @@ function ApplicationUsage() {
 /* ---- setup progress ---------------------------------------------------------- */
 
 /** Each step is a plain filled box: brand fill when done, the faint brand fill when started, the track colour when not started. */
-const FILL = { done: "var(--interactive-primary-background-default)", started: "var(--interactive-subtle-background-default)", todo: "var(--surface-track)" } as const;
+const FILL = {
+  done: "var(--interactive-primary-background-default)",
+  // A part-strength brand fill: the subtle token alone vanishes on the dark surface.
+  started: "color-mix(in srgb, var(--interactive-primary-background-default) 35%, var(--surface-track))",
+  todo: "var(--surface-track)",
+} as const;
 const STATE_TEXT = { done: "done", started: "in progress", todo: "not started" } as const;
 
 const SETUP: { step: string; state: "done" | "started" | "todo" }[] = [
@@ -330,17 +379,22 @@ function SetupBanner() {
     <Card shape="rounded" hasHeader={false} hasFooter={false} style={SECTION}>
       <CardBody style={{ display: "flex", alignItems: "center", gap: "var(--space-xl)" }}>
         <div style={{ flex: 1, minInlineSize: 0, display: "grid", gap: "var(--space-sm)" }}>
-          <span style={type("title-medium")}>You haven’t finished setting up your experience yet.</span>
-          <ol style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: `repeat(${SETUP.length}, minmax(0, 104px))`, gap: "var(--space-3xs)" }}>
+          <span style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "var(--space-sm)", flexWrap: "wrap" }}>
+            <span style={type("title-medium")}>You haven’t finished setting up your experience yet.</span>
+            <span style={{ ...type("body-small"), color: "var(--foreground-secondary)" }}>
+              {SETUP.filter((s) => s.state === "done").length} of {SETUP.length} done · {SETUP.filter((s) => s.state === "started").length} in progress
+            </span>
+          </span>
+          <ol style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: `repeat(${SETUP.length}, minmax(0, 1fr))`, gap: "var(--space-3xs)" }}>
             {SETUP.map((s) => (
               <li key={s.step} style={{ display: "grid", gap: "var(--space-xs)" }}>
-                <span aria-hidden="true" style={{ blockSize: "var(--space-xl)", borderRadius: "var(--radius-sm)", background: FILL[s.state] }} />
-                <span style={type("label-small")}>{s.step}<span style={{ position: "absolute", inlineSize: 1, blockSize: 1, overflow: "hidden", clipPath: "inset(50%)" }}>{`, ${STATE_TEXT[s.state]}`}</span></span>
+                <span aria-hidden="true" style={{ blockSize: "var(--space-sm)", borderRadius: "var(--radius-sm)", background: FILL[s.state] }} />
+                <span style={{ ...type("body-xsmall"), color: "var(--foreground-secondary)" }}>{s.step}<span style={{ position: "absolute", inlineSize: 1, blockSize: 1, overflow: "hidden", clipPath: "inset(50%)" }}>{`, ${STATE_TEXT[s.state]}`}</span></span>
               </li>
             ))}
           </ol>
         </div>
-        <Button flavour="text" size="medium" shape="rounded" trailingIcon="arrow-forward">Continue Wizard</Button>
+        <Button flavour="primary" size="medium" shape="rounded" trailingIcon="arrow-forward">Continue Wizard</Button>
       </CardBody>
     </Card>
   );
@@ -358,6 +412,7 @@ function AdminPortal({ theme }: { theme?: "mode-light" | "mode-dark" }) {
 
   return (
     <div ref={root} className={theme} style={{ inlineSize: 1440, blockSize: 1024, display: "flex", flexDirection: "column", overflow: "hidden", background: "var(--surface-page)", color: "var(--foreground-primary)" }}>
+      <style>{PAGE_CSS}</style>
       {/* The header spans the whole frame. It holds its own dark mode, whatever the page mode. */}
       <AdminHeader onMenuClick={() => setRailExpanded((open) => !open)} />
       <Divider />
@@ -366,7 +421,7 @@ function AdminPortal({ theme }: { theme?: "mode-light" | "mode-dark" }) {
       <AdminRail active={active} onSelect={setActive} light={!dark} expanded={railExpanded} onExpandedChange={setRailExpanded} />
       <Divider orientation="vertical" />
       <div style={{ flex: 1, minInlineSize: 0, display: "flex", flexDirection: "column" }}>
-        <main style={{ flex: 1, minBlockSize: 0, overflow: "auto", padding: "var(--space-xl) var(--space-xl) var(--space-xl) var(--space-xl)", display: "grid", gap: "var(--space-md)", alignContent: "start", gridAutoRows: "max-content" }}>
+        <main style={{ flex: 1, minBlockSize: 0, overflow: "auto", padding: "var(--space-lg) var(--space-xl)", display: "grid", gap: "var(--space-md)", alignContent: "start", gridAutoRows: "max-content" }}>
           <SetupBanner />
           <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr) 400px", gap: "var(--space-md)" }}>
             <Widget title="Site Activity" subheading="Scroll and zoom to show activity for a region" expanded={expanded === "map"} onExpand={toggle("map")}
@@ -375,10 +430,10 @@ function AdminPortal({ theme }: { theme?: "mode-light" | "mode-dark" }) {
             </Widget>
             <Widget title="Tasks" subheading={<>Categorised by <a href="#settings" style={{ color: "var(--foreground-link)" }}>Setting</a></>}
               expanded={expanded === "tasks"} onExpand={toggle("tasks")}>
-              <TasksPie />
+              <TasksBreakdown />
             </Widget>
             <Widget title="Device Outages" expanded={expanded === "outages"} onExpand={toggle("outages")}
-              subheading={<><span style={{ color: "var(--foreground-success)" }}>↑ 0.3%</span> this week</>}>
+              subheading={<><span style={{ color: "var(--foreground-error)" }}>↑ 0.3%</span> more this week</>}>
               <OutageBars />
             </Widget>
           </div>
@@ -397,7 +452,7 @@ const meta: Meta<typeof AdminPortal> = {
   component: AdminPortal,
   parameters: {
     layout: "fullscreen",
-    docs: { description: { component: "**Experimental mock page.** The Zebra Admin dashboard on a 1440 × 1024 desktop, framed by the library's Navigation Rail (Navigation Header and Navigation Rail Items, with its own collapse toggle) and Global Header, with every widget a Card with Card Heading and Card Body. Inside: Button, Icon Button, Divider, Search, Filter Chip and Assist Chip. Site Activity is a real Leaflet map (Esri gray canvas basemap, light or dark with the theme): scroll and zoom it, hover a site, or search one to fly there. Tasks, Device Outages and Application Usage are Recharts charts on the chart-series tokens; the application and filter chips change the usage line. Each card's expand control widens it across the grid." } },
+    docs: { description: { component: "**Experimental mock page.** The Zebra Admin dashboard on a 1440 × 1024 desktop, fitting the frame without scrolling, framed by the library's Navigation Rail (Navigation Header and Navigation Rail Items, with its own collapse toggle) and Global Header, with every widget a Card with Card Heading and Card Body. Inside: Button, Icon Button, Divider, Search, Filter Chip and Assist Chip. Site Activity is a real Leaflet map (Esri gray canvas basemap, light or dark with the theme): scroll and zoom it, hover a site, or search one to fly there. Tasks is a ranked bar list of the four categories with their share; Device Outages and Application Usage are Recharts charts on the chart-series tokens; the application and filter chips change the usage line. Each card's expand control widens it across the grid." } },
   },
 };
 export default meta;

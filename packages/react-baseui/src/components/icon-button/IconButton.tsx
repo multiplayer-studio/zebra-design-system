@@ -39,7 +39,7 @@ export interface IconButtonProps extends Omit<React.ComponentPropsWithoutRef<typ
  * @spec specs/icon-button/icon-button.spec.md
  */
 export const IconButton = React.forwardRef<HTMLElement, IconButtonProps>(function IconButton(
-  { flavour = "primary", size = "small", shape = "sharp", icon = "more-horizontal", label, className, ...rest },
+  { flavour = "primary", size = "medium", shape = "rounded", icon = "more-horizontal", label, className, ...rest },
   ref,
 ) {
   // As Button: the glyph family follows the shape, sharp only on sharp.

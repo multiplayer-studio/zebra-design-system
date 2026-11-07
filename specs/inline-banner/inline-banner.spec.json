@@ -1,0 +1,744 @@
+{
+  "component": {
+    "name": "Inline Banner",
+    "slug": "inline-banner",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "8053:85",
+      "key": "5b8478ea2f72ea1129400a147c508ae21213cd3f",
+      "page": "inline Banner",
+      "pageNodeId": "8051:4995",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8051-4995",
+      "metadataFrameId": "8055:154",
+      "extractedAt": "2026-11-06",
+      "variantCount": 20,
+      "defaultVariant": "Status=info, Appearance=subtle, Shape=rounded",
+      "extractionNote": "All 20 variants (5 Status x 2 Appearance x 2 Shape) re-read after the component and metadata fixes. Glyph colours are bound per vector region (the glyph's fill reads as mixed), so they were read through vectorNetwork regions. Glyph names verified against packages/icons/codepoints.json.",
+      "tokenSource": "tokens/"
+    }
+  },
+  "summary": "A status message placed inside the content it is about: a form, a card, a panel. It sits in the flow at its container's width. Status sets the colour and glyph; Appearance sets how loud it is. Solid interrupts, for the one message on a view that must be seen now. Subtle informs, for context and guidance, and several can share a page.",
+  "api": {
+    "status": {
+      "type": "enum",
+      "figmaName": "Status",
+      "default": "info",
+      "values": [
+        "negative",
+        "warning",
+        "neutral",
+        "info",
+        "positive"
+      ],
+      "controls": [
+        "root.fill",
+        "root.stroke",
+        "statusIcon.glyph",
+        "statusIcon.color"
+      ],
+      "intent": {
+        "info": "News that helps the reader, with nothing at stake.",
+        "neutral": "General guidance or a tip, with no status attached.",
+        "positive": "Something finished as intended. Confirm it, then let it go.",
+        "warning": "A problem the person can still act on, or a limit on what they can do now.",
+        "negative": "A failure that needs attention. Announced immediately."
+      }
+    },
+    "appearance": {
+      "type": "enum",
+      "figmaName": "Appearance",
+      "default": "subtle",
+      "values": [
+        "subtle",
+        "solid"
+      ],
+      "controls": [
+        "root.fill",
+        "root.stroke",
+        "title.color",
+        "description.color",
+        "statusIcon.color",
+        "actions (flavour, palette mode)",
+        "dismiss (palette mode)"
+      ],
+      "intent": {
+        "subtle": "Tinted surface, status border, status glyph. Informs without interrupting; several can share a page.",
+        "solid": "Strong status fill, always-white text. Interrupts: one per view, for what must be seen now."
+      }
+    },
+    "shape": {
+      "type": "enum",
+      "figmaName": "Shape",
+      "default": "rounded",
+      "values": [
+        "rounded",
+        "sharp"
+      ],
+      "controls": [
+        "root.radius",
+        "actions.shape",
+        "dismiss.shape"
+      ],
+      "intent": {
+        "rounded": "radius/sm corners. The actions and the dismiss take the same shape.",
+        "sharp": "radius/none corners, for edge-to-edge containers. The actions and the dismiss follow."
+      }
+    },
+    "title": {
+      "type": "string",
+      "figmaName": "Title#5394:28",
+      "default": "Inline banner title",
+      "controls": [
+        "title"
+      ],
+      "intent": {
+        "text": "The headline: what happened."
+      }
+    },
+    "description": {
+      "type": "string",
+      "figmaName": "Description#8054:195",
+      "default": "Supporting line: why, and what to do next.",
+      "controls": [
+        "description"
+      ],
+      "intent": {
+        "text": "Why, and what to do next. Shown by Show Description."
+      }
+    },
+    "showDescription": {
+      "type": "boolean",
+      "figmaName": "Show Description#8054:216",
+      "default": true,
+      "controls": [
+        "description"
+      ],
+      "intent": {
+        "true": "Shows the supporting line when one is set.",
+        "false": "Title only, for messages that need no reason."
+      }
+    },
+    "showIcon": {
+      "type": "boolean",
+      "figmaName": "Show Icon#5406:34",
+      "default": true,
+      "controls": [
+        "iconContainer"
+      ],
+      "intent": {
+        "true": "Keeps the status glyph so the banner survives greyscale.",
+        "false": "Drops the glyph. The text must then name the status."
+      }
+    },
+    "showActions": {
+      "type": "boolean",
+      "figmaName": "Show Actions#5350:6",
+      "default": true,
+      "controls": [
+        "actions"
+      ],
+      "intent": {
+        "true": "Shows the action slot when it holds actions.",
+        "false": "No actions, for a message that only informs."
+      }
+    },
+    "showClose": {
+      "type": "boolean",
+      "figmaName": "Show Close#5350:7",
+      "default": false,
+      "controls": [
+        "dismiss"
+      ],
+      "intent": {
+        "false": "No dismiss. The banner stays while its condition holds.",
+        "true": "Adds the dismiss. Pressing it reports the dismissal; the product removes the banner."
+      }
+    },
+    "actions": {
+      "type": "slot",
+      "figmaName": "Action Slot#5350:5",
+      "default": "one small Button (sample content)",
+      "controls": [
+        "actions"
+      ],
+      "expects": "Button, small; outline-subtle on subtle, outline-contrast on solid"
+    }
+  },
+  "internalVariations": [],
+  "contentInputs": [
+    {
+      "part": "actions",
+      "input": "children (Buttons)",
+      "sampleCount": 1,
+      "note": "The Button inside the slot is sample content, not API."
+    }
+  ],
+  "anatomy": [
+    {
+      "id": "root",
+      "kind": "container",
+      "layout": {
+        "direction": "vertical",
+        "gap": "none (single child)"
+      },
+      "sizing": {
+        "h": "fixed (640 preview width; fills its container in code)",
+        "v": "hug"
+      },
+      "clips": true,
+      "paint": {
+        "fill": "subtle: feedback/<feedback>/background/subtle · solid: feedback/<feedback>/background/strong",
+        "stroke": {
+          "color": "subtle: border/<status> (border/default on neutral) · solid: same token as the fill",
+          "width": "stroke/thin",
+          "align": "inside"
+        }
+      },
+      "radius": "rounded: radius/sm · sharp: radius/none"
+    },
+    {
+      "id": "container",
+      "kind": "container",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/sm",
+        "padding": {
+          "block": "space/md",
+          "inline": "space/lg"
+        },
+        "align": "start"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      }
+    },
+    {
+      "id": "iconContainer",
+      "kind": "container",
+      "n": 1,
+      "role": "Leading icon centred on the title's first line. Status colour on subtle, foreground/on-strong on solid.",
+      "layout": {
+        "direction": "vertical",
+        "align": "center"
+      },
+      "sizing": {
+        "h": "hug",
+        "v": "fixed: label/large/line height"
+      },
+      "visibleWhen": "showIcon"
+    },
+    {
+      "id": "statusIcon",
+      "kind": "instance",
+      "ref": "Icon",
+      "refVariant": "Size=medium, Framed=false",
+      "glyph": {
+        "neutral": "lightbulb",
+        "info": "info",
+        "positive": "check-circle",
+        "warning": "warning",
+        "negative": "error"
+      },
+      "iconFamily": "rounded",
+      "color": "subtle: feedback/<feedback>/foreground · solid: foreground/on-strong (glyph takes currentColor in code)"
+    },
+    {
+      "id": "content",
+      "kind": "container",
+      "n": 2,
+      "role": "Title and optional description. Takes the width the glyph and the dismiss leave.",
+      "layout": {
+        "direction": "horizontal",
+        "wrap": true,
+        "gap": "space/lg",
+        "crossGap": "space/sm",
+        "align": "center"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      }
+    },
+    {
+      "id": "text",
+      "kind": "container",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/2xs"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      },
+      "limits": {
+        "minWidthPx": 256,
+        "note": "Measured observation; no size token (gap). The actions wrap beneath the text once it can't keep this width."
+      }
+    },
+    {
+      "id": "title",
+      "kind": "text",
+      "text": {
+        "style": "label/large",
+        "color": "subtle: foreground/primary · solid: foreground/on-strong",
+        "content": "title"
+      },
+      "sizing": {
+        "h": "hug",
+        "v": "hug"
+      }
+    },
+    {
+      "id": "description",
+      "kind": "text",
+      "text": {
+        "style": "body/small",
+        "color": "subtle: foreground/primary · solid: foreground/on-strong",
+        "content": "description",
+        "wraps": true
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      },
+      "visibleWhen": "showDescription"
+    },
+    {
+      "id": "actions",
+      "kind": "slot",
+      "n": 3,
+      "role": "Beside the text when there is room, beneath it when the container is narrow.",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/sm",
+        "align": "center"
+      },
+      "sizing": {
+        "h": "hug",
+        "v": "hug"
+      },
+      "visibleWhen": "showActions",
+      "mode": "solid: palette=Dark (Figma-only, see content)"
+    },
+    {
+      "id": "dismiss",
+      "kind": "instance",
+      "n": 4,
+      "ref": "Icon Button",
+      "refVariant": "Size=small, Flavour=subtle, Shape=<shape>",
+      "glyph": "close",
+      "role": "Optional close control at the trailing edge, on every status.",
+      "visibleWhen": "showClose",
+      "mode": "solid: palette=Dark"
+    }
+  ],
+  "variants": {
+    "axes": [
+      "status",
+      "appearance",
+      "shape"
+    ],
+    "base": "status=info, appearance=subtle, shape=rounded",
+    "table": [
+      {
+        "status": "info",
+        "appearance": "subtle",
+        "root.fill": "feedback/info/background/subtle",
+        "root.stroke": "border/info",
+        "statusIcon.glyph": "info",
+        "text.color": "foreground/primary",
+        "actions.flavour": "outline-subtle",
+        "controls.palette": "inherit"
+      },
+      {
+        "status": "info",
+        "appearance": "solid",
+        "root.fill": "feedback/info/background/strong",
+        "root.stroke": "feedback/info/background/strong",
+        "statusIcon.glyph": "info",
+        "text.color": "foreground/on-strong",
+        "actions.flavour": "outline-contrast",
+        "controls.palette": "Dark"
+      },
+      {
+        "status": "neutral",
+        "appearance": "subtle",
+        "root.fill": "feedback/neutral/background/subtle",
+        "root.stroke": "border/default",
+        "statusIcon.glyph": "lightbulb",
+        "text.color": "foreground/primary",
+        "actions.flavour": "outline-subtle",
+        "controls.palette": "inherit"
+      },
+      {
+        "status": "neutral",
+        "appearance": "solid",
+        "root.fill": "feedback/neutral/background/strong",
+        "root.stroke": "feedback/neutral/background/strong",
+        "statusIcon.glyph": "lightbulb",
+        "text.color": "foreground/on-strong",
+        "actions.flavour": "outline-contrast",
+        "controls.palette": "Dark"
+      },
+      {
+        "status": "positive",
+        "appearance": "subtle",
+        "root.fill": "feedback/success/background/subtle",
+        "root.stroke": "border/success",
+        "statusIcon.glyph": "check-circle",
+        "text.color": "foreground/primary",
+        "actions.flavour": "outline-subtle",
+        "controls.palette": "inherit"
+      },
+      {
+        "status": "positive",
+        "appearance": "solid",
+        "root.fill": "feedback/success/background/strong",
+        "root.stroke": "feedback/success/background/strong",
+        "statusIcon.glyph": "check-circle",
+        "text.color": "foreground/on-strong",
+        "actions.flavour": "outline-contrast",
+        "controls.palette": "Dark"
+      },
+      {
+        "status": "warning",
+        "appearance": "subtle",
+        "root.fill": "feedback/warning/background/subtle",
+        "root.stroke": "border/warning",
+        "statusIcon.glyph": "warning",
+        "text.color": "foreground/primary",
+        "actions.flavour": "outline-subtle",
+        "controls.palette": "inherit"
+      },
+      {
+        "status": "warning",
+        "appearance": "solid",
+        "root.fill": "feedback/warning/background/strong",
+        "root.stroke": "feedback/warning/background/strong",
+        "statusIcon.glyph": "warning",
+        "text.color": "foreground/on-strong",
+        "actions.flavour": "outline-contrast",
+        "controls.palette": "Dark"
+      },
+      {
+        "status": "negative",
+        "appearance": "subtle",
+        "root.fill": "feedback/error/background/subtle",
+        "root.stroke": "border/error",
+        "statusIcon.glyph": "error",
+        "text.color": "foreground/primary",
+        "actions.flavour": "outline-subtle",
+        "controls.palette": "inherit"
+      },
+      {
+        "status": "negative",
+        "appearance": "solid",
+        "root.fill": "feedback/error/background/strong",
+        "root.stroke": "feedback/error/background/strong",
+        "statusIcon.glyph": "error",
+        "text.color": "foreground/on-strong",
+        "actions.flavour": "outline-contrast",
+        "controls.palette": "Dark"
+      }
+    ],
+    "shapeTable": [
+      {
+        "shape": "rounded",
+        "root.radius": "radius/sm",
+        "actions.shape": "rounded",
+        "dismiss.shape": "rounded"
+      },
+      {
+        "shape": "sharp",
+        "root.radius": "radius/none",
+        "actions.shape": "sharp",
+        "dismiss.shape": "sharp"
+      }
+    ],
+    "variantNodes": {
+      "info, subtle, rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8053-157",
+      "info, subtle, sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-888",
+      "info, solid, rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-899",
+      "info, solid, sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-910",
+      "neutral, subtle, rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-844",
+      "neutral, subtle, sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-855",
+      "neutral, solid, rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-866",
+      "neutral, solid, sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-877",
+      "positive, subtle, rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8053-96",
+      "positive, subtle, sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-921",
+      "positive, solid, rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-932",
+      "positive, solid, sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-943",
+      "warning, subtle, rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8053-136",
+      "warning, subtle, sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-954",
+      "warning, solid, rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-965",
+      "warning, solid, sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-976",
+      "negative, subtle, rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8053-116",
+      "negative, subtle, sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-987",
+      "negative, solid, rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-998",
+      "negative, solid, sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-1009"
+    }
+  },
+  "subcomponents": [],
+  "dependencies": [
+    {
+      "name": "Icon",
+      "id": "2046:15010",
+      "remote": false,
+      "usedAt": [
+        "statusIcon"
+      ],
+      "variant": "Size=medium, Framed=false"
+    },
+    {
+      "name": "Button",
+      "id": "2060:15072",
+      "remote": false,
+      "usedAt": [
+        "actions (sample content)"
+      ],
+      "variant": "Size=small, Flavour=outline-subtle | outline-contrast, Shape=<shape>"
+    },
+    {
+      "name": "Icon Button",
+      "id": "2338:1763",
+      "remote": false,
+      "usedAt": [
+        "dismiss"
+      ],
+      "variant": "Size=small, Flavour=subtle, Shape=<shape>"
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ — names below resolve there; see tokens/manifest.json for collections, modes and the extension graph",
+    "rule": "This spec names tokens only. Resolved values live in tokens/ and are deliberately not duplicated here.",
+    "color": [
+      "border/default",
+      "border/error",
+      "border/info",
+      "border/success",
+      "border/warning",
+      "feedback/error/background/strong",
+      "feedback/error/background/subtle",
+      "feedback/error/foreground",
+      "feedback/info/background/strong",
+      "feedback/info/background/subtle",
+      "feedback/info/foreground",
+      "feedback/neutral/background/strong",
+      "feedback/neutral/background/subtle",
+      "feedback/neutral/foreground",
+      "feedback/success/background/strong",
+      "feedback/success/background/subtle",
+      "feedback/success/foreground",
+      "feedback/warning/background/strong",
+      "feedback/warning/background/subtle",
+      "feedback/warning/foreground",
+      "foreground/on-strong",
+      "foreground/primary"
+    ],
+    "dimension": [
+      "space/2xs",
+      "space/sm",
+      "space/md",
+      "space/lg",
+      "radius/sm",
+      "radius/none",
+      "stroke/thin",
+      "label/large/line height"
+    ],
+    "typography": [
+      "label/large",
+      "body/small"
+    ],
+    "effect": [],
+    "nested": "Button and Icon Button bind their own tokens (control/sm, radius/element-sm, interactive/*); not repeated here.",
+    "themeAxes": {
+      "palette": {
+        "modes": [
+          "Light",
+          "Dark",
+          "AAA Light",
+          "AAA Dark"
+        ],
+        "default": "Light",
+        "note": "Fills, borders and text follow the page mode. On solid, the actions and dismiss pin palette=Dark."
+      },
+      "size": {
+        "modes": [
+          "Desktop",
+          "Mobile",
+          "Tablet",
+          "Desktop Compact"
+        ],
+        "default": "Desktop"
+      },
+      "typography": {
+        "modes": [
+          "Desktop",
+          "Tablet",
+          "Mobile",
+          "Desktop Compact"
+        ],
+        "default": "Desktop"
+      }
+    }
+  },
+  "states": [
+    {
+      "State": "Static",
+      "Trigger": "—",
+      "Duration": "—",
+      "What changes": "No interaction states of its own. Hover, focus and pressed live on the action Button and the dismiss Icon Button."
+    }
+  ],
+  "behavior": [
+    {
+      "Type": "Motion",
+      "Description": "None. It appears and disappears with the content it sits in. There is no motion token; add one before animating it."
+    },
+    {
+      "Type": "Reflow",
+      "Description": "Fills its container's width; height follows the content. The text keeps a minimum width, and the actions wrap beneath it when the container is narrower. That minimum has no size token yet. See the narrow sample under Anatomy."
+    },
+    {
+      "Type": "Dismissal",
+      "Description": "The component offers the control and reports the dismissal. Removing the banner, and whether it comes back, is the product's decision."
+    }
+  ],
+  "content": [
+    {
+      "Property": "Title",
+      "Type": "text, exposed",
+      "Description": "The headline, set through the Title input."
+    },
+    {
+      "Property": "Description",
+      "Type": "text, exposed",
+      "Description": "The supporting line, set through the Description input and shown by Show Description."
+    },
+    {
+      "Property": "Action Slot",
+      "Type": "slot",
+      "Description": "Holds the controls the message needs, normally one small Button: outline-subtle on subtle, outline-contrast on solid. The banner passes its Shape to them."
+    },
+    {
+      "Property": "Status Icon",
+      "Type": "icon, parent-owned",
+      "Description": "Follows Status: Lightbulb, Info, Check Circle, Warning, Error. A product can override the glyph."
+    },
+    {
+      "Property": "Dismiss",
+      "Type": "Icon Button",
+      "Description": "A small subtle Icon Button, switched by Show Close. Available on every status."
+    },
+    {
+      "Property": "Action Button",
+      "Type": "nested instance",
+      "Description": "Sample content for the slot, not part of the API. On solid it sits in palette Dark so it draws white. That is Figma-only: code gives the controls a dark-mode scope."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Use solid for the one message on a view that blocks or changes what the person can do. Make everything else subtle.",
+      "Place it next to what it is about: above the form, inside the card, at the top of the panel."
+    ],
+    "dont": [
+      "Don't stack several solid banners. They compete, and the page reads as an alarm.",
+      "Don't use it for page-wide or system news. That is System Banner, pinned to the top of the view."
+    ]
+  },
+  "accessibility": [
+    "Announced politely; negative is announced immediately.",
+    "Keep the glyph on, or name the status in the text, so colour is never the only signal.",
+    "The action and the dismiss carry their own focus states.",
+    "Known gap: foreground/on-strong falls below 4.5:1 on solid neutral (both modes) and solid warning (dark mode)."
+  ],
+  "layoutTheming": [
+    {
+      "Property": "Size",
+      "Type": "Fill width, hug height",
+      "Description": "Spans its container. The 640 width in Figma is a preview only."
+    },
+    {
+      "Property": "Padding",
+      "Type": "Fixed",
+      "Description": "space/md block, space/lg inline."
+    },
+    {
+      "Property": "Gap",
+      "Type": "Fixed",
+      "Description": "space/sm between glyph, content and dismiss. space/lg between text and actions, space/sm when they wrap. space/2xs between title and description."
+    },
+    {
+      "Property": "Radius",
+      "Type": "Shape",
+      "Description": "radius/sm on rounded, radius/none on sharp. Border stroke/thin on both appearances."
+    },
+    {
+      "Property": "Colour",
+      "Type": "Theming",
+      "Description": "Subtle: feedback/<status>/background/subtle fill, border/<status> border (border/default on neutral), feedback/<status>/foreground glyph, foreground/primary text. Solid: feedback/<status>/background/strong fill and border, foreground/on-strong text and glyph. positive maps to success, negative to error."
+    },
+    {
+      "Property": "Typography",
+      "Type": "Fixed",
+      "Description": "Title label/large, description body/small."
+    },
+    {
+      "Property": "Status glyph",
+      "Type": "Fixed",
+      "Description": "A medium Icon centred in a box as tall as label/large's line height."
+    },
+    {
+      "Property": "Dismiss control",
+      "Type": "Fixed",
+      "Description": "A small subtle Icon Button at the trailing edge."
+    }
+  ],
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8051-4995",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8053-85",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8055-154",
+    "variants": {
+      "default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8053-157",
+      "solid": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-899",
+      "sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-888",
+      "neutralSolid": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-866",
+      "warningSolid": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8054-965",
+      "narrow": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8055-294"
+    }
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "accessibility",
+      "detail": "Per the metadata, foreground/on-strong on solid neutral (both modes) and solid warning (dark) falls below 4.5:1. A palette gap, not a component one."
+    },
+    {
+      "severity": "warn",
+      "source": "gaps",
+      "detail": "The text's minimum width before the actions wrap is a raw 256 (16rem in code) with no size token."
+    },
+    {
+      "severity": "note",
+      "source": "api",
+      "detail": "Status options are stored in creation order (negative, warning, neutral, info, positive); the metadata lists info, neutral, positive, warning, negative. Order carries no meaning."
+    },
+    {
+      "severity": "note",
+      "source": "figma-only",
+      "detail": "On solid, the action slot and dismiss pin palette=Dark so outline-contrast and the subtle Icon Button draw light. The metadata labels this Figma-only."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "root is a vertical auto-layout with one child (container). It is a wrapper only; code can fold it."
+    },
+    {
+      "severity": "note",
+      "source": "coverage",
+      "detail": "Motion and interaction states are intentionally absent: the metadata says none."
+    }
+  ]
+}

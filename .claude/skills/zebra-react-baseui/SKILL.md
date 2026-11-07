@@ -41,7 +41,8 @@ the wrong primitive.
 
 This package has no token script of its own — `pnpm run tokens` invokes the
 web-components one with explicit in/out paths, so both packages generate from
-the same source and cannot drift.
+the same source and cannot drift. `--attributes` adds `data-theme-mode`, `data-theme-ext` and `data-size-mode` beside
+the `mode-*`, `ext-*` and `bp-*` classes. They are the same scopes and they mix.
 
 Point the implementation at its spec with a `@spec` tag in the component's
 JSDoc and a `Spec:` line at the top of the CSS file.

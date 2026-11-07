@@ -20,7 +20,7 @@ const MenuHost = ({ children, width = 240 }: { children: React.ReactNode; width?
             flexDirection: "column",
             gap: 4,
             padding: 12,
-            background: "var(--surface-menu)",
+            background: "var(--surface-overlay)",
             boxShadow: "0 8px 24px rgb(0 0 0 / 0.15)",
           }}
         >

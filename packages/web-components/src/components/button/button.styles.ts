@@ -31,7 +31,7 @@ export default css`
        lays out this button, not how the host itself is sized externally. */
     flex: 1 1 auto;
     height: var(--control-sm);
-    padding: var(--space-xxs) var(--space-md);
+    padding: var(--space-2xs) var(--space-md);
     border-style: solid;
     border-width: var(--stroke-base);
     border-radius: var(--radius-none);
@@ -59,7 +59,7 @@ export default css`
   .label {
     display: inline-flex;
     align-items: center;
-    padding-inline: var(--space-xxs);
+    padding-inline: var(--space-2xs);
   }
 
   ::slotted(*),
@@ -70,7 +70,7 @@ export default css`
   /* ---- size ---------------------------------------------------------- */
   :host([size="medium"]) button {
     height: var(--control-md);
-    padding: var(--space-xxs) var(--space-md);
+    padding: var(--space-2xs) var(--space-md);
     font-size: var(--label-large-font-size);
     line-height: var(--label-large-line-height);
     letter-spacing: var(--label-large-letter-spacing);
@@ -78,7 +78,7 @@ export default css`
   }
   :host([size="large"]) button {
     height: var(--control-lg);
-    padding: var(--space-xxs) var(--space-lg);
+    padding: var(--space-2xs) var(--space-lg);
     font-size: var(--label-large-font-size);
     line-height: var(--label-large-line-height);
     letter-spacing: var(--label-large-letter-spacing);
@@ -181,9 +181,23 @@ export default css`
     transition: background-position 120ms ease;
   }
 
-  /* outline and outline-subtle are the only flavours with a resting border */
+  /* contrast is the strongest neutral against the page;
+     outline-contrast is its outline sibling. Both follow the mode. */
+  :host([flavour="contrast"]) {
+    --zds-button-bg: var(--interactive-inverse-background-default);
+    --zds-button-border: var(--interactive-inverse-border-default);
+    --zds-button-fg: var(--interactive-inverse-foreground-default);
+  }
+  :host([flavour="outline-contrast"]) {
+    --zds-button-bg: var(--interactive-ghost-background-default);
+    --zds-button-border: var(--interactive-inverse-border-default);
+    --zds-button-fg: var(--foreground-primary);
+  }
+
+  /* outline, outline-subtle and outline-contrast are the only flavours with a resting border */
   :host([flavour="outline"]) button,
-  :host([flavour="outline-subtle"]) button {
+  :host([flavour="outline-subtle"]) button,
+  :host([flavour="outline-contrast"]) button {
     border-width: var(--stroke-thin);
   }
 
@@ -199,6 +213,16 @@ export default css`
   :host([flavour="negative"]) button:hover {
     --zds-button-bg: var(--interactive-destructive-background-hover);
     --zds-button-border: var(--interactive-destructive-border-hover);
+  }
+  :host([flavour="contrast"]) button:hover {
+    --zds-button-bg: var(--interactive-inverse-background-hover);
+    --zds-button-border: var(--interactive-inverse-border-hover);
+  }
+  /* outline-contrast steps its border and raises the ghost scrim. The ghost
+     tokens carry the scrim in their own alpha, so no extra opacity. */
+  :host([flavour="outline-contrast"]) button:hover {
+    --zds-button-bg: var(--interactive-ghost-background-hover);
+    --zds-button-border: var(--interactive-inverse-border-hover);
   }
   /* outline keeps its border and shifts a neutral background underneath. */
   :host([flavour="outline"]) button:hover {
@@ -235,6 +259,14 @@ export default css`
   :host([flavour="negative"]) button:active {
     --zds-button-bg: var(--interactive-destructive-background-pressed);
     --zds-button-border: var(--interactive-destructive-border-pressed);
+  }
+  :host([flavour="contrast"]) button:active {
+    --zds-button-bg: var(--interactive-inverse-background-pressed);
+    --zds-button-border: var(--interactive-inverse-border-pressed);
+  }
+  :host([flavour="outline-contrast"]) button:active {
+    --zds-button-bg: var(--interactive-ghost-background-pressed);
+    --zds-button-border: var(--interactive-inverse-border-pressed);
   }
   :host([flavour="outline"]) button:active {
     --zds-button-bg: var(--interactive-neutral-background-pressed);
@@ -293,5 +325,15 @@ export default css`
     --zds-button-bg: var(--interactive-ghost-background-disabled);
     --zds-button-border: var(--interactive-neutral-border-disabled);
     --zds-button-fg: var(--interactive-neutral-foreground-disabled);
+  }
+  :host([flavour="contrast"]) button:disabled {
+    --zds-button-bg: var(--interactive-inverse-background-disabled);
+    --zds-button-border: var(--interactive-inverse-border-disabled);
+    --zds-button-fg: var(--interactive-inverse-foreground-disabled);
+  }
+  :host([flavour="outline-contrast"]) button:disabled {
+    --zds-button-bg: var(--interactive-ghost-background-disabled);
+    --zds-button-border: var(--border-disabled);
+    --zds-button-fg: var(--interactive-inverse-foreground-disabled);
   }
 `;

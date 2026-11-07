@@ -20,6 +20,14 @@
     {
       "mode": "Dark",
       "parentMode": "Dark"
+    },
+    {
+      "mode": "AAA Light",
+      "parentMode": "AAA Light"
+    },
+    {
+      "mode": "AAA Dark",
+      "parentMode": "AAA Dark"
     }
   ],
   "files": [

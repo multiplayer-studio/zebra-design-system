@@ -10,11 +10,11 @@ Source: [Badges page](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Messag
 
 | Prop | Type | Values | Default |
 |---|---|---|---|
-| `label` | string |  | `Label` |
+| `label` | string | | `Label` |
 | `status` | enum | `neutral`, `info`, `positive`, `warning`, `negative` | `neutral` |
 | `leading` | enum | `indicator`, `icon`, `none` | `indicator` |
 | `shape` | enum | `rounded`, `sharp` | `rounded` |
-| `discardable` | boolean |  | `false` |
+| `discardable` | boolean | | `false` |
 
 **label**: The state being reported. Keep it to the state itself and two words at most, because the component hugs its text and a sentence becomes a wide block inside a narrow column.
 
@@ -44,9 +44,9 @@ Source: [Badges page](https://www.figma.com/design/ygOr6iyTBCNEMI62lqKDp1/Messag
 
 | Part | Kind | Details |
 |---|---|---|
-| `surround` | container | The fill and the border, both following Status. Together they carry the status even when the leading element is off. · radius: radius/pill (rounded) · radius/none (sharp) · layout: direction horizontal; gap space/none; padding space/2xs space/xxs (vertical, horizontal) · measured 24 tall · paint: fill per status; stroke {"color": "per status", "width": "stroke/thin", "align": "inside, included in layout"} |
+| `surround` | container | The fill and the border, both following Status. Together they carry the status even when the leading element is off. · radius: radius/pill (rounded) · radius/none (sharp) · layout: direction horizontal; gap space/none; padding space/3xs space/2xs (vertical, horizontal) · measured 24 tall · paint: fill per status; stroke {"color": "per status", "width": "stroke/thin", "align": "inside, included in layout"} |
 | `leading` | container | instance | A dot or an icon in the status colour, chosen by Leading and absent when it is none. The component draws it from Status rather than taking one in. · visibleWhen: leading != none · indicator: box control/icon-sm square, padding space/none; dot control/icon-xxs ellipse, fill per status · icon: ref Icon; size Icon Size=small; glyph per status; color per status (the glyph's own fill; in code currentColor) |
-| `label` | text | The state being reported, set through Label. It decides the width of the whole component. · content: label · text: style body/small; color foreground/primary · container: padding 0 space/xxs; gap space/none |
+| `label` | text | The state being reported, set through Label. It decides the width of the whole component. · content: label · text: style body/small; color foreground/primary · container: padding 0 space/2xs; gap space/none |
 | `discard` | instance | A Close glyph at Size=small, 16 square, sitting after the label. The component draws it from Discardable rather than taking one in, so the glyph is not a slot a consumer fills. · visibleWhen: discardable = true · ref Icon; Size=small; glyph close (rounded); colour currentColor in code · interactive: removes the label |
 
 ## Variants
@@ -75,7 +75,7 @@ Cells are token names, except those ending Px. Shape changes only the radius; Le
 
 | shape | surround.radius | figmaNode |
 |---|---|---|
-| rounded | radius/pill |  |
+| rounded | radius/pill | |
 | sharp | radius/none | 6403:152 |
 
 ### discardable
@@ -143,11 +143,11 @@ Every token resolves in the export.
 | Property | Type | Description |
 |---|---|---|
 | Size | Hug width, fixed height | 28 tall at every status. The width hugs the label, running 69 with a leading element and 53 without, so the component is as wide as its text needs. |
-| Padding and gap | Fixed | space/xxs on all four sides, with no gap between the leading element and the label. The leading element is a 16 square box carrying an 8 dot or a 16 icon, and that box supplies the separation on its own. |
+| Padding and gap | Fixed | space/2xs on all four sides, with no gap between the leading element and the label. The leading element is a 16 square box carrying an 8 dot or a 16 icon, and that box supplies the separation on its own. |
 | Radius | Per Shape | radius/pill when rounded and radius/none when sharp. Nothing else moves between the two. |
 | Fill | Per Status | neutral draws interactive/neutral/background/default. The other four draw feedback/info, success, warning and error at background/subtle, so all four sit at one tint strength rather than escalating with severity. |
 | Border | Per Status | A 1px stroke tracking the fill, border/default for neutral and border/info, success, warning or error for the rest. It is what keeps four subtle tints apart from each other at a glance. |
-| Label | Theming | body/small at 14px, held at foreground/primary for every status. Only the fill, the border and the leading element move. |
+| Label | Theming | body/small, held at foreground/primary for every status. Only the fill, the border and the leading element move. |
 | Discard control | Fixed | A 16 square after the label when Discardable is on, adding 16 to the width. It takes no gap of its own, because the component runs at space/none and the padding does the separating. |
 
 ## Visual reference
@@ -159,7 +159,7 @@ Every token resolves in the export.
 
 ### Warn
 
-- *metadata Layout vs structure (size and padding)*: The metadata says "28 tall" and "space/xxs on all four sides". As built the surround pads space/2xs top and bottom and space/xxs left and right, so it measures 24 tall. Code follows Figma.
+- *metadata Layout vs structure (size and padding)*: The metadata says "28 tall" and "space/2xs on all four sides". As built the surround pads space/3xs top and bottom and space/2xs left and right, so it measures 24 tall. Code follows Figma.
 - *metadata Layout vs structure (neutral fill)*: The metadata says "neutral draws interactive/neutral/background/default". As built, neutral's fill is feedback/neutral/background/subtle, alongside border/default and a foreground/primary dot. Code follows Figma.
 
 ### Note

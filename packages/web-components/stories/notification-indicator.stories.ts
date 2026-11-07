@@ -28,9 +28,9 @@ export const Sizes: Story = {
   `,
 };
 
-/** Truncates with an ending ellipsis past 1 line (medium) or 3 lines (large). */
+/** Anything above 99 reads 99+, and no count runs past 3 characters. */
 export const LongValue: Story = {
-  args: { size: "large", value: "99+" },
+  args: { size: "large", value: "150" },
 };
 
 /** Pinned to the corner of an icon or nav item — its usual placement. */

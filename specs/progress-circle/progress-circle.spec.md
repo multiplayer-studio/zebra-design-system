@@ -2,7 +2,7 @@
 
 A ring that reports an ongoing process where a bar will not fit, beside an icon or inside a dense row. Five sizes cover inline through to prominent, and Upload turns it into a file-transfer control with a cancel action. Unlike Progress Bar it has no property for the amount of progress, so the arc is fixed here and the real value has to come from the implementation.
 
-Source: [Progress Circle board](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5041-6579) on the Progress Indicators page · extracted 2026-10-20
+Source: [Progress Circle board](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5041-6579) on the Progress Indicators page · extracted 2026-11-06
 
 Progress Circle and [Progress Bar](../progress-bar/progress-bar.spec.md) share a Figma page but have a metadata frame each, so they are specced separately. The page's private `_Upload` set belongs to this component.
 
@@ -69,7 +69,7 @@ Set `4416:123` on the *Subcomponents/Progress indicator* board. One prop, `stop`
 | true | hidden | shown |
 
 - **Readout** — text `indicator/medium`, centred, sample "75%". Colour is unbound (see issues).
-- **Cancel** — an [Icon Button](../icon-button/) at Size=small, Shape=full, Flavour=subtle, pinned to State=hover; glyph `close` (rounded family, Icon Size=small, currentColor). As drawn it resolves to `control/sm`, `interactive/ghost/background/hover`, `radius/pill`, `space/xxs`, border `interactive/neutral/border/default` at `stroke/base`; in code use Icon Button with its own states.
+- **Cancel** — an [Icon Button](../icon-button/) at Size=small, Shape=full, Flavour=subtle, pinned to State=hover; glyph `close` (rounded family, Icon Size=small, currentColor). As drawn it resolves to `control/sm`, `interactive/ghost/background/hover`, `radius/pill`, `space/2xs`, border `interactive/neutral/border/default` at `stroke/base`; in code use Icon Button with its own states.
 
 Dependencies: Icon Button (`specs/icon-button/`), Icon (`specs/icon/`, delivered as a glyph).
 
@@ -78,7 +78,7 @@ Dependencies: Icon Button (`specs/icon-button/`), Icon (`specs/icon/`, delivered
 - **Colour:** `border/info`, `border/subtle`, `foreground/link` (bound, never rendered); via Icon Button: `interactive/ghost/background/hover`, `interactive/neutral/border/default`.
 - **Dimension:** `stroke/heavy`, `radius/none` (bound on the track, no effect); via Icon Button: `control/sm`, `space/{none, xxs}`, `radius/pill`, `stroke/base`.
 - **Typography:** `indicator/medium`. **Glyphs:** `close`.
-- **Theme axes:** palette (Light, Dark); size and typography (Desktop, Mobile, Tablet, Desktop Compact).
+- **Theme axes:** palette (Light, Dark, AAA Light, AAA Dark); size and typography (Desktop, Mobile, Tablet, Desktop Compact).
 
 All 13 names resolve in `tokens/base`; `close` is in the font and not retired.
 
@@ -107,7 +107,7 @@ All 13 names resolve in `tokens/base`; `close` is in the font and not retired.
 
 **Don't**
 - Don't read the arc as a value. It is identical in every variant, so a screen with several rings will show them all at the same apparent progress.
-- Don't reach for Upload at xsmall or xxsmall. The property is offered at those sizes but the control is not built, so turning it on does nothing.
+- Don't use Upload at xsmall or xxsmall. The property is offered at those sizes but the control is not built, so turning it on does nothing.
 
 ## Accessibility
 
@@ -122,7 +122,7 @@ All 13 names resolve in `tokens/base`; `close` is in the font and not retired.
 | Property | Type | Description |
 |---|---|---|
 | Size | Fixed square per Size | "24, 36, 40, 48 and 64px across the five steps. Always square, and never hugging its content." |
-| Stroke weight | Fixed | "4px (stroke/heavy) at every size. It does not scale, so the ring is roughly a sixth of the diameter at xxsmall and a sixteenth at large." |
+| Stroke weight | Fixed | "stroke/heavy at every size. It does not scale, so the ring is roughly a sixth of the diameter at xxsmall and a sixteenth at large." |
 | Arc | Fixed | "The track covers the full circle. The arc begins at twelve o'clock and runs about three quarters of the way round, identically in all ten variants." |
 | Line cap | Fixed per Rounded | "The arc's ends are round when Rounded is true and square when it is false. The track's ends are always square, though a full circle hides them." |
 | Upload control | Fixed | "36px regardless of the ring's size, centred, and present only at small, medium and large." |

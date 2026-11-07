@@ -1,6 +1,6 @@
 import { css } from "lit";
 
-/* Spec: specs/breadcrumb. Crumbs sit space/md apart and wrapped lines space/xxs apart. The overflow control is Icon
+/* Spec: specs/breadcrumb. Crumbs sit space/md apart and wrapped lines space/2xs apart. The overflow control is Icon
    Button at small, and its menu is the compact zeta-droppable, which keeps its own raw 8 offset (spec issue). */
 export default css`
   :host {
@@ -15,7 +15,7 @@ export default css`
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--space-xxs) var(--space-md);
+    gap: var(--space-2xs) var(--space-md);
   }
 
   .overflow {

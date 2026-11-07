@@ -1,0 +1,2074 @@
+{
+  "component": {
+    "name": "Stepper",
+    "slug": "stepper",
+    "sets": {
+      "horizontalStepper": {
+        "name": "Horizontal Stepper",
+        "setId": "7561:19693",
+        "key": "816424435f3a5656708e35c74ff04bd82de53503"
+      },
+      "verticalStepper": {
+        "name": "Vertical Stepper",
+        "setId": "7557:19407",
+        "key": "daa29bc469f672983dd08e2ee39ea6d4033e3123"
+      }
+    },
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "page": "Stepper",
+      "pageNodeId": "7357:18457",
+      "metadataFrameIds": {
+        "Stepper Metadata": "7541:279",
+        "Step / Horizontal & Vertical Metadata": "7541:542",
+        "Step Card Metadata": "7541:1068",
+        "Step Segment Metadata": "7541:1331"
+      },
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7357-18457",
+      "extractedAt": "2026-11-03",
+      "updatedAt": "2026-11-03: Step Card label colours re-read after a Figma change.",
+      "variantCount": {
+        "Horizontal Stepper": 2,
+        "Vertical Stepper": 3,
+        "Step / Horizontal": 6,
+        "Step / Vertical": 6,
+        "Step Card/Round": 6,
+        "Step Card/Sharp": 6,
+        "Step Segment": 6
+      },
+      "extractionNote": "The page holds two public masters, Horizontal Stepper and Vertical Stepper, so this spec keeps one API and one variant table per set. All seven sets were extracted in full. The four metadata frames were read in full; each subcomponent's intent sits under its entry in subcomponents. Icon swaps were resolved to their icon sets and then to glyphs in packages/icons/codepoints.json."
+    }
+  },
+  "summary": "Shows where a person is in a fixed sequence of steps, marking what is finished, what is current and what is still ahead. Two sets: Horizontal Stepper, default for desktop or compact for mobile, and Vertical Stepper, a rail or a column of cards. All stepper variants excluding the horizontal compact variant names only the current step above a segmented bar.",
+  "api": {
+    "horizontalStepper": {
+      "size": {
+        "type": "enum",
+        "figmaName": "Size",
+        "values": [
+          "default",
+          "compact"
+        ],
+        "default": "default",
+        "controls": [
+          "variant"
+        ],
+        "intent": {
+          "default": "The desktop variant of a horizontal stepper. Every step is named, its label centered under its indicator, and the connector runs indicator to indicator.",
+          "compact": "The scaled down variant of a horizontal stepper, ideally used for mobile screens. The count, the current title and subtitle, over the segment bar."
+        }
+      },
+      "steps": {
+        "type": "slot",
+        "figmaName": "Steps#7561:114",
+        "expects": "Step / Horizontal",
+        "controls": [
+          "steps"
+        ],
+        "visibleWhen": "size = default",
+        "intent": "Holds the Step / Horizontal instances on Default variant. Turn Show Line off on the last one."
+      },
+      "segments": {
+        "type": "slot",
+        "figmaName": "Segments#7561:118",
+        "expects": "Step Segment",
+        "controls": [
+          "segments"
+        ],
+        "visibleWhen": "size = compact",
+        "intent": "Holds one Step Segment per step on Compact variant."
+      },
+      "currentStep": {
+        "type": "string",
+        "figmaName": "Current Step#7561:119",
+        "default": "3",
+        "controls": [
+          "stepInfo.current"
+        ],
+        "intent": "This shows the current step number on Compact variant."
+      },
+      "totalSteps": {
+        "type": "string",
+        "figmaName": "Total Steps#7561:120",
+        "default": "5",
+        "controls": [
+          "stepInfo.total"
+        ],
+        "intent": "This shows the total number of steps on Compact variant."
+      },
+      "label": {
+        "type": "string",
+        "figmaName": "Label#7561:115",
+        "default": "Label",
+        "controls": [
+          "title"
+        ],
+        "intent": "This shows the current step title on Compact variant."
+      },
+      "subtitle": {
+        "type": "string",
+        "figmaName": "Subtitle#7561:116",
+        "default": "Subtitle",
+        "controls": [
+          "subtitle"
+        ],
+        "intent": "This shows the current step subtitle on Compact variant."
+      },
+      "showSubtitle": {
+        "type": "boolean",
+        "figmaName": "Show Subtitle#7561:117",
+        "default": true,
+        "controls": [
+          "subtitle"
+        ],
+        "intent": {
+          "true": "On default, subtitles are hidden but can be toggled on to show additional context to the step. Ideally, limit to using one or few words, rather than a longer description.",
+          "false": "Drops the subtitle, surfacing just the count and the step title."
+        }
+      }
+    },
+    "verticalStepper": {
+      "card": {
+        "type": "enum",
+        "figmaName": "Card",
+        "values": [
+          "false",
+          "true"
+        ],
+        "default": "false",
+        "controls": [
+          "variant"
+        ],
+        "intent": {
+          "false": "The desktop variant of a vertical stepper. Every step is named, its label centered under its indicator, and the connector connects and runs from indicator to indicator. This is the default variant used for vertical stepper.",
+          "true": "A card style of the vertical stepper. Each step used a Step Card, with active and completed steps highlighted for prominence. Ideally, use this variant if your prefer to show more visual-focused step progress."
+        }
+      },
+      "rounded": {
+        "type": "enum",
+        "figmaName": "Rounded",
+        "values": [
+          "false",
+          "true"
+        ],
+        "default": "false",
+        "controls": [
+          "variant"
+        ],
+        "appliesWhen": "card = true",
+        "intent": {
+          "true": "Only applicable when vertical stepper card property is set to true. The default state of the card vertical stepper shows step cards with rounded corners. This property should be used consistently with the rest of the page’s styling.",
+          "false": "Only applicable when vertical stepper card property is set to false. This property shows step cards with sharp corners and should be used consistently with the rest of the page’s styling."
+        }
+      },
+      "steps": {
+        "type": "slot",
+        "figmaName": "Steps#7557:107",
+        "expects": "Step / Vertical when card = false; Step Card/Round when card = true and rounded = true; Step Card/Sharp when card = true and rounded = false",
+        "controls": [
+          "steps"
+        ],
+        "intent": "Holds Step / Vertical or Step Card instances. Turn Show Line off on the last one."
+      }
+    }
+  },
+  "internalVariations": [],
+  "contentInputs": [
+    {
+      "part": "steps",
+      "input": "one step instance per step, each with its own label, subtitle, showSubtitle, stepNumber, status and (rails only) showLine",
+      "sampleCount": 5,
+      "note": "Figma samples five steps: complete, complete, active, default, default; three in the card variants."
+    },
+    {
+      "part": "segments",
+      "input": "one Step Segment per step, each with its own status",
+      "sampleCount": 5
+    }
+  ],
+  "anatomy": {
+    "horizontalStepper": [
+      {
+        "id": "root",
+        "kind": "container",
+        "layout": {
+          "direction": "horizontal",
+          "gap": "space/none",
+          "padding": {
+            "block": "space/none",
+            "inline": "space/md"
+          }
+        },
+        "sizing": {
+          "h": "fixed",
+          "v": "fixed"
+        },
+        "note": "size = default. On compact the root becomes a vertical column, gap space/md, padding space/none, width fixed and height hug."
+      },
+      {
+        "id": "steps",
+        "kind": "container",
+        "visibleWhen": "size = default",
+        "role": "Step: One step of the sequence, carrying its indicator, its label and the connector that follows it. Which component draws it depends on the set and its Size or Card value.",
+        "layout": {
+          "direction": "horizontal",
+          "gap": "space/none",
+          "padding": "space/none"
+        },
+        "sizing": {
+          "h": "hug",
+          "v": "hug"
+        },
+        "holds": "Step / Horizontal"
+      },
+      {
+        "id": "summary",
+        "kind": "container",
+        "visibleWhen": "size = compact",
+        "layout": {
+          "direction": "vertical",
+          "gap": "space/2xs",
+          "padding": "space/none"
+        },
+        "sizing": {
+          "h": "fill",
+          "v": "hug"
+        },
+        "clips": true
+      },
+      {
+        "id": "stepInfo",
+        "kind": "container",
+        "visibleWhen": "size = compact",
+        "parent": "summary",
+        "role": "Step Number: A line showing the step number, formatted as “STEP [current] OF [total]”.",
+        "layout": {
+          "direction": "horizontal",
+          "gap": "space/2xs",
+          "padding": "space/none"
+        },
+        "sizing": {
+          "h": "hug",
+          "v": "hug"
+        },
+        "children": [
+          {
+            "id": "stepInfo.word",
+            "kind": "text",
+            "text": {
+              "content": "STEP (fixed)",
+              "style": "label/medium",
+              "color": "foreground/tertiary",
+              "maxLines": 1
+            }
+          },
+          {
+            "id": "stepInfo.current",
+            "kind": "text",
+            "boundTo": "currentStep",
+            "text": {
+              "style": "label/medium",
+              "color": "foreground/tertiary",
+              "maxLines": 1
+            }
+          },
+          {
+            "id": "stepInfo.of",
+            "kind": "text",
+            "text": {
+              "content": "OF (fixed)",
+              "style": "label/medium",
+              "color": "foreground/tertiary",
+              "maxLines": 1
+            }
+          },
+          {
+            "id": "stepInfo.total",
+            "kind": "text",
+            "boundTo": "totalSteps",
+            "text": {
+              "style": "label/medium",
+              "color": "foreground/tertiary",
+              "maxLines": 1
+            }
+          }
+        ]
+      },
+      {
+        "id": "heading",
+        "kind": "container",
+        "visibleWhen": "size = compact",
+        "parent": "summary",
+        "role": "Label + Subtitle: On the compact variant, the label and subtitles comes above the step indicators.",
+        "layout": {
+          "direction": "vertical",
+          "gap": "space/2xs",
+          "padding": "space/none"
+        },
+        "sizing": {
+          "h": "fill",
+          "v": "hug"
+        },
+        "clips": true
+      },
+      {
+        "id": "title",
+        "kind": "text",
+        "parent": "heading",
+        "boundTo": "label",
+        "sizing": {
+          "h": "fill",
+          "v": "hug"
+        },
+        "text": {
+          "style": "title/medium",
+          "color": "foreground/primary",
+          "wrap": true
+        }
+      },
+      {
+        "id": "subtitle",
+        "kind": "text",
+        "parent": "heading",
+        "boundTo": "subtitle",
+        "visibleWhen": "showSubtitle",
+        "sizing": {
+          "h": "fill",
+          "v": "hug"
+        },
+        "text": {
+          "style": "body/small",
+          "color": "foreground/secondary",
+          "wrap": true
+        }
+      },
+      {
+        "id": "segments",
+        "kind": "container",
+        "visibleWhen": "size = compact",
+        "role": "Segment: The equivalent of a connector but optimized with reduced states and complexity for compact spacing.",
+        "layout": {
+          "direction": "horizontal",
+          "gap": "space/xs",
+          "padding": "space/none"
+        },
+        "sizing": {
+          "h": "fill",
+          "v": "hug"
+        },
+        "clips": true,
+        "holds": "Step Segment, each sized fill so they share the width equally"
+      }
+    ],
+    "verticalStepper": [
+      {
+        "id": "root",
+        "kind": "container",
+        "layout": {
+          "direction": "vertical",
+          "gap": "space/none",
+          "padding": "space/none"
+        },
+        "radius": "radius/none",
+        "sizing": {
+          "h": "fixed",
+          "v": "hug"
+        },
+        "note": "card = true: gap space/sm, sizing fixed in both directions."
+      },
+      {
+        "id": "steps",
+        "kind": "container",
+        "role": "Step: One step of the sequence, carrying its indicator, its label and the connector that follows it. Which component draws it depends on the set and its Size or Card value.",
+        "layout": {
+          "direction": "vertical",
+          "gap": "space/none",
+          "padding": "space/none"
+        },
+        "sizing": {
+          "h": "fill",
+          "v": "hug"
+        },
+        "holds": "Step / Vertical (card = false) or Step Card (card = true), each sized fill width, hug height",
+        "note": "card = true: gap space/sm."
+      }
+    ]
+  },
+  "variants": [
+    {
+      "set": "horizontalStepper",
+      "axis": "size",
+      "base": "default",
+      "_note": "rootWidthPx is a measured rendered width, not a token.",
+      "table": [
+        {
+          "size": "default",
+          "root.direction": "horizontal",
+          "root.gap": "space/none",
+          "root.padding.inline": "space/md",
+          "shows": "steps",
+          "rootWidthPx": 630
+        },
+        {
+          "size": "compact",
+          "root.direction": "vertical",
+          "root.gap": "space/md",
+          "root.padding.inline": "space/none",
+          "shows": "summary, segments",
+          "rootWidthPx": 340
+        }
+      ]
+    },
+    {
+      "set": "verticalStepper",
+      "axis": "card × rounded",
+      "base": "card=false, rounded=false",
+      "_note": "Figma has only three of the four combinations; rounded=true with card=false does not exist. rootWidthPx is measured.",
+      "table": [
+        {
+          "card": "false",
+          "rounded": "false",
+          "step": "Step / Vertical",
+          "steps.gap": "space/none",
+          "rootWidthPx": 150
+        },
+        {
+          "card": "true",
+          "rounded": "false",
+          "step": "Step Card/Sharp",
+          "steps.gap": "space/sm",
+          "rootWidthPx": 200
+        },
+        {
+          "card": "true",
+          "rounded": "true",
+          "step": "Step Card/Round",
+          "steps.gap": "space/sm",
+          "rootWidthPx": 200
+        }
+      ]
+    }
+  ],
+  "subcomponents": {
+    "stepHorizontal": {
+      "name": "Step / Horizontal",
+      "setId": "7526:374",
+      "key": "c52d37ab77ce6582597d0b707f94e53a8a89a823",
+      "private": false,
+      "summary": "Each step that is used within a stepper parent component. Step / Horizontal puts the label under its indicator and runs the connector on to the next step. Step / Vertical sets the label beside it and drops the connector towards the next. Status sets how the step reads at a glance, from default through complete to error.",
+      "api": {
+        "status": {
+          "type": "enum",
+          "figmaName": "Status",
+          "values": [
+            "default",
+            "complete",
+            "active",
+            "partial",
+            "error",
+            "disabled"
+          ],
+          "default": "default",
+          "controls": [
+            "variant"
+          ],
+          "intent": "see stepStatusIntent"
+        },
+        "label": {
+          "type": "string",
+          "figmaName": "Label#7526:0",
+          "default": "Label",
+          "controls": [
+            "label"
+          ],
+          "intent": "Names the step in a word or two. Horizontally, the label sits below the indicator whereas vertically, the label sits to the right of the indicator."
+        },
+        "stepNumber": {
+          "type": "string",
+          "figmaName": "Step Number#7557:13",
+          "default": "1",
+          "controls": [
+            "number"
+          ],
+          "intent": "The number in the indicator. Only two states that show glyphs in place of step numbers are complete and error."
+        },
+        "subtitle": {
+          "type": "string",
+          "figmaName": "Subtitle#7526:7",
+          "default": "Subtitle",
+          "controls": [
+            "subtitle"
+          ],
+          "intent": "A qualifier under the label for a step which needs extra context. Ideally, this subtitle should be no longer than a word or two. It is only drawn when Show Subtitle is on."
+        },
+        "showSubtitle": {
+          "type": "boolean",
+          "figmaName": "Show Subtitle#7526:14",
+          "default": false,
+          "controls": [
+            "subtitle"
+          ],
+          "intent": {
+            "false": "Leaves the step to its label alone, which keeps every step in a row or column the same height.",
+            "true": "Adds the subtitle line and makes the respective step taller."
+          }
+        },
+        "showLine": {
+          "type": "boolean",
+          "figmaName": "Show Line#7526:21",
+          "default": true,
+          "controls": [
+            "track"
+          ],
+          "intent": {
+            "true": "Keeps the connector running on to the next step, across or down. It is what makes the steps read as one path rather than separate markers.",
+            "false": "Drops the connector. Using this property is recommended for last end steps on steppers where there is nothing further to connect to."
+          }
+        }
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/none",
+            "padding": {
+              "block": "space/2xs",
+              "inline": "space/none"
+            }
+          },
+          "sizing": {
+            "h": "hug",
+            "v": "hug"
+          }
+        },
+        {
+          "id": "head",
+          "kind": "container",
+          "layout": {
+            "direction": "vertical",
+            "gap": "space/sm",
+            "padding": "space/none",
+            "crossAlign": "center"
+          },
+          "size": {
+            "width": "control/icon-lg"
+          },
+          "sizing": {
+            "h": "fixed",
+            "v": "hug"
+          },
+          "note": "The text below is centred on the head and overflows it on both sides by design."
+        },
+        {
+          "id": "indicator",
+          "kind": "container",
+          "parent": "head",
+          "role": "Indicator: The numbered circle at the head of the step. Its fill, its border and whether it shows a number or a glyph all come from Status.",
+          "size": {
+            "width": "control/icon-lg",
+            "height": "control/icon-lg"
+          },
+          "radius": "radius/pill",
+          "layout": {
+            "align": "center"
+          },
+          "paint": {
+            "fill": "per status",
+            "stroke": {
+              "color": "per status",
+              "width": "stroke/thick",
+              "align": "inside"
+            }
+          }
+        },
+        {
+          "id": "number",
+          "kind": "text",
+          "parent": "indicator",
+          "boundTo": "stepNumber",
+          "visibleWhen": "status in default, active, partial, disabled",
+          "text": {
+            "style": "label/small",
+            "color": "per status",
+            "align": "center"
+          }
+        },
+        {
+          "id": "glyph",
+          "kind": "icon",
+          "parent": "indicator",
+          "visibleWhen": "status in complete, error",
+          "glyph": {
+            "complete": "check-mark",
+            "error": "priority"
+          },
+          "iconSize": "Icon's own Size=small, pinned",
+          "family": "rounded, pinned",
+          "color": "not bound; the glyph takes currentColor (see issues)"
+        },
+        {
+          "id": "text",
+          "kind": "container",
+          "parent": "head",
+          "role": "Text: The label, with the subtitle beneath it when Show Subtitle is on: centred under the indicator on Step / Horizontal, beside it on Step / Vertical.",
+          "layout": {
+            "direction": "vertical",
+            "gap": "space/none",
+            "padding": {
+              "top": "space/3xs"
+            },
+            "crossAlign": "center"
+          },
+          "sizing": {
+            "h": "hug",
+            "v": "hug"
+          }
+        },
+        {
+          "id": "label",
+          "kind": "text",
+          "parent": "text",
+          "boundTo": "label",
+          "text": {
+            "style": "label/large",
+            "color": "per status",
+            "align": "center",
+            "wrap": false
+          }
+        },
+        {
+          "id": "subtitle",
+          "kind": "text",
+          "parent": "text",
+          "boundTo": "subtitle",
+          "visibleWhen": "showSubtitle",
+          "text": {
+            "style": "body/small",
+            "color": "per status",
+            "align": "center"
+          },
+          "sizing": {
+            "h": "fixed",
+            "v": "fixed"
+          }
+        },
+        {
+          "id": "track",
+          "kind": "container",
+          "visibleWhen": "showLine",
+          "role": "Connector: The line from this step to the next, to the right on Step / Horizontal and below on Step / Vertical, carried by this step rather than the next. Show Line turns it off on the last step.",
+          "size": {
+            "height": "control/icon-lg"
+          },
+          "layout": {
+            "direction": "horizontal",
+            "crossAlign": "center"
+          },
+          "sizing": {
+            "h": "fixed",
+            "v": "fixed"
+          },
+          "trackWidthPx": 116
+        },
+        {
+          "id": "line",
+          "kind": "shape",
+          "parent": "track",
+          "size": {
+            "height": "stroke/thick"
+          },
+          "sizing": {
+            "h": "fill",
+            "v": "fixed"
+          },
+          "paint": {
+            "stroke": {
+              "side": "top",
+              "color": "per status",
+              "width": "stroke/thick",
+              "align": "inside"
+            }
+          }
+        }
+      ],
+      "variants": {
+        "axis": "status",
+        "base": "default",
+        "table": [
+          {
+            "status": "default",
+            "indicator.fill": "interactive/neutral/background/default",
+            "indicator.stroke": "border/default",
+            "number.color": "foreground/primary",
+            "label.color": "foreground/tertiary",
+            "subtitle.color": "foreground/tertiary",
+            "line.stroke": "border/default"
+          },
+          {
+            "status": "complete",
+            "indicator.fill": "feedback/success/background/strong",
+            "indicator.stroke": "feedback/success/background/strong",
+            "content": "glyph check-mark",
+            "line.stroke": "border/success"
+          },
+          {
+            "status": "active",
+            "indicator.fill": "interactive/primary/background/default",
+            "indicator.stroke": "interactive/primary/background/default",
+            "number.color": "interactive/primary/foreground/default",
+            "label.color": "foreground/primary"
+          },
+          {
+            "status": "partial",
+            "indicator.fill": "feedback/success/background/subtle",
+            "indicator.stroke": "border/success",
+            "indicator.strokeDash": "dashed (gap, see issues)",
+            "line.stroke": "border/success",
+            "line.strokeDash": "dashed (gap, see issues)"
+          },
+          {
+            "status": "error",
+            "indicator.fill": "feedback/error/background/strong",
+            "indicator.stroke": "feedback/error/background/strong",
+            "content": "glyph priority",
+            "label.color": "foreground/error"
+          },
+          {
+            "status": "disabled",
+            "indicator.fill": "border/subtle",
+            "indicator.stroke": "border/subtle",
+            "number.color": "foreground/disabled",
+            "label.color": "foreground/disabled",
+            "subtitle.color": "foreground/disabled"
+          }
+        ]
+      }
+    },
+    "stepVertical": {
+      "name": "Step / Vertical",
+      "setId": "7526:427",
+      "key": "8751ec0341048be2dd8dc3b924d15256dd483cd3",
+      "private": false,
+      "summary": "Shares the Step / Horizontal & Vertical Metadata frame; see stepHorizontal.summary.",
+      "api": {
+        "status": {
+          "type": "enum",
+          "figmaName": "Status",
+          "values": [
+            "default",
+            "complete",
+            "active",
+            "partial",
+            "error",
+            "disabled"
+          ],
+          "default": "default",
+          "controls": [
+            "variant"
+          ],
+          "intent": "see stepStatusIntent"
+        },
+        "label": {
+          "type": "string",
+          "figmaName": "Label#7526:28",
+          "default": "Label",
+          "controls": [
+            "label"
+          ]
+        },
+        "stepNumber": {
+          "type": "string",
+          "figmaName": "Step Number#7557:20",
+          "default": "1",
+          "controls": [
+            "number"
+          ]
+        },
+        "subtitle": {
+          "type": "string",
+          "figmaName": "Subtitle#7526:35",
+          "default": "Subtitle",
+          "controls": [
+            "subtitle"
+          ]
+        },
+        "showSubtitle": {
+          "type": "boolean",
+          "figmaName": "Show Subtitle#7526:42",
+          "default": false,
+          "controls": [
+            "subtitle"
+          ]
+        },
+        "showLine": {
+          "type": "boolean",
+          "figmaName": "Show Line#7526:49",
+          "default": true,
+          "controls": [
+            "line"
+          ]
+        }
+      },
+      "apiNote": "Intent per prop is the same as stepHorizontal; one metadata frame covers both.",
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/xl",
+            "padding": "space/none"
+          },
+          "radius": "radius/none",
+          "sizing": {
+            "h": "fill in its stepper",
+            "v": "hug"
+          }
+        },
+        {
+          "id": "rail",
+          "kind": "container",
+          "layout": {
+            "direction": "vertical",
+            "gap": "space/none",
+            "padding": "space/none",
+            "crossAlign": "center"
+          },
+          "sizing": {
+            "h": "hug",
+            "v": "hug"
+          }
+        },
+        {
+          "id": "indicator",
+          "kind": "container",
+          "parent": "rail",
+          "role": "Indicator: The numbered circle at the head of the step. Its fill, its border and whether it shows a number or a glyph all come from Status.",
+          "size": {
+            "width": "control/icon-lg",
+            "height": "control/icon-lg"
+          },
+          "radius": "radius/pill",
+          "paint": {
+            "fill": "per status",
+            "stroke": {
+              "color": "per status",
+              "width": "stroke/thick",
+              "align": "inside"
+            }
+          }
+        },
+        {
+          "id": "number",
+          "kind": "text",
+          "parent": "indicator",
+          "boundTo": "stepNumber",
+          "visibleWhen": "status in default, active, partial, disabled",
+          "text": {
+            "style": "label/small",
+            "color": "per status",
+            "align": "center"
+          }
+        },
+        {
+          "id": "glyph",
+          "kind": "icon",
+          "parent": "indicator",
+          "visibleWhen": "status in complete, error",
+          "glyph": {
+            "complete": "check-mark",
+            "error": "priority"
+          },
+          "iconSize": "Icon's own Size=small, pinned",
+          "family": "rounded, pinned"
+        },
+        {
+          "id": "line",
+          "kind": "shape",
+          "parent": "rail",
+          "visibleWhen": "showLine",
+          "role": "Connector: The line from this step to the next, to the right on Step / Horizontal and below on Step / Vertical, carried by this step rather than the next. Show Line turns it off on the last step.",
+          "size": {
+            "width": "stroke/thick"
+          },
+          "sizing": {
+            "h": "fixed",
+            "v": "fixed"
+          },
+          "lineLengthPx": 22,
+          "paint": {
+            "stroke": {
+              "side": "left",
+              "color": "per status",
+              "width": "stroke/thick",
+              "align": "inside"
+            }
+          }
+        },
+        {
+          "id": "text",
+          "kind": "container",
+          "role": "Text: The label, with the subtitle beneath it when Show Subtitle is on: centred under the indicator on Step / Horizontal, beside it on Step / Vertical.",
+          "layout": {
+            "direction": "vertical",
+            "gap": "space/none",
+            "padding": {
+              "top": "space/3xs"
+            }
+          },
+          "sizing": {
+            "h": "fill",
+            "v": "hug"
+          }
+        },
+        {
+          "id": "label",
+          "kind": "text",
+          "parent": "text",
+          "boundTo": "label",
+          "sizing": {
+            "h": "fill",
+            "v": "hug"
+          },
+          "text": {
+            "style": "label/large",
+            "color": "per status",
+            "align": "start",
+            "wrap": true
+          }
+        },
+        {
+          "id": "subtitle",
+          "kind": "text",
+          "parent": "text",
+          "boundTo": "subtitle",
+          "visibleWhen": "showSubtitle",
+          "sizing": {
+            "h": "fixed",
+            "v": "fixed"
+          },
+          "text": {
+            "style": "body/small",
+            "color": "per status",
+            "align": "start"
+          }
+        }
+      ],
+      "variants": {
+        "axis": "status",
+        "base": "default",
+        "table": "Identical to stepHorizontal's table, with line.stroke on the vertical line."
+      }
+    },
+    "stepCard": {
+      "name": "Step Card",
+      "sets": {
+        "round": {
+          "name": "Step Card/Round",
+          "setId": "7557:18475",
+          "key": "225ba205445035a39f474f497429bf56e830d841"
+        },
+        "sharp": {
+          "name": "Step Card/Sharp",
+          "setId": "7447:306",
+          "key": "d8363876dca40b2301e335ea5a619f03a4ff7aba"
+        }
+      },
+      "private": false,
+      "summary": "One step of the cards arrangement: a bordered surface carrying a numbered indicator and the step’s label side by side. There is no connector, so a column of cards reads as a set of stages rather than one drawn path, and Stepper places them rather than a consumer using one alone. This variant is intended to bring more visual clarity to steps, without needing more detail.",
+      "api": {
+        "status": {
+          "type": "enum",
+          "figmaName": "Status",
+          "values": [
+            "default",
+            "complete",
+            "partial",
+            "active",
+            "error",
+            "disabled"
+          ],
+          "default": "default",
+          "controls": [
+            "variant"
+          ],
+          "intent": {
+            "default": "A step not yet reached. The card keeps the plain surface and default border, so the outlined indicator is what marks it as pending.",
+            "complete": "A step finished and passed. The card takes feedback/success/background/subtle behind border/success, and the indicator a tick in place of the number.",
+            "partial": "A step entered and left unfinished. The card does not change, so the tinted indicator alone carries the difference.",
+            "active": "The step a person is on now. It is the only value that takes surface/brand and promotes its label, which is what makes the current step findable in a column.",
+            "error": "A step that failed. The border turns and the label recolours, so a failed card is readable without reading the indicator.",
+            "disabled": "A step not available in this run. The border and every piece of text mute together, so the card reads as out of scope."
+          }
+        },
+        "set": {
+          "type": "enum",
+          "figmaName": "(two component sets)",
+          "values": [
+            "round",
+            "sharp"
+          ],
+          "default": "round",
+          "controls": [
+            "root.radius"
+          ],
+          "intent": {
+            "round": "Use where the card sits in open space and reads as its own surface. It is the softer of the two and the usual choice.",
+            "sharp": "Use where cards meet a panel edge and a rounded corner would break the line. Nothing but the corner changes."
+          }
+        },
+        "label": {
+          "type": "string",
+          "figmaName": "Label#7447:0",
+          "default": "Label",
+          "controls": [
+            "label"
+          ],
+          "intent": "Names the step beside its indicator. The card is fixed in both directions, so a label long enough to wrap overruns it."
+        },
+        "stepNumber": {
+          "type": "string",
+          "figmaName": "Step Number#7557:27",
+          "default": "1",
+          "controls": [
+            "number"
+          ],
+          "intent": "The number in the indicator. complete and error show a glyph instead, so it is hidden there."
+        },
+        "subtitle": {
+          "type": "string",
+          "figmaName": "Subtitle#7447:13",
+          "default": "Subtitle",
+          "controls": [
+            "subtitle"
+          ],
+          "intent": "A qualifier under the label for a step whose name is ambiguous. It is only drawn when Show Subtitle is on."
+        },
+        "showSubtitle": {
+          "type": "boolean",
+          "figmaName": "Show Subtitle#7447:26",
+          "default": false,
+          "controls": [
+            "subtitle"
+          ],
+          "intent": {
+            "false": "Leaves the card to its label alone, which is the content the fixed card height is set for.",
+            "true": "Adds the subtitle line. The card height does not grow with it, so both lines have to fit the height already set."
+          }
+        }
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "role": "Card surface: The bordered ground the step sits on. Its fill and border come from Status, and its corner from the set.",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/md",
+            "padding": {
+              "block": "space/sm",
+              "inline": "space/md"
+            }
+          },
+          "radius": {
+            "round": "radius/sm",
+            "sharp": "radius/none"
+          },
+          "paint": {
+            "fill": "per status",
+            "stroke": {
+              "color": "per status",
+              "width": "stroke/thin",
+              "align": "inside"
+            }
+          },
+          "sizing": {
+            "h": "fill in its stepper",
+            "v": "hug in its stepper"
+          }
+        },
+        {
+          "id": "indicator",
+          "kind": "container",
+          "role": "Indicator: The numbered circle on the leading edge. It matches the rail steps' indicator, and with the card's tint it carries the status reading.",
+          "size": {
+            "width": "control/icon-lg",
+            "height": "control/icon-lg"
+          },
+          "radius": "radius/pill",
+          "paint": {
+            "fill": "per status",
+            "stroke": {
+              "color": "per status",
+              "width": "stroke/thick",
+              "align": "inside"
+            }
+          }
+        },
+        {
+          "id": "number",
+          "kind": "text",
+          "parent": "indicator",
+          "boundTo": "stepNumber",
+          "visibleWhen": "status in default, active, partial, disabled",
+          "text": {
+            "style": "label/small",
+            "color": "per status",
+            "align": "center"
+          }
+        },
+        {
+          "id": "glyph",
+          "kind": "icon",
+          "parent": "indicator",
+          "visibleWhen": "status in complete, error",
+          "glyph": {
+            "complete": "check-mark",
+            "error": "priority"
+          },
+          "iconSize": "Icon's own Size=small, pinned",
+          "family": "rounded, pinned in both sets"
+        },
+        {
+          "id": "text",
+          "kind": "container",
+          "role": "Text: The label, with the subtitle beneath it when Show Subtitle is on, filling the width left beside the indicator.",
+          "layout": {
+            "direction": "vertical",
+            "gap": "space/none",
+            "padding": {
+              "top": "space/3xs"
+            }
+          },
+          "sizing": {
+            "h": "fill",
+            "v": "hug"
+          }
+        },
+        {
+          "id": "label",
+          "kind": "text",
+          "parent": "text",
+          "boundTo": "label",
+          "sizing": {
+            "h": "fill",
+            "v": "hug"
+          },
+          "text": {
+            "style": "label/large",
+            "color": "per status",
+            "align": "start"
+          }
+        },
+        {
+          "id": "subtitle",
+          "kind": "text",
+          "parent": "text",
+          "boundTo": "subtitle",
+          "visibleWhen": "showSubtitle",
+          "sizing": {
+            "h": "fixed",
+            "v": "fixed"
+          },
+          "text": {
+            "style": "body/small",
+            "color": "per status",
+            "align": "start"
+          }
+        }
+      ],
+      "variants": {
+        "axis": "status",
+        "base": "default",
+        "table": [
+          {
+            "status": "default",
+            "root.fill": "surface/card",
+            "root.stroke": "border/default",
+            "indicator.fill": "interactive/neutral/background/default",
+            "indicator.stroke": "border/default",
+            "number.color": "foreground/primary",
+            "label.color": "foreground/secondary",
+            "subtitle.color": "foreground/tertiary"
+          },
+          {
+            "status": "complete",
+            "root.fill": "feedback/success/background/subtle",
+            "root.stroke": "border/success",
+            "indicator.fill": "feedback/success/background/strong",
+            "indicator.stroke": "feedback/success/background/strong",
+            "content": "glyph check-mark"
+          },
+          {
+            "status": "partial",
+            "indicator.fill": "feedback/success/background/subtle",
+            "indicator.stroke": "border/success",
+            "indicator.strokeDash": "dashed (gap, see issues)"
+          },
+          {
+            "status": "active",
+            "root.fill": "surface/brand",
+            "root.stroke": "interactive/primary/border/default",
+            "indicator.fill": "interactive/primary/background/default",
+            "indicator.stroke": "interactive/primary/background/default",
+            "number.color": "interactive/primary/foreground/default",
+            "label.color": "foreground/primary"
+          },
+          {
+            "status": "error",
+            "root.stroke": "border/error",
+            "indicator.fill": "feedback/error/background/strong",
+            "indicator.stroke": "feedback/error/background/strong",
+            "content": "glyph priority",
+            "label.color": "foreground/error"
+          },
+          {
+            "status": "disabled",
+            "root.stroke": "border/subtle",
+            "indicator.fill": "border/subtle",
+            "indicator.stroke": "border/subtle",
+            "number.color": "foreground/disabled",
+            "label.color": "foreground/disabled",
+            "subtitle.color": "foreground/disabled"
+          }
+        ]
+      }
+    },
+    "stepSegment": {
+      "name": "Step Segment",
+      "setId": "7362:110",
+      "key": "8ca2d0734c9da2a13132b8aa702605c5fdf21b98",
+      "private": false,
+      "summary": "The equivalent of step connectors but for the compact variant of horizontal stepper. It is a flat capsule split into two halves, and Status fills neither, one or both of them. It carries no text, so the count and title above the bar do the naming.",
+      "figmaDescription": "Mobile progress: one segment per step, space/xxs tall, radius/pill. Complete and active are interactive/primary/background/default; partial is half that; error is foreground/error; the rest border/subtle. Never clickable in code. Start/End halves exist only so partial can be drawn half-filled (Figma-only).",
+      "api": {
+        "status": {
+          "type": "enum",
+          "figmaName": "Status",
+          "values": [
+            "default",
+            "complete",
+            "partial",
+            "active",
+            "error",
+            "disabled"
+          ],
+          "default": "default",
+          "controls": [
+            "variant"
+          ],
+          "intent": {
+            "default": "A step not yet reached. Both halves stay muted, so the segment reads as empty track waiting to be filled.",
+            "complete": "A step finished and passed. Both halves fill, which is what lets a run of finished steps read as one continuous bar.",
+            "partial": "A step entered and left unfinished. Only the leading half fills, and it is the one value that shows progress inside a single step.",
+            "active": "The step a person is on now. It fills both halves exactly as complete does, so the title above the bar is what names the current step.",
+            "error": "A step that failed. Both halves take the error tone, the only colour the bar uses besides the primary one.",
+            "disabled": "A step not available in this run. Both halves stay muted, so it is drawn the same as default."
+          }
+        }
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "role": "Segment: One step of the bar, rounded at both ends. Five of them with a gap between each is what a five step sequence looks like on mobile.",
+          "size": {
+            "height": "space/2xs"
+          },
+          "radius": "radius/pill",
+          "clips": "the radius is on the segment, so halves are cut by it",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/none",
+            "padding": "space/none"
+          },
+          "sizing": {
+            "h": "fill in its stepper",
+            "v": "fixed"
+          }
+        },
+        {
+          "id": "start",
+          "kind": "shape",
+          "role": "Start: The leading half. On partial this is the half that fills, which is the only way the bar reports progress within a step.",
+          "radius": "radius/none",
+          "sizing": {
+            "h": "fill",
+            "v": "fill"
+          },
+          "paint": {
+            "fill": "per status"
+          }
+        },
+        {
+          "id": "end",
+          "kind": "shape",
+          "role": "End: The trailing half. It fills alongside Start on complete, active and error, and stays muted otherwise.",
+          "radius": "radius/none",
+          "sizing": {
+            "h": "fill",
+            "v": "fill"
+          },
+          "paint": {
+            "fill": "per status"
+          }
+        }
+      ],
+      "variants": {
+        "axis": "status",
+        "base": "default",
+        "table": [
+          {
+            "status": "default",
+            "start.fill": "border/subtle",
+            "end.fill": "border/subtle"
+          },
+          {
+            "status": "complete",
+            "start.fill": "interactive/primary/background/default",
+            "end.fill": "interactive/primary/background/default"
+          },
+          {
+            "status": "partial",
+            "start.fill": "interactive/primary/background/default",
+            "end.fill": "border/subtle"
+          },
+          {
+            "status": "active",
+            "start.fill": "interactive/primary/background/default",
+            "end.fill": "interactive/primary/background/default"
+          },
+          {
+            "status": "error",
+            "start.fill": "foreground/error",
+            "end.fill": "foreground/error"
+          },
+          {
+            "status": "disabled",
+            "start.fill": "border/subtle",
+            "end.fill": "border/subtle"
+          }
+        ]
+      }
+    },
+    "icon": {
+      "name": "Icon",
+      "setId": "2046:15010",
+      "key": "a469ac1cf34202af3e094593468d9ef20a37a703",
+      "remote": false,
+      "note": "Delivered as font glyphs from packages/icons; glyphs used: check-mark, priority."
+    }
+  },
+  "stepStatusIntent": {
+    "default": "A step not yet reached. The indicator is outlined and the label stays muted, so it recedes behind the step in progress.",
+    "complete": "A step finished and passed. A tick replaces the number, so the number set on this step stops being visible.",
+    "active": "The step a user is actively on. It is the only value that promotes the label to the primary tone, so use exactly one in a row or column.",
+    "partial": "A step entered and left unfinished. It keeps its number on a tinted ground, which is what tells it apart from complete.",
+    "error": "A step that failed. It is the only value that recolours the label, so a failure stays legible without reading the indicator.",
+    "disabled": "A step not available in this run. Every part mutes together, so it reads as out of scope rather than merely unreached."
+  },
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "surface/card",
+      "surface/brand",
+      "border/default",
+      "border/subtle",
+      "border/success",
+      "border/error",
+      "foreground/primary",
+      "foreground/secondary",
+      "foreground/tertiary",
+      "foreground/error",
+      "foreground/disabled",
+      "interactive/neutral/background/default",
+      "interactive/primary/background/default",
+      "interactive/primary/foreground/default",
+      "interactive/primary/border/default",
+      "feedback/success/background/subtle",
+      "feedback/success/background/strong",
+      "feedback/error/background/strong"
+    ],
+    "dimension": [
+      "space/none",
+      "space/3xs",
+      "space/2xs",
+      "space/xs",
+      "space/sm",
+      "space/md",
+      "space/xl",
+      "radius/none",
+      "radius/sm",
+      "radius/pill",
+      "stroke/thin",
+      "stroke/thick",
+      "control/icon-lg"
+    ],
+    "typography": [
+      "label/small",
+      "label/medium",
+      "label/large",
+      "title/medium",
+      "body/small"
+    ],
+    "effect": [],
+    "glyphs": [
+      "check-mark",
+      "priority"
+    ],
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark",
+        "AAA Light",
+        "AAA Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "typography": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ],
+      "extensions": [
+        "companion",
+        "target",
+        "condensed"
+      ]
+    }
+  },
+  "states": {
+    "stepper": [
+      {
+        "state": "Static",
+        "trigger": "—",
+        "duration": "—",
+        "whatChanges": "The default state features the step at hand, with respective progress states indicated for steps that follow before and after it."
+      }
+    ],
+    "step": [
+      {
+        "state": "default",
+        "trigger": "Status=default",
+        "duration": "—",
+        "whatChanges": "Outlined indicator on the neutral background with the number in the primary tone, a muted label, and a default connector."
+      },
+      {
+        "state": "complete",
+        "trigger": "Status=complete",
+        "duration": "—",
+        "whatChanges": "Solid success indicator carrying a tick in place of the number, a muted label, and a success connector."
+      },
+      {
+        "state": "active",
+        "trigger": "Status=active",
+        "duration": "—",
+        "whatChanges": "Solid primary indicator with the number reversed out, the label promoted to the primary tone, and a default connector."
+      },
+      {
+        "state": "partial",
+        "trigger": "Status=partial",
+        "duration": "—",
+        "whatChanges": "Subtle success fill behind the number with a success border, a muted label, and a success connector."
+      },
+      {
+        "state": "error",
+        "trigger": "Status=error",
+        "duration": "—",
+        "whatChanges": "Solid error indicator carrying a priority glyph, the label in the error tone, and a default connector."
+      },
+      {
+        "state": "disabled",
+        "trigger": "Status=disabled",
+        "duration": "—",
+        "whatChanges": "Indicator, number, label and subtitle all drop to the disabled tone, with a default connector."
+      }
+    ],
+    "stepCard": [
+      {
+        "state": "default",
+        "trigger": "Status=default",
+        "duration": "—",
+        "whatChanges": "surface/card behind a default border, a muted label, and an outlined indicator carrying the number."
+      },
+      {
+        "state": "complete",
+        "trigger": "Status=complete",
+        "duration": "—",
+        "whatChanges": "The card takes feedback/success/background/subtle behind border/success, and the indicator fills solid success with a tick. The label stays muted."
+      },
+      {
+        "state": "partial",
+        "trigger": "Status=partial",
+        "duration": "—",
+        "whatChanges": "Card and label unchanged from default. Only the indicator moves, to a subtle success fill with a success border."
+      },
+      {
+        "state": "active",
+        "trigger": "Status=active",
+        "duration": "—",
+        "whatChanges": "The card takes surface/brand behind a primary border, the label is promoted to the primary tone, and the indicator fills solid primary."
+      },
+      {
+        "state": "error",
+        "trigger": "Status=error",
+        "duration": "—",
+        "whatChanges": "The border turns to border/error and the label to the error tone, with a solid error indicator carrying a priority glyph."
+      },
+      {
+        "state": "disabled",
+        "trigger": "Status=disabled",
+        "duration": "—",
+        "whatChanges": "Border, indicator, label and subtitle all drop to the muted and disabled tones together."
+      }
+    ],
+    "stepSegment": [
+      {
+        "state": "default",
+        "trigger": "Status=default",
+        "duration": "—",
+        "whatChanges": "Both halves on border/subtle."
+      },
+      {
+        "state": "complete",
+        "trigger": "Status=complete",
+        "duration": "—",
+        "whatChanges": "Both halves on interactive/primary/background/default."
+      },
+      {
+        "state": "partial",
+        "trigger": "Status=partial",
+        "duration": "—",
+        "whatChanges": "Leading half on interactive/primary/background/default, trailing half on border/subtle."
+      },
+      {
+        "state": "active",
+        "trigger": "Status=active",
+        "duration": "—",
+        "whatChanges": "Both halves on interactive/primary/background/default, identical to complete."
+      },
+      {
+        "state": "error",
+        "trigger": "Status=error",
+        "duration": "—",
+        "whatChanges": "Both halves on foreground/error."
+      },
+      {
+        "state": "disabled",
+        "trigger": "Status=disabled",
+        "duration": "—",
+        "whatChanges": "Both halves on border/subtle, identical to default."
+      }
+    ]
+  },
+  "behavior": {
+    "stepper": [
+      {
+        "type": "Motion",
+        "description": "No transition is defined. Progress changes by resetting each step’s Status, and the page decides whether anything moves as the content behind it changes."
+      },
+      {
+        "type": "Width change",
+        "description": "Horizontal stepper steps should equally fill to the width of the overall component."
+      },
+      {
+        "type": "Height change",
+        "description": "Vertical stepper steps should equally fill to the width of each individual step’s height."
+      }
+    ],
+    "step": [
+      {
+        "type": "Height",
+        "description": "The step hugs its content. For horizontal steps, the row top aligns to the tallest step. For vertical steps, the step grows downward and the connector carries the height of the step component."
+      },
+      {
+        "type": "Head frame width",
+        "description": "On horizontal steps, the head frame should hug to fit the indicator with the label and subtitle texts center aligned in frame. This will mean the label and subtitle texts will overflow from the head frame width. This is to ensure equal sizing and spacing of steps."
+      },
+      {
+        "type": "Horizontal step indicator responsiveness",
+        "description": "Indicator lengths on horizontal steps are set fixed for consistency but if the full length of the stepper component must be adjusted, all indicators must be treated with same length and fill behavior, to ensure equal spacing."
+      }
+    ],
+    "stepCard": [
+      {
+        "type": "No connector",
+        "description": "Cards carry no line between them. Order is conveyed by the numbers in the indicators and by the stacking itself, which is why the arrangement is built for a vertical column."
+      }
+    ],
+    "stepSegment": [
+      {
+        "type": "Two halves",
+        "description": "The segment is split in two so that a single step can report partial progress. Every other value fills both halves or neither. The partial fill aspect ratio is always kept to fill 50% of it’s container to denote partial progress."
+      },
+      {
+        "type": "Width",
+        "description": "Each segment takes an equal share of the bar. The more steps a sequence holds, the shorter the width of every segment equally becomes."
+      }
+    ]
+  },
+  "content": {
+    "stepper": [
+      {
+        "property": "Steps",
+        "type": "Step / Horizontal, Step / Vertical",
+        "description": "One step each, documented in their own frames. Horizontal and vertical are separate components rather than one component turned on its side."
+      },
+      {
+        "property": "Steps, Cards",
+        "type": "Step Card/Round, Step Card/Sharp",
+        "description": "One step of the cards arrangement, in two sets that differ only in their corners. It carries a surface and no connector."
+      },
+      {
+        "property": "Steps, Mobile",
+        "type": "Step Segment",
+        "description": "One division of the mobile bar, documented in its own frame. Segments carry no text, so the summary above them does the naming. These steps have reduced set of properties, featured with more simplification."
+      },
+      {
+        "property": "Step content",
+        "type": "Slot",
+        "description": "Steps go in through the component’s slot. Compact variant uses segments in place of steps. Label, Subtitle, Step Number and Status are set on each step instance."
+      }
+    ],
+    "step": [
+      {
+        "property": "Indicator",
+        "type": "Drawn by the step",
+        "description": "Drawn from the step's own Status. Step Number sets the number it shows; complete and error replace it with a glyph."
+      },
+      {
+        "property": "Label",
+        "type": "text property",
+        "description": "Consumer owned, set through Label. It is the step’s name and the only text always present. Ideally, this should be a word or two at maximum."
+      },
+      {
+        "property": "Subtitle",
+        "type": "text property, optional",
+        "description": "Consumer owned, set through Subtitle and drawn only when Show Subtitle is on. Ideally, this should be a word or two at maximum."
+      },
+      {
+        "property": "Connector",
+        "type": "Drawn by the step",
+        "description": "Drawn by the step, horizontal on Step / Horizontal and vertical on Step / Vertical, its status taken from the step's own Status."
+      },
+      {
+        "property": "Glyphs",
+        "type": "Check Mark and Priority",
+        "description": "Chosen by Status rather than passed in. complete takes Check Mark, error takes Priority, and neither can be swapped."
+      }
+    ],
+    "stepCard": [
+      {
+        "property": "Indicator",
+        "type": "Drawn by the card",
+        "description": "Drawn from the card's own Status. Step Number sets the number it shows; complete and error replace it with a glyph."
+      },
+      {
+        "property": "Label",
+        "type": "text property",
+        "description": "Consumer owned, set through Label. It fills whatever width is left beside the indicator."
+      },
+      {
+        "property": "Subtitle",
+        "type": "text property, optional",
+        "description": "Consumer owned, set through Subtitle and drawn only when Show Subtitle is on."
+      },
+      {
+        "property": "Surface",
+        "type": "Parent owned, per Status and set",
+        "description": "The card draws its own background, border and corner. None of the three is passed in."
+      }
+    ]
+  },
+  "usage": {
+    "stepper": {
+      "do": [
+        "Give every step a short noun label, ideally single word. The rail divides its width evenly between steps, so a long label pushes into its neighbour before it wraps.",
+        "Keep the sequence fixed for the whole task. A stepper promises a known number of steps, and adding one part way through breaks that promise."
+      ],
+      "dont": [
+        "Don’t use steppers for progress that is less than two steps and more than 8 steps. If so necessary to use more, consider which steps can be grouped.",
+        "Don't treat default and compact as one arrangement resized. Mobile drops every step label but the current one, so the whole path stops being visible."
+      ]
+    },
+    "step": {
+      "do": [
+        "Keep exactly one step on active. That value is what marks a person’s position, and two of them leave the row or column with no single current step.",
+        "Turn Show Line off on the last step. Each step draws the connector after itself, so the last one otherwise trails a line into nothing."
+      ],
+      "dont": [
+        "Don't treat complete and partial as interchangeable. partial says a step was entered and left unfinished, complete says it is done.",
+        "Don't use vertical and horizontal steps interchangeably for steppers, but rather use them for their respective orientation intended for consistency."
+      ]
+    },
+    "stepCard": {
+      "do": [
+        "Keep exactly one card on active. It is the only value that takes surface/brand, so two of them give a column two current steps.",
+        "Match the set to the surrounding UI: Step Card/Sharp where it is flat or cards meet a panel edge, Step Card/Round where it is rounded."
+      ],
+      "dont": [
+        "Don't rely on the card to tell partial from default. The two share a surface and a border, and only the indicator differs.",
+        "Don't give a card more text than its height holds. It is fixed in both directions and does not grow to its content."
+      ]
+    },
+    "stepSegment": {
+      "do": [
+        "Let the bar carry progress and the summary carry naming. The segment has no text, so the count and title above it are the only place a step is named.",
+        "Use partial where a step was left half done. It is the only value that fills one half, and it is the reason the segment is split at all."
+      ],
+      "dont": [
+        "Don't rely on the bar to show which step is current. Active and complete fill identically, so the title above the bar has to say so.",
+        "Don't put a long sequence on the mobile bar. Segments divide the width evenly, so every one of them shortens in width as steps are added."
+      ]
+    }
+  },
+  "accessibility": {
+    "stepper": [
+      "The ability to move between steps with flexibility depends on choice when implementing.",
+      "Give the stepper an accessible name, so position is read out alongside the label rather than conveyed by color alone.",
+      "Status is carried by the fill and by the glyph inside the indicator together, which is what keeps complete and error apart for anyone who cannot rely on hue.",
+      "On mobile the bar holds no text at all, so the count and title above it are the only announcement of where a person is."
+    ],
+    "step": [
+      "The step carries its state through the indicator’s fill and the glyph inside it together, which is what keeps complete and error apart for anyone who cannot rely on colour.",
+      "The label and subtitles are the step’s accessible name, so it should read as a noun a person would recognize out of context rather than as an instruction.",
+      "The vertical arrangement gives a label room to wrap, which makes it the better choice where step names cannot be shortened."
+    ],
+    "stepCard": [
+      "The label is the card’s accessible name, so it should read as a noun a person would recognise out of context."
+    ],
+    "stepSegment": [
+      "The bar conveys progress through fill alone, with no text and no change of shape, so it cannot be the only account of where a person is. The count and title above it carry that, and they are what should be announced. active and complete fill identically, which means position is not recoverable from the bar by itself. The error tone is the one place the bar uses colour to carry meaning rather than quantity, so a failed step needs saying in words somewhere else on the screen."
+    ]
+  },
+  "layoutTheming": {
+    "stepper": [
+      {
+        "property": "Size",
+        "type": "Hug",
+        "description": "Horizontal Stepper default hugs its steps and compact the width of its bar; Vertical Stepper hugs its column."
+      },
+      {
+        "property": "Direction",
+        "type": "Per Orientation and Layout",
+        "description": "The horizontal rail lays steps in a row, the vertical rail and cards in a column. Mobile is a column holding the summary above the bar."
+      },
+      {
+        "property": "Padding and gap",
+        "type": "Mixed",
+        "description": "8px between the step indicator and text group, with 2px between the label and subtitle."
+      },
+      {
+        "property": "Step /Vertical",
+        "type": "Hug",
+        "description": "Each step takes the height of the content it hugs."
+      },
+      {
+        "property": "Step / Horizontal",
+        "type": "Fill",
+        "description": "Each step takes an equal share of the total component’s width"
+      },
+      {
+        "property": "Segments",
+        "type": "Fill",
+        "description": "Each segment takes an equal share of the bar's width."
+      },
+      {
+        "property": "Colour",
+        "type": "Per step Status",
+        "description": "The stepper paints nothing itself. Every colour arrives with the step component it holds, and those are listed in the step frames."
+      }
+    ],
+    "step": [
+      {
+        "property": "Size",
+        "type": "Per set",
+        "description": "Step / Horizontal has a fixed width, but can be made set to fill if the stepper must be expanded wider. Step / Vertical hugs its fills it’s parent component width and height is set to hug its nested contents."
+      },
+      {
+        "property": "Head (horizontal)",
+        "type": "28 px",
+        "description": "The head frame hugs the contents of the indicator, which should be set to 28px."
+      },
+      {
+        "property": "Rail (vertical)",
+        "type": "Hug",
+        "description": "The indicator with the connector below it, space/xl from the text beside it."
+      },
+      {
+        "property": "Text block (vertical)",
+        "type": "Hug",
+        "description": "Hugs the label, with space/2xs above it and nothing below."
+      },
+      {
+        "property": "Subtitle (vertical)",
+        "type": "Fill",
+        "description": "Held at a filled width of the text frame, wrapping within the text block if absolutely necessary to exceed more than a single line."
+      },
+      {
+        "property": "Connector",
+        "type": "Fill",
+        "description": "Horizontal: the track stands control/icon-lg tall so the line centers on the indicator, and the line fills the width left over at stroke/thick. Vertical: a stroke/thick line of fixed length below the indicator."
+      },
+      {
+        "property": "Indicator",
+        "type": "Fixed",
+        "description": "A control/icon-lg square at radius/pill, carrying a stroke/thick inside border. Size should usually be 28px aspect ratio."
+      },
+      {
+        "property": "Label colour",
+        "type": "Per Status",
+        "description": "foreground/tertiary on default, complete and partial, foreground/primary on active, foreground/error on error, foreground/disabled on disabled."
+      },
+      {
+        "property": "Subtitle colour",
+        "type": "Per Status",
+        "description": "foreground/tertiary on every value except disabled, which takes foreground/disabled."
+      },
+      {
+        "property": "Indicator colour",
+        "type": "Per Status",
+        "description": "interactive/neutral/background/default with border/default on default, feedback/success/background/strong on complete, feedback/success/background/subtle with border/success on partial, interactive/primary/background/default on active, feedback/error/background/strong on error, border/subtle on disabled."
+      },
+      {
+        "property": "Connector colour",
+        "type": "Per Status",
+        "description": "border/success on complete and partial, border/default on every other value."
+      }
+    ],
+    "stepCard": [
+      {
+        "property": "Size",
+        "type": "Fill",
+        "description": "Fill the width of the main component column."
+      },
+      {
+        "property": "Text block",
+        "type": "Fill",
+        "description": "Takes whatever width is left beside the indicator, and the label fills that in turn."
+      },
+      {
+        "property": "Padding",
+        "type": "Tokenised",
+        "description": "space/sm above and below, space/md on both sides."
+      },
+      {
+        "property": "Subtitle",
+        "type": "Fill",
+        "description": "Text should fill the width of it’s container."
+      },
+      {
+        "property": "Indicator",
+        "type": "Fixed",
+        "description": "28px aspect ratio. A control/icon-lg square at radius/pill, carrying a stroke/thick inside border."
+      },
+      {
+        "property": "Radius",
+        "type": "Per set",
+        "description": "radius/sm on Step Card/Round and radius/none on Step Card/Sharp. Nothing else differs between the two."
+      },
+      {
+        "property": "Border",
+        "type": "stroke/thin, per Status",
+        "description": "border/default on default and partial, border/success on complete, interactive/primary/border/default on active, border/error on error, border/subtle on disabled."
+      },
+      {
+        "property": "Surface",
+        "type": "Per Status",
+        "description": "surface/card on default, partial, error and disabled, feedback/success/background/subtle on complete, surface/brand on active."
+      },
+      {
+        "property": "Label colour",
+        "type": "Per Status",
+        "description": "foreground/tertiary on default, complete and partial, foreground/primary on active, foreground/error on error, foreground/disabled on disabled."
+      },
+      {
+        "property": "Indicator colour",
+        "type": "Per Status",
+        "description": "interactive/neutral/background/default with border/default on default, feedback/success/background/strong on complete, feedback/success/background/subtle with border/success on partial, interactive/primary/background/default on active, feedback/error/background/strong on error, border/subtle on disabled."
+      }
+    ],
+    "stepSegment": [
+      {
+        "property": "Size",
+        "type": "Fill width, fixed height",
+        "description": "space/xxs tall, taking an equal share of the bar’s width."
+      },
+      {
+        "property": "Radius",
+        "type": "radius/pill",
+        "description": "Applied to the segment rather than to its halves, so a part filled segment keeps a rounded outer edge and a straight join down the middle."
+      },
+      {
+        "property": "Halves",
+        "type": "Fill",
+        "description": "Start and End each take half the segment, which is what fixes partial at exactly half rather than at a measured amount."
+      },
+      {
+        "property": "Colour",
+        "type": "Per Status",
+        "description": "interactive/primary/background/default on complete, active and the leading half of partial. border/subtle on default, disabled and the trailing half of partial. foreground/error on both halves of error."
+      }
+    ]
+  },
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7357-18457",
+    "componentSets": {
+      "Horizontal Stepper": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7561-19693",
+      "Vertical Stepper": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7557-19407"
+    },
+    "variants": {
+      "horizontal.default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7364-90",
+      "horizontal.compact": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7364-185",
+      "vertical.rail": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7557-18827",
+      "vertical.cardSharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7447-342",
+      "vertical.cardRound": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7557-18680"
+    },
+    "subcomponents": {
+      "Step / Horizontal": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7526-374",
+      "Step / Horizontal partial": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7526-348",
+      "Step / Vertical": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7526-427",
+      "Step / Vertical error": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7526-409",
+      "Step Card/Round": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7557-18475",
+      "Step Card/Round active": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7557-18524",
+      "Step Card/Sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7447-306",
+      "Step Segment": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7362-110",
+      "Step Segment partial": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7362-98"
+    }
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "API vs Property Breakdown",
+      "detail": "Vertical Stepper Rounded defaults to false in Figma, but the metadata marks true as the default."
+    },
+    {
+      "severity": "warn",
+      "source": "API vs Property Breakdown",
+      "detail": "The Rounded=false row says it applies when Card is false, but the Rounded=true row says Rounded only applies when Card is true."
+    },
+    {
+      "severity": "warn",
+      "source": "structure",
+      "detail": "Vertical Stepper has no Rounded=true, Card=false variant, so Rounded only changes anything when Card is true."
+    },
+    {
+      "severity": "warn",
+      "source": "summary",
+      "detail": "The summary says every variant except compact names only the current step above a segmented bar. Only compact does that."
+    },
+    {
+      "severity": "warn",
+      "source": "API vs Property Breakdown",
+      "detail": "The metadata calls the steps slot Slot. In Figma it is Steps."
+    },
+    {
+      "severity": "warn",
+      "source": "API vs Property Breakdown",
+      "detail": "Horizontal Stepper Show Subtitle controls only the compact subtitle, but its true row talks about subtitles on default."
+    },
+    {
+      "severity": "warn",
+      "source": "Layout vs structure",
+      "detail": "The metadata says both steppers hug. In Figma, Horizontal Stepper has a fixed width in both sizes, and Vertical Stepper has a fixed width, plus a fixed height when Card is true."
+    },
+    {
+      "severity": "warn",
+      "source": "Layout vs structure",
+      "detail": "The metadata says horizontal steps share the width equally. In Figma each step hugs a fixed-width track, so the last step, with no line, is much narrower."
+    },
+    {
+      "severity": "warn",
+      "source": "Layout vs structure",
+      "detail": "The metadata gives 8px between indicator and text. That is true for Step / Horizontal (space/sm), but Step / Vertical uses space/xl."
+    },
+    {
+      "severity": "warn",
+      "source": "Layout vs structure",
+      "detail": "The metadata gives 2px between label and subtitle. In Figma the 2px is padding above the label (space/3xs), and the gap between label and subtitle is space/none."
+    },
+    {
+      "severity": "warn",
+      "source": "Layout vs structure",
+      "detail": "The step metadata says space/2xs above the text block. Figma binds space/3xs."
+    },
+    {
+      "severity": "warn",
+      "source": "Layout vs structure",
+      "detail": "The metadata says subtitles fill their text block. In all three step sets the subtitle has a fixed size, and in Step Card it is wider than its text block, so it overflows."
+    },
+    {
+      "severity": "warn",
+      "source": "Layout vs structure",
+      "detail": "The Step Card metadata says the card is fixed in both directions and does not grow. In the stepper, cards fill the width and hug their height."
+    },
+    {
+      "severity": "warn",
+      "source": "Layout vs structure",
+      "detail": "Step Card labels now use foreground/secondary on default, complete and partial, but the card's Label colour row still says foreground/tertiary. Rail steps keep foreground/tertiary."
+    },
+    {
+      "severity": "warn",
+      "source": "descriptionDrift",
+      "detail": "The Step Segment description and its layout row say space/xxs. That token is now space/2xs, which is what Figma binds."
+    },
+    {
+      "severity": "warn",
+      "source": "gaps",
+      "detail": "The partial state draws its dashed indicator border and connector with a raw dash pattern. No token exists for it."
+    },
+    {
+      "severity": "note",
+      "source": "tokens",
+      "detail": "Step Segment height is bound to a spacing token, space/2xs, rather than a size or stroke token."
+    },
+    {
+      "severity": "note",
+      "source": "icons",
+      "detail": "check-mark and priority are both in the font. Every step set pins Icon Size=small and the rounded family, Step Card/Sharp included."
+    },
+    {
+      "severity": "note",
+      "source": "icons",
+      "detail": "No colour is bound for the glyph inside the indicator. It takes currentColor, so code must set a foreground on the indicator for complete and error."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "Step Card/Round and Step Card/Sharp are separate sets that differ only in radius. This spec treats them as one card with a round/sharp choice; whether that becomes a prop is the implementer's call."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "Horizontal step labels are centred on a head the width of the indicator and overflow it on both sides. The metadata says this is intentional."
+    },
+    {
+      "severity": "note",
+      "source": "behavior",
+      "detail": "The Height change row says vertical steps fill to the width of each step's height. The wording is unclear."
+    },
+    {
+      "severity": "note",
+      "source": "coverage",
+      "detail": "No interaction states or motion are modelled. Whether steps can be selected, and with which keys, is left to the implementation."
+    },
+    {
+      "severity": "note",
+      "source": "coverage",
+      "detail": "Neither Horizontal Stepper nor Vertical Stepper has a Figma component description."
+    },
+    {
+      "severity": "note",
+      "source": "content",
+      "detail": "Every sample step in the masters shows Step Number 1. Numbers are content set per step."
+    }
+  ]
+}

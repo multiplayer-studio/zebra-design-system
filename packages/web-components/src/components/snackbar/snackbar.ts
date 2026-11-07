@@ -32,13 +32,13 @@ const FLAVOUR: Record<SnackbarFlavour, { icon?: IconName; action?: string; close
  * A brief message about something the app just did, carrying at most one
  * action. Variant chooses between a contextual pill, where Flavour sets the
  * tint, the leading glyph and the controls together, and a plain standard
- * bar. Experimental, as marked on the Figma set.
+ * bar.
  *
  * Follows specs/snackbar:
  *  - contextual info / positive / warning / error / deletion / view sit on
  *    feedback/<kind>/background/subtle (deletion shares error, view takes
  *    neutral) with their glyph; action, default and every standard bar are
- *    the dark bars, on surface/popover.
+ *    the dark bars, on surface/overlay.
  *  - The action is a `<zds-button>`, subtle on deletion (Undo), view (View)
  *    and standard (Action), outline-subtle on action; the close a subtle
  *    `<zds-icon-button>`. Both are medium, full on the contextual pill,

@@ -6,15 +6,17 @@ import type { IconName } from "@zebra-design-system/icons/names";
 
 export type ButtonFlavour =
   | "primary" | "positive" | "negative" | "subtle" | "text"
-  | "outline-subtle" | "outline" | "gradient" | "text-gradient";
+  | "outline-subtle" | "outline" | "gradient" | "text-gradient"
+  /** `contrast` is the strongest neutral against the
+      page; `outline-contrast` is its outline sibling. Both follow the mode. */
+  | "contrast" | "outline-contrast";
 export type ButtonSize = "small" | "medium" | "large";
 export type ButtonShape = "sharp" | "rounded" | "full";
 
 /**
  * Triggers an action from a text label, with optional icons on either side.
  *
- * Nine flavours set how much weight the action carries, three sizes and three
- * shapes fit it to the surface it sits on. The label is the only content a
+ * Eleven flavours set how much weight the action carries, three sizes and three shapes fit it to the surface it sits on. The label is the only content a
  * consumer writes, everything else is a variant choice. When an action has no
  * text label, reach for Icon Button rather than hiding this one's label.
  *
@@ -34,10 +36,10 @@ export class ZdsButton extends LitElement {
   @property({ type: String, reflect: true }) flavour: ButtonFlavour = "primary";
 
   /** Fits the control to the surface it sits on. Drives height, padding, type ramp and icon size together. */
-  @property({ type: String, reflect: true }) size: ButtonSize = "small";
+  @property({ type: String, reflect: true }) size: ButtonSize = "medium";
 
   /** Corner treatment. Match the container; don't mix shapes inside one group. */
-  @property({ type: String, reflect: true }) shape: ButtonShape = "sharp";
+  @property({ type: String, reflect: true }) shape: ButtonShape = "rounded";
 
   /** The action is unavailable. Say why nearby — a disabled control with no explanation is indistinguishable from a broken one. */
   @property({ type: Boolean, reflect: true }) disabled = false;

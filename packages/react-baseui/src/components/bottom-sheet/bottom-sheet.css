@@ -8,7 +8,7 @@
   flex-direction: column;
   box-sizing: border-box;
   padding-block-end: var(--space-card);
-  background: var(--surface-sheet);
+  background: var(--surface-overlay);
   border-start-start-radius: var(--radius-container);
   border-start-end-radius: var(--radius-container);
 }

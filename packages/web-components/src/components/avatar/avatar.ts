@@ -9,6 +9,16 @@ export type AvatarSize =
   | "large" | "xlarge" | "xxlarge" | "xxxlarge";
 export type AvatarContentType = "initials" | "photo" | "icon";
 export type AvatarSwatchColor = "purple" | "blue" | "sea" | "yellow" | "orange" | "green" | "burgundy";
+const SWATCHES: readonly string[] = ["purple", "blue", "sea", "yellow", "orange", "green", "burgundy"];
+
+/**
+ * A swatch that isn't one of the seven named ones: a token name
+ * (`chart/series/2`), a custom property (`--brand-accent`) or any CSS colour.
+ */
+export const swatchFill = (color: string) =>
+  color.startsWith("--") ? `var(${color})`
+  : /^[a-z][\w-]*(\/[\w-]+)+$/i.test(color) ? `var(--${color.replace(/\//g, "-")})`
+  : color;
 export type AvatarStatus = "available" | "away" | "busy" | "dnd" | "on-shift" | "offline" | "icon";
 
 /**
@@ -57,8 +67,12 @@ export class ZdsAvatar extends LitElement {
   /** Shown when `type="initials"`. Usually one or two characters. */
   @property({ type: String }) initials: string | null = null;
 
-  /** Background behind initials or an icon. Not used behind a photo. */
-  @property({ type: String, attribute: "swatch-color", reflect: true }) swatchColor: AvatarSwatchColor = "purple";
+  /**
+   * Background behind initials or an icon. Not used behind a photo. One of
+   * the seven swatches, or any other colour: a token name (`chart/series/2`),
+   * a custom property (`--brand-accent`) or a CSS colour value.
+   */
+  @property({ type: String, attribute: "swatch-color", reflect: true }) swatchColor: AvatarSwatchColor | (string & {}) = "purple";
 
   /** Shown when `type="photo"`. */
   @property({ type: String }) src: string | null = null;
@@ -123,7 +137,8 @@ export class ZdsAvatar extends LitElement {
       <span part="avatar" class="content" data-type=${this.type}>
         ${this.type === "photo"
           ? html`<img class="photo" src=${this.src ?? nothing} alt=${this.alt ?? ""} />`
-          : html`<span class="swatch" data-swatch-color=${this.swatchColor}>
+          : html`<span class="swatch" data-swatch-color=${SWATCHES.includes(this.swatchColor) ? this.swatchColor : "custom"}
+              style=${SWATCHES.includes(this.swatchColor) ? nothing : `background: ${swatchFill(this.swatchColor)}`}>
               ${this.type === "initials"
                 ? html`<span class="initials">${this.initials ?? nothing}</span>`
                 : this.icon

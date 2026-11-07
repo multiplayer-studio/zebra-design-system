@@ -76,7 +76,7 @@ export default css`
   .text {
     display: flex;
     flex-direction: column;
-    gap: var(--space-2xs);
+    gap: var(--space-3xs);
     min-width: 0;
   }
 

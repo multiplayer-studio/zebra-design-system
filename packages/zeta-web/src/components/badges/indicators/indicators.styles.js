@@ -44,7 +44,7 @@ export default css`
   :host([type="notification"]) .container.large {
     min-width: var(--control-icon-lg);
     height: 20px;
-    padding: 0 var(--space-xxs);
+    padding: 0 var(--space-2xs);
     white-space: nowrap;
   }
 

@@ -16,7 +16,7 @@ export default css`
     box-sizing: border-box;
     gap: var(--space-none);
     height: var(--control-sm);
-    padding: var(--space-xxs) var(--space-md);
+    padding: var(--space-2xs) var(--space-md);
     border-style: solid;
     border-width: var(--stroke-base);
     border-radius: var(--zebra-radius-none);
@@ -50,7 +50,7 @@ export default css`
   .label {
     display: inline-flex;
     align-items: center;
-    padding-inline: var(--space-xxs);
+    padding-inline: var(--space-2xs);
   }
 
   /* :host([size]) so it outranks base-button.styles.js's per-size icon rules (Size always reflects a size). */
@@ -72,7 +72,7 @@ export default css`
   /* Restated for small so it outranks base-button.styles.js's own small rule. */
   :host([size="small"]) > button {
     height: var(--control-sm);
-    padding: var(--space-xxs) var(--space-md);
+    padding: var(--space-2xs) var(--space-md);
     gap: var(--space-none);
     font-family: var(--label-medium-font-family), system-ui, sans-serif;
     font-size: var(--label-medium-font-size);
@@ -82,11 +82,11 @@ export default css`
   }
   :host([size="medium"]) > button {
     height: var(--control-md);
-    padding: var(--space-xxs) var(--space-md);
+    padding: var(--space-2xs) var(--space-md);
   }
   :host([size="large"]) > button {
     height: var(--control-lg);
-    padding: var(--space-xxs) var(--space-lg);
+    padding: var(--space-2xs) var(--space-lg);
   }
   :host([size="medium"]) .label,
   :host([size="large"]) .label {

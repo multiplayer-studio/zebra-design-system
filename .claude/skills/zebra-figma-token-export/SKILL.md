@@ -5,13 +5,14 @@ description: Export every design token in a Figma file — all variable collecti
 
 # Figma Token Export
 
-Pull the complete variable graph out of a Figma file and write it as DTCG JSON, split so that a base collection and a theme extension are never mixed in the same file.
+Pull the complete variable graph out of a Figma file and write it as DTCG JSON, split so that a base collection and a theme extension are never mixed in the same file. Text styles and the fonts they need come out alongside it.
 
-Three things come out of Figma, and all three matter:
+Four things come out of Figma, and all four matter:
 
 1. **Collections and modes** — every local variable collection, its modes, and which mode is the default.
 2. **Variables** — name, type, description, scopes, codeSyntax, and the value in each mode (literal or alias).
 3. **Extensions** — Figma's "collection extends collection" feature. An extension inherits every variable from its parent and overrides some of them. Only the overrides belong in the extension's files.
+4. **Text styles** — each style's font, size, line height, letter spacing and weight, and the variable bound to each. A style becomes one typography token that aliases those variables, and its families and weights go into `fonts.json` so the font files can be fetched.
 
 ## Principles
 
@@ -33,6 +34,8 @@ curl -s -H "X-Figma-Token: $FIGMA_PERSONAL_ACCESS_TOKEN" \
 ```
 
 It needs a token with the **`file_variables:read`** scope, and the endpoint is Enterprise-only. A token without that scope fails with `403 Invalid scope(s): … This endpoint requires the file_variables:read scope` — this is the single most common failure, and it is worth checking before anything else, because the alternative costs far more. If the scope is missing, say so and offer the MCP path.
+
+REST also returns variables deleted from the file while something still references them, flagged `deletedButReferenced`. `scripts/rest-to-dump.py` leaves those out, as the Plugin API does, and the builder lists them in the manifest warnings.
 
 The REST shape differs from the MCP dump (`meta.variables` / `meta.variableCollections`, colors as `{r,g,b,a}` floats, aliases as `{type:"VARIABLE_ALIAS",id}`). Normalise it into the dump shape below before running the builder.
 
@@ -64,6 +67,10 @@ The dump is deliberately compact — it is not the output format. A DTCG tree is
 
 Write each page to `<root>/_dump/vars-*.json` as an array of the `variables` rows, and the first page's `collections` to `<root>/_dump/collections.json`. Pages may overlap; the builder de-duplicates by variable id.
 
+### 2b. Dump the text styles (`scripts/dump-text-styles.js`)
+
+Always through `use_figma`, on either path: the REST variables endpoint has no styles, and `/v1/files/:key/styles` lists only styles published to a library. Run it once (no INPUT) and save the returned `styles` array to `<root>/_dump/text-styles.json`. Without it the builder still runs, skips text styles and fonts, and says so in the manifest warnings.
+
 ### 3. Build the folder (`scripts/build-tokens.py`)
 
 ```bash
@@ -74,12 +81,26 @@ Reads `<root>/_dump/*.json` and writes the whole tree plus both levels of manife
 
 It prints the counts and every warning. **Check the counts against `discover-collections.js`:** the builder warns when a collection holds fewer variables than it declares, which is how a dropped or truncated page shows up. Fetch the missing rows and re-run — the build is idempotent.
 
+### 3b. Fetch the fonts (`scripts/fetch-fonts.mjs`)
+
+```bash
+node .claude/skills/zebra-figma-token-export/scripts/fetch-fonts.mjs tokens
+```
+
+Figma cannot export font files. This downloads each family in `fonts.json` from Google Fonts (latin and latin-ext by default; `--subsets=` to change) into `tokens/fonts/`, with an `@font-face` file. A family Google does not serve (Zebra Sans today) is listed under `selfHost`; report it, do not guess a source.
+
+### 3c. Rebuild the CSS in each package
+
+`packages/web-components/scripts/build-tokens-css.mjs` (run by `pnpm run tokens`, `yarn tokens` in zeta-web, and react-baseui's `tokens`) turns the text styles into one `--text-<group>-<size>` font shorthand each, plus a `.text-<group>-<size>` class that also sets letter spacing, re-declared in every scope where a part changes. `--fonts=self` swaps the Google Fonts import for the fetched files. It writes weights as numbers: a keyword like `Medium` is not valid CSS and the browser drops it.
+
 ### 4. Verify
 
 - Every JSON file parses.
 - Total tokens = Σ (variables × modes) per base collection. Total overrides = Σ per-mode override counts from step 1.
 - No count warnings remain in the manifest.
 - Spot-check one extension file against `overridesByMode` from step 1: it must contain exactly those tokens and no others.
+- Text styles: the count matches `dump-text-styles.js`, and every part aliases a variable unless the manifest lists it as unbound.
+- Fonts: `fonts/manifest.json` lists every family in `fonts.json` as fetched or self-host.
 
 Report the counts and the warnings. Do not fix a problem found in Figma; record it.
 
@@ -90,8 +111,11 @@ See `references/output-layout.md` for the exact folder contract, the DTCG leaf s
 ```
 tokens/
 ├── manifest.json
+├── fonts.json                   # families and weights the tokens need
+├── fonts/                       # fetched woff2 + fonts.css (fetch-fonts.mjs)
 ├── _dump/                       # compact source data, re-runnable input for the builder
 ├── base/
+│   ├── text-styles.json         # one typography token per text style, aliasing its variables
 │   ├── primitives/value.json
 │   ├── palette/light.json · dark.json
 │   ├── semantics/base.json

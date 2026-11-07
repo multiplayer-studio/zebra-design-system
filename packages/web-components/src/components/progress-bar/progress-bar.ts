@@ -3,7 +3,7 @@ import { customElement, property, state } from "lit/decorators.js";
 import styles from "./progress-bar.styles.js";
 
 export type ProgressBarShape = "rounded" | "sharp";
-export type ProgressBarSize = "small" | "medium";
+export type ProgressBarSize = "small" | "large";
 
 const clampPercent = (v: number, min: number, max: number) =>
   max > min ? Math.min(100, Math.max(0, ((v - min) / (max - min)) * 100)) : 0;
@@ -81,7 +81,7 @@ export class ZdsProgressBar extends LitElement {
   /** Softened (rounded) or square (sharp) ends. */
   @property({ type: String, reflect: true }) shape: ProgressBarShape = "rounded";
 
-  /** small (8px bar) or medium (16px). */
+  /** small (8px bar) or large (16px). */
   @property({ type: String, reflect: true }) size: ProgressBarSize = "small";
 
   @state() private hasTrailing = false;

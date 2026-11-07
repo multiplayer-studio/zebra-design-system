@@ -93,7 +93,7 @@ export default css`
   .hint-text {
     display: flex;
     align-items: center;
-    column-gap: var(--space-xxs);
+    column-gap: var(--space-2xs);
     font: var(--text-body-xsmall);
     letter-spacing: var(--body-xsmall-letter-spacing);
     color: var(--foreground-secondary);

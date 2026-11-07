@@ -58,7 +58,7 @@ export default css`
 
   /* Selectable header: the leading control sits in the row's padding, so the title starts after it. */
   :host([selectable]) .row {
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     padding: var(--space-sm);
   }
 

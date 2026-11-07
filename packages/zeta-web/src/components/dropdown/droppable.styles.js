@@ -1,7 +1,7 @@
 import { css } from "lit";
 
-/* Spec: specs/dropdown (Dropdown Menu). A floating surface/menu panel with the Shadow/medium style (two drop shadows
-   on shadow/soft), space/card padding and space/xxs between rows. */
+/* Spec: specs/dropdown (Dropdown Menu). A floating surface/overlay panel with the Shadow/medium style (two drop shadows
+   on shadow/soft), space/card padding and space/2xs between rows. */
 export default css`
   :host {
     display: none;
@@ -11,9 +11,9 @@ export default css`
   :host([open]) {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     padding: var(--space-card);
-    background-color: var(--surface-menu);
+    background-color: var(--surface-overlay);
     box-shadow:
       var(--shadow-medium-x) var(--shadow-medium-y) var(--shadow-medium-blur) var(--shadow-soft),
       var(--shadow-small-x) var(--shadow-small-y) var(--shadow-small-blur) var(--shadow-soft);

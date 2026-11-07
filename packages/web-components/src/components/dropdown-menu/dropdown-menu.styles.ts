@@ -22,12 +22,12 @@ export default css`
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     padding: var(--space-card);
     border-radius: var(--radius-none);
 
     /* --- colour: theming only, everything else lives on the rows -------- */
-    background: var(--surface-menu);
+    background: var(--surface-overlay);
 
     /* "Shadow/medium" style: two stacked drop shadows on one colour token.
        No component in this package has needed box-shadow before this one, so
@@ -41,5 +41,12 @@ export default css`
   /* ---- rounded --------------------------------------------------------- */
   :host([rounded]) .menu {
     border-radius: var(--radius-element-md);
+  }
+
+  /* ---- compact --------------------------------------------------------- */
+  /* space/xs inset and no gap between rows; radii are unchanged (spec). */
+  :host([compact]) .menu {
+    padding: var(--space-xs);
+    gap: var(--space-none);
   }
 `;

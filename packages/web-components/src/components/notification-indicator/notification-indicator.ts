@@ -23,22 +23,25 @@ export class ZdsNotificationIndicator extends LitElement {
   static styles = styles;
 
   /**
-   * Fits the badge to its context. Figma's own default is the largest
-   * option (spec issue — most size axes in this file default to the
-   * smallest); kept as extracted rather than silently switched.
+   * Fits the badge to its context. Defaults to large, as Figma does.
    */
   @property({ type: String, reflect: true }) size: NotificationIndicatorSize = "large";
 
   /**
    * The count or short label shown inside the badge. Only rendered at
    * medium and large — small is a plain dot with no label part at all.
+   * It holds 3 characters at most, and anything above 99 reads 99+.
    */
   @property({ type: String }) value = "2";
+
+  private get count() {
+    return Number(this.value) > 99 ? "99+" : (this.value ?? "").slice(0, 3);
+  }
 
   protected render() {
     return html`
       <span part="root" class="root">
-        ${this.size !== "small" ? html`<span part="label" class="label">${this.value}</span>` : nothing}
+        ${this.size !== "small" ? html`<span part="label" class="label">${this.count}</span>` : nothing}
       </span>
     `;
   }

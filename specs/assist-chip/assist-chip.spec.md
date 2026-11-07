@@ -51,9 +51,9 @@ Values anywhere in this document are token names. The only literals are inside v
 
 ## Anatomy
 
-1. **Chip (root)**: "The component frame. A horizontal auto-layout hugging its content, carrying the fill and the border." Horizontal, cross-axis centred, gap `space/2xs`, padding `space/xs` top and bottom and `space/sm` left and right. Hugs both ways (88×30Px measured at rest). Radius `radius/pill` (rounded) or `radius/none`. Fill per state; border per color at `stroke/thin`, inside (`interactive/neutral/border/default` on neutral).
+1. **Chip (root)**: "The component frame. A horizontal auto-layout hugging its content, carrying the fill and the border." Horizontal, cross-axis centred, gap `space/3xs`, padding `space/xs` top and bottom and `space/sm` left and right. Hugs both ways (88×30Px measured at rest). Radius `radius/pill` (rounded) or `radius/none`. Fill per state; border per color at `stroke/thin`, inside (`interactive/neutral/border/default` on neutral).
 2. **Leading icon**: "The optional glyph naming the action's domain, present when Show Leading Icon is on." Glyph `star` by default (rounded family), Icon Size=xsmall pinned, sized by `control/icon-xs` (12Px). Colour is `currentColor`. Visible when `showLeadingIcon`.
-3. **Label**: "The action itself, and the only text the chip takes." Text `indicator/medium`, colour per color, cap-height leading trim. Sits in a Label frame padded `space/xxs` left and right, which is the only spacing between icon, label and remove.
+3. **Label**: "The action itself, and the only text the chip takes." Text `indicator/medium`, colour per color, cap-height leading trim. Sits in a Label frame padded `space/2xs` left and right, which is the only spacing between icon, label and remove.
 4. **Remove**: "A Close icon after the label, shown when Discardable is on. It takes the label colour." Glyph `close` (rounded), Icon Size=small (16Px), `currentColor`. Visible when `discardable`; an interactive target in code.
 
 ## Variants
@@ -90,7 +90,7 @@ No on-page private subcomponents. Library dependency: **Icon** (`2046:15010`), s
 ## Tokens & theming
 
 - **Colour:** interactive/neutral/background/{default,hover,focused,selected,pressed,disabled}, interactive/neutral/foreground/{default,disabled}, interactive/neutral/border/default, border/{success,warning,info,error}, feedback/{success,warning,info,error}/foreground, focus/outline
-- **Dimension:** space/2xs, space/xs, space/sm, space/xxs, control/icon-xs, radius/pill, radius/none, stroke/thin, stroke/thick
+- **Dimension:** space/3xs, space/xs, space/sm, space/2xs, control/icon-xs, radius/pill, radius/none, stroke/thin, stroke/thick
 - **Typography:** indicator/medium
 - **Glyphs:** star (default), close
 
@@ -135,7 +135,7 @@ Theme axes (from tokens/manifest.json): palette Light / Dark; size Desktop / Mob
 - Focus is the only state with a visible outline and it is drawn outside the chip, so check it is not clipped by a scrolling row.
 - The leading icon sits next to the label and is decorative. If it ever carries meaning the label does not, that meaning has to be in text.
 - Disabled chips lose the border and rely on fill and text colour alone. Check both against the surface behind them.
-- The label uses indicator/medium at 12px over a 14px line. It is the action's only name, so it should not be shortened to an abbreviation.
+- The label uses indicator/medium over a 14px line. It is the action's only name, so it should not be shortened to an abbreviation.
 - Colour marks the kind of item but never replaces the label. Check each override pair for contrast against the surface behind it.
 - The remove control is a real target. Name it after what it removes, such as Remove Document.pdf.
 
@@ -144,11 +144,11 @@ Theme axes (from tokens/manifest.json): palette Light / Dark; size Desktop / Mob
 | Property | Type | Description |
 |---|---|---|
 | Size | Hug width, fixed height | 30 tall at rest and 28 at focus and disabled. The width hugs the label and icons. |
-| Padding and gap | Fixed | space/xs on all sides and no gap. The label sits in its own frame padded space/xxs left and right, which spaces it from the icon and the remove control. |
+| Padding and gap | Fixed | space/xs on all sides and no gap. The label sits in its own frame padded space/2xs left and right, which spaces it from the icon and the remove control. |
 | Radius | Per Rounded | "radius/pill when true and radius/none when false." |
 | Fill | Per state | "interactive/neutral/background at default, hover, focused, selected and disabled, with pressed reused for dragged." |
 | Border | Per state | "1px inside at rest, interactive/neutral/border/default on neutral and border/success, warning, info or error per Color. Focus swaps to 2px focus/outline drawn outside. Disabled carries none." |
-| Label | Theming | "indicator/medium, IBM Plex Sans Medium 12 over a 14px line. interactive/neutral/foreground/default on neutral, feedback/success, warning, info or error foreground per Color, and the disabled token when disabled." |
+| Label | Theming | "indicator/medium. interactive/neutral/foreground/default on neutral, feedback/success, warning, info or error foreground per Color, and the disabled token when disabled." |
 | Leading icon | Fixed | "Icon at Size=small, 16 square." |
 | Colour overrides | Per Color, or per instance in code | "Color sets the border and the label. In code, foreground, background and border each accept a colour token on top, so one kind of item can hold one colour across a view." |
 
@@ -158,14 +158,14 @@ Visual reference: [component set](https://www.figma.com/design/hvRmnZZOZrmTW0wf8
 
 **Warn**
 - **Leading icon size.** Metadata says Icon Size=small, 16 square. The set uses Icon Size=xsmall at `control/icon-xs`.
-- **Padding and gap.** Metadata says space/xs on all sides and no gap. The root has `space/sm` left and right and a `space/2xs` gap.
+- **Padding and gap.** Metadata says space/xs on all sides and no gap. The root has `space/sm` left and right and a `space/3xs` gap.
 - **Height jumps between states.** 30px at rest, 28px at focus and disabled. The 1px inside border counts in layout; the outside focus border and the missing disabled border don't. Build one height with the border kept out of layout.
 - **Colour overrides are code only.** Figma has no matching property, so designers get the five Color presets only, and no preset changes the fill.
 - **active has one value.** Copied from Filter Chip and unfinished; omitted from the API.
 - **selected on an action chip.** The metadata questions it; leave it out of code until design confirms a use.
 
 **Note**
-- Spacing tokens were renamed in Figma: the former 4px space/xs is now space/xxs and a new space/xs is 6px. tokens/ was re-exported on 2026-10-22 and every former space/xs in code and specs moved to space/xxs. The new space/xs still carries a "= 4px" description in Figma.
+- Spacing tokens were renamed in Figma: the former 4px space/xs is now space/2xs and a new space/xs is 6px. tokens/ was re-exported on 2026-10-22 and every former space/xs in code and specs moved to space/2xs. The new space/xs still carries a "= 4px" description in Figma.
 - Icon Size=xsmall was added to both Icon components for the leading icon. The Icon spec does not list it yet.
 - Discardable defaults to true in Figma. In code, defaulting to whether a remove handler is set (as Input Chip does) avoids a control that does nothing.
 - The glyph is reachable only through the nested Icon's Name swap; an `icon` input in code is the implementer's call. Default `star`.

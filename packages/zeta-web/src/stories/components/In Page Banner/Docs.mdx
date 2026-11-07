@@ -1,4 +1,4 @@
-import { Canvas, Meta, Description, ArgTypes, Title, Stories, Story, Source } from "@storybook/blocks";
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
 import * as InPageBanner from "./in-page-banner.stories";
 
 <Meta of={InPageBanner} title="In Page Banner" />
@@ -10,44 +10,26 @@ import * as InPageBanner from "./in-page-banner.stories";
 
 ---
 
-## Banner Single Action
+## Subtle
 
-To implement a banner with a single action, insert a `<zeta-button>` element in the `leading-action` slot.
+Use subtle for context and guidance. It informs without interrupting, and several can share a page.
 
-> Note: Current build has incorrect colors on button. This will be resolved by UX-1146
+<Canvas of={InPageBanner.Subtle} />
 
-<Canvas of={InPageBanner.BannerSingleAction} />
+## Solid
 
-## Banner Dual Action
+Use solid for the one message on a view that blocks or changes what the person can do. The actions and the dismiss draw light on every fill.
 
-To implement a banner with dual actions, insert `<zeta-button>` elements in the `leading-action` and `trailing-action` slots respectively.
+<Canvas of={InPageBanner.Solid} />
 
-<Canvas of={InPageBanner.BannerDualAction} />
+## Shape
 
-## Banner With Content
+`rounded` sets the corners, and the banner passes the same shape to its actions and dismiss.
 
-To add more content to your banner, insert the HTML elements as the banner’s children / in the default slot.
+<Canvas of={InPageBanner.Shape} />
 
-```
-<zeta-in-page-banner>
-    INSERT YOUR CONTENT HERE
-</zeta-in-page-banner>`
-```
+## Narrow
 
-<Canvas of={InPageBanner.BannerWithImage} />
+The text keeps a minimum width. When the container is narrower, the actions wrap beneath the text.
 
-## Note:
-
-`rounded` does not effect indirect children of the default slot. If you want rounded corners on images or other elements, insure they are direct children of the default slot or manually apply rounded corners with CSS.
-
-<Canvas of={InPageBanner.BannerWithContent} />
-
-## Banner Constrained Width
-
-To limit a banner’s width, wrap it in a parent element with a specified width.
-
-For example, use `<div style="max-width: 500px">` to set the banner’s width to 500px.
-
-Any image inside the image slot will adjust to it's parent's width, making it responsive.
-
-<Canvas of={InPageBanner.BannerConstrainedWidth} />
+<Canvas of={InPageBanner.Narrow} />

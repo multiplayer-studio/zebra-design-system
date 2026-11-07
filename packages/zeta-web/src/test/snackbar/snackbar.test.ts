@@ -61,7 +61,7 @@ describe("zeta-snackbar", () => {
       const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar flavor="info">Saved</zeta-snackbar>`);
       await expect(`${bar(el).getBoundingClientRect().height}px`).to.equal(v(el, "--control-lg"));
       await expect(getComputedStyle(bar(el)).paddingLeft).to.equal(v(el, "--space-lg"));
-      await expect(getComputedStyle(bar(el)).paddingRight).to.equal(v(el, "--space-xxs"));
+      await expect(getComputedStyle(bar(el)).paddingRight).to.equal(v(el, "--space-2xs"));
       await expect(getComputedStyle(bar(el)).borderTopLeftRadius).to.equal(v(el, "--radius-pill"));
     });
 
@@ -75,13 +75,13 @@ describe("zeta-snackbar", () => {
   });
 
   describe("Styling", () => {
-    it("tints each contextual flavour, and puts the dark bars on surface/popover in their own mode", async () => {
+    it("tints each contextual flavour, and puts the dark bars on surface/overlay in their own mode", async () => {
       const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar flavor="positive">Done</zeta-snackbar>`);
       await expect(getComputedStyle(bar(el)).backgroundColor).to.equal(getCssVarColorValue(el, "--feedback-success-background-subtle"));
       el.flavor = "default";
       await elementUpdated(el);
       await expect(el.getAttribute("data-theme")).to.equal("dark");
-      await expect(getComputedStyle(bar(el)).backgroundColor).to.equal(getCssVarColorValue(el, "--surface-popover"));
+      await expect(getComputedStyle(bar(el)).backgroundColor).to.equal(getCssVarColorValue(el, "--surface-overlay"));
     });
   });
 

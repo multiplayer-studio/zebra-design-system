@@ -32,7 +32,8 @@
   /* railMaxWidth / subMenuMaxWidth set --zds-navigation-rail-max-width and
      --zds-navigation-rail-sub-menu-max-width; unset, there is no cap. A cap
      below a minimum lowers the minimum, so the cap always applies. */
-  --zds-navigation-rail-wide-width: min(200px, var(--zds-navigation-rail-max-width, 200px));
+  /* railWidth sets --zds-navigation-rail-width (Figma's 200px by default). */
+  --zds-navigation-rail-wide-width: min(var(--zds-navigation-rail-width, 200px), var(--zds-navigation-rail-max-width, calc(infinity * 1px)));
   --zds-navigation-rail-panel-max-width: var(--zds-navigation-rail-sub-menu-max-width, calc(infinity * 1px));
   --zds-navigation-rail-panel-min-width: min(240px, var(--zds-navigation-rail-panel-max-width));
   /* Lets the panel animate to and from its content width (width: max-content). */
@@ -120,6 +121,21 @@
    width, so the animating rail clips it (no reflow, no wrapping). */
 .zds-navigation-rail[data-wide] :is(.zds-navigation-rail__header, .zds-navigation-rail__menu, .zds-navigation-rail__footer) {
   min-width: calc(var(--zds-navigation-rail-wide-width) - 2 * var(--space-md));
+}
+
+/* railWidth="fill": wide, the rail takes its container's width (the sub menu
+   panel, when open, shares it). Wide content then follows the rail rather
+   than a fixed width. */
+.zds-navigation-rail[data-fill][data-expanded] {
+  inline-size: 100%;
+}
+.zds-navigation-rail[data-fill][data-expanded] .zds-navigation-rail__rail {
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+}
+.zds-navigation-rail[data-fill][data-wide] :is(.zds-navigation-rail__header, .zds-navigation-rail__menu, .zds-navigation-rail__footer) {
+  min-width: 0;
 }
 
 /* ---- sub menu panel ----------------------------------------------------- */
@@ -347,7 +363,7 @@
   flex-direction: column;
   gap: var(--space-2xs);
   padding: var(--space-sm);
-  background: var(--surface-menu);
+  background: var(--surface-subtle);
   border-end-start-radius: var(--zds-collapsible-menu-item-radius);
   border-end-end-radius: var(--zds-collapsible-menu-item-radius);
 }

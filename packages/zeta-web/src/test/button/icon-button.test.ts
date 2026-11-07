@@ -82,9 +82,9 @@ describe("zeta-icon-button", () => {
         await expect(icon.getBoundingClientRect().height).to.equal(length(sizes[size][1]));
       });
     });
-    it("pads the glyph by space/xxs", async () => {
+    it("pads the glyph by space/2xs", async () => {
       const button = subject.shadowRoot?.querySelector("button") as HTMLElement;
-      await expect(parseFloat(getComputedStyle(button).paddingTop)).to.equal(length("--space-xxs"));
+      await expect(parseFloat(getComputedStyle(button).paddingTop)).to.equal(length("--space-2xs"));
     });
     it("keeps the outline flavours' border", async () => {
       subject.setAttribute("flavor", "outline");

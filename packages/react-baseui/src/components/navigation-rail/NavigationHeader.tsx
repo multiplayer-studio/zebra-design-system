@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Avatar } from "../avatar/Avatar.js";
-import { Icon } from "../icon/Icon.js";
+import { Icon, type IconName } from "../icon/Icon.js";
 import { IconButton } from "../icon-button/IconButton.js";
 import { NavigationRailContext, type NavigationRailShape } from "./context.js";
 import "./navigation-rail.css";
@@ -17,8 +17,10 @@ export interface NavigationHeaderProps
   heading?: string;
   /** Shows the title (wide form only). */
   showTitle?: boolean;
-  /** Shows the trailing settings Icon Button (wide form only). */
+  /** Shows the trailing Icon Button (wide form only). */
   showIconButton?: boolean;
+  /** The trailing Icon Button's glyph. Settings by default; set any icon, with `actionLabel` and `onAction` to match. */
+  actionIcon?: IconName;
   /** Accessible name of the action. */
   actionLabel?: string;
   /** Called when the action is pressed. */
@@ -49,6 +51,7 @@ export const NavigationHeader = React.forwardRef<HTMLDivElement, NavigationHeade
     showTitle = true,
     showIconButton = true,
     actionLabel = "Settings",
+    actionIcon = "settings",
     onAction,
     shape: shapeProp = "rounded",
     avatarInitials = "ZB",
@@ -90,7 +93,7 @@ export const NavigationHeader = React.forwardRef<HTMLDivElement, NavigationHeade
       </div>
       {expanded && showIconButton ? (
         // Figma pins Shape=sharp; the rail's shape sets it (owner decision).
-        <IconButton flavour="subtle" size="small" shape={shape} icon="settings" label={actionLabel} onClick={onAction} />
+        <IconButton flavour="subtle" size="small" shape={shape} icon={actionIcon} label={actionLabel} onClick={onAction} />
       ) : null}
     </div>
   );

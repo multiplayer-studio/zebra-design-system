@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { html } from "lit";
+import { html, nothing } from "lit";
 import "../src/components/menu-item/menu-item.js";
 import { iconNames } from "@zebra-design-system/icons/names";
 
@@ -10,7 +10,7 @@ const meta: Meta = {
   component: "zds-menu-item",
   tags: ["autodocs"],
   argTypes: {
-    type: { control: "inline-radio", options: TYPES, description: "Names the row's role. Icon/checkbox/radio share one anatomy — only the ARIA role and the glyph differ." },
+    type: { control: "inline-radio", options: TYPES, description: "What leads the row: an icon, a real checkbox or radio that shows selected, or the leading slot." },
     rounded: { control: "boolean" },
     disabled: { control: "boolean" },
     selected: { control: "boolean" },
@@ -39,14 +39,15 @@ export const Playground: Story = {};
 
 const stack = (children: unknown) => html`<div style="display:flex;flex-direction:column;width:221px;gap:2px">${children}</div>`;
 
-/** Icon, checkbox and radio are the same anatomy — Figma models no drawn control, only the glyph and the ARIA role differ. Custom swaps in the leading slot instead. */
+/** Each type at rest, selected and disabled. Checkbox and radio lead with the real control and drop the row gap; custom swaps in the leading slot. */
 export const Types: Story = {
-  render: () => stack(TYPES.map((t) => {
-    if (t === "custom") {
-      return html`<zds-menu-item type=${t}><span slot="leading" style="width:16px;height:16px;border-radius:50%;background:var(--interactive-primary-background-default);display:inline-block"></span>${t}</zds-menu-item>`;
-    }
-    return html`<zds-menu-item type=${t} leading-icon="check-mark">${t}</zds-menu-item>`;
-  })),
+  render: () => html`<div style="display:grid;grid-template-columns:repeat(3,221px);gap:2px">${TYPES.map((t) =>
+    (["Default", "Selected", "Disabled"] as const).map((s) => {
+      const lead = t === "custom"
+        ? html`<span slot="leading" style="width:16px;height:16px;border-radius:50%;background:var(--interactive-primary-background-default);display:inline-block"></span>`
+        : null;
+      return html`<zds-menu-item type=${t} leading-icon=${t === "icon" ? "check-mark" : nothing} ?selected=${s === "Selected"} ?disabled=${s === "Disabled"}>${lead}${t} ${s.toLowerCase()}</zds-menu-item>`;
+    }))}</div>`,
 };
 
 /** Mostly CSS: hover and focus are real :hover / :focus-visible. Selected and disabled are the two properties a consumer sets directly. */

@@ -7,7 +7,7 @@ import "./caret-indicator.js";
 import "./sub-menu-item.js";
 
 /**
- * A group in the Navigation Rail's sub menu: a header row that opens to show nested Sub Menu Items on surface/menu.
+ * A group in the Navigation Rail's sub menu: a header row that opens to show nested Sub Menu Items on surface/subtle.
  * The header carries `aria-expanded`; the rows reveal on animations/smooth, off under reduced motion. Slotted
  * `zeta-sub-menu-item`s are set to `nested` and follow the group's `rounded`.
  *

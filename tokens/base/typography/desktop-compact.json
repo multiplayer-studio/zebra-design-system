@@ -17,7 +17,7 @@
       },
       "font size": {
         "$type": "dimension",
-        "$value": "{primitives.text.font size.20}",
+        "$value": "{primitives.text.font size.18}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2207:352",
@@ -27,7 +27,7 @@
             "scopes": [
               "FONT_SIZE"
             ],
-            "aliasOf": "VariableID:2207:303"
+            "aliasOf": "VariableID:2207:302"
           }
         }
       },
@@ -98,7 +98,7 @@
       },
       "font size": {
         "$type": "dimension",
-        "$value": "{primitives.text.font size.16}",
+        "$value": "{primitives.text.font size.14}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2207:372",
@@ -108,7 +108,7 @@
             "scopes": [
               "FONT_SIZE"
             ],
-            "aliasOf": "VariableID:2207:301"
+            "aliasOf": "VariableID:2207:300"
           }
         }
       },
@@ -147,7 +147,7 @@
       },
       "line height": {
         "$type": "dimension",
-        "$value": "{primitives.text.line height.24}",
+        "$value": "{primitives.text.line height.20}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2207:374",
@@ -157,7 +157,7 @@
             "scopes": [
               "LINE_HEIGHT"
             ],
-            "aliasOf": "VariableID:2207:316"
+            "aliasOf": "VariableID:2207:324"
           }
         }
       }
@@ -179,7 +179,7 @@
       },
       "font size": {
         "$type": "dimension",
-        "$value": "{primitives.text.font size.14}",
+        "$value": "{primitives.text.font size.12}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2207:377",
@@ -189,7 +189,7 @@
             "scopes": [
               "FONT_SIZE"
             ],
-            "aliasOf": "VariableID:2207:300"
+            "aliasOf": "VariableID:2207:308"
           }
         }
       },
@@ -228,7 +228,7 @@
       },
       "line height": {
         "$type": "dimension",
-        "$value": "{primitives.text.line height.18}",
+        "$value": "{primitives.text.line height.16}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2207:379",
@@ -238,7 +238,7 @@
             "scopes": [
               "LINE_HEIGHT"
             ],
-            "aliasOf": "VariableID:2207:315"
+            "aliasOf": "VariableID:2207:314"
           }
         }
       }
@@ -343,7 +343,7 @@
       },
       "font size": {
         "$type": "dimension",
-        "$value": "{primitives.text.font size.52}",
+        "$value": "{primitives.text.font size.48}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2207:387",
@@ -353,7 +353,7 @@
             "scopes": [
               "FONT_SIZE"
             ],
-            "aliasOf": "VariableID:2207:310"
+            "aliasOf": "VariableID:2207:307"
           }
         }
       },
@@ -392,7 +392,7 @@
       },
       "line height": {
         "$type": "dimension",
-        "$value": "{primitives.text.line height.60}",
+        "$value": "{primitives.text.line height.52}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2207:389",
@@ -402,7 +402,7 @@
             "scopes": [
               "LINE_HEIGHT"
             ],
-            "aliasOf": "VariableID:2207:321"
+            "aliasOf": "VariableID:2207:320"
           }
         }
       }
@@ -424,7 +424,7 @@
       },
       "font size": {
         "$type": "dimension",
-        "$value": "{primitives.text.font size.44}",
+        "$value": "{primitives.text.font size.40}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2207:407",
@@ -434,7 +434,7 @@
             "scopes": [
               "FONT_SIZE"
             ],
-            "aliasOf": "VariableID:2207:311"
+            "aliasOf": "VariableID:2207:306"
           }
         }
       },
@@ -473,7 +473,7 @@
       },
       "line height": {
         "$type": "dimension",
-        "$value": "{primitives.text.line height.52}",
+        "$value": "{primitives.text.line height.48}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2207:409",
@@ -483,7 +483,7 @@
             "scopes": [
               "LINE_HEIGHT"
             ],
-            "aliasOf": "VariableID:2207:320"
+            "aliasOf": "VariableID:2207:319"
           }
         }
       }
@@ -505,7 +505,7 @@
       },
       "font size": {
         "$type": "dimension",
-        "$value": "{primitives.text.font size.36}",
+        "$value": "{primitives.text.font size.32}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2207:412",
@@ -515,7 +515,7 @@
             "scopes": [
               "FONT_SIZE"
             ],
-            "aliasOf": "VariableID:2207:309"
+            "aliasOf": "VariableID:2207:305"
           }
         }
       },
@@ -554,7 +554,7 @@
       },
       "line height": {
         "$type": "dimension",
-        "$value": "{primitives.text.line height.40}",
+        "$value": "{primitives.text.line height.36}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2207:414",
@@ -564,7 +564,7 @@
             "scopes": [
               "LINE_HEIGHT"
             ],
-            "aliasOf": "VariableID:2207:318"
+            "aliasOf": "VariableID:2207:323"
           }
         }
       }
@@ -588,7 +588,7 @@
       },
       "font size": {
         "$type": "dimension",
-        "$value": "{primitives.text.font size.32}",
+        "$value": "{primitives.text.font size.28}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2207:417",
@@ -598,7 +598,7 @@
             "scopes": [
               "FONT_SIZE"
             ],
-            "aliasOf": "VariableID:2207:305"
+            "aliasOf": "VariableID:2207:312"
           }
         }
       },
@@ -637,7 +637,7 @@
       },
       "line height": {
         "$type": "dimension",
-        "$value": "{primitives.text.line height.36}",
+        "$value": "{primitives.text.line height.32}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2207:419",
@@ -647,7 +647,7 @@
             "scopes": [
               "LINE_HEIGHT"
             ],
-            "aliasOf": "VariableID:2207:323"
+            "aliasOf": "VariableID:2207:317"
           }
         }
       }
@@ -669,7 +669,7 @@
       },
       "font size": {
         "$type": "dimension",
-        "$value": "{primitives.text.font size.28}",
+        "$value": "{primitives.text.font size.24}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2209:437",
@@ -679,7 +679,7 @@
             "scopes": [
               "FONT_SIZE"
             ],
-            "aliasOf": "VariableID:2207:312"
+            "aliasOf": "VariableID:2207:304"
           }
         }
       },
@@ -718,7 +718,7 @@
       },
       "line height": {
         "$type": "dimension",
-        "$value": "{primitives.text.line height.32}",
+        "$value": "{primitives.text.line height.28}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2209:439",
@@ -728,7 +728,7 @@
             "scopes": [
               "LINE_HEIGHT"
             ],
-            "aliasOf": "VariableID:2207:317"
+            "aliasOf": "VariableID:2207:322"
           }
         }
       }
@@ -750,7 +750,7 @@
       },
       "font size": {
         "$type": "dimension",
-        "$value": "{primitives.text.font size.24}",
+        "$value": "{primitives.text.font size.20}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2209:447",
@@ -760,7 +760,7 @@
             "scopes": [
               "FONT_SIZE"
             ],
-            "aliasOf": "VariableID:2207:304"
+            "aliasOf": "VariableID:2207:303"
           }
         }
       },
@@ -799,7 +799,7 @@
       },
       "line height": {
         "$type": "dimension",
-        "$value": "{primitives.text.line height.28}",
+        "$value": "{primitives.text.line height.24}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2209:449",
@@ -809,7 +809,7 @@
             "scopes": [
               "LINE_HEIGHT"
             ],
-            "aliasOf": "VariableID:2207:322"
+            "aliasOf": "VariableID:2207:316"
           }
         }
       }
@@ -997,7 +997,7 @@
       },
       "font size": {
         "$type": "dimension",
-        "$value": "{primitives.text.font size.16}",
+        "$value": "{primitives.text.font size.14}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2207:332",
@@ -1007,7 +1007,7 @@
             "scopes": [
               "FONT_SIZE"
             ],
-            "aliasOf": "VariableID:2207:301"
+            "aliasOf": "VariableID:2207:300"
           }
         }
       },
@@ -1046,7 +1046,7 @@
       },
       "line height": {
         "$type": "dimension",
-        "$value": "{primitives.text.line height.24}",
+        "$value": "{primitives.text.line height.20}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2207:334",
@@ -1056,7 +1056,7 @@
             "scopes": [
               "LINE_HEIGHT"
             ],
-            "aliasOf": "VariableID:2207:316"
+            "aliasOf": "VariableID:2207:324"
           }
         }
       }
@@ -1078,7 +1078,7 @@
       },
       "font size": {
         "$type": "dimension",
-        "$value": "{primitives.text.font size.14}",
+        "$value": "{primitives.text.font size.12}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2207:337",
@@ -1088,7 +1088,7 @@
             "scopes": [
               "FONT_SIZE"
             ],
-            "aliasOf": "VariableID:2207:300"
+            "aliasOf": "VariableID:2207:308"
           }
         }
       },
@@ -1127,7 +1127,7 @@
       },
       "line height": {
         "$type": "dimension",
-        "$value": "{primitives.text.line height.20}",
+        "$value": "{primitives.text.line height.16}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2207:339",
@@ -1137,7 +1137,7 @@
             "scopes": [
               "LINE_HEIGHT"
             ],
-            "aliasOf": "VariableID:2207:324"
+            "aliasOf": "VariableID:2207:314"
           }
         }
       }
@@ -1242,7 +1242,7 @@
       },
       "font size": {
         "$type": "dimension",
-        "$value": "{primitives.text.font size.20}",
+        "$value": "{primitives.text.font size.18}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2210:457",
@@ -1252,7 +1252,7 @@
             "scopes": [
               "FONT_SIZE"
             ],
-            "aliasOf": "VariableID:2207:303"
+            "aliasOf": "VariableID:2207:302"
           }
         }
       },
@@ -1323,7 +1323,7 @@
       },
       "font size": {
         "$type": "dimension",
-        "$value": "{primitives.text.font size.16}",
+        "$value": "{primitives.text.font size.14}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2210:467",
@@ -1333,7 +1333,7 @@
             "scopes": [
               "FONT_SIZE"
             ],
-            "aliasOf": "VariableID:2207:301"
+            "aliasOf": "VariableID:2207:300"
           }
         }
       },
@@ -1372,7 +1372,7 @@
       },
       "line height": {
         "$type": "dimension",
-        "$value": "{primitives.text.line height.20}",
+        "$value": "{primitives.text.line height.18}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2210:469",
@@ -1382,7 +1382,7 @@
             "scopes": [
               "LINE_HEIGHT"
             ],
-            "aliasOf": "VariableID:2207:324"
+            "aliasOf": "VariableID:2207:315"
           }
         }
       }

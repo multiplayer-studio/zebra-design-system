@@ -37,7 +37,7 @@ export interface ButtonProps extends Omit<React.ComponentPropsWithoutRef<typeof 
  * @spec specs/button/button.spec.md
  */
 export const Button = React.forwardRef<HTMLElement, ButtonProps>(function Button(
-  { flavour = "primary", size = "small", shape = "sharp", leadingIcon, trailingIcon, className, children, ...rest },
+  { flavour = "primary", size = "medium", shape = "rounded", leadingIcon, trailingIcon, className, children, ...rest },
   ref,
 ) {
   // The icon follows the button's shape: only shape="sharp" takes the sharp

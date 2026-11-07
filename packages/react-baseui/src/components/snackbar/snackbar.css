@@ -14,7 +14,7 @@
   /* contextual: radius/pill (spec: Radius). The message never wraps. */
   --zds-snackbar-radius: var(--radius-pill);
   --zds-snackbar-icon: currentColor;
-  --zds-snackbar-bg: var(--surface-popover);
+  --zds-snackbar-bg: var(--surface-overlay);
   --zds-snackbar-fg: var(--foreground-primary);
 }
 

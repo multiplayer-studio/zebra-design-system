@@ -19,7 +19,7 @@ export default css`
 
   /* ---- backdrop ---------------------------------------------------------- */
   /* spec issue "There is no usable backdrop token": overlay/modal aliases the
-     opaque surface/dialog fill, so the backdrop uses the translucent
+     opaque surface/overlay fill, so the backdrop uses the translucent
      overlay/scrim (owner's decision). ::backdrop inherits custom properties
      from the <dialog>, so theme scopes reach it. */
   dialog::backdrop {
@@ -47,7 +47,7 @@ export default css`
     padding: var(--space-md);
     border: var(--stroke-thin) solid var(--border-default);
     border-radius: var(--radius-element-md);
-    background: var(--surface-dialog);
+    background: var(--surface-overlay);
     color: var(--foreground-primary);
     /* spec note "There is no elevation": shadow/large on shadow/soft is used
        so the panel reads as raised above the scrim, as the dropdown menu and

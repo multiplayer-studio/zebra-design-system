@@ -69,9 +69,9 @@ Anatomy: a horizontal container (no gap, no padding, no fill, hugs) holding:
 
 | size | Button size | height | padding inline / block | label | icon | measured width |
 |---|---|---|---|---|---|---|
-| small | small | `control/sm` | `space/md` / `space/xxs` | `label/medium` | Icon small | 109Px |
-| medium | medium | `control/md` | `space/md` / `space/xxs` | `label/large` | Icon medium | 131Px |
-| large | large | `control/lg` | `space/lg` / `space/xxs` | `label/large` | Icon medium | 139Px |
+| small | small | `control/sm` | `space/md` / `space/2xs` | `label/medium` | Icon small | 109Px |
+| medium | medium | `control/md` | `space/md` / `space/2xs` | `label/large` | Icon medium | 131Px |
+| large | large | `control/lg` | `space/lg` / `space/2xs` | `label/large` | Icon medium | 139Px |
 
 (All Button's own values for that size; the wrapper doesn't override them.)
 

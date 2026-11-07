@@ -71,15 +71,23 @@ describe("zeta-progress (spec)", () => {
   });
 
   describe("Dimensions", () => {
-    it("draws the bar 8px small and 16px medium, with radius/sm and radius/md ends", async () => {
+    it("draws the bar 8px small and 16px large, with radius/sm and radius/md ends", async () => {
       const el = await fixture<ZetaProgressBar>(html`<zeta-progress-bar size="small" value="0.5"></zeta-progress-bar>`);
       const track = one(el, ".track");
       await expect(track.getBoundingClientRect().height).to.equal(8);
       await expect(getComputedStyle(track).borderTopLeftRadius).to.equal(v(el, "--radius-sm"));
-      el.size = "medium";
+      el.size = "large";
       await elementUpdated(el);
       await expect(track.getBoundingClientRect().height).to.equal(16);
       await expect(getComputedStyle(track).borderTopLeftRadius).to.equal(v(el, "--radius-md"));
+    });
+
+    it("defaults to large and keeps medium as its old name", async () => {
+      const el = await fixture<ZetaProgressBar>(html`<zeta-progress-bar value="0.5"></zeta-progress-bar>`);
+      await expect(el.size).to.equal("large");
+      el.size = "medium";
+      await elementUpdated(el);
+      await expect(one(el, ".track").getBoundingClientRect().height).to.equal(16);
     });
 
     it("sizes the circle by name, and still takes pixel numbers", async () => {
@@ -96,6 +104,11 @@ describe("zeta-progress (spec)", () => {
       const el = await fixture<ZetaProgressBar>(html`<zeta-progress-bar value="0.5"></zeta-progress-bar>`);
       await expect(getComputedStyle(one(el, ".track")).backgroundColor).to.equal(colorOf(el, "--surface-track"));
       await expect(getComputedStyle(one(el, ".bar")).backgroundColor).to.equal(colorOf(el, "--foreground-link"));
+    });
+
+    it("paints the buffer band surface/shade", async () => {
+      const el = await fixture<ZetaProgressBar>(html`<zeta-progress-bar buffering value="0.25" buffer="0.75"></zeta-progress-bar>`);
+      await expect(getComputedStyle(one(el, ".buffer")).backgroundColor).to.equal(colorOf(el, "--surface-shade"));
     });
 
     it("strokes the circle's track border/subtle and arc border/info at stroke/heavy, butt-capped when sharp", async () => {

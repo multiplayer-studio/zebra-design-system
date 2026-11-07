@@ -27,6 +27,11 @@ export const ShowAvatar: Story = {
         <InputChip onRemove={noop}>Grace Hopper</InputChip>
       </Row>
       <Row>
+        <InputChip avatarColor="chart/series/1" onRemove={noop}>Store Associate</InputChip>
+        <InputChip avatarColor="yellow" onRemove={noop}>French Wine SME</InputChip>
+        <InputChip avatarColor="#8a1538" onRemove={noop}>New York Store D</InputChip>
+      </Row>
+      <Row>
         <InputChip showAvatar={false} onRemove={noop}>invoices-2026</InputChip>
         <InputChip showAvatar={false} onRemove={noop}>Urgent</InputChip>
       </Row>

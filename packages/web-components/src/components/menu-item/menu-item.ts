@@ -2,6 +2,8 @@ import { LitElement, html, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./menu-item.styles.js";
 import "../icon/icon.js";
+import "../checkbox/checkbox.js";
+import "../radio/radio.js";
 import type { IconName } from "@zebra-design-system/icons/names";
 
 export type MenuItemType = "icon" | "checkbox" | "radio" | "custom";
@@ -10,17 +12,16 @@ export type MenuItemType = "icon" | "checkbox" | "radio" | "custom";
  * A single selectable row inside a `zds-dropdown-menu` (or any menu-shaped
  * list built without one).
  *
- * `type` names the role the row plays, but Figma models no anatomy
- * difference between icon, checkbox and radio — all three are the same
- * exposed Icon instance, and the tick/dot mark is whichever glyph a consumer
- * picks for `leading-icon` (spec `internalVariations`: "the radio mark has to
- * come from the glyph you pick rather than from the variant"). This element
- * still surfaces `type` as a real property instead of a documentation-only
- * label because it drives the row's ARIA role — `menuitemradio` /
- * `menuitemcheckbox` / `menuitem` — which the spec explicitly leaves to code
- * ("Radio and checkbox are named roles rather than built controls... has to
- * be set in code"). This is a deliberate accessibility improvement beyond
- * what Figma models, not a faithful reproduction of an anatomy Figma draws.
+ * `type` picks what leads the row. Icon rows take `leading-icon`; checkbox
+ * and radio rows lead with a real `zds-checkbox` / `zds-radio` at size
+ * medium, checked when the row is `selected` and disabled with it. Figma
+ * leaves that control unchecked in every state (spec warn), so code follows
+ * the row instead. The control only shows state: the row stays the one
+ * interactive element, with the matching ARIA role (`menuitemcheckbox` /
+ * `menuitemradio`), and the control is inert and hidden from assistive
+ * technology. The whole row is the click target: activating a checkbox row
+ * toggles `selected`, a radio row selects itself and clears the radio rows
+ * beside it, and both fire `change`.
  *
  * `state` in the spec is mostly CSS: hover and focus are real `:hover` /
  * `:focus-visible`. `selected` is the one state Figma models that has no
@@ -39,6 +40,7 @@ export type MenuItemType = "icon" | "checkbox" | "radio" | "custom";
  *   node swap for Type=custom was not independently re-verified from Figma
  *   (spec issue, extraction-limit) — confirm visually if this ever looks off.
  * @part row - The row element.
+ * @fires change - A checkbox or radio row's `selected` changed from the row being activated.
  *
  * @spec specs/dropdown/dropdown.spec.json
  */
@@ -46,7 +48,7 @@ export type MenuItemType = "icon" | "checkbox" | "radio" | "custom";
 export class ZdsMenuItem extends LitElement {
   static styles = styles;
 
-  /** Names the row's role — Icon, checkbox and radio share one anatomy; only the ARIA role and the glyph you pick differ. */
+  /** What leads the row: an icon, a real checkbox or radio that shows `selected`, or the `leading` slot. */
   @property({ type: String, reflect: true }) type: MenuItemType = "icon";
 
   /** Corner treatment. Match the `zds-dropdown-menu` panel that holds it. */
@@ -58,7 +60,7 @@ export class ZdsMenuItem extends LitElement {
   /** The option is currently chosen. Combined with real `:focus-visible`, this also covers Figma's "selected focus". */
   @property({ type: Boolean, reflect: true }) selected = false;
 
-  /** Icon before the label. `null` hides the leading position (ignored when `type="custom"`, which uses the `leading` slot instead). */
+  /** Icon before the label, for `type="icon"`. `null` hides the leading position. */
   @property({ type: String, attribute: "leading-icon" }) leadingIcon: IconName | null = null;
 
   /** Icon after the label, e.g. a submenu arrow or an external-link mark. */
@@ -78,11 +80,35 @@ export class ZdsMenuItem extends LitElement {
     }
   }
 
+  // The whole row is the control's click target: a checkbox row toggles, a
+  // radio row selects itself and clears the radio rows beside it.
   private onClick(e: MouseEvent) {
     if (this.disabled) {
       e.stopImmediatePropagation();
       e.preventDefault();
+      return;
     }
+    if (this.type === "checkbox") this.setSelected(!this.selected);
+    else if (this.type === "radio" && !this.selected) {
+      for (const row of this.parentElement?.children ?? []) {
+        if (row !== this && row instanceof ZdsMenuItem && row.type === "radio") row.selected = false;
+      }
+      this.setSelected(true);
+    }
+  }
+
+  private setSelected(selected: boolean) {
+    this.selected = selected;
+    this.dispatchEvent(new Event("change", { bubbles: true, composed: true }));
+  }
+
+  private renderLeading() {
+    if (this.type === "custom") return html`<span class="leading"><slot name="leading"></slot></span>`;
+    if (this.type === "checkbox")
+      return html`<zds-checkbox class="leading control" size="medium" inert aria-hidden="true" .checked=${this.selected} .disabled=${this.disabled}></zds-checkbox>`;
+    if (this.type === "radio")
+      return html`<zds-radio class="leading control" size="medium" inert aria-hidden="true" .checked=${this.selected} .disabled=${this.disabled}></zds-radio>`;
+    return this.leadingIcon ? html`<zds-icon class="leading" name=${this.leadingIcon} size="small"></zds-icon>` : nothing;
   }
 
   protected render() {
@@ -99,11 +125,7 @@ export class ZdsMenuItem extends LitElement {
         @keydown=${this.onKeydown}
         @click=${this.onClick}
       >
-        ${this.type === "custom"
-          ? html`<span class="leading"><slot name="leading"></slot></span>`
-          : this.leadingIcon
-            ? html`<zds-icon class="leading" name=${this.leadingIcon} size="small"></zds-icon>`
-            : nothing}
+        ${this.renderLeading()}
         <span class="label"><slot></slot></span>
         ${this.trailingIcon ? html`<zds-icon class="trailing" name=${this.trailingIcon} size="small"></zds-icon>` : nothing}
       </div>

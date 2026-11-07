@@ -15,9 +15,9 @@ const meta: Meta = {
     shape: { control: "inline-radio", options: ["sharp", "rounded", "full"] },
     flavour: { control: "inline-radio", options: ["default", "gradient", "ghost"] },
   },
-  args: { label: "Field name", labelType: "optional", information: false, hint: "Default hint message", hintIcon: true, state: "default", type: "text", size: "medium", shape: "rounded", flavour: "default", placeholder: "Placeholder" },
+  args: { label: "Field name", labelType: "optional", information: false, subLabel: "", hint: "Default hint message", hintIcon: true, state: "default", type: "text", size: "medium", shape: "rounded", flavour: "default", block: false, placeholder: "Placeholder" },
   render: (a) => html`<div style="max-inline-size:320px">
-    <zds-input label=${a.label} label-type=${a.labelType} ?information=${a.information} hint=${a.hint} ?hint-icon=${a.hintIcon} state=${a.state}
+    <zds-input label=${a.label} label-type=${a.labelType} ?information=${a.information} sub-label=${a.subLabel} hint=${a.hint} ?hint-icon=${a.hintIcon} state=${a.state}
       type=${a.type} size=${a.size} shape=${a.shape} flavour=${a.flavour} placeholder=${a.placeholder}></zds-input></div>`,
 };
 export default meta;
@@ -39,7 +39,9 @@ export const LabelTypes: Story = {
     <zds-input label="Default" placeholder="Placeholder"></zds-input>
     <zds-input label="Required" label-type="required" placeholder="Placeholder"></zds-input>
     <zds-input label="Optional" label-type="optional" placeholder="Placeholder"></zds-input>
-    <zds-input label="With information" information information-label="About this field" placeholder="Placeholder"></zds-input>`),
+    <zds-input label="With information" information information-label="About this field" placeholder="Placeholder"></zds-input>
+    <zds-input label="With sub label" sub-label="Description" placeholder="Placeholder"></zds-input>
+    <zds-input label="Sub label, disabled" sub-label="Description" state="disabled" placeholder="Placeholder"></zds-input>`),
 };
 
 /** Show Label / Show Hint: an empty label or hint removes its row, and the stack shortens. */
@@ -54,6 +56,15 @@ export const Parts: Story = {
 export const Types: Story = {
   render: () => row((["text", "number", "password", "date", "time"] as const).map((t) => html`<zds-input label=${t} type=${t} hint="Hint"
     placeholder=${t === "number" ? "0" : t === "password" ? "Password" : t === "text" ? "Placeholder" : nothing}></zds-input>`)),
+};
+
+/** Starts at 280 and narrows to fit its container. `block` fills the container. */
+export const Block: Story = {
+  render: () => html`<div style="display:grid;gap:16px;max-width:640px">
+    <zds-input label="Default" placeholder="Placeholder"></zds-input>
+    <zds-input block label="Block" placeholder="Placeholder"></zds-input>
+    <div style="inline-size:200px"><zds-input label="Default, 200 container" placeholder="Placeholder"></zds-input></div>
+  </div>`,
 };
 
 /** The assembly submits under its name; required blocks submit; Reset restores. */

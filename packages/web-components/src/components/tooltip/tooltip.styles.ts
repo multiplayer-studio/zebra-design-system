@@ -30,11 +30,11 @@ export default css`
   /* ---- anatomy: bubble ------------------------------------------------- */
   .bubble {
     /* Pointer geometry. spec issue "Pointer isn't token sized": Figma draws a
-       fixed 8x4 vector; here its depth is --space-xxs (4px, the bubble's own
+       fixed 8x4 vector; here its depth is --space-2xs (4px, the bubble's own
        block padding) and its base twice that, so a theme that shrinks the
        bubble's padding shrinks the pointer with it. Drawn as a square of side
        depth*sqrt(2) rotated 45deg and half-buried in the bubble edge. */
-    --zds-tooltip-pointer-depth: var(--space-xxs);
+    --zds-tooltip-pointer-depth: var(--space-2xs);
     --zds-tooltip-pointer-box: calc(var(--zds-tooltip-pointer-depth) * 1.41421);
     --zds-tooltip-pointer-tip: var(--radius-none);
 
@@ -43,7 +43,7 @@ export default css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: var(--space-xxs) var(--space-sm);
+    padding: var(--space-2xs) var(--space-sm);
     border-radius: var(--radius-sm);
     background: var(--surface-inverse);
     color: var(--foreground-inverse);
@@ -136,7 +136,7 @@ export default css`
 
   /* Motion (owner decision; none in Figma): fades in while sliding toward
      the trigger, from the side away from the tip, and fades out, on
-     animations/smooth. The slide is the pointer's depth (--space-xxs), read
+     animations/smooth. The slide is the pointer's depth (--space-2xs), read
      off the side the positioner placed the bubble on ([data-side]). display
      and overlay transition discretely, so the popover stays in the top layer
      until the fade-out ends; the host holds [data-closing] for that long. */
@@ -154,10 +154,10 @@ export default css`
     .bubble[popover]:popover-open {
       opacity: 0;
     }
-    .bubble[popover]:popover-open[data-side="top"] { translate: 0 calc(-1 * var(--space-xxs)); }
-    .bubble[popover]:popover-open[data-side="bottom"] { translate: 0 var(--space-xxs); }
-    .bubble[popover]:popover-open[data-side="left"] { translate: calc(-1 * var(--space-xxs)) 0; }
-    .bubble[popover]:popover-open[data-side="right"] { translate: var(--space-xxs) 0; }
+    .bubble[popover]:popover-open[data-side="top"] { translate: 0 calc(-1 * var(--space-2xs)); }
+    .bubble[popover]:popover-open[data-side="bottom"] { translate: 0 var(--space-2xs); }
+    .bubble[popover]:popover-open[data-side="left"] { translate: calc(-1 * var(--space-2xs)) 0; }
+    .bubble[popover]:popover-open[data-side="right"] { translate: var(--space-2xs) 0; }
   }
   @media (prefers-reduced-motion: reduce) {
     .bubble[popover] {

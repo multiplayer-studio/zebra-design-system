@@ -15,10 +15,10 @@ const SHAPED_TAGS = new Set(["ZDS-BUTTON", "ZDS-ICON-BUTTON"]);
  * trailing action. Reach for it on a pushed screen with exactly one primary
  * action.
  *
- * Overlaps Top App Bar (Figma `3116:1217`, not built yet), which covers the
- * same screen-level role with more layouts and slots; this is effectively its
- * single-action preset. Use Top App Bar once it exists when a screen needs
- * more than one action or a different leading control.
+ * Overlaps `<zds-top-app-bar>`, which covers the same screen-level role with
+ * more layouts and slots; this is effectively its single-action preset. Use
+ * Top App Bar when a screen needs more than one action or a different leading
+ * control.
  *
  * Departures from Figma, each a spec issue:
  * - The leading control is a `<zds-icon-button>` (medium, subtle,
@@ -26,10 +26,9 @@ const SHAPED_TAGS = new Set(["ZDS-BUTTON", "ZDS-ICON-BUTTON"]);
  *   describes. It is reachable by keyboard, named "Back" (`back-label`), and
  *   fires `zds-back`.
  * - Height, padding and gap are the bound tokens (space/md around control/md,
- *   left space/sm, gap space/xs = 64px), not the metadata's 56 / space/lg.
- * - `shape` (Figma `Rounded`) reaches both the back button and a slotted
- *   `<zds-button>` / `<zds-icon-button>`. Figma left the back button sharp in
- *   both variants, mixing corners.
+ *   left space/sm, gap space/2xs = 64px), not the metadata's 56 / space/lg.
+ * - `shape` (Figma `Rounded`) also reaches a slotted `<zds-button>` /
+ *   `<zds-icon-button>`, not only the one Figma ships in the slot.
  * - The bar fills its container's width (Figma ships a fixed 474).
  * - No subtitle: Figma's heading wrapper has a gap for one but no property.
  *

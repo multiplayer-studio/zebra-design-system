@@ -1,181 +1,473 @@
 # Table
 
-A data table with rows of content arranged in columns, framed by an optional controls bar above and a pagination footer below. Reading top to bottom it is the controls bar, the table content, and the footer, each of the two outer bars removable on its own without affecting the other. This instance always lays out its columns in the plain left-to-right arrangement, not the frozen or horizontally scrolling arrangement Table Content also offers.
+A data table with rows of content in columns, framed by an optional controls bar above and a footer below. It can select and count rows, sort, search, filter and page them, resize, show, hide and freeze columns, and open a compact actions menu per row. The controls bar, content and footer are exposed, so their own properties are set from Table.
 
-Source: [Table page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4364-1629) · extracted 2026-10-20, re-extracted the same day for the Shape axis
+Source: [Figma page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4364-1629) · extracted 2026-10-31
 
 ## API
 
-| Prop | Type | Values | Default | Controls |
-|---|---|---|---|---|
-| `hasControl` | boolean | true, false | `true` | controls |
-| `hasFooter` | boolean | true, false | `true` | footer |
-| `shape` | enum | rounded, sharp | `rounded` | table corners, nested components' shape |
+| Prop | Type | Values | Default | Via | Controls |
+|---|---|---|---|---|---|
+| `hasControl` | boolean | | `True` | Table | controls |
+| `hasFooter` | boolean | | `True` | Table | footer |
+| `shape` | enum | rounded, sharp | `rounded` | Table | root.radius, root.clips, controls.search.shape, controls.controlsSlot (Icon Button shape), cells (Button, Checkbox shape; Status Label rounded), footer.pagination.rounded |
+| `selectable` | boolean | | `True` | Table Content (exposed) | content.selectColumn |
+| `rowActions` | boolean | | `True` | Table Content (exposed) | content.actionsColumn |
+| `verticalScroll` | enum | false, true | `false` | Table Content (exposed) | content (variant) |
+| `columnPosition` | enum | default, frozen | `default` | Table Content (exposed) | content (variant) |
+| `horizontalScroll` | enum | false, true | `false` | Table Content (exposed) | content (variant) |
+| `selectedCount` | boolean | | `True` (component: `False`) | Table Controls (exposed) | controls.selectedCount |
+| `columnSettings` | boolean | | `True` (component: `False`) | Table Controls (exposed) | controls.columnSettings |
+| `search` | boolean | | `True` | Table Controls (exposed) | controls.search |
+| `controls` | boolean | | `True` | Table Controls (exposed) | controls.controlsSlot |
+| `rowsPerPage` | boolean | | `True` (component: `False`) | Table Footer (exposed) | footer.rowsPerPage |
+| `pageDetails` | boolean | | `True` | Table Footer (exposed) | footer.pageDetails |
+| `pagination` | boolean | | `True` | Table Footer (exposed) | footer.pagination |
 
-**hasControl** — true: "Shows the controls bar above the content, holding the search field and the controls slot. Turn it off when the table doesn't need its own search or extra actions above it." · false: "Removes the controls bar entirely, the content starts at the top of the table."
+- **hasControl** — true: "Shows the controls bar above the content, holding the search field and the controls slot. Turn it off when the table doesn't need its own search or extra actions above it." · false: "Removes the controls bar entirely, the content starts at the top of the table."
+- **hasFooter** — true: "Shows the footer below the content, holding the page summary text and the pagination control. Turn it off for a table short enough that pagination has nothing to do." · false: "Removes the footer entirely, the content ends at the bottom of the table."
+- **shape** — rounded: "Every component inside the table takes its rounded option: search, buttons, checkboxes, status labels and pagination, including the table's own corners." · sharp: "Every component inside the table takes its sharp option."
+- **selectable** — true: "Adds the selection column: select-all in the header and a checkbox per row."
+- **rowActions** — true: "Adds a trailing more button per row that opens a compact menu of the row's actions."
+- **verticalScroll** — false: "The content grows with its rows." · true: "Caps the content height so rows scroll under a sticky header."
+- **selectedCount** — true: "An info Label at the start of the controls bar counts the selected rows. It shows only while rows are selected."
+- **columnSettings** — true: "A settings button at the end of the controls bar opens the column panel to show, hide and freeze columns."
+- **rowsPerPage** — true: "A small compact Select after the page summary sets how many rows each page shows."
 
-**hasFooter** — true: "Shows the footer below the content, holding the page summary text and the pagination control. Turn it off for a table short enough that pagination has nothing to do." · false: "Removes the footer entirely, the content ends at the bottom of the table."
-
-**shape** — rounded: "Every component inside the table takes its rounded option: search, buttons, checkboxes, status labels and pagination, including the table's own corners." · sharp: "Every component inside the table takes its sharp option."
-
-Values anywhere in this document are token names. The only literals are inside verbatim metadata quotes and inside issues; measurements are suffixed Px.
+Values anywhere in this document are token names. The only literals are inside verbatim metadata quotes and inside gaps.
 
 ## Internal variations & content inputs
 
-**Content arrangement** — via Table Content: `columnPosition` (default, frozen) × `horizontalScroll` (false, true). Table pins default × false and exposes neither.
-
-**Controls bar and footer parts** — Table Controls has `search` and `controls`; Table Footer has `pageDetails` and `pagination`. Not reachable from Table: `hasControl` / `hasFooter` toggle each bar whole.
-
-**Cell content** — each `_Data Cell` swaps its content (default `_Avatar and text`). Preferred, per the metadata: Avatar + Text, Button, Icon Button, Checkbox, Status Label, Search, Slot (see issues on the keys).
-
-**Content inputs** — columns (5 sample `Table Column/Default`), rows per column (5 sample `_Data Cell`), controls-slot actions (3 sample outline-subtle Icon Buttons), the page summary ("Showing 1-3 of 21"), header labels, and avatar / title / subtitle per cell.
+- **content** via Table Content — columnPosition: default, frozen; horizontalScroll: false, true; verticalScroll: false, true. Exposed on Table through the Table Content instance. Modelled combinations: default (with or without vertical scroll), frozen, frozen with horizontal scroll.
+- **menus** via _Table Menu — type: row actions, filter, column settings. Compact row actions, filter and column settings menus.
+- **content** content input `columns` — 5 in the sample, from Table Column/Default instances, 2 fixed + 3 in the Slot Container.
+- **column** content input `rows` — 5 in the sample, from _Data Cell instances, 3 fixed + 2 in the column's Slot Container.
+- **controls.controlsSlot** content input `actions` — 3 in the sample, from Icon Button (Size=small, Shape=sharp, Flavour=outline-subtle).
+- **footer.pageDetails** content input `label` — None in the sample, from .
+- **headerCell.label** content input `label` — None in the sample, from .
+- **avatarAndText** content input `['avatar src', 'title', 'subtitle']` — None in the sample, from .
 
 ## Anatomy
 
-Root: vertical stack, no gap, no padding; fixed width (979Px measured), hugs height.
+1. **root** (container)
+2. **controls** (instance; ref Table Controls; visible when `hasControl`; exposed instance) — "Holds the selected count, a search field, the Controls Slot and the column settings button. Each is a property of the exposed instance."
+3. **content** (instance; ref Table Content; exposed instance) — "Holds the selection column, the data columns and the actions column. Column Position, Horizontal Scroll, Vertical Scroll, Selectable and Row Actions are exposed."
+4. **footer** (instance; ref Table Footer; visible when `hasFooter`; exposed instance) — "Holds the page summary, rows per page and Pagination. Each is a property of the exposed instance."
+5. **selectColumn** (instance; ref Table Column/Select; visible when `selectable`) — "_Select Cell rows: select-all, checked, selected and disabled."
+6. **actionsColumn** (instance; ref Table Column/Actions; visible when `rowActions`) — "_Actions Cell rows: the more button, open, selected and disabled."
+7. **menus** (instance; ref _Table Menu; not placed in the Table; a separate subcomponent) — "Compact row actions, filter and column settings menus."
+8. **emptyRow** (instance; ref _Empty Row; not placed in the Table; a separate subcomponent) — "Spans every column when nothing matches."
+9. **tooltip** (instance; ref Tooltip; not placed in the Table; a separate subcomponent) — "Shows cut-off text in full. Hidden from assistive technology."
 
-1. **Controls bar** — Table Controls, visible when `hasControl`. "Holds a search field that can be toggled on/off. Controls Slot houses extra actions, and can be shown/hidden with the hasControl property."
-2. **Content** — Table Content, `columnPosition=default`, `horizontalScroll=false`; fills width, hugs height. "Subcomponent that contains table data. Column position and horizontal scroll can be adjusted, and is set to default in this example. Default column positions do not allow for fixed columns or horizontal scrolling. The rows and columns themselves, always in the plain left-to-right arrangement for this instance. Columns can be formatted based on user preference (i.e width). Cell content can be swapped in individual data cells. Slot container allows users to freely add/remove any number of columns and adjust sizing based on their requirements."
-3. **Footer** — Table Footer, visible when `hasFooter`. "Holds a locked summary text and a Pagination instance. Shown or hidden as a whole by hasFooter. Both page details and pagination can be toggled on/off for the footer itself."
+**Anatomy annotations (verbatim):**
+
+- 1. **Controls bar** — "Holds a search field that can be toggled on/off. Controls Slot houses extra actions, and can be shown/hidden with the hasControl property."
+- 2.1. **Content - default** — "Subcomponent that contains table data. Column position and horizontal scroll can be adjusted, and is set to default in this example. Default column positions do not allow for fixed columns or horizontal scrolling.
+ The rows and columns themselves, always in the plain left-to-right arrangement for this instance. Columns can be formatted based on user preference (i.e width). Cell content can be swapped in individual data cells.
+
+Slot container allows users to freely add/remove any number of columns and adjust sizing based on their requirements."
+- 2.2 **Content - frozen** — "Subcomponent that contains table data. Column position and horizontal scroll can be adjusted, and is set to frozen in this example. 
+
+Frozen column positions can allow for fixed columns (as shown) or horizontal scrolling, enabled via the ‘Horizontal Scroll’ property.
+
+Frozen slot container allows for the customization of the number of columns that will remain frozen/locked."
+- **Footer** — "Holds a locked summary text and a Pagination instance. Shown or hidden as a whole by hasFooter. Both page details and pagination can be toggled on/off for the footer itself."
+- **Column** — "Each column is its own Table Column/Default instance with one open slot, sized to whatever content fills it. Preferred instances: 
+Avatar + Text
+Button
+Icon Button
+Checkbox
+Status Label
+Search
+Slot"
 
 ## Variants
 
-| shape | Table radius | Nested components |
-|---|---|---|
-| rounded (default) | `radius/element-md`, clips its content | Search, Icon Button, Button, Checkbox `Shape=rounded`; Status Label, Pagination `Rounded=true` |
-| sharp | none (raw 0, no token) | the same components `Shape=sharp` / `Rounded=false` |
+| shape | root.radius | root.clips | nested |
+|---|---|---|---|
+| rounded | radius/element-md | True | Search, Icon Button, Button, Checkbox Shape=rounded; Status Label, Pagination Rounded=true |
+| sharp | none (raw 0, no token) | False | Search, Icon Button, Button, Checkbox Shape=sharp; Status Label, Pagination Rounded=false |
 
-The bars and content keep square corners; the table's clip rounds them. Subcomponent variant tables follow.
+Nested counts in the sample: 1 Search, 3 Icon Buttons, 5 Buttons, 5 Checkboxes, 5 Status Labels, 1 Pagination. The bars and content keep square corners; the root's clip rounds them.
 
 ## Subcomponents
 
-### Table Controls
-Props: `search` (true), `controls` (true), `controlsSlot` (slot). Horizontal, end-aligned, gap `space/sm`, padding `space/lg` inline / `space/md` block, fill `surface/section`; hugs height (60Px measured).
-- **search** — Search, Shape=sharp, Size=small, Flavour=default, cancel and leading icon on (280Px min width measured).
-- **controlsSlot** — horizontal, gap `space/sm`, clips. Sample: three outline-subtle Icon Buttons.
-
-### Table Content
-Props: `columnPosition` (default | frozen), `horizontalScroll` (false | true), `slotContainer`, `frozenSlotContainer`.
-
-| columnPosition | horizontalScroll | Parts |
-|---|---|---|
-| default | false | 2 fixed columns + slotContainer (gap `space/none`, clips) |
-| frozen | false | frozenSlotContainer (end stroke `border/default` @ `stroke/thin`) + scrollable columns |
-| frozen | true | as above + `Shadow/medium-horizontal` on the frozen side + horizontal Scrollbar pinned to the bottom (padding `space/xxs`) |
-
-default × true isn't modelled.
-
-### Table Footer
-Props: `pageDetails` (true), `pagination` (true). Horizontal, space-between, padding `space/lg` / `space/md`, fill `surface/section`; hugs height (60Px measured).
-- **pageDetails** — `body/small`, `foreground/secondary`.
-- **pagination** — Pagination, Outline=true, Rounded=false, controls on, more off; gap `space/sm`.
-
-### Table Column/Default
-Prop: `slotContainer`. Vertical, no gap; fixed width (200Px measured), hugs height. A `_Header Cell`, three fixed `_Data Cell` rows, then the slot (sample: two more rows).
-
-### Table Column/true
-Not on any page; used only by Table Content's frozen variants. Same as Column/Default plus an end stroke `border/default` (raw 1 weight).
-
-### _Header Cell
-Props: `state` (enabled | hover | focus | disabled), `sorted` (true | false). Top and bottom stroke `border/default` @ `stroke/thin`; cell padding `space/lg` / `space/md`.
-
-| state | sorted | cell fill | other |
+### Table Controls · `5302:5786`
+| Prop | Type | Values | Default |
 |---|---|---|---|
-| enabled | true | `interactive/neutral/background/default` | — |
-| enabled | false | — | (flips _Label `sort`, no visible effect) |
-| hover | true | `interactive/neutral/background/hover` | filter glyph on |
-| focus | true | `interactive/neutral/background/focused` | stroke `border/focus` @ `stroke/thick`; filter glyph on |
-| disabled | true | `interactive/neutral/background/disabled` | label disabled; filter glyph on |
+| `selectedCount` | boolean | | `False` |
+| `search` | boolean | | `True` |
+| `controls` | boolean | | `True` |
+| `controlsSlot` | slot | | `` |
+| `columnSettings` | boolean | | `False` |
+- **root** — {"kind": "container", "layout": {"direction": "horizontal", "gap": "space/sm", "padding": {"inline": "space/lg", "block": "space/md"}, "justify": "end", "align": "center"}, "sizing": {"h": "fixed (fill inside Table)", "v": "hug"}, "paint": {"fill": "surface/section"}, "measured": {"heightPx": 60}}
+- **selectedCount** — {"kind": "container", "visibleWhen": "selectedCount", "layout": {"direction": "horizontal", "align": "center"}, "sizing": {"h": "fill", "v": "hug"}, "children": [{"id": "countLabel", "kind": "instance", "ref": "Label", "refVariant": "Variant=info, Shape=sharp, Bold=true, Outlined=false", "exposed": true, "content": "label text (sample: 1 selected / 2 selected)"}], "note": "Grows to take the bar's free space, so the search and controls stay at the end."}
+- **search** — {"kind": "instance", "ref": "Search", "refVariant": "Shape=sharp, State=enabled, Size=small, Flavour=default", "visibleWhen": "search", "instanceProps": {"showCancel": true, "hasLeading": true, "hasTrailing": false}, "measured": {"minWidthPx": 280}}
+- **controlsSlot** — {"kind": "slot", "visibleWhen": "controls", "layout": {"direction": "horizontal", "gap": "space/sm"}, "sizing": "hug", "clips": true, "sample": "3 × Icon Button (Size=small, Shape=sharp, Flavour=outline-subtle)"}
+- **columnSettings** — {"kind": "instance", "ref": "Icon Button", "refVariant": "Size=small, Shape=sharp, Flavour=outline-subtle, State=default, Disabled=false", "glyph": "settings", "visibleWhen": "columnSettings"}
 
-### _Data Cell
-Props: `state` (enabled | hover | selected | disabled), `content` (slot, default `_Avatar and text`). Bottom stroke `border/subtle` @ `stroke/thin`; cell padding `space/lg` / `space/md`, fixed height (60Px measured).
+### Table Content · `6057:7556`
+| Prop | Type | Values | Default |
+|---|---|---|---|
+| `columnPosition` | enum | default, frozen | `default` |
+| `horizontalScroll` | enum | false, true | `false` |
+| `slotContainer` | slot | | `` |
+| `frozenSlotContainer` | slot | | `` |
+| `selectable` | boolean | | `True` |
+| `rowActions` | boolean | | `True` |
+| `verticalScroll` | enum | false, true | `false` |
+- **root** — {"kind": "container", "layout": {"direction": "horizontal", "gap": "none (raw 0, no token)", "align": "center"}, "sizing": {"h": "fixed (fill inside Table)", "v": "hug"}}
+- **leadingColumns** — {"kind": "instance", "ref": "Table Column/Default", "count": 2, "visibleWhen": "columnPosition = default", "note": "Two columns outside the slot, fixed in the component"}
+- **slotContainer** — {"kind": "slot", "layout": {"direction": "horizontal", "gap": "space/none"}, "sizing": {"h": "fill", "v": "fill"}, "clips": true}
+- **frozenSlotContainer** — {"kind": "slot", "visibleWhen": "columnPosition = frozen", "sizing": "fixed", "clips": true, "paint": {"stroke": {"color": "border/default", "width": "stroke/thin", "sides": "end"}, "effects": {"whenHorizontalScroll": "Shadow/medium-horizontal (shadow/soft; see issues on offset bindings)"}}, "sample": "Table Column/Default + Table Column/true"}
+- **scrollableColumns** — {"kind": "container", "visibleWhen": "columnPosition = frozen", "layout": {"direction": "vertical"}, "sizing": {"h": "fill", "v": "hug"}, "children": ["columns (horizontal, holds slotContainer)", "scrollbar"]}
+- **scrollbar** — {"kind": "instance", "ref": "Scrollbar", "refVariant": "Orientation=horizontal, State=default", "visibleWhen": "columnPosition = frozen AND horizontalScroll = true", "position": {"mode": "absolute", "anchor": "bottom, stretches horizontally"}, "layout": {"padding": "space/2xs"}}
 
-| state | cell fill |
-|---|---|
-| enabled | `interactive/neutral/background/default` |
-| hover | `interactive/neutral/background/hover` |
-| selected | `interactive/neutral/background/selected` |
-| disabled | none (content not dimmed — see issues) |
+Variants:
+- columnPosition: default, horizontalScroll: false, verticalScroll: false, columns: selectColumn, 1 fixed column, Slot Container (3 columns), actionsColumn
+- columnPosition: frozen, horizontalScroll: true, verticalScroll: false, columns: Frozen Slot Container (selectColumn, Table Column/true) + Scrollable Columns (Slot Container, actionsColumn) + horizontal Scrollbar, frozenEdge: effect Shadow/medium-horizontal, end stroke border/default stroke/thin
+- columnPosition: frozen, horizontalScroll: false, verticalScroll: false, columns: as above without the Scrollbar
+- columnPosition: default, horizontalScroll: false, verticalScroll: true, columns: as the default row, root: clips; top-aligned; measured heightPx 260, scrollbar: Scrollbar Orientation=vertical, absolute right/stretch, below the header row
 
-### _Label
-Props: `state` (enabled | disabled), `sort` (unbound), `hasTrailing`. Text `label/medium` `foreground/primary` (disabled `foreground/disabled`) with `_Sort` after it (gap `space/xxs`); trailing glyph `filter`, rounded family, Icon Size=small, colour follows the text.
+Column Position=frozen with Vertical Scroll=true and default with Horizontal Scroll=true are not modelled.
 
-### _Sort
-Props: `state` (default | hover | disabled), `direction` (default | ascending | descending). A drawn 16Px vector with two carets, each its own colour token: inactive `foreground/tertiary` (hover `foreground/secondary`, disabled `foreground/disabled`); active direction `foreground/cursor`.
+### Table Footer · `5302:5897`
+| Prop | Type | Values | Default |
+|---|---|---|---|
+| `pageDetails` | boolean | | `True` |
+| `rowsPerPage` | boolean | | `False` |
+| `pagination` | boolean | | `True` |
+- **root** — {"kind": "container", "layout": {"direction": "horizontal", "justify": "space-between", "align": "center", "padding": {"inline": "space/lg", "block": "space/md"}}, "sizing": {"h": "fixed (fill inside Table)", "v": "hug"}, "paint": {"fill": "surface/section"}, "measured": {"heightPx": 60}}
+- **footerStart** — {"kind": "container", "layout": {"direction": "horizontal", "gap": "space/xl", "align": "center"}, "sizing": "hug"}
+- **pageDetails** — {"kind": "text", "parent": "footerStart", "visibleWhen": "pageDetails", "text": {"style": "body/small", "color": "foreground/secondary", "sample": "Showing 1-3 of 21"}}
+- **rowsPerPage** — {"kind": "container", "parent": "footerStart", "visibleWhen": "rowsPerPage", "layout": {"direction": "horizontal", "gap": "space/sm", "align": "center"}, "children": [{"id": "rowsPerPageLabel", "kind": "text", "text": {"style": "none (gap)", "color": "foreground/secondary", "sample": "Rows per page"}}, {"id": "pageSize", "kind": "instance", "ref": "Input / Select", "refVariant": "Size=small, Shape=sharp, State=filled, Flavour=default", "measured": {"widthPx": 72}, "sample": "5"}]}
+- **pagination** — {"kind": "instance", "ref": "Pagination", "refVariant": "Outline=true, Rounded=false", "visibleWhen": "pagination", "layout": {"gap": "space/sm"}}
 
-### _Avatar and text
-Props: `state` (enabled | disabled), `avatar`, `subtitle`. Horizontal, gap `space/sm`: Avatar xxxsmall (ring, status, close off), title `body/small` `foreground/primary`, subtitle `body/xsmall` `foreground/secondary`; disabled turns both to `foreground/disabled`.
+### Table Column/Default · `5302:5898`
+| Prop | Type | Values | Default |
+|---|---|---|---|
+| `slotContainer` | slot | | `` |
+- **root** — {"kind": "container", "layout": {"direction": "vertical", "gap": "none (raw 0, no token)"}, "sizing": {"h": "fixed", "v": "hug"}, "measured": {"widthPx": 200}}
+- **headerCell** — {"kind": "instance", "ref": "_Header Cell", "refVariant": "State=enabled, Sorted=true", "sizing": {"h": "fill", "v": "hug"}}
+- **dataCells** — {"kind": "instance", "ref": "_Data Cell", "refVariant": "State=enabled", "count": 3, "sizing": {"h": "fill", "v": "hug"}, "note": "Three rows fixed in the component"}
+- **slotContainer** — {"kind": "slot", "layout": {"direction": "vertical"}, "sizing": {"h": "fill", "v": "hug"}, "clips": true, "sample": "2 × _Data Cell"}
 
-### Slot
-Prop: `slot`. A centring wrapper (gap `space/sm`, 36Px tall measured) offered as cell content.
+### Table Column/true · `6050:4835`
+- **root** — {"kind": "container", "paint": {"stroke": {"color": "border/default", "width": "raw 1 (no token)", "sides": "end"}}}
 
-**Dependencies on other pages:** Search, Icon Button, Pagination, Scrollbar, Avatar, Icon, Button.
+### _Header Cell (private) · `5238:5166`
+| Prop | Type | Values | Default |
+|---|---|---|---|
+| `state` | enum | enabled, hover, focus, disabled | `enabled` |
+| `sorted` | enum | true, false | `true` |
+| `resize` | enum | none, hover, focus | `none` |
+- **root** — {"kind": "container", "layout": {"direction": "vertical", "align": "center"}, "sizing": {"h": "fill", "v": "hug"}, "paint": {"stroke": {"color": "border/default", "width": "stroke/thin", "sides": "top, bottom"}}}
+- **cell** — {"kind": "container", "layout": {"direction": "vertical", "padding": {"inline": "space/lg", "block": "space/md"}, "justify": "center"}, "sizing": {"h": "fill", "v": "hug"}, "paint": {"fill": "interactive/neutral/background/default", "stroke": {"color": "border/default", "width": "stroke/base"}}}
+- **label** — {"kind": "instance", "ref": "_Label", "sizing": {"h": "fill", "v": "hug"}}
+- **resizeGrip** — {"kind": "shape", "visibleWhen": "resize != none", "position": {"mode": "absolute", "anchor": "end, full height (right/stretch)"}, "sizing": {"width": "stroke/thick"}, "paint": {"fill": {"hover": "interactive/neutral/border/hover", "focus": "border/focus"}}}
+
+Variants:
+- state: enabled, sorted: true, cell.fill: interactive/neutral/background/default, label: _Label sort=false, hasTrailing=false
+- state: enabled, sorted: false, label: _Label sort=true, hasTrailing=false
+- state: hover, sorted: true, cell.fill: interactive/neutral/background/hover, label: _Label sort=true, hasTrailing=true
+- state: focus, sorted: true, cell.fill: interactive/neutral/background/focused, cell.stroke: border/focus @ stroke/thick, label: _Label sort=true, hasTrailing=true
+- state: disabled, sorted: true, cell.fill: interactive/neutral/background/disabled, label: _Label state=disabled, sort=true, hasTrailing=true
+
+5 of 8 combinations modelled.
+
+### _Data Cell (private) · `5203:3689`
+| Prop | Type | Values | Default |
+|---|---|---|---|
+| `state` | enum | enabled, hover, selected, disabled | `enabled` |
+| `content` | slot | | `_Avatar and text` |
+- **root** — {"kind": "container", "layout": {"direction": "vertical", "align": "center"}, "sizing": {"h": "hug (fill inside a column)", "v": "hug"}, "paint": {"stroke": {"color": "border/subtle", "width": "stroke/thin", "sides": "bottom"}}}
+- **cell** — {"kind": "container", "layout": {"direction": "vertical", "padding": {"inline": "space/lg", "block": "space/md"}, "justify": "center"}, "sizing": {"h": "fill", "v": "fixed"}, "measured": {"heightPx": 60}, "paint": {"fill": "interactive/neutral/background/default", "stroke": {"color": "border/default", "width": "stroke/base"}}}
+- **content** — {"kind": "slot", "ref": "_Avatar and text", "sizing": {"h": "hug", "v": "fill"}}
+
+Variants:
+- state: enabled, cell.fill: interactive/neutral/background/default
+- state: hover, cell.fill: interactive/neutral/background/hover
+- state: selected, cell.fill: interactive/neutral/background/selected
+- state: disabled, cell.fill: none (removed), content: unchanged (stays enabled — see issues)
+
+State=disabled keeps the cell fill interactive/neutral/background/default and sets the content frame's opacity to a raw 0.5 (gap), dimming whatever the cell holds.
+
+### _Label (private) · `5145:1505`
+| Prop | Type | Values | Default |
+|---|---|---|---|
+| `state` | enum | enabled, disabled | `enabled` |
+| `sort` | boolean | | `True` |
+| `hasTrailing` | boolean | | `True` |
+| `filtered` | enum | false, true | `false` |
+- **root** — {"kind": "container", "layout": {"direction": "horizontal", "justify": "space-between", "align": "center"}, "sizing": {"h": "fixed (fill inside a header cell)", "v": "hug"}}
+- **label** — {"kind": "container", "layout": {"direction": "horizontal", "gap": "space/2xs", "align": "center"}, "children": [{"id": "text", "kind": "text", "text": {"style": "label/medium", "color": "foreground/primary"}, "sample": "Label"}, {"id": "sort", "kind": "instance", "ref": "_Sort", "refVariant": "State=default, Direction=default", "note": "always visible; not bound to the sort property"}]}
+- **trailingIcon** — {"kind": "glyph", "glyph": "filter", "family": "rounded", "iconSize": "Icon Size=small", "visibleWhen": "hasTrailing", "color": "currentColor (follows the font)"}
+- **trailingIcon.filtered** — {"note": "Filtered=true colours the filter glyph foreground/cursor (an override on the nested glyph).", "glyph": "filter"}
+
+Variants:
+- state: enabled, text.color: foreground/primary, sort: _Sort State=default
+- state: disabled, text.color: foreground/disabled, sort: _Sort State=disabled
+
+### _Sort (private) · `5413:1195`
+| Prop | Type | Values | Default |
+|---|---|---|---|
+| `state` | enum | default, hover, disabled | `default` |
+| `direction` | enum | default, ascending, descending | `default` |
+- **root** — {"kind": "container", "sizing": "fixed", "measured": {"sizePx": 16}}
+- **carets** — {"kind": "vector", "note": "One drawn vector, two filled regions (up caret, down caret), each bound to its own colour token. Not an Icon instance."}
+
+Variants:
+- state: default, direction: default, up: foreground/tertiary, down: foreground/tertiary
+- state: hover, direction: default, up: foreground/secondary, down: foreground/secondary
+- state: disabled, direction: default, up: foreground/disabled, down: foreground/disabled
+- state: default, direction: ascending, inactive: foreground/tertiary, active: foreground/cursor
+- state: hover, direction: ascending, inactive: foreground/secondary, active: foreground/cursor
+- state: default, direction: descending, active: foreground/cursor, inactive: foreground/tertiary
+- state: hover, direction: descending, active: foreground/cursor, inactive: foreground/secondary
+
+Region order is as drawn; which region is the up caret is not named in the file. disabled × ascending/descending not modelled.
+
+### _Avatar and text (private) · `5137:325`
+| Prop | Type | Values | Default |
+|---|---|---|---|
+| `state` | enum | enabled, disabled | `enabled` |
+| `avatar` | boolean | | `True` |
+| `subtitle` | boolean | | `True` |
+- **root** — {"kind": "container", "layout": {"direction": "horizontal", "gap": "space/sm", "align": "center"}, "sizing": "hug"}
+- **avatar** — {"kind": "instance", "ref": "Avatar", "refVariant": "Size=xxxsmall", "visibleWhen": "avatar", "instanceProps": {"showRing": false, "showStatus": false, "showClose": false}}
+- **title** — {"kind": "text", "text": {"style": "body/small", "color": "foreground/primary"}}
+- **subtitle** — {"kind": "text", "visibleWhen": "subtitle", "text": {"style": "body/xsmall", "color": "foreground/secondary"}}
+
+Variants:
+- state: disabled, title.color: foreground/disabled, subtitle.color: foreground/disabled
+
+### Slot · `5365:6222`
+| Prop | Type | Values | Default |
+|---|---|---|---|
+| `slot` | slot | | `` |
+- **root** — {"kind": "container", "layout": {"direction": "horizontal", "padding": "space/none", "justify": "center", "align": "center"}, "sizing": {"h": "fill", "v": "fixed"}, "measured": {"heightPx": 36}}
+- **slot** — {"kind": "slot", "layout": {"direction": "horizontal", "gap": "space/sm"}, "sizing": {"h": "hug", "v": "fill"}}
+
+### _Select Cell (private) · `7605:2680`
+
+The selection column's cell (selectable). The header holds select-all: indeterminate while some rows shown are selected. Data rows hold a row checkbox; a checked row takes the selected fill. Disabled rows can't be toggled unless the table allows disabled selection.
+
+| Prop | Type | Values | Default |
+|---|---|---|---|
+| `type` | enum | header, data | `header` |
+| `checked` | enum | false, indeterminate, true | `false` |
+| `disabled` | enum | false, true | `false` |
+- **root** — {"kind": "container", "layout": {"direction": "vertical", "align": "center"}, "measured": {"widthPx": 64, "heightPx": {"header": 46, "data": 61}}, "paint": {"stroke": {"header": {"color": "border/default", "top": "stroke/thin", "bottom": "stroke/thin"}, "data": {"color": "border/subtle", "bottom": "stroke/thin"}}}}
+- **cell** — {"kind": "container", "layout": {"direction": "horizontal", "align": "center", "padding": {"inline": "space/md", "block": "space/none"}}, "paint": {"fill": "interactive/neutral/background/default"}, "clips": true, "measured": {"heightPx": {"header": 44, "data": 60}}}
+- **checkbox** — {"kind": "instance", "ref": "Checkbox", "refVariant": "Size=medium, hasLabel=false", "note": "Checked and State follow the cell's Checked and Disabled."}
+
+Variants:
+- variant: header, false
+- variant: header, indeterminate, checkbox: Checked=indeterminate
+- variant: header, true, checkbox: Checked=true
+- variant: data, false
+- variant: data, true, cell.fill: interactive/neutral/background/selected, checkbox: Checked=true
+- variant: data, disabled, checkbox: State=disabled
+
+### _Actions Cell (private) · `7605:2707`
+
+The row actions column's cell (rowActions). Data rows hold a small subtle more button that opens the row's compact actions menu (open while the menu shows). Disabled rows disable it unless the table allows disabled selection. The header carries no visible content; its name is Actions.
+
+| Prop | Type | Values | Default |
+|---|---|---|---|
+| `type` | enum | header, data | `header` |
+| `state` | enum | enabled, open, disabled, selected | `enabled` |
+- **root** — {"kind": "container", "note": "Same shell and borders as _Select Cell; measured widthPx 64."}
+- **cell** — {"kind": "container", "layout": {"direction": "horizontal", "justify": "end", "align": "center", "padding": {"inline": "space/md", "block": "space/none"}}, "paint": {"fill": "interactive/neutral/background/default"}}
+- **more** — {"kind": "instance", "ref": "Icon Button", "refVariant": "Size=small, Shape=sharp, Flavour=subtle", "glyph": "more-vertical", "visibleWhen": "type = data"}
+
+Variants:
+- variant: header, more: absent
+- variant: data, enabled, more: State=default
+- variant: data, open, more: State=pressed
+- variant: data, disabled, more: Disabled=true
+- variant: data, selected, cell.fill: interactive/neutral/background/selected
+
+### Table Column/Select · `7607:3061`
+
+The selection column (selectable): select-all in the header, a checkbox per row. It leads the columns and freezes with them.
+
+- **root** — {"kind": "container", "layout": {"direction": "vertical"}, "measured": {"widthPx": 64, "heightPx": 351}, "children": "_Select Cell header (indeterminate), then 5 data cells: false, true, false, disabled, false"}
+
+### Table Column/Actions · `7607:3104`
+
+The row actions column (rowActions): a more button per row opening its compact actions menu. It trails the columns.
+
+- **root** — {"kind": "container", "layout": {"direction": "vertical"}, "measured": {"widthPx": 64, "heightPx": 351}, "children": "_Actions Cell header, then 5 data cells: enabled ×3, disabled, enabled"}
+
+### _Empty Row (private) · `7605:2708`
+
+Spans every column when no rows are left to show (after search or filters). The label is the table's emptyLabel.
+
+| Prop | Type | Values | Default |
+|---|---|---|---|
+| `emptyLabel` | string | | `No results` |
+- **root** — {"kind": "container", "layout": {"direction": "horizontal", "justify": "center", "align": "center", "padding": {"inline": "space/lg", "block": "space/md"}}, "paint": {"fill": "interactive/neutral/background/default", "stroke": {"color": "border/subtle", "bottom": "stroke/thin"}}, "measured": {"widthPx": 600, "heightPx": 45}}
+- **label** — {"kind": "text", "text": {"style": "none (gap)", "color": "foreground/secondary"}}
+
+### _Table Menu (private) · `7607:3440`
+
+The table's compact menus, each a compact Dropdown Menu opening in the top layer. Row actions: the row's actions, a disabled one dimmed. Filter: a checkbox per value plus Clear filter while any is chosen. Column settings: Show columns checkboxes and Freeze up to radios. Arrow keys move, Escape closes and returns focus to the trigger.
+
+| Prop | Type | Values | Default |
+|---|---|---|---|
+| `type` | enum | row actions, filter, column settings | `row actions` |
+- **panel** — {"kind": "instance", "ref": "Dropdown Menu", "refVariant": "Rounded=true, Compact=true", "paint": {"fill": "surface/overlay", "effect": "Shadow/medium"}, "layout": {"gap": "space/none", "padding": "space/xs"}, "radius": "radius/element-md", "note": "Its two fixed rows are hidden; every row sits in the slot."}
+
+Variants:
+- type: row actions, rows: Menu Item Type=Icon: View (visibility), Edit (edit, shown focused), Share (share), Delete (delete, disabled)
+- type: filter, rows: Menu Item Type=checkbox: Analyst, Intern (selected, checked), Lead; then Type=Icon Clear filter (close)
+- type: column settings, rows: heading Show columns (label/small, foreground/secondary); checkbox rows Name, Status, Team, Action (all but Team selected, checked); Divider; heading Freeze up to; radio rows None, Name (selected), Status, Action
+
+## Dependencies
+
+- Search — spec: specs/search
+- Icon Button — spec: specs/icon-button
+- Pagination
+- Scrollbar
+- Avatar — spec: specs/avatar
+- Icon — spec: specs/icon
+- Button — spec: specs/button (_Data Cell preferred content)
 
 ## Tokens & theming
 
-- **Colour:** `surface/section`; `interactive/neutral/background/{default, hover, focused, selected, disabled}`, `interactive/neutral/border/default`, `interactive/ghost/background/default`; `border/{default, subtle, focus}`; `foreground/{primary, secondary, tertiary, disabled, cursor}`; `shadow/soft`.
-- **Dimension:** `space/{none, xxs, sm, md, lg}`, `stroke/{base, thin, thick}`, `radius/{none, element-md}`, `control/sm`, `shadow/medium/{x, y, blur}`, `shadow/small/{x, y, blur}`.
-- **Typography:** `body/small`, `body/xsmall`, `label/medium`.
-- **Effect style:** `Shadow/medium-horizontal`. **Glyph:** `filter`.
-- **Theme axes:** palette (Light, Dark); size (Desktop, Mobile, Tablet, Desktop Compact); typography (Desktop, Tablet, Mobile, Desktop Compact).
-
-All 49 names resolve in `tokens/`.
+- **color:** `border/default`, `border/focus`, `border/subtle`, `feedback/info/background/strong`, `foreground/cursor`, `foreground/disabled`, `foreground/primary`, `foreground/secondary`, `foreground/tertiary`, `interactive/ghost/background/default`, `interactive/ghost/background/disabled`, `interactive/ghost/background/pressed`, `interactive/neutral/background/default`, `interactive/neutral/background/disabled`, `interactive/neutral/background/focused`, `interactive/neutral/background/hover`, `interactive/neutral/background/selected`, `interactive/neutral/border/default`, `interactive/neutral/border/disabled`, `interactive/neutral/border/hover`, `shadow/soft`, `surface/overlay`, `surface/section`
+- **dimension:** `control/sm`, `radius/element-md`, `radius/none`, `shadow/medium/blur`, `shadow/medium/x`, `shadow/medium/y`, `shadow/small/blur`, `shadow/small/x`, `shadow/small/y`, `space/3xs`, `space/lg`, `space/md`, `space/none`, `space/sm`, `space/xl`, `space/xs`, `space/2xs`, `stroke/base`, `stroke/thick`, `stroke/thin`
+- **typography:** `body/small`, `body/xsmall`, `label/medium`, `label/small`
+- **effect:** `Shadow/medium`, `Shadow/medium-horizontal`
+- **glyphs:** `close`, `delete`, `edit`, `filter`, `more-vertical`, `settings`, `share`, `visibility`
+- **source:** tokens/ (see tokens/manifest.json)
+- **theme axes:** palette: Light, Dark; size: Desktop, Mobile, Tablet, Desktop Compact; typography: Desktop, Tablet, Mobile, Desktop Compact
 
 ## States, behavior & motion
 
-No States & Triggers section in the metadata (states exist only on the private cells, above).
+The metadata has no States & Triggers section. States live on the private cells: _Header Cell (enabled, hover, focus, disabled; resize none, hover, focus), _Data Cell (enabled, hover, selected, disabled), _Select Cell (checked false, indeterminate, true; disabled), _Actions Cell (enabled, open, selected, disabled), _Label (enabled, disabled; filtered), _Avatar and text (enabled, disabled), _Sort (default, hover, disabled).
 
-- **Motion** — "No transition is defined for the controls bar or the footer appearing and disappearing."
+| Type | Description |
+|---|---|
+| Motion | No transition is defined for the controls bar or the footer appearing and disappearing. |
+| Selection | A checkbox per row and select-all in the header. Select-all covers the enabled rows shown and is indeterminate while only some are selected. Selected rows take the selected fill across every column. |
+| Selected count | While rows are selected, an info Label at the start of the controls bar counts them. Screen readers hear the count change. |
+| Sorting | A sortable header cycles none, ascending and descending. Client-side, the table reorders the rows itself; otherwise the consumer does. |
+| Search and filter | Search matches every cell's text. A filterable header opens a compact checkbox menu of the column's values, and a filtered column keeps its glyph in foreground/cursor. |
+| Paging | Rows per page sets the page size. Client-side, the summary and page count are worked out, and sorting, searching or filtering returns to page 1. |
+| Column resizing | Hovering a header's trailing edge shows the neutral hover border at full cell height. Dragging trades width with the next resizable columns, so the table width never changes. Arrow keys step it and a double-click resets it. |
+| Column settings | The settings panel shows or hides columns and freezes up to a chosen column. The last column showing can't be hidden. |
+| Row actions | The more button opens a compact menu of the row's actions. Escape closes it and returns focus to the button. |
+| Sticky header | With Vertical Scroll, rows scroll under a header that sticks to the top. Frozen columns stay frozen both ways. |
+| Truncation | Text cut off in a narrow column shows in full in a Tooltip after a short hover. |
+| Disabled rows | A disabled row keeps the plain fill and dims everything in it. It can't be selected, clicked or opened for actions unless the table allows disabled selection. |
+| Empty | With nothing to show, one row spanning every column reads the empty label. |
 
 ## Content & slots
 
-- **Controls bar** (Table Controls instance) — "Holds a search field (instance of the search component) fixed to its own Shape, Size and Flavour, and an open Controls Slot for whatever actions a consumer adds. Whether each shows on its own is not reachable from Table, only hasControl toggles them together."
-- **Content** (Table Content instance) — "Always the plain left-to-right column layout. Table Content also offers a frozen-column and a horizontally scrolling arrangement, neither used by this instance and neither exposed as a property of Table."
-- **Footer** (Table Footer instance) — "Holds a locked summary text and a Pagination instance set to Outline. Whether each shows on its own is not reachable from Table, only hasFooter toggles them together."
+| Property | Type | Description |
+|---|---|---|
+| Controls bar | Table Controls instance | Holds the selected count, a search field, the Controls Slot and the column settings button. Each is a property of the exposed instance. |
+| Content | Table Content instance | Holds the selection column, the data columns and the actions column. Column Position, Horizontal Scroll, Vertical Scroll, Selectable and Row Actions are exposed. |
+| Footer | Table Footer instance | Holds the page summary, rows per page and Pagination. Each is a property of the exposed instance. |
+| Selection column | Table Column/Select | _Select Cell rows: select-all, checked, selected and disabled. |
+| Actions column | Table Column/Actions | _Actions Cell rows: the more button, open, selected and disabled. |
+| Menus | _Table Menu | Compact row actions, filter and column settings menus. |
+| Empty row | _Empty Row | Spans every column when nothing matches. |
+| Tooltip | Tooltip instance | Shows cut-off text in full. Hidden from assistive technology. |
 
 ## Usage
 
 **Do**
+
 - Turn hasControl off when the table doesn't need its own search or extra actions above it.
 - Turn hasFooter off for a table short enough that pagination has nothing to do.
+- Turn Selectable on only when selected rows feed an action, such as a bulk delete.
 
 **Don't**
-- Don't expect Table's own properties to hide just the search field or just the pagination summary on their own, hasControl and hasFooter each toggle their whole section together.
-- Don't expect a frozen or horizontally scrolling column arrangement from this instance, it always uses the plain left-to-right layout no matter what fills the columns.
+
+- Don't try to hide the last column in the settings panel. The table keeps one showing.
+- Don't rely on slotted controls in a disabled row. They ignore the pointer unless disabled selection is allowed.
 
 ## Accessibility
 
-- Nothing in this file marks keyboard navigation between cells, rows or the controls above and below them. Whether this table participates in a grid-style keyboard pattern needs confirming outside Figma.
+- A captioned table with column headers and aria-sort on sortable columns.
+- Checkboxes are named, such as Select all rows and Select row: Name.
+- Resize grips are focusable separators with a name and a value.
+- Menus are named, move with the arrow keys and close on Escape, returning focus to their trigger.
+- The selected count is a live region.
+- Tooltips repeat visible text and are hidden from assistive technology.
 
 ## Layout & theming intents
 
 | Property | Type | Description |
 |---|---|---|
-| Width | Fixed | "979px, held fixed rather than hugging its content." |
-| Height | Hug | "Hugs the controls bar, the content and the footer stacked with no gap between them." |
-| Padding | Fixed | "0 on every side of the table itself, each section carries its own padding instead." |
-| Controls bar | Fixed height, fixed padding | "Fixed at 60px tall, 16px padding on the left and right, 12px on top and bottom. Its search field and controls slot align to the right-hand side, leaving the left side open." |
-| Footer | Fixed height, fixed padding | "Fixed at 60px tall, the same 16px and 12px padding as the controls bar. The summary text and the pagination control push to opposite ends rather than sitting a fixed distance apart." |
-| Content | Fill | "Takes whatever height is left between the controls bar and the footer, 351px with both shown." |
+| Width | Fixed | 979px, held fixed rather than hugging its content. |
+| Height | Hug | Hugs the controls bar, the content and the footer stacked with no gap between them. |
+| Padding | Fixed | 0 on every side of the table itself, each section carries its own padding instead. |
+| Controls bar | Fixed height, fixed padding | Fixed at 60px tall, 16px padding on the left and right, 12px on top and bottom. Its search field and controls slot align to the right-hand side, leaving the left side open. |
+| Footer | Fixed height, fixed padding | Fixed at 60px tall, the same 16px and 12px padding as the controls bar. The summary text and the pagination control push to opposite ends rather than sitting a fixed distance apart. |
+| Content | Fill | Takes the height left between the controls bar and the footer, 351px with both shown. With Vertical Scroll it caps its height and scrolls. |
+| Columns | Resizable | Resizing trades width between columns, so the table width holds. |
+
+## Visual reference
+
+No images are stored; every link opens the live node in Figma.
+
+- [page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4364-1629)
+- [componentSet](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6717-3146)
+- [metadata](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6099-1543)
+- [subcomponents › Table Controls](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5302-5786)
+- [subcomponents › Table Content](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6057-7556)
+- [subcomponents › Table Footer](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5302-5897)
+- [subcomponents › Table Column/Default](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5302-5898)
+- [subcomponents › _Header Cell](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5238-5166)
+- [subcomponents › _Data Cell](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5203-3689)
+- [subcomponents › _Label](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5145-1505)
+- [subcomponents › _Sort](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5413-1195)
+- [subcomponents › _Avatar and text](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5137-325)
+- [subcomponents › Slot](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5365-6222)
+- [subcomponents › _Select Cell](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7605-2680)
+- [subcomponents › _Actions Cell](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7605-2707)
+- [subcomponents › _Empty Row](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7605-2708)
+- [subcomponents › _Table Menu](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7607-3440)
+- [subcomponents › Table Column/Select](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7607-3061)
+- [subcomponents › Table Column/Actions](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7607-3104)
+- [subcomponents › _Header Cell Resize=hover](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7606-2679)
+- [subcomponents › _Label Filtered=true](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7606-2689)
+- [subcomponents › Table Content Vertical Scroll=true](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7607-2746)
+- [variants › shape › rounded](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5302-7588)
 
 ## Issues
 
-**Warn**
-- **Sharp corners aren't tokenised.** `sharp` leaves the radius a raw 0; `rounded` binds `radius/element-md`, and sharp corners elsewhere bind `radius/none`.
-- **Sorting is unwired.** `_Label`'s `sort` is bound to nothing (`_Sort` is always shown, never changes); `_Header Cell`'s `Sorted` only flips it, inversely. No header variant sets a sort direction. Build sort state from `_Sort`'s `direction`; don't reproduce `Sorted`.
-- **Orphaned component.** Table Column/true, used by the frozen variants, isn't on any page. Its end stroke weight is raw 1, no token.
-- **Sideways shadow by swapped bindings.** `Shadow/medium-horizontal` binds offsetX to `shadow/medium/y` and offsetY to `shadow/medium/x` (same for small). Implement as a horizontal shadow; no horizontal-offset tokens exist.
-- **Disabled data cell isn't dimmed.** It removes the cell fill but keeps the content enabled; `_Avatar and text` has an unused disabled variant.
-- **Preferred cell content.** 9 keys, 5 resolve (_Avatar and text, Button, Icon Button, Search, Slot); 4 don't. The metadata names 7, including Checkbox and Status Label, so two keys are unaccounted for.
-- **Active sort colour is `foreground/cursor`**, the text-caret token, not an interactive or brand token.
-- **Metadata vs file.** Controls bar and footer are said to be fixed 60px tall — both hug (60 is measured). Content is said to fill — it hugs. Quoted paddings are bound to `space/lg` / `space/md`.
-- **Gaps.** `_Data Cell` cell height fixed with no token; several containers use raw 0 gap/padding where others bind `space/none`.
+### Warn
 
-**Note**
-- **Shape reaches inside.** Besides rounding the table's corners, it sets the matching shape option on every nested component. In code, pass it to what the table renders; slotted content (controls, custom cells) needs it separately or from context.
-- Extractor false positive: Frozen Slot Container's end stroke is bound to `stroke/thin`.
-- `_Sort` is a two-region vector, not an Icon. `caret-sort` can't colour its carets separately — use `caret-up` + `caret-down` or an SVG.
-- `_Header Cell` shows the filter glyph only on hover, focus and disabled; hover and focus are interaction states. 5 of 8 State × Sorted combinations exist.
-- Table Content's default × horizontalScroll=true isn't modelled.
-- Table exposes only `hasControl` and `hasFooter`; decide in code which nested options become Table props.
-- No States section, no motion, keyboard navigation unconfirmed, and no component descriptions on the page.
+- **gaps** — Shape=sharp leaves the table's radius as a raw 0 with no token; rounded binds radius/element-md. Elsewhere sharp corners bind radius/none.
+- **_Label / _Header Cell** — _Label's sort property is bound to nothing: the _Sort instance is always visible and never changes. _Header Cell's Sorted axis only flips that dead property — and inversely (Sorted=true sets sort=false). Sorted therefore has no visible effect, and no header variant sets _Sort's direction. Build sort state from _Sort's own direction axis; don't reproduce Sorted.
+- **dependencies** — Table Column/true (6050:4835), used in Table Content's two frozen variants, is not on any page — an orphaned main component. Its end stroke weight is raw 1 with no token (stroke/thin elsewhere).
+- **effects** — The frozen column's shadow (effect style Shadow/medium-horizontal) binds offsetX to shadow/medium/y and offsetY to shadow/medium/x (same for the small layer) to turn a vertical shadow sideways. Implement as a horizontal shadow; there are no horizontal-offset tokens.
+- **_Data Cell** — Preferred content has 9 keys; 5 resolve (_Avatar and text, Button, Icon Button, Search, Slot). 76aef8cc…, 85dda6fa…, d55a9ea0…, 6770c3b0… don't resolve from this file. The metadata names 7: Avatar + Text, Button, Icon Button, Checkbox, Status Label, Search, Slot — so Checkbox and Status Label are presumably two of the four, and two keys are unaccounted for.
+- **_Sort** — Active sort direction uses foreground/cursor — the text-caret colour — not an interactive or brand token. Inactive carets use foreground/tertiary (hover foreground/secondary).
+- **metadata vs extracted** — Layout & Theming says the controls bar and footer are 'Fixed at 60px tall'; both hug vertically (60 is measured). It also says Content is 'Fill'; Table Content hugs vertically inside Table. Padding quoted as 16px/12px is bound to space/lg / space/md.
+- **gaps** — _Data Cell's cell height is fixed (60 measured) with no token; Table, Table Content, Table Column and the column slot use raw 0 gap/padding with no token in places (others bind space/none).
+- **gaps** — _Empty Row's label and Table Footer's Rows per page label have no text style (raw typography). Both read as body/small beside the page summary.
+- **gaps** — _Data Cell State=disabled dims the content frame with a raw opacity 0.5; there is no opacity token.
+- **bindingDrift** — _Label Filtered=true has lost the trailing icon's visibility binding to hasTrailing; the other two variants keep it.
+- **Table Content** — Selectable hides the selection column only in the default arrangements. In the frozen ones the column is Frozen Slot Container content, which can't be bound to a property; designers remove it there by hand.
+- **metadata vs extracted** — Layout & Theming still says the controls bar's search and controls 'align to the right-hand side, leaving the left side open', and Anatomy 1 still credits hasControl with showing or hiding the Controls Slot. The selected count now sits at the start and Controls (not hasControl) toggles the slot.
+
+### Note
+
+- **api (shape)** — Shape rounds the table's outer corners (radius/element-md, clipping its content) and sets the matching shape option on every nested component (Shape on Search, Icon Button, Button, Checkbox; Rounded on Status Label and Pagination). In code, pass it down to the components the table renders; content a consumer slots in (controls, custom cells) has to be told separately or read it from context.
+- **gaps (false positive)** — The extractor flags Frozen Slot Container's stroke weight as untokened; its end side is bound to stroke/thin. The gap check only looks at strokeWeight/strokeTopWeight.
+- **_Sort / icon font** — _Sort is a drawn two-region vector, not an Icon instance. The font has caret-sort, caret-up and caret-down, but one glyph can't colour its two carets separately — use two glyphs or an SVG.
+- **_Header Cell** — Hover, focus and disabled turn on the trailing filter glyph; enabled hides it. Hover and focus are interaction states, not props. Only 5 of 8 State × Sorted combinations exist; disabled changes Content's horizontal sizing to fixed.
+- **Table Content** — Column Position=default × Horizontal Scroll=true isn't modelled. The two fixed leading columns exist only in the default arrangement.
+- **api vs Property Breakdown** — Selected Count, Column Settings and Rows Per Page default false on Table Controls and Table Footer; the breakdown marks true, which is what the Table sample sets on its exposed instances. Code turns all three on only when asked.
+- **api vs Property Breakdown** — Exposed nested properties missing from the breakdown: Column Position, Horizontal Scroll (Table Content), Search, Controls (Table Controls), Page Details, Pagination (Table Footer).
+- **Table Content** — Vertical Scroll is modelled only with Column Position=default; the sticky header is implied by the clipped content, not drawn as its own state.
+- **content** — Content & Slot lists a Tooltip instance, but no Tooltip is placed on the page; truncation is described, not modelled.
+- **_Table Menu** — Built on the compact Dropdown Menu with its two fixed rows hidden and every row in its slot. Selected checkbox and radio rows check their control, unlike the Dropdown page's own rows (see specs/dropdown).
+- **_Actions Cell** — Open is drawn as the Icon Button's pressed state; the cell has no own focus or hover states.
+- **coverage** — No States & Triggers section in the metadata. Motion: none defined beyond the bars showing and hiding.

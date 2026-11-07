@@ -2,7 +2,7 @@
 
 Wraps a single glyph from the icon library so it can be sized consistently and embedded in other components. Three sizes, plus an optional box that pads the glyph to a 40px touch target. Button, Icon Button, Dropdown, Search, Avatar, Top App Bar, Navigation Bar and Navigation Rail all embed it, and almost every one of them locks Size and Framed, leaving the glyph as the only decision. On its own it is decorative, the meaning has to come from somewhere else.
 
-Source: [Icon page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15004) · component set `2046:15010` · extracted 2026-09-22 · 6 variants
+Source: [Icon page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15004) · component set `2046:15010` · extracted 2026-09-22, updated 2026-11-06 · 8 variants
 
 Values in this document are token names. The only literals are inside verbatim metadata quotes, inside `Issues`, and in columns explicitly labelled as measurements.
 
@@ -11,7 +11,7 @@ Values in this document are token names. The only literals are inside verbatim m
 | Prop | Type | Values | Default | Controls |
 |---|---|---|---|---|
 | `name` | slot (Figma `INSTANCE_SWAP`) | any glyph name in the icon font | `verified` | glyph |
-| `size` | enum | `small`, `medium`, `large` | `small` | variant |
+| `size` | enum | `xsmall`, `small`, `medium`, `large` | `small` | variant |
 | `framed` | boolean | `false`, `true` | `false` | variant |
 
 Figma names: `Name#2167:166`, `Size`, `Framed`.
@@ -22,9 +22,10 @@ Figma names: `Name#2167:166`, `Size`, `Framed`.
 
 ### `size`
 
+- **xsmall** — not in the metadata. 12px (`control/icon-xs`); framed, a 24px box (`control/xs`).
 - **small** — 16px. The dense step, and what Button and Icon Button use at their own small size.
 - **medium** — 20px. The most widely used step in the file, and what Button and Icon Button use at both medium and large.
-- **large** — 28px. Used by exactly one component in this file, Navigation Header. Reach for it only where the icon is genuinely the focal point.
+- **large** — 28px. Used by exactly one component in this file, Navigation Header. Use it only where the icon is genuinely the focal point.
 
 ### `framed`
 
@@ -51,6 +52,8 @@ Figma names: `Name#2167:166`, `Size`, `Framed`.
 
 | size | framed | glyph dimension | root sizing | root align | root dimension | measuredRootBoxPx | measuredGlyphBoxPx |
 |---|---|---|---|---|---|---|---|
+| xsmall | false | `control/icon-xs` | fixed | start | `control/icon-xs` | 12 | 12 |
+| xsmall | true | `control/icon-xs` | fixed | center | `control/xs` | 24 | 12 |
 | small | false | `control/icon-sm` | hug | start | — | 16 | 16 |
 | small | true | `control/icon-sm` | fixed | center | `control/target-min` | 40 | 16 |
 | medium | false | `control/icon-md` | hug | start | — | 20 | 20 |
@@ -58,7 +61,7 @@ Figma names: `Name#2167:166`, `Size`, `Framed`.
 | large | false | `control/icon-lg` | hug | start | — | 28 | 28 |
 | large | true | `control/icon-lg` | fixed | center | `control/target-min` | 40 | 28 |
 
-Nothing else changes across the six variants.
+Nothing else changes across the eight variants. Since 2026-11-06 Figma draws the small, medium and large unframed variants fixed, with unbound glyphs; code hugs and binds the token, as in this table.
 
 ## Subcomponents
 
@@ -81,7 +84,7 @@ These are not extracted as anatomy trees. In this project the library is deliver
 
 Source: `tokens/` (see `tokens/manifest.json`).
 
-- **dimension** — `control/icon-sm`, `control/icon-md`, `control/icon-lg`, `control/target-min`
+- **dimension** — `control/icon-xs`, `control/icon-sm`, `control/icon-md`, `control/icon-lg`, `control/xs`, `control/target-min`
 - **color / typography / effect** — none. Icon binds no colour and no type token.
 
 Theme axes available in the export: `palette` (Light, Dark), `size` (Desktop, Mobile, Tablet, Desktop Compact), `typography` (Desktop, Tablet, Mobile, Desktop Compact).
@@ -119,7 +122,7 @@ Palette and typography do not reach this component — its appearance varies onl
 ## Accessibility
 
 - Icon carries no text. Anything it communicates has to be repeated in a visible label or an accessible name in code.
-- Framed pads the glyph to 40px (control/target-min), the minimum tappable size. A bare 16px or 20px icon is not a target on its own.
+- Framed pads the glyph to control/target-min, the minimum tappable size. A bare 16px or 20px icon is not a target on its own.
 - The glyph inherits its parent's foreground colour, so contrast is a property of the surface it lands on rather than of this component.
 - There are no interaction states here. Focus and disabled treatments come from the embedding component.
 
@@ -152,6 +155,10 @@ No images are stored; every node deep-links into Figma so a shot can be pulled o
 
 4. **Width is never token-bound** *(gaps)* — Only height is variable-bound on both the root frame and the glyph instance; width is left raw on every variant. The component is square in every variant purely by coincidence of the two numbers matching. An implementation should bind one dimension token to both axes rather than reproduce the unbound width.
 
+12. **xsmall not in the metadata** — Size=xsmall is undocumented. Its framed box is 24px (`control/xs`), while the metadata says 40px at every Size.
+
+13. **Unframed bindings dropped** *(2026-11-06)* — the small, medium and large unframed variants are now fixed-size with unbound glyphs. Code binds each size's `control/icon` token on both axes.
+
 ### Notes
 
 5. **Expected binding drift** — root height is bound to `control/target-min` in the three `Framed=true` variants and unbound in the three `Framed=false` ones (3 of 6). Correct by design — with Framed off the frame hugs its child — but it will surface in any automated binding audit.
@@ -167,3 +174,5 @@ No images are stored; every node deep-links into Figma so a shot can be pulled o
 10. **Default glyph verified against the font** — `verified` (Figma setId `2046:7116`) exists in `codepoints.json`, is not retired, and is not among the 18 rejected labels in `inventory.json`. No fallback SVG needed for it. Note that 18 labels across 9 icons are rejected by the font build (stroked paths and non-square viewBoxes); a consumer selecting one of those names gets an invisible icon and needs an inline SVG fallback.
 
 11. **No Figma description** — the component set carries no description and no documentation links, so the intent captured here exists only in the Icon Metadata frame.
+
+14. **Code decisions** — code exposes the Style axis as `iconStyle` (rounded default, sharp available), since both families share codepoints. `name` is required in code; there is no default glyph.

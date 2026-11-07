@@ -9,7 +9,7 @@ import "../button/icon-button/icon-button.js";
  * the mark alone. Inside a `zeta-navigation-rail` the rail sets `expanded` and `rounded`.
  *
  * @slot mark - The brand mark: a `zeta-avatar` at size s (type avatar), or a logo (type logo).
- * @event action - Fired when the settings action is clicked.
+ * @event action - Fired when the action is clicked.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54312
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-navigation-rail--docs
@@ -31,8 +31,11 @@ export class ZetaNavigationHeader extends Contourable(LitElement) {
   /** Shows the settings action. No effect when collapsed. */
   @property({ type: Boolean, attribute: "show-icon-button" }) showIconButton = true;
 
-  /** Accessible name of the settings action. */
+  /** Accessible name of the action. */
   @property({ type: String, attribute: "action-label" }) actionLabel = "Settings";
+
+  /** The action's glyph (a Zeta icon name). Settings by default; set any icon, with `action-label` to match. */
+  @property({ type: String, attribute: "action-icon" }) actionIcon = "settings";
 
   protected render() {
     return html`<div class="brand">
@@ -47,7 +50,7 @@ export class ZetaNavigationHeader extends Contourable(LitElement) {
               shape=${this.rounded ? "rounded" : "sharp"}
               aria-label=${this.actionLabel}
               @click=${() => this.dispatchEvent(new CustomEvent("action", { bubbles: true, composed: true }))}
-              >settings</zeta-icon-button
+              >${this.actionIcon}</zeta-icon-button
             >`
           : nothing
       }`;

@@ -1,11 +1,9 @@
 import { css } from "lit";
 
 /**
- * Colour and the two dimensions Figma actually binds (control/icon-lg,
- * space/xs) are semantic tokens. Every other dimension below (root
- * width/height at every size, large's radius and top/bottom padding) has no
- * token in Figma itself — that's a spec issue, not something to invent a
- * token for here, so it's carried over as the literal px the spec measured.
+ * Colour, radius and the dimensions Figma binds (control/icon-lg, space/2xs)
+ * are semantic tokens. The root sizes have no token, a gap the spec records,
+ * so they stay as the literal px it measured.
  *
  * Spec: specs/notification-indicator/notification-indicator.spec.json
  */
@@ -40,7 +38,7 @@ export default css`
     font-weight: var(--indicator-medium-font-weight);
     line-height: var(--indicator-medium-line-height);
     letter-spacing: var(--indicator-medium-letter-spacing);
-    color: var(--interactive-destructive-foreground-default);
+    color: var(--foreground-on-strong);
   }
 
   /* ---- size --------------------------------------------------------------- */
@@ -61,9 +59,9 @@ export default css`
 
   :host([size="large"]) .root {
     min-width: var(--control-icon-lg);
-    height: 20px; /* no token in Figma for this dimension — spec issue */
-    padding: 3px var(--space-xxs); /* top/bottom 3px has no token in Figma — spec issue */
-    border-radius: 10px; /* no token in Figma for this radius — spec issue */
+    height: 20px; /* no token — spec gap */
+    padding: 0 var(--space-2xs);
+    border-radius: var(--radius-pill);
   }
   :host([size="large"]) .label {
     -webkit-line-clamp: 3;

@@ -221,7 +221,7 @@
   gap: var(--space-3xs);
   padding: var(--space-3xs);
   border-radius: var(--zds-chat-r-md);
-  background: var(--surface-menu);
+  background: var(--surface-overlay);
   box-shadow: 0 var(--shadow-xsmall-y) var(--shadow-xsmall-blur) var(--shadow-soft);
 }
 .zds-chat-message__picker { align-self: flex-start; }

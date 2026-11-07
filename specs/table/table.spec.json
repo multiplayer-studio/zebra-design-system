@@ -5,1398 +5,419 @@
     "source": {
       "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
       "setId": "6717:3146",
-      "key": "f9afa8982a2df965dea54690f7906d8f63f53930",
       "page": "Table",
       "pageNodeId": "4364:1629",
-      "metadataFrameId": "6099:1543",
       "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4364-1629",
-      "extractedAt": "2026-10-20",
-      "variantCount": {
-        "Table": 2,
-        "Table Controls": 1,
-        "Table Content": 3,
-        "Table Footer": 1,
-        "Table Column/Default": 1,
-        "Slot": 1,
-        "_Header Cell": 5,
-        "_Data Cell": 4,
-        "_Label": 2,
-        "_Avatar and text": 2,
-        "_Sort": 7
-      },
-      "extractionNote": "Re-extracted 2026-10-20 after the master became a component set (6717:3146) with a Shape axis; the previous single component 5302:7588 is now its Shape=rounded variant. Subcomponents unchanged since the first extraction the same day and not re-walked; their issues were re-verified. Table Column/true (6050:4835), used by Table Content's frozen variants, is not on any page and was extracted by id."
+      "extractedAt": "2026-11-07",
+      "variantCount": 2,
+      "defaultVariant": "Shape=rounded",
+      "extractionNote": "Every set's API, variants, defaults and the Table's shape bindings re-verified against Figma; structure and intent verbatim from the 2026-10-31 spec, which they match.",
+      "tokenSource": "tokens/"
     }
   },
-  "summary": "A data table with rows of content arranged in columns, framed by an optional controls bar above and a pagination footer below. Reading top to bottom it is the controls bar, the table content, and the footer, each of the two outer bars removable on its own without affecting the other. This instance always lays out its columns in the plain left-to-right arrangement, not the frozen or horizontally scrolling arrangement Table Content also offers.",
+  "summary": "A data table with rows of content in columns, framed by an optional controls bar above and a footer below. It can select and count rows, sort, search, filter and page them, resize, show, hide and freeze columns, and open a compact actions menu per row. The controls bar, content and footer are exposed, so their own properties are set from Table.",
   "api": {
     "hasControl": {
-      "type": "boolean",
-      "figmaName": "hasControl#6717:0",
-      "default": true,
-      "controls": [
-        "controls"
-      ],
+      "type": "boolean", "figmaName": "hasControl#6717:0", "default": true, "via": "Table", "controls": ["controls (visible)"],
       "intent": {
         "true": "Shows the controls bar above the content, holding the search field and the controls slot. Turn it off when the table doesn't need its own search or extra actions above it.",
         "false": "Removes the controls bar entirely, the content starts at the top of the table."
       }
     },
     "hasFooter": {
-      "type": "boolean",
-      "figmaName": "hasFooter#6717:1",
-      "default": true,
-      "controls": [
-        "footer"
-      ],
+      "type": "boolean", "figmaName": "hasFooter#6717:1", "default": true, "via": "Table", "controls": ["footer (visible)"],
       "intent": {
         "true": "Shows the footer below the content, holding the page summary text and the pagination control. Turn it off for a table short enough that pagination has nothing to do.",
         "false": "Removes the footer entirely, the content ends at the bottom of the table."
       }
     },
     "shape": {
-      "type": "enum",
-      "figmaName": "Shape",
-      "values": [
-        "rounded",
-        "sharp"
-      ],
-      "default": "rounded",
-      "controls": [
-        "root.radius",
-        "root.clips",
-        "controls.search.shape",
-        "controls.controlsSlot (Icon Button shape)",
-        "cells (Button, Checkbox shape; Status Label rounded)",
-        "footer.pagination.rounded"
-      ],
+      "type": "enum", "figmaName": "Shape", "values": ["rounded", "sharp"], "default": "rounded", "via": "Table",
+      "controls": ["root.radius", "root.clips", "controls.search.shape", "controls.controlsSlot (Icon Button shape)", "cells (Button, Checkbox shape; Status Label rounded)", "footer.pagination.rounded"],
       "intent": {
         "rounded": "Every component inside the table takes its rounded option: search, buttons, checkboxes, status labels and pagination, including the table's own corners.",
         "sharp": "Every component inside the table takes its sharp option."
-      },
-      "_note": "Rounds the table's outer corners (clipping its content) and sets the matching shape option on every nested component."
-    }
-  },
-  "internalVariations": [
-    {
-      "part": "content",
-      "via": "Table Content",
-      "options": {
-        "columnPosition": [
-          "default",
-          "frozen"
-        ],
-        "horizontalScroll": [
-          "false",
-          "true"
-        ]
-      },
-      "intent": "Always the plain left-to-right column layout. Table Content also offers a frozen-column and a horizontally scrolling arrangement, neither used by this instance and neither exposed as a property of Table."
-    },
-    {
-      "part": "controls",
-      "via": "Table Controls",
-      "options": {
-        "search": [
-          true,
-          false
-        ],
-        "controls": [
-          true,
-          false
-        ]
-      },
-      "intent": "Whether each shows on its own is not reachable from Table, only hasControl toggles them together."
-    },
-    {
-      "part": "footer",
-      "via": "Table Footer",
-      "options": {
-        "pageDetails": [
-          true,
-          false
-        ],
-        "pagination": [
-          true,
-          false
-        ]
-      },
-      "intent": "Whether each shows on its own is not reachable from Table, only hasFooter toggles them together."
-    },
-    {
-      "part": "dataCell.content",
-      "via": "_Data Cell (Instance swap)",
-      "options": [
-        "_Avatar and text",
-        "Button",
-        "Icon Button",
-        "Search",
-        "Slot",
-        "4 unresolved keys — see issues"
-      ],
-      "intent": "Each column is its own Table Column/Default instance with one open slot, sized to whatever content fills it. Preferred instances: \nAvatar + Text\nButton\nIcon Button\nCheckbox\nStatus Label\nSearch\nSlot"
-    }
-  ],
-  "contentInputs": [
-    {
-      "part": "content",
-      "input": "columns",
-      "sampleCount": 5,
-      "from": "Table Column/Default instances, 2 fixed + 3 in the Slot Container"
-    },
-    {
-      "part": "column",
-      "input": "rows",
-      "sampleCount": 5,
-      "from": "_Data Cell instances, 3 fixed + 2 in the column's Slot Container"
-    },
-    {
-      "part": "controls.controlsSlot",
-      "input": "actions",
-      "sampleCount": 3,
-      "from": "Icon Button (Size=small, Shape=sharp, Flavour=outline-subtle)"
-    },
-    {
-      "part": "footer.pageDetails",
-      "input": "label",
-      "sample": "Showing 1-3 of 21"
-    },
-    {
-      "part": "headerCell.label",
-      "input": "label",
-      "sample": "Label"
-    },
-    {
-      "part": "avatarAndText",
-      "input": [
-        "avatar src",
-        "title",
-        "subtitle"
-      ],
-      "sample": "Title / Subtitle"
-    }
-  ],
-  "anatomy": [
-    {
-      "id": "root",
-      "kind": "container",
-      "layout": {
-        "direction": "vertical",
-        "gap": "none (raw 0, no token)",
-        "padding": "none"
-      },
-      "sizing": {
-        "h": "fixed",
-        "v": "hug"
-      },
-      "measured": {
-        "widthPx": 979
       }
     },
-    {
-      "id": "controls",
-      "kind": "instance",
-      "ref": "Table Controls",
-      "visibleWhen": "hasControl",
-      "sizing": {
-        "h": "fill",
-        "v": "hug"
-      },
-      "role": "Holds a search field that can be toggled on/off. Controls Slot houses extra actions, and can be shown/hidden with the hasControl property."
-    },
-    {
-      "id": "content",
-      "kind": "instance",
-      "ref": "Table Content",
-      "refVariant": "Column Position=default, Horizontal Scroll=false",
-      "sizing": {
-        "h": "fill",
-        "v": "hug"
-      },
-      "role": "Subcomponent that contains table data. Column position and horizontal scroll can be adjusted, and is set to default in this example. Default column positions do not allow for fixed columns or horizontal scrolling.\n The rows and columns themselves, always in the plain left-to-right arrangement for this instance. Columns can be formatted based on user preference (i.e width). Cell content can be swapped in individual data cells.\n\nSlot container allows users to freely add/remove any number of columns and adjust sizing based on their requirements."
-    },
-    {
-      "id": "footer",
-      "kind": "instance",
-      "ref": "Table Footer",
-      "visibleWhen": "hasFooter",
-      "sizing": {
-        "h": "fill",
-        "v": "hug"
-      },
-      "role": "Holds a locked summary text and a Pagination instance. Shown or hidden as a whole by hasFooter. Both page details and pagination can be toggled on/off for the footer itself."
-    }
+    "selectable": { "type": "boolean", "figmaName": "Selectable#7608:10", "default": true, "via": "Table Content (exposed)", "controls": ["content.selectColumn"], "intent": { "true": "Adds the selection column: select-all in the header and a checkbox per row." } },
+    "rowActions": { "type": "boolean", "figmaName": "Row Actions#7608:15", "default": true, "via": "Table Content (exposed)", "controls": ["content.actionsColumn"], "intent": { "true": "Adds a trailing more button per row that opens a compact menu of the row's actions." } },
+    "verticalScroll": { "type": "enum", "figmaName": "Vertical Scroll", "values": ["false", "true"], "default": "false", "via": "Table Content (exposed)", "controls": ["content (variant)"], "intent": { "false": "The content grows with its rows.", "true": "Caps the content height so rows scroll under a sticky header." } },
+    "columnPosition": { "type": "enum", "figmaName": "Column Position", "values": ["default", "frozen"], "default": "default", "via": "Table Content (exposed)", "controls": ["content (variant)"] },
+    "horizontalScroll": { "type": "enum", "figmaName": "Horizontal Scroll", "values": ["false", "true"], "default": "false", "via": "Table Content (exposed)", "controls": ["content (variant)"] },
+    "selectedCount": { "type": "boolean", "figmaName": "Selected Count#7607:0", "default": false, "placedTrueOnTable": true, "via": "Table Controls (exposed)", "controls": ["controls.selectedCount"], "intent": { "true": "An info Label at the start of the controls bar counts the selected rows. It shows only while rows are selected." } },
+    "columnSettings": { "type": "boolean", "figmaName": "Column Settings#7607:1", "default": false, "placedTrueOnTable": true, "via": "Table Controls (exposed)", "controls": ["controls.columnSettings"], "intent": { "true": "A settings button at the end of the controls bar opens the column panel to show, hide and freeze columns." } },
+    "search": { "type": "boolean", "figmaName": "Search#5302:2", "default": true, "via": "Table Controls (exposed)", "controls": ["controls.search"] },
+    "controls": { "type": "boolean", "figmaName": "Controls#5302:4", "default": true, "via": "Table Controls (exposed)", "controls": ["controls.controlsSlot"] },
+    "rowsPerPage": { "type": "boolean", "figmaName": "Rows Per Page#7607:2", "default": false, "placedTrueOnTable": true, "via": "Table Footer (exposed)", "controls": ["footer.rowsPerPage"], "intent": { "true": "A small compact Select after the page summary sets how many rows each page shows." } },
+    "pageDetails": { "type": "boolean", "figmaName": "Page Details#5302:5", "default": true, "via": "Table Footer (exposed)", "controls": ["footer.pageDetails"] },
+    "pagination": { "type": "boolean", "figmaName": "Pagination#5302:6", "default": true, "via": "Table Footer (exposed)", "controls": ["footer.pagination"] }
+  },
+  "internalVariations": [
+    { "part": "content", "via": "Table Content", "options": { "columnPosition": ["default", "frozen"], "horizontalScroll": ["false", "true"], "verticalScroll": ["false", "true"] }, "note": "Exposed on Table through the Table Content instance. Modelled combinations: default (with or without vertical scroll), frozen, frozen with horizontal scroll." },
+    { "part": "menus", "via": "_Table Menu", "options": { "type": ["row actions", "filter", "column settings"] }, "intent": "Compact row actions, filter and column settings menus." }
+  ],
+  "contentInputs": [
+    { "part": "content", "input": "columns", "sampleCount": 5, "from": "Table Column/Default instances, 2 fixed + 3 in the Slot Container" },
+    { "part": "column", "input": "rows", "sampleCount": 5, "from": "_Data Cell instances, 3 fixed + 2 in the column's Slot Container" },
+    { "part": "controls.controlsSlot", "input": "actions", "sampleCount": 3, "from": "Icon Button (Size=small, Shape=sharp, Flavour=outline-subtle)" },
+    { "part": "footer.pageDetails", "input": "label", "sample": "Showing 1-3 of 21" },
+    { "part": "headerCell.label", "input": "label", "sample": "Label" },
+    { "part": "avatarAndText", "input": ["avatar src", "title", "subtitle"] }
+  ],
+  "anatomy": [
+    { "id": "root", "kind": "container", "layout": { "direction": "vertical", "gap": "none (raw 0, no token)" }, "sizing": { "h": "fixed (979Px as drawn)", "v": "hug" }, "radius": "per shape", "clips": "per shape" },
+    { "id": "controls", "kind": "instance", "ref": "Table Controls", "visibleWhen": "hasControl", "exposed": true, "role": "Holds the selected count, a search field, the Controls Slot and the column settings button. Each is a property of the exposed instance." },
+    { "id": "content", "kind": "instance", "ref": "Table Content", "exposed": true, "role": "Holds the selection column, the data columns and the actions column. Column Position, Horizontal Scroll, Vertical Scroll, Selectable and Row Actions are exposed." },
+    { "id": "footer", "kind": "instance", "ref": "Table Footer", "visibleWhen": "hasFooter", "exposed": true, "role": "Holds the page summary, rows per page and Pagination. Each is a property of the exposed instance." },
+    { "id": "selectColumn", "kind": "instance", "ref": "Table Column/Select", "visibleWhen": "selectable", "role": "_Select Cell rows: select-all, checked, selected and disabled." },
+    { "id": "actionsColumn", "kind": "instance", "ref": "Table Column/Actions", "visibleWhen": "rowActions", "role": "_Actions Cell rows: the more button, open, selected and disabled." },
+    { "id": "menus", "kind": "instance", "ref": "_Table Menu", "placed": false, "role": "Compact row actions, filter and column settings menus." },
+    { "id": "emptyRow", "kind": "instance", "ref": "_Empty Row", "placed": false, "role": "Spans every column when nothing matches." },
+    { "id": "tooltip", "kind": "instance", "ref": "Tooltip", "placed": false, "role": "Shows cut-off text in full. Hidden from assistive technology." }
   ],
   "variants": {
     "axis": "shape",
     "base": "rounded",
     "table": [
-      {
-        "shape": "rounded",
-        "root.radius": "radius/element-md",
-        "root.clips": true,
-        "nested": "Search, Icon Button, Button, Checkbox Shape=rounded; Status Label, Pagination Rounded=true"
-      },
-      {
-        "shape": "sharp",
-        "root.radius": "none (raw 0, no token)",
-        "root.clips": false,
-        "nested": "Search, Icon Button, Button, Checkbox Shape=sharp; Status Label, Pagination Rounded=false"
-      }
+      { "shape": "rounded", "root.radius": "radius/element-md", "root.clips": true, "nested": "Search, Icon Button, Button, Checkbox Shape=rounded; Status Label, Pagination Rounded=true" },
+      { "shape": "sharp", "root.radius": "none (raw 0, no token)", "root.clips": false, "nested": "Search, Icon Button, Button, Checkbox Shape=sharp; Status Label, Pagination Rounded=false" }
     ],
     "_note": "Nested counts in the sample: 1 Search, 3 Icon Buttons, 5 Buttons, 5 Checkboxes, 5 Status Labels, 1 Pagination. The bars and content keep square corners; the root's clip rounds them."
   },
   "subcomponents": [
     {
-      "name": "Table Controls",
-      "id": "5302:5786",
-      "private": false,
+      "name": "Table Controls", "id": "5302:5786",
       "api": {
-        "search": {
-          "type": "boolean",
-          "figmaName": "Search#5302:2",
-          "default": true,
-          "controls": [
-            "search"
-          ]
-        },
-        "controls": {
-          "type": "boolean",
-          "figmaName": "Controls#5302:4",
-          "default": true,
-          "controls": [
-            "controlsSlot"
-          ]
-        },
-        "controlsSlot": {
-          "type": "slot",
-          "figmaName": "Controls Slot#5302:3",
-          "controls": [
-            "controlsSlot"
-          ]
-        }
+        "selectedCount": { "type": "boolean", "figmaName": "Selected Count#7607:0", "default": false },
+        "search": { "type": "boolean", "figmaName": "Search#5302:2", "default": true },
+        "controls": { "type": "boolean", "figmaName": "Controls#5302:4", "default": true },
+        "controlsSlot": { "type": "slot", "figmaName": "Controls Slot#5302:3" },
+        "columnSettings": { "type": "boolean", "figmaName": "Column Settings#7607:1", "default": false }
       },
       "anatomy": [
-        {
-          "id": "root",
-          "kind": "container",
-          "layout": {
-            "direction": "horizontal",
-            "gap": "space/sm",
-            "padding": {
-              "inline": "space/lg",
-              "block": "space/md"
-            },
-            "justify": "end",
-            "align": "center"
-          },
-          "sizing": {
-            "h": "fixed (fill inside Table)",
-            "v": "hug"
-          },
-          "paint": {
-            "fill": "surface/section"
-          },
-          "measured": {
-            "heightPx": 60
-          }
-        },
-        {
-          "id": "search",
-          "kind": "instance",
-          "ref": "Search",
-          "refVariant": "Shape=sharp, State=enabled, Size=small, Flavour=default",
-          "visibleWhen": "search",
-          "instanceProps": {
-            "showCancel": true,
-            "hasLeading": true,
-            "hasTrailing": false
-          },
-          "measured": {
-            "minWidthPx": 280
-          }
-        },
-        {
-          "id": "controlsSlot",
-          "kind": "slot",
-          "visibleWhen": "controls",
-          "layout": {
-            "direction": "horizontal",
-            "gap": "space/sm"
-          },
-          "sizing": "hug",
-          "clips": true,
-          "sample": "3 × Icon Button (Size=small, Shape=sharp, Flavour=outline-subtle)"
-        }
+        { "id": "root", "kind": "container", "layout": { "direction": "horizontal", "gap": "space/sm", "padding": { "inline": "space/lg", "block": "space/md" }, "justify": "end", "align": "center" }, "sizing": { "h": "fixed (fill inside Table)", "v": "hug" }, "paint": { "fill": "surface/section" }, "measuredHeightPx": 60 },
+        { "id": "selectedCount", "kind": "container", "visibleWhen": "selectedCount", "sizing": { "h": "fill", "v": "hug" }, "children": [{ "id": "countLabel", "kind": "instance", "ref": "Label", "refVariant": "Variant=info, Shape=sharp, Bold=true, Outlined=false", "exposed": true, "content": "label text (sample: 1 selected / 2 selected)" }], "note": "Grows to take the bar's free space, so the search and controls stay at the end." },
+        { "id": "search", "kind": "instance", "ref": "Search", "refVariant": "Shape=sharp, State=enabled, Size=small, Flavour=default", "visibleWhen": "search", "instanceProps": { "showCancel": true, "hasLeading": true, "hasTrailing": false }, "measuredMinWidthPx": 280 },
+        { "id": "controlsSlot", "kind": "slot", "visibleWhen": "controls", "layout": { "direction": "horizontal", "gap": "space/sm" }, "sizing": "hug", "clips": true, "sample": "3 x Icon Button (Size=small, Shape=sharp, Flavour=outline-subtle)" },
+        { "id": "columnSettings", "kind": "instance", "ref": "Icon Button", "refVariant": "Size=small, Shape=sharp, Flavour=outline-subtle, State=default, Disabled=false", "glyph": "settings", "visibleWhen": "columnSettings" }
       ]
     },
     {
-      "name": "Table Content",
-      "id": "6057:7556",
-      "private": false,
+      "name": "Table Content", "id": "6057:7556",
       "api": {
-        "columnPosition": {
-          "type": "enum",
-          "figmaName": "Column Position",
-          "values": [
-            "default",
-            "frozen"
-          ],
-          "default": "default",
-          "controls": [
-            "variant"
-          ]
-        },
-        "horizontalScroll": {
-          "type": "enum",
-          "figmaName": "Horizontal Scroll",
-          "values": [
-            "false",
-            "true"
-          ],
-          "default": "false",
-          "controls": [
-            "variant"
-          ]
-        },
-        "slotContainer": {
-          "type": "slot",
-          "figmaName": "Slot Container#6057:3",
-          "controls": [
-            "slotContainer"
-          ]
-        },
-        "frozenSlotContainer": {
-          "type": "slot",
-          "figmaName": "Frozen Slot Container#6057:4",
-          "controls": [
-            "frozenSlotContainer"
-          ]
-        }
+        "columnPosition": { "type": "enum", "figmaName": "Column Position", "values": ["default", "frozen"], "default": "default" },
+        "horizontalScroll": { "type": "enum", "figmaName": "Horizontal Scroll", "values": ["false", "true"], "default": "false" },
+        "verticalScroll": { "type": "enum", "figmaName": "Vertical Scroll", "values": ["false", "true"], "default": "false" },
+        "slotContainer": { "type": "slot", "figmaName": "Slot Container#6057:3" },
+        "frozenSlotContainer": { "type": "slot", "figmaName": "Frozen Slot Container#6057:4" },
+        "selectable": { "type": "boolean", "figmaName": "Selectable#7608:10", "default": true },
+        "rowActions": { "type": "boolean", "figmaName": "Row Actions#7608:15", "default": true }
       },
       "anatomy": [
-        {
-          "id": "root",
-          "kind": "container",
-          "layout": {
-            "direction": "horizontal",
-            "gap": "none (raw 0, no token)",
-            "align": "center"
-          },
-          "sizing": {
-            "h": "fixed (fill inside Table)",
-            "v": "hug"
-          }
-        },
-        {
-          "id": "leadingColumns",
-          "kind": "instance",
-          "ref": "Table Column/Default",
-          "count": 2,
-          "visibleWhen": "columnPosition = default",
-          "note": "Two columns outside the slot, fixed in the component"
-        },
-        {
-          "id": "slotContainer",
-          "kind": "slot",
-          "layout": {
-            "direction": "horizontal",
-            "gap": "space/none"
-          },
-          "sizing": {
-            "h": "fill",
-            "v": "fill"
-          },
-          "clips": true
-        },
-        {
-          "id": "frozenSlotContainer",
-          "kind": "slot",
-          "visibleWhen": "columnPosition = frozen",
-          "sizing": "fixed",
-          "clips": true,
-          "paint": {
-            "stroke": {
-              "color": "border/default",
-              "width": "stroke/thin",
-              "sides": "end"
-            },
-            "effects": {
-              "whenHorizontalScroll": "Shadow/medium-horizontal (shadow/soft; see issues on offset bindings)"
-            }
-          },
-          "sample": "Table Column/Default + Table Column/true"
-        },
-        {
-          "id": "scrollableColumns",
-          "kind": "container",
-          "visibleWhen": "columnPosition = frozen",
-          "layout": {
-            "direction": "vertical"
-          },
-          "sizing": {
-            "h": "fill",
-            "v": "hug"
-          },
-          "children": [
-            "columns (horizontal, holds slotContainer)",
-            "scrollbar"
-          ]
-        },
-        {
-          "id": "scrollbar",
-          "kind": "instance",
-          "ref": "Scrollbar",
-          "refVariant": "Orientation=horizontal, State=default",
-          "visibleWhen": "columnPosition = frozen AND horizontalScroll = true",
-          "position": {
-            "mode": "absolute",
-            "anchor": "bottom, stretches horizontally"
-          },
-          "layout": {
-            "padding": "space/xxs"
-          }
-        }
+        { "id": "root", "kind": "container", "layout": { "direction": "horizontal", "gap": "none (raw 0, no token)", "align": "center" }, "sizing": { "h": "fixed (fill inside Table)", "v": "hug" } },
+        { "id": "leadingColumns", "kind": "instance", "ref": "Table Column/Default", "count": 2, "visibleWhen": "columnPosition = default", "note": "Two columns outside the slot, fixed in the component" },
+        { "id": "slotContainer", "kind": "slot", "layout": { "direction": "horizontal", "gap": "space/none" }, "sizing": { "h": "fill", "v": "fill" }, "clips": true },
+        { "id": "frozenSlotContainer", "kind": "slot", "visibleWhen": "columnPosition = frozen", "sizing": "fixed", "clips": true, "paint": { "stroke": { "color": "border/default", "width": "stroke/thin", "sides": "end" }, "effects": { "whenHorizontalScroll": "Shadow/medium-horizontal (shadow/soft; see issues on offset bindings)" } }, "sample": "Table Column/Default + Table Column/true" },
+        { "id": "scrollableColumns", "kind": "container", "visibleWhen": "columnPosition = frozen", "layout": { "direction": "vertical" }, "sizing": { "h": "fill", "v": "hug" }, "children": ["columns (horizontal, holds slotContainer)", "scrollbar"] },
+        { "id": "scrollbar", "kind": "instance", "ref": "Scrollbar", "refVariant": "Orientation=horizontal, State=default", "visibleWhen": "columnPosition = frozen AND horizontalScroll = true", "position": { "mode": "absolute", "anchor": "bottom, stretches horizontally" }, "layout": { "padding": "space/2xs" } }
       ],
-      "variants": {
-        "axis": "columnPosition × horizontalScroll",
-        "base": "default × false",
-        "table": [
-          {
-            "columnPosition": "default",
-            "horizontalScroll": "false",
-            "parts": "leadingColumns + slotContainer"
-          },
-          {
-            "columnPosition": "frozen",
-            "horizontalScroll": "false",
-            "parts": "frozenSlotContainer (stroke end border/default) + scrollableColumns"
-          },
-          {
-            "columnPosition": "frozen",
-            "horizontalScroll": "true",
-            "parts": "as frozen/false + frozen shadow Shadow/medium-horizontal + scrollbar"
-          }
-        ],
-        "_note": "default × true is not modelled (3 of 4 combinations)."
-      }
+      "variants": [
+        { "columnPosition": "default", "horizontalScroll": "false", "verticalScroll": "false", "columns": "selectColumn, 1 fixed column, Slot Container (3 columns), actionsColumn" },
+        { "columnPosition": "frozen", "horizontalScroll": "true", "verticalScroll": "false", "columns": "Frozen Slot Container (selectColumn, Table Column/true) + Scrollable Columns (Slot Container, actionsColumn) + horizontal Scrollbar", "frozenEdge": "effect Shadow/medium-horizontal, end stroke border/default stroke/thin" },
+        { "columnPosition": "frozen", "horizontalScroll": "false", "verticalScroll": "false", "columns": "as above without the Scrollbar" },
+        { "columnPosition": "default", "horizontalScroll": "false", "verticalScroll": "true", "columns": "as the default row", "root": "clips; top-aligned; measured heightPx 260", "scrollbar": "Scrollbar Orientation=vertical, absolute right/stretch, below the header row" }
+      ],
+      "_note": "Column Position=frozen with Vertical Scroll=true and default with Horizontal Scroll=true are not modelled."
     },
     {
-      "name": "Table Footer",
-      "id": "5302:5897",
-      "private": false,
+      "name": "Table Footer", "id": "5302:5897",
       "api": {
-        "pageDetails": {
-          "type": "boolean",
-          "figmaName": "Page Details#5302:5",
-          "default": true,
-          "controls": [
-            "pageDetails"
-          ]
-        },
-        "pagination": {
-          "type": "boolean",
-          "figmaName": "Pagination#5302:6",
-          "default": true,
-          "controls": [
-            "pagination"
-          ]
-        }
+        "pageDetails": { "type": "boolean", "figmaName": "Page Details#5302:5", "default": true },
+        "rowsPerPage": { "type": "boolean", "figmaName": "Rows Per Page#7607:2", "default": false },
+        "pagination": { "type": "boolean", "figmaName": "Pagination#5302:6", "default": true }
       },
       "anatomy": [
-        {
-          "id": "root",
-          "kind": "container",
-          "layout": {
-            "direction": "horizontal",
-            "justify": "space-between",
-            "align": "center",
-            "padding": {
-              "inline": "space/lg",
-              "block": "space/md"
-            }
-          },
-          "sizing": {
-            "h": "fixed (fill inside Table)",
-            "v": "hug"
-          },
-          "paint": {
-            "fill": "surface/section"
-          },
-          "measured": {
-            "heightPx": 60
-          }
-        },
-        {
-          "id": "pageDetails",
-          "kind": "text",
-          "visibleWhen": "pageDetails",
-          "text": {
-            "style": "body/small",
-            "color": "foreground/secondary"
-          },
-          "sample": "Showing 1-3 of 21"
-        },
-        {
-          "id": "pagination",
-          "kind": "instance",
-          "ref": "Pagination",
-          "refVariant": "Outline=true, Rounded=false",
-          "visibleWhen": "pagination",
-          "instanceProps": {
-            "showControls": true,
-            "showMore": false
-          },
-          "layout": {
-            "gap": "space/sm"
-          }
-        }
+        { "id": "root", "kind": "container", "layout": { "direction": "horizontal", "justify": "space-between", "align": "center", "padding": { "inline": "space/lg", "block": "space/md" } }, "sizing": { "h": "fixed (fill inside Table)", "v": "hug" }, "paint": { "fill": "surface/section" }, "measuredHeightPx": 60 },
+        { "id": "footerStart", "kind": "container", "layout": { "direction": "horizontal", "gap": "space/xl", "align": "center" }, "sizing": "hug" },
+        { "id": "pageDetails", "kind": "text", "parent": "footerStart", "visibleWhen": "pageDetails", "text": { "style": "body/small", "color": "foreground/secondary", "sample": "Showing 1-3 of 21" } },
+        { "id": "rowsPerPage", "kind": "container", "parent": "footerStart", "visibleWhen": "rowsPerPage", "layout": { "direction": "horizontal", "gap": "space/sm", "align": "center" }, "children": [{ "id": "rowsPerPageLabel", "kind": "text", "text": { "style": "none (gap)", "color": "foreground/secondary", "sample": "Rows per page" } }, { "id": "pageSize", "kind": "instance", "ref": "Input / Select", "refVariant": "Size=small, Shape=sharp, State=filled, Flavour=default", "measuredWidthPx": 72, "sample": "5" }] },
+        { "id": "pagination", "kind": "instance", "ref": "Pagination", "refVariant": "Outline=true, Rounded=false", "visibleWhen": "pagination", "layout": { "gap": "space/sm" } }
       ]
     },
     {
-      "name": "Table Column/Default",
-      "id": "5302:5898",
-      "private": false,
-      "api": {
-        "slotContainer": {
-          "type": "slot",
-          "figmaName": "Slot Container#5302:7",
-          "controls": [
-            "slotContainer"
-          ]
-        }
-      },
+      "name": "Table Column/Default", "id": "5302:5898",
+      "api": { "slotContainer": { "type": "slot", "figmaName": "Slot Container#5302:7" } },
       "anatomy": [
-        {
-          "id": "root",
-          "kind": "container",
-          "layout": {
-            "direction": "vertical",
-            "gap": "none (raw 0, no token)"
-          },
-          "sizing": {
-            "h": "fixed",
-            "v": "hug"
-          },
-          "measured": {
-            "widthPx": 200
-          }
-        },
-        {
-          "id": "headerCell",
-          "kind": "instance",
-          "ref": "_Header Cell",
-          "refVariant": "State=enabled, Sorted=true",
-          "sizing": {
-            "h": "fill",
-            "v": "hug"
-          }
-        },
-        {
-          "id": "dataCells",
-          "kind": "instance",
-          "ref": "_Data Cell",
-          "refVariant": "State=enabled",
-          "count": 3,
-          "sizing": {
-            "h": "fill",
-            "v": "hug"
-          },
-          "note": "Three rows fixed in the component"
-        },
-        {
-          "id": "slotContainer",
-          "kind": "slot",
-          "layout": {
-            "direction": "vertical"
-          },
-          "sizing": {
-            "h": "fill",
-            "v": "hug"
-          },
-          "clips": true,
-          "sample": "2 × _Data Cell"
-        }
+        { "id": "root", "kind": "container", "layout": { "direction": "vertical", "gap": "none (raw 0, no token)" }, "sizing": { "h": "fixed", "v": "hug" }, "measuredWidthPx": 200 },
+        { "id": "headerCell", "kind": "instance", "ref": "_Header Cell", "refVariant": "State=enabled, Sorted=true", "sizing": { "h": "fill", "v": "hug" } },
+        { "id": "dataCells", "kind": "instance", "ref": "_Data Cell", "refVariant": "State=enabled", "count": 3, "sizing": { "h": "fill", "v": "hug" }, "note": "Three rows fixed in the component" },
+        { "id": "slotContainer", "kind": "slot", "layout": { "direction": "vertical" }, "sizing": { "h": "fill", "v": "hug" }, "clips": true, "sample": "2 x _Data Cell" }
       ]
     },
     {
-      "name": "Table Column/true",
-      "id": "6050:4835",
-      "private": false,
-      "onPage": false,
-      "note": "Not on any page; used only by Table Content's frozen variants. Same anatomy as Table Column/Default plus an end stroke (border/default, raw 1 weight) and a 199 measured content width.",
+      "name": "Table Column/true", "id": "6050:4835", "orphaned": true,
+      "anatomy": [{ "id": "root", "kind": "container", "paint": { "stroke": { "color": "border/default", "width": "raw 1 (no token)", "sides": "end" } } }],
+      "note": "Used in Table Content's two frozen variants; not on any page — see issues."
+    },
+    {
+      "name": "Table Column/Select", "id": "7607:3061",
+      "role": "The selection column (selectable): select-all in the header, a checkbox per row. It leads the columns and freezes with them.",
+      "anatomy": [{ "id": "root", "kind": "container", "layout": { "direction": "vertical" }, "measuredPx": { "w": 64, "h": 351 }, "children": "_Select Cell header (indeterminate), then 5 data cells: false, true, false, disabled, false" }]
+    },
+    {
+      "name": "Table Column/Actions", "id": "7607:3104",
+      "role": "The row actions column (rowActions): a more button per row opening its compact actions menu. It trails the columns.",
+      "anatomy": [{ "id": "root", "kind": "container", "layout": { "direction": "vertical" }, "measuredPx": { "w": 64, "h": 351 }, "children": "_Actions Cell header, then 5 data cells: enabled x3, disabled, enabled" }]
+    },
+    {
+      "name": "Slot", "id": "5365:6222",
+      "api": { "slot": { "type": "slot", "figmaName": "Slot#5365:1" } },
       "anatomy": [
-        {
-          "id": "root",
-          "kind": "container",
-          "paint": {
-            "stroke": {
-              "color": "border/default",
-              "width": "raw 1 (no token)",
-              "sides": "end"
-            }
-          }
-        }
+        { "id": "root", "kind": "container", "layout": { "direction": "horizontal", "padding": "space/none", "justify": "center", "align": "center" }, "sizing": { "h": "fill", "v": "fixed" }, "measuredHeightPx": 36 },
+        { "id": "slot", "kind": "slot", "layout": { "direction": "horizontal", "gap": "space/sm" }, "sizing": { "h": "hug", "v": "fill" } }
       ]
     },
     {
-      "name": "_Header Cell",
-      "id": "5238:5166",
-      "private": true,
+      "name": "_Header Cell", "id": "5238:5166", "private": true,
       "api": {
-        "state": {
-          "type": "enum",
-          "figmaName": "State",
-          "values": [
-            "enabled",
-            "hover",
-            "focus",
-            "disabled"
-          ],
-          "default": "enabled",
-          "controls": [
-            "variant"
-          ]
-        },
-        "sorted": {
-          "type": "enum",
-          "figmaName": "Sorted",
-          "values": [
-            "true",
-            "false"
-          ],
-          "default": "true",
-          "controls": [
-            "variant"
-          ]
-        }
+        "state": { "type": "enum", "figmaName": "State", "values": ["enabled", "hover", "focus", "disabled"], "default": "enabled" },
+        "sorted": { "type": "enum", "figmaName": "Sorted", "values": ["true", "false"], "default": "true" },
+        "resize": { "type": "enum", "figmaName": "Resize", "values": ["none", "hover", "focus"], "default": "none" }
       },
       "anatomy": [
-        {
-          "id": "root",
-          "kind": "container",
-          "layout": {
-            "direction": "vertical",
-            "align": "center"
-          },
-          "sizing": {
-            "h": "fill",
-            "v": "hug"
-          },
-          "paint": {
-            "stroke": {
-              "color": "border/default",
-              "width": "stroke/thin",
-              "sides": "top, bottom"
-            }
-          }
-        },
-        {
-          "id": "cell",
-          "kind": "container",
-          "layout": {
-            "direction": "vertical",
-            "padding": {
-              "inline": "space/lg",
-              "block": "space/md"
-            },
-            "justify": "center"
-          },
-          "sizing": {
-            "h": "fill",
-            "v": "hug"
-          },
-          "paint": {
-            "fill": "interactive/neutral/background/default",
-            "stroke": {
-              "color": "border/default",
-              "width": "stroke/base"
-            }
-          }
-        },
-        {
-          "id": "label",
-          "kind": "instance",
-          "ref": "_Label",
-          "sizing": {
-            "h": "fill",
-            "v": "hug"
-          }
-        }
+        { "id": "root", "kind": "container", "layout": { "direction": "vertical", "align": "center" }, "sizing": { "h": "fill", "v": "hug" }, "paint": { "stroke": { "color": "border/default", "width": "stroke/thin", "sides": "top, bottom" } } },
+        { "id": "cell", "kind": "container", "layout": { "direction": "vertical", "padding": { "inline": "space/lg", "block": "space/md" }, "justify": "center" }, "sizing": { "h": "fill", "v": "hug" }, "paint": { "fill": "interactive/neutral/background/default", "stroke": { "color": "border/default", "width": "stroke/base" } } },
+        { "id": "label", "kind": "instance", "ref": "_Label", "sizing": { "h": "fill", "v": "hug" } },
+        { "id": "resizeGrip", "kind": "shape", "visibleWhen": "resize != none", "position": { "mode": "absolute", "anchor": "end, full height (right/stretch)" }, "sizing": { "width": "stroke/thick" }, "paint": { "fill": { "hover": "interactive/neutral/border/hover", "focus": "border/focus" } } }
       ],
-      "variants": {
-        "axis": "state (sorted only varied at enabled)",
-        "base": "enabled, sorted=true",
-        "table": [
-          {
-            "state": "enabled",
-            "sorted": "true",
-            "cell.fill": "interactive/neutral/background/default",
-            "label": "_Label sort=false, hasTrailing=false"
-          },
-          {
-            "state": "enabled",
-            "sorted": "false",
-            "label": "_Label sort=true, hasTrailing=false"
-          },
-          {
-            "state": "hover",
-            "sorted": "true",
-            "cell.fill": "interactive/neutral/background/hover",
-            "label": "_Label sort=true, hasTrailing=true"
-          },
-          {
-            "state": "focus",
-            "sorted": "true",
-            "cell.fill": "interactive/neutral/background/focused",
-            "cell.stroke": "border/focus @ stroke/thick",
-            "label": "_Label sort=true, hasTrailing=true"
-          },
-          {
-            "state": "disabled",
-            "sorted": "true",
-            "cell.fill": "interactive/neutral/background/disabled",
-            "label": "_Label state=disabled, sort=true, hasTrailing=true"
-          }
-        ],
-        "_note": "5 of 8 combinations modelled."
-      }
+      "variants": [
+        { "state": "enabled", "sorted": "true", "cell.fill": "interactive/neutral/background/default", "label": "_Label sort=false, hasTrailing=false" },
+        { "state": "enabled", "sorted": "false", "label": "_Label sort=true, hasTrailing=false" },
+        { "state": "hover", "sorted": "true", "cell.fill": "interactive/neutral/background/hover", "label": "_Label sort=true, hasTrailing=true" },
+        { "state": "focus", "sorted": "true", "cell.fill": "interactive/neutral/background/focused", "cell.stroke": "border/focus @ stroke/thick", "label": "_Label sort=true, hasTrailing=true" },
+        { "state": "disabled", "sorted": "true", "cell.fill": "interactive/neutral/background/disabled", "label": "_Label state=disabled, sort=true, hasTrailing=true" },
+        { "state": "enabled", "sorted": "true", "resize": "hover" },
+        { "state": "enabled", "sorted": "true", "resize": "focus" }
+      ],
+      "_note": "7 of 24 combinations modelled."
     },
     {
-      "name": "_Data Cell",
-      "id": "5203:3689",
-      "private": true,
+      "name": "_Data Cell", "id": "5203:3689", "private": true,
       "api": {
-        "state": {
-          "type": "enum",
-          "figmaName": "State",
-          "values": [
-            "enabled",
-            "hover",
-            "selected",
-            "disabled"
-          ],
-          "default": "enabled",
-          "controls": [
-            "variant"
-          ]
-        },
-        "content": {
-          "type": "slot",
-          "figmaName": "Instance#5203:19",
-          "default": "_Avatar and text",
-          "controls": [
-            "content"
-          ],
-          "preferred": [
-            "_Avatar and text",
-            "Button",
-            "Icon Button",
-            "Search",
-            "Slot",
-            "+4 unresolved keys"
-          ]
-        }
+        "state": { "type": "enum", "figmaName": "State", "values": ["enabled", "hover", "selected", "disabled"], "default": "enabled" },
+        "content": { "type": "slot", "figmaName": "Instance#5203:19", "figmaType": "INSTANCE_SWAP", "default": "_Avatar and text" }
       },
       "anatomy": [
-        {
-          "id": "root",
-          "kind": "container",
-          "layout": {
-            "direction": "vertical",
-            "align": "center"
-          },
-          "sizing": {
-            "h": "hug (fill inside a column)",
-            "v": "hug"
-          },
-          "paint": {
-            "stroke": {
-              "color": "border/subtle",
-              "width": "stroke/thin",
-              "sides": "bottom"
-            }
-          }
-        },
-        {
-          "id": "cell",
-          "kind": "container",
-          "layout": {
-            "direction": "vertical",
-            "padding": {
-              "inline": "space/lg",
-              "block": "space/md"
-            },
-            "justify": "center"
-          },
-          "sizing": {
-            "h": "fill",
-            "v": "fixed"
-          },
-          "measured": {
-            "heightPx": 60
-          },
-          "paint": {
-            "fill": "interactive/neutral/background/default",
-            "stroke": {
-              "color": "border/default",
-              "width": "stroke/base"
-            }
-          }
-        },
-        {
-          "id": "content",
-          "kind": "slot",
-          "ref": "_Avatar and text",
-          "sizing": {
-            "h": "hug",
-            "v": "fill"
-          }
-        }
+        { "id": "root", "kind": "container", "layout": { "direction": "vertical", "align": "center" }, "sizing": { "h": "hug (fill inside a column)", "v": "hug" }, "paint": { "stroke": { "color": "border/subtle", "width": "stroke/thin", "sides": "bottom" } } },
+        { "id": "cell", "kind": "container", "layout": { "direction": "vertical", "padding": { "inline": "space/lg", "block": "space/md" }, "justify": "center" }, "sizing": { "h": "fill", "v": "fixed" }, "measuredHeightPx": 60, "paint": { "fill": "interactive/neutral/background/default", "stroke": { "color": "border/default", "width": "stroke/base" } } },
+        { "id": "content", "kind": "slot", "ref": "_Avatar and text", "sizing": { "h": "hug", "v": "fill" } }
       ],
-      "variants": {
-        "axis": "state",
-        "base": "enabled",
-        "table": [
-          {
-            "state": "enabled",
-            "cell.fill": "interactive/neutral/background/default"
-          },
-          {
-            "state": "hover",
-            "cell.fill": "interactive/neutral/background/hover"
-          },
-          {
-            "state": "selected",
-            "cell.fill": "interactive/neutral/background/selected"
-          },
-          {
-            "state": "disabled",
-            "cell.fill": "none (removed)",
-            "content": "unchanged (stays enabled — see issues)"
-          }
-        ]
-      }
+      "variants": [
+        { "state": "enabled", "cell.fill": "interactive/neutral/background/default" },
+        { "state": "hover", "cell.fill": "interactive/neutral/background/hover" },
+        { "state": "selected", "cell.fill": "interactive/neutral/background/selected" },
+        { "state": "disabled", "cell.fill": "interactive/neutral/background/default", "content": "content frame opacity raw 0.5 (gap), dimming whatever the cell holds" }
+      ]
     },
     {
-      "name": "_Label",
-      "id": "5145:1505",
-      "private": true,
+      "name": "_Label", "id": "5145:1505", "private": true,
       "api": {
-        "state": {
-          "type": "enum",
-          "figmaName": "State",
-          "values": [
-            "enabled",
-            "disabled"
-          ],
-          "default": "enabled",
-          "controls": [
-            "variant"
-          ]
-        },
-        "sort": {
-          "type": "boolean",
-          "figmaName": "Sort#5145:22",
-          "default": true,
-          "controls": []
-        },
-        "hasTrailing": {
-          "type": "boolean",
-          "figmaName": "hasTrailing#5145:25",
-          "default": true,
-          "controls": [
-            "trailingIcon"
-          ]
-        }
+        "state": { "type": "enum", "figmaName": "State", "values": ["enabled", "disabled"], "default": "enabled" },
+        "sort": { "type": "boolean", "figmaName": "Sort#5145:22", "default": true },
+        "hasTrailing": { "type": "boolean", "figmaName": "hasTrailing#5145:25", "default": true },
+        "filtered": { "type": "enum", "figmaName": "Filtered", "values": ["false", "true"], "default": "false" }
       },
       "anatomy": [
-        {
-          "id": "root",
-          "kind": "container",
-          "layout": {
-            "direction": "horizontal",
-            "justify": "space-between",
-            "align": "center"
-          },
-          "sizing": {
-            "h": "fixed (fill inside a header cell)",
-            "v": "hug"
-          }
-        },
-        {
-          "id": "label",
-          "kind": "container",
-          "layout": {
-            "direction": "horizontal",
-            "gap": "space/xxs",
-            "align": "center"
-          },
-          "children": [
-            {
-              "id": "text",
-              "kind": "text",
-              "text": {
-                "style": "label/medium",
-                "color": "foreground/primary"
-              },
-              "sample": "Label"
-            },
-            {
-              "id": "sort",
-              "kind": "instance",
-              "ref": "_Sort",
-              "refVariant": "State=default, Direction=default",
-              "note": "always visible; not bound to the sort property"
-            }
-          ]
-        },
-        {
-          "id": "trailingIcon",
-          "kind": "glyph",
-          "glyph": "filter",
-          "family": "rounded",
-          "iconSize": "Icon Size=small",
-          "visibleWhen": "hasTrailing",
-          "color": "currentColor (follows the font)"
-        }
+        { "id": "root", "kind": "container", "layout": { "direction": "horizontal", "justify": "space-between", "align": "center" }, "sizing": { "h": "fixed (fill inside a header cell)", "v": "hug" } },
+        { "id": "label", "kind": "container", "layout": { "direction": "horizontal", "gap": "space/2xs", "align": "center" }, "children": [{ "id": "text", "kind": "text", "text": { "style": "label/medium", "color": "foreground/primary" }, "sample": "Label" }, { "id": "sort", "kind": "instance", "ref": "_Sort", "refVariant": "State=default, Direction=default", "note": "always visible; not bound to the sort property" }] },
+        { "id": "trailingIcon", "kind": "glyph", "glyph": "filter", "family": "rounded", "iconSize": "Icon Size=small", "visibleWhen": "hasTrailing", "color": "currentColor (follows the font)" },
+        { "id": "trailingIcon.filtered", "note": "Filtered=true colours the filter glyph foreground/cursor (an override on the nested glyph)." }
       ],
-      "variants": {
-        "axis": "state",
-        "base": "enabled",
-        "table": [
-          {
-            "state": "enabled",
-            "text.color": "foreground/primary",
-            "sort": "_Sort State=default"
-          },
-          {
-            "state": "disabled",
-            "text.color": "foreground/disabled",
-            "sort": "_Sort State=disabled"
-          }
-        ]
-      }
+      "variants": [
+        { "state": "enabled", "text.color": "foreground/primary", "sort": "_Sort State=default" },
+        { "state": "disabled", "text.color": "foreground/disabled", "sort": "_Sort State=disabled" }
+      ]
     },
     {
-      "name": "_Sort",
-      "id": "5413:1195",
-      "private": true,
+      "name": "_Sort", "id": "5413:1195", "private": true,
       "api": {
-        "state": {
-          "type": "enum",
-          "figmaName": "State",
-          "values": [
-            "default",
-            "hover",
-            "disabled"
-          ],
-          "default": "default",
-          "controls": [
-            "variant"
-          ]
-        },
-        "direction": {
-          "type": "enum",
-          "figmaName": "Direction",
-          "values": [
-            "default",
-            "ascending",
-            "descending"
-          ],
-          "default": "default",
-          "controls": [
-            "variant"
-          ]
-        }
+        "state": { "type": "enum", "figmaName": "State", "values": ["default", "hover", "disabled"], "default": "default" },
+        "direction": { "type": "enum", "figmaName": "Direction", "values": ["default", "ascending", "descending"], "default": "default" }
       },
       "anatomy": [
-        {
-          "id": "root",
-          "kind": "container",
-          "sizing": "fixed",
-          "measured": {
-            "sizePx": 16
-          }
-        },
-        {
-          "id": "carets",
-          "kind": "vector",
-          "note": "One drawn vector, two filled regions (up caret, down caret), each bound to its own colour token. Not an Icon instance."
-        }
+        { "id": "root", "kind": "container", "sizing": "fixed", "measuredSizePx": 16 },
+        { "id": "carets", "kind": "vector", "note": "One drawn vector, two filled regions (up caret, down caret), each bound to its own colour token. Not an Icon instance." }
       ],
-      "variants": {
-        "axis": "state × direction",
-        "base": "default × default",
-        "table": [
-          {
-            "state": "default",
-            "direction": "default",
-            "up": "foreground/tertiary",
-            "down": "foreground/tertiary"
-          },
-          {
-            "state": "hover",
-            "direction": "default",
-            "up": "foreground/secondary",
-            "down": "foreground/secondary"
-          },
-          {
-            "state": "disabled",
-            "direction": "default",
-            "up": "foreground/disabled",
-            "down": "foreground/disabled"
-          },
-          {
-            "state": "default",
-            "direction": "ascending",
-            "inactive": "foreground/tertiary",
-            "active": "foreground/cursor"
-          },
-          {
-            "state": "hover",
-            "direction": "ascending",
-            "inactive": "foreground/secondary",
-            "active": "foreground/cursor"
-          },
-          {
-            "state": "default",
-            "direction": "descending",
-            "active": "foreground/cursor",
-            "inactive": "foreground/tertiary"
-          },
-          {
-            "state": "hover",
-            "direction": "descending",
-            "active": "foreground/cursor",
-            "inactive": "foreground/secondary"
-          }
-        ],
-        "_note": "Region order is as drawn; which region is the up caret is not named in the file. disabled × ascending/descending not modelled."
-      }
+      "variants": [
+        { "state": "default", "direction": "default", "up": "foreground/tertiary", "down": "foreground/tertiary" },
+        { "state": "hover", "direction": "default", "up": "foreground/secondary", "down": "foreground/secondary" },
+        { "state": "disabled", "direction": "default", "up": "foreground/disabled", "down": "foreground/disabled" },
+        { "state": "default", "direction": "ascending", "inactive": "foreground/tertiary", "active": "foreground/cursor" },
+        { "state": "hover", "direction": "ascending", "inactive": "foreground/secondary", "active": "foreground/cursor" },
+        { "state": "default", "direction": "descending", "active": "foreground/cursor", "inactive": "foreground/tertiary" },
+        { "state": "hover", "direction": "descending", "active": "foreground/cursor", "inactive": "foreground/secondary" }
+      ],
+      "_note": "Region order is as drawn; which region is the up caret is not named in the file. disabled x ascending/descending not modelled."
     },
     {
-      "name": "_Avatar and text",
-      "id": "5137:325",
-      "private": true,
+      "name": "_Avatar and text", "id": "5137:325", "private": true,
       "api": {
-        "state": {
-          "type": "enum",
-          "figmaName": "State",
-          "values": [
-            "enabled",
-            "disabled"
-          ],
-          "default": "enabled",
-          "controls": [
-            "variant"
-          ]
-        },
-        "avatar": {
-          "type": "boolean",
-          "figmaName": "Avatar#5137:3",
-          "default": true,
-          "controls": [
-            "avatar"
-          ]
-        },
-        "subtitle": {
-          "type": "boolean",
-          "figmaName": "Subtitle#5137:2",
-          "default": true,
-          "controls": [
-            "subtitle"
-          ]
-        }
+        "state": { "type": "enum", "figmaName": "State", "values": ["enabled", "disabled"], "default": "enabled" },
+        "avatar": { "type": "boolean", "figmaName": "Avatar#5137:3", "default": true },
+        "subtitle": { "type": "boolean", "figmaName": "Subtitle#5137:2", "default": true }
       },
       "anatomy": [
-        {
-          "id": "root",
-          "kind": "container",
-          "layout": {
-            "direction": "horizontal",
-            "gap": "space/sm",
-            "align": "center"
-          },
-          "sizing": "hug"
-        },
-        {
-          "id": "avatar",
-          "kind": "instance",
-          "ref": "Avatar",
-          "refVariant": "Size=xxxsmall",
-          "visibleWhen": "avatar",
-          "instanceProps": {
-            "showRing": false,
-            "showStatus": false,
-            "showClose": false
-          }
-        },
-        {
-          "id": "title",
-          "kind": "text",
-          "text": {
-            "style": "body/small",
-            "color": "foreground/primary"
-          }
-        },
-        {
-          "id": "subtitle",
-          "kind": "text",
-          "visibleWhen": "subtitle",
-          "text": {
-            "style": "body/xsmall",
-            "color": "foreground/secondary"
-          }
-        }
+        { "id": "root", "kind": "container", "layout": { "direction": "horizontal", "gap": "space/sm", "align": "center" }, "sizing": "hug" },
+        { "id": "avatar", "kind": "instance", "ref": "Avatar", "refVariant": "Size=xxxsmall", "visibleWhen": "avatar", "instanceProps": { "showRing": false, "showStatus": false, "showClose": false } },
+        { "id": "title", "kind": "text", "text": { "style": "body/small", "color": "foreground/primary" } },
+        { "id": "subtitle", "kind": "text", "visibleWhen": "subtitle", "text": { "style": "body/xsmall", "color": "foreground/secondary" } }
       ],
-      "variants": {
-        "axis": "state",
-        "base": "enabled",
-        "table": [
-          {
-            "state": "disabled",
-            "title.color": "foreground/disabled",
-            "subtitle.color": "foreground/disabled"
-          }
-        ]
-      }
+      "variants": [{ "state": "disabled", "title.color": "foreground/disabled", "subtitle.color": "foreground/disabled" }]
     },
     {
-      "name": "Slot",
-      "id": "5365:6222",
-      "private": false,
+      "name": "_Select Cell", "id": "7605:2680", "private": true,
+      "role": "The selection column's cell (selectable). The header holds select-all: indeterminate while some rows shown are selected. Data rows hold a row checkbox; a checked row takes the selected fill. Disabled rows can't be toggled unless the table allows disabled selection.",
       "api": {
-        "slot": {
-          "type": "slot",
-          "figmaName": "Slot#5365:1",
-          "controls": [
-            "slot"
-          ]
-        }
+        "type": { "type": "enum", "figmaName": "Type", "values": ["header", "data"], "default": "header" },
+        "checked": { "type": "enum", "figmaName": "Checked", "values": ["false", "indeterminate", "true"], "default": "false" },
+        "disabled": { "type": "enum", "figmaName": "Disabled", "values": ["false", "true"], "default": "false" }
       },
       "anatomy": [
-        {
-          "id": "root",
-          "kind": "container",
-          "layout": {
-            "direction": "horizontal",
-            "padding": "space/none",
-            "justify": "center",
-            "align": "center"
-          },
-          "sizing": {
-            "h": "fill",
-            "v": "fixed"
-          },
-          "measured": {
-            "heightPx": 36
-          }
-        },
-        {
-          "id": "slot",
-          "kind": "slot",
-          "layout": {
-            "direction": "horizontal",
-            "gap": "space/sm"
-          },
-          "sizing": {
-            "h": "hug",
-            "v": "fill"
-          }
-        }
+        { "id": "root", "kind": "container", "layout": { "direction": "vertical", "align": "center" }, "measuredPx": { "w": 64, "hHeader": 46, "hData": 61 }, "paint": { "stroke": { "header": { "color": "border/default", "top": "stroke/thin", "bottom": "stroke/thin" }, "data": { "color": "border/subtle", "bottom": "stroke/thin" } } } },
+        { "id": "cell", "kind": "container", "layout": { "direction": "horizontal", "align": "center", "padding": { "inline": "space/md", "block": "space/none" } }, "paint": { "fill": "interactive/neutral/background/default" }, "clips": true, "measuredPx": { "hHeader": 44, "hData": 60 } },
+        { "id": "checkbox", "kind": "instance", "ref": "Checkbox", "refVariant": "Size=medium, hasLabel=false", "note": "Checked and State follow the cell's Checked and Disabled." }
       ],
-      "note": "Generic slot wrapper offered as a _Data Cell content option."
+      "variants": [
+        { "type": "header", "checked": "false" },
+        { "type": "header", "checked": "indeterminate", "checkbox": "Checked=indeterminate" },
+        { "type": "header", "checked": "true", "checkbox": "Checked=true" },
+        { "type": "data", "checked": "false" },
+        { "type": "data", "checked": "true", "cell.fill": "interactive/neutral/background/selected", "checkbox": "Checked=true" },
+        { "type": "data", "disabled": "true", "checkbox": "State=disabled" }
+      ]
+    },
+    {
+      "name": "_Actions Cell", "id": "7605:2707", "private": true,
+      "role": "The row actions column's cell (rowActions). Data rows hold a small subtle more button that opens the row's compact actions menu (open while the menu shows). Disabled rows disable it unless the table allows disabled selection. The header carries no visible content; its name is Actions.",
+      "api": {
+        "type": { "type": "enum", "figmaName": "Type", "values": ["header", "data"], "default": "header" },
+        "state": { "type": "enum", "figmaName": "State", "values": ["enabled", "open", "disabled", "selected"], "default": "enabled" }
+      },
+      "anatomy": [
+        { "id": "root", "kind": "container", "note": "Same shell and borders as _Select Cell; measured widthPx 64." },
+        { "id": "cell", "kind": "container", "layout": { "direction": "horizontal", "justify": "end", "align": "center", "padding": { "inline": "space/md", "block": "space/none" } }, "paint": { "fill": "interactive/neutral/background/default" } },
+        { "id": "more", "kind": "instance", "ref": "Icon Button", "refVariant": "Size=small, Shape=sharp, Flavour=subtle", "glyph": "more-vertical", "visibleWhen": "type = data" }
+      ],
+      "variants": [
+        { "type": "header", "more": "absent" },
+        { "type": "data", "state": "enabled", "more": "State=default" },
+        { "type": "data", "state": "open", "more": "State=pressed" },
+        { "type": "data", "state": "disabled", "more": "Disabled=true" },
+        { "type": "data", "state": "selected", "cell.fill": "interactive/neutral/background/selected" }
+      ]
+    },
+    {
+      "name": "_Empty Row", "id": "7605:2708", "private": true,
+      "role": "Spans every column when no rows are left to show (after search or filters). The label is the table's emptyLabel.",
+      "api": { "emptyLabel": { "type": "string", "figmaName": "Empty Label#7605:0", "default": "No results" } },
+      "anatomy": [
+        { "id": "root", "kind": "container", "layout": { "direction": "horizontal", "justify": "center", "align": "center", "padding": { "inline": "space/lg", "block": "space/md" } }, "paint": { "fill": "interactive/neutral/background/default", "stroke": { "color": "border/subtle", "bottom": "stroke/thin" } }, "measuredPx": { "w": 600, "h": 45 } },
+        { "id": "label", "kind": "text", "text": { "style": "none (gap)", "color": "foreground/secondary" } }
+      ]
+    },
+    {
+      "name": "_Table Menu", "id": "7607:3440", "private": true,
+      "role": "The table's compact menus, each a compact Dropdown Menu opening in the top layer. Row actions: the row's actions, a disabled one dimmed. Filter: a checkbox per value plus Clear filter while any is chosen. Column settings: Show columns checkboxes and Freeze up to radios. Arrow keys move, Escape closes and returns focus to the trigger.",
+      "api": { "type": { "type": "enum", "figmaName": "Type", "values": ["row actions", "filter", "column settings"], "default": "row actions" } },
+      "anatomy": [
+        { "id": "panel", "kind": "instance", "ref": "Dropdown Menu", "refVariant": "Rounded=true, Compact=true", "paint": { "fill": "surface/overlay", "effect": "Shadow/medium" }, "layout": { "gap": "space/none", "padding": "space/xs" }, "radius": "radius/element-md", "note": "Its two fixed rows are hidden; every row sits in the slot." }
+      ],
+      "variants": [
+        { "type": "row actions", "rows": "Menu Item Type=Icon: View (visibility), Edit (edit, shown focused), Share (share), Delete (delete, disabled)" },
+        { "type": "filter", "rows": "Menu Item Type=checkbox: Analyst, Intern (selected, checked), Lead; then Type=Icon Clear filter (close)" },
+        { "type": "column settings", "rows": "heading Show columns (label/small, foreground/secondary); checkbox rows Name, Status, Team, Action (all but Team selected, checked); Divider; heading Freeze up to; radio rows None, Name (selected), Status, Action" }
+      ]
     }
   ],
   "dependencies": [
-    {
-      "name": "Search",
-      "id": "2152:8811",
-      "remote": false,
-      "spec": "specs/search"
-    },
-    {
-      "name": "Icon Button",
-      "id": "2338:1763",
-      "remote": false,
-      "spec": "specs/icon-button"
-    },
-    {
-      "name": "Pagination",
-      "id": "4489:1925",
-      "remote": false,
-      "spec": null
-    },
-    {
-      "name": "Scrollbar",
-      "id": "6068:12030",
-      "remote": false,
-      "spec": null
-    },
-    {
-      "name": "Avatar",
-      "id": "2699:17793",
-      "remote": false,
-      "spec": "specs/avatar"
-    },
-    {
-      "name": "Icon",
-      "id": "2046:15010",
-      "remote": false,
-      "spec": "specs/icon"
-    },
-    {
-      "name": "Button",
-      "key": "42bf13a5210cd307b7bd4563f2521b78cfd74dae",
-      "remote": false,
-      "spec": "specs/button",
-      "usedAs": "_Data Cell preferred content"
-    }
+    { "name": "Search", "spec": "specs/search" },
+    { "name": "Icon Button", "spec": "specs/icon-button" },
+    { "name": "Pagination", "spec": "specs/pagination" },
+    { "name": "Scrollbar" },
+    { "name": "Avatar", "spec": "specs/avatar" },
+    { "name": "Icon", "spec": "specs/icon" },
+    { "name": "Button", "spec": "specs/button", "note": "_Data Cell preferred content" }
   ],
   "tokens": {
     "source": "tokens/ (see tokens/manifest.json)",
-    "color": [
-      "surface/section",
-      "interactive/neutral/background/default",
-      "interactive/neutral/background/hover",
-      "interactive/neutral/background/focused",
-      "interactive/neutral/background/selected",
-      "interactive/neutral/background/disabled",
-      "interactive/neutral/border/default",
-      "interactive/ghost/background/default",
-      "border/default",
-      "border/subtle",
-      "border/focus",
-      "foreground/primary",
-      "foreground/secondary",
-      "foreground/tertiary",
-      "foreground/disabled",
-      "foreground/cursor",
-      "shadow/soft"
-    ],
-    "dimension": [
-      "space/none",
-      "space/xxs",
-      "space/sm",
-      "space/md",
-      "space/lg",
-      "stroke/base",
-      "stroke/thin",
-      "stroke/thick",
-      "radius/none",
-      "control/sm",
-      "shadow/medium/x",
-      "shadow/medium/y",
-      "shadow/medium/blur",
-      "shadow/small/x",
-      "shadow/small/y",
-      "shadow/small/blur",
-      "radius/element-md"
-    ],
-    "typography": [
-      "body/small",
-      "body/xsmall",
-      "label/medium"
-    ],
-    "effect": [
-      "Shadow/medium-horizontal"
-    ],
-    "glyphs": [
-      "filter"
-    ],
+    "color": ["border/default", "border/focus", "border/subtle", "feedback/info/background/strong", "foreground/cursor", "foreground/disabled", "foreground/primary", "foreground/secondary", "foreground/tertiary", "interactive/ghost/background/default", "interactive/ghost/background/disabled", "interactive/ghost/background/pressed", "interactive/neutral/background/default", "interactive/neutral/background/disabled", "interactive/neutral/background/focused", "interactive/neutral/background/hover", "interactive/neutral/background/selected", "interactive/neutral/border/default", "interactive/neutral/border/disabled", "interactive/neutral/border/hover", "shadow/soft", "surface/overlay", "surface/section"],
+    "dimension": ["control/sm", "radius/element-md", "radius/none", "shadow/medium/blur", "shadow/medium/x", "shadow/medium/y", "shadow/small/blur", "shadow/small/x", "shadow/small/y", "space/3xs", "space/lg", "space/md", "space/none", "space/sm", "space/xl", "space/xs", "space/2xs", "stroke/base", "stroke/thick", "stroke/thin"],
+    "typography": ["body/small", "body/xsmall", "label/medium", "label/small"],
+    "effect": ["Shadow/medium", "Shadow/medium-horizontal"],
+    "glyphs": ["close", "delete", "edit", "filter", "more-vertical", "settings", "share", "visibility"],
     "themeAxes": {
-      "palette": [
-        "Light",
-        "Dark"
-      ],
-      "size": [
-        "Desktop",
-        "Mobile",
-        "Tablet",
-        "Desktop Compact"
-      ],
-      "typography": [
-        "Desktop",
-        "Tablet",
-        "Mobile",
-        "Desktop Compact"
-      ]
-    },
-    "_note": "Every name above resolves in tokens/ (49 checked). Typography names are text styles whose five properties are each bound to the matching typography tokens."
+      "palette": ["Light", "Dark", "AAA Light", "AAA Dark"],
+      "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
+      "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"]
+    }
   },
   "states": {
-    "_note": "The metadata has no States & Triggers section. States are modelled only on the private cells: _Header Cell (enabled, hover, focus, disabled), _Data Cell (enabled, hover, selected, disabled), _Label and _Avatar and text (enabled, disabled), _Sort (default, hover, disabled)."
+    "_note": "The metadata has no States & Triggers section. States live on the private cells: _Header Cell (enabled, hover, focus, disabled; resize none, hover, focus), _Data Cell (enabled, hover, selected, disabled), _Select Cell (checked false, indeterminate, true; disabled), _Actions Cell (enabled, open, selected, disabled), _Label (enabled, disabled; filtered), _Avatar and text (enabled, disabled), _Sort (default, hover, disabled)."
   },
   "behavior": [
-    {
-      "type": "Motion",
-      "description": "No transition is defined for the controls bar or the footer appearing and disappearing."
-    }
+    { "type": "Motion", "description": "No transition is defined for the controls bar or the footer appearing and disappearing." },
+    { "type": "Selection", "description": "A checkbox per row and select-all in the header. Select-all covers the enabled rows shown and is indeterminate while only some are selected. Selected rows take the selected fill across every column." },
+    { "type": "Selected count", "description": "While rows are selected, an info Label at the start of the controls bar counts them. Screen readers hear the count change." },
+    { "type": "Sorting", "description": "A sortable header cycles none, ascending and descending. Client-side, the table reorders the rows itself; otherwise the consumer does." },
+    { "type": "Search and filter", "description": "Search matches every cell's text. A filterable header opens a compact checkbox menu of the column's values, and a filtered column keeps its glyph in foreground/cursor." },
+    { "type": "Paging", "description": "Rows per page sets the page size. Client-side, the summary and page count are worked out, and sorting, searching or filtering returns to page 1." },
+    { "type": "Column resizing", "description": "Hovering a header's trailing edge shows the neutral hover border at full cell height. Dragging trades width with the next resizable columns, so the table width never changes. Arrow keys step it and a double-click resets it." },
+    { "type": "Column settings", "description": "The settings panel shows or hides columns and freezes up to a chosen column. The last column showing can't be hidden." },
+    { "type": "Row actions", "description": "The more button opens a compact menu of the row's actions. Escape closes it and returns focus to the button." },
+    { "type": "Sticky header", "description": "With Vertical Scroll, rows scroll under a header that sticks to the top. Frozen columns stay frozen both ways." },
+    { "type": "Truncation", "description": "Text cut off in a narrow column shows in full in a Tooltip after a short hover." },
+    { "type": "Disabled rows", "description": "A disabled row keeps the plain fill and dims everything in it. It can't be selected, clicked or opened for actions unless the table allows disabled selection." },
+    { "type": "Empty", "description": "With nothing to show, one row spanning every column reads the empty label." }
   ],
   "content": [
-    {
-      "property": "Controls bar",
-      "type": "Table Controls instance",
-      "description": "Holds a search field (instance of the search component) fixed to its own Shape, Size and Flavour, and an open Controls Slot for whatever actions a consumer adds. Whether each shows on its own is not reachable from Table, only hasControl toggles them together."
-    },
-    {
-      "property": "Content",
-      "type": "Table Content instance",
-      "description": "Always the plain left-to-right column layout. Table Content also offers a frozen-column and a horizontally scrolling arrangement, neither used by this instance and neither exposed as a property of Table."
-    },
-    {
-      "property": "Footer",
-      "type": "Table Footer instance",
-      "description": "Holds a locked summary text and a Pagination instance set to Outline. Whether each shows on its own is not reachable from Table, only hasFooter toggles them together."
-    }
+    { "property": "Controls bar", "type": "Table Controls instance", "description": "Holds the selected count, a search field, the Controls Slot and the column settings button. Each is a property of the exposed instance." },
+    { "property": "Content", "type": "Table Content instance", "description": "Holds the selection column, the data columns and the actions column. Column Position, Horizontal Scroll, Vertical Scroll, Selectable and Row Actions are exposed." },
+    { "property": "Footer", "type": "Table Footer instance", "description": "Holds the page summary, rows per page and Pagination. Each is a property of the exposed instance." },
+    { "property": "Selection column", "type": "Table Column/Select", "description": "_Select Cell rows: select-all, checked, selected and disabled." },
+    { "property": "Actions column", "type": "Table Column/Actions", "description": "_Actions Cell rows: the more button, open, selected and disabled." },
+    { "property": "Menus", "type": "_Table Menu", "description": "Compact row actions, filter and column settings menus." },
+    { "property": "Empty row", "type": "_Empty Row", "description": "Spans every column when nothing matches." },
+    { "property": "Tooltip", "type": "Tooltip instance", "description": "Shows cut-off text in full. Hidden from assistive technology." }
   ],
   "usage": {
     "do": [
       "Turn hasControl off when the table doesn't need its own search or extra actions above it.",
-      "Turn hasFooter off for a table short enough that pagination has nothing to do."
+      "Turn hasFooter off for a table short enough that pagination has nothing to do.",
+      "Turn Selectable on only when selected rows feed an action, such as a bulk delete."
     ],
     "dont": [
-      "Don't expect Table's own properties to hide just the search field or just the pagination summary on their own, hasControl and hasFooter each toggle their whole section together.",
-      "Don't expect a frozen or horizontally scrolling column arrangement from this instance, it always uses the plain left-to-right layout no matter what fills the columns."
+      "Don't try to hide the last column in the settings panel. The table keeps one showing.",
+      "Don't rely on slotted controls in a disabled row. They ignore the pointer unless disabled selection is allowed."
     ]
   },
   "accessibility": [
-    "Nothing in this file marks keyboard navigation between cells, rows or the controls above and below them. Whether this table participates in a grid-style keyboard pattern needs confirming outside Figma."
+    "A captioned table with column headers and aria-sort on sortable columns.",
+    "Checkboxes are named, such as Select all rows and Select row: Name.",
+    "Resize grips are focusable separators with a name and a value.",
+    "Menus are named, move with the arrow keys and close on Escape, returning focus to their trigger.",
+    "The selected count is a live region.",
+    "Tooltips repeat visible text and are hidden from assistive technology."
   ],
   "layoutTheming": [
-    {
-      "property": "Width",
-      "type": "Fixed",
-      "description": "979px, held fixed rather than hugging its content."
-    },
-    {
-      "property": "Height",
-      "type": "Hug",
-      "description": "Hugs the controls bar, the content and the footer stacked with no gap between them."
-    },
-    {
-      "property": "Padding",
-      "type": "Fixed",
-      "description": "0 on every side of the table itself, each section carries its own padding instead."
-    },
-    {
-      "property": "Controls bar",
-      "type": "Fixed height, fixed padding",
-      "description": "Fixed at 60px tall, 16px padding on the left and right, 12px on top and bottom. Its search field and controls slot align to the right-hand side, leaving the left side open."
-    },
-    {
-      "property": "Footer",
-      "type": "Fixed height, fixed padding",
-      "description": "Fixed at 60px tall, the same 16px and 12px padding as the controls bar. The summary text and the pagination control push to opposite ends rather than sitting a fixed distance apart."
-    },
-    {
-      "property": "Content",
-      "type": "Fill",
-      "description": "Takes whatever height is left between the controls bar and the footer, 351px with both shown."
-    }
+    { "property": "Width", "type": "Fixed", "description": "979px, held fixed rather than hugging its content." },
+    { "property": "Height", "type": "Hug", "description": "Hugs the controls bar, the content and the footer stacked with no gap between them." },
+    { "property": "Padding", "type": "Fixed", "description": "0 on every side of the table itself, each section carries its own padding instead." },
+    { "property": "Controls bar", "type": "Fixed height, fixed padding", "description": "Fixed at 60px tall, 16px padding on the left and right, 12px on top and bottom. Its search field and controls slot align to the right-hand side, leaving the left side open." },
+    { "property": "Footer", "type": "Fixed height, fixed padding", "description": "Fixed at 60px tall, the same 16px and 12px padding as the controls bar. The summary text and the pagination control push to opposite ends rather than sitting a fixed distance apart." },
+    { "property": "Content", "type": "Fill", "description": "Takes the height left between the controls bar and the footer, 351px with both shown. With Vertical Scroll it caps its height and scrolls." },
+    { "property": "Columns", "type": "Resizable", "description": "Resizing trades width between columns, so the table width holds." }
   ],
   "visualReference": {
-    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
     "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4364-1629",
     "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6717-3146",
     "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6099-1543",
@@ -1410,94 +431,40 @@
       "_Label": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5145-1505",
       "_Sort": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5413-1195",
       "_Avatar and text": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5137-325",
-      "Slot": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5365-6222"
+      "Slot": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5365-6222",
+      "_Select Cell": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7605-2680",
+      "_Actions Cell": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7605-2707",
+      "_Empty Row": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7605-2708",
+      "_Table Menu": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7607-3440",
+      "Table Column/Select": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7607-3061",
+      "Table Column/Actions": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7607-3104",
+      "_Header Cell Resize=hover": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7606-2679",
+      "_Label Filtered=true": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7606-2689",
+      "Table Content Vertical Scroll=true": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7607-2746"
     },
-    "variants": {
-      "shape": {
-        "rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5302-7588"
-      }
-    }
+    "variants": { "shape rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5302-7588" }
   },
   "issues": [
-    {
-      "severity": "note",
-      "source": "api (shape)",
-      "detail": "Shape rounds the table's outer corners (radius/element-md, clipping its content) and sets the matching shape option on every nested component (Shape on Search, Icon Button, Button, Checkbox; Rounded on Status Label and Pagination). In code, pass it down to the components the table renders; content a consumer slots in (controls, custom cells) has to be told separately or read it from context."
-    },
-    {
-      "severity": "warn",
-      "source": "gaps",
-      "detail": "Shape=sharp leaves the table's radius as a raw 0 with no token; rounded binds radius/element-md. Elsewhere sharp corners bind radius/none."
-    },
-    {
-      "severity": "warn",
-      "source": "_Label / _Header Cell",
-      "detail": "_Label's sort property is bound to nothing: the _Sort instance is always visible and never changes. _Header Cell's Sorted axis only flips that dead property — and inversely (Sorted=true sets sort=false). Sorted therefore has no visible effect, and no header variant sets _Sort's direction. Build sort state from _Sort's own direction axis; don't reproduce Sorted."
-    },
-    {
-      "severity": "warn",
-      "source": "dependencies",
-      "detail": "Table Column/true (6050:4835), used in Table Content's two frozen variants, is not on any page — an orphaned main component. Its end stroke weight is raw 1 with no token (stroke/thin elsewhere)."
-    },
-    {
-      "severity": "warn",
-      "source": "effects",
-      "detail": "The frozen column's shadow (effect style Shadow/medium-horizontal) binds offsetX to shadow/medium/y and offsetY to shadow/medium/x (same for the small layer) to turn a vertical shadow sideways. Implement as a horizontal shadow; there are no horizontal-offset tokens."
-    },
-    {
-      "severity": "warn",
-      "source": "_Data Cell",
-      "detail": "State=disabled removes the cell fill and leaves the nested content in its enabled variant, so disabled text isn't dimmed. _Avatar and text has a disabled variant that isn't used."
-    },
-    {
-      "severity": "warn",
-      "source": "_Data Cell",
-      "detail": "Preferred content has 9 keys; 5 resolve (_Avatar and text, Button, Icon Button, Search, Slot). 76aef8cc…, 85dda6fa…, d55a9ea0…, 6770c3b0… don't resolve from this file. The metadata names 7: Avatar + Text, Button, Icon Button, Checkbox, Status Label, Search, Slot — so Checkbox and Status Label are presumably two of the four, and two keys are unaccounted for."
-    },
-    {
-      "severity": "warn",
-      "source": "_Sort",
-      "detail": "Active sort direction uses foreground/cursor — the text-caret colour — not an interactive or brand token. Inactive carets use foreground/tertiary (hover foreground/secondary)."
-    },
-    {
-      "severity": "warn",
-      "source": "metadata vs extracted",
-      "detail": "Layout & Theming says the controls bar and footer are 'Fixed at 60px tall'; both hug vertically (60 is measured). It also says Content is 'Fill'; Table Content hugs vertically inside Table. Padding quoted as 16px/12px is bound to space/lg / space/md."
-    },
-    {
-      "severity": "warn",
-      "source": "gaps",
-      "detail": "_Data Cell's cell height is fixed (60 measured) with no token; Table, Table Content, Table Column and the column slot use raw 0 gap/padding with no token in places (others bind space/none)."
-    },
-    {
-      "severity": "note",
-      "source": "gaps (false positive)",
-      "detail": "The extractor flags Frozen Slot Container's stroke weight as untokened; its end side is bound to stroke/thin. The gap check only looks at strokeWeight/strokeTopWeight."
-    },
-    {
-      "severity": "note",
-      "source": "_Sort / icon font",
-      "detail": "_Sort is a drawn two-region vector, not an Icon instance. The font has caret-sort, caret-up and caret-down, but one glyph can't colour its two carets separately — use two glyphs or an SVG."
-    },
-    {
-      "severity": "note",
-      "source": "_Header Cell",
-      "detail": "Hover, focus and disabled turn on the trailing filter glyph; enabled hides it. Hover and focus are interaction states, not props. Only 5 of 8 State × Sorted combinations exist; disabled changes Content's horizontal sizing to fixed."
-    },
-    {
-      "severity": "note",
-      "source": "Table Content",
-      "detail": "Column Position=default × Horizontal Scroll=true isn't modelled. The two fixed leading columns exist only in the default arrangement."
-    },
-    {
-      "severity": "note",
-      "source": "internalVariations",
-      "detail": "Table exposes only hasControl and hasFooter. Content arrangement, search/controls and page-details/pagination are reachable only on the nested instances. Decide in code which become Table props."
-    },
-    {
-      "severity": "note",
-      "source": "coverage",
-      "detail": "No States & Triggers section in the metadata. Motion: none defined. Accessibility: keyboard navigation is explicitly unconfirmed. No component set on the page has a description."
-    }
+    { "severity": "warn", "source": "gaps", "detail": "Shape=sharp leaves the table's radius as a raw 0 with no token; rounded binds radius/element-md. Elsewhere sharp corners bind radius/none." },
+    { "severity": "warn", "source": "_Label / _Header Cell", "detail": "_Label's sort property is bound to nothing: the _Sort instance is always visible and never changes. _Header Cell's Sorted axis only flips that dead property — and inversely (Sorted=true sets sort=false). Sorted therefore has no visible effect, and no header variant sets _Sort's direction. Build sort state from _Sort's own direction axis; don't reproduce Sorted." },
+    { "severity": "warn", "source": "dependencies", "detail": "Table Column/true (6050:4835), used in Table Content's two frozen variants, is not on any page — an orphaned main component. Its end stroke weight is raw 1 with no token (stroke/thin elsewhere)." },
+    { "severity": "warn", "source": "effects", "detail": "The frozen column's shadow (effect style Shadow/medium-horizontal) binds offsetX to shadow/medium/y and offsetY to shadow/medium/x (same for the small layer) to turn a vertical shadow sideways. Implement as a horizontal shadow; there are no horizontal-offset tokens." },
+    { "severity": "warn", "source": "_Data Cell", "detail": "Preferred content has 9 keys; 5 resolve (_Avatar and text, Button, Icon Button, Search, Slot). Four keys don't resolve from this file. The metadata names 7: Avatar + Text, Button, Icon Button, Checkbox, Status Label, Search, Slot — so Checkbox and Status Label are presumably two of the four, and two keys are unaccounted for." },
+    { "severity": "warn", "source": "_Sort", "detail": "Active sort direction uses foreground/cursor — the text-caret colour — not an interactive or brand token. Inactive carets use foreground/tertiary (hover foreground/secondary)." },
+    { "severity": "warn", "source": "metadata vs extracted", "detail": "Layout & Theming says the controls bar and footer are 'Fixed at 60px tall'; both hug vertically (60 is measured). It also says Content is 'Fill'; Table Content hugs vertically inside Table. Padding quoted as 16px/12px is bound to space/lg / space/md." },
+    { "severity": "warn", "source": "gaps", "detail": "_Data Cell's cell height is fixed (60 measured) with no token; Table, Table Content, Table Column and the column slot use raw 0 gap/padding with no token in places (others bind space/none). _Empty Row's label and Table Footer's Rows per page label have no text style (raw typography); both read as body/small beside the page summary. _Data Cell State=disabled dims the content frame with a raw opacity 0.5; there is no opacity token." },
+    { "severity": "warn", "source": "bindingDrift", "detail": "_Label Filtered=true has lost the trailing icon's visibility binding to hasTrailing; the other two variants keep it." },
+    { "severity": "warn", "source": "Table Content", "detail": "Selectable hides the selection column only in the default arrangements. In the frozen ones the column is Frozen Slot Container content, which can't be bound to a property; designers remove it there by hand." },
+    { "severity": "warn", "source": "metadata vs extracted", "detail": "Layout & Theming still says the controls bar's search and controls 'align to the right-hand side, leaving the left side open', and Anatomy 1 still credits hasControl with showing or hiding the Controls Slot. The selected count now sits at the start and Controls (not hasControl) toggles the slot." },
+    { "severity": "note", "source": "api (shape)", "detail": "Shape rounds the table's outer corners (radius/element-md, clipping its content) and sets the matching shape option on every nested component (Shape on Search, Icon Button, Button, Checkbox; Rounded on Status Label and Pagination). In code, pass it down to the components the table renders; content a consumer slots in (controls, custom cells) has to be told separately or read it from context." },
+    { "severity": "note", "source": "gaps (false positive)", "detail": "The extractor flags Frozen Slot Container's stroke weight as untokened; its end side is bound to stroke/thin. The gap check only looks at strokeWeight/strokeTopWeight." },
+    { "severity": "note", "source": "_Sort / icon font", "detail": "_Sort is a drawn two-region vector, not an Icon instance. The font has caret-sort, caret-up and caret-down, but one glyph can't colour its two carets separately — use two glyphs or an SVG." },
+    { "severity": "note", "source": "_Header Cell", "detail": "Hover, focus and disabled turn on the trailing filter glyph; enabled hides it. Hover and focus are interaction states, not props. Only 5 of 8 State x Sorted combinations exist; disabled changes Content's horizontal sizing to fixed." },
+    { "severity": "note", "source": "Table Content", "detail": "Column Position=default x Horizontal Scroll=true isn't modelled. The two fixed leading columns exist only in the default arrangement. Vertical Scroll is modelled only with Column Position=default; the sticky header is implied by the clipped content, not drawn as its own state." },
+    { "severity": "note", "source": "api vs Property Breakdown", "detail": "Selected Count, Column Settings and Rows Per Page default false on Table Controls and Table Footer; the breakdown marks true, which is what the Table sample sets on its exposed instances. Code turns all three on only when asked. Exposed nested properties missing from the breakdown: Column Position, Horizontal Scroll (Table Content), Search, Controls (Table Controls), Page Details, Pagination (Table Footer)." },
+    { "severity": "note", "source": "content", "detail": "Content & Slot lists a Tooltip instance, but no Tooltip is placed on the page; truncation is described, not modelled." },
+    { "severity": "note", "source": "_Table Menu", "detail": "Built on the compact Dropdown Menu with its two fixed rows hidden and every row in its slot. Selected checkbox and radio rows check their control, unlike the Dropdown page's own rows (see specs/dropdown)." },
+    { "severity": "note", "source": "_Actions Cell", "detail": "Open is drawn as the Icon Button's pressed state; the cell has no own focus or hover states." },
+    { "severity": "note", "source": "coverage", "detail": "No States & Triggers section in the metadata. Motion: none defined beyond the bars showing and hiding." }
   ]
 }

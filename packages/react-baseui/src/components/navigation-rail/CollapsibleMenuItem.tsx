@@ -46,7 +46,7 @@ export interface CollapsibleMenuItemProps
  * with its caret turned vertical (`expand-more`, rotated 180° when open —
  * one glyph, owner decision). Open, the header takes the ghost pressed fill
  * as Figma draws (State=active) — the token alone, without Figma's extra
- * paint opacity (spec warn "Double alpha") — and the rows sit on surface/menu.
+ * paint opacity (spec warn "Double alpha") — and the rows sit on surface/overlay.
  *
  * It never widens the sub menu (`contain: inline-size`): it fills the width
  * the panel's other content gives it, its labels truncate, and a truncated

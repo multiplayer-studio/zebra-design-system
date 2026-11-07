@@ -1,0 +1,841 @@
+{
+  "component": {
+    "name": "Bottom Sheet",
+    "slug": "bottom-sheet",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "5207:3343",
+      "key": "e6f89fa2e51434d02f4b55d9121d70c7612a0035",
+      "page": "Bottom Sheet",
+      "pageNodeId": "5207:2592",
+      "metadataFrameId": "7642:212",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5207-3343",
+      "extractedAt": "2026-11-01",
+      "variantCount": 3,
+      "defaultVariant": "Content Type=list",
+      "extractionNote": "All variants of Bottom Sheet, _Sheet Header, Sheet Handle and Grid Menu Item read in full, with both metadata frames."
+    }
+  },
+  "summary": "A surface anchored to the bottom edge of the screen, holding supplementary content or a short set of actions without moving a person off the view behind it. Content Type picks between a run of list rows, a grid of tiles, and a slot that takes whatever the product supplies. All three carry the same drag handle, header and two action footer, so the only thing that changes between them is what sits in the middle.",
+  "api": {
+    "contentType": {
+      "type": "enum",
+      "figmaName": "Content Type",
+      "values": [
+        "list",
+        "grid",
+        "generic"
+      ],
+      "default": "list",
+      "controls": [
+        "contentRegion"
+      ],
+      "intent": {
+        "list": "Use for a run of labelled actions a person reads down. Rows are full width, so an option needing its own artwork or count will not fit.",
+        "grid": "Use where options are recognised by their icon rather than read, three to a row. Labels sit beneath the icon and stay short, so a long one wraps and lengthens the whole row.",
+        "generic": "Use when neither arrangement fits and the content is yours to supply. Nothing is laid out for you beyond the padding, so spacing between items becomes your responsibility."
+      }
+    },
+    "contentSlot": {
+      "type": "slot",
+      "figmaName": "Content Slot#5224:3",
+      "controls": [
+        "contentRegion"
+      ],
+      "visibleWhen": "contentType == generic",
+      "intent": "Takes the sheet’s content on generic. It is the only arrangement with a slot, so filling it has no effect on list or grid."
+    }
+  },
+  "internalVariations": [
+    {
+      "part": "header",
+      "via": "_Sheet Header",
+      "options": [
+        "headerText",
+        "showLeadingIcon",
+        "alignment"
+      ],
+      "intent": "Set on the nested header, and not passed in from the sheet."
+    },
+    {
+      "part": "footer",
+      "via": "_Card Footer",
+      "options": [
+        "Actions=2"
+      ],
+      "intent": "Pinned to two actions, with the labels set on each Button."
+    }
+  ],
+  "contentInputs": [
+    {
+      "part": "tile icon",
+      "input": "icon",
+      "note": "Sample glyph star on every tile."
+    }
+  ],
+  "anatomy": [
+    {
+      "id": "handle",
+      "role": "The drag affordance along the top edge, centred above the header. It is the same on every arrangement.",
+      "kind": "instance",
+      "ref": "Sheet Handle"
+    },
+    {
+      "id": "header",
+      "role": "The sheet’s title, with an optional leading Icon Button before it. The title belongs to the header rather than to the sheet.",
+      "kind": "instance",
+      "ref": "_Sheet Header",
+      "refVariant": "Alignment=start"
+    },
+    {
+      "id": "contentRegion",
+      "role": "A run of rows, a grid of tiles, or a slot, depending on Content Type. It is the only part that changes between the three.",
+      "kind": "container",
+      "layout": {
+        "direction": "vertical",
+        "gap": "per contentType",
+        "padding": "space/md by space/lg on list, space/md by space/gutter on grid and generic"
+      },
+      "sizing": {
+        "width": "fill",
+        "height": "hug"
+      }
+    },
+    {
+      "id": "footer",
+      "role": "Two actions closing the sheet off, an outline button beside a primary one. It is present on every arrangement.",
+      "kind": "instance",
+      "ref": "_Card Footer",
+      "refVariant": "Actions=2",
+      "note": "An outline Button beside a primary Button, both small and rounded."
+    }
+  ],
+  "variants": {
+    "_note": "Cells are token names, except those ending Px, which are measurements of the rendered file.",
+    "contentType": {
+      "axis": "contentType",
+      "base": "list",
+      "table": [
+        {
+          "contentType": "list",
+          "contentRegion.gap": "space/2xs",
+          "contentRegion.paddingInline": "space/lg",
+          "items": "Menu Item, default, icon type, square corners",
+          "rootPaddingBottom": "space/card",
+          "measuredPx": "360 x 452",
+          "figmaNode": "5207:3342"
+        },
+        {
+          "contentType": "grid",
+          "contentRegion.gap": "space/md",
+          "contentRegion.paddingInline": "space/gutter",
+          "items": "Grid Menu Item, rounded, three to a row, space/md apart",
+          "rootPaddingBottom": "space/card",
+          "measuredPx": "360 x 380",
+          "figmaNode": "5207:3344"
+        },
+        {
+          "contentType": "generic",
+          "contentRegion.gap": "space/md",
+          "contentRegion.paddingInline": "space/gutter",
+          "items": "contentSlot",
+          "rootPaddingBottom": "space/card",
+          "measuredPx": "360 x 388",
+          "figmaNode": "5224:5408"
+        }
+      ]
+    }
+  },
+  "subcomponents": [
+    {
+      "name": "Grid Menu Item",
+      "id": "5224:5199",
+      "key": "3cc709b1ff64ec3fb84b4d8ade921cdc6b5bd14d",
+      "private": false,
+      "variantCount": 10,
+      "metadataFrameId": "7642:475",
+      "summary": "One tile of the grid arrangement inside a bottom sheet: an icon above a short label on a tappable square. State carries the ordinary pointer feedback, while Active marks the option a person is on and Disabled puts one out of reach. Bottom Sheet places it three to a row rather than a consumer using it on its own.",
+      "api": {
+        "state": {
+          "type": "enum",
+          "figmaName": "State",
+          "values": [
+            "default",
+            "hover",
+            "pressed"
+          ],
+          "default": "default",
+          "intent": {
+            "default": "The resting tile. Use it for every option a person is not currently touching.",
+            "hover": "Pointer feedback on the tile’s ground. It is the only thing that moves, so the icon and label stay as they are.",
+            "pressed": "The moment of the tap, a step further than hover. It reports contact rather than selection, so it does not persist."
+          }
+        },
+        "active": {
+          "type": "boolean",
+          "figmaName": "Active",
+          "default": false,
+          "intent": {
+            "false": "An ordinary tile that is not the current choice.",
+            "true": "Marks the option a person is on now. It recolours the icon and the label and leaves the ground untouched."
+          }
+        },
+        "disabled": {
+          "type": "boolean",
+          "figmaName": "Disabled",
+          "default": false,
+          "intent": {
+            "false": "A tile that can be chosen.",
+            "true": "Puts the option out of reach. The icon and the label mute, and the tile keeps the same ground as an available one."
+          }
+        },
+        "rounded": {
+          "type": "boolean",
+          "figmaName": "Rounded",
+          "default": true,
+          "intent": {
+            "true": "Use inside a sheet whose other surfaces are rounded, which is how Bottom Sheet places it.",
+            "false": "Squares the tile’s corners. Nothing else differs between the two."
+          }
+        },
+        "label": {
+          "type": "string",
+          "figmaName": "Label#2841:4",
+          "default": "Label",
+          "intent": "Names the option beneath its icon. The tile holds a fixed width, so a long label wraps and makes every tile in the row taller."
+        },
+        "showBadge": {
+          "type": "boolean",
+          "figmaName": "Show Badge#3196:0",
+          "default": false,
+          "intent": {
+            "false": "Leaves the tile unmarked, which is the ordinary case.",
+            "true": "Adds a dot over the icon for an option needing attention. It carries no number, so it says that something is there and not how much."
+          }
+        }
+      },
+      "anatomy": [
+        {
+          "id": "tile",
+          "role": "The tappable square. Its ground is what answers hover and press, and its corner follows Rounded."
+        },
+        {
+          "id": "indicator",
+          "role": "The icon, with the badge sitting over it when Show Badge is on. The glyph is fixed rather than chosen per tile."
+        },
+        {
+          "id": "label",
+          "role": "The option’s name beneath the icon. It is the only text the tile holds, and it takes the same colour as the icon."
+        }
+      ],
+      "variants": {
+        "_note": "Cells are token names, except those ending Px, which are measurements of the rendered file.",
+        "state": {
+          "axis": "state",
+          "base": "default",
+          "table": [
+            {
+              "state": "default",
+              "tile.fill": "interactive/ghost/background/default",
+              "labelAndIcon.color": "foreground/primary"
+            },
+            {
+              "state": "hover",
+              "tile.fill": "interactive/ghost/background/hover",
+              "labelAndIcon.color": "foreground/primary"
+            },
+            {
+              "state": "pressed",
+              "tile.fill": "interactive/ghost/background/pressed",
+              "labelAndIcon.color": "foreground/primary"
+            },
+            {
+              "state": "active",
+              "tile.fill": "interactive/ghost/background/default",
+              "labelAndIcon.color": "interactive/subtle/foreground/default"
+            },
+            {
+              "state": "disabled",
+              "tile.fill": "interactive/ghost/background/default",
+              "labelAndIcon.color": "interactive/subtle/foreground/disabled"
+            }
+          ]
+        }
+      },
+      "states": [
+        {
+          "state": "default",
+          "trigger": "State=default",
+          "duration": "—",
+          "whatChanges": "interactive/ghost/background/default behind the icon, with the label in foreground/primary."
+        },
+        {
+          "state": "hover",
+          "trigger": "State=hover",
+          "duration": "—",
+          "whatChanges": "The ground moves to interactive/ghost/background/hover. The icon and the label are unchanged."
+        },
+        {
+          "state": "pressed",
+          "trigger": "State=pressed",
+          "duration": "—",
+          "whatChanges": "The ground moves to interactive/ghost/background/pressed. The icon and the label are unchanged."
+        },
+        {
+          "state": "active",
+          "trigger": "Active=true",
+          "duration": "—",
+          "whatChanges": "The icon and the label take interactive/subtle/foreground/default. The ground stays at its default."
+        },
+        {
+          "state": "disabled",
+          "trigger": "Disabled=true",
+          "duration": "—",
+          "whatChanges": "The icon and the label take interactive/subtle/foreground/disabled. The ground is unchanged."
+        },
+        {
+          "state": "Combinations",
+          "trigger": "Active or Disabled with hover or pressed",
+          "duration": "—",
+          "whatChanges": "Active and Disabled are each drawn at the default state, so pointer feedback and those two marks do not combine."
+        }
+      ],
+      "behavior": [
+        {
+          "type": "Motion",
+          "description": "No transition is defined. A tile changes by taking a different state, and nothing animates between one and the next."
+        },
+        {
+          "type": "Signal strength",
+          "description": "Active and Disabled both change the icon and label colour and nothing else. The ground reports pointer feedback alone."
+        },
+        {
+          "type": "State coverage",
+          "description": "State pairs with neither Active nor Disabled. Each of those two is drawn at the default state only."
+        },
+        {
+          "type": "Width",
+          "description": "On its own the tile is a fixed square. Bottom Sheet stretches it to fill an equal share of its row, so the drawn width is not the width a reader meets."
+        }
+      ],
+      "content": [
+        {
+          "property": "Label",
+          "type": "text property",
+          "description": "Consumer owned, set through Label. It is the only text the tile holds."
+        },
+        {
+          "property": "Icon",
+          "type": "Icon, parent owned",
+          "description": "Set to large. It is not exposed as an input, so the glyph is fixed rather than chosen per tile."
+        },
+        {
+          "property": "Badge",
+          "type": "Notification Indicator, parent owned",
+          "description": "Set to small and shown by Show Badge. Its own colour and shape belong to Notification Indicator, and it carries no number."
+        }
+      ],
+      "usage": {
+        "do": [
+          "Keep labels to a word or two. The row aligns to its tallest tile, so one label that wraps lengthens every tile beside it.",
+          "Use Show Badge for something needing attention rather than for a count. The dot carries no number of its own."
+        ],
+        "dont": [
+          "Don't rely on Active to stand out by itself. It only recolours the icon and the label, so pair it with whatever else marks the current choice.",
+          "Don't expect hover or press to show on an active or a disabled tile. Both of those are drawn at the default state only."
+        ]
+      },
+      "accessibility": [
+        "Active and Disabled are both carried by colour alone, with no change of ground or shape, so neither is distinguishable to a person who cannot rely on hue.",
+        "Both need announcing as state, and a disabled tile needs taking out of the tab order rather than only dimming.",
+        "The icon is what a person recognises the option by and it carries no text of its own, so the label has to name the option rather than qualify it.",
+        "The badge is a dot with no number and no label, so whatever it reports needs saying in words wherever that matters."
+      ],
+      "layoutTheming": [
+        {
+          "property": "Size",
+          "type": "Fixed width, hug height",
+          "description": "A 92 square on its own. Inside a bottom sheet it fills an equal share of its row, which brings it to 101 at three to a row."
+        },
+        {
+          "property": "Direction",
+          "type": "Column",
+          "description": "Icon above label, space/sm apart, centred on both axes."
+        },
+        {
+          "property": "Padding",
+          "type": "Tokenised",
+          "description": "space/lg on all four sides."
+        },
+        {
+          "property": "Radius",
+          "type": "Per Rounded",
+          "description": "radius/element-sm when true and radius/none when false."
+        },
+        {
+          "property": "Ground",
+          "type": "Per State",
+          "description": "interactive/ghost/background at default, hover and pressed. Active and Disabled leave it alone."
+        },
+        {
+          "property": "Label",
+          "type": "Per Active and Disabled",
+          "description": "label/medium in foreground/primary normally, interactive/subtle/foreground/default when Active, and interactive/subtle/foreground/disabled when Disabled."
+        },
+        {
+          "property": "Icon",
+          "type": "Set to large",
+          "description": "The glyph above the label. It takes the same colour as the label."
+        },
+        {
+          "property": "Badge",
+          "type": "Set to small",
+          "description": "Sits over the icon when Show Badge is on, within the same block the icon occupies."
+        }
+      ]
+    },
+    {
+      "name": "_Sheet Header",
+      "id": "5207:2710",
+      "key": "9624331c2675ce4700fbf283e25f1711c4303fca",
+      "private": true,
+      "variantCount": 2,
+      "api": {
+        "headerText": {
+          "type": "string",
+          "figmaName": "Header Text#5207:0",
+          "default": "Sheet Title"
+        },
+        "showLeadingIcon": {
+          "type": "boolean",
+          "figmaName": "Show Leading icon#5224:7",
+          "default": true
+        },
+        "alignment": {
+          "type": "enum",
+          "figmaName": "Alignment",
+          "values": [
+            "start",
+            "center"
+          ],
+          "default": "start"
+        },
+        "leadingLabel": {
+          "type": "string",
+          "default": "Back",
+          "codeOnly": true,
+          "intent": "Accessible name of the leading Icon Button."
+        }
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "per alignment",
+            "padding": "per alignment",
+            "align": "center"
+          }
+        },
+        {
+          "id": "leadingButton",
+          "kind": "instance",
+          "ref": "Icon Button",
+          "refVariant": "Size=small, Shape=rounded, Flavour=subtle",
+          "glyph": "arrow-back",
+          "visibleWhen": "showLeadingIcon"
+        },
+        {
+          "id": "title",
+          "kind": "text",
+          "content": "headerText",
+          "text": {
+            "style": "title/medium",
+            "color": "foreground/primary"
+          },
+          "sizing": "fill"
+        }
+      ],
+      "variants": {
+        "_note": "Cells are token names, except those ending Px, which are measurements of the rendered file.",
+        "alignment": {
+          "axis": "alignment",
+          "base": "start",
+          "table": [
+            {
+              "alignment": "start",
+              "root.gap": "space/2xs",
+              "root.padding": "space/sm by space/lg",
+              "leadingButton.position": "in flow, before the title"
+            },
+            {
+              "alignment": "center",
+              "root.gap": "space/gutter",
+              "title": "centred",
+              "root.padding": "space/gutter by space/lg",
+              "leadingButton.position": "absolute, space/lg from the leading edge, centred vertically"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Sheet Handle",
+      "id": "5207:2714",
+      "key": "37301fa78359fcdec9645a756233e538087c5727",
+      "private": false,
+      "variantCount": 1,
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "vertical",
+            "padding": "space/lg by space/section",
+            "align": "center"
+          },
+          "sizing": {
+            "width": "fill"
+          }
+        },
+        {
+          "id": "bar",
+          "kind": "shape",
+          "width": "control/target-min",
+          "heightPx": 4,
+          "radius": "radius/pill",
+          "paint": {
+            "fill": "border/default"
+          }
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Icon Button",
+      "id": "2338:1763",
+      "spec": "specs/dropdown",
+      "usedAs": "header leading button, small, rounded and subtle"
+    },
+    {
+      "name": "Menu Item",
+      "id": "2402:6508",
+      "spec": "specs/dropdown",
+      "usedAs": "list rows"
+    },
+    {
+      "name": "Card Footer",
+      "id": "3311:3383",
+      "spec": "specs/card",
+      "usedAs": "footer, Actions=2, padding space/lg, gap space/sm"
+    },
+    {
+      "name": "Button",
+      "id": "2060:15072",
+      "spec": "specs/button",
+      "usedAs": "footer actions, small and rounded, outline then primary"
+    },
+    {
+      "name": "Icon",
+      "id": "2046:15010",
+      "spec": "specs/icon",
+      "usedAs": "header icon and tile icon"
+    },
+    {
+      "name": "Notification Indicator",
+      "id": "3719:6256",
+      "spec": "specs/notification-indicator",
+      "usedAs": "tile badge, small"
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ — names below resolve there; see tokens/manifest.json",
+    "rule": "This spec names tokens only.",
+    "color": [
+      "surface/overlay",
+      "border/default",
+      "foreground/primary",
+      "interactive/ghost/background/default",
+      "interactive/ghost/background/hover",
+      "interactive/ghost/background/pressed",
+      "interactive/subtle/foreground/default",
+      "interactive/subtle/foreground/disabled"
+    ],
+    "dimension": [
+      "space/{none,xxs,sm,md,lg,card,gutter,section}",
+      "radius/{none,element-sm,container,pill}",
+      "control/target-min"
+    ],
+    "typography": [
+      "title/medium",
+      "label/medium"
+    ],
+    "effect": [],
+    "missingFromExport": [],
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "typography": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ],
+      "extensions": "tokens/extensions/ (companion, target, condensed)"
+    }
+  },
+  "states": [
+    {
+      "state": "Static",
+      "trigger": "—",
+      "duration": "—",
+      "whatChanges": "The sheet has no interaction states. Hover, press and focus belong to the rows, tiles and buttons placed inside it."
+    },
+    {
+      "state": "Content Type",
+      "trigger": "The Content Type value",
+      "duration": "—",
+      "whatChanges": "The region between the header and the footer is replaced outright. The handle, the header and the footer are identical across all three."
+    },
+    {
+      "state": "Row and tile states",
+      "trigger": "The nested item’s own state",
+      "duration": "—",
+      "whatChanges": "A list row carries the Menu Item states and a grid tile the Grid Menu Item states. Each is described in that component’s own frame."
+    },
+    {
+      "state": "Footer actions",
+      "trigger": "The nested Button states",
+      "duration": "—",
+      "whatChanges": "The footer holds one outline and one primary button, and their states belong to Button."
+    }
+  ],
+  "behavior": [
+    {
+      "type": "Motion",
+      "description": "No transition is defined. Nothing in the component describes how the sheet arrives at the bottom edge or leaves it."
+    },
+    {
+      "type": "Anchoring",
+      "description": "Only the top two corners are rounded, which is what fixes the sheet to the bottom edge. The bottom two stay square because they sit past the edge of the screen."
+    },
+    {
+      "type": "Elevation",
+      "description": "No shadow and no scrim are defined on the sheet. Whatever separates it from the content behind comes from the screen that presents it."
+    },
+    {
+      "type": "Height",
+      "description": "The sheet hugs its content, so it stands as tall as the handle, header, content and footer make it. Nothing in the component caps that height."
+    },
+    {
+      "type": "Content ownership",
+      "description": "Only generic takes a slot. list and grid lay out their own items, so moving between the three replaces the content region rather than refilling it."
+    }
+  ],
+  "content": [
+    {
+      "property": "Content",
+      "type": "Content Slot, consumer owned",
+      "description": "Live on generic only. It takes whatever the product supplies, with the sheet providing the padding around it and the spacing between items."
+    },
+    {
+      "property": "List items",
+      "type": "Menu Item, parent owned",
+      "description": "list lays out a run of menu rows, each set to its default state with an icon type and square corners. Menu Item is documented on the Dropdown page."
+    },
+    {
+      "property": "Grid tiles",
+      "type": "Grid Menu Item, parent owned",
+      "description": "grid lays out tiles three to a row, all set to rounded. They are documented in their own frame."
+    },
+    {
+      "property": "Item count",
+      "type": "Figma only, six items drawn",
+      "description": "The list and grid regions hold six items so the arrangement can be read at a glance without a designer building one. Both take a run of items, and how many is the product’s decision."
+    },
+    {
+      "property": "Header",
+      "type": "_Sheet Header, parent owned",
+      "description": "Carries the sheet title and an optional leading Icon Button. Bottom Sheet always sets it to start, where the button leads and the title reads from the left. Its own center value centres the title and pins the button to the leading edge."
+    },
+    {
+      "property": "Header text",
+      "type": "Not exposed",
+      "description": "The title belongs to the header rather than to the sheet, so it is set on that part rather than passed in from here."
+    },
+    {
+      "property": "Handle",
+      "type": "Sheet Handle, parent owned",
+      "description": "The drag affordance along the top edge. It declares nothing, so it is identical on all three arrangements."
+    },
+    {
+      "property": "Footer",
+      "type": "_Card Footer, parent owned",
+      "description": "Set to its two action arrangement, an outline button beside a primary one, both set to small. It is Card’s footer reused here."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Pick Content Type for how a person reads the options. list is for reading down a set of labels, grid for recognising them by icon.",
+      "Use generic when the content is not a set of options at all. It is the only arrangement that takes a slot."
+    ],
+    "dont": [
+      "Don't try to set the title through the sheet. The header owns that text, so it is set on the header rather than passed in.",
+      "Don't rely on the sheet to cap its own height. It hugs whatever it holds, so a long run of items has to be limited by the screen presenting it."
+    ]
+  },
+  "accessibility": [
+    "A bottom sheet arrives over the content a person was reading, so the screen presenting it has to say what it is and move focus into it.",
+    "Nothing in the component does that on its own.",
+    "The drag handle is a visual affordance with no label and no focusable control behind it, so dismissing the sheet has to be reachable another way, through the footer or through a gesture the screen supplies.",
+    "The title in the header is the sheet’s accessible name, so it should read as a short noun phrase a person would recognise out of context.",
+    "The footer’s two actions are the only controls present on every arrangement, which makes them the dependable way out."
+  ],
+  "layoutTheming": [
+    {
+      "property": "Size",
+      "type": "Fixed width, hug height",
+      "description": "360 wide. Height follows the content, standing at 452 on list, 380 on grid and 388 on generic at the item counts drawn."
+    },
+    {
+      "property": "Direction",
+      "type": "Column",
+      "description": "Handle, header, content region and footer stacked with no gap between them, since each part carries its own padding."
+    },
+    {
+      "property": "Surface",
+      "type": "Tokenised",
+      "description": "surface/overlay across all three arrangements."
+    },
+    {
+      "property": "Radius",
+      "type": "Top corners only",
+      "description": "radius/container on the top two corners, with the bottom two left square."
+    },
+    {
+      "property": "Padding",
+      "type": "Tokenised",
+      "description": "space/card below the footer on all three arrangements."
+    },
+    {
+      "property": "Handle",
+      "type": "Fill width",
+      "description": "Padded space/lg above and below and space/section at the sides. The bar itself is control/target-min wide at radius/pill, drawn in border/default."
+    },
+    {
+      "property": "Header",
+      "type": "Fixed width",
+      "description": "Padded space/sm above and below and space/lg at the sides at start, with space/2xs between the Icon Button and the title. At center it is padded space/gutter above and below and space/lg at the sides. The title is title/medium in foreground/primary."
+    },
+    {
+      "property": "Content region",
+      "type": "Fill",
+      "description": "Padded space/md above and below, with space/lg at the sides on list and space/gutter on grid and generic. Items sit space/2xs apart on list, and space/md apart on grid and generic."
+    },
+    {
+      "property": "Grid rows",
+      "type": "Fill",
+      "description": "Three tiles to a row, space/md apart, each taking an equal share of the row width."
+    },
+    {
+      "property": "Footer",
+      "type": "Set to two actions",
+      "description": "Its two buttons each fill an equal share of the row. The padding and spacing around them belong to _Card Footer."
+    },
+    {
+      "property": "Elevation",
+      "type": "None defined",
+      "description": "No shadow and no scrim sit on the sheet."
+    }
+  ],
+  "visualReference": {
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5207-2592",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5207-3343",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7642-212",
+    "perAxis": {
+      "list": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5207-3342",
+      "grid": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5207-3344",
+      "generic": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5224-5408",
+      "Grid Menu Item": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5224-5199",
+      "_Sheet Header": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5207-2710",
+      "Sheet Handle": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5207-2714"
+    }
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "metadata vs code",
+      "detail": "The metadata says the icon stays unchanged on Active and Disabled. Code gives it the label's token, by owner decision."
+    },
+    {
+      "severity": "warn",
+      "source": "structure",
+      "detail": "With the button off at start, the header drops to 36 tall. Figma does not draw this case."
+    },
+    {
+      "severity": "warn",
+      "source": "structure",
+      "detail": "The leading Icon Button has no accessible name or action in Figma. Code adds leadingLabel and a click event."
+    },
+    {
+      "severity": "warn",
+      "source": "structure",
+      "detail": "Show Leading icon is bound to nothing since the icon became an Icon Button, so it changes nothing in Figma. Code keeps the toggle, because the metadata calls the icon optional."
+    },
+    {
+      "severity": "warn",
+      "source": "internalVariations",
+      "detail": "The title, the leading icon and the footer actions are not exposed on the sheet, but a working sheet needs all three. Code must add them."
+    },
+    {
+      "severity": "warn",
+      "source": "internalVariations",
+      "detail": "The tile's glyph is fixed to star in Figma, but every tile needs its own. Code must add an icon input."
+    },
+    {
+      "severity": "warn",
+      "source": "structure (gaps)",
+      "detail": "The handle bar's 4 height has no token."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata",
+      "detail": "Nothing moves focus into the sheet, and the handle has no control behind it. The presenting screen owns both."
+    },
+    {
+      "severity": "warn",
+      "source": "accessibility",
+      "detail": "Active and Disabled on a tile change the label colour only, so code must announce both as state."
+    },
+    {
+      "severity": "warn",
+      "source": "structure",
+      "detail": "Grid Menu Item's Notification Indicator is the small dot, but its drawn position is the top right of the icon block. The metadata only says it sits over the icon."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "Figma draws a fixed 360 wide sheet. It needs to fill its container in code."
+    },
+    {
+      "severity": "note",
+      "source": "metadata",
+      "detail": "No motion, shadow, scrim or height cap are defined, by the metadata's own statement."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "Sheet Handle and _Sheet Header are documented here, not in specs of their own."
+    }
+  ]
+}

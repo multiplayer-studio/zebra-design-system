@@ -258,6 +258,39 @@ export const HeaderAction: Story = {
   ),
 };
 
+/** railWidth: Figma's 200px by default, a project width, or "fill" to take the container's width. */
+export const RailWidth: Story = {
+  render: () => (
+    <Row>
+      {([["default (200px)", undefined, 260], ["railWidth=255", 255, 300], ['railWidth="fill" in a 320px column', "fill", 320]] as const).map(([cap, w, col]) => (
+        <div key={cap} style={{ display: "grid", gap: 8 }}>
+          <Cap>{cap}</Cap>
+          {/* A fixed column, so "fill" has a width to take (Frame hugs its content). */}
+          <div style={{ inlineSize: col, blockSize: 420, display: "flex", border: "1px dashed var(--border-subtle)", background: "var(--surface-page)" }}>
+            <NavigationRail defaultExpanded railWidth={w} header={<Header />}>
+              <Menu />
+            </NavigationRail>
+          </div>
+        </div>
+      ))}
+    </Row>
+  ),
+};
+
+/** The header's Icon Button takes any glyph, label and action (Settings by default). */
+export const HeaderIconButton: Story = {
+  render: () => (
+    <Row>
+      {(["settings", "home", "swap"] as const).map((icon) => (
+        <Frame key={icon} height={200}>
+          <NavigationRail defaultExpanded showToggleItem={false}
+            header={<NavigationHeader heading="ACME" actionIcon={icon} actionLabel={icon === "home" ? "Home" : icon === "settings" ? "Settings" : "Switch tenant"} onAction={() => undefined} />} />
+        </Frame>
+      ))}
+    </Row>
+  ),
+};
+
 /** showToggleItem, and the footer slot (moreFooterItems). */
 export const ToggleAndFooter: Story = {
   render: () => (

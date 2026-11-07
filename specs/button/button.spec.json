@@ -9,33 +9,22 @@
       "page": "Button",
       "pageNodeId": "2024:6729",
       "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2024-6729",
-      "extractedAt": "2026-10-18",
-      "variantCount": 405,
-      "defaultVariant": "Size=small, Shape=sharp, Flavour=primary, State=default, Disabled=false",
-      "extractionNote": "405 variants = 9 Flavour x 3 Size x 3 Shape x 5 State/Disabled combinations. The axes are orthogonal: Size and Shape carry all geometry, Flavour and State/Disabled carry all colour. Structure was extracted over the 9 Size x Shape variants at Flavour=primary/State=default/Disabled=false; colour over all 45 Flavour x State/Disabled variants at Size=small/Shape=rounded. Every one of the 405 variants is covered by the cross-product of the two tables. Re-extracted 2026-10-18 the same way (geometry over Size x Shape at primary/default; colour over all 45 Flavour x State/Disabled at small/rounded), plus a full scan of all 405 variants for token use, untokenised values and axis independence. Button's icons are hidden by default and a hidden instance exposes no layers, so their fill was read from the instance overrides only (read-only); see issues.",
+      "extractedAt": "2026-11-07",
+      "variantCount": 495,
+      "defaultVariant": "Size=medium, Shape=rounded, Flavour=primary, State=default, Disabled=false",
+      "extractionNote": "Geometry read over the 9 Size x Shape variants at primary/default; colour over the 55 Flavour x State/Disabled variants at small/rounded; every other variant scanned for colour consistency (2 mismatches, in issues). Intent verbatim from the 2026-10-29 spec.",
       "tokenSource": "tokens/"
     }
   },
-  "summary": "Triggers an action from a text label, with optional icons on either side. Nine flavours set how much weight the action carries, three sizes and three shapes fit it to the surface it sits on. The label is the only content a consumer writes, everything else is a variant choice. When an action has no text label, reach for Icon Button rather than hiding this one's label.",
+  "summary": "Triggers an action from a text label, with optional icons on either side. Eleven flavours set how much weight the action carries, three sizes and three shapes fit it to the surface it sits on. The label is the only content a consumer writes, everything else is a variant choice. When an action has no text label, use Icon Button rather than hiding this one's label.",
   "api": {
     "flavour": {
       "type": "enum",
       "figmaName": "Flavour",
       "default": "primary",
-      "controls": [
-        "variant"
-      ],
-      "values": [
-        "primary",
-        "positive",
-        "negative",
-        "subtle",
-        "text",
-        "outline-subtle",
-        "outline",
-        "gradient",
-        "text-gradient"
-      ],
+      "controls": ["variant"],
+      "values": ["primary", "positive", "negative", "subtle", "text", "outline-subtle", "outline", "gradient", "text-gradient", "contrast", "outline-contrast"],
+      "valuesFigmaOrder": ["primary", "positive", "negative", "outline", "outline-subtle", "text", "subtle", "gradient", "text-gradient", "contrast", "outline-contrast"],
       "intent": {
         "primary": "The single most important action in a view, one per group. If two buttons both read as primary, the view has two competing goals and that is a layout problem rather than a property one.",
         "positive": "Confirms a constructive outcome such as approving or publishing. Reserve it for the confirmation itself, not for every agreeable action, or it stops signalling anything.",
@@ -45,27 +34,20 @@
         "outline-subtle": "A secondary action on a busy surface where an accent border would compete. It reads as neutral, so it is the wrong choice for the main action on that surface.",
         "outline": "A secondary action that still needs to look clickable on its own. Two of them side by side read as equal weight, which is rarely what was intended.",
         "gradient": "One promotional or high-emphasis moment, such as an upgrade prompt. It outranks primary, so a screen carrying two of them has no hierarchy left.",
-        "text-gradient": "The promotional treatment without the filled weight, for a high-emphasis action inside content. The gradient runs across the label itself, so a very short label barely shows it."
+        "text-gradient": "The promotional treatment without the filled weight, for a high-emphasis action inside content. The gradient runs across the label itself, so a very short label barely shows it.",
+        "contrast": "The strongest neutral against the page, near-black in light mode and near-white in dark. Beside a primary it competes for weight, so pair it with outline or text instead.",
+        "outline-contrast": "A secondary action that pairs with contrast. Its border and label follow the page, near-black in light mode and near-white in dark."
       }
     },
     "size": {
       "type": "enum",
       "figmaName": "Size",
-      "default": "small",
-      "controls": [
-        "variant"
-      ],
-      "values": [
-        "small",
-        "medium",
-        "large"
-      ],
-      "valuesFigmaOrder": [
-        "medium",
-        "large",
-        "small"
-      ],
+      "default": "medium",
+      "controls": ["variant"],
+      "values": ["small", "medium", "large"],
+      "valuesFigmaOrder": ["medium", "large", "small"],
       "orderedBy": "rootWidth (small 76 < medium 90 < large 98); Figma stores the options in creation order",
+      "note": "Adopted in code 2026-11-07; the metadata still calls small the default — see issues.",
       "intent": {
         "small": "The default, for toolbars, table rows and dense forms where controls sit close together.",
         "medium": "For standard forms and dialogs where the button is a deliberate step rather than a dense control.",
@@ -75,20 +57,11 @@
     "shape": {
       "type": "enum",
       "figmaName": "Shape",
-      "default": "sharp",
-      "controls": [
-        "variant"
-      ],
-      "values": [
-        "sharp",
-        "rounded",
-        "full"
-      ],
-      "valuesFigmaOrder": [
-        "rounded",
-        "sharp",
-        "full"
-      ],
+      "default": "rounded",
+      "controls": ["variant"],
+      "values": ["sharp", "rounded", "full"],
+      "valuesFigmaOrder": ["rounded", "sharp", "full"],
+      "note": "Adopted in code 2026-11-07.",
       "intent": {
         "sharp": "Match the container. Correct when the surrounding surface and inputs are square.",
         "rounded": "Match the container. The general-purpose choice alongside the system's other rounded controls.",
@@ -99,15 +72,8 @@
       "type": "enum",
       "figmaName": "State",
       "default": "default",
-      "controls": [
-        "variant"
-      ],
-      "values": [
-        "default",
-        "hover",
-        "pressed",
-        "focus"
-      ],
+      "controls": ["variant"],
+      "values": ["default", "hover", "pressed", "focus"],
       "note": "Documentation-only in Figma. In code these are interaction states the implementation drives, not a prop a consumer sets.",
       "intent": {
         "default": "The resting state, and the only one to use when laying out a static screen.",
@@ -120,16 +86,10 @@
       "type": "enum",
       "figmaName": "Disabled",
       "default": "false",
-      "controls": [
-        "variant"
-      ],
-      "values": [
-        "false",
-        "true"
-      ],
-      "note": "Modelled as a VARIANT axis in Figma, but boolean in nature; implement as a boolean prop. Only the combination State=default + Disabled=true exists (405 = 9 x 3 x 3 x 5), so there is no hover/pressed/focus treatment for a disabled button by design.",
+      "controls": ["variant"],
+      "values": ["false", "true"],
+      "note": "Modelled as a VARIANT axis in Figma, but boolean in nature; implement as a boolean prop. Only the combination State=default + Disabled=true exists, so there is no hover/pressed/focus treatment for a disabled button by design.",
       "intent": {
-        "false": "The control accepts input.",
         "true": "The action is unavailable. Say why somewhere nearby, because a disabled control with no explanation is indistinguishable from a broken one."
       }
     },
@@ -137,9 +97,7 @@
       "type": "string",
       "figmaName": "Label#2111:8",
       "default": "Button",
-      "controls": [
-        "label/text (characters)"
-      ],
+      "controls": ["label/text (characters)"],
       "intent": {
         "text": "The action the user is about to perform, written as a verb. The button hugs whatever it is given, so a long label widens the control and can break a toolbar row."
       }
@@ -148,11 +106,8 @@
       "type": "boolean",
       "figmaName": "Leading Icon#2109:0",
       "default": false,
-      "controls": [
-        "leadingIcon (visible)"
-      ],
+      "controls": ["leadingIcon (visible)"],
       "intent": {
-        "false": "No icon before the label.",
         "true": "Adds an icon before the label to reinforce the action at a glance. Choose the glyph deliberately, the slot arrives holding a default that suits almost nothing."
       }
     },
@@ -160,11 +115,8 @@
       "type": "boolean",
       "figmaName": "Trailing Icon#2109:4",
       "default": false,
-      "controls": [
-        "trailingIcon (visible)"
-      ],
+      "controls": ["trailingIcon (visible)"],
       "intent": {
-        "false": "No icon after the label.",
         "true": "Turning both icons on at small leaves very little room for the label itself. Use a trailing icon for directional or disclosure actions."
       }
     }
@@ -183,17 +135,6 @@
       "part": "leadingIcon / trailingIcon",
       "via": "Icon (2046:15010)",
       "property": "Size, Framed (VARIANT on the nested Icon)",
-      "options": {
-        "Size": [
-          "small",
-          "medium",
-          "large"
-        ],
-        "Framed": [
-          "false",
-          "true"
-        ]
-      },
       "intent": "Button does not re-declare Icon's other properties, but the instance stays exposed, so Icon's glyph, Size and Framed are still reachable in the properties panel. See the Icon Metadata frame for what Icon itself offers, and leave its Size alone, Button pairs it to the label.",
       "decision": "Button pins Size per its own Size (small -> Icon small, medium/large -> Icon medium) and Framed=false. Do not expose these."
     }
@@ -209,30 +150,14 @@
       "layout": {
         "direction": "horizontal",
         "gap": "space/none",
-        "padding": {
-          "top": "space/xxs",
-          "bottom": "space/xxs",
-          "left": "space/md",
-          "right": "space/md"
-        },
+        "padding": { "top": "space/2xs", "bottom": "space/2xs", "left": "space/md", "right": "space/md" },
         "primaryAlign": "center",
         "counterAlign": "center"
       },
-      "sizing": {
-        "h": "hug",
-        "v": "fixed",
-        "heightToken": "control/sm"
-      },
+      "sizing": { "h": "hug", "v": "fixed", "heightToken": "control/sm | control/md | control/lg per size" },
       "clips": true,
-      "radius": "radius/none",
-      "paint": {
-        "fill": "interactive/primary/background/default",
-        "stroke": {
-          "color": "interactive/primary/border/default",
-          "width": "stroke/base",
-          "align": "inside"
-        }
-      }
+      "radius": "per shape",
+      "paint": { "fill": "per flavour x state", "stroke": "per flavour x state, inside at rest; focus outside" }
     },
     {
       "id": "leadingIcon",
@@ -240,25 +165,13 @@
       "kind": "instance",
       "figmaName": "Leading Icon",
       "ref": "Icon",
-      "refVariant": "Size=small, Framed=false",
+      "refVariant": "Size=small|medium per Button size, Framed=false",
       "role": "An Icon instance before the label, hidden until Leading Icon is turned on. Button sets its size and leaves the instance exposed.",
       "visibleWhen": "leadingIcon",
       "defaultVisible": false,
-      "sizing": {
-        "h": "hug",
-        "v": "hug"
-      },
       "paint": {
-        "fill": {
-          "token": "per flavour, following the label (overridden on the instance)",
-          "boundInside": "Icon binds foreground/primary; Button overrides it in every flavour and in disabled since 2026-10-18"
-        }
-      },
-      "renderedBoxPx": {
-        "w": 16,
-        "h": 16
-      },
-      "_boxNote": "measured at size=small; the authored value is the nested Icon's Size variant, not a token on Button"
+        "fill": { "token": "per flavour, following the label (overridden on the instance)", "boundInside": "Icon binds foreground/primary; Button overrides it in every flavour and in disabled" }
+      }
     },
     {
       "id": "label",
@@ -269,20 +182,11 @@
       "layout": {
         "direction": "horizontal",
         "gap": "space/none",
-        "padding": {
-          "left": "space/xxs",
-          "right": "space/xxs",
-          "top": 0,
-          "bottom": 0,
-          "_note": "left/right are token-bound; top/bottom are simply unset (0), not a token"
-        },
+        "padding": { "left": "space/2xs (small) | space/sm (medium, large)", "right": "same", "top": 0, "bottom": 0 },
         "primaryAlign": "center",
         "counterAlign": "center"
       },
-      "sizing": {
-        "h": "hug",
-        "v": "hug"
-      }
+      "sizing": { "h": "hug", "v": "hug" }
     },
     {
       "id": "label/text",
@@ -293,24 +197,18 @@
       "text": {
         "default": "Button",
         "boundTo": "label",
-        "style": "label/medium",
-        "fontFamily": "label/medium/font family",
-        "fontWeight": "label/medium/font weight",
-        "fontSize": "label/medium/font size",
-        "lineHeight": "label/medium/line height",
-        "letterSpacing": "label/medium/letter spacing",
+        "style": "label/medium (small) | label/large (medium, large)",
+        "fontFamily": "label/<style>/font family",
+        "fontWeight": "label/<style>/font weight",
+        "fontSize": "label/<style>/font size",
+        "lineHeight": "label/<style>/line height",
+        "letterSpacing": "label/<style>/letter spacing",
         "textCase": "original",
         "autoResize": "width-and-height",
         "truncation": "none",
         "wrap": "none"
       },
-      "sizing": {
-        "h": "hug",
-        "v": "hug"
-      },
-      "paint": {
-        "fill": "interactive/primary/foreground/default"
-      }
+      "paint": { "fill": "per flavour x state (see variants)" }
     },
     {
       "id": "trailingIcon",
@@ -318,25 +216,11 @@
       "kind": "instance",
       "figmaName": "Trailing Icon",
       "ref": "Icon",
-      "refVariant": "Size=small, Framed=false",
+      "refVariant": "Size=small|medium per Button size, Framed=false",
       "role": "An Icon instance after the label, hidden until Trailing Icon is turned on.",
       "visibleWhen": "trailingIcon",
       "defaultVisible": false,
-      "sizing": {
-        "h": "hug",
-        "v": "hug"
-      },
-      "paint": {
-        "fill": {
-          "token": "per flavour, following the label (overridden on the instance)",
-          "boundInside": "Icon binds foreground/primary; Button overrides it in every flavour and in disabled since 2026-10-18"
-        }
-      },
-      "renderedBoxPx": {
-        "w": 16,
-        "h": 16
-      },
-      "_boxNote": "measured at size=small; the authored value is the nested Icon's Size variant, not a token on Button"
+      "paint": { "fill": { "token": "per flavour, following the label (overridden on the instance)" } }
     }
   ],
   "variants": {
@@ -344,603 +228,80 @@
       "axis": "size",
       "base": "small",
       "table": [
-        {
-          "size": "small",
-          "root.height": "control/sm",
-          "root.paddingX": "space/md",
-          "root.paddingY": "space/xxs",
-          "label.paddingX": "space/xxs",
-          "label.text.style": "label/medium",
-          "icon.refVariant": "Size=small, Framed=false",
-          "icon.renderedSizePx": 16,
-          "rootWidthPx@default label": 76
-        },
-        {
-          "size": "medium",
-          "root.height": "control/md",
-          "root.paddingX": "space/md",
-          "root.paddingY": "space/xxs",
-          "label.paddingX": "space/sm",
-          "label.text.style": "label/large",
-          "icon.refVariant": "Size=medium, Framed=false",
-          "icon.renderedSizePx": 20,
-          "rootWidthPx@default label": 90
-        },
-        {
-          "size": "large",
-          "root.height": "control/lg",
-          "root.paddingX": "space/lg",
-          "root.paddingY": "space/xxs",
-          "label.paddingX": "space/sm",
-          "label.text.style": "label/large",
-          "icon.refVariant": "Size=medium, Framed=false",
-          "icon.renderedSizePx": 20,
-          "rootWidthPx@default label": 98
-        }
+        { "size": "small", "root.height": "control/sm", "root.paddingX": "space/md", "root.paddingY": "space/2xs", "label.paddingX": "space/2xs", "label.text.style": "label/medium", "icon.refVariant": "Size=small, Framed=false", "icon.renderedSizePx": 16, "rootWidthPx@defaultLabel": 76 },
+        { "size": "medium", "root.height": "control/md", "root.paddingX": "space/md", "root.paddingY": "space/2xs", "label.paddingX": "space/sm", "label.text.style": "label/large", "icon.refVariant": "Size=medium, Framed=false", "icon.renderedSizePx": 20, "rootWidthPx@defaultLabel": 90 },
+        { "size": "large", "root.height": "control/lg", "root.paddingX": "space/lg", "root.paddingY": "space/2xs", "label.paddingX": "space/sm", "label.text.style": "label/large", "icon.refVariant": "Size=medium, Framed=false", "icon.renderedSizePx": 20, "rootWidthPx@defaultLabel": 98 }
       ],
-      "_note": "Every cell is a token name except the two suffixed Px, which are measurements of the rendered file. The icon is NOT sized by a token on Button: its size comes from the nested Icon's Size variant, which Button pins (small -> Icon small, medium and large -> Icon medium). icon.renderedSizePx records what that produces."
+      "_note": "Every cell is a token name except the two suffixed Px, which are measurements. The icon is sized by the nested Icon's Size variant, which Button pins (small -> Icon small, medium and large -> Icon medium)."
     },
     "byShape": {
       "axis": "shape",
       "base": "sharp",
       "table": [
-        {
-          "shape": "sharp",
-          "root.radius": "radius/none"
-        },
-        {
-          "shape": "rounded",
-          "root.radius": "radius/element-sm"
-        },
-        {
-          "shape": "full",
-          "root.radius": "radius/pill"
-        }
+        { "shape": "sharp", "root.radius": "radius/none" },
+        { "shape": "rounded", "root.radius": "radius/element-sm" },
+        { "shape": "full", "root.radius": "radius/pill" }
       ]
     },
-    "byFlavourAndState": {
-      "axes": [
-        "flavour",
-        "state",
-        "disabled"
-      ],
-      "base": "primary / default / false",
-      "note": "Colour only; identical at every Size and Shape. 'state=disabled' is the Disabled=true axis, which exists only alongside State=default. Border widths are token-bound: stroke/base draws nothing at all — see the stroke/base issue below before implementing a border for it — while stroke/thin and stroke/thick are the visible weights. Focus always draws border/focus at stroke/thick OUTSIDE the bounds, replacing the resting border. Since 2026-10-18 subtle and outline-subtle draw the same transparent ghost scrim as text (interactive/ghost/background/* at 0 / 0.05 / 0.1 / 0 focused / 0 disabled) instead of a solid interactive/neutral/background/* fill; their border and label tokens are unchanged. The icon column records that Button now overrides the nested Icon's fill in every flavour; the token itself could not be read while the icons are hidden.",
+    "byFlavourState": {
+      "axes": ["flavour", "state/disabled"],
+      "_note": "Identical at every size and shape except the two mismatches in issues. Border weights: stroke/base draws nothing (0px, see issues), stroke/thin draws 1px inside, stroke/thick draws 2px outside. Scrim rows carry Figma's extra paint opacity (@ n), which doubles the token's own alpha — code binds the token alone (see issues).",
       "table": [
-        {
-          "flavour": "primary",
-          "state": "default",
-          "background": "interactive/primary/background/default",
-          "border": "interactive/primary/border/default",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/primary/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "primary",
-          "state": "hover",
-          "background": "interactive/primary/background/hover",
-          "border": "interactive/primary/border/hover",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/primary/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "primary",
-          "state": "pressed",
-          "background": "interactive/primary/background/pressed",
-          "border": "interactive/primary/border/pressed",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/primary/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "primary",
-          "state": "focus",
-          "background": "interactive/primary/background/focused",
-          "border": "border/focus",
-          "borderWidth": "stroke/thick",
-          "borderAlign": "outside",
-          "label": "interactive/primary/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "primary",
-          "state": "disabled",
-          "background": "interactive/primary/background/disabled",
-          "border": "interactive/primary/border/disabled",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/primary/foreground/disabled",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "positive",
-          "state": "default",
-          "background": "interactive/positive/background/default",
-          "border": "interactive/positive/border/default",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/positive/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "positive",
-          "state": "hover",
-          "background": "interactive/positive/background/hover",
-          "border": "interactive/positive/border/hover",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/positive/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "positive",
-          "state": "pressed",
-          "background": "interactive/positive/background/pressed",
-          "border": "interactive/positive/border/pressed",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/positive/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "positive",
-          "state": "focus",
-          "background": "interactive/positive/background/focused",
-          "border": "border/focus",
-          "borderWidth": "stroke/thick",
-          "borderAlign": "outside",
-          "label": "interactive/positive/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "positive",
-          "state": "disabled",
-          "background": "interactive/positive/background/disabled",
-          "border": "interactive/secondary/border/disabled",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/positive/foreground/disabled",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "negative",
-          "state": "default",
-          "background": "interactive/destructive/background/default",
-          "border": "interactive/destructive/border/default",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/destructive/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "negative",
-          "state": "hover",
-          "background": "interactive/destructive/background/hover",
-          "border": "interactive/destructive/border/hover",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/destructive/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "negative",
-          "state": "pressed",
-          "background": "interactive/destructive/background/pressed",
-          "border": "interactive/destructive/border/pressed",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/destructive/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "negative",
-          "state": "focus",
-          "background": "interactive/destructive/background/focused",
-          "border": "border/focus",
-          "borderWidth": "stroke/thick",
-          "borderAlign": "outside",
-          "label": "interactive/destructive/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "negative",
-          "state": "disabled",
-          "background": "interactive/destructive/background/disabled",
-          "border": "interactive/destructive/border/disabled",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/destructive/foreground/disabled",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "subtle",
-          "state": "default",
-          "background": {
-            "token": "interactive/ghost/background/default",
-            "opacity": 0
-          },
-          "border": "interactive/neutral/border/default",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/neutral/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "subtle",
-          "state": "hover",
-          "background": {
-            "token": "interactive/ghost/background/hover",
-            "opacity": 0.05
-          },
-          "border": "interactive/neutral/border/default",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/neutral/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "subtle",
-          "state": "pressed",
-          "background": {
-            "token": "interactive/ghost/background/pressed",
-            "opacity": 0.1
-          },
-          "border": "interactive/neutral/border/default",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/neutral/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "subtle",
-          "state": "focus",
-          "background": {
-            "token": "interactive/ghost/background/focused",
-            "opacity": 0
-          },
-          "border": "border/focus",
-          "borderWidth": "stroke/thick",
-          "borderAlign": "outside",
-          "label": "interactive/neutral/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "subtle",
-          "state": "disabled",
-          "background": {
-            "token": "interactive/ghost/background/disabled",
-            "opacity": 0
-          },
-          "border": "interactive/neutral/border/disabled",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/neutral/foreground/disabled",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "text",
-          "state": "default",
-          "background": {
-            "token": "interactive/ghost/background/default",
-            "opacity": 0
-          },
-          "border": "interactive/ghost/border/default",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/ghost/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "text",
-          "state": "hover",
-          "background": {
-            "token": "interactive/ghost/background/hover",
-            "opacity": 0.05
-          },
-          "border": "interactive/ghost/border/hover",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/ghost/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "text",
-          "state": "pressed",
-          "background": {
-            "token": "interactive/ghost/background/pressed",
-            "opacity": 0.1
-          },
-          "border": "interactive/ghost/border/pressed",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/ghost/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "text",
-          "state": "focus",
-          "background": {
-            "token": "interactive/ghost/background/focused",
-            "opacity": 0
-          },
-          "border": "border/focus",
-          "borderWidth": "stroke/thick",
-          "borderAlign": "outside",
-          "label": "interactive/ghost/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "text",
-          "state": "disabled",
-          "background": {
-            "token": "interactive/ghost/background/disabled",
-            "opacity": 0
-          },
-          "border": "interactive/ghost/border/disabled",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/ghost/foreground/disabled",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "outline-subtle",
-          "state": "default",
-          "background": {
-            "token": "interactive/ghost/background/default",
-            "opacity": 0
-          },
-          "border": "interactive/neutral/border/default",
-          "borderWidth": "stroke/thin",
-          "borderAlign": "inside",
-          "label": "interactive/neutral/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "outline-subtle",
-          "state": "hover",
-          "background": {
-            "token": "interactive/ghost/background/hover",
-            "opacity": 0.05
-          },
-          "border": "interactive/neutral/border/hover",
-          "borderWidth": "stroke/thin",
-          "borderAlign": "inside",
-          "label": "interactive/neutral/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "outline-subtle",
-          "state": "pressed",
-          "background": {
-            "token": "interactive/ghost/background/pressed",
-            "opacity": 0.1
-          },
-          "border": "interactive/neutral/border/pressed",
-          "borderWidth": "stroke/thin",
-          "borderAlign": "inside",
-          "label": "interactive/neutral/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "outline-subtle",
-          "state": "focus",
-          "background": {
-            "token": "interactive/ghost/background/focused",
-            "opacity": 0
-          },
-          "border": "border/focus",
-          "borderWidth": "stroke/thick",
-          "borderAlign": "outside",
-          "label": "interactive/neutral/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "outline-subtle",
-          "state": "disabled",
-          "background": {
-            "token": "interactive/ghost/background/disabled",
-            "opacity": 0
-          },
-          "border": "interactive/neutral/border/disabled",
-          "borderWidth": "stroke/thin",
-          "borderAlign": "inside",
-          "label": "interactive/neutral/foreground/disabled",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "outline",
-          "state": "default",
-          "background": "interactive/neutral/background/default",
-          "border": "interactive/ghost/border/default",
-          "borderWidth": "stroke/thin",
-          "borderAlign": "inside",
-          "label": "interactive/ghost/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "outline",
-          "state": "hover",
-          "background": "interactive/neutral/background/hover",
-          "border": "interactive/ghost/border/default",
-          "borderWidth": "stroke/thin",
-          "borderAlign": "inside",
-          "label": "interactive/ghost/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "outline",
-          "state": "pressed",
-          "background": "interactive/neutral/background/pressed",
-          "border": "interactive/ghost/border/default",
-          "borderWidth": "stroke/thin",
-          "borderAlign": "inside",
-          "label": "interactive/ghost/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "outline",
-          "state": "focus",
-          "background": "interactive/neutral/background/focused",
-          "border": "border/focus",
-          "borderWidth": "stroke/thick",
-          "borderAlign": "outside",
-          "label": "interactive/ghost/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "outline",
-          "state": "disabled",
-          "background": "interactive/neutral/background/disabled",
-          "border": "interactive/ghost/border/disabled",
-          "borderWidth": "stroke/thin",
-          "borderAlign": "inside",
-          "label": "interactive/neutral/foreground/disabled",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "gradient",
-          "state": "default",
-          "background": {
-            "gradient": "linear",
-            "stops": [
-              {
-                "pos": 0,
-                "token": "surface/gradient/start"
-              },
-              {
-                "pos": 0.87,
-                "token": "surface/gradient/end"
-              }
-            ]
-          },
-          "border": "interactive/primary/border/default",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/primary/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "gradient",
-          "state": "hover",
-          "background": "surface/gradient/end",
-          "border": "interactive/primary/border/hover",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/primary/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "gradient",
-          "state": "pressed",
-          "background": "surface/gradient/start",
-          "border": "interactive/primary/border/pressed",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/primary/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "gradient",
-          "state": "focus",
-          "background": "surface/gradient/start",
-          "border": "border/focus",
-          "borderWidth": "stroke/thick",
-          "borderAlign": "outside",
-          "label": "interactive/primary/foreground/default",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "gradient",
-          "state": "disabled",
-          "background": "interactive/primary/background/disabled",
-          "border": "interactive/primary/border/disabled",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/primary/foreground/disabled",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "text-gradient",
-          "state": "default",
-          "background": {
-            "token": "interactive/ghost/background/default",
-            "opacity": 0
-          },
-          "border": "interactive/ghost/border/default",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": {
-            "gradient": "linear",
-            "stops": [
-              {
-                "pos": 0,
-                "token": "foreground/gradient/start"
-              },
-              {
-                "pos": 1,
-                "token": "foreground/gradient/end"
-              }
-            ]
-          },
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "text-gradient",
-          "state": "hover",
-          "background": {
-            "token": "interactive/ghost/background/hover",
-            "opacity": 0.05
-          },
-          "border": "interactive/ghost/border/hover",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "foreground/gradient/end",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "text-gradient",
-          "state": "pressed",
-          "background": {
-            "token": "interactive/ghost/background/pressed",
-            "opacity": 0.1
-          },
-          "border": "interactive/ghost/border/pressed",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "foreground/gradient/start",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "text-gradient",
-          "state": "focus",
-          "background": {
-            "token": "interactive/ghost/background/focused",
-            "opacity": 0
-          },
-          "border": "border/focus",
-          "borderWidth": "stroke/thick",
-          "borderAlign": "outside",
-          "label": "foreground/gradient/start",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        },
-        {
-          "flavour": "text-gradient",
-          "state": "disabled",
-          "background": {
-            "token": "interactive/ghost/background/disabled",
-            "opacity": 0
-          },
-          "border": "interactive/ghost/border/disabled",
-          "borderWidth": "stroke/base",
-          "borderAlign": "inside",
-          "label": "interactive/ghost/foreground/disabled",
-          "icon": "follows the label (overridden per flavour; see issues)"
-        }
+        { "flavour": "primary", "state": "default", "bg": "interactive/primary/background/default", "border": "interactive/primary/border/default · base", "label": "interactive/primary/foreground/default" },
+        { "flavour": "primary", "state": "hover", "bg": "interactive/primary/background/hover", "border": "interactive/primary/border/hover · base", "label": "interactive/primary/foreground/default" },
+        { "flavour": "primary", "state": "pressed", "bg": "interactive/primary/background/pressed", "border": "interactive/primary/border/pressed · base", "label": "interactive/primary/foreground/default" },
+        { "flavour": "primary", "state": "focus", "bg": "interactive/primary/background/focused", "border": "border/focus · thick, outside", "label": "interactive/primary/foreground/default" },
+        { "flavour": "primary", "state": "disabled", "bg": "interactive/primary/background/disabled", "border": "interactive/primary/border/disabled · base", "label": "interactive/primary/foreground/disabled" },
+        { "flavour": "positive", "state": "default", "bg": "interactive/positive/background/default", "border": "interactive/positive/border/default · base", "label": "interactive/positive/foreground/default" },
+        { "flavour": "positive", "state": "hover", "bg": "interactive/positive/background/hover", "border": "interactive/positive/border/hover · base", "label": "interactive/positive/foreground/default" },
+        { "flavour": "positive", "state": "pressed", "bg": "interactive/positive/background/pressed", "border": "interactive/positive/border/pressed · base", "label": "interactive/positive/foreground/default" },
+        { "flavour": "positive", "state": "focus", "bg": "interactive/positive/background/focused", "border": "border/focus · thick, outside", "label": "interactive/positive/foreground/default" },
+        { "flavour": "positive", "state": "disabled", "bg": "interactive/positive/background/disabled", "border": "interactive/secondary/border/disabled · base", "label": "interactive/positive/foreground/disabled" },
+        { "flavour": "negative", "state": "default", "bg": "interactive/destructive/background/default", "border": "interactive/destructive/border/default · base", "label": "interactive/destructive/foreground/default" },
+        { "flavour": "negative", "state": "hover", "bg": "interactive/destructive/background/hover", "border": "interactive/destructive/border/hover · base", "label": "interactive/destructive/foreground/default" },
+        { "flavour": "negative", "state": "pressed", "bg": "interactive/destructive/background/pressed", "border": "interactive/destructive/border/pressed · base", "label": "interactive/destructive/foreground/default" },
+        { "flavour": "negative", "state": "focus", "bg": "interactive/destructive/background/focused", "border": "border/focus · thick, outside", "label": "interactive/destructive/foreground/default" },
+        { "flavour": "negative", "state": "disabled", "bg": "interactive/destructive/background/disabled", "border": "interactive/destructive/border/disabled · base", "label": "interactive/destructive/foreground/disabled" },
+        { "flavour": "subtle", "state": "default", "bg": "interactive/ghost/background/default @ 0", "border": "interactive/neutral/border/default · base", "label": "interactive/neutral/foreground/default" },
+        { "flavour": "subtle", "state": "hover", "bg": "interactive/ghost/background/hover @ 0.05", "border": "interactive/neutral/border/default · base", "label": "interactive/neutral/foreground/default" },
+        { "flavour": "subtle", "state": "pressed", "bg": "interactive/ghost/background/pressed @ 0.10", "border": "interactive/neutral/border/default · base", "label": "interactive/neutral/foreground/default" },
+        { "flavour": "subtle", "state": "focus", "bg": "interactive/ghost/background/focused @ 0", "border": "border/focus · thick, outside", "label": "interactive/neutral/foreground/default" },
+        { "flavour": "subtle", "state": "disabled", "bg": "interactive/ghost/background/disabled @ 0", "border": "interactive/neutral/border/disabled · base", "label": "interactive/neutral/foreground/disabled" },
+        { "flavour": "text", "state": "default", "bg": "interactive/ghost/background/default @ 0", "border": "interactive/ghost/border/default · base", "label": "interactive/ghost/foreground/default" },
+        { "flavour": "text", "state": "hover", "bg": "interactive/ghost/background/hover @ 0.05", "border": "interactive/ghost/border/hover · base", "label": "interactive/ghost/foreground/default" },
+        { "flavour": "text", "state": "pressed", "bg": "interactive/ghost/background/pressed @ 0.10", "border": "interactive/ghost/border/pressed · base", "label": "interactive/ghost/foreground/default" },
+        { "flavour": "text", "state": "focus", "bg": "interactive/ghost/background/focused @ 0", "border": "border/focus · thick, outside", "label": "interactive/ghost/foreground/default" },
+        { "flavour": "text", "state": "disabled", "bg": "interactive/ghost/background/disabled @ 0", "border": "interactive/ghost/border/disabled · base", "label": "interactive/ghost/foreground/disabled" },
+        { "flavour": "outline-subtle", "state": "default", "bg": "interactive/ghost/background/default @ 0", "border": "interactive/neutral/border/default · thin", "label": "interactive/neutral/foreground/default" },
+        { "flavour": "outline-subtle", "state": "hover", "bg": "interactive/ghost/background/hover @ 0.05", "border": "interactive/neutral/border/hover · thin", "label": "interactive/neutral/foreground/default" },
+        { "flavour": "outline-subtle", "state": "pressed", "bg": "interactive/ghost/background/pressed @ 0.10", "border": "interactive/neutral/border/pressed · thin", "label": "interactive/neutral/foreground/default" },
+        { "flavour": "outline-subtle", "state": "focus", "bg": "interactive/ghost/background/focused @ 0", "border": "border/focus · thick, outside", "label": "interactive/neutral/foreground/default" },
+        { "flavour": "outline-subtle", "state": "disabled", "bg": "interactive/ghost/background/disabled @ 0", "border": "interactive/neutral/border/disabled · thin", "label": "interactive/neutral/foreground/disabled" },
+        { "flavour": "outline", "state": "default", "bg": "interactive/neutral/background/default", "border": "interactive/ghost/border/default · thin", "label": "interactive/ghost/foreground/default" },
+        { "flavour": "outline", "state": "hover", "bg": "interactive/neutral/background/hover", "border": "interactive/ghost/border/default · thin", "label": "interactive/ghost/foreground/default" },
+        { "flavour": "outline", "state": "pressed", "bg": "interactive/neutral/background/pressed", "border": "interactive/ghost/border/default · thin", "label": "interactive/ghost/foreground/default" },
+        { "flavour": "outline", "state": "focus", "bg": "interactive/neutral/background/focused", "border": "border/focus · thick, outside", "label": "interactive/ghost/foreground/default" },
+        { "flavour": "outline", "state": "disabled", "bg": "interactive/neutral/background/disabled", "border": "interactive/ghost/border/disabled · thin", "label": "interactive/neutral/foreground/disabled" },
+        { "flavour": "gradient", "state": "default", "bg": "linear surface/gradient/start 0% -> surface/gradient/end 87%", "border": "interactive/primary/border/default · base", "label": "interactive/primary/foreground/default" },
+        { "flavour": "gradient", "state": "hover", "bg": "flat surface/gradient/end", "border": "interactive/primary/border/hover · base", "label": "interactive/primary/foreground/default" },
+        { "flavour": "gradient", "state": "pressed", "bg": "flat surface/gradient/start", "border": "interactive/primary/border/pressed · base", "label": "interactive/primary/foreground/default" },
+        { "flavour": "gradient", "state": "focus", "bg": "flat surface/gradient/start", "border": "border/focus · thick, outside", "label": "interactive/primary/foreground/default" },
+        { "flavour": "gradient", "state": "disabled", "bg": "interactive/primary/background/disabled", "border": "interactive/primary/border/disabled · base", "label": "interactive/primary/foreground/disabled" },
+        { "flavour": "text-gradient", "state": "default", "bg": "interactive/ghost/background/default @ 0", "border": "interactive/ghost/border/default · base", "label": "linear foreground/gradient/start 0% -> foreground/gradient/end 100%" },
+        { "flavour": "text-gradient", "state": "hover", "bg": "interactive/ghost/background/hover @ 0.05", "border": "interactive/ghost/border/hover · base", "label": "flat foreground/gradient/end" },
+        { "flavour": "text-gradient", "state": "pressed", "bg": "interactive/ghost/background/pressed @ 0.10", "border": "interactive/ghost/border/pressed · base", "label": "flat foreground/gradient/start" },
+        { "flavour": "text-gradient", "state": "focus", "bg": "interactive/ghost/background/focused @ 0", "border": "border/focus · thick, outside", "label": "flat foreground/gradient/start" },
+        { "flavour": "text-gradient", "state": "disabled", "bg": "interactive/ghost/background/disabled @ 0", "border": "interactive/ghost/border/disabled · base", "label": "interactive/ghost/foreground/disabled" },
+        { "flavour": "contrast", "state": "default", "bg": "interactive/inverse/background/default", "border": "interactive/inverse/border/default · base", "label": "interactive/inverse/foreground/default" },
+        { "flavour": "contrast", "state": "hover", "bg": "interactive/inverse/background/hover", "border": "interactive/inverse/border/hover · base", "label": "interactive/inverse/foreground/default" },
+        { "flavour": "contrast", "state": "pressed", "bg": "interactive/inverse/background/pressed", "border": "interactive/inverse/border/pressed · base", "label": "interactive/inverse/foreground/default" },
+        { "flavour": "contrast", "state": "focus", "bg": "interactive/inverse/background/focused", "border": "border/focus · thick, outside", "label": "interactive/inverse/foreground/default" },
+        { "flavour": "contrast", "state": "disabled", "bg": "interactive/inverse/background/disabled", "border": "interactive/inverse/border/disabled · base", "label": "interactive/inverse/foreground/disabled" },
+        { "flavour": "outline-contrast", "state": "default", "bg": "interactive/ghost/background/default @ 0", "border": "interactive/inverse/border/default · thin", "label": "foreground/primary" },
+        { "flavour": "outline-contrast", "state": "hover", "bg": "interactive/ghost/background/hover @ 0.05", "border": "interactive/inverse/border/hover · thin", "label": "foreground/primary" },
+        { "flavour": "outline-contrast", "state": "pressed", "bg": "interactive/ghost/background/pressed @ 0.10", "border": "interactive/inverse/border/pressed · thin", "label": "foreground/primary" },
+        { "flavour": "outline-contrast", "state": "focus", "bg": "interactive/ghost/background/focused @ 0", "border": "border/focus · thick, outside", "label": "foreground/primary" },
+        { "flavour": "outline-contrast", "state": "disabled", "bg": "interactive/ghost/background/disabled @ 0", "border": "border/disabled · thin", "label": "interactive/inverse/foreground/disabled" }
       ]
     }
   },
@@ -950,264 +311,51 @@
       "id": "2046:15010",
       "key": "a469ac1cf34202af3e094593468d9ef20a37a703",
       "remote": false,
-      "onPage": false,
-      "page": "Icon",
-      "usedAt": [
-        "leadingIcon",
-        "trailingIcon"
-      ],
-      "variantCount": 6,
-      "api": {
-        "glyph": {
-          "type": "slot",
-          "figmaName": "Name#2167:166",
-          "figmaType": "INSTANCE_SWAP",
-          "default": "Style=rounded (of the 'Verified' glyph component, page 'Assets')",
-          "preferredValues": 1,
-          "resolvesTo": "a glyph name in packages/icons/codepoints.json (e.g. 'verified'); verify before use — 9 Figma icons have no glyph"
-        },
-        "size": {
-          "type": "enum",
-          "figmaName": "Size",
-          "default": "small",
-          "values": [
-            "small",
-            "medium",
-            "large"
-          ],
-          "renderedBoxPx": {
-            "small": 16,
-            "medium": 20,
-            "large": 28
-          },
-          "_note": "renderedBoxPx is measured from the file, not a token binding"
-        },
-        "framed": {
-          "type": "enum",
-          "figmaName": "Framed",
-          "default": "false",
-          "values": [
-            "false",
-            "true"
-          ]
-        }
-      },
-      "anatomy": [
-        {
-          "id": "root",
-          "kind": "container",
-          "sizing": {
-            "h": "hug",
-            "v": "hug"
-          },
-          "renderedBoxPx": {
-            "w": 16,
-            "h": 16
-          }
-        },
-        {
-          "id": "glyph",
-          "kind": "instance",
-          "ref": "<swapped glyph component>",
-          "boundToProp": "Name#2167:166"
-        },
-        {
-          "id": "glyph/vector",
-          "kind": "shape",
-          "paint": {
-            "fill": "foreground/primary"
-          }
-        }
-      ],
-      "note": "Button uses only Size=small (at size=small) and Size=medium (at size=medium and large), always Framed=false. Icon's own large step never appears inside a Button. Spec the Icon component separately from its own page.",
-      "delivery": {
-        "as": "icon font glyph",
-        "package": "@zebra-design-system/icons",
-        "families": {
-          "rounded": "ZdsIcons-Rounded",
-          "sharp": "ZdsIcons-Sharp"
-        },
-        "note": "Both families share codepoints, so the Style axis is a font-family swap, not a different glyph. The glyph takes currentColor, which satisfies the metadata's 'the icon follows the label' without a per-flavour icon token."
-      }
-    }
-  ],
-  "siblingsOnPage": [
+      "where": "local, on the Icon page (not the Button page)",
+      "spec": "specs/icon",
+      "usedAt": ["leadingIcon", "trailingIcon"],
+      "note": "Button uses only its small and medium steps, always Framed=false. Its glyph vector binds foreground/primary; Button overrides the fill per flavour."
+    },
     {
       "name": "Icon Button",
       "id": "2338:1763",
-      "variantCount": 405,
-      "metadataFrame": "4732:1074",
-      "note": "A separate public component set that shares the Button page and has its own metadata frame. It is not a subcomponent of Button; Button's usage guidance points to it for icon-only actions. Spec it separately."
+      "sibling": true,
+      "spec": "specs/icon-button",
+      "note": "Shares the Button page and has its own metadata frame, but it is a sibling public component, not a subcomponent."
     }
   ],
   "tokens": {
-    "source": "tokens/ — names below resolve there; see tokens/manifest.json for collections, modes and the extension graph",
-    "rule": "This spec names tokens only. Resolved values live in tokens/ and are deliberately not duplicated here.",
-    "color": [
-      "interactive/primary/background/{default,hover,pressed,focused,disabled}",
-      "interactive/primary/border/{default,hover,pressed,disabled}",
-      "interactive/primary/foreground/{default,disabled}",
-      "interactive/positive/background/{default,hover,pressed,focused,disabled}",
-      "interactive/positive/border/{default,hover,pressed}",
-      "interactive/positive/foreground/{default,disabled}",
-      "interactive/destructive/background/{default,hover,pressed,focused,disabled}",
-      "interactive/destructive/border/{default,hover,pressed,disabled}",
-      "interactive/destructive/foreground/{default,disabled}",
-      "interactive/neutral/background/{default,hover,pressed,focused,disabled}",
-      "interactive/neutral/border/{default,hover,pressed,disabled}",
-      "interactive/neutral/foreground/{default,disabled}",
-      "interactive/ghost/background/{default,hover,pressed,focused,disabled}",
-      "interactive/ghost/border/{default,hover,pressed,disabled}",
-      "interactive/ghost/foreground/{default,disabled}",
-      "interactive/secondary/border/disabled",
-      "border/focus",
-      "surface/gradient/{start,end}",
-      "foreground/gradient/{start,end}",
-      "foreground/primary"
-    ],
-    "dimension": [
-      "control/sm",
-      "control/md",
-      "control/lg",
-      "space/none",
-      "space/xxs",
-      "space/sm",
-      "space/md",
-      "space/lg",
-      "radius/none",
-      "radius/element-sm",
-      "radius/pill",
-      "stroke/base",
-      "stroke/thin",
-      "stroke/thick"
-    ],
-    "typography": [
-      "label/medium/*",
-      "label/large/*"
-    ],
-    "effect": [],
-    "styles": {
-      "text": [
-        "label/medium",
-        "label/large"
-      ],
-      "effect": [],
-      "paint": []
-    },
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": "the six interactive/* families (primary, positive, destructive, neutral, ghost, inverse), each with background, border and foreground sub-groups across default/hover/pressed/focused/disabled; plus interactive/secondary/border/disabled, border/focus, border/disabled, surface/gradient/{start,end}, foreground/gradient/{start,end} and foreground/primary",
+    "dimension": ["control/sm", "control/md", "control/lg", "space/none", "space/2xs", "space/sm", "space/md", "space/lg", "radius/none", "radius/element-sm", "radius/pill", "stroke/base", "stroke/thin", "stroke/thick"],
+    "typography": ["label/medium", "label/large"],
+    "effects": "none — no shadows, no elevation, anywhere in the component",
     "themeAxes": {
-      "palette": {
-        "modes": [
-          "Light",
-          "Dark"
-        ],
-        "default": "Light",
-        "note": "The only axis that changes Button's colours."
-      },
-      "size": {
-        "modes": [
-          "Desktop",
-          "Mobile",
-          "Tablet",
-          "Desktop Compact"
-        ],
-        "default": "Desktop",
-        "note": "Every dimension token Button uses resolves identically in all four modes — Button does not respond to density or breakpoint."
-      },
-      "typography": {
-        "modes": [
-          "Desktop",
-          "Tablet",
-          "Mobile",
-          "Desktop Compact"
-        ],
-        "default": "Desktop",
-        "note": "Same: label/medium and label/large are identical in all four modes."
-      },
-      "semantics": {
-        "modes": [
-          "Base"
-        ],
-        "default": "Base"
-      },
-      "primitives": {
-        "modes": [
-          "Value"
-        ],
-        "default": "Value"
-      }
+      "palette": ["Light", "Dark", "AAA Light", "AAA Dark"],
+      "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
+      "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"],
+      "_note": "palette is the only axis that changes Button; every dimension and typography token resolves identically across the size and typography modes."
     }
   },
   "states": [
-    {
-      "state": "default",
-      "trigger": "Resting",
-      "duration": "—",
-      "whatChanges": "Background, border and label sit on the default tokens of the chosen flavour."
-    },
-    {
-      "state": "hover",
-      "trigger": "Pointer over the control",
-      "duration": "—",
-      "whatChanges": "Filled flavours move their own background token one step. Outline flavours hold their border and shift a neutral background underneath instead. Text flavours raise a ghost scrim from fully transparent. The gradient flavours keep their gradient and slide it toward the end colour rather than swapping it (see Gradient transition). Apart from text-gradient, the label colour does not change on any flavour."
-    },
-    {
-      "state": "pressed",
-      "trigger": "Pointer held down",
-      "duration": "—",
-      "whatChanges": "The same mechanism as hover carried one step further. The gradient flavours slide the other way, toward the start colour, rather than collapsing to a flat token (see Gradient transition)."
-    },
-    {
-      "state": "focus",
-      "trigger": "Keyboard focus",
-      "duration": "—",
-      "whatChanges": "A focus ring is drawn outside the bounds, replacing the resting border rather than adding to it. Identical on all nine flavours, and the only state that changes the control's outer footprint."
-    },
-    {
-      "state": "disabled",
-      "trigger": "Disabled set to true",
-      "duration": "—",
-      "whatChanges": "Background and label swap to the disabled tokens of their family, and the icon follows the label. No flavour keeps its accent colour, so disabled buttons of different flavours look alike."
-    }
+    { "state": "default", "trigger": "Resting", "change": "Background, border and label sit on the default tokens of the chosen flavour." },
+    { "state": "hover", "trigger": "Pointer over the control", "change": "Filled flavours move their own background token one step. Outline flavours hold their border and shift a neutral background underneath instead. Text flavours raise a ghost scrim from fully transparent. The gradient flavours keep their gradient and slide it toward the end colour rather than swapping it (see Gradient transition). outline-contrast steps its border and raises the ghost scrim. Apart from text-gradient, the label colour does not change on any flavour." },
+    { "state": "pressed", "trigger": "Pointer held down", "change": "The same mechanism as hover carried one step further. The gradient flavours slide the other way, toward the start colour, rather than collapsing to a flat token (see Gradient transition)." },
+    { "state": "focus", "trigger": "Keyboard focus", "change": "A focus ring is drawn outside the bounds, replacing the resting border rather than adding to it. Identical on all eleven flavours, and the only state that changes the control's outer footprint." },
+    { "state": "disabled", "trigger": "Disabled set to true", "change": "Background and label swap to the disabled tokens of their family, and the icon follows the label. No flavour keeps its accent colour, so disabled buttons of different flavours look alike." }
   ],
   "behavior": [
-    {
-      "type": "Motion",
-      "description": "Figma stores no timing. Every state change is colour-only, with no scale, shadow or elevation shift on any flavour, so a transition should read as a tint change rather than movement. The gradient flavours are the one exception to a plain tint: their gradient moves (see Gradient transition)."
-    },
-    {
-      "type": "Gradient transition",
-      "description": "gradient and text-gradient keep their gradient through every state and move it rather than replace it. On hover the gradient slides until its end colour covers 100% of the fill (the label's own text on text-gradient); on press it slides the other way until its start colour covers 100%. Leaving or releasing slides it back to the resting two-stop gradient. It must never jump from the gradient to a flat colour: a browser cannot interpolate between a gradient and a solid fill, so that swap shows as a flicker. The hover and pressed variants show where each slide ends, not a separate flat fill."
-    },
-    {
-      "type": "Focus ring",
-      "description": "The only change that alters the control's outer footprint, because the ring is drawn outside the bounds. Leave room around a button in a tight row so the ring is not clipped."
-    },
-    {
-      "type": "Resize",
-      "description": "The control re-hugs its label whenever the text changes, so a label swapped at runtime shifts the position of everything beside it in a row."
-    }
+    { "type": "Motion", "description": "Figma stores no timing. Every state change is colour-only, with no scale, shadow or elevation shift on any flavour, so a transition should read as a tint change rather than movement. The gradient flavours are the one exception to a plain tint: their gradient moves (see Gradient transition)." },
+    { "type": "Gradient transition", "description": "gradient and text-gradient keep their gradient through every state and move it rather than replace it. On hover the gradient slides until its end colour covers 100% of the fill (the label's own text on text-gradient); on press it slides the other way until its start colour covers 100%. Leaving or releasing slides it back to the resting two-stop gradient. It must never jump from the gradient to a flat colour: a browser cannot interpolate between a gradient and a solid fill, so that swap shows as a flicker. The hover and pressed variants show where each slide ends, not a separate flat fill." },
+    { "type": "Focus ring", "description": "The only change that alters the control's outer footprint, because the ring is drawn outside the bounds. Leave room around a button in a tight row so the ring is not clipped." },
+    { "type": "Resize", "description": "The control re-hugs its label whenever the text changes, so a label swapped at runtime shifts the position of everything beside it in a row." },
+    { "type": "Outline contrast", "description": "outline-contrast takes its border from interactive/inverse/border/* and its label from foreground/primary, so it follows the mode. Its states sit on interactive/ghost/background/*." }
   ],
   "content": [
-    {
-      "property": "Label",
-      "type": "text property",
-      "description": "A verb phrase naming the action. The button hugs whatever length it is given, there is no truncation and no wrapping."
-    },
-    {
-      "property": "Leading Icon",
-      "type": "boolean, toggles a nested Icon",
-      "description": "Toggles visibility only. Button does not re-declare Icon's other properties, but the instance stays exposed, so Icon's glyph, Size and Framed are still reachable in the properties panel. See the Icon Metadata frame for what Icon itself offers, and leave its Size alone, Button pairs it to the label."
-    },
-    {
-      "property": "Trailing Icon",
-      "type": "boolean, toggles a nested Icon",
-      "description": "The same slot mechanics as Leading Icon, placed after the label instead."
-    },
-    {
-      "property": "Icon glyph",
-      "type": "instance swap on the nested Icon",
-      "description": "Any glyph from the icon library. Both slots arrive holding Verified, which suits almost no real action, so set it deliberately whenever a slot is turned on."
-    }
+    { "property": "Label", "type": "text property", "description": "A verb phrase naming the action. The button hugs whatever length it is given, there is no truncation and no wrapping." },
+    { "property": "Leading Icon", "type": "boolean, toggles a nested Icon", "description": "Toggles visibility only. Button does not re-declare Icon's other properties, but the instance stays exposed, so Icon's glyph, Size and Framed are still reachable in the properties panel. See the Icon Metadata frame for what Icon itself offers, and leave its Size alone, Button pairs it to the label." },
+    { "property": "Trailing Icon", "type": "boolean, toggles a nested Icon", "description": "The same slot mechanics as Leading Icon, placed after the label instead." },
+    { "property": "Icon glyph", "type": "instance swap on the nested Icon", "description": "Any glyph from the icon library. Both slots arrive holding Verified, which suits almost no real action, so set it deliberately whenever a slot is turned on." }
   ],
   "usage": {
     "do": [
@@ -1227,61 +375,21 @@
     "Write labels as the verb the user is about to carry out, Save rather than OK, so the action is understandable when read out of context."
   ],
   "layoutTheming": [
-    {
-      "property": "Width",
-      "type": "Hug",
-      "description": "Always hugs the label and any visible icons, never fixed. Small grows by 16px for each icon shown, medium and large by 20px."
-    },
-    {
-      "property": "Height",
-      "type": "Fixed per Size",
-      "description": "36px at small (control/sm), 40px at medium (control/md), 48px at large (control/lg). Not resizable independently of Size."
-    },
-    {
-      "property": "Horizontal padding",
-      "type": "Fixed per Size",
-      "description": "12px (space/md) at small and medium, 16px (space/lg) at large."
-    },
-    {
-      "property": "Vertical padding",
-      "type": "Fixed",
-      "description": "4px (space/xxs) at every size. The fixed height does the real work."
-    },
-    {
-      "property": "Gap",
-      "type": "None on the row",
-      "description": "Item spacing is space/none. The visible separation between an icon and the label comes from the Label wrapper's own horizontal padding, 4px (space/xxs) at small and 8px (space/sm) at medium and large."
-    },
-    {
-      "property": "Radius",
-      "type": "Fixed per Shape",
-      "description": "0 (radius/none) for sharp, 4px (radius/element-sm) for rounded, 9999 (radius/pill) for full. All three are token-bound, so match the container rather than overriding on the instance."
-    },
-    {
-      "property": "Border",
-      "type": "Fixed per Flavour",
-      "description": "1px drawn inside on outline and outline-subtle, none on the other seven at rest. Focus replaces it with a 2px ring drawn outside the bounds."
-    },
-    {
-      "property": "Icon size",
-      "type": "Fixed per Size",
-      "description": "16px at small, 20px at medium and large. Large reuses Icon's medium step, so Icon's own large (28px) never appears inside a Button."
-    },
-    {
-      "property": "Label type",
-      "type": "Fixed per Size",
-      "description": "label/medium (14/20) at small, label/large (16/24) at medium and large, IBM Plex Sans Medium."
-    },
-    {
-      "property": "Colour",
-      "type": "Theming",
-      "description": "Every fill, border and label colour is bound to an interactive/* token for the flavour. Gradient draws from surface/gradient/*, text-gradient from foreground/gradient/*, and focus from border/focus. No variant hardcodes a colour."
-    }
+    { "property": "Width", "type": "Hug", "description": "Always hugs the label and any visible icons, never fixed. Small grows by 16px for each icon shown, medium and large by 20px." },
+    { "property": "Height", "type": "Fixed per Size", "description": "control/sm at small, control/md at medium, control/lg at large. Not resizable independently of Size." },
+    { "property": "Horizontal padding", "type": "Fixed per Size", "description": "space/md at small and medium, space/lg at large." },
+    { "property": "Vertical padding", "type": "Fixed", "description": "space/2xs at every size. The fixed height does the real work." },
+    { "property": "Gap", "type": "None on the row", "description": "Item spacing is space/none. The visible separation between an icon and the label comes from the Label wrapper's own horizontal padding, space/2xs at small and space/sm at medium and large." },
+    { "property": "Radius", "type": "Fixed per Shape", "description": "radius/none for sharp, radius/element-sm for rounded, radius/pill for full. All three are token-bound, so match the container rather than overriding on the instance." },
+    { "property": "Border", "type": "Fixed per Flavour", "description": "1px drawn inside on outline, outline-subtle and outline-contrast, none on the other eight at rest. Focus replaces it with a 2px ring drawn outside the bounds." },
+    { "property": "Icon size", "type": "Fixed per Size", "description": "16px at small, 20px at medium and large. Large reuses Icon's medium step, so Icon's own large (28px) never appears inside a Button." },
+    { "property": "Label type", "type": "Fixed per Size", "description": "label/medium at small, label/large at medium and large." },
+    { "property": "Colour", "type": "Theming", "description": "Every fill, border and label colour is bound to an interactive/* token for the flavour. Gradient draws from surface/gradient/*, text-gradient from foreground/gradient/*, contrast from interactive/inverse/*, outline-contrast from interactive/inverse/border/* and foreground/primary, and focus from border/focus. No variant hardcodes a colour." }
   ],
   "visualReference": {
-    "policy": "No images are stored. Every node below deep-links into Figma, so a screenshot can be pulled on demand and is never stale. Colour and geometry are fully specified by the token names in this spec — a screenshot is a sanity check, not the source of truth.",
     "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2024-6729",
     "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2060-15072",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4732-878",
     "variants": {
       "sizes": {
         "small": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2109-6941",
@@ -1294,116 +402,25 @@
         "pressed": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2111-7981",
         "focus": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2111-8127",
         "disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2111-8054"
-      },
-      "flavours": {
-        "primary": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2109-6941",
-        "positive": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2109-6972",
-        "negative": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2111-7048",
-        "subtle": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2111-7835",
-        "text": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2111-7754",
-        "outline-subtle": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2111-7673",
-        "outline": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2111-7140",
-        "gradient": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2315-9054",
-        "text-gradient": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2315-9462"
       }
-    },
-    "caveat": "Every one of the 405 variants hides both icon slots, so no screenshot of this component shows an icon inside a Button — which is why the icon-colour blocker below was found by reading bindings, not by looking."
+    }
   },
   "issues": [
-    {
-      "severity": "note",
-      "source": "structure (gradient transition)",
-      "detail": "The gradient variants agree with the intended transition (corrected 2026-10-18: hover slides to the end colour, press to the start). gradient hover binds surface/gradient/end and pressed surface/gradient/start; text-gradient hover foreground/gradient/end and pressed foreground/gradient/start. Each variant shows where its slide ends, as the metadata says. Focus also binds the start colour; the metadata gives focus only the ring, so code keeps the resting gradient at focus."
-    },
-    {
-      "severity": "note",
-      "source": "code (gradient transition)",
-      "detail": "Built 2026-10-18 in <zds-button>, <zds-icon-button>, react-baseui Button and IconButton: the gradient flavours no longer swap to a flat colour. One gradient three times the size of the fill holds the two stops in its middle third (the resting look is unchanged: start at 0%, end at 87%); hover slides its position until the end colour covers 100%, press until the start colour covers 100%, and the position transitions with the other flavours' tints. text-gradient runs the same slide across the label's text and the icons. Web and React were compared in a browser: pixel-identical at rest, hover and pressed."
-    },
-    {
-      "severity": "warn",
-      "source": "structure (icon colour, read-only limit)",
-      "detail": "The old blocker (the nested Icon kept foreground/primary in every flavour) is addressed in the file: every flavour, at rest and disabled, now carries a fills override on both icon instances, which matches the metadata's 'the icon follows the label'. The overridden token could not be read, because the icons are hidden by default and a hidden instance exposes no layers to a read-only extraction. Icon Button, whose glyph is visible, binds it to the flavour's foreground token (see its spec); expect the same here, and confirm by turning an icon on before relying on it."
-    },
-    {
-      "severity": "warn",
-      "source": "tokens",
-      "detail": "stroke/base resolves to 0px in every size mode, although its description reads '= 1px, source: scale/0'. It is the border width on the seven non-outline flavours, so those flavours carry a fully bound but zero-width border. Visually this matches the metadata ('none on the other seven at rest'), but a rebuild that trusts the token name or its description will draw a 1px border where Figma draws none."
-    },
-    {
-      "severity": "warn",
-      "source": "gaps",
-      "detail": "The scrim flavours (text, text-gradient, subtle, outline-subtle) set a paint-level opacity of 0 / 0.05 / 0.10 on interactive/ghost/background/*. Those tokens already carry the scrim in their own alpha (default and disabled 0%, hover 5%, pressed 10%, in Light and Dark), so Figma applies it twice: the hover scrim renders at about 0.25% and pressed at 1%, practically invisible. Code binds the tokens directly with no paint opacity (the intended 5% / 10%); the Figma paints should drop their opacity to 1."
-    },
-    {
-      "severity": "warn",
-      "source": "descriptionDrift",
-      "detail": "Seven dimension tokens state a px value in their description that they do not resolve to: control/sm says 40px resolves 36px; control/md says 48px resolves 40px; control/lg says 56px resolves 48px; space/none says 32px resolves 0px; radius/element-sm says 16px resolves 4px; radius/none says 2px resolves 0px; stroke/base says 1px resolves 0px. The resolved values (not the descriptions) match the metadata's Layout & Theming table, so build from the resolved values."
-    },
-    {
-      "severity": "warn",
-      "source": "structure",
-      "detail": "flavour=positive at Disabled=true takes its border from interactive/secondary/border/disabled, while all eight other flavours use their own family's disabled border token. All resolve to line/subtle, so nothing is visibly wrong, but the binding is inconsistent and will read as a mistake in any generated theme map."
-    },
-    {
-      "severity": "note",
-      "source": "api",
-      "detail": "Disabled is modelled as a two-option VARIANT axis rather than a Figma boolean property, and State is a documentation-only axis. In code, disabled is a boolean and hover/pressed/focus are interaction states the implementation drives. Only State=default pairs with Disabled=true (405 = 9 x 3 x 3 x 5), so there is deliberately no disabled+hover treatment."
-    },
-    {
-      "severity": "note",
-      "source": "api",
-      "detail": "Figma stores VARIANT options in creation order, so Size reads ['medium','large','small'] and Shape reads ['rounded','sharp','full'] through the API. The metadata's order (small/medium/large, sharp/rounded/full) matches the rendered root widths (76 / 90 / 98) and is the order to ship."
-    },
-    {
-      "severity": "note",
-      "source": "internalVariations",
-      "detail": "The icon glyph is an INSTANCE_SWAP on the nested Icon, not a Button property, and Icon's Size and Framed stay reachable on the exposed instance. Button pins Size (small -> Icon small; medium and large -> Icon medium) and Framed=false. Whether the glyph becomes a Button prop in code is the implementer's call; Size and Framed should not be exposed."
-    },
-    {
-      "severity": "note",
-      "source": "dependencies",
-      "detail": "Icon (2046:15010) is local to the file but lives on the 'Icon' page, and the default glyph it holds ('Verified' -> Style=rounded) lives on the 'Assets' page. Neither is remote, but neither is on the Button page, so this spec covers them only as far as Button binds them."
-    },
-    {
-      "severity": "note",
-      "source": "coverage",
-      "detail": "Icon Button (2338:1763) is a second public 405-variant component set sharing the Button page, with its own metadata frame (4732:1074). It is a sibling, not a subcomponent, and has its own spec: specs/icon-button/icon-button.spec.md."
-    },
-    {
-      "severity": "note",
-      "source": "coverage",
-      "detail": "Motion is intentionally not modelled ('Figma stores no timing'), there are no effect styles or shadows anywhere in the component, and no variant hardcodes a colour: the extraction found zero untokenised visual values (gaps) and zero binding drift across the sampled variants."
-    },
-    {
-      "severity": "note",
-      "source": "theming",
-      "detail": "palette is the only theme axis that changes Button. Every dimension and typography token it binds resolves identically across all four size and typography modes, so Button does not respond to density or breakpoint in Figma."
-    },
-    {
-      "severity": "warn",
-      "source": "structure vs metadata",
-      "detail": "States & Triggers says 'Outline flavours hold their border and shift a neutral background underneath instead. Text flavours raise a ghost scrim from fully transparent.' Since 2026-10-18 outline-subtle (and subtle) raise the ghost scrim like text; only outline still shifts a neutral background. The metadata's grouping no longer matches the file."
-    },
-    {
-      "severity": "warn",
-      "source": "bindingDrift",
-      "detail": "flavour=gradient, state=pressed at Size=small, Shape=sharp takes its border from border/gradient/start; the other eight size/shape variants use interactive/primary/border/pressed. With a stroke/base border this is invisible today, but it is the only place border/gradient/start appears on Button."
-    },
-    {
-      "severity": "warn",
-      "source": "bindingDrift",
-      "detail": "flavour=outline, Disabled=true at Size=large, Shape=full draws interactive/ghost/background/disabled at 0 opacity with interactive/ghost/foreground/disabled; the other eight size/shape variants draw interactive/neutral/background/disabled with interactive/neutral/foreground/disabled. Colour is otherwise identical at every Size and Shape."
-    },
-    {
-      "severity": "note",
-      "source": "code (packages/web-components zds-button, react-baseui Button)",
-      "detail": "Resolved 2026-10-18: <zds-button> and react-baseui Button now draw subtle and outline-subtle (and text, text-gradient) on interactive/ghost/background/* directly, and outline's disabled border is interactive/ghost/border/disabled as in the table. Web and React match on all nine flavours at rest, hover and pressed."
-    },
-    {
-      "severity": "note",
-      "source": "api",
-      "detail": "Figma now stores the Flavour options in a different creation order (primary, positive, negative, outline, outline-subtle, text, subtle, gradient, text-gradient). The spec keeps the metadata's order, which is unchanged."
-    }
+    { "severity": "note", "source": "decision 2026-11-07", "detail": "The set's defaults moved to medium/rounded in Figma and code adopted them (react-baseui and zds; zeta-web already defaulted so) — a breaking default change. The metadata's size intent still calls small the default; update the frame." },
+    { "severity": "warn", "source": "icon colour", "detail": "The nested icons are hidden by default and a hidden instance exposes no layers to a read-only extraction, so the per-flavour fill override on the icon instances cannot be verified read-only. Icon Button, whose glyph is visible, binds it to the flavour's foreground token; expect the same here and confirm by turning an icon on before relying on it." },
+    { "severity": "warn", "source": "gaps (paint opacity)", "detail": "The scrim flavours (text, text-gradient, subtle, outline-subtle) set a paint-level opacity of 0 / 0.05 / 0.10 on interactive/ghost/background/*. Those tokens already carry the scrim in their own alpha, so Figma applies it twice: the hover scrim renders at about 0.25% and pressed at 1%, practically invisible. Code binds the tokens directly with no paint opacity (the intended 5% / 10%); the Figma paints should drop their opacity to 1." },
+    { "severity": "warn", "source": "tokens", "detail": "stroke/base resolves to 0px although its description reads '= 1px, source: scale/0'. It is the border width on the eight non-outline flavours, so those carry a fully bound but zero-width border. A rebuild that trusts the token name or description will draw a 1px border where Figma draws none." },
+    { "severity": "warn", "source": "descriptionDrift", "detail": "Seven dimension tokens have descriptions that state the wrong px value: control/sm says 40 -> resolves 36; control/md says 48 -> 40; control/lg says 56 -> 48; space/none says 32 -> 0; radius/element-sm says 16 -> 4; radius/none says 2 -> 0; stroke/base says 1 -> 0. The resolved values match the metadata's Layout & Theming table, so build from those." },
+    { "severity": "warn", "source": "bindingDrift", "detail": "positive + disabled borrows another family's token: its border is interactive/secondary/border/disabled while every other flavour uses its own family's disabled border. Everything resolves to line/subtle, so nothing looks wrong, but the binding is inconsistent." },
+    { "severity": "warn", "source": "metadata", "detail": "The metadata's hover grouping is out of date: it says outline flavours shift a neutral background and text flavours raise the ghost scrim. In the file outline-subtle and subtle raise the ghost scrim like text; only outline shifts a neutral background." },
+    { "severity": "warn", "source": "bindingDrift", "detail": "gradient + pressed at Size=small, Shape=sharp takes its border from border/gradient/start; the other eight size/shape variants use interactive/primary/border/pressed. Invisible today (stroke/base), but it is the only place border/gradient/start appears on Button." },
+    { "severity": "warn", "source": "bindingDrift", "detail": "outline + disabled at Size=large, Shape=full draws interactive/ghost/background/disabled @ 0 with interactive/ghost/foreground/disabled; the other eight size/shape variants draw interactive/neutral/background/disabled with interactive/neutral/foreground/disabled." },
+    { "severity": "warn", "source": "icon colour (contrast flavours)", "detail": "contrast and outline-contrast were cloned from primary and outline; their hidden icon instances cannot be read, so the fills override likely still carries primary's and outline's icon colour. Code is unaffected: the glyph takes currentColor." },
+    { "severity": "note", "source": "structure", "detail": "The gradient variants agree with the intended transition: hover binds surface/gradient/end and pressed surface/gradient/start (text-gradient: foreground/gradient/*). Each variant shows where its slide ends. Focus also binds the start colour; the metadata gives focus only the ring, so code keeps the resting gradient at focus." },
+    { "severity": "note", "source": "api", "detail": "Disabled is a two-option VARIANT axis rather than a Figma boolean, and State is documentation-only. In code, disabled is a boolean and hover/pressed/focus are interaction states. Only State=default pairs with Disabled=true." },
+    { "severity": "note", "source": "api", "detail": "Figma returns VARIANT options in creation order — Size as [medium, large, small], Shape as [rounded, sharp, full], Flavour as [primary, positive, negative, outline, outline-subtle, text, subtle, gradient, text-gradient, contrast, outline-contrast]. The metadata's order is the order to ship." },
+    { "severity": "note", "source": "internalVariations", "detail": "The icon glyph is an INSTANCE_SWAP on the nested Icon, not a Button property, and Icon's Size/Framed stay reachable on the exposed instance. Button pins them; do not expose Size or Framed." },
+    { "severity": "note", "source": "dependencies", "detail": "Icon (2046:15010) is local but on the Icon page, and its default glyph (Verified -> Style=rounded) is on the Assets page. Neither is remote; neither is on the Button page. Icon Button (2338:1763) is a sibling public set sharing the page, specced separately." },
+    { "severity": "note", "source": "coverage", "detail": "Motion is intentionally not modelled ('Figma stores no timing'), there are no effect styles or shadows, and no variant hardcodes a colour: the full scan found zero untokenised visual values; binding drift is limited to the two variants above. palette is the only theme axis that changes Button." }
   ]
 }

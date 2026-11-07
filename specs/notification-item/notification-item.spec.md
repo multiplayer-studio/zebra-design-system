@@ -43,18 +43,18 @@ Root: horizontal, gap `space/sm`, padding `space/gutter` top/bottom and `space/c
 
 1. **Leading visual** — `_Leading Visual` (Flavour=avatar), square `control/sm`, `radius/pill`. "The square slot standing for whoever or whatever the entry came from. Its Flavour picks an avatar, an image or an icon, and it is circular in all three."
 2. **Content** — vertical, gap `space/sm`, fills width, hugs. "The column holding the header, the message, the attachment row and the action slot."
-   - **Message** — vertical, gap `space/xxs`.
+   - **Message** — vertical, gap `space/2xs`.
      - **Header** — horizontal, gap `space/sm`, centred on the cross axis.
        - **Unread dot** — [Notification Indicator](../notification-indicator/) Size=small inside a fixed-width wrapper with `space/sm` top/bottom padding; fill overridden to `interactive/primary/background/default`, stroke `border/inverse` at `stroke/base`. Present only when `read == false`.
        - **Title** — bound to `title`; `label/large` (unread) / `body/medium` (read), `foreground/primary`, fills width, wraps.
-       - **Meta** — horizontal, gap `space/xxs`, padding `space/2xs` top/bottom, hugs.
+       - **Meta** — horizontal, gap `space/2xs`, padding `space/3xs` top/bottom, hugs.
          - **Timestamp** — bound to `timestamp`; `label/small`, `foreground/tertiary`.
          - **Urgency indicator** — [Icon Indicator](../badges/icon-indicator.spec.md) Size=small (`control/icon-sm`), glyph overridden to `important-notification`, fill overridden to `interactive/destructive/background/default`. Visible when `showUrgencyIndicator` (intended).
      - **Body** — `body/small`, `foreground/primary`, fills width, max 2 lines, truncates at the end.
-   - **Attachment** — horizontal, gap `space/xxs`, centred; visible when `showAttachment`.
+   - **Attachment** — horizontal, gap `space/2xs`, centred; visible when `showAttachment`.
      - **Attachment icon** — [Icon](../icon/) Size=small, glyph `attachment`, family from the `shape` token, colour currentColor.
      - **Filename** — `label/small`, `foreground/link`, single line.
-   - **Actions** — slot bound to `actions`, horizontal, gap `space/xxs`, padding `space/none` top/bottom, content aligned to the end, fills width; visible when `showActions`.
+   - **Actions** — slot bound to `actions`, horizontal, gap `space/2xs`, padding `space/none` top/bottom, content aligned to the end, fills width; visible when `showActions`.
 3. **Group indicator** — absolute, anchored bottom-centre (constraints CENTER / MAX), fill `border/focus`, bottom corners `radius/md`, top corners unrounded. Measured 336×4Px, starting at the card's bottom edge so it hangs just beneath it. Visible when `group && read == false`. "The bar marking a collapsed group. Hidden until Group is turned on, and present only while the entry is unread."
 
 ## Variants
@@ -94,7 +94,7 @@ Intent per flavour — avatar: "A person, and the default. Carries an Avatar at 
 ## Tokens & theming
 
 - **Colour:** `surface/card`, `border/default`, `border/focus`, `foreground/primary`, `foreground/tertiary`, `foreground/link`, `interactive/primary/background/default`, `interactive/destructive/background/default`, `border/inverse`
-- **Dimension:** `space/none`, `space/2xs`, `space/xxs`, `space/sm`, `space/card`, `space/gutter`, `radius/md`, `radius/pill`, `stroke/base`, `control/sm`, `control/icon-sm`
+- **Dimension:** `space/none`, `space/3xs`, `space/2xs`, `space/sm`, `space/card`, `space/gutter`, `radius/md`, `radius/pill`, `stroke/base`, `control/sm`, `control/icon-sm`
 - **Typography:** `label/large`, `label/small`, `body/small`, `body/medium`
 - **String:** `shape` (icon family)
 - **Glyphs:** `important-notification`, `attachment`, `verified`
@@ -165,6 +165,7 @@ Theme axes (tokens/manifest.json): palette Light · Dark; size Desktop · Mobile
 ## Issues
 
 **Warn**
+- **Contrast:** the timestamp is `foreground/tertiary` on `surface/card`, 3.91:1, below the 4.5:1 text minimum.
 - **API wiring:** Show Urgency Indicator#6032:16 is bound to no layer in either variant; the Icon Indicator is always shown and the toggle does nothing in Figma. Implement it as `visibleWhen` per the metadata.
 - **API default vs metadata:** Show Urgency Indicator defaults to true, yet the metadata says false is "what most entries in a list should use". Consider defaulting to false.
 - **Metadata vs extracted:** Read=true also switches the title from `label/large` to `body/medium` (and drops the group indicator layer), contradicting "Nothing else changes" and "Title uses label/large".

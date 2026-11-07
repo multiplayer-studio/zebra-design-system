@@ -33,7 +33,8 @@ import "../../index.css";
  * @slot platform-name - Slot for the platform name in the header. Falls back to the platformName property if not provided.
  * @slot menu-items - Slot for menu items on the left side of the header. Expects elements of type zeta-button or zeta-dropdown-menu-button.
  * @slot action-items - Slot for action items on the right side of the header. Expects elements of type zeta-icon-button or zeta-action-menu-button.
- * @slot user-avatar - Slot for user avatar. Input should be of type zeta-avatar. You must set the size prop to xxs.
+ * @slot user-avatar - The account avatar: a zeta-avatar with any of its properties (photo, initials, an icon, swatch-color,
+ *   status…). Its size is set to xxs for you.
  * @slot logo - Slot for a custom logo to replace the default Zebra logo.
  *
  * @part logo - The container for the logo in the header. By default, this will contain the Zebra logo, but if you use the "logo" slot, your custom logo will be placed here instead.
@@ -196,6 +197,13 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
     this.limitSlotItems();
   }
 
+  /** The slotted avatar keeps every property it is given except its size, which the account button fixes at xxs. */
+  private _sizeAvatar = (e: Event) => {
+    for (const el of (e.target as HTMLSlotElement).assignedElements({ flatten: true })) {
+      if (el.localName === "zeta-avatar") el.setAttribute("size", "xxs");
+    }
+  };
+
   protected override render() {
     return html`
       <!--Main container - Holds all items-->
@@ -258,7 +266,7 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
             <!--User info button - Holds user name, avatar and chevron icon-->
             <zeta-button id="user-info-button" shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle" @click=${this._handleUserInfoClick}>
               <span id="name">${this.name}</span>
-              <slot id="avatar" name="user-avatar"></slot>
+              <slot id="avatar" name="user-avatar" @slotchange=${this._sizeAvatar}></slot>
               <zeta-icon id="user-info-icon" .rounded=${this.rounded}>expand_more</zeta-icon>
             </zeta-button>
             ${

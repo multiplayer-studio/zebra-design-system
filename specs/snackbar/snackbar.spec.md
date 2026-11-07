@@ -1,4 +1,4 @@
-# Snackbar (experimental)
+# Snackbar
 
 A brief message about something the app just did, carrying at most one action. Variant chooses between a contextual pill, where Flavour sets the tint, the leading glyph and the controls together, and a plain standard bar with a filled action button. Reach for it where the message is worth noticing and not worth interrupting for, and for Dialog where the person has to answer before carrying on.
 
@@ -12,13 +12,13 @@ Source: [Snackbar working file › Snackbar page](https://www.figma.com/design/a
 
 | Prop | Type | Values | Default |
 |---|---|---|---|
-| `message` | string |  | `Message` |
+| `message` | string | | `Message` |
 | `variant` | enum | `contextual`, `standard` | `contextual` |
 | `flavour` | enum | `info`, `positive`, `warning`, `error`, `deletion`, `view`, `action`, `default` | `info` |
 | `shape` | enum | `rounded`, `sharp` | `rounded` |
-| `showIcon` | boolean |  | `false` |
-| `showAction` | boolean |  | `true` |
-| `showClose` | boolean |  | `true` |
+| `showIcon` | boolean | | `false` |
+| `showAction` | boolean | | `true` |
+| `showClose` | boolean | | `true` |
 
 ### Per-value intent (verbatim)
 
@@ -61,21 +61,21 @@ Source: [Snackbar working file › Snackbar page](https://www.figma.com/design/a
 
 ## Anatomy
 
-- **root** (container) — The bar: a horizontal row holding Content and Controls.  
-  layout: {"direction": "horizontal", "padding": "space/xxs top and bottom; space/lg leading; space/xxs trailing", "gap": "space/lg (content to controls)", "counterAlign": "center"} · sizing: {"h": "fixed (per variant)", "v": "hug, min control/lg"} · radius: per variant × shape · paint: {"fill": "per flavour", "effect": "Shadow/medium (effect style)"} · theming: dark variants carry an explicit palette=Dark mode
-- **content** (container) — The leading glyph and the message, space/md apart, filling whatever width the controls leave.  
+- **root** (container) — The bar: a horizontal row holding Content and Controls. 
+  layout: {"direction": "horizontal", "padding": "space/2xs top and bottom; space/lg leading; space/2xs trailing", "gap": "space/lg (content to controls)", "counterAlign": "center"} · sizing: {"h": "fixed (per variant)", "v": "hug, min control/lg"} · radius: per variant × shape · paint: {"fill": "per flavour", "effect": "Shadow/medium (effect style)"} · theming: dark variants carry an explicit palette=Dark mode
+- **content** (container) — The leading glyph and the message, space/md apart, filling whatever width the controls leave. 
   layout: {"direction": "horizontal", "gap": "space/md", "padding": "space/sm top and bottom"} · sizing: {"h": "fill", "v": "hug"}
-- **icon** (instance) — The flavour's glyph (contextual info, positive, warning, error, deletion, view).  
+- **icon** (instance) — The flavour's glyph (contextual info, positive, warning, error, deletion, view). 
   ref: Icon · size: Icon Size=medium · color: foreground/primary
-- **iconSlot** (instance) — A swappable glyph on action, default and standard.  
+- **iconSlot** (instance) — A swappable glyph on action, default and standard. 
   ref: Icon · visibleWhen: showIcon · size: Icon Size=medium · exposed: true
-- **message** (text) — The message.  
+- **message** (text) — The message. 
   content: message · text: {"style": "body/medium", "color": "foreground/primary", "autoResize": "width-and-height (single line)"}
-- **controls** (container) — The action and the close.  
-  layout: {"direction": "horizontal", "gap": "space/xxs"}
-- **action** (instance) — Present only on the flavours that carry one. Plain text on deletion and view, bordered on action and a filled button on standard.  
+- **controls** (container) — The action and the close. 
+  layout: {"direction": "horizontal", "gap": "space/2xs"}
+- **action** (instance) — Present only on the flavours that carry one. Plain text on deletion and view, bordered on action and a filled button on standard. 
   ref: Button · visibleWhen: showAction · exposed: true · shape: follows Shape: full when contextual rounded, rounded when standard rounded, sharp when sharp
-- **close** (instance) — The dismiss control, a 36 square around a 20 glyph. Absent on view, where the action is the only way out.  
+- **close** (instance) — The dismiss control, a 36 square around a 20 glyph. Absent on view, where the action is the only way out. 
   ref: Icon Button · visibleWhen: showClose · glyph: close · variant: Flavour=subtle, Size=medium · shape: as action
 
 ## Variants
@@ -92,11 +92,11 @@ Cells are token names; …Px cells are measurements. Height is control/lg (minim
 | contextual | error | `feedback/error/background/subtle` | inherited | `error` | — | Icon Button subtle medium | 237 |
 | contextual | deletion | `feedback/error/background/subtle` | inherited | `delete` | Button subtle medium, "Undo" | Icon Button subtle medium | 323 |
 | contextual | view | `feedback/neutral/background/subtle` | inherited | `open-in-new-window` | Button subtle medium, "View" | — | 259 |
-| contextual | action | `surface/popover` | Dark (explicit on the component) | icon slot (showIcon) | Button outline-subtle, "Action" — small when rounded, medium when sharp | — | 246 |
-| contextual | default | `surface/popover` | Dark (explicit on the component) | icon slot (showIcon) | — | Icon Button subtle medium | 190 |
-| standard | default | `surface/popover` | Dark (explicit on the component) | icon slot (showIcon) | Button subtle medium, "Action" | Icon Button subtle medium | 292 |
+| contextual | action | `surface/overlay` | Dark (explicit on the component) | icon slot (showIcon) | Button outline-subtle, "Action" — small when rounded, medium when sharp | — | 246 |
+| contextual | default | `surface/overlay` | Dark (explicit on the component) | icon slot (showIcon) | — | Icon Button subtle medium | 190 |
+| standard | default | `surface/overlay` | Dark (explicit on the component) | icon slot (showIcon) | Button subtle medium, "Action" | Icon Button subtle medium | 292 |
 
-Shared by every row: height `control/lg` (min), padding `space/xxs` top/bottom, `space/lg` leading, `space/xxs` trailing; `space/lg` content → controls, `space/md` icon → message, `space/sm` above and below the message; message `body/medium` on `foreground/primary`; icons `foreground/primary`; `Shadow/medium`.
+Shared by every row: height `control/lg` (min), padding `space/2xs` top/bottom, `space/lg` leading, `space/2xs` trailing; `space/lg` content → controls, `space/md` icon → message, `space/sm` above and below the message; message `body/medium` on `foreground/primary`; icons `foreground/primary`; `Shadow/medium`.
 
 ### By shape
 
@@ -113,7 +113,7 @@ Shared by every row: height `control/lg` (min), padding `space/xxs` top/bottom, 
 
 ## Tokens & theming
 
-- **color:** `feedback/{info,success,warning,error,neutral}/background/subtle`, `surface/popover`, `foreground/primary`
+- **color:** `feedback/{info,success,warning,error,neutral}/background/subtle`, `surface/overlay`, `foreground/primary`
 - **dimension:** `control/lg`, `space/{xxs,sm,md,lg}`, `radius/{pill,md,none}`
 - **typography:** `body/medium`
 - **effect:** `Shadow/medium (Figma effect style; the export carries shadow/* size tokens and shadow/soft, not the style)`
@@ -170,7 +170,7 @@ Shared by every row: height `control/lg` (min), padding `space/xxs` top/bottom, 
 |---|---|---|
 | Size | Fixed width, hug height | 48 tall throughout. Each variant carries its own fixed width, running from 190 to 323 depending on the flavour and its controls, rather than growing with the message. |
 | Position | Fixed to the viewport | Centred horizontally, space/xl above the bottom edge of the viewport, and never wider than the viewport less space/lg on each side. It does not move with the page as it scrolls. |
-| Padding and gap | Fixed | space/xxs top and bottom, space/lg on the leading edge and space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/xxs and opens the gap to space/lg so a bordered control sits closer to the end. |
+| Padding and gap | Fixed | space/2xs top and bottom, space/lg on the leading edge and space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/2xs and opens the gap to space/lg so a bordered control sits closer to the end. |
 | Content | Fill | The leading icon and the message sit space/md apart, and the content block fills whatever width the controls leave it. |
 | Radius | Per Variant and Shape | contextual is radius/pill when rounded and standard is radius/md, so the two read differently at the same setting. Both drop to radius/none when sharp, and the close and the action follow. |
 | Fill | Per Flavour | info, positive, warning and error take feedback/info, success, warning and error at background/subtle. deletion shares the error tint and view takes feedback/neutral/background/subtle. action and default sit on surface/inverse, which is what moves the message to foreground/inverse. |
@@ -196,11 +196,11 @@ Shared by every row: height `control/lg` (min), padding `space/xxs` top/bottom, 
 
 ### Warn
 
-1. *metadata Layout & Theming / Anatomy / Accessibility vs structure (stale)*: Several metadata rows describe the first build, not the component as it stands. Fill: 'action and default sit on surface/inverse, which is what moves the message to foreground/inverse' — the file fills them with surface/popover under an explicit palette=Dark mode, with foreground/primary content. Controls: 'Close is a 36 square… the bordered one at 2px on foreground/inverse and the filled one at radius/sm on interactive/inverse/background/default' — the close is now an Icon Button (subtle, medium: control/md) and every action a Button instance. Anatomy and Variant: 'Plain text on deletion and view, bordered on action and a filled button on standard' — deletion, view and standard use a subtle Button; only action carries outline-subtle. Accessibility repeats 'a 36 square around a 20 glyph'.
-2. *metadata Layout & Theming vs structure (padding)*: 'space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/xxs and opens the gap to space/lg' — every variant now has space/xxs trailing and space/lg between content and controls.
+1. *metadata Layout & Theming / Anatomy / Accessibility vs structure (stale)*: Several metadata rows describe the first build, not the component as it stands. Fill: 'action and default sit on surface/inverse, which is what moves the message to foreground/inverse' — the file fills them with surface/overlay under an explicit palette=Dark mode, with foreground/primary content. Controls: 'Close is a 36 square… the bordered one at 2px on foreground/inverse and the filled one at radius/sm on interactive/inverse/background/default' — the close is now an Icon Button (subtle, medium: control/md) and every action a Button instance. Anatomy and Variant: 'Plain text on deletion and view, bordered on action and a filled button on standard' — deletion, view and standard use a subtle Button; only action carries outline-subtle. Accessibility repeats 'a 36 square around a 20 glyph'.
+2. *metadata Layout & Theming vs structure (padding)*: 'space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/2xs and opens the gap to space/lg' — every variant now has space/2xs trailing and space/lg between content and controls.
 3. *metadata Content & Slot / Property Breakdown vs structure (icon slot)*: The metadata gives the icon slot to standard only ('It has no effect on contextual'; 'action and default: No glyph at all'). In the file contextual action and default also carry the Icon Slot, bound to Show Icon, so Show Icon does affect them.
 4. *API vs Property Breakdown (default flavour)*: The metadata marks Flavour=default as the default; the set's default variant is Flavour=info (contextual / info / rounded).
-5. *structure (action size)*: contextual / action uses a small Button when rounded and a medium one when sharp; every other action is medium. The small one sits off-centre against the bar's space/xxs trailing edge (control/sm is shorter than control/md).
+5. *structure (action size)*: contextual / action uses a small Button when rounded and a medium one when sharp; every other action is medium. The small one sits off-centre against the bar's space/2xs trailing edge (control/sm is shorter than control/md).
 
 ### Note
 

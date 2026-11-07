@@ -656,6 +656,40 @@
     },
     "2xs": {
       "$type": "dimension",
+      "$value": "{primitives.scale.3}",
+      "$description": "= 4px, source: scale/2",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:7",
+          "collection": "size",
+          "mode": "Tablet",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "aliasOf": "VariableID:2004:3"
+        }
+      }
+    },
+    "3xl": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.13}",
+      "$description": "= 32px, source: scale/10",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:7802:30702",
+          "collection": "size",
+          "mode": "Tablet",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "aliasOf": "VariableID:2004:13"
+        }
+      }
+    },
+    "3xs": {
+      "$type": "dimension",
       "$value": "{primitives.scale.2}",
       "$description": "= 2px, source: scale/1",
       "$extensions": {
@@ -668,6 +702,40 @@
             "GAP"
           ],
           "aliasOf": "VariableID:2004:2"
+        }
+      }
+    },
+    "4xl": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.15}",
+      "$description": "= 32px, source: scale/10",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:7802:30703",
+          "collection": "size",
+          "mode": "Tablet",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "aliasOf": "VariableID:2004:15"
+        }
+      }
+    },
+    "5xl": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.17}",
+      "$description": "= 32px, source: scale/10",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:7802:30704",
+          "collection": "size",
+          "mode": "Tablet",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "aliasOf": "VariableID:2004:17"
         }
       }
     },
@@ -925,23 +993,6 @@
             "GAP"
           ],
           "aliasOf": "VariableID:2004:4"
-        }
-      }
-    },
-    "xxs": {
-      "$type": "dimension",
-      "$value": "{primitives.scale.3}",
-      "$description": "= 4px, source: scale/2",
-      "$extensions": {
-        "com.figma": {
-          "id": "VariableID:2016:7",
-          "collection": "size",
-          "mode": "Tablet",
-          "resolvedType": "FLOAT",
-          "scopes": [
-            "GAP"
-          ],
-          "aliasOf": "VariableID:2004:3"
         }
       }
     }

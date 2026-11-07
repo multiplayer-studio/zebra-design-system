@@ -1,0 +1,410 @@
+{
+  "body": {
+    "large": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.body.large.font family}",
+        "fontWeight": "{typography.body.large.font weight}",
+        "fontSize": "{typography.body.large.font size}",
+        "lineHeight": "{typography.body.large.line height}",
+        "letterSpacing": "{typography.body.large.letter spacing}"
+      },
+      "$extensions": {
+        "com.figma": {
+          "id": "S:8bcd259fe8b7bd4977fab3af6caa702be0ed78e0,",
+          "key": "8bcd259fe8b7bd4977fab3af6caa702be0ed78e0",
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE",
+          "leadingTrim": "NONE",
+          "paragraphSpacing": 0,
+          "paragraphIndent": 0,
+          "fontStyle": "Regular"
+        }
+      }
+    },
+    "medium": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.body.medium.font family}",
+        "fontWeight": "{typography.body.medium.font weight}",
+        "fontSize": "{typography.body.medium.font size}",
+        "lineHeight": "{typography.body.medium.line height}",
+        "letterSpacing": "{typography.body.medium.letter spacing}"
+      },
+      "$extensions": {
+        "com.figma": {
+          "id": "S:be357ec4d0602eeace6c16497b7059ad05a672db,",
+          "key": "be357ec4d0602eeace6c16497b7059ad05a672db",
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE",
+          "leadingTrim": "NONE",
+          "paragraphSpacing": 0,
+          "paragraphIndent": 0,
+          "fontStyle": "Regular"
+        }
+      }
+    },
+    "small": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.body.small.font family}",
+        "fontWeight": "{typography.body.small.font weight}",
+        "fontSize": "{typography.body.small.font size}",
+        "lineHeight": "{typography.body.small.line height}",
+        "letterSpacing": "{typography.body.small.letter spacing}"
+      },
+      "$extensions": {
+        "com.figma": {
+          "id": "S:f35e93b29b2989e5709d5080a8a14b03f8c28c22,",
+          "key": "f35e93b29b2989e5709d5080a8a14b03f8c28c22",
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE",
+          "leadingTrim": "NONE",
+          "paragraphSpacing": 0,
+          "paragraphIndent": 0,
+          "fontStyle": "Regular"
+        }
+      }
+    },
+    "xsmall": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.body.xsmall.font family}",
+        "fontWeight": "{typography.body.xsmall.font weight}",
+        "fontSize": "{typography.body.xsmall.font size}",
+        "lineHeight": "{typography.body.xsmall.line height}",
+        "letterSpacing": "{typography.body.xsmall.letter spacing}"
+      },
+      "$extensions": {
+        "com.figma": {
+          "id": "S:50d17aa9beec2e87a9193a16afdd5f0dad7a4dda,",
+          "key": "50d17aa9beec2e87a9193a16afdd5f0dad7a4dda",
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE",
+          "leadingTrim": "NONE",
+          "paragraphSpacing": 0,
+          "paragraphIndent": 0,
+          "fontStyle": "Regular"
+        }
+      }
+    }
+  },
+  "display": {
+    "large": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.display.large.font family}",
+        "fontWeight": "{typography.display.large.font weight}",
+        "fontSize": "{typography.display.large.font size}",
+        "lineHeight": "{typography.display.large.line height}",
+        "letterSpacing": "{typography.display.large.letter spacing}"
+      },
+      "$extensions": {
+        "com.figma": {
+          "id": "S:fe6b7751e36025776fe4496cd55b9b44e1628c03,",
+          "key": "fe6b7751e36025776fe4496cd55b9b44e1628c03",
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE",
+          "leadingTrim": "NONE",
+          "paragraphSpacing": 0,
+          "paragraphIndent": 0,
+          "fontStyle": "Light"
+        }
+      }
+    },
+    "medium": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.display.medium.font family}",
+        "fontWeight": "{typography.display.medium.font weight}",
+        "fontSize": "{typography.display.medium.font size}",
+        "lineHeight": "{typography.display.medium.line height}",
+        "letterSpacing": "{typography.display.medium.letter spacing}"
+      },
+      "$extensions": {
+        "com.figma": {
+          "id": "S:aa58953c3797470147c94c383eef62d79932427f,",
+          "key": "aa58953c3797470147c94c383eef62d79932427f",
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE",
+          "leadingTrim": "NONE",
+          "paragraphSpacing": 0,
+          "paragraphIndent": 0,
+          "fontStyle": "Light"
+        }
+      }
+    },
+    "small": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.display.small.font family}",
+        "fontWeight": "{typography.display.small.font weight}",
+        "fontSize": "{typography.display.small.font size}",
+        "lineHeight": "{typography.display.small.line height}",
+        "letterSpacing": "{typography.display.small.letter spacing}"
+      },
+      "$extensions": {
+        "com.figma": {
+          "id": "S:e3ecc208b920e89d587936367a65e9d7d10ffe50,",
+          "key": "e3ecc208b920e89d587936367a65e9d7d10ffe50",
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE",
+          "leadingTrim": "NONE",
+          "paragraphSpacing": 0,
+          "paragraphIndent": 0,
+          "fontStyle": "Light"
+        }
+      }
+    }
+  },
+  "heading": {
+    "large": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.heading.large.font family}",
+        "fontWeight": "{typography.heading.large.font weight}",
+        "fontSize": "{typography.heading.large.font size}",
+        "lineHeight": "{typography.heading.large.line height}",
+        "letterSpacing": "{typography.heading.large.letter spacing}"
+      },
+      "$extensions": {
+        "com.figma": {
+          "id": "S:71873deb2b2e5a16b22dab38ea85bf3c9bcecd33,",
+          "key": "71873deb2b2e5a16b22dab38ea85bf3c9bcecd33",
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE",
+          "leadingTrim": "NONE",
+          "paragraphSpacing": 0,
+          "paragraphIndent": 0,
+          "fontStyle": "Regular"
+        }
+      }
+    },
+    "medium": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.heading.medium.font family}",
+        "fontWeight": "{typography.heading.medium.font weight}",
+        "fontSize": "{typography.heading.medium.font size}",
+        "lineHeight": "{typography.heading.medium.line height}",
+        "letterSpacing": "{typography.heading.medium.letter spacing}"
+      },
+      "$extensions": {
+        "com.figma": {
+          "id": "S:9a69d8a675f05c5fb71576c29eafbedc81c6dc63,",
+          "key": "9a69d8a675f05c5fb71576c29eafbedc81c6dc63",
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE",
+          "leadingTrim": "NONE",
+          "paragraphSpacing": 0,
+          "paragraphIndent": 0,
+          "fontStyle": "Regular"
+        }
+      }
+    },
+    "small": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.heading.small.font family}",
+        "fontWeight": "{typography.heading.small.font weight}",
+        "fontSize": "{typography.heading.small.font size}",
+        "lineHeight": "{typography.heading.small.line height}",
+        "letterSpacing": "{typography.heading.small.letter spacing}"
+      },
+      "$extensions": {
+        "com.figma": {
+          "id": "S:5db0d4dddbb1587e3ae20fad8f2a06bb1f81e4a8,",
+          "key": "5db0d4dddbb1587e3ae20fad8f2a06bb1f81e4a8",
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE",
+          "leadingTrim": "NONE",
+          "paragraphSpacing": 0,
+          "paragraphIndent": 0,
+          "fontStyle": "Regular"
+        }
+      }
+    }
+  },
+  "indicator": {
+    "medium": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.indicator.medium.font family}",
+        "fontWeight": "{typography.indicator.medium.font weight}",
+        "fontSize": "{typography.indicator.medium.font size}",
+        "lineHeight": "{typography.indicator.medium.line height}",
+        "letterSpacing": "{typography.indicator.medium.letter spacing}"
+      },
+      "$extensions": {
+        "com.figma": {
+          "id": "S:c5e988323a4aa53425b9136e290b7d96e4d6fd34,",
+          "key": "c5e988323a4aa53425b9136e290b7d96e4d6fd34",
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE",
+          "leadingTrim": "CAP_HEIGHT",
+          "paragraphSpacing": 0,
+          "paragraphIndent": 0,
+          "fontStyle": "Medium"
+        }
+      }
+    },
+    "small": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.indicator.small.font family}",
+        "fontWeight": "{typography.indicator.small.font weight}",
+        "fontSize": "{typography.indicator.small.font size}",
+        "lineHeight": "{typography.indicator.small.line height}",
+        "letterSpacing": "{typography.indicator.small.letter spacing}"
+      },
+      "$extensions": {
+        "com.figma": {
+          "id": "S:972aa1ebd909429c8bc89a2f7530b642da8b7354,",
+          "key": "972aa1ebd909429c8bc89a2f7530b642da8b7354",
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE",
+          "leadingTrim": "CAP_HEIGHT",
+          "paragraphSpacing": 0,
+          "paragraphIndent": 0,
+          "fontStyle": "Regular"
+        }
+      }
+    }
+  },
+  "label": {
+    "large": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.label.large.font family}",
+        "fontWeight": "{typography.label.large.font weight}",
+        "fontSize": "{typography.label.large.font size}",
+        "lineHeight": "{typography.label.large.line height}",
+        "letterSpacing": "{typography.label.large.letter spacing}"
+      },
+      "$extensions": {
+        "com.figma": {
+          "id": "S:bfd71769a1416d4b58bcf7fcc5a3062a41645832,",
+          "key": "bfd71769a1416d4b58bcf7fcc5a3062a41645832",
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE",
+          "leadingTrim": "NONE",
+          "paragraphSpacing": 0,
+          "paragraphIndent": 0,
+          "fontStyle": "Medium"
+        }
+      }
+    },
+    "medium": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.label.medium.font family}",
+        "fontWeight": "{typography.label.medium.font weight}",
+        "fontSize": "{typography.label.medium.font size}",
+        "lineHeight": "{typography.label.medium.line height}",
+        "letterSpacing": "{typography.label.medium.letter spacing}"
+      },
+      "$extensions": {
+        "com.figma": {
+          "id": "S:63b31f862faf7539d76d06419513d0cd4b250ef8,",
+          "key": "63b31f862faf7539d76d06419513d0cd4b250ef8",
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE",
+          "leadingTrim": "NONE",
+          "paragraphSpacing": 0,
+          "paragraphIndent": 0,
+          "fontStyle": "Medium"
+        }
+      }
+    },
+    "small": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.label.small.font family}",
+        "fontWeight": "{typography.label.small.font weight}",
+        "fontSize": "{typography.label.small.font size}",
+        "lineHeight": "{typography.label.small.line height}",
+        "letterSpacing": "{typography.label.small.letter spacing}"
+      },
+      "$extensions": {
+        "com.figma": {
+          "id": "S:3b99557a2c4c04c6568ac4793fcbeea3d2902259,",
+          "key": "3b99557a2c4c04c6568ac4793fcbeea3d2902259",
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE",
+          "leadingTrim": "NONE",
+          "paragraphSpacing": 0,
+          "paragraphIndent": 0,
+          "fontStyle": "Medium"
+        }
+      }
+    }
+  },
+  "title": {
+    "large": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.title.large.font family}",
+        "fontWeight": "{typography.title.large.font weight}",
+        "fontSize": "{typography.title.large.font size}",
+        "lineHeight": "{typography.title.large.line height}",
+        "letterSpacing": "{typography.title.large.letter spacing}"
+      },
+      "$extensions": {
+        "com.figma": {
+          "id": "S:13b7259dbb5d6c0cd3b503008712821f8b398837,",
+          "key": "13b7259dbb5d6c0cd3b503008712821f8b398837",
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE",
+          "leadingTrim": "NONE",
+          "paragraphSpacing": 0,
+          "paragraphIndent": 0,
+          "fontStyle": "Medium"
+        }
+      }
+    },
+    "medium": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.title.medium.font family}",
+        "fontWeight": "{typography.title.medium.font weight}",
+        "fontSize": "{typography.title.medium.font size}",
+        "lineHeight": "{typography.title.medium.line height}",
+        "letterSpacing": "{typography.title.medium.letter spacing}"
+      },
+      "$extensions": {
+        "com.figma": {
+          "id": "S:3d6c2597f9c0135658399365b4a3db795040230e,",
+          "key": "3d6c2597f9c0135658399365b4a3db795040230e",
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE",
+          "leadingTrim": "NONE",
+          "paragraphSpacing": 0,
+          "paragraphIndent": 0,
+          "fontStyle": "Medium"
+        }
+      }
+    },
+    "small": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.title.small.font family}",
+        "fontWeight": "{typography.title.small.font weight}",
+        "fontSize": "{typography.title.small.font size}",
+        "lineHeight": "{typography.title.small.line height}",
+        "letterSpacing": "{typography.title.small.letter spacing}"
+      },
+      "$extensions": {
+        "com.figma": {
+          "id": "S:87d29c9c0bbc488a52328abc2a9c4ced40945989,",
+          "key": "87d29c9c0bbc488a52328abc2a9c4ced40945989",
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE",
+          "leadingTrim": "NONE",
+          "paragraphSpacing": 0,
+          "paragraphIndent": 0,
+          "fontStyle": "Medium"
+        }
+      }
+    }
+  }
+}

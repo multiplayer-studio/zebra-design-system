@@ -15,7 +15,7 @@ const meta: Meta<typeof Input> = {
     shape: { control: "inline-radio", options: ["sharp", "rounded", "full"] },
     flavour: { control: "inline-radio", options: ["default", "gradient", "ghost"] },
   },
-  args: { label: "Field name", labelType: "optional", information: false, hint: "Default hint message", hintIcon: true, state: "default", type: "text", size: "medium", shape: "rounded", flavour: "default", block: false, placeholder: "Placeholder" },
+  args: { label: "Field name", labelType: "optional", information: false, subLabel: "", hint: "Default hint message", hintIcon: true, state: "default", type: "text", size: "medium", shape: "rounded", flavour: "default", block: false, placeholder: "Placeholder" },
   render: (a) => <div style={{ maxInlineSize: 320 }}><Input {...a} /></div>,
 };
 export default meta;
@@ -47,6 +47,8 @@ export const LabelTypes: Story = {
       <Input label="Required" labelType="required" placeholder="Placeholder" />
       <Input label="Optional" labelType="optional" placeholder="Placeholder" />
       <Input label="With information" information informationLabel="About this field" placeholder="Placeholder" />
+      <Input label="With sub label" subLabel="Description" placeholder="Placeholder" />
+      <Input label="Sub label, disabled" subLabel="Description" state="disabled" placeholder="Placeholder" />
     </Row>
   ),
 };

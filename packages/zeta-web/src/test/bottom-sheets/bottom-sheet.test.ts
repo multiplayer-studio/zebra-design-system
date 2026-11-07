@@ -114,7 +114,7 @@ describe("zeta-bottom-sheet + zeta-list-item", () => {
     it("pads the header per alignment", async () => {
       const header = subject.shadowRoot?.querySelector(".header") as Element;
       await expect(getComputedStyle(header).paddingLeft).to.equal(token(subject, "--space-lg"));
-      await expect(getComputedStyle(header).columnGap).to.equal(token(subject, "--space-xxs"));
+      await expect(getComputedStyle(header).columnGap).to.equal(token(subject, "--space-2xs"));
       subject.headerAlignment = "center";
       await elementUpdated(subject);
       await expect(getComputedStyle(header).paddingTop).to.equal(token(subject, "--space-gutter"));

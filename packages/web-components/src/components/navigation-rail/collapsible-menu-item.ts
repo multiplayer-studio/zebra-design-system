@@ -22,7 +22,7 @@ function motionMs(el: Element): number {
  * row with its caret turned vertical (`expand-more`, rotated 180° when open —
  * one glyph, owner decision). Open, the header takes the ghost pressed fill
  * as Figma draws (State=active), the token alone (spec warn "Double alpha"),
- * and the rows sit on surface/menu. The group sets `nested` and its `shape`
+ * and the rows sit on surface/subtle. The group sets `nested` and its `shape`
  * on its rows. Opening and closing animate the rows' height on
  * animations/smooth (owner decision), with the same state attributes Base
  * UI's Collapsible gives the React build; not on first render, and not

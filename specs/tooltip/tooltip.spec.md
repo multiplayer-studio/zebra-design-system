@@ -26,9 +26,9 @@ Values anywhere in this document are token names. The only literals are inside v
 
 ## Anatomy
 
-1. **Bubble** (the component frame) — horizontal, no gap, padding `space/xxs` block / `space/sm` inline, centred; hugs both axes (46×24Px measured at the default label); fill `surface/inverse`; radius `radius/sm` (rounded) or `radius/none` (sharp) on all four corners; elevation `Shadow/medium`; does not clip. "The component frame itself. A horizontal auto-layout that hugs the label and carries the fill, the corner radius and the shadow."
+1. **Bubble** (the component frame) — horizontal, no gap, padding `space/2xs` block / `space/sm` inline, centred; hugs both axes (46×24Px measured at the default label); fill `surface/inverse`; radius `radius/sm` (rounded) or `radius/none` (sharp) on all four corners; elevation `Shadow/medium`; does not clip. "The component frame itself. A horizontal auto-layout that hugs the label and carries the fill, the corner radius and the shadow."
 2. **Label** — text style `label/small`, colour `foreground/inverse`, single line, auto width; bound to `label`. "The one text property, centred on both axes inside the padding. A single run of text with nothing else allowed beside it."
-3. **Pointer** — vector, fill `surface/inverse`, absolutely positioned outside the bubble, centred on the edge named by `point`. Sharp: a triangle with its base on the bubble edge. Rounded: the same triangle with the apex rounded off. Measured 8×4Px (top/bottom) or 4×8Px (left/right); rounded tips 3.59Px on the pointing axis. No size token. "A vector drawn outside the frame's bounds rather than inside them. Which edge it sits on and which tip it takes both come from the variant."
+3. **Pointer** — vector, fill `surface/inverse`, absolutely positioned outside the bubble, centred on the edge named by `point`. Sharp: a triangle with its base on the bubble edge. Rounded: the same triangle with the apex rounded off. Measured 8×top/bottom or 4×left/right; rounded tips 3.59Px on the pointing axis. No size token. "A vector drawn outside the frame's bounds rather than inside them. Which edge it sits on and which tip it takes both come from the variant."
 
 **Elevation `Shadow/medium`** — two drop-shadow layers, both coloured `shadow/soft`: (`shadow/medium/x`, `shadow/medium/y`, blur `shadow/medium/blur`) and (`shadow/small/x`, `shadow/small/y`, blur `shadow/small/blur`).
 
@@ -58,7 +58,7 @@ None. The set contains no nested instances.
 - **Dimension:** `space/{xxs, sm}`, `radius/{sm, none}`, `shadow/medium/{x, y, blur}`, `shadow/small/{x, y, blur}`.
 - **Typography:** `label/small` (style; its five `label/small/*` variables are bound too). **Effect:** `Shadow/medium`. **Glyphs:** none.
 - **Theme axes:** palette (Light, Dark); size and typography (Desktop, Mobile, Tablet, Desktop Compact).
-- **Extensions:** `condensed` overrides `space/xxs`, `space/sm`, `radius/sm`, `label/small/font size` and `label/small/line height`, so the bubble shrinks; the pointer does not.
+- **Extensions:** `condensed` overrides `space/2xs`, `space/sm`, `radius/sm`, `label/small/font size` and `label/small/line height`, so the bubble shrinks; the pointer does not.
 
 All 18 variable names resolve in `tokens/`.
 
@@ -100,11 +100,11 @@ All 18 variable names resolve in `tokens/`.
 | Property | Type | Description |
 |---|---|---|
 | Size | Hug both axes | "The bubble hugs its label on both axes, so the width follows the text. At the default Label it measures 46 by 24, and the height holds at 24 because one 16px line sits inside 4px of vertical padding." |
-| Padding | Fixed | "space/xxs top and bottom, space/sm left and right. Identical across all eight variants." |
+| Padding | Fixed | "space/2xs top and bottom, space/sm left and right. Identical across all eight variants." |
 | Radius | Per Shape | "radius/sm on rounded and radius/none on sharp, bound on all four corners. Both are tokens, so the value follows the theme and only the choice between them is made per instance." |
 | Pointer | Fixed, absolute | "Absolutely positioned, centred on its edge and drawn outside the bubble, which is why the component does not clip its contents. 8 by 4 on top and bottom, 4 by 8 on left and right. The rounded tips measure 3.586 on the pointing axis rather than 4, because the curve stops short of the point the sharp triangle reaches." |
 | Fill | Theming | "surface/inverse on the bubble and on the pointer, so the two read as one shape. The label is foreground/inverse." |
-| Type | Theming | "label/small, which is IBM Plex Sans Medium at 12 over a 16px line. Bound to the label/small typography variables as well as the text style, so it follows the responsive modes." |
+| Type | Theming | "label/small. Bound to the label/small typography variables as well as the text style, so it follows the responsive modes." |
 | Elevation | Fixed | "Shadow/medium on every variant, a two-layer drop shadow whose colour, blur and offsets are all bound to tokens." |
 
 ## Visual reference

@@ -81,24 +81,24 @@ export default css`
 
   /* The selectable row: leading control, then the selection target. */
   .zds-accordion__header[data-selectable] {
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     padding: var(--space-sm);
   }
   .zds-accordion__control {
     flex: none;
   }
   .zds-accordion__select {
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     align-self: stretch;
     padding: var(--space-none);
   }
 
-  /* Heading column (gap space/2xs, fill) holding the title. */
+  /* Heading column (gap space/3xs, fill) holding the title. */
   .zds-accordion__heading {
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-    gap: var(--space-2xs);
+    gap: var(--space-3xs);
     min-width: 0;
   }
   .zds-accordion__title {
@@ -145,7 +145,7 @@ export default css`
     width: var(--control-md);
     height: var(--control-md);
     margin: 0;
-    padding: var(--space-xxs);
+    padding: var(--space-2xs);
     border-style: solid;
     border-width: var(--stroke-base);
     border-radius: var(--radius-none);

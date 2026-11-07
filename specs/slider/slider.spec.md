@@ -52,7 +52,7 @@ Stacking, back to front: base track, active fill, step indicators, thumb.
 1. **Track**: "Two layers. The base runs the full width, and the active fill runs from the minimum to the value."
    - **root (base)**: fixed (`measuredSizePx` 400 × 4), fill `surface/track`, radius `radius/xs` when rounded and `radius/none` when sharp.
    - **activeFill**: absolute, anchored at the start and vertically centred, running from the minimum to the value. Radius `radius/xs` when rounded and `radius/none` when sharp: `_Active Track`'s own fill is square, and each Slider variant sets the radius on the nested fill (see issues). Fill per state, in the table below.
-2. **Step indicators**: "The dots marking each stop. They span the full track, so they sit above the active fill and the base alike and below the thumb." Visible when `stepped`. A horizontal space-between row with `space/2xs` inline padding. Each dot is an ellipse in `foreground/inverse` (`measuredSizePx` 2 × 2, no size token). *In Figma it spans the full track only while the value sits at 50% (see issues).*
+2. **Step indicators**: "The dots marking each stop. They span the full track, so they sit above the active fill and the base alike and below the thumb." Visible when `stepped`. A horizontal space-between row with `space/3xs` inline padding. Each dot is an ellipse in `foreground/inverse` (`measuredSizePx` 2 × 2, no size token). *In Figma it spans the full track only while the value sits at 50% (see issues).*
 3. **Thumb**: "Sits at the value, above everything else. A second thumb marks the start of the span in range mode." Centred on the active fill's trailing edge and vertically on the track. Size and fill per state; radius `radius/pill` when rounded and square when sharp.
    - **startThumb**: visible when `range`. At the active fill's leading edge, and identical to the thumb in every state.
 
@@ -78,7 +78,7 @@ Stacking, back to front: base track, active fill, step indicators, thumb.
 
 - **_Active Track** (private): holds every state-driven part. Its API is `state`, `stepped` and `range`. Only the fill is in flow, so its `space/-md` gap has no effect. It has no Shape property; each Slider variant sets the nested thumbs' shape directly.
 - **_Thumb** (private): `state` × `shape`, 8 variants. One rectangle whose height is bound to `control/icon-sm` or `control/icon-md` and whose width is unbound.
-- **Step Indicators** (public by name, only used here): one SLOT (`Dot Slots`) expecting `_Dot Indicator` instances. A space-between row with `space/2xs` inline padding.
+- **Step Indicators** (public by name, only used here): one SLOT (`Dot Slots`) expecting `_Dot Indicator` instances. A space-between row with `space/3xs` inline padding.
 - **_Dot Indicator** (private): one 2 × 2 ellipse in `foreground/inverse`.
 
 **Sibling on the page: Slider Input Field.** A separate public composition with no metadata: a label (`label/medium`, raw fill) above a full-width Slider, `indicator/medium` min and max captions in `foreground/secondary` beneath it, and a value box beside it. The value box is `control/md` tall, `radius/sm`, `interactive/neutral/background/default` with a `interactive/neutral/border/default` stroke at `stroke/thin`, and `body/medium` text. The row uses a `space/gutter` gap. Spec it separately once it has a metadata frame.
@@ -86,7 +86,7 @@ Stacking, back to front: base track, active fill, step indicators, thumb.
 ## Tokens & theming
 
 - **Color:** `surface/track`, `interactive/neutral/foreground/{default,disabled}`, `interactive/ghost/foreground/default`, `foreground/inverse`
-- **Dimension:** `radius/{xs,none,pill}`, `control/icon-{sm,md}`, `space/2xs`, `space/-md`
+- **Dimension:** `radius/{xs,none,pill}`, `control/icon-{sm,md}`, `space/3xs`, `space/-md`
 - **Typography / effect:** none on Slider itself
 
 Theme axes, taken from `tokens/manifest.json`:
@@ -145,7 +145,7 @@ Theme axes, taken from `tokens/manifest.json`:
 | Radius | Per Shape | radius/xs on the base track when rounded and radius/none when sharp. The thumb takes radius/pill when rounded and square corners when sharp. The active fill is square-ended on both variants, so on a rounded slider its end meets the rounded base. |
 | Track | Theming | The base is surface/track across the full width. The active fill is interactive/neutral/foreground/default, moving to interactive/ghost/foreground/default when selected and interactive/neutral/foreground/disabled when disabled. |
 | Thumb | Per State | 16 square at rest. 20 only for the thumb under the pointer or being dragged, in any state. Centred on the track in every case. |
-| Step indicators | Fixed | Dots of 2 by 2 in foreground/inverse, spaced evenly across the full track width with space/2xs held at each end. |
+| Step indicators | Fixed | Dots of 2 by 2 in foreground/inverse, spaced evenly across the full track width with space/3xs held at each end. |
 | Stacking | Fixed | Base track, active fill, step indicators, thumb, from back to front. The dots sit above both track layers and below the thumb. |
 | Second thumb | Per Range | Matches the first thumb in colour and shape, and sits at the start of the active fill. It takes the larger size only when it is the one under the pointer. |
 
@@ -198,7 +198,7 @@ states: [default](https://www.figma.com/design/EScHXxXDQU7qys4ru4ijLg/Slider?nod
 - The revised States table lists Stepped and Range as states. They are properties: nothing triggers them at run time.
 - Step Indicators' alignment differs by state on the nested instance (space-between at default, start elsewhere). It has no visible effect.
 - The thumb and the fill share one token at every state, so the thumb is told apart only by overhanging the track. It has no border or shadow.
-- The start thumb sits 2 off-centre from the fill's leading edge. The dots' `space/2xs` inset at each end is now stated as intended, so the first and last dots sit just inside the minimum and maximum.
+- The start thumb sits 2 off-centre from the fill's leading edge. The dots' `space/3xs` inset at each end is now stated as intended, so the first and last dots sit just inside the minimum and maximum.
 - The thumb is sized with icon tokens, and selected uses the ghost button's foreground, so changes to either will move the slider.
 - `_Thumb` and `_Active Track` order State differently; the spec uses `_Active Track`'s order.
 - No motion is defined, by the metadata's own statement.

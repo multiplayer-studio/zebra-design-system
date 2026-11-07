@@ -1,0 +1,7349 @@
+{
+"version": 2,
+"date": "2026-11-02",
+"tokens": {
+"VariableID:111:10": {
+"name": "interactive/destructive/border/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled-state border for a destructive interactive element.",
+"values": {
+"Base": "line/subtle"
+}
+},
+"VariableID:111:12": {
+"name": "interactive/ghost/border/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default-state border for a ghost interactive element.",
+"values": {
+"Base": "brand/primary/default"
+}
+},
+"VariableID:111:13": {
+"name": "interactive/ghost/border/hover",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Hover-state border for a ghost interactive element.",
+"values": {
+"Base": "brand/primary/subtle"
+}
+},
+"VariableID:111:14": {
+"name": "interactive/ghost/border/pressed",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Pressed-state border for a ghost interactive element.",
+"values": {
+"Base": "brand/primary/strong"
+}
+},
+"VariableID:111:15": {
+"name": "interactive/ghost/border/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled-state border for a ghost interactive element.",
+"values": {
+"Base": "line/subtle"
+}
+},
+"VariableID:111:17": {
+"name": "interactive/subtle/border/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default-state border for a subtle interactive element.",
+"values": {
+"Base": "brand/primary/default"
+}
+},
+"VariableID:111:18": {
+"name": "interactive/subtle/border/hover",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Hover-state border for a subtle interactive element.",
+"values": {
+"Base": "brand/primary/subtle"
+}
+},
+"VariableID:111:19": {
+"name": "interactive/subtle/border/pressed",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Pressed-state border for a subtle interactive element.",
+"values": {
+"Base": "brand/primary/strong"
+}
+},
+"VariableID:111:2": {
+"name": "interactive/positive/border/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default-state border for a high-emphasis positive-confirmation interactive element.",
+"values": {
+"Base": "status/success/default"
+}
+},
+"VariableID:111:20": {
+"name": "interactive/subtle/border/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled-state border for a subtle interactive element.",
+"values": {
+"Base": "line/subtle"
+}
+},
+"VariableID:111:3": {
+"name": "interactive/positive/border/hover",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Hover-state border for a high-emphasis positive-confirmation interactive element.",
+"values": {
+"Base": "status/success/strong"
+}
+},
+"VariableID:111:4": {
+"name": "interactive/positive/border/pressed",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Pressed-state border for a high-emphasis positive-confirmation interactive element.",
+"values": {
+"Base": "status/success/deep"
+}
+},
+"VariableID:111:5": {
+"name": "interactive/positive/border/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled-state border for a high-emphasis positive-confirmation interactive element.",
+"values": {
+"Base": "line/subtle"
+}
+},
+"VariableID:111:7": {
+"name": "interactive/destructive/border/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default-state border for a destructive interactive element.",
+"values": {
+"Base": "status/error/default"
+}
+},
+"VariableID:111:8": {
+"name": "interactive/destructive/border/hover",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Hover-state border for a destructive interactive element.",
+"values": {
+"Base": "status/error/strong"
+}
+},
+"VariableID:111:9": {
+"name": "interactive/destructive/border/pressed",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Pressed-state border for a destructive interactive element.",
+"values": {
+"Base": "status/error/deep"
+}
+},
+"VariableID:114:2": {
+"name": "status/success/strong",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/system/positive/70",
+"Dark": "color/system/positive/70",
+"AAA Light": "color/system/positive/90",
+"AAA Dark": "color/system/positive/20"
+}
+},
+"VariableID:114:3359": {
+"name": "interactive/positive/background/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default state for a high-emphasis interactive element used for a positive confirmation action, such as Approve, Confirm, or Complete.",
+"values": {
+"Base": "status/success/default"
+}
+},
+"VariableID:114:3360": {
+"name": "interactive/positive/background/hover",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Hover state for a high-emphasis positive-confirmation interactive element.",
+"values": {
+"Base": "status/success/strong"
+}
+},
+"VariableID:114:3361": {
+"name": "interactive/positive/background/pressed",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Pressed state for a high-emphasis positive-confirmation interactive element.",
+"values": {
+"Base": "status/success/deep"
+}
+},
+"VariableID:114:3362": {
+"name": "interactive/positive/background/focused",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Focused state for a high-emphasis positive-confirmation interactive element.",
+"values": {
+"Base": "status/success/default"
+}
+},
+"VariableID:114:3363": {
+"name": "interactive/positive/background/selected",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Selected state for a high-emphasis positive-confirmation interactive element.",
+"values": {
+"Base": "status/success/deep"
+}
+},
+"VariableID:114:3364": {
+"name": "interactive/positive/background/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled state for a high-emphasis positive-confirmation interactive element.",
+"values": {
+"Base": "fill/disabled"
+}
+},
+"VariableID:114:3369": {
+"name": "interactive/positive/foreground/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default-state text/icon color on a high-emphasis positive-confirmation interactive element's background.",
+"values": {
+"Base": "brand/primary/on"
+}
+},
+"VariableID:114:3370": {
+"name": "interactive/positive/foreground/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled-state text/icon color on a high-emphasis positive-confirmation interactive element's background.",
+"values": {
+"Base": "ink/disabled"
+}
+},
+"VariableID:114:3371": {
+"name": "interactive/subtle/background/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default state for a subtle interactive element, quieter in emphasis than secondary.",
+"values": {
+"Base": "brand/primary/faint"
+}
+},
+"VariableID:114:3372": {
+"name": "interactive/subtle/background/hover",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Hover state for a subtle interactive element.",
+"values": {
+"Base": "brand/primary/muted"
+}
+},
+"VariableID:114:3373": {
+"name": "interactive/subtle/background/pressed",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Pressed state for a subtle interactive element.",
+"values": {
+"Base": "brand/primary/subtle"
+}
+},
+"VariableID:114:3374": {
+"name": "interactive/subtle/background/focused",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Focused state for a subtle interactive element.",
+"values": {
+"Base": "brand/primary/faint"
+}
+},
+"VariableID:114:3375": {
+"name": "interactive/subtle/background/selected",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Selected state for a subtle interactive element.",
+"values": {
+"Base": "brand/primary/subtle"
+}
+},
+"VariableID:114:3376": {
+"name": "interactive/subtle/background/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled state for a subtle interactive element.",
+"values": {
+"Base": "fill/disabled"
+}
+},
+"VariableID:114:3381": {
+"name": "interactive/subtle/foreground/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default-state text/icon color on a subtle interactive element's background.",
+"values": {
+"Base": "ink/link"
+}
+},
+"VariableID:114:3382": {
+"name": "interactive/subtle/foreground/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled-state text/icon color on a subtle interactive element's background.",
+"values": {
+"Base": "ink/disabled"
+}
+},
+"VariableID:121:6194": {
+"name": "ink/brand",
+"collection": "palette",
+"type": "COLOR",
+"description": "Ghost button text and input cursors.",
+"values": {
+"Light": "color/brand/main/70",
+"Dark": "color/brand/main/40",
+"AAA Light": "color/brand/main/90",
+"AAA Dark": "color/brand/main/20"
+},
+"overrides": {
+"companion/Dark": "color/accent/1/40",
+"companion/Light": "color/accent/1/70",
+"target/Dark": "color/extend/4/30",
+"target/Light": "color/extend/4/70"
+}
+},
+"VariableID:143:10455": {
+"name": "status/success/subtle",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/system/positive/50",
+"Dark": "color/system/positive/70",
+"AAA Light": "color/system/positive/30",
+"AAA Dark": "color/system/positive/40"
+}
+},
+"VariableID:166:9427": {
+"name": "scale/1",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 1
+}
+},
+"VariableID:2004:10": {
+"name": "scale/10",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 28
+}
+},
+"VariableID:2004:11": {
+"name": "scale/11",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 32
+}
+},
+"VariableID:2004:12": {
+"name": "scale/12",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 36
+}
+},
+"VariableID:2004:13": {
+"name": "scale/13",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 40
+}
+},
+"VariableID:2004:14": {
+"name": "scale/14",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 44
+}
+},
+"VariableID:2004:15": {
+"name": "scale/15",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 48
+}
+},
+"VariableID:2004:16": {
+"name": "scale/16",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 56
+}
+},
+"VariableID:2004:17": {
+"name": "scale/17",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 64
+}
+},
+"VariableID:2004:18": {
+"name": "scale/18",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 80
+}
+},
+"VariableID:2004:19": {
+"name": "scale/19",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 96
+}
+},
+"VariableID:2004:2": {
+"name": "scale/2",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 2
+}
+},
+"VariableID:2004:20": {
+"name": "scale/20",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 128
+}
+},
+"VariableID:2004:21": {
+"name": "scale/21",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 160
+}
+},
+"VariableID:2004:22": {
+"name": "scale/container/0",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 240
+}
+},
+"VariableID:2004:23": {
+"name": "scale/container/1",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 600
+}
+},
+"VariableID:2004:24": {
+"name": "scale/container/2",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 840
+}
+},
+"VariableID:2004:25": {
+"name": "scale/container/3",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 1200
+}
+},
+"VariableID:2004:3": {
+"name": "scale/3",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 4
+}
+},
+"VariableID:2004:4": {
+"name": "scale/4",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 6
+}
+},
+"VariableID:2004:5": {
+"name": "scale/5",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 8
+}
+},
+"VariableID:2004:6": {
+"name": "scale/6",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 12
+}
+},
+"VariableID:2004:7": {
+"name": "scale/7",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 16
+}
+},
+"VariableID:2004:8": {
+"name": "scale/8",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 20
+}
+},
+"VariableID:2004:9": {
+"name": "scale/9",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 24
+}
+},
+"VariableID:2016:10": {
+"name": "space/lg",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 16px, source: scale/6",
+"values": {
+"Desktop": "scale/7",
+"Mobile": "scale/7",
+"Tablet": "scale/7",
+"Desktop Compact": "scale/6"
+},
+"overrides": {
+"condensed/Desktop": "scale/6"
+}
+},
+"VariableID:2016:11": {
+"name": "space/xl",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 24px, source: scale/8",
+"values": {
+"Desktop": "scale/9",
+"Mobile": "scale/9",
+"Tablet": "scale/9",
+"Desktop Compact": "scale/7"
+},
+"overrides": {
+"condensed/Desktop": "scale/7"
+}
+},
+"VariableID:2016:12": {
+"name": "space/2xl",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 32px, source: scale/10",
+"values": {
+"Desktop": "scale/11",
+"Mobile": "scale/11",
+"Tablet": "scale/11",
+"Desktop Compact": "scale/9"
+},
+"overrides": {
+"condensed/Desktop": "scale/9"
+}
+},
+"VariableID:2016:13": {
+"name": "control/target-min",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 44px, source: scale/13",
+"values": {
+"Desktop": "scale/13",
+"Mobile": "scale/13",
+"Tablet": "scale/13",
+"Desktop Compact": "scale/11"
+},
+"overrides": {
+"condensed/Desktop": "scale/11"
+}
+},
+"VariableID:2016:14": {
+"name": "control/sm",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 40px, source: scale/12",
+"values": {
+"Desktop": "scale/12",
+"Mobile": "scale/12",
+"Tablet": "scale/12",
+"Desktop Compact": "scale/10"
+},
+"overrides": {
+"condensed/Desktop": "scale/10"
+}
+},
+"VariableID:2016:15": {
+"name": "control/md",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 48px, source: scale/14",
+"values": {
+"Desktop": "scale/13",
+"Mobile": "scale/13",
+"Tablet": "scale/13",
+"Desktop Compact": "scale/11"
+},
+"overrides": {
+"condensed/Desktop": "scale/11"
+}
+},
+"VariableID:2016:16": {
+"name": "control/lg",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 56px, source: scale/15",
+"values": {
+"Desktop": "scale/15",
+"Mobile": "scale/15",
+"Tablet": "scale/15",
+"Desktop Compact": "scale/12"
+},
+"overrides": {
+"condensed/Desktop": "scale/13"
+}
+},
+"VariableID:2016:17": {
+"name": "control/icon-sm",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 20px, source: scale/7",
+"values": {
+"*": "scale/7"
+},
+"overrides": {
+"condensed/Desktop": "scale/5"
+}
+},
+"VariableID:2016:18": {
+"name": "control/icon-md",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 24px, source: scale/8",
+"values": {
+"Desktop": "scale/8",
+"Mobile": "scale/8",
+"Tablet": "scale/8",
+"Desktop Compact": "scale/7"
+},
+"overrides": {
+"condensed/Desktop": "scale/6"
+}
+},
+"VariableID:2016:19": {
+"name": "control/icon-lg",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 32px, source: scale/10",
+"values": {
+"Desktop": "scale/10",
+"Mobile": "scale/10",
+"Tablet": "scale/10",
+"Desktop Compact": "scale/9"
+},
+"overrides": {
+"condensed/Desktop": "scale/7"
+}
+},
+"VariableID:2016:2": {
+"name": "space/page",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 16px, source: scale/6",
+"values": {
+"Desktop": "scale/7",
+"Mobile": "scale/7",
+"Tablet": "scale/7",
+"Desktop Compact": "scale/6"
+},
+"overrides": {
+"condensed/Desktop": "scale/5"
+}
+},
+"VariableID:2016:20": {
+"name": "container/default",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 600px, source: scale/22",
+"values": {
+"Desktop": "scale/container/3",
+"Mobile": "scale/container/0",
+"Tablet": "scale/container/1",
+"Desktop Compact": "scale/container/2"
+}
+},
+"VariableID:2016:21": {
+"name": "radius/xs",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 2px, source: scale/1",
+"values": {
+"*": "scale/2"
+},
+"overrides": {
+"condensed/Desktop": "scale/1"
+}
+},
+"VariableID:2016:22": {
+"name": "radius/sm",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 4px, source: scale/2",
+"values": {
+"*": "scale/3"
+},
+"overrides": {
+"condensed/Desktop": "scale/2"
+}
+},
+"VariableID:2016:23": {
+"name": "radius/md",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 8px, source: scale/4",
+"values": {
+"*": "scale/5"
+},
+"overrides": {
+"condensed/Desktop": "scale/3"
+}
+},
+"VariableID:2016:24": {
+"name": "radius/lg",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 12px, source: scale/5",
+"values": {
+"*": "scale/6"
+},
+"overrides": {
+"condensed/Desktop": "scale/4"
+}
+},
+"VariableID:2016:25": {
+"name": "radius/xl",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 16px, source: scale/6",
+"values": {
+"*": "scale/7"
+},
+"overrides": {
+"condensed/Desktop": "scale/5"
+}
+},
+"VariableID:2016:26": {
+"name": "stroke/base",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 1px, source: scale/0",
+"values": {
+"*": "scale/0"
+}
+},
+"VariableID:2016:27": {
+"name": "stroke/thick",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 2px, source: scale/1",
+"values": {
+"*": "scale/2"
+}
+},
+"VariableID:2016:28": {
+"name": "stroke/heavy",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 4px, source: scale/2",
+"values": {
+"*": "scale/3"
+}
+},
+"VariableID:2016:29": {
+"name": "radius/pill",
+"collection": "size",
+"type": "FLOAT",
+"description": "Literal value, not a scale reference (fully rounded)",
+"values": {
+"*": 9999
+}
+},
+"VariableID:2016:3": {
+"name": "space/section",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 24px, source: scale/8",
+"values": {
+"Desktop": "scale/9",
+"Mobile": "scale/9",
+"Tablet": "scale/9",
+"Desktop Compact": "scale/7"
+},
+"overrides": {
+"condensed/Desktop": "scale/7"
+}
+},
+"VariableID:2016:4": {
+"name": "space/card",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 16px, source: scale/6",
+"values": {
+"Desktop": "scale/6",
+"Mobile": "scale/6",
+"Tablet": "scale/6",
+"Desktop Compact": "scale/5"
+},
+"overrides": {
+"condensed/Desktop": "scale/5"
+}
+},
+"VariableID:2016:5": {
+"name": "space/gutter",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 16px, source: scale/6",
+"values": {
+"Desktop": "scale/7",
+"Mobile": "scale/7",
+"Tablet": "scale/7",
+"Desktop Compact": "scale/6"
+},
+"overrides": {
+"condensed/Desktop": "scale/5"
+}
+},
+"VariableID:2016:6": {
+"name": "space/3xs",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 2px, source: scale/1",
+"values": {
+"Desktop": "scale/2",
+"Mobile": "scale/2",
+"Tablet": "scale/2",
+"Desktop Compact": "scale/1"
+},
+"overrides": {
+"condensed/Desktop": "scale/1"
+}
+},
+"VariableID:2016:7": {
+"name": "space/2xs",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 4px, source: scale/2",
+"values": {
+"Desktop": "scale/3",
+"Mobile": "scale/3",
+"Tablet": "scale/3",
+"Desktop Compact": "scale/2"
+},
+"overrides": {
+"condensed/Desktop": "scale/2"
+}
+},
+"VariableID:2016:8": {
+"name": "space/sm",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 8px, source: scale/4",
+"values": {
+"Desktop": "scale/5",
+"Mobile": "scale/5",
+"Tablet": "scale/5",
+"Desktop Compact": "scale/4"
+},
+"overrides": {
+"condensed/Desktop": "scale/4"
+}
+},
+"VariableID:2016:9": {
+"name": "space/md",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 12px, source: scale/5",
+"values": {
+"Desktop": "scale/6",
+"Mobile": "scale/6",
+"Tablet": "scale/6",
+"Desktop Compact": "scale/5"
+},
+"overrides": {
+"condensed/Desktop": "scale/5"
+}
+},
+"VariableID:2021:6724": {
+"name": "stroke/thin",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 1px, source: scale/0",
+"values": {
+"*": "scale/1"
+}
+},
+"VariableID:2021:6725": {
+"name": "radius/container",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 16px, source: scale/6",
+"values": {
+"*": "scale/6"
+},
+"overrides": {
+"condensed/Desktop": "scale/5"
+}
+},
+"VariableID:2053:15065": {
+"name": "fill/transparent/elevate",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/alpha/dark/10",
+"Dark": "color/alpha/light/10",
+"AAA Light": "color/alpha/dark/10",
+"AAA Dark": "color/alpha/light/10"
+}
+},
+"VariableID:2053:15066": {
+"name": "fill/transparent/emphasis",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/alpha/dark/5",
+"Dark": "color/alpha/light/5",
+"AAA Light": "color/alpha/dark/5",
+"AAA Dark": "color/alpha/light/5"
+}
+},
+"VariableID:2053:15067": {
+"name": "fill/transparent/obsure",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/alpha/dark/30",
+"Dark": "color/alpha/light/30",
+"AAA Light": "color/alpha/dark/30",
+"AAA Dark": "color/alpha/light/30"
+}
+},
+"VariableID:2057:6745": {
+"name": "status/info/subtle",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/system/info/50",
+"Dark": "color/system/info/60",
+"AAA Light": "color/system/info/30",
+"AAA Dark": "color/system/info/40"
+}
+},
+"VariableID:2057:6746": {
+"name": "status/info/strong",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/system/info/70",
+"Dark": "color/system/info/70",
+"AAA Light": "color/system/info/90",
+"AAA Dark": "color/system/info/20"
+}
+},
+"VariableID:2057:6747": {
+"name": "color/alpha/dark/40",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#0c0d0e66"
+}
+},
+"VariableID:2057:6748": {
+"name": "color/alpha/dark/60",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#0c0d0e99"
+}
+},
+"VariableID:2057:6749": {
+"name": "color/alpha/dark/80",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#0c0d0ecc"
+}
+},
+"VariableID:2058:2": {
+"name": "scale/0",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 0
+}
+},
+"VariableID:2061:6745": {
+"name": "line/stronger",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/neutral/cool/70",
+"Dark": "color/neutral/cool/30",
+"AAA Light": "color/neutral/cool/80",
+"AAA Dark": "color/neutral/cool/30"
+}
+},
+"VariableID:2061:6746": {
+"name": "data/neutral",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/neutral/cool/50",
+"Dark": "color/neutral/cool/60",
+"AAA Light": "color/neutral/cool/80",
+"AAA Dark": "color/neutral/cool/40"
+}
+},
+"VariableID:2061:6747": {
+"name": "data/1",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/brand/main/60",
+"Dark": "color/brand/main/50",
+"AAA Light": "color/brand/main/80",
+"AAA Dark": "color/brand/main/30"
+}
+},
+"VariableID:2061:6748": {
+"name": "data/2",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/brand/alternative/60",
+"Dark": "color/brand/alternative/50",
+"AAA Light": "color/brand/alternative/90",
+"AAA Dark": "color/brand/alternative/30"
+}
+},
+"VariableID:2061:6749": {
+"name": "data/3",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/accent/5/60",
+"Dark": "color/accent/5/50",
+"AAA Light": "color/accent/5/90",
+"AAA Dark": "color/accent/5/40"
+}
+},
+"VariableID:2061:6750": {
+"name": "data/4",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/accent/1/60",
+"Dark": "color/accent/1/40",
+"AAA Light": "color/accent/1/80",
+"AAA Dark": "color/accent/1/30"
+}
+},
+"VariableID:2061:6751": {
+"name": "data/5",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/accent/4/80",
+"Dark": "color/accent/4/50",
+"AAA Light": "color/accent/4/80",
+"AAA Dark": "color/accent/4/30"
+}
+},
+"VariableID:2061:6752": {
+"name": "data/6",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/accent/3/60",
+"Dark": "color/accent/3/50",
+"AAA Light": "color/accent/3/80",
+"AAA Dark": "color/accent/3/30"
+}
+},
+"VariableID:2061:6753": {
+"name": "data/7",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/accent/2/40",
+"Dark": "color/accent/2/70",
+"AAA Light": "color/accent/2/90",
+"AAA Dark": "color/accent/2/30"
+}
+},
+"VariableID:2061:6754": {
+"name": "data/8",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/extend/3/60",
+"Dark": "color/extend/3/50",
+"AAA Light": "color/extend/3/90",
+"AAA Dark": "color/extend/3/30"
+}
+},
+"VariableID:2061:6755": {
+"name": "data/9",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/extend/4/60",
+"Dark": "color/extend/4/50",
+"AAA Light": "color/extend/4/80",
+"AAA Dark": "color/extend/4/30"
+}
+},
+"VariableID:2061:6756": {
+"name": "data/10",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/extend/2/60",
+"Dark": "color/extend/2/40",
+"AAA Light": "color/extend/2/80",
+"AAA Dark": "color/extend/2/30"
+}
+},
+"VariableID:2061:6757": {
+"name": "data/11",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/system/negative/50",
+"Dark": "color/system/negative/60",
+"AAA Light": "color/system/negative/80",
+"AAA Dark": "color/system/negative/30"
+}
+},
+"VariableID:2061:6758": {
+"name": "data/12",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/extend/1/50",
+"Dark": "color/extend/1/60",
+"AAA Light": "color/extend/1/80",
+"AAA Dark": "color/extend/1/30"
+}
+},
+"VariableID:2061:6759": {
+"name": "selection/background",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Highlight background applied to selected text or selected list/table items",
+"values": {
+"Base": "fill/selection"
+}
+},
+"VariableID:2061:6760": {
+"name": "selection/border",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Border drawn around a selected item, e.g. a selected card or table row",
+"values": {
+"Base": "line/selection"
+}
+},
+"VariableID:2061:6761": {
+"name": "selection/text",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Text color applied to selected or highlighted text",
+"values": {
+"Base": "ink/selection"
+}
+},
+"VariableID:2063:2": {
+"name": "interactive/inverse/border/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default-state border for an inverse-surface interactive element.",
+"values": {
+"Base": "fill/inverse"
+}
+},
+"VariableID:2063:3": {
+"name": "interactive/inverse/border/hover",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Hover-state border for an inverse-surface interactive element.",
+"values": {
+"Base": "fill/inverse-sunken"
+}
+},
+"VariableID:2063:4": {
+"name": "interactive/inverse/border/pressed",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Pressed-state border for an inverse-surface interactive element.",
+"values": {
+"Base": "fill/inverse-elevated"
+}
+},
+"VariableID:2063:5": {
+"name": "interactive/inverse/border/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled-state border for an inverse-surface interactive element.",
+"values": {
+"Base": "line/subtle"
+}
+},
+"VariableID:2109:6965": {
+"name": "radius/none",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 2px, source: scale/1",
+"values": {
+"*": "scale/0"
+}
+},
+"VariableID:2109:6966": {
+"name": "radius/element-sm",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 16px, source: scale/6",
+"values": {
+"*": "scale/3"
+},
+"overrides": {
+"condensed/Desktop": "scale/2"
+}
+},
+"VariableID:2109:6967": {
+"name": "radius/element-md",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 16px, source: scale/6",
+"values": {
+"*": "scale/4"
+},
+"overrides": {
+"condensed/Desktop": "scale/3"
+}
+},
+"VariableID:2183:20602": {
+"name": "foreground/cursor",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Color of the blinking caret inside text inputs",
+"values": {
+"Base": "ink/brand"
+}
+},
+"VariableID:2204:20683": {
+"name": "space/none",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 32px, source: scale/10",
+"values": {
+"*": "scale/0"
+},
+"overrides": {
+"condensed/Desktop": "scale/0"
+}
+},
+"VariableID:2207:290": {
+"name": "text/font family/Zebra Sans",
+"collection": "primitives",
+"type": "STRING",
+"description": "",
+"values": {
+"Value": "Zebra Sans"
+}
+},
+"VariableID:2207:291": {
+"name": "text/font weight/regular",
+"collection": "primitives",
+"type": "STRING",
+"description": "",
+"values": {
+"Value": "Regular"
+}
+},
+"VariableID:2207:295": {
+"name": "text/font family/IBM Plex Sans",
+"collection": "primitives",
+"type": "STRING",
+"description": "",
+"values": {
+"Value": "IBM Plex Sans"
+}
+},
+"VariableID:2207:296": {
+"name": "text/font weight/bold",
+"collection": "primitives",
+"type": "STRING",
+"description": "",
+"values": {
+"Value": "Bold"
+}
+},
+"VariableID:2207:297": {
+"name": "text/font weight/light",
+"collection": "primitives",
+"type": "STRING",
+"description": "",
+"values": {
+"Value": "Light"
+}
+},
+"VariableID:2207:298": {
+"name": "text/font weight/medium",
+"collection": "primitives",
+"type": "STRING",
+"description": "",
+"values": {
+"Value": "Medium"
+}
+},
+"VariableID:2207:299": {
+"name": "text/font size/10",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 10
+}
+},
+"VariableID:2207:300": {
+"name": "text/font size/14",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 14
+}
+},
+"VariableID:2207:301": {
+"name": "text/font size/16",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 16
+}
+},
+"VariableID:2207:302": {
+"name": "text/font size/18",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 18
+}
+},
+"VariableID:2207:303": {
+"name": "text/font size/20",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 20
+}
+},
+"VariableID:2207:304": {
+"name": "text/font size/24",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 24
+}
+},
+"VariableID:2207:305": {
+"name": "text/font size/32",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 32
+}
+},
+"VariableID:2207:306": {
+"name": "text/font size/40",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 40
+}
+},
+"VariableID:2207:307": {
+"name": "text/font size/48",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 48
+}
+},
+"VariableID:2207:308": {
+"name": "text/font size/12",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 12
+}
+},
+"VariableID:2207:309": {
+"name": "text/font size/36",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 36
+}
+},
+"VariableID:2207:310": {
+"name": "text/font size/52",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 52
+}
+},
+"VariableID:2207:311": {
+"name": "text/font size/44",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 44
+}
+},
+"VariableID:2207:312": {
+"name": "text/font size/28",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 28
+}
+},
+"VariableID:2207:313": {
+"name": "text/line height/14",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 14
+}
+},
+"VariableID:2207:314": {
+"name": "text/line height/16",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 16
+}
+},
+"VariableID:2207:315": {
+"name": "text/line height/18",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 18
+}
+},
+"VariableID:2207:316": {
+"name": "text/line height/24",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 24
+}
+},
+"VariableID:2207:317": {
+"name": "text/line height/32",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 32
+}
+},
+"VariableID:2207:318": {
+"name": "text/line height/40",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 40
+}
+},
+"VariableID:2207:319": {
+"name": "text/line height/48",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 48
+}
+},
+"VariableID:2207:320": {
+"name": "text/line height/52",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 52
+}
+},
+"VariableID:2207:321": {
+"name": "text/line height/60",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 60
+}
+},
+"VariableID:2207:322": {
+"name": "text/line height/28",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 28
+}
+},
+"VariableID:2207:323": {
+"name": "text/line height/36",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 36
+}
+},
+"VariableID:2207:324": {
+"name": "text/line height/20",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 20
+}
+},
+"VariableID:2207:325": {
+"name": "text/letter spacing/none",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 0
+}
+},
+"VariableID:2207:326": {
+"name": "text/letter spacing/body",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": -0.43
+}
+},
+"VariableID:2207:327": {
+"name": "text/letter spacing/heading",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 0.4
+}
+},
+"VariableID:2207:328": {
+"name": "text/letter spacing/title",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 0
+}
+},
+"VariableID:2207:330": {
+"name": "label/large/font family",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font family/IBM Plex Sans"
+}
+},
+"VariableID:2207:332": {
+"name": "label/large/font size",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/font size/16",
+"Tablet": "text/font size/16",
+"Mobile": "text/font size/16",
+"Desktop Compact": "text/font size/14"
+},
+"overrides": {
+"condensed/Mobile": "text/font size/14",
+"condensed/Tablet": "text/font size/14",
+"condensed/Desktop Compact": "text/font size/14",
+"condensed/Desktop": "text/font size/14"
+}
+},
+"VariableID:2207:333": {
+"name": "label/large/font weight",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font weight/medium"
+}
+},
+"VariableID:2207:334": {
+"name": "label/large/line height",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/line height/24",
+"Tablet": "text/line height/24",
+"Mobile": "text/line height/24",
+"Desktop Compact": "text/line height/20"
+},
+"overrides": {
+"condensed/Mobile": "text/line height/18",
+"condensed/Tablet": "text/line height/18",
+"condensed/Desktop Compact": "text/line height/18",
+"condensed/Desktop": "text/line height/16"
+}
+},
+"VariableID:2207:335": {
+"name": "label/large/letter spacing",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/letter spacing/none"
+}
+},
+"VariableID:2207:336": {
+"name": "label/medium/font family",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font family/IBM Plex Sans"
+}
+},
+"VariableID:2207:337": {
+"name": "label/medium/font size",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/font size/14",
+"Tablet": "text/font size/14",
+"Mobile": "text/font size/14",
+"Desktop Compact": "text/font size/12"
+},
+"overrides": {
+"condensed/Mobile": "text/font size/12",
+"condensed/Tablet": "text/font size/12",
+"condensed/Desktop Compact": "text/font size/12",
+"condensed/Desktop": "text/font size/12"
+}
+},
+"VariableID:2207:338": {
+"name": "label/medium/font weight",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font weight/medium"
+}
+},
+"VariableID:2207:339": {
+"name": "label/medium/line height",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/line height/20",
+"Tablet": "text/line height/20",
+"Mobile": "text/line height/20",
+"Desktop Compact": "text/line height/16"
+},
+"overrides": {
+"condensed/Mobile": "text/line height/16",
+"condensed/Tablet": "text/line height/16",
+"condensed/Desktop Compact": "text/line height/16",
+"condensed/Desktop": "text/line height/14"
+}
+},
+"VariableID:2207:340": {
+"name": "label/medium/letter spacing",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/letter spacing/none"
+}
+},
+"VariableID:2207:341": {
+"name": "label/small/font family",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font family/IBM Plex Sans"
+}
+},
+"VariableID:2207:342": {
+"name": "label/small/font size",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/font size/12"
+},
+"overrides": {
+"condensed/Mobile": "text/font size/10",
+"condensed/Tablet": "text/font size/10",
+"condensed/Desktop Compact": "text/font size/10",
+"condensed/Desktop": "text/font size/10"
+}
+},
+"VariableID:2207:343": {
+"name": "label/small/font weight",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font weight/medium"
+}
+},
+"VariableID:2207:344": {
+"name": "label/small/line height",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/line height/16"
+},
+"overrides": {
+"condensed/Mobile": "text/line height/14",
+"condensed/Tablet": "text/line height/14",
+"condensed/Desktop Compact": "text/line height/14",
+"condensed/Desktop": "text/line height/12"
+}
+},
+"VariableID:2207:345": {
+"name": "label/small/letter spacing",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/letter spacing/none"
+}
+},
+"VariableID:2207:346": {
+"name": "indicator/medium/font family",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font family/IBM Plex Sans"
+}
+},
+"VariableID:2207:347": {
+"name": "indicator/medium/font size",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/font size/12"
+},
+"overrides": {
+"condensed/Desktop": "text/font size/10"
+}
+},
+"VariableID:2207:348": {
+"name": "indicator/medium/font weight",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font weight/medium"
+}
+},
+"VariableID:2207:349": {
+"name": "indicator/medium/line height",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/line height/14"
+},
+"overrides": {
+"condensed/Desktop": "text/line height/12"
+}
+},
+"VariableID:2207:350": {
+"name": "indicator/medium/letter spacing",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/letter spacing/none"
+}
+},
+"VariableID:2207:351": {
+"name": "body/large/font family",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font family/IBM Plex Sans"
+}
+},
+"VariableID:2207:352": {
+"name": "body/large/font size",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/font size/20",
+"Tablet": "text/font size/20",
+"Mobile": "text/font size/20",
+"Desktop Compact": "text/font size/18"
+},
+"overrides": {
+"condensed/Desktop": "text/font size/18"
+}
+},
+"VariableID:2207:353": {
+"name": "body/large/font weight",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font weight/regular"
+}
+},
+"VariableID:2207:354": {
+"name": "body/large/line height",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/line height/24"
+},
+"overrides": {
+"condensed/Desktop": "text/line height/20"
+}
+},
+"VariableID:2207:355": {
+"name": "body/large/letter spacing",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/letter spacing/none"
+}
+},
+"VariableID:2207:371": {
+"name": "body/medium/font family",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font family/IBM Plex Sans"
+}
+},
+"VariableID:2207:372": {
+"name": "body/medium/font size",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/font size/16",
+"Tablet": "text/font size/16",
+"Mobile": "text/font size/16",
+"Desktop Compact": "text/font size/14"
+},
+"overrides": {
+"condensed/Desktop": "text/font size/14"
+}
+},
+"VariableID:2207:373": {
+"name": "body/medium/font weight",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font weight/regular"
+}
+},
+"VariableID:2207:374": {
+"name": "body/medium/line height",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/line height/24",
+"Tablet": "text/line height/24",
+"Mobile": "text/line height/24",
+"Desktop Compact": "text/line height/20"
+},
+"overrides": {
+"condensed/Desktop": "text/line height/16"
+}
+},
+"VariableID:2207:375": {
+"name": "body/medium/letter spacing",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/letter spacing/none"
+}
+},
+"VariableID:2207:376": {
+"name": "body/small/font family",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font family/IBM Plex Sans"
+}
+},
+"VariableID:2207:377": {
+"name": "body/small/font size",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/font size/14",
+"Tablet": "text/font size/14",
+"Mobile": "text/font size/14",
+"Desktop Compact": "text/font size/12"
+},
+"overrides": {
+"condensed/Desktop": "text/font size/12"
+}
+},
+"VariableID:2207:378": {
+"name": "body/small/font weight",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font weight/regular"
+}
+},
+"VariableID:2207:379": {
+"name": "body/small/line height",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/line height/18",
+"Tablet": "text/line height/18",
+"Mobile": "text/line height/18",
+"Desktop Compact": "text/line height/16"
+},
+"overrides": {
+"condensed/Desktop": "text/line height/14"
+}
+},
+"VariableID:2207:380": {
+"name": "body/small/letter spacing",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/letter spacing/none"
+}
+},
+"VariableID:2207:381": {
+"name": "body/xsmall/font family",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font family/IBM Plex Sans"
+}
+},
+"VariableID:2207:382": {
+"name": "body/xsmall/font size",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/font size/12"
+},
+"overrides": {
+"condensed/Desktop": "text/font size/10"
+}
+},
+"VariableID:2207:383": {
+"name": "body/xsmall/font weight",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font weight/regular"
+}
+},
+"VariableID:2207:384": {
+"name": "body/xsmall/line height",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/line height/16"
+},
+"overrides": {
+"condensed/Desktop": "text/line height/12"
+}
+},
+"VariableID:2207:385": {
+"name": "body/xsmall/letter spacing",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/letter spacing/none"
+}
+},
+"VariableID:2207:386": {
+"name": "display/large/font family",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font family/IBM Plex Sans"
+}
+},
+"VariableID:2207:387": {
+"name": "display/large/font size",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/font size/52",
+"Tablet": "text/font size/52",
+"Mobile": "text/font size/52",
+"Desktop Compact": "text/font size/48"
+},
+"overrides": {
+"condensed/Desktop": "text/font size/48"
+}
+},
+"VariableID:2207:388": {
+"name": "display/large/font weight",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font weight/light"
+}
+},
+"VariableID:2207:389": {
+"name": "display/large/line height",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/line height/60",
+"Tablet": "text/line height/60",
+"Mobile": "text/line height/60",
+"Desktop Compact": "text/line height/52"
+},
+"overrides": {
+"condensed/Desktop": "text/line height/52"
+}
+},
+"VariableID:2207:390": {
+"name": "display/large/letter spacing",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/letter spacing/none"
+}
+},
+"VariableID:2207:406": {
+"name": "display/medium/font family",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font family/IBM Plex Sans"
+}
+},
+"VariableID:2207:407": {
+"name": "display/medium/font size",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/font size/44",
+"Tablet": "text/font size/44",
+"Mobile": "text/font size/44",
+"Desktop Compact": "text/font size/40"
+},
+"overrides": {
+"condensed/Desktop": "text/font size/40"
+}
+},
+"VariableID:2207:408": {
+"name": "display/medium/font weight",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font weight/light"
+}
+},
+"VariableID:2207:409": {
+"name": "display/medium/line height",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/line height/52",
+"Tablet": "text/line height/52",
+"Mobile": "text/line height/52",
+"Desktop Compact": "text/line height/48"
+},
+"overrides": {
+"condensed/Desktop": "text/line height/48"
+}
+},
+"VariableID:2207:410": {
+"name": "display/medium/letter spacing",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/letter spacing/none"
+}
+},
+"VariableID:2207:411": {
+"name": "display/small/font family",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font family/IBM Plex Sans"
+}
+},
+"VariableID:2207:412": {
+"name": "display/small/font size",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/font size/36",
+"Tablet": "text/font size/36",
+"Mobile": "text/font size/36",
+"Desktop Compact": "text/font size/32"
+},
+"overrides": {
+"condensed/Desktop": "text/font size/32"
+}
+},
+"VariableID:2207:413": {
+"name": "display/small/font weight",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font weight/light"
+}
+},
+"VariableID:2207:414": {
+"name": "display/small/line height",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/line height/40",
+"Tablet": "text/line height/40",
+"Mobile": "text/line height/40",
+"Desktop Compact": "text/line height/36"
+},
+"overrides": {
+"condensed/Desktop": "text/line height/36"
+}
+},
+"VariableID:2207:415": {
+"name": "display/small/letter spacing",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/letter spacing/none"
+}
+},
+"VariableID:2207:416": {
+"name": "heading/large/font family",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font family/IBM Plex Sans"
+}
+},
+"VariableID:2207:417": {
+"name": "heading/large/font size",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/font size/32",
+"Tablet": "text/font size/32",
+"Mobile": "text/font size/32",
+"Desktop Compact": "text/font size/28"
+},
+"overrides": {
+"condensed/Desktop": "text/font size/28"
+}
+},
+"VariableID:2207:418": {
+"name": "heading/large/font weight",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font weight/regular"
+}
+},
+"VariableID:2207:419": {
+"name": "heading/large/line height",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/line height/36",
+"Tablet": "text/line height/36",
+"Mobile": "text/line height/36",
+"Desktop Compact": "text/line height/32"
+},
+"overrides": {
+"condensed/Desktop": "text/line height/32"
+}
+},
+"VariableID:2207:420": {
+"name": "heading/large/letter spacing",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/letter spacing/none"
+}
+},
+"VariableID:2209:436": {
+"name": "heading/medium/font family",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font family/IBM Plex Sans"
+}
+},
+"VariableID:2209:437": {
+"name": "heading/medium/font size",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/font size/28",
+"Tablet": "text/font size/28",
+"Mobile": "text/font size/28",
+"Desktop Compact": "text/font size/24"
+},
+"overrides": {
+"condensed/Desktop": "text/font size/24"
+}
+},
+"VariableID:2209:438": {
+"name": "heading/medium/font weight",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font weight/regular"
+}
+},
+"VariableID:2209:439": {
+"name": "heading/medium/line height",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/line height/32",
+"Tablet": "text/line height/32",
+"Mobile": "text/line height/32",
+"Desktop Compact": "text/line height/28"
+},
+"overrides": {
+"condensed/Desktop": "text/line height/28"
+}
+},
+"VariableID:2209:440": {
+"name": "heading/medium/letter spacing",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/letter spacing/none"
+}
+},
+"VariableID:2209:446": {
+"name": "heading/small/font family",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font family/IBM Plex Sans"
+}
+},
+"VariableID:2209:447": {
+"name": "heading/small/font size",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/font size/24",
+"Tablet": "text/font size/24",
+"Mobile": "text/font size/24",
+"Desktop Compact": "text/font size/20"
+},
+"overrides": {
+"condensed/Desktop": "text/font size/20"
+}
+},
+"VariableID:2209:448": {
+"name": "heading/small/font weight",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font weight/regular"
+}
+},
+"VariableID:2209:449": {
+"name": "heading/small/line height",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/line height/28",
+"Tablet": "text/line height/28",
+"Mobile": "text/line height/28",
+"Desktop Compact": "text/line height/24"
+},
+"overrides": {
+"condensed/Desktop": "text/line height/24"
+}
+},
+"VariableID:2209:450": {
+"name": "heading/small/letter spacing",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/letter spacing/none"
+}
+},
+"VariableID:2210:456": {
+"name": "title/large/font family",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font family/IBM Plex Sans"
+}
+},
+"VariableID:2210:457": {
+"name": "title/large/font size",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/font size/20",
+"Tablet": "text/font size/20",
+"Mobile": "text/font size/20",
+"Desktop Compact": "text/font size/18"
+},
+"overrides": {
+"condensed/Desktop": "text/font size/18"
+}
+},
+"VariableID:2210:458": {
+"name": "title/large/font weight",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font weight/medium"
+}
+},
+"VariableID:2210:459": {
+"name": "title/large/line height",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/line height/24"
+},
+"overrides": {
+"condensed/Desktop": "text/line height/24"
+}
+},
+"VariableID:2210:460": {
+"name": "title/large/letter spacing",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/letter spacing/none"
+}
+},
+"VariableID:2210:466": {
+"name": "title/medium/font family",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font family/IBM Plex Sans"
+}
+},
+"VariableID:2210:467": {
+"name": "title/medium/font size",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/font size/16",
+"Tablet": "text/font size/16",
+"Mobile": "text/font size/16",
+"Desktop Compact": "text/font size/14"
+},
+"overrides": {
+"condensed/Desktop": "text/font size/14"
+}
+},
+"VariableID:2210:468": {
+"name": "title/medium/font weight",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font weight/medium"
+}
+},
+"VariableID:2210:469": {
+"name": "title/medium/line height",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Desktop": "text/line height/20",
+"Tablet": "text/line height/20",
+"Mobile": "text/line height/20",
+"Desktop Compact": "text/line height/18"
+},
+"overrides": {
+"condensed/Desktop": "text/line height/16"
+}
+},
+"VariableID:2210:470": {
+"name": "title/medium/letter spacing",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/letter spacing/none"
+}
+},
+"VariableID:2210:471": {
+"name": "title/small/font family",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font family/IBM Plex Sans"
+}
+},
+"VariableID:2210:472": {
+"name": "title/small/font size",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/font size/12"
+},
+"overrides": {
+"condensed/Desktop": "text/font size/10"
+}
+},
+"VariableID:2210:473": {
+"name": "title/small/font weight",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font weight/medium"
+}
+},
+"VariableID:2210:474": {
+"name": "title/small/line height",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/line height/16"
+},
+"overrides": {
+"condensed/Desktop": "text/line height/12"
+}
+},
+"VariableID:2210:475": {
+"name": "title/small/letter spacing",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/letter spacing/none"
+}
+},
+"VariableID:2315:9009": {
+"name": "surface/gradient/start",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Starting color stop for surfaces using a gradient fill",
+"values": {
+"Base": "gradient/default/start"
+}
+},
+"VariableID:2315:9010": {
+"name": "surface/gradient/end",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Ending color stop for surfaces using a gradient fill",
+"values": {
+"Base": "gradient/default/end"
+}
+},
+"VariableID:2315:9011": {
+"name": "gradient/default/start",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/accent/1/60",
+"Dark": "color/accent/1/60",
+"AAA Light": "color/accent/1/80",
+"AAA Dark": "color/accent/1/40"
+},
+"overrides": {
+"target/Dark": "color/extend/3/80",
+"target/Light": "color/extend/3/80"
+}
+},
+"VariableID:2315:9012": {
+"name": "gradient/default/end",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/extend/4/60",
+"Dark": "color/extend/4/60",
+"AAA Light": "color/extend/4/80",
+"AAA Dark": "color/extend/4/40"
+}
+},
+"VariableID:2315:9013": {
+"name": "gradient/strong/start",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/accent/1/80",
+"Dark": "color/accent/1/40",
+"AAA Light": "color/accent/1/80",
+"AAA Dark": "color/accent/1/30"
+},
+"overrides": {
+"target/Dark": "color/extend/3/50",
+"target/Light": "color/extend/3/90"
+}
+},
+"VariableID:2315:9014": {
+"name": "gradient/strong/end",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/extend/4/80",
+"Dark": "color/extend/4/40",
+"AAA Light": "color/extend/4/80",
+"AAA Dark": "color/extend/4/30"
+},
+"overrides": {
+"target/Dark": "color/extend/4/30"
+}
+},
+"VariableID:2315:9015": {
+"name": "gradient/subtle/start",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/accent/1/50",
+"Dark": "color/accent/1/70",
+"AAA Light": "color/accent/1/50",
+"AAA Dark": "color/accent/1/70"
+},
+"overrides": {
+"target/Dark": "color/extend/3/80",
+"target/Light": "color/extend/3/70"
+}
+},
+"VariableID:2315:9016": {
+"name": "gradient/subtle/end",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/extend/4/40",
+"Dark": "color/extend/4/80",
+"AAA Light": "color/extend/4/40",
+"AAA Dark": "color/extend/4/80"
+}
+},
+"VariableID:2315:9045": {
+"name": "foreground/gradient/start",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Starting color stop for text/icons using a gradient treatment",
+"values": {
+"Base": "gradient/strong/start"
+}
+},
+"VariableID:2315:9046": {
+"name": "foreground/gradient/end",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Ending color stop for text/icons using a gradient treatment",
+"values": {
+"Base": "gradient/strong/end"
+}
+},
+"VariableID:2315:9047": {
+"name": "border/gradient/start",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Starting color stop for borders using a gradient treatment",
+"values": {
+"Base": "gradient/default/start"
+}
+},
+"VariableID:2315:9048": {
+"name": "border/gradient/end",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Ending color stop for borders using a gradient treatment",
+"values": {
+"Base": "gradient/default/end"
+}
+},
+"VariableID:2456:2490": {
+"name": "status/warning/deep",
+"collection": "palette",
+"type": "COLOR",
+"description": "Highest emphasis warning elements.",
+"values": {
+"Light": "color/system/warning/80",
+"Dark": "color/system/warning/40",
+"AAA Light": "color/system/warning/100",
+"AAA Dark": "color/system/warning/10"
+}
+},
+"VariableID:2456:2491": {
+"name": "status/warning/strong",
+"collection": "palette",
+"type": "COLOR",
+"description": "Emphasis on warning elements.",
+"values": {
+"Light": "color/system/warning/70",
+"Dark": "color/system/warning/40",
+"AAA Light": "color/system/warning/90",
+"AAA Dark": "color/system/warning/20"
+}
+},
+"VariableID:2456:2492": {
+"name": "status/warning/subtle",
+"collection": "palette",
+"type": "COLOR",
+"description": "Soft warning accents.",
+"values": {
+"Light": "color/system/warning/50",
+"Dark": "color/system/warning/70",
+"AAA Light": "color/system/warning/30",
+"AAA Dark": "color/system/warning/40"
+}
+},
+"VariableID:2456:2608": {
+"name": "brand/tertiary/faint",
+"collection": "palette",
+"type": "COLOR",
+"description": "Quiet tertiary brand backgrounds.",
+"values": {
+"Light": "color/accent/5/10",
+"Dark": "color/accent/5/100",
+"AAA Light": "color/accent/5/10",
+"AAA Dark": "color/accent/5/100"
+}
+},
+"VariableID:2456:2611": {
+"name": "brand/tertiary/subtle",
+"collection": "palette",
+"type": "COLOR",
+"description": "Soft tertiary brand accents.",
+"values": {
+"Light": "color/accent/5/50",
+"Dark": "color/accent/5/50",
+"AAA Light": "color/accent/5/30",
+"AAA Dark": "color/accent/5/90"
+}
+},
+"VariableID:2456:2614": {
+"name": "brand/tertiary/strong",
+"collection": "palette",
+"type": "COLOR",
+"description": "Emphasis on tertiary brand fills.",
+"values": {
+"Light": "color/accent/5/70",
+"Dark": "color/accent/5/70",
+"AAA Light": "color/accent/5/100",
+"AAA Dark": "color/accent/5/30"
+}
+},
+"VariableID:2456:2615": {
+"name": "brand/tertiary/on",
+"collection": "palette",
+"type": "COLOR",
+"description": "Text and icons on tertiary brand fills.",
+"values": {
+"Light": "color/pure/white",
+"Dark": "color/pure/white",
+"AAA Light": "color/pure/white",
+"AAA Dark": "color/neutral/cool/100"
+}
+},
+"VariableID:2535:3742": {
+"name": "line/focus",
+"collection": "palette",
+"type": "COLOR",
+"description": "Focus rings and outlines.",
+"values": {
+"Light": "color/brand/main/50",
+"Dark": "color/brand/main/60",
+"AAA Light": "color/brand/main/80",
+"AAA Dark": "color/brand/main/30"
+},
+"overrides": {
+"companion/Dark": "color/accent/1/60",
+"companion/Light": "color/accent/1/50",
+"target/Dark": "color/accent/1/60",
+"target/Light": "color/accent/1/60"
+}
+},
+"VariableID:2646:6328": {
+"name": "shadow/xsmall/x",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 1px, source: scale/0",
+"values": {
+"*": "scale/0"
+}
+},
+"VariableID:2646:6329": {
+"name": "shadow/xsmall/y",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 1px, source: scale/0",
+"values": {
+"*": "scale/1"
+}
+},
+"VariableID:2646:6330": {
+"name": "shadow/xsmall/blur",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 2px, source: scale/1",
+"values": {
+"*": "scale/1"
+}
+},
+"VariableID:2646:6334": {
+"name": "shadow/soft",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Soft, diffuse drop shadow for subtle elevation, e.g. cards",
+"values": {
+"Base": "fill/transparent/emphasis"
+}
+},
+"VariableID:2646:6335": {
+"name": "shadow/hard",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Crisp, high-contrast drop shadow for elements needing strong separation, e.g. dropdowns",
+"values": {
+"Base": "fill/transparent/elevate"
+}
+},
+"VariableID:2646:6344": {
+"name": "shadow/small/x",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 1px, source: scale/0",
+"values": {
+"*": "scale/0"
+}
+},
+"VariableID:2646:6345": {
+"name": "shadow/small/y",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 1px, source: scale/0",
+"values": {
+"*": "scale/2"
+}
+},
+"VariableID:2646:6346": {
+"name": "shadow/small/blur",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 2px, source: scale/1",
+"values": {
+"*": "scale/4"
+}
+},
+"VariableID:2646:6347": {
+"name": "shadow/medium/x",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 1px, source: scale/0",
+"values": {
+"*": "scale/0"
+}
+},
+"VariableID:2646:6348": {
+"name": "shadow/medium/y",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 1px, source: scale/0",
+"values": {
+"*": "scale/5"
+}
+},
+"VariableID:2646:6349": {
+"name": "shadow/medium/blur",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 2px, source: scale/1",
+"values": {
+"*": "scale/7"
+}
+},
+"VariableID:2646:6350": {
+"name": "shadow/large/x",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 1px, source: scale/0",
+"values": {
+"*": "scale/0"
+}
+},
+"VariableID:2646:6351": {
+"name": "shadow/large/y",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 1px, source: scale/0",
+"values": {
+"*": "scale/8"
+}
+},
+"VariableID:2646:6352": {
+"name": "shadow/large/blur",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 2px, source: scale/1",
+"values": {
+"*": "scale/11"
+}
+},
+"VariableID:2838:1534": {
+"name": "border/inverse",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Low-emphasis border, e.g. subtle dividers.",
+"values": {
+"Base": "line/inverse"
+}
+},
+"VariableID:2838:1535": {
+"name": "line/inverse",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/pure/white",
+"Dark": "color/pure/black",
+"AAA Light": "color/pure/white",
+"AAA Dark": "color/pure/black"
+}
+},
+"VariableID:30:1293": {
+"name": "color/neutral/cool/10",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#f8fbff"
+}
+},
+"VariableID:30:1294": {
+"name": "color/neutral/cool/20",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#f3f6fa"
+}
+},
+"VariableID:30:1295": {
+"name": "color/neutral/cool/30",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#e0e3e9"
+}
+},
+"VariableID:30:1296": {
+"name": "color/neutral/cool/40",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ced2db"
+}
+},
+"VariableID:30:1297": {
+"name": "color/neutral/cool/50",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#8d95a3"
+}
+},
+"VariableID:30:1298": {
+"name": "color/neutral/cool/60",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#7a8190"
+}
+},
+"VariableID:30:1299": {
+"name": "color/neutral/cool/70",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#545963"
+}
+},
+"VariableID:30:1300": {
+"name": "color/neutral/cool/80",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#2c2f36"
+}
+},
+"VariableID:30:1301": {
+"name": "color/neutral/cool/90",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#1d1e23"
+}
+},
+"VariableID:30:1302": {
+"name": "color/neutral/cool/100",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#0c0d0e"
+}
+},
+"VariableID:30:1304": {
+"name": "color/neutral/warm/10",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#fafafa"
+}
+},
+"VariableID:30:1305": {
+"name": "color/neutral/warm/20",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#f7f7f7"
+}
+},
+"VariableID:30:1306": {
+"name": "color/neutral/warm/30",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ededed"
+}
+},
+"VariableID:30:1307": {
+"name": "color/neutral/warm/40",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#dedede"
+}
+},
+"VariableID:30:1308": {
+"name": "color/neutral/warm/50",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#b9b9b9"
+}
+},
+"VariableID:30:1309": {
+"name": "color/neutral/warm/60",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#858585"
+}
+},
+"VariableID:30:1310": {
+"name": "color/neutral/warm/70",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#585858"
+}
+},
+"VariableID:30:1311": {
+"name": "color/neutral/warm/80",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#313131"
+}
+},
+"VariableID:30:1312": {
+"name": "color/neutral/warm/90",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#202020"
+}
+},
+"VariableID:30:1313": {
+"name": "color/neutral/warm/100",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#151519"
+}
+},
+"VariableID:30:1314": {
+"name": "color/brand/main/10",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#e0f0ff"
+}
+},
+"VariableID:30:1315": {
+"name": "color/brand/main/20",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#b9daff"
+}
+},
+"VariableID:30:1316": {
+"name": "color/brand/main/30",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#8dc0ff"
+}
+},
+"VariableID:30:1317": {
+"name": "color/brand/main/40",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#5ea2ff"
+}
+},
+"VariableID:30:1318": {
+"name": "color/brand/main/50",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#3886ff"
+}
+},
+"VariableID:30:1319": {
+"name": "color/brand/main/60",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#1f69ff"
+}
+},
+"VariableID:30:1320": {
+"name": "color/brand/main/70",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#0e53e5"
+}
+},
+"VariableID:30:1321": {
+"name": "color/brand/main/80",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#003fbd"
+}
+},
+"VariableID:30:1322": {
+"name": "color/brand/main/90",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#002775"
+}
+},
+"VariableID:30:1323": {
+"name": "color/brand/main/100",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#00143a"
+}
+},
+"VariableID:30:1334": {
+"name": "color/system/positive/10",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ecfff7"
+}
+},
+"VariableID:30:1335": {
+"name": "color/system/positive/20",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d8ffef"
+}
+},
+"VariableID:30:1336": {
+"name": "color/system/positive/30",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#beefdb"
+}
+},
+"VariableID:30:1337": {
+"name": "color/system/positive/40",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#84dab6"
+}
+},
+"VariableID:30:1338": {
+"name": "color/system/positive/50",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#67b796"
+}
+},
+"VariableID:30:1339": {
+"name": "color/system/positive/60",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#00864f"
+}
+},
+"VariableID:30:1340": {
+"name": "color/system/positive/70",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#006d3f"
+}
+},
+"VariableID:30:1341": {
+"name": "color/system/positive/80",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#005f38"
+}
+},
+"VariableID:30:1342": {
+"name": "color/system/positive/90",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#00331e"
+}
+},
+"VariableID:30:1343": {
+"name": "color/system/positive/100",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#081711"
+}
+},
+"VariableID:30:1344": {
+"name": "color/system/negative/10",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#fff0f1"
+}
+},
+"VariableID:30:1345": {
+"name": "color/system/negative/20",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ffe1e4"
+}
+},
+"VariableID:30:1346": {
+"name": "color/system/negative/30",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ffb3bb"
+}
+},
+"VariableID:30:1347": {
+"name": "color/system/negative/40",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#f98c97"
+}
+},
+"VariableID:30:1348": {
+"name": "color/system/negative/50",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#f36170"
+}
+},
+"VariableID:30:1349": {
+"name": "color/system/negative/60",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d70015"
+}
+},
+"VariableID:30:1350": {
+"name": "color/system/negative/70",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#b50012"
+}
+},
+"VariableID:30:1351": {
+"name": "color/system/negative/80",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#8f000e"
+}
+},
+"VariableID:30:1352": {
+"name": "color/system/negative/90",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#520008"
+}
+},
+"VariableID:30:1353": {
+"name": "color/system/negative/100",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#220f11"
+}
+},
+"VariableID:30:1354": {
+"name": "color/system/warning/10",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#fef2e2"
+}
+},
+"VariableID:30:1355": {
+"name": "color/system/warning/20",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ffe7c6"
+}
+},
+"VariableID:30:1356": {
+"name": "color/system/warning/30",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ffd292"
+}
+},
+"VariableID:30:1357": {
+"name": "color/system/warning/40",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ffb348"
+}
+},
+"VariableID:30:1358": {
+"name": "color/system/warning/50",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d78d26"
+}
+},
+"VariableID:30:1359": {
+"name": "color/system/warning/60",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ae6500"
+}
+},
+"VariableID:30:1360": {
+"name": "color/system/warning/70",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#965802"
+}
+},
+"VariableID:30:1361": {
+"name": "color/system/warning/80",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#764502"
+}
+},
+"VariableID:30:1362": {
+"name": "color/system/warning/90",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#402600"
+}
+},
+"VariableID:30:1363": {
+"name": "color/system/warning/100",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#1e1100"
+}
+},
+"VariableID:30:1364": {
+"name": "color/system/info/10",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#f1f8ff"
+}
+},
+"VariableID:30:1365": {
+"name": "color/system/info/20",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#e2f1ff"
+}
+},
+"VariableID:30:1366": {
+"name": "color/system/info/30",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#b7dbff"
+}
+},
+"VariableID:30:1367": {
+"name": "color/system/info/40",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#7ebeff"
+}
+},
+"VariableID:30:1368": {
+"name": "color/system/info/50",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#599fe5"
+}
+},
+"VariableID:30:1369": {
+"name": "color/system/info/60",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#0073e6"
+}
+},
+"VariableID:30:1370": {
+"name": "color/system/info/70",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#0061c2"
+}
+},
+"VariableID:30:1371": {
+"name": "color/system/info/80",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#004d99"
+}
+},
+"VariableID:30:1372": {
+"name": "color/system/info/90",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#002c58"
+}
+},
+"VariableID:30:1373": {
+"name": "color/system/info/100",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#101b25"
+}
+},
+"VariableID:30:1374": {
+"name": "color/accent/1/10",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#f7f0ff"
+}
+},
+"VariableID:30:1375": {
+"name": "color/accent/1/20",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#efe1ff"
+}
+},
+"VariableID:30:1376": {
+"name": "color/accent/1/30",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#dcc1fb"
+}
+},
+"VariableID:30:1377": {
+"name": "color/accent/1/40",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#cea4ff"
+}
+},
+"VariableID:30:1378": {
+"name": "color/accent/1/50",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#9b71df"
+}
+},
+"VariableID:30:1379": {
+"name": "color/accent/1/60",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#7e0cff"
+}
+},
+"VariableID:30:1380": {
+"name": "color/accent/1/70",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#6400d6"
+}
+},
+"VariableID:30:1381": {
+"name": "color/accent/1/80",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#43008f"
+}
+},
+"VariableID:30:1382": {
+"name": "color/accent/1/90",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#260052"
+}
+},
+"VariableID:30:1383": {
+"name": "color/accent/1/100",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#180f22"
+}
+},
+"VariableID:30:1384": {
+"name": "color/accent/2/10",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#fff7d4"
+}
+},
+"VariableID:30:1385": {
+"name": "color/accent/2/20",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ffea89"
+}
+},
+"VariableID:30:1386": {
+"name": "color/accent/2/30",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#f3d961"
+}
+},
+"VariableID:30:1387": {
+"name": "color/accent/2/40",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#dbb91c"
+}
+},
+"VariableID:30:1388": {
+"name": "color/accent/2/50",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#c2a728"
+}
+},
+"VariableID:30:1389": {
+"name": "color/accent/2/60",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#8d7400"
+}
+},
+"VariableID:30:1390": {
+"name": "color/accent/2/70",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#766200"
+}
+},
+"VariableID:30:1391": {
+"name": "color/accent/2/80",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#564908"
+}
+},
+"VariableID:30:1392": {
+"name": "color/accent/2/90",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#352b00"
+}
+},
+"VariableID:30:1393": {
+"name": "color/accent/2/100",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#181400"
+}
+},
+"VariableID:30:1394": {
+"name": "color/accent/3/10",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ecffff"
+}
+},
+"VariableID:30:1395": {
+"name": "color/accent/3/20",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d9ffff"
+}
+},
+"VariableID:30:1396": {
+"name": "color/accent/3/30",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#bcfbfb"
+}
+},
+"VariableID:30:1397": {
+"name": "color/accent/3/40",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#91e1e1"
+}
+},
+"VariableID:30:1398": {
+"name": "color/accent/3/50",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#65c4c4"
+}
+},
+"VariableID:30:1399": {
+"name": "color/accent/3/60",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#1a8080"
+}
+},
+"VariableID:30:1400": {
+"name": "color/accent/3/70",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#017474"
+}
+},
+"VariableID:30:1401": {
+"name": "color/accent/3/80",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#005b5b"
+}
+},
+"VariableID:30:1402": {
+"name": "color/accent/3/90",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#003535"
+}
+},
+"VariableID:30:1403": {
+"name": "color/accent/3/100",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#0a1616"
+}
+},
+"VariableID:30:1404": {
+"name": "color/accent/4/10",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#fff7fc"
+}
+},
+"VariableID:30:1405": {
+"name": "color/accent/4/20",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ffe3f5"
+}
+},
+"VariableID:30:1406": {
+"name": "color/accent/4/30",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ffbee7"
+}
+},
+"VariableID:30:1407": {
+"name": "color/accent/4/40",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ff94d8"
+}
+},
+"VariableID:30:1408": {
+"name": "color/accent/4/50",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ee78c3"
+}
+},
+"VariableID:30:1409": {
+"name": "color/accent/4/60",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d30589"
+}
+},
+"VariableID:30:1410": {
+"name": "color/accent/4/70",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ab006d"
+}
+},
+"VariableID:30:1411": {
+"name": "color/accent/4/80",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#840054"
+}
+},
+"VariableID:30:1412": {
+"name": "color/accent/4/90",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#640040"
+}
+},
+"VariableID:30:1413": {
+"name": "color/accent/4/100",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#2e001e"
+}
+},
+"VariableID:3112:1198": {
+"name": "shape",
+"collection": "size",
+"type": "STRING",
+"description": "",
+"values": {
+"Desktop": "rounded",
+"Mobile": "sharp",
+"Tablet": "rounded",
+"Desktop Compact": "rounded"
+}
+},
+"VariableID:3147:3871": {
+"name": "status/ghost/default",
+"collection": "palette",
+"type": "COLOR",
+"description": "Ghost button at rest, focused or disabled.",
+"values": {
+"Light": "color/alpha/dark/0",
+"Dark": "color/alpha/light/0",
+"AAA Light": "color/alpha/dark/0",
+"AAA Dark": "color/alpha/light/0"
+}
+},
+"VariableID:3147:3872": {
+"name": "status/ghost/faint",
+"collection": "palette",
+"type": "COLOR",
+"description": "Ghost button on hover.",
+"values": {
+"Light": "color/alpha/dark/5",
+"Dark": "color/alpha/light/5",
+"AAA Light": "color/alpha/dark/5",
+"AAA Dark": "color/alpha/light/5"
+}
+},
+"VariableID:3147:3873": {
+"name": "status/ghost/deep",
+"collection": "palette",
+"type": "COLOR",
+"description": "Ghost button when pressed.",
+"values": {
+"Light": "color/alpha/dark/10",
+"Dark": "color/alpha/light/10",
+"AAA Light": "color/alpha/dark/10",
+"AAA Dark": "color/alpha/light/10"
+}
+},
+"VariableID:3147:3874": {
+"name": "status/ghost/subtle",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/alpha/dark/0",
+"Dark": "color/alpha/light/0",
+"AAA Light": "color/alpha/dark/0",
+"AAA Dark": "color/alpha/light/0"
+}
+},
+"VariableID:3147:3875": {
+"name": "status/ghost/strong",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/alpha/dark/20",
+"Dark": "color/alpha/light/20",
+"AAA Light": "color/alpha/dark/20",
+"AAA Dark": "color/alpha/light/20"
+}
+},
+"VariableID:3147:3876": {
+"name": "color/alpha/dark/20",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#0c0d0e33"
+}
+},
+"VariableID:3147:3877": {
+"name": "color/alpha/dark/10",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#0c0d0e1a"
+}
+},
+"VariableID:3147:3878": {
+"name": "color/alpha/dark/30",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#0c0d0e4d"
+}
+},
+"VariableID:3147:3879": {
+"name": "color/alpha/dark/50",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#0c0d0e80"
+}
+},
+"VariableID:3147:3883": {
+"name": "color/alpha/dark/70",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#0c0d0eb2"
+}
+},
+"VariableID:3147:3888": {
+"name": "color/alpha/dark/90",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#0c0d0ee5"
+}
+},
+"VariableID:3147:3898": {
+"name": "color/alpha/dark/5",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#0c0d0e0d"
+}
+},
+"VariableID:3147:3911": {
+"name": "color/alpha/dark/0",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#0c0d0e00"
+}
+},
+"VariableID:3147:3912": {
+"name": "color/alpha/light/0",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d6dce200"
+}
+},
+"VariableID:3147:3913": {
+"name": "color/alpha/light/5",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d4dde60d"
+}
+},
+"VariableID:3147:3914": {
+"name": "color/alpha/light/10",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d4dde61a"
+}
+},
+"VariableID:3147:3915": {
+"name": "color/alpha/light/20",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d4dde633"
+}
+},
+"VariableID:3147:3916": {
+"name": "color/alpha/light/30",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d4dde64d"
+}
+},
+"VariableID:3147:3917": {
+"name": "color/alpha/light/40",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d4dde666"
+}
+},
+"VariableID:3147:3918": {
+"name": "color/alpha/light/50",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d4dde680"
+}
+},
+"VariableID:3147:3919": {
+"name": "color/alpha/light/60",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d4dde699"
+}
+},
+"VariableID:3147:3920": {
+"name": "color/alpha/light/70",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d4dde6b2"
+}
+},
+"VariableID:3147:3921": {
+"name": "color/alpha/light/80",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d4dde6cc"
+}
+},
+"VariableID:3147:3922": {
+"name": "color/alpha/light/90",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d4dde6e5"
+}
+},
+"VariableID:3635:1241": {
+"name": "border/transparent",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Holds border space with no visible line.",
+"values": {
+"Base": "interactive/ghost/background/default"
+}
+},
+"VariableID:38:10": {
+"name": "color/brand/alternative/90",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#8a2900"
+}
+},
+"VariableID:38:11": {
+"name": "color/brand/alternative/100",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#4a1600"
+}
+},
+"VariableID:38:12": {
+"name": "color/accent/5/10",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#e2ffb6"
+}
+},
+"VariableID:38:13": {
+"name": "color/accent/5/20",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d1ff91"
+}
+},
+"VariableID:38:14": {
+"name": "color/accent/5/30",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#c4ff6b"
+}
+},
+"VariableID:38:15": {
+"name": "color/accent/5/40",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#b6ff4a"
+}
+},
+"VariableID:38:16": {
+"name": "color/accent/5/50",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#a8f931"
+}
+},
+"VariableID:38:17": {
+"name": "color/accent/5/60",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#8fd820"
+}
+},
+"VariableID:38:18": {
+"name": "color/accent/5/70",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#6faf13"
+}
+},
+"VariableID:38:19": {
+"name": "color/accent/5/80",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#528406"
+}
+},
+"VariableID:38:2": {
+"name": "color/brand/alternative/10",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ffece5"
+}
+},
+"VariableID:38:20": {
+"name": "color/accent/5/90",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#335106"
+}
+},
+"VariableID:38:21": {
+"name": "color/accent/5/100",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#192b03"
+}
+},
+"VariableID:38:22": {
+"name": "color/extend/1/10",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#f2f2f2"
+}
+},
+"VariableID:38:23": {
+"name": "color/extend/1/20",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#e6e6e6"
+}
+},
+"VariableID:38:24": {
+"name": "color/extend/1/30",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#bdbdbd"
+}
+},
+"VariableID:38:25": {
+"name": "color/extend/1/40",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#9e9e9e"
+}
+},
+"VariableID:38:26": {
+"name": "color/extend/1/50",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#878787"
+}
+},
+"VariableID:38:27": {
+"name": "color/extend/1/60",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#757575"
+}
+},
+"VariableID:38:28": {
+"name": "color/extend/1/70",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#666666"
+}
+},
+"VariableID:38:29": {
+"name": "color/extend/1/80",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#565656"
+}
+},
+"VariableID:38:3": {
+"name": "color/brand/alternative/20",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ffd9cc"
+}
+},
+"VariableID:38:30": {
+"name": "color/extend/1/90",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#303030"
+}
+},
+"VariableID:38:31": {
+"name": "color/extend/1/100",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#141414"
+}
+},
+"VariableID:38:32": {
+"name": "color/extend/2/10",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#fdf5ff"
+}
+},
+"VariableID:38:33": {
+"name": "color/extend/2/20",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#f8dfff"
+}
+},
+"VariableID:38:34": {
+"name": "color/extend/2/30",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#f18ffb"
+}
+},
+"VariableID:38:35": {
+"name": "color/extend/2/40",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ea7ff6"
+}
+},
+"VariableID:38:36": {
+"name": "color/extend/2/50",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d540f2"
+}
+},
+"VariableID:38:37": {
+"name": "color/extend/2/60",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#c300ed"
+}
+},
+"VariableID:38:38": {
+"name": "color/extend/2/70",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#9c00c2"
+}
+},
+"VariableID:38:39": {
+"name": "color/extend/2/80",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#750091"
+}
+},
+"VariableID:38:4": {
+"name": "color/brand/alternative/30",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ffbfa6"
+}
+},
+"VariableID:38:40": {
+"name": "color/extend/2/90",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#4f0061"
+}
+},
+"VariableID:38:41": {
+"name": "color/extend/2/100",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#270030"
+}
+},
+"VariableID:38:42": {
+"name": "color/extend/3/10",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#fdf7f0"
+}
+},
+"VariableID:38:43": {
+"name": "color/extend/3/20",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#f6e5d3"
+}
+},
+"VariableID:38:44": {
+"name": "color/extend/3/30",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#e5a66a"
+}
+},
+"VariableID:38:45": {
+"name": "color/extend/3/40",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#e8b985"
+}
+},
+"VariableID:38:46": {
+"name": "color/extend/3/50",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#e8af79"
+}
+},
+"VariableID:38:47": {
+"name": "color/extend/3/60",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d7965a"
+}
+},
+"VariableID:38:48": {
+"name": "color/extend/3/70",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#b87438"
+}
+},
+"VariableID:38:49": {
+"name": "color/extend/3/80",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#874d17"
+}
+},
+"VariableID:38:5": {
+"name": "color/brand/alternative/40",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ff9f75"
+}
+},
+"VariableID:38:50": {
+"name": "color/extend/3/90",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#714113"
+}
+},
+"VariableID:38:51": {
+"name": "color/extend/3/100",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#3b2109"
+}
+},
+"VariableID:38:52": {
+"name": "color/extend/4/10",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#f2f4ff"
+},
+"overrides": {
+"target/Value": "#f9e5e5"
+}
+},
+"VariableID:38:53": {
+"name": "color/extend/4/20",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#dce0ff"
+},
+"overrides": {
+"target/Value": "#efb2b2"
+}
+},
+"VariableID:38:54": {
+"name": "color/extend/4/30",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#b9c0ff"
+},
+"overrides": {
+"target/Value": "#e57f7f"
+}
+},
+"VariableID:38:55": {
+"name": "color/extend/4/40",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#95a1ff"
+},
+"overrides": {
+"target/Value": "#db4c4c"
+}
+},
+"VariableID:38:56": {
+"name": "color/extend/4/50",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#7281fe"
+},
+"overrides": {
+"target/Value": "#d11919"
+}
+},
+"VariableID:38:57": {
+"name": "color/extend/4/60",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#4f62fe"
+},
+"overrides": {
+"target/Value": "#cc0000"
+}
+},
+"VariableID:38:58": {
+"name": "color/extend/4/70",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#3441aa"
+},
+"overrides": {
+"target/Value": "#b70000"
+}
+},
+"VariableID:38:59": {
+"name": "color/extend/4/80",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#1a2154"
+},
+"overrides": {
+"target/Value": "#660000"
+}
+},
+"VariableID:38:6": {
+"name": "color/brand/alternative/50",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ff7a40"
+}
+},
+"VariableID:38:60": {
+"name": "color/extend/4/90",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#101433"
+},
+"overrides": {
+"target/Value": "#3d0000"
+}
+},
+"VariableID:38:61": {
+"name": "color/extend/4/100",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#080a1a"
+},
+"overrides": {
+"target/Value": "#140000"
+}
+},
+"VariableID:38:7": {
+"name": "color/brand/alternative/60",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ff4d00"
+}
+},
+"VariableID:38:8": {
+"name": "color/brand/alternative/70",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#f34300"
+}
+},
+"VariableID:38:9": {
+"name": "color/brand/alternative/80",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#d13f00"
+}
+},
+"VariableID:4142:1585": {
+"name": "interactive/selection/background/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Switch track when off.",
+"values": {
+"Base": "ink/low"
+}
+},
+"VariableID:4142:1586": {
+"name": "interactive/selection/background/hover",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Checkboxes and radios on hover.",
+"values": {
+"Base": "fill/hover"
+}
+},
+"VariableID:4142:1587": {
+"name": "interactive/selection/background/pressed",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Checkboxes, radios and switches when pressed or on.",
+"values": {
+"Base": "brand/primary/default"
+}
+},
+"VariableID:4142:1588": {
+"name": "interactive/selection/background/focused",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Selection controls with keyboard focus.",
+"values": {
+"Base": "fill/default"
+}
+},
+"VariableID:4142:1589": {
+"name": "interactive/selection/background/selected",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Selection controls in their selected state.",
+"values": {
+"Base": "fill/sunken"
+}
+},
+"VariableID:4142:1590": {
+"name": "interactive/selection/background/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled checkboxes, radios and switches.",
+"values": {
+"Base": "fill/disabled"
+}
+},
+"VariableID:4142:1591": {
+"name": "interactive/selection/border/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Outline of checkboxes and radios at rest.",
+"values": {
+"Base": "line/strong"
+}
+},
+"VariableID:4142:1592": {
+"name": "interactive/selection/border/hover",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Outline of checkboxes and radios on hover.",
+"values": {
+"Base": "line/stronger"
+}
+},
+"VariableID:4142:1593": {
+"name": "interactive/selection/border/pressed",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Outline of checkboxes and radios when pressed.",
+"values": {
+"Base": "line/selection"
+}
+},
+"VariableID:4142:1594": {
+"name": "interactive/selection/border/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Outline of disabled checkboxes and radios.",
+"values": {
+"Base": "line/subtle"
+}
+},
+"VariableID:4142:1595": {
+"name": "interactive/selection/foreground/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Labels and icons on selection controls.",
+"values": {
+"Base": "ink/high"
+}
+},
+"VariableID:4142:1596": {
+"name": "interactive/selection/foreground/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Labels and icons on disabled selection controls.",
+"values": {
+"Base": "ink/disabled"
+}
+},
+"VariableID:4142:1630": {
+"name": "fill/hover",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/neutral/cool/70",
+"Dark": "color/neutral/cool/40",
+"AAA Light": "color/neutral/cool/70",
+"AAA Dark": "color/neutral/cool/40"
+}
+},
+"VariableID:4142:92": {
+"name": "border/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "",
+"values": {
+"Base": "line/strong"
+}
+},
+"VariableID:4654:10521": {
+"name": "indicator/small/font family",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font family/IBM Plex Sans"
+}
+},
+"VariableID:4654:10522": {
+"name": "indicator/small/font size",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/font size/10"
+}
+},
+"VariableID:4654:10523": {
+"name": "indicator/small/font weight",
+"collection": "typography",
+"type": "STRING",
+"description": "",
+"values": {
+"*": "text/font weight/regular"
+}
+},
+"VariableID:4654:10524": {
+"name": "indicator/small/line height",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/line height/12"
+}
+},
+"VariableID:4654:10525": {
+"name": "indicator/small/letter spacing",
+"collection": "typography",
+"type": "FLOAT",
+"description": "",
+"values": {
+"*": "text/letter spacing/none"
+}
+},
+"VariableID:4654:10526": {
+"name": "text/line height/12",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": 12
+}
+},
+"VariableID:5268:3976": {
+"name": "feedback/error/background/strong",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Bold error banners and badges.",
+"values": {
+"Base": "status/error/default"
+}
+},
+"VariableID:5268:3978": {
+"name": "feedback/warning/background/strong",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Bold warning banners and badges.",
+"values": {
+"Base": "status/warning/default"
+}
+},
+"VariableID:5268:3980": {
+"name": "feedback/success/background/strong",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Bold success banners and badges.",
+"values": {
+"Base": "status/success/default"
+}
+},
+"VariableID:5268:3982": {
+"name": "feedback/info/background/strong",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Bold info banners and badges.",
+"values": {
+"Base": "status/info/default"
+}
+},
+"VariableID:5278:4182": {
+"name": "control/xs",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 40px, source: scale/12",
+"values": {
+"Desktop": "scale/9",
+"Mobile": "scale/9",
+"Tablet": "scale/9",
+"Desktop Compact": "scale/8"
+},
+"overrides": {
+"condensed/Desktop": "scale/8"
+}
+},
+"VariableID:5278:4183": {
+"name": "control/icon-xxs",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 20px, source: scale/7",
+"values": {
+"*": "scale/5"
+},
+"overrides": {
+"condensed/Desktop": "scale/4"
+}
+},
+"VariableID:5828:257": {
+"name": "scale/-1",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": -1
+}
+},
+"VariableID:5828:258": {
+"name": "scale/-2",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": -2
+}
+},
+"VariableID:5828:259": {
+"name": "scale/-3",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": -4
+}
+},
+"VariableID:5828:260": {
+"name": "space/neg/xs",
+"collection": "size",
+"type": "FLOAT",
+"description": "= -1px, source: scale/-1",
+"values": {
+"*": "scale/-1"
+}
+},
+"VariableID:5828:261": {
+"name": "space/neg/sm",
+"collection": "size",
+"type": "FLOAT",
+"description": "= -2px, source: scale/-2",
+"values": {
+"*": "scale/-2"
+}
+},
+"VariableID:5828:262": {
+"name": "space/neg/md",
+"collection": "size",
+"type": "FLOAT",
+"description": "= -4px, source: scale/-3",
+"values": {
+"*": "scale/-3"
+}
+},
+"VariableID:6125:2408": {
+"name": "surface/track",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Unfilled part of sliders and progress bars.",
+"values": {
+"Base": "fill/sunken"
+}
+},
+"VariableID:61:355": {
+"name": "color/pure/white",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#ffffff"
+}
+},
+"VariableID:61:356": {
+"name": "color/pure/black",
+"collection": "primitives",
+"type": "COLOR",
+"description": "",
+"values": {
+"Value": "#000000"
+}
+},
+"VariableID:63:10": {
+"name": "fill/default",
+"collection": "palette",
+"type": "COLOR",
+"description": "Standard component/card background (theme.color.surface.default)",
+"values": {
+"Light": "color/pure/white",
+"Dark": "color/neutral/cool/100",
+"AAA Light": "color/pure/white",
+"AAA Dark": "color/neutral/cool/100"
+}
+},
+"VariableID:63:11": {
+"name": "fill/elevated",
+"collection": "palette",
+"type": "COLOR",
+"description": "Raised surface background, pair with elevation shadow (theme.color.surface.elevated)",
+"values": {
+"Light": "color/pure/white",
+"Dark": "color/neutral/cool/100",
+"AAA Light": "color/pure/white",
+"AAA Dark": "color/neutral/cool/100"
+}
+},
+"VariableID:63:12": {
+"name": "fill/overlay",
+"collection": "palette",
+"type": "COLOR",
+"description": "Modal/popover panel background (theme.color.surface.overlay)",
+"values": {
+"Light": "color/pure/white",
+"Dark": "color/neutral/cool/80",
+"AAA Light": "color/pure/white",
+"AAA Dark": "color/neutral/cool/90"
+}
+},
+"VariableID:63:13": {
+"name": "fill/inverse",
+"collection": "palette",
+"type": "COLOR",
+"description": "Inverted (dark) surface, e.g. tooltips (theme.color.surface.inverse)",
+"values": {
+"Light": "color/neutral/cool/90",
+"Dark": "color/neutral/cool/20",
+"AAA Light": "color/neutral/cool/90",
+"AAA Dark": "color/neutral/cool/20"
+}
+},
+"VariableID:63:14": {
+"name": "fill/sunken",
+"collection": "palette",
+"type": "COLOR",
+"description": "Recessed background, e.g. inputs/wells (theme.color.surface.sunken)",
+"values": {
+"Light": "color/neutral/cool/30",
+"Dark": "color/neutral/cool/80",
+"AAA Light": "color/neutral/cool/20",
+"AAA Dark": "color/neutral/cool/90"
+}
+},
+"VariableID:63:15": {
+"name": "fill/scrim",
+"collection": "palette",
+"type": "COLOR",
+"description": "Backdrop behind modals; apply opacity at usage since this alias is fully opaque (theme.color.surface.scrim)",
+"values": {
+"*": "color/alpha/dark/60"
+}
+},
+"VariableID:63:16": {
+"name": "ink/high",
+"collection": "palette",
+"type": "COLOR",
+"description": "High-emphasis text/icon color (theme.color.content.high)",
+"values": {
+"Light": "color/neutral/cool/100",
+"Dark": "color/pure/white",
+"AAA Light": "color/neutral/cool/100",
+"AAA Dark": "color/pure/white"
+}
+},
+"VariableID:63:17": {
+"name": "ink/medium",
+"collection": "palette",
+"type": "COLOR",
+"description": "Medium-emphasis text/icon color (theme.color.content.medium)",
+"values": {
+"Light": "color/neutral/cool/70",
+"Dark": "color/neutral/cool/40",
+"AAA Light": "color/neutral/cool/80",
+"AAA Dark": "color/neutral/cool/30"
+}
+},
+"VariableID:63:18": {
+"name": "ink/low",
+"collection": "palette",
+"type": "COLOR",
+"description": "Low-emphasis text/icon color (theme.color.content.low)",
+"values": {
+"Light": "color/neutral/cool/60",
+"Dark": "color/neutral/cool/50",
+"AAA Light": "color/neutral/cool/80",
+"AAA Dark": "color/neutral/cool/40"
+}
+},
+"VariableID:63:19": {
+"name": "ink/disabled",
+"collection": "palette",
+"type": "COLOR",
+"description": "Disabled-state text/icon color (theme.color.content.disabled)",
+"values": {
+"Light": "color/neutral/cool/50",
+"Dark": "color/neutral/cool/60",
+"AAA Light": "color/neutral/cool/80",
+"AAA Dark": "color/neutral/cool/40"
+}
+},
+"VariableID:63:2": {
+"name": "brand/primary/default",
+"collection": "palette",
+"type": "COLOR",
+"description": "Primary brand color (theme.color.brand.primary)",
+"values": {
+"Light": "color/brand/main/60",
+"Dark": "color/brand/main/60",
+"AAA Light": "color/brand/main/80",
+"AAA Dark": "color/brand/main/30"
+},
+"overrides": {
+"companion/Dark": "color/accent/1/60",
+"companion/Light": "color/accent/1/60",
+"target/Dark": "color/extend/4/60",
+"target/Light": "color/extend/4/60"
+}
+},
+"VariableID:63:20": {
+"name": "ink/inverse",
+"collection": "palette",
+"type": "COLOR",
+"description": "Text/icon color on inverse/dark surfaces (theme.color.content.inverse)",
+"values": {
+"Light": "color/pure/white",
+"Dark": "color/neutral/cool/100",
+"AAA Light": "color/pure/white",
+"AAA Dark": "color/neutral/cool/100"
+}
+},
+"VariableID:63:202": {
+"name": "status/info/default",
+"collection": "palette",
+"type": "COLOR",
+"description": "Info text, borders and bold banners.",
+"values": {
+"Light": "color/system/info/60",
+"Dark": "color/system/info/60",
+"AAA Light": "color/system/info/80",
+"AAA Dark": "color/system/info/30"
+}
+},
+"VariableID:63:203": {
+"name": "status/info/faint",
+"collection": "palette",
+"type": "COLOR",
+"description": "Backgrounds of info messages and containers.",
+"values": {
+"Light": "color/system/info/10",
+"Dark": "color/system/info/100",
+"AAA Light": "color/system/info/10",
+"AAA Dark": "color/system/info/100"
+}
+},
+"VariableID:63:204": {
+"name": "status/info/deep",
+"collection": "palette",
+"type": "COLOR",
+"description": "Highest emphasis info elements.",
+"values": {
+"Light": "color/system/info/80",
+"Dark": "color/system/info/80",
+"AAA Light": "color/system/info/100",
+"AAA Dark": "color/system/info/10"
+}
+},
+"VariableID:63:21": {
+"name": "ink/link",
+"collection": "palette",
+"type": "COLOR",
+"description": "Text links and subtle button text.",
+"values": {
+"Light": "color/brand/main/60",
+"Dark": "color/brand/main/50",
+"AAA Light": "color/brand/main/90",
+"AAA Dark": "color/brand/main/20"
+},
+"overrides": {
+"companion/Dark": "color/accent/1/50",
+"companion/Light": "color/accent/1/60",
+"target/Dark": "color/extend/4/50",
+"target/Light": "color/extend/4/60"
+}
+},
+"VariableID:63:22": {
+"name": "status/success/default",
+"collection": "palette",
+"type": "COLOR",
+"description": "Success color (theme.color.success.default)",
+"values": {
+"Light": "color/system/positive/60",
+"Dark": "color/system/positive/60",
+"AAA Light": "color/system/positive/80",
+"AAA Dark": "color/system/positive/30"
+}
+},
+"VariableID:63:23": {
+"name": "status/success/faint",
+"collection": "palette",
+"type": "COLOR",
+"description": "Success background tint (theme.color.success.subtle)",
+"values": {
+"Light": "color/system/positive/10",
+"Dark": "color/system/positive/100",
+"AAA Light": "color/system/positive/10",
+"AAA Dark": "color/system/positive/100"
+}
+},
+"VariableID:63:24": {
+"name": "status/success/deep",
+"collection": "palette",
+"type": "COLOR",
+"description": "Success solid/strong emphasis (theme.color.success.strong)",
+"values": {
+"Light": "color/system/positive/80",
+"Dark": "color/system/positive/80",
+"AAA Light": "color/system/positive/100",
+"AAA Dark": "color/system/positive/10"
+}
+},
+"VariableID:63:25": {
+"name": "status/warning/default",
+"collection": "palette",
+"type": "COLOR",
+"description": "Warning text, borders and bold banners.",
+"values": {
+"Light": "color/system/warning/60",
+"Dark": "color/system/warning/50",
+"AAA Light": "color/system/warning/80",
+"AAA Dark": "color/system/warning/30"
+}
+},
+"VariableID:63:26": {
+"name": "status/warning/faint",
+"collection": "palette",
+"type": "COLOR",
+"description": "Backgrounds of warning messages and containers.",
+"values": {
+"Light": "color/system/warning/10",
+"Dark": "color/system/warning/100",
+"AAA Light": "color/system/warning/10",
+"AAA Dark": "color/system/warning/100"
+}
+},
+"VariableID:63:28": {
+"name": "status/error/default",
+"collection": "palette",
+"type": "COLOR",
+"description": "Error color (theme.color.error.default)",
+"values": {
+"Light": "color/system/negative/60",
+"Dark": "color/system/negative/60",
+"AAA Light": "color/system/negative/80",
+"AAA Dark": "color/system/negative/30"
+}
+},
+"VariableID:63:29": {
+"name": "status/error/faint",
+"collection": "palette",
+"type": "COLOR",
+"description": "Error background tint (theme.color.error.subtle)",
+"values": {
+"Light": "color/system/negative/10",
+"Dark": "color/system/negative/100",
+"AAA Light": "color/system/negative/10",
+"AAA Dark": "color/system/negative/100"
+}
+},
+"VariableID:63:3": {
+"name": "brand/secondary/default",
+"collection": "palette",
+"type": "COLOR",
+"description": "Secondary brand color (theme.color.brand.secondary)",
+"values": {
+"Light": "color/brand/alternative/60",
+"Dark": "color/brand/alternative/50",
+"AAA Light": "color/brand/alternative/90",
+"AAA Dark": "color/brand/alternative/30"
+},
+"overrides": {
+"target/Dark": "color/extend/3/50",
+"target/Light": "color/extend/3/60"
+}
+},
+"VariableID:63:30": {
+"name": "status/error/deep",
+"collection": "palette",
+"type": "COLOR",
+"description": "Error solid/strong emphasis (theme.color.error.strong)",
+"values": {
+"Light": "color/system/negative/80",
+"Dark": "color/system/negative/80",
+"AAA Light": "color/system/negative/100",
+"AAA Dark": "color/system/negative/10"
+}
+},
+"VariableID:63:31": {
+"name": "fill/selection",
+"collection": "palette",
+"type": "COLOR",
+"description": "Selected item/text background (theme.color.selection.background)",
+"values": {
+"Light": "color/brand/main/20",
+"Dark": "color/brand/main/90",
+"AAA Light": "color/brand/main/20",
+"AAA Dark": "color/brand/main/90"
+},
+"overrides": {
+"companion/Dark": "color/accent/1/90",
+"companion/Light": "color/accent/1/20"
+}
+},
+"VariableID:63:32": {
+"name": "line/selection",
+"collection": "palette",
+"type": "COLOR",
+"description": "Borders of selected items.",
+"values": {
+"Light": "color/brand/main/60",
+"Dark": "color/brand/main/50",
+"AAA Light": "color/brand/main/80",
+"AAA Dark": "color/brand/main/30"
+},
+"overrides": {
+"companion/Dark": "color/accent/1/50",
+"companion/Light": "color/accent/1/60",
+"target/Dark": "color/extend/4/50",
+"target/Light": "color/extend/4/60"
+}
+},
+"VariableID:63:33": {
+"name": "ink/selection",
+"collection": "palette",
+"type": "COLOR",
+"description": "Text color within a selection (theme.color.selection.text)",
+"values": {
+"Light": "color/neutral/cool/100",
+"Dark": "color/neutral/cool/10",
+"AAA Light": "color/neutral/cool/100",
+"AAA Dark": "color/neutral/cool/10"
+}
+},
+"VariableID:63:4": {
+"name": "brand/tertiary/default",
+"collection": "palette",
+"type": "COLOR",
+"description": "Main tertiary brand fill.",
+"values": {
+"Light": "color/accent/5/60",
+"Dark": "color/accent/5/50",
+"AAA Light": "color/accent/5/90",
+"AAA Dark": "color/accent/5/40"
+}
+},
+"VariableID:63:5": {
+"name": "brand/primary/faint",
+"collection": "palette",
+"type": "COLOR",
+"description": "Light brand tint for backgrounds (theme.color.brand.subtle)",
+"values": {
+"Light": "color/brand/main/10",
+"Dark": "color/brand/main/100",
+"AAA Light": "color/brand/main/10",
+"AAA Dark": "color/brand/main/100"
+},
+"overrides": {
+"companion/Dark": "color/accent/1/100",
+"companion/Light": "color/accent/1/10",
+"target/Dark": "color/extend/4/100",
+"target/Light": "color/extend/4/10"
+}
+},
+"VariableID:63:6": {
+"name": "brand/primary/muted",
+"collection": "palette",
+"type": "COLOR",
+"description": "Muted/softened brand tone (theme.color.brand.muted)",
+"values": {
+"Light": "color/brand/main/20",
+"Dark": "color/brand/main/90",
+"AAA Light": "color/brand/main/20",
+"AAA Dark": "color/brand/main/90"
+},
+"overrides": {
+"companion/Dark": "color/accent/1/90",
+"companion/Light": "color/accent/1/20",
+"target/Dark": "color/extend/4/90",
+"target/Light": "color/extend/4/20"
+}
+},
+"VariableID:63:7": {
+"name": "brand/primary/on",
+"collection": "palette",
+"type": "COLOR",
+"description": "Text and icons on primary, positive and destructive fills.",
+"values": {
+"Light": "color/pure/white",
+"Dark": "color/pure/white",
+"AAA Light": "color/pure/white",
+"AAA Dark": "color/neutral/cool/100"
+}
+},
+"VariableID:63:8": {
+"name": "brand/secondary/on",
+"collection": "palette",
+"type": "COLOR",
+"description": "Foreground on top of Brand/Secondary (theme.color.brand.onSecondary)",
+"values": {
+"Light": "color/pure/white",
+"Dark": "color/pure/white",
+"AAA Light": "color/pure/white",
+"AAA Dark": "color/neutral/cool/100"
+}
+},
+"VariableID:63:9": {
+"name": "fill/canvas",
+"collection": "palette",
+"type": "COLOR",
+"description": "App/page base background (theme.color.surface.canvas)",
+"values": {
+"Light": "color/neutral/cool/20",
+"Dark": "color/neutral/cool/90",
+"AAA Light": "color/neutral/cool/20",
+"AAA Dark": "color/neutral/cool/90"
+}
+},
+"VariableID:6412:2333": {
+"name": "foreground/on-strong",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Text/icon color on strong, saturated fills (feedback background/strong, selected controls). White in every mode.",
+"values": {
+"Base": "ink/always-white"
+}
+},
+"VariableID:6412:2334": {
+"name": "ink/always-white",
+"collection": "palette",
+"type": "COLOR",
+"description": "White that does not change with mode. Source for foreground/on-strong.",
+"values": {
+"Light": "color/pure/white",
+"Dark": "color/pure/white",
+"AAA Light": "color/pure/white",
+"AAA Dark": "color/neutral/cool/100"
+}
+},
+"VariableID:6412:2335": {
+"name": "ink/always-blank",
+"collection": "palette",
+"type": "COLOR",
+"description": "Near-black that does not change with mode. Source for foreground/on-light.",
+"values": {
+"*": "color/neutral/cool/100"
+}
+},
+"VariableID:6412:2336": {
+"name": "foreground/on-light",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Text/icon color on fills that stay light in every mode. Near-black in every mode.",
+"values": {
+"Base": "ink/always-blank"
+}
+},
+"VariableID:6412:2337": {
+"name": "feedback/neutral/background/subtle",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Background fill for neutral (no-status) badges, labels and inline messages",
+"values": {
+"Base": "status/neutral/faint"
+}
+},
+"VariableID:6412:2338": {
+"name": "feedback/neutral/background/strong",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Solid fill for high-emphasis neutral badges and labels",
+"values": {
+"Base": "status/neutral/default"
+}
+},
+"VariableID:6412:2339": {
+"name": "feedback/neutral/foreground",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Icon/text color used inside neutral badges, labels and messages",
+"values": {
+"Base": "ink/medium"
+}
+},
+"VariableID:6412:2340": {
+"name": "status/neutral/default",
+"collection": "palette",
+"type": "COLOR",
+"description": "Neutral color (theme.color.neutral.default)",
+"values": {
+"Light": "color/neutral/cool/60",
+"Dark": "color/neutral/warm/60",
+"AAA Light": "color/neutral/cool/80",
+"AAA Dark": "color/neutral/warm/40"
+}
+},
+"VariableID:6412:2341": {
+"name": "status/neutral/faint",
+"collection": "palette",
+"type": "COLOR",
+"description": "Neutral background tint (theme.color.neutral.subtle)",
+"values": {
+"Light": "color/neutral/cool/10",
+"Dark": "color/neutral/warm/100",
+"AAA Light": "color/neutral/cool/10",
+"AAA Dark": "color/neutral/warm/100"
+}
+},
+"VariableID:6412:2342": {
+"name": "status/neutral/deep",
+"collection": "palette",
+"type": "COLOR",
+"description": "Neutral solid/strong emphasis (theme.color.neutral.strong)",
+"values": {
+"Light": "color/neutral/cool/80",
+"Dark": "color/neutral/warm/30",
+"AAA Light": "color/neutral/cool/100",
+"AAA Dark": "color/neutral/warm/20"
+}
+},
+"VariableID:6412:2343": {
+"name": "status/neutral/subtle",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/neutral/cool/50",
+"Dark": "color/neutral/warm/60",
+"AAA Light": "color/neutral/cool/50",
+"AAA Dark": "color/neutral/warm/50"
+}
+},
+"VariableID:6412:2344": {
+"name": "status/neutral/strong",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/neutral/cool/70",
+"Dark": "color/neutral/warm/40",
+"AAA Light": "color/neutral/cool/90",
+"AAA Dark": "color/neutral/warm/30"
+}
+},
+"VariableID:6496:3259": {
+"name": "space/neg/lg",
+"collection": "size",
+"type": "FLOAT",
+"description": "= -8px, source: scale/-5",
+"values": {
+"*": "scale/-5"
+}
+},
+"VariableID:6496:3260": {
+"name": "space/neg/xl",
+"collection": "size",
+"type": "FLOAT",
+"description": "= -12px, source: scale/-6",
+"values": {
+"*": "scale/-6"
+}
+},
+"VariableID:6496:3261": {
+"name": "scale/-4",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": -6
+}
+},
+"VariableID:6496:3262": {
+"name": "scale/-5",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": -8
+}
+},
+"VariableID:6496:3263": {
+"name": "scale/-6",
+"collection": "primitives",
+"type": "FLOAT",
+"description": "",
+"values": {
+"Value": -12
+}
+},
+"VariableID:6680:11902": {
+"name": "surface/subtle",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Quiet containers, such as chat bubbles and neutral badges.",
+"values": {
+"Base": "fill/sunken"
+}
+},
+"VariableID:6797:2": {
+"name": "animations/spring",
+"collection": "size",
+"type": "STRING",
+"description": "Spring motion shared by Switch and Segmented Control: 250ms on cubic-bezier(0.34, 1.36, 0.64, 1), a slight overshoot that settles. Duration and easing together, for transition timing: transition: transform var(--animations-spring). Turn it off under prefers-reduced-motion.",
+"values": {
+"*": "250ms cubic-bezier(0.34, 1.36, 0.64, 1)"
+}
+},
+"VariableID:6811:2": {
+"name": "animations/smooth",
+"collection": "size",
+"type": "STRING",
+"description": "Smooth motion for opening and closing: ease-in-out over 250ms. Used by every element in Navigation Rail (collapse/expand, sub menu open/close). Duration and curve in one value; use directly in a CSS transition.",
+"values": {
+"*": "250ms ease-in-out"
+}
+},
+"VariableID:7074:754": {
+"name": "space/xs",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 4px, source: scale/2",
+"values": {
+"Desktop": "scale/4",
+"Mobile": "scale/4",
+"Tablet": "scale/4",
+"Desktop Compact": "scale/3"
+}
+},
+"VariableID:7198:20127": {
+"name": "brand/primary/deep",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/brand/main/80",
+"Dark": "color/brand/main/80",
+"AAA Light": "color/brand/main/100",
+"AAA Dark": "color/brand/main/10"
+},
+"overrides": {
+"companion/Dark": "color/accent/1/80",
+"companion/Light": "color/accent/1/80",
+"target/Dark": "color/extend/4/80",
+"target/Light": "color/extend/4/80"
+}
+},
+"VariableID:7198:20128": {
+"name": "brand/secondary/deep",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/brand/alternative/80",
+"Dark": "color/brand/alternative/80",
+"AAA Light": "color/brand/alternative/100",
+"AAA Dark": "color/brand/alternative/10"
+}
+},
+"VariableID:7198:20129": {
+"name": "brand/tertiary/deep",
+"collection": "palette",
+"type": "COLOR",
+"description": "Highest emphasis tertiary brand fills.",
+"values": {
+"Light": "color/accent/5/80",
+"Dark": "color/accent/5/80",
+"AAA Light": "color/accent/5/100",
+"AAA Dark": "color/accent/5/20"
+}
+},
+"VariableID:7211:20273": {
+"name": "control/icon-xs",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 20px, source: scale/7",
+"values": {
+"*": "scale/6"
+}
+},
+"VariableID:72:10": {
+"name": "line/default",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/neutral/cool/40",
+"Dark": "color/neutral/cool/70",
+"AAA Light": "color/neutral/cool/60",
+"AAA Dark": "color/neutral/cool/50"
+}
+},
+"VariableID:72:11": {
+"name": "line/subtle",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/neutral/cool/30",
+"Dark": "color/neutral/cool/80",
+"AAA Light": "color/neutral/cool/50",
+"AAA Dark": "color/neutral/cool/60"
+}
+},
+"VariableID:72:12": {
+"name": "line/strong",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/neutral/cool/60",
+"Dark": "color/neutral/cool/50",
+"AAA Light": "color/neutral/cool/70",
+"AAA Dark": "color/neutral/cool/40"
+}
+},
+"VariableID:72:13": {
+"name": "fill/transparent",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"*": "#f3f6fa00"
+}
+},
+"VariableID:72:2": {
+"name": "brand/secondary/subtle",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/brand/alternative/50",
+"Dark": "color/brand/alternative/60",
+"AAA Light": "color/brand/alternative/30",
+"AAA Dark": "color/brand/alternative/90"
+},
+"overrides": {
+"target/Dark": "color/extend/3/60",
+"target/Light": "color/extend/3/50"
+}
+},
+"VariableID:72:3": {
+"name": "brand/secondary/strong",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/brand/alternative/70",
+"Dark": "color/brand/alternative/70",
+"AAA Light": "color/brand/alternative/100",
+"AAA Dark": "color/brand/alternative/20"
+},
+"overrides": {
+"target/Dark": "color/extend/3/40",
+"target/Light": "color/extend/3/70"
+}
+},
+"VariableID:72:300": {
+"name": "surface/page",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default background color of the page or app canvas",
+"values": {
+"Base": "fill/canvas"
+}
+},
+"VariableID:72:301": {
+"name": "surface/section",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Background for a section or panel that groups related content",
+"values": {
+"Base": "fill/default"
+}
+},
+"VariableID:72:302": {
+"name": "surface/card",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Background of card components",
+"values": {
+"Base": "fill/elevated"
+}
+},
+"VariableID:72:303": {
+"name": "surface/dialog",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Background of dialog/modal windows",
+"values": {
+"Base": "fill/overlay"
+}
+},
+"VariableID:72:304": {
+"name": "surface/sheet",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Background of bottom sheets and side drawers",
+"values": {
+"Base": "fill/overlay"
+}
+},
+"VariableID:72:305": {
+"name": "surface/popover",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Background of popovers and other floating panels",
+"values": {
+"Base": "fill/overlay"
+}
+},
+"VariableID:72:306": {
+"name": "surface/menu",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Background of dropdown and context menus",
+"values": {
+"Base": "fill/overlay"
+}
+},
+"VariableID:72:307": {
+"name": "surface/tooltip",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Background of tooltips",
+"values": {
+"Base": "fill/inverse"
+}
+},
+"VariableID:72:308": {
+"name": "surface/brand",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Brand-colored background, e.g. hero sections or marketing highlights",
+"values": {
+"Base": "brand/primary/faint"
+}
+},
+"VariableID:72:309": {
+"name": "surface/inverse",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Dark/inverse background for high-contrast sections",
+"values": {
+"Base": "fill/inverse"
+}
+},
+"VariableID:72:310": {
+"name": "surface/success",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Background for containers communicating a success state",
+"values": {
+"Base": "status/success/faint"
+}
+},
+"VariableID:72:311": {
+"name": "surface/warning",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Background for containers communicating a warning state",
+"values": {
+"Base": "status/warning/faint"
+}
+},
+"VariableID:72:312": {
+"name": "surface/error",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Background for containers communicating an error state",
+"values": {
+"Base": "status/error/faint"
+}
+},
+"VariableID:72:313": {
+"name": "surface/info",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Containers holding info content.",
+"values": {
+"Base": "status/info/faint"
+}
+},
+"VariableID:72:314": {
+"name": "foreground/primary",
+"collection": "semantics",
+"type": "COLOR",
+"description": "The default color for body text and primary icons, used as the highest-emphasis content color.",
+"values": {
+"Base": "ink/high"
+}
+},
+"VariableID:72:315": {
+"name": "foreground/secondary",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Lower-emphasis text/icon color, e.g. captions or supporting copy",
+"values": {
+"Base": "ink/medium"
+}
+},
+"VariableID:72:316": {
+"name": "foreground/tertiary",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Lowest-emphasis text/icon color, e.g. placeholders or metadata",
+"values": {
+"Base": "ink/low"
+}
+},
+"VariableID:72:317": {
+"name": "foreground/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Text/icon color for disabled, non-interactive elements",
+"values": {
+"Base": "ink/disabled"
+}
+},
+"VariableID:72:318": {
+"name": "foreground/inverse",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Text/icon color for use on dark or inverse-colored surfaces",
+"values": {
+"Base": "ink/inverse"
+}
+},
+"VariableID:72:319": {
+"name": "foreground/link",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Color for hyperlinks and other clickable inline text",
+"values": {
+"Base": "ink/link"
+}
+},
+"VariableID:72:320": {
+"name": "foreground/success",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Text/icon color that communicates success",
+"values": {
+"Base": "status/success/default"
+}
+},
+"VariableID:72:321": {
+"name": "foreground/warning",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Text/icon color that communicates a warning",
+"values": {
+"Base": "status/warning/default"
+}
+},
+"VariableID:72:322": {
+"name": "foreground/error",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Text/icon color that communicates an error, paired with feedback/error tokens",
+"values": {
+"Base": "status/error/default"
+}
+},
+"VariableID:72:323": {
+"name": "foreground/info",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Text/icon color that communicates neutral information",
+"values": {
+"Base": "status/info/default"
+}
+},
+"VariableID:72:324": {
+"name": "border/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default border color for inputs, cards, and dividers at rest",
+"values": {
+"Base": "line/default"
+}
+},
+"VariableID:72:325": {
+"name": "border/subtle",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Faint border for low-emphasis separation, e.g. nested cards",
+"values": {
+"Base": "line/subtle"
+}
+},
+"VariableID:72:326": {
+"name": "border/strong",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Higher-contrast border for emphasis, e.g. active outlines or key dividers",
+"values": {
+"Base": "line/stronger"
+}
+},
+"VariableID:72:327": {
+"name": "border/focus",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Border applied when an element receives keyboard focus, for accessibility",
+"values": {
+"Base": "line/focus"
+}
+},
+"VariableID:72:328": {
+"name": "border/success",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Border color for inputs/fields confirmed valid or successful",
+"values": {
+"Base": "status/success/default"
+}
+},
+"VariableID:72:329": {
+"name": "border/warning",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Border color for elements flagged with a warning",
+"values": {
+"Base": "status/warning/default"
+}
+},
+"VariableID:72:330": {
+"name": "border/error",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Border color for inputs/fields in an invalid or error state",
+"values": {
+"Base": "status/error/default"
+}
+},
+"VariableID:72:331": {
+"name": "border/info",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Borders of info chips, labels and indicators.",
+"values": {
+"Base": "status/info/default"
+}
+},
+"VariableID:72:332": {
+"name": "interactive/primary/background/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default state for the primary interactive element, the main and highest-emphasis action or control on a screen.",
+"values": {
+"Base": "brand/primary/default"
+}
+},
+"VariableID:72:333": {
+"name": "interactive/primary/background/focused",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Focused state for the primary interactive element.",
+"values": {
+"Base": "brand/primary/default"
+}
+},
+"VariableID:72:334": {
+"name": "interactive/primary/background/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled state for the primary interactive element.",
+"values": {
+"Base": "fill/disabled"
+}
+},
+"VariableID:72:339": {
+"name": "interactive/primary/foreground/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default-state text/icon color on the primary interactive element's background.",
+"values": {
+"Base": "brand/primary/on"
+}
+},
+"VariableID:72:344": {
+"name": "interactive/primary/foreground/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled-state text/icon color on the primary interactive element's background.",
+"values": {
+"Base": "ink/disabled"
+}
+},
+"VariableID:72:349": {
+"name": "interactive/primary/border/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default-state border for the primary interactive element.",
+"values": {
+"Base": "brand/primary/default"
+}
+},
+"VariableID:72:351": {
+"name": "interactive/primary/border/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled-state border for the primary interactive element.",
+"values": {
+"Base": "line/subtle"
+}
+},
+"VariableID:72:356": {
+"name": "interactive/secondary/background/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default state for a secondary interactive element, an alternative and less prominent action alongside primary.",
+"values": {
+"Base": "brand/secondary/default"
+}
+},
+"VariableID:72:357": {
+"name": "interactive/secondary/background/hover",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Hover state for a secondary interactive element.",
+"values": {
+"Base": "brand/secondary/strong"
+}
+},
+"VariableID:72:358": {
+"name": "interactive/secondary/background/pressed",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Pressed state for a secondary interactive element.",
+"values": {
+"Base": "brand/secondary/deep"
+}
+},
+"VariableID:72:359": {
+"name": "interactive/secondary/background/focused",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Focused state for a secondary interactive element.",
+"values": {
+"Base": "brand/secondary/default"
+}
+},
+"VariableID:72:360": {
+"name": "interactive/secondary/background/selected",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Selected state for a secondary interactive element.",
+"values": {
+"Base": "brand/secondary/deep"
+}
+},
+"VariableID:72:361": {
+"name": "interactive/secondary/background/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled state for a secondary interactive element.",
+"values": {
+"Base": "fill/disabled"
+}
+},
+"VariableID:72:366": {
+"name": "interactive/secondary/foreground/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default-state text/icon color on a secondary interactive element's background.",
+"values": {
+"Base": "brand/secondary/on"
+}
+},
+"VariableID:72:371": {
+"name": "interactive/secondary/foreground/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled-state text/icon color on a secondary interactive element's background.",
+"values": {
+"Base": "ink/disabled"
+}
+},
+"VariableID:72:376": {
+"name": "interactive/secondary/border/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default-state border for a secondary interactive element.",
+"values": {
+"Base": "brand/secondary/default"
+}
+},
+"VariableID:72:377": {
+"name": "interactive/secondary/border/hover",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Hover-state border for a secondary interactive element.",
+"values": {
+"Base": "brand/secondary/strong"
+}
+},
+"VariableID:72:378": {
+"name": "interactive/secondary/border/pressed",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Pressed-state border for a secondary interactive element.",
+"values": {
+"Base": "brand/secondary/deep"
+}
+},
+"VariableID:72:381": {
+"name": "interactive/secondary/border/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled-state border for a secondary interactive element.",
+"values": {
+"Base": "line/subtle"
+}
+},
+"VariableID:72:386": {
+"name": "brand/primary/subtle",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/brand/main/50",
+"Dark": "color/brand/main/50",
+"AAA Light": "color/brand/main/30",
+"AAA Dark": "color/brand/main/90"
+},
+"overrides": {
+"companion/Dark": "color/accent/1/50",
+"companion/Light": "color/accent/1/50",
+"target/Dark": "color/extend/4/70",
+"target/Light": "color/extend/4/50"
+}
+},
+"VariableID:72:387": {
+"name": "brand/primary/strong",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/brand/main/70",
+"Dark": "color/brand/main/70",
+"AAA Light": "color/brand/main/90",
+"AAA Dark": "color/brand/main/20"
+},
+"overrides": {
+"companion/Dark": "color/accent/1/70",
+"companion/Light": "color/accent/1/70",
+"target/Dark": "color/extend/4/70",
+"target/Light": "color/extend/4/70"
+}
+},
+"VariableID:72:388": {
+"name": "interactive/primary/background/hover",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Hover state for the primary interactive element.",
+"values": {
+"Base": "brand/primary/strong"
+}
+},
+"VariableID:72:389": {
+"name": "interactive/primary/background/pressed",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Pressed state for the primary interactive element.",
+"values": {
+"Base": "brand/primary/deep"
+}
+},
+"VariableID:72:390": {
+"name": "interactive/primary/background/selected",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Selected state for the primary interactive element.",
+"values": {
+"Base": "brand/primary/deep"
+}
+},
+"VariableID:72:391": {
+"name": "interactive/primary/border/hover",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Hover-state border for the primary interactive element.",
+"values": {
+"Base": "brand/primary/strong"
+}
+},
+"VariableID:72:392": {
+"name": "interactive/primary/border/pressed",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Pressed-state border for the primary interactive element.",
+"values": {
+"Base": "brand/primary/deep"
+}
+},
+"VariableID:72:394": {
+"name": "interactive/ghost/background/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default state for a ghost interactive element, minimal in styling with no fill, for low-emphasis actions.",
+"values": {
+"Base": "status/ghost/default"
+}
+},
+"VariableID:72:395": {
+"name": "interactive/ghost/background/hover",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Hover state for a ghost interactive element.",
+"values": {
+"Base": "status/ghost/faint"
+}
+},
+"VariableID:72:396": {
+"name": "interactive/ghost/background/pressed",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Pressed state for a ghost interactive element.",
+"values": {
+"Base": "status/ghost/deep"
+}
+},
+"VariableID:72:397": {
+"name": "interactive/ghost/background/focused",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Focused state for a ghost interactive element.",
+"values": {
+"Base": "status/ghost/default"
+}
+},
+"VariableID:72:398": {
+"name": "interactive/ghost/background/selected",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Selected state for a ghost interactive element.",
+"values": {
+"Base": "status/ghost/tint"
+}
+},
+"VariableID:72:399": {
+"name": "interactive/ghost/background/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled state for a ghost interactive element.",
+"values": {
+"Base": "status/ghost/default"
+}
+},
+"VariableID:72:4": {
+"name": "brand/secondary/faint",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/brand/alternative/10",
+"Dark": "color/brand/alternative/100",
+"AAA Light": "color/brand/alternative/10",
+"AAA Dark": "color/brand/alternative/100"
+},
+"overrides": {
+"target/Dark": "color/extend/3/100",
+"target/Light": "color/extend/3/10"
+}
+},
+"VariableID:72:404": {
+"name": "interactive/ghost/foreground/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default-state text/icon color on a ghost interactive element's background.",
+"values": {
+"Base": "ink/brand"
+}
+},
+"VariableID:72:409": {
+"name": "interactive/ghost/foreground/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled-state text/icon color on a ghost interactive element's background.",
+"values": {
+"Base": "ink/disabled"
+}
+},
+"VariableID:72:414": {
+"name": "interactive/destructive/background/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default state for a destructive interactive element, signaling a harmful or irreversible action such as Delete.",
+"values": {
+"Base": "status/error/default"
+}
+},
+"VariableID:72:415": {
+"name": "interactive/destructive/background/hover",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Hover state for a destructive interactive element.",
+"values": {
+"Base": "status/error/strong"
+}
+},
+"VariableID:72:416": {
+"name": "interactive/destructive/background/pressed",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Pressed state for a destructive interactive element.",
+"values": {
+"Base": "status/error/deep"
+}
+},
+"VariableID:72:417": {
+"name": "interactive/destructive/background/focused",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Focused state for a destructive interactive element.",
+"values": {
+"Base": "status/error/default"
+}
+},
+"VariableID:72:418": {
+"name": "interactive/destructive/background/selected",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Selected state for a destructive interactive element.",
+"values": {
+"Base": "status/error/deep"
+}
+},
+"VariableID:72:419": {
+"name": "interactive/destructive/background/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled state for a destructive interactive element.",
+"values": {
+"Base": "fill/disabled"
+}
+},
+"VariableID:72:424": {
+"name": "interactive/destructive/foreground/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default-state text/icon color on a destructive interactive element's background.",
+"values": {
+"Base": "brand/primary/on"
+}
+},
+"VariableID:72:429": {
+"name": "interactive/destructive/foreground/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled-state text/icon color on a destructive interactive element's background.",
+"values": {
+"Base": "ink/disabled"
+}
+},
+"VariableID:72:434": {
+"name": "interactive/inverse/background/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default state for an interactive element placed on a dark or inverse-colored surface.",
+"values": {
+"Base": "fill/inverse"
+}
+},
+"VariableID:72:435": {
+"name": "interactive/inverse/background/hover",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Hover state for an inverse-surface interactive element.",
+"values": {
+"Base": "fill/inverse-sunken"
+}
+},
+"VariableID:72:436": {
+"name": "interactive/inverse/background/pressed",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Pressed state for an inverse-surface interactive element.",
+"values": {
+"Base": "fill/inverse-elevated"
+}
+},
+"VariableID:72:437": {
+"name": "interactive/inverse/background/focused",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Focused state for an inverse-surface interactive element.",
+"values": {
+"Base": "fill/inverse"
+}
+},
+"VariableID:72:438": {
+"name": "interactive/inverse/background/selected",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Selected state for an inverse-surface interactive element.",
+"values": {
+"Base": "fill/inverse-elevated"
+}
+},
+"VariableID:72:439": {
+"name": "interactive/inverse/background/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled state for an inverse-surface interactive element.",
+"values": {
+"Base": "fill/disabled"
+}
+},
+"VariableID:72:444": {
+"name": "interactive/inverse/foreground/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Default-state text/icon color on an inverse-surface interactive element's background.",
+"values": {
+"Base": "ink/inverse"
+}
+},
+"VariableID:72:449": {
+"name": "interactive/inverse/foreground/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled-state text/icon color on an inverse-surface interactive element's background.",
+"values": {
+"Base": "ink/disabled"
+}
+},
+"VariableID:72:455": {
+"name": "overlay/scrim",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Semi-transparent dimming layer behind a drawer, sheet, or side panel",
+"values": {
+"Base": "fill/scrim"
+}
+},
+"VariableID:72:456": {
+"name": "overlay/modal",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Semi-transparent dimming layer behind a modal dialog, to focus attention on it",
+"values": {
+"Base": "fill/overlay"
+}
+},
+"VariableID:72:457": {
+"name": "feedback/success/background/subtle",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Quiet success messages and labels.",
+"values": {
+"Base": "status/success/faint"
+}
+},
+"VariableID:72:458": {
+"name": "feedback/success/foreground",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Icon/text color used inside success alerts and messages",
+"values": {
+"Base": "status/success/default"
+}
+},
+"VariableID:72:460": {
+"name": "feedback/warning/background/subtle",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Quiet warning messages and labels.",
+"values": {
+"Base": "status/warning/faint"
+}
+},
+"VariableID:72:461": {
+"name": "feedback/warning/foreground",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Icon/text color used inside warning alerts and messages",
+"values": {
+"Base": "status/warning/default"
+}
+},
+"VariableID:72:463": {
+"name": "feedback/error/background/subtle",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Quiet error messages and labels.",
+"values": {
+"Base": "status/error/faint"
+}
+},
+"VariableID:72:464": {
+"name": "feedback/error/foreground",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Icon/text color used inside error alerts and messages",
+"values": {
+"Base": "status/error/default"
+}
+},
+"VariableID:72:466": {
+"name": "feedback/info/background/subtle",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Quiet info messages and labels.",
+"values": {
+"Base": "status/info/faint"
+}
+},
+"VariableID:72:467": {
+"name": "feedback/info/foreground",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Icon/text color used inside informational alerts and messages",
+"values": {
+"Base": "status/info/default"
+}
+},
+"VariableID:72:474": {
+"name": "focus/ring",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Soft glow/ring drawn just outside the focus outline, reinforcing keyboard focus",
+"values": {
+"Base": "line/focus"
+}
+},
+"VariableID:72:475": {
+"name": "focus/outline",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Solid outline drawn directly around an element on keyboard focus, for accessibility",
+"values": {
+"Base": "line/focus"
+}
+},
+"VariableID:72:480": {
+"name": "chart/series/1",
+"collection": "semantics",
+"type": "COLOR",
+"description": "1st color in the categorical data-series palette, assigned in order across multiple series.",
+"values": {
+"Base": "data/1"
+}
+},
+"VariableID:72:481": {
+"name": "chart/series/2",
+"collection": "semantics",
+"type": "COLOR",
+"description": "2nd data series color",
+"values": {
+"Base": "data/2"
+}
+},
+"VariableID:72:482": {
+"name": "chart/series/3",
+"collection": "semantics",
+"type": "COLOR",
+"description": "3rd data series color",
+"values": {
+"Base": "data/3"
+}
+},
+"VariableID:72:483": {
+"name": "chart/series/4",
+"collection": "semantics",
+"type": "COLOR",
+"description": "4th data series color",
+"values": {
+"Base": "data/4"
+}
+},
+"VariableID:72:484": {
+"name": "chart/series/5",
+"collection": "semantics",
+"type": "COLOR",
+"description": "5th data series color",
+"values": {
+"Base": "data/5"
+}
+},
+"VariableID:72:485": {
+"name": "chart/series/6",
+"collection": "semantics",
+"type": "COLOR",
+"description": "6th data series color",
+"values": {
+"Base": "data/6"
+}
+},
+"VariableID:72:486": {
+"name": "chart/series/7",
+"collection": "semantics",
+"type": "COLOR",
+"description": "7th data series color",
+"values": {
+"Base": "data/7"
+}
+},
+"VariableID:72:487": {
+"name": "chart/series/8",
+"collection": "semantics",
+"type": "COLOR",
+"description": "8th data series color",
+"values": {
+"Base": "data/8"
+}
+},
+"VariableID:72:488": {
+"name": "chart/series/9",
+"collection": "semantics",
+"type": "COLOR",
+"description": "9th data series color",
+"values": {
+"Base": "data/9"
+}
+},
+"VariableID:72:489": {
+"name": "chart/series/10",
+"collection": "semantics",
+"type": "COLOR",
+"description": "10th data series color",
+"values": {
+"Base": "data/10"
+}
+},
+"VariableID:72:490": {
+"name": "chart/series/11",
+"collection": "semantics",
+"type": "COLOR",
+"description": "11th data series color",
+"values": {
+"Base": "data/11"
+}
+},
+"VariableID:72:491": {
+"name": "chart/series/12",
+"collection": "semantics",
+"type": "COLOR",
+"description": "12th data series color",
+"values": {
+"Base": "data/12"
+}
+},
+"VariableID:72:492": {
+"name": "chart/grid",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Color for background gridlines that help read values across a chart",
+"values": {
+"Base": "line/subtle"
+}
+},
+"VariableID:72:493": {
+"name": "chart/axis",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Color for chart axis lines and axis tick labels",
+"values": {
+"Base": "line/strong"
+}
+},
+"VariableID:72:494": {
+"name": "chart/reference",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Color for a reference or target line overlaid on a chart, e.g. a goal or average",
+"values": {
+"Base": "line/stronger"
+}
+},
+"VariableID:72:495": {
+"name": "chart/positive",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Color for data points/values trending up or improving",
+"values": {
+"Base": "status/success/default"
+}
+},
+"VariableID:72:496": {
+"name": "chart/negative",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Color for data points/values trending down or declining",
+"values": {
+"Base": "status/error/default"
+}
+},
+"VariableID:72:497": {
+"name": "chart/neutral",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Color for data points/values that are flat or unchanged",
+"values": {
+"Base": "data/neutral"
+}
+},
+"VariableID:72:5": {
+"name": "status/error/subtle",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/system/negative/50",
+"Dark": "color/system/negative/50",
+"AAA Light": "color/system/negative/30",
+"AAA Dark": "color/system/negative/40"
+}
+},
+"VariableID:72:6": {
+"name": "status/error/strong",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/system/negative/70",
+"Dark": "color/system/negative/70",
+"AAA Light": "color/system/negative/90",
+"AAA Dark": "color/system/negative/20"
+}
+},
+"VariableID:72:7": {
+"name": "fill/inverse-sunken",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/neutral/cool/80",
+"Dark": "color/neutral/cool/30",
+"AAA Light": "color/neutral/cool/80",
+"AAA Dark": "color/neutral/cool/30"
+}
+},
+"VariableID:72:8": {
+"name": "fill/inverse-elevated",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/neutral/cool/100",
+"Dark": "color/neutral/cool/10",
+"AAA Light": "color/neutral/cool/100",
+"AAA Dark": "color/neutral/cool/10"
+}
+},
+"VariableID:72:9": {
+"name": "fill/disabled",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/neutral/cool/30",
+"Dark": "color/neutral/cool/80",
+"AAA Light": "color/neutral/cool/30",
+"AAA Dark": "color/neutral/cool/80"
+}
+},
+"VariableID:7580:3833": {
+"name": "status/ghost/tint",
+"collection": "palette",
+"type": "COLOR",
+"description": "",
+"values": {
+"Light": "color/brand/main/60 @ 0.1",
+"Dark": "color/brand/main/30 @ 0.1",
+"AAA Light": "color/brand/main/80 @ 0.1",
+"AAA Dark": "color/brand/main/30 @ 0.1"
+}
+},
+"VariableID:7802:30702": {
+"name": "space/3xl",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 32px, source: scale/10",
+"values": {
+"Desktop": "scale/13",
+"Mobile": "scale/13",
+"Tablet": "scale/13",
+"Desktop Compact": "scale/11"
+}
+},
+"VariableID:7802:30703": {
+"name": "space/4xl",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 32px, source: scale/10",
+"values": {
+"Desktop": "scale/15",
+"Mobile": "scale/15",
+"Tablet": "scale/15",
+"Desktop Compact": "scale/13"
+}
+},
+"VariableID:7802:30704": {
+"name": "space/5xl",
+"collection": "size",
+"type": "FLOAT",
+"description": "= 32px, source: scale/10",
+"values": {
+"Desktop": "scale/17",
+"Mobile": "scale/17",
+"Tablet": "scale/17",
+"Desktop Compact": "scale/15"
+}
+},
+"VariableID:98:12": {
+"name": "interactive/neutral/border/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Outline of general controls at rest.",
+"values": {
+"Base": "line/default"
+}
+},
+"VariableID:98:13": {
+"name": "interactive/neutral/border/hover",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Outline of general controls on hover.",
+"values": {
+"Base": "line/strong"
+}
+},
+"VariableID:98:14": {
+"name": "interactive/neutral/border/pressed",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Outline of general controls when pressed.",
+"values": {
+"Base": "line/strong"
+}
+},
+"VariableID:98:15": {
+"name": "interactive/neutral/border/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Outline of disabled general controls.",
+"values": {
+"Base": "line/subtle"
+}
+},
+"VariableID:98:17": {
+"name": "interactive/neutral/foreground/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Labels and icons on general controls.",
+"values": {
+"Base": "ink/high"
+}
+},
+"VariableID:98:18": {
+"name": "interactive/neutral/foreground/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Labels and icons on disabled general controls.",
+"values": {
+"Base": "ink/disabled"
+}
+},
+"VariableID:98:2": {
+"name": "interactive/neutral/background/default",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Inputs, outline buttons and other general controls at rest.",
+"values": {
+"Base": "fill/default"
+}
+},
+"VariableID:98:3": {
+"name": "interactive/neutral/background/hover",
+"collection": "semantics",
+"type": "COLOR",
+"description": "General controls on hover.",
+"values": {
+"Base": "fill/canvas"
+}
+},
+"VariableID:98:4": {
+"name": "interactive/neutral/background/pressed",
+"collection": "semantics",
+"type": "COLOR",
+"description": "General controls when pressed.",
+"values": {
+"Base": "fill/sunken"
+}
+},
+"VariableID:98:5": {
+"name": "interactive/neutral/background/focused",
+"collection": "semantics",
+"type": "COLOR",
+"description": "General controls with keyboard focus.",
+"values": {
+"Base": "fill/default"
+}
+},
+"VariableID:98:6": {
+"name": "interactive/neutral/background/selected",
+"collection": "semantics",
+"type": "COLOR",
+"description": "General controls in their selected state.",
+"values": {
+"Base": "fill/sunken"
+}
+},
+"VariableID:98:7": {
+"name": "interactive/neutral/background/disabled",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Disabled general controls.",
+"values": {
+"Base": "fill/disabled"
+}
+},
+"S:fe6b7751e36025776fe4496cd55b9b44e1628c03,": {
+"name": "display/large",
+"collection": "typography",
+"type": "TEXT_STYLE",
+"description": "",
+"values": {
+"*": "IBM Plex Sans Light 52"
+}
+},
+"S:aa58953c3797470147c94c383eef62d79932427f,": {
+"name": "display/medium",
+"collection": "typography",
+"type": "TEXT_STYLE",
+"description": "",
+"values": {
+"*": "IBM Plex Sans Light 44"
+}
+},
+"S:e3ecc208b920e89d587936367a65e9d7d10ffe50,": {
+"name": "display/small",
+"collection": "typography",
+"type": "TEXT_STYLE",
+"description": "",
+"values": {
+"*": "IBM Plex Sans Light 36"
+}
+},
+"S:71873deb2b2e5a16b22dab38ea85bf3c9bcecd33,": {
+"name": "heading/large",
+"collection": "typography",
+"type": "TEXT_STYLE",
+"description": "",
+"values": {
+"*": "IBM Plex Sans Regular 32"
+}
+},
+"S:9a69d8a675f05c5fb71576c29eafbedc81c6dc63,": {
+"name": "heading/medium",
+"collection": "typography",
+"type": "TEXT_STYLE",
+"description": "",
+"values": {
+"*": "IBM Plex Sans Regular 28"
+}
+},
+"S:5db0d4dddbb1587e3ae20fad8f2a06bb1f81e4a8,": {
+"name": "heading/small",
+"collection": "typography",
+"type": "TEXT_STYLE",
+"description": "",
+"values": {
+"*": "IBM Plex Sans Regular 24"
+}
+},
+"S:13b7259dbb5d6c0cd3b503008712821f8b398837,": {
+"name": "title/large",
+"collection": "typography",
+"type": "TEXT_STYLE",
+"description": "",
+"values": {
+"*": "IBM Plex Sans Medium 20"
+}
+},
+"S:3d6c2597f9c0135658399365b4a3db795040230e,": {
+"name": "title/medium",
+"collection": "typography",
+"type": "TEXT_STYLE",
+"description": "",
+"values": {
+"*": "IBM Plex Sans Medium 16"
+}
+},
+"S:87d29c9c0bbc488a52328abc2a9c4ced40945989,": {
+"name": "title/small",
+"collection": "typography",
+"type": "TEXT_STYLE",
+"description": "",
+"values": {
+"*": "IBM Plex Sans Medium 12"
+}
+},
+"S:8bcd259fe8b7bd4977fab3af6caa702be0ed78e0,": {
+"name": "body/large",
+"collection": "typography",
+"type": "TEXT_STYLE",
+"description": "",
+"values": {
+"*": "IBM Plex Sans Regular 20"
+}
+},
+"S:be357ec4d0602eeace6c16497b7059ad05a672db,": {
+"name": "body/medium",
+"collection": "typography",
+"type": "TEXT_STYLE",
+"description": "",
+"values": {
+"*": "IBM Plex Sans Regular 16"
+}
+},
+"S:f35e93b29b2989e5709d5080a8a14b03f8c28c22,": {
+"name": "body/small",
+"collection": "typography",
+"type": "TEXT_STYLE",
+"description": "",
+"values": {
+"*": "IBM Plex Sans Regular 14"
+}
+},
+"S:50d17aa9beec2e87a9193a16afdd5f0dad7a4dda,": {
+"name": "body/xsmall",
+"collection": "typography",
+"type": "TEXT_STYLE",
+"description": "",
+"values": {
+"*": "IBM Plex Sans Regular 12"
+}
+},
+"S:c5e988323a4aa53425b9136e290b7d96e4d6fd34,": {
+"name": "indicator/medium",
+"collection": "typography",
+"type": "TEXT_STYLE",
+"description": "",
+"values": {
+"*": "IBM Plex Sans Medium 12"
+}
+},
+"S:972aa1ebd909429c8bc89a2f7530b642da8b7354,": {
+"name": "indicator/small",
+"collection": "typography",
+"type": "TEXT_STYLE",
+"description": "",
+"values": {
+"*": "IBM Plex Sans Regular 10"
+}
+},
+"S:bfd71769a1416d4b58bcf7fcc5a3062a41645832,": {
+"name": "label/large",
+"collection": "typography",
+"type": "TEXT_STYLE",
+"description": "",
+"values": {
+"*": "IBM Plex Sans Medium 16"
+}
+},
+"S:63b31f862faf7539d76d06419513d0cd4b250ef8,": {
+"name": "label/medium",
+"collection": "typography",
+"type": "TEXT_STYLE",
+"description": "",
+"values": {
+"*": "IBM Plex Sans Medium 14"
+}
+},
+"S:3b99557a2c4c04c6568ac4793fcbeea3d2902259,": {
+"name": "label/small",
+"collection": "typography",
+"type": "TEXT_STYLE",
+"description": "",
+"values": {
+"*": "IBM Plex Sans Medium 12"
+}
+}
+}
+}

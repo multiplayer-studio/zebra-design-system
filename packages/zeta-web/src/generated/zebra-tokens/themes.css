@@ -5,7 +5,7 @@
    used, so a 'redundant looking' line here is what makes theming work at all.
 */
 
-/* size = Mobile — 21 tokens */
+/* size = Mobile — 24 tokens */
 [data-breakpoint="mobile"] {
   --container-default: var(--primitives-scale-container-0);
   --control-icon-lg: var(--primitives-scale-10);
@@ -17,7 +17,11 @@
   --control-xs: var(--primitives-scale-9);
   --shape: sharp;
   --space-2xl: var(--primitives-scale-11);
-  --space-2xs: var(--primitives-scale-2);
+  --space-2xs: var(--primitives-scale-3);
+  --space-3xl: var(--primitives-scale-13);
+  --space-3xs: var(--primitives-scale-2);
+  --space-4xl: var(--primitives-scale-15);
+  --space-5xl: var(--primitives-scale-17);
   --space-card: var(--primitives-scale-6);
   --space-gutter: var(--primitives-scale-7);
   --space-lg: var(--primitives-scale-7);
@@ -27,10 +31,9 @@
   --space-sm: var(--primitives-scale-5);
   --space-xl: var(--primitives-scale-9);
   --space-xs: var(--primitives-scale-4);
-  --space-xxs: var(--primitives-scale-3);
 }
 
-/* size = Tablet — 21 tokens */
+/* size = Tablet — 24 tokens */
 [data-breakpoint="tablet"] {
   --container-default: var(--primitives-scale-container-1);
   --control-icon-lg: var(--primitives-scale-10);
@@ -42,7 +45,11 @@
   --control-xs: var(--primitives-scale-9);
   --shape: rounded;
   --space-2xl: var(--primitives-scale-11);
-  --space-2xs: var(--primitives-scale-2);
+  --space-2xs: var(--primitives-scale-3);
+  --space-3xl: var(--primitives-scale-13);
+  --space-3xs: var(--primitives-scale-2);
+  --space-4xl: var(--primitives-scale-15);
+  --space-5xl: var(--primitives-scale-17);
   --space-card: var(--primitives-scale-6);
   --space-gutter: var(--primitives-scale-7);
   --space-lg: var(--primitives-scale-7);
@@ -52,10 +59,9 @@
   --space-sm: var(--primitives-scale-5);
   --space-xl: var(--primitives-scale-9);
   --space-xs: var(--primitives-scale-4);
-  --space-xxs: var(--primitives-scale-3);
 }
 
-/* size = Desktop Compact — 21 tokens */
+/* size = Desktop Compact — 24 tokens */
 [data-breakpoint="desktop-compact"] {
   --container-default: var(--primitives-scale-container-2);
   --control-icon-lg: var(--primitives-scale-9);
@@ -67,7 +73,11 @@
   --control-xs: var(--primitives-scale-8);
   --shape: rounded;
   --space-2xl: var(--primitives-scale-9);
-  --space-2xs: var(--primitives-scale-1);
+  --space-2xs: var(--primitives-scale-2);
+  --space-3xl: var(--primitives-scale-11);
+  --space-3xs: var(--primitives-scale-1);
+  --space-4xl: var(--primitives-scale-13);
+  --space-5xl: var(--primitives-scale-15);
   --space-card: var(--primitives-scale-5);
   --space-gutter: var(--primitives-scale-6);
   --space-lg: var(--primitives-scale-6);
@@ -77,7 +87,6 @@
   --space-sm: var(--primitives-scale-4);
   --space-xl: var(--primitives-scale-7);
   --space-xs: var(--primitives-scale-3);
-  --space-xxs: var(--primitives-scale-2);
 }
 
 /* typography = Tablet — 24 tokens */
@@ -203,7 +212,7 @@
   --text-title-medium: var(--title-medium-font-weight) var(--title-medium-font-size)/var(--title-medium-line-height) var(--title-medium-font-family), system-ui, sans-serif;
 }
 
-/* palette = Dark, from prefers-color-scheme — 303 tokens */
+/* palette = Dark, from prefers-color-scheme — 302 tokens */
 @media (prefers-color-scheme: dark) {
   :root {
     --palette-brand-primary-deep: var(--primitives-color-brand-main-80);
@@ -242,6 +251,7 @@
     --palette-fill-default: var(--primitives-color-neutral-cool-100);
     --palette-fill-disabled: var(--primitives-color-neutral-cool-80);
     --palette-fill-elevated: var(--primitives-color-neutral-cool-100);
+    --palette-fill-faint: var(--primitives-color-neutral-cool-90);
     --palette-fill-hover: var(--primitives-color-neutral-cool-40);
     --palette-fill-inverse: var(--primitives-color-neutral-cool-20);
     --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-10);
@@ -498,19 +508,17 @@
     --shadow-soft: var(--palette-fill-transparent-emphasis);
     --surface-brand: var(--palette-brand-primary-faint);
     --surface-card: var(--palette-fill-elevated);
-    --surface-dialog: var(--palette-fill-overlay);
     --surface-error: var(--palette-status-error-faint);
     --surface-gradient-end: var(--palette-gradient-default-end);
     --surface-gradient-start: var(--palette-gradient-default-start);
     --surface-info: var(--palette-status-info-faint);
     --zebra-surface-info: var(--palette-status-info-faint);
     --surface-inverse: var(--palette-fill-inverse);
-    --surface-menu: var(--palette-fill-overlay);
+    --surface-overlay: var(--palette-fill-overlay);
     --surface-page: var(--palette-fill-canvas);
-    --surface-popover: var(--palette-fill-overlay);
     --surface-section: var(--palette-fill-default);
-    --surface-sheet: var(--palette-fill-overlay);
-    --surface-subtle: var(--palette-fill-sunken);
+    --surface-shade: var(--palette-fill-transparent-elevate);
+    --surface-subtle: var(--palette-fill-faint);
     --surface-success: var(--palette-status-success-faint);
     --surface-tooltip: var(--palette-fill-inverse);
     --surface-track: var(--palette-fill-sunken);
@@ -519,7 +527,7 @@
   }
 }
 
-/* palette = Light — 303 tokens */
+/* palette = Light — 302 tokens */
 [data-theme="light"] {
   --palette-brand-primary-deep: var(--primitives-color-brand-main-80);
   --palette-brand-primary-default: var(--primitives-color-brand-main-60);
@@ -557,6 +565,7 @@
   --palette-fill-default: var(--primitives-color-pure-white);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-30);
   --palette-fill-elevated: var(--primitives-color-pure-white);
+  --palette-fill-faint: var(--primitives-color-neutral-cool-20);
   --palette-fill-hover: var(--primitives-color-neutral-cool-70);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-90);
   --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-100);
@@ -813,19 +822,17 @@
   --shadow-soft: var(--palette-fill-transparent-emphasis);
   --surface-brand: var(--palette-brand-primary-faint);
   --surface-card: var(--palette-fill-elevated);
-  --surface-dialog: var(--palette-fill-overlay);
   --surface-error: var(--palette-status-error-faint);
   --surface-gradient-end: var(--palette-gradient-default-end);
   --surface-gradient-start: var(--palette-gradient-default-start);
   --surface-info: var(--palette-status-info-faint);
   --zebra-surface-info: var(--palette-status-info-faint);
   --surface-inverse: var(--palette-fill-inverse);
-  --surface-menu: var(--palette-fill-overlay);
+  --surface-overlay: var(--palette-fill-overlay);
   --surface-page: var(--palette-fill-canvas);
-  --surface-popover: var(--palette-fill-overlay);
   --surface-section: var(--palette-fill-default);
-  --surface-sheet: var(--palette-fill-overlay);
-  --surface-subtle: var(--palette-fill-sunken);
+  --surface-shade: var(--palette-fill-transparent-elevate);
+  --surface-subtle: var(--palette-fill-faint);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
   --surface-track: var(--palette-fill-sunken);
@@ -833,7 +840,7 @@
   --zebra-surface-warning: var(--palette-status-warning-faint);
 }
 
-/* palette = Dark — 303 tokens */
+/* palette = Dark — 302 tokens */
 [data-theme="dark"] {
   --palette-brand-primary-deep: var(--primitives-color-brand-main-80);
   --palette-brand-primary-default: var(--primitives-color-brand-main-60);
@@ -871,6 +878,7 @@
   --palette-fill-default: var(--primitives-color-neutral-cool-100);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-80);
   --palette-fill-elevated: var(--primitives-color-neutral-cool-100);
+  --palette-fill-faint: var(--primitives-color-neutral-cool-90);
   --palette-fill-hover: var(--primitives-color-neutral-cool-40);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-20);
   --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-10);
@@ -1127,19 +1135,17 @@
   --shadow-soft: var(--palette-fill-transparent-emphasis);
   --surface-brand: var(--palette-brand-primary-faint);
   --surface-card: var(--palette-fill-elevated);
-  --surface-dialog: var(--palette-fill-overlay);
   --surface-error: var(--palette-status-error-faint);
   --surface-gradient-end: var(--palette-gradient-default-end);
   --surface-gradient-start: var(--palette-gradient-default-start);
   --surface-info: var(--palette-status-info-faint);
   --zebra-surface-info: var(--palette-status-info-faint);
   --surface-inverse: var(--palette-fill-inverse);
-  --surface-menu: var(--palette-fill-overlay);
+  --surface-overlay: var(--palette-fill-overlay);
   --surface-page: var(--palette-fill-canvas);
-  --surface-popover: var(--palette-fill-overlay);
   --surface-section: var(--palette-fill-default);
-  --surface-sheet: var(--palette-fill-overlay);
-  --surface-subtle: var(--palette-fill-sunken);
+  --surface-shade: var(--palette-fill-transparent-elevate);
+  --surface-subtle: var(--palette-fill-faint);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
   --surface-track: var(--palette-fill-sunken);
@@ -1147,7 +1153,7 @@
   --zebra-surface-warning: var(--palette-status-warning-faint);
 }
 
-/* extension companion — 303 tokens */
+/* extension companion — 302 tokens */
 [data-brand="companion"] {
   --palette-brand-primary-deep: var(--primitives-color-accent-1-80);
   --palette-brand-primary-default: var(--primitives-color-accent-1-60);
@@ -1185,6 +1191,7 @@
   --palette-fill-default: var(--primitives-color-pure-white);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-30);
   --palette-fill-elevated: var(--primitives-color-pure-white);
+  --palette-fill-faint: var(--primitives-color-neutral-cool-20);
   --palette-fill-hover: var(--primitives-color-neutral-cool-70);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-90);
   --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-100);
@@ -1441,19 +1448,17 @@
   --shadow-soft: var(--palette-fill-transparent-emphasis);
   --surface-brand: var(--palette-brand-primary-faint);
   --surface-card: var(--palette-fill-elevated);
-  --surface-dialog: var(--palette-fill-overlay);
   --surface-error: var(--palette-status-error-faint);
   --surface-gradient-end: var(--palette-gradient-default-end);
   --surface-gradient-start: var(--palette-gradient-default-start);
   --surface-info: var(--palette-status-info-faint);
   --zebra-surface-info: var(--palette-status-info-faint);
   --surface-inverse: var(--palette-fill-inverse);
-  --surface-menu: var(--palette-fill-overlay);
+  --surface-overlay: var(--palette-fill-overlay);
   --surface-page: var(--palette-fill-canvas);
-  --surface-popover: var(--palette-fill-overlay);
   --surface-section: var(--palette-fill-default);
-  --surface-sheet: var(--palette-fill-overlay);
-  --surface-subtle: var(--palette-fill-sunken);
+  --surface-shade: var(--palette-fill-transparent-elevate);
+  --surface-subtle: var(--palette-fill-faint);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
   --surface-track: var(--palette-fill-sunken);
@@ -1461,7 +1466,7 @@
   --zebra-surface-warning: var(--palette-status-warning-faint);
 }
 
-/* extension companion + palette = Light — 303 tokens */
+/* extension companion + palette = Light — 302 tokens */
 [data-brand="companion"][data-theme="light"],
 [data-theme="light"] [data-brand="companion"],
 [data-brand="companion"] [data-theme="light"] {
@@ -1501,6 +1506,7 @@
   --palette-fill-default: var(--primitives-color-pure-white);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-30);
   --palette-fill-elevated: var(--primitives-color-pure-white);
+  --palette-fill-faint: var(--primitives-color-neutral-cool-20);
   --palette-fill-hover: var(--primitives-color-neutral-cool-70);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-90);
   --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-100);
@@ -1757,19 +1763,17 @@
   --shadow-soft: var(--palette-fill-transparent-emphasis);
   --surface-brand: var(--palette-brand-primary-faint);
   --surface-card: var(--palette-fill-elevated);
-  --surface-dialog: var(--palette-fill-overlay);
   --surface-error: var(--palette-status-error-faint);
   --surface-gradient-end: var(--palette-gradient-default-end);
   --surface-gradient-start: var(--palette-gradient-default-start);
   --surface-info: var(--palette-status-info-faint);
   --zebra-surface-info: var(--palette-status-info-faint);
   --surface-inverse: var(--palette-fill-inverse);
-  --surface-menu: var(--palette-fill-overlay);
+  --surface-overlay: var(--palette-fill-overlay);
   --surface-page: var(--palette-fill-canvas);
-  --surface-popover: var(--palette-fill-overlay);
   --surface-section: var(--palette-fill-default);
-  --surface-sheet: var(--palette-fill-overlay);
-  --surface-subtle: var(--palette-fill-sunken);
+  --surface-shade: var(--palette-fill-transparent-elevate);
+  --surface-subtle: var(--palette-fill-faint);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
   --surface-track: var(--palette-fill-sunken);
@@ -1777,7 +1781,7 @@
   --zebra-surface-warning: var(--palette-status-warning-faint);
 }
 
-/* extension companion + palette = Dark — 303 tokens */
+/* extension companion + palette = Dark — 302 tokens */
 [data-brand="companion"][data-theme="dark"],
 [data-theme="dark"] [data-brand="companion"],
 [data-brand="companion"] [data-theme="dark"] {
@@ -1817,6 +1821,7 @@
   --palette-fill-default: var(--primitives-color-neutral-cool-100);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-80);
   --palette-fill-elevated: var(--primitives-color-neutral-cool-100);
+  --palette-fill-faint: var(--primitives-color-neutral-cool-90);
   --palette-fill-hover: var(--primitives-color-neutral-cool-40);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-20);
   --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-10);
@@ -2073,19 +2078,17 @@
   --shadow-soft: var(--palette-fill-transparent-emphasis);
   --surface-brand: var(--palette-brand-primary-faint);
   --surface-card: var(--palette-fill-elevated);
-  --surface-dialog: var(--palette-fill-overlay);
   --surface-error: var(--palette-status-error-faint);
   --surface-gradient-end: var(--palette-gradient-default-end);
   --surface-gradient-start: var(--palette-gradient-default-start);
   --surface-info: var(--palette-status-info-faint);
   --zebra-surface-info: var(--palette-status-info-faint);
   --surface-inverse: var(--palette-fill-inverse);
-  --surface-menu: var(--palette-fill-overlay);
+  --surface-overlay: var(--palette-fill-overlay);
   --surface-page: var(--palette-fill-canvas);
-  --surface-popover: var(--palette-fill-overlay);
   --surface-section: var(--palette-fill-default);
-  --surface-sheet: var(--palette-fill-overlay);
-  --surface-subtle: var(--palette-fill-sunken);
+  --surface-shade: var(--palette-fill-transparent-elevate);
+  --surface-subtle: var(--palette-fill-faint);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
   --surface-track: var(--palette-fill-sunken);
@@ -2093,7 +2096,7 @@
   --zebra-surface-warning: var(--palette-status-warning-faint);
 }
 
-/* extension companion + palette = AAA Light — 303 tokens */
+/* extension companion + palette = AAA Light — 302 tokens */
 [data-brand="companion"][data-theme="aaa-light"],
 [data-theme="aaa-light"] [data-brand="companion"],
 [data-brand="companion"] [data-theme="aaa-light"] {
@@ -2133,6 +2136,7 @@
   --palette-fill-default: var(--primitives-color-pure-white);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-30);
   --palette-fill-elevated: var(--primitives-color-pure-white);
+  --palette-fill-faint: var(--primitives-color-neutral-cool-20);
   --palette-fill-hover: var(--primitives-color-neutral-cool-70);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-90);
   --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-100);
@@ -2389,19 +2393,17 @@
   --shadow-soft: var(--palette-fill-transparent-emphasis);
   --surface-brand: var(--palette-brand-primary-faint);
   --surface-card: var(--palette-fill-elevated);
-  --surface-dialog: var(--palette-fill-overlay);
   --surface-error: var(--palette-status-error-faint);
   --surface-gradient-end: var(--palette-gradient-default-end);
   --surface-gradient-start: var(--palette-gradient-default-start);
   --surface-info: var(--palette-status-info-faint);
   --zebra-surface-info: var(--palette-status-info-faint);
   --surface-inverse: var(--palette-fill-inverse);
-  --surface-menu: var(--palette-fill-overlay);
+  --surface-overlay: var(--palette-fill-overlay);
   --surface-page: var(--palette-fill-canvas);
-  --surface-popover: var(--palette-fill-overlay);
   --surface-section: var(--palette-fill-default);
-  --surface-sheet: var(--palette-fill-overlay);
-  --surface-subtle: var(--palette-fill-sunken);
+  --surface-shade: var(--palette-fill-transparent-elevate);
+  --surface-subtle: var(--palette-fill-faint);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
   --surface-track: var(--palette-fill-sunken);
@@ -2409,7 +2411,7 @@
   --zebra-surface-warning: var(--palette-status-warning-faint);
 }
 
-/* extension companion + palette = AAA Dark — 303 tokens */
+/* extension companion + palette = AAA Dark — 302 tokens */
 [data-brand="companion"][data-theme="aaa-dark"],
 [data-theme="aaa-dark"] [data-brand="companion"],
 [data-brand="companion"] [data-theme="aaa-dark"] {
@@ -2449,6 +2451,7 @@
   --palette-fill-default: var(--primitives-color-neutral-cool-100);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-80);
   --palette-fill-elevated: var(--primitives-color-neutral-cool-100);
+  --palette-fill-faint: var(--primitives-color-neutral-cool-90);
   --palette-fill-hover: var(--primitives-color-neutral-cool-40);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-20);
   --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-10);
@@ -2705,19 +2708,17 @@
   --shadow-soft: var(--palette-fill-transparent-emphasis);
   --surface-brand: var(--palette-brand-primary-faint);
   --surface-card: var(--palette-fill-elevated);
-  --surface-dialog: var(--palette-fill-overlay);
   --surface-error: var(--palette-status-error-faint);
   --surface-gradient-end: var(--palette-gradient-default-end);
   --surface-gradient-start: var(--palette-gradient-default-start);
   --surface-info: var(--palette-status-info-faint);
   --zebra-surface-info: var(--palette-status-info-faint);
   --surface-inverse: var(--palette-fill-inverse);
-  --surface-menu: var(--palette-fill-overlay);
+  --surface-overlay: var(--palette-fill-overlay);
   --surface-page: var(--palette-fill-canvas);
-  --surface-popover: var(--palette-fill-overlay);
   --surface-section: var(--palette-fill-default);
-  --surface-sheet: var(--palette-fill-overlay);
-  --surface-subtle: var(--palette-fill-sunken);
+  --surface-shade: var(--palette-fill-transparent-elevate);
+  --surface-subtle: var(--palette-fill-faint);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
   --surface-track: var(--palette-fill-sunken);
@@ -2725,7 +2726,7 @@
   --zebra-surface-warning: var(--palette-status-warning-faint);
 }
 
-/* extension target — 303 tokens */
+/* extension target — 302 tokens */
 [data-brand="target"] {
   --palette-brand-primary-deep: var(--primitives-color-extend-4-80);
   --palette-brand-primary-default: var(--primitives-color-extend-4-60);
@@ -2763,6 +2764,7 @@
   --palette-fill-default: var(--primitives-color-pure-white);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-30);
   --palette-fill-elevated: var(--primitives-color-pure-white);
+  --palette-fill-faint: var(--primitives-color-neutral-cool-20);
   --palette-fill-hover: var(--primitives-color-neutral-cool-70);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-90);
   --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-100);
@@ -3019,19 +3021,17 @@
   --shadow-soft: var(--palette-fill-transparent-emphasis);
   --surface-brand: var(--palette-brand-primary-faint);
   --surface-card: var(--palette-fill-elevated);
-  --surface-dialog: var(--palette-fill-overlay);
   --surface-error: var(--palette-status-error-faint);
   --surface-gradient-end: var(--palette-gradient-default-end);
   --surface-gradient-start: var(--palette-gradient-default-start);
   --surface-info: var(--palette-status-info-faint);
   --zebra-surface-info: var(--palette-status-info-faint);
   --surface-inverse: var(--palette-fill-inverse);
-  --surface-menu: var(--palette-fill-overlay);
+  --surface-overlay: var(--palette-fill-overlay);
   --surface-page: var(--palette-fill-canvas);
-  --surface-popover: var(--palette-fill-overlay);
   --surface-section: var(--palette-fill-default);
-  --surface-sheet: var(--palette-fill-overlay);
-  --surface-subtle: var(--palette-fill-sunken);
+  --surface-shade: var(--palette-fill-transparent-elevate);
+  --surface-subtle: var(--palette-fill-faint);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
   --surface-track: var(--palette-fill-sunken);
@@ -3039,7 +3039,7 @@
   --zebra-surface-warning: var(--palette-status-warning-faint);
 }
 
-/* extension target + palette = Light — 303 tokens */
+/* extension target + palette = Light — 302 tokens */
 [data-brand="target"][data-theme="light"],
 [data-theme="light"] [data-brand="target"],
 [data-brand="target"] [data-theme="light"] {
@@ -3079,6 +3079,7 @@
   --palette-fill-default: var(--primitives-color-pure-white);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-30);
   --palette-fill-elevated: var(--primitives-color-pure-white);
+  --palette-fill-faint: var(--primitives-color-neutral-cool-20);
   --palette-fill-hover: var(--primitives-color-neutral-cool-70);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-90);
   --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-100);
@@ -3335,19 +3336,17 @@
   --shadow-soft: var(--palette-fill-transparent-emphasis);
   --surface-brand: var(--palette-brand-primary-faint);
   --surface-card: var(--palette-fill-elevated);
-  --surface-dialog: var(--palette-fill-overlay);
   --surface-error: var(--palette-status-error-faint);
   --surface-gradient-end: var(--palette-gradient-default-end);
   --surface-gradient-start: var(--palette-gradient-default-start);
   --surface-info: var(--palette-status-info-faint);
   --zebra-surface-info: var(--palette-status-info-faint);
   --surface-inverse: var(--palette-fill-inverse);
-  --surface-menu: var(--palette-fill-overlay);
+  --surface-overlay: var(--palette-fill-overlay);
   --surface-page: var(--palette-fill-canvas);
-  --surface-popover: var(--palette-fill-overlay);
   --surface-section: var(--palette-fill-default);
-  --surface-sheet: var(--palette-fill-overlay);
-  --surface-subtle: var(--palette-fill-sunken);
+  --surface-shade: var(--palette-fill-transparent-elevate);
+  --surface-subtle: var(--palette-fill-faint);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
   --surface-track: var(--palette-fill-sunken);
@@ -3355,7 +3354,7 @@
   --zebra-surface-warning: var(--palette-status-warning-faint);
 }
 
-/* extension target + palette = Dark — 303 tokens */
+/* extension target + palette = Dark — 302 tokens */
 [data-brand="target"][data-theme="dark"],
 [data-theme="dark"] [data-brand="target"],
 [data-brand="target"] [data-theme="dark"] {
@@ -3395,6 +3394,7 @@
   --palette-fill-default: var(--primitives-color-neutral-cool-100);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-80);
   --palette-fill-elevated: var(--primitives-color-neutral-cool-100);
+  --palette-fill-faint: var(--primitives-color-neutral-cool-90);
   --palette-fill-hover: var(--primitives-color-neutral-cool-40);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-20);
   --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-10);
@@ -3651,19 +3651,17 @@
   --shadow-soft: var(--palette-fill-transparent-emphasis);
   --surface-brand: var(--palette-brand-primary-faint);
   --surface-card: var(--palette-fill-elevated);
-  --surface-dialog: var(--palette-fill-overlay);
   --surface-error: var(--palette-status-error-faint);
   --surface-gradient-end: var(--palette-gradient-default-end);
   --surface-gradient-start: var(--palette-gradient-default-start);
   --surface-info: var(--palette-status-info-faint);
   --zebra-surface-info: var(--palette-status-info-faint);
   --surface-inverse: var(--palette-fill-inverse);
-  --surface-menu: var(--palette-fill-overlay);
+  --surface-overlay: var(--palette-fill-overlay);
   --surface-page: var(--palette-fill-canvas);
-  --surface-popover: var(--palette-fill-overlay);
   --surface-section: var(--palette-fill-default);
-  --surface-sheet: var(--palette-fill-overlay);
-  --surface-subtle: var(--palette-fill-sunken);
+  --surface-shade: var(--palette-fill-transparent-elevate);
+  --surface-subtle: var(--palette-fill-faint);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
   --surface-track: var(--palette-fill-sunken);
@@ -3671,7 +3669,7 @@
   --zebra-surface-warning: var(--palette-status-warning-faint);
 }
 
-/* extension target + palette = AAA Light — 303 tokens */
+/* extension target + palette = AAA Light — 302 tokens */
 [data-brand="target"][data-theme="aaa-light"],
 [data-theme="aaa-light"] [data-brand="target"],
 [data-brand="target"] [data-theme="aaa-light"] {
@@ -3711,6 +3709,7 @@
   --palette-fill-default: var(--primitives-color-pure-white);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-30);
   --palette-fill-elevated: var(--primitives-color-pure-white);
+  --palette-fill-faint: var(--primitives-color-neutral-cool-20);
   --palette-fill-hover: var(--primitives-color-neutral-cool-70);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-90);
   --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-100);
@@ -3967,19 +3966,17 @@
   --shadow-soft: var(--palette-fill-transparent-emphasis);
   --surface-brand: var(--palette-brand-primary-faint);
   --surface-card: var(--palette-fill-elevated);
-  --surface-dialog: var(--palette-fill-overlay);
   --surface-error: var(--palette-status-error-faint);
   --surface-gradient-end: var(--palette-gradient-default-end);
   --surface-gradient-start: var(--palette-gradient-default-start);
   --surface-info: var(--palette-status-info-faint);
   --zebra-surface-info: var(--palette-status-info-faint);
   --surface-inverse: var(--palette-fill-inverse);
-  --surface-menu: var(--palette-fill-overlay);
+  --surface-overlay: var(--palette-fill-overlay);
   --surface-page: var(--palette-fill-canvas);
-  --surface-popover: var(--palette-fill-overlay);
   --surface-section: var(--palette-fill-default);
-  --surface-sheet: var(--palette-fill-overlay);
-  --surface-subtle: var(--palette-fill-sunken);
+  --surface-shade: var(--palette-fill-transparent-elevate);
+  --surface-subtle: var(--palette-fill-faint);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
   --surface-track: var(--palette-fill-sunken);
@@ -3987,7 +3984,7 @@
   --zebra-surface-warning: var(--palette-status-warning-faint);
 }
 
-/* extension target + palette = AAA Dark — 303 tokens */
+/* extension target + palette = AAA Dark — 302 tokens */
 [data-brand="target"][data-theme="aaa-dark"],
 [data-theme="aaa-dark"] [data-brand="target"],
 [data-brand="target"] [data-theme="aaa-dark"] {
@@ -4027,6 +4024,7 @@
   --palette-fill-default: var(--primitives-color-neutral-cool-100);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-80);
   --palette-fill-elevated: var(--primitives-color-neutral-cool-100);
+  --palette-fill-faint: var(--primitives-color-neutral-cool-90);
   --palette-fill-hover: var(--primitives-color-neutral-cool-40);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-20);
   --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-10);
@@ -4283,19 +4281,17 @@
   --shadow-soft: var(--palette-fill-transparent-emphasis);
   --surface-brand: var(--palette-brand-primary-faint);
   --surface-card: var(--palette-fill-elevated);
-  --surface-dialog: var(--palette-fill-overlay);
   --surface-error: var(--palette-status-error-faint);
   --surface-gradient-end: var(--palette-gradient-default-end);
   --surface-gradient-start: var(--palette-gradient-default-start);
   --surface-info: var(--palette-status-info-faint);
   --zebra-surface-info: var(--palette-status-info-faint);
   --surface-inverse: var(--palette-fill-inverse);
-  --surface-menu: var(--palette-fill-overlay);
+  --surface-overlay: var(--palette-fill-overlay);
   --surface-page: var(--palette-fill-canvas);
-  --surface-popover: var(--palette-fill-overlay);
   --surface-section: var(--palette-fill-default);
-  --surface-sheet: var(--palette-fill-overlay);
-  --surface-subtle: var(--palette-fill-sunken);
+  --surface-shade: var(--palette-fill-transparent-elevate);
+  --surface-subtle: var(--palette-fill-faint);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
   --surface-track: var(--palette-fill-sunken);
@@ -4303,7 +4299,7 @@
   --zebra-surface-warning: var(--palette-status-warning-faint);
 }
 
-/* extension condensed — 364 tokens */
+/* extension condensed — 363 tokens */
 [data-brand="condensed"] {
   --palette-brand-primary-deep: var(--primitives-color-brand-main-80);
   --palette-brand-primary-default: var(--primitives-color-brand-main-60);
@@ -4341,6 +4337,7 @@
   --palette-fill-default: var(--primitives-color-pure-white);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-30);
   --palette-fill-elevated: var(--primitives-color-pure-white);
+  --palette-fill-faint: var(--primitives-color-neutral-cool-20);
   --palette-fill-hover: var(--primitives-color-neutral-cool-70);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-90);
   --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-100);
@@ -4597,19 +4594,17 @@
   --shadow-soft: var(--palette-fill-transparent-emphasis);
   --surface-brand: var(--palette-brand-primary-faint);
   --surface-card: var(--palette-fill-elevated);
-  --surface-dialog: var(--palette-fill-overlay);
   --surface-error: var(--palette-status-error-faint);
   --surface-gradient-end: var(--palette-gradient-default-end);
   --surface-gradient-start: var(--palette-gradient-default-start);
   --surface-info: var(--palette-status-info-faint);
   --zebra-surface-info: var(--palette-status-info-faint);
   --surface-inverse: var(--palette-fill-inverse);
-  --surface-menu: var(--palette-fill-overlay);
+  --surface-overlay: var(--palette-fill-overlay);
   --surface-page: var(--palette-fill-canvas);
-  --surface-popover: var(--palette-fill-overlay);
   --surface-section: var(--palette-fill-default);
-  --surface-sheet: var(--palette-fill-overlay);
-  --surface-subtle: var(--palette-fill-sunken);
+  --surface-shade: var(--palette-fill-transparent-elevate);
+  --surface-subtle: var(--palette-fill-faint);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
   --surface-track: var(--palette-fill-sunken);
@@ -4634,7 +4629,8 @@
   --zebra-radius-xl: var(--primitives-scale-5);
   --radius-xs: var(--primitives-scale-1);
   --space-2xl: var(--primitives-scale-9);
-  --space-2xs: var(--primitives-scale-1);
+  --space-2xs: var(--primitives-scale-2);
+  --space-3xs: var(--primitives-scale-1);
   --space-card: var(--primitives-scale-5);
   --space-gutter: var(--primitives-scale-5);
   --space-lg: var(--primitives-scale-6);
@@ -4643,7 +4639,6 @@
   --space-section: var(--primitives-scale-7);
   --space-sm: var(--primitives-scale-4);
   --space-xl: var(--primitives-scale-7);
-  --space-xxs: var(--primitives-scale-2);
   --body-large-font-size: var(--primitives-text-font-size-18);
   --body-large-line-height: var(--primitives-text-line-height-20);
   --body-medium-font-size: var(--primitives-text-font-size-14);
@@ -4696,7 +4691,7 @@
   --text-title-small: var(--title-small-font-weight) var(--title-small-font-size)/var(--title-small-line-height) var(--title-small-font-family), system-ui, sans-serif;
 }
 
-/* extension condensed + palette = Light — 364 tokens */
+/* extension condensed + palette = Light — 363 tokens */
 [data-brand="condensed"][data-theme="light"],
 [data-theme="light"] [data-brand="condensed"],
 [data-brand="condensed"] [data-theme="light"] {
@@ -4736,6 +4731,7 @@
   --palette-fill-default: var(--primitives-color-pure-white);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-30);
   --palette-fill-elevated: var(--primitives-color-pure-white);
+  --palette-fill-faint: var(--primitives-color-neutral-cool-20);
   --palette-fill-hover: var(--primitives-color-neutral-cool-70);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-90);
   --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-100);
@@ -4992,19 +4988,17 @@
   --shadow-soft: var(--palette-fill-transparent-emphasis);
   --surface-brand: var(--palette-brand-primary-faint);
   --surface-card: var(--palette-fill-elevated);
-  --surface-dialog: var(--palette-fill-overlay);
   --surface-error: var(--palette-status-error-faint);
   --surface-gradient-end: var(--palette-gradient-default-end);
   --surface-gradient-start: var(--palette-gradient-default-start);
   --surface-info: var(--palette-status-info-faint);
   --zebra-surface-info: var(--palette-status-info-faint);
   --surface-inverse: var(--palette-fill-inverse);
-  --surface-menu: var(--palette-fill-overlay);
+  --surface-overlay: var(--palette-fill-overlay);
   --surface-page: var(--palette-fill-canvas);
-  --surface-popover: var(--palette-fill-overlay);
   --surface-section: var(--palette-fill-default);
-  --surface-sheet: var(--palette-fill-overlay);
-  --surface-subtle: var(--palette-fill-sunken);
+  --surface-shade: var(--palette-fill-transparent-elevate);
+  --surface-subtle: var(--palette-fill-faint);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
   --surface-track: var(--palette-fill-sunken);
@@ -5029,7 +5023,8 @@
   --zebra-radius-xl: var(--primitives-scale-5);
   --radius-xs: var(--primitives-scale-1);
   --space-2xl: var(--primitives-scale-9);
-  --space-2xs: var(--primitives-scale-1);
+  --space-2xs: var(--primitives-scale-2);
+  --space-3xs: var(--primitives-scale-1);
   --space-card: var(--primitives-scale-5);
   --space-gutter: var(--primitives-scale-5);
   --space-lg: var(--primitives-scale-6);
@@ -5038,7 +5033,6 @@
   --space-section: var(--primitives-scale-7);
   --space-sm: var(--primitives-scale-4);
   --space-xl: var(--primitives-scale-7);
-  --space-xxs: var(--primitives-scale-2);
   --body-large-font-size: var(--primitives-text-font-size-18);
   --body-large-line-height: var(--primitives-text-line-height-20);
   --body-medium-font-size: var(--primitives-text-font-size-14);
@@ -5091,7 +5085,7 @@
   --text-title-small: var(--title-small-font-weight) var(--title-small-font-size)/var(--title-small-line-height) var(--title-small-font-family), system-ui, sans-serif;
 }
 
-/* extension condensed + palette = Dark — 364 tokens */
+/* extension condensed + palette = Dark — 363 tokens */
 [data-brand="condensed"][data-theme="dark"],
 [data-theme="dark"] [data-brand="condensed"],
 [data-brand="condensed"] [data-theme="dark"] {
@@ -5131,6 +5125,7 @@
   --palette-fill-default: var(--primitives-color-neutral-cool-100);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-80);
   --palette-fill-elevated: var(--primitives-color-neutral-cool-100);
+  --palette-fill-faint: var(--primitives-color-neutral-cool-90);
   --palette-fill-hover: var(--primitives-color-neutral-cool-40);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-20);
   --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-10);
@@ -5387,19 +5382,17 @@
   --shadow-soft: var(--palette-fill-transparent-emphasis);
   --surface-brand: var(--palette-brand-primary-faint);
   --surface-card: var(--palette-fill-elevated);
-  --surface-dialog: var(--palette-fill-overlay);
   --surface-error: var(--palette-status-error-faint);
   --surface-gradient-end: var(--palette-gradient-default-end);
   --surface-gradient-start: var(--palette-gradient-default-start);
   --surface-info: var(--palette-status-info-faint);
   --zebra-surface-info: var(--palette-status-info-faint);
   --surface-inverse: var(--palette-fill-inverse);
-  --surface-menu: var(--palette-fill-overlay);
+  --surface-overlay: var(--palette-fill-overlay);
   --surface-page: var(--palette-fill-canvas);
-  --surface-popover: var(--palette-fill-overlay);
   --surface-section: var(--palette-fill-default);
-  --surface-sheet: var(--palette-fill-overlay);
-  --surface-subtle: var(--palette-fill-sunken);
+  --surface-shade: var(--palette-fill-transparent-elevate);
+  --surface-subtle: var(--palette-fill-faint);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
   --surface-track: var(--palette-fill-sunken);
@@ -5424,7 +5417,8 @@
   --zebra-radius-xl: var(--primitives-scale-5);
   --radius-xs: var(--primitives-scale-1);
   --space-2xl: var(--primitives-scale-9);
-  --space-2xs: var(--primitives-scale-1);
+  --space-2xs: var(--primitives-scale-2);
+  --space-3xs: var(--primitives-scale-1);
   --space-card: var(--primitives-scale-5);
   --space-gutter: var(--primitives-scale-5);
   --space-lg: var(--primitives-scale-6);
@@ -5433,7 +5427,6 @@
   --space-section: var(--primitives-scale-7);
   --space-sm: var(--primitives-scale-4);
   --space-xl: var(--primitives-scale-7);
-  --space-xxs: var(--primitives-scale-2);
   --body-large-font-size: var(--primitives-text-font-size-18);
   --body-large-line-height: var(--primitives-text-line-height-20);
   --body-medium-font-size: var(--primitives-text-font-size-14);
@@ -5486,7 +5479,7 @@
   --text-title-small: var(--title-small-font-weight) var(--title-small-font-size)/var(--title-small-line-height) var(--title-small-font-family), system-ui, sans-serif;
 }
 
-/* extension condensed + palette = AAA Light — 364 tokens */
+/* extension condensed + palette = AAA Light — 363 tokens */
 [data-brand="condensed"][data-theme="aaa-light"],
 [data-theme="aaa-light"] [data-brand="condensed"],
 [data-brand="condensed"] [data-theme="aaa-light"] {
@@ -5526,6 +5519,7 @@
   --palette-fill-default: var(--primitives-color-pure-white);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-30);
   --palette-fill-elevated: var(--primitives-color-pure-white);
+  --palette-fill-faint: var(--primitives-color-neutral-cool-20);
   --palette-fill-hover: var(--primitives-color-neutral-cool-70);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-90);
   --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-100);
@@ -5782,19 +5776,17 @@
   --shadow-soft: var(--palette-fill-transparent-emphasis);
   --surface-brand: var(--palette-brand-primary-faint);
   --surface-card: var(--palette-fill-elevated);
-  --surface-dialog: var(--palette-fill-overlay);
   --surface-error: var(--palette-status-error-faint);
   --surface-gradient-end: var(--palette-gradient-default-end);
   --surface-gradient-start: var(--palette-gradient-default-start);
   --surface-info: var(--palette-status-info-faint);
   --zebra-surface-info: var(--palette-status-info-faint);
   --surface-inverse: var(--palette-fill-inverse);
-  --surface-menu: var(--palette-fill-overlay);
+  --surface-overlay: var(--palette-fill-overlay);
   --surface-page: var(--palette-fill-canvas);
-  --surface-popover: var(--palette-fill-overlay);
   --surface-section: var(--palette-fill-default);
-  --surface-sheet: var(--palette-fill-overlay);
-  --surface-subtle: var(--palette-fill-sunken);
+  --surface-shade: var(--palette-fill-transparent-elevate);
+  --surface-subtle: var(--palette-fill-faint);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
   --surface-track: var(--palette-fill-sunken);
@@ -5819,7 +5811,8 @@
   --zebra-radius-xl: var(--primitives-scale-5);
   --radius-xs: var(--primitives-scale-1);
   --space-2xl: var(--primitives-scale-9);
-  --space-2xs: var(--primitives-scale-1);
+  --space-2xs: var(--primitives-scale-2);
+  --space-3xs: var(--primitives-scale-1);
   --space-card: var(--primitives-scale-5);
   --space-gutter: var(--primitives-scale-5);
   --space-lg: var(--primitives-scale-6);
@@ -5828,7 +5821,6 @@
   --space-section: var(--primitives-scale-7);
   --space-sm: var(--primitives-scale-4);
   --space-xl: var(--primitives-scale-7);
-  --space-xxs: var(--primitives-scale-2);
   --body-large-font-size: var(--primitives-text-font-size-18);
   --body-large-line-height: var(--primitives-text-line-height-20);
   --body-medium-font-size: var(--primitives-text-font-size-14);
@@ -5881,7 +5873,7 @@
   --text-title-small: var(--title-small-font-weight) var(--title-small-font-size)/var(--title-small-line-height) var(--title-small-font-family), system-ui, sans-serif;
 }
 
-/* extension condensed + palette = AAA Dark — 364 tokens */
+/* extension condensed + palette = AAA Dark — 363 tokens */
 [data-brand="condensed"][data-theme="aaa-dark"],
 [data-theme="aaa-dark"] [data-brand="condensed"],
 [data-brand="condensed"] [data-theme="aaa-dark"] {
@@ -5921,6 +5913,7 @@
   --palette-fill-default: var(--primitives-color-neutral-cool-100);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-80);
   --palette-fill-elevated: var(--primitives-color-neutral-cool-100);
+  --palette-fill-faint: var(--primitives-color-neutral-cool-90);
   --palette-fill-hover: var(--primitives-color-neutral-cool-40);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-20);
   --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-10);
@@ -6177,19 +6170,17 @@
   --shadow-soft: var(--palette-fill-transparent-emphasis);
   --surface-brand: var(--palette-brand-primary-faint);
   --surface-card: var(--palette-fill-elevated);
-  --surface-dialog: var(--palette-fill-overlay);
   --surface-error: var(--palette-status-error-faint);
   --surface-gradient-end: var(--palette-gradient-default-end);
   --surface-gradient-start: var(--palette-gradient-default-start);
   --surface-info: var(--palette-status-info-faint);
   --zebra-surface-info: var(--palette-status-info-faint);
   --surface-inverse: var(--palette-fill-inverse);
-  --surface-menu: var(--palette-fill-overlay);
+  --surface-overlay: var(--palette-fill-overlay);
   --surface-page: var(--palette-fill-canvas);
-  --surface-popover: var(--palette-fill-overlay);
   --surface-section: var(--palette-fill-default);
-  --surface-sheet: var(--palette-fill-overlay);
-  --surface-subtle: var(--palette-fill-sunken);
+  --surface-shade: var(--palette-fill-transparent-elevate);
+  --surface-subtle: var(--palette-fill-faint);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
   --surface-track: var(--palette-fill-sunken);
@@ -6214,7 +6205,8 @@
   --zebra-radius-xl: var(--primitives-scale-5);
   --radius-xs: var(--primitives-scale-1);
   --space-2xl: var(--primitives-scale-9);
-  --space-2xs: var(--primitives-scale-1);
+  --space-2xs: var(--primitives-scale-2);
+  --space-3xs: var(--primitives-scale-1);
   --space-card: var(--primitives-scale-5);
   --space-gutter: var(--primitives-scale-5);
   --space-lg: var(--primitives-scale-6);
@@ -6223,7 +6215,6 @@
   --space-section: var(--primitives-scale-7);
   --space-sm: var(--primitives-scale-4);
   --space-xl: var(--primitives-scale-7);
-  --space-xxs: var(--primitives-scale-2);
   --body-large-font-size: var(--primitives-text-font-size-18);
   --body-large-line-height: var(--primitives-text-line-height-20);
   --body-medium-font-size: var(--primitives-text-font-size-14);
@@ -6276,7 +6267,7 @@
   --text-title-small: var(--title-small-font-weight) var(--title-small-font-size)/var(--title-small-line-height) var(--title-small-font-family), system-ui, sans-serif;
 }
 
-/* palette = AAA Light — 303 tokens */
+/* palette = AAA Light — 302 tokens */
 [data-theme="aaa-light"],
 :is([data-theme="aaa-light"], [data-theme="aaa-dark"]) [data-theme="light"] {
   --palette-brand-primary-deep: var(--primitives-color-brand-main-100);
@@ -6315,6 +6306,7 @@
   --palette-fill-default: var(--primitives-color-pure-white);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-30);
   --palette-fill-elevated: var(--primitives-color-pure-white);
+  --palette-fill-faint: var(--primitives-color-neutral-cool-20);
   --palette-fill-hover: var(--primitives-color-neutral-cool-70);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-90);
   --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-100);
@@ -6571,19 +6563,17 @@
   --shadow-soft: var(--palette-fill-transparent-emphasis);
   --surface-brand: var(--palette-brand-primary-faint);
   --surface-card: var(--palette-fill-elevated);
-  --surface-dialog: var(--palette-fill-overlay);
   --surface-error: var(--palette-status-error-faint);
   --surface-gradient-end: var(--palette-gradient-default-end);
   --surface-gradient-start: var(--palette-gradient-default-start);
   --surface-info: var(--palette-status-info-faint);
   --zebra-surface-info: var(--palette-status-info-faint);
   --surface-inverse: var(--palette-fill-inverse);
-  --surface-menu: var(--palette-fill-overlay);
+  --surface-overlay: var(--palette-fill-overlay);
   --surface-page: var(--palette-fill-canvas);
-  --surface-popover: var(--palette-fill-overlay);
   --surface-section: var(--palette-fill-default);
-  --surface-sheet: var(--palette-fill-overlay);
-  --surface-subtle: var(--palette-fill-sunken);
+  --surface-shade: var(--palette-fill-transparent-elevate);
+  --surface-subtle: var(--palette-fill-faint);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
   --surface-track: var(--palette-fill-sunken);
@@ -6591,7 +6581,7 @@
   --zebra-surface-warning: var(--palette-status-warning-faint);
 }
 
-/* palette = AAA Dark — 303 tokens */
+/* palette = AAA Dark — 302 tokens */
 [data-theme="aaa-dark"],
 :is([data-theme="aaa-light"], [data-theme="aaa-dark"]) [data-theme="dark"] {
   --palette-brand-primary-deep: var(--primitives-color-brand-main-10);
@@ -6630,6 +6620,7 @@
   --palette-fill-default: var(--primitives-color-neutral-cool-100);
   --palette-fill-disabled: var(--primitives-color-neutral-cool-80);
   --palette-fill-elevated: var(--primitives-color-neutral-cool-100);
+  --palette-fill-faint: var(--primitives-color-neutral-cool-90);
   --palette-fill-hover: var(--primitives-color-neutral-cool-40);
   --palette-fill-inverse: var(--primitives-color-neutral-cool-20);
   --palette-fill-inverse-elevated: var(--primitives-color-neutral-cool-10);
@@ -6886,19 +6877,17 @@
   --shadow-soft: var(--palette-fill-transparent-emphasis);
   --surface-brand: var(--palette-brand-primary-faint);
   --surface-card: var(--palette-fill-elevated);
-  --surface-dialog: var(--palette-fill-overlay);
   --surface-error: var(--palette-status-error-faint);
   --surface-gradient-end: var(--palette-gradient-default-end);
   --surface-gradient-start: var(--palette-gradient-default-start);
   --surface-info: var(--palette-status-info-faint);
   --zebra-surface-info: var(--palette-status-info-faint);
   --surface-inverse: var(--palette-fill-inverse);
-  --surface-menu: var(--palette-fill-overlay);
+  --surface-overlay: var(--palette-fill-overlay);
   --surface-page: var(--palette-fill-canvas);
-  --surface-popover: var(--palette-fill-overlay);
   --surface-section: var(--palette-fill-default);
-  --surface-sheet: var(--palette-fill-overlay);
-  --surface-subtle: var(--palette-fill-sunken);
+  --surface-shade: var(--palette-fill-transparent-elevate);
+  --surface-subtle: var(--palette-fill-faint);
   --surface-success: var(--palette-status-success-faint);
   --surface-tooltip: var(--palette-fill-inverse);
   --surface-track: var(--palette-fill-sunken);

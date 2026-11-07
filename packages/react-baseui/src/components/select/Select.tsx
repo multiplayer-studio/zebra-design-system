@@ -6,6 +6,7 @@ import { CaretIndicator } from "../caret-indicator/CaretIndicator.js";
 import { InputHint } from "../input/InputHint.js";
 import type { InputFieldSize, InputFieldShape, InputFieldFlavour } from "../input-field/InputField.js";
 import type { InputState, InputLabelType } from "../input/Input.js";
+import { InputLabel } from "../input/InputLabel.js";
 import "../input-field/input-field.css";
 import "../input/input.css";
 import "../dropdown-menu/dropdown-menu.css";
@@ -50,6 +51,8 @@ export interface SelectProps {
   information?: boolean;
   /** Accessible name of the information icon. */
   informationLabel?: string;
+  /** Supporting line under the name, read as the field's description. Empty hides it; needs a `label` (Show Sub Label). */
+  subLabel?: React.ReactNode;
   /** Supporting line below the field; carries the reason when `state` is invalid. Empty hides it (Show Hint). */
   hint?: React.ReactNode;
   /** Icon ahead of the hint (the hint's Show Icon). */
@@ -70,6 +73,8 @@ export interface SelectProps {
   flavour?: SelectFlavour;
   /** Opens the list on the compact Dropdown Menu: a space/xs inset and no gap between rows, for a cramped spot. */
   compact?: boolean;
+  /** Fills the container's width. Without it the Select starts at 280px and narrows to fit, as Input. */
+  block?: boolean;
   /**
    * Where the list mounts. Defaults to the Select's own root, so the list
    * stays inside any `.ext-*` / `.mode-*` scope the Select sits in; it is
@@ -117,9 +122,9 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(function 
   {
     options = NO_OPTIONS, value: valueProp, defaultValue = null, onValueChange,
     open: openProp, defaultOpen = false, onOpenChange,
-    placeholder = "Select an option", label, labelType = "default", information = false, informationLabel = "More information",
+    placeholder = "Select an option", label, labelType = "default", information = false, informationLabel = "More information", subLabel,
     hint, hintIcon = true, state = "default", readOnly = false,
-    name, leadingIcon = null, size = "medium", shape = "rounded", flavour = "default", compact = false,
+    name, leadingIcon = null, size = "medium", shape = "rounded", flavour = "default", compact = false, block = false,
     portalContainer, "aria-label": ariaLabel, className,
   },
   ref,
@@ -157,14 +162,9 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(function 
   }, []);
 
   return (
-    <Field.Root ref={setRootRef} className={["zds-input", "zds-select", className].filter(Boolean).join(" ")} name={name} disabled={disabled} invalid={invalid} data-state={state}>
+    <Field.Root ref={setRootRef} className={["zds-input", "zds-select", className].filter(Boolean).join(" ")} name={name} disabled={disabled} invalid={invalid} data-state={state} data-block={block ? "" : undefined}>
       {label ? (
-        <Field.Label className="zds-input__label" nativeLabel={false} render={<div />}>
-          <span className="zds-input__name">{label}</span>
-          {labelType === "required" ? <span className="zds-input__required" aria-hidden="true">*</span> : null}
-          {labelType === "optional" ? <span className="zds-input__optional">(optional)</span> : null}
-          {information ? <Icon className="zds-input__information" name="info" size="medium" iconStyle="rounded" label={informationLabel} /> : null}
-        </Field.Label>
+        <InputLabel type={labelType} information={information} informationLabel={informationLabel} subLabel={subLabel} nativeLabel={false}>{label}</InputLabel>
       ) : null}
       <BaseSelect.Root
         items={items}

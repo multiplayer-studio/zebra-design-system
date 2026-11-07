@@ -8,6 +8,11 @@ import { zebraIconGlyphs } from "../../generated/zebra-icons/glyphs.js";
 import type { AvatarSize } from "./avatar-size.js";
 
 export type AvatarSwatchColor = "purple" | "blue" | "sea" | "yellow" | "orange" | "green" | "burgundy";
+const SWATCHES: readonly string[] = ["purple", "blue", "sea", "yellow", "orange", "green", "burgundy"];
+
+/** A swatch that isn't one of the seven: a token name (`chart/series/2`), a custom property or any CSS colour. */
+const swatchFill = (color: string) =>
+  color.startsWith("--") ? `var(${color})` : /^[a-z][\w-]*(\/[\w-]+)+$/i.test(color) ? `var(--${color.replace(/\//g, "-")})` : color;
 export type AvatarStatus = "available" | "away" | "busy" | "dnd" | "on-shift" | "offline";
 
 /**
@@ -51,8 +56,11 @@ export class ZetaAvatar extends LitElement {
    */
   @property({ type: String, reflect: true }) size?: AvatarSize;
 
-  /** The swatch behind initials or an icon. Not used behind a photo. */
-  @property({ type: String, reflect: true, attribute: "swatch-color" }) swatchColor: AvatarSwatchColor = "purple";
+  /**
+   * The swatch behind initials or an icon. Not used behind a photo. One of the seven swatches, or any other colour: a
+   * token name (`chart/series/2`), a custom property (`--brand-accent`) or a CSS colour value.
+   */
+  @property({ type: String, reflect: true, attribute: "swatch-color" }) swatchColor: AvatarSwatchColor | (string & {}) = "purple";
 
   /** Shows the ring around the avatar. */
   @property({ type: Boolean, reflect: true, attribute: "show-ring" }) showRing: boolean = false;
@@ -68,6 +76,14 @@ export class ZetaAvatar extends LitElement {
 
   /** Accessible text for the presence badge, such as "Available". Give one whenever `status` is set. */
   @property({ type: String, attribute: "status-label" }) statusLabel?: string;
+
+  protected willUpdate(changed: Map<PropertyKey, unknown>) {
+    // A named swatch is a host attribute selector; any other colour sets the swatch directly.
+    if (changed.has("swatchColor")) {
+      if (SWATCHES.includes(this.swatchColor)) this.style.removeProperty("--_swatch");
+      else this.style.setProperty("--_swatch", swatchFill(this.swatchColor));
+    }
+  }
 
   protected render() {
     return html`

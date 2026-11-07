@@ -20,7 +20,7 @@ export default css`
     align-items: center;
     cursor: pointer;
     height: var(--control-sm);
-    padding: var(--space-xxs) var(--space-md);
+    padding: var(--space-2xs) var(--space-md);
     background: var(--_bg);
     color: var(--_fg);
     border-radius: var(--group-item-left-radius) var(--group-item-right-radius) var(--group-item-right-radius) var(--group-item-left-radius);
@@ -40,7 +40,7 @@ export default css`
 
   /* The label's own padding separates it from the icons, as on Button. */
   label.pad {
-    padding-inline: var(--space-xxs);
+    padding-inline: var(--space-2xs);
   }
 
   :host([size="medium"]) > button {

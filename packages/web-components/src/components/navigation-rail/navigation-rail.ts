@@ -117,8 +117,15 @@ export class ZdsNavigationRail extends LitElement {
   @property({ type: Boolean, reflect: true }) inverse = false;
 
   /**
-   * Caps the wide rail's width (Figma's 200px); the narrow icon rail is
-   * unaffected. A CSS length, or a number in px. Wide labels truncate.
+   * The wide rail's width. 200px by default (Figma's measure); the project
+   * sets its own as a CSS length or a number in px, or `fill` to take the
+   * width of the rail's container. The narrow icon rail is unaffected.
+   */
+  @property({ attribute: "rail-width", reflect: true }) railWidth: string | number | null = null;
+
+  /**
+   * Caps the wide rail's width; the narrow icon rail is unaffected. A CSS
+   * length, or a number in px. Wide labels truncate.
    */
   @property({ attribute: "rail-max-width" }) railMaxWidth: string | number | null = null;
 
@@ -240,7 +247,7 @@ export class ZdsNavigationRail extends LitElement {
     // Every update, not only when `inverse` changes: a framework that rewrites
     // the host's class attribute would otherwise drop the mode class.
     this.#syncMode();
-    if (changed.has("railMaxWidth") || changed.has("subMenuMaxWidth")) this.#syncWidths();
+    if (changed.has("railWidth") || changed.has("railMaxWidth") || changed.has("subMenuMaxWidth")) this.#syncWidths();
     if (changed.has("expanded")) {
       clearTimeout(this.#latchTimer);
       const ms = this.expanded || !this.hasUpdated ? 0 : motionMs(this.renderRoot.querySelector(".rail"));
@@ -272,6 +279,7 @@ export class ZdsNavigationRail extends LitElement {
     // A bare number — `180` or the attribute string "180" — is px.
     const set = (name: string, v: string | number | null) =>
       v === null || v === "" ? this.style.removeProperty(name) : this.style.setProperty(name, /^\d+(\.\d+)?$/.test(String(v)) ? `${v}px` : String(v));
+    set("--zds-navigation-rail-width", this.railWidth === "fill" ? null : this.railWidth);
     set("--zds-navigation-rail-max-width", this.railMaxWidth);
     set("--zds-navigation-rail-sub-menu-max-width", this.subMenuMaxWidth);
   }

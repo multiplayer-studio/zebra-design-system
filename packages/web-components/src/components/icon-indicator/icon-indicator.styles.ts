@@ -2,7 +2,7 @@ import { css } from "lit";
 
 /**
  * Every value is a semantic token. Size: control/icon-sm, -md, -lg circles,
- * the glyph the circle less space/2xs each side (12 / 16 / 24; the outer two
+ * the glyph the circle less space/3xs each side (12 / 16 / 24; the outer two
  * have no icon token — spec warn).
  *
  * Spec: specs/badges/icon-indicator.spec.json
@@ -33,8 +33,8 @@ export default css`
       background: var(--zds-icon-indicator-fill, var(--foreground-secondary));
       color: var(--zds-icon-indicator-foreground, var(--foreground-inverse));
     }
-    /* The glyph is the box less space/2xs each side (12 / 16 / 24). */
+    /* The glyph is the box less space/3xs each side (12 / 16 / 24). */
     zds-icon {
-      --zds-icon-box: calc(var(--zds-indicator-box) - 2 * var(--space-2xs));
+      --zds-icon-box: calc(var(--zds-indicator-box) - 2 * var(--space-3xs));
     }
   `;

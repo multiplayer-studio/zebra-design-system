@@ -19,7 +19,7 @@ const themed: Decorator = (story, ctx) => {
   ].filter(Boolean).join(" ");
 
   return html`
-    <div class=${classes} style="padding:24px;background:var(--surface-page);">
+    <div class=${classes} style="padding:24px;background:var(--surface-page);color:var(--foreground-primary);">
       ${story()}
     </div>
   `;
@@ -51,6 +51,8 @@ const preview: Preview = {
         items: [
           { value: "light", title: "Light" },
           { value: "dark", title: "Dark" },
+          { value: "aaa-light", title: "AAA Light" },
+          { value: "aaa-dark", title: "AAA Dark" },
         ],
         dynamicTitle: true,
       },

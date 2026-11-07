@@ -15,6 +15,7 @@ const meta: Meta<InputStory> = {
   args: {
     value: "",
     label: "Label",
+    subLabel: "",
     hintText: "hint",
     error: false,
     disabled: false,
@@ -171,7 +172,7 @@ export const TextInputStates: StoryObj = {
     html`<div style="display: grid; grid-template-columns: repeat(2, 280px); gap: var(--space-xl);">
       <zeta-text-input label="Email" placeholder="name@example.com" hintText="We never share it" required show-information></zeta-text-input>
       <zeta-text-input label="Email" value="name@" error errorText="Enter a full email address"></zeta-text-input>
-      <zeta-text-input label="Account" value="ZX-4471" readOnly optional hintText="Set by your admin"></zeta-text-input>
+      <zeta-text-input label="Account" sub-label="Shown on every invoice" value="ZX-4471" readOnly optional hintText="Set by your admin"></zeta-text-input>
       <zeta-text-input label="Email" value="name@example.com" disabled hintText="Locked"></zeta-text-input>
       <zeta-text-input label="Ask the assistant" placeholder="Ask anything" flavor="gradient" shape="full"></zeta-text-input>
       <zeta-text-input label="Search" placeholder="Search" flavor="ghost" leadingIcon="search"></zeta-text-input>

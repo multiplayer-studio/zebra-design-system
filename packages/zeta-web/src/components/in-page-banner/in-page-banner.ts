@@ -1,108 +1,158 @@
-import { html, LitElement, nothing } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { html, LitElement, nothing, type PropertyValues } from "lit";
+import { customElement, property, state } from "lit/decorators.js";
 import styles from "./in-page-banner.styles.js";
 import { Contourable } from "../../mixins/mixins.js";
+import "../icon/icon.js";
 import "../button/icon-button/icon-button.js";
 import { ZetaCloseEvent } from "../../events.js";
 import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 
-/** In page banners display an important, succinct message, and may provide actions for users to address. Banners should be displayed at the top of the screen, below a top app bar. Only one banner should be shown at a time.
+/* `default` is the legacy name for neutral. */
+export type ZetaInPageBannerStatus = "neutral" | "info" | "positive" | "warning" | "negative" | "default";
+export type ZetaInPageBannerAppearance = "subtle" | "solid";
+
+/* The glyph follows Status (spec: anatomy statusIcon). */
+const STATUS_ICON: Record<ZetaInPageBannerStatus, ZetaIconName> = {
+  neutral: "lightbulb",
+  default: "lightbulb",
+  info: "info",
+  positive: "check_circle",
+  warning: "warning",
+  negative: "error"
+};
+
+/* Slotted actions whose shape the banner sets. */
+const SHAPED = new Set(["ZETA-BUTTON", "ZETA-ICON-BUTTON"]);
+
+/* Marks a slotted action the banner moved into Dark, so it only ever clears its own attribute. */
+const DARK_MARK = "data-zeta-banner-dark";
+
+/** A status message placed inside the content it is about: a form, a card, a panel. It sits in the flow at its
+ * container's width. `status` sets the colour and glyph; `appearance` sets how loud it is. Solid interrupts, for the
+ * one message on a view that must be seen now. Subtle informs, for context and guidance, and several can share a page.
  *
- * This component represents a banner that can be displayed within a page.
- * It can have a title, body content, and various status options.
+ * On solid the controls draw light on any fill: slotted actions take `data-theme="dark"`, and the dismiss maps its
+ * foreground to foreground/on-strong (Figma pins palette Dark on both). The text keeps a 16rem minimum before the
+ * actions wrap beneath it. `status="negative"` interrupts assistive technology; the others announce politely.
  *
- * @slot - The main content of the banner.
- * @slot action - The action buttons.
+ * @slot - The supporting line, when `description` is not set (the legacy way to give the body).
+ * @slot actions - The controls the message needs, normally one small zeta-button: outline-subtle on subtle,
+ * outline-contrast on solid. The banner sets their shape.
+ * @slot action - The legacy name for `actions`.
  *
- * @part header - The header section containing the title.
- * @part body - The body section containing the main content.
- * @part footer - The footer section containing action buttons.
- * @part icon - The container containing the status icon.
+ * @part banner - The banner surface.
+ * @part icon - The container holding the status glyph.
+ * @part header - The title.
+ * @part body - The supporting line.
+ * @part footer - The actions.
  *
- * @event {CustomEvent<ZetaCloseEventDetail>} close - Fired when the close icon is clicked.
+ * @event {CustomEvent<ZetaCloseEventDetail>} close - The dismiss was pressed. The product removes the banner.
  *
- * @cssproperty --banner-border-color - The border color of the banner.
- * @cssproperty --banner-background-color - The background color of the banner.
- * @cssproperty --banner-foreground-color - The foreground color of the banner.
- * @cssproperty --banner-icon-color - The icon color of the banner.
- * @cssproperty --banner-title-font - The font of the banner title.
- * @cssproperty --banner-body-font - The font of the banner body content.
- *
- * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21156-27071
+ * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8051-4995
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-in-page-banner--docs
  */
 @customElement("zeta-in-page-banner")
 export class ZetaInPageBanner extends Contourable(LitElement) {
-  /** Title of the banner, displayed at the top.  */
+  /** The status colour and glyph. `default` is the legacy name for neutral. */
+  @property({ type: String, reflect: true }) status: ZetaInPageBannerStatus = "info";
+
+  /** `solid` interrupts; `subtle` informs. */
+  @property({ type: String, reflect: true }) appearance: ZetaInPageBannerAppearance = "subtle";
+
+  /** The headline: what happened (spec: title). */
+  @property({ type: String }) heading = "";
+
+  /** The legacy name for `heading`. */
   @property({ type: String }) title: string = "";
 
-  /** Status of the component. */
-  @property({ type: String, reflect: true }) status: "default" | "info" | "positive" | "warning" | "negative" = "default";
+  /** The supporting line: why, and what to do next. Shown when set. */
+  @property({ type: String }) description = "";
 
-  /** Whether the banner can be closed by the user. */
-  @property({ type: Boolean }) canClose: boolean = true;
+  /** Keeps the status glyph so the banner survives greyscale. */
+  @property({ type: Boolean, attribute: "show-icon" }) showIcon: boolean = true;
 
-  /** Whether the icon should be displayed. */
-  @property({ type: Boolean }) showIcon: boolean = true;
-
-  /** Custom icon to replace default.
-   *
-   * Default icons are:
-   * - positive: check_circle
-   * - negative: error
-   * - warning: warning
-   * - info: info
-   * - default: info
-   */
+  /** Replaces the status glyph. */
   @property({ type: String }) icon?: ZetaIconName;
 
+  /** Shows the dismiss. */
+  @property({ type: Boolean, reflect: true, attribute: "show-close" }) showClose = false;
+
+  /** The legacy name for `showClose`. */
+  @property({ type: Boolean }) canClose: boolean = false;
+
+  /** Accessible name of the dismiss. */
+  @property({ type: String, attribute: "close-label" }) closeLabel = "Dismiss";
+
+  @state() private hasActions = false;
+
   close() {
-    this.remove();
     this.dispatchEvent(new ZetaCloseEvent().toEvent());
   }
-  static styles = [styles, super.styles ?? []];
 
-  private getIcon = () => {
-    if (this.icon) {
-      return this.icon;
-    }
-    switch (this.status) {
-      case "positive":
-        return "check_circle";
-      case "negative":
-        return "error";
-      case "default":
-        return "info";
-      default:
-        return this.status;
+  protected updated(changed: PropertyValues<this>) {
+    if (changed.has("rounded") || changed.has("appearance")) this.syncActions();
+  }
+
+  private syncActions = () => {
+    const solid = this.appearance === "solid";
+    for (const slot of this.renderRoot.querySelectorAll<HTMLSlotElement>("slot[name]")) {
+      for (const el of slot.assignedElements({ flatten: true })) {
+        if (solid && !el.hasAttribute("data-theme")) {
+          el.setAttribute("data-theme", "dark");
+          el.setAttribute(DARK_MARK, "");
+        }
+        if (!solid && el.hasAttribute(DARK_MARK)) {
+          el.removeAttribute("data-theme");
+          el.removeAttribute(DARK_MARK);
+        }
+        if (SHAPED.has(el.tagName)) (el as Element & { shape: string }).shape = this.rounded ? "rounded" : "sharp";
+      }
     }
   };
 
+  private onActions = () => {
+    const slots = this.renderRoot.querySelectorAll<HTMLSlotElement>("slot[name]");
+    this.hasActions = [...slots].some(s => s.assignedElements().length > 0);
+    this.syncActions();
+  };
+
   protected render() {
+    const heading = this.heading || this.title;
+    const closable = this.showClose || this.canClose;
     return html`
-      <div class="container">
-        ${this.showIcon ? html` <div class="leading" part="icon"><zeta-icon .rounded=${this.rounded}>${this.getIcon()}</zeta-icon></div>` : nothing}
-        <div class="center">
-          <div part="header">${this.title ? html`<div class="title">${this.title}</div>` : nothing}</div>
-          <div part="body">
-            <slot></slot>
+      <div class="banner" part="banner" role=${this.status === "negative" ? "alert" : "status"}>
+        ${
+          this.showIcon
+            ? html`<span class="glyph" part="icon"><zeta-icon .rounded=${this.rounded}>${this.icon ?? STATUS_ICON[this.status]}</zeta-icon></span>`
+            : nothing
+        }
+        <div class="content">
+          <div class="text">
+            ${heading ? html`<span class="title" part="header">${heading}</span>` : nothing}
+            <span class="description" part="body">${this.description || html`<slot></slot>`}</span>
+          </div>
+          <div class="actions" part="footer" ?hidden=${!this.hasActions}>
+            <slot name="actions" @slotchange=${this.onActions}></slot><slot name="action" @slotchange=${this.onActions}></slot>
           </div>
         </div>
-        <div class="trailing">
-          ${
-            this.canClose
-              ? html`<zeta-icon-button flavor="text" size="small" shape=${this.rounded ? "rounded" : "sharp"} @click=${() => this.close()}>
-                  close
-                </zeta-icon-button>`
-              : nothing
-          }
-        </div>
-      </div>
-      <div part="footer">
-        <slot name="action"></slot>
+        ${
+          closable
+            ? html`<zeta-icon-button
+                class="dismiss"
+                flavor="subtle"
+                size="small"
+                shape=${this.rounded ? "rounded" : "sharp"}
+                aria-label=${this.closeLabel}
+                @click=${() => this.close()}
+                >close</zeta-icon-button
+              >`
+            : nothing
+        }
       </div>
     `;
   }
+
+  static styles = [super.styles ?? [], styles];
 }
 
 declare global {

@@ -111,7 +111,7 @@ export default css`
   /* The value can't size the field (it truncates by design), so the field is sized from the widest option: its digits,
      the field's padding, the text's inset, the gap and the chevron. The panel grows to fit its rows. */
   .page-size zeta-select-input {
-    --select-input-min-width: calc(var(--_digits) * 1ch + 2 * var(--space-md) + 3 * var(--space-xxs) + var(--control-icon-sm));
+    --select-input-min-width: calc(var(--_digits) * 1ch + 2 * var(--space-md) + 3 * var(--space-2xs) + var(--control-icon-sm));
     --select-input-options-min-width: max-content;
     inline-size: max-content;
     font-variant-numeric: tabular-nums;
@@ -260,7 +260,7 @@ export default css`
 
   /* Column settings: two short lists in the compact menu, each under a small secondary heading, split by a divider. */
   .menu-heading {
-    padding: var(--space-xs) var(--space-md) var(--space-xxs);
+    padding: var(--space-xs) var(--space-md) var(--space-2xs);
     font: var(--text-label-small);
     letter-spacing: var(--label-small-letter-spacing);
     color: var(--foreground-secondary);
@@ -322,7 +322,7 @@ export default css`
   .head {
     display: flex;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
   }
 
   /* ---- _Label ---- */
@@ -344,7 +344,7 @@ export default css`
     flex: 1 1 auto;
     display: inline-flex;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     min-width: 0;
   }
 

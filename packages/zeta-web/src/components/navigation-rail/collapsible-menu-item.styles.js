@@ -1,8 +1,8 @@
 import { css } from "lit";
 
 /* Spec: specs/navigation-rail (Collapsible Menu Item). The header is a Sub Menu Item row: default when closed, the
-   pressed ghost fill with radius/sm top corners when open. The rows sit on surface/menu, space/sm padding and
-   space/xxs apart, radius/sm bottom corners. Rows reveal by height on animations/smooth. */
+   pressed ghost fill with radius/sm top corners when open. The rows sit on surface/subtle, space/sm padding and
+   space/2xs apart, radius/sm bottom corners. Rows reveal by height on animations/smooth. */
 export default css`
   :host {
     display: flex;
@@ -26,7 +26,7 @@ export default css`
     gap: var(--space-sm);
     min-width: 0;
     min-height: var(--control-lg);
-    padding: var(--space-xxs) var(--space-md);
+    padding: var(--space-2xs) var(--space-md);
     border-radius: var(--_radius);
     cursor: pointer;
     background-color: var(--_bg);
@@ -111,9 +111,9 @@ export default css`
   .children {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     padding: var(--space-sm);
-    background-color: var(--surface-menu);
+    background-color: var(--surface-subtle);
     border-radius: 0 0 var(--_radius) var(--_radius);
   }
 

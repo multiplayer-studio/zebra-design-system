@@ -94,14 +94,14 @@ In Figma both changes are glyph swaps through Caret Indicator's Open variant. By
 
 | | plain | selectable |
 |---|---|---|
-| layout | horizontal, centred, gap `space/sm`, padding `space/lg` | horizontal, centred, gap `space/xxs`, padding `space/sm` |
+| layout | horizontal, centred, gap `space/sm`, padding `space/lg` | horizontal, centred, gap `space/2xs`, padding `space/sm` |
 | order | title, then the trailing caret | leading control, then the title, then the selection mark |
 | fill, Default | `interactive/ghost/background/default` | same |
 | fill, hover | `interactive/ghost/background/hover` | same |
 
 The header has no border and no radius. Standalone, the plain header measures 381×52Px and the selectable one 381×56Px.
 
-- **Title:** `title/medium` (was `title/large` before 2026-10-21), colour `foreground/primary`. It hugs, with no truncation. It sits in a heading column (gap `space/2xs`, fill) and a title row (gap `space/xxs`).
+- **Title:** `title/medium` (was `title/large` before 2026-10-21), colour `foreground/primary`. It hugs, with no truncation. It sits in a heading column (gap `space/3xs`, fill) and a title row (gap `space/2xs`).
 - **Caret (plain header only):** Caret Indicator, Size=medium. Glyph `expand-more`, or `expand-less` when open. Rounded family, `currentColor`.
 - **Leading control (selectable header only):** Icon Button, Size=medium (`control/md`), Flavour=subtle. Shape is sharp, or rounded when the Accordion's `rounded` is true. It holds a small Caret Indicator; the glyphs are in the item table above.
 - **Selection mark (selectable header only, when `selected`):** Icon, Framed=true, height `control/target-min`. Glyph `check-mark`, rounded family, `currentColor`. When it shows, the heading column narrows (measured 321→277Px).
@@ -195,7 +195,7 @@ Quoted verbatim. The two lines about `title/large` at 20px are stale: the title 
 - No focus state is modelled anywhere in the set, so the keyboard path through the rows has to be built in code.
 - The caret is the only sign that a row expands. Expose expanded and collapsed as real state rather than leaving it to the glyph.
 - With In Card false there is no border and no divider, so nothing separates the rows until one is hovered. Check the list still reads as a list at rest.
-- Titles use title/large at 20px, which is heading sized. On a screen with real headings the hierarchy needs checking.
+- Titles use title/large, which is heading sized. On a screen with real headings the hierarchy needs checking.
 - Opening a row reveals content that was not previously in the reading order. That insertion has to be announced.
 
 **Accordion Item**
@@ -226,9 +226,9 @@ Quoted verbatim. The two lines about `title/large` at 20px are stale: the title 
 |---|---|---|
 | Size | Fill width, hug height | "Fills its container. The header is 56 tall and a row carrying its divider is 57. Open rows grow to whatever the content needs." |
 | Padding | Per Selectable | "space/lg on all four sides of the header without Selectable, and space/sm with it, because the leading control is taller than the title." |
-| Gap | Per Selectable | "space/sm between the title and the caret without Selectable, space/xxs between the control, the title and the mark with it." |
+| Gap | Per Selectable | "space/sm between the title and the caret without Selectable, space/2xs between the control, the title and the mark with it." |
 | Background | Theming | "interactive/ghost/background/default at rest and interactive/ghost/background/hover on hover. No border and no corner radius." |
-| Title | Theming | "title/large, IBM Plex Sans Medium 20 over a 24px line, in foreground/primary." |
+| Title | Theming | "title/large, in foreground/primary." |
 | Caret | Fixed | "Caret Indicator at Size=medium, 20 square, trailing the title when Selectable is off." |
 | Leading control | Fixed | "Icon Button at Size=medium, 40 square, Flavour=subtle, leading the title when Selectable is on." |
 | Selection mark | Fixed | "A framed Icon at 40 square on the trailing edge, present only while Selected is true." |
@@ -259,7 +259,7 @@ The Title row is stale: the title is now `title/medium` (see issues).
 ## Issues
 
 **Warn**
-- **Metadata still describes title/large.** Both header sets now bind the title to `title/medium` (all five font properties). Item Layout & Theming still reads "title/large, IBM Plex Sans Medium 20 over a 24px line", and both Accessibility lists still call the title "title/large at 20px" / "heading sized". `title/medium` is 16px over a 20px line in every typography mode, so the heading-size concern no longer holds as written. What remains is a page-hierarchy question for code: whether the row's title is marked up as a heading, and at which level. The owner should update those three lines; they are quoted verbatim in this document.
+- **Metadata still describes title/large.** Both header sets now bind the title to `title/medium` (all five font properties). Item Layout & Theming still reads "title/large", and both Accessibility lists still call the title "title/large" / "heading sized". `title/medium` is 16px over a 20px line in every typography mode, so the heading-size concern no longer holds as written. What remains is a page-hierarchy question for code: whether the row's title is marked up as a heading, and at which level. The owner should update those three lines; they are quoted verbatim in this document.
 - **Plain header height is now a pinned, untokenised 56.** With `title/large` the plain header hugged to 56Px, matching the selectable header (`space/sm` + `control/md` + `space/sm`). With `title/medium` it hugs to 52Px, but the item pins it to a fixed 56Px with no token, so rows still measure 56Px (57Px with a divider) as "Row height" says. Code keeps 56 with a min-height of `control/md` + 2 × `space/sm`, so plain and selectable rows match. Owner decision: confirm 56 for plain rows (and bind or document it), or let them hug to 52.
 - **Untokenised border width.** The Accordion root stroke is a raw 1px in all four In Card=true variants. Only its colour is bound (`border/default`). The row Divider uses `stroke/thin`.
 - **"Open sits on the nested header": it doesn't.** Open is a variant of the nested Accordion Item. Neither header set has one.

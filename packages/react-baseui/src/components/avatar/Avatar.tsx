@@ -8,6 +8,16 @@ export type AvatarSize =
   | "large" | "xlarge" | "xxlarge" | "xxxlarge";
 export type AvatarContentType = "initials" | "photo" | "icon";
 export type AvatarSwatchColor = "purple" | "blue" | "sea" | "yellow" | "orange" | "green" | "burgundy";
+const SWATCHES: readonly string[] = ["purple", "blue", "sea", "yellow", "orange", "green", "burgundy"];
+
+/**
+ * A swatch that isn't one of the seven named ones: a token name
+ * (`chart/series/2`), a custom property (`--brand-accent`) or any CSS colour.
+ */
+export const swatchFill = (color: string) =>
+  color.startsWith("--") ? `var(${color})`
+  : /^[a-z][\w-]*(\/[\w-]+)+$/i.test(color) ? `var(--${color.replace(/\//g, "-")})`
+  : color;
 export type AvatarStatus = "available" | "away" | "busy" | "dnd" | "on-shift" | "offline" | "icon";
 
 export interface AvatarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "className"> {
@@ -21,8 +31,12 @@ export interface AvatarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
   type?: AvatarContentType;
   /** Shown when `type="initials"`. Usually one or two characters. */
   initials?: string;
-  /** Background behind initials or an icon. Not used behind a photo. */
-  swatchColor?: AvatarSwatchColor;
+  /**
+   * Background behind initials or an icon. Not used behind a photo. One of
+   * the seven swatches, or any other colour: a token name (`chart/series/2`),
+   * a custom property (`--brand-accent`) or a CSS colour value.
+   */
+  swatchColor?: AvatarSwatchColor | (string & {});
   /** Shown when `type="photo"`. */
   src?: string;
   /** Accessible text for the photo. Also seeds the default Close accessible name ("Remove {alt}"). */
@@ -135,7 +149,8 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(function Ava
         {type === "photo" ? (
           <img className="zds-avatar__photo" src={src} alt={alt ?? ""} />
         ) : (
-          <span className="zds-avatar__swatch" data-swatch-color={swatchColor}>
+          <span className="zds-avatar__swatch" data-swatch-color={SWATCHES.includes(swatchColor) ? swatchColor : "custom"}
+            style={SWATCHES.includes(swatchColor) ? undefined : { background: swatchFill(swatchColor) }}>
             {type === "initials" ? (
               <span className="zds-avatar__initials">{initials}</span>
             ) : icon ? (

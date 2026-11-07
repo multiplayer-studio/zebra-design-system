@@ -19,8 +19,9 @@ export type IconSize = "xsmall" | "small" | "medium" | "large";
  * Colour comes from `currentColor` — the whole reason to ship icons as a
  * font: an icon inside a button inherits that button's colour with no extra
  * rule and no per-flavour wiring. `size` binds the glyph's own dimension
- * token (`control-icon-xs/sm/md/lg`); `framed` pads it to a fixed 40px
- * (`control-target-min`) touch target for a standalone tappable icon. A
+ * token (`control-icon-xs/sm/md/lg`); `framed` pads it to a fixed box,
+ * 40px (`control-target-min`) or 24px (`control-xs`) at xsmall, for a
+ * standalone tappable icon. A
  * component that already provides its own target area, like Button, locks
  * both rather than leaving them open to the consumer.
  *
@@ -42,10 +43,10 @@ export class ZdsIcon extends LitElement {
   /** Which family to draw from. Same codepoints, different outlines. */
   @property({ type: String, reflect: true }) iconStyle: IconStyle = "rounded";
 
-  /** The glyph's own box — 16 / 20 / 28px. */
+  /** The glyph's own box — 12 / 16 / 20 / 28px. */
   @property({ type: String, reflect: true }) size: IconSize = "small";
 
-  /** Pads the glyph to a fixed 40px touch target. Only for a standalone tappable icon — wrong inside a control that already provides one. */
+  /** Pads the glyph to a fixed box: 40px, or 24px at xsmall. Only for a standalone tappable icon — wrong inside a control that already provides one. */
   @property({ type: Boolean, reflect: true }) framed = false;
 
   /**

@@ -35,7 +35,7 @@ Values anywhere in this document are token names. The only literals are inside v
 
 ## Anatomy
 
-Root: vertical, gap `space/none`, padding `space/md`, fill `surface/dialog`, border `border/default` at `stroke/thin` (inside), radius `radius/element-md` (round) or `radius/none` (sharp), no shadow. It hugs its content: 506×222Px measured, and 158Px tall without the footer. *"Outer padding — 12px on every side of the dialog itself, independent of each section’s own padding."*
+Root: vertical, gap `space/none`, padding `space/md`, fill `surface/overlay`, border `border/default` at `stroke/thin` (inside), radius `radius/element-md` (round) or `radius/none` (sharp), no shadow. It hugs its content: 506×222Px measured, and 158Px tall without the footer. *"Outer padding — 12px on every side of the dialog itself, independent of each section’s own padding."*
 
 1. **Header** (`_Dialog Header`, fills the width, both toggles pinned on). *"A single Dialog Header instance, fixed in every variant. Holds the leading icon, the title and the close icon."*
 2. **Body**: horizontal, centred, gap `space/none`, padding `space/md` on top, right and left and `space/section` at the bottom. It fills the width and hugs its height, with a raw minimum width of 480Px. Inside it, a content box fills and clips. The sample text is `body/medium` in `foreground/primary`. *"An open content area with no fixed structure of its own in this file."*
@@ -91,10 +91,10 @@ The two axes are independent and every other value is the same in all 10 cells.
 
 ## Tokens & theming
 
-- **Colour:** `surface/dialog`, `border/default`, `foreground/primary`.
+- **Colour:** `surface/overlay`, `border/default`, `foreground/primary`.
 - **Dimension:** `space/{none, sm, md, section}`, `radius/{element-md, none}`, `stroke/thin`, `control/lg`, `control/icon-md`.
 - **Typography:** `title/large`, `body/medium`. **Glyphs:** `block`, `error`, `info`, `verified`, `warning`, `close`.
-- **Via Button (owned by `specs/button`):** `interactive/{ghost, neutral, primary}/…` background, border and foreground defaults; `control/md`, `space/xxs`, `radius/element-sm`, `stroke/base`.
+- **Via Button (owned by `specs/button`):** `interactive/{ghost, neutral, primary}/…` background, border and foreground defaults; `control/md`, `space/2xs`, `radius/element-sm`, `stroke/base`.
 - **Not bound, candidates only:** backdrop `overlay/modal` and `overlay/scrim`; elevation `shadow/soft` and `shadow/hard`. See issues.
 - **Theme axes:** palette (Light, Dark); size and typography (Desktop, Mobile, Tablet, Desktop Compact).
 
@@ -157,11 +157,11 @@ The stated values agree with the bindings: padding `space/md`, header gap `space
 
 **Warn**
 - **Modal behaviour is unspecified.** Backdrop, focus trap and return, dismissal and stacking appear nowhere on the page. Base UI's defaults will apply until design decides.
-- **There is no usable backdrop token.** `overlay/modal` is described as a dimming layer, but it aliases the same opaque palette value as `surface/dialog`. `overlay/scrim` (palette fill/scrim, translucent) is scoped to drawers and sheets. A token decision is needed.
+- **There is no usable backdrop token.** `overlay/modal` is described as a dimming layer, but it aliases the same opaque palette value as `surface/overlay`. `overlay/scrim` (palette fill/scrim, translucent) is scoped to drawers and sheets. A token decision is needed.
 - **The close control is a bare Icon,** not an Icon Button: no hit area, states or accessible name are drawn. In code it must be an interactive, labelled close control.
 - **Shape misses the close glyph.** Sharp dialogs switch the leading glyph and the buttons to sharp, but the close glyph stays in the rounded family.
 - **The Dev Deviation contradicts the API.** It says hiding the close icon was "introduced in the new build", but Dialog pins `showClose` (and `showLeadingIcon`) on and exposes neither.
-- **`radius/element-md` description drift.** The description says 16px (scale/6), but the token resolves to scale/4, which matches the metadata's 6px.
+- **`radius/element-md` description drift.** The description says scale/6, but the token resolves to scale/4, which matches the metadata's 6px.
 - **The footer has a fixed width** while the header and body fill. A wider body would leave the footer short. Body and footer also carry a raw 480Px minimum width with no token.
 - **Footer presets aren't exposed.** Dialog pins Actions=3, yet How to use relies on the 1-button and custom presets. Code needs to choose between a prop and composition.
 

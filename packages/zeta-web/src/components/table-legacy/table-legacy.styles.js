@@ -97,7 +97,7 @@ export default css`
   .zeta-table-header-bar-left {
     display: flex;
     flex-direction: column;
-    gap: var(--space-2xs);
+    gap: var(--space-3xs);
     min-width: 0;
   }
 
@@ -145,15 +145,15 @@ export default css`
     min-width: 240px;
     max-height: 400px;
     overflow-y: auto;
-    margin-top: var(--space-xxs);
-    padding: var(--space-xxs) 0;
+    margin-top: var(--space-2xs);
+    padding: var(--space-2xs) 0;
     border-radius: var(--table-control-radius);
-    background: var(--surface-menu);
+    background: var(--surface-overlay);
     box-shadow: var(--shadow-medium-x) var(--shadow-medium-y) var(--shadow-medium-blur) var(--shadow-soft);
   }
 
   .zeta-table-column-panel-section {
-    padding: var(--space-xxs) 0;
+    padding: var(--space-2xs) 0;
   }
 
   .zeta-table-column-panel-section + .zeta-table-column-panel-section {
@@ -224,7 +224,7 @@ export default css`
   .zeta-table-header-content {
     display: flex;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     width: 100%;
   }
 
@@ -447,7 +447,7 @@ export default css`
   }
 
   .zeta-table-col-expand-width {
-    width: calc(var(--control-sm) + 2 * var(--space-xxs));
+    width: calc(var(--control-sm) + 2 * var(--space-2xs));
   }
 
   .zeta-table-col-checkbox {
@@ -460,7 +460,7 @@ export default css`
   }
 
   .zeta-table-col-expand {
-    padding: 0 var(--space-xxs);
+    padding: 0 var(--space-2xs);
     text-align: center;
   }
 
@@ -505,7 +505,7 @@ export default css`
   /* ---- column search row (Zeta only): small Zeta Search fields ----------------------------------------------------- */
   .zeta-table-search-row .zeta-table-th {
     height: auto;
-    padding: var(--space-xxs) var(--space-lg) var(--space-sm);
+    padding: var(--space-2xs) var(--space-lg) var(--space-sm);
     border-top: none;
   }
 
@@ -534,7 +534,7 @@ export default css`
     content: "";
     position: absolute;
     top: 25%;
-    right: var(--space-2xs);
+    right: var(--space-3xs);
     width: var(--stroke-thick);
     height: 50%;
     border-radius: var(--radius-pill);
@@ -639,7 +639,7 @@ export default css`
     justify-content: center;
   }
 
-  /* The actions menu and the filter panel float on surface/menu with Shadow/medium, as Dropdown Menu does. */
+  /* The actions menu and the filter panel float on surface/overlay with Shadow/medium, as Dropdown Menu does. */
   .zeta-table-action-menu,
   .zeta-table-filter-panel {
     position: fixed;
@@ -647,17 +647,17 @@ export default css`
     display: flex;
     flex-direction: column;
     border-radius: var(--table-control-radius);
-    background: var(--surface-menu);
+    background: var(--surface-overlay);
     box-shadow: var(--shadow-medium-x) var(--shadow-medium-y) var(--shadow-medium-blur) var(--shadow-soft);
   }
 
-  /* Rows are Zeta Dropdown Menu Items, space/xxs apart as in Dropdown Menu. */
+  /* Rows are Zeta Dropdown Menu Items, space/2xs apart as in Dropdown Menu. */
   .zeta-table-action-menu {
     min-width: 160px;
     max-height: 200px;
     overflow-y: auto;
-    gap: var(--space-xxs);
-    padding: var(--space-xxs);
+    gap: var(--space-2xs);
+    padding: var(--space-2xs);
   }
 
   .zeta-table-filter-panel {
@@ -678,7 +678,7 @@ export default css`
   .zeta-table-filter-panel-list {
     flex: 1;
     overflow-y: auto;
-    padding: var(--space-xxs) 0;
+    padding: var(--space-2xs) 0;
   }
 
   .zeta-table-filter-panel-footer {

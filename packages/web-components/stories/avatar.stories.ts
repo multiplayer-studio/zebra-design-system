@@ -82,6 +82,14 @@ export const SwatchColors: Story = {
     row(SWATCH_COLORS.map((c) => html`<zds-avatar size="large" type="initials" initials="AA" swatch-color=${c}></zds-avatar>`)),
 };
 
+/** Any other colour: a token name, a custom property, or a CSS colour value. */
+export const CustomSwatch: Story = {
+  render: () =>
+    row(["chart/series/2", "feedback/error/background/strong", "--chart-series-10", "#0b7a75"].map(
+      (c) => html`<zds-avatar size="large" type="initials" initials="AA" swatch-color=${c} title=${c} .showStatus=${false} .showClose=${false}></zds-avatar>`,
+    )),
+};
+
 /**
  * Presence states. In the current Figma file every state but "icon" shares
  * one glyph and differs only by fill colour (spec issue) — this element

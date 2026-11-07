@@ -30,10 +30,10 @@ export class ZdsIconButton extends LitElement {
   @property({ type: String, reflect: true }) flavour: ButtonFlavour = "primary";
 
   /** small (36, under the 40 minimum target), medium or large. */
-  @property({ type: String, reflect: true }) size: ButtonSize = "small";
+  @property({ type: String, reflect: true }) size: ButtonSize = "medium";
 
   /** sharp, rounded or full (a circle). Also picks the glyph family. */
-  @property({ type: String, reflect: true }) shape: ButtonShape = "sharp";
+  @property({ type: String, reflect: true }) shape: ButtonShape = "rounded";
 
   @property({ type: Boolean, reflect: true }) disabled = false;
 
@@ -48,12 +48,24 @@ export class ZdsIconButton extends LitElement {
 
   @property({ type: String }) type: "button" | "submit" | "reset" = "button";
 
+  /**
+   * For a button that opens a menu or panel: whether it is open, forwarded to
+   * the inner button as `aria-expanded`. Unset, no `aria-expanded` at all.
+   */
+  @property({ attribute: false }) expanded?: boolean;
+
   protected render() {
     // As Button: the glyph family follows the shape, sharp only on sharp.
     const iconStyle = this.shape === "sharp" ? "sharp" : "rounded";
     // Figma pins Icon small at small and medium at medium and large (16/20/20).
     const iconSize = this.size === "small" ? "small" : "medium";
-    return html`<button part="button" type=${this.type} ?disabled=${this.disabled} aria-label=${this.label || nothing}>
+    return html`<button
+      part="button"
+      type=${this.type}
+      ?disabled=${this.disabled}
+      aria-label=${this.label || nothing}
+      aria-expanded=${this.expanded === undefined ? nothing : String(this.expanded)}
+    >
       ${this.icon ? html`<zds-icon class="icon" name=${this.icon} .iconStyle=${iconStyle} size=${iconSize}></zds-icon>` : nothing}
     </button>`;
   }

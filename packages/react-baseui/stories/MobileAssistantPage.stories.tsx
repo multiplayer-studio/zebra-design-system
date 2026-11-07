@@ -144,7 +144,7 @@ function AssistantPage({ theme = "" }: { theme?: string }) {
   return (
     <Phone className={theme}>
       <ScreenHeaderBar title="Assistant" onBack={() => {}} backLabel="Back to home"
-        action={<IconButton flavour="text" shape="full" icon="more-vertical" label="More options" />} />
+        action={<IconButton flavour="text" size="small" shape="full" icon="more-vertical" label="More options" />} />
 
       <div ref={scroller} style={{ flex: 1, overflowY: "auto", padding: "var(--space-md)", display: "grid", alignContent: "start", gap: "var(--space-lg)" }}>
         <div style={{ ...body("small"), textAlign: "center", color: "var(--foreground-secondary)" }}>Today · 08:42</div>

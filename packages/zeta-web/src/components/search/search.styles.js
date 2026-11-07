@@ -1,6 +1,6 @@
 import { css } from "lit";
 
-/* Spec: specs/search. control/sm, control/md and control/lg tall, space/sm by space/md padding, space/xxs between
+/* Spec: specs/search. control/sm, control/md and control/lg tall, space/sm by space/md padding, space/2xs between
    parts. The border is drawn inset through --_border and --_border-width, so a state change never moves the layout;
    focus on an empty field trades it for a stroke/thick border/focus ring outside, and typing keeps a stroke/thin
    border/focus one inside. Icons follow the field-family rule: foreground/primary, foreground/disabled when disabled
@@ -46,7 +46,7 @@ export default css`
     flex: 1;
     min-width: 0;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     height: var(--_height);
     padding: var(--space-sm) var(--space-md);
     border-radius: inherit;
@@ -70,7 +70,7 @@ export default css`
     flex: 1;
     min-width: 0;
     margin: 0;
-    padding: 0 var(--space-xxs);
+    padding: 0 var(--space-2xs);
     border: none;
     outline: none;
     background-color: transparent;
@@ -113,7 +113,7 @@ export default css`
     flex: none;
     align-self: stretch;
     width: var(--stroke-thin);
-    margin: 0 var(--space-xxs);
+    margin: 0 var(--space-2xs);
     background-color: var(--zebra-border-default);
   }
 

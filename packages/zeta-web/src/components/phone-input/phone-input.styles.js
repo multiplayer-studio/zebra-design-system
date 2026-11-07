@@ -44,17 +44,17 @@ export default css`
     --_radius: var(--radius-pill);
   }
 
-  /* ---- assembly: label, field, hint, space/xxs apart ---- */
+  /* ---- assembly: label, field, hint, space/2xs apart ---- */
   .container {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
   }
 
   .label {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     width: fit-content;
     font: var(--text-label-medium);
     letter-spacing: var(--label-medium-letter-spacing);
@@ -88,7 +88,7 @@ export default css`
     flex: none;
     display: inline-flex;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     height: var(--_height);
     margin: 0;
     padding: 0 var(--space-sm);
@@ -190,7 +190,7 @@ export default css`
 
   /* The dial code reads as the start of the number, so it takes the value's colour. */
   .number::part(prefix) {
-    padding-inline-start: var(--space-xxs);
+    padding-inline-start: var(--space-2xs);
     color: var(--foreground-primary);
   }
 
@@ -211,7 +211,7 @@ export default css`
   .hint-text {
     display: flex;
     align-items: center;
-    column-gap: var(--space-xxs);
+    column-gap: var(--space-2xs);
     font: var(--text-body-xsmall);
     letter-spacing: var(--body-xsmall-letter-spacing);
     color: var(--foreground-secondary);

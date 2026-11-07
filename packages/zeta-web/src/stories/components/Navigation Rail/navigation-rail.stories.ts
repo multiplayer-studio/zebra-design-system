@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import type { ZetaNavigationRail } from "../../../components/navigation-rail/navigation-rail";
-import { html } from "lit";
+import { html, nothing } from "lit";
 import "../../../components/navigation-rail/navigation-rail";
 import "../../../components/navigation-rail/navigation-rail-item";
 import "../../../components/icon/icon";
@@ -99,6 +99,31 @@ export const NavigationRailFull: StoryObj<ZetaNavigationRail> = {
         <zeta-sub-menu-item slot="sub-menu" sub-menu><zeta-icon slot="icon">settings</zeta-icon>Settings</zeta-sub-menu-item>
         <zeta-sub-menu-item slot="sub-menu" disabled><zeta-icon slot="icon">lock</zeta-icon>Archive</zeta-sub-menu-item>
       </zeta-navigation-rail>
+    </div>
+  `
+};
+
+/** rail-width: 200px by default, a project width, or "fill" to take the container's width; and the header action's icon. */
+export const RailWidthAndHeaderAction: StoryObj<ZetaNavigationRail> = {
+  argTypes: {
+    slot: { table: { disable: true } }
+  },
+  render: () => html`
+    <div style="display: flex; gap: 24px; height: 360px;">
+      ${([["200px (default)", undefined, 240], ["255", "255", 280], ["fill (320px column)", "fill", 320]] as const).map(
+        ([label, width, column]) => html`<div style="display: grid; grid-template-rows: auto 1fr; gap: 8px; width: ${column}px;">
+          <span>${label}</span>
+          <div style="display: flex; min-height: 0;">
+            <zeta-navigation-rail expanded rail-width=${width ?? nothing} ?show-toggle-item=${false}>
+              <zeta-navigation-header slot="header" headline="ACME" action-icon="home" action-label="Home"
+                ><zeta-avatar slot="mark" size="s">AC</zeta-avatar></zeta-navigation-header
+              >
+              <zeta-navigation-rail-item selected><zeta-icon slot="icon">home</zeta-icon>Home</zeta-navigation-rail-item>
+              <zeta-navigation-rail-item><zeta-icon slot="icon">chart_bar</zeta-icon>System Notifications</zeta-navigation-rail-item>
+            </zeta-navigation-rail>
+          </div>
+        </div>`
+      )}
     </div>
   `
 };

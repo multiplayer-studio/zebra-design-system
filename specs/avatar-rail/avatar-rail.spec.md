@@ -13,10 +13,10 @@ Source: [Avatar page](https://www.figma.com/design/UZuTdXUhuybNkybf1NZuOt/Avatar
 | `size` | enum | `xxxsmall`, `xxsmall`, `xsmall`, `small`, `medium`, `large`, `xlarge`, `xxlarge`, `xxxlarge` | `xxxsmall` |
 | `stacking` | enum | `start`, `end` | `start` |
 | `max` | number | `2`, ` `, `t`, `o`, ` `, `4` | `4` |
-| `showOverflow` | boolean |  | `true` |
-| `overflowCount` | string |  | `+2` |
-| `showAvatar3` | boolean |  | `true` |
-| `showAvatar4` | boolean |  | `true` |
+| `showOverflow` | boolean | | `true` |
+| `overflowCount` | string | | `+2` |
+| `showAvatar3` | boolean | | `true` |
+| `showAvatar4` | boolean | | `true` |
 
 **size**
 - `xxxsmall`: The smallest step, for a rail sitting inside a dense row such as a table cell.

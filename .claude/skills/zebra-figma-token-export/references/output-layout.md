@@ -4,9 +4,12 @@
 
 ```
 <root>/                            # default: tokens/ at the repo root
-├── manifest.json                  # collections, modes, extension graph, warnings
-├── _dump/                         # compact source data the builder reads
+├── manifest.json                  # collections, modes, extension graph, text styles, warnings
+├── fonts.json                     # every font family and weight the tokens need
+├── fonts/                         # fetch-fonts.mjs: woff2 files, fonts.css, manifest.json
+├── _dump/                         # compact source data the builder reads (incl. text-styles.json)
 ├── base/
+│   ├── text-styles.json           # one typography token per Figma text style, aliasing its variables
 │   └── <collection-slug>/
 │       └── <mode-slug>.json       # every variable in that collection, at that mode
 └── extensions/
@@ -74,6 +77,8 @@ In an **extension** file the block is slightly different: `overrides` names the 
 
 Spaces in a Figma name survive into the reference (`{typography.label.large.font family}`). That is deliberate: this folder mirrors Figma. Sanitising names for CSS custom properties belongs to whatever builds CSS from these files.
 
+An alias at an opacity (Figma's "variable with opacity") keeps the plain reference as `$value` and adds `aliasOpacity` (0–1) under `$extensions["com.figma"]`. Read the two together; the reference alone is the colour at full strength.
+
 An alias that cannot be resolved is written as `{unresolved:<variable id>}` and the id is listed in the manifest's `unresolvedAliases`.
 
 ## Collisions
@@ -112,3 +117,32 @@ These are recorded so a future run recognises them as known, not new:
 - **Orphan mode ids.** 25 `primitives` variables carry a value for mode `2201:1`, which the collection no longer declares. Skipped and reported.
 - **`stroke/base` resolves to 0px** while its description says `= 1px`. Several dimension tokens have descriptions that disagree with their values; descriptions are copied verbatim and not corrected.
 - **`size` and `typography` do not vary by mode.** Almost every token in both collections resolves identically across all four modes, so the dump collapses them to `{"*": …}`. The per-mode files are still written in full.
+
+## Text styles
+
+`base/text-styles.json` holds one DTCG `typography` token per Figma text style, nested by its name
+(`label/large` → `label.large`). Each of its five parts aliases the variable the style binds, so a style never
+carries a second copy of a value and follows the typography collection's breakpoint modes for free:
+
+```json
+{
+  "$type": "typography",
+  "$value": {
+    "fontFamily": "{typography.label.large.font family}",
+    "fontWeight": "{typography.label.large.font weight}",
+    "fontSize": "{typography.label.large.font size}",
+    "lineHeight": "{typography.label.large.line height}",
+    "letterSpacing": "{typography.label.large.letter spacing}"
+  },
+  "$extensions": { "com.figma": { "id": "S:…", "key": "…", "fontStyle": "Medium", "textCase": "ORIGINAL", "leadingTrim": "NONE" } }
+}
+```
+
+A part with no bound variable keeps Figma's literal and is listed under `unbound` and in the manifest warnings.
+
+## Fonts
+
+`fonts.json` lists each family the tokens name, whether a text style uses it, the weights the styles need and every
+weight token declared. Figma cannot export font files, so `fetch-fonts.mjs` downloads what Google Fonts serves into
+`fonts/<family-slug>/` (a variable font is one file covering every weight) and writes `fonts/fonts.css`. A family
+Google does not serve is listed under `selfHost` in `fonts/manifest.json`; its files go in by hand.

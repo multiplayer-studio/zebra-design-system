@@ -12,8 +12,8 @@ export default css`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-2xs);
-    padding: var(--space-xxs);
+    gap: var(--space-3xs);
+    padding: var(--space-2xs);
     white-space: nowrap;
     width: fit-content;
     background: var(--_bg);

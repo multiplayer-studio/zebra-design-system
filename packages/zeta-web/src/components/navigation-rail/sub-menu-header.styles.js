@@ -2,7 +2,7 @@ import { css } from "lit";
 
 /* Spec: specs/navigation-rail (Sub Menu Header). 72px tall (measured, no token), space/lg inline padding, a stroke/thin
    bottom border on border/default (spec warn: Figma's width is unbound). Glyph to title space/md, back button to title
-   space/sm, actions at space/xxs. */
+   space/sm, actions at space/2xs. */
 export default css`
   :host {
     box-sizing: border-box;
@@ -45,7 +45,7 @@ export default css`
   .actions {
     display: flex;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
   }
 
   .actions[hidden] {

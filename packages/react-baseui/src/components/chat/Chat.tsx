@@ -315,7 +315,7 @@ export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(funct
           {picking && onReact ? (
             <div className="zds-chat-message__picker" role="group" aria-label="Add a reaction">
               {CHAT_REACTIONS.map((r) => (
-                <IconButton key={r.icon} flavour="text" shape={btnShape(shape)} icon={r.icon} label={r.label}
+                <IconButton key={r.icon} flavour="text" size="small" shape={btnShape(shape)} icon={r.icon} label={r.label}
                   onClick={() => { onReact(r.icon); setPicking(false); }} />
               ))}
             </div>
@@ -360,7 +360,7 @@ export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(funct
 
 function ChatActionButton({ action, shape, onOpenChange }: { action: ChatAction; shape: ChatShape; onOpenChange: (open: boolean) => void }) {
   const button = (
-    <IconButton flavour="text" shape={btnShape(shape)} icon={action.icon} label={action.label}
+    <IconButton flavour="text" size="small" shape={btnShape(shape)} icon={action.icon} label={action.label}
       aria-pressed={action.pressed === undefined || action.menu ? undefined : action.pressed}
       data-pressed={action.pressed ? "" : undefined} onClick={action.menu ? undefined : action.onSelect} />
   );
@@ -508,8 +508,8 @@ export function ChatFile({ name, meta, kind, progress, transfer = "upload", onOp
         ) : uploading ? <ProgressBar value={progress} shape={shape} label={`Uploading ${name}`} showLabel={false} size="small" />
           : <span className="zds-chat-file__meta">{downloaded ? <span role="status">{meta ? `${meta} · ` : ""}Download complete</span> : meta}</span>}
       </span>
-      {onOpen && !uploading ? <IconButton flavour="text" shape={btnShape(shape)} icon="open-in-new-window" label={`Open ${name}`} onClick={onOpen} /> : null}
-      {onDownload && !uploading ? <IconButton flavour="text" shape={btnShape(shape)} icon="download" label={`Download ${name}`} onClick={onDownload} /> : null}
+      {onOpen && !uploading ? <IconButton flavour="text" size="small" shape={btnShape(shape)} icon="open-in-new-window" label={`Open ${name}`} onClick={onOpen} /> : null}
+      {onDownload && !uploading ? <IconButton flavour="text" size="small" shape={btnShape(shape)} icon="download" label={`Download ${name}`} onClick={onDownload} /> : null}
     </div>
   );
 }
@@ -564,8 +564,8 @@ export function ChatImageViewer({ images, index, onIndexChange, onClose }: {
           <span className="zds-chat-viewer__image" role="img" aria-label={image.alt}><ChatPicture image={image} shape={shape} /></span>
           {images.length > 1 ? (
             <div className="zds-chat-viewer__nav">
-              <IconButton flavour="subtle" shape={btnShape(shape)} icon="chevron-left" label="Previous photo" disabled={index === 0} onClick={() => onIndexChange?.(index! - 1)} />
-              <IconButton flavour="subtle" shape={btnShape(shape)} icon="chevron-right" label="Next photo" disabled={index === images.length - 1} onClick={() => onIndexChange?.(index! + 1)} />
+              <IconButton flavour="subtle" size="small" shape={btnShape(shape)} icon="chevron-left" label="Previous photo" disabled={index === 0} onClick={() => onIndexChange?.(index! - 1)} />
+              <IconButton flavour="subtle" size="small" shape={btnShape(shape)} icon="chevron-right" label="Next photo" disabled={index === images.length - 1} onClick={() => onIndexChange?.(index! + 1)} />
             </div>
           ) : null}
         </div>
@@ -613,7 +613,7 @@ export function ChatAudio({ src, duration, peaks, label = "Voice message" }: { s
   const progress = duration ? at / duration : 0;
   return (
     <div className="zds-chat-audio" role="group" aria-label={label}>
-      <IconButton className="zds-chat-audio__play" flavour="text" shape={shape === "sharp" ? "sharp" : "full"} icon={playing ? "pause" : "play"} label={playing ? "Pause" : `Play ${label.toLowerCase()}`}
+      <IconButton className="zds-chat-audio__play" flavour="text" size="small" shape={shape === "sharp" ? "sharp" : "full"} icon={playing ? "pause" : "play"} label={playing ? "Pause" : `Play ${label.toLowerCase()}`}
         onClick={() => { const a = audio.current; if (!a) return; if (a.paused) void a.play(); else a.pause(); }} />
       <div className="zds-chat-audio__wave" aria-hidden="true">
         {bars.map((p, i) => <span key={i} style={{ blockSize: `${Math.round(p * 100)}%` }} data-played={i / bars.length < progress ? "" : undefined} />)}

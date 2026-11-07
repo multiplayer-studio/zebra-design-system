@@ -18,7 +18,7 @@ export default css`
   /* spec issue: control/target-min's description says 44px; it resolves to
      40px, which is what Figma draws. */
   height: var(--control-target-min);
-  padding: var(--space-xxs) var(--space-sm);
+  padding: var(--space-2xs) var(--space-sm);
 }
 
 /* ---- avatar: Avatar xxxsmall (24) with status, ring and close off ------- */
@@ -57,7 +57,7 @@ export default css`
 .zds-input-chip__remove::before {
   content: "";
   position: absolute;
-  inset: calc(var(--space-xxs) * -1);
+  inset: calc(var(--space-2xs) * -1);
 }
 
 /* ---- state: hover ------------------------------------------------------ */

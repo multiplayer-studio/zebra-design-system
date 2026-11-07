@@ -14,9 +14,9 @@ export default css`
     --zds-priority-pill: var(--foreground-secondary);
     --zds-priority-ink: var(--foreground-inverse);
     /* ---- size (large default) ------------------------------------------ */
-    --zds-priority-pad: var(--space-xxs);
+    --zds-priority-pad: var(--space-2xs);
     --zds-priority-circle: var(--control-icon-md);
-    --zds-priority-label-end: var(--space-xxs);
+    --zds-priority-label-end: var(--space-2xs);
     display: inline-flex;
     vertical-align: middle;
   }
@@ -42,7 +42,7 @@ export default css`
   .root {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     padding-block: var(--zds-priority-pad);
     /* A wider trailing edge so the label clears the end of the pill. */
     padding-inline: var(--zds-priority-pad) var(--space-sm);
@@ -62,10 +62,10 @@ export default css`
     background: var(--zds-priority-ink);
     color: var(--zds-priority-pill);
   }
-  /* Glyph: Icon Size=small (16) at large; scaled to the circle less space/2xs
+  /* Glyph: Icon Size=small (16) at large; scaled to the circle less space/3xs
      each side (12) at small — spec warn, no 12 icon token. */
   :host([size="small"]) zds-icon {
-    --zds-icon-box: calc(var(--zds-priority-circle) - 2 * var(--space-2xs));
+    --zds-icon-box: calc(var(--zds-priority-circle) - 2 * var(--space-3xs));
   }
   .rank {
     font-family: var(--indicator-medium-font-family), system-ui, sans-serif;
@@ -90,9 +90,9 @@ export default css`
 
   /* ---- size: small ----------------------------------------------------------- */
   :host([size="small"]) {
-    --zds-priority-pad: var(--space-2xs);
+    --zds-priority-pad: var(--space-3xs);
     --zds-priority-circle: var(--control-icon-sm);
-    --zds-priority-label-end: var(--space-2xs);
+    --zds-priority-label-end: var(--space-3xs);
   }
   :host([size="small"]) .rank,
   :host([size="small"]) .label {

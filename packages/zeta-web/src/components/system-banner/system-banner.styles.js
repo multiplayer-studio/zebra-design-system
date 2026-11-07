@@ -4,7 +4,7 @@ import { css } from "lit";
    code), so foreground/primary reads white on the strong feedback fills and every control inside resolves dark. It
    spans its container and stays square; only the controls inside take the shape. Desktop: a space/lg row, space/sm
    gaps, a control/sm glyph square, title label/medium and description body/small on one line each (spec warn).
-   Mobile: a space/sm row, space/xxs gaps, the framed glyph in a control/target-min square, title label/large and a
+   Mobile: a space/sm row, space/2xs gaps, the framed glyph in a control/target-min square, title label/large and a
    two-line description. */
 export default css`
   :host {
@@ -47,7 +47,7 @@ export default css`
   }
 
   :host([layout="mobile"]) .system-banner {
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     padding: var(--space-sm);
   }
 
@@ -126,12 +126,12 @@ export default css`
   :host(:not([layout="mobile"])) .system-banner[data-content="multiline"] .content {
     flex-direction: column;
     align-items: flex-start;
-    padding: var(--space-xxs) 0;
+    padding: var(--space-2xs) 0;
   }
   :host(:not([layout="mobile"])) .system-banner[data-content="multiline"] .text {
     align-self: stretch;
-    gap: var(--space-xxs);
-    padding: var(--space-xxs) 0;
+    gap: var(--space-2xs);
+    padding: var(--space-2xs) 0;
   }
 
   /* ---- mobile: a column; the title wraps and the description clamps at two lines ---- */
@@ -152,6 +152,6 @@ export default css`
     -webkit-line-clamp: 2;
   }
   :host([layout="mobile"]) .actions {
-    padding: var(--space-xxs) 0;
+    padding: var(--space-2xs) 0;
   }
 `;

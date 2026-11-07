@@ -1,0 +1,402 @@
+{
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "readAt": "2026-11-06T19:07:28.711Z",
+  "pages": [
+    {
+      "page": "Accordion",
+      "pageId": "5529:33",
+      "components": [
+        "Accordion"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Avatar",
+      "pageId": "2364:6017",
+      "components": [
+        "Avatar",
+        "Avatar Rail"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Badges",
+      "pageId": "3717:5570",
+      "components": [
+        "Notification Indicator",
+        "Status Label",
+        "Label",
+        "Priority Pill",
+        "Icon Indicator"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Bottom Sheet",
+      "pageId": "5207:2592",
+      "components": [
+        "Bottom Sheet"
+      ],
+      "subcomponents": [
+        "Sheet Handle",
+        "Grid Menu Item"
+      ]
+    },
+    {
+      "page": "Breadcrumb",
+      "pageId": "7662:814",
+      "components": [
+        "Breadcrumb"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Button",
+      "pageId": "2024:6729",
+      "components": [
+        "Button",
+        "Icon Button"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Button Group",
+      "pageId": "5763:1251",
+      "components": [
+        "Button Group"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Card",
+      "pageId": "3007:796",
+      "components": [
+        "Card base",
+        "Collapsible Card"
+      ],
+      "subcomponents": [
+        "Default",
+        "Collapsible"
+      ]
+    },
+    {
+      "page": "Checkbox",
+      "pageId": "6382:52",
+      "components": [
+        "Checkbox"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Chips",
+      "pageId": "5122:2783",
+      "components": [
+        "Input Chip",
+        "Filter Chip",
+        "Assist Chip"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Dialog",
+      "pageId": "2526:316",
+      "components": [
+        "Dialog"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Divider",
+      "pageId": "2152:8795",
+      "components": [
+        "Divider"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Dropdown",
+      "pageId": "2364:5903",
+      "components": [
+        "Menu Item",
+        "Dropdown Menu"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Filter Selection",
+      "pageId": "5197:5075",
+      "components": [
+        "Filter Selection"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Global header",
+      "pageId": "2314:3348",
+      "components": [
+        "Global Header"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Icon",
+      "pageId": "2046:15004",
+      "components": [
+        "Icon"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "inline Banner",
+      "pageId": "8051:4995",
+      "components": [
+        "Inline Banner"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Input",
+      "pageId": "6288:997",
+      "components": [
+        "Input / Text",
+        "Input / Number",
+        "Input / Password",
+        "Input / Date",
+        "Input / Time",
+        "Input"
+      ],
+      "subcomponents": [
+        "Input Label",
+        "Input Hint"
+      ]
+    },
+    {
+      "page": "Input Select",
+      "pageId": "6597:3495",
+      "components": [
+        "Input / Select",
+        "Select"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Message Prompt",
+      "pageId": "6649:196",
+      "components": [
+        "Message Input"
+      ],
+      "subcomponents": [
+        "Attachment"
+      ]
+    },
+    {
+      "page": "Navigation Bar",
+      "pageId": "2835:796",
+      "components": [
+        "Navigation Bar"
+      ],
+      "subcomponents": [
+        "Navigation Item"
+      ]
+    },
+    {
+      "page": "Navigation Rail",
+      "pageId": "3182:237",
+      "components": [
+        "Navigation Rail"
+      ],
+      "subcomponents": [
+        "Navigation Rail Item",
+        "Sub Menu Item",
+        "Navigation Header",
+        "Sub Menu Header",
+        "Caret Indicator",
+        "Collapsible Menu Item"
+      ]
+    },
+    {
+      "page": "Notification Item",
+      "pageId": "6020:1488",
+      "components": [
+        "Notification Item"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Pagination",
+      "pageId": "3853:1209",
+      "components": [
+        "Pagination"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Phone Input",
+      "pageId": "7682:19850",
+      "components": [
+        "Phone Input"
+      ],
+      "subcomponents": [
+        "Input / Phone"
+      ]
+    },
+    {
+      "page": "Progress Indicators",
+      "pageId": "4275:1344",
+      "components": [
+        "Progress Bar",
+        "Progress Circle"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Radio Button",
+      "pageId": "3843:2543",
+      "components": [
+        "Radio Button"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Screen Header Bar",
+      "pageId": "5712:290",
+      "components": [
+        "Screen Header Bar"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Scrollbar",
+      "pageId": "6057:11947",
+      "components": [
+        "Scrollbar"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Search",
+      "pageId": "2114:8976",
+      "components": [
+        "Search"
+      ],
+      "subcomponents": [
+        "Trailing"
+      ]
+    },
+    {
+      "page": "Segmented Control",
+      "pageId": "5723:658",
+      "components": [
+        "Segmented Control"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Slider",
+      "pageId": "6125:1084",
+      "components": [
+        "Step Indicators",
+        "Slider",
+        "Slider Input Field"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Snackbar",
+      "pageId": "6547:2448",
+      "components": [
+        "Snackbar"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Status Label",
+      "pageId": "5203:4059",
+      "components": [],
+      "subcomponents": []
+    },
+    {
+      "page": "Stepper",
+      "pageId": "7357:18457",
+      "components": [
+        "Vertical Stepper",
+        "Horizontal Stepper"
+      ],
+      "subcomponents": [
+        "Step Segment",
+        "Step Card/Sharp",
+        "Step Card/Round",
+        "Step / Horizontal",
+        "Step / Vertical"
+      ]
+    },
+    {
+      "page": "Stepper Input",
+      "pageId": "5595:122",
+      "components": [
+        "Stepper Input"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Switch",
+      "pageId": "5655:893",
+      "components": [
+        "Switch"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "System Banner",
+      "pageId": "5255:2146",
+      "components": [
+        "System Banner (Mobile)",
+        "System Banner (Desktop)"
+      ],
+      "subcomponents": [
+        "Status Bar"
+      ]
+    },
+    {
+      "page": "Tab Bar",
+      "pageId": "3607:237",
+      "components": [
+        "Tab Item",
+        "Tab Bar"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Table",
+      "pageId": "4364:1629",
+      "components": [
+        "Table"
+      ],
+      "subcomponents": [
+        "Table Footer",
+        "Table Controls",
+        "Slot",
+        "Table Column/Default",
+        "Table Content",
+        "Table Column/Select",
+        "Table Column/Actions"
+      ]
+    },
+    {
+      "page": "Tooltip",
+      "pageId": "5470:1664",
+      "components": [
+        "Tooltip"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Top App Bar",
+      "pageId": "3108:191",
+      "components": [
+        "Top App Bar"
+      ],
+      "subcomponents": []
+    }
+  ]
+}

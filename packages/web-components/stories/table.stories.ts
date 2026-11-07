@@ -240,3 +240,77 @@ export const ThemingCascade: Story = {
     )}
   </div>`,
 };
+
+// ---- spec additions: selection, actions, menus, client-side, resizing ------
+
+const FIRST = ["Amara", "Ben", "Chen", "Dolores", "Emeka", "Fatima", "Gus"];
+const LAST = ["Okafor", "Hartley", "Wei"];
+const ROLES = ["Store Manager", "Warehouse Associate", "Field Technician", "Shift Supervisor", "Inventory Analyst"];
+const TEAMS = ["Retail Ops", "Fulfilment", "Service"];
+const MANY_ROWS: TableRow[] = Array.from({ length: 21 }, (_, i) => {
+  const name = `${FIRST[i % 7]} ${LAST[i % 3]}`;
+  return {
+    key: `m${i + 1}`,
+    cells: {
+      name: { title: name, subtitle: `${name.toLowerCase().replace(" ", ".")}@example.com`, avatar: { initials: name.split(" ").map((p) => p[0]).join("") } },
+      role: ROLES[i % 5],
+      team: TEAMS[i % 3],
+      location: ["Lagos", "Leeds", "Shenzhen", "Madrid", "Abuja"][i % 5],
+      lastActive: `${i + 1} days ago`,
+    },
+  };
+});
+const ACTIONS = [
+  { key: "view", label: "View", icon: "visibility" as const },
+  { key: "edit", label: "Edit", icon: "edit" as const },
+  { key: "share", label: "Share", icon: "share" as const },
+  { key: "delete", label: "Delete", icon: "delete" as const },
+];
+
+/**
+ * Everything the spec adds, client-side over 21 rows: selection with its
+ * count, row actions (Delete disabled on one row), filter menus on Role and
+ * Team, rows per page, column settings, resizable columns, a disabled row and
+ * the first column frozen. Narrow a column and hover cut-off text for its
+ * tooltip.
+ */
+export const AllFeatures: Story = {
+  render: (a) => html`<zds-table
+    client-side
+    selectable
+    resizable
+    column-configure
+    frozen-columns="1"
+    caption="Team members"
+    search-placeholder="Search people"
+    shape=${a.shape}
+    .pageSize=${5}
+    .pageSizeOptions=${[5, 10, 20]}
+    .columns=${PEOPLE_COLUMNS}
+    .rows=${MANY_ROWS.map((r, i) => (i === 1 ? { ...r, actions: ACTIONS.map((x) => (x.key === "delete" ? { ...x, disabled: true } : x)) } : r))}
+    .rowActions=${ACTIONS}
+    .disabledRows=${["m4"]}
+    .onRowAction=${(key: string, row: TableRow) => console.log(`${key}: ${row.key}`)}
+    >${shaped(a.shape)}</zds-table
+  >`,
+};
+
+/** `max-height` caps the content; rows scroll under a header that sticks to the top. */
+export const StickyHeader: Story = {
+  render: (a) => html`<zds-table
+    client-side
+    selectable
+    frozen-columns="1"
+    max-height="320"
+    caption="Team members"
+    shape=${a.shape}
+    .pageSize=${20}
+    .columns=${PEOPLE_COLUMNS}
+    .rows=${MANY_ROWS}
+  ></zds-table>`,
+};
+
+/** With nothing to show, one row spanning every column reads the empty label. */
+export const Empty: Story = {
+  render: (a) => html`<zds-table client-side selectable caption="Team members" search-value="zzz" shape=${a.shape} .columns=${PEOPLE_COLUMNS} .rows=${MANY_ROWS} .rowActions=${ACTIONS}></zds-table>`,
+};

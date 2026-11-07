@@ -15,10 +15,11 @@ const meta: Meta = {
   tags: ["autodocs"],
   argTypes: {
     rounded: { control: "boolean" },
+    compact: { control: "boolean" },
   },
-  args: { rounded: false },
+  args: { rounded: false, compact: false },
   render: (a) => html`
-    <zds-dropdown-menu ?rounded=${a.rounded}>${rows(a.rounded)}</zds-dropdown-menu>
+    <zds-dropdown-menu ?rounded=${a.rounded} ?compact=${a.compact}>${rows(a.rounded)}</zds-dropdown-menu>
   `,
 };
 export default meta;
@@ -38,6 +39,15 @@ export const Rounded: Story = {
   render: () => row(html`
     <zds-dropdown-menu>${rows(false)}</zds-dropdown-menu>
     <zds-dropdown-menu rounded>${rows(true)}</zds-dropdown-menu>
+  `),
+};
+
+/** Spec `compact`: the inset drops from space/card to space/xs; rows, gaps and radii hold. */
+export const Compact: Story = {
+  render: () => row(html`
+    <zds-dropdown-menu>${rows(false)}</zds-dropdown-menu>
+    <zds-dropdown-menu compact>${rows(false)}</zds-dropdown-menu>
+    <zds-dropdown-menu rounded compact>${rows(true)}</zds-dropdown-menu>
   `),
 };
 

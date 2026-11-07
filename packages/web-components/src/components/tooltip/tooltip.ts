@@ -309,10 +309,10 @@ export class ZdsTooltip extends LitElement {
     const w = bubble.offsetWidth;
     const h = bubble.offsetHeight;
     const cs = getComputedStyle(bubble);
-    // The gap is the pointer's depth (--space-xxs) plus the same again as
+    // The gap is the pointer's depth (--space-2xs) plus the same again as
     // clearance — read at the bubble's place in the cascade, so a theme
     // scope that shrinks the token moves it.
-    const depth = parseFloat(cs.getPropertyValue("--space-xxs"));
+    const depth = parseFloat(cs.getPropertyValue("--space-2xs"));
     const gap = 2 * (Number.isFinite(depth) ? depth : 4);
     const vw = document.documentElement.clientWidth;
     const vh = document.documentElement.clientHeight;

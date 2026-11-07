@@ -49,6 +49,20 @@ describe("zeta-text-input (spec)", () => {
       await expect(el.shadowRoot?.querySelector(".optional")?.textContent).to.equal("(optional)");
     });
 
+    it("shows the sub label under the label as the field's description, not its name", async () => {
+      expect(el.shadowRoot?.querySelector(".sub-label")).to.not.exist;
+      el.subLabel = "Used for receipts";
+      await elementUpdated(el);
+      const sub = el.shadowRoot?.querySelector(".sub-label") as HTMLElement;
+      await expect(sub.textContent).to.equal("Used for receipts");
+      await expect(sub.getAttribute("aria-hidden")).to.equal("true");
+      await expect(el.shadowRoot?.querySelector("input")?.getAttribute("aria-description")).to.equal("Used for receipts");
+      await expect(getComputedStyle(el.shadowRoot?.querySelector(".label-group") as HTMLElement).rowGap).to.equal(v(el, "--space-xs"));
+      el.subLabel = "";
+      await elementUpdated(el);
+      expect(el.shadowRoot?.querySelector("input")?.hasAttribute("aria-description")).to.be.false;
+    });
+
     it("drops the hint icon when showHintIcon is off", async () => {
       el.showHintIcon = false;
       await elementUpdated(el);
@@ -76,10 +90,10 @@ describe("zeta-text-input (spec)", () => {
       }
     });
 
-    it("pads the field space/sm by space/md and spaces the stack by space/xxs", async () => {
+    it("pads the field space/sm by space/md and spaces the stack by space/xs", async () => {
       await expect(getComputedStyle(field()).paddingLeft).to.equal(v(el, "--space-md"));
       await expect(getComputedStyle(field()).paddingTop).to.equal(v(el, "--space-sm"));
-      await expect(getComputedStyle(el.shadowRoot?.querySelector(".container") as HTMLElement).rowGap).to.equal(v(el, "--space-xxs"));
+      await expect(getComputedStyle(el.shadowRoot?.querySelector(".container") as HTMLElement).rowGap).to.equal(v(el, "--space-xs"));
     });
 
     it("rounds by shape: none, radius/sm, pill", async () => {

@@ -136,3 +136,16 @@ export const AvatarWithCloseIcon: StoryObj<AvatarStory> = {
   },
   render: AvatarWithInitials.render
 };
+
+/** Any other swatch colour: a token name, a custom property, or a CSS colour value. */
+export const AvatarCustomColour: StoryObj<AvatarStory> = {
+  argTypes: {
+    slot: { table: { disable: true } }
+  },
+  render: () =>
+    html`<div style="display: flex; gap: 12px;">
+      ${["chart/series/2", "feedback/error/background/strong", "--chart-series-10", "#0b7a75"].map(
+        color => html`<zeta-avatar size="l" swatch-color=${color} title=${color}>AA</zeta-avatar>`
+      )}
+    </div>`
+};

@@ -25,6 +25,7 @@ export const Playground: Story = {};
 export const ShowAvatar: Story = {
   render: () => html`<div style="display:grid;gap:12px">
     ${row(html`<zds-input-chip avatar-src=${PHOTO} removable>Ada Alden</zds-input-chip><zds-input-chip removable>Grace Hopper</zds-input-chip>`)}
+    ${row(html`<zds-input-chip avatar-color="chart/series/1" removable>Store Associate</zds-input-chip><zds-input-chip avatar-color="yellow" removable>French Wine SME</zds-input-chip><zds-input-chip avatar-color="#8a1538" removable>New York Store D</zds-input-chip>`)}
     ${row(html`<zds-input-chip show-avatar="false" removable>invoices-2026</zds-input-chip><zds-input-chip show-avatar="false" removable>Urgent</zds-input-chip>`)}
   </div>`,
 };

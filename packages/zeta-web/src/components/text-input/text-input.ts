@@ -1,5 +1,5 @@
 import { customElement, property, query } from "lit/decorators.js";
-import { html, LitElement, nothing } from "lit";
+import { html, LitElement, nothing, type PropertyValues } from "lit";
 import styles from "./text-input.styles.js";
 import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 import { classMap } from "lit/directives/class-map.js";
@@ -100,6 +100,9 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   /** Adds an information icon after the label. */
   @property({ type: Boolean, attribute: "show-information" }) showInformation = false;
 
+  /** Supporting line under the label (spec: Input Label's Show Sub Label). Shown when set; needs a `label`. */
+  @property({ type: String, attribute: "sub-label" }) subLabel = "";
+
   /** Keeps the icon ahead of the hint, which is what makes an error read as an error before it is read. */
   @property({ type: Boolean, attribute: "show-hint-icon" }) showHintIcon = true;
 
@@ -190,7 +193,25 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
     </div>`;
   }
 
+  protected override updated(changedProperties: PropertyValues): void {
+    super.updated(changedProperties);
+    // The sub label sits inside the <label> but is hidden from it, so it reaches assistive technology as the
+    // field's description rather than as part of its name.
+    const field = this.shadowRoot?.querySelector("input, textarea");
+    if (field) {
+      if (this.label && this.subLabel) field.setAttribute("aria-description", this.subLabel);
+      else field.removeAttribute("aria-description");
+    }
+  }
+
   private renderLabel() {
+    const row = this.renderLabelRow();
+    return this.subLabel
+      ? html`<span class="label-group">${row}<span class="sub-label" aria-hidden="true">${this.subLabel}</span></span>`
+      : row;
+  }
+
+  private renderLabelRow() {
     return html`<span class="label">
       ${this.label} ${this.required ? html`<span class="required" aria-hidden="true">*</span>` : nothing}
       ${this.optional && !this.required ? html`<span class="optional">(optional)</span>` : nothing}

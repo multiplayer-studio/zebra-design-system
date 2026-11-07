@@ -1,6 +1,6 @@
 import { css } from "lit";
 
-/* Spec: specs/tooltip. A bubble on surface/inverse with space/xxs by space/sm padding, label/small on
+/* Spec: specs/tooltip. A bubble on surface/inverse with space/2xs by space/sm padding, label/small on
    foreground/inverse, radius/sm (radius/none when sharp) and Shadow/medium. The pointer is an 8 by 4 surface/inverse
    triangle outside the bubble, centred on the edge named by point (the edge facing the trigger); rounded rounds its
    tip. The pointer has no size token and holds its size under condensed (spec warn). A long label wraps inside a
@@ -20,7 +20,7 @@ export default css`
     justify-content: center;
     width: fit-content;
     max-width: 240px;
-    padding: var(--space-xxs) var(--space-sm);
+    padding: var(--space-2xs) var(--space-sm);
     border-radius: var(--zebra-radius-none);
     background-color: var(--_fill);
     box-shadow:

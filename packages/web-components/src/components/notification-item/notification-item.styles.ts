@@ -50,7 +50,7 @@ export default css`
   .message {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
   }
 
   .header {
@@ -98,8 +98,8 @@ export default css`
     display: inline-flex;
     flex: none;
     align-items: center;
-    gap: var(--space-xxs);
-    padding: var(--space-2xs) 0;
+    gap: var(--space-2xs);
+    padding: var(--space-3xs) 0;
   }
 
   .timestamp {
@@ -131,7 +131,7 @@ export default css`
   .attachment {
     display: flex;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     min-width: 0;
     color: var(--foreground-link);
   }
@@ -152,7 +152,7 @@ export default css`
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     padding: var(--space-none) 0;
   }
   /* The slot itself is transparent to layout, so slotted buttons are the
@@ -170,7 +170,7 @@ export default css`
     top: 100%;
     left: var(--space-md);
     right: var(--space-md);
-    height: var(--space-xxs);
+    height: var(--space-2xs);
     background: var(--border-focus);
     border-radius: 0 0 var(--radius-md) var(--radius-md);
   }

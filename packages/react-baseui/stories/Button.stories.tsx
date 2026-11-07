@@ -22,7 +22,7 @@ const meta: Meta<typeof Button> = {
     leadingIcon: { control: "select", options: [undefined, ...iconNames] },
     trailingIcon: { control: "select", options: [undefined, ...iconNames] },
   },
-  args: { flavour: "primary", size: "small", shape: "sharp", disabled: false, children: "Button" },
+  args: { flavour: "primary", size: "medium", shape: "rounded", disabled: false, children: "Button" },
 };
 export default meta;
 type Story = StoryObj<typeof Button>;

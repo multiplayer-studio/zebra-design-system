@@ -2,7 +2,34 @@
 /**
  * tokens/  ->  CSS custom properties, with theme scopes that actually work.
  *
- *   node build-tokens-css.mjs [tokensDir] [outDir]
+ *   node build-tokens-css.mjs [tokensDir] [outDir] [--profile=zeta] [--overrides=file.json] [--attributes]
+ *
+ * --profile picks the theme selectors. The default is the class vocabulary
+ * this package and react-baseui use (.mode-dark, .ext-companion, .bp-mobile).
+ * "zeta" is packages/zeta-web's attribute vocabulary: [data-theme="dark"],
+ * [data-brand="companion"], [data-breakpoint="mobile"], plus the OS dark
+ * preference on :root, as its legacy tokens do.
+ *
+ * --attributes adds a data attribute beside each class, so a scope can be set either
+ * way and the two mix: data-theme-mode="dark", data-theme-ext="companion",
+ * data-size-mode="compact" (Desktop Compact). Leaving one off is its default, so
+ * data-theme-ext="base" and data-size-mode="desktop" select nothing.
+ *
+ * --overrides layers a package's own values over tokens/, which stays as Figma
+ * exported it. Every value is an alias to a token that exists:
+ *
+ *     {
+ *       "themeModes": { "AAA Light": { "extends": "Light", "tokens": { "ink/low": "{primitives.color.neutral.cool.80}" } } },
+ *       "values": { "size": { "Desktop Compact": { "control/md": "{primitives.scale.11}" } } }
+ *     }
+ *
+ * themeModes adds a mode to the theme axis, starting from the mode it extends, or
+ * changes one tokens/ already has. values changes tokens in an existing mode. An
+ * override that tokens/ now matches is reported, so the file can shrink.
+ *
+ * A theme mode past Light and Dark, from either source, gets a scope with each
+ * extension and claims the mode it extends inside it, so a component locked to Dark
+ * stays in its family.
  *
  * WHY THIS IS NOT A FLAT DUMP
  * ---------------------------
@@ -22,13 +49,23 @@
  * adapts to whatever collections, modes and extensions Figma ships — nothing
  * is hard-coded to "primitives / palette / semantics".
  */
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, mkdirSync, cpSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const TOKENS = process.argv[2] || join(HERE, "../../../tokens");
-const OUT = process.argv[3] || join(HERE, "../src/tokens");
+const ARGS = process.argv.slice(2).filter((a) => !a.startsWith("--"));
+const PROFILE = (process.argv.find((a) => a.startsWith("--profile=")) || "--profile=classes").slice(10);
+const TOKENS = ARGS[0] || join(HERE, "../../../tokens");
+const OUT = ARGS[1] || join(HERE, "../src/tokens");
+
+// Theme selectors per profile. `osDark` adds a prefers-color-scheme scope.
+const SEL = PROFILE === "zeta"
+  ? { bp: (m) => `[data-breakpoint="${m}"]`, mode: (m) => `[data-theme="${m}"]`, ext: (e) => `[data-brand="${e}"]`, osDark: true }
+  : { bp: (m) => `.bp-${m}`, mode: (m) => `.mode-${m}`, ext: (e) => `.ext-${e}`, osDark: false };
+if (PROFILE !== "zeta" && PROFILE !== "classes") throw new Error(`unknown --profile "${PROFILE}" (classes | zeta)`);
+const ATTRIBUTES = process.argv.includes("--attributes");
+const OVERRIDES_FILE = (process.argv.find((a) => a.startsWith("--overrides=")) ?? "--overrides=").slice(12);
 
 const manifest = JSON.parse(readFileSync(join(TOKENS, "manifest.json"), "utf8"));
 const read = (rel) => JSON.parse(readFileSync(join(TOKENS, rel), "utf8"));
@@ -61,11 +98,22 @@ const K = (c, p) => `${c}${SEP}${p}`;
 const parts = (k) => { const i = k.indexOf(SEP); return [k.slice(0, i), k.slice(i + SEP.length)]; };
 
 const tokens = new Map(); // key -> { collection, path, modes: { [mode]: expr } }
+// DTCG allows a weight keyword ("medium"); CSS does not, and an invalid font-weight is dropped at computed-value
+// time, so every weight token is written as its number.
+const WEIGHT = { thin: 100, extralight: 200, light: 300, regular: 400, normal: 400, medium: 500, semibold: 600, bold: 700, extrabold: 800, black: 900 };
+const literalOf = (leaf) => {
+  const v = String(leaf.$value);
+  if (leaf.$type === "fontWeight") return String(WEIGHT[v.toLowerCase().replace(/[^a-z]/g, "")] ?? v);
+  return v;
+};
+// An alias at an opacity (com.figma.aliasOpacity) keeps its reference and carries the alpha alongside it.
 const expr = (leaf) => {
   const m = /^\{([^}]+)\}$/.exec(String(leaf.$value));
-  if (!m) return { literal: String(leaf.$value) };
+  if (!m) return { literal: literalOf(leaf) };
   const [c, ...rest] = m[1].split(".");
-  return collectionOf.has(c) ? { ref: K(c, rest.join("/")) } : { literal: String(leaf.$value) };
+  if (!collectionOf.has(c)) return { literal: literalOf(leaf) };
+  const opacity = leaf.$extensions?.["com.figma"]?.aliasOpacity;
+  return opacity === undefined ? { ref: K(c, rest.join("/")) } : { ref: K(c, rest.join("/")), opacity };
 };
 
 for (const c of manifest.collections) {
@@ -99,12 +147,46 @@ for (const e of manifest.extensions) {
 }
 
 // ---------- axes ----------------------------------------------------------
-// A collection with >1 mode is an axis. One whose modes are Light/Dark is the
-// theme axis (class `mode-*`); any other is a breakpoint axis (`bp-*`).
-// Derived, not hard-coded, so a differently shaped file still works.
+// A collection with >1 mode is an axis. One holding Light and Dark is the theme
+// axis (class `mode-*`), whatever other modes it has; any other is a breakpoint
+// axis (`bp-*`). Derived, not hard-coded, so a differently shaped file still works.
 const multi = manifest.collections.filter((c) => c.modes.length > 1);
-const themeAxis = multi.find((c) => c.modes.every((m) => ["light", "dark"].includes(slug(m)))) ?? null;
+const isBaseTheme = (m) => ["light", "dark"].includes(slug(m));
+const themeAxis = multi.find((c) => c.modes.filter(isBaseTheme).length === 2) ?? null;
 const bpAxes = multi.filter((c) => c !== themeAxis);
+
+// ---------- overrides -----------------------------------------------------
+const overrides = OVERRIDES_FILE ? JSON.parse(readFileSync(OVERRIDES_FILE, "utf8")) : {};
+const overridden = (key, alias, base) => {
+  const e = expr({ $value: alias, $type: "" });
+  if (!tokens.has(key)) throw new Error(`overrides: no token ${key}`);
+  if (!e.ref || !tokens.has(e.ref)) throw new Error(`overrides: ${key} must alias a token that exists, got ${alias}`);
+  if (base?.ref === e.ref) console.warn(`  overrides: ${key} already has this value in tokens/, remove it`);
+  return { ...e, opacity: base?.opacity };
+};
+for (const [collection, byMode] of Object.entries(overrides.values ?? {})) {
+  for (const [mode, paths] of Object.entries(byMode)) {
+    if (!collectionOf.get(collection)?.modes.includes(mode)) throw new Error(`overrides: no mode ${collection} / ${mode}`);
+    for (const [path, alias] of Object.entries(paths)) {
+      const key = K(collection, path);
+      tokens.get(key).modes[mode] = overridden(key, alias, tokens.get(key)?.modes[mode]);
+    }
+  }
+}
+// Any theme mode past Light and Dark, from tokens/ or from --overrides. One from tokens/ extends the mode its name says.
+const added = new Map((themeAxis?.modes ?? []).filter((m) => !isBaseTheme(m))
+  .map((m) => [m, { extends: themeAxis.modes.find((b) => slug(b) === (/dark/i.test(m) ? "dark" : "light")) }]));
+for (const [mode, o] of Object.entries(overrides.themeModes ?? {})) added.set(mode, { ...added.get(mode), ...o });
+const addedThemeModes = [...added];
+for (const [mode, { extends: base, tokens: paths = {} }] of addedThemeModes) {
+  if (!themeAxis?.modes.includes(base)) throw new Error(`overrides: theme mode ${mode} extends unknown mode ${base}`);
+  for (const [path, alias] of Object.entries(paths)) {
+    const key = K(themeAxis.name, path);
+    tokens.get(key).modes[mode] = overridden(key, alias, tokens.get(key)?.modes[mode] ?? tokens.get(key)?.modes[base]);
+  }
+  for (const t of tokens.values())
+    if (t.collection === themeAxis.name) t.modes[mode] ??= t.modes[base];
+}
 
 // ---------- resolution ----------------------------------------------------
 // ctx = { modes: { [collection]: mode }, ext: slug | null }
@@ -123,7 +205,9 @@ const resolve = (key, ctx, depth = 0) => {
   if (depth > 24) return "<cycle>";
   const d = declFor(key, ctx);
   if (!d) return "<missing>";
-  return d.literal !== undefined ? d.literal : resolve(d.ref, ctx, depth + 1);
+  if (d.literal !== undefined) return d.literal;
+  const v = resolve(d.ref, ctx, depth + 1);
+  return d.opacity === undefined ? v : `${v}@${d.opacity}`;
 };
 
 const defaultModes = Object.fromEntries(manifest.collections.map((c) => [c.name, c.defaultMode]));
@@ -150,10 +234,20 @@ for (const e of extensions.values()) {
   for (const b of Object.values(e.byMode)) noteRefs(b, null);
 }
 const isPrefixed = (c) => referenced.has(c);
+// --shadowed=a,b: names another token set in the same page also defines (zeta-web's legacy set wins on them).
+// Each is also emitted as --zebra-<name>, declared wherever the original is, so a component can reach the Zebra
+// value without renaming the token or disturbing the legacy one.
+const SHADOWED = new Set((process.argv.find((a) => a.startsWith("--shadowed=")) ?? "--shadowed=").slice(11).split(",").filter(Boolean).map((n) => n.replace(/^--/, "")));
 const nameOf = (key) => { const [c, p] = parts(key); return varName(c, p, isPrefixed(c)); };
 const cssValue = (key, ctx) => {
   const d = declFor(key, ctx);
-  return d.literal !== undefined ? d.literal : `var(${nameOf(d.ref)})`;
+  if (d.literal !== undefined) return d.literal;
+  const v = `var(${nameOf(d.ref)})`;
+  return d.opacity === undefined ? v : `color-mix(in srgb, ${v} ${+(d.opacity * 100).toFixed(1)}%, transparent)`;
+};
+const decls = (key, ctx) => {
+  const n = nameOf(key), v = cssValue(key, ctx);
+  return SHADOWED.has(n.slice(2)) ? [`  ${n}: ${v};`, `  --zebra-${n.slice(2)}: ${v};`] : [`  ${n}: ${v};`];
 };
 
 // ---------- emit ----------------------------------------------------------
@@ -169,7 +263,7 @@ for (const c of manifest.collections) {
   write(`${slug(c.name)}.css`,
     HEAD(`${c.name} — ${c.defaultMode}`,
       isPrefixed(c.name) ? "Referenced by other layers, so prefixed." : "Public API; use these names in components.") +
-    `:root {\n${keys.map((k) => `  ${nameOf(k)}: ${cssValue(k, baseCtx)};`).join("\n")}\n}\n`);
+    `:root {\n${keys.flatMap((k) => decls(k, baseCtx)).join("\n")}\n}\n`);
 }
 
 // A scope must declare not just what IT changes, but everything any sibling
@@ -178,33 +272,50 @@ for (const c of manifest.collections) {
 // `.mode-dark` is the obvious case: its own diff against base is empty, so
 // without this it would emit nothing and never restore light.
 const scopes = [];
-const push = (family, selectors, ctx, label) => {
-  scopes.push({ family, selectors, ctx, label, changed: allKeys.filter((k) => resolve(k, ctx) !== baseResolved.get(k)) });
+const push = (family, selectors, ctx, label, media) => {
+  scopes.push({ family, selectors, ctx, label, media, changed: allKeys.filter((k) => resolve(k, ctx) !== baseResolved.get(k)) });
 };
 
 for (const c of bpAxes)
   for (const m of c.modes)
     if (m !== c.defaultMode)
-      push(`bp:${c.name}`, [`.bp-${slug(m)}`], { modes: { ...defaultModes, [c.name]: m }, ext: null }, `${c.name} = ${m}`);
+      push(`bp:${c.name}`, [SEL.bp(slug(m))], { modes: { ...defaultModes, [c.name]: m }, ext: null }, `${c.name} = ${m}`);
 
 // Colour family: the theme axis and every extension share one affected set, so
 // any of them can be nested inside any other and still fully re-theme.
-if (themeAxis)
-  for (const m of themeAxis.modes)
-    push("colour", [`.mode-${slug(m)}`], { modes: { ...defaultModes, [themeAxis.name]: m }, ext: null },
+if (themeAxis) {
+  // The OS preference first, so an explicit theme scope later in the file
+  // always wins. Plain :root, as zeta-web's legacy dark tokens use, so the
+  // import order decides between the two sets rather than specificity.
+  const dark = themeAxis.modes.find((m) => slug(m) === "dark");
+  if (SEL.osDark && dark && dark !== themeAxis.defaultMode)
+    push("colour", [":root"], { modes: { ...defaultModes, [themeAxis.name]: dark }, ext: null },
+      `${themeAxis.name} = ${dark}, from prefers-color-scheme`, "(prefers-color-scheme: dark)");
+  for (const m of themeAxis.modes.filter(isBaseTheme))
+    push("colour", [SEL.mode(slug(m))], { modes: { ...defaultModes, [themeAxis.name]: m }, ext: null },
       `${themeAxis.name} = ${m}`);
+}
 
 for (const eslug of extensions.keys()) {
-  push("colour", [`.ext-${eslug}`], { modes: defaultModes, ext: eslug }, `extension ${eslug}`);
+  push("colour", [SEL.ext(eslug)], { modes: defaultModes, ext: eslug }, `extension ${eslug}`);
   if (!themeAxis) continue;
-  for (const m of themeAxis.modes) {
-    const mc = `mode-${slug(m)}`;
-    // The three ways the classes can meet: same element, mode above the
+  for (const m of [...themeAxis.modes.filter(isBaseTheme), ...added.keys()]) {
+    const mc = SEL.mode(slug(m)), ec = SEL.ext(eslug);
+    // The three ways the selectors can meet: same element, mode above the
     // extension, extension above the mode.
-    push("colour", [`.ext-${eslug}.${mc}`, `.${mc} .ext-${eslug}`, `.ext-${eslug} .${mc}`],
+    push("colour", [`${ec}${mc}`, `${mc} ${ec}`, `${ec} ${mc}`],
       { modes: { ...defaultModes, [themeAxis.name]: m }, ext: eslug },
       `extension ${eslug} + ${themeAxis.name} = ${m}`);
   }
+}
+
+// A theme mode past Light and Dark also claims the mode it extends inside it, so a component locked to Dark stays in
+// its family.
+if (themeAxis && addedThemeModes.length) {
+  const within = `:is(${addedThemeModes.map(([m]) => SEL.mode(slug(m))).join(", ")})`;
+  for (const [m, { extends: base }] of addedThemeModes)
+    push("colour", [SEL.mode(slug(m)), `${within} ${SEL.mode(slug(base))}`],
+      { modes: { ...defaultModes, [themeAxis.name]: m }, ext: null }, `${themeAxis.name} = ${m}`);
 }
 
 // Widen every scope to its family's union, then drop scopes that still say
@@ -215,9 +326,33 @@ for (const s of scopes) {
   s.changed.forEach((k) => u.add(k));
   universe.set(s.family, u);
 }
-for (const s of scopes) s.changed = [...universe.get(s.family)].sort();
+// A breakpoint collection is the exception. A colour scope says nothing about size, and an extension that overrides
+// size (condensed) puts size in the colour family's universe. Widening to it would make every mode scope reset size
+// to Desktop's values, so anything under .mode-dark would ignore a .bp-* scope above it.
+const breakpointOwned = new Set(bpAxes.map((c) => c.name));
+for (const s of scopes) {
+  const own = new Set(s.changed);
+  s.changed = [...universe.get(s.family)].filter((k) => s.family !== "colour" || own.has(k) || !breakpointOwned.has(parts(k)[0])).sort();
+}
 const live = scopes.filter((s) => s.changed.length);
 scopes.length = 0; scopes.push(...live);
+
+// A class and its attribute are the same scope, so every selector is written with each of them in every position: a
+// component locked with .mode-dark still has to meet data-theme-ext on an ancestor.
+const attributeOf = (kind, value) => {
+  if (kind === "mode") return `[data-theme-mode="${value}"]`;
+  if (kind === "ext") return `[data-theme-ext="${value}"]`;
+  return `[data-size-mode="${value.replace(/^desktop-/, "")}"]`;
+};
+const withAttributes = (selector) => {
+  let forms = [""];
+  for (const piece of selector.split(/(\.(?:mode|ext|bp)-[a-z0-9-]+)/)) {
+    const m = /^\.(mode|ext|bp)-(.+)$/.exec(piece);
+    forms = forms.flatMap((f) => (m ? [f + piece, f + attributeOf(m[1], m[2])] : [f + piece]));
+  }
+  return forms;
+};
+if (ATTRIBUTES) for (const s of scopes) s.selectors = s.selectors.flatMap(withAttributes);
 
 // An extension that overrode a breakpoint-varying collection would need the
 // cross product of both axes; say so rather than emit something half-right.
@@ -227,25 +362,64 @@ for (const [eslug, e] of extensions) {
   if (clash.length) console.warn(`  WARNING extension "${eslug}" overrides ${clash.map((c) => c.name).join(", ")}, which also varies by breakpoint. Emitted for the default breakpoint only.`);
 }
 
+// ---------- text styles ---------------------------------------------------
+// One CSS font shorthand per Figma text style (tokens/base/text-styles.json), built from the variables the style
+// binds. Letter spacing has no place in the shorthand, so the class sets it beside. A shorthand is re-declared in
+// every scope where one of its parts changes, for the same reason the tokens themselves are.
+const textStyles = [];
+if (manifest.textStyles?.file && existsSync(join(TOKENS, manifest.textStyles.file))) {
+  const part = (v) => {
+    const e = expr({ $value: v, $type: "" });
+    return e.ref ? { key: e.ref, css: `var(${nameOf(e.ref)})` } : { css: e.literal };
+  };
+  for (const [path, leaf] of leaves(read(manifest.textStyles.file))) {
+    if (leaf.$type !== "typography") continue;
+    const p = Object.fromEntries(Object.entries(leaf.$value).map(([k, v]) => [k, part(v)]));
+    const name = "--text-" + path.replace(/[\s/]+/g, "-").toLowerCase();
+    textStyles.push({
+      name, cls: name.slice(2), keys: Object.values(p).map((x) => x.key).filter(Boolean),
+      value: `${p.fontWeight.css} ${p.fontSize.css}/${p.lineHeight.css} ${p.fontFamily.css}, system-ui, sans-serif`,
+      letterSpacing: p.letterSpacing.css,
+    });
+  }
+  write("text-styles.css",
+    HEAD("Text styles", "One font shorthand per Figma text style. Use var(--text-<style>) in a component, or the class in a page.") +
+    `:root {\n${textStyles.map((t) => `  ${t.name}: ${t.value};`).join("\n")}\n}\n\n` +
+    textStyles.map((t) => `.${t.cls} {\n  font: var(${t.name});\n  letter-spacing: ${t.letterSpacing};\n}\n`).join("\n"));
+}
+const stylesIn = (changed) => textStyles.filter((t) => t.keys.some((k) => changed.includes(k)));
+
 write("themes.css",
   HEAD("Theme scopes",
     "Each block re-declares every token whose value changes in that scope, dependents\n" +
     "   included — a custom property substitutes where it is declared, not where it is\n" +
     "   used, so a 'redundant looking' line here is what makes theming work at all.") +
-  scopes.map(({ selectors, ctx, label, changed }) =>
-    `/* ${label} — ${changed.length} tokens */\n${selectors.join(",\n")} {\n` +
-    changed.map((k) => `  ${nameOf(k)}: ${cssValue(k, ctx)};`).join("\n") + `\n}\n`).join("\n"));
+  scopes.map(({ selectors, ctx, label, changed, media }) => {
+    const restyled = stylesIn(changed).map((t) => `  ${t.name}: ${t.value};`);
+    const block = `${selectors.join(",\n")} {\n` + [...changed.flatMap((k) => decls(k, ctx)), ...restyled].join("\n") + `\n}\n`;
+    return `/* ${label} — ${changed.length} tokens */\n` +
+      (media ? `@media ${media} {\n${block.replace(/^/gm, "  ").replace(/ +$/gm, "")}}\n` : block);
+  }).join("\n"));
 
 // ---------- webfonts ------------------------------------------------------
 {
   const fams = allKeys.filter((k) => /font family\//i.test(parts(k)[1])).map((k) => baseResolved.get(k));
   const W = { thin: 100, extralight: 200, light: 300, regular: 400, normal: 400, medium: 500, semibold: 600, bold: 700, extrabold: 800, black: 900 };
   const weights = [...new Set(allKeys.filter((k) => /font weight\//i.test(parts(k)[1]))
-    .map((k) => W[String(baseResolved.get(k)).toLowerCase().replace(/[^a-z]/g, "")]).filter(Boolean))].sort((a, b) => a - b);
+    .map((k) => { const v = String(baseResolved.get(k)); return /^\d+$/.test(v) ? Number(v) : W[v.toLowerCase().replace(/[^a-z]/g, "")]; })
+    .filter(Boolean))].sort((a, b) => a - b);
   const GOOGLE = { "IBM Plex Sans": "IBM+Plex+Sans", "IBM Plex Mono": "IBM+Plex+Mono", "IBM Plex Serif": "IBM+Plex+Serif" };
   const hosted = [...new Set(fams.filter((f) => GOOGLE[f]))];
   const selfHost = [...new Set(fams.filter((f) => !GOOGLE[f]))];
   let out = HEAD("Webfonts", "Derived from the font family and weight tokens, plus the platform default for <body>.");
+  // --fonts=self uses the files fetch-fonts.mjs downloaded into tokens/fonts instead of the Google Fonts import.
+  const selfFonts = process.argv.includes("--fonts=self") && existsSync(join(TOKENS, "fonts", "fonts.css"));
+  if (selfFonts) {
+    const dest = join(OUT, "fonts");
+    cpSync(join(TOKENS, "fonts"), dest, { recursive: true, filter: (f) => !f.endsWith("manifest.json") });
+    out += `@import "./fonts/fonts.css";\n\n`;
+    hosted.length = 0;
+  }
   for (const f of hosted)
     out += `/* ${f} — weights ${weights.join(", ")} */\n@import url("https://fonts.googleapis.com/css2?family=${GOOGLE[f]}:wght@${weights.join(";")}&display=swap");\n\n`;
   for (const f of selfHost)
@@ -269,8 +443,15 @@ write("themes.css",
   console.log(`fonts: ${hosted.join(", ") || "none"} @ ${weights.join("/")}${selfHost.length ? ` · self-host: ${selfHost.join(", ")}` : ""}`);
 }
 
+if (SHADOWED.size) {
+  const found = allKeys.map(nameOf).filter((n) => SHADOWED.has(n.slice(2)));
+  const missing = [...SHADOWED].filter((n) => !found.includes(`--${n}`));
+  console.log(`shadowed: ${found.length} aliased as --zebra-*${missing.length ? ` · not in tokens: ${missing.join(", ")}` : ""}`);
+}
+
 write("index.css", HEAD("All layers, in cascade order") +
-  ["fonts", ...manifest.collections.map((c) => slug(c.name)), "themes"].map((n) => `@import "./${n}.css";`).join("\n") + "\n");
+  ["fonts", ...manifest.collections.map((c) => slug(c.name)), ...(textStyles.length ? ["text-styles"] : []), "themes"]
+    .map((n) => `@import "./${n}.css";`).join("\n") + "\n");
 
 console.log(`collections: ${manifest.collections.map((c) => `${c.name}${isPrefixed(c.name) ? "" : "*"}`).join(", ")}   (* = public, unprefixed)`);
 console.log(`theme axis: ${themeAxis ? themeAxis.name : "none"} · breakpoint axes: ${bpAxes.map((c) => c.name).join(", ") || "none"} · extensions: ${[...extensions.keys()].join(", ")}`);

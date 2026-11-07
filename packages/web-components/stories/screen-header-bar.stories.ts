@@ -13,7 +13,7 @@ const meta: Meta = {
   title: "Components/Screen Header Bar",
   component: "zds-screen-header-bar",
   tags: ["autodocs"],
-  parameters: { docs: { description: { component: "The bar at the top of a pushed screen: a back button, the screen's title as a heading, and one trailing action in `slot=\"action\"`. Transparent; fills its container. `shape` reaches both the back button and the action. Fires `zds-back`. Overlaps Top App Bar (not built yet). Spec: specs/screen-header-bar." } } },
+  parameters: { docs: { description: { component: "The bar at the top of a pushed screen: a back button, the screen's title as a heading, and one trailing action in `slot=\"action\"`. Transparent; fills its container. `shape` reaches both the back button and the action. Fires `zds-back`. Overlaps Top App Bar. Spec: specs/screen-header-bar." } } },
   argTypes: {
     shape: { control: "inline-radio", options: ["rounded", "sharp"] },
     headingLevel: { control: "select", options: [1, 2, 3, 4, 5, 6] },

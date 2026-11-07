@@ -33,8 +33,15 @@ describe("zeta-screen-header-bar", () => {
       const s = getComputedStyle(el);
       await expect(s.paddingTop).to.equal(v(el, "--space-md"));
       await expect(s.paddingLeft).to.equal(v(el, "--space-sm"));
-      await expect(s.columnGap).to.equal(v(el, "--space-xxs"));
+      await expect(s.columnGap).to.equal(v(el, "--space-2xs"));
       await expect(el.getBoundingClientRect().width).to.equal(500);
+    });
+
+    it("pads the heading space/gutter each side", async () => {
+      const el = await fixture<ZetaScreenHeaderBar>(html`<zeta-screen-header-bar headline="Home"></zeta-screen-header-bar>`);
+      const s = getComputedStyle(one(el, ".heading"));
+      await expect(s.paddingLeft).to.equal(v(el, "--space-gutter"));
+      await expect(s.paddingRight).to.equal(v(el, "--space-gutter"));
     });
   });
 
@@ -48,6 +55,14 @@ describe("zeta-screen-header-bar", () => {
       el.rounded = true;
       await elementUpdated(el);
       await expect(el.querySelector("zeta-button")?.getAttribute("shape")).to.equal("rounded");
+    });
+
+    it("shapes the back button from rounded", async () => {
+      const el = await fixture<ZetaScreenHeaderBar>(html`<zeta-screen-header-bar headline="Home" .rounded=${false}></zeta-screen-header-bar>`);
+      await expect(one(el, ".back").getAttribute("shape")).to.equal("sharp");
+      el.rounded = true;
+      await elementUpdated(el);
+      await expect(one(el, ".back").getAttribute("shape")).to.equal("rounded");
     });
   });
 

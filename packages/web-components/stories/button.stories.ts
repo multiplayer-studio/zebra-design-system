@@ -3,7 +3,7 @@ import { html } from "lit";
 import "../src/components/button/button.js";
 import { iconNames } from "@zebra-design-system/icons/names";
 
-const FLAVOURS = ["primary","positive","negative","subtle","text","outline-subtle","outline","gradient","text-gradient"] as const;
+const FLAVOURS = ["primary","positive","negative","subtle","text","outline-subtle","outline","gradient","text-gradient","contrast","outline-contrast"] as const;
 const SIZES = ["small","medium","large"] as const;
 const SHAPES = ["sharp","rounded","full"] as const;
 
@@ -20,7 +20,7 @@ const meta: Meta = {
     trailingIcon: { control: "select", options: [null, ...iconNames], description: "Any of the 715 glyphs in the icon font." },
     label: { control: "text" },
   },
-  args: { flavour: "primary", size: "small", shape: "sharp", disabled: false, label: "Button", leadingIcon: null, trailingIcon: null },
+  args: { flavour: "primary", size: "medium", shape: "rounded", disabled: false, label: "Button", leadingIcon: null, trailingIcon: null },
   render: (a) => html`
     <zds-button
       flavour=${a.flavour}
@@ -39,7 +39,7 @@ export const Playground: Story = {};
 
 const row = (children: unknown) => html`<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">${children}</div>`;
 
-/** Nine flavours. Use one primary per view; everything else steps down. */
+/** Eleven flavours. Use one primary per view; everything else steps down. */
 export const Flavours: Story = {
   render: () => html`<div style="display:grid;gap:12px">
     ${row(FLAVOURS.map((f) => html`<zds-button flavour=${f} shape="rounded">${f}</zds-button>`))}
@@ -121,7 +121,7 @@ export const PlainHtml: Story = {
   render: () => html`
     <style>
       .demo-btn {
-        height: var(--control-sm); padding: var(--space-xxs) var(--space-md);
+        height: var(--control-sm); padding: var(--space-2xs) var(--space-md);
         border: var(--stroke-base) solid var(--interactive-primary-border-default);
         border-radius: var(--radius-element-sm);
         background: var(--interactive-primary-background-default);

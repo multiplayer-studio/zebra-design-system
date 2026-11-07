@@ -1,0 +1,32 @@
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+import * as Stepper from "./stepper.stories";
+import * as Item from "./stepper-item.stories";
+
+<Meta of={Stepper} title="Stepper" />
+
+<Title />
+<Description of="zeta-stepper" />
+<Canvas of={Stepper.Stepper} />
+<ArgTypes of="zeta-stepper" />
+
+## Compact
+
+<Canvas of={Stepper.Compact} />
+
+## Vertical
+
+<Canvas of={Stepper.Vertical} />
+
+## Cards
+
+<Canvas of={Stepper.Cards} />
+
+# Stepper Item
+
+<Description of="zeta-stepper-item" />
+<Canvas of={Item.Item} />
+<ArgTypes of="zeta-stepper-item" />
+
+## Statuses
+
+<Canvas of={Item.Statuses} />

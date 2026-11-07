@@ -35,6 +35,7 @@ export type InputLabelType = "default" | "required" | "optional";
  * @fires input - The value changed.
  * @fires change - The value was committed.
  * @csspart label - The label row.
+ * @csspart sub-label - The supporting line under the label row.
  * @csspart hint - The hint row.
  *
  * @spec specs/input/input.spec.json
@@ -57,6 +58,9 @@ export class ZdsInput extends LitElement {
   /** Accessible name of the information icon. */
   @property({ type: String, attribute: "information-label" }) informationLabel = "More information";
 
+  /** Supporting line under the name, read as part of the field's description. Empty hides it; needs a `label` (Show Sub Label). */
+  @property({ type: String, attribute: "sub-label" }) subLabel = "";
+
   /** Supporting line below the field; carries the reason when `state` is invalid. Empty hides it (Show Hint). */
   @property({ type: String }) hint = "";
 
@@ -72,6 +76,8 @@ export class ZdsInput extends LitElement {
   @property({ type: String, reflect: true }) size: InputFieldSize = "medium";
   /** Default rounded: the shape an Input arrives with. */
   @property({ type: String, reflect: true }) shape: InputFieldShape = "rounded";
+  /** Fills the container's width. Without it the field starts at 280 and narrows to fit its container. */
+  @property({ type: Boolean, reflect: true }) block = false;
   @property({ type: String, reflect: true }) flavour: InputFieldFlavour = "default";
   @property({ type: String }) value = "";
   @property({ type: String }) placeholder = "";
@@ -119,20 +125,21 @@ export class ZdsInput extends LitElement {
     const disabled = this.state === "disabled";
     const hintType = disabled ? "disabled" : this.state === "invalid" ? "error" : "default";
     return html`
-      ${this.label ? html`<div part="label" class="label ${disabled ? "disabled" : ""}">
+      ${this.label ? html`<div class=${this.subLabel ? "label-group" : "label-contents"}><div part="label" class="label ${disabled ? "disabled" : ""}">
         <span class="name" aria-hidden="true">${this.label}</span>
         ${this.labelType === "required" ? html`<span class="required" aria-hidden="true">*</span>` : nothing}
         ${this.labelType === "optional" ? html`<span class="optional">(optional)</span>` : nothing}
         ${this.information ? html`<zds-icon class="information" name="info" size="medium" .iconStyle=${"rounded"} label=${this.informationLabel}></zds-icon>` : nothing}
-      </div>` : nothing}
+      </div>${this.subLabel ? html`<span part="sub-label" class="sub-label ${disabled ? "disabled" : ""}" aria-hidden="true">${this.subLabel}</span>` : nothing}</div>` : nothing}
       <zds-input-field
+        block
         .type=${this.type} .size=${this.size} .shape=${this.shape} .flavour=${this.flavour}
         .value=${this.value} .placeholder=${this.placeholder}
         .min=${this.min} .max=${this.max} .step=${this.step}
         .leadingIcon=${this.leadingIcon} .trailingIcon=${this.trailingIcon}
         .readonly=${this.readonly} .disabled=${disabled} .invalid=${this.state === "invalid"}
         .required=${this.labelType === "required"}
-        .label=${this.label || null} .description=${this.hint || null}
+        .label=${this.label || null} .description=${[this.label ? this.subLabel : "", this.hint].filter(Boolean).join(". ") || null}
         @input=${this.onFieldInput}
         @change=${(e: Event) => { e.stopPropagation(); this.dispatchEvent(new Event("change", { bubbles: true, composed: true })); }}
       ></zds-input-field>

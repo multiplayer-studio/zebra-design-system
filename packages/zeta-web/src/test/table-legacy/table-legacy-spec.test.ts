@@ -76,7 +76,7 @@ describe("zeta-table-legacy (spec)", () => {
       await expect(inner.getBoundingClientRect().height).to.equal(60);
       const title = el.querySelector(".zeta-table-header-title") as HTMLElement;
       const sort = el.querySelector(".zeta-table-sort-btn") as HTMLElement;
-      await expect(Math.round(sort.getBoundingClientRect().left - title.getBoundingClientRect().right)).to.equal(parseFloat(v(el, "--space-xxs")));
+      await expect(Math.round(sort.getBoundingClientRect().left - title.getBoundingClientRect().right)).to.equal(parseFloat(v(el, "--space-2xs")));
     });
 
     it("keeps the filter glyph hidden until the header cell is hovered or filtered", async () => {

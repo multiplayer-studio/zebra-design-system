@@ -112,12 +112,12 @@ describe("zeta-droppable", () => {
       await expect(style.borderRadius).to.equal(style.getPropertyValue("--radius-element-md").trim());
     });
 
-    it("draws the surface/menu panel with space/card padding and passes rounded to its rows", async () => {
+    it("draws the surface/overlay panel with space/card padding and passes rounded to its rows", async () => {
       subject.open = true;
       subject.innerHTML = `<zeta-dropdown-menu-item>One</zeta-dropdown-menu-item>`;
       await elementUpdated(subject);
       const style = getComputedStyle(subject);
-      await expect(style.backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-menu"));
+      await expect(style.backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-overlay"));
       await expect(style.paddingTop).to.equal(style.getPropertyValue("--space-card").trim());
       expect(style.boxShadow).to.not.equal("none");
       subject.rounded = false;

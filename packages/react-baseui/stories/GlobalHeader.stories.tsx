@@ -31,3 +31,8 @@ export const LightOverride: Story = { args: { mode: "light", menuItems: true, ac
 
 /** A bare branded bar. */
 export const Bare: Story = { args: { appSwitcher: false, searchBar: false } };
+
+/** The account avatar is a full Avatar: an icon on a swatch here. Any Avatar property goes in avatarProps. */
+export const AccountAvatar: Story = {
+  args: { username: "firstname.lastname@zebra.com", avatarProps: { type: "icon", icon: "verified", swatchColor: "purple" } },
+};

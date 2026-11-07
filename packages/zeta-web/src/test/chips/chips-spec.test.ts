@@ -66,7 +66,7 @@ describe("zeta-chips (spec)", () => {
       el.active = true;
       await elementUpdated(el);
       await expect(chipOf(el).getBoundingClientRect().height).to.equal(32);
-      await expect(getComputedStyle(chipOf(el)).paddingTop).to.equal(v(el, "--space-xxs"));
+      await expect(getComputedStyle(chipOf(el)).paddingTop).to.equal(v(el, "--space-2xs"));
       await expect(getComputedStyle(chipOf(el)).columnGap).to.equal(v(el, "--space-sm"));
     });
 

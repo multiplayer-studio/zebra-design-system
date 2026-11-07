@@ -246,10 +246,10 @@
   --primitives-text-font-size-44: 44px;
   --primitives-text-font-size-48: 48px;
   --primitives-text-font-size-52: 52px;
-  --primitives-text-font-weight-bold: Bold;
-  --primitives-text-font-weight-light: Light;
-  --primitives-text-font-weight-medium: Medium;
-  --primitives-text-font-weight-regular: Regular;
+  --primitives-text-font-weight-bold: 700;
+  --primitives-text-font-weight-light: 300;
+  --primitives-text-font-weight-medium: 500;
+  --primitives-text-font-weight-regular: 400;
   --primitives-text-letter-spacing-body: -0.43px;
   --primitives-text-letter-spacing-heading: 0.4px;
   --primitives-text-letter-spacing-none: 0px;

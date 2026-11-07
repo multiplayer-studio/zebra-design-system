@@ -26,7 +26,7 @@ export default css`
     width: 100%;
     height: var(--control-md);
     gap: var(--space-sm);
-    padding: var(--space-xxs) var(--space-md);
+    padding: var(--space-2xs) var(--space-md);
     border-radius: var(--radius-none);
     border: var(--stroke-thin) solid transparent;
 
@@ -46,7 +46,7 @@ export default css`
     display: flex;
     align-items: center;
     min-width: 0;
-    padding-left: var(--space-xxs);
+    padding-left: var(--space-2xs);
     padding-right: var(--space-xl);
 
     /* type: fixed per every variant */
@@ -68,15 +68,28 @@ export default css`
     color: var(--zds-menu-item-fg);
   }
 
+  /* ---- type: checkbox / radio -------------------------------------------
+     The real control's own 40px target spaces the label, so the row's gap
+     and leading padding drop to none, which lines the control's box up with an
+     Icon row's glyph. The target overflows the row's 4px padding and stays
+     centred (spec note). */
+  :host([type="checkbox"]) .row,
+  :host([type="radio"]) .row {
+    gap: var(--space-none);
+    padding-left: var(--space-none);
+  }
+  .control {
+    color: inherit;
+  }
+
   /* ---- rounded --------------------------------------------------------- */
   :host([rounded]) .row {
     border-radius: var(--radius-sm);
   }
 
   /* ---- state: resting ---------------------------------------------------
-     interactive/ghost/background/* is fully transparent at rest and hover
-     and selected both land at the same faint tint, per the spec ("selected
-     and hover sit at the same visual weight"). */
+     interactive/ghost/background/* is fully transparent at rest. Hover is a
+     5% neutral tint; selected is a 10% brand tint, so it reads stronger. */
   :host {
     --zds-menu-item-bg: var(--interactive-ghost-background-default);
     --zds-menu-item-fg: var(--interactive-neutral-foreground-default);
@@ -88,12 +101,15 @@ export default css`
   }
 
   /* ---- state: selected --------------------------------------------------- */
+  /* The label moves to foreground/primary, the same colour as the resting
+     label. Selected focus keeps it too (spec note: Figma binds neutral there,
+     same value). */
   :host([selected]) {
     --zds-menu-item-bg: var(--interactive-ghost-background-selected);
+    --zds-menu-item-fg: var(--foreground-primary);
   }
   /* Hovering an already-selected row keeps the selected tint rather than
-     swapping to the hover one — the spec gives both the same weight, so
-     there is nothing for a hover-over-selected state to show. */
+     dropping to the weaker hover one. */
   :host([selected]:hover:not([disabled])) {
     --zds-menu-item-bg: var(--interactive-ghost-background-selected);
   }
@@ -111,7 +127,7 @@ export default css`
   }
 
   /* ---- state: disabled --------------------------------------------------
-     Only the label's colour changes; the background stays transparent. */
+     The label and its icons mute together; the background stays transparent. */
   :host([disabled]) {
     --zds-menu-item-bg: var(--interactive-ghost-background-disabled);
   }
@@ -119,7 +135,9 @@ export default css`
     cursor: not-allowed;
     pointer-events: none;
   }
-  :host([disabled]) .label {
+  :host([disabled]) .label,
+  :host([disabled]) .leading,
+  :host([disabled]) .trailing {
     color: var(--interactive-neutral-foreground-disabled);
   }
 `;

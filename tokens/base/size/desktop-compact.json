@@ -57,7 +57,7 @@
   "control": {
     "icon-lg": {
       "$type": "dimension",
-      "$value": "{primitives.scale.10}",
+      "$value": "{primitives.scale.9}",
       "$description": "= 32px, source: scale/10",
       "$extensions": {
         "com.figma": {
@@ -68,13 +68,13 @@
           "scopes": [
             "WIDTH_HEIGHT"
           ],
-          "aliasOf": "VariableID:2004:10"
+          "aliasOf": "VariableID:2004:9"
         }
       }
     },
     "icon-md": {
       "$type": "dimension",
-      "$value": "{primitives.scale.8}",
+      "$value": "{primitives.scale.7}",
       "$description": "= 24px, source: scale/8",
       "$extensions": {
         "com.figma": {
@@ -85,7 +85,7 @@
           "scopes": [
             "WIDTH_HEIGHT"
           ],
-          "aliasOf": "VariableID:2004:8"
+          "aliasOf": "VariableID:2004:7"
         }
       }
     },
@@ -142,7 +142,7 @@
     },
     "lg": {
       "$type": "dimension",
-      "$value": "{primitives.scale.15}",
+      "$value": "{primitives.scale.12}",
       "$description": "= 56px, source: scale/15",
       "$extensions": {
         "com.figma": {
@@ -153,13 +153,13 @@
           "scopes": [
             "WIDTH_HEIGHT"
           ],
-          "aliasOf": "VariableID:2004:15"
+          "aliasOf": "VariableID:2004:12"
         }
       }
     },
     "md": {
       "$type": "dimension",
-      "$value": "{primitives.scale.13}",
+      "$value": "{primitives.scale.11}",
       "$description": "= 48px, source: scale/14",
       "$extensions": {
         "com.figma": {
@@ -170,13 +170,13 @@
           "scopes": [
             "WIDTH_HEIGHT"
           ],
-          "aliasOf": "VariableID:2004:13"
+          "aliasOf": "VariableID:2004:11"
         }
       }
     },
     "sm": {
       "$type": "dimension",
-      "$value": "{primitives.scale.12}",
+      "$value": "{primitives.scale.10}",
       "$description": "= 40px, source: scale/12",
       "$extensions": {
         "com.figma": {
@@ -187,13 +187,13 @@
           "scopes": [
             "WIDTH_HEIGHT"
           ],
-          "aliasOf": "VariableID:2004:12"
+          "aliasOf": "VariableID:2004:10"
         }
       }
     },
     "target-min": {
       "$type": "dimension",
-      "$value": "{primitives.scale.13}",
+      "$value": "{primitives.scale.11}",
       "$description": "= 44px, source: scale/13",
       "$extensions": {
         "com.figma": {
@@ -204,13 +204,13 @@
           "scopes": [
             "WIDTH_HEIGHT"
           ],
-          "aliasOf": "VariableID:2004:13"
+          "aliasOf": "VariableID:2004:11"
         }
       }
     },
     "xs": {
       "$type": "dimension",
-      "$value": "{primitives.scale.9}",
+      "$value": "{primitives.scale.8}",
       "$description": "= 40px, source: scale/12",
       "$extensions": {
         "com.figma": {
@@ -221,7 +221,7 @@
           "scopes": [
             "WIDTH_HEIGHT"
           ],
-          "aliasOf": "VariableID:2004:9"
+          "aliasOf": "VariableID:2004:8"
         }
       }
     }
@@ -639,7 +639,7 @@
   "space": {
     "2xl": {
       "$type": "dimension",
-      "$value": "{primitives.scale.11}",
+      "$value": "{primitives.scale.9}",
       "$description": "= 32px, source: scale/10",
       "$extensions": {
         "com.figma": {
@@ -650,17 +650,17 @@
           "scopes": [
             "GAP"
           ],
-          "aliasOf": "VariableID:2004:11"
+          "aliasOf": "VariableID:2004:9"
         }
       }
     },
     "2xs": {
       "$type": "dimension",
       "$value": "{primitives.scale.2}",
-      "$description": "= 2px, source: scale/1",
+      "$description": "= 4px, source: scale/2",
       "$extensions": {
         "com.figma": {
-          "id": "VariableID:2016:6",
+          "id": "VariableID:2016:7",
           "collection": "size",
           "mode": "Desktop Compact",
           "resolvedType": "FLOAT",
@@ -671,9 +671,77 @@
         }
       }
     },
+    "3xl": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.11}",
+      "$description": "= 32px, source: scale/10",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:7802:30702",
+          "collection": "size",
+          "mode": "Desktop Compact",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "aliasOf": "VariableID:2004:11"
+        }
+      }
+    },
+    "3xs": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.1}",
+      "$description": "= 2px, source: scale/1",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:6",
+          "collection": "size",
+          "mode": "Desktop Compact",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "aliasOf": "VariableID:166:9427"
+        }
+      }
+    },
+    "4xl": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.13}",
+      "$description": "= 32px, source: scale/10",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:7802:30703",
+          "collection": "size",
+          "mode": "Desktop Compact",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "aliasOf": "VariableID:2004:13"
+        }
+      }
+    },
+    "5xl": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.15}",
+      "$description": "= 32px, source: scale/10",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:7802:30704",
+          "collection": "size",
+          "mode": "Desktop Compact",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "aliasOf": "VariableID:2004:15"
+        }
+      }
+    },
     "card": {
       "$type": "dimension",
-      "$value": "{primitives.scale.6}",
+      "$value": "{primitives.scale.5}",
       "$description": "= 16px, source: scale/6",
       "$extensions": {
         "com.figma": {
@@ -684,13 +752,13 @@
           "scopes": [
             "GAP"
           ],
-          "aliasOf": "VariableID:2004:6"
+          "aliasOf": "VariableID:2004:5"
         }
       }
     },
     "gutter": {
       "$type": "dimension",
-      "$value": "{primitives.scale.7}",
+      "$value": "{primitives.scale.6}",
       "$description": "= 16px, source: scale/6",
       "$extensions": {
         "com.figma": {
@@ -701,13 +769,13 @@
           "scopes": [
             "GAP"
           ],
-          "aliasOf": "VariableID:2004:7"
+          "aliasOf": "VariableID:2004:6"
         }
       }
     },
     "lg": {
       "$type": "dimension",
-      "$value": "{primitives.scale.7}",
+      "$value": "{primitives.scale.6}",
       "$description": "= 16px, source: scale/6",
       "$extensions": {
         "com.figma": {
@@ -718,13 +786,13 @@
           "scopes": [
             "GAP"
           ],
-          "aliasOf": "VariableID:2004:7"
+          "aliasOf": "VariableID:2004:6"
         }
       }
     },
     "md": {
       "$type": "dimension",
-      "$value": "{primitives.scale.6}",
+      "$value": "{primitives.scale.5}",
       "$description": "= 12px, source: scale/5",
       "$extensions": {
         "com.figma": {
@@ -735,7 +803,7 @@
           "scopes": [
             "GAP"
           ],
-          "aliasOf": "VariableID:2004:6"
+          "aliasOf": "VariableID:2004:5"
         }
       }
     },
@@ -845,7 +913,7 @@
     },
     "page": {
       "$type": "dimension",
-      "$value": "{primitives.scale.7}",
+      "$value": "{primitives.scale.6}",
       "$description": "= 16px, source: scale/6",
       "$extensions": {
         "com.figma": {
@@ -856,13 +924,13 @@
           "scopes": [
             "GAP"
           ],
-          "aliasOf": "VariableID:2004:7"
+          "aliasOf": "VariableID:2004:6"
         }
       }
     },
     "section": {
       "$type": "dimension",
-      "$value": "{primitives.scale.9}",
+      "$value": "{primitives.scale.7}",
       "$description": "= 24px, source: scale/8",
       "$extensions": {
         "com.figma": {
@@ -873,13 +941,13 @@
           "scopes": [
             "GAP"
           ],
-          "aliasOf": "VariableID:2004:9"
+          "aliasOf": "VariableID:2004:7"
         }
       }
     },
     "sm": {
       "$type": "dimension",
-      "$value": "{primitives.scale.5}",
+      "$value": "{primitives.scale.4}",
       "$description": "= 8px, source: scale/4",
       "$extensions": {
         "com.figma": {
@@ -890,13 +958,13 @@
           "scopes": [
             "GAP"
           ],
-          "aliasOf": "VariableID:2004:5"
+          "aliasOf": "VariableID:2004:4"
         }
       }
     },
     "xl": {
       "$type": "dimension",
-      "$value": "{primitives.scale.9}",
+      "$value": "{primitives.scale.7}",
       "$description": "= 24px, source: scale/8",
       "$extensions": {
         "com.figma": {
@@ -907,34 +975,17 @@
           "scopes": [
             "GAP"
           ],
-          "aliasOf": "VariableID:2004:9"
+          "aliasOf": "VariableID:2004:7"
         }
       }
     },
     "xs": {
       "$type": "dimension",
-      "$value": "{primitives.scale.4}",
-      "$description": "= 4px, source: scale/2",
-      "$extensions": {
-        "com.figma": {
-          "id": "VariableID:7074:754",
-          "collection": "size",
-          "mode": "Desktop Compact",
-          "resolvedType": "FLOAT",
-          "scopes": [
-            "GAP"
-          ],
-          "aliasOf": "VariableID:2004:4"
-        }
-      }
-    },
-    "xxs": {
-      "$type": "dimension",
       "$value": "{primitives.scale.3}",
       "$description": "= 4px, source: scale/2",
       "$extensions": {
         "com.figma": {
-          "id": "VariableID:2016:7",
+          "id": "VariableID:7074:754",
           "collection": "size",
           "mode": "Desktop Compact",
           "resolvedType": "FLOAT",

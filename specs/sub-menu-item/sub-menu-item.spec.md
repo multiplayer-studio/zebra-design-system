@@ -41,7 +41,7 @@ The set also has a Figma component description: "A row inside the Navigation Rai
 
 **subMenu**: true: "Shows the caret at the trailing edge, marking the row as one that opens a further level." · false: "Hides the caret, for a row that navigates straight to its destination. Leaving it on for a row that opens nothing promises a level that is not there."
 
-**showBadge**: false: "No badge on the row." · true: "Reveals a notification indicator between the label and the trailing caret. Unlike the rail item's badge this one sits in the layout, so it takes space from the label."
+**showBadge**: true: "Reveals a notification indicator between the label and the trailing caret. Unlike the rail item's badge this one sits in the layout, so it takes space from the label."
 
 Values anywhere in this document are token names. The only literals are inside verbatim metadata quotes and inside issues; measurements are suffixed Px.
 
@@ -55,7 +55,7 @@ Values anywhere in this document are token names. The only literals are inside v
 
 1. **Row** (root): "The outer frame. Fills the width of the slot it sits in and holds a minimum height, so rows in a list line up whatever they contain."
    - Horizontal, gap `space/sm`, radius `radius/sm`.
-   - Padding: `space/xxs` top and bottom, `space/md` on the right, and `space/md` on the left (`space/xl` when nested).
+   - Padding: `space/2xs` top and bottom, `space/md` on the right, and `space/md` on the left (`space/xl` when nested).
    - Min height `control/lg`. The min width is unbound.
    - Drawn fixed at 184×48Px; it fills inside a slot.
 2. **Icon and Title**: "The leading glyph and the label, kept together so the label starts at the same place on every row that has an icon." Horizontal, gap `space/md`, fill × hug.
@@ -144,8 +144,8 @@ All 17 names resolve in `tokens/`, and both glyphs are in the font.
 |---|---|---|
 | Width | Fill | "Fills the slot it sits in, drawn at 184px. It does not hug its label, so rows in a list are all the same width." |
 | Height | Hug with a floor | "48px, held up by a control/lg minimum so the target never drops below it." |
-| Padding | Fixed per Nested | "4px (space/xxs) top and bottom throughout. 12px (space/md) left and right unnested, with the left edge stepping to 24px when nested." |
-| Gap | Fixed | "8px (space/sm) between the icon, the label, the badge and the caret." |
+| Padding | Fixed per Nested | "space/xs top and bottom throughout. space/md left and right unnested, with the left edge stepping to 24px when nested." |
+| Gap | Fixed | "space/sm between the icon, the label, the badge and the caret." |
 | Radius | Fixed | "radius/sm on every variant." |
 | Icon and caret | Fixed | "Both 16px, the icon an Icon at Size=small and the caret a Caret Indicator in its horizontal direction." |
 | Badge | In flow | "A 16px Notification Indicator at Size=medium, sitting between the label and the caret rather than overhanging the row." |
@@ -175,10 +175,12 @@ It shares this set's property ids but has only four variants (State hover/select
 - **The badge is the drifted Notification Indicator copy.** All 10 variants use 2837:1489 at Size=medium, not the specced set 3719:6256. The copy has a `stroke/thin` ring and a `foreground/inverse` count, among other differences ([navigation-bar duplicateCheck](../navigation-bar/navigation-bar.spec.md)). Build the badge from specs/notification-indicator.
 - **Badge visibility is double-bound.** The Badge frame follows Show Badge, but the indicator inside it follows Show Leading Icon. So the badge shows only when both are on, and hiding the icon hides the badge. In code, bind it to `showBadge` alone.
 - **Gap.** The metadata says `space/sm` sits between the icon, label, badge and caret. In fact the icon and label are grouped with `space/md` between them; `space/sm` separates that group, the badge and the caret.
-- **Double alpha.** The hover, pressed and selected tokens already resolve to translucent primitives (alpha 5, 10 and 5), and Figma adds a paint opacity of 0.05, 0.1 and 0.05 on top. Use the tokens alone in code.
+- **Double alpha.** The hover, pressed and selected tokens already resolve to translucent primitives (alpha 5, 10 and 5), and Figma adds a paint opacity of 0.05, 0.1 and 0.1 on top. Use the tokens alone in code.
+- **Padding text (2026-11-06).** The metadata now says space/xs, but the rows bind `space/2xs`, the real 4px. The build follows the binding.
 - **Orphaned older set.** The Sub Menu Item set 3404:28070 is still referenced. See above.
 
 **Note**
+- Selected's paint opacity rose from 0.05 to 0.1 on 2026-11-06, so the metadata's 5 percent no longer matches the drawing. Code is unaffected.
 - **Shape from the rail.** The rail's metadata now adds a code-only Shape property (rounded default, sharp) that "controls the shape of all sub items within the rail unless overridden". Inside the rail, rows carry `radius/element-sm` (the rounded shape), but the set uses `radius/sm`. In code the row's radius should follow the rail's shape. What sharp maps to is an open owner decision; see the [rail's issues](../navigation-rail/navigation-rail.spec.md#issues).
 - Width: the metadata says Fill, but the set is fixed at 184Px. Only placed instances fill.
 - The Nested=true variants carry a hidden, unbound duplicate of the trailing slot. It is a leftover; ignore it.

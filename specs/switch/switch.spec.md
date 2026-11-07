@@ -37,9 +37,9 @@ No content inputs.
 
 ## Anatomy
 
-0. **root**: a fixed-size container (`measuredSizePx` 64 × 32) with radius `radius/pill` that clips its content. It uses horizontal layout with padding `space/xxs`, gap `space/sm` and cross-axis centred alignment. The main-axis alignment is `start` when off and `end` when on, and this is what moves the thumb. Border: `border/default` at `stroke/base`, inside, at rest; `border/focus` at `stroke/thick`, outside, when focused (see issues).
+0. **root**: a fixed-size container (`measuredSizePx` 64 × 32) with radius `radius/pill` that clips its content. It uses horizontal layout with padding `space/2xs`, gap `space/sm` and cross-axis centred alignment. The main-axis alignment is `start` when off and `end` when on, and this is what moves the thumb. Border: `border/default` at `stroke/base`, inside, at rest; `border/focus` at `stroke/thick`, outside, when focused (see issues).
 1. **track**: "A rectangle sitting behind everything else. Its own colour depends on both State and Switch." Absolutely positioned and fills the root, with radius `radius/pill`.
-   - **icons** (unnumbered wrapper): absolutely positioned and fills the root. Horizontal layout with padding `space/xxs`, space-between, centred. Visible when `hasIcons`. It sits above the track and below the thumb.
+   - **icons** (unnumbered wrapper): absolutely positioned and fills the root. Horizontal layout with padding `space/2xs`, space-between, centred. Visible when `hasIcons`. It sits above the track and below the thumb.
 2. **startIcon** (Figma "On Icon", left): "An instance swap slot, covered by the thumb when Switch is on." This is an Icon pinned to `Size=medium, Framed=false` (`renderedSizePx` 20), Rounded family. Colour is `foreground/inverse`, or `foreground/disabled` when disabled. *In the geometry it is covered when off and visible when on.*
 3. **endIcon** (Figma "Off Icon", right): "An instance swap slot, covered by the thumb when Switch is off." Same Icon setup and colour as startIcon. *In the geometry it is visible when off and covered when on.*
 4. **thumb**: "A circle that slides 32px between the two ends. Its own colour does not change between on and off, only between enabled and disabled." A rectangle with radius `radius/pill`, so it reads as a circle at rest and as a pill while it stretches. Its height is `control/xs` and its width is unbound (`measuredSizePx` 24 × 24). It is the only in-flow child, at `measuredOffsetPx` 4 when off and 36 when on.
@@ -66,7 +66,7 @@ None on this page.
 ## Tokens & theming
 
 - **Color:** `interactive/selection/background/{default,pressed,disabled}`, `interactive/primary/foreground/{default,disabled}`, `border/default`, `border/focus`, `foreground/inverse`, `foreground/disabled`
-- **Dimension:** `space/xxs`, `space/sm`, `radius/pill`, `stroke/base`, `stroke/thick`, `control/xs`
+- **Dimension:** `space/2xs`, `space/sm`, `radius/pill`, `stroke/base`, `stroke/thick`, `control/xs`
 - **Typography / effect:** none
 
 Theme axes, taken from `tokens/manifest.json`:
@@ -164,7 +164,7 @@ No images are stored. Pull a fresh shot from these links:
 - `switch` is naturally a boolean (`checked`) in code. `focus` should come from keyboard focus, not a prop. Hover, pressed and focus+disabled are not modeled anywhere. Figma's State order (disabled, enabled, focus) differs from the metadata's.
 - The on track uses an interaction-state token (`…/pressed`) to mean "selected". The thumb and track draw from different token families.
 - The root's gap (`space/sm`) has no visible effect, because only the thumb is in flow.
-- `space/sm`, `space/xxs` and `stroke/thick` name stale source scale steps in their descriptions. Their px values still match.
+- `space/sm`, `space/2xs` and `stroke/thick` name stale source scale steps in their descriptions. Their px values still match.
 - The motion curve and duration are literals in the metadata. They now have a token: `animations/spring` (size collection, `250ms cubic-bezier(0.34, 1.36, 0.64, 1)`), shared with Segmented Control. The stretch's trailing curve has no token.
 - The accessibility text refers to a "[label]", but Switch has no label part, so the name must come from an external label.
 - There are no on-page subcomponents. The component set has no native Figma description.

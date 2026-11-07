@@ -38,13 +38,13 @@ const meta: Meta = {
   },
   args: {
     label: "Country", hint: "Where the order ships to", placeholder: "Select an option",
-    labelType: "default", information: false, hintIcon: true, leadingIcon: null,
-    size: "medium", shape: "rounded", flavour: "default", state: "default", readonly: false, open: false,
+    labelType: "default", information: false, subLabel: "", hintIcon: true, leadingIcon: null,
+    size: "medium", shape: "rounded", flavour: "default", state: "default", readonly: false, open: false, compact: false, block: false,
   },
   render: (a) => html`<div style="max-inline-size:320px;min-block-size:120px">
-    <zds-select .options=${COUNTRIES} label=${a.label} label-type=${a.labelType} ?information=${a.information}
+    <zds-select .options=${COUNTRIES} label=${a.label} label-type=${a.labelType} ?information=${a.information} sub-label=${a.subLabel}
       hint=${a.hint} .hintIcon=${a.hintIcon} placeholder=${a.placeholder} state=${a.state} ?readonly=${a.readonly}
-      .leadingIcon=${a.leadingIcon} ?open=${a.open}
+      .leadingIcon=${a.leadingIcon} ?open=${a.open} ?compact=${a.compact} ?block=${a.block}
       size=${a.size} shape=${a.shape} flavour=${a.flavour}></zds-select></div>`,
 };
 export default meta;
@@ -65,6 +65,22 @@ export const Open: Story = {
     <zds-select label="Open" hint="Where the order ships to" .options=${COUNTRIES} value="ie" open></zds-select>`, "repeat(2, minmax(240px, 300px))")}</div>`,
 };
 
+/** Block: without it a Select starts at 280px and narrows to fit; block fills the container, as Input. */
+export const Block: Story = {
+  render: () => html`<div style="display:grid;gap:16px;max-width:640px">
+    <zds-select label="Default" .options=${COUNTRIES}></zds-select>
+    <zds-select block label="Block" .options=${COUNTRIES}></zds-select>
+    <div style="inline-size:200px"><zds-select label="Default, 200 container" .options=${COUNTRIES}></zds-select></div>
+  </div>`,
+};
+
+/** Compact: the list opens on the compact Dropdown Menu, a space/xs inset with no gap between rows. */
+export const Compact: Story = {
+  render: () => html`<div style="min-block-size:300px">${row(html`
+    <zds-select label="Default" .options=${COUNTRIES} value="ie" open></zds-select>
+    <zds-select label="Compact" .options=${COUNTRIES} value="ie" open compact></zds-select>`, "repeat(2, minmax(240px, 300px))")}</div>`,
+};
+
 /** Show Label / Show Hint: an empty label or hint removes its row and the stack shortens. */
 export const Parts: Story = {
   render: () => row(html`
@@ -80,7 +96,9 @@ export const LabelTypes: Story = {
     <zds-select label="Country" .options=${COUNTRIES}></zds-select>
     <zds-select label="Country" label-type="required" .options=${COUNTRIES}></zds-select>
     <zds-select label="Country" label-type="optional" .options=${COUNTRIES}></zds-select>
-    <zds-select label="Country" information information-label="Why we ask" .options=${COUNTRIES}></zds-select>`),
+    <zds-select label="Country" information information-label="Why we ask" .options=${COUNTRIES}></zds-select>
+    <zds-select label="Country" sub-label="Where the order ships to" .options=${COUNTRIES}></zds-select>
+    <zds-select label="Country" sub-label="Where the order ships to" state="disabled" .options=${COUNTRIES}></zds-select>`),
 };
 
 export const Sizes: Story = {

@@ -11,9 +11,15 @@ import { css } from "lit";
  */
 export default css`
   :host {
-    /* Width is the container's (spec decision: Figma's 280 is tentative). */
+    /* 280 is a start width, not a fixed one (spec decision): the field never
+       outgrows its container, and block fills it. */
     display: block;
-    min-inline-size: calc(6 * var(--control-sm));
+    inline-size: 280px;
+    max-inline-size: 100%;
+    min-inline-size: min(calc(6 * var(--control-sm)), 100%);
+  }
+  :host([block]) {
+    inline-size: 100%;
   }
   :host([hidden]) {
     display: none;
@@ -24,7 +30,7 @@ export default css`
     display: flex;
     align-items: center;
     box-sizing: border-box;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     padding: var(--space-sm) var(--space-md);
     block-size: var(--zds-input-height);
     border-radius: var(--zds-input-radius);
@@ -47,7 +53,7 @@ export default css`
     flex: 1 1 auto;
     min-inline-size: 0;
     margin: 0;
-    padding: 0 var(--space-xxs);
+    padding: 0 var(--space-2xs);
     box-sizing: border-box;
     border: 0;
     outline: none;
@@ -100,6 +106,24 @@ export default css`
     padding-block: 0;
   }
 
+  /* ---- leading text: reads with the value -------------------------------- */
+  .leading-text {
+    flex: none;
+    padding-inline-start: var(--space-2xs);
+    font-family: var(--body-medium-font-family), system-ui, sans-serif;
+    font-size: var(--body-medium-font-size);
+    font-weight: var(--body-medium-font-weight);
+    line-height: var(--body-medium-line-height);
+    letter-spacing: var(--body-medium-letter-spacing);
+  }
+  :host([size="small"]) .leading-text {
+    font-family: var(--body-small-font-family), system-ui, sans-serif;
+    font-size: var(--body-small-font-size);
+    font-weight: var(--body-small-font-weight);
+    line-height: var(--body-small-line-height);
+    letter-spacing: var(--body-small-letter-spacing);
+  }
+
   /* ---- trailing: type control, clear, divider --------------------------- */
   .trailing {
     flex: none;
@@ -132,7 +156,7 @@ export default css`
   }
   .control:focus-visible {
     outline: var(--stroke-thick) solid var(--border-focus);
-    outline-offset: var(--space-2xs);
+    outline-offset: var(--space-3xs);
   }
   .control:disabled {
     cursor: not-allowed;

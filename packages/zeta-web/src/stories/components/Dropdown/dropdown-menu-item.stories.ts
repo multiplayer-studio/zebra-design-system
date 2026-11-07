@@ -55,7 +55,7 @@ export const DropdownMenuItem: StoryObj<ZetaDropdownMenuItem & { icon: ZetaIconN
 export const DropdownMenuItemTypes: StoryObj<ZetaDropdownMenuItem> = {
   render: args =>
     html`<div
-      style="display: grid; grid-template-columns: repeat(3, 220px); gap: var(--space-xxs); padding: var(--space-card); background: var(--surface-menu);"
+      style="display: grid; grid-template-columns: repeat(3, 220px); gap: var(--space-2xs); padding: var(--space-card); background: var(--surface-overlay);"
     >
       ${(["icon", "checkbox", "radio"] as const).map(
         type => html`

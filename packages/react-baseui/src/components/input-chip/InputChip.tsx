@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Button as BaseButton } from "@base-ui/react/button";
-import { Avatar } from "../avatar/Avatar.js";
+import { Avatar, type AvatarProps } from "../avatar/Avatar.js";
 import { Icon } from "../icon/Icon.js";
 import { cx, initialsOf, textOf, type ChipShape } from "../chip/chip.js";
 import "./input-chip.css";
@@ -12,6 +12,11 @@ export interface InputChipProps extends Omit<React.HTMLAttributes<HTMLSpanElemen
   avatarSrc?: string;
   /** Initials for the avatar. Defaults to the first letters of the label. */
   avatarInitials?: string;
+  /**
+   * The avatar's swatch behind the initials: one of Avatar's seven swatches,
+   * a token name (`chart/series/2`), a custom property or any CSS colour.
+   */
+  avatarColor?: AvatarProps["swatchColor"];
   /** The value is fixed: the chip greys out and the remove control is hidden. Say why nearby. */
   disabled?: boolean;
   /** Pill (rounded) or square (sharp) corners. Match the field the chips sit in. */
@@ -52,6 +57,7 @@ export const InputChip = React.forwardRef<HTMLSpanElement, InputChipProps>(funct
     showAvatar = true,
     avatarSrc,
     avatarInitials,
+    avatarColor,
     disabled = false,
     shape = "rounded",
     onRemove,
@@ -89,6 +95,7 @@ export const InputChip = React.forwardRef<HTMLSpanElement, InputChipProps>(funct
           type={avatarSrc ? "photo" : "initials"}
           src={avatarSrc}
           initials={avatarInitials ?? initialsOf(text)}
+          swatchColor={avatarColor}
           showStatus={false}
           showRing={false}
           showClose={false}

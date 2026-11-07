@@ -90,18 +90,12 @@
   background: var(--surface-track);
 }
 
-/* Buffer band: surface/track, the owner's decision (spec blocker "Buffer band
-   token doesn't resolve": Figma's surface/subtle is a remote leftover). That
-   is the track's own colour, so while buffering the unbuffered remainder of
-   the track is drawn at half strength — the stand-in for Figma's 10%-alpha
-   band, and the only untokenised value here (color-mix, as Button's ghost
-   scrims). Without a track the band stays: hiding it would leave Buffering
-   looking like a stuck bar (spec issue "Show Track hides Buffering too"). */
+/* Buffer band: surface/shade alone (spec warn "Band opacity doubled": Figma's
+   extra 10% paint opacity is not applied). Without a track the band stays:
+   hiding it would leave Buffering looking like a stuck bar (spec issue
+   "Show Track hides Buffering too"). */
 .zds-progress-bar__buffer {
-  background: var(--surface-track);
-}
-.zds-progress-bar[data-buffering] .zds-progress-bar__track {
-  background: color-mix(in srgb, var(--surface-track) 50%, transparent);
+  background: var(--surface-shade);
 }
 
 /* Indicator: Base UI sets its width from the value. A zero value is a

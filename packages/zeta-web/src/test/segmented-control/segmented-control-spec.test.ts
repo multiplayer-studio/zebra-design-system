@@ -51,10 +51,10 @@ describe("zeta-segmented-control (spec)", () => {
   });
 
   describe("Dimensions", () => {
-    it("pads the track space/xxs and a segment space/md to space/lg, both sides space/lg for one part", async () => {
+    it("pads the track space/2xs and a segment space/md to space/lg, both sides space/lg for one part", async () => {
       const el = await control();
       const track = el.shadowRoot?.querySelector(".track") as HTMLElement;
-      await expect(getComputedStyle(track).paddingTop).to.equal(v(el, "--space-xxs"));
+      await expect(getComputedStyle(track).paddingTop).to.equal(v(el, "--space-2xs"));
       const segment = el.items[0].shadowRoot?.querySelector(".segment") as HTMLElement;
       await expect(getComputedStyle(segment).paddingLeft).to.equal(v(el, "--space-md"));
       await expect(getComputedStyle(segment).paddingRight).to.equal(v(el, "--space-lg"));

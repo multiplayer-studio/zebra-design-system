@@ -1,6 +1,6 @@
 import { css } from "lit";
 
-/* Spec: specs/navigation-rail-item. A control/lg square in the narrow form (space/sm by space/xxs padding, caption on
+/* Spec: specs/navigation-rail-item. A control/lg square in the narrow form (space/sm by space/2xs padding, caption on
    indicator/small under the glyph), a full-width row in the wide one (space/sm by space/lg, label/medium). Hover and
    press are the ghost scrims alone, with no paint opacity on top (spec warn "Double alpha"). Selection recolours the
    glyph and label; disabled drops the fill. */
@@ -30,7 +30,7 @@ export default css`
     min-width: var(--control-lg);
     min-height: var(--control-lg);
     max-width: 100%;
-    padding: var(--space-sm) var(--space-xxs);
+    padding: var(--space-sm) var(--space-2xs);
     border-radius: var(--zebra-radius-none);
     cursor: pointer;
     background-color: var(--_bg);
@@ -65,8 +65,8 @@ export default css`
 
   .badge {
     position: absolute;
-    top: calc(var(--space-xxs) * -1);
-    inset-inline-start: calc(100% - var(--space-xxs));
+    top: calc(var(--space-2xs) * -1);
+    inset-inline-start: calc(100% - var(--space-2xs));
   }
 
   /* One line, end-truncated, as Figma draws it (spec warn "Truncation"). */

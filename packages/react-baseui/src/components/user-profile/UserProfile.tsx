@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Button as BaseButton } from "@base-ui/react/button";
-import { Avatar } from "../avatar/Avatar.js";
+import { Avatar, type AvatarProps } from "../avatar/Avatar.js";
 import { Icon } from "../icon/Icon.js";
 import "./user-profile.css";
 
@@ -11,6 +11,12 @@ export interface UserProfileProps extends Omit<React.ComponentPropsWithoutRef<ty
   avatarSrc?: string;
   /** Avatar initials, used when there is no photo. */
   initials?: string;
+  /**
+   * Any other Avatar property (type, icon, swatchColor, status, ring…). The
+   * account avatar is a full Avatar; only its size is fixed (xxsmall).
+   * These win over `avatarSrc` and `initials`.
+   */
+  avatarProps?: Omit<AvatarProps, "size">;
   /** Softens the control's corners. */
   rounded?: boolean;
   disabled?: boolean;
@@ -30,7 +36,7 @@ export interface UserProfileProps extends Omit<React.ComponentPropsWithoutRef<ty
  * @spec specs/global-header/global-header.spec.md
  */
 export const UserProfile = React.forwardRef<HTMLElement, UserProfileProps>(function UserProfile(
-  { username = "Username", avatarSrc, initials, rounded = false, disabled = false, className, ...rest },
+  { username = "Username", avatarSrc, initials, avatarProps, rounded = false, disabled = false, className, ...rest },
   ref,
 ) {
   return (
@@ -42,7 +48,8 @@ export const UserProfile = React.forwardRef<HTMLElement, UserProfileProps>(funct
       data-rounded={rounded ? "" : undefined}
     >
       <span className="zds-user-profile__username">{username}</span>
-      <Avatar size="xxsmall" type={avatarSrc ? "photo" : "initials"} src={avatarSrc} initials={initials} alt="" showClose={false} showStatus={false} showRing={false} />
+      <Avatar type={avatarSrc ? "photo" : "initials"} src={avatarSrc} initials={initials} alt="" showClose={false} showStatus={false} showRing={false}
+        {...avatarProps} size="xxsmall" />
       <Icon name="expand-more" size="small" />
     </BaseButton>
   );

@@ -35,7 +35,7 @@ export const Sizes: Story = {
   render: () => row(SIZES.map((s) => html`<zds-icon name="verified" size=${s}></zds-icon>`)),
 };
 
-/** Pads to a fixed 40px touch target (control-target-min), glyph keeps its own size. Only for a standalone tappable icon — a control that already provides a target, like Button, leaves this off. */
+/** Pads to a fixed box, glyph keeps its own size: 40px (control-target-min), or 24px (control-xs) at xsmall. Only for a standalone tappable icon — a control that already provides a target, like Button, leaves this off. */
 export const Framed: Story = {
   render: () => row(SIZES.map((s) => html`<zds-icon name="verified" size=${s} framed></zds-icon>`)),
 };

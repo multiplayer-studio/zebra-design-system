@@ -47,7 +47,7 @@ The root is a horizontal row: gap `space/none`, padding `space/none`, centred, h
 
 - **target:** a 40 × 40 touch target bound to `control/target-min`, with the ring centred in it.
 
-1. **Ring:** "A circular frame with a stroke, sized by Size and coloured by Checked and State together." Radius `radius/pill`, stroke `stroke/thick` drawn inside, colour per the table below. It has no fill. Padding is `space/xxs` at large and `space/2xs` at medium.
+1. **Ring:** "A circular frame with a stroke, sized by Size and coloured by Checked and State together." Radius `radius/pill`, stroke `stroke/thick` drawn inside, colour per the table below. It has no fill. Padding is `space/2xs` at large and `space/3xs` at medium.
 2. **Inner fill (dot):** "A separate circular layer centred inside the ring, hidden when unchecked in every state except disabled." An ellipse, coloured per the table.
    - **focusRing:** on focus, a `border/focus` ring at `stroke/thick` directly around the ring, with no gap. It's built two ways in Figma (see issues); in code it's one outline with offset 0.
 3. **Label:** "Plain text beside the touch target, consumer owned and fixed in type size across both sizes." Type `label/medium`, colour `foreground/primary`, or `foreground/disabled` when disabled. Visible when `hasLabel`.
@@ -58,8 +58,8 @@ The root is a horizontal row: gap `space/none`, padding `space/none`, centred, h
 
 | size | ring (`Px`) | inner fill (`Px`) | ring padding | token the ring size matches |
 |---|---|---|---|---|
-| medium | 16 | 8 | `space/2xs` | `control/icon-sm` (height bound outside focus; width unbound) |
-| large | 24 | 12 | `space/xxs` | `control/xs` (unbound) |
+| medium | 16 | 8 | `space/3xs` | `control/icon-sm` (height bound outside focus; width unbound) |
+| large | 24 | 12 | `space/2xs` | `control/xs` (unbound) |
 
 The touch target (`control/target-min`), the ring stroke (`stroke/thick`) and the label type (`label/medium`) are the same at both sizes.
 

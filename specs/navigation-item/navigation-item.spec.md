@@ -24,7 +24,7 @@ This is a separate spec, not a subcomponent of [Navigation Bar](../navigation-ba
 
 **label**: "The destination's name, and the only text on the item. One or two words, because the item hugs its label and a long one makes that destination wider than the rest of the row."
 
-**showBadge**: false: "No badge on the icon." · true: "Reveals a Notification Indicator over the icon's top-right corner, signalling that something is waiting. It sits outside the layout, so turning it on never changes the item's size or shifts its neighbours."
+**showBadge**: true: "Reveals a Notification Indicator over the icon's top-right corner, signalling that something is waiting. It sits outside the layout, so turning it on never changes the item's size or shifts its neighbours."
 
 Values anywhere in this document are token names. The only literals are inside verbatim metadata quotes and inside issues; measurements are suffixed Px.
 
@@ -109,13 +109,13 @@ The 8 colour and dimension names resolve in `tokens/`. The 4 remote `type/body/s
 
 | Property | Type | Description |
 |---|---|---|
-| Width | Hug | "Hugs the label, so an item is as wide as its text plus 16px (space/lg) of padding each side. Items in a row are not equal width unless their labels are." |
+| Width | Hug | "Hugs the label, so an item is as wide as its text plus space/lg of padding each side. Items in a row are not equal width unless their labels are." |
 | Height | Fixed | "72px at every variant. This is what sets the Navigation Bar's height, because the bar hugs its content." |
-| Padding | Fixed | "8px (space/sm) top and bottom, 16px (space/lg) left and right." |
-| Gap | Fixed | "8px (space/sm) between the icon box and the label." |
+| Padding | Fixed | "space/sm top and bottom, space/lg left and right." |
+| Gap | Fixed | "space/sm between the icon box and the label." |
 | Icon | Fixed | "A 20px Icon at Size=medium with Framed off, sitting in a 20px box that does not clip its content." |
 | Badge | Absolute | "An 8px Notification Indicator at Size=small, placed at 16,-4 against the 20px icon box so it overhangs the top-right corner. It is outside the layout flow." |
-| Label type | Fixed | "Body/body small (14/20), IBM Plex Sans Regular." |
+| Label type | Fixed | "Body/body small, IBM Plex Sans Regular." |
 | Colour | Theming | "foreground/primary at rest, interactive/subtle/foreground/default when Active, interactive/subtle/foreground/disabled when Disabled. Icon and label take the same token in every state, and the item has no fill of its own." |
 
 ## Issues

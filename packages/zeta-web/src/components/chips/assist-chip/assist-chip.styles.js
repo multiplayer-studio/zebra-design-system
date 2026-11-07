@@ -1,6 +1,6 @@
 import { css } from "lit";
 
-/* Spec: specs/assist-chip. space/xs by space/sm padding with no gap: the label's own space/xxs padding separates
+/* Spec: specs/assist-chip. space/xs by space/sm padding with no gap: the label's own space/2xs padding separates
    the icon, label and remove. Color recolours the border and the text; the fill follows state. Selected and dragged
    are Figma states with no code trigger here (spec issue). */
 export default css`
@@ -34,7 +34,7 @@ export default css`
   }
 
   .label {
-    padding: 0 var(--space-xxs);
+    padding: 0 var(--space-2xs);
   }
 
   .icon {

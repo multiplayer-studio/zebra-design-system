@@ -20,7 +20,7 @@ export default css`
     max-height: var(--_dialog-max-height);
     overflow: auto;
     padding: var(--space-md);
-    background-color: var(--surface-dialog);
+    background-color: var(--surface-overlay);
     color: var(--foreground-primary);
     border: var(--stroke-thin) solid var(--zebra-border-default);
     border-radius: var(--zebra-radius-none);

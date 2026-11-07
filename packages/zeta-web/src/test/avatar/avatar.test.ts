@@ -141,6 +141,20 @@ describe("zeta-avatar", () => {
       await expect(getComputedStyle(content).backgroundColor).to.equal(getCssVarColorValue(avatar, "--chart-series-9"));
     });
 
+    it("takes any other swatch colour: a token name, a custom property or a CSS value", async () => {
+      const cases = [
+        ["chart/series/2", "--chart-series-2"],
+        ["--chart-series-10", "--chart-series-10"]
+      ] as const;
+      for (const [value, token] of cases) {
+        const avatar: ZetaAvatar = await fixture(html`<zeta-avatar swatch-color=${value}>JD</zeta-avatar>`);
+        const content = avatar.shadowRoot?.querySelector(".avatar") as HTMLElement;
+        await expect(getComputedStyle(content).backgroundColor).to.equal(getCssVarColorValue(avatar, token));
+      }
+      const raw: ZetaAvatar = await fixture(html`<zeta-avatar swatch-color="rgb(11, 122, 117)">JD</zeta-avatar>`);
+      await expect(getComputedStyle(raw.shadowRoot?.querySelector(".avatar") as HTMLElement).backgroundColor).to.equal("rgb(11, 122, 117)");
+    });
+
     it("colours each presence state from its chart token", async () => {
       const map = { available: "--chart-positive", busy: "--chart-negative", away: "--chart-series-8" } as const;
       for (const [status, token] of Object.entries(map)) {

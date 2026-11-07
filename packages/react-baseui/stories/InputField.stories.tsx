@@ -21,7 +21,7 @@ const meta: Meta<typeof InputField> = {
     shape: { control: "inline-radio", options: SHAPES },
     flavour: { control: "inline-radio", options: FLAVOURS },
   },
-  args: { type: "text", size: "medium", shape: "sharp", flavour: "default", invalid: false, readOnly: false, disabled: false },
+  args: { type: "text", size: "medium", shape: "rounded", flavour: "default", invalid: false, readOnly: false, disabled: false },
   render: (a) => <div style={{ maxInlineSize: 320 }}><InputField aria-label="Playground" placeholder={PLACEHOLDER[a.type ?? "text"]} {...a} /></div>,
 };
 export default meta;

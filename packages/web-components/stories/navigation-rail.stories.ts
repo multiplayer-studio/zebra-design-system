@@ -162,6 +162,26 @@ export const HeaderAction: Story = {
     ]),
 };
 
+/** rail-width: Figma's 200px by default, a project width, or "fill" to take the container's width. */
+export const RailWidth: Story = {
+  render: () =>
+    row(([["default (200px)", null, 260], ["rail-width=255", "255", 300], ['rail-width="fill" in a 320px column', "fill", 320]] as const).map(([cap, w, c]) =>
+      col(cap, html`<div style="inline-size:${c}px;block-size:420px;display:flex;border:1px dashed var(--border-subtle);background:var(--surface-page)">
+        <zds-navigation-rail expanded rail-width=${w ?? nothing}>${header()} ${menu}</zds-navigation-rail>
+      </div>`),
+    )),
+};
+
+/** The header's Icon Button takes any glyph and label (Settings by default); it fires zds-action. */
+export const HeaderIconButton: Story = {
+  render: () =>
+    row((["settings", "home", "swap"] as const).map((icon) =>
+      frame(html`<zds-navigation-rail expanded .showToggleItem=${false}>
+        <zds-navigation-header slot="header" heading="ACME" action-icon=${icon} action-label=${icon === "home" ? "Home" : icon === "settings" ? "Settings" : "Switch tenant"}></zds-navigation-header>
+      </zds-navigation-rail>`, 200),
+    )),
+};
+
 /** showToggleItem, and the footer slot (moreFooterItems). */
 export const ToggleAndFooter: Story = {
   render: () =>

@@ -1,0 +1,53 @@
+{
+  "fetchedAt": "2026-10-31",
+  "fetched": [
+    {
+      "family": "IBM Plex Sans",
+      "source": "Google Fonts",
+      "license": "See the family's page on fonts.google.com (OFL for IBM Plex)",
+      "weights": [
+        300,
+        400,
+        500,
+        700
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "files": [
+        {
+          "file": "ibm-plex-sans/variable-latin-ext.woff2",
+          "style": "normal",
+          "subset": "latin-ext",
+          "bytes": 25868,
+          "weights": [
+            300,
+            400,
+            500,
+            700
+          ]
+        },
+        {
+          "file": "ibm-plex-sans/variable-latin.woff2",
+          "style": "normal",
+          "subset": "latin",
+          "bytes": 40240,
+          "weights": [
+            300,
+            400,
+            500,
+            700
+          ]
+        }
+      ]
+    }
+  ],
+  "selfHost": [
+    {
+      "family": "Zebra Sans",
+      "reason": "Google Fonts returned 400",
+      "folder": "fonts/zebra-sans/"
+    }
+  ]
+}

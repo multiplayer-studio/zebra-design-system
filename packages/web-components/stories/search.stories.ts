@@ -22,7 +22,7 @@ const meta: Meta = {
     leadingIcon: { control: "select", options: ["", ...iconNames], description: "The spec's hasLeading. Empty drops it." },
     trailingIcon: { control: "select", options: [null, ...iconNames], description: "The spec's hasTrailing. Give it a function and a trailing-label." },
   },
-  args: { shape: "sharp", size: "large", flavour: "default", disabled: false, hideFocusOutline: false, value: "", placeholder: "Search", leadingIcon: "search", trailingIcon: "microphone" },
+  args: { shape: "sharp", size: "large", flavour: "default", disabled: false, block: false, hideFocusOutline: false, value: "", placeholder: "Search", leadingIcon: "search", trailingIcon: "microphone" },
   render: (a) => html`
     <div style="max-width:320px">
       <zds-search
@@ -49,6 +49,15 @@ export const Playground: Story = {};
 const stack = (children: unknown) => html`<div style="display:grid;gap:16px;max-width:320px">${children}</div>`;
 const labelled = (text: string, el: unknown) =>
   html`<div style="display:grid;gap:6px"><span style="font:500 12px/1.4 system-ui;opacity:.7">${text}</span>${el}</div>`;
+
+/** Starts at 280 and narrows to fit its container. `block` fills the container. */
+export const Block: Story = {
+  render: () => html`<div style="display:grid;gap:16px;max-width:640px">
+    ${labelled("default", html`<zds-search label="Default"></zds-search>`)}
+    ${labelled("block", html`<zds-search block label="Block"></zds-search>`)}
+    ${labelled("default, 200 container", html`<div style="inline-size:200px"><zds-search label="Narrow"></zds-search></div>`)}
+  </div>`,
+};
 
 /** Height, text and icon size move together. Only small reduces the text. */
 export const Sizes: Story = {

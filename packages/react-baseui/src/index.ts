@@ -72,6 +72,8 @@ export { Snackbar } from "./components/snackbar/Snackbar.js";
 export type { SnackbarProps, SnackbarVariant, SnackbarFlavour, SnackbarShape, SnackbarCloseReason } from "./components/snackbar/Snackbar.js";
 export { SystemBanner } from "./components/system-banner/SystemBanner.js";
 export type { SystemBannerProps, SystemBannerLayout, SystemBannerStatus, SystemBannerShape } from "./components/system-banner/SystemBanner.js";
+export { InlineBanner } from "./components/inline-banner/InlineBanner.js";
+export type { InlineBannerProps, InlineBannerStatus, InlineBannerAppearance, InlineBannerShape } from "./components/inline-banner/InlineBanner.js";
 
 export { Select } from "./components/select/Select.js";
 export type { SelectProps, SelectOption, SelectFieldState, SelectSize, SelectShape, SelectFlavour, SelectState, SelectLabelType } from "./components/select/Select.js";
@@ -122,6 +124,8 @@ export type {
 
 export { InputHint } from "./components/input/InputHint.js";
 export type { InputHintProps, InputHintType } from "./components/input/InputHint.js";
+export { InputLabel } from "./components/input/InputLabel.js";
+export type { InputLabelProps } from "./components/input/InputLabel.js";
 export { StepperInput } from "./components/stepper-input/StepperInput.js";
 export type { StepperInputProps, StepperInputSize, StepperInputShape } from "./components/stepper-input/StepperInput.js";
 

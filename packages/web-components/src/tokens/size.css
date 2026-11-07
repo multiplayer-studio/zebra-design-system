@@ -41,7 +41,11 @@
   --shadow-xsmall-y: var(--primitives-scale-1);
   --shape: rounded;
   --space-2xl: var(--primitives-scale-11);
-  --space-2xs: var(--primitives-scale-2);
+  --space-2xs: var(--primitives-scale-3);
+  --space-3xl: var(--primitives-scale-13);
+  --space-3xs: var(--primitives-scale-2);
+  --space-4xl: var(--primitives-scale-15);
+  --space-5xl: var(--primitives-scale-17);
   --space-card: var(--primitives-scale-6);
   --space-gutter: var(--primitives-scale-7);
   --space-lg: var(--primitives-scale-7);
@@ -57,7 +61,6 @@
   --space-sm: var(--primitives-scale-5);
   --space-xl: var(--primitives-scale-9);
   --space-xs: var(--primitives-scale-4);
-  --space-xxs: var(--primitives-scale-3);
   --stroke-base: var(--primitives-scale-0);
   --stroke-heavy: var(--primitives-scale-3);
   --stroke-thick: var(--primitives-scale-2);

@@ -9,160 +9,136 @@
       "page": "Icon",
       "pageNodeId": "2046:15004",
       "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15004",
-      "extractedAt": "2026-09-22",
-      "variantCount": 6,
+      "extractedAt": "2026-11-07",
+      "variantCount": 8,
       "defaultVariant": "Size=small, Framed=false",
-      "extractionNote": "6 variants = 3 Size x 2 Framed, all extracted and diffed against the default. The component is two nodes deep (frame + swapped glyph instance), so no sampling was needed. The glyph library it swaps from lives on the Assets page (724 icon component sets), outside this component page; it is referenced by name, not re-extracted here.",
-      "tokenSource": "tokens/",
-      "figmaDescription": ""
+      "extractionNote": "All 8 variants read in full; intent from the Icon Metadata frame via the 2026-11-06 spec.",
+      "tokenSource": "tokens/"
     }
   },
-
   "summary": "Wraps a single glyph from the icon library so it can be sized consistently and embedded in other components. Three sizes, plus an optional box that pads the glyph to a 40px touch target. Button, Icon Button, Dropdown, Search, Avatar, Top App Bar, Navigation Bar and Navigation Rail all embed it, and almost every one of them locks Size and Framed, leaving the glyph as the only decision. On its own it is decorative, the meaning has to come from somewhere else.",
-
   "api": {
     "name": {
       "type": "slot",
       "figmaName": "Name#2167:166",
       "figmaType": "INSTANCE_SWAP",
       "default": "verified",
-      "defaultFigmaNode": "2046:7117",
-      "expects": "A glyph name from the icon font (packages/icons). Not a node id and not an SVG.",
-      "controls": ["glyph"],
+      "options": "any glyph name in the icon font (packages/icons/codepoints.json)",
+      "controls": ["glyph (mainComponent)"],
       "intent": {
-        "Name": "The glyph itself, swapped from the icon library. This is the one property most embedding components leave open, so it is usually the only decision left to make. It arrives set to Verified, which is the right answer for almost nothing."
+        "swap": "The glyph itself, swapped from the icon library. This is the one property most embedding components leave open, so it is usually the only decision left to make. It arrives set to Verified, which is the right answer for almost nothing."
       }
     },
     "size": {
       "type": "enum",
       "figmaName": "Size",
       "default": "small",
-      "values": ["small", "medium", "large"],
+      "values": ["xsmall", "small", "medium", "large"],
+      "valuesFigmaOrder": ["small", "medium", "large", "xsmall"],
+      "orderedBy": "rendered glyph box (xsmall 12 < small 16 < medium 20 < large 28); Figma stores options in creation order",
       "controls": ["variant"],
       "intent": {
-        "small": "16px. The dense step, and what Button and Icon Button use at their own small size.",
-        "medium": "20px. The most widely used step in the file, and what Button and Icon Button use at both medium and large.",
-        "large": "28px. Used by exactly one component in this file, Navigation Header. Reach for it only where the icon is genuinely the focal point."
+        "xsmall": "Not in the metadata. control/icon-xs; framed, a control/xs box.",
+        "small": "The dense step, and what Button and Icon Button use at their own small size.",
+        "medium": "The most widely used step in the file, and what Button and Icon Button use at both medium and large.",
+        "large": "Used by exactly one component in this file, Navigation Header. Use it only where the icon is genuinely the focal point."
       }
     },
     "framed": {
       "type": "boolean",
       "figmaName": "Framed",
+      "figmaType": "VARIANT",
       "default": false,
-      "values": [false, true],
       "controls": ["variant"],
       "intent": {
         "false": "The frame hugs the glyph exactly, so the component takes up only the glyph's own box. Correct whenever the parent already provides padding or a target area, which is nearly always.",
-        "true": "Pads the glyph to a fixed 40px box so it meets the minimum touch target on its own. It adds space and nothing visible, so it suits a standalone tappable icon and is wrong inside a control that is already sized."
+        "true": "Pads the glyph to a fixed box bound to control/target-min so it meets the minimum touch target on its own. It adds space and nothing visible, so it suits a standalone tappable icon and is wrong inside a control that is already sized."
       }
     }
   },
-
   "internalVariations": [
     {
       "part": "glyph",
-      "via": "icon library component sets (Assets page)",
-      "axis": "Style",
-      "options": ["rounded", "sharp"],
-      "pinnedTo": "rounded",
-      "intent": "Every icon component set in the library carries a Style axis with rounded and sharp. Icon pins its nested glyph instance to Style=rounded and does not expose the axis, so this component cannot currently render the sharp family. In an icon-font implementation the axis is a font family (ZdsIcons-Rounded / ZdsIcons-Sharp), not a different glyph — both families share codepoints."
+      "via": "icon library component sets (724, Assets page, same file)",
+      "property": "Style (rounded / sharp) on every set",
+      "pinned": "Style=rounded",
+      "intent": "In an icon-font implementation the Style axis is a font family (ZdsIcons-Rounded / ZdsIcons-Sharp), not a different glyph: both families share codepoints, so exposing it costs nothing but a family switch.",
+      "decision": "Code exposes the axis as iconStyle (rounded default). Decide deliberately rather than inheriting Figma's pin — see issues."
     }
   ],
-
   "contentInputs": [
-    {
-      "part": "glyph",
-      "input": "name",
-      "delivery": "icon font glyph name",
-      "availableCount": 724,
-      "from": "packages/icons/codepoints.json",
-      "note": "The Assets page holds 724 icon component sets; the icon font build produces 724 glyph names across two families. Reference a glyph by name, not by Figma node."
-    }
+    { "part": "glyph", "input": "name", "options": 724, "from": "packages/icons/codepoints.json (maps each Figma setId to its glyph name)" }
   ],
-
   "anatomy": [
     {
       "id": "root",
-      "index": 1,
-      "figmaName": "Frame",
       "kind": "container",
+      "figmaName": "<variant>",
       "role": "The component's own box. With Framed off it hugs the glyph exactly, with Framed on it becomes a fixed 40px square with the glyph centred.",
       "layout": {
         "direction": "vertical",
-        "gap": "space/none (zero, unbound)",
-        "padding": "none on every variant"
+        "gap": "space/none (0, unbound)",
+        "padding": [0, 0, 0, 0],
+        "primaryAlign": "start (framed: center)",
+        "counterAlign": "start (framed: center)"
       },
-      "sizing": { "framedFalse": "hug", "framedTrue": "fixed" },
-      "align": { "framedFalse": "start", "framedTrue": "center" },
-      "paint": { "fill": "none", "stroke": "none", "radius": "none", "effects": "none" },
-      "dimension": { "framedTrue": "control/target-min", "framedFalse": "derived from the glyph" }
+      "sizing": {
+        "unframed": "hug (drawn fixed in Figma since 2026-11-06; code hugs — see issues)",
+        "framed": "fixed, control/target-min (xsmall: control/xs)"
+      },
+      "paint": "none — no fill, no stroke, no radius, no effects"
     },
     {
       "id": "glyph",
-      "index": 2,
-      "figmaName": "Glyph",
       "kind": "instance",
-      "ref": "icon library component set (default: Verified)",
-      "refVariant": "Style=rounded",
+      "figmaName": "Verified",
+      "ref": "icon library set (default Verified, 2046:7116)",
       "role": "The swapped icon instance. Carries the artwork and takes its colour from the parent that embeds it.",
-      "sizing": "fixed, square",
-      "dimension": {
-        "small": "control/icon-sm",
-        "medium": "control/icon-md",
-        "large": "control/icon-lg"
+      "boundTo": "name",
+      "sizing": {
+        "unframed": "fills the root",
+        "framed": "fixed and square, bound per size to control/icon-xs / control/icon-sm / control/icon-md / control/icon-lg, centred"
       },
-      "paint": {
-        "fill": "inherited — currentColor. Not bound on this component; the glyph takes the foreground token of whatever embeds it. In an icon-font implementation this is satisfied by the font and needs no per-parent icon colour token."
-      },
-      "boundTo": "name"
+      "paint": "not bound here — the glyph takes currentColor, which in a font implementation satisfies the inheritance requirement with no per-parent icon colour token"
     }
   ],
-
   "variants": {
     "axes": ["size", "framed"],
-    "base": "size=small, framed=false",
-    "_note": "Only the glyph's dimension token and the root's sizing mode change. measuredBoxPx columns are observations of the rendered file at the size collection's Desktop mode, not design decisions — the tokens are the contract.",
+    "base": "small / false",
+    "_note": "measured…Px columns are observations of the rendered file, not design decisions — the tokens are the contract.",
     "table": [
-      { "size": "small",  "framed": false, "glyph.dimension": "control/icon-sm", "root.sizing": "hug",   "root.align": "start",  "root.dimension": null,                 "measuredRootBoxPx": 16, "measuredGlyphBoxPx": 16 },
-      { "size": "small",  "framed": true,  "glyph.dimension": "control/icon-sm", "root.sizing": "fixed", "root.align": "center", "root.dimension": "control/target-min", "measuredRootBoxPx": 40, "measuredGlyphBoxPx": 16 },
-      { "size": "medium", "framed": false, "glyph.dimension": "control/icon-md", "root.sizing": "hug",   "root.align": "start",  "root.dimension": null,                 "measuredRootBoxPx": 20, "measuredGlyphBoxPx": 20 },
-      { "size": "medium", "framed": true,  "glyph.dimension": "control/icon-md", "root.sizing": "fixed", "root.align": "center", "root.dimension": "control/target-min", "measuredRootBoxPx": 40, "measuredGlyphBoxPx": 20 },
-      { "size": "large",  "framed": false, "glyph.dimension": "control/icon-lg", "root.sizing": "hug",   "root.align": "start",  "root.dimension": null,                 "measuredRootBoxPx": 28, "measuredGlyphBoxPx": 28 },
-      { "size": "large",  "framed": true,  "glyph.dimension": "control/icon-lg", "root.sizing": "fixed", "root.align": "center", "root.dimension": "control/target-min", "measuredRootBoxPx": 40, "measuredGlyphBoxPx": 28 }
+      { "size": "xsmall", "framed": false, "glyph.dimension": "control/icon-xs", "root.sizing": "fixed", "root.align": "start", "root.dimension": "control/icon-xs", "measuredRootBoxPx": 12, "measuredGlyphBoxPx": 12 },
+      { "size": "xsmall", "framed": true, "glyph.dimension": "control/icon-xs", "root.sizing": "fixed", "root.align": "center", "root.dimension": "control/xs", "measuredRootBoxPx": 24, "measuredGlyphBoxPx": 12 },
+      { "size": "small", "framed": false, "glyph.dimension": "control/icon-sm", "root.sizing": "hug", "root.align": "start", "measuredRootBoxPx": 16, "measuredGlyphBoxPx": 16 },
+      { "size": "small", "framed": true, "glyph.dimension": "control/icon-sm", "root.sizing": "fixed", "root.align": "center", "root.dimension": "control/target-min", "measuredRootBoxPx": 40, "measuredGlyphBoxPx": 16 },
+      { "size": "medium", "framed": false, "glyph.dimension": "control/icon-md", "root.sizing": "hug", "root.align": "start", "measuredRootBoxPx": 20, "measuredGlyphBoxPx": 20 },
+      { "size": "medium", "framed": true, "glyph.dimension": "control/icon-md", "root.sizing": "fixed", "root.align": "center", "root.dimension": "control/target-min", "measuredRootBoxPx": 40, "measuredGlyphBoxPx": 20 },
+      { "size": "large", "framed": false, "glyph.dimension": "control/icon-lg", "root.sizing": "hug", "root.align": "start", "measuredRootBoxPx": 28, "measuredGlyphBoxPx": 28 },
+      { "size": "large", "framed": true, "glyph.dimension": "control/icon-lg", "root.sizing": "fixed", "root.align": "center", "root.dimension": "control/target-min", "measuredRootBoxPx": 40, "measuredGlyphBoxPx": 28 }
     ]
   },
-
   "subcomponents": [
     {
       "name": "icon library component sets",
-      "page": "Assets",
-      "pageNodeId": "2046:6754",
-      "setCount": 724,
-      "remote": false,
-      "onComponentPage": false,
-      "api": { "Style": { "type": "enum", "values": ["rounded", "sharp"] } },
-      "defaultReferenced": { "name": "Verified", "id": "2046:7116", "key": "2c02167efda615f4f5887bcc567a2961cd9b01d2", "glyph": "verified" },
-      "note": "Not extracted as an anatomy tree. In this project these sets are delivered as an icon font (packages/icons), so each one resolves to a glyph name rather than to artwork. The font build maps the Figma setId to the glyph name, making the lookup exact."
+      "count": 724,
+      "where": "Assets page (2046:6754), same file, not remote",
+      "defaultRef": { "name": "Verified", "id": "2046:7116", "key": "2c02167efda615f4f5887bcc567a2961cd9b01d2", "glyph": "verified" },
+      "note": "Not extracted as anatomy trees. The library is delivered as an icon font (packages/icons), so each set resolves to a glyph name."
     }
   ],
-
   "iconFont": {
     "source": "packages/icons",
-    "families": { "rounded": "ZdsIcons-Rounded", "sharp": "ZdsIcons-Sharp" },
-    "pinnedFamily": "rounded",
-    "glyphCount": 724,
-    "defaultGlyph": "verified",
-    "defaultGlyphVerified": true,
-    "defaultGlyphRetired": false,
-    "defaultGlyphRejected": false,
-    "colour": "currentColor — the font supplies the parent's foreground automatically, so no per-parent icon colour token is needed",
-    "sizing": "the glyph box is bound on this component (control/icon-sm | -md | -lg); in a font implementation it maps to font-size / line-height on the glyph element"
+    "families": ["ZdsIcons-Rounded", "ZdsIcons-Sharp"],
+    "pinned": "rounded",
+    "glyphs": 724,
+    "defaultGlyph": "verified (present, not retired, not rejected)",
+    "colour": "currentColor",
+    "size": "bound on this component; maps to font-size on the glyph element"
   },
-
   "tokens": {
     "source": "tokens/ (see tokens/manifest.json)",
+    "dimension": ["control/icon-xs", "control/icon-sm", "control/icon-md", "control/icon-lg", "control/xs", "control/target-min"],
     "color": [],
-    "dimension": ["control/icon-sm", "control/icon-md", "control/icon-lg", "control/target-min"],
     "typography": [],
     "effect": [],
     "themeAxes": {
@@ -170,23 +146,19 @@
       "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
       "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"]
     },
-    "themeNote": "Icon binds no colour and no type token, so palette and typography do not reach it — its appearance varies only with the foreground colour of whatever embeds it. All four dimension tokens live in the size collection but alias the same primitive in every one of its four modes, so Icon's geometry does not respond to breakpoint."
+    "_note": "Palette and typography do not reach this component. All dimension tokens live in the size collection but alias the same primitive in every mode, so Icon's geometry does not respond to breakpoint."
   },
-
   "states": [
-    { "state": "Static", "trigger": "—", "duration": "—", "whatChanges": "Icon has no interaction states of its own. It takes its colour from whatever embeds it, so hover, pressed, focus and disabled are all rendered by the parent." }
+    { "state": "Static", "trigger": "—", "change": "Icon has no interaction states of its own. It takes its colour from whatever embeds it, so hover, pressed, focus and disabled are all rendered by the parent." }
   ],
-
   "behavior": [
     { "type": "Motion", "description": "None modelled in Figma. Icon is a static graphic, and any transition belongs to the component that embeds it." },
     { "type": "Colour", "description": "Not set here. The glyph inherits the foreground token of its parent, which is why the same Icon reads light on a filled button and accent-coloured on an outline one." }
   ],
-
   "content": [
     { "property": "Name", "type": "instance swap, icon library", "description": "Any glyph from the library the property points at, and the only content this component carries." },
     { "property": "Glyph colour", "type": "inherited, not a property", "description": "The glyph follows the parent's foreground token. Recolour the parent rather than overriding the vector here, or the parent's states will stop working." }
   ],
-
   "usage": {
     "do": [
       "Set the glyph deliberately every time. The component arrives holding Verified, which is the right answer for almost nothing.",
@@ -197,14 +169,12 @@
       "Don't rely on an icon alone to carry meaning. It has no text of its own, so pair it with a visible label or give it an accessible name in code."
     ]
   },
-
   "accessibility": [
     "Icon carries no text. Anything it communicates has to be repeated in a visible label or an accessible name in code.",
-    "Framed pads the glyph to 40px (control/target-min), the minimum tappable size. A bare 16px or 20px icon is not a target on its own.",
+    "Framed pads the glyph to control/target-min, the minimum tappable size. A bare 16px or 20px icon is not a target on its own.",
     "The glyph inherits its parent's foreground colour, so contrast is a property of the surface it lands on rather than of this component.",
     "There are no interaction states here. Focus and disabled treatments come from the embedding component."
   ],
-
   "layoutTheming": [
     { "property": "Size", "type": "Fixed per Size", "description": "16px at small, 20px at medium, 28px at large, always square." },
     { "property": "Framed box", "type": "Fixed", "description": "40px square when Framed is true, bound to control/target-min, at every Size. The glyph keeps its own size and is centred inside." },
@@ -212,78 +182,32 @@
     { "property": "Fill and radius", "type": "None", "description": "The framed box has no fill and no corner radius, so Framed adds room and nothing visible." },
     { "property": "Colour", "type": "Inherited", "description": "Not bound on this component. The glyph takes the foreground token of whatever embeds it." }
   ],
-
   "visualReference": {
-    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
     "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15004",
     "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15010",
-    "metadataFrame": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4740-41",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4740-41",
     "variants": {
-      "size=small, framed=false": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15009",
-      "size=small, framed=true": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15017",
-      "size=medium, framed=false": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15011",
-      "size=medium, framed=true": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15020",
-      "size=large, framed=false": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15014",
-      "size=large, framed=true": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15023"
-    },
-    "iconLibrary": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-6754"
-  },
-
-  "issues": [
-    {
-      "severity": "warn",
-      "source": "api vs metadata",
-      "detail": "The library's Style axis (rounded / sharp) is pinned to rounded on the nested glyph instance and is not exposed as a property, so Icon cannot render the sharp family at all. The metadata never mentions Style, so a reader cannot tell whether this is a deliberate restriction or an oversight. The icon font ships both families (ZdsIcons-Rounded, ZdsIcons-Sharp) sharing codepoints, so an implementation could expose the axis for free — decide deliberately rather than by inheriting Figma's pin."
-    },
-    {
-      "severity": "warn",
-      "source": "api vs metadata",
-      "detail": "Content & Slot says the Name swap accepts 'Any glyph from the library the property points at', but the property's preferredValues list contains exactly one component set — Verified, the default itself. The swap picker therefore offers one suggestion out of 724 icon sets. Designers can still swap manually, but the guided path contradicts the stated intent."
-    },
-    {
-      "severity": "warn",
-      "source": "descriptionDrift",
-      "detail": "All four dimension tokens carry stale descriptions that state a value they do not resolve to: control/icon-sm says '= 20px' but resolves to 16px, control/icon-md says '= 24px' but resolves to 20px, control/icon-lg says '= 32px' but resolves to 28px, control/target-min says '= 44px' but resolves to 40px. The resolved values are the ones the metadata and the rendered variants agree on, so the descriptions are wrong, not the bindings. Fix in Figma."
-    },
-    {
-      "severity": "warn",
-      "source": "gaps",
-      "detail": "Only height is variable-bound on both the root frame and the glyph instance; width is left raw on every variant. The component is square in every variant purely by coincidence of the two numbers matching. An implementation should bind one dimension token to both axes rather than reproduce the unbound width."
-    },
-    {
-      "severity": "note",
-      "source": "bindingDrift",
-      "detail": "root height is bound to control/target-min in the three Framed=true variants and unbound in the three Framed=false ones (3 of 6). This is correct by design — with Framed off the frame hugs its child and has no size of its own — but it will surface in any automated binding audit, so it is recorded here as expected."
-    },
-    {
-      "severity": "note",
-      "source": "tokens",
-      "detail": "control/icon-sm, -md, -lg and target-min live in the four-mode size collection (Desktop, Mobile, Tablet, Desktop Compact) but alias the same primitive in every mode. Icon's geometry is therefore breakpoint-invariant despite sitting in a responsive collection. If responsive icon sizing is ever wanted, the hook already exists."
-    },
-    {
-      "severity": "note",
-      "source": "accessibility",
-      "detail": "The accessibility text calls the 40px framed box 'the minimum tappable size', and the token is named target-min with a description claiming 44px. 40px clears the WCAG 2.2 AA target minimum comfortably but falls short of the 44px that the token's own name and description imply. Worth confirming which standard the 40px figure was chosen against."
-    },
-    {
-      "severity": "note",
-      "source": "coverage",
-      "detail": "States & Triggers carries a single 'Static' row and Behavior & Motion Intent says 'None modelled in Figma'. These sections are intentionally empty, not forgotten — Icon delegates every state and transition to the component that embeds it."
-    },
-    {
-      "severity": "note",
-      "source": "dependencies",
-      "detail": "The Icon page has no subcomponent sets of its own. The 724 icon component sets it swaps from live on the Assets page in the same file (not remote), so they are reachable but outside this component page. They are referenced here by glyph name via packages/icons/codepoints.json rather than re-extracted."
-    },
-    {
-      "severity": "note",
-      "source": "iconFont",
-      "detail": "The default glyph 'verified' (Figma setId 2046:7116) exists in packages/icons/codepoints.json, is not retired, and is not among the 18 rejected labels in packages/icons/inventory.json. No fallback SVG is needed for it. Note that 18 labels across 9 icons are rejected by the font build (stroked paths and non-square viewBoxes); any consumer that selects one of those names gets an invisible icon and needs an inline SVG fallback."
-    },
-    {
-      "severity": "note",
-      "source": "figma",
-      "detail": "The Icon component set carries no Figma description and no documentation links, so the intent captured here exists only in the Icon Metadata frame."
+      "small/unframed": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15009",
+      "small/framed": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15017",
+      "medium/unframed": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15011",
+      "medium/framed": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15020",
+      "large/unframed": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15014",
+      "large/framed": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15023"
     }
+  },
+  "issues": [
+    { "severity": "warn", "source": "api vs metadata", "detail": "Style axis pinned, not exposed: the library's Style axis (rounded / sharp) is pinned to rounded on the nested glyph instance and is not exposed, so Icon cannot render the sharp family at all. The metadata never mentions Style. The icon font ships both families sharing codepoints, so an implementation could expose the axis for free — decide deliberately rather than by inheriting Figma's pin." },
+    { "severity": "warn", "source": "api vs metadata", "detail": "Swap picker offers one glyph out of 724: Content & Slot says the Name swap accepts any glyph, but preferredValues contains exactly one set — Verified, the default itself. Designers can still swap manually, but the guided path contradicts the stated intent." },
+    { "severity": "warn", "source": "descriptionDrift", "detail": "All four dimension tokens have stale descriptions: control/icon-sm says 20px, resolves 16px; control/icon-md says 24px, resolves 20px; control/icon-lg says 32px, resolves 28px; control/target-min says 44px, resolves 40px. The resolved values are the ones the metadata and the rendered variants agree on. Fix in Figma." },
+    { "severity": "warn", "source": "gaps", "detail": "Width is never token-bound: only height is variable-bound on the framed root frames; width is left raw. The component is square purely by the two numbers matching. Bind one dimension token to both axes in code." },
+    { "severity": "warn", "source": "metadata", "detail": "xsmall not in the metadata: Size=xsmall is undocumented. Its framed box is control/xs (24Px measured), while the metadata says 40px at every Size." },
+    { "severity": "warn", "source": "extracted 2026-11-06", "detail": "Unframed bindings dropped: the small, medium and large unframed variants are drawn fixed-size with unbound glyphs. Code hugs and binds each size's control/icon token on both axes, as in the variants table." },
+    { "severity": "note", "source": "bindingDrift", "detail": "Expected drift: root height is bound to control/target-min (xsmall: control/xs) only in the Framed=true variants — correct by design, but it will surface in any automated binding audit." },
+    { "severity": "note", "source": "tokens", "detail": "Geometry is breakpoint-invariant: the dimension tokens live in the four-mode size collection but alias the same primitive in every mode. If responsive icon sizing is ever wanted, the hook already exists." },
+    { "severity": "note", "source": "accessibility", "detail": "40px vs the 44px the token name implies: control/target-min is named and described as 44px but resolves to 40px, which clears WCAG 2.2 AA but falls short of 44. Worth confirming which standard the figure was chosen against." },
+    { "severity": "note", "source": "coverage", "detail": "States & Triggers carries a single Static row and Behavior & Motion says none modelled — intentional; Icon delegates every state and transition to its embedding component." },
+    { "severity": "note", "source": "subcomponents", "detail": "The 724 icon sets live on the Assets page in the same file (not remote). They are referenced by glyph name via packages/icons/codepoints.json rather than re-extracted. 18 labels across 9 icons are rejected by the font build; selecting one of those names renders an invisible icon and needs an inline SVG fallback." },
+    { "severity": "note", "source": "coverage", "detail": "The component set carries no description and no documentation links, so the intent captured here exists only in the Icon Metadata frame." },
+    { "severity": "note", "source": "decision", "detail": "Code exposes the Style axis as iconStyle (rounded default, sharp available), since both families share codepoints. name is required in code; there is no default glyph." }
   ]
 }

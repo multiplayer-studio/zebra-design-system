@@ -50,8 +50,8 @@ describe("zeta-icon", () => {
   });
 
   describe("Dimensions", () => {
-    // control/icon-sm, -md and -lg (spec: variants).
-    const sizes = { small: "--control-icon-sm", medium: "--control-icon-md", large: "--control-icon-lg" };
+    // control/icon-xs, -sm, -md and -lg (spec: variants).
+    const sizes = { xsmall: "--control-icon-xs", small: "--control-icon-sm", medium: "--control-icon-md", large: "--control-icon-lg" };
     (Object.keys(sizes) as Array<keyof typeof sizes>).forEach(size => {
       it(`renders ${size} at ${sizes[size]}, square`, async () => {
         subject.size = size;
@@ -69,6 +69,15 @@ describe("zeta-icon", () => {
       await expect(box.width).to.equal(length("--control-target-min"));
       await expect(box.height).to.equal(length("--control-target-min"));
       await expect(getComputedStyle(subject).fontSize).to.equal(`${length("--control-icon-sm")}px`);
+    });
+    it("pads xsmall to control/xs when framed", async () => {
+      subject.size = "xsmall";
+      subject.framed = true;
+      await elementUpdated(subject);
+      const box = subject.getBoundingClientRect();
+      await expect(box.width).to.equal(length("--control-xs"));
+      await expect(box.height).to.equal(length("--control-xs"));
+      await expect(getComputedStyle(subject).fontSize).to.equal(`${length("--control-icon-xs")}px`);
     });
     it("keeps the legacy 24px default when no size is set", async () => {
       await expect(subject.getBoundingClientRect().height).to.equal(24);

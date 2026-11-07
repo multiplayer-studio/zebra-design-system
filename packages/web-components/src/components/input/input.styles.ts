@@ -8,10 +8,16 @@ import { css } from "lit";
  */
 export default css`
   :host {
-    /* Width is the container's (spec decision: Figma's 280 is tentative). */
+    /* 280 is a start width, not a fixed one (spec decision): the field never
+       outgrows its container, and block fills it. */
     display: flex;
     flex-direction: column;
-    gap: var(--space-xxs);
+    gap: var(--space-xs);
+    inline-size: 280px;
+    max-inline-size: 100%;
+  }
+  :host([block]) {
+    inline-size: 100%;
   }
   :host([hidden]) {
     display: none;
@@ -21,7 +27,7 @@ export default css`
   .label {
     display: flex;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
   }
   .name,
   .required {
@@ -50,6 +56,27 @@ export default css`
   }
   .label.disabled .name,
   .label.disabled .information {
+    color: var(--foreground-disabled);
+  }
+  .label-contents {
+    display: contents;
+  }
+  /* Input Label's root: the label row, then the sub label, space/xs apart. */
+  .label-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+  .sub-label {
+    color: var(--foreground-secondary);
+    font-family: var(--body-small-font-family), system-ui, sans-serif;
+    font-size: var(--body-small-font-size);
+    font-weight: var(--body-small-font-weight);
+    line-height: var(--body-small-line-height);
+    letter-spacing: var(--body-small-letter-spacing);
+  }
+  .sub-label.disabled {
     color: var(--foreground-disabled);
   }
 

@@ -28,7 +28,7 @@ export default css`
     align-items: center;
     flex: 1 1 0;
     gap: var(--space-sm);
-    padding: 0 var(--space-xxs);
+    padding: 0 var(--space-2xs);
   }
 
   ::slotted([slot="mark"]) {

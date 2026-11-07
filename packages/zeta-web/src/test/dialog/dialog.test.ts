@@ -230,14 +230,21 @@ describe("zeta-dialog", () => {
   });
 
   describe("Styling", () => {
-    it("has the surface/dialog background, foreground/primary text and border/default border", async () => {
+    it("has the surface/overlay background, foreground/primary text and border/default border", async () => {
       const dialog = subject.shadowRoot?.querySelector("dialog") as HTMLElement;
       const style = getComputedStyle(dialog);
-      await expect(style.backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-dialog"));
+      await expect(style.backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-overlay"));
       await expect(style.color).to.equal(getCssVarColorValue(subject, "--foreground-primary"));
       await expect(style.borderTopColor).to.equal(getCssVarColorValue(subject, "--zebra-border-default"));
       await expect(style.paddingTop).to.equal(getComputedStyle(subject).getPropertyValue("--space-md").trim());
       await expect(style.borderTopLeftRadius).to.equal(getComputedStyle(subject).getPropertyValue("--radius-element-md").trim());
+    });
+
+    it("dims the page behind a modal with overlay/scrim", async () => {
+      const el = await fixture<ZetaDialog>(html`<zeta-dialog></zeta-dialog>`);
+      await el.showModal();
+      const dialog = el.shadowRoot?.querySelector("dialog") as HTMLElement;
+      await expect(getComputedStyle(dialog, "::backdrop").backgroundColor).to.equal(getCssVarColorValue(el, "--overlay-scrim"));
     });
 
     it("keeps every flavour's glyph foreground/primary; flavour changes only the glyph", async () => {

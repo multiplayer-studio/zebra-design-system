@@ -65,6 +65,9 @@ export class ZdsSearch extends LitElement {
   /** The field cannot be used. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
+  /** Fills the container's width. Without it the field starts at 280 and narrows to fit its container. */
+  @property({ type: Boolean, reflect: true }) block = false;
+
   /**
    * Ghost only: suppress the focus outline, for a container that shows focus
    * itself (spec: "its focus outline is optional so the container can carry

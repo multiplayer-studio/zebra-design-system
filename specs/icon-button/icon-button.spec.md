@@ -1,25 +1,25 @@
 # Icon Button
 
-Triggers an action from a single glyph, with no text label. Square at every size, and it carries the same nine flavours, three shapes and four states as Button so the two sit together consistently. Nothing on it is readable, so every instance needs an accessible name in code. When the action can carry a word, use Button instead.
+Triggers an action from a single glyph, with no text label. Square at every size, and it carries the same eleven flavours, three shapes and four states as Button so the two sit together consistently. Nothing on it is readable, so every instance needs an accessible name in code. When the action can carry a word, use Button instead.
 
-Source: [The Zebra Design System › Button page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2338-1763) (set `2338:1763`, 405 variants) · extracted 2026-10-18 · default `Size=small, Shape=sharp, Flavour=primary, State=default, Disabled=false` · also verified in the [Snackbar working copy](https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=2338-1680) (2026-10-18): identical
+Source: [The Zebra Design System › Button page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2338-1763) (set `2338:1763`, 495 variants) · extracted 2026-10-18, updated 2026-10-29 for contrast and outline-contrast · default `Size=small, Shape=sharp, Flavour=primary, State=default, Disabled=false` · also verified in the [Snackbar working copy](https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=2338-1680) (2026-10-18): identical
 
 > **Values are token names.** Resolved values live in [tokens/](../../tokens/). The only literals are measurements (suffixed Px) and the untokenised paint opacities called out in Issues.
 
-> **How to read the variant tables.** 405 = 9 Flavour × 3 Size × 3 Shape × 5 State/Disabled. Size and Shape carry all geometry, Flavour and State/Disabled all colour (checked across all 405), so the three tables below describe every variant.
+> **How to read the variant tables.** 495 = 11 Flavour × 3 Size × 3 Shape × 5 State/Disabled. Size and Shape carry all geometry, Flavour and State/Disabled all colour (checked across all 405 original variants and the 90 new ones), so the three tables below describe every variant.
 
-> **No blockers, 8 warnings.** See [Issues](#issues). Sibling: [Button](../button/button.spec.md).
+> **No blockers, 9 warnings.** See [Issues](#issues). Sibling: [Button](../button/button.spec.md).
 
 ## API
 
 | Prop | Type | Values | Default |
 |---|---|---|---|
-| `flavour` | enum | `primary`, `positive`, `negative`, `subtle`, `text`, `outline-subtle`, `outline`, `gradient`, `text-gradient` | `primary` |
+| `flavour` | enum | `primary`, `positive`, `negative`, `subtle`, `text`, `outline-subtle`, `outline`, `gradient`, `text-gradient`, `contrast`, `outline-contrast` | `primary` |
 | `size` | enum | `small`, `medium`, `large` | `small` |
 | `shape` | enum | `sharp`, `rounded`, `full` | `sharp` |
 | `state` | enum | `default`, `hover`, `pressed`, `focus` | `default` |
-| `disabled` | boolean |  | `false` |
-| `label` | string |  | `null` |
+| `disabled` | boolean | | `false` |
+| `label` | string | | `null` |
 
 ### Per-value intent (verbatim)
 
@@ -33,6 +33,8 @@ Source: [The Zebra Design System › Button page](https://www.figma.com/design/h
 - `outline`: A secondary action that still needs to read as a control on its own, carrying the accent edge.
 - `gradient`: One promotional moment. In a row of icon buttons it wins every time, which is only useful when that is the intent.
 - `text-gradient`: The promotional treatment without the filled weight. The gradient runs across a single small glyph, so it reads as a colour shift more than a gradient.
+- `contrast`: The strongest neutral against the page, near-black in light mode and near-white in dark. Beside a primary icon button it competes for weight, so pair it with outline or text.
+- `outline-contrast`: A secondary action that pairs with contrast. Its border and glyph follow the page, near-black in light mode and near-white in dark.
 
 **size**
 - `small`: The default, for dense toolbars and table rows. At 36px square it sits below the 40px minimum target the system defines, so avoid it where the control will be tapped.
@@ -51,7 +53,6 @@ Source: [The Zebra Design System › Button page](https://www.figma.com/design/h
 - `focus`: Documents the keyboard focus treatment. The one state whose treatment is identical on every flavour.
 
 **disabled**
-- `false`: The control accepts input.
 - `true`: The action is unavailable. With no label there is nothing on the control to explain why, so put the reason in a tooltip or adjacent text.
 
 **label**: Not a Figma property. The metadata: 'every instance needs an accessible name in code.'
@@ -62,9 +63,9 @@ Source: [The Zebra Design System › Button page](https://www.figma.com/design/h
 
 ## Anatomy
 
-1. **root** (container) — *"The button's own frame, fixed square at every size. Carries the background, the border and the radius, and never hugs its content."*  
-   layout: {"direction": "horizontal", "padding": "space/xxs on all four sides", "primaryAlign": "center", "counterAlign": "center"} · sizing: {"h": "fixed", "v": "fixed", "widthToken": "control/sm (small) \u00b7 control/md (medium) \u00b7 control/lg (large)", "heightToken": "same as width"} · clips: true · radius: per shape · paint: {"fill": "per flavour \u00d7 state", "stroke": "per flavour \u00d7 state, inside; focus outside"}
-2. **icon** (instance) — *"A single Icon instance, always visible and centred. Icon Button sets its size and leaves the instance exposed."*  
+1. **root** (container) — *"The button's own frame, fixed square at every size. Carries the background, the border and the radius, and never hugs its content."* 
+   layout: {"direction": "horizontal", "padding": "space/2xs on all four sides", "primaryAlign": "center", "counterAlign": "center"} · sizing: {"h": "fixed", "v": "fixed", "widthToken": "control/sm (small) \u00b7 control/md (medium) \u00b7 control/lg (large)", "heightToken": "same as width"} · clips: true · radius: per shape · paint: {"fill": "per flavour \u00d7 state", "stroke": "per flavour \u00d7 state, inside; focus outside"}
+2. **icon** (instance) — *"A single Icon instance, always visible and centred. Icon Button sets its size and leaves the instance exposed."* 
    ref: Icon · glyph: more-horizontal (default) · size: Icon Size=small at small (16), Size=medium at medium and large (20) · color: per flavour × state (overridden on the Icon's glyph) · exposed: true
 
 ## Variants
@@ -75,9 +76,9 @@ Cells are token names; …Px cells are measurements. Geometry depends only on Si
 
 | size | root (both axes) | padding | icon | iconPx |
 |---|---|---|---|---|
-| small | `control/sm` | `space/xxs` | Icon Size=small | 16 |
-| medium | `control/md` | `space/xxs` | Icon Size=medium | 20 |
-| large | `control/lg` | `space/xxs` | Icon Size=medium | 20 |
+| small | `control/sm` | `space/2xs` | Icon Size=small | 16 |
+| medium | `control/md` | `space/2xs` | Icon Size=medium | 20 |
+| large | `control/lg` | `space/2xs` | Icon Size=medium | 20 |
 
 ### By shape
 
@@ -138,6 +139,18 @@ Colour only; identical at every Size and Shape. stroke/base draws nothing (see i
 | text-gradient | pressed | `interactive/ghost/background/pressed` @ 0.1 | `interactive/ghost/border/pressed` · base | `foreground/gradient/start` |
 | text-gradient | focus | `interactive/ghost/background/focused` @ 0 | `border/focus` · thick, outside | `foreground/gradient/start` |
 | text-gradient | disabled | `interactive/ghost/background/disabled` @ 0 | `interactive/ghost/border/disabled` · base | `interactive/ghost/foreground/disabled` |
+| contrast | default | `interactive/inverse/background/default` | `interactive/inverse/border/default` · base | `interactive/inverse/foreground/default` |
+| contrast | hover | `interactive/inverse/background/hover` | `interactive/inverse/border/hover` · base | `interactive/inverse/foreground/default` |
+| contrast | pressed | `interactive/inverse/background/pressed` | `interactive/inverse/border/pressed` · base | `interactive/inverse/foreground/default` |
+| contrast | focus | `interactive/inverse/background/focused` | `border/focus` · thick, outside | `interactive/inverse/foreground/default` |
+| contrast | disabled | `interactive/inverse/background/disabled` | `interactive/inverse/border/disabled` · base | `interactive/inverse/foreground/disabled` |
+| outline-contrast | default | `interactive/ghost/background/default` @ 0 | `interactive/inverse/border/default` · **thin** | `foreground/primary` |
+| outline-contrast | hover | `interactive/ghost/background/hover` | `interactive/inverse/border/hover` · thin (default at large; see Warn) | `foreground/primary` |
+| outline-contrast | pressed | `interactive/ghost/background/pressed` | `interactive/inverse/border/pressed` · thin | `foreground/primary` |
+| outline-contrast | focus | `interactive/ghost/background/focused` @ 0 | `border/focus` · thick, outside | `foreground/primary` |
+| outline-contrast | disabled | `interactive/ghost/background/disabled` @ 0 | `border/disabled` · thin | `interactive/inverse/foreground/disabled` |
+
+contrast and outline-contrast follow the mode.
 
 ## Dependencies
 
@@ -145,8 +158,8 @@ Colour only; identical at every Size and Shape. stroke/base draws nothing (see i
 
 ## Tokens & theming
 
-- **color:** `interactive/{primary,positive,destructive}/background/{default,hover,pressed,focused,disabled}`, `interactive/{primary,positive,destructive}/border/{default,hover,pressed,disabled}`, `interactive/{primary,positive,destructive}/foreground/{default,disabled}`, `interactive/neutral/background/{default,hover,pressed,focused}`, `interactive/neutral/border/{default,hover,pressed,disabled}`, `interactive/neutral/foreground/{default,disabled}`, `interactive/ghost/background/{default,hover,pressed,focused,disabled}`, `interactive/ghost/border/{default,hover,pressed,disabled}`, `interactive/ghost/foreground/{default,disabled}`, `interactive/secondary/border/disabled`, `border/focus`, `surface/gradient/{start,end}`, `foreground/gradient/{start,end}`, `foreground/primary`
-- **dimension:** `control/sm`, `control/md`, `control/lg`, `space/xxs`, `radius/none`, `radius/element-sm`, `radius/pill`, `stroke/base`, `stroke/thin`, `stroke/thick`
+- **color:** `interactive/{primary,positive,destructive}/background/{default,hover,pressed,focused,disabled}`, `interactive/{primary,positive,destructive}/border/{default,hover,pressed,disabled}`, `interactive/{primary,positive,destructive}/foreground/{default,disabled}`, `interactive/neutral/background/{default,hover,pressed,focused}`, `interactive/neutral/border/{default,hover,pressed,disabled}`, `interactive/neutral/foreground/{default,disabled}`, `interactive/ghost/background/{default,hover,pressed,focused,disabled}`, `interactive/ghost/border/{default,hover,pressed,disabled}`, `interactive/ghost/foreground/{default,disabled}`, `interactive/secondary/border/disabled`, `border/focus`, `surface/gradient/{start,end}`, `foreground/gradient/{start,end}`, `foreground/primary`, `interactive/inverse/background/{default,hover,pressed,focused,disabled}`, `interactive/inverse/border/{default,hover,pressed,disabled}`, `interactive/inverse/foreground/{default,disabled}`, `border/disabled`
+- **dimension:** `control/sm`, `control/md`, `control/lg`, `space/2xs`, `radius/none`, `radius/element-sm`, `radius/pill`, `stroke/base`, `stroke/thin`, `stroke/thick`
 - **Theme axes:** palette (Light, Dark) · size and typography modes (no effect on this component) · extensions in tokens/extensions/
 
 ## States, behavior & motion
@@ -154,15 +167,16 @@ Colour only; identical at every Size and Shape. stroke/base draws nothing (see i
 | State | Trigger | What changes |
 |---|---|---|
 | default | Resting | Background, border and glyph sit on the default tokens of the chosen flavour. |
-| hover | Pointer over the control | Filled flavours move their own background token one step. Outline flavours hold their border and shift a neutral background underneath instead. Text flavours raise a ghost scrim from fully transparent. The gradient flavours keep their gradient and slide it toward the end colour rather than swapping it (see Gradient transition). Apart from text-gradient, the glyph colour does not change on any flavour. |
+| hover | Pointer over the control | Filled flavours move their own background token one step. Outline flavours hold their border and shift a neutral background underneath instead. Text flavours raise a ghost scrim from fully transparent. The gradient flavours keep their gradient and slide it toward the end colour rather than swapping it (see Gradient transition). outline-contrast steps its border and raises the ghost scrim. Apart from text-gradient, the glyph colour does not change on any flavour. |
 | pressed | Pointer held down | The same mechanism as hover carried one step further. The gradient flavours slide the other way, toward the start colour, rather than collapsing to a flat token (see Gradient transition). |
-| focus | Keyboard focus | A focus ring is drawn outside the bounds, replacing the resting border rather than adding to it. Identical on all nine flavours, and the only state that changes the control's outer footprint. |
+| focus | Keyboard focus | A focus ring is drawn outside the bounds, replacing the resting border rather than adding to it. Identical on all eleven flavours, and the only state that changes the control's outer footprint. |
 | disabled | Disabled set to true | Background and glyph swap to the disabled tokens of their family. No flavour keeps its accent colour, so a disabled destructive button is indistinguishable from any other disabled one. |
 
 - **Motion:** Figma stores no timing. Every state change is colour-only, with no scale, shadow or elevation shift on any flavour, so a transition should read as a tint change rather than movement. The gradient flavours are the one exception to a plain tint: their gradient moves (see Gradient transition).
 - **Gradient transition:** gradient and text-gradient keep their gradient through every state and move it rather than replace it. On hover the gradient slides until its end colour covers 100% of the fill (the glyph on text-gradient); on press it slides the other way until its start colour covers 100%. Leaving or releasing slides it back to the resting two-stop gradient. It must never jump from the gradient to a flat colour: a browser cannot interpolate between a gradient and a solid fill, so that swap shows as a flicker. The hover and pressed variants show where each slide ends, not a separate flat fill.
 - **Focus ring:** The only change that alters the control's outer footprint, because the ring is drawn outside the bounds. Leave room around a button in a tight toolbar so the ring is not clipped.
 - **Resize:** The control never resizes with its content. Both axes are fixed per Size, so swapping the glyph changes nothing about the footprint.
+- **Outline contrast:** outline-contrast takes its border from interactive/inverse/border/* and its glyph from foreground/primary, so it follows the mode. Its states sit on interactive/ghost/background/*.
 
 ## Content & slots
 
@@ -194,12 +208,12 @@ Colour only; identical at every Size and Shape. stroke/base draws nothing (see i
 | Property | Type | Description |
 |---|---|---|
 | Size | Fixed square per Size | 36×36 at small (control/sm), 40×40 at medium (control/md), 48×48 at large (control/lg). Both axes bind to the same token, so it is always square and never hugs its content. |
-| Padding | Fixed | 4px (space/xxs) on all four sides at every size. |
-| Radius | Fixed per Shape | 0 (radius/none) for sharp, 4px (radius/element-sm) for rounded, 9999 (radius/pill) for full, which gives a circle. All three are token-bound, so match the container rather than overriding on the instance. |
-| Border | Fixed per Flavour | 1px drawn inside on outline and outline-subtle, none on the other seven at rest. Focus replaces it with a 2px ring drawn outside the bounds. |
+| Padding | Fixed | space/2xs on all four sides at every size. |
+| Radius | Fixed per Shape | radius/none for sharp, radius/element-sm for rounded, radius/pill for full, which gives a circle. All three are token-bound, so match the container rather than overriding on the instance. |
+| Border | Fixed per Flavour | 1px drawn inside on outline, outline-subtle and outline-contrast, none on the other eight at rest. Focus replaces it with a 2px ring drawn outside the bounds. |
 | Glyph size | Fixed per Size | 16px at small, 20px at medium and large. Large reuses Icon's medium step, so the glyph does not grow between medium and large even though the button does. |
 | Touch target | Fixed per Size | Small is 36px, under the 40px control/target-min the system defines. Medium meets it exactly and large exceeds it. |
-| Colour | Theming | Every fill, border and glyph colour is bound to an interactive/* token for the flavour. Gradient draws from surface/gradient/*, text-gradient from foreground/gradient/*, and focus from border/focus. No variant hardcodes a colour. |
+| Colour | Theming | Every fill, border and glyph colour is bound to an interactive/* token for the flavour. Gradient draws from surface/gradient/*, text-gradient from foreground/gradient/*, contrast from interactive/inverse/*, outline-contrast from interactive/inverse/border/* and foreground/primary, and focus from border/focus. No variant hardcodes a colour. |
 
 ## Visual reference
 
@@ -213,10 +227,13 @@ Colour only; identical at every Size and Shape. stroke/base draws nothing (see i
 - [focus](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2338-2219)
 - [disabled](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2338-2174)
 - [outline-subtle disabled (named State=focus)](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2338-2939)
+- [contrast](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=7441-3888) · [outline-contrast](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=7441-4068)
 
 ## Issues
 
 ### Warn
+
+- *bindingDrift*: outline-contrast hover at Size=large (sharp, rounded and full) keeps interactive/inverse/border/default; the other six size/shape variants use interactive/inverse/border/hover.
 
 
 1. *structure (variant naming)*: outline-subtle has no State=default, Disabled=true variant. Its nine disabled variants are named State=focus, Disabled=true (e.g. 2338:2939), where every other flavour pairs Disabled=true with State=default. Picking Disabled=true at the resting state for outline-subtle in Figma has no exact match; treat the State=focus variants as outline-subtle's disabled treatment.
@@ -225,16 +242,18 @@ Colour only; identical at every Size and Shape. stroke/base draws nothing (see i
 4. *structure vs Button (outline disabled)*: outline at Disabled=true draws interactive/ghost/background/disabled @ 0 with an interactive/ghost/foreground/disabled glyph at every size; Button's outline disabled draws interactive/neutral/background/disabled with interactive/neutral/foreground/disabled at eight of nine sizes. The two components disagree.
 5. *structure vs metadata (hover grouping)*: States & Triggers groups outline-subtle with outline ('hold their border and shift a neutral background underneath'); in the file outline-subtle and subtle raise the ghost scrim like text. Only outline shifts a neutral background.
 6. *gaps*: The scrim flavours (text, text-gradient, subtle, outline-subtle) set a paint-level opacity of 0 / 0.05 / 0.10 on interactive/ghost/background/*. Those tokens already carry the scrim in their own alpha (default and disabled 0%, hover 5%, pressed 10%, in Light and Dark), so Figma applies it twice: the hover scrim renders at about 0.25% and pressed at 1%, practically invisible. Code binds the tokens directly with no paint opacity (the intended 5% / 10%); the Figma paints should drop their opacity to 1.
-7. *tokens*: stroke/base resolves to 0px although its description reads '= 1px, source: scale/0', so seven flavours carry a bound but invisible border. control/sm, control/md, control/lg, space/xxs and radius/element-sm also carry descriptions that state the wrong px value (see the Button spec's descriptionDrift issue); build from the resolved values, which match the metadata.
+7. *tokens*: stroke/base resolves to 0px although its description reads '= 1px, source: scale/0', so seven flavours carry a bound but invisible border. control/sm, control/md, control/lg, space/2xs and radius/element-sm also carry descriptions that state the wrong px value (see the Button spec's descriptionDrift issue); build from the resolved values, which match the metadata.
 
 ### Note
 
 - *code (gradient transition)*: Built 2026-10-18 in <zds-button>, <zds-icon-button>, react-baseui Button and IconButton: the gradient flavours no longer swap to a flat colour. One gradient three times the size of the fill holds the two stops in its middle third (the resting look is unchanged: start at 0%, end at 87%); hover slides its position until the end colour covers 100%, press until the start colour covers 100%, and the position transitions with the other flavours' tints. text-gradient runs the same slide across the label's text and the icons. Web and React were compared in a browser: pixel-identical at rest, hover and pressed.
 - *structure (gradient transition)*: The gradient variants agree with the intended transition (corrected 2026-10-18: hover slides to the end colour, press to the start). gradient hover binds surface/gradient/end and pressed surface/gradient/start; text-gradient hover foreground/gradient/end and pressed foreground/gradient/start. Each variant shows where its slide ends, as the metadata says. Focus also binds the start colour; the metadata gives focus only the ring, so code keeps the resting gradient at focus.
 
-- *code (packages/web-components zds-icon-button, packages/react-baseui IconButton)*: Built 2026-10-18 in both packages: <zds-icon-button> (web components) and IconButton (react-baseui, on Base UI's Button). Both reuse Button's colour, border, shape, focus and disabled rules and add only the square geometry (control/sm|md|lg, space/xxs), with the glyph at Icon small / medium / medium and more-horizontal as the default glyph; label is the required accessible name. They follow the label-colour rule rather than three bindings flagged above (subtle's glyph on foreground/primary; positive and negative disabled glyphs from another family), and text-gradient's glyph is the flat foreground/gradient/start, since a font glyph carries no label to run the gradient across. Web and React were compared in a browser: identical box, radius, glyph size and colours for every flavour at rest, hover, pressed and disabled.
+- *code (packages/web-components zds-icon-button, packages/react-baseui IconButton)*: Built 2026-10-18 in both packages: <zds-icon-button> (web components) and IconButton (react-baseui, on Base UI's Button). Both reuse Button's colour, border, shape, focus and disabled rules and add only the square geometry (control/sm|md|lg, space/2xs), with the glyph at Icon small / medium / medium and more-horizontal as the default glyph; label is the required accessible name. They follow the label-colour rule rather than three bindings flagged above (subtle's glyph on foreground/primary; positive and negative disabled glyphs from another family), and text-gradient's glyph is the flat foreground/gradient/start, since a font glyph carries no label to run the gradient across. Web and React were compared in a browser: identical box, radius, glyph size and colours for every flavour at rest, hover, pressed and disabled.
 
 9. *api*: Disabled is a two-option VARIANT axis and State is documentation-only; in code disabled is a boolean and hover/pressed/focus are interaction states. Figma returns options in creation order (Size: large, medium, small); the metadata's order is the order to ship.
 10. *api (accessible name)*: There is no label property in Figma; the metadata requires an accessible name in code on every instance, recorded here as the code-only `label`.
 12. *dependencies*: Icon (2046:15010) is local but on the Icon page; the default glyph more-horizontal (Figma: More Horizontal) is in packages/icons and not retired. The glyph colour is set by overriding the Icon's glyph fill per flavour, not by a token on Icon Button's root.
-13. *coverage*: Motion is not modelled ('Figma stores no timing'); no effects or shadows; the full scan found no untokenised colours and no binding drift across the 405 variants, glyph colour included.
+13. *coverage*: Motion is not modelled ('Figma stores no timing'); no effects or shadows; the full scan found no untokenised colours and no binding drift across the original 405 variants (the new flavours drift; see Warn), glyph colour included.
+- *resolved (2026-10-29)*: The Icon Button flavours are renamed to contrast and outline-contrast in Figma, matching the metadata, Button and both packages.
+- *structure (outline-contrast states)*: outline-contrast hover and pressed sit on interactive/ghost/background/hover and pressed at paint opacity 1, so the token's own alpha is the scrim. The older scrim flavours still add a paint opacity on top (see the paint-opacity issue).

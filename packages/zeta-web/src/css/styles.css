@@ -5,7 +5,6 @@
   font-family: var(--type-family-regular);
 
   /* Colors */
-  --surface-overlay: rgba(0, 0, 0, 0.3);
   --surface-basic: transparent;
 
   --type-family-regular: "IBM Plex Sans", sans-serif;

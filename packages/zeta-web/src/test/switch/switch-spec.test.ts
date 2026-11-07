@@ -28,7 +28,7 @@ describe("zeta-switch (spec)", () => {
       const thumb = part(el, "thumb");
       await expect(`${thumb.getBoundingClientRect().width}px`).to.equal(v(el, "--control-xs"));
       const off = thumb.getBoundingClientRect().left;
-      await expect(off - track.left).to.equal(parseFloat(v(el, "--space-xxs")));
+      await expect(off - track.left).to.equal(parseFloat(v(el, "--space-2xs")));
       el.checked = true;
       await elementUpdated(el);
       thumb.getAnimations().forEach(a => a.finish());

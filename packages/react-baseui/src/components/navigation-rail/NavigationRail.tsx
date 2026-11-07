@@ -54,8 +54,14 @@ export interface NavigationRailProps
    */
   inverse?: boolean;
   /**
-   * Caps the wide rail's width (Figma's 200px); the narrow icon rail is
-   * unaffected. A CSS length, or a number in px. Wide labels truncate.
+   * The wide rail's width. 200px by default (Figma's measure); the project
+   * sets its own as a CSS length or a number in px, or `"fill"` to take the
+   * width of the rail's container. The narrow icon rail is unaffected.
+   */
+  railWidth?: number | string;
+  /**
+   * Caps the wide rail's width; the narrow icon rail is unaffected. A CSS
+   * length, or a number in px. Wide labels truncate.
    */
   railMaxWidth?: number | string;
   /**
@@ -138,6 +144,7 @@ export const NavigationRail = React.forwardRef<HTMLElement, NavigationRailProps>
     collapseLabel = "Close",
     shape = "rounded",
     inverse = false,
+    railWidth,
     railMaxWidth,
     subMenuMaxWidth,
     navLabel = "Main",
@@ -214,9 +221,11 @@ export const NavigationRail = React.forwardRef<HTMLElement, NavigationRailProps>
       data-show-labels={showLabels ? "" : undefined}
       data-shape={shape}
       data-inverse={inverse ? "" : undefined}
+      data-fill={railWidth === "fill" ? "" : undefined}
       style={{
         ...style,
         // Unset, the variables stay undeclared and the CSS falls back to no cap.
+        "--zds-navigation-rail-width": railWidth === "fill" ? undefined : cssLength(railWidth),
         "--zds-navigation-rail-max-width": cssLength(railMaxWidth),
         "--zds-navigation-rail-sub-menu-max-width": cssLength(subMenuMaxWidth),
       } as React.CSSProperties}

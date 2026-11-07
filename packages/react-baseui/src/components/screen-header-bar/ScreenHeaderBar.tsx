@@ -55,8 +55,8 @@ function shapeAction(node: React.ReactNode, shape: ScreenHeaderBarShape): React.
  *   reachable by keyboard, named "Back" (`backLabel`), and calls `onBack`.
  * - Height, padding and gap are the bound tokens (space/md around control/md,
  *   left space/sm, gap space/xs = 64px), not the metadata's 56 / space/lg.
- * - `shape` (Figma `Rounded`) reaches both the back button and the action.
- *   Figma left the back button sharp in both variants, mixing corners.
+ * - `shape` (Figma `Rounded`) also reaches an `IconButton` / `Button` placed
+ *   as the action, not only the one Figma ships in the slot.
  * - The bar fills its container's width (Figma ships a fixed 474).
  * - No subtitle: Figma's heading wrapper has a gap for one but no property.
  *

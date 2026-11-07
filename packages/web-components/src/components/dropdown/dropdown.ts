@@ -75,6 +75,9 @@ export class ZdsDropdown extends LitElement {
   /** Corner treatment of the internal panel. Matches the spec's pinned `Rounded=true`. */
   @property({ type: Boolean, reflect: true }) rounded = true;
 
+  /** Tightens the internal panel's inset for a cramped rail. */
+  @property({ type: Boolean, reflect: true }) compact = false;
+
   @query("slot[name='trigger']") private triggerSlotEl!: HTMLSlotElement;
 
   private readonly onDocumentPointerDown = (e: PointerEvent) => {
@@ -144,7 +147,7 @@ export class ZdsDropdown extends LitElement {
       <span class="trigger" @click=${this.onTriggerClick}>
         <slot name="trigger"></slot>
       </span>
-      <zds-dropdown-menu part="panel" class="panel" ?rounded=${this.rounded} ?hidden=${!this.open}>
+      <zds-dropdown-menu part="panel" class="panel" ?rounded=${this.rounded} ?compact=${this.compact} ?hidden=${!this.open}>
         <slot></slot>
       </zds-dropdown-menu>
     `;

@@ -1,6 +1,6 @@
 import { css } from "lit";
 
-/* Spec: specs/sub-menu-item. A control/lg-tall row, space/xxs by space/md padding (space/xl leading when nested), the
+/* Spec: specs/sub-menu-item. A control/lg-tall row, space/2xs by space/md padding (space/xl leading when nested), the
    glyph and label grouped at space/md, then badge and caret at space/sm (spec warn "Gap"). Hover, pressed and selected
    fills are the ghost tokens alone (spec warn "Double alpha"). One line, end-truncated. */
 export default css`
@@ -27,7 +27,7 @@ export default css`
     gap: var(--space-sm);
     min-width: 0;
     min-height: var(--control-lg);
-    padding: var(--space-xxs) var(--space-md);
+    padding: var(--space-2xs) var(--space-md);
     border-radius: var(--zebra-radius-none);
     cursor: pointer;
     background-color: var(--_bg);
@@ -119,7 +119,7 @@ export default css`
   /* The full label of a truncated row, beside it. It stays in this shadow tree, so it follows the rail's mode. */
   .tip {
     position: absolute;
-    inset-inline-start: calc(100% + var(--space-xxs));
+    inset-inline-start: calc(100% + var(--space-2xs));
     top: 50%;
     translate: 0 -50%;
     z-index: 1;

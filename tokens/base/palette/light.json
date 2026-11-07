@@ -63,7 +63,7 @@
       "on": {
         "$type": "color",
         "$value": "{primitives.color.pure.white}",
-        "$description": "Foreground on top of Brand/Primary (theme.color.brand.onPrimary)",
+        "$description": "Text and icons on primary, positive and destructive fills.",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:63:7",
@@ -196,7 +196,7 @@
       "deep": {
         "$type": "color",
         "$value": "{primitives.color.accent.5.80}",
-        "$description": "Tertiary brand color (theme.color.brand.tertiary)",
+        "$description": "Highest emphasis tertiary brand fills.",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:7198:20129",
@@ -211,7 +211,7 @@
       "default": {
         "$type": "color",
         "$value": "{primitives.color.accent.5.60}",
-        "$description": "Tertiary brand color (theme.color.brand.tertiary)",
+        "$description": "Main tertiary brand fill.",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:63:4",
@@ -226,7 +226,7 @@
       "faint": {
         "$type": "color",
         "$value": "{primitives.color.accent.5.10}",
-        "$description": "Tertiary brand color (theme.color.brand.tertiary)",
+        "$description": "Quiet tertiary brand backgrounds.",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2456:2608",
@@ -241,7 +241,7 @@
       "on": {
         "$type": "color",
         "$value": "{primitives.color.pure.white}",
-        "$description": "Foreground on top of Brand/Primary (theme.color.brand.onPrimary)",
+        "$description": "Text and icons on tertiary brand fills.",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2456:2615",
@@ -256,7 +256,7 @@
       "strong": {
         "$type": "color",
         "$value": "{primitives.color.accent.5.70}",
-        "$description": "Tertiary brand color (theme.color.brand.tertiary)",
+        "$description": "Emphasis on tertiary brand fills.",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2456:2614",
@@ -271,7 +271,7 @@
       "subtle": {
         "$type": "color",
         "$value": "{primitives.color.accent.5.50}",
-        "$description": "Tertiary brand color (theme.color.brand.tertiary)",
+        "$description": "Soft tertiary brand accents.",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2456:2611",
@@ -516,7 +516,7 @@
     },
     "elevated": {
       "$type": "color",
-      "$value": "{primitives.color.neutral.cool.10}",
+      "$value": "{primitives.color.pure.white}",
       "$description": "Raised surface background, pair with elevation shadow (theme.color.surface.elevated)",
       "$extensions": {
         "com.figma": {
@@ -525,7 +525,22 @@
           "mode": "Light",
           "resolvedType": "COLOR",
           "scopes": [],
-          "aliasOf": "VariableID:30:1293"
+          "aliasOf": "VariableID:61:355"
+        }
+      }
+    },
+    "faint": {
+      "$type": "color",
+      "$value": "{primitives.color.neutral.cool.20}",
+      "$description": "Recessed background, e.g. inputs/wells (theme.color.surface.sunken)",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:8029:10207",
+          "collection": "palette",
+          "mode": "Light",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "aliasOf": "VariableID:30:1294"
         }
       }
     },
@@ -649,14 +664,15 @@
     "transparent": {
       "$root": {
         "$type": "color",
-        "$value": "#f3f6fa00",
+        "$value": "{primitives.color.alpha.light.0}",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:72:13",
             "collection": "palette",
             "mode": "Light",
             "resolvedType": "COLOR",
-            "scopes": []
+            "scopes": [],
+            "aliasOf": "VariableID:3147:3912"
           }
         }
       },
@@ -830,7 +846,7 @@
     "brand": {
       "$type": "color",
       "$value": "{primitives.color.brand.main.70}",
-      "$description": "Hyperlink text color (theme.color.content.link)",
+      "$description": "Ghost button text and input cursors.",
       "$extensions": {
         "com.figma": {
           "id": "VariableID:121:6194",
@@ -890,7 +906,7 @@
     "link": {
       "$type": "color",
       "$value": "{primitives.color.brand.main.60}",
-      "$description": "Hyperlink text color (theme.color.content.link)",
+      "$description": "Text links and subtle button text.",
       "$extensions": {
         "com.figma": {
           "id": "VariableID:63:21",
@@ -966,7 +982,7 @@
     "focus": {
       "$type": "color",
       "$value": "{primitives.color.brand.main.50}",
-      "$description": "Selected item border/outline (theme.color.selection.border)",
+      "$description": "Focus rings and outlines.",
       "$extensions": {
         "com.figma": {
           "id": "VariableID:2535:3742",
@@ -995,7 +1011,7 @@
     "selection": {
       "$type": "color",
       "$value": "{primitives.color.brand.main.60}",
-      "$description": "Selected item border/outline (theme.color.selection.border)",
+      "$description": "Borders of selected items.",
       "$extensions": {
         "com.figma": {
           "id": "VariableID:63:32",
@@ -1097,34 +1113,6 @@
           }
         }
       },
-      "hover": {
-        "$type": "color",
-        "$value": "{primitives.color.system.negative.50}",
-        "$extensions": {
-          "com.figma": {
-            "id": "VariableID:2061:6765",
-            "collection": "palette",
-            "mode": "Light",
-            "resolvedType": "COLOR",
-            "scopes": [],
-            "aliasOf": "VariableID:30:1348"
-          }
-        }
-      },
-      "pressed": {
-        "$type": "color",
-        "$value": "{primitives.color.system.negative.70}",
-        "$extensions": {
-          "com.figma": {
-            "id": "VariableID:2061:6766",
-            "collection": "palette",
-            "mode": "Light",
-            "resolvedType": "COLOR",
-            "scopes": [],
-            "aliasOf": "VariableID:30:1350"
-          }
-        }
-      },
       "strong": {
         "$type": "color",
         "$value": "{primitives.color.system.negative.70}",
@@ -1158,7 +1146,7 @@
       "deep": {
         "$type": "color",
         "$value": "{primitives.color.alpha.dark.10}",
-        "$description": "Info solid/strong emphasis (theme.color.info.strong)",
+        "$description": "Ghost button when pressed.",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:3147:3873",
@@ -1173,7 +1161,7 @@
       "default": {
         "$type": "color",
         "$value": "{primitives.color.alpha.dark.0}",
-        "$description": "Info color (theme.color.info.default)",
+        "$description": "Ghost button at rest, focused or disabled.",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:3147:3871",
@@ -1188,7 +1176,7 @@
       "faint": {
         "$type": "color",
         "$value": "{primitives.color.alpha.dark.5}",
-        "$description": "Info background tint (theme.color.info.subtle)",
+        "$description": "Ghost button on hover.",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:3147:3872",
@@ -1227,13 +1215,28 @@
             "aliasOf": "VariableID:3147:3911"
           }
         }
+      },
+      "tint": {
+        "$type": "color",
+        "$value": "{primitives.color.brand.main.60}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:7580:3833",
+            "collection": "palette",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "aliasOf": "VariableID:30:1319",
+            "aliasOpacity": 0.1
+          }
+        }
       }
     },
     "info": {
       "deep": {
         "$type": "color",
         "$value": "{primitives.color.system.info.80}",
-        "$description": "Info solid/strong emphasis (theme.color.info.strong)",
+        "$description": "Highest emphasis info elements.",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:63:204",
@@ -1248,7 +1251,7 @@
       "default": {
         "$type": "color",
         "$value": "{primitives.color.system.info.60}",
-        "$description": "Info color (theme.color.info.default)",
+        "$description": "Info text, borders and bold banners.",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:63:202",
@@ -1263,7 +1266,7 @@
       "faint": {
         "$type": "color",
         "$value": "{primitives.color.system.info.10}",
-        "$description": "Info background tint (theme.color.info.subtle)",
+        "$description": "Backgrounds of info messages and containers.",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:63:203",
@@ -1425,34 +1428,6 @@
           }
         }
       },
-      "hover": {
-        "$type": "color",
-        "$value": "{primitives.color.system.positive.70}",
-        "$extensions": {
-          "com.figma": {
-            "id": "VariableID:2061:6762",
-            "collection": "palette",
-            "mode": "Light",
-            "resolvedType": "COLOR",
-            "scopes": [],
-            "aliasOf": "VariableID:30:1340"
-          }
-        }
-      },
-      "pressed": {
-        "$type": "color",
-        "$value": "{primitives.color.system.positive.80}",
-        "$extensions": {
-          "com.figma": {
-            "id": "VariableID:2061:6763",
-            "collection": "palette",
-            "mode": "Light",
-            "resolvedType": "COLOR",
-            "scopes": [],
-            "aliasOf": "VariableID:30:1341"
-          }
-        }
-      },
       "strong": {
         "$type": "color",
         "$value": "{primitives.color.system.positive.70}",
@@ -1486,7 +1461,7 @@
       "deep": {
         "$type": "color",
         "$value": "{primitives.color.system.warning.80}",
-        "$description": "Warning color (theme.color.warning.default)",
+        "$description": "Highest emphasis warning elements.",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2456:2490",
@@ -1501,7 +1476,7 @@
       "default": {
         "$type": "color",
         "$value": "{primitives.color.system.warning.60}",
-        "$description": "Warning color (theme.color.warning.default)",
+        "$description": "Warning text, borders and bold banners.",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:63:25",
@@ -1516,7 +1491,7 @@
       "faint": {
         "$type": "color",
         "$value": "{primitives.color.system.warning.10}",
-        "$description": "Warning background tint (theme.color.warning.subtle)",
+        "$description": "Backgrounds of warning messages and containers.",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:63:26",
@@ -1531,7 +1506,7 @@
       "strong": {
         "$type": "color",
         "$value": "{primitives.color.system.warning.70}",
-        "$description": "Warning background tint (theme.color.warning.subtle)",
+        "$description": "Emphasis on warning elements.",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2456:2491",
@@ -1546,7 +1521,7 @@
       "subtle": {
         "$type": "color",
         "$value": "{primitives.color.system.warning.50}",
-        "$description": "Warning background tint (theme.color.warning.subtle)",
+        "$description": "Soft warning accents.",
         "$extensions": {
           "com.figma": {
             "id": "VariableID:2456:2492",

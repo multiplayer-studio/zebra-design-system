@@ -1,6 +1,6 @@
 import { css } from "lit";
 
-/* Spec: specs/select (Menu Item rows, tokens in specs/dropdown). A control/md row, space/xxs by space/md padding,
+/* Spec: specs/select (Menu Item rows, tokens in specs/dropdown). A control/md row, space/2xs by space/md padding,
    label/medium; every state is a ghost fill, and focus adds a stroke/thin border/focus ring inside the row. */
 export default css`
   :host {
@@ -13,7 +13,7 @@ export default css`
     align-items: center;
     gap: var(--space-sm);
     min-height: var(--control-md);
-    padding: var(--space-xxs) var(--space-md);
+    padding: var(--space-2xs) var(--space-md);
     border-radius: var(--zebra-radius-none);
     cursor: pointer;
     outline: none;
@@ -37,7 +37,7 @@ export default css`
     -webkit-line-clamp: var(--option-max-lines, 2);
     overflow: hidden;
     min-width: 0;
-    padding: 0 var(--space-xxs);
+    padding: 0 var(--space-2xs);
     overflow-wrap: break-word;
     word-break: break-word;
   }

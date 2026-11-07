@@ -15,8 +15,10 @@ const hex = (c) => {
   return "#" + h(c.r) + h(c.g) + h(c.b) + (a < 1 ? h(a) : "");
 };
 const isAlias = (v) => v && typeof v === "object" && v.type === "VARIABLE_ALIAS";
+// An alias at an opacity ({ color: alias, opacity: 10 }) keeps both: o is the 0–1 alpha laid over the target.
 const enc = (val) => {
   if (isAlias(val)) return { a: val.id };
+  if (val && typeof val === "object" && isAlias(val.color)) return { a: val.color.id, o: Math.round(val.opacity * 10) / 1000 };
   if (val && typeof val === "object" && "r" in val) return hex(val);
   if (typeof val === "number") return Math.round(val * 1000) / 1000;
   return val;

@@ -2,6 +2,7 @@ import { LitElement, html, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { headerStyles } from "./navigation-rail.styles.js";
 import type { NavigationRailShape } from "./navigation-rail.js";
+import type { IconName } from "../icon/icon.js";
 import "../avatar/avatar.js";
 import "../icon/icon.js";
 import "../icon-button/icon-button.js";
@@ -33,8 +34,11 @@ export class ZdsNavigationHeader extends LitElement {
   /** Shows the title (wide form only). */
   @property({ type: Boolean, attribute: "show-title" }) showTitle = true;
 
-  /** Shows the trailing settings Icon Button (wide form only). */
+  /** Shows the trailing Icon Button (wide form only). */
   @property({ type: Boolean, attribute: "show-icon-button" }) showIconButton = true;
+
+  /** The trailing Icon Button's glyph. Settings by default; set any icon, with `action-label` to match. */
+  @property({ type: String, attribute: "action-icon" }) actionIcon: IconName = "settings";
 
   /** Accessible name of the action. */
   @property({ type: String, attribute: "action-label" }) actionLabel = "Settings";
@@ -69,7 +73,7 @@ export class ZdsNavigationHeader extends LitElement {
       </div>
       ${this.expanded && this.showIconButton
         ? // Figma pins Shape=sharp; the rail's shape sets it (owner decision).
-          html`<zds-icon-button flavour="subtle" size="small" shape=${this.shape} icon="settings" label=${this.actionLabel} @click=${this.#onAction}></zds-icon-button>`
+          html`<zds-icon-button flavour="subtle" size="small" shape=${this.shape} icon=${this.actionIcon} label=${this.actionLabel} @click=${this.#onAction}></zds-icon-button>`
         : nothing}
     `;
   }

@@ -37,8 +37,8 @@ const meta: Meta<typeof Select> = {
   },
   args: {
     options: COUNTRIES, label: "Country", hint: "Where the order ships to", placeholder: "Select an option",
-    labelType: "default", information: false, hintIcon: true,
-    size: "medium", shape: "rounded", flavour: "default", state: "default", readOnly: false, compact: false,
+    labelType: "default", information: false, subLabel: "", hintIcon: true,
+    size: "medium", shape: "rounded", flavour: "default", state: "default", readOnly: false, compact: false, block: false,
   },
   render: (a) => <div style={{ maxInlineSize: 320, minBlockSize: 120 }}><Select {...a} /></div>,
 };
@@ -92,6 +92,8 @@ export const LabelTypes: Story = {
       <Select label="Country" labelType="required" options={COUNTRIES} />
       <Select label="Country" labelType="optional" options={COUNTRIES} />
       <Select label="Country" information informationLabel="Why we ask" options={COUNTRIES} />
+      <Select label="Country" subLabel="Where the order ships to" options={COUNTRIES} />
+      <Select label="Country" subLabel="Where the order ships to" state="disabled" options={COUNTRIES} />
     </div>
   ),
 };
@@ -154,6 +156,17 @@ export const LongList: Story = {
   render: () => (
     <div style={{ maxInlineSize: 320 }}>
       <Select label="Quantity" options={Array.from({ length: 40 }, (_, i) => ({ value: String(i + 1), label: `${i + 1}` }))} />
+    </div>
+  ),
+};
+
+/** Without block a Select starts at 280px and narrows to fit; block fills the container, as Input. */
+export const Block: Story = {
+  render: () => (
+    <div style={{ display: "grid", gap: 16, maxWidth: 640, minBlockSize: 200 }}>
+      <Select label="Default" options={COUNTRIES} />
+      <Select block label="Block" options={COUNTRIES} />
+      <div style={{ inlineSize: 200 }}><Select label="Default, 200 container" options={COUNTRIES} /></div>
     </div>
   ),
 };

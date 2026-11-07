@@ -1,0 +1,756 @@
+{
+  "component": {
+    "name": "Global Header",
+    "slug": "global-header",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "2356:5644",
+      "key": "1c47f0375a25e3ca8ad6112200b18231c206a52c",
+      "page": "Global header",
+      "pageNodeId": "2314:3348",
+      "metadataFrameId": "7632:290",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2356-5644",
+      "extractedAt": "2026-11-01",
+      "variantCount": 2,
+      "defaultVariant": "Rounded=false",
+      "extractionNote": "Both variants and _User Profile read in full. Instances were entered only to resolve glyphs."
+    }
+  },
+  "summary": "The bar across the top of an application, carrying the product’s identity at the leading edge, navigation and search in the middle, and the person’s account at the trailing edge. Most of what it holds is optional: the app switcher, the search bar, the two menu regions and the dividers each turn on independently, so one component covers a bare branded bar and a fully loaded one. Rounded is set once and carries into every control nested inside it.",
+  "api": {
+    "rounded": {
+      "type": "boolean",
+      "figmaName": "Rounded",
+      "default": false,
+      "controls": [
+        "bar",
+        "leadingGroup",
+        "middleBand",
+        "accountGroup"
+      ],
+      "intent": {
+        "false": "Use where the header meets the viewport edges and reads as part of the chrome. Every control inside squares off with the bar.",
+        "true": "The corner carries into every nested control, so nothing stays square. (Use the radius around the header where the header sits inside a padded shell and reads as a floating surface.)"
+      }
+    },
+    "appSwitcher": {
+      "type": "boolean",
+      "figmaName": "AppSwitcher#2356:3",
+      "default": true,
+      "controls": [
+        "appSwitcher"
+      ],
+      "intent": {
+        "true": "Keeps the grid button that moves a person between products. Drop it in a single product, where there is nothing to switch to.",
+        "false": "Removes it. The account control then sits against the trailing edge with nothing after it."
+      }
+    },
+    "searchBar": {
+      "type": "boolean",
+      "figmaName": "SearchBar#2356:4",
+      "default": true,
+      "controls": [
+        "search"
+      ],
+      "intent": {
+        "true": "Keeps search in the middle band. It fills the spare width up to a maximum 280, so it will not stretch past that on a wider header.",
+        "false": "Removes it. The middle band collapses to whatever the menu regions hold, and to nothing when both are off."
+      }
+    },
+    "menuItems": {
+      "type": "boolean",
+      "figmaName": "MenuItems#2364:15",
+      "default": false,
+      "controls": [
+        "navigation"
+      ],
+      "intent": {
+        "false": "Leaves the navigation region out, which suits a header whose navigation lives elsewhere on the page.",
+        "true": "Opens the navigation region before search. It takes the width the middle band has spare, so it is the part that absorbs a wider viewport."
+      }
+    },
+    "menuItemsSlot": {
+      "type": "slot",
+      "figmaName": "Slot-Menu-Items#2364:6",
+      "controls": [
+        "navigation"
+      ],
+      "visibleWhen": "menuItems",
+      "intent": "Takes the navigation controls. It is only drawn when MenuItems is on, so filling it alone leaves it hidden."
+    },
+    "actionMenu": {
+      "type": "boolean",
+      "figmaName": "ActionMenu#2364:12",
+      "default": false,
+      "controls": [
+        "actions"
+      ],
+      "intent": {
+        "false": "Leaves the trailing action region out, keeping the middle band to navigation and search.",
+        "true": "Opens a region for icon actions after search. It hugs its content, so it never takes width from search."
+      }
+    },
+    "actionMenuSlot": {
+      "type": "slot",
+      "figmaName": "Slot-Menu-Actions#2364:9",
+      "controls": [
+        "actions"
+      ],
+      "visibleWhen": "actionMenu",
+      "intent": "Takes the trailing action controls. It is only drawn when ActionMenu is on."
+    },
+    "dividers": {
+      "type": "boolean",
+      "figmaName": "Dividers#2356:5",
+      "default": false,
+      "controls": [
+        "dividers"
+      ],
+      "intent": {
+        "false": "Leaves the three regions to spacing alone, which reads as one continuous bar.",
+        "true": "Draws a hairline before the middle band and another after it. Use it where the regions hold enough to blur together."
+      }
+    },
+    "platformName": {
+      "type": "string",
+      "figmaName": "PlatformName#2368:18",
+      "default": "Platform Name",
+      "controls": [
+        "platformName"
+      ],
+      "visibleWhen": "showPlatformName",
+      "intent": "Names the product beside the mark. It takes a product name rather than a page title, because it does not change as a person navigates."
+    },
+    "showPlatformName": {
+      "type": "boolean",
+      "figmaName": "Show Platform Name#2368:21",
+      "default": true,
+      "controls": [
+        "platformName"
+      ],
+      "intent": {
+        "true": "Keeps the product name. Use it where the mark alone does not identify the product.",
+        "false": "Drops it, leaving the mark to carry identity on its own."
+      }
+    },
+    "showLogo": {
+      "type": "boolean",
+      "figmaName": "Show Logo#2368:24",
+      "default": true,
+      "controls": [],
+      "intent": "Declared on the component and defaulting to true. Nothing in the header is bound to it, so the logo region is present either way and Slot Logo is what varies it."
+    },
+    "logoSlot": {
+      "type": "slot",
+      "figmaName": "Slot Logo#2797:0",
+      "controls": [
+        "brandMark"
+      ],
+      "intent": "Takes the product’s mark at the leading edge. It carries no visibility toggle of its own, so the region is always drawn."
+    },
+    "mode": {
+      "type": "enum",
+      "options": [
+        "dark",
+        "light"
+      ],
+      "default": "dark",
+      "codeOnly": true,
+      "intent": {
+        "dark": "The default. The header stays dark whatever the page mode.",
+        "light": "An override set on the header itself."
+      }
+    }
+  },
+  "internalVariations": [
+    {
+      "part": "account",
+      "via": "_User Profile",
+      "options": [
+        "username",
+        "avatar"
+      ],
+      "intent": "Both are fixed sample content on the nested instance. Neither is exposed in Figma."
+    }
+  ],
+  "contentInputs": [],
+  "anatomy": [
+    {
+      "id": "bar",
+      "role": "The surface itself, one row of content padded on every side and holding its three regions a shared gutter apart.",
+      "kind": "container",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/gutter",
+        "padding": "space/sm",
+        "align": "center"
+      },
+      "sizing": {
+        "width": "fill",
+        "height": "hug"
+      },
+      "paint": {
+        "fill": "surface/section",
+        "stroke": {
+          "color": "border/default",
+          "width": "stroke/base",
+          "align": "inside"
+        }
+      },
+      "radius": "per rounded"
+    },
+    {
+      "id": "leadingGroup",
+      "role": "The menu button, the brand mark and the product name. It hugs its content, so a longer product name takes width from the middle.",
+      "kind": "container",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/gutter",
+        "align": "center"
+      },
+      "sizing": "hug",
+      "parts": [
+        "menuButton: Icon Button, medium, subtle, glyph hamburger-menu",
+        "brandMark: logoSlot",
+        "platformName: text, title/medium, foreground/primary"
+      ]
+    },
+    {
+      "id": "middleBand",
+      "role": "Navigation, search and the trailing actions. It fills whatever the two end groups leave and packs its content to the trailing edge.",
+      "kind": "container",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/sm",
+        "justify": "end",
+        "align": "center"
+      },
+      "sizing": {
+        "width": "fill",
+        "height": "hug"
+      },
+      "parts": [
+        "navigation: menuItemsSlot, fill, gap space/3xs",
+        "search: Search, medium, fills to a maximum 280",
+        "actions: actionMenuSlot, hug, gap space/3xs"
+      ]
+    },
+    {
+      "id": "accountGroup",
+      "role": "The account control and the app switcher, hugging their content at the end of the bar.",
+      "kind": "container",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/gutter",
+        "align": "center"
+      },
+      "sizing": "hug",
+      "parts": [
+        "account: _User Profile as the Template/Dropdown trigger",
+        "appSwitcher: Icon Button, medium, subtle, glyph apps"
+      ]
+    },
+    {
+      "id": "dividers",
+      "role": "Two vertical hairlines, one before the middle band and one after it. Both are off by default and appear together.",
+      "kind": "instance",
+      "ref": "Divider",
+      "refVariant": "Orientation=vertical",
+      "visibleWhen": "dividers",
+      "sizing": {
+        "height": "fill"
+      }
+    }
+  ],
+  "variants": {
+    "_note": "Cells are token names, except those ending Px, which are measurements of the rendered file.",
+    "rounded": {
+      "axis": "rounded",
+      "base": "false",
+      "table": [
+        {
+          "rounded": "false",
+          "bar.radius": "radius/none",
+          "controls.shape": "sharp",
+          "account.radius": "radius/none",
+          "figmaNode": "2356:5580"
+        },
+        {
+          "rounded": "true",
+          "bar.radius": "radius/element-sm",
+          "controls.shape": "rounded",
+          "account.radius": "radius/sm",
+          "figmaNode": "2356:5655"
+        }
+      ]
+    }
+  },
+  "subcomponents": [
+    {
+      "name": "_User Profile",
+      "id": "2742:885",
+      "key": "09b50a244f3ff8138575dc49981b8321ec19ac6b",
+      "private": true,
+      "variantCount": 10,
+      "api": {
+        "state": {
+          "type": "enum",
+          "figmaName": "State",
+          "values": [
+            "default",
+            "hover",
+            "focus",
+            "pressed",
+            "disabled"
+          ],
+          "default": "default",
+          "note": "Interaction states, not a property to set, apart from disabled."
+        },
+        "rounded": {
+          "type": "boolean",
+          "figmaName": "Rounded",
+          "default": false
+        }
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/2xs",
+            "padding": "space/2xs by space/sm",
+            "align": "center"
+          },
+          "sizing": {
+            "width": "hug",
+            "height": "control/md"
+          },
+          "paint": {
+            "fill": "interactive/neutral/background/default",
+            "stroke": {
+              "color": "interactive/neutral/border/default",
+              "width": "stroke/base"
+            }
+          }
+        },
+        {
+          "id": "username",
+          "kind": "text",
+          "text": {
+            "style": "label/small",
+            "color": "foreground/primary"
+          }
+        },
+        {
+          "id": "avatar",
+          "kind": "instance",
+          "ref": "Avatar",
+          "refVariant": "Size=xxsmall, no status, ring or close"
+        },
+        {
+          "id": "chevron",
+          "kind": "instance",
+          "ref": "Icon",
+          "refVariant": "Size=small",
+          "glyph": "expand-more"
+        }
+      ],
+      "variants": {
+        "_note": "Cells are token names, except those ending Px, which are measurements of the rendered file.",
+        "state": {
+          "axis": "state",
+          "base": "default",
+          "table": [
+            {
+              "state": "default",
+              "root.fill": "interactive/neutral/background/default"
+            },
+            {
+              "state": "hover",
+              "root.fill": "interactive/neutral/background/hover"
+            },
+            {
+              "state": "pressed",
+              "root.fill": "interactive/neutral/background/pressed"
+            },
+            {
+              "state": "focus",
+              "root.fill": "interactive/neutral/background/focused",
+              "root.stroke": "border/focus at stroke/thin"
+            },
+            {
+              "state": "disabled",
+              "root.fill": "interactive/neutral/background/disabled",
+              "root.stroke": "interactive/neutral/border/disabled",
+              "username.color": "interactive/ghost/foreground/disabled"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Icon Button",
+      "id": "2338:1763",
+      "spec": "specs/icon-button",
+      "usedAs": "menu button, app switcher and slot defaults, medium and subtle"
+    },
+    {
+      "name": "Button",
+      "id": "2060:15072",
+      "spec": "specs/button",
+      "usedAs": "slot default in the navigation region, medium and subtle"
+    },
+    {
+      "name": "Search",
+      "id": "2356:5205",
+      "remote": true,
+      "spec": "specs/search",
+      "usedAs": "search, medium, enabled, shape follows rounded"
+    },
+    {
+      "name": "Divider",
+      "id": "2152:8803",
+      "spec": "specs/divider",
+      "usedAs": "vertical dividers"
+    },
+    {
+      "name": "Template/Dropdown",
+      "id": "2669:10309",
+      "spec": "specs/dropdown",
+      "usedAs": "account menu, bottom and left"
+    },
+    {
+      "name": "Avatar",
+      "id": "4906:1172",
+      "spec": "specs/avatar",
+      "usedAs": "account control, xxsmall"
+    },
+    {
+      "name": "Brand Logo Horizontal",
+      "id": "2356:4944",
+      "usedAs": "default content of logoSlot"
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ — names below resolve there; see tokens/manifest.json",
+    "rule": "This spec names tokens only.",
+    "color": [
+      "surface/section",
+      "border/default",
+      "border/focus",
+      "foreground/primary",
+      "interactive/neutral/background/default",
+      "interactive/neutral/background/hover",
+      "interactive/neutral/background/pressed",
+      "interactive/neutral/background/focused",
+      "interactive/neutral/background/disabled",
+      "interactive/neutral/border/default",
+      "interactive/neutral/border/disabled",
+      "interactive/ghost/foreground/disabled"
+    ],
+    "dimension": [
+      "space/{2xs,xxs,sm,gutter}",
+      "radius/{none,sm,element-sm}",
+      "stroke/{base,thin}",
+      "control/md"
+    ],
+    "typography": [
+      "title/medium",
+      "label/small"
+    ],
+    "effect": [],
+    "missingFromExport": [],
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "typography": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ],
+      "extensions": "tokens/extensions/ (companion, target, condensed)"
+    }
+  },
+  "states": [
+    {
+      "state": "Static",
+      "trigger": "—",
+      "duration": "—",
+      "whatChanges": "The header itself has no interaction states. Hover, focus and press belong to the controls placed inside it."
+    },
+    {
+      "state": "Rounded",
+      "trigger": "The Rounded value",
+      "duration": "—",
+      "whatChanges": "Every corner in the bar changes together, from the bar itself through the icon buttons, the search field and the account control."
+    },
+    {
+      "state": "Account control",
+      "trigger": "_User Profile State",
+      "duration": "—",
+      "whatChanges": "It carries default, hover, pressed, focus and disabled. The background moves through the neutral interactive tokens, and focus is the only one that draws a visible border."
+    },
+    {
+      "state": "Menu open",
+      "trigger": "The dropdown Open value",
+      "duration": "—",
+      "whatChanges": "The account control is the trigger for a dropdown. What opening it does belongs to Template/Dropdown and is described in its own frame."
+    },
+    {
+      "state": "Region visibility",
+      "trigger": "AppSwitcher, SearchBar, MenuItems, ActionMenu, Dividers",
+      "duration": "—",
+      "whatChanges": "Each toggle takes its region out of the layout rather than leaving a gap, so the remaining regions close up."
+    }
+  ],
+  "behavior": [
+    {
+      "type": "Motion",
+      "description": "No transition is defined. Regions appear and disappear with their toggles, and nothing animates the change."
+    },
+    {
+      "type": "Width",
+      "description": "The bar holds a fixed width, with the middle band filling whatever the two end groups leave. Those groups hug their content, so a longer product name or an extra action takes width away from navigation."
+    },
+    {
+      "type": "Middle alignment",
+      "description": "The middle band packs its content to its trailing edge. With navigation off, search sits next to the account group rather than in the centre of the bar."
+    },
+    {
+      "type": "Shape propagation",
+      "description": "Rounded is set once on the bar and carried into every nested control. Setting a nested control’s own shape separately is the one place a consumer can leave the header inconsistent with itself."
+    },
+    {
+      "type": "Border theming",
+      "description": "A stroke bound to border/default sits on the bar at zero weight, and the nested controls carry the same arrangement. The weight is a theming hook, so a high contrast variable set can give the bar and everything in it a hard outline."
+    },
+    {
+      "type": "Mode",
+      "description": "Frozen in dark whatever the page mode. An override set on the header itself is the only exception."
+    }
+  ],
+  "content": [
+    {
+      "property": "Brand mark",
+      "type": "Slot Logo, consumer owned",
+      "description": "Takes the product’s mark at the leading edge. The content sitting in it by default is _Brand Logo Horizontal, which filling the slot replaces."
+    },
+    {
+      "property": "Product name",
+      "type": "PlatformName, text",
+      "description": "Consumer owned, and the only text the header itself takes in."
+    },
+    {
+      "property": "Navigation",
+      "type": "Slot-Menu-Items, consumer owned",
+      "description": "Takes the navigation controls. The content in it by default is one Icon Button and one Button, both subtle and medium, which is the pairing the region is spaced for."
+    },
+    {
+      "property": "Trailing actions",
+      "type": "Slot-Menu-Actions, consumer owned",
+      "description": "Takes icon actions after search. The content in it by default is two Icon Buttons at the same size and flavour."
+    },
+    {
+      "property": "Search",
+      "type": "Search, parent owned",
+      "description": "Held at medium with its shape following Rounded. It comes from a separate library rather than this file, so it has no frame here."
+    },
+    {
+      "property": "App switcher",
+      "type": "Icon Button, parent owned",
+      "description": "An Apps glyph on a subtle medium Icon Button. The glyph is fixed, so this is a product switcher rather than a general purpose action."
+    },
+    {
+      "property": "Menu button",
+      "type": "Icon Button, parent owned",
+      "description": "A Hamburger glyph at the leading edge. It carries no visibility toggle, so it is always present."
+    },
+    {
+      "property": "Account control",
+      "type": "_User Profile, parent owned",
+      "description": "A username, an avatar and a chevron, wired as the trigger of Template/Dropdown. Neither the username nor the avatar is exposed as an input."
+    },
+    {
+      "property": "Dividers",
+      "type": "Divider, parent owned",
+      "description": "Two vertical hairlines shown together by one toggle. They stretch to the height of the content row."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Set Rounded once on the header and let it carry. Every control inside follows it, so the bar stays consistent without touching each one.",
+      "Keep PlatformName to the product's name. It sits beside the mark as identity and should not change as a person moves around the product."
+    ],
+    "dont": [
+      "Don't fill a menu slot and leave its toggle off. Slot-Menu-Items and Slot-Menu-Actions only appear when MenuItems and ActionMenu are on.",
+      "Don't lean on search to absorb a wider viewport. It stops at a maximum 280, so the navigation region is the part that grows."
+    ]
+  },
+  "accessibility": [
+    "The header is a landmark rather than a control, so it takes its role and its name from the page around it, and the navigation region inside it needs one of its own.",
+    "Every control in the bar carries a glyph and no visible label, so the menu button, the app switcher and the trailing actions each need an accessible name supplied where they are placed.",
+    "The account control is a dropdown trigger, so it has to announce both the person it represents and the fact that it opens a menu.",
+    "Focus is the only state on that control that draws a visible border, which makes the border/focus outline the one thing a keyboard user has to locate it by."
+  ],
+  "layoutTheming": [
+    {
+      "property": "Size",
+      "type": "Filled width, hug height",
+      "description": "100% wide and 56 tall on both variants, with the content row inside standing at control/md."
+    },
+    {
+      "property": "Direction",
+      "type": "Row",
+      "description": "Leading group, middle band and account group on one line, space/gutter apart, with space/sm padding on every side of the bar."
+    },
+    {
+      "property": "Leading group",
+      "type": "Hug",
+      "description": "space/gutter between the menu button, the brand mark and the product name."
+    },
+    {
+      "property": "Middle band",
+      "type": "Fill",
+      "description": "Takes the width the two end groups leave, spaces its children space/sm apart, and packs them to its trailing edge."
+    },
+    {
+      "property": "Navigation region",
+      "type": "Fill",
+      "description": "Takes the width spare inside the middle band, with space/3xs between its controls."
+    },
+    {
+      "property": "Action region",
+      "type": "Hug",
+      "description": "Hugs its controls with space/3xs between them, which is why it never takes width from search."
+    },
+    {
+      "property": "Search",
+      "type": "Set to medium",
+      "description": "Its shape follows Rounded and its size is held at medium. The header gives it a maximum 280 and no fixed width. Below that it fills the spare width, so it gives way before it can overlap a neighbour."
+    },
+    {
+      "property": "Account group",
+      "type": "Hug",
+      "description": "space/gutter between the account control and the app switcher."
+    },
+    {
+      "property": "Controls",
+      "type": "Set per variant",
+      "description": "The icon buttons are set to medium and subtle. The account control is control/md tall and hugs its width, padded space/2xs and space/sm with space/2xs between its parts."
+    },
+    {
+      "property": "Radius",
+      "type": "Per Rounded",
+      "description": "radius/none throughout when false. When true the bar takes radius/element-sm and every nested control is set to its rounded shape, while the account control takes radius/sm."
+    },
+    {
+      "property": "Surface",
+      "type": "Tokenised",
+      "description": "surface/section on the bar. The icon buttons are set to the subtle flavour, and the account control carries the neutral interactive backgrounds."
+    },
+    {
+      "property": "Text",
+      "type": "Tokenised",
+      "description": "The product name is title/medium in foreground/primary. The username is label/small, dropping to interactive/ghost/foreground/disabled when the account control is disabled."
+    },
+    {
+      "property": "Account states",
+      "type": "Per State",
+      "description": "interactive/neutral/background at default, hover, pressed, focused and disabled. focus adds a border/focus stroke at 1 wide, and every other state carries interactive/neutral/border/default at zero weight."
+    },
+    {
+      "property": "Dividers",
+      "type": "Fill height",
+      "description": "Set to vertical and stretching to the height of the content row. The two of them appear together."
+    },
+    {
+      "property": "Theme/Mode",
+      "type": "Frozen in Dark Mode",
+      "description": "The global header is frozen in dark mode irrespective of the page mode, except a mode override is set on the global header itself."
+    }
+  ],
+  "visualReference": {
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2314-3348",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2356-5644",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7632-290",
+    "perAxis": {
+      "rounded false": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2356-5580",
+      "rounded true": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2356-5655",
+      "_User Profile": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2742-885"
+    }
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "structure vs metadata",
+      "detail": "showLogo is declared but bound to nothing, so turning it off changes nothing in Figma. Code has to decide what it does."
+    },
+    {
+      "severity": "warn",
+      "source": "dependency",
+      "detail": "Search is an instance of a remote library set (2356:5205), not the file's Search (2152:8811). Its rounded variant also pads space/3xs above and below where sharp pads space/sm."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs structure",
+      "detail": "The metadata calls search both a maximum 280 and a fixed width, and the instance sets 280 as a minimum. Code uses the maximum, and search shrinks below it."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs structure",
+      "detail": "The metadata says both a fixed width and a filled 100% width. Figma draws a fixed bar, and it needs to fill its container in code."
+    },
+    {
+      "severity": "note",
+      "source": "internalVariations",
+      "detail": "The account avatar is a full Avatar: code takes any Avatar property (photo, initials, icon, swatch colour, status), with its size fixed at xxsmall."
+    },
+    {
+      "severity": "warn",
+      "source": "accessibility",
+      "detail": "The menu button, the app switcher and the account control have no accessible names in Figma, so each needs a label input in code."
+    },
+    {
+      "severity": "note",
+      "source": "internalVariations",
+      "detail": "The account menu's rows belong to Template/Dropdown, so the header needs a way to pass them in."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "The stroke on the bar resolves to zero, which the metadata states is a theming hook."
+    },
+    {
+      "severity": "note",
+      "source": "metadata",
+      "detail": "No motion is defined, by the metadata's own statement."
+    }
+  ],
+  "modeLock": {
+    "palette": "Dark",
+    "scope": "root",
+    "inheritance": "Every control inside the header inherits palette=Dark, slotted content and the account menu included.",
+    "containerMode": "ignored — the header renders in Dark whether its container is Light or Dark",
+    "override": "An override set on the header itself is the only exception.",
+    "inCode": "Scope the root with a mode property that defaults to dark. Keep the account menu inside that scope."
+  },
+  "ownerDecisions": [
+    {
+      "decision": "The account avatar adopts every property of its main component, Avatar, except size.",
+      "appliesTo": "_User Profile › Avatar",
+      "figma": "Figma shows one sample avatar; any Avatar configuration is valid."
+    }
+  ]
+}

@@ -60,7 +60,7 @@ export interface InputFieldProps
  */
 export const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(function InputField(
   {
-    type = "text", size = "medium", shape = "sharp", flavour = "default", invalid = false, block = false,
+    type = "text", size = "medium", shape = "rounded", flavour = "default", invalid = false, block = false,
     value: valueProp, defaultValue = "", onValueChange, onClear,
     leadingIcon = null, leadingContent, trailingIcon, clearLabel = "Clear",
     inputMode, autoComplete,

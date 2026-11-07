@@ -1,9 +1,9 @@
 import { css } from "lit";
 
-/* Spec: specs/select. Label, field and hint stack space/xxs apart. The field is Input / Select: Input's field with a
+/* Spec: specs/select. Label, field and hint stack space/2xs apart. The field is Input / Select: Input's field with a
    chevron that turns at open, so it reads the same tokens (see text-input.styles.js). The border is drawn inset through
    --_border and --_border-width; keyboard focus trades it for a stroke/thick border/focus ring outside, and open keeps
-   a stroke/thin border/focus one. The options open space/xxs below the field on surface/menu, Shadow/medium, space/card
+   a stroke/thin border/focus one. The options open space/2xs below the field on surface/overlay, Shadow/medium, space/card
    padding, radius/element-md when rounded. */
 export default css`
   :host {
@@ -42,17 +42,18 @@ export default css`
     display: none;
   }
 
+  /* Label, field and hint space/xs apart, as Input. */
   .wrapper {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xxs);
+    gap: var(--space-xs);
   }
 
   /* ---- label ---- */
   .label {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     cursor: default;
     font: var(--text-label-medium);
     letter-spacing: var(--label-medium-letter-spacing);
@@ -78,6 +79,24 @@ export default css`
     --icon-color: var(--foreground-primary);
   }
 
+  /* Input Label's root: the label row, then the sub label, space/xs apart. */
+  .label-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  .sub-label {
+    font: var(--text-body-small);
+    letter-spacing: var(--body-small-letter-spacing);
+    color: var(--foreground-secondary);
+  }
+
+  :host([disabled]) .sub-label {
+    color: var(--foreground-disabled);
+  }
+
   /* ---- field ---- */
   zeta-icon {
     flex-shrink: 0;
@@ -87,7 +106,7 @@ export default css`
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     height: var(--_height);
     /* Input Field's minimum width, as on the zds- field. The field takes the width it is given and never sizes to its
        value. --select-input-min-width lowers it where a short value needs little room, such as rows per page. */
@@ -123,7 +142,7 @@ export default css`
     flex: 1;
     width: 0;
     min-width: 0;
-    padding: 0 var(--space-xxs);
+    padding: 0 var(--space-2xs);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -212,7 +231,7 @@ export default css`
   .hint {
     display: flex;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     cursor: default;
     font: var(--text-body-xsmall);
     letter-spacing: var(--body-xsmall-letter-spacing);
@@ -247,11 +266,11 @@ export default css`
     z-index: 1;
     width: 100%;
     min-inline-size: var(--select-input-options-min-width, auto);
-    margin-top: var(--space-xxs);
+    margin-top: var(--space-2xs);
     padding: var(--space-card);
     overflow-y: auto;
     border-radius: var(--zebra-radius-none);
-    background-color: var(--surface-menu);
+    background-color: var(--surface-overlay);
     box-shadow:
       var(--shadow-medium-x) var(--shadow-medium-y) var(--shadow-medium-blur) var(--shadow-soft),
       var(--shadow-small-x) var(--shadow-small-y) var(--shadow-small-blur) var(--shadow-soft);

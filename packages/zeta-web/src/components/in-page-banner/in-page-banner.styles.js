@@ -1,127 +1,155 @@
 import { css } from "lit";
+
+/* Spec: specs/inline-banner. A space/md × space/lg surface with a stroke/thin border, radius/sm when rounded and
+   radius/none when sharp. Subtle: the faint feedback tint, a status border, the status colour on the glyph and
+   foreground/primary text. Solid: the strong feedback fill, its own colour as the border, and foreground/on-strong
+   for text and glyph. border/default, border/info, border/warning and radius/none bind their --zebra- aliases
+   (the legacy set shares those names). The text keeps a 16rem minimum before the actions wrap (spec gap: no size
+   token). */
 export default css`
   :host {
-    --banner-background-color: var(--surface-default);
-    --banner-border-color: var(--border-default);
-    --banner-foreground-color: var(--main-default);
-    --banner-icon-color: var(--main-default);
-    --banner-title-font: var(--label-large);
-    --banner-body-font: var(--body-small);
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    --_fg: var(--foreground-primary);
+    --_muted: var(--foreground-primary);
+    --_bg: var(--feedback-info-background-subtle);
+    --_border: var(--zebra-border-info);
+    --_glyph: var(--feedback-info-foreground);
+  }
 
+  [hidden] {
+    display: none !important;
+  }
+
+  /* Outranks Contourable's :host > * radius. */
+  :host .banner {
+    border-radius: var(--radius-sm);
+  }
+  :host([rounded="false"]) .banner,
+  :host(:not([rounded])) .banner {
+    border-radius: var(--zebra-radius-none);
+  }
+
+  .banner {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    box-sizing: border-box;
+    padding: var(--space-md) var(--space-lg);
+    border: var(--stroke-thin) solid var(--_border);
+    background-color: var(--_bg);
+    color: var(--_fg);
+  }
+
+  /* ---- status: subtle ---- */
+  :host([status="neutral"]),
+  :host([status="default"]) {
+    --_bg: var(--feedback-neutral-background-subtle);
+    --_border: var(--zebra-border-default);
+    --_glyph: var(--feedback-neutral-foreground);
+  }
+  :host([status="positive"]) {
+    --_bg: var(--feedback-success-background-subtle);
+    --_border: var(--border-success);
+    --_glyph: var(--feedback-success-foreground);
+  }
+  :host([status="warning"]) {
+    --_bg: var(--feedback-warning-background-subtle);
+    --_border: var(--zebra-border-warning);
+    --_glyph: var(--feedback-warning-foreground);
+  }
+  :host([status="negative"]) {
+    --_bg: var(--feedback-error-background-subtle);
+    --_border: var(--border-error);
+    --_glyph: var(--feedback-error-foreground);
+  }
+
+  /* ---- appearance: solid; the border takes the fill so both appearances share a size ---- */
+  :host([appearance="solid"]) {
+    --_fg: var(--foreground-on-strong);
+    --_muted: var(--foreground-on-strong);
+    --_glyph: var(--foreground-on-strong);
+    --_bg: var(--feedback-info-background-strong);
+    --_border: var(--_bg);
+  }
+  :host([appearance="solid"][status="neutral"]),
+  :host([appearance="solid"][status="default"]) {
+    --_bg: var(--feedback-neutral-background-strong);
+  }
+  :host([appearance="solid"][status="positive"]) {
+    --_bg: var(--feedback-success-background-strong);
+  }
+  :host([appearance="solid"][status="warning"]) {
+    --_bg: var(--feedback-warning-background-strong);
+  }
+  :host([appearance="solid"][status="negative"]) {
+    --_bg: var(--feedback-error-background-strong);
+  }
+
+  /* ---- glyph: centred on the title's first line ---- */
+  .glyph {
+    flex: none;
+    display: grid;
+    place-items: center;
+    height: var(--label-large-line-height);
+    --icon-size: var(--control-icon-md);
+    --icon-color: var(--_glyph);
+  }
+
+  /* ---- content: text, then actions; the actions wrap beneath when narrow ---- */
+  .content {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-sm) var(--space-lg);
+  }
+
+  .text {
+    flex: 1 1 16rem;
+    min-width: 0;
     display: flex;
     flex-direction: column;
-    padding: var(--spacing-medium);
-    justify-content: center;
+    gap: var(--space-2xs);
+  }
+
+  .title {
+    font: var(--text-label-large);
+    letter-spacing: var(--label-large-letter-spacing);
+  }
+
+  .description {
+    color: var(--_muted);
+    font: var(--text-body-small);
+    letter-spacing: var(--body-small-letter-spacing);
+  }
+  .description:empty {
+    display: none;
+  }
+
+  .actions {
+    flex: none;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    border: var(--border-size-small) solid var(--banner-border-color);
-    color: var(--banner-foreground-color);
-    background-color: var(--banner-background-color);
-
-    > .container {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-
-      > .center {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-
-        > div[part="header"] {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-
-          > .title {
-            font: var(--banner-title-font);
-          }
-        }
-
-        > div[part="body"] {
-          max-width: calc(100% - var(--spacing-3xl));
-          margin-top: var(--spacing-0-5);
-          margin-top: var(--spacing-minimum);
-          margin-right: var(--spacing-3xl);
-          font: var(--banner-body-font);
-
-          > ::slotted(*) {
-            max-width: 100%;
-            height: auto;
-          }
-        }
-      }
-
-      > .leading {
-        padding-right: var(--spacing-small);
-        padding-top: var(--spacing-0-5);
-        align-self: stretch;
-        --icon-size: 20px;
-
-        zeta-icon {
-          --icon-color: var(--banner-icon-color);
-        }
-      }
-
-      > .trailing {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-minimum);
-
-        zeta-icon-button {
-          margin-top: -4px;
-          margin-right: -4px;
-          --icon-button-color: transparent;
-          --icon-button-icon-color: var(--main-default);
-          cursor: pointer;
-        }
-      }
-    }
-    > div[part="footer"] {
-      display: flex;
-      flex-direction: row;
-      gap: var(--spacing-small);
-      max-width: calc(100% - var(--spacing-3xl));
-      align-items: flex-start;
-      width: 100%;
-    }
+    gap: var(--space-sm);
   }
 
-  :host([rounded]),
-  :host([rounded]) div[part="body"] ::slotted(*) {
-    border-radius: var(--radius-minimal);
-  }
-
-  :host([status="default"]) {
-    --banner-border-color: var(--border-default);
-    --banner-background-color: var(--surface-default);
-    --banner-icon-color: var(--main-default);
-  }
-
-  :host([status="info"]) {
-    --banner-border-color: var(--border-info);
-    --banner-background-color: var(--surface-info-subtle);
-    --banner-icon-color: var(--main-info);
-  }
-
-  :host([status="positive"]) {
-    --banner-border-color: var(--border-positive);
-    --banner-background-color: var(--surface-positive-subtle);
-    --banner-icon-color: var(--main-positive);
-  }
-
-  :host([status="warning"]) {
-    --banner-border-color: var(--border-warning);
-    --banner-background-color: var(--surface-warning-subtle);
-    --banner-icon-color: var(--main-warning);
-  }
-
-  :host([status="negative"]) {
-    --banner-border-color: var(--border-negative);
-    --banner-background-color: var(--surface-negative-subtle);
-    --banner-icon-color: var(--main-negative);
-  }
-
+  ::slotted([slot="actions"]),
   ::slotted([slot="action"]) {
-    margin-top: var(--spacing-large);
+    flex: none;
+  }
+
+  /* Sits in the corner with a space/sm gap above and to its right. */
+  .dismiss {
+    flex: none;
+    margin: calc(var(--space-2xs) * -1) calc(var(--space-sm) * -1) calc(var(--space-2xs) * -1) 0;
+  }
+  /* Figma pins palette Dark on the solid dismiss; inside the shadow root its foreground maps to
+     foreground/on-strong instead. */
+  :host([appearance="solid"]) .dismiss {
+    --interactive-neutral-foreground-default: var(--foreground-on-strong);
   }
 `;

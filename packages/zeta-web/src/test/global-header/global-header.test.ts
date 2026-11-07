@@ -75,6 +75,16 @@ describe("zeta-global-header", () => {
   });
 
   describe("Content", () => {
+    it("takes a full avatar in the account slot and sizes it to xxs", async () => {
+      const header: ZetaGlobalHeader = await fixture(html`<zeta-global-header>
+        <zeta-avatar slot="user-avatar" swatch-color="burgundy"><zeta-icon>verified</zeta-icon></zeta-avatar>
+      </zeta-global-header>`);
+      await elementUpdated(header);
+      const avatar = header.querySelector("zeta-avatar")!;
+      await expect(avatar.getAttribute("size")).to.equal("xxs");
+      await expect(avatar.getAttribute("swatch-color")).to.equal("burgundy");
+    });
+
     it("draws both dividers together, and neither without the toggle", async () => {
       await expect(subject.shadowRoot?.querySelectorAll("zeta-divider").length).to.equal(0);
       subject.dividers = true;
@@ -184,9 +194,9 @@ describe("zeta-global-header", () => {
       const logo = subject.shadowRoot?.querySelector("[part='logo']") as Element;
       expect(getComputedStyle(logo).color).to.equal(getCssVarColorValue(subject, "--foreground-primary"));
     });
-    it("spaces slotted items by space/2xs", () => {
+    it("spaces slotted items by space/3xs", () => {
       const slot = subject.shadowRoot?.querySelector("slot[name='action-items']") as HTMLSlotElement;
-      const gap = getComputedStyle(subject).getPropertyValue("--space-2xs").trim();
+      const gap = getComputedStyle(subject).getPropertyValue("--space-3xs").trim();
       expect(getComputedStyle(slot).columnGap).to.equal(gap);
     });
     it("sizes the account chevron from control/icon-sm", () => {

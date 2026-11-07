@@ -29,8 +29,8 @@ export default css`
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    gap: var(--space-xxs);
-    padding: var(--space-xxs) var(--space-sm) var(--space-xxs) var(--space-xxs);
+    gap: var(--space-2xs);
+    padding: var(--space-2xs) var(--space-sm) var(--space-2xs) var(--space-2xs);
     white-space: nowrap;
     border-radius: var(--zebra-radius-none);
     background: var(--priority-pill-background-color, var(--_fill));
@@ -59,7 +59,7 @@ export default css`
   }
 
   .text {
-    padding-inline-end: var(--space-xxs);
+    padding-inline-end: var(--space-2xs);
     font-family: var(--body-small-font-family);
     font-size: var(--body-small-font-size);
     font-weight: var(--body-small-font-weight);
@@ -74,7 +74,7 @@ export default css`
 
   /* Small reduces the text as well as the box. The 12px glyph has no size token (spec issue). */
   :host([size="small"]) .container {
-    padding: var(--space-2xs) var(--space-sm) var(--space-2xs) var(--space-2xs);
+    padding: var(--space-3xs) var(--space-sm) var(--space-3xs) var(--space-3xs);
   }
   :host([size="small"]) .number {
     width: var(--control-icon-sm);
@@ -87,7 +87,7 @@ export default css`
     letter-spacing: var(--indicator-small-letter-spacing);
   }
   :host([size="small"]) .text {
-    padding-inline-end: var(--space-2xs);
+    padding-inline-end: var(--space-3xs);
     font-family: var(--indicator-small-font-family);
     font-size: var(--indicator-small-font-size);
     font-weight: var(--indicator-small-font-weight);
@@ -97,9 +97,9 @@ export default css`
 
   /* Badge: the circle alone, with even padding, so the pill becomes a fixed square. */
   :host([type="badge"]) .container {
-    padding: var(--space-xxs);
+    padding: var(--space-2xs);
   }
   :host([type="badge"][size="small"]) .container {
-    padding: var(--space-2xs);
+    padding: var(--space-3xs);
   }
 `;

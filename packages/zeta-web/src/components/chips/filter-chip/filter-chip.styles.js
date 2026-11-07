@@ -1,7 +1,7 @@
 import { css } from "lit";
 
 /* Spec: specs/filter-chip. A fixed 32px height (unbound in Figma, spec issue). Inactive pads space/sm by space/md
-   with a space/xxs gap; active pads space/xxs by space/md with a space/sm gap around the check. Active is built only
+   with a space/2xs gap; active pads space/2xs by space/md with a space/sm gap around the check. Active is built only
    at default and focus, so it takes no hover or pressed fill. */
 export default css`
   :host {
@@ -12,7 +12,7 @@ export default css`
 
   .chip {
     height: 32px;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     padding: var(--space-sm) var(--space-md);
     cursor: pointer;
     font: var(--text-indicator-medium);
@@ -39,7 +39,7 @@ export default css`
 
   :host([active]:not([disabled])) .chip {
     gap: var(--space-sm);
-    padding-block: var(--space-xxs);
+    padding-block: var(--space-2xs);
     --_bg: var(--interactive-inverse-background-selected);
     --_border: var(--interactive-inverse-border-pressed);
     --_fg: var(--interactive-inverse-foreground-default);

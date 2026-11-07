@@ -8,7 +8,7 @@
        outgrows its container, and block fills it. */
     display: flex;
     flex-direction: column;
-    gap: var(--space-2xs);
+    gap: var(--space-xs);
     inline-size: 280px;
     max-inline-size: 100%;
   }
@@ -51,8 +51,25 @@
     line-height: var(--body-small-line-height);
     letter-spacing: var(--body-small-letter-spacing);
   }
+  /* Input Label's root: the label row, then the sub label, space/xs apart. */
+  .zds-input__label-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+  .zds-input__sub-label {
+    margin: 0;
+    color: var(--foreground-secondary);
+    font-family: var(--body-small-font-family), system-ui, sans-serif;
+    font-size: var(--body-small-font-size);
+    font-weight: var(--body-small-font-weight);
+    line-height: var(--body-small-line-height);
+    letter-spacing: var(--body-small-letter-spacing);
+  }
   .zds-input[data-state="disabled"] .zds-input__name,
-  .zds-input[data-state="disabled"] .zds-input__information {
+  .zds-input[data-state="disabled"] .zds-input__information,
+  .zds-input[data-state="disabled"] .zds-input__sub-label {
     color: var(--foreground-disabled);
   }
 

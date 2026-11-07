@@ -41,6 +41,9 @@ let uid = 0;
  * hint below, stacked and spaced as one unit. Opening it reveals a Dropdown
  * Menu of the options, overlaid below the field.
  *
+ * @cssprop --zds-select-field-min-inline-size - The field's minimum width; Input Field's by default.
+ * @cssprop --zds-select-list-min-inline-size - The list's minimum width; it is otherwise as wide as the field.
+ *
  * Built from the package's parts: the field reuses Input Field's styles
  * (size, shape, flavour, state), the label and hint Input's, and the list
  * draws Dropdown Menu's panel and Menu Item's rows from the same tokens.
@@ -63,7 +66,7 @@ let uid = 0;
  *
  * The list is a manual popover in the top layer, clear of any `overflow:
  * hidden` ancestor and still inside the theme cascade (it stays in this
- * shadow tree). It is as wide as the field, sits `--space-xxs` below it and
+ * shadow tree). It is as wide as the field, sits `--space-2xs` below it and
  * flips above only when there is no room below (spec issue 13).
  *
  * Form-associated: submits `value` under `name`; a required label makes an
@@ -113,6 +116,9 @@ export class ZdsSelect extends LitElement {
   /** Accessible name of the information icon. */
   @property({ type: String, attribute: "information-label" }) informationLabel = "More information";
 
+  /** Supporting line under the name, read as part of the field's description. Empty hides it; needs a `label` (Show Sub Label). */
+  @property({ type: String, attribute: "sub-label" }) subLabel = "";
+
   /** Supporting line below the field; carries the reason when `state` is invalid. Empty hides it (Show Hint). */
   @property({ type: String }) hint = "";
 
@@ -136,6 +142,12 @@ export class ZdsSelect extends LitElement {
 
   /** `default` inside a form, `ghost` on a surface that already bounds it, `gradient` for a distinct interaction. */
   @property({ type: String, reflect: true }) flavour: SelectFlavour = "default";
+
+  /** Opens the list on the compact Dropdown Menu: a space/xs inset and no gap between rows, for a cramped spot. */
+  @property({ type: Boolean, reflect: true }) compact = false;
+
+  /** Fills the container's width. Without it the Select starts at 280px and narrows to fit, as Input. Input's `:host([block])` rule applies. */
+  @property({ type: Boolean, reflect: true }) block = false;
 
   /** Glyph at the field's leading edge (hasLeading). A chosen option's own `icon` replaces it. */
   @property({ type: String, attribute: "leading-icon" }) leadingIcon: IconName | null = null;
@@ -371,9 +383,9 @@ export class ZdsSelect extends LitElement {
     const list = this.listEl;
     if (!field || !list) return;
     const a = field.getBoundingClientRect();
-    // The 4 Px under the field is --space-xxs, read at the list's place in the
+    // The 4 Px under the field is --space-2xs, read at the list's place in the
     // cascade so a theme scope that changes the token moves it.
-    const px = parseFloat(getComputedStyle(list).getPropertyValue("--space-xxs"));
+    const px = parseFloat(getComputedStyle(list).getPropertyValue("--space-2xs"));
     const gap = Number.isFinite(px) ? px : 4;
     const vh = document.documentElement.clientHeight;
     const pad = COLLISION_PADDING;
@@ -402,12 +414,15 @@ export class ZdsSelect extends LitElement {
 
   private renderLabel() {
     if (!this.label) return nothing;
-    return html`<div part="label" class="label ${this.disabled ? "disabled" : ""}">
+    const row = html`<div part="label" class="label ${this.disabled ? "disabled" : ""}">
       <span class="name" id="${this.idBase}-name">${this.label}</span>
       ${this.labelType === "required" ? html`<span class="required" aria-hidden="true">*</span>` : nothing}
       ${this.labelType === "optional" ? html`<span class="optional">(optional)</span>` : nothing}
       ${this.information ? html`<zds-icon class="information" name="info" size="medium" .iconStyle=${"rounded"} label=${this.informationLabel}></zds-icon>` : nothing}
     </div>`;
+    if (!this.subLabel) return row;
+    // Input Label's root: the label row, then the sub label, space/xs apart.
+    return html`<div class="label-group">${row}<span part="sub-label" id="${this.idBase}-sub" class="sub-label ${this.disabled ? "disabled" : ""}">${this.subLabel}</span></div>`;
   }
 
   private renderOption(o: SelectOption, i: number) {
@@ -443,7 +458,7 @@ export class ZdsSelect extends LitElement {
         aria-activedescendant=${ifDefined(this.open && this.active >= 0 ? this.optionId(this.active) : undefined)}
         aria-labelledby=${ifDefined(this.label ? `${nameId} ${valueId}` : undefined)}
         aria-label=${ifDefined(this.label ? undefined : this.accessibleLabel ?? undefined)}
-        aria-describedby=${ifDefined(this.hint ? hintId : undefined)}
+        aria-describedby=${ifDefined([this.label && this.subLabel ? `${this.idBase}-sub` : "", this.hint ? hintId : ""].filter(Boolean).join(" ") || undefined)}
         aria-invalid=${this.state === "invalid" ? "true" : "false"}
         aria-required=${this.labelType === "required" ? "true" : "false"}
         aria-readonly=${this.readonly ? "true" : "false"}

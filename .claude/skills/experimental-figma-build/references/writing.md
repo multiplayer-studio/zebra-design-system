@@ -60,5 +60,5 @@ code**, not by someone placing it in a Figma file.
 
 **After:**
 > Selected row: `interactive/ghost/background/selected`. The list surface
-> is `surface/menu` at `shadow/medium`. Re-themes with any `ext-*` /
+> is `surface/overlay` at `shadow/medium`. Re-themes with any `ext-*` /
 > `mode-*` scope.

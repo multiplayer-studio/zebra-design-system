@@ -1,0 +1,574 @@
+{
+  "component": {
+    "name": "Top App Bar",
+    "slug": "top-app-bar",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "3116:1217",
+      "key": "33449d4d10bf6bfe88e443324e56ebff8a4b2836",
+      "page": "Top App Bar",
+      "pageNodeId": "3108:191",
+      "metadataFrameId": "7638:227",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3116-1217",
+      "extractedAt": "2026-10-31",
+      "variantCount": 12,
+      "defaultVariant": "Type=default, Shape=sharp",
+      "extractionNote": "All 12 variants read in full. Instances were entered only to resolve glyphs."
+    }
+  },
+  "summary": "The header at the top of a mobile screen, carrying the screen’s name between a leading control and whatever actions the screen needs. Type switches it between six arrangements: a standard title row, a centred title, two selection toolbars, a full width search field, and a taller layout that drops the title onto its own line. Each arrangement brings its own leading control and its own content, so changing Type replaces what the bar holds rather than rearranging it.",
+  "api": {
+    "type": {
+      "type": "enum",
+      "figmaName": "Type",
+      "values": [
+        "default",
+        "centered",
+        "contextual",
+        "contextual alt",
+        "search",
+        "extended"
+      ],
+      "default": "default",
+      "controls": [
+        "bar",
+        "leadingControl",
+        "title",
+        "trailingRegion",
+        "secondRow"
+      ],
+      "intent": {
+        "default": "Use for an ordinary screen that needs a title and a few actions. It is the only arrangement that carries an avatar beside the title.",
+        "centered": "Use where the title should read as the screen’s name rather than a label beside controls. It allows one trailing control, so a screen needing several will not fit.",
+        "contextual": "Use while items are selected and the bar becomes a toolbar for them. Its count is fixed content, so it does not report the real selection.",
+        "contextual alt": "Use for the same selection toolbar where the count needs to be settable. The count sits inside a button, so it reads as something to press.",
+        "search": "Use when search takes over the whole bar. It drops the title and every action but the back control, so nothing else is reachable while searching.",
+        "extended": "Use where the title needs a line of its own below the controls. It is taller than the other five, so a layout assuming one bar height will shift."
+      }
+    },
+    "shape": {
+      "type": "enum",
+      "figmaName": "Shape",
+      "values": [
+        "sharp",
+        "rounded"
+      ],
+      "default": "sharp",
+      "controls": [
+        "bar"
+      ],
+      "intent": {
+        "sharp": "Use where the bar meets the screen edges and reads as part of the chrome.",
+        "rounded": "Use where the bar sits inside a padded surface. It rounds the bar’s own corner only, and the controls inside keep the shape they already have."
+      }
+    },
+    "pageTitle": {
+      "type": "string",
+      "figmaName": "Page Title#3116:0",
+      "default": "Title",
+      "controls": [
+        "title"
+      ],
+      "visibleWhen": "type is default, centered or extended",
+      "intent": "Names the screen. It is read by default, centered and extended only, so setting it on the other three changes nothing."
+    },
+    "contextualControlSlot": {
+      "type": "slot",
+      "figmaName": "Contextual Control Slot#3116:7",
+      "controls": [
+        "trailingRegion"
+      ],
+      "visibleWhen": "type is contextual or contextual alt",
+      "intent": "Takes the actions offered while items are selected. It exists on contextual and contextual alt, and nowhere else."
+    },
+    "trailingSlot": {
+      "type": "slot",
+      "figmaName": "Trailing Slot#3116:14",
+      "controls": [
+        "trailingRegion"
+      ],
+      "visibleWhen": "type is default or extended",
+      "intent": "Takes the trailing actions on an ordinary screen. It exists on default and extended, and nowhere else."
+    }
+  },
+  "internalVariations": [
+    {
+      "part": "leadingControl",
+      "via": "Icon Button",
+      "options": [
+        "hamburger-menu",
+        "close",
+        "arrow-back"
+      ],
+      "intent": "The glyph is decided by Type and is not exposed."
+    },
+    {
+      "part": "centered trailing",
+      "via": "Icon Button",
+      "options": [
+        "user-circle"
+      ],
+      "intent": "centered holds one fixed Icon Button rather than a slot."
+    }
+  ],
+  "contentInputs": [
+    {
+      "part": "count",
+      "input": "count",
+      "note": "Sample text 2 Items on contextual and contextual alt."
+    },
+    {
+      "part": "avatar",
+      "input": "src",
+      "note": "Sample photo on default."
+    },
+    {
+      "part": "search",
+      "input": "value",
+      "note": "Sample text on search."
+    }
+  ],
+  "anatomy": [
+    {
+      "id": "bar",
+      "role": "The surface itself, holding one content row padded on every side. extended adds a second row beneath it.",
+      "kind": "container",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/sm",
+        "padding": "space/md by space/sm"
+      },
+      "sizing": {
+        "width": "fill",
+        "height": "hug"
+      },
+      "paint": {
+        "fill": "surface/section"
+      }
+    },
+    {
+      "id": "leadingControl",
+      "role": "An icon button at the start of the bar. Which glyph it carries is decided by Type, not passed in.",
+      "kind": "instance",
+      "ref": "Icon Button",
+      "refVariant": "Size=small, Shape=rounded, Flavour=subtle",
+      "note": "Glyph per type, see the variants table."
+    },
+    {
+      "id": "title",
+      "role": "The screen’s name. It is present on default, centered and extended, and centered sets it a step smaller than the other two.",
+      "kind": "text",
+      "content": "pageTitle",
+      "visibleWhen": "type is default, centered or extended",
+      "text": {
+        "style": "per type",
+        "color": "foreground/primary, see issues"
+      }
+    },
+    {
+      "id": "trailingRegion",
+      "role": "Either a slot, a single fixed control, or nothing at all, depending on Type.",
+      "kind": "container",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/none",
+        "align": "center"
+      },
+      "sizing": "hug"
+    },
+    {
+      "id": "secondRow",
+      "role": "extended only. The title moves off the control row onto a line of its own, which is what makes that arrangement taller.",
+      "kind": "container",
+      "visibleWhen": "type == extended",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/sm",
+        "padding": "space/sm left and right",
+        "align": "center"
+      },
+      "sizing": {
+        "width": "fill"
+      }
+    }
+  ],
+  "variants": {
+    "_note": "Cells are token names, except those ending Px, which are measurements of the rendered file.",
+    "type": {
+      "axis": "type",
+      "base": "default",
+      "table": [
+        {
+          "type": "default",
+          "leading.glyph": "hamburger-menu",
+          "middle": "avatar and title",
+          "title.style": "label/large",
+          "trailing": "trailingSlot",
+          "measuredHeightPx": 60,
+          "figmaNode": "3112:1215"
+        },
+        {
+          "type": "centered",
+          "leading.glyph": "hamburger-menu",
+          "middle": "centred title",
+          "title.style": "label/medium",
+          "trailing": "one Icon Button, glyph user-circle",
+          "measuredHeightPx": 60,
+          "figmaNode": "3116:1218"
+        },
+        {
+          "type": "contextual",
+          "leading.glyph": "close",
+          "middle": "count as text",
+          "title.style": "none, count is label/medium",
+          "trailing": "contextualControlSlot",
+          "measuredHeightPx": 60,
+          "figmaNode": "3116:1601"
+        },
+        {
+          "type": "contextual alt",
+          "leading.glyph": "close, on a Button with the count as its label",
+          "middle": "count inside the Button, small and subtle",
+          "title.style": "none",
+          "trailing": "contextualControlSlot",
+          "measuredHeightPx": 60,
+          "figmaNode": "3116:1696"
+        },
+        {
+          "type": "search",
+          "leading.glyph": "arrow-back",
+          "middle": "Search, small and ghost, fills the row, gap space/md",
+          "title.style": "none",
+          "trailing": "none",
+          "measuredHeightPx": 60,
+          "figmaNode": "3116:1723"
+        },
+        {
+          "type": "extended",
+          "leading.glyph": "hamburger-menu",
+          "middle": "none, title on the second row",
+          "title.style": "label/large",
+          "trailing": "trailingSlot",
+          "bar.gap": "space/lg",
+          "measuredHeightPx": 100,
+          "figmaNode": "3116:1953"
+        }
+      ]
+    },
+    "shape": {
+      "axis": "shape",
+      "base": "sharp",
+      "table": [
+        {
+          "shape": "sharp",
+          "bar.radius": "none, no token bound"
+        },
+        {
+          "shape": "rounded",
+          "bar.radius": "radius/element-sm"
+        }
+      ]
+    }
+  },
+  "subcomponents": [],
+  "dependencies": [
+    {
+      "name": "Icon Button",
+      "id": "2338:1763",
+      "spec": "specs/icon-button",
+      "usedAs": "leading control and slot defaults, small, rounded and subtle"
+    },
+    {
+      "name": "Button",
+      "id": "2060:15072",
+      "spec": "specs/button",
+      "usedAs": "count on contextual alt, small, rounded and subtle, leading icon on"
+    },
+    {
+      "name": "Search",
+      "id": "2152:8811",
+      "spec": "specs/search",
+      "usedAs": "search field, small, rounded and ghost"
+    },
+    {
+      "name": "Avatar",
+      "id": "2699:17793",
+      "spec": "specs/avatar",
+      "usedAs": "default only, xxxsmall"
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ — names below resolve there; see tokens/manifest.json",
+    "rule": "This spec names tokens only.",
+    "color": [
+      "surface/section",
+      "foreground/primary",
+      "interactive/neutral/foreground/default"
+    ],
+    "dimension": [
+      "space/{none,sm,md,lg}",
+      "radius/element-sm",
+      "control/sm"
+    ],
+    "typography": [
+      "label/large",
+      "label/medium"
+    ],
+    "effect": [],
+    "missingFromExport": [],
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "typography": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ],
+      "extensions": "tokens/extensions/ (companion, target, condensed)"
+    }
+  },
+  "states": [
+    {
+      "state": "Static",
+      "trigger": "—",
+      "duration": "—",
+      "whatChanges": "The bar has no interaction states. Hover, focus and press belong to the controls placed inside it."
+    },
+    {
+      "state": "Type",
+      "trigger": "The Type value",
+      "duration": "—",
+      "whatChanges": "Each value replaces the bar’s contents rather than repositioning them. The leading control, the title treatment and which slot exists all change together."
+    },
+    {
+      "state": "Shape",
+      "trigger": "The Shape value",
+      "duration": "—",
+      "whatChanges": "The bar’s own corner, and nothing else. The controls inside hold the shape they were given either way."
+    },
+    {
+      "state": "Leading control",
+      "trigger": "The Type value",
+      "duration": "—",
+      "whatChanges": "A hamburger on default, centered and extended. A close on contextual and contextual alt. A back arrow on search."
+    },
+    {
+      "state": "Title treatment",
+      "trigger": "The Type value",
+      "duration": "—",
+      "whatChanges": "default and extended set the title a step larger than centered. contextual shows a fixed count in its place, and contextual alt shows that count inside a button."
+    }
+  ],
+  "behavior": [
+    {
+      "type": "Motion",
+      "description": "No transition is defined. Changing Type replaces the bar’s contents outright, and nothing animates between one arrangement and the next."
+    },
+    {
+      "type": "Type is a content switch",
+      "description": "Type does not rearrange one set of parts. Each value brings its own leading control, its own middle content and its own slot, so moving between values is a replacement rather than a reflow."
+    },
+    {
+      "type": "Shape does not carry",
+      "description": "Shape sets the bar’s corner on its own. The nested controls are rounded in both values, so a sharp bar still contains rounded controls."
+    },
+    {
+      "type": "Height",
+      "description": "Five arrangements stand at one height. extended is taller because it puts the title on a second row beneath the controls."
+    },
+    {
+      "type": "Slot availability",
+      "description": "The two slots are never both present. Each Type offers at most one of them, and centered and search offer neither."
+    }
+  ],
+  "content": [
+    {
+      "property": "Screen title",
+      "type": "Page Title, text",
+      "description": "Consumer owned on default, centered and extended. The other three arrangements draw no title, so the property has nowhere to land."
+    },
+    {
+      "property": "Trailing actions",
+      "type": "Trailing Slot, consumer owned",
+      "description": "Present on default and extended. The content in it by default is three icon buttons set to small and subtle."
+    },
+    {
+      "property": "Contextual actions",
+      "type": "Contextual Control Slot, consumer owned",
+      "description": "Present on contextual and contextual alt. The content in it by default is four icon buttons set to small and subtle."
+    },
+    {
+      "property": "Centered trailing",
+      "type": "Parent owned",
+      "description": "centered holds a single icon button rather than a slot, so its trailing action is fixed rather than passed in."
+    },
+    {
+      "property": "Leading control",
+      "type": "Icon Button, parent owned",
+      "description": "Set to small and subtle on every arrangement. Its glyph is decided by Type and is not exposed as an input."
+    },
+    {
+      "property": "Avatar",
+      "type": "Parent owned",
+      "description": "default carries a small photo avatar beside the title. It is not exposed as an input, and no other arrangement has one."
+    },
+    {
+      "property": "Selection count",
+      "type": "Parent owned",
+      "description": "contextual draws a fixed count as plain text. contextual alt puts the same count inside a button, where it is that button’s own label."
+    },
+    {
+      "property": "Search field",
+      "type": "Search, parent owned",
+      "description": "Set to small and ghost, and carried already in its typing state with text and a cursor in place."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Pick Type for what the screen is doing. Each value is a different arrangement with its own content, not a styling choice applied to one layout.",
+      "Keep Page Title to the screen's name. It is the bar's only text input, and it reads as the screen's identity rather than as a label."
+    ],
+    "dont": [
+      "Don't set Page Title on contextual, contextual alt or search. Those arrangements draw no title, so the text has nowhere to appear.",
+      "Don't expect Shape to reshape the controls. It sets the bar's own corner, and the icon buttons inside stay rounded either way."
+    ]
+  },
+  "accessibility": [
+    "The bar is a landmark rather than a control, so it takes its role and its name from the screen around it.",
+    "Every control in it carries a glyph and no visible label, so the leading control and each trailing action need an accessible name supplied where they are placed, and that name has to follow Type, since the same leading position is a menu, a dismiss and a back control depending on the arrangement.",
+    "The title is the screen’s name and should match whatever the screen is announced as, so a person arriving by screen reader hears the same thing a sighted person reads.",
+    "On the selection arrangements the count is the only report of how many items are held, so it needs to be announced when it changes rather than only drawn."
+  ],
+  "layoutTheming": [
+    {
+      "property": "Size",
+      "type": "Fixed width, hug height",
+      "description": "390 wide on every variant. 60 tall on five arrangements and 100 on extended, which carries a second row."
+    },
+    {
+      "property": "Direction",
+      "type": "Column",
+      "description": "A content row, with extended adding a title row beneath it. space/sm between rows, and space/lg on extended."
+    },
+    {
+      "property": "Padding",
+      "type": "Tokenised",
+      "description": "space/md above and below, space/sm on both sides."
+    },
+    {
+      "property": "Content row",
+      "type": "Fill",
+      "description": "Spreads its leading group and its trailing region to opposite ends. search instead lays its two parts out from the start, space/md apart."
+    },
+    {
+      "property": "Leading group",
+      "type": "Fill",
+      "description": "space/md between the leading control and whatever follows it."
+    },
+    {
+      "property": "Leading control",
+      "type": "Set to small",
+      "description": "An icon button set to small and subtle on every arrangement."
+    },
+    {
+      "property": "Trailing region",
+      "type": "Hug",
+      "description": "Hugs its content on default, extended, contextual and contextual alt. centered instead holds one control that fills the row height."
+    },
+    {
+      "property": "Search field",
+      "type": "Set to small",
+      "description": "Fills the width left beside the back control, set to small and ghost."
+    },
+    {
+      "property": "Surface",
+      "type": "Tokenised",
+      "description": "surface/section across every arrangement."
+    },
+    {
+      "property": "Radius",
+      "type": "Per Shape",
+      "description": "radius/element-sm on rounded. sharp carries a plain zero corner with no token bound to it."
+    },
+    {
+      "property": "Title",
+      "type": "Per Type",
+      "description": "label/large on default and extended, label/medium on centered. The title colour is set directly rather than bound to a token."
+    },
+    {
+      "property": "Selection count",
+      "type": "Per Type",
+      "description": "label/medium on contextual, also set directly rather than bound. On contextual alt it comes from the button and takes interactive/neutral/foreground/default."
+    }
+  ],
+  "visualReference": {
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3108-191",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3116-1217",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7638-227",
+    "perAxis": {
+      "default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3112-1215",
+      "centered": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3116-1218",
+      "contextual": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3116-1601",
+      "contextual alt": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3116-1696",
+      "search": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3116-1723",
+      "extended": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3116-1953",
+      "rounded": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3181-12299"
+    }
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "structure (gaps)",
+      "detail": "The title and the count use a raw black, not a token, so they would not follow dark mode. Code uses foreground/primary."
+    },
+    {
+      "severity": "warn",
+      "source": "internalVariations",
+      "detail": "The selection count is fixed text in Figma, but the accessibility section needs it to report the real count. Code must make it an input."
+    },
+    {
+      "severity": "warn",
+      "source": "internalVariations",
+      "detail": "The leading control's action, the avatar and the search field are not exposed in Figma, but a working bar needs all three."
+    },
+    {
+      "severity": "warn",
+      "source": "metadata vs structure",
+      "detail": "The metadata puts space/md after the leading control on every arrangement, but contextual binds space/none, so the count touches it."
+    },
+    {
+      "severity": "warn",
+      "source": "dependency",
+      "detail": "Avatar is an instance of the older set 2699:17793, not the current Avatar 4906:1172."
+    },
+    {
+      "severity": "warn",
+      "source": "structure vs metadata",
+      "detail": "Search is drawn in its typing state with sample text, which is a Figma picture. Code should open it empty."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "Figma draws a fixed 390 wide bar. It needs to fill its container in code."
+    },
+    {
+      "severity": "note",
+      "source": "metadata",
+      "detail": "Shape reaches the bar's corner only, and nested controls stay rounded in both values."
+    },
+    {
+      "severity": "note",
+      "source": "metadata",
+      "detail": "No motion is defined, by the metadata's own statement."
+    }
+  ]
+}

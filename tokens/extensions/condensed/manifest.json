@@ -1,37 +1,84 @@
 {
   "name": "condensed",
   "slug": "condensed",
-  "id": "VariableCollectionId:5190:1287",
-  "extends": {
-    "name": "size",
-    "id": "VariableCollectionId:2013:6723",
-    "slug": "size"
-  },
-  "root": {
-    "name": "size",
-    "id": "VariableCollectionId:2013:6723"
-  },
-  "overrideCount": 29,
-  "modeMap": [
+  "note": "Several extensions share this name, each extending a different parent. Each entry under 'extends' holds ONLY the variables it overrides; read its parent first, then layer it on top.",
+  "extends": [
     {
-      "mode": "Desktop",
-      "parentMode": "Desktop"
+      "name": "condensed",
+      "slug": "condensed",
+      "id": "VariableCollectionId:5190:1287",
+      "extends": {
+        "name": "size",
+        "id": "VariableCollectionId:2013:6723",
+        "slug": "size"
+      },
+      "root": {
+        "name": "size",
+        "id": "VariableCollectionId:2013:6723"
+      },
+      "overrideCount": 29,
+      "modeMap": [
+        {
+          "mode": "Desktop",
+          "parentMode": "Desktop"
+        },
+        {
+          "mode": "Mobile",
+          "parentMode": "Mobile"
+        },
+        {
+          "mode": "Tablet",
+          "parentMode": "Tablet"
+        },
+        {
+          "mode": "Desktop Compact",
+          "parentMode": "Desktop Compact"
+        }
+      ],
+      "files": [
+        "extensions/condensed/size/desktop.json"
+      ],
+      "note": "Each file holds ONLY the variables this extension overrides. Read the parent collection first, then layer this on top."
     },
     {
-      "mode": "Mobile",
-      "parentMode": "Mobile"
-    },
-    {
-      "mode": "Tablet",
-      "parentMode": "Tablet"
-    },
-    {
-      "mode": "Desktop Compact",
-      "parentMode": "Desktop Compact"
+      "name": "condensed",
+      "slug": "condensed",
+      "id": "VariableCollectionId:5190:1280",
+      "extends": {
+        "name": "typography",
+        "id": "VariableCollectionId:2207:329",
+        "slug": "typography"
+      },
+      "root": {
+        "name": "typography",
+        "id": "VariableCollectionId:2207:329"
+      },
+      "overrideCount": 34,
+      "modeMap": [
+        {
+          "mode": "Desktop",
+          "parentMode": "Desktop"
+        },
+        {
+          "mode": "Tablet",
+          "parentMode": "Tablet"
+        },
+        {
+          "mode": "Mobile",
+          "parentMode": "Mobile"
+        },
+        {
+          "mode": "Desktop Compact",
+          "parentMode": "Desktop Compact"
+        }
+      ],
+      "files": [
+        "extensions/condensed/typography/desktop.json",
+        "extensions/condensed/typography/tablet.json",
+        "extensions/condensed/typography/mobile.json",
+        "extensions/condensed/typography/desktop-compact.json"
+      ],
+      "note": "Each file holds ONLY the variables this extension overrides. Read the parent collection first, then layer this on top."
     }
-  ],
-  "files": [
-    "extensions/condensed/size/desktop.json"
-  ],
-  "note": "Each file holds ONLY the variables this extension overrides. Read the parent collection first, then layer this on top."
+  ]
 }

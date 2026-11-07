@@ -2,7 +2,7 @@ import { css } from "lit";
 
 /* Spec: specs/navigation-rail. On surface/section with no fill of its own. The icon rail is 72px narrow (control/lg
    items plus space/md either side) and 200px wide (measured, no token), space/card by space/md padding, space/md
-   between header, menu and footer, space/xxs between items. The panel hugs its rows from 240px (owner decision) and
+   between header, menu and footer, space/2xs between items. The panel hugs its rows from 240px (owner decision) and
    carries the only vertical border, stroke/thin on border/default (spec warn: Figma's width is unbound). */
 export default css`
   :host {
@@ -28,11 +28,26 @@ export default css`
     padding: var(--space-card) var(--space-md);
     overflow: hidden;
     container-type: inline-size;
-    --_wide-width: min(200px, var(--navigation-rail-max-width, 200px));
+    --_wide-width: min(var(--navigation-rail-width, 200px), var(--navigation-rail-max-width, calc(infinity * 1px)));
   }
 
   :host([expanded]) .rail {
     width: var(--_wide-width);
+  }
+
+  /* rail-width="fill": wide, the rail takes its container's width (the sub menu shares it when open), and the wide
+     content follows the rail instead of a fixed width. */
+  :host([rail-width="fill"][expanded]),
+  :host([rail-width="fill"][expanded]) .root {
+    width: 100%;
+  }
+  :host([rail-width="fill"][expanded]) .rail {
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
+  }
+  :host([rail-width="fill"]) .rail.wide > :is(.header, .menu, .footer) {
+    min-width: 0;
   }
 
   .root[data-ready] .rail {
@@ -44,7 +59,7 @@ export default css`
   .footer {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     min-width: 0;
   }
 
@@ -104,7 +119,7 @@ export default css`
   .sub-menu {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     padding: var(--space-sm);
     overflow-y: auto;
   }

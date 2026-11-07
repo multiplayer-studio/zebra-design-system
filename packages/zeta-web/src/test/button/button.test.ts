@@ -107,7 +107,7 @@ describe("zeta-button", () => {
         await expect(subject.getBoundingClientRect().height).to.equal(heights[size]);
       });
     });
-    it("gives the label wrapper space/xxs at small and space/sm at medium and large", async () => {
+    it("gives the label wrapper space/2xs at small and space/sm at medium and large", async () => {
       const label = subject.shadowRoot?.querySelector(".label") as HTMLElement;
       subject.setAttribute("size", "small");
       await elementUpdated(subject);
@@ -115,7 +115,7 @@ describe("zeta-button", () => {
       subject.setAttribute("size", "large");
       await elementUpdated(subject);
       const large = getComputedStyle(label).paddingInlineStart;
-      await expect(small).to.equal(length("--space-xxs"));
+      await expect(small).to.equal(length("--space-2xs"));
       await expect(large).to.equal(length("--space-sm"));
     });
   });

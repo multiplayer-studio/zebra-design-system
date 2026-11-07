@@ -61,7 +61,7 @@ export default css`
     flex: 0 0 auto;
     display: inline-flex;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     padding: var(--space-none);
     margin-inline-start: auto;
     color: var(--foreground-secondary);
@@ -93,19 +93,12 @@ export default css`
     background: var(--surface-track);
   }
 
-  /* Buffer band: surface/track, the owner's decision (spec blocker "Buffer
-     band token doesn't resolve": Figma's surface/subtle is a remote leftover).
-     That is the track's own colour, so while buffering the unbuffered
-     remainder of the track is drawn at half strength — the stand-in for
-     Figma's 10%-alpha band, and the only untokenised value here (color-mix,
-     as Button's ghost scrims). Without a track the band stays: hiding it would
-     leave Buffering looking like a stuck bar (spec issue "Show Track hides
-     Buffering too"). */
+  /* Buffer band: surface/shade alone (spec warn "Band opacity doubled":
+     Figma's extra 10% paint opacity is not applied). Without a track the band
+     stays: hiding it would leave Buffering looking like a stuck bar (spec
+     issue "Show Track hides Buffering too"). */
   .buffer {
-    background: var(--surface-track);
-  }
-  .bar[data-buffering] .track {
-    background: color-mix(in srgb, var(--surface-track) 50%, transparent);
+    background: var(--surface-shade);
   }
 
   /* Indicator: width from the value. A zero value is a zero-width indicator
@@ -151,7 +144,7 @@ export default css`
   }
 
   /* ---- shape x size ------------------------------------------------------- */
-  :host([size="medium"]) {
+  :host([size="large"]) {
     --zds-progress-bar-thickness: var(--space-lg);
     --zds-progress-bar-radius: var(--radius-md);
   }

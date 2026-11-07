@@ -74,6 +74,9 @@ export class ZdsInputField extends LitElement {
 
   @property({ type: Boolean, reflect: true }) disabled = false;
 
+  /** Fills the container's width. Without it the field starts at 280 and narrows to fit its container. */
+  @property({ type: Boolean, reflect: true }) block = false;
+
   /** Shown but not editable; stays legible, selectable and in the tab order. */
   @property({ type: Boolean, reflect: true }) readonly = false;
 
@@ -104,6 +107,15 @@ export class ZdsInputField extends LitElement {
 
   /** Trailing icon on text and number (the spec's hasTrailing). Number defaults to `dialpad`; `""` for none. */
   @property({ type: String, attribute: "trailing-icon" }) trailingIcon: IconName | "" | null = null;
+
+  /** Text between the leading icon and the value, such as a dial code. It reads with the value. */
+  @property({ type: String, attribute: "leading-text" }) leadingText: string | null = null;
+
+  /** The on-screen keyboard to ask for, the native `inputmode`. Defaults to `decimal` on number. */
+  @property({ type: String }) keyboard: string | null = null;
+
+  /** The native `autocomplete`. Defaults to `current-password` on password and `off` otherwise. */
+  @property({ type: String }) autocomplete: string | null = null;
 
   /** Accessible name of the clear control. */
   @property({ type: String, attribute: "clear-label" }) clearLabel = "Clear";
@@ -214,18 +226,19 @@ export class ZdsInputField extends LitElement {
     return html`
       <div part="field" class=${classMap({ field: true, [st]: true })}>
         ${showLeading ? html`<zds-icon class="icon" name=${this.leadingIcon} size=${this.iconSize} .iconStyle=${"rounded"} aria-hidden="true"></zds-icon>` : nothing}
+        ${this.leadingText ? html`<span class="leading-text">${this.leadingText}</span>` : nothing}
         <input id="input" part="input"
           type=${this.type === "password" && this.revealed ? "text" : this.type}
           .value=${live(this.value)}
           placeholder=${ifDefined(this.placeholder || undefined)}
           name=${ifDefined(this.name ?? undefined)}
           min=${ifDefined(this.min ?? undefined)} max=${ifDefined(this.max ?? undefined)} step=${ifDefined(this.step ?? undefined)}
-          inputmode=${ifDefined(this.type === "number" ? "decimal" : undefined)}
+          inputmode=${ifDefined(this.keyboard ?? (this.type === "number" ? "decimal" : undefined))}
           ?disabled=${this.disabled} ?readonly=${this.readonly} ?required=${this.required}
           aria-invalid=${this.invalid ? "true" : "false"}
           aria-label=${ifDefined(this.label ?? undefined)}
           aria-description=${ifDefined(this.description ?? undefined)}
-          autocomplete=${this.type === "password" ? "current-password" : "off"}
+          autocomplete=${this.autocomplete ?? (this.type === "password" ? "current-password" : "off")}
           @input=${this.onInput} @change=${() => this.dispatchEvent(new Event("change", { bubbles: true }))}
           @focus=${this.onFocus} @blur=${this.onBlur} />
         ${trailing === nothing ? nothing : html`<span class="trailing">${trailing}</span>`}

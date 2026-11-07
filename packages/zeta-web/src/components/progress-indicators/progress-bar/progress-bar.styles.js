@@ -1,16 +1,16 @@
 import { css } from "lit";
 
 /* Spec: specs/progress-bar. The label row (label/medium on foreground/secondary) sits space/lg above the bar. The track
-   is surface/track, the indicator foreground/link. Thickness is 8px small and 16px medium, raw in Figma (spec warn
-   "Thickness has no token"); rounded ends are radius/sm small and radius/md medium. The buffer band's surface/subtle is
-   not in tokens/ (spec blocker), so it falls back to the 10% ghost pressed scrim, the alpha Figma's variable carries. */
+   is surface/track, the indicator foreground/link. Thickness is 8px small and 16px large, raw in Figma (spec warn
+   "Thickness has no token"); rounded ends are radius/sm small and radius/md large. The buffer band is surface/shade alone; Figma's
+   extra 10% paint opacity is not applied (spec warn "Band opacity doubled"). */
 export default css`
   :host {
     display: flex;
     --_thickness: 16px;
     --_radius: var(--zebra-radius-none);
     --progress-bar-color: var(--foreground-link);
-    --progress-bar-buffer-color: var(--interactive-ghost-background-pressed);
+    --progress-bar-buffer-color: var(--surface-shade);
   }
 
   :host([size="small"]),
@@ -56,7 +56,7 @@ export default css`
   .trailing {
     display: flex;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     font: var(--text-label-medium);
     letter-spacing: var(--label-medium-letter-spacing);
     color: var(--foreground-secondary);

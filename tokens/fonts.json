@@ -1,0 +1,55 @@
+{
+  "note": "Every font family the tokens name, and the weights the type ramp needs. fetch-fonts.mjs downloads the families it can into fonts/; a family it cannot fetch must be self-hosted by hand.",
+  "families": [
+    {
+      "family": "IBM Plex Sans",
+      "usedByTextStyles": true,
+      "figmaStyles": [
+        "Light",
+        "Medium",
+        "Regular"
+      ],
+      "weights": [
+        300,
+        400,
+        500
+      ],
+      "tokens": [
+        "primitives.text.font family.IBM Plex Sans",
+        "typography.body.large.font family",
+        "typography.body.medium.font family",
+        "typography.body.small.font family",
+        "typography.body.xsmall.font family",
+        "typography.display.large.font family",
+        "typography.display.medium.font family",
+        "typography.display.small.font family",
+        "typography.heading.large.font family",
+        "typography.heading.medium.font family",
+        "typography.heading.small.font family",
+        "typography.indicator.medium.font family",
+        "typography.indicator.small.font family",
+        "typography.label.large.font family",
+        "typography.label.medium.font family",
+        "typography.label.small.font family",
+        "typography.title.large.font family",
+        "typography.title.medium.font family",
+        "typography.title.small.font family"
+      ]
+    },
+    {
+      "family": "Zebra Sans",
+      "usedByTextStyles": false,
+      "figmaStyles": [],
+      "weights": [],
+      "tokens": [
+        "primitives.text.font family.Zebra Sans"
+      ]
+    }
+  ],
+  "weightsDeclared": [
+    300,
+    400,
+    500,
+    700
+  ]
+}

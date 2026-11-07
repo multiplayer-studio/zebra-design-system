@@ -13,10 +13,16 @@ import { css } from "lit";
  */
 export default css`
   :host {
-    /* The spec's 280 is the sample width (spec note); the field fills its
-       container. */
+    /* 280 is a start width, not a fixed one (spec note): the field never
+       outgrows its container, and block fills it. */
     display: block;
-    min-inline-size: calc(8 * var(--control-sm));
+    inline-size: 280px;
+    max-inline-size: 100%;
+    min-inline-size: min(calc(6 * var(--control-sm)), 100%);
+  }
+
+  :host([block]) {
+    inline-size: 100%;
   }
 
   :host([hidden]) {
@@ -28,9 +34,9 @@ export default css`
     display: flex;
     align-items: center;
     box-sizing: border-box;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     /* space/sm block padding at every size (spec warn: two medium/rounded
-       variants bind space/2xs; space/sm is the stated intent). */
+       variants bind space/3xs; space/sm is the stated intent). */
     padding: var(--space-sm) var(--space-md);
     block-size: var(--control-lg);
     border-radius: var(--zds-search-radius);
@@ -57,7 +63,7 @@ export default css`
        adds to the field's space/xs gap; with no icon it adds to the field's
        space/md padding (spec designerClarifications, "text padding"). */
     padding-block: 0;
-    padding-inline: var(--space-xxs);
+    padding-inline: var(--space-2xs);
     box-sizing: border-box;
     border: 0;
     outline: none;
@@ -93,8 +99,8 @@ export default css`
     align-items: center;
     gap: var(--space-sm);
     /* The divider's measured height (24) has no token: the glyph box plus
-       space/2xs above and below. */
-    block-size: calc(var(--control-icon-md) + 2 * var(--space-2xs));
+       space/3xs above and below. */
+    block-size: calc(var(--control-icon-md) + 2 * var(--space-3xs));
   }
   .divider {
     align-self: stretch;
@@ -124,7 +130,7 @@ export default css`
   }
   .control:focus-visible {
     outline: var(--stroke-thick) solid var(--border-focus);
-    outline-offset: var(--space-2xs);
+    outline-offset: var(--space-3xs);
   }
   .control:disabled {
     cursor: not-allowed;

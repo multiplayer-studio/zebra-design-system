@@ -16,6 +16,7 @@ All 189 variants were walked. Colour depends only on Flavour × State. Geometry 
 | `flavour` | enum | `default`, `gradient`, `ghost` | `default` |
 | `hasLeading` | boolean | | `true` |
 | `hasTrailing` | boolean | | `true` |
+| `block` *(code only)* | boolean | | `false` |
 
 Figma also has a boolean **`Show Cancel`** that is wired to nothing. Don't build it (see issues).
 
@@ -47,6 +48,10 @@ Figma also has a boolean **`Show Cancel`** that is wired to nothing. Don't build
 - `true`: Show the magnifier. It is the fastest signal that tells a search field apart from a bare input.
 - `false`: Drop it where the surrounding context already says this is search and the width matters more.
 
+**block** *(code only)*
+- `true`: Fills the container's width.
+- `false`: Starts at 280 and narrows to fit its container.
+
 **hasTrailing**
 - `true`: Show the trailing control. It takes whatever icon and function the implementation passes. The example ships voice input, which suits search well without being required, and while typing it becomes the group that also offers a clear.
 - `false`: No trailing control, with the input taking the width back.
@@ -63,10 +68,10 @@ Values anywhere in this document are token names. The only literals are inside v
 
 ## Anatomy
 
-The root is a horizontal row: `space/sm` block padding, `space/md` inline padding, a `space/xxs` gap and centred items. It's fixed at `measuredWidthPx` 280, with the height per size.
+The root is a horizontal row: `space/sm` block padding, `space/md` inline padding, a `space/2xs` gap and centred items. It starts at `measuredWidthPx` 280 and narrows to fit its container, with the height per size.
 
 1. **Leading icon**: "The magnifier, present unless hasLeading is off." The `search` glyph, Rounded family. Icon Size=medium at large and medium, small at small. Visible when `hasLeading`.
-2. **Input**: "The query text, taking the width left between the two icons." Fills the width, with a `space/2xs` gap. Inline padding is `space/xxs` on both sides, per the designer clarification below. Icon to text is `space/xxs` + `space/xxs`; border to text, with no icon on that side, is `space/md` + `space/xxs`.
+2. **Input**: "The query text, taking the width left between the two icons." Fills the width, with a `space/3xs` gap. Inline padding is `space/2xs` on both sides, per the designer clarification below. Icon to text is `space/2xs` + `space/2xs`; border to text, with no icon on that side, is `space/md` + `space/2xs`.
    - **text**: typography per size; colour per state.
    - **cursor**: `foreground/cursor`, shown at focus, selected and typing. In code this is the caret colour.
 3. **Trailing area**: "The trailing control, defaulting to voice input and open to any icon and function. While typing it becomes a group with a clear control and a divider. Both are pressable, and each claims a target wider than its glyph so the surrounding space counts as part of the control."
@@ -199,8 +204,8 @@ Theme axes, from `tokens/manifest.json`:
 
 | Property | Type | Description |
 |---|---|---|
-| Size | Fixed | 280 wide at every size. 48 tall at large, 40 at medium and 36 at small. |
-| Padding and gap | Fixed | space/sm top and bottom, space/md left and right, with a space/xxs gap between the icons and the input. These hold at every size. |
+| Size | Start width | Starts 280 wide and narrows to fit its container, and block fills it. 48 tall at large, 40 at medium and 36 at small. |
+| Padding and gap | Fixed | space/sm top and bottom, space/md left and right, with a space/2xs gap between the icons and the input. These hold at every size. |
 | Radius | Per Shape | radius/none when sharp, radius/sm when rounded and radius/pill when full. |
 | Surface | Per Flavour | interactive/neutral/background/default on default and gradient, interactive/ghost/background/default on ghost. Disabled moves each to its own disabled token. |
 | Border | Per Flavour | Default draws at 1px and focus at 2px. Gradient keeps those weights with foreground/gradient/start. Ghost holds every weight at zero, and its focus outline is optional so the container can carry focus instead. |
@@ -211,7 +216,7 @@ Theme axes, from `tokens/manifest.json`:
 
 These were given directly and are recorded apart from the verbatim metadata above.
 
-- **Text padding (2026-10-14):** "The text within the input should have a padding left right of 4px. such that the icon to text end up at 8px but when no icon that extra 4 is included in the gap between the outline and text." The input carries `space/xxs` inline padding on both sides, on Search and Input alike.
+- **Text padding (2026-10-14):** "The text within the input should have a padding left right of 4px. such that the icon to text end up at 8px but when no icon that extra 4 is included in the gap between the outline and text." The input carries `space/2xs` inline padding on both sides, on Search and Input alike.
 
 ## Visual reference
 
@@ -241,7 +246,7 @@ No blockers.
 - **The placeholder fails text contrast in Light:** 3.02:1 on the field and 2.78:1 behind ghost, against 4.5:1. Dark is 4.97:1 and 4.25:1.
 - **The resting border is close to invisible:** 1.40:1 against the page in Light and 2.37:1 in Dark, against 3:1 for an input boundary. The focus border passes at 3.22:1 and 3.58:1.
 - **Height is unbound on the default variant.** Large + sharp + default + enabled has no height token; every other large variant binds `control/lg`.
-- **Padding drift at medium + rounded.** It uses `space/2xs` block padding in two variants (default + enabled, gradient + enabled) and `space/sm` in the other 19. The metadata says `space/sm`.
+- **Padding drift at medium + rounded.** It uses `space/3xs` block padding in two variants (default + enabled, gradient + enabled) and `space/sm` in the other 19. The metadata says `space/sm`.
 - **Radius drift on rounded + typing + ghost.** These 3 variants bind `radius/element-sm` rather than `radius/sm`. The values are the same today, but the two will drift.
 - **The small typing group's icons render 20.** At small, the resting icons are 16, but the typing group's icons are set to small and still render 20.
 - **Ghost hover, selected and typing are invisible.** They set a border colour at zero weight, so hover on ghost shows no response at all.
@@ -257,10 +262,10 @@ No blockers.
 
 ### Note
 
-- **Resolved since 2026-10-14:** Figma's Input Text frame now carries `space/xxs` inline padding, as the designer clarification asked. The metadata's Layout row still describes only the gap.
+- **Resolved since 2026-10-14:** Figma's Input Text frame now carries `space/2xs` inline padding, as the designer clarification asked. The metadata's Layout row still describes only the gap.
 
 - Focus draws `stroke/thick` outside the field; every other border is inside. Selected returns to `stroke/thin` inside.
-- The fixed 280 width is the sample width; in use the field normally fills its container.
+- The width (280) is fixed in every variant in Figma. In code it is a start width, and block fills the container.
 - State mixes interaction, content (filled) and settable (disabled) states. There's no read-only, error or loading state.
 - Trailing's `hasIcon` and `hasCancel` are string variants. It's public by name but used only here.
 - `control/md`'s description says 48px; it resolves to 40.

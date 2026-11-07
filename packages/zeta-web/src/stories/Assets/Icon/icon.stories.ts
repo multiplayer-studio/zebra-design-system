@@ -17,7 +17,7 @@ const meta: Meta<ZetaIcon> = {
       control: { type: "select" }
     },
     size: {
-      options: [undefined, "small", "medium", "large"],
+      options: [undefined, "xsmall", "small", "medium", "large"],
       control: { type: "select" }
     },
     framed: {
@@ -79,17 +79,55 @@ export const SVGIcon: StoryObj = {
   }
 };
 
-/** The three sizes (16, 20 and 28px), unframed and framed. The framed box is outlined here only to show the 40px
- * target; the component itself draws nothing. */
+const SIZES = ["xsmall", "small", "medium", "large"] as const;
+const PX = { xsmall: 12, small: 16, medium: 20, large: 28 } as const;
+const caption = (text: string) => html`<span style="font: var(--text-label-small); color: var(--foreground-secondary)">${text}</span>`;
+const cell = (content: unknown, text: string) =>
+  html`<div style="display: grid; justify-items: center; gap: var(--space-sm)">${content}${caption(text)}</div>`;
+const row = (cells: unknown[]) => html`<div style="display: flex; gap: var(--space-xl); align-items: end; flex-wrap: wrap">${cells}</div>`;
+
+/** The four sizes, 12, 16, 20 and 28px, bound to control/icon-xs, -sm, -md and -lg. Always square. */
 export const Sizes: StoryObj<ZetaIcon> = {
   args: { name: "verified" },
   argTypes: { size: { table: { disable: true } }, framed: { table: { disable: true } } },
-  render: args => html`
-    <div style="display: grid; grid-template-columns: repeat(3, max-content); gap: var(--space-xl); align-items: center">
-      ${(["small", "medium", "large"] as const).map(size => html`<zeta-icon name=${args.name} size=${size} .rounded=${args.rounded}></zeta-icon>`)}
-      ${(["small", "medium", "large"] as const).map(
-        size => html`<zeta-icon name=${args.name} size=${size} framed .rounded=${args.rounded} style="outline: 1px dashed var(--border-default)"></zeta-icon>`
-      )}
-    </div>
-  `
+  render: args =>
+    row(SIZES.map(size => cell(html`<zeta-icon name=${args.name} size=${size} .rounded=${args.rounded}></zeta-icon>`, `${size} · ${PX[size]}px`)))
+};
+
+/** Framed pads the glyph to a fixed box: 40px (control/target-min), or 24px (control/xs) at xsmall. The dashed outline
+ * is the story's, to show the box; the component itself draws nothing. */
+export const Framed: StoryObj<ZetaIcon> = {
+  args: { name: "verified" },
+  argTypes: { size: { table: { disable: true } }, framed: { table: { disable: true } } },
+  render: args =>
+    row(
+      SIZES.map(size =>
+        cell(
+          html`<zeta-icon name=${args.name} size=${size} framed .rounded=${args.rounded} style="outline: 1px dashed var(--border-default)"></zeta-icon>`,
+          `${size} · ${size === "xsmall" ? 24 : 40}px box`
+        )
+      )
+    )
+};
+
+/** Rounded and sharp are two font families with the same glyph names. */
+export const Style: StoryObj<ZetaIcon> = {
+  args: { name: "alarm" },
+  argTypes: { rounded: { table: { disable: true } } },
+  render: args =>
+    row([
+      cell(html`<zeta-icon name=${args.name} size="large" rounded></zeta-icon>`, "rounded"),
+      cell(html`<zeta-icon name=${args.name} size="large" .rounded=${false}></zeta-icon>`, "sharp")
+    ])
+};
+
+/** The icon binds no colour of its own: the embedding component sets --icon-color. */
+export const Colour: StoryObj<ZetaIcon> = {
+  args: { name: "verified" },
+  render: args =>
+    row(
+      (["success", "error", "link"] as const).map(c =>
+        cell(html`<zeta-icon name=${args.name} size="large" .rounded=${args.rounded} style="--icon-color: var(--foreground-${c})"></zeta-icon>`, `foreground/${c}`)
+      )
+    )
 };

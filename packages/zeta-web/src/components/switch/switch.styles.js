@@ -1,6 +1,6 @@
 import { css } from "lit";
 
-/* Spec: specs/switch. A 64 by 32 track (no size token) with space/xxs padding and radius/pill. The thumb is a
+/* Spec: specs/switch. A 64 by 32 track (no size token) with space/2xs padding and radius/pill. The thumb is a
    control/xs pill on interactive/primary/foreground/default that slides 32 to the end when on, on animations/spring,
    while the track moves from interactive/selection/background/default to …/pressed in step. Disabled moves both to
    their disabled tokens. The icons are control/icon-md glyphs on foreground/inverse at either end, each covered by the
@@ -10,7 +10,7 @@ export default css`
   :host {
     --_switch-width: var(--switch-width, 64px);
     --_switch-height: var(--switch-height, 32px);
-    --_switch-padding: var(--space-xxs);
+    --_switch-padding: var(--space-2xs);
     --_switch-thumb-size: var(--switch-thumb-size, var(--control-xs));
     --_switch-icon-size: var(--switch-icon-size, var(--control-icon-md));
     --_switch-travel: calc(var(--_switch-width) - var(--_switch-thumb-size) - 2 * var(--_switch-padding));

@@ -2,20 +2,20 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import "../src/components/icon-button/icon-button.js";
 
-const FLAVOURS = ["primary", "positive", "negative", "subtle", "text", "outline-subtle", "outline", "gradient", "text-gradient"] as const;
+const FLAVOURS = ["primary", "positive", "negative", "subtle", "text", "outline-subtle", "outline", "gradient", "text-gradient", "contrast", "outline-contrast"] as const;
 
 const meta: Meta = {
   title: "Components/Buttons/Icon Button",
   component: "zds-icon-button",
   tags: ["autodocs"],
-  parameters: { docs: { description: { component: "A single glyph, no label: square at every size, with Button's nine flavours, three shapes and four states. Every instance needs `label`, its accessible name. Spec: specs/icon-button." } } },
+  parameters: { docs: { description: { component: "A single glyph, no label: square at every size, with Button's eleven flavours, three shapes and four states. Every instance needs `label`, its accessible name. Spec: specs/icon-button." } } },
   argTypes: {
     flavour: { control: "select", options: FLAVOURS },
     size: { control: "inline-radio", options: ["small", "medium", "large"] },
     shape: { control: "inline-radio", options: ["sharp", "rounded", "full"] },
     disabled: { control: "boolean" },
   },
-  args: { flavour: "primary", size: "small", shape: "sharp", disabled: false, icon: "more-horizontal", label: "More options" },
+  args: { flavour: "primary", size: "medium", shape: "rounded", disabled: false, icon: "more-horizontal", label: "More options" },
   render: (a) => html`<zds-icon-button flavour=${a.flavour} size=${a.size} shape=${a.shape} ?disabled=${a.disabled} icon=${a.icon} label=${a.label}></zds-icon-button>`,
 };
 export default meta;

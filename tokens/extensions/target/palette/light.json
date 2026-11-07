@@ -3,7 +3,7 @@
     "brand": {
       "$type": "color",
       "$value": "{primitives.color.extend.4.70}",
-      "$description": "Hyperlink text color (theme.color.content.link)",
+      "$description": "Ghost button text and input cursors.",
       "$extensions": {
         "com.figma": {
           "id": "VariableID:121:6194",
@@ -20,7 +20,7 @@
     "link": {
       "$type": "color",
       "$value": "{primitives.color.extend.4.60}",
-      "$description": "Hyperlink text color (theme.color.content.link)",
+      "$description": "Text links and subtle button text.",
       "$extensions": {
         "com.figma": {
           "id": "VariableID:63:21",
@@ -95,7 +95,7 @@
     "focus": {
       "$type": "color",
       "$value": "{primitives.color.accent.1.60}",
-      "$description": "Selected item border/outline (theme.color.selection.border)",
+      "$description": "Focus rings and outlines.",
       "$extensions": {
         "com.figma": {
           "id": "VariableID:2535:3742",
@@ -112,7 +112,7 @@
     "selection": {
       "$type": "color",
       "$value": "{primitives.color.extend.4.60}",
-      "$description": "Selected item border/outline (theme.color.selection.border)",
+      "$description": "Borders of selected items.",
       "$extensions": {
         "com.figma": {
           "id": "VariableID:63:32",

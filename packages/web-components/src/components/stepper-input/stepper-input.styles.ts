@@ -11,12 +11,14 @@ import { css } from "lit";
  */
 export default css`
   /* ---- root: column, gap space/sm, start-aligned ------------------------ */
-  /* Overrides input-field's :host (block, a 6 × control/sm minimum). */
+  /* Overrides input-field's :host (block, its start width and minimum). */
   :host {
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-sm);
+    inline-size: auto;
+    max-inline-size: none;
     min-inline-size: 0;
     vertical-align: middle;
   }
@@ -48,7 +50,7 @@ export default css`
     font-size: var(--body-medium-font-size);
     inline-size: max(
       calc(2 * var(--control-sm)),
-      calc(var(--zds-stepper-input-chars, 3) * 1ch + 2 * var(--space-md) + 2 * var(--space-xxs) + 2 * var(--stroke-thin))
+      calc(var(--zds-stepper-input-chars, 3) * 1ch + 2 * var(--space-md) + 2 * var(--space-2xs) + 2 * var(--stroke-thin))
     );
   }
   .value input {

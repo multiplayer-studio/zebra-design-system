@@ -21,7 +21,7 @@ import type { ZdsMenuItem } from "../menu-item/menu-item.js";
  * The panel has no interaction states of its own (spec: "Hover, selection,
  * focus and disabled all live on the Menu Item rows inside it"), so this
  * element carries no `state` property — only `rounded`, which the panel and
- * its rows should agree on.
+ * its rows should agree on, and `compact`, which tightens the panel's inset.
  *
  * "Should agree on" is enforced, not just documented (spec: "Rounded
  * propagation" behavior, added alongside Menu Item's own "match the panel"
@@ -42,6 +42,9 @@ export class ZdsDropdownMenu extends LitElement {
 
   /** Corner treatment. The rows inherit this so the panel and its contents stay in agreement. */
   @property({ type: Boolean, reflect: true }) rounded = false;
+
+  /** Tightens the inset (`space/xs` instead of `space/card`) for a menu with little room to spare. Rows keep their size. */
+  @property({ type: Boolean, reflect: true }) compact = false;
 
   // Rows this panel has taken over `rounded` for, because they had no
   // explicit `rounded` attribute the first time we saw them. Only these are

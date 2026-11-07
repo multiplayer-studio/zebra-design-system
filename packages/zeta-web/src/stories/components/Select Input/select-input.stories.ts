@@ -17,6 +17,7 @@ const meta: Meta<ZetaSelectInput> = {
     error: false,
     required: true,
     label: "Label",
+    subLabel: "",
     hintText: "Hint text",
     errorText: "Error text",
     icon: "star",

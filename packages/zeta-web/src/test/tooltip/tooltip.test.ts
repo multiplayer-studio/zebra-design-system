@@ -34,10 +34,10 @@ describe("zeta-tooltip", () => {
   });
 
   describe("Dimensions", () => {
-    it("pads space/xxs by space/sm and puts the pointer outside the edge it names", async () => {
+    it("pads space/2xs by space/sm and puts the pointer outside the edge it names", async () => {
       const el = await fixture<ZetaTooltip>(html`<zeta-tooltip point="bottom">Label</zeta-tooltip>`);
       const bubble = one(el, ".container");
-      await expect(getComputedStyle(bubble).paddingTop).to.equal(v(el, "--space-xxs"));
+      await expect(getComputedStyle(bubble).paddingTop).to.equal(v(el, "--space-2xs"));
       await expect(getComputedStyle(bubble).paddingLeft).to.equal(v(el, "--space-sm"));
       const b = bubble.getBoundingClientRect();
       await expect(Math.round(one(el, ".point").getBoundingClientRect().top)).to.equal(Math.round(b.bottom));

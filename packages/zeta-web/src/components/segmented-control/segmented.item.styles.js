@@ -1,7 +1,7 @@
 import { css } from "lit";
 
-/* Spec: specs/segmented-control (_Segmented item). At least control/sm tall, space/xxs block padding; space/md to
-   space/lg inline with a space/xxs gap for icon and label, space/lg both sides for one of them. label/medium on
+/* Spec: specs/segmented-control (_Segmented item). At least control/sm tall, space/2xs block padding; space/md to
+   space/lg inline with a space/2xs gap for icon and label, space/lg both sides for one of them. label/medium on
    foreground/secondary, foreground/primary on hover and when active. The active fill is the control's indicator. */
 export default css`
   :host {
@@ -20,9 +20,9 @@ export default css`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     min-height: var(--control-sm);
-    padding: var(--space-xxs) var(--space-lg) var(--space-xxs) var(--space-md);
+    padding: var(--space-2xs) var(--space-lg) var(--space-2xs) var(--space-md);
     border-radius: inherit;
     cursor: pointer;
     font: var(--text-label-medium);

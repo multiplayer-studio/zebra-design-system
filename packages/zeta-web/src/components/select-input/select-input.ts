@@ -25,9 +25,9 @@ import type { ZetaOptionClickEventDetail } from "../../events.js";
  *
  * Currently no typing or multi-select support.
  *
- * Label, field and hint stack space/xxs apart. The field reads the same tokens as Input: `flavor`, `shape` and `size`
+ * Label, field and hint stack space/xs apart. The field reads the same tokens as Input: `flavor`, `shape` and `size`
  * pick its border, corners and height; `open`, `error`, `readOnly` and `disabled` its state. The options open 4px
- * below the field, as wide as it, on surface/menu.
+ * below the field, as wide as it, on surface/overlay.
  *
  * @event {Event} change - Fired when the value of the select input changes.
  * @event {FocusEvent} focus - Fired when the select input receives focus.
@@ -94,6 +94,9 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
 
   /** Adds an information icon after the label. */
   @property({ type: Boolean, attribute: "show-information" }) showInformation = false;
+
+  /** Supporting line under the label (spec: Input Label's Show Sub Label). Shown when set; needs a `label`. */
+  @property({ type: String, attribute: "sub-label" }) subLabel = "";
 
   /** Keeps the icon ahead of the hint message. */
   @property({ type: Boolean, attribute: "show-hint-icon" }) showHintIcon = true;
@@ -208,6 +211,14 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
   };
 
   renderLabel(): TemplateResult | void {
+    const row = this.renderLabelRow();
+    if (row && this.subLabel) {
+      return html`<div class="label-group">${row}<span class="sub-label" id="sub-label">${this.subLabel}</span></div>`;
+    }
+    return row;
+  }
+
+  private renderLabelRow(): TemplateResult | void {
     if (this.label) {
       return html`<div class="label">
         <label for="select" id="label">${this.label}</label>
@@ -302,6 +313,7 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
             aria-expanded=${String(this.open)}
             aria-controls="options"
             aria-labelledby=${this.label ? "label" : nothing}
+            aria-describedby=${this.label && this.subLabel ? "sub-label" : nothing}
             aria-label=${this.label ? nothing : (this.placeholder ?? "Select an option")}
             aria-disabled=${this.disabled ? "true" : nothing}
             aria-invalid=${this.error ? "true" : nothing}

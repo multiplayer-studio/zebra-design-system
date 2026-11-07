@@ -50,8 +50,11 @@ export default [
       }
     }
 
-    /* Size: control/icon-sm, -md and -lg (specs/icon). Width and height both follow, so the icon is always square
+    /* Size: control/icon-xs, -sm, -md and -lg (specs/icon). Width and height both follow, so the icon is always square
        (spec issue "gaps": Figma binds only the height). */
+    :host([size="xsmall"]) {
+      --icon-size: var(--control-icon-xs);
+    }
     :host([size="small"]) {
       --icon-size: var(--control-icon-sm);
     }
@@ -69,6 +72,11 @@ export default [
       height: var(--control-target-min);
       align-items: center;
       justify-content: center;
+    }
+    /* xsmall frames to control/xs (24px), as Figma draws it. */
+    :host([framed][size="xsmall"]) {
+      width: var(--control-xs);
+      height: var(--control-xs);
     }
 
     :host ::slotted(svg) {

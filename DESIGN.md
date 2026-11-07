@@ -67,7 +67,7 @@ Shape is decided once, by the container, and flows down.
 
 | Group | Scale |
 |---|---|
-| `space/` | `none`, `2xs`, `xxs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`; layout: `card`, `gutter`, `section`, `page`; negative: `neg/xs`–`neg/xl` |
+| `space/` | `none`, `3xs`, `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, `5xl`; layout: `card`, `gutter`, `section`, `page`; negative: `neg/xs`–`neg/xl` |
 | `radius/` | `none`, `xs`, `sm`, `md`, `lg`, `xl`, `pill`; roles: `element-sm`, `element-md`, `container` |
 | `control/` | heights `xs`, `sm`, `md`, `lg`, `target-min`; icons `icon-xxs`, `icon-xs`, `icon-sm`, `icon-md`, `icon-lg` |
 | `stroke/` | `thin`, `base`, `thick`, `heavy` |
@@ -134,6 +134,7 @@ Interaction states such as hover, pressed and focus are CSS states, never props,
 | Component | Key props | Spec |
 |---|---|---|
 | Input (with Input Field) | `type`, `showLabel`, `showHint`, `state` default/invalid/disabled | `specs/input` |
+| Phone Input | `value`, `country`, `countries`, `state`, `size`, `shape`, `flavour`, `label`, `hint` | `specs/phone-input` |
 | Select | `open`, `showLabel`, `showHint` | `specs/select` |
 | Search | `shape`, `size`, `flavour` default/gradient/ghost, leading/trailing | `specs/search` |
 | Checkbox | `checked` on/off/indeterminate, `size`, `label` | `specs/checkbox` |
@@ -175,9 +176,11 @@ Interaction states such as hover, pressed and focus are CSS states, never props,
 | Navigation Item | `active`, `disabled`, `label`, badge | `specs/navigation-item` |
 | Navigation Rail | `expanded`, `shape`, `inverse`, sub menu, slots | `specs/navigation-rail` |
 | Navigation Rail Item | `expanded`, `label`, icon, badge | `specs/navigation-rail-item` |
+| Tab Bar | `flavour` full-width·condensed, tabs (Tab Item: `label`, icon, badge, `disabled`) | `specs/tab-bar` |
 | Sub Menu Item | `nested`, leading icon, badge, sub menu | `specs/sub-menu-item` |
 | Screen Header Bar | `title`, back, `rounded`, action slot | `specs/screen-header-bar` |
 | Pagination | controls, `outline`, `rounded` | `specs/pagination` |
+| Breadcrumb | `items` (label, href, icon, onSelect), `maxItems`, `flavour` default/accent, `shape` rounded/sharp | `specs/breadcrumb` |
 
 ### Experimental (code only, no spec yet)
 
@@ -187,6 +190,7 @@ Find these in Storybook under `Experimental/*`. They must not be used in product
 |---|---|---|
 | Message Input | text, attachments (Assist Chips), voice, actions | `packages/react-baseui/src/components/message-input` |
 | Chat (Message, Thread and content blocks) | `role` me/other/assistant, `position`, `header`, `avatar`, `footer`, `fill` light/solid, `actions`, `actionsPosition`, `reactions`, `shape` | `packages/react-baseui/src/components/chat`, with a Figma draft on the Chat branch |
+| Stepper | `steps` (label, subtitle, status complete/partial/active/upcoming/error/disabled), `orientation`, `layout` desktop/mobile, `onStepSelect` | `packages/react-baseui/src/components/stepper`, from the Stepper Experimental Figma page |
 
 ---
 

@@ -51,12 +51,12 @@ export default css`
     background-color: var(--_active);
   }
 
-  /* One dot per stop, across the whole track, inset space/2xs at each end. */
+  /* One dot per stop, across the whole track, inset space/3xs at each end. */
   .step-container {
     position: absolute;
     top: calc(50% - var(--_dot) / 2);
-    left: var(--space-2xs);
-    right: var(--space-2xs);
+    left: var(--space-3xs);
+    right: var(--space-3xs);
     height: var(--_dot);
     pointer-events: none;
   }

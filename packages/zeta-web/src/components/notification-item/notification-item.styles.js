@@ -72,7 +72,7 @@ export default css`
   .message {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
   }
 
   .header {
@@ -110,8 +110,8 @@ export default css`
     flex: none;
     display: flex;
     align-items: center;
-    gap: var(--space-xxs);
-    padding: var(--space-2xs) 0;
+    gap: var(--space-2xs);
+    padding: var(--space-3xs) 0;
   }
 
   .timestamp {
@@ -146,7 +146,7 @@ export default css`
   .attachment {
     display: flex;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     min-width: 0;
     --icon-size: var(--control-icon-sm);
     --icon-color: currentColor;
@@ -164,7 +164,7 @@ export default css`
   .actions {
     display: flex;
     justify-content: flex-end;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
   }
 
   /* The group bar hangs just below the card, inset space/card each side, 4 high (no token), border/focus. */

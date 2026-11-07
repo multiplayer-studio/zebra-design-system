@@ -18,7 +18,7 @@ export default css`
        control/icon-sm); the dot is what is left inside the ring's padding
        and stroke, which is exactly the drawn 12 / 8 with no new token. */
     --zds-radio-ring: var(--control-xs);
-    --zds-radio-pad: var(--space-xxs);
+    --zds-radio-pad: var(--space-2xs);
     --zds-radio-dot: calc(var(--zds-radio-ring) - 2 * (var(--zds-radio-pad) + var(--stroke-thick)));
 
     /* --- colour: checked x state --------------------------------------- */
@@ -83,7 +83,7 @@ export default css`
   /* ---- size --------------------------------------------------------- */
   :host([size="medium"]) {
     --zds-radio-ring: var(--control-icon-sm);
-    --zds-radio-pad: var(--space-2xs);
+    --zds-radio-pad: var(--space-3xs);
   }
 
   /* ---- checked ------------------------------------------------------ */

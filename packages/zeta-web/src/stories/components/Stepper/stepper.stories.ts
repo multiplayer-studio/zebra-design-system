@@ -1,124 +1,87 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { spreadGenerator } from "../utils.js";
-import { ZetaStepper } from "../../components/stepper/stepper.js";
-import type { StepperItemFlavor } from "../../components/stepper/stepper-item.js";
-import { fn } from "@storybook/test";
+import { ifDefined } from "lit/directives/if-defined.js";
+import type { ZetaStepper } from "../../../components/stepper/stepper.js";
+import type { StepperItemStatus } from "../../../components/stepper/stepper-item.js";
+import "../../../components/stepper/stepper.js";
 
-const spread = spreadGenerator(ZetaStepper);
+const STEPS: Array<{ label: string; subtitle?: string; status: StepperItemStatus }> = [
+  { label: "Account", status: "complete" },
+  { label: "Shipping", status: "complete" },
+  { label: "Payment", subtitle: "Card", status: "active" },
+  { label: "Confirm", status: "default" },
+  { label: "Review", status: "default" }
+];
 
-type Args = ZetaStepper & {
-  flavor1: StepperItemFlavor;
-  title1: string;
-  flavor2: StepperItemFlavor;
-  title2: string;
-  flavor3: StepperItemFlavor;
-  title3: string;
-  editing: boolean;
-  progress: number;
-  showOverflowButton: boolean;
-  progressBar: boolean;
-};
-const meta: Meta<Args> = {
+const items = (steps = STEPS) =>
+  steps.map(
+    s => html`<zeta-stepper-item status=${s.status} label=${s.label} subtitle=${ifDefined(s.subtitle)}></zeta-stepper-item>`
+  );
+
+const meta: Meta<ZetaStepper> = {
   component: "zeta-stepper",
-  tags: ["autodocs"],
   title: "Components/Stepper",
   args: {
-    progress: 0,
-    showOverflowButton: false,
-    editing: false,
-    progressBar: false,
-    flavor1: "default",
-    title1: "Label",
-    flavor2: "default",
-    title2: "Label",
-    flavor3: "default",
-    title3: "Label",
-    onclick: fn()
+    variant: "horizontal",
+    size: "default",
+    card: false,
+    rounded: false,
+    currentStep: "3",
+    totalSteps: "5",
+    label: "Payment",
+    subtitle: "Card",
+    showSubtitle: true,
+    accessibleLabel: "Checkout"
   },
   argTypes: {
-    variant: {
-      table: { disable: true }
-    },
-    slot: { table: { disable: true } },
-    progress: {
-      control: { type: "number", min: 0.0, max: 1.0, step: 0.01 }
-    },
-    showOverflowButton: {
-      control: { type: "boolean" }
-    },
-    editing: {
-      control: { type: "boolean" }
-    },
-    flavor1: {
-      options: ["partial", "success", "active", "default"],
-      control: { type: "select" }
-    },
-    title1: {
-      control: { type: "text" }
-    },
-    flavor2: {
-      options: ["partial", "success", "active", "default"],
-      control: { type: "select" }
-    },
-    title2: {
-      control: { type: "text" }
-    },
-    flavor3: {
-      options: ["partial", "success", "active", "default"],
-      control: { type: "select" }
-    },
-    title3: {
-      control: { type: "text" }
-    }
+    variant: { options: ["horizontal", "vertical"], control: { type: "inline-radio" } },
+    size: { options: ["default", "compact"], control: { type: "inline-radio" } },
+    card: { control: { type: "boolean" } },
+    rounded: { control: { type: "boolean" } },
+    showSubtitle: { control: { type: "boolean" } },
+    progress: { table: { disable: true } },
+    progressBar: { table: { disable: true } },
+    showOverflowButton: { table: { disable: true } }
   },
   parameters: {
-    design: {
-      url: "https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=3420-67488"
-    },
-    status: {
-      type: "ready"
-    }
+    design: { url: "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7357-18457" },
+    status: { type: "ready" }
+  },
+  render: args => {
+    const narrow = args.variant === "vertical" || args.size === "compact";
+    return html`<div style="inline-size:${narrow ? 340 : 640}px">
+      <zeta-stepper
+        variant=${args.variant}
+        size=${args.size}
+        ?card=${args.card}
+        ?rounded=${args.rounded}
+        current-step=${args.currentStep}
+        total-steps=${args.totalSteps}
+        label=${args.label}
+        subtitle=${ifDefined(args.subtitle)}
+        .showSubtitle=${args.showSubtitle}
+        accessible-label=${args.accessibleLabel}
+        >${items(args.variant === "vertical" && args.card ? STEPS.slice(1, 4) : STEPS)}</zeta-stepper
+      >
+    </div>`;
   }
 };
-
 export default meta;
 
-export const Horizontal: StoryObj = {
-  render: args => {
-    return html`
-      <zeta-stepper ${spread(args)} variant="horizontal">
-        <zeta-stepper-item flavor=${args.flavor1} ?editing=${args.editing}>${args.title1}</zeta-stepper-item>
-        <zeta-stepper-item flavor=${args.flavor2} ?editing=${args.editing}>${args.title2}</zeta-stepper-item>
-        <zeta-stepper-item flavor=${args.flavor3} ?editing=${args.editing}>${args.title3}</zeta-stepper-item>
-      </zeta-stepper>
-    `;
-  },
-  parameters: {
-    design: {
-      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=21529-11408&mode=design&t=DUHsS5bjWB5UW1iG-4"
-    },
-    status: {
-      type: "ready"
-    }
-  }
+/** Horizontal, size default: every step named under its indicator. Use the controls to try every arrangement. */
+export const Stepper: StoryObj<ZetaStepper> = {};
+
+/** Horizontal, size compact: for mobile. The count and the current step's title above a bar of segments. */
+export const Compact: StoryObj<ZetaStepper> = {
+  args: { size: "compact", subtitle: "Card or invoice" }
 };
-export const Vertical: StoryObj = {
-  render: args => {
-    return html`
-      <zeta-stepper ${spread(args)} variant="vertical">
-        <zeta-stepper-item flavor=${args.flavor1} ?editing=${args.editing}>${args.title1}</zeta-stepper-item>
-        <zeta-stepper-item flavor=${args.flavor2} ?editing=${args.editing}>${args.title2}</zeta-stepper-item>
-        <zeta-stepper-item flavor=${args.flavor3} ?editing=${args.editing}>${args.title3}</zeta-stepper-item>
-      </zeta-stepper>
-    `;
-  },
-  parameters: {
-    design: {
-      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=21529-11531&mode=design&t=DUHsS5bjWB5UW1iG-4"
-    },
-    status: {
-      type: "needsAttention"
-    }
-  }
+
+/** Vertical: a rail, each label beside its indicator. */
+export const Vertical: StoryObj<ZetaStepper> = {
+  args: { variant: "vertical" }
+};
+
+/** Vertical with card: a column of Step Cards. `rounded` picks Step Card/Round over Step Card/Sharp. */
+export const Cards: StoryObj<ZetaStepper> = {
+  args: { variant: "vertical", card: true, rounded: true }
 };

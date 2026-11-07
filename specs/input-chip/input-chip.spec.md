@@ -35,9 +35,11 @@ Values anywhere in this document are token names. The only literals are inside v
 
 None on the chip itself. The avatar's photo or initials are the nested [Avatar](../avatar/avatar.spec.md)'s own content input.
 
+**avatarColor** (code only): The avatar's swatch is always changeable, by a named swatch, a token name, or a colour value.
+
 ## Anatomy
 
-1. **Chip (root)**: "The component frame. A horizontal auto-layout that hugs its content at a fixed height, carrying the fill and the border." Horizontal, gap `space/sm`, padding `space/xxs` top/bottom and `space/sm` left/right, cross-axis centred. Width hugs, height `control/target-min`. Radius `radius/pill` (rounded) or `radius/none`. Fill `interactive/ghost/background/default`; border `interactive/neutral/border/default` at `stroke/thin`, inside.
+1. **Chip (root)**: "The component frame. A horizontal auto-layout that hugs its content at a fixed height, carrying the fill and the border." Horizontal, gap `space/sm`, padding `space/2xs` top/bottom and `space/sm` left/right, cross-axis centred. Width hugs, height `control/target-min`. Radius `radius/pill` (rounded) or `radius/none`. Fill `interactive/ghost/background/default`; border `interactive/neutral/border/default` at `stroke/thin`, inside.
 2. **Avatar**: "The optional leading identity, present when Show Avatar is on." [Avatar](../avatar/avatar.spec.md) pinned to `size=xxxsmall`, `showStatus`, `showRing` and `showClose` all false (24Px measured). Visible when `showAvatar`.
 3. **Label**: text `label/medium`, colour `interactive/neutral/foreground/default`, hugs. Content from `label`.
 4. **Remove control**: "The trailing close icon. Always present, with no property to hide it." Glyph `close` (rounded family), Icon Size=small pinned by the chip (16Px). Colour is `currentColor`.
@@ -67,7 +69,7 @@ No on-page private subcomponents. Library dependencies in the same file:
 ## Tokens & theming
 
 - **Colour:** interactive/ghost/background/default, interactive/ghost/background/hover, interactive/ghost/background/focused, interactive/neutral/background/disabled, interactive/neutral/border/default, interactive/neutral/foreground/default, interactive/neutral/foreground/disabled, focus/outline
-- **Dimension:** control/target-min, space/none, space/xxs, space/sm, radius/pill, radius/none, stroke/thin, stroke/thick
+- **Dimension:** control/target-min, space/none, space/2xs, space/sm, radius/pill, radius/none, stroke/thin, stroke/thick
 - **Typography:** label/medium
 - **Glyphs:** close
 
@@ -110,7 +112,7 @@ Theme axes (from tokens/manifest.json): palette Light / Dark; size Desktop / Mob
 - Focus is the only state with a visible outline and it is drawn outside the chip. Check it is not clipped by the field around it.
 - Removing a chip changes what the field contains. That change has to be announced, or a keyboard user loses track of what is left.
 - Disabled chips drop the border entirely and rely on fill and text colour alone. Check both against the field background.
-- The label uses label/medium at 14px and carries the actual value, so it should not be reduced further.
+- The label uses label/medium and carries the actual value, so it should not be reduced further.
 
 ## Layout & theming intents
 
@@ -121,7 +123,7 @@ Theme axes (from tokens/manifest.json): palette Light / Dark; size Desktop / Mob
 | Radius | Per Rounded | "radius/pill when true and radius/none when false, bound on all four corners." |
 | Fill | Theming | "interactive/ghost/background at default, hover and focused. disabled uses interactive/neutral/background/disabled." |
 | Border | Per state | "1px inside interactive/neutral/border/default at rest and on hover. Focus replaces it with 2px focus/outline drawn outside. Disabled carries no border." |
-| Label | Theming | "label/medium, IBM Plex Sans Medium 14 over a 20px line, in interactive/neutral/foreground/default and dropping to the disabled token." |
+| Label | Theming | "label/medium, in interactive/neutral/foreground/default and dropping to the disabled token." |
 | Child sizes | Fixed | "Avatar 24 square, remove icon 16 square." |
 
 Visual reference: [component set](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5125-3467) · [metadata](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5689-234) · [focus](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5125-3494) · [disabled](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5125-3481)
@@ -130,7 +132,7 @@ Visual reference: [component set](https://www.figma.com/design/hvRmnZZOZrmTW0wf8
 
 **Warn**
 - **Size has one value and no intent.** Figma added a Size axis with only `medium`. The metadata does not mention it. Keep the prop for later sizes, or leave it out until a second size exists.
-- **Padding quote is stale.** Metadata says space/xs top and bottom. The binding is `space/xxs`, the old 4px space/xs after the rename.
+- **Padding quote is stale.** Metadata says space/xs top and bottom. The binding is `space/2xs`, the old 4px space/xs after the rename.
 - **Hover is effectively invisible.** The ghost fills carry a paint opacity on top of the token (0 at default/focus, 0.05 at hover). `interactive/ghost/background/hover` is already a 5% alpha colour, so hover renders at about 0.25%. Build with the token alone and confirm with design.
 - **Focus does reflow.** The 1px inside border is included in layout at rest and the 2px outside focus border is not, so the chip narrows by 2px at focus and disabled (109 → 107 measured) and content shifts 1px, contrary to the metadata's "nothing reflows". In code keep borders out of layout.
 - **Stale token description.** `control/target-min` says "= 44px" but resolves to 40px.

@@ -11,7 +11,7 @@
   /* Hugs its content on both axes. */
   display: inline-block;
   padding: var(--space-card);
-  background: var(--surface-menu);
+  background: var(--surface-overlay);
   border-radius: var(--radius-none);
   /* "Shadow/medium" style: two stacked drop shadows on one colour token,
      matching the web-components panel. */

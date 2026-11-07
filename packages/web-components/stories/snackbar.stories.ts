@@ -30,7 +30,7 @@ const meta: Meta = {
       story: { inline: false, height: "200px" },
       description: {
         component:
-          "Experimental, as marked in Figma. contextual: a pill where `flavour` sets the tint, the glyph and the controls; standard: a plain dark bar. The action is a subtle Button (outline-subtle on action), the close a subtle Icon Button. One line, never wrapping. Floats in the top layer; `inline` keeps it in the flow for these docs. Spec: specs/snackbar.",
+          "contextual: a pill where `flavour` sets the tint, the glyph and the controls; standard: a plain dark bar. The action is a subtle Button (outline-subtle on action), the close a subtle Icon Button. One line, never wrapping. Floats in the top layer; `inline` keeps it in the flow for these docs. Spec: specs/snackbar.",
       },
     },
   },

@@ -1,0 +1,727 @@
+{
+  "component": {
+    "name": "Breadcrumb",
+    "slug": "breadcrumb",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "7667:447",
+      "key": "3cfa18730db79b1258454324b582c7db62464e1b",
+      "page": "Breadcrump",
+      "pageNodeId": "7662:814",
+      "metadataFrameId": "7668:1158",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7667-447",
+      "extractedAt": "2026-11-01",
+      "variantCount": 10,
+      "defaultVariant": "Collapsed=false, Shape=rounded, Flavour=default, Open=false",
+      "extractionNote": "All 5 item variants read in full, with the default and open Breadcrumb variants, and the metadata frame. The other Breadcrumb variants differ only by the instance properties in the variants tables."
+    }
+  },
+  "summary": "Shows where a page sits in the hierarchy, as a trail of links ending on the current page. Each crumb goes back up a level. A long trail collapses its middle into an overflow menu, so every crumb stays reachable.",
+  "api": {
+    "flavour": {
+      "type": "enum",
+      "figmaName": "Flavour",
+      "values": [
+        "default",
+        "accent"
+      ],
+      "default": "default",
+      "controls": [
+        "currentPage"
+      ],
+      "intent": {
+        "default": "Sets the current page in foreground/primary. Use it unless the trail needs to stand out.",
+        "accent": "Sets the current page and its icon in foreground/link. In code this is flavour."
+      }
+    },
+    "shape": {
+      "type": "enum",
+      "figmaName": "Shape",
+      "values": [
+        "rounded",
+        "sharp"
+      ],
+      "default": "rounded",
+      "controls": [
+        "overflowControl",
+        "overflowMenu"
+      ],
+      "intent": {
+        "rounded": "Matches surfaces built from rounded controls. Reaches the overflow control and its menu only.",
+        "sharp": "Matches square surfaces. The crumbs are text, so they do not change."
+      }
+    },
+    "collapsed": {
+      "type": "enum",
+      "figmaName": "Collapsed",
+      "values": [
+        "false",
+        "true"
+      ],
+      "default": "false",
+      "derived": "from maxItems and the number of items",
+      "controls": [
+        "overflow"
+      ],
+      "intent": {
+        "false": "Shows every crumb. Figma only: derived from maxItems, not a prop.",
+        "true": "Keeps the first crumb and the last ones. The rest move to the overflow menu."
+      }
+    },
+    "open": {
+      "type": "enum",
+      "figmaName": "Open",
+      "values": [
+        "false",
+        "true"
+      ],
+      "default": "false",
+      "derived": "from the menu being open",
+      "controls": [
+        "overflowMenu"
+      ],
+      "intent": {
+        "false": "The overflow menu is closed. Figma only: derived from the menu, not a prop.",
+        "true": "Shows the compact menu below the overflow control. Drawn with Collapsed on."
+      }
+    },
+    "items": {
+      "type": "array",
+      "intent": "The path, root first. Each item takes label, href, icon and onSelect. The last item is the current page.",
+      "codeOnly": true
+    },
+    "maxItems": {
+      "type": "number",
+      "intent": "How many crumbs show before the middle collapses. Unset shows them all. The minimum is 2.",
+      "codeOnly": true
+    },
+    "label": {
+      "type": "string",
+      "intent": "Accessible name of the trail. Defaults to Breadcrumb.",
+      "codeOnly": true
+    },
+    "overflowLabel": {
+      "type": "string",
+      "intent": "Accessible name of the overflow control. Defaults to Show hidden pages.",
+      "codeOnly": true
+    },
+    "portalContainer": {
+      "type": "element",
+      "intent": "Where the overflow menu mounts. Set it when the theme is scoped below body.",
+      "codeOnly": true
+    }
+  },
+  "internalVariations": [
+    {
+      "part": "crumb.icon",
+      "via": "Icon",
+      "options": "any glyph",
+      "intent": "An optional glyph before the label. Figma only: an exposed instance. In code it is the item's icon."
+    }
+  ],
+  "contentInputs": [
+    {
+      "part": "crumb",
+      "input": "label",
+      "sampleCount": 5,
+      "note": "Sample trail, not API."
+    },
+    {
+      "part": "crumb.icon",
+      "input": "icon",
+      "sampleCount": 1,
+      "note": "Sample glyph location."
+    }
+  ],
+  "anatomy": [
+    {
+      "id": "root",
+      "kind": "container",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/md",
+        "crossGap": "space/2xs",
+        "padding": "space/none",
+        "align": "center"
+      },
+      "sizing": "hug"
+    },
+    {
+      "id": "crumb",
+      "kind": "instance",
+      "ref": "_Breadcrumb Item",
+      "refVariant": "State=default",
+      "role": "A link back up the hierarchy, with an optional icon."
+    },
+    {
+      "id": "separator",
+      "kind": "instance",
+      "ref": "Icon",
+      "refVariant": "Size=small",
+      "glyph": "chevron-right",
+      "role": "The chevron after each crumb. Decorative, so hidden from assistive tech."
+    },
+    {
+      "id": "overflowControl",
+      "kind": "instance",
+      "ref": "Icon Button",
+      "refVariant": "Size=small, Flavour=outline-subtle, State=default",
+      "glyph": "more-horizontal",
+      "visibleWhen": "collapsed",
+      "role": "Holds the hidden crumbs, and opens the compact menu."
+    },
+    {
+      "id": "currentPage",
+      "kind": "instance",
+      "ref": "_Breadcrumb Item",
+      "refVariant": "State=current",
+      "role": "The last item. It is text, not a link."
+    },
+    {
+      "id": "overflowMenu",
+      "kind": "instance",
+      "ref": "Dropdown Menu",
+      "refVariant": "Compact=true",
+      "visibleWhen": "open",
+      "position": {
+        "mode": "absolute",
+        "anchor": "below overflowControl, left aligned"
+      },
+      "note": "Figma only: drawn inside the component. Rows are Menu Items for the hidden crumbs."
+    }
+  ],
+  "variants": {
+    "_note": "Cells are token names, except those ending Px, which are measurements of the rendered file.",
+    "flavour": {
+      "axis": "flavour",
+      "base": "default",
+      "table": [
+        {
+          "flavour": "default",
+          "currentPage.state": "current",
+          "figmaNode": "7667:69"
+        },
+        {
+          "flavour": "accent",
+          "currentPage.state": "current accent",
+          "figmaNode": "7667:119"
+        }
+      ]
+    },
+    "shape": {
+      "axis": "shape",
+      "base": "rounded",
+      "table": [
+        {
+          "shape": "rounded",
+          "overflowControl.shape": "rounded",
+          "overflowMenu.rounded": "true",
+          "figmaNode": "7667:259"
+        },
+        {
+          "shape": "sharp",
+          "overflowControl.shape": "sharp",
+          "overflowMenu.rounded": "false",
+          "figmaNode": "7667:353"
+        }
+      ]
+    },
+    "collapsed": {
+      "axis": "collapsed",
+      "base": "false",
+      "table": [
+        {
+          "collapsed": "false",
+          "middle": "every crumb",
+          "measuredHeightPx": "24 at the sample's five crumbs",
+          "figmaNode": "7667:69"
+        },
+        {
+          "collapsed": "true",
+          "middle": "overflowControl and a separator, space/md apart",
+          "measuredHeightPx": "36",
+          "figmaNode": "7667:259"
+        }
+      ]
+    },
+    "open": {
+      "axis": "open",
+      "base": "false",
+      "table": [
+        {
+          "open": "false",
+          "overflowMenu": "absent",
+          "figmaNode": "7667:259"
+        },
+        {
+          "open": "true",
+          "overflowMenu": "Dropdown Menu, Compact=true, More Items off, rows without leading element",
+          "measuredMenuPx": "201 x 96",
+          "measuredOffsetPx": "8",
+          "figmaNode": "7668:968"
+        }
+      ]
+    }
+  },
+  "subcomponents": [
+    {
+      "name": "_Breadcrumb Item",
+      "id": "7665:138",
+      "key": "9944c98a990a8a50a53b1e609b9e9e29df413634",
+      "private": true,
+      "variantCount": 5,
+      "summary": "One crumb. Hover and focus are CSS states. current is derived from being the last item, and current accent from flavour on Breadcrumb. Show Separator is off on the last item.",
+      "api": {
+        "state": {
+          "type": "enum",
+          "figmaName": "State",
+          "values": [
+            "default",
+            "hover",
+            "focus",
+            "current",
+            "current accent"
+          ],
+          "default": "default"
+        },
+        "label": {
+          "type": "string",
+          "figmaName": "Label#7665:0",
+          "default": "Breadcrumb",
+          "controls": [
+            "label"
+          ]
+        },
+        "showIcon": {
+          "type": "boolean",
+          "figmaName": "Show Icon#7665:6",
+          "default": false,
+          "controls": [
+            "icon"
+          ]
+        },
+        "showSeparator": {
+          "type": "boolean",
+          "figmaName": "Show Separator#7665:12",
+          "default": true,
+          "controls": [
+            "separator"
+          ]
+        }
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/md",
+            "padding": "space/none",
+            "align": "center"
+          },
+          "sizing": "hug"
+        },
+        {
+          "id": "crumb",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/sm",
+            "padding": "space/none",
+            "align": "center"
+          },
+          "sizing": "hug",
+          "radius": "radius/sm"
+        },
+        {
+          "id": "icon",
+          "kind": "instance",
+          "ref": "Icon",
+          "refVariant": "Size=small",
+          "glyph": "location (sample)",
+          "visibleWhen": "showIcon",
+          "note": "Exposed nested instance, so the glyph is swapped on the Icon."
+        },
+        {
+          "id": "label",
+          "kind": "text",
+          "content": "label",
+          "text": {
+            "style": "body/medium",
+            "color": "per state"
+          }
+        },
+        {
+          "id": "separator",
+          "kind": "instance",
+          "ref": "Icon",
+          "refVariant": "Size=small",
+          "glyph": "chevron-right",
+          "visibleWhen": "showSeparator"
+        }
+      ],
+      "variants": {
+        "_note": "Cells are token names.",
+        "state": {
+          "axis": "state",
+          "base": "default",
+          "table": [
+            {
+              "state": "default",
+              "label.color": "foreground/secondary",
+              "icon.color": "foreground/primary",
+              "crumb.stroke": "none",
+              "figmaNode": "7665:83"
+            },
+            {
+              "state": "hover",
+              "label.color": "foreground/link",
+              "icon.color": "foreground/primary",
+              "crumb.stroke": "none",
+              "figmaNode": "7665:94"
+            },
+            {
+              "state": "focus",
+              "label.color": "foreground/secondary",
+              "icon.color": "foreground/primary",
+              "crumb.stroke": "border/focus at stroke/thick, outside",
+              "figmaNode": "7665:105"
+            },
+            {
+              "state": "current",
+              "label.color": "foreground/primary",
+              "icon.color": "foreground/primary",
+              "crumb.stroke": "none",
+              "figmaNode": "7665:116"
+            },
+            {
+              "state": "current accent",
+              "label.color": "foreground/link",
+              "icon.color": "foreground/link",
+              "crumb.stroke": "none",
+              "figmaNode": "7665:127"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Icon",
+      "id": "2046:15010",
+      "usedAs": "crumb icon and separator, small"
+    },
+    {
+      "name": "Icon Button",
+      "id": "2338:1763",
+      "spec": "specs/icon-button",
+      "usedAs": "overflow control, small and outline-subtle, glyph more-horizontal"
+    },
+    {
+      "name": "Dropdown Menu",
+      "id": "2666:6863",
+      "spec": "specs/dropdown",
+      "usedAs": "overflow menu, Compact=true, Rounded follows shape"
+    },
+    {
+      "name": "Menu Item",
+      "id": "2402:6508",
+      "spec": "specs/dropdown",
+      "usedAs": "overflow menu rows"
+    },
+    {
+      "name": "Template/Dropdown",
+      "id": "2669:10309",
+      "spec": "specs/dropdown",
+      "usedAs": "named by the metadata as the trigger and menu pattern, not instanced on the page"
+    }
+  ],
+  "tokens": {
+    "source": "tokens/ — names below resolve there; see tokens/manifest.json",
+    "rule": "This spec names tokens only.",
+    "color": [
+      "foreground/primary",
+      "foreground/secondary",
+      "foreground/link",
+      "border/focus"
+    ],
+    "dimension": [
+      "space/{none,xxs,sm,md}",
+      "radius/sm",
+      "stroke/thick"
+    ],
+    "typography": [
+      "body/medium"
+    ],
+    "effect": [],
+    "missingFromExport": [],
+    "namedByMetadataOnly": [
+      "control/sm",
+      "space/xs",
+      "surface/overlay"
+    ],
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "typography": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ],
+      "extensions": "tokens/extensions/ (companion, target, condensed)"
+    }
+  },
+  "states": [
+    {
+      "state": "default",
+      "trigger": "—",
+      "duration": "—",
+      "whatChanges": "Text in foreground/secondary."
+    },
+    {
+      "state": "hover",
+      "trigger": "Pointer over a crumb",
+      "duration": "—",
+      "whatChanges": "Text moves to foreground/link. The icon holds its colour. A CSS state, not a prop."
+    },
+    {
+      "state": "focus",
+      "trigger": "Keyboard focus on a crumb",
+      "duration": "—",
+      "whatChanges": "A stroke/thick ring in border/focus. A CSS state, not a prop."
+    },
+    {
+      "state": "current",
+      "trigger": "Being the last item",
+      "duration": "—",
+      "whatChanges": "Text in foreground/primary, with no link. Derived from position. accent moves it and its icon to foreground/link."
+    },
+    {
+      "state": "Overflow control",
+      "trigger": "Its own Icon Button states",
+      "duration": "—",
+      "whatChanges": "Hover, press and focus belong to Icon Button."
+    },
+    {
+      "state": "Open",
+      "trigger": "Activating the overflow control",
+      "duration": "—",
+      "whatChanges": "Opens Dropdown Menu with Compact on. The control reports itself as expanded."
+    }
+  ],
+  "behavior": [
+    {
+      "type": "Motion",
+      "description": "No transition is defined. Crumbs change colour at once."
+    },
+    {
+      "type": "Collapse",
+      "description": "With maxItems set and a longer trail, the first crumb stays, then maxItems minus one from the end. The rest move to the menu, in order."
+    },
+    {
+      "type": "Dropdown",
+      "description": "The overflow control is the Template/Dropdown trigger. The menu opens below it, left aligned, space/sm away. It is Dropdown Menu with Compact on, so a short list stays tight."
+    },
+    {
+      "type": "Menu rows",
+      "description": "Each hidden crumb is a Menu Item, with its icon if it has one. Choosing a row runs onSelect, follows href, and closes the menu."
+    },
+    {
+      "type": "Keyboard",
+      "description": "Enter or Space opens the menu. Arrow keys move through the rows. Escape closes it and returns focus to the control."
+    },
+    {
+      "type": "Portal",
+      "description": "Figma only: the menu is drawn inside the component. In code it mounts in a portal and is positioned against the control, with collision handling."
+    },
+    {
+      "type": "Wrapping",
+      "description": "A long trail wraps, with lines space/2xs apart. The separator stays at the end of a line, so each line starts on a crumb. Figma draws one line."
+    }
+  ],
+  "content": [
+    {
+      "property": "Crumbs",
+      "type": "items, consumer owned",
+      "description": "The path. Keep labels short, because the trail reads as one line."
+    },
+    {
+      "property": "Label",
+      "type": "Text property",
+      "description": "The crumb's name. It is the only required part of an item."
+    },
+    {
+      "property": "Icon",
+      "type": "Show Icon, nested Icon",
+      "description": "An optional glyph before the label. Figma only: an exposed instance. In code it is the item's icon."
+    },
+    {
+      "property": "Separator",
+      "type": "Parent owned",
+      "description": "chevron-right at small. Figma only: Show Separator. In code it renders after every crumb but the last."
+    },
+    {
+      "property": "Overflow control",
+      "type": "Icon Button, parent owned",
+      "description": "Small and outline-subtle, with more-horizontal. Its shape follows Shape."
+    },
+    {
+      "property": "Overflow menu",
+      "type": "Dropdown Menu, parent owned",
+      "description": "Compact on, with Rounded following Shape. Its rows are Menu Items for the hidden crumbs."
+    },
+    {
+      "property": "Sample trail",
+      "type": "Figma only",
+      "description": "The labels and the number of crumbs are sample content, not API."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Use it on pages more than one level deep, with the root first.",
+      "Set maxItems where the trail could outgrow its row."
+    ],
+    "dont": [
+      "Don't use it for steps in a flow. Stepper is for a sequence, and a breadcrumb is for a place.",
+      "Don't give the current page a link. It is never one, even with an href."
+    ]
+  },
+  "accessibility": [
+    "A labelled nav holding an ordered list.",
+    "The last item carries aria-current=\"page\" and is not a link.",
+    "Separators are hidden from assistive tech.",
+    "The overflow control has no visible text, so overflowLabel names it.",
+    "Opening the menu moves focus to its rows, and Escape returns it to the control.",
+    "Hover is colour alone, so keyboard users rely on the focus ring."
+  ],
+  "layoutTheming": [
+    {
+      "property": "Size",
+      "type": "Hug",
+      "description": "Hugs the trail. A collapsed trail stands at control/sm, because of the overflow control, so it is taller than a full one."
+    },
+    {
+      "property": "Direction",
+      "type": "Row, wrapping",
+      "description": "Crumbs and separators in a row, space/md apart. Wrapped lines sit space/2xs apart."
+    },
+    {
+      "property": "Crumb",
+      "type": "Tokenised",
+      "description": "body/medium, with space/sm between icon and label. foreground/secondary, foreground/link on hover, foreground/primary when current."
+    },
+    {
+      "property": "Icon",
+      "type": "Set to small",
+      "description": "foreground/primary in every state. foreground/link on an accent current page."
+    },
+    {
+      "property": "Separator",
+      "type": "Set to small",
+      "description": "chevron-right in foreground/primary."
+    },
+    {
+      "property": "Overflow control",
+      "type": "Set to small",
+      "description": "Icon Button, outline-subtle. Rounded or sharp from Shape."
+    },
+    {
+      "property": "Overflow menu",
+      "type": "Compact",
+      "description": "Dropdown Menu with Compact on: space/xs padding, space/none between rows, on surface/overlay. It sits space/sm below the control."
+    }
+  ],
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7662-814",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7667-447",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7668-1158",
+    "perAxis": {
+      "default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7667-69",
+      "accent": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7667-119",
+      "collapsed": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7667-259",
+      "sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7667-353",
+      "open": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7668-968",
+      "open sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7668-1064",
+      "_Breadcrumb Item": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7665-138",
+      "item focus": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7665-105"
+    }
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "metadata vs structure",
+      "detail": "collapsed and open are Figma variants, but the metadata says neither is a prop. Code derives them, from maxItems and from the menu."
+    },
+    {
+      "severity": "warn",
+      "source": "structure vs metadata",
+      "detail": "open is drawn at flavour default only. There is no accent open variant, though flavour does not touch the menu."
+    },
+    {
+      "severity": "warn",
+      "source": "structure (gaps)",
+      "detail": "The menu's distance from the control is a raw 8 on an absolute layer, because Figma cannot bind it. The metadata says space/sm."
+    },
+    {
+      "severity": "warn",
+      "source": "structure vs metadata",
+      "detail": "_Breadcrumb Item has no shape axis, so its crumb stays radius/sm on sharp. The focus ring is the only place it shows, and the metadata says crumbs do not change."
+    },
+    {
+      "severity": "warn",
+      "source": "internalVariations",
+      "detail": "The crumb's glyph has no property, only an exposed nested Icon. Code must take it as an item input."
+    },
+    {
+      "severity": "warn",
+      "source": "accessibility",
+      "detail": "The overflow control has no accessible name in Figma, and no input carries one. Code must supply it through overflowLabel."
+    },
+    {
+      "severity": "note",
+      "source": "structure vs metadata",
+      "detail": "Direction says wrapping, but the set does not wrap. The metadata states this, so it is intended. space/2xs is bound for the wrapped lines."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "Collapsed=false repeats across both shapes with no visible change, because there is no overflow control to reach."
+    },
+    {
+      "severity": "note",
+      "source": "metadata",
+      "detail": "items, maxItems, label, overflowLabel and portalContainer exist in the Property Breakdown only. Figma has nothing to bind them to."
+    },
+    {
+      "severity": "note",
+      "source": "metadata",
+      "detail": "control/sm, space/xs and surface/overlay are named by the metadata and belong to nested components, so this page binds none of them directly."
+    },
+    {
+      "severity": "note",
+      "source": "metadata",
+      "detail": "No Theming row exists in Layout & Theming Intents. The Do and Don't picture areas are empty."
+    },
+    {
+      "severity": "note",
+      "source": "metadata",
+      "detail": "No motion, by the metadata's own statement."
+    },
+    {
+      "severity": "note",
+      "source": "structure",
+      "detail": "The page is named Breadcrump. The component and boards are Breadcrumb."
+    }
+  ]
+}

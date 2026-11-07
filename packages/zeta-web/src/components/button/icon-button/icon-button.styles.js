@@ -8,21 +8,21 @@ export default css`
     width: fit-content;
   }
 
-  /* A fixed square per size with space/xxs around the glyph (spec: variants bySize). Small is under the 40px
+  /* A fixed square per size with space/2xs around the glyph (spec: variants bySize). Small is under the 40px
      control/target-min, so prefer medium wherever the control is tapped. */
   :host > button,
   :host([size="small"]) > button {
     box-sizing: border-box;
     width: var(--control-sm);
     height: var(--control-sm);
-    padding: var(--space-xxs);
+    padding: var(--space-2xs);
     --icon-size: var(--control-icon-sm);
   }
 
   :host([size="medium"]) > button {
     width: var(--control-md);
     height: var(--control-md);
-    padding: var(--space-xxs);
+    padding: var(--space-2xs);
     --icon-size: var(--control-icon-md);
   }
 
@@ -30,7 +30,7 @@ export default css`
   :host([size="large"]) > button {
     width: var(--control-lg);
     height: var(--control-lg);
-    padding: var(--space-xxs);
+    padding: var(--space-2xs);
     --icon-size: var(--control-icon-md);
   }
 

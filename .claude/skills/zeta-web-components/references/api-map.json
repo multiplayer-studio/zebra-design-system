@@ -1,0 +1,807 @@
+{
+  "_readme": "Per spec: which zeta element implements each spec part, and how a spec property maps when its name differs or it has no property. Values: 'property <name>' or 'slot <name>' (checked to exist), or a reason starting 'figma-only:', 'composed:', 'css-state:', 'not-built:' or 'derived:'. Matching names need no entry. scripts/api-coverage.mjs fails on anything unmapped.",
+  "button": {
+    "spec": "specs/button/button.spec.json",
+    "parts": {
+      "": "zeta-button",
+      "Icon": "zeta-icon"
+    },
+    "props": {
+      "label": "slot (default)",
+      "Icon.glyph": "slot (default)"
+    }
+  },
+  "icon-button": {
+    "spec": "specs/icon-button/icon-button.spec.json",
+    "parts": {
+      "": "zeta-icon-button"
+    },
+    "props": {
+      "label": "derived: the native aria-label is forwarded to the inner button (required)"
+    }
+  },
+  "icon": {
+    "spec": "specs/icon/icon.spec.json",
+    "parts": {
+      "": "zeta-icon",
+      "icon library component sets": "figma-only: the Style axis is the font family, set by rounded"
+    },
+    "props": {
+      "name": "property name"
+    }
+  },
+  "accordion": {
+    "spec": "specs/accordion/accordion.spec.json",
+    "parts": {
+      "": "zeta-accordion",
+      "Accordion Item": "zeta-accordion-item",
+      "Accordion Header": "zeta-accordion-item"
+    },
+    "props": {
+      "selectable": "derived: set on each zeta-accordion-item",
+      "items": "slot (default)",
+      "Accordion Item.open": "property expanded",
+      "Accordion Item.showDivider": "derived: zeta-accordion draws dividers between items when inCard",
+      "Accordion Item.content": "slot (default)",
+      "Accordion Header.title": "property title"
+    }
+  },
+  "avatar": {
+    "spec": "specs/avatar/avatar.spec.json",
+    "parts": {
+      "": "zeta-avatar",
+      "_Avatar Type": "composed: content type is the slotted img, zeta-icon or text",
+      "_Avatar Swatch": "zeta-avatar",
+      "_Avatar Photos": "composed: any image is slotted; the 40 photos are Figma samples",
+      "_Status Indicator": "zeta-avatar"
+    },
+    "props": {
+      "showStatus": "derived: the badge shows when status is set",
+      "_Avatar Swatch.color": "property swatchColor",
+      "_Status Indicator.customIcon": "slot status"
+    }
+  },
+  "avatar-rail": {
+    "spec": "specs/avatar-rail/avatar-rail.spec.json",
+    "parts": {
+      "": "zeta-avatar-rail"
+    },
+    "props": {
+      "overflowCount": "derived: generated from the slotted avatars less max",
+      "showAvatar3": "figma-only: max and the avatars passed in decide this",
+      "showAvatar4": "figma-only: max and the avatars passed in decide this"
+    }
+  },
+  "label": {
+    "spec": "specs/badges/label.spec.json",
+    "parts": {
+      "": "zeta-label"
+    },
+    "props": {
+      "variant": "property status"
+    }
+  },
+  "priority-pill": {
+    "spec": "specs/badges/priority-pill.spec.json",
+    "parts": {
+      "": "zeta-priority-pill"
+    },
+    "props": {
+      "priorityNumber": "property index",
+      "level": "property status",
+      "variant": "property type"
+    }
+  },
+  "status-label": {
+    "spec": "specs/badges/status-label.spec.json",
+    "parts": {
+      "": "zeta-status-label"
+    }
+  },
+  "icon-indicator": {
+    "spec": "specs/badges/icon-indicator.spec.json",
+    "parts": {
+      "": "zeta-icon-indicator"
+    }
+  },
+  "notification-indicator": {
+    "spec": "specs/notification-indicator/notification-indicator.spec.json",
+    "parts": {
+      "": "zeta-notification-indicator"
+    }
+  },
+  "button-group": {
+    "spec": "specs/button-group/button-group.spec.json",
+    "parts": {
+      "": "zeta-button-group",
+      "Group item": "zeta-button-group-item"
+    },
+    "props": {
+      "items": "slot (default)",
+      "Group item.position": "derived: first, middle and last come from the item's index",
+      "Group item.shape": "derived: the group's rounded reaches the end items' outer corners"
+    }
+  },
+  "card": {
+    "spec": "specs/card/card.spec.json",
+    "parts": {
+      "Card base": "zeta-card",
+      "Collapsible Card": "zeta-card-container",
+      "_Container header": "zeta-card-container",
+      "_Leading Icon": "zeta-card-container",
+      "_Card Heading": "zeta-card-header",
+      "_Card Footer": "zeta-card-footer",
+      "Card Template Default": "composed: assembled from zeta-card, zeta-card-header, zeta-card-body and zeta-card-footer",
+      "Card Template Collapsible": "composed: zeta-card-container with slotted content"
+    },
+    "props": {
+      "Card base.hasHeader": "composed: include or omit zeta-card-header",
+      "Card base.hasFooter": "composed: include or omit zeta-card-footer",
+      "Card base.header": "slot (default)",
+      "Card base.body": "slot (default)",
+      "Card base.footer": "slot (default)",
+      "Collapsible Card.state": "property expanded",
+      "Collapsible Card.flavor": "property ai",
+      "Collapsible Card.body": "slot (default)",
+      "_Container header.flavor": "css-state: the header's hover fill",
+      "_Container header.hasLeading": "property collapsible",
+      "_Container header.showDescription": "derived: the description shows when description is set",
+      "_Leading Icon.state": "property expanded",
+      "_Card Heading.leadingContent": "slot leading",
+      "_Card Heading.trailingContent": "slot trailing",
+      "_Card Heading.hasLeading": "derived: shows when the leading slot is filled",
+      "_Card Heading.hasTrailing": "derived: shows when the trailing slot is filled",
+      "_Card Footer.actions": "composed: the slotted buttons decide one, two or custom",
+      "_Card Footer.slot": "slot (default)"
+    }
+  },
+  "checkbox": {
+    "spec": "specs/checkbox/checkbox.spec.json",
+    "parts": {
+      "": "zeta-checkbox"
+    },
+    "props": {
+      "checked": "property checked",
+      "hasLabel": "derived: shows when the default slot has text",
+      "label": "slot (default)"
+    }
+  },
+  "dialog": {
+    "spec": "specs/dialog/dialog.spec.json",
+    "parts": {
+      "": "zeta-dialog",
+      "_Dialog Header": "zeta-dialog",
+      "_Dialog Footer": "zeta-dialog"
+    },
+    "props": {
+      "showFooter": "derived: the footer is removed when no action is slotted",
+      "_Dialog Footer.actions": "derived: counted from the confirm, cancel and other slots",
+      "_Dialog Footer.leftAction": "slot other",
+      "_Dialog Footer.rightAction": "slot confirm"
+    }
+  },
+  "dropdown": {
+    "spec": "specs/dropdown/dropdown.spec.json",
+    "parts": {
+      "": "zeta-dropdown-menu-button",
+      "Dropdown Menu": "zeta-droppable",
+      "Menu Item": "zeta-dropdown-menu-item"
+    },
+    "props": {
+      "position": "property direction",
+      "align": "property alignment",
+      "triggerComponent": "derived: the trigger is the element's own zeta-button, styled by flavor and size",
+      "triggerSlot": "figma-only: undocumented in the spec (issue)",
+      "Dropdown Menu.moreItems": "figma-only: the built-in rows and slot are Figma scaffolding; rows are slotted",
+      "Dropdown Menu.slotContainer": "slot (default)",
+      "Menu Item.type": "property type (icon, checkbox, radio); custom is the icon slot with any element",
+      "Menu Item.label": "slot (default)",
+      "Menu Item.leadingElement": "slot icon",
+      "Menu Item.trailingIcon": "slot trailing",
+      "Menu Item.leadingSlot": "slot icon"
+    }
+  },
+  "assist-chip": {
+    "spec": "specs/assist-chip/assist-chip.spec.json",
+    "parts": {
+      "": "zeta-assist-chip",
+      "Icon": "figma-only: the nested Icon's own props are pinned by the chip"
+    },
+    "props": {
+      "label": "slot (default)",
+      "showLeadingIcon": "derived: the leading glyph shows when icon is set",
+      "foreground": "derived: CSS custom property --assist-chip-foreground",
+      "background": "derived: CSS custom property --assist-chip-background",
+      "border": "derived: CSS custom property --assist-chip-border"
+    }
+  },
+  "filter-chip": {
+    "spec": "specs/filter-chip/filter-chip.spec.json",
+    "parts": {
+      "": "zeta-filter-chip",
+      "Icon": "figma-only: the nested Icon's own props are pinned by the chip"
+    },
+    "props": {
+      "label": "slot (default)"
+    }
+  },
+  "input-chip": {
+    "spec": "specs/input-chip/input-chip.spec.json",
+    "parts": {
+      "": "zeta-input-chip",
+      "Avatar": "composed: a zeta-avatar in the leading slot",
+      "Icon": "figma-only: the nested Icon's own props are pinned by the chip"
+    },
+    "props": {
+      "label": "slot (default)",
+      "showAvatar": "slot leading",
+      "size": "figma-only: one value (medium)",
+      "avatarColor": "slot leading"
+    }
+  },
+  "input": {
+    "spec": "specs/input/input.spec.json",
+    "parts": {
+      "": "zeta-text-input",
+      "Input / Text \u00b7 Number \u00b7 Password \u00b7 Date \u00b7 Time": "zeta-text-input",
+      "Input Label": "zeta-text-input",
+      "Input Hint": "zeta-text-input"
+    },
+    "props": {
+      "showLabel": "derived: the label shows when label is set",
+      "showHint": "derived: the hint shows when hintText is set, or errorText while error",
+      "partProps": "derived: the field, label and hint properties are surfaced on zeta-text-input itself",
+      "Input / Text \u00b7 Number \u00b7 Password \u00b7 Date \u00b7 Time.flavour": "property flavor",
+      "Input / Text \u00b7 Number \u00b7 Password \u00b7 Date \u00b7 Time.block": "property block",
+      "Input / Text \u00b7 Number \u00b7 Password \u00b7 Date \u00b7 Time.hasLeading": "derived: shows when leadingIcon is set",
+      "Input / Text \u00b7 Number \u00b7 Password \u00b7 Date \u00b7 Time.hasTrailing": "derived: shows when trailingIcon is set",
+      "Input / Text \u00b7 Number \u00b7 Password \u00b7 Date \u00b7 Time.leadingGlyph": "property leadingIcon",
+      "Input / Text \u00b7 Number \u00b7 Password \u00b7 Date \u00b7 Time.trailingGlyph": "property trailingIcon",
+      "Input Label.type": "derived: required and optional properties",
+      "Input Hint.type": "derived: error and disabled decide it",
+      "Input Hint.showIcon": "property showHintIcon",
+      "showSubLabel": "derived: the sub label shows when subLabel is set",
+      "Input Label.showSubLabel": "derived: the sub label shows when subLabel is set"
+    }
+  },
+  "navigation-item": {
+    "spec": "specs/navigation-item/navigation-item.spec.json",
+    "parts": {
+      "": "zeta-grid-menu-item"
+    },
+    "props": {
+      "label": "slot (default)",
+      "showBadge": "property notificationValue"
+    }
+  },
+  "navigation-bar": {
+    "spec": "specs/navigation-bar/navigation-bar.spec.json",
+    "parts": {
+      "": "zeta-navigation-bar",
+      "Spacer": "figma-only: unused by any Navigation Bar variant (spec issue); the right slot does its job"
+    },
+    "props": {
+      "spacer": "slot right",
+      "slot": "slot (default)",
+      "rightSlot": "slot right",
+      "showActionSlot": "slot action",
+      "actionSlot": "slot action"
+    }
+  },
+  "navigation-rail-item": {
+    "spec": "specs/navigation-rail-item/navigation-rail-item.spec.json",
+    "parts": {
+      "": "zeta-navigation-rail-item"
+    },
+    "props": {
+      "label": "slot (default)"
+    }
+  },
+  "sub-menu-item": {
+    "spec": "specs/sub-menu-item/sub-menu-item.spec.json",
+    "parts": {
+      "": "zeta-sub-menu-item"
+    },
+    "props": {
+      "label": "slot (default)"
+    }
+  },
+  "navigation-rail": {
+    "spec": "specs/navigation-rail/navigation-rail.spec.json",
+    "parts": {
+      "": "zeta-navigation-rail",
+      "Navigation Rail Item": "zeta-navigation-rail-item",
+      "Sub Menu Item": "zeta-sub-menu-item",
+      "Navigation Header": "zeta-navigation-header",
+      "Sub Menu Header": "zeta-sub-menu-header",
+      "Caret Indicator": "zeta-caret-indicator",
+      "Collapsible Menu Item": "zeta-collapsible-menu-item"
+    },
+    "props": {
+      "label": "property showLabels",
+      "showSubMenu": "derived: the panel shows when the sub-menu-header or sub-menu slot is filled",
+      "moreRailItems": "slot (default)",
+      "moreFooterItems": "slot footer",
+      "shape": "property rounded",
+      "menuSlot": "slot (default)",
+      "footerSlot": "slot footer",
+      "subMenuSlot": "slot sub-menu",
+      "Navigation Header.type": "property type",
+      "Sub Menu Header.trailingActions": "slot actions",
+      "Collapsible Menu Item.children": "slot (default)"
+    }
+  },
+  "pagination": {
+    "spec": "specs/pagination/pagination.spec.json",
+    "parts": {
+      "": "zeta-pagination",
+      "_controls": "composed: rendered by zeta-pagination; state and style follow its outline and rounded",
+      "_indicators": "composed: rendered by zeta-pagination from currentPage and totalPages"
+    }
+  },
+  "phone-input": {
+    "spec": "specs/phone-input/phone-input.spec.json",
+    "parts": {
+      "": "zeta-phone-input",
+      "Input / Phone": "zeta-text-input",
+      "_Phone Country": "zeta-phone-input"
+    },
+    "props": {
+      "state": "derived: error and disabled",
+      "flavour": "property flavor",
+      "open": "css-state: the country control toggles the menu",
+      "flag": "composed: the flag field of each entry in countries",
+      "onValueChange": "composed: the value-change event",
+      "Input / Phone.state": "composed: zeta-phone-input styles the error through the field part, and hover and focus are CSS",
+      "Input / Phone.flavour": "property flavor",
+      "_Phone Country.state": "css-state: hover, pressed and focus on the control, with open, error and disabled for the rest",
+      "_Phone Country.flavour": "property flavor"
+    }
+  },
+  "progress-bar": {
+    "spec": "specs/progress-bar/progress-bar.spec.json",
+    "parts": {
+      "": "zeta-progress-bar"
+    },
+    "props": {
+      "progress": "property value",
+      "shape": "property rounded",
+      "showLabel": "derived: the label row shows when label is set or the trailing slot is filled",
+      "showMoreDetails": "slot trailing",
+      "trailing": "slot trailing"
+    }
+  },
+  "progress-circle": {
+    "spec": "specs/progress-circle/progress-circle.spec.json",
+    "parts": {
+      "": "zeta-progress-circle",
+      "_Upload": "zeta-progress-circle"
+    },
+    "props": {
+      "_Upload.stop": "css-state: the readout swaps for the cancel button on hover or keyboard focus"
+    }
+  },
+  "radio-button": {
+    "spec": "specs/radio-button/radio-button.spec.json",
+    "parts": {
+      "": "zeta-radio-button"
+    },
+    "props": {
+      "hasLabel": "derived: shows when the default slot has text"
+    }
+  },
+  "screen-header-bar": {
+    "spec": "specs/screen-header-bar/screen-header-bar.spec.json",
+    "parts": {
+      "": "zeta-screen-header-bar"
+    },
+    "props": {
+      "title": "property headline",
+      "actionSlot": "slot action"
+    }
+  },
+  "search": {
+    "spec": "specs/search/search.spec.json",
+    "parts": {
+      "": "zeta-search",
+      "Trailing": "composed: zeta-search renders the clear button, divider and voice control from value and hasIcon"
+    },
+    "props": {
+      "hasTrailing": "property hasIcon"
+    }
+  },
+  "segmented-control": {
+    "spec": "specs/segmented-control/segmented-control.spec.json",
+    "parts": {
+      "": "zeta-segmented-control",
+      "_Segmented item": "zeta-segmented-item"
+    },
+    "props": {
+      "shape": "property rounded",
+      "moreItems": "slot (default)",
+      "_Segmented item.label": "slot (default)",
+      "_Segmented item.state": "property active",
+      "_Segmented item.flavour": "property flavor"
+    }
+  },
+  "select": {
+    "spec": "specs/select/select.spec.json",
+    "parts": {
+      "": "zeta-select-input",
+      "Input / Select": "zeta-select-input",
+      "Input Label": "zeta-select-input",
+      "Input Hint": "zeta-select-input",
+      "Dropdown Menu": "composed: the options panel inside zeta-select-input",
+      "Menu Item": "zeta-option",
+      "Icon": "figma-only: the nested Icon's own props are pinned by the field"
+    },
+    "props": {
+      "showLabel": "derived: the label shows when label is set",
+      "showHint": "derived: the hint shows when hintText is set, or errorText while error",
+      "Input / Select.state": "derived: open, error, readOnly and disabled properties; hover and focus are CSS",
+      "Input / Select.flavour": "property flavor",
+      "Input / Select.hasLeading": "derived: shows when icon is set",
+      "_nestedProperties": "derived: label and hint part properties are surfaced on zeta-select-input (required, optional, showInformation, error, showHintIcon)",
+      "showSubLabel": "derived: the sub label shows when subLabel is set",
+      "block": "derived: zeta-select-input always fills its container (display: block on the host)"
+    }
+  },
+  "divider": {
+    "spec": "specs/divider/divider.spec.json",
+    "parts": {
+      "": "zeta-divider"
+    },
+    "props": {}
+  },
+  "notification-item": {
+    "spec": "specs/notification-item/notification-item.spec.json",
+    "parts": {
+      "": "zeta-notification-item",
+      "_Leading Visual": "zeta-notification-item"
+    },
+    "props": {
+      "title": "property headline",
+      "actions": "slot action",
+      "_Leading Visual.flavour": "derived: from the slotted element (zeta-avatar, img or zeta-icon) in slot leading"
+    }
+  },
+  "slider": {
+    "spec": "specs/slider/slider.spec.json",
+    "parts": {
+      "": "zeta-slider",
+      "_Active Track": "zeta-slider",
+      "_Thumb": "zeta-slider",
+      "Step Indicators": "zeta-slider",
+      "_Dot Indicator": "zeta-slider"
+    },
+    "props": {
+      "shape": "property rounded",
+      "state": "css-state: hover and selected follow the pointer and keyboard focus; disabled is property disabled",
+      "stepped": "property stepIncrement",
+      "range": "property type",
+      "_Active Track.state": "derived: from the slider (spec: state belongs to the slider)",
+      "_Active Track.stepped": "derived: from the slider stepIncrement",
+      "_Active Track.range": "derived: from the slider type",
+      "_Thumb.state": "derived: from the slider and the pointer",
+      "_Thumb.shape": "derived: from the slider rounded",
+      "Step Indicators.dotSlots": "derived: one dot per stop from min, max and stepIncrement"
+    }
+  },
+  "snackbar": {
+    "spec": "specs/snackbar/snackbar.spec.json",
+    "parts": {
+      "": "zeta-snackbar"
+    },
+    "props": {
+      "message": "slot (default)",
+      "flavour": "property flavor",
+      "showIcon": "slot icon",
+      "showAction": "property actionLabel"
+    }
+  },
+  "stepper-input": {
+    "spec": "specs/stepper-input/stepper-input.spec.json",
+    "parts": {
+      "": "zeta-stepper-input",
+      "_Hint text": "zeta-stepper-input"
+    },
+    "props": {
+      "showHint": "property hintText",
+      "_Hint text.message": "property error"
+    }
+  },
+  "switch": {
+    "spec": "specs/switch/switch.spec.json",
+    "parts": {
+      "": "zeta-switch"
+    },
+    "props": {
+      "state": "css-state: focus comes from keyboard focus; disabled is property disabled",
+      "switch": "property checked",
+      "hasIcons": "property activeIcon"
+    }
+  },
+  "system-banner-desktop": {
+    "spec": "specs/system-banner-desktop/system-banner-desktop.spec.json",
+    "parts": {
+      "": "zeta-system-banner"
+    },
+    "props": {
+      "contentType": "property description",
+      "title": "property heading",
+      "showActions": "slot actions"
+    }
+  },
+  "system-banner-mobile": {
+    "spec": "specs/system-banner-mobile/system-banner-mobile.spec.json",
+    "parts": {
+      "": "zeta-system-banner",
+      "Status Bar": "zeta-system-banner"
+    },
+    "props": {
+      "showDescription": "property description",
+      "showActions": "slot actions",
+      "Status Bar.platform": "figma-only: preview chrome, not built (spec)"
+    }
+  },
+  "tab-bar": {
+    "spec": "specs/tab-bar/tab-bar.spec.json",
+    "parts": {
+      "": "zeta-tab-bar",
+      "Tab Item": "zeta-tab-item"
+    },
+    "props": {
+      "flavour": "property flavor",
+      "tabs": "slot (default)",
+      "Tab Item.state": "css-state: hover is CSS; selected and disabled are properties",
+      "Tab Item.label": "slot (default)",
+      "Tab Item.icon": "slot icon"
+    }
+  },
+  "table": {
+    "spec": "specs/table/table.spec.json",
+    "parts": {
+      "": "zeta-table",
+      "Table Controls": "zeta-table",
+      "Table Content": "zeta-table",
+      "Table Footer": "zeta-table",
+      "Table Column/Default": "zeta-table",
+      "Table Column/true": "zeta-table",
+      "_Header Cell": "zeta-table",
+      "_Data Cell": "zeta-table",
+      "_Label": "zeta-table",
+      "_Sort": "zeta-table",
+      "_Avatar and text": "zeta-table",
+      "Slot": "zeta-table",
+      "_Select Cell": "zeta-table",
+      "_Actions Cell": "zeta-table",
+      "_Empty Row": "zeta-table",
+      "_Table Menu": "zeta-table",
+      "Table Column/Select": "zeta-table",
+      "Table Column/Actions": "zeta-table"
+    },
+    "props": {
+      "shape": "property rounded",
+      "Table Controls.search": "property showSearch",
+      "Table Controls.controls": "slot controls",
+      "Table Controls.controlsSlot": "slot controls",
+      "Table Content.columnPosition": "property frozenColumns",
+      "Table Content.horizontalScroll": "derived: the content scrolls horizontally when its columns are wider than the table",
+      "Table Content.slotContainer": "property columns",
+      "Table Content.frozenSlotContainer": "property frozenColumns",
+      "Table Footer.pageDetails": "property pageDetails",
+      "Table Footer.pagination": "slot pagination",
+      "Table Column/Default.slotContainer": "property rows",
+      "_Header Cell.state": "css-state: hover and keyboard focus are CSS",
+      "_Header Cell.sorted": "property sort",
+      "_Data Cell.state": "css-state: hover is CSS; selected follows selectedRows when selectable, else each row; disabled each row",
+      "_Data Cell.content": "derived: text or avatar-and-text from the row, or slot cell-<row>-<col>",
+      "_Label.state": "derived: from the row",
+      "_Label.sort": "property sort",
+      "_Label.hasTrailing": "derived: column filterable",
+      "_Sort.state": "css-state: hover is CSS",
+      "_Sort.direction": "property sort",
+      "_Avatar and text.state": "derived: from the row",
+      "_Avatar and text.avatar": "derived: the cell value avatar",
+      "_Avatar and text.subtitle": "derived: the cell value subtitle",
+      "Slot.slot": "derived: slot cell-<row>-<col>",
+      "verticalScroll": "property maxHeight",
+      "columnPosition": "property frozenColumns",
+      "horizontalScroll": "derived: the content scrolls horizontally when its columns are wider than the table",
+      "selectedCount": "derived: shown while selectable rows are selected (selectedCountFormat)",
+      "columnSettings": "property columnConfigure",
+      "search": "property showSearch",
+      "rowsPerPage": "property pageSizeOptions",
+      "Table Controls.selectedCount": "derived: shown while selectable rows are selected (selectedCountFormat)",
+      "Table Controls.columnSettings": "property columnConfigure",
+      "Table Content.verticalScroll": "property maxHeight",
+      "Table Footer.rowsPerPage": "property pageSizeOptions",
+      "_Header Cell.resize": "property resizable",
+      "_Label.filtered": "derived: a column with chosen filters (property filters)",
+      "_Select Cell.type": "derived: select-all in the header, a checkbox per row (property selectable)",
+      "_Select Cell.checked": "property selectedRows",
+      "_Select Cell.disabled": "property disabledRows",
+      "_Actions Cell.type": "derived: header and one cell per row (property rowActions)",
+      "_Actions Cell.state": "derived: open while its menu shows; disabled with the row; selected with the row",
+      "_Empty Row.emptyLabel": "property emptyLabel",
+      "_Table Menu.type": "derived: row actions, filter (clientSide) and column settings (columnConfigure) menus"
+    }
+  },
+  "table-legacy": {
+    "spec": "specs/table/table.spec.json",
+    "parts": {
+      "": "zeta-table-legacy",
+      "Table Controls": "zeta-table-legacy",
+      "Table Content": "zeta-table-legacy",
+      "Table Footer": "zeta-table-legacy",
+      "Table Column/Default": "zeta-table-legacy",
+      "Table Column/true": "zeta-table-legacy",
+      "_Header Cell": "zeta-table-legacy",
+      "_Data Cell": "zeta-table-legacy",
+      "_Label": "zeta-table-legacy",
+      "_Sort": "zeta-table-legacy",
+      "_Avatar and text": "zeta-table-legacy",
+      "Slot": "zeta-table-legacy",
+      "_Select Cell": "zeta-table-legacy",
+      "_Actions Cell": "zeta-table-legacy",
+      "_Empty Row": "zeta-table-legacy",
+      "_Table Menu": "zeta-table-legacy",
+      "Table Column/Select": "zeta-table-legacy",
+      "Table Column/Actions": "zeta-table-legacy"
+    },
+    "props": {
+      "shape": "property rounded",
+      "Table Controls.search": "property onTableSearch",
+      "Table Controls.controls": "derived: the toolbar buttons follow onRefresh, exportable and columnConfigure",
+      "Table Controls.controlsSlot": "derived: toolbar buttons are rendered from onRefresh, exportable and columnConfigure",
+      "Table Content.columnPosition": "derived: per column, frozen through the column configure panel",
+      "Table Content.horizontalScroll": "derived: the content scrolls when its columns are wider than the table",
+      "Table Content.slotContainer": "property columns",
+      "Table Content.frozenSlotContainer": "derived: frozen columns come from the column configure panel",
+      "Table Footer.pageDetails": "derived: the page summary shows with numbered pagination",
+      "Table Footer.pagination": "property paginationType",
+      "Table Column/Default.slotContainer": "property data",
+      "_Header Cell.state": "css-state: hover and focus are CSS; disabled follows the column",
+      "_Header Cell.sorted": "derived: from the sort state (onSort)",
+      "_Data Cell.state": "css-state: hover is CSS; selected follows selectable, disabled follows disabledRows",
+      "_Data Cell.content": "derived: from the column renderer and row data",
+      "_Label.state": "derived: from the column",
+      "_Label.sort": "derived: from the sort state",
+      "_Label.hasTrailing": "property onColumnFilter",
+      "_Sort.state": "css-state: hover is CSS",
+      "_Sort.direction": "derived: from the sort state",
+      "_Avatar and text.state": "derived: from the row",
+      "_Avatar and text.avatar": "derived: from the column renderer",
+      "_Avatar and text.subtitle": "derived: from the column renderer",
+      "Slot.slot": "derived: from the column renderer",
+      "verticalScroll": "derived: the legacy table has no height cap (gap: zeta-table has maxHeight)",
+      "columnPosition": "derived: frozen columns come from each column's frozen flag",
+      "horizontalScroll": "derived: the content scrolls horizontally when its columns are wider than the table",
+      "selectedCount": "derived: not shown by the legacy table (gap: zeta-table shows it)",
+      "columnSettings": "property columnConfigure",
+      "search": "property onTableSearch",
+      "controls": "derived: toolbar buttons are rendered from onRefresh, exportable and columnConfigure",
+      "rowsPerPage": "derived: the pager's rows-per-page select (property pageSize)",
+      "pageDetails": "derived: the page summary shows with numbered pagination",
+      "pagination": "property paginationType",
+      "Table Controls.selectedCount": "derived: not shown by the legacy table (gap)",
+      "Table Controls.columnSettings": "property columnConfigure",
+      "Table Content.verticalScroll": "derived: no height cap in the legacy table (gap)",
+      "Table Footer.rowsPerPage": "property pageSize",
+      "_Header Cell.resize": "derived: columns resize by dragging the header edge",
+      "_Label.filtered": "derived: a column with active filters (onColumnFilter)",
+      "_Select Cell.type": "property selectable",
+      "_Select Cell.checked": "property selectedRows",
+      "_Select Cell.disabled": "property disabledRows",
+      "_Actions Cell.type": "property rowActions",
+      "_Actions Cell.state": "derived: from the row and its open menu",
+      "_Empty Row.emptyLabel": "derived: noDataContent",
+      "_Table Menu.type": "derived: action menu, filter panel and column configure panel"
+    }
+  },
+  "tooltip": {
+    "spec": "specs/tooltip/tooltip.spec.json",
+    "parts": {
+      "": "zeta-tooltip"
+    },
+    "props": {
+      "label": "property label",
+      "shape": "property rounded"
+    }
+  },
+  "global-header": {
+    "spec": "specs/global-header/global-header.spec.json",
+    "parts": {
+      "": "zeta-global-header",
+      "_User Profile": "composed: zeta-button with zeta-avatar and zeta-icon inside zeta-global-header"
+    },
+    "props": {
+      "mode": "property theme",
+      "appSwitcher": "property appSwitcher",
+      "searchBar": "property searchbar",
+      "menuItems": "derived: the region shows when menu-items is slotted",
+      "menuItemsSlot": "slot menu-items",
+      "actionMenu": "derived: the region shows when action-items is slotted",
+      "actionMenuSlot": "slot action-items",
+      "logoSlot": "slot logo",
+      "_User Profile.state": "css-state: interaction states of zeta-button",
+      "_User Profile.rounded": "derived: follows rounded on zeta-global-header"
+    }
+  },
+  "top-app-bar": {
+    "spec": "specs/top-app-bar/top-app-bar.spec.json",
+    "parts": {
+      "": "zeta-top-appbar"
+    },
+    "props": {
+      "contextualControlSlot": "slot contextual-controls",
+      "trailingSlot": "slot trailing"
+    }
+  },
+  "breadcrumb": {
+    "spec": "specs/breadcrumb/breadcrumb.spec.json",
+    "parts": {
+      "": "zeta-breadcrumb",
+      "_Breadcrumb Item": "zeta-breadcrumb-item"
+    },
+    "props": {
+      "flavour": "property flavor",
+      "shape": "property rounded",
+      "collapsed": "derived: maxItems and the number of items",
+      "open": "css-state: the overflow control toggles the menu",
+      "items": "slot (default)",
+      "portalContainer": "composed: zeta-droppable positions itself inside the element, with no portal",
+      "_Breadcrumb Item.state": "css-state: hover and focus on the link, with current and flavor for the rest",
+      "_Breadcrumb Item.label": "slot (default)",
+      "_Breadcrumb Item.showIcon": "slot icon",
+      "_Breadcrumb Item.showSeparator": "property separator"
+    }
+  },
+  "bottom-sheet": {
+    "spec": "specs/bottom-sheet/bottom-sheet.spec.json",
+    "parts": {
+      "": "zeta-bottom-sheet",
+      "Grid Menu Item": "zeta-grid-menu-item",
+      "_Sheet Header": "composed: the header row of zeta-bottom-sheet",
+      "Sheet Handle": "composed: the handle row of zeta-bottom-sheet"
+    },
+    "props": {
+      "contentSlot": "slot (default)",
+      "Grid Menu Item.state": "css-state: hover and active on the host",
+      "Grid Menu Item.label": "slot (default)",
+      "Grid Menu Item.showBadge": "property notificationValue",
+      "_Sheet Header.headerText": "derived: headerText on zeta-bottom-sheet",
+      "_Sheet Header.showLeadingIcon": "derived: shown when headerIcon is set on zeta-bottom-sheet",
+      "_Sheet Header.alignment": "derived: headerAlignment on zeta-bottom-sheet"
+    }
+  },
+  "stepper": {
+    "spec": "specs/stepper/stepper.spec.json",
+    "parts": {
+      "horizontalStepper": "zeta-stepper",
+      "verticalStepper": "zeta-stepper",
+      "Step / Horizontal": "zeta-stepper-item",
+      "Step / Vertical": "zeta-stepper-item",
+      "Step Card": "zeta-stepper-item",
+      "Step Segment": "zeta-stepper-item"
+    },
+    "props": {
+      "horizontalStepper.steps": "slot (default)",
+      "horizontalStepper.segments": "composed: the same default slot; on size=compact each zeta-stepper-item draws as a segment",
+      "verticalStepper.steps": "slot (default)",
+      "Step Card.set": "property shape"
+    }
+  },
+  "inline-banner": {
+    "spec": "specs/inline-banner/inline-banner.spec.json",
+    "parts": {
+      "": "zeta-in-page-banner"
+    },
+    "props": {
+      "shape": "property rounded",
+      "title": "property heading",
+      "showDescription": "property description",
+      "showActions": "slot actions"
+    }
+  }
+}

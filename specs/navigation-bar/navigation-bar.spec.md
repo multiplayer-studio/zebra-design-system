@@ -24,7 +24,7 @@ The page has four public components. **Navigation Bar** is this spec. **Spacer**
 
 **showDivider**: false: "No rule between the two groups. The gap alone carries the separation, which is enough on a plain surface." · true: "Draws a vertical rule between the two groups. Available only when Spacer is true, because without a split there is nothing to divide."
 
-**showActionSlot**: false: "No action alongside the destinations." · true: "Reveals a slot at the end of the bar for a call to action that is not a destination. Placing an action among the items instead makes it read as another place to go."
+**showActionSlot**: true: "Reveals a slot at the end of the bar for a call to action that is not a destination. Placing an action among the items instead makes it read as another place to go."
 
 Only four combinations exist: (true, false, false), (false, false, false), (true, true, false), (true, true, true) for (shrinkItems, spacer, showDivider).
 
@@ -74,7 +74,7 @@ Specced separately in [specs/navigation-item](../navigation-item/navigation-item
 
 The page's set (2837:1489, key `5ce874152d457038d8690067738a673cc2b0ad52`) is **a drifted duplicate**. It is not the Badges-page component placed here (3719:6256, key `73fe3d069d197d82a934eb2653a74245d4bb29a4`), and it is not an exact copy.
 
-- **Same:** the props are `Value#2838:0` (default "2") and Size (small | medium | large, default large). The property ids match, which suggests the Badges set was made from this one. Both use fill `interactive/destructive/background/default`, border colour `border/inverse` and text style `indicator/medium`. Both give large a minimum width of `control/icon-lg` and side padding `space/xxs`. Medium is `radius/pill` with no padding.
+- **Same:** the props are `Value#2838:0` (default "2") and Size (small | medium | large, default large). The property ids match, which suggests the Badges set was made from this one. Both use fill `interactive/destructive/background/default`, border colour `border/inverse` and text style `indicator/medium`. Both give large a minimum width of `control/icon-lg` and side padding `space/2xs`. Medium is `radius/pill` with no padding.
 - **Different:**
 
 | | This page (2837:1489) | specs/notification-indicator (3719:6256) |
@@ -82,8 +82,8 @@ The page's set (2837:1489, key `5ce874152d457038d8690067738a673cc2b0ad52`) is **
 | Border width | `stroke/thin`, which draws a ring | `stroke/base`, zero, a theming hook |
 | Count colour | `foreground/inverse` | `foreground/on-strong` |
 | Large radius | `radius/element-sm` | `radius/pill` |
-| Large top/bottom padding | `space/xxs` | raw, unbound |
-| Small | `space/xxs` padding, 10×10Px | no padding, 8×8Px |
+| Large top/bottom padding | `space/2xs` | raw, unbound |
+| Small | `space/2xs` padding, 10×10Px | no padding, 8×8Px |
 | Medium | clips | doesn't clip |
 
 - **Usage:** nothing on this page uses it, because Navigation Item's badge is the Badges set. Its medium variant still has 15 instances, mostly on the Navigation Rail page. Small and large have none.
@@ -139,8 +139,8 @@ All 6 names resolve in `tokens/`.
 | Padding | None | "Zero on all four sides. Every inset comes from the items themselves." |
 | Gap | None | "Item spacing is zero. Separation comes from each item's own padding and from the alignment mode, never from a gap on the bar." |
 | Arrangement | Fixed per variant | "Shrink Items=true lets each slot hug its content and spaces the groups apart. Shrink Items=false makes the slot fill the width and distribute its items evenly inside it." |
-| Divider | Fixed | "A vertical Divider inside a Divider Section, inset 8px (space/sm) top and bottom, 1px wide on stroke/thin. Present only while Show Divider is true." |
-| Action Slot inset | Fixed | "16px (space/lg) of padding on its leading edge and an 8px gap, so the action separates from the last destination." |
+| Divider | Fixed | "A vertical Divider inside a Divider Section, inset space/sm top and bottom, 1px wide on stroke/thin. Present only while Show Divider is true." |
+| Action Slot inset | Fixed | "space/lg of padding on its leading edge and an 8px gap, so the action separates from the last destination." |
 | Border | Fixed | "A 1px top border on border/default, drawn outside the bounds. No other edge is drawn, and there is no fill and no shadow." |
 | Colour | Theming | "The bar binds only its border, to border/default. Everything else visible in it is coloured by the items, or by the surface showing through." |
 

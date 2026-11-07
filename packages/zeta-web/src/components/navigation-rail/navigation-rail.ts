@@ -61,7 +61,13 @@ export class ZetaNavigationRail extends Contourable(LitElement) {
   /** Shows the rail in light mode instead of its locked dark mode. */
   @property({ type: Boolean, reflect: true }) inverse = false;
 
-  /** Caps the wide rail (200px). A CSS length, or a number in px. The narrow rail is unaffected. */
+  /**
+   * The wide rail's width: 200px by default (Figma's measure), a CSS length or a number in px set by the project, or
+   * `fill` to take the width of the rail's container. The narrow rail is unaffected.
+   */
+  @property({ attribute: "rail-width", reflect: true }) railWidth?: string | number;
+
+  /** Caps the wide rail. A CSS length, or a number in px. The narrow rail is unaffected. */
   @property({ attribute: "rail-max-width" }) railMaxWidth?: string | number;
 
   /** Caps the sub menu, which otherwise hugs its rows from 240px up. A cap below 240px lowers the minimum. */
@@ -96,6 +102,7 @@ export class ZetaNavigationRail extends Contourable(LitElement) {
       if (length) this.style.setProperty(name, length);
       else this.style.removeProperty(name);
     };
+    if (changed.has("railWidth")) set("--navigation-rail-width", this.railWidth === "fill" ? undefined : this.railWidth);
     if (changed.has("railMaxWidth")) set("--navigation-rail-max-width", this.railMaxWidth);
     if (changed.has("subMenuMaxWidth")) set("--navigation-rail-sub-menu-max-width", this.subMenuMaxWidth);
   }

@@ -16,7 +16,7 @@ export default css`
     justify-content: flex-start;
     gap: var(--space-sm);
     height: var(--control-md);
-    padding: var(--space-xxs) var(--space-md);
+    padding: var(--space-2xs) var(--space-md);
     user-select: none;
     white-space: nowrap;
     cursor: pointer;
@@ -35,7 +35,7 @@ export default css`
   /* The label's own padding sets it off the leading icon and reserves room on the trailing side. */
   .label {
     flex: 1;
-    padding-inline: var(--space-xxs) var(--space-xl);
+    padding-inline: var(--space-2xs) var(--space-xl);
   }
 
   /* Checkbox and radio rows drop the gap and the leading padding: the control's own control/target-min target spaces

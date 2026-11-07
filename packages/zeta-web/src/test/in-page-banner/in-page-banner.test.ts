@@ -1,144 +1,160 @@
-import { fixture, html, unsafeStatic, expect } from "@open-wc/testing";
+import { fixture, html, expect, elementUpdated, oneEvent } from "@open-wc/testing";
 import type { ZetaInPageBanner } from "../../components/in-page-banner/in-page-banner.js";
 import "../../components/in-page-banner/in-page-banner.js";
+import "../../components/button/button.js";
+import "../../index.css";
+import { getCssVarColorValue } from "../utils.js";
+
+const v = (el: Element, name: string) => getComputedStyle(el).getPropertyValue(name).trim();
+const one = (el: Element, selector: string) => el.shadowRoot?.querySelector(selector) as HTMLElement;
+const banner = () =>
+  fixture<ZetaInPageBanner>(
+    html`<zeta-in-page-banner heading="Update available" description="Install it from Settings." show-close
+      ><zeta-button slot="actions" size="small" flavor="outline-subtle">Install</zeta-button></zeta-in-page-banner
+    >`
+  );
 
 describe("zeta-in-page-banner", () => {
-  let subject: ZetaInPageBanner;
-
-  const headingText = "Headline";
-  const bodyContent = "Subhead";
-  const status = "info";
-
-  const createComponent = (
-    template = `<zeta-in-page-banner title="${headingText}" status="${status}">
-        ${bodyContent}
-        </zeta-in-page-banner>`
-  ) => {
-    // prettier-ignore
-    return fixture<ZetaInPageBanner>(html`${unsafeStatic(template)}`);
-  };
-
-  beforeEach(async () => {
-    subject = await createComponent();
-  });
-
   describe("Accessibility", () => {
     it("meets accessibility requirements", async () => {
-      await expect(subject).shadowDom.to.be.accessible();
+      const el = await banner();
+      await expect(el).shadowDom.to.be.accessible();
+    });
+
+    it("announces politely, negative interrupts, and names the dismiss", async () => {
+      const el = await banner();
+      await expect(one(el, ".banner").getAttribute("role")).to.equal("status");
+      el.status = "negative";
+      await elementUpdated(el);
+      await expect(one(el, ".banner").getAttribute("role")).to.equal("alert");
+      await expect(one(el, ".dismiss").getAttribute("aria-label")).to.equal("Dismiss");
     });
   });
 
   describe("Content", () => {
-    it("sets the heading correctly", () => {
-      const headerElement = subject.shadowRoot?.querySelector(".title");
-
-      expect(headerElement).to.not.be.undefined;
-      void expect(headerElement?.textContent).to.equal(headingText);
+    it("shows the heading and the description", async () => {
+      const el = await banner();
+      await expect(one(el, ".title").textContent?.trim()).to.equal("Update available");
+      await expect(one(el, ".description").textContent?.trim()).to.equal("Install it from Settings.");
     });
 
-    it("sets the content correctly", async () => {
-      const slot = subject.shadowRoot!.querySelector("slot");
-      const slotContent = (slot?.assignedNodes()[0] as Text)?.data.trim();
-      await expect(slotContent).to.equal(bodyContent);
-    });
-
-    it("renders correctly with no content", async () => {
-      subject.innerHTML = "";
-      subject.slot = "";
-      await subject.updateComplete;
-      const slot = subject.shadowRoot!.querySelector("slot");
-      const slotContent = slot?.assignedNodes().length;
-      await expect(slotContent).to.equal(0);
-    });
-
-    it("renders correctly with no title", async () => {
-      subject.title = "";
-      await subject.updateComplete;
-      const headerElement = subject.shadowRoot?.querySelector(".title");
-      expect(headerElement).to.be.null;
-    });
-
-    it("renders correctly with no title and no content", async () => {
-      subject.title = "";
-      subject.innerHTML = "";
-      subject.slot = "";
-      await subject.updateComplete;
-      const titleElement = subject.shadowRoot?.querySelector(".title");
-      const slot = subject.shadowRoot!.querySelector("slot");
-      const slotContent = slot?.assignedNodes().length;
-      expect(titleElement).to.be.null;
-      await expect(slotContent).to.equal(0);
-    });
-
-    it("renders correctly with icon hidden", async () => {
-      subject.showIcon = false;
-      await subject.updateComplete;
-      const leadingIcon = subject.shadowRoot?.querySelector(".leading");
-      expect(leadingIcon).to.be.null;
-    });
-
-    it("renders correctly when not closable", async () => {
-      subject.canClose = false;
-      await subject.updateComplete;
-      const closeButton = subject.shadowRoot?.querySelector("zeta-icon-button");
-      expect(closeButton).to.be.null;
-    });
-
-    it("renders a custom icon correctly", async () => {
-      subject.icon = "star";
-      await subject.updateComplete;
-      const icon = subject.shadowRoot?.querySelector("zeta-icon");
-      await expect(icon?.textContent?.trim()).to.equal("star");
-    });
-
-    it("renders the correct icon for each status", async () => {
-      const statusIcons: Record<string, string> = {
-        positive: "check_circle",
-        negative: "error",
-        warning: "warning",
+    it("follows status with its glyph", async () => {
+      const el = await banner();
+      const glyphs: Record<string, string> = {
+        neutral: "lightbulb",
+        default: "lightbulb",
         info: "info",
-        default: "info"
+        positive: "check_circle",
+        warning: "warning",
+        negative: "error"
       };
-
-      for (const [statusValue, expectedIcon] of Object.entries(statusIcons)) {
-        subject.status = statusValue as ZetaInPageBanner["status"];
-        await subject.updateComplete;
-        const icon = subject.shadowRoot?.querySelector("zeta-icon");
-        await expect(icon?.textContent?.trim()).to.equal(expectedIcon);
+      for (const [status, glyph] of Object.entries(glyphs)) {
+        el.status = status as ZetaInPageBanner["status"];
+        await elementUpdated(el);
+        await expect(one(el, "zeta-icon").textContent?.trim()).to.equal(glyph);
       }
     });
 
-    it("has a part on the icon container", () => {
-      const iconContainer = subject.shadowRoot?.querySelector('[part~="icon"]');
-      expect(iconContainer).to.not.be.null;
+    it("drops the glyph with show-icon false and takes a custom icon", async () => {
+      const el = await banner();
+      el.icon = "star";
+      await elementUpdated(el);
+      await expect(one(el, "zeta-icon").textContent?.trim()).to.equal("star");
+      el.showIcon = false;
+      await elementUpdated(el);
+      await expect(one(el, ".glyph")).to.equal(null);
     });
 
-    it("renders the correct title font when the css property is set", async () => {
-      const customFont = "25px Arial";
-      subject.style.setProperty("--banner-title-font", customFont);
-      await subject.updateComplete;
-      const titleElement = subject.shadowRoot?.querySelector(".title");
-      expect(titleElement).to.not.be.null;
-      await expect(getComputedStyle(titleElement!).font).to.equal(customFont);
+    it("takes the legacy title, default slot and action slot", async () => {
+      const el = await fixture<ZetaInPageBanner>(
+        html`<zeta-in-page-banner title="Legacy title"
+          >Legacy body<zeta-button slot="action" size="small">Go</zeta-button></zeta-in-page-banner
+        >`
+      );
+      await expect(one(el, ".title").textContent?.trim()).to.equal("Legacy title");
+      const slot = el.shadowRoot!.querySelector(".description slot") as HTMLSlotElement;
+      await expect((slot.assignedNodes()[0] as Text).data.trim()).to.equal("Legacy body");
+      await expect(one(el, ".actions").hidden).to.equal(false);
     });
 
-    it("renders the correct body font when the css property is set", async () => {
-      const customFont = "13px Arial";
-      subject.style.setProperty("--banner-body-font", customFont);
-      await subject.updateComplete;
-      const bodyElement = subject.shadowRoot?.querySelector("div[part='body']");
-      expect(bodyElement).to.not.be.null;
-      await expect(getComputedStyle(bodyElement!).font).to.equal(customFont);
+    it("shows the dismiss only with show-close or the legacy canClose", async () => {
+      const el = await fixture<ZetaInPageBanner>(html`<zeta-in-page-banner heading="No close"></zeta-in-page-banner>`);
+      await expect(one(el, ".dismiss")).to.equal(null);
+      el.canClose = true;
+      await elementUpdated(el);
+      await expect(one(el, ".dismiss")).to.not.equal(null);
+    });
+
+    it("gives the actions and the dismiss the banner's shape", async () => {
+      const el = await banner();
+      el.rounded = false;
+      await elementUpdated(el);
+      await expect(el.querySelector("zeta-button")?.getAttribute("shape")).to.equal("sharp");
+      await expect(one(el, ".dismiss").getAttribute("shape")).to.equal("sharp");
     });
   });
 
-  // describe("Dimensions", () => {});
+  describe("Dimensions", () => {
+    it("pads space/md by space/lg", async () => {
+      const el = await banner();
+      const s = getComputedStyle(one(el, ".banner"));
+      await expect(s.paddingTop).to.equal(v(el, "--space-md"));
+      await expect(s.paddingLeft).to.equal(v(el, "--space-lg"));
+    });
 
-  // describe("Styling", () => {});
+    it("rounds with radius/sm and squares with radius/none", async () => {
+      const el = await banner();
+      await expect(getComputedStyle(one(el, ".banner")).borderTopLeftRadius).to.equal(v(el, "--radius-sm"));
+      el.rounded = false;
+      await elementUpdated(el);
+      await expect(getComputedStyle(one(el, ".banner")).borderTopLeftRadius).to.equal("0px");
+    });
+  });
 
-  // describe("Interaction", () => {});
+  describe("Styling", () => {
+    it("binds the subtle fill, border and glyph colour per status", async () => {
+      const el = await banner();
+      const s = () => getComputedStyle(one(el, ".banner"));
+      await expect(s().backgroundColor).to.equal(getCssVarColorValue(el, "--feedback-info-background-subtle"));
+      await expect(s().borderTopColor).to.equal(getCssVarColorValue(el, "--zebra-border-info"));
+      el.status = "warning";
+      await elementUpdated(el);
+      await expect(s().backgroundColor).to.equal(getCssVarColorValue(el, "--feedback-warning-background-subtle"));
+      await expect(s().borderTopColor).to.equal(getCssVarColorValue(el, "--zebra-border-warning"));
+      el.status = "neutral";
+      await elementUpdated(el);
+      await expect(s().borderTopColor).to.equal(getCssVarColorValue(el, "--zebra-border-default"));
+    });
 
-  // describe("Golden", () => {});
+    it("fills solid with the strong colour and on-strong text", async () => {
+      const el = await banner();
+      el.appearance = "solid";
+      el.status = "negative";
+      await elementUpdated(el);
+      const s = getComputedStyle(one(el, ".banner"));
+      await expect(s.backgroundColor).to.equal(getCssVarColorValue(el, "--feedback-error-background-strong"));
+      await expect(s.borderTopColor).to.equal(s.backgroundColor);
+      await expect(getComputedStyle(one(el, ".title")).color).to.equal(getCssVarColorValue(el, "--foreground-on-strong"));
+    });
 
-  // describe("Performance", () => {});
+    it("puts the slotted actions in Dark on solid, and takes them back on subtle", async () => {
+      const el = await banner();
+      const button = el.querySelector("zeta-button")!;
+      el.appearance = "solid";
+      await elementUpdated(el);
+      await expect(button.getAttribute("data-theme")).to.equal("dark");
+      el.appearance = "subtle";
+      await elementUpdated(el);
+      await expect(button.hasAttribute("data-theme")).to.equal(false);
+    });
+  });
+
+  describe("Interaction", () => {
+    it("fires close from the dismiss and stays in place", async () => {
+      const el = await banner();
+      setTimeout(() => one(el, ".dismiss").click());
+      await oneEvent(el, "close");
+      await expect(el.isConnected).to.equal(true);
+    });
+  });
 });

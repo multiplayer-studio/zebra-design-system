@@ -1,9 +1,9 @@
 import { css } from "lit";
 
-/* Spec: specs/snackbar. A bar control/lg tall (minimum): space/xxs top and bottom, space/lg at the leading end and
-   space/xxs at the trailing end when a control sits there, space/md from the glyph to the message and space/lg from
+/* Spec: specs/snackbar. A bar control/lg tall (minimum): space/2xs top and bottom, space/lg at the leading end and
+   space/2xs at the trailing end when a control sits there, space/md from the glyph to the message and space/lg from
    the message to the controls. Contextual tints by flavour (feedback/<kind>/background/subtle); action, default and
-   every standard bar are the dark bars on surface/popover, carrying their own colour mode (data-theme, set in code).
+   every standard bar are the dark bars on surface/overlay, carrying their own colour mode (data-theme, set in code).
    Contextual is radius/pill, standard radius/md, both radius/none when sharp. Shadow/medium lifts it. */
 export default css`
   :host {
@@ -11,7 +11,7 @@ export default css`
     max-width: 100%;
     min-width: 0;
     --_radius: var(--radius-pill);
-    --_bg: var(--surface-popover);
+    --_bg: var(--surface-overlay);
     --_fg: var(--foreground-primary);
   }
 
@@ -39,7 +39,7 @@ export default css`
     align-items: center;
     gap: var(--space-md);
     min-height: var(--control-lg);
-    padding: var(--space-xxs) var(--space-lg);
+    padding: var(--space-2xs) var(--space-lg);
     border-radius: var(--_radius);
     background-color: var(--_bg);
     color: var(--_fg);
@@ -52,7 +52,7 @@ export default css`
 
   /* A control at the end sits concentric in the bar's end: its end gap matches its top gap. */
   .snackbar-root[data-end] {
-    padding-inline-end: var(--space-xxs);
+    padding-inline-end: var(--space-2xs);
   }
 
   .lead {
@@ -84,8 +84,8 @@ export default css`
     flex: none;
     display: inline-flex;
     align-items: center;
-    gap: var(--space-xxs);
-    margin-inline-start: var(--space-xxs);
+    gap: var(--space-2xs);
+    margin-inline-start: var(--space-2xs);
   }
 
   /* ---- shape ---- */

@@ -39,13 +39,13 @@ export default css`
     --zds-status-lead: var(--foreground-error);
   }
 
-  /* ---- surround: space/2xs top and bottom, space/xs left and right (24 tall;
+  /* ---- surround: space/3xs top and bottom, space/xs left and right (24 tall;
      the metadata's "28" and "space/xs on all four sides" are stale) ------ */
   .root {
     display: inline-flex;
     align-items: center;
     gap: var(--space-none);
-    padding: var(--space-2xs) var(--space-xxs);
+    padding: var(--space-3xs) var(--space-2xs);
     border: var(--stroke-thin) solid var(--zds-status-border);
     border-radius: var(--radius-pill);
     background: var(--zds-status-fill);
@@ -71,7 +71,7 @@ export default css`
 
   /* ---- label: body/small, foreground/primary at every status ----------- */
   .label {
-    padding-inline: var(--space-xxs);
+    padding-inline: var(--space-2xs);
     color: var(--foreground-primary);
     font-family: var(--body-small-font-family), system-ui, sans-serif;
     font-size: var(--body-small-font-size);
@@ -102,7 +102,7 @@ export default css`
   .discard::before {
     content: "";
     position: absolute;
-    inset: calc(var(--space-xxs) * -1);
+    inset: calc(var(--space-2xs) * -1);
   }
   .discard:focus-visible {
     outline: var(--stroke-thick) solid var(--focus-outline);

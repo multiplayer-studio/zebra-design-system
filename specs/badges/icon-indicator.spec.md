@@ -103,7 +103,7 @@ Every token resolves in the export.
 
 ### Warn
 
-- *code (packages/web-components zds-icon-indicator) vs metadata*: Figma and its metadata define a fixed meaning: a Clock glyph on foreground/secondary, nothing else variable ('A different meaning has to come from a different component'). The experimental element was built, at the owner's request, to be host-controlled: icon, fill and foreground are properties (default glyph check-mark, default size medium). The two need reconciling: either the element's defaults become Clock / small with the host overrides kept as an extension, or the metadata's 'fixed meaning' is relaxed.
+- *code (packages/web-components zds-icon-indicator) vs metadata*: Figma and its metadata define a fixed meaning: a Clock glyph on foreground/secondary, nothing else variable ('A different meaning has to come from a different component'). The element was built, at the owner's request, to be host-controlled: icon, fill and foreground are properties (default glyph check-mark, default size medium). The two need reconciling: either the element's defaults become Clock / small with the host overrides kept as an extension, or the metadata's 'fixed meaning' is relaxed.
 - *tokens/ (contrast, Dark)*: The glyph is foreground/on-strong (white in every mode) on foreground/secondary, which turns light in dark mode: 1.51:1, so the glyph all but disappears in dark mode. Light mode is 6.78:1. foreground/inverse would flip with the fill and hold in both modes.
 - *structure (gaps)*: The small (12) and large (24) glyphs are Icon instances scaled to fit, with no size token; only medium (Icon Size=small, 16) is exact. The metadata states 12 and 24 as intended.
 

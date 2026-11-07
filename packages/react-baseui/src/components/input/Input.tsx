@@ -1,12 +1,12 @@
 import * as React from "react";
 import { Field } from "@base-ui/react/field";
-import { Icon } from "../icon/Icon.js";
 import { InputField, type InputFieldProps } from "../input-field/InputField.js";
 import { InputHint } from "./InputHint.js";
+import { InputLabel, type InputLabelType } from "./InputLabel.js";
 import "./input.css";
 
 export type InputState = "default" | "invalid" | "disabled";
-export type InputLabelType = "default" | "required" | "optional";
+export type { InputLabelType };
 
 export interface InputProps extends Omit<InputFieldProps, "invalid" | "disabled"> {
   /** The field's name, shown above it. Empty hides the label (Show Label). */
@@ -17,6 +17,8 @@ export interface InputProps extends Omit<InputFieldProps, "invalid" | "disabled"
   information?: boolean;
   /** Accessible name of the information icon. */
   informationLabel?: string;
+  /** Supporting line under the name, read as the field's description. Empty hides it; needs a `label` (Show Sub Label). */
+  subLabel?: React.ReactNode;
   /** Supporting line below the field; carries the reason when `state` is invalid. Empty hides it (Show Hint). */
   hint?: React.ReactNode;
   /** Icon ahead of the hint (the hint's Show Icon). */
@@ -43,7 +45,7 @@ export interface InputProps extends Omit<InputFieldProps, "invalid" | "disabled"
  */
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
   {
-    label, labelType = "default", information = false, informationLabel = "More information",
+    label, labelType = "default", information = false, informationLabel = "More information", subLabel,
     hint, hintIcon = true, state = "default", size = "medium", shape = "rounded", block = false, name, className, ...fieldProps
   },
   ref,
@@ -54,12 +56,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Inp
   return (
     <Field.Root className={["zds-input", className].filter(Boolean).join(" ")} name={name} disabled={disabled} invalid={invalid} data-state={state} data-block={block ? "" : undefined}>
       {label ? (
-        <Field.Label className="zds-input__label">
-          <span className="zds-input__name">{label}</span>
-          {labelType === "required" ? <span className="zds-input__required" aria-hidden="true">*</span> : null}
-          {labelType === "optional" ? <span className="zds-input__optional">(optional)</span> : null}
-          {information ? <Icon className="zds-input__information" name="info" size="medium" iconStyle="rounded" label={informationLabel} /> : null}
-        </Field.Label>
+        <InputLabel type={labelType} information={information} informationLabel={informationLabel} subLabel={subLabel}>{label}</InputLabel>
       ) : null}
       <InputField ref={ref} {...fieldProps} block size={size} shape={shape} name={name} disabled={disabled} invalid={invalid} required={labelType === "required"} />
       {hint ? <InputHint type={hintType} icon={hintIcon}>{hint}</InputHint> : null}

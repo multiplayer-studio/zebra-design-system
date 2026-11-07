@@ -35,19 +35,19 @@ export default css`
     outline: none;
   }
 
-  /* ---- assembly: label, field, hint, space/xxs apart ---- */
+  /* ---- assembly: label, field, hint, space/xs apart (as Select) ---- */
   :host .container,
   .labelled {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xxs);
+    gap: var(--space-xs);
     height: fit-content;
   }
 
   .label {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     width: fit-content;
     font: var(--text-label-medium);
     letter-spacing: var(--label-medium-letter-spacing);
@@ -69,12 +69,30 @@ export default css`
     --icon-color: var(--foreground-primary);
   }
 
+  /* Input Label's root: the label row, then the sub label, space/xs apart. */
+  .label-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  .sub-label {
+    font: var(--text-body-small);
+    letter-spacing: var(--body-small-letter-spacing);
+    color: var(--foreground-secondary);
+  }
+
+  :host([disabled]) .sub-label {
+    color: var(--foreground-disabled);
+  }
+
   /* ---- field ---- */
   .input-container {
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: var(--space-2xs);
     height: var(--control-md);
     padding: var(--space-sm) var(--space-md);
     border-radius: var(--_radius);
@@ -101,7 +119,7 @@ export default css`
     flex: 1;
     width: 100%;
     margin: 0;
-    padding: 0 var(--space-xxs);
+    padding: 0 var(--space-2xs);
     background-color: transparent;
     color: var(--foreground-primary);
     caret-color: var(--foreground-cursor);
@@ -224,7 +242,7 @@ export default css`
   .hint-text {
     display: flex;
     align-items: center;
-    column-gap: var(--space-xxs);
+    column-gap: var(--space-2xs);
     font: var(--text-body-xsmall);
     letter-spacing: var(--body-xsmall-letter-spacing);
     color: var(--foreground-secondary);
