@@ -5,6 +5,50 @@ import {
   ProgressCircle, ScreenHeaderBar, SegmentedControl, Snackbar, StatusLabel, TopAppBar,
   type IconName, type StatusLabelStatus,
 } from "../src/index.js";
+import { Scrollbar } from "../src/index.js";
+
+/** A clipped region paired with the library Scrollbar (specs/scrollbar): the region keeps the scroll,
+    the bar mirrors it as an overlay on the trailing edge. The native scrollbar is hidden; the bar
+    only shows while the content overflows. */
+function Scrolled({ tag = "div", enabled = true, outer, scrollRef, style, children, ...rest }: {
+  tag?: "div" | "main" | "section"; enabled?: boolean; outer?: React.CSSProperties;
+  scrollRef?: React.RefObject<HTMLDivElement | null>;
+} & React.HTMLAttributes<HTMLDivElement>) {
+  const inner = React.useRef<HTMLDivElement | null>(null);
+  const [bar, setBar] = React.useState<{ value: number; size: number } | null>(null);
+  const sync = () => {
+    const el = inner.current;
+    if (!el) return;
+    const max = el.scrollHeight - el.clientHeight;
+    setBar((b) => {
+      const next = enabled && max > 1 ? { value: el.scrollTop / max, size: el.clientHeight / el.scrollHeight } : null;
+      if (!b || !next) return b === next ? b : next;
+      return Math.abs(b.value - next.value) < 0.002 && Math.abs(b.size - next.size) < 0.002 ? b : next;
+    });
+  };
+  React.useEffect(sync); // re-measure after every render, so content changes move the bar
+  const Tag = tag as "div";
+  return (
+    <div style={{ position: "relative", display: "flex", flex: 1, minBlockSize: 0, ...outer }}>
+      <Tag
+        ref={(el: HTMLDivElement | null) => {
+          inner.current = el;
+          if (scrollRef) scrollRef.current = el;
+        }}
+        onScroll={sync}
+        {...rest}
+        style={{ ...style, flex: 1, minInlineSize: 0, minBlockSize: 0, overflowY: enabled ? "auto" : "hidden", scrollbarWidth: "none" }}
+      >
+        {children}
+      </Tag>
+      {bar ? (
+        <Scrollbar value={bar.value} size={bar.size}
+          style={{ position: "absolute", insetBlock: 0, insetInlineEnd: 0, ["--zds-scrollbar-length" as string]: "100%" }} />
+      ) : null}
+    </div>
+  );
+}
+
 
 /* A mock mobile flow, not a component: the Companion skill "Availability
    Optimizer" from the Patterns file's Rebuild section (Companion Skill page).
@@ -360,7 +404,7 @@ function AvailabilityOptimizer({ shelfId: initialShelf = "", scenario = "gaps", 
     return (
       <Phone className="ext-companion">
         <Top><ScreenHeaderBar title={detail.action} onBack={() => setStep("summary")} /></Top>
-        <main style={{ flex: 1, overflow: "auto", display: "grid", alignContent: "start", gap: "var(--space-md)", padding: "0 var(--space-lg)" }}>
+        <Scrolled tag="main" style={{ display: "grid", alignContent: "start", gap: "var(--space-md)", padding: "0 var(--space-lg)" }}>
           <span><StatusLabel status={ACTION_STATUS[detail.action]} leading="none">{detail.action}</StatusLabel></span>
           <span style={{ display: "grid", gap: 2 }}>
             <span style={text("label-medium", "var(--foreground-secondary)")}>{detail.sku}</span>
@@ -379,7 +423,7 @@ function AvailabilityOptimizer({ shelfId: initialShelf = "", scenario = "gaps", 
               </React.Fragment>
             ))}
           </dl>
-        </main>
+        </Scrolled>
         <Pinned>
           <Button flavour="primary" size="large" shape="full" onClick={() => { setResolved([...new Set([...resolved, detail.id])]); setStep("summary"); setExpanded(true); }}>Done</Button>
         </Pinned>
@@ -455,7 +499,7 @@ function CompanionHandoff() {
     <Phone className="ext-companion mode-dark ao-future">
       <Top time="12:30" fill="none" statusType="device"><TopAppBar type="default" pageTitle="Companion" leadingLabel="Menu" style={{ background: "transparent" }}
         trailing={<IconButton flavour="subtle" size="small" shape="rounded" icon="settings" label="Settings" />} /></Top>
-      <main style={{ flex: 1, overflow: "auto", display: "grid", alignContent: "start", gap: "var(--space-md)", padding: "var(--space-md) var(--space-lg)" }}>
+      <Scrolled tag="main" style={{ display: "grid", alignContent: "start", gap: "var(--space-md)", padding: "var(--space-md) var(--space-lg)" }}>
         <button type="button" style={{
           justifySelf: "start", padding: 0, border: 0, background: "linear-gradient(90deg, var(--foreground-gradient-start), var(--foreground-gradient-end))",
           backgroundClip: "text", WebkitBackgroundClip: "text", color: "transparent", cursor: "pointer",
@@ -476,7 +520,7 @@ function CompanionHandoff() {
             <span style={text("body-small", "var(--foreground-secondary)")}>The Pegasus 40 is built for everyday road running with soft yet responsive cushioning.</span>
           </CardBody>
         </Card>
-      </main>
+      </Scrolled>
       <footer style={{ display: "flex", alignItems: "center", gap: "var(--space-sm)", padding: "var(--space-md) var(--space-lg) var(--space-xl)" }}>
         <IconButton flavour="subtle" size="large" shape="full" icon="keyboard" label="Type a message" />
         <span style={{ flex: 1 }} />

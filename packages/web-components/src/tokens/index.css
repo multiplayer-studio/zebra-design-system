@@ -4,9 +4,9 @@
 
 @import "./fonts.css";
 @import "./size.css";
-@import "./typography.css";
-@import "./primitives.css";
 @import "./semantics.css";
+@import "./primitives.css";
+@import "./typography.css";
 @import "./palette.css";
 @import "./text-styles.css";
 @import "./themes.css";

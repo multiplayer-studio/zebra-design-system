@@ -67,3 +67,15 @@ Written by zebra-figma-token-documenter. Newest last.
 - description: `interactive/neutral/background/focused` changed
 - description: `interactive/neutral/background/selected` changed
 - description: `interactive/neutral/background/disabled` changed
+
+## v3, 2026-11-07
+
+- value: `surface/subtle` Base: fill/sunken to fill/faint
+- description: `surface/subtle` changed
+- value: `fill/transparent` #f3f6fa00 to color/alpha/light/0
+- renamed: `surface/overlay` was surface/dialog
+- added: `fill/faint`
+- added: `surface/shade`
+- removed: `surface/sheet`
+- removed: `surface/popover`
+- removed: `surface/menu`

@@ -191,3 +191,5 @@ export { HorizontalStepper, VerticalStepper } from "./components/stepper/Stepper
 export type { HorizontalStepperProps, HorizontalStepperSize, VerticalStepperProps } from "./components/stepper/Stepper.js";
 export { Breadcrumb } from "./components/breadcrumb/Breadcrumb.js";
 export type { BreadcrumbProps, BreadcrumbItem, BreadcrumbFlavour, BreadcrumbShape } from "./components/breadcrumb/Breadcrumb.js";
+export { Scrollbar } from "./components/scrollbar/Scrollbar.js";
+export type { ScrollbarProps, ScrollbarOrientation } from "./components/scrollbar/Scrollbar.js";

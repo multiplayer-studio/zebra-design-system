@@ -22,12 +22,15 @@ When this file and a detailed source disagree, the detailed source wins: the tok
 
 ## 2. Shape inheritance
 
-Shape is decided once, by the container, and flows down.
+Shape is decided once, at the page, and flows down. This is the rule to internalise: most designs never mix shapes, so one declaration at the top covers the whole screen.
 
+- **Set shape at the page level.** A design is rounded or sharp throughout; the page (or the screen's root container) declares it once and everything inside follows. A second shape on the same page is the exception, not a per-component choice.
 - **A container flagged sharp makes everything inside it sharp,** unless a child is explicitly given another shape. Nested buttons, chips, inputs, cards, badges, menus, tooltips and progress indicators all take their sharp variant.
 - **A container flagged rounded makes everything inside it rounded,** under the same rule.
-- **An explicit shape on a child always wins** over the inherited one.
+- **An explicit shape on a child always wins** over the inherited one — and opts that child out of the page's choice, so fix a shape only where the design genuinely departs from the page.
+- **Overriding a radius is not setting a shape.** A composition may take a different `--radius-*` to fit its layout; as long as its children's shape stays unset, they keep inheriting the page shape.
 - `full` (pill) is a deliberate choice on a single element such as an icon button. It is never inherited. Under a rounded parent, children use `rounded`; under a sharp parent, they use `sharp`.
+- **Defaults follow the rounded contour** (Button and Icon Button default `medium`/`rounded`, matching Figma), so a sharp surface sets shape explicitly rather than relying on defaults.
 - Components spell shape differently: `shape="rounded" | "sharp"`, `rounded: boolean`, or Figma's `Rounded=true/false`. The rule is the same for all of them.
 - **In code,** a container passes its shape to its children and a child's own prop overrides it. Chat does this through `ChatShapeContext`. Radii read `--radius-*` tokens and collapse to `--radius-none` when sharp.
 - **In Figma,** nested instances are set to the matching `Rounded`/`Shape` variant of their parent.
@@ -56,12 +59,12 @@ Shape is decided once, by the container, and flows down.
 
 | Family | Tokens |
 |---|---|
-| `surface/` | `page`, `section`, `card`, `subtle`, `brand`, `inverse`, `menu`, `popover`, `dialog`, `sheet`, `tooltip`, `track`, `info`, `success`, `warning`, `error`, `gradient/start·end` |
+| `surface/` | `page`, `section`, `card`, `subtle`, `brand`, `inverse`, `overlay`, `shade`, `tooltip`, `track`, `info`, `success`, `warning`, `error`, `gradient/start·end` |
 | `foreground/` | `primary`, `secondary`, `tertiary`, `disabled`, `inverse`, `link`, `on-strong`, `on-light`, `info`, `success`, `warning`, `error`, `cursor`, `gradient/start·end` |
 | `border/` | `default`, `subtle`, `strong`, `inverse`, `focus`, `disabled`, `transparent`, `info`, `success`, `warning`, `error`, `gradient/start·end` |
-| `interactive/<flavour>/` | Flavours `primary`, `secondary`, `neutral`, `subtle`, `ghost`, `positive`, `destructive`, `inverse`, plus `selection`. Each has `background/` (`default`, `hover`, `pressed`, `focused`, `selected`, `disabled`, `loading`, `dragged`, `droptarget`, `visited`), `border/` and `foreground/` (`default`, `disabled`). |
-| `feedback/<status>/` | `info`, `success`, `warning`, `error`, `neutral`, each with `strong`, `subtle`, `foreground` and `icon` (`neutral` has no `icon`) |
-| Other | `focus/outline`, `focus/ring`, `overlay/backdrop·modal·scrim`, `shadow/soft·hard`, `navigation/*`, `selection/*`, `chart/*`, `contrast/high·low` |
+| `interactive/<flavour>/` | Flavours `primary`, `secondary`, `neutral`, `subtle`, `ghost`, `positive`, `destructive`, `inverse`, plus `selection`. Each has `background/` and `border/` across `default`, `hover`, `pressed`, `focused`, `selected`, `disabled`, and `foreground/` (`default`, `disabled`). |
+| `feedback/<status>/` | `info`, `success`, `warning`, `error`, `neutral`, each with `background/strong`, `background/subtle` and `foreground` |
+| Other | `focus/outline`, `focus/ring`, `overlay/modal·scrim`, `shadow/soft·hard`, `selection/*`, `chart/*` |
 
 ### Size
 
@@ -99,10 +102,11 @@ Put these on any ancestor (they work in both packages and on plain HTML):
 
 ## 4. Components
 
-Two implementations share the tokens, the icon font and the specs:
+Three libraries share the tokens, the icon font and the specs, and no component code:
 
 - **React:** `packages/react-baseui` (Base UI primitives). Storybook runs on `:6008`.
 - **Web components:** `packages/web-components` (Lit, `zds-*`). Storybook runs on `:6007`.
+- **Zeta Web (legacy):** `packages/zeta-web` (Lit, `zeta-*`), refined against the same specs in its own house style. Storybook runs on `:6006`.
 
 **Spec for each component:** `specs/<name>/<name>.spec.md` (readable) and `.spec.json` (contract). Read the spec before building or changing a component, including its `issues` section.
 
@@ -112,7 +116,7 @@ Interaction states such as hover, pressed and focus are CSS states, never props,
 
 | Component | Key props | Spec |
 |---|---|---|
-| Button | `flavour` (9), `size` s/m/l, `shape` sharp/rounded/full, `disabled`, `leadingIcon`, `trailingIcon` | `specs/button` |
+| Button | `flavour` (11), `size` s/m/l (default medium), `shape` sharp/rounded/full (default rounded), `disabled`, `leadingIcon`, `trailingIcon` | `specs/button` |
 | Icon Button | `flavour`, `size`, `shape`, `disabled`, `label` (accessible name) | `specs/icon-button` |
 | Button Group | `size`, `shape`, `items` | `specs/button-group` |
 
@@ -133,7 +137,7 @@ Interaction states such as hover, pressed and focus are CSS states, never props,
 
 | Component | Key props | Spec |
 |---|---|---|
-| Input (with Input Field) | `type`, `showLabel`, `showHint`, `state` default/invalid/disabled | `specs/input` |
+| Input (with Input Field) | `type`, `showLabel`, `subLabel`, `showHint`, `state` default/invalid/disabled, `block`; the field's `size`, `shape` and `flavour` surface on the assembly | `specs/input` |
 | Phone Input | `value`, `country`, `countries`, `state`, `size`, `shape`, `flavour`, `label`, `hint` | `specs/phone-input` |
 | Select | `open`, `showLabel`, `showHint` | `specs/select` |
 | Search | `shape`, `size`, `flavour` default/gradient/ghost, leading/trailing | `specs/search` |
@@ -153,6 +157,7 @@ Interaction states such as hover, pressed and focus are CSS states, never props,
 | Dialog | `flavour` default/error/info/success/warning, `shape`, `showFooter` | `specs/dialog` |
 | Table | `hasControl`, `hasFooter`, `shape` | `specs/table` |
 | Divider | `orientation` | `specs/divider` |
+| Scrollbar | `orientation`, `value` and `size` (0–1, code-only); presentational — the scrolling region owns behaviour | `specs/scrollbar` |
 | Avatar | `size` (9 steps), photo/initials/icon, `showStatus`, `showRing`, `showClose` | `specs/avatar` |
 | Avatar Rail | `size`, `stacking`, `max`, overflow count | `specs/avatar-rail` |
 | Icon | `name` (glyph), `size` xsmall/small/medium/large, `framed` | `specs/icon` |
@@ -181,6 +186,7 @@ Interaction states such as hover, pressed and focus are CSS states, never props,
 | Screen Header Bar | `title`, back, `rounded`, action slot | `specs/screen-header-bar` |
 | Pagination | controls, `outline`, `rounded` | `specs/pagination` |
 | Breadcrumb | `items` (label, href, icon, onSelect), `maxItems`, `flavour` default/accent, `shape` rounded/sharp | `specs/breadcrumb` |
+| Stepper (Horizontal, Vertical; Step Card, Step Segment) | `steps` (label, subtitle, status complete/partial/active/upcoming/error/disabled), `onStepSelect`, `shape` | `specs/stepper` |
 
 ### Experimental (code only, no spec yet)
 
@@ -190,7 +196,6 @@ Find these in Storybook under `Experimental/*`. They must not be used in product
 |---|---|---|
 | Message Input | text, attachments (Assist Chips), voice, actions | `packages/react-baseui/src/components/message-input` |
 | Chat (Message, Thread and content blocks) | `role` me/other/assistant, `position`, `header`, `avatar`, `footer`, `fill` light/solid, `actions`, `actionsPosition`, `reactions`, `shape` | `packages/react-baseui/src/components/chat`, with a Figma draft on the Chat branch |
-| Stepper | `steps` (label, subtitle, status complete/partial/active/upcoming/error/disabled), `orientation`, `layout` desktop/mobile, `onStepSelect` | `packages/react-baseui/src/components/stepper`, from the Stepper Experimental Figma page |
 
 ---
 
@@ -208,6 +213,9 @@ Find these in Storybook under `Experimental/*`. They must not be used in product
 | A component's anatomy, props, tokens and known issues | `specs/<name>/<name>.spec.md` |
 | Building or changing a React component | `.claude/skills/zebra-react-baseui/` |
 | Building or changing a web component | `.claude/skills/zebra-web-components/` |
+| Refining a legacy Zeta Web component | `.claude/skills/zeta-web-components/` |
+| Building a Figma flow as a page story | `.claude/skills/zebra-builder-skill/` |
+| Writing or updating a spec (style rules) | `specs/spec-writing-guidance.md` |
 | Refreshing tokens from Figma | `.claude/skills/zebra-figma-token-export/` |
 | Extracting a spec from Figma | `.claude/skills/zebra-figma-component-spec/` |
 | Icons and glyph names | `packages/icons/` (`codepoints.json`, `icon-names.ts`) |

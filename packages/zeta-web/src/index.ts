@@ -62,6 +62,7 @@ import { ZetaRadioButton } from "./components/radio-button/radio-button.js";
 import { ZetaRangeSelector } from "./components/slider/range-selector/range-selector.js";
 import { ZetaScreenHeaderBar } from "./components/screen-header-bar/screen-header-bar.js";
 import { ZetaDivider } from "./components/divider/divider.js";
+import { ZetaScrollbar } from "./components/scrollbar/scrollbar.js";
 import { ZetaNotificationItem } from "./components/notification-item/notification-item.js";
 import { ZetaTable } from "./components/table/table.js";
 import { ZetaSearch } from "./components/search/search.js";
@@ -154,6 +155,7 @@ export {
   ZetaRangeSelector,
   ZetaScreenHeaderBar,
   ZetaDivider,
+  ZetaScrollbar,
   ZetaNotificationItem,
   ZetaTable,
   ZetaSearch,

@@ -5,7 +5,51 @@ import {
   NavigationRailItem, Search, Select, Snackbar,
   type IconName,
 } from "../src/index.js";
+import { Scrollbar } from "../src/index.js";
 import { ZebraLogo } from "./zebra-logo.js";
+
+/** A clipped region paired with the library Scrollbar (specs/scrollbar): the region keeps the scroll,
+    the bar mirrors it as an overlay on the trailing edge. The native scrollbar is hidden; the bar
+    only shows while the content overflows. */
+function Scrolled({ tag = "div", enabled = true, outer, scrollRef, style, children, ...rest }: {
+  tag?: "div" | "main" | "section"; enabled?: boolean; outer?: React.CSSProperties;
+  scrollRef?: React.RefObject<HTMLDivElement | null>;
+} & React.HTMLAttributes<HTMLDivElement>) {
+  const inner = React.useRef<HTMLDivElement | null>(null);
+  const [bar, setBar] = React.useState<{ value: number; size: number } | null>(null);
+  const sync = () => {
+    const el = inner.current;
+    if (!el) return;
+    const max = el.scrollHeight - el.clientHeight;
+    setBar((b) => {
+      const next = enabled && max > 1 ? { value: el.scrollTop / max, size: el.clientHeight / el.scrollHeight } : null;
+      if (!b || !next) return b === next ? b : next;
+      return Math.abs(b.value - next.value) < 0.002 && Math.abs(b.size - next.size) < 0.002 ? b : next;
+    });
+  };
+  React.useEffect(sync); // re-measure after every render, so content changes move the bar
+  const Tag = tag as "div";
+  return (
+    <div style={{ position: "relative", display: "flex", flex: 1, minBlockSize: 0, ...outer }}>
+      <Tag
+        ref={(el: HTMLDivElement | null) => {
+          inner.current = el;
+          if (scrollRef) scrollRef.current = el;
+        }}
+        onScroll={sync}
+        {...rest}
+        style={{ ...style, flex: 1, minInlineSize: 0, minBlockSize: 0, overflowY: enabled ? "auto" : "hidden", scrollbarWidth: "none" }}
+      >
+        {children}
+      </Tag>
+      {bar ? (
+        <Scrollbar value={bar.value} size={bar.size}
+          style={{ position: "absolute", insetBlock: 0, insetInlineEnd: 0, ["--zds-scrollbar-length" as string]: "100%" }} />
+      ) : null}
+    </div>
+  );
+}
+
 
 /* A mock desktop flow, not a component: adding and managing devices in the
    Admin portal, from the Rebuild section of Zebra Design System Patterns
@@ -244,9 +288,9 @@ const SideSheet = ({ title, description, bodyGap, bodyTop, back, cancel, primary
         <h2 style={{ ...t("heading-large"), color: "var(--foreground-primary)" }}>{title}</h2>
         <p style={{ ...t("body-medium"), color: "var(--foreground-secondary)" }}>{description}</p>
       </header>
-      <div style={{ flex: 1, minBlockSize: 0, overflow: "auto", display: "flex", flexDirection: "column", gap: bodyGap, padding: `${bodyTop} var(--space-xl) var(--space-xl)` }}>
+      <Scrolled style={{ display: "flex", flexDirection: "column", gap: bodyGap, padding: `${bodyTop} var(--space-xl) var(--space-xl)` }}>
         {body}
-      </div>
+      </Scrolled>
       <footer style={{ display: "flex", alignItems: "center", gap: "var(--space-md)", padding: "var(--space-lg)", background: "var(--surface-card)",
         borderBlockStart: "var(--stroke-thin) solid var(--border-default)" }}>
         {back ? <Button flavour="text" size="large" shape="rounded" leadingIcon="arrow-back" onClick={back}>Back</Button> : null}

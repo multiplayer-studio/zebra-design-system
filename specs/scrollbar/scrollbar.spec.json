@@ -1,0 +1,159 @@
+{
+  "component": {
+    "name": "Scrollbar",
+    "slug": "scrollbar",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "6068:12030",
+      "page": "Scrollbar",
+      "pageNodeId": "6057:11947",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6057-11947",
+      "extractedAt": "2026-11-07",
+      "variantCount": 4,
+      "defaultVariant": "Orientation=vertical, State=default",
+      "extractionNote": "All 4 variants read in full; intent from the Scrollbar Metadata frame, written 2026-11-07.",
+      "tokenSource": "tokens/"
+    }
+  },
+  "summary": "The scroll indicator for a region that clips its content. A padded gutter holds a pill handle whose position and length mirror the scroll offset; hovering raises a track scrim so the grab target reads. Two orientations draw the same bar on either axis, and the scrolling region, not the bar, owns the behaviour.",
+  "api": {
+    "orientation": {
+      "type": "enum",
+      "figmaName": "Orientation",
+      "default": "vertical",
+      "values": ["vertical", "horizontal"],
+      "controls": ["variant"],
+      "intent": {
+        "vertical": "The axis the region scrolls. Vertical stands against the trailing edge of the content and the handle slides up and down.",
+        "horizontal": "Lies along the bottom edge for content that pans sideways, as the Table's frozen arrangement uses it."
+      }
+    },
+    "state": {
+      "type": "enum",
+      "figmaName": "State",
+      "default": "default",
+      "values": ["default", "hover"],
+      "controls": ["variant"],
+      "note": "Documentation-only in Figma; hover is a CSS state in code.",
+      "intent": {
+        "default": "The resting bar. The track is invisible and the handle sits quiet, so the bar reads as part of the content's edge rather than a control.",
+        "hover": "Pointer over the gutter. The track raises the ghost scrim and the handle darkens, which is what makes the grab target readable."
+      }
+    }
+  },
+  "internalVariations": [],
+  "contentInputs": [
+    { "part": "handle", "input": "value", "note": "No Figma property. The handle's length is the viewport's share of the content (drawn at a sample 64Px) and its offset mirrors the scroll position." }
+  ],
+  "anatomy": [
+    {
+      "id": "bar",
+      "kind": "container",
+      "figmaName": "<variant>",
+      "role": "The component frame: a gutter holding the handle, padded space/2xs on every side so the handle floats clear of the content edge. It runs the full length of the scrolling region's edge.",
+      "layout": {
+        "direction": "horizontal (vertical orientation) | vertical (horizontal orientation)",
+        "gap": "space/none",
+        "padding": { "all": "space/2xs" }
+      },
+      "boxPx": { "vertical": "12 x 200", "horizontal": "200 x 12" },
+      "paint": "none of its own"
+    },
+    {
+      "id": "track",
+      "kind": "shape",
+      "figmaName": "Track",
+      "role": "A rectangle filling the bar behind the handle, interactive/ghost/background/default at rest and the hover token under the pointer — the same ghost scrim the buttons use.",
+      "position": { "mode": "absolute", "constraints": "scale both axes (fills the bar)" },
+      "paint": {
+        "fill": {
+          "default": "interactive/ghost/background/default @ 0",
+          "hover": "interactive/ghost/background/hover @ 0.05"
+        }
+      }
+    },
+    {
+      "id": "handle",
+      "kind": "shape",
+      "figmaName": "Handle",
+      "role": "The pill that shows the position: radius/pill, foreground/disabled at rest and foreground/secondary on hover. Its length is a sample of the value, not a property.",
+      "radius": "radius/pill",
+      "boxPx": { "thickness": 4, "lengthSample": 64 },
+      "paint": {
+        "fill": { "default": "foreground/disabled", "hover": "foreground/secondary" }
+      }
+    }
+  ],
+  "variants": {
+    "byOrientation": [
+      { "orientation": "vertical", "bar.layout": "horizontal row, handle centred", "boxPx": "12 x 200" },
+      { "orientation": "horizontal", "bar.layout": "vertical column, handle centred", "boxPx": "200 x 12" }
+    ],
+    "byState": [
+      { "state": "default", "track.fill": "interactive/ghost/background/default @ 0", "handle.fill": "foreground/disabled" },
+      { "state": "hover", "track.fill": "interactive/ghost/background/hover @ 0.05", "handle.fill": "foreground/secondary" }
+    ],
+    "_note": "Orientation and state are independent: the axes swap and nothing else. The @ opacities are Figma paint opacities over tokens that already carry their own alpha — see issues."
+  },
+  "subcomponents": [],
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": ["foreground/disabled", "foreground/secondary", "interactive/ghost/background/default", "interactive/ghost/background/hover"],
+    "dimension": ["space/2xs", "space/none", "radius/pill"],
+    "typography": [],
+    "glyphs": [],
+    "themeAxes": {
+      "palette": ["Light", "Dark", "AAA Light", "AAA Dark"],
+      "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"],
+      "typography": ["Desktop", "Tablet", "Mobile", "Desktop Compact"]
+    }
+  },
+  "states": [
+    { "state": "default", "trigger": "Resting", "change": "The handle draws in foreground/disabled over an invisible track. Only the colours are modelled; the handle's position and length come from the scrolling region." },
+    { "state": "hover", "trigger": "Pointer over the gutter", "change": "The track raises interactive/ghost/background/hover and the handle moves to foreground/secondary. No pressed or dragging treatment exists." }
+  ],
+  "behavior": [
+    { "type": "Motion", "description": "Figma stores no timing and no transition is authored. Whether the bar fades in with scroll activity and out when it stops belongs to the implementation." },
+    { "type": "Value", "description": "The handle's length is the viewport's share of the content and its offset mirrors the scroll position. The set draws one sample; nothing in it encodes a value." }
+  ],
+  "content": [
+    { "property": "Handle", "type": "fixed part", "description": "Not a slot. A pill that takes its length from the value and its colour from the state; there is no property to restyle or hide it per instance." },
+    { "property": "Track", "type": "fixed part", "description": "Not a slot. The full-length gutter behind the handle, invisible at rest and scrimmed on hover." }
+  ],
+  "usage": {
+    "do": [
+      "Let the scrolling region own it. The bar reports position; wiring scroll, drag and keyboard belongs to the region that clips the content.",
+      "Match Orientation to the overflow axis — vertical beside a scrolling list, horizontal under the Table's frozen columns."
+    ],
+    "dont": [
+      "Don't restyle the handle to look like a control. It has no focus state, so anything that invites clicking promises more than the set models.",
+      "Don't rely on hover to reveal the bar. A touch screen never hovers, so the resting handle has to be visible on its own."
+    ]
+  },
+  "accessibility": [
+    "The set models no focus, pressed or dragging state, so keyboard scrolling and drag behaviour belong entirely to the implementation.",
+    "The resting handle is foreground/disabled on the page surface. Check it stays visible against the surfaces the region scrolls over.",
+    "Assistive technology reaches scrolling through the region, not the bar: expose the region and keep the bar presentational.",
+    "Hover is the only state change and colour its only signal, so nothing here reaches someone who cannot see the bar move."
+  ],
+  "layoutTheming": [
+    { "property": "Thickness", "type": "Fixed", "description": "The gutter is 12 and the handle 4 as drawn, with neither bound to a token. The length runs the scrolling region's full edge." },
+    { "property": "Padding", "type": "Fixed", "description": "space/2xs on all four sides, which is what centres the handle in the gutter and keeps it clear of the content edge." },
+    { "property": "Radius", "type": "Fixed", "description": "radius/pill on the handle in every variant. The track has no radius of its own." },
+    { "property": "Handle length", "type": "Value", "description": "Drawn at a sample 64. In use the length is the viewport's share of the content and is never a property." },
+    { "property": "Fill", "type": "Theming", "description": "The handle is foreground/disabled at rest and foreground/secondary on hover. The track is interactive/ghost/background/default, rising to the hover token under the pointer." },
+    { "property": "Orientation", "type": "Per Orientation", "description": "vertical and horizontal swap the axes and nothing else: the same padding, colours and radius on both." }
+  ],
+  "visualReference": {
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6057-11947",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6068-12030",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8114-33"
+  },
+  "issues": [
+    { "severity": "warn", "source": "gaps", "detail": "The gutter (12Px) and handle (4Px) thicknesses and the handle's sample length (64Px) are unbound — no dimension token anywhere on the set beyond the padding." },
+    { "severity": "warn", "source": "gaps (paint opacity)", "detail": "The track sets a paint opacity of 0 / 0.05 over interactive/ghost/background/*, which already carries the scrim in its own alpha — the same doubling Button has. Code binds the token alone with no paint opacity." },
+    { "severity": "warn", "source": "tokens", "detail": "The resting handle binds foreground/disabled — a text-role token on a part that is not disabled. It resolves to the intended quiet grey, but a token meant for disabled text now controls scrollbar colour." },
+    { "severity": "note", "source": "coverage", "detail": "No pressed, dragging or focus state and no value are modelled, by design: the bar is the static indicator and the scrolling region owns the behaviour. Motion is not modelled." },
+    { "severity": "note", "source": "usage", "detail": "Used by Table Content (frozen arrangement horizontal, vertical-scroll arrangement vertical) — see specs/table." }
+  ]
+}

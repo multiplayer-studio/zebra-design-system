@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button, Checkbox, Divider, Icon, Input, ScreenHeaderBar, Select, Switch, SystemBanner } from "../src/index.js";
+import { Button, Checkbox, Divider, Icon, Input, ScreenHeaderBar, Scrollbar, Select, Switch, SystemBanner } from "../src/index.js";
 
 /* A mock mobile page, not a component: XPSU's Wireless Settings on a 390 ×
    844 handheld, composed only from the library. Every field is the library's
@@ -46,21 +46,18 @@ const INITIAL = {
 };
 type Settings = typeof INITIAL;
 
-/** iOS-style scrolling: no scrollbar gutter, just a thin indicator that shows
+/** Phone-style scrolling: the library Scrollbar overlays the edge, shows
     while the content moves and fades out shortly after. */
 function PhoneScroll({ children, style }: { children: React.ReactNode; style: React.CSSProperties }) {
   const ref = React.useRef<HTMLDivElement>(null);
-  const [thumb, setThumb] = React.useState({ top: 0, size: 0, shown: false });
+  const [bar, setBar] = React.useState({ value: 0, size: 0, shown: false });
   const hideTimer = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const onScroll = () => {
     const el = ref.current;
     if (!el || el.scrollHeight <= el.clientHeight) return;
-    const track = el.clientHeight - 8;
-    const size = Math.max(36, (el.clientHeight / el.scrollHeight) * track);
-    const top = 4 + (el.scrollTop / (el.scrollHeight - el.clientHeight)) * (track - size);
-    setThumb({ top, size, shown: true });
+    setBar({ value: el.scrollTop / (el.scrollHeight - el.clientHeight), size: el.clientHeight / el.scrollHeight, shown: true });
     clearTimeout(hideTimer.current);
-    hideTimer.current = setTimeout(() => setThumb((t) => ({ ...t, shown: false })), 700);
+    hideTimer.current = setTimeout(() => setBar((b) => ({ ...b, shown: false })), 700);
   };
   React.useEffect(() => () => clearTimeout(hideTimer.current), []);
   return (
@@ -68,10 +65,10 @@ function PhoneScroll({ children, style }: { children: React.ReactNode; style: Re
       <div ref={ref} onScroll={onScroll} style={{ ...style, flex: 1, minBlockSize: 0, overflow: "auto", scrollbarWidth: "none", overscrollBehavior: "contain" }}>
         {children}
       </div>
-      <span aria-hidden="true" style={{
-        position: "absolute", insetInlineEnd: 3, insetBlockStart: thumb.top, blockSize: thumb.size, inlineSize: 3,
-        borderRadius: "var(--radius-pill)", background: "var(--foreground-tertiary)",
-        opacity: thumb.shown ? 0.7 : 0, transition: thumb.shown ? "opacity 100ms" : "opacity 400ms", pointerEvents: "none",
+      {/* The library Scrollbar (specs/scrollbar), phone-style: it appears while scrolling and fades at rest. */}
+      <Scrollbar value={bar.value} size={bar.size} style={{
+        position: "absolute", insetBlock: 0, insetInlineEnd: 0, ["--zds-scrollbar-length" as string]: "100%",
+        opacity: bar.shown ? 1 : 0, transition: bar.shown ? "opacity 100ms" : "opacity 400ms", pointerEvents: "none",
       }} />
     </div>
   );

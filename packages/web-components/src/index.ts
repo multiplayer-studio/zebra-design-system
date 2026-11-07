@@ -69,3 +69,4 @@ export * from "./components/navigation-rail/collapsible-menu-item.js";
 export * from "./components/select/select.js";
 export * from "./components/tab-bar/tab-item.js";
 export * from "./components/tab-bar/tab-bar.js";
+export * from "./components/scrollbar/scrollbar.js";

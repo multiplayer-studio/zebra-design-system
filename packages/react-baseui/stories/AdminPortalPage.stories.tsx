@@ -10,6 +10,50 @@ import {
   AssistChip, Button, Card, CardBody, CardHeading, Divider, FilterChip, GlobalHeader, Icon, IconButton, MenuItem, NavigationHeader,
   NavigationRail, NavigationRailItem, Search, type IconName,
 } from "../src/index.js";
+import { Scrollbar } from "../src/index.js";
+
+/** A clipped region paired with the library Scrollbar (specs/scrollbar): the region keeps the scroll,
+    the bar mirrors it as an overlay on the trailing edge. The native scrollbar is hidden; the bar
+    only shows while the content overflows. */
+function Scrolled({ tag = "div", enabled = true, outer, scrollRef, style, children, ...rest }: {
+  tag?: "div" | "main" | "section"; enabled?: boolean; outer?: React.CSSProperties;
+  scrollRef?: React.RefObject<HTMLDivElement | null>;
+} & React.HTMLAttributes<HTMLDivElement>) {
+  const inner = React.useRef<HTMLDivElement | null>(null);
+  const [bar, setBar] = React.useState<{ value: number; size: number } | null>(null);
+  const sync = () => {
+    const el = inner.current;
+    if (!el) return;
+    const max = el.scrollHeight - el.clientHeight;
+    setBar((b) => {
+      const next = enabled && max > 1 ? { value: el.scrollTop / max, size: el.clientHeight / el.scrollHeight } : null;
+      if (!b || !next) return b === next ? b : next;
+      return Math.abs(b.value - next.value) < 0.002 && Math.abs(b.size - next.size) < 0.002 ? b : next;
+    });
+  };
+  React.useEffect(sync); // re-measure after every render, so content changes move the bar
+  const Tag = tag as "div";
+  return (
+    <div style={{ position: "relative", display: "flex", flex: 1, minBlockSize: 0, ...outer }}>
+      <Tag
+        ref={(el: HTMLDivElement | null) => {
+          inner.current = el;
+          if (scrollRef) scrollRef.current = el;
+        }}
+        onScroll={sync}
+        {...rest}
+        style={{ ...style, flex: 1, minInlineSize: 0, minBlockSize: 0, overflowY: enabled ? "auto" : "hidden", scrollbarWidth: "none" }}
+      >
+        {children}
+      </Tag>
+      {bar ? (
+        <Scrollbar value={bar.value} size={bar.size}
+          style={{ position: "absolute", insetBlock: 0, insetInlineEnd: 0, ["--zds-scrollbar-length" as string]: "100%" }} />
+      ) : null}
+    </div>
+  );
+}
+
 
 /* A mock admin dashboard, not a component. The frame is the library's own:
    Navigation Rail (with Navigation Header) down the side and Global Header
@@ -421,7 +465,7 @@ function AdminPortal({ theme }: { theme?: "mode-light" | "mode-dark" }) {
       <AdminRail active={active} onSelect={setActive} light={!dark} expanded={railExpanded} onExpandedChange={setRailExpanded} />
       <Divider orientation="vertical" />
       <div style={{ flex: 1, minInlineSize: 0, display: "flex", flexDirection: "column" }}>
-        <main style={{ flex: 1, minBlockSize: 0, overflow: "auto", padding: "var(--space-lg) var(--space-xl)", display: "grid", gap: "var(--space-md)", alignContent: "start", gridAutoRows: "max-content" }}>
+        <Scrolled tag="main" style={{ padding: "var(--space-lg) var(--space-xl)", display: "grid", gap: "var(--space-md)", alignContent: "start", gridAutoRows: "max-content" }}>
           <SetupBanner />
           <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr) 400px", gap: "var(--space-md)" }}>
             <Widget title="Site Activity" subheading="Scroll and zoom to show activity for a region" expanded={expanded === "map"} onExpand={toggle("map")}
@@ -440,7 +484,7 @@ function AdminPortal({ theme }: { theme?: "mode-light" | "mode-dark" }) {
           <Widget title="Application Usage" subheading="Measured by active sessions" expanded={expanded === "usage"} onExpand={toggle("usage")}>
             <ApplicationUsage />
           </Widget>
-        </main>
+        </Scrolled>
       </div>
       </div>
     </div>

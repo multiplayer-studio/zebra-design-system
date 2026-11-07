@@ -1,6 +1,6 @@
 {
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
-  "extractedAt": "2026-11-06",
+  "extractedAt": "2026-11-07",
   "source": "Figma Plugin API via use_figma (zebra-figma-token-export skill)",
   "collections": [
     {
@@ -25,24 +25,18 @@
       ]
     },
     {
-      "name": "typography",
-      "slug": "typography",
-      "id": "VariableCollectionId:2207:329",
+      "name": "semantics",
+      "slug": "semantics",
+      "id": "VariableCollectionId:2:3",
       "modes": [
-        "Desktop",
-        "Tablet",
-        "Mobile",
-        "Desktop Compact"
+        "Base"
       ],
-      "defaultMode": "Desktop",
-      "variableCount": 90,
+      "defaultMode": "Base",
+      "variableCount": 194,
       "isExtension": false,
       "hiddenFromPublishing": false,
       "files": [
-        "base/typography/desktop.json",
-        "base/typography/tablet.json",
-        "base/typography/mobile.json",
-        "base/typography/desktop-compact.json"
+        "base/semantics/base.json"
       ]
     },
     {
@@ -61,18 +55,24 @@
       ]
     },
     {
-      "name": "semantics",
-      "slug": "semantics",
-      "id": "VariableCollectionId:2:3",
+      "name": "typography",
+      "slug": "typography",
+      "id": "VariableCollectionId:2207:329",
       "modes": [
-        "Base"
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
       ],
-      "defaultMode": "Base",
-      "variableCount": 194,
+      "defaultMode": "Desktop",
+      "variableCount": 90,
       "isExtension": false,
       "hiddenFromPublishing": false,
       "files": [
-        "base/semantics/base.json"
+        "base/typography/desktop.json",
+        "base/typography/tablet.json",
+        "base/typography/mobile.json",
+        "base/typography/desktop-compact.json"
       ]
     },
     {
@@ -98,6 +98,79 @@
     }
   ],
   "extensions": [
+    {
+      "name": "condensed",
+      "slug": "condensed",
+      "extends": {
+        "name": "typography",
+        "id": "VariableCollectionId:2207:329",
+        "slug": "typography"
+      },
+      "root": {
+        "name": "typography",
+        "id": "VariableCollectionId:2207:329"
+      },
+      "overrideCount": 34,
+      "modeMap": [
+        {
+          "mode": "Desktop",
+          "parentMode": "Desktop"
+        },
+        {
+          "mode": "Tablet",
+          "parentMode": "Tablet"
+        },
+        {
+          "mode": "Mobile",
+          "parentMode": "Mobile"
+        },
+        {
+          "mode": "Desktop Compact",
+          "parentMode": "Desktop Compact"
+        }
+      ],
+      "files": [
+        "extensions/condensed/typography/desktop.json",
+        "extensions/condensed/typography/tablet.json",
+        "extensions/condensed/typography/mobile.json",
+        "extensions/condensed/typography/desktop-compact.json"
+      ]
+    },
+    {
+      "name": "condensed",
+      "slug": "condensed",
+      "extends": {
+        "name": "size",
+        "id": "VariableCollectionId:2013:6723",
+        "slug": "size"
+      },
+      "root": {
+        "name": "size",
+        "id": "VariableCollectionId:2013:6723"
+      },
+      "overrideCount": 29,
+      "modeMap": [
+        {
+          "mode": "Desktop",
+          "parentMode": "Desktop"
+        },
+        {
+          "mode": "Mobile",
+          "parentMode": "Mobile"
+        },
+        {
+          "mode": "Tablet",
+          "parentMode": "Tablet"
+        },
+        {
+          "mode": "Desktop Compact",
+          "parentMode": "Desktop Compact"
+        }
+      ],
+      "files": [
+        "extensions/condensed/size/desktop.json"
+      ]
+    },
     {
       "name": "companion",
       "slug": "companion",
@@ -191,79 +264,6 @@
       "files": [
         "extensions/target/palette/light.json",
         "extensions/target/palette/dark.json"
-      ]
-    },
-    {
-      "name": "condensed",
-      "slug": "condensed",
-      "extends": {
-        "name": "typography",
-        "id": "VariableCollectionId:2207:329",
-        "slug": "typography"
-      },
-      "root": {
-        "name": "typography",
-        "id": "VariableCollectionId:2207:329"
-      },
-      "overrideCount": 34,
-      "modeMap": [
-        {
-          "mode": "Desktop",
-          "parentMode": "Desktop"
-        },
-        {
-          "mode": "Tablet",
-          "parentMode": "Tablet"
-        },
-        {
-          "mode": "Mobile",
-          "parentMode": "Mobile"
-        },
-        {
-          "mode": "Desktop Compact",
-          "parentMode": "Desktop Compact"
-        }
-      ],
-      "files": [
-        "extensions/condensed/typography/desktop.json",
-        "extensions/condensed/typography/tablet.json",
-        "extensions/condensed/typography/mobile.json",
-        "extensions/condensed/typography/desktop-compact.json"
-      ]
-    },
-    {
-      "name": "condensed",
-      "slug": "condensed",
-      "extends": {
-        "name": "size",
-        "id": "VariableCollectionId:2013:6723",
-        "slug": "size"
-      },
-      "root": {
-        "name": "size",
-        "id": "VariableCollectionId:2013:6723"
-      },
-      "overrideCount": 29,
-      "modeMap": [
-        {
-          "mode": "Desktop",
-          "parentMode": "Desktop"
-        },
-        {
-          "mode": "Mobile",
-          "parentMode": "Mobile"
-        },
-        {
-          "mode": "Tablet",
-          "parentMode": "Tablet"
-        },
-        {
-          "mode": "Desktop Compact",
-          "parentMode": "Desktop Compact"
-        }
-      ],
-      "files": [
-        "extensions/condensed/size/desktop.json"
       ]
     }
   ],
@@ -517,13 +517,13 @@
     "palette/Dark name collisions: ['fill/transparent/elevate']",
     "palette/AAA Light name collisions: ['fill/transparent/elevate']",
     "palette/AAA Dark name collisions: ['fill/transparent/elevate']",
+    "Extension 'condensed' mode 'Mobile' overrides nothing; no file written",
+    "Extension 'condensed' mode 'Tablet' overrides nothing; no file written",
+    "Extension 'condensed' mode 'Desktop Compact' overrides nothing; no file written",
     "Extension 'companion' mode 'AAA Light' overrides nothing; no file written",
     "Extension 'companion' mode 'AAA Dark' overrides nothing; no file written",
     "Extension 'target' mode 'AAA Light' overrides nothing; no file written",
     "Extension 'target' mode 'AAA Dark' overrides nothing; no file written",
-    "Extension 'condensed' mode 'Mobile' overrides nothing; no file written",
-    "Extension 'condensed' mode 'Tablet' overrides nothing; no file written",
-    "Extension 'condensed' mode 'Desktop Compact' overrides nothing; no file written",
     "Font families declared by tokens but used by no text style: ['Zebra Sans']",
     "4 variables deleted from the file but still referenced, not exported: ['color/border/primary', 'surface/menu', 'surface/popover', 'surface/sheet']",
     "224 values sit on deleted modes ['2201:1'] and were skipped, e.g. ['scale/1 @ 2201:1', 'scale/10 @ 2201:1', 'scale/11 @ 2201:1']"

@@ -1,5 +1,10 @@
 {
- "version": "v2",
- "date": "2026-11-02",
- "rebuild": []
+ "version": "v3",
+ "date": "2026-11-07",
+ "rebuild": [
+  "companion",
+  "palette",
+  "semantic",
+  "target"
+ ]
 }

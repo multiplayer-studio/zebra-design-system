@@ -5,6 +5,50 @@ import {
   NavigationItem, PriorityPill, ProgressBar, ScreenHeaderBar, StatusLabel,
   type MessageAttachment, type MessageSubmission,
 } from "../src/index.js";
+import { Scrollbar } from "../src/index.js";
+
+/** A clipped region paired with the library Scrollbar (specs/scrollbar): the region keeps the scroll,
+    the bar mirrors it as an overlay on the trailing edge. The native scrollbar is hidden; the bar
+    only shows while the content overflows. */
+function Scrolled({ tag = "div", enabled = true, outer, scrollRef, style, children, ...rest }: {
+  tag?: "div" | "main" | "section"; enabled?: boolean; outer?: React.CSSProperties;
+  scrollRef?: React.RefObject<HTMLDivElement | null>;
+} & React.HTMLAttributes<HTMLDivElement>) {
+  const inner = React.useRef<HTMLDivElement | null>(null);
+  const [bar, setBar] = React.useState<{ value: number; size: number } | null>(null);
+  const sync = () => {
+    const el = inner.current;
+    if (!el) return;
+    const max = el.scrollHeight - el.clientHeight;
+    setBar((b) => {
+      const next = enabled && max > 1 ? { value: el.scrollTop / max, size: el.clientHeight / el.scrollHeight } : null;
+      if (!b || !next) return b === next ? b : next;
+      return Math.abs(b.value - next.value) < 0.002 && Math.abs(b.size - next.size) < 0.002 ? b : next;
+    });
+  };
+  React.useEffect(sync); // re-measure after every render, so content changes move the bar
+  const Tag = tag as "div";
+  return (
+    <div style={{ position: "relative", display: "flex", flex: 1, minBlockSize: 0, ...outer }}>
+      <Tag
+        ref={(el: HTMLDivElement | null) => {
+          inner.current = el;
+          if (scrollRef) scrollRef.current = el;
+        }}
+        onScroll={sync}
+        {...rest}
+        style={{ ...style, flex: 1, minInlineSize: 0, minBlockSize: 0, overflowY: enabled ? "auto" : "hidden", scrollbarWidth: "none" }}
+      >
+        {children}
+      </Tag>
+      {bar ? (
+        <Scrollbar value={bar.value} size={bar.size}
+          style={{ position: "absolute", insetBlock: 0, insetInlineEnd: 0, ["--zds-scrollbar-length" as string]: "100%" }} />
+      ) : null}
+    </div>
+  );
+}
+
 
 /* A mock mobile page, not a component: the assistant screen of a store
    associate's handheld, composed only from the library. Layout is inline
@@ -146,7 +190,7 @@ function AssistantPage({ theme = "" }: { theme?: string }) {
       <ScreenHeaderBar title="Assistant" onBack={() => {}} backLabel="Back to home"
         action={<IconButton flavour="text" size="small" shape="full" icon="more-vertical" label="More options" />} />
 
-      <div ref={scroller} style={{ flex: 1, overflowY: "auto", padding: "var(--space-md)", display: "grid", alignContent: "start", gap: "var(--space-lg)" }}>
+      <Scrolled scrollRef={scroller} style={{ padding: "var(--space-md)", display: "grid", alignContent: "start", gap: "var(--space-lg)" }}>
         <div style={{ ...body("small"), textAlign: "center", color: "var(--foreground-secondary)" }}>Today · 08:42</div>
         {msgs.map((m) => (m.from === "me" ? <Mine key={m.id} m={m} /> : <Theirs key={m.id} m={m} onSuggest={(t) => send(t)} />))}
         {thinking ? (
@@ -155,7 +199,7 @@ function AssistantPage({ theme = "" }: { theme?: string }) {
             <StatusLabel status="info" leading="indicator">Thinking…</StatusLabel>
           </div>
         ) : null}
-      </div>
+      </Scrolled>
 
       <div style={{ padding: "0 var(--space-md) var(--space-sm)" }}>
         <MessageInput placeholder="Ask about tasks, stock or deliveries"

@@ -1,4 +1,4 @@
-# Token audit, 2026-11-02
+# Token audit, 2026-11-07
 
 ## primitives
 
@@ -17,7 +17,7 @@
 
 ## palette
 
-50 of 102 colour tokens have no description.
+50 of 103 colour tokens have no description.
 
 - **brand** (7): `brand/primary/deep`, `brand/primary/strong`, `brand/primary/subtle`, `brand/secondary/deep`, `brand/secondary/faint`, `brand/secondary/strong`, `brand/secondary/subtle`
 - **data** (13): `data/1`, `data/10`, `data/11`, `data/12`, `data/2`, `data/3`, `data/4`, `data/5`, `data/6`, `data/7`, `data/8`, `data/9`, `data/neutral`
@@ -30,12 +30,13 @@
 - **status/neutral** (2): `status/neutral/strong`, `status/neutral/subtle`
 - **status/success** (2): `status/success/strong`, `status/success/subtle`
 
-0 descriptions are repeated.
+1 descriptions are repeated.
 
+- “Recessed background, e.g. inputs/wells (theme.color.surface.sunken)”: `fill/faint`, `fill/sunken`
 
 ## semantics
 
-1 of 196 colour tokens have no description.
+1 of 194 colour tokens have no description.
 
 - **border** (1): `border/disabled`
 
@@ -101,4 +102,12 @@
 
 ## Changes since the last documented version
 
-None.
+- value: `surface/subtle` Base: fill/sunken to fill/faint
+- description: `surface/subtle` changed
+- value: `fill/transparent` #f3f6fa00 to color/alpha/light/0
+- renamed: `surface/overlay` was surface/dialog
+- added: `fill/faint`
+- added: `surface/shade`
+- removed: `surface/sheet`
+- removed: `surface/popover`
+- removed: `surface/menu`

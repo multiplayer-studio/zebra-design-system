@@ -1,6 +1,6 @@
 {
-"version": 2,
-"date": "2026-11-02",
+"version": 3,
+"date": "2026-11-07",
 "tokens": {
 "VariableID:111:10": {
 "name": "interactive/destructive/border/disabled",
@@ -5762,9 +5762,9 @@
 "name": "surface/subtle",
 "collection": "semantics",
 "type": "COLOR",
-"description": "Quiet containers, such as chat bubbles and neutral badges.",
+"description": "Quiet containers, where the background is only decorative and can ignored.",
 "values": {
-"Base": "fill/sunken"
+"Base": "fill/faint"
 }
 },
 "VariableID:6797:2": {
@@ -5890,7 +5890,7 @@
 "type": "COLOR",
 "description": "",
 "values": {
-"*": "#f3f6fa00"
+"*": "color/alpha/light/0"
 }
 },
 "VariableID:72:2": {
@@ -5953,37 +5953,10 @@
 }
 },
 "VariableID:72:303": {
-"name": "surface/dialog",
+"name": "surface/overlay",
 "collection": "semantics",
 "type": "COLOR",
 "description": "Background of dialog/modal windows",
-"values": {
-"Base": "fill/overlay"
-}
-},
-"VariableID:72:304": {
-"name": "surface/sheet",
-"collection": "semantics",
-"type": "COLOR",
-"description": "Background of bottom sheets and side drawers",
-"values": {
-"Base": "fill/overlay"
-}
-},
-"VariableID:72:305": {
-"name": "surface/popover",
-"collection": "semantics",
-"type": "COLOR",
-"description": "Background of popovers and other floating panels",
-"values": {
-"Base": "fill/overlay"
-}
-},
-"VariableID:72:306": {
-"name": "surface/menu",
-"collection": "semantics",
-"type": "COLOR",
-"description": "Background of dropdown and context menus",
 "values": {
 "Base": "fill/overlay"
 }
@@ -7073,6 +7046,27 @@
 "Mobile": "scale/17",
 "Tablet": "scale/17",
 "Desktop Compact": "scale/15"
+}
+},
+"VariableID:8029:10207": {
+"name": "fill/faint",
+"collection": "palette",
+"type": "COLOR",
+"description": "Recessed background, e.g. inputs/wells (theme.color.surface.sunken)",
+"values": {
+"Light": "color/neutral/cool/20",
+"Dark": "color/neutral/cool/90",
+"AAA Light": "color/neutral/cool/20",
+"AAA Dark": "color/neutral/cool/90"
+}
+},
+"VariableID:8029:10228": {
+"name": "surface/shade",
+"collection": "semantics",
+"type": "COLOR",
+"description": "Shade helps add a slightly darker tint to a surface. Useful for demarcating a secondary section of a surface.",
+"values": {
+"Base": "fill/transparent/elevate"
 }
 },
 "VariableID:98:12": {

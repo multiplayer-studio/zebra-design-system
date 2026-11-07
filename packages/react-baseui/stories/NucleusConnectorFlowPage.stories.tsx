@@ -6,6 +6,50 @@ import {
   ProgressBar, ProgressCircle, Radio, RadioGroup, Select, Slider, Snackbar, SubMenuHeader, SubMenuItem, StatusLabel, StepCard, Switch, TabBar, TabItem, VerticalStepper,
   type IconName,
 } from "../src/index.js";
+import { Scrollbar } from "../src/index.js";
+
+/** A clipped region paired with the library Scrollbar (specs/scrollbar): the region keeps the scroll,
+    the bar mirrors it as an overlay on the trailing edge. The native scrollbar is hidden; the bar
+    only shows while the content overflows. */
+function Scrolled({ tag = "div", enabled = true, outer, scrollRef, style, children, ...rest }: {
+  tag?: "div" | "main" | "section"; enabled?: boolean; outer?: React.CSSProperties;
+  scrollRef?: React.RefObject<HTMLDivElement | null>;
+} & React.HTMLAttributes<HTMLDivElement>) {
+  const inner = React.useRef<HTMLDivElement | null>(null);
+  const [bar, setBar] = React.useState<{ value: number; size: number } | null>(null);
+  const sync = () => {
+    const el = inner.current;
+    if (!el) return;
+    const max = el.scrollHeight - el.clientHeight;
+    setBar((b) => {
+      const next = enabled && max > 1 ? { value: el.scrollTop / max, size: el.clientHeight / el.scrollHeight } : null;
+      if (!b || !next) return b === next ? b : next;
+      return Math.abs(b.value - next.value) < 0.002 && Math.abs(b.size - next.size) < 0.002 ? b : next;
+    });
+  };
+  React.useEffect(sync); // re-measure after every render, so content changes move the bar
+  const Tag = tag as "div";
+  return (
+    <div style={{ position: "relative", display: "flex", flex: 1, minBlockSize: 0, ...outer }}>
+      <Tag
+        ref={(el: HTMLDivElement | null) => {
+          inner.current = el;
+          if (scrollRef) scrollRef.current = el;
+        }}
+        onScroll={sync}
+        {...rest}
+        style={{ ...style, flex: 1, minInlineSize: 0, minBlockSize: 0, overflowY: enabled ? "auto" : "hidden", scrollbarWidth: "none" }}
+      >
+        {children}
+      </Tag>
+      {bar ? (
+        <Scrollbar value={bar.value} size={bar.size}
+          style={{ position: "absolute", insetBlock: 0, insetInlineEnd: 0, ["--zds-scrollbar-length" as string]: "100%" }} />
+      ) : null}
+    </div>
+  );
+}
+
 
 /* A mock desktop flow, not a component: the Zebra Nucleus Connector. It opens
    on the Connect Printer wizard, setting up a printer's Wi-Fi, from the
@@ -486,9 +530,9 @@ function ConnectPrinterWizard({ theme, start = "usb", wifiUnavailable = false, o
         <div style={{ flex: 1, minBlockSize: 0, display: "flex" }}>
           <WizardSteps />
           <main style={{ flex: 1, minInlineSize: 0, display: "flex", flexDirection: "column", background: "var(--surface-card)" }}>
-            <div className="cp-content" style={{ flex: 1, minBlockSize: 0, overflow: scroll ? "auto" : "hidden", display: "flex", flexDirection: "column", gap, padding: "var(--space-3xl)" }}>
+            <Scrolled className="cp-content" enabled={scroll} style={{ display: "flex", flexDirection: "column", gap, padding: "var(--space-3xl)" }}>
               {content}
-            </div>
+            </Scrolled>
             {/* Figma's Banner Area: 40px under the content, holding the Info Banner on screen 10–12. */}
             {screen === "wifi" ? null : (
               <div style={{ minBlockSize: 100, boxSizing: "border-box", padding: "0 var(--space-3xl) var(--space-3xl)", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
@@ -1008,14 +1052,14 @@ function PrinterSettings({ page, onPage, onBack, expanded, onExpandedChange, dar
       {/* Figma's Sub Menu draws a right border; the rail's sub menu panel has none. */}
       <Divider orientation="vertical" />
       <div style={{ position: "relative", flex: 1, minInlineSize: 0, display: "flex", flexDirection: "column", background: "var(--surface-card)" }}>
-        <div key={page} className="ns-page" style={{ flex: 1, minBlockSize: 0, overflow: "auto", display: "flex", flexDirection: "column", gap: "var(--space-2xl)", padding: "var(--space-2xl)" }}>
+        <Scrolled key={page} className="ns-page" style={{ display: "flex", flexDirection: "column", gap: "var(--space-2xl)", padding: "var(--space-2xl)" }}>
           <div style={{ display: "grid", gap: "var(--space-lg)" }}>
             {/* Figma: Headline Medium, 28/32 at medium weight. */}
             <h1 style={{ ...t("heading-medium"), fontWeight: "var(--title-large-font-weight)", color: "var(--foreground-primary)" }}>{copy.title}</h1>
             <p style={{ ...t("body-medium"), color: "var(--foreground-secondary)" }}>{copy.description}</p>
           </div>
           {content}
-        </div>
+        </Scrolled>
         {page === "print-quality" && phase !== "loading" ? (
           <div style={{ padding: "var(--space-lg) var(--space-3xl)" }}>
             <Checkbox checked={saveToFile} disabled={dis} onCheckedChange={setSaveToFile}
@@ -1126,7 +1170,7 @@ function PrinterDashboard({ state: initial = "ready", theme, settings }: { state
       <div key="dashboard" className="ns-page" style={{ flex: 1, minBlockSize: 0, display: "flex" }}>
         <NucleusRail expanded={expanded} onExpandedChange={setExpanded} dark={dark} onDark={setDark} />
         <Divider orientation="vertical" />
-        <main style={{ flex: 1, minInlineSize: 0, overflow: "auto", display: "flex", flexDirection: "column", gap: "var(--space-lg)", padding: "var(--space-xl)",
+        <Scrolled tag="main" style={{ display: "flex", flexDirection: "column", gap: "var(--space-lg)", padding: "var(--space-xl)",
           background: "var(--surface-section)" }}>
           <Button flavour="subtle" size="small" shape="rounded" leadingIcon="arrow-back" style={{ alignSelf: "flex-start" }}>Back</Button>
           {/* The banner eases in and out (cp-pop), as dialogs do. Disable and Change both return to the ready dashboard. */}
@@ -1190,7 +1234,7 @@ function PrinterDashboard({ state: initial = "ready", theme, settings }: { state
               </div>
             </div>
           </div>
-        </main>
+        </Scrolled>
       </div>
       )}
     </div>
