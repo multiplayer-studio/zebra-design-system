@@ -2,11 +2,13 @@
 
 Usage: python3 scripts/production-zip.py
 
-The zip holds zebra-design-system-production/, containing one folder, design-system/ (the name AGENTS.md's Setup expects), with:
+The zip holds zebra-design-system-production/, containing:
+  CLAUDE.md                                  PRODUCTION.CLAUDE.md with only the production-builds section, importing @design-system/AGENTS.md;
+                                             goes at the project root
+  design-system/                             (the name AGENTS.md's Setup expects), with:
   atoms/ molecules/ organisms/ templates/    as-is
   DESIGN.md AGENTS.md icons.json tokens.css  as-is
   scripts/tokens-css.py scripts/icons-json.py   the generators AGENTS.md asks projects to keep
-  CLAUDE.md                                  PRODUCTION.CLAUDE.md with only the production-builds section
 """
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -17,5 +19,6 @@ write_zip(
     ['atoms', 'molecules', 'organisms', 'templates'],
     ['DESIGN.md', 'AGENTS.md', 'icons.json', 'tokens.css', 'scripts/tokens-css.py', 'scripts/icons-json.py'],
     {},
-    claude_md('@AGENTS.md'),
+    claude_md('@AGENTS.md').replace('@AGENTS.md', '@design-system/AGENTS.md'),
+    claude_dir='zebra-design-system-production',
 )

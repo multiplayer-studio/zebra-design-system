@@ -14,7 +14,7 @@ design-system/
   atoms/           one .md per component
   molecules/
   organisms/
-  templates/       page-level layouts, one folder per project: templates/{project_name}/ (you write these, see Templates)
+  templates/       page-level layouts, one folder per project: templates/{project_name}/ (read and edit only; created by the prototyping kit, see Templates)
   icons.json       the only valid icon names, keyed by ligature name (generated)
   tokens.css       every token as a CSS custom property (generated)
   scripts/         tokens-css.py and icons-json.py, the generators for the two files above
@@ -23,7 +23,7 @@ design-system/
   CHANGES.md       project-specific: you create it (see below)
 ```
 
-Put this file at the project root too, or reference it from the project's own `AGENTS.md`. All paths below are relative to `design-system/`.
+The production zip also holds a `CLAUDE.md` next to `design-system/`. Put it at the project root; if the project already has a `CLAUDE.md`, merge it in. It imports this file. All paths below are relative to `design-system/`.
 
 On first use, before writing any component, create the two project-specific files.
 
@@ -77,18 +77,13 @@ A **template** is the atomic-design level above organisms: a page-level layout (
 
 **Use them.** Before building a screen, check `templates/{project_name}/`. If a template fits, build the screen from it.
 
-**Spot them.** While you build or read screens, notice when two or more screens share the same arrangement of library components (e.g. a header, a filter row and a data table; a centred form in a card with a primary action). That is a template candidate.
+**Don't create them.** Templates are created only in prototyping mode, and arrive with the design system. If screens repeat a layout that has no template, tell the developer it's a template candidate for the design team, and write nothing.
 
-**Offer, don't push.**
-- Ask at a natural stopping point, after finishing the task, never mid-task. One short question naming the pattern and the screens it appears on: "Screens A, B and C share this layout. Want me to write it as a template in `design-system/templates/{project_name}/`?"
-- Write nothing until the developer says yes. If they decline, don't ask about that pattern again.
-- Take `{project_name}` from the project's own name (package or repo name) and confirm it the first time.
+**Editing one.** Only when the developer asks. Keep the format: frontmatter with `level: template`, `status` and `composes:` (every organism, molecule and atom it uses, paths relative to the template file), and the sections Anatomy, Layout, Responsiveness, Accessibility and Usage. Layout and Responsiveness use only semantic `spacing` and `layout` tokens, as references. Edit the doc first, then the screens built from it, then log it.
 
-**Write it** as a doc in the same format as the component files, with `level: template`, `status`, and `composes:` listing every organism, molecule and atom it uses (paths relative to the template file, e.g. `../../organisms/data-table.md`). Sections: Anatomy (each region and the component, variant and size that fills it), Layout (regions, and only semantic `spacing` and `layout` tokens, as references), Usage (when to use it, which screens use it). Add a `tokens:` block only for layout values the template itself owns, as references.
+A template contains only existing library components. If an edit needs something that doesn't exist, follow the next section first.
 
-A template contains only existing library components. If it needs something that doesn't exist, follow the next section first.
-
-Writing a template changes the design system: log it in `CHANGES.md` (Type: new template, Files: the template path, Upstream: `propose` if other projects would benefit, else `project-only`). Templates are docs only; screens stay in the project's code.
+Editing a template changes the design system: log it in `CHANGES.md` (Type: template change, Files: the template path, Upstream: `propose` if other projects would benefit, else `project-only`). Templates are docs only; screens stay in the project's code.
 
 ## When something is missing or doesn't fit
 
@@ -116,7 +111,7 @@ The developer may change the system to fit the project. Every change goes **docs
 
    ```markdown
    ## YYYY-MM-DD: <short title>
-   - Type: new component | new template | new variant | new token | token change | context override | fix
+   - Type: new component | template change | new variant | new token | token change | context override | fix
    - Files: atoms/button.md, DESIGN.md (frontmatter: colors)
    - Why: <the project need, in one or two sentences>
    - Upstream: propose | project-only
@@ -155,4 +150,4 @@ The `CHANGES.md` log is what makes the sync possible.
 - [ ] All documented variants, states and sizes are implemented
 - [ ] Token file regenerated, and it renders correctly in light, dark and high contrast
 - [ ] Docs, code, `LIBRARY.md` and `CHANGES.md` all updated in the same change
-- [ ] Offered to write a template if screens repeated a layout
+- [ ] Started screens from a matching template; any edited template keeps its five sections and an up-to-date `composes:`

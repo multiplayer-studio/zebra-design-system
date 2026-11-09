@@ -122,7 +122,7 @@ A **template** is the atomic-design level above organisms: a page-level layout (
 - If they say yes, ask for the project name and use it as `{project_name}` (lowercase, hyphenated). Reuse it for later templates in the same project, and confirm it if unsure.
 - Write nothing until the designer says yes. If they decline, don't ask about that pattern again.
 
-**Write it** as a Markdown doc in the same format as the component files, with `level: template`, `status: draft`, and `composes:` listing every organism, molecule and atom it uses (paths relative to the template file, e.g. `../../organisms/data-table.md`). Sections: Anatomy (each region and the component, variant and size that fills it), Layout (regions, and only semantic `spacing` and `layout` tokens, as references), Usage (when to use it, which prototypes use it). Add a `tokens:` block only for layout values the template itself owns, as references.
+**Write it** with the `create-template` skill (`.claude/skills/create-template/SKILL.md`), which holds the format and checks. In short: a Markdown doc in the same format as the component files, with `level: template`, `status: draft`, `composes:` listing every component it uses, and the sections Anatomy, Layout, Responsiveness, Accessibility and Usage. The designer can also ask for a template directly, e.g. "Make a template from this prototype."
 
 A template contains only existing components. Never invent one for it; if it needs something missing, say so instead. A template is a doc, not a prototype: the prototype stays in `prototypes/`.
 
