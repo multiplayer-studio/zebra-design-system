@@ -6,7 +6,7 @@
    the absolute positioning itself, so this file only exists to say so.
 
    Known gap (found by the visual audit, not in the spec): Menu.Portal mounts
-   to document.body by default, which escapes an .ext-*/.mode-* class scoped
+   to document.body by default, which escapes an .ext-* or .mode-* class scoped
    to anything narrower than <html>/<body> — the portaled panel then renders
    in the base (untargeted) theme regardless of the trigger's own scope. Use
    Dropdown's `portalContainer` prop to point the portal at the themed root

@@ -117,14 +117,8 @@ importers:
         specifier: ^1.8.0
         version: 1.9.0(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@zebra-design-system/icons':
-        specifier: link:../icons
+        specifier: workspace:*
         version: link:../icons
-      react:
-        specifier: ^19.0.0
-        version: 19.3.1
-      react-dom:
-        specifier: ^19.0.0
-        version: 19.3.1(react@19.3.1)
     devDependencies:
       '@storybook/addon-a11y':
         specifier: ^8.6.18
@@ -156,6 +150,12 @@ importers:
       leaflet:
         specifier: 1.9.4
         version: 1.9.4
+      react:
+        specifier: ^19.0.0
+        version: 19.3.1
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.3.1(react@19.3.1)
       react-leaflet:
         specifier: 5.0.0
         version: 5.0.0(leaflet@1.9.4)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -171,6 +171,8 @@ importers:
       vite:
         specifier: ^5.4.0
         version: 5.4.21
+
+  packages/tokens: {}
 
   packages/web-components:
     dependencies:
