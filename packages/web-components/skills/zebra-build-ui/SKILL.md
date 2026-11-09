@@ -20,7 +20,12 @@ full**, both of these:
    3. the `docs/DESIGN.md` shipped with this skill's plugin — a pinned
       fallback; say that it may be older than the installed packages.
    If none exists, the Zebra packages are not installed: stop and run
-   the setup (or `/zebra-setup`) before designing anything.
+   the setup (or `/zebra-setup`) before designing anything. Until the
+   packages are on npmjs they install straight from the repo's
+   distribution branches, no registry needed:
+   `npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#dist/react-baseui"`
+   (or `#dist/web-components`; pin with `#<pkg>-v<version>`). Internal
+   deps resolve themselves via version tags.
 2. **`AGENTS.md`** beside the same package — the usage contract; skim its
    component index before designing, because the control you are about to
    hand-build almost certainly exists.

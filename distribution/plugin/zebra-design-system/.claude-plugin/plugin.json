@@ -1,6 +1,6 @@
 {
   "name": "zebra-design-system",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Build product UI with the Zebra Design System: zebra-figma-to-code, zebra-build-ui and zebra-prototype skills, the per-component usage catalog, the system's design voice, and commands for project setup and component lookup. Expects the @zebra-design-system packages to be installed; docs/versions.json states which package versions this plugin documents.",
   "author": {
     "name": "Zebra Design System team"
