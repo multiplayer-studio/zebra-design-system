@@ -17,7 +17,11 @@
     "playbook:build": "node docs/guide/build.mjs",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "pnpm -r run build && changeset publish"
+    "release": "pnpm -r run build && changeset publish",
+    "storybook": "pnpm run storybook:react & pnpm run storybook:wc & pnpm run storybook:zeta & wait",
+    "storybook:react": "pnpm --filter @zebra-design-system/react-baseui run storybook",
+    "storybook:wc": "pnpm --filter @zebra-design-system/web-components run storybook",
+    "storybook:zeta": "cd packages/zeta-web && yarn storybook"
   },
   "devDependencies": {
     "@changesets/cli": "^3.0.3"
