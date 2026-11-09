@@ -14,6 +14,12 @@
     "zeta:build": "cd packages/zeta-web && yarn build",
     "zeta:check": "cd packages/zeta-web && yarn check",
     "playbook:stale": "node docs/guide/stale.mjs",
-    "playbook:build": "node docs/guide/build.mjs"
+    "playbook:build": "node docs/guide/build.mjs",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm -r run build && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^3.0.3"
   }
 }
