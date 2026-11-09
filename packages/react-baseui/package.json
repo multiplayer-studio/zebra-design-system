@@ -5,6 +5,16 @@
   "type": "module",
   "private": false,
   "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./experimental": {
+      "types": "./dist/experimental.d.ts",
+      "default": "./dist/experimental.js"
+    }
+  },
   "types": "./dist/index.d.ts",
   "scripts": {
     "tokens": "node ../web-components/scripts/build-tokens-css.mjs ../../tokens ./src/tokens --attributes",

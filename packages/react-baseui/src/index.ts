@@ -78,19 +78,8 @@ export type { InlineBannerProps, InlineBannerStatus, InlineBannerAppearance, Inl
 export { Select } from "./components/select/Select.js";
 export type { SelectProps, SelectOption, SelectFieldState, SelectSize, SelectShape, SelectFlavour, SelectState, SelectLabelType } from "./components/select/Select.js";
 
-export { MessageInput } from "./components/message-input/MessageInput.js";
-export {
-  ChatMessage, ChatText, ChatFile, ChatImages, ChatCard, ChatAudio, ChatVideo, ChatChoices, ChatSources,
-  ChatTyping, ChatDivider, ChatThread, ChatHeader, ChatImageViewer, chatActions, fileKindOf, useChatShape, CHAT_REACTIONS,
-} from "./components/chat/Chat.js";
-export type {
-  ChatMessageProps, ChatRole, ChatPosition, ChatStatus, ChatAuthor, ChatReaction, ChatAction,
-  ChatFileProps, ChatFileKind, ChatImage, ChatCardProps, ChatChoice, ChatShape, ChatFill, ChatOwnStyle, ChatThreadProps,
-} from "./components/chat/Chat.js";
-export type {
-  MessageInputProps, MessageInputAction, MessageInputPreview,
-  MessageAttachment, MessageAttachmentKind, MessageVoiceNote, MessageSubmission,
-} from "./components/message-input/MessageInput.js";
+/* Spec-less experimental components (Chat, MessageInput, Lightbox) live in
+   ./experimental.ts, outside this entry's SemVer surface. */
 
 export { Table, useTableShape } from "./components/table/Table.js";
 export type {

@@ -26,6 +26,13 @@
   background: var(--interactive-neutral-background-disabled);
   border-color: var(--border-disabled);
 }
+/* Files held over the composer: the border invites the drop, the ghost
+   selected tint (as the read-aloud toggle) shows the whole card takes it. */
+.zds-message-input[data-dragging] {
+  border-style: dashed;
+  border-color: var(--border-focus);
+  background: var(--interactive-ghost-background-selected);
+}
 
 /* ---- text ------------------------------------------------------------ */
 .zds-message-input__text {
@@ -79,6 +86,73 @@
   text-overflow: ellipsis;
 }
 
+/* ---- image attachment: the thumbnail chip ------------------------------ */
+/* Message Input's own subcomponent, on the chip base: Assist Chip's height
+   (space/xs above and below a control/icon-sm row), neutral border and
+   remove control, but a rounded rectangle, not a pill. space/2xs of padding
+   above, below and before the picture, which takes the rest of the height
+   (control/icon-md). */
+.zds-message-input__thumbnail {
+  gap: var(--space-3xs);
+  height: calc(var(--space-xs) * 2 + var(--control-icon-sm));
+  padding: var(--space-2xs);
+  padding-inline-end: var(--space-sm);
+  border-radius: var(--radius-element-md);
+  --zds-chip-bg: var(--interactive-neutral-background-default);
+  --zds-chip-border: var(--interactive-neutral-border-default);
+  --zds-chip-fg: var(--interactive-neutral-foreground-default);
+}
+.zds-message-input__thumbnail-image {
+  flex: none;
+  block-size: var(--control-icon-md);
+  aspect-ratio: 1;
+  /* One step inside the chip's own radius, so the corners stay parallel. */
+  border-radius: var(--radius-element-sm);
+  object-fit: cover;
+}
+/* The name stays short: the picture carries the identity, the full name
+   sits in the title. Indicator/medium, as the Assist Chip label. */
+.zds-message-input__thumbnail .zds-chip__label {
+  padding-inline: var(--space-2xs);
+  max-inline-size: 14ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--indicator-medium-font-family), system-ui, sans-serif;
+  font-size: var(--indicator-medium-font-size);
+  font-weight: var(--indicator-medium-font-weight);
+  line-height: var(--indicator-medium-line-height);
+  letter-spacing: var(--indicator-medium-letter-spacing);
+}
+/* Two actions, as Assist Chip splits them: the picture and name open the
+   preview, the close zone removes. Both are bare buttons whose focus ring is
+   drawn by the chip; the remove's hit area widens past the 16px glyph. */
+.zds-message-input__thumbnail-action,
+.zds-message-input__thumbnail-remove {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  /* The action wraps picture + name, so it repeats the root's space/3xs gap. */
+  gap: var(--space-3xs);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+}
+/* A clickable picture invites as the Assist Chip does: the neutral hover fill. */
+.zds-message-input__thumbnail[data-clickable]:hover:not([data-disabled]) {
+  --zds-chip-bg: var(--interactive-neutral-background-hover);
+}
+.zds-message-input__thumbnail-remove::before {
+  content: "";
+  position: absolute;
+  inset: calc(var(--space-xs) * -1);
+}
+
 /* ---- voice bar: listening, transcribing, recording, playback, speaking -- */
 .zds-message-input__voice {
   display: flex;
@@ -130,6 +204,26 @@
 }
 .zds-message-input__hint { color: var(--foreground-secondary); }
 .zds-message-input__error { color: var(--foreground-error); }
+
+/* The character counter: quiet until the limit, then the error colour. */
+.zds-message-input__count {
+  margin: 0;
+  align-self: flex-end;
+  color: var(--foreground-secondary);
+  font-family: var(--body-xsmall-font-family), system-ui, sans-serif;
+  font-size: var(--body-xsmall-font-size);
+  font-weight: var(--body-xsmall-font-weight);
+  line-height: var(--body-xsmall-line-height);
+  letter-spacing: var(--body-xsmall-letter-spacing);
+  font-variant-numeric: tabular-nums;
+}
+.zds-message-input__count[data-full] { color: var(--foreground-error); }
+
+/* Words landing while listening: one line, newest kept in view. */
+.zds-message-input__bar-label[data-heard] {
+  white-space: nowrap;
+  overflow: hidden;
+}
 
 /* Waveform: bars in currentColor, height from --zds-bar-level (0–1). */
 .zds-message-input__wave {

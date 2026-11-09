@@ -1,8 +1,10 @@
 import * as React from "react";
-import type { IconName } from "../icon/Icon.js";
+import { Button as BaseButton } from "@base-ui/react/button";
+import { Icon, type IconName } from "../icon/Icon.js";
 import { IconButton } from "../icon-button/IconButton.js";
 import { AssistChip, type AssistChipColor } from "../assist-chip/AssistChip.js";
 import { ProgressCircle } from "../progress-circle/ProgressCircle.js";
+import { cx } from "../chip/chip.js";
 import "../button/button.css";
 import "./message-input.css";
 
@@ -38,6 +40,63 @@ export interface MessageInputAction {
   onSelect: () => void;
 }
 
+/**
+ * Every string the composer shows or announces, so a product can localise it.
+ * `{time}`, `{name}`, `{count}`, `{size}`, `{max}` and `{text}` are filled in.
+ */
+export const messageInputStrings = {
+  addAttachments: "Add attachments",
+  closeAttachments: "Close attachments",
+  attachFile: "Attach a file",
+  takePhoto: "Take a photo",
+  recordVoiceMessage: "Record a voice message",
+  dictate: "Dictate",
+  stopAndTranscribe: "Stop and transcribe",
+  stopRecording: "Stop recording",
+  send: "Send",
+  readAloud: "Read replies aloud",
+  stopSpeaking: "Stop speaking",
+  listening: "Listening…",
+  transcribing: "Transcribing…",
+  recording: "Recording",
+  playbackReady: "Voice message ready to play",
+  listeningHint: "Speak naturally. Tap Stop when you're done.",
+  transcribingHint: "Usually takes a second or two.",
+  recordingHint: "Up to {time}. You can listen back before sending.",
+  play: "Play voice message",
+  pause: "Pause",
+  recordAgain: "Record again",
+  deleteVoiceMessage: "Delete voice message",
+  cancelDictation: "Cancel dictation",
+  cancelTranscription: "Cancel transcription",
+  discardRecording: "Discard recording",
+  dictated: "Dictated",
+  undoDictation: "Undo dictation",
+  attached: "Attached",
+  speaking: "Speaking the reply",
+  speakingText: "Speaking: {text}",
+  micBlocked: "Microphone access was blocked. Allow it in the browser to use voice.",
+  recognitionError: "Speech recognition stopped. Try again.",
+  transcribeError: "Couldn't transcribe that. Try again.",
+  tooManyAttachments: "You can attach up to {count} files.",
+  fileTooLarge: "{name} is over the {size} limit.",
+  fileNotAccepted: "{name} isn't a supported file type.",
+  characterCount: "{count} of {max} characters",
+};
+export type MessageInputStrings = typeof messageInputStrings;
+
+const fmt = (s: string, vars: Record<string, string | number>) => s.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ""));
+const formatBytes = (n: number) =>
+  n >= 1024 * 1024 ? `${Math.round((n / (1024 * 1024)) * 10) / 10} MB` : `${Math.round(n / 1024)} KB`;
+/** The same test the file picker's `accept` applies: extensions, exact types and `type/*`. */
+const matchesAccept = (f: File, accept?: string) => {
+  if (!accept) return true;
+  const type = f.type.toLowerCase();
+  const name = f.name.toLowerCase();
+  return accept.split(",").map((t) => t.trim().toLowerCase()).filter(Boolean).some((t) =>
+    t.startsWith(".") ? name.endsWith(t) : t.endsWith("/*") ? type.startsWith(t.slice(0, -1)) : type === t);
+};
+
 /** A state to render without touching the microphone — for docs and visual review. */
 export type MessageInputPreview = "listening" | "transcribing" | "recording";
 
@@ -55,14 +114,31 @@ export interface MessageInputProps {
   defaultDictated?: boolean;
   /** Start with the attachment tray open. */
   defaultTrayOpen?: boolean;
-  /** `accept` for the file picker. */
+  /** Accepted file types — the picker's `accept`, applied to dropped and pasted files too. */
   accept?: string;
   /** Extra tray actions after file, camera and voice message — a sticker or note picker, say. */
   extraActions?: MessageInputAction[];
   /** Longest voice message, in seconds. */
   maxRecordingSeconds?: number;
+  /** Longest dictation, in seconds; the recording stops and transcribes itself at the limit. */
+  maxDictationSeconds?: number;
+  /** Longest message text. A counter appears near the limit. */
+  maxLength?: number;
+  /** Most files on one message. Extra drops are refused with a message. */
+  maxAttachments?: number;
+  /** Largest file, in bytes. Bigger files are refused with a message. */
+  maxFileBytes?: number;
+  /** Enter sends and Shift+Enter adds a line (the default). Off, Enter only adds a line — for surfaces where typing happens on an on-screen keyboard. */
+  sendOnEnter?: boolean;
+  /** Replaces any of the composer's texts — see `messageInputStrings` for the keys and defaults. */
+  strings?: Partial<MessageInputStrings>;
   /** Assist Chip colour per attachment. Defaults to PDF red, spreadsheets green, documents blue, video orange, everything else neutral. */
   attachmentColor?: (attachment: MessageAttachment) => AssistChipColor;
+  /**
+   * Called when an image attachment's thumbnail is activated — the place to
+   * open a lightbox. Without it, thumbnails are not clickable.
+   */
+  onPreviewAttachment?: (attachment: MessageAttachment) => void;
   /**
    * Turns a dictation recording into text. Without it, dictation uses the
    * browser's speech recognition where there is one; with neither, the
@@ -298,6 +374,74 @@ function SpokenCaption({ text, charIndex, media }: { text: string; charIndex?: n
   );
 }
 
+export interface MessageThumbnailProps {
+  /** The image file: the picture drawn and the name shown. */
+  file: File;
+  /**
+   * Called when the picture or name is activated — the place to open a
+   * lightbox or preview. Without it, they are inert and only the remove
+   * control is interactive.
+   */
+  onClick?: () => void;
+  /** Called when the remove control is activated. Removing it is the caller's job. */
+  onDiscard?: () => void;
+  /** Accessible name of the remove control. Defaults to "Remove <file name>". */
+  discardLabel?: string;
+  className?: string;
+}
+
+/**
+ * An image attachment as a thumbnail chip — Message Input's own subcomponent.
+ * Built on the chip base (same 28px height, inset border, focus ring and
+ * remove control as Assist Chip) but a rounded rectangle rather than a pill,
+ * with the picture inset by a hair of padding and the name kept short by
+ * truncation (the picture carries the identity; the full name is the title).
+ */
+export const MessageThumbnail = React.forwardRef<HTMLSpanElement, MessageThumbnailProps>(function MessageThumbnail(
+  { file, onClick, onDiscard, discardLabel, className },
+  ref,
+) {
+  const url = React.useMemo(() => URL.createObjectURL(file), [file]);
+  React.useEffect(() => () => URL.revokeObjectURL(url), [url]);
+  const onKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === "Backspace" || e.key === "Delete") {
+      e.preventDefault();
+      onDiscard?.();
+    }
+  };
+  const content = (
+    <>
+      {/* Decorative — the name is the label. */}
+      <img className="zds-message-input__thumbnail-image" src={url} alt="" />
+      <span className="zds-chip__label" title={file.name}>{file.name}</span>
+    </>
+  );
+  return (
+    <span ref={ref} className={cx("zds-chip", "zds-message-input__thumbnail", className)}
+      data-discardable="" data-clickable={onClick ? "" : undefined}>
+      {/* As Assist Chip's split: the picture and name are one action (the preview), the remove another. */}
+      {onClick ? <BaseButton className="zds-message-input__thumbnail-action" onClick={() => onClick()}>{content}</BaseButton> : content}
+      <BaseButton
+        className="zds-message-input__thumbnail-remove"
+        aria-label={discardLabel ?? `Remove ${file.name}`}
+        onClick={() => onDiscard?.()}
+        onKeyDown={onKeyDown}
+      >
+        {/* As Assist Chip: the close glyph pinned to the rounded family at Icon small. */}
+        <Icon className="zds-chip__glyph" name="close" size="small" iconStyle="rounded" />
+      </BaseButton>
+    </span>
+  );
+});
+
+/** An attachment: an image is a MessageThumbnail; every other kind an Assist Chip with its glyph. */
+function AttachmentChip({ attachment: a, color, onDiscard, onPreview }: {
+  attachment: MessageAttachment; color: AssistChipColor; onDiscard: () => void; onPreview?: (a: MessageAttachment) => void;
+}) {
+  if (a.kind === "image") return <MessageThumbnail file={a.file} onClick={onPreview ? () => onPreview(a) : undefined} onDiscard={onDiscard} />;
+  return <AssistChip icon={KIND_ICON[a.kind]} color={color} onDiscard={onDiscard}>{a.file.name}</AssistChip>;
+}
+
 /** Resample to `n` buckets by taking each bucket's peak. */
 const resample = (peaks: number[], n: number) =>
   peaks.length === 0 ? Array(n).fill(0.2)
@@ -316,10 +460,17 @@ const resample = (peaks: number[], n: number) =>
  * whole composer with an orb that reacts to the speech and one stop button.
  *
  * Behaviour: buttons are IconButton (Base UI Button), the read-aloud control
- * an IconButton with aria-pressed, and chips are AssistChip. Recording uses MediaRecorder and an AnalyserNode for
- * the live waveform; dictation uses the `transcribe` prop or the browser's
- * speech recognition. Enter sends, Shift+Enter adds a line. Everything
- * visual comes from the token layer via `message-input.css`.
+ * an IconButton with aria-pressed, and chips are AssistChip — an image file
+ * renders as MessageThumbnail, this component's own thumbnail chip.
+ * Recording uses MediaRecorder and an AnalyserNode
+ * for the live waveform; dictation uses the `transcribe` prop or the
+ * browser's speech recognition, shows the words as they land, and stops
+ * itself at `maxDictationSeconds`. Files arrive through the tray, drag and
+ * drop, or paste, through one gate that applies `accept`, `maxAttachments`
+ * and `maxFileBytes`, refusing with a message on the error row. Enter sends
+ * and Shift+Enter adds a line (`sendOnEnter`); Escape cancels a live voice
+ * state or closes the tray. Every string is replaceable through `strings`.
+ * Everything visual comes from the token layer via `message-input.css`.
  *
  * @spec none — experimental.
  */
@@ -327,7 +478,9 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
   {
     onSend, placeholder = "Message", value: valueProp, defaultValue = "", onValueChange,
     defaultAttachments = [], defaultVoiceNote = null, defaultDictated = false, defaultTrayOpen = false,
-    accept, extraActions = [], maxRecordingSeconds = 120, attachmentColor = defaultAttachmentColor, transcribe, lang,
+    accept, extraActions = [], maxRecordingSeconds = 120, maxDictationSeconds = 60,
+    maxLength, maxAttachments, maxFileBytes, sendOnEnter = true, strings,
+    attachmentColor = defaultAttachmentColor, onPreviewAttachment, transcribe, lang,
     speakResponse: speakProp, defaultSpeakResponse, onSpeakResponseChange, speaking = false, onStopSpeaking,
     speakingSource = null, speakingLevel, speakingText, speakingCharIndex,
     preview, disabled = false, "aria-label": ariaLabel = "Message", className,
@@ -347,6 +500,9 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
   const [elapsed, setElapsed] = React.useState(preview ? 7000 : 0);
   const [levels, setLevels] = React.useState<number[]>(SAMPLE_LEVELS);
   const [error, setError] = React.useState<string | null>(null);
+  /** What recognition has heard so far, shown in the listening bar as it lands. */
+  const [heard, setHeard] = React.useState("");
+  const S = React.useMemo(() => ({ ...messageInputStrings, ...strings }), [strings]);
 
   const speakControlled = speakProp !== undefined;
   const showSpeakToggle = speakControlled || defaultSpeakResponse !== undefined || onSpeakResponseChange !== undefined;
@@ -358,7 +514,9 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
 
   // ---- media plumbing ------------------------------------------------------
   const media = React.useRef<{ stream?: MediaStream; recorder?: MediaRecorder; ctx?: AudioContext; raf?: number; timer?: number;
-    chunks: Blob[]; peaks: number[]; started: number; recognition?: SpeechRecognitionLike; transcript: string; cancelled: boolean }>({ chunks: [], peaks: [], started: 0, transcript: "", cancelled: false });
+    chunks: Blob[]; peaks: number[]; started: number; recognition?: SpeechRecognitionLike; transcript: string; cancelled: boolean;
+    /** A finish is underway — the limit clock keeps ticking while one resolves, and must not start a second. */
+    finishing: boolean }>({ chunks: [], peaks: [], started: 0, transcript: "", cancelled: false, finishing: false });
 
   const teardown = React.useCallback(() => {
     const m = media.current;
@@ -410,10 +568,10 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
     try {
       m.stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     } catch {
-      setError("Microphone access was blocked. Allow it in the browser to use voice.");
+      setError(S.micBlocked);
       return false;
     }
-    m.chunks = []; m.peaks = []; m.cancelled = false;
+    m.chunks = []; m.peaks = []; m.cancelled = false; m.finishing = false;
     m.recorder = new MediaRecorder(m.stream);
     m.recorder.ondataavailable = (e) => { if (e.data.size) m.chunks.push(e.data); };
     m.recorder.start();
@@ -438,6 +596,8 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
   };
   const finishVoiceNote = async () => {
     const m = media.current;
+    if (m.finishing) return; // the limit clock keeps firing while the recorder stops
+    m.finishing = true;
     const durationMs = Date.now() - m.started;
     const blob = await stopRecorder();
     const peaks = m.peaks;
@@ -451,8 +611,9 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
   const startDictation = async () => {
     setTrayOpen(false);
     setError(null);
+    setHeard("");
     const m = media.current;
-    m.transcript = ""; m.cancelled = false;
+    m.transcript = ""; m.cancelled = false; m.finishing = false;
     if (transcribe) {
       if (!(await record())) return;
     } else {
@@ -460,21 +621,30 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
       if (!Recognition) return;
       const rec = new Recognition();
       rec.lang = lang ?? (typeof navigator !== "undefined" ? navigator.language : "en-US");
-      rec.continuous = true; rec.interimResults = false;
+      // Interim results show the words landing while the mic is open.
+      rec.continuous = true; rec.interimResults = true;
       rec.onresult = (e) => {
-        for (let i = e.resultIndex; i < e.results.length; i++) if (e.results[i].isFinal) m.transcript += e.results[i][0].transcript;
+        let interim = "";
+        for (let i = e.resultIndex; i < e.results.length; i++) {
+          if (e.results[i].isFinal) m.transcript += e.results[i][0].transcript;
+          else interim += e.results[i][0].transcript;
+        }
+        setHeard((m.transcript + interim).trim());
       };
-      rec.onerror = () => setError("Speech recognition stopped. Try again.");
+      rec.onerror = () => setError(S.recognitionError);
       m.recognition = rec;
       rec.start();
       // Recognition gives no levels; a quiet stream for the meter where the browser allows it.
       try { m.stream = await navigator.mediaDevices.getUserMedia({ audio: true }); meter(m.stream); } catch { /* bars stay at rest */ }
     }
     setMode("listening");
-    startClock();
+    // A forgotten open microphone stops itself and keeps what it heard.
+    startClock(maxDictationSeconds * 1000, () => void finishDictation());
   };
   const finishDictation = async () => {
     const m = media.current;
+    if (m.finishing) return; // the limit clock keeps firing while recognition winds down
+    m.finishing = true;
     setMode("transcribing");
     let words = "";
     try {
@@ -490,13 +660,15 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
         words = m.transcript;
       }
     } catch {
-      setError("Couldn't transcribe that. Try again.");
+      setError(S.transcribeError);
     }
+    setHeard("");
     if (m.cancelled) return;
     words = words.trim();
     if (words) {
       const before = text;
-      setText(before ? `${before.replace(/\s+$/, "")} ${words}` : words);
+      const joined = before ? `${before.replace(/\s+$/, "")} ${words}` : words;
+      setText(maxLength !== undefined ? joined.slice(0, maxLength) : joined);
       setDictated({ before });
     }
     setMode("compose");
@@ -506,9 +678,18 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
     media.current.cancelled = true;
     media.current.recorder?.stop();
     teardown();
+    setHeard("");
     setMode("compose");
     setElapsed(0);
   };
+
+  // Disabling the composer mid-recording must not leave the microphone open.
+  const busyNow = mode === "listening" || mode === "transcribing" || mode === "recording";
+  React.useEffect(() => {
+    if (disabled && busyNow) cancelVoice();
+    // cancelVoice is stable in effect: it only touches refs and setters.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [disabled]);
 
   // ---- playback ------------------------------------------------------------
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
@@ -527,13 +708,26 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
   // ---- attachments ---------------------------------------------------------
   const fileRef = React.useRef<HTMLInputElement | null>(null);
   const cameraRef = React.useRef<HTMLInputElement | null>(null);
-  const addFiles = (list: FileList | null) => {
-    if (!list?.length) return;
-    setAttachments((a) => [...a, ...Array.from(list, (file) => ({ id: newId(), file, kind: kindOf(file) }))]);
+  /** One gate for every way in — picker, camera, drop and paste. Refusals use the error row. */
+  const addFiles = (list: FileList | File[] | null) => {
+    if (!list || list.length === 0 || disabled) return;
+    const refused: string[] = [];
+    const ok: MessageAttachment[] = [];
+    for (const file of Array.from(list)) {
+      if (!matchesAccept(file, accept)) refused.push(fmt(S.fileNotAccepted, { name: file.name }));
+      else if (maxFileBytes !== undefined && file.size > maxFileBytes) refused.push(fmt(S.fileTooLarge, { name: file.name, size: formatBytes(maxFileBytes) }));
+      else ok.push({ id: newId(), file, kind: kindOf(file) });
+    }
+    if (maxAttachments !== undefined && attachments.length + ok.length > maxAttachments) {
+      ok.length = Math.max(0, maxAttachments - attachments.length);
+      refused.push(fmt(S.tooManyAttachments, { count: maxAttachments }));
+    }
+    if (ok.length) setAttachments((a) => [...a, ...ok]);
+    setError(refused.length ? refused[0] : null);
   };
 
   // ---- send ----------------------------------------------------------------
-  const busy = mode === "listening" || mode === "transcribing" || mode === "recording";
+  const busy = busyNow;
   const hasContent = !!text.trim() || attachments.length > 0 || !!voiceNote;
   const canSend = !disabled && !busy && hasContent;
   const send = () => {
@@ -545,42 +739,87 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
 
   const setSpeak = (on: boolean) => { if (!speakControlled) setInnerSpeak(on); onSpeakResponseChange?.(on); };
 
+  // ---- files from anywhere: drop and paste ----------------------------------
+  // The same conditions as the tray toggle: no new files while a voice state
+  // or a finished voice note holds the composer.
+  const canAttach = !disabled && !busy && mode !== "playback" && !speaking;
+  const [dragging, setDragging] = React.useState(false);
+  const dragDepth = React.useRef(0);
+  const draggingFiles = (e: React.DragEvent) => Array.from(e.dataTransfer.types).includes("Files");
+  const onDragEnter = (e: React.DragEvent) => {
+    if (!canAttach || !draggingFiles(e)) return;
+    e.preventDefault();
+    dragDepth.current += 1;
+    setDragging(true);
+  };
+  const onDragOver = (e: React.DragEvent) => { if (canAttach && draggingFiles(e)) e.preventDefault(); };
+  const onDragLeave = () => { if (dragDepth.current > 0 && --dragDepth.current === 0) setDragging(false); };
+  const onDrop = (e: React.DragEvent) => {
+    if (!draggingFiles(e)) return;
+    e.preventDefault();
+    dragDepth.current = 0;
+    setDragging(false);
+    if (canAttach) addFiles(e.dataTransfer.files);
+  };
+  const onPaste = (e: React.ClipboardEvent) => {
+    if (!canAttach || !e.clipboardData.files.length) return;
+    e.preventDefault();
+    addFiles(e.clipboardData.files);
+  };
+
+  // Escape backs out of the nearest thing: a live voice state first, then the open tray.
+  const trayToggleRef = React.useRef<HTMLElement | null>(null);
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key !== "Escape") return;
+    if (busy) { e.stopPropagation(); cancelVoice(); }
+    else if (trayOpen) { e.stopPropagation(); setTrayOpen(false); trayToggleRef.current?.focus(); }
+  };
+
   // ---- the bar: whichever voice state is live -------------------------------
   const maxMs = maxRecordingSeconds * 1000;
+  // The last stretch of what recognition heard; the full text lands in the field at the end.
+  const heardTail = heard.length > 60 ? `…${heard.slice(-60)}` : heard;
   let bar: React.ReactNode = null;
   let hint: string | null = null;
+  /** Announced on mode change only — the clock and the interim words stay out of the live region. */
+  let status: string | null = null;
   if (mode === "listening") {
-    hint = "Speak naturally. Tap Stop when you're done.";
+    hint = S.listeningHint;
+    status = S.listening;
     bar = <>
       <Waveform levels={levels} />
-      <span className="zds-message-input__bar-label">Listening…</span>
-      <span className="zds-message-input__time">{clock(elapsed)}</span>
-      <IconButton flavour="text" shape="full" icon="close" label="Cancel dictation" onClick={cancelVoice} />
+      {/* The words will land in the field; the preview is visual only. */}
+      <span className="zds-message-input__bar-label" data-heard={heard ? "" : undefined} aria-hidden={heard ? true : undefined}>{heardTail || S.listening}</span>
+      <span className="zds-message-input__time" aria-hidden="true">{clock(elapsed)}</span>
+      <IconButton flavour="text" shape="full" icon="close" label={S.cancelDictation} onClick={cancelVoice} />
     </>;
   } else if (mode === "transcribing") {
-    hint = "Usually takes a second or two.";
+    hint = S.transcribingHint;
+    status = S.transcribing;
     bar = <>
-      <ProgressCircle className="zds-message-input__spinner" value={null} size="xxsmall" label="Transcribing" />
-      <span className="zds-message-input__bar-label">Transcribing…</span>
-      <IconButton flavour="text" shape="full" icon="close" label="Cancel transcription" onClick={cancelVoice} />
+      <ProgressCircle className="zds-message-input__spinner" value={null} size="xxsmall" label={S.transcribing} />
+      <span className="zds-message-input__bar-label">{S.transcribing}</span>
+      <IconButton flavour="text" shape="full" icon="close" label={S.cancelTranscription} onClick={cancelVoice} />
     </>;
   } else if (mode === "recording") {
-    hint = `Up to ${clock(maxMs)}. You can listen back before sending.`;
+    hint = fmt(S.recordingHint, { time: clock(maxMs) });
+    status = S.recording;
     bar = <>
       <span className="zds-message-input__rec-dot" aria-hidden="true" />
       <Waveform levels={levels} />
-      <span className="zds-message-input__bar-label">Recording</span>
-      <span className="zds-message-input__time">{clock(elapsed)}</span>
-      <IconButton flavour="text" shape="full" icon="close" label="Discard recording" onClick={cancelVoice} />
+      <span className="zds-message-input__bar-label">{S.recording}</span>
+      <span className="zds-message-input__time" aria-hidden="true">{clock(elapsed)}</span>
+      <IconButton flavour="text" shape="full" icon="close" label={S.discardRecording} onClick={cancelVoice} />
     </>;
   } else if (mode === "playback" && voiceNote) {
-    hint = `Up to ${clock(maxMs)}. You can listen back before sending.`;
+    hint = fmt(S.recordingHint, { time: clock(maxMs) });
+    status = S.playbackReady;
     bar = <>
-      <IconButton className="zds-message-input__play" flavour="primary" shape="full" icon={playing ? "pause" : "play"} label={playing ? "Pause" : "Play voice message"} onClick={togglePlay} />
+      <IconButton className="zds-message-input__play" flavour="primary" shape="full" icon={playing ? "pause" : "play"} label={playing ? S.pause : S.play} onClick={togglePlay} />
       <Waveform levels={resample(voiceNote.peaks, 24)} progress={position / Math.max(1, voiceNote.durationMs)} className="zds-message-input__wave--long" />
       <span className="zds-message-input__time">{clock(position)}/{clock(voiceNote.durationMs)}</span>
-      <IconButton flavour="text" shape="full" icon="replay" label="Record again" onClick={reRecord} />
-      <IconButton flavour="text" shape="full" icon="delete" label="Delete voice message" onClick={discardNote} />
+      <IconButton flavour="text" shape="full" icon="replay" label={S.recordAgain} onClick={reRecord} />
+      <IconButton flavour="text" shape="full" icon="delete" label={S.deleteVoiceMessage} onClick={discardNote} />
       {noteUrl ? (
         <audio ref={audioRef} src={noteUrl} preload="metadata"
           onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}
@@ -617,9 +856,9 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
               media={speakingSource instanceof HTMLMediaElement ? speakingSource : null} />
           ) : null}
           {/* Announced once, whole; the word-by-word caption is visual only. */}
-          <span className="zds-message-input__sr-only" role="status">{speakingText ? `Speaking: ${speakingText}` : "Speaking the reply"}</span>
+          <span className="zds-message-input__sr-only" role="status">{speakingText ? fmt(S.speakingText, { text: speakingText }) : S.speaking}</span>
           <IconButton className="zds-message-input__stop-speaking" flavour="subtle" shape="full" icon="stop"
-            label="Stop speaking" onClick={onStopSpeaking} />
+            label={S.stopSpeaking} onClick={onStopSpeaking} />
         </div>
       </div>
     );
@@ -628,19 +867,20 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
   return (
     <div ref={ref} role="group" aria-label={ariaLabel}
       className={["zds-message-input", className].filter(Boolean).join(" ")}
-      data-state={state} data-disabled={disabled || undefined}>
+      data-state={state} data-disabled={disabled || undefined} data-dragging={dragging || undefined}
+      onDragEnter={onDragEnter} onDragOver={onDragOver} onDragLeave={onDragLeave} onDrop={onDrop} onKeyDown={onKeyDown}>
       {(attachments.length > 0 || dictated) && mode === "compose" ? (
-        <ul className="zds-message-input__chips" aria-label="Attached">
+        <ul className="zds-message-input__chips" aria-label={S.attached}>
           {dictated ? (
             <li className="zds-message-input__chip" data-kind="dictated">
-              <AssistChip icon="microphone" color="blue" discardLabel="Undo dictation"
-                onDiscard={() => { setText(dictated.before); setDictated(null); }}>Dictated</AssistChip>
+              <AssistChip icon="microphone" color="blue" discardLabel={S.undoDictation}
+                onDiscard={() => { setText(dictated.before); setDictated(null); }}>{S.dictated}</AssistChip>
             </li>
           ) : null}
           {attachments.map((a) => (
             <li key={a.id} className="zds-message-input__chip" data-kind={a.kind}>
-              <AssistChip icon={KIND_ICON[a.kind]} color={attachmentColor(a)}
-                onDiscard={() => setAttachments((list) => list.filter((x) => x.id !== a.id))}>{a.file.name}</AssistChip>
+              <AttachmentChip attachment={a} color={attachmentColor(a)} onPreview={onPreviewAttachment}
+                onDiscard={() => setAttachments((list) => list.filter((x) => x.id !== a.id))} />
             </li>
           ))}
         </ul>
@@ -648,49 +888,57 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
 
       {bar ? (
         <div className="zds-message-input__voice">
-          <div className="zds-message-input__bar" role="status" aria-live="polite">{bar}</div>
+          <div className="zds-message-input__bar">{bar}</div>
           {hint ? <p className="zds-message-input__hint">{hint}</p> : null}
         </div>
       ) : (
         <textarea className="zds-message-input__text" aria-label={ariaLabel} placeholder={placeholder} rows={2}
-          value={text} disabled={disabled}
+          value={text} disabled={disabled} maxLength={maxLength} onPaste={onPaste}
           onChange={(e) => { setText(e.target.value); if (!e.target.value) setDictated(null); }}
-          onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); send(); } }} />
+          onKeyDown={(e) => { if (sendOnEnter && e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); send(); } }} />
       )}
 
+      {/* The voice state, announced when it changes; the clock and interim words stay silent. */}
+      <span className="zds-message-input__sr-only" role="status">{status}</span>
+
       {error ? <p className="zds-message-input__error" role="alert">{error}</p> : null}
+      {maxLength !== undefined && text.length >= Math.ceil(maxLength * 0.8) && !bar ? (
+        <p className="zds-message-input__count" data-full={text.length >= maxLength || undefined}>
+          {fmt(S.characterCount, { count: text.length, max: maxLength })}
+        </p>
+      ) : null}
 
       <div className="zds-message-input__toolbar">
         <div className="zds-message-input__tools">
           {/* One glyph, turned 45° to read as × when open, so the change can animate. */}
-          <IconButton className="zds-message-input__tray-toggle" flavour="text" shape="full"
-            icon="add" label={trayOpen ? "Close attachments" : "Add attachments"}
+          <IconButton ref={trayToggleRef} className="zds-message-input__tray-toggle" flavour="text" shape="full"
+            icon="add" label={trayOpen ? S.closeAttachments : S.addAttachments}
             aria-expanded={trayOpen} aria-controls={trayId} data-open={trayOpen || undefined}
-            disabled={disabled || busy || mode === "playback" || speaking} onClick={() => setTrayOpen((o) => !o)} />
+            disabled={!canAttach} onClick={() => setTrayOpen((o) => !o)} />
           {/* Always mounted so closing animates too; inert while closed keeps it out of tab order and AT. */}
           <div id={trayId} className="zds-message-input__tray" data-open={trayOpen || undefined} inert={!trayOpen}>
             <div className="zds-message-input__tray-items">
-              <IconButton flavour="text" shape="full" icon="attachment" label="Attach a file" onClick={() => fileRef.current?.click()} />
-              <IconButton flavour="text" shape="full" icon="camera" label="Take a photo" onClick={() => cameraRef.current?.click()} />
+              <IconButton flavour="text" shape="full" icon="attachment" label={S.attachFile} onClick={() => fileRef.current?.click()} />
+              <IconButton flavour="text" shape="full" icon="camera" label={S.takePhoto} onClick={() => cameraRef.current?.click()} />
               {extraActions.map((a) => <IconButton key={a.label} flavour="text" shape="full" icon={a.icon} label={a.label} onClick={a.onSelect} />)}
-              {canRecord ? <IconButton flavour="text" shape="full" icon="audio" label="Record a voice message" onClick={() => void startVoiceNote()} /> : null}
+              {canRecord ? <IconButton flavour="text" shape="full" icon="audio" label={S.recordVoiceMessage} onClick={() => void startVoiceNote()} /> : null}
             </div>
           </div>
         </div>
         <div className="zds-message-input__actions">
           {showSpeakToggle ? (
             <IconButton className="zds-message-input__speak" flavour="text" shape="full"
-              icon={speakOn ? "volume-up" : "volume-off"} label="Read replies aloud"
+              icon={speakOn ? "volume-up" : "volume-off"} label={S.readAloud}
               aria-pressed={speakOn} data-pressed={speakOn || undefined} disabled={disabled} onClick={() => setSpeak(!speakOn)} />
           ) : null}
           {mode === "listening" || mode === "recording" ? (
             <IconButton flavour="primary" shape="full" icon="stop"
-              label={mode === "listening" ? "Stop and transcribe" : "Stop recording"}
+              label={mode === "listening" ? S.stopAndTranscribe : S.stopRecording}
               onClick={() => void (mode === "listening" ? finishDictation() : finishVoiceNote())} />
           ) : canDictate && mode !== "playback" ? (
-            <IconButton flavour="text" shape="full" icon="microphone" label="Dictate" disabled={disabled || busy || speaking} onClick={() => void startDictation()} />
+            <IconButton flavour="text" shape="full" icon="microphone" label={S.dictate} disabled={disabled || busy || speaking} onClick={() => void startDictation()} />
           ) : null}
-          <IconButton className="zds-message-input__send" flavour="primary" shape="full" icon="send" label="Send"
+          <IconButton className="zds-message-input__send" flavour="primary" shape="full" icon="send" label={S.send}
             disabled={!canSend} onClick={send} />
         </div>
       </div>

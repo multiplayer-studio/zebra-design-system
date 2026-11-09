@@ -1,9 +1,15 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { MessageInput, type MessageAttachment, type MessageSubmission, type MessageVoiceNote } from "../src/index.js";
+import { MessageInput, type MessageAttachment, type MessageSubmission, type MessageVoiceNote } from "../src/experimental.js";
 
 const file = (name: string, type: string): MessageAttachment =>
   ({ id: name, file: new File([""], name, { type }), kind: type.startsWith("video/") ? "video" : "document" });
+
+/** A real image file (SVG), so the image chip has a thumbnail to draw. */
+const imageFile = (name: string): MessageAttachment => {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect width="40" height="40" fill="#1f69ff"/><circle cx="28" cy="12" r="7" fill="#ffd34d"/><path d="M0 40 18 18l10 12 6-7 6 7v10z" fill="#0b4dcc"/></svg>`;
+  return { id: name, file: new File([svg], name, { type: "image/svg+xml" }), kind: "image" };
+};
 
 /** A short two-tone WAV, so the Playback story has something real to play. */
 const sampleVoiceNote = (): MessageVoiceNote => {
@@ -27,7 +33,7 @@ const meta: Meta<typeof MessageInput> = {
   component: MessageInput,
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Experimental — no Figma spec.** A composer for conversational, AI-assisted surfaces: type, attach files, dictate a prompt (Listening → Transcribing → Dictated), record a voice message (Recording → Playback), and ask for the reply to be read aloud. The state stories render each state without touching the microphone; use **Interactive** to try the real thing." } },
+    docs: { description: { component: "**Experimental — no Figma spec.** A composer for conversational, AI-assisted surfaces: type, attach files (tray, drag and drop, or paste), dictate a prompt (Listening → Transcribing → Dictated, the words landing as they're heard), record a voice message (Recording → Playback), and ask for the reply to be read aloud. Escape cancels a live voice state or closes the tray; `maxLength`, `maxAttachments` and `maxFileBytes` refuse politely on the error row; every string is replaceable through `strings`. The state stories render each state without touching the microphone; use **Interactive** to try the real thing." } },
   },
   args: { placeholder: "Placeholder" },
   render: (a) => <div style={{ maxInlineSize: 440 }}><MessageInput {...a} /></div>,
@@ -39,12 +45,52 @@ export const Empty: Story = {};
 
 export const Filled: Story = { args: { defaultValue: "Message goes in here." } };
 
-/** The + turns into a close control and opens file, camera, sticker and voice-message actions. */
+/**
+ * The + turns into a close control and opens file, camera, sticker and
+ * voice-message actions. Files also arrive by dragging them onto the composer
+ * or pasting them; an image attachment shows a thumbnail of itself in its
+ * chip. With `onPreviewAttachment` set, clicking the picture or name is the
+ * lightbox hook (logged here); the close zone removes the attachment.
+ */
 export const AttachmentOpen: Story = {
   args: {
     defaultTrayOpen: true,
-    defaultAttachments: [file("Document.pdf", "application/pdf"), file("Video_file.mp4", "video/mp4")],
+    defaultAttachments: [file("Document.pdf", "application/pdf"), file("Video_file.mp4", "video/mp4"), imageFile("Holiday.svg")],
     extraActions: [{ icon: "sticker", label: "Add a sticker", onSelect: () => {} }],
+    onPreviewAttachment: (a) => console.log("preview (lightbox goes here):", a.file.name),
+  },
+};
+
+/**
+ * `maxLength` (counter from 80% of the limit, error colour at it),
+ * `maxAttachments` and `maxFileBytes`. A refused file explains itself on the
+ * error row — try dropping a third file or one over 1 MB.
+ */
+export const Limits: Story = {
+  args: {
+    defaultValue: "The quick brown fox jumps over the lazy dog, twice over.",
+    maxLength: 64,
+    maxAttachments: 2,
+    maxFileBytes: 1024 * 1024,
+    defaultAttachments: [file("Quarterly-report.pdf", "application/pdf")],
+  },
+};
+
+/** Every string replaced through `strings` — here, French. */
+export const Localised: Story = {
+  args: {
+    placeholder: "Message",
+    defaultValue: "Réserver une table pour quatre vendredi",
+    defaultDictated: true,
+    defaultAttachments: [file("Rapport.pdf", "application/pdf")],
+    strings: {
+      addAttachments: "Ajouter des pièces jointes",
+      dictated: "Dicté",
+      undoDictation: "Annuler la dictée",
+      attached: "Pièces jointes",
+      send: "Envoyer",
+      dictate: "Dicter",
+    },
   },
 };
 

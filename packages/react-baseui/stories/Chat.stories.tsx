@@ -1,10 +1,11 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { StatusLabel, Button, type IconName } from "../src/index.js";
 import {
   ChatMessage, ChatText, ChatFile, ChatImages, ChatCard, ChatAudio, ChatVideo, ChatChoices, ChatSources,
-  ChatTyping, ChatDivider, ChatThread, ChatHeader, ChatImageViewer, chatActions, CHAT_REACTIONS, StatusLabel, MessageInput, Button,
-  type ChatReaction, type ChatImage, type IconName, type MessageSubmission,
-} from "../src/index.js";
+  ChatTyping, ChatDivider, ChatThread, ChatHeader, ChatImageViewer, chatActions, CHAT_REACTIONS, MessageInput,
+  type ChatReaction, type ChatImage, type MessageSubmission,
+} from "../src/experimental.js";
 
 /* No external media: images have no src, so they render the library
    placeholder (a card tile with the image glyph). The audio clip is a tone
