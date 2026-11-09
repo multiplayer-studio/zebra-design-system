@@ -10,7 +10,7 @@
     "build": "pnpm -r run build && pnpm run zeta:build",
     "check": "pnpm -r run check && pnpm run zeta:check",
     "typecheck": "pnpm -r run typecheck",
-    "zeta:tokens": "cd packages/zeta-web && yarn tokens",
+    "zeta:tokens": "pnpm --filter @zebra-design-system/tokens run build && cd packages/zeta-web && yarn tokens",
     "zeta:build": "cd packages/zeta-web && yarn build",
     "zeta:check": "cd packages/zeta-web && yarn check",
     "playbook:stale": "node docs/guide/stale.mjs",
