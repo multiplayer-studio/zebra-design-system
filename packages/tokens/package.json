@@ -1,0 +1,25 @@
+{
+  "name": "@zebra-design-system/tokens",
+  "version": "0.1.0",
+  "description": "Zebra Design System design tokens: the DTCG source of truth exported from Figma, plus the built CSS custom-property layers and fonts",
+  "type": "module",
+  "private": false,
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./manifest.json": "./dist/manifest.json",
+    "./fonts.json": "./dist/fonts.json",
+    "./base/*": "./dist/base/*",
+    "./extensions/*": "./dist/extensions/*",
+    "./css": "./dist/css/index.css",
+    "./css/*": "./dist/css/*",
+    "./css-attributes": "./dist/css-attributes/index.css",
+    "./css-attributes/*": "./dist/css-attributes/*",
+    "./fonts/*": "./dist/fonts/*"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "prepack": "node build.mjs"
+  }
+}
