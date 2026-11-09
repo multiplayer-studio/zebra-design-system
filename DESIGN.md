@@ -1,5 +1,11 @@
 # Zebra Design System — DESIGN.md
 
+<!-- Sections 1 (Principles), 2 (Shape inheritance) and 5 (Patterns) ship to
+     consumers inside the component-library packages, derived by
+     docs/components/generate.mjs — content added elsewhere stays repo-only.
+     CI fails any PR where the derived copies are stale; a change to the
+     shipped sections takes a patch changeset so it actually releases. -->
+
 The governing instructions for anyone building with Zebra, people and agents alike. It covers the rules, the token vocabulary and the component inventory, each at its smallest useful level. Each section points to the file that holds the detail.
 
 When this file and a detailed source disagree, the detailed source wins: the token export for values, the component spec for anatomy and props. Fix this file to match.

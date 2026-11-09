@@ -13,8 +13,10 @@ Conventional-Commits flow. All five follow SemVer with these rules.
 | Component prop or export removed, renamed, or changed in behaviour a consumer can observe | **major** |
 | A token's *value* changes (same name, new colour/size) | **patch** — themes are allowed to move |
 | Bug fix, visual correction within the spec | **patch** |
+| Shipped context changes (AGENTS.md, DESIGN.md, llms.txt, component docs) | **patch** — agents read these from the installed version, so they only update through a release |
 | Anything under an `/experimental` subpath | exempt — may change or vanish in a **minor**; it graduates by landing a spec and moving to the main entry |
-| Icon glyph added | **minor**; glyph removed or renamed | **major** |
+| Icon glyph added | **minor** |
+| Icon glyph removed or renamed | **major** |
 
 The token rules are the ones that bite: a palette can re-tune in a patch,
 but `surface/menu` disappearing (as it did in export v3) is a major. The
