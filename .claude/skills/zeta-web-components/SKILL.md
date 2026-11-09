@@ -134,6 +134,16 @@ sets the attribute on the host in `connectedCallback`
 resolves that mode. Tokens are re-declared per scope, so this works at any
 depth.
 
+## Publish readiness
+
+`@zebra-fed/zeta-web` publishes from this repo (VERSIONING.md; the manual
+lane in .github/workflows/release.yml). Before calling work done, `yarn
+build` must pass — tsc is stricter than the dev loop, and dist must carry
+every asset the styles import (the zebra-icons css/woff2 copy lives in
+scripts/build.js). A change to references/api-map.json changes the generated
+component docs: run `pnpm run docs:components` at the repo root and commit
+the result.
+
 ## Committing
 
 Conventional Commits, Zeta's format: `feat(system-banner): …`,

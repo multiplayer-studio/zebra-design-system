@@ -151,6 +151,16 @@ typography mode. There is no JavaScript theme provider and nothing
 re-renders. A component that reads only semantic tokens gets all of this for
 free; one that hard-codes a colour opts out of it permanently.
 
+## Publish readiness
+
+This package ships to npm (VERSIONING.md at the repo root has the bump
+rules). Before calling component work done: `pnpm run build` in the package
+must pass — it is what `prepack` runs at publish (tokens, cem analyze, tsc,
+tokens copy). When a component gains or loses an `@spec` tag, or its spec
+changes, run `pnpm run docs:components` at the repo root and commit the
+regenerated docs — CI diffs them and fails stale. Any change to the
+published surface takes a changeset (`pnpm exec changeset`).
+
 ## Committing
 
 Conventional Commits, enforced for release versioning. Scope with the

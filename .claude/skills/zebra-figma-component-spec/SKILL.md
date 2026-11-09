@@ -187,3 +187,10 @@ stale silently and the second duplicates the spec while looking more
 authoritative than it is.
 
 Finish with a short summary in chat: parts, props, variants, subcomponents and tokens counted, then the blocker and warn issues. Keep it brief; the files hold the detail.
+
+### 9. Regenerate the consumer docs
+
+The spec also feeds `docs/components/<slug>.md` — the usage layer consumers
+and their agents read. After writing or updating a spec, run
+`pnpm run docs:components` at the repo root and commit the regenerated docs
+with the spec; CI diffs them and fails when they are stale.

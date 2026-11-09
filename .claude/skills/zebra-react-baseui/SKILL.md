@@ -157,6 +157,17 @@ hard-codes a colour opts out of it permanently. Do not add a React context, a
 `useTheme` hook, or a styled-components-style theme object — the cascade
 already did it.
 
+## Publish readiness
+
+This package ships to npm (VERSIONING.md at the repo root has the bump
+rules). Before calling component work done: `pnpm run build` in the package
+must pass — it is exactly what `prepack` runs at publish (tokens, tsc emit of
+both entries, CSS copy). A spec-less component exports from
+`src/experimental.ts`, never `src/index.ts`. When a component gains or loses
+an `@spec` tag, or its spec changes, run `pnpm run docs:components` at the
+repo root and commit the regenerated docs — CI diffs them and fails stale.
+Any change to the published surface takes a changeset (`pnpm exec changeset`).
+
 ## Committing
 
 Conventional Commits, enforced for release versioning:
