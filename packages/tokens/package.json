@@ -5,7 +5,9 @@
   "type": "module",
   "private": false,
   "files": [
-    "dist"
+    "dist",
+    "AGENTS.md",
+    "llms.txt"
   ],
   "exports": {
     "./manifest.json": "./dist/manifest.json",

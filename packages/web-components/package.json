@@ -9,7 +9,9 @@
   "customElements": "custom-elements.json",
   "files": [
     "dist",
-    "custom-elements.json"
+    "custom-elements.json",
+    "AGENTS.md",
+    "llms.txt"
   ],
   "exports": {
     ".": "./dist/index.js",

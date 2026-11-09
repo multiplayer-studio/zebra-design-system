@@ -8,7 +8,9 @@
     "codepoints.json",
     "fonts",
     "icons.css",
-    "inventory.json"
+    "inventory.json",
+    "AGENTS.md",
+    "llms.txt"
   ],
   "exports": {
     "./icons.css": "./icons.css",

@@ -35,11 +35,11 @@ jobs:
           done
       - name: Tarball denylist
         run: node scripts/assert-tarballs.mjs
-      - name: Component docs in lockstep with specs
+      - name: Component docs + package agent context in lockstep with specs
         run: |
           node docs/components/generate.mjs
-          git diff --exit-code docs/components || {
-            echo "::error::docs/components is stale — run 'pnpm run docs:components' and commit the result"; exit 1; }
+          git diff --exit-code docs/components packages/*/AGENTS.md packages/*/llms.txt || {
+            echo "::error::generated docs are stale — run 'pnpm run docs:components' and commit the result"; exit 1; }
 
   zeta-web:
     name: zeta-web — build, lint, test

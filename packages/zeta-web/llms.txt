@@ -1,0 +1,8 @@
+# @zebra-fed/zeta-web
+
+> The legacy Zeta Web library: zeta-* Lit custom elements, refined against the Zebra specs. Part of the Zebra Design System; tokens are the base of the graph and themes are CSS classes/attributes, no JavaScript.
+
+## Docs
+- [AGENTS.md](./AGENTS.md): the usage contract for agents, shipped in this package
+- [Component usage docs](https://github.com/zebratechnologies/zebra-design-system/tree/main/docs/components): one page per component
+- [Versioning policy](https://github.com/zebratechnologies/zebra-design-system/blob/main/VERSIONING.md)

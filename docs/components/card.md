@@ -1,7 +1,5 @@
 # Card
 
-> undefined
-
 **Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-card>`)
 
 ---

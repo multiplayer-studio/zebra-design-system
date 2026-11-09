@@ -55,7 +55,9 @@
   },
   "license": "MIT",
   "files": [
-    "dist"
+    "dist",
+    "AGENTS.md",
+    "llms.txt"
   ],
   "sideEffects": [
     "**/*.css"
