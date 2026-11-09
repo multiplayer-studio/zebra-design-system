@@ -15,6 +15,7 @@ rules in `VERSIONING.md`; release mechanics in `.github/workflows/release.yml`.
 | Claude Code plugin | Installable from this repo as a marketplace — **pin the working branch**, since `main` doesn't carry the plugin until the merge | `claude plugin marketplace add "https://github.com/zebratechnologies/zebra-design-system.git#design/init"` (or a local path to a design/init checkout), then `claude plugin install zebra-design-system@zebra-design-system` |
 | In-package skills | Already real — ship in the library tarballs | `npx zebra-skills` in the consumer project |
 | CDN | Not live (needs real npm) | `docs/cdn-smoke.html` is armed with pinned jsDelivr URLs |
+| Consumer onboarding | Zebra Quickstart artifact (private; share from its Share menu) | source `docs/start/index.html`, published at <https://claude.ai/artifact/ByQaUbTKkN1EXDyp5bEvg7> |
 
 Local registry rules: Verdaccio refuses republishing a version — bump a
 `-local.N` prerelease, or delete the package's folder from
