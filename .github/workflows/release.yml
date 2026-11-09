@@ -19,6 +19,10 @@ on:
         description: "Also publish @zebra-fed/zeta-web"
         type: boolean
         default: false
+      git_dist:
+        description: "Deploy the git distribution branches (dist/<pkg> + version tags)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -73,3 +77,25 @@ jobs:
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: yarn npm publish --access public
+
+  # Registry-free channel (DISTRIBUTION.md §Git distribution): packs each
+  # package root to an orphan dist/<pkg> branch plus an immutable
+  # <pkg>-v<version> tag, installable with npm i "git+<repo>#dist/<pkg>".
+  # Needs no NPM_TOKEN — pushes with the workflow's own checkout credentials.
+  git-dist:
+    name: Deploy git dist branches (manual)
+    if: github.event_name == 'workflow_dispatch' && inputs.git_dist
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -r run build
+      - name: Build zeta-web
+        working-directory: packages/zeta-web
+        run: corepack enable && yarn install --immutable && yarn build
+      - run: node scripts/deploy-dist-branches.mjs --push
