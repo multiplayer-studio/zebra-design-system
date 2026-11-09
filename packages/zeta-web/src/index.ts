@@ -21,6 +21,7 @@ import { ZetaChartCard } from "./components/chart-card/chart-card.js";
 import { ZetaCheckbox } from "./components/checkbox/checkbox.js";
 import { ZetaCollapsibleMenuItem } from "./components/navigation-rail/collapsible-menu-item.js";
 import { ZetaDialog } from "./components/dialog/dialog.js";
+import { ZetaDivider } from "./components/divider/divider.js";
 import { ZetaDropdownMenuButton } from "./components/dropdown/dropdown-menu/dropdown-menu-button.js";
 import { ZetaDropdownMenuItem } from "./components/dropdown/menu-item/dropdown-menu-item.js";
 import { ZetaDroppable } from "./components/dropdown/droppable.js";
@@ -52,6 +53,7 @@ import { ZetaNavigationProfile } from "./components/navigation-profile/navigatio
 import { ZetaNavigationRail } from "./components/navigation-rail/navigation-rail.js";
 import { ZetaNavigationRailItem } from "./components/navigation-rail/navigation-rail-item.js";
 import { ZetaNotificationIndicator } from "./components/badges/indicators/indicators.js";
+import { ZetaNotificationItem } from "./components/notification-item/notification-item.js";
 import { ZetaOption } from "./components/select-input/option.js";
 import { ZetaPagination } from "./components/pagination/pagination.js";
 import { ZetaPhoneInput } from "./components/phone-input/phone-input.js";
@@ -61,10 +63,7 @@ import { ZetaProgressCircle } from "./components/progress-indicators/progress-ci
 import { ZetaRadioButton } from "./components/radio-button/radio-button.js";
 import { ZetaRangeSelector } from "./components/slider/range-selector/range-selector.js";
 import { ZetaScreenHeaderBar } from "./components/screen-header-bar/screen-header-bar.js";
-import { ZetaDivider } from "./components/divider/divider.js";
 import { ZetaScrollbar } from "./components/scrollbar/scrollbar.js";
-import { ZetaNotificationItem } from "./components/notification-item/notification-item.js";
-import { ZetaTable } from "./components/table/table.js";
 import { ZetaSearch } from "./components/search/search.js";
 import { ZetaSegmentedControl } from "./components/segmented-control/segmented-control.js";
 import { ZetaSegmentedItem } from "./components/segmented-control/segmented-item.js";
@@ -84,6 +83,7 @@ import { ZetaSwitch } from "./components/switch/switch.js";
 import { ZetaSystemBanner } from "./components/system-banner/system-banner.js";
 import { ZetaTabBar } from "./components/tab-bar/tab-bar.js";
 import { ZetaTabItem } from "./components/tab-bar/tab-item/tab-item.js";
+import { ZetaTable } from "./components/table/table.js";
 import { ZetaTableLegacy } from "./components/table-legacy/table-legacy.js";
 import { ZetaTag } from "./components/badges/tag/tag.js";
 import { ZetaTextInput } from "./components/text-input/text-input.js";
@@ -114,6 +114,7 @@ export {
   ZetaCheckbox,
   ZetaCollapsibleMenuItem,
   ZetaDialog,
+  ZetaDivider,
   ZetaDropdownMenuButton,
   ZetaDropdownMenuItem,
   ZetaDroppable,
@@ -145,6 +146,7 @@ export {
   ZetaNavigationRail,
   ZetaNavigationRailItem,
   ZetaNotificationIndicator,
+  ZetaNotificationItem,
   ZetaOption,
   ZetaPagination,
   ZetaPhoneInput,
@@ -154,10 +156,7 @@ export {
   ZetaRadioButton,
   ZetaRangeSelector,
   ZetaScreenHeaderBar,
-  ZetaDivider,
   ZetaScrollbar,
-  ZetaNotificationItem,
-  ZetaTable,
   ZetaSearch,
   ZetaSegmentedControl,
   ZetaSegmentedItem,
@@ -177,6 +176,7 @@ export {
   ZetaSystemBanner,
   ZetaTabBar,
   ZetaTabItem,
+  ZetaTable,
   ZetaTableLegacy,
   ZetaTag,
   ZetaTextInput,
