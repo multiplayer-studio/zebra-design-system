@@ -9,15 +9,27 @@ You are in a consumer codebase with Zebra packages installed and no Figma
 design to translate: you are making the design decisions, so make them the
 way the system would.
 
-## Before anything
+## Before anything — load the contract into context first
 
-1. Read `node_modules/@zebra-design-system/react-baseui/AGENTS.md` (or
-   `web-components/AGENTS.md`) and the `DESIGN.md` beside it — principles,
-   shape inheritance and theming live there, and they override anything here.
-2. Confirm the setup imports exist once at the app entry:
+Do not make any design decision or write any code until you have **read, in
+full**, both of these:
+
+1. **`DESIGN.md`** — resolve it in this order and read the first that exists:
+   1. `node_modules/@zebra-design-system/react-baseui/DESIGN.md`
+   2. `node_modules/@zebra-design-system/web-components/DESIGN.md`
+   3. the `docs/DESIGN.md` shipped with this skill's plugin — a pinned
+      fallback; say that it may be older than the installed packages.
+   If none exists, the Zebra packages are not installed: stop and run
+   the setup (or `/zebra-setup`) before designing anything.
+2. **`AGENTS.md`** beside the same package — the usage contract; skim its
+   component index before designing, because the control you are about to
+   hand-build almost certainly exists.
+
+Principles, shape inheritance and theming live in those files, and they
+override anything here. Then:
+
+3. Confirm the setup imports exist once at the app entry:
    `@zebra-design-system/tokens/css` and `@zebra-design-system/icons/icons.css`.
-3. Skim the component index at the bottom of AGENTS.md before designing —
-   the control you are about to hand-build almost certainly exists.
 
 ## Designing on-system
 

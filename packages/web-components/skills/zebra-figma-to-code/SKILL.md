@@ -10,14 +10,27 @@ Figma was built from the same library, so almost every node maps to an
 installed component and every value to a token. Your job is translation, not
 invention.
 
-## Before anything
+## Before anything — load the contract into context first
 
-1. Read `node_modules/@zebra-design-system/react-baseui/AGENTS.md` (or
-   `web-components/AGENTS.md` — whichever this app uses) and the `DESIGN.md`
-   beside it. Those are the contract; this skill only adds the Figma mapping.
-2. Confirm the setup imports exist once at the app entry:
+Do not read the Figma design or write any code until you have **read, in
+full**, both of these:
+
+1. **`DESIGN.md`** — resolve it in this order and read the first that exists:
+   1. `node_modules/@zebra-design-system/react-baseui/DESIGN.md`
+   2. `node_modules/@zebra-design-system/web-components/DESIGN.md`
+   3. the `docs/DESIGN.md` shipped with this skill's plugin — a pinned
+      fallback; say that it may be older than the installed packages.
+   If none exists, the Zebra packages are not installed: stop and run
+   the setup (or `/zebra-setup`) before building anything.
+2. **`AGENTS.md`** beside the same package — the usage contract and the
+   component index for the installed version.
+
+Those two files are the authority; this skill only adds the Figma mapping and
+never overrides them. Then:
+
+3. Confirm the setup imports exist once at the app entry:
    `@zebra-design-system/tokens/css` and `@zebra-design-system/icons/icons.css`.
-3. Read the Figma selection via the Figma MCP tools before writing any code:
+4. Read the Figma selection via the Figma MCP tools before writing any code:
    every frame, text node, variant property and bound token. Never build from
    the thumbnail.
 
