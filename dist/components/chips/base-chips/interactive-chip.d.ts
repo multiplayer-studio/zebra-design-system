@@ -1,0 +1,1 @@
+import{BaseChip}from"./base-chip.js";export declare class InteractiveChip extends BaseChip{disabled:boolean;static styles:(import("lit").CSSResult|import("lit").CSSResultGroup[])[];}
