@@ -41,3 +41,6 @@ lerna-debug.log*
 .eslintcache
 .stylelintcache
 .design-sync/
+
+# Python
+__pycache__/
