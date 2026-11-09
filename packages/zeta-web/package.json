@@ -58,7 +58,7 @@
     "storybook:test": "test-storybook",
     "storybook": "cem analyze && storybook dev -p 6006",
     "test:count": "npx tsx scripts/test/test_counter.ts",
-    "tokens": "node ../web-components/scripts/build-tokens-css.mjs ../tokens/dist src/generated/zebra-tokens --profile=zeta --shadowed=border-default,border-disabled,border-info,border-subtle,border-warning,radius-none,radius-xl,surface-info,surface-warning",
+    "tokens": "node ../tokens/build.mjs && node ../web-components/scripts/build-tokens-css.mjs ../tokens/dist src/generated/zebra-tokens --profile=zeta --shadowed=border-default,border-disabled,border-info,border-subtle,border-warning,radius-none,radius-xl,surface-info,surface-warning",
     "icons": "node scripts/zebra-icons.mjs ../icons src/generated/zebra-icons",
     "pretest:package": "yarn pack --pack-destination ./test && cd test && yarn install && cd ..",
     "test:package": "cd test && yarn run dev",

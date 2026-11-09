@@ -1,4 +1,4 @@
-# Token audit, 2026-11-07
+# Token audit, 2026-11-08
 
 ## primitives
 
@@ -102,12 +102,4 @@
 
 ## Changes since the last documented version
 
-- value: `surface/subtle` Base: fill/sunken to fill/faint
-- description: `surface/subtle` changed
-- value: `fill/transparent` #f3f6fa00 to color/alpha/light/0
-- renamed: `surface/overlay` was surface/dialog
-- added: `fill/faint`
-- added: `surface/shade`
-- removed: `surface/sheet`
-- removed: `surface/popover`
-- removed: `surface/menu`
+None.

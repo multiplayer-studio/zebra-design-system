@@ -28,7 +28,7 @@
     "*.css"
   ],
   "scripts": {
-    "generate": "node ../../.claude/skills/zebra-figma-icon-font/scripts/build-icon-font.mjs --node 2046:6754 --out .",
+    "generate": "node ../../.claude/skills/zebra-figma-icon-font/scripts/build-icon-font.mjs --node 2046:6754 --out . && tsc",
     "generate:dry": "node ../../.claude/skills/zebra-figma-icon-font/scripts/build-icon-font.mjs --node 2046:6754 --out . --dry-run",
     "build": "tsc",
     "prepack": "tsc"
