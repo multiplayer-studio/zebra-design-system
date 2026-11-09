@@ -1,0 +1,9 @@
+# @zebra-design-system/icons
+
+> The Zebra icon font: woff2 glyph fonts, registration CSS, codepoints and a typed name union. Part of the Zebra Design System; tokens are the base of the graph and themes are CSS classes/attributes, no JavaScript.
+
+## Docs
+- [AGENTS.md](./AGENTS.md): the usage contract for agents, shipped in this package
+- [DESIGN.md](./DESIGN.md): the system's design voice (principles, shape inheritance, patterns) — in the component-library packages
+- [Component usage docs](https://github.com/zebratechnologies/zebra-design-system/tree/main/docs/components): one page per component
+- [Versioning policy](https://github.com/zebratechnologies/zebra-design-system/blob/main/VERSIONING.md)
