@@ -1,0 +1,57 @@
+# PR gates for the distribution pipeline (step 0.10 of the distribution plan).
+# The per-component visual audit stays a local/skill gate for now; CI covers
+# the headless theming assertions, type checks, package shape and the tarball
+# denylist. The two browser-heavy suites run in separate jobs so they never
+# share a machine — stacking them locally produced module-fetch flakes.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, design/init]
+
+jobs:
+  packages:
+    name: pnpm packages — build, check, shape
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4 # reads packageManager from package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Build all pnpm packages
+        run: pnpm -r run build
+      - name: Checks (tokens, typecheck, theming assertions)
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: pnpm -r run check
+      - name: Package shape (publint)
+        run: |
+          for p in tokens icons react-baseui web-components; do
+            (cd packages/$p && pnpm dlx publint)
+          done
+      - name: Tarball denylist
+        run: node scripts/assert-tarballs.mjs
+
+  zeta-web:
+    name: zeta-web — build, lint, test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/zeta-web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: corepack enable # yarn 4 via the repo's packageManager pin
+      - run: yarn install --immutable
+      - name: Install test browser
+        run: yarn exec playwright install --with-deps chromium
+      - name: Build
+        run: yarn build
+      - name: Check (analyze, lint, lit-analyzer, tests)
+        run: yarn check

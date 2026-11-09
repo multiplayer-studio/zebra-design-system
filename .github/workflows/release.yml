@@ -1,0 +1,75 @@
+# Release lane (step 0.10). Two lanes, one workflow:
+# - The four pnpm packages release through Changesets: accumulated changesets
+#   become a "Version Packages" PR; merging it versions, rewrites workspace:*
+#   ranges and publishes.
+# - zeta-web keeps its Conventional-Commits versioning and publishes through
+#   the manual zeta lane below (workflow_dispatch) until its flow is folded in.
+#
+# Dormant until step 0.2 lands: publishing needs the NPM_TOKEN secret (or npm
+# trusted publishing once the repo/org decision is made). Without the secret
+# the publish step fails loudly rather than silently skipping — intentional.
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      zeta:
+        description: "Also publish @zebra-fed/zeta-web"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write # for npm trusted publishing, if enabled in 0.2
+
+concurrency: release-${{ github.ref }}
+
+jobs:
+  changesets:
+    name: Version or publish pnpm packages
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+      - run: pnpm install --frozen-lockfile
+      - name: Tarball denylist (last line of defence before publish)
+        run: pnpm -r run build && node scripts/assert-tarballs.mjs
+      - name: Create release PR or publish
+        uses: changesets/action@v1
+        with:
+          version: pnpm run version-packages
+          publish: pnpm run release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  zeta:
+    name: Publish zeta-web (manual)
+    if: github.event_name == 'workflow_dispatch' && inputs.zeta
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/zeta-web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: corepack enable
+      - run: yarn install --immutable
+      - run: yarn build
+      - name: Publish
+        env:
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn npm publish --access public
