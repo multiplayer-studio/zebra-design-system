@@ -1,0 +1,19 @@
+{
+  "name": "zebra-design-system",
+  "private": true,
+  "packageManager": "pnpm@12.3.4",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "tokens": "pnpm -r run tokens && pnpm run zeta:tokens",
+    "build": "pnpm -r run build && pnpm run zeta:build",
+    "check": "pnpm -r run check && pnpm run zeta:check",
+    "typecheck": "pnpm -r run typecheck",
+    "zeta:tokens": "cd packages/zeta-web && yarn tokens",
+    "zeta:build": "cd packages/zeta-web && yarn build",
+    "zeta:check": "cd packages/zeta-web && yarn check",
+    "playbook:stale": "node docs/guide/stale.mjs",
+    "playbook:build": "node docs/guide/build.mjs"
+  }
+}

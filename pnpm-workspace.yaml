@@ -1,0 +1,11 @@
+# The pnpm workspace covers every package except zeta-web, which pins
+# packageManager: yarn@4.17.0 (Yarn Berry) and refuses pnpm outright.
+# zeta-web still rides the same release train: the root scripts and CI
+# shell out to its yarn for build/check/tokens, and the release workflow
+# publishes it alongside the pnpm packages.
+packages:
+  - "packages/*"
+  - "!packages/zeta-web"
+allowBuilds:
+  esbuild: true
+  rs-module-lexer: true
