@@ -1,0 +1,121 @@
+/* Snackbar — ported rule for rule from packages/web-components
+   snackbar.styles.ts. Every value is a semantic token; the custom
+   properties live on the root so the dark bars' own .mode-* class resolves
+   them in that mode.
+
+   Spec: specs/snackbar/snackbar.spec.md */
+
+.zds-snackbar {
+  display: block;
+  max-inline-size: 100%;
+  /* As a grid or flex item its automatic minimum would be the whole one-line
+     message, so it could never shrink to the ellipsis (spec: Width). */
+  min-inline-size: 0;
+  /* contextual: radius/pill (spec: Radius). The message never wraps. */
+  --zds-snackbar-radius: var(--radius-pill);
+  --zds-snackbar-icon: currentColor;
+  --zds-snackbar-bg: var(--surface-overlay);
+  --zds-snackbar-fg: var(--foreground-primary);
+}
+
+/* Floating (the default): a manual popover, so it is in the top layer,
+   above every z-index on the page. Reset the UA popover box and sit centred,
+   space/xl above the bottom of the viewport. */
+.zds-snackbar[popover] {
+  position: fixed;
+  inset: auto 0 var(--space-xl) 0;
+  margin: 0 auto;
+  inline-size: fit-content;
+  max-inline-size: calc(100vw - 2 * var(--space-lg));
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  overflow: visible;
+}
+
+/* Spacing. space/lg at the leading end, and space/xs on the bar plus space/sm
+   on the message, 12, top and bottom, so one line is exactly control/lg. */
+.zds-snackbar__surface {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-block-size: var(--control-lg);
+  padding-block: var(--space-2xs);
+  padding-inline: var(--space-lg);
+  border-radius: var(--zds-snackbar-radius);
+  background: var(--zds-snackbar-bg);
+  color: var(--zds-snackbar-fg);
+  box-shadow: var(--shadow-medium-x) var(--shadow-medium-y) var(--shadow-medium-blur) var(--shadow-soft);
+  font-family: var(--body-medium-font-family), system-ui, sans-serif;
+  font-size: var(--body-medium-font-size);
+  font-weight: var(--body-medium-font-weight);
+  line-height: var(--body-medium-line-height);
+  letter-spacing: var(--body-medium-letter-spacing);
+}
+
+/* Controls at the end (Button and IconButton, both control/md): the end gap
+   equals the top gap, space/xs, so the last control sits concentric. */
+.zds-snackbar__surface[data-end] {
+  padding-inline-end: var(--space-2xs);
+}
+
+.zds-snackbar__lead {
+  flex: none;
+  display: inline-flex;
+  color: var(--zds-snackbar-icon);
+}
+
+/* One line, never wrapping (spec: Width); an ellipsis where it runs out. */
+.zds-snackbar__message {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  padding-block: var(--space-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Message to controls reads space/lg: space/md of gap plus this margin;
+   action to close space/xs. */
+.zds-snackbar__controls {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  margin-inline-start: var(--space-2xs);
+}
+
+/* The close's glyph takes the bar's text colour like every icon here,
+   foreground/primary as in Figma; the subtle IconButton keeps its own hover
+   and pressed scrim. Out-ranks button.css's flavour rule. */
+.zds-snackbar .zds-button.zds-snackbar__close {
+  --zds-button-fg: var(--zds-snackbar-fg);
+}
+
+/* ---- shape --------------------------------------------------------- */
+.zds-snackbar[data-variant="standard"] {
+  --zds-snackbar-radius: var(--radius-md);
+}
+.zds-snackbar[data-shape="sharp"] {
+  --zds-snackbar-radius: var(--radius-none);
+}
+
+/* ---- fill per flavour; the dark bars by default ------------------- */
+.zds-snackbar[data-flavour="info"]:not([data-variant="standard"]) {
+  --zds-snackbar-bg: var(--feedback-info-background-subtle);
+}
+.zds-snackbar[data-flavour="positive"]:not([data-variant="standard"]) {
+  --zds-snackbar-bg: var(--feedback-success-background-subtle);
+}
+.zds-snackbar[data-flavour="warning"]:not([data-variant="standard"]) {
+  --zds-snackbar-bg: var(--feedback-warning-background-subtle);
+}
+.zds-snackbar[data-flavour="error"]:not([data-variant="standard"]),
+.zds-snackbar[data-flavour="deletion"]:not([data-variant="standard"]) {
+  --zds-snackbar-bg: var(--feedback-error-background-subtle);
+}
+.zds-snackbar[data-flavour="view"]:not([data-variant="standard"]) {
+  --zds-snackbar-bg: var(--feedback-neutral-background-subtle);
+}

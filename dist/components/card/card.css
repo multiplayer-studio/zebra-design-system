@@ -1,0 +1,26 @@
+/* Card — every value is a semantic token. No fixed width: the spec's own
+   330px is a Figma canvas artifact ("whoever places it decides the width"),
+   not a constraint, so this shell sizes to its container. Zero padding and
+   gap on the shell itself — every inset comes from whatever fills the slots.
+
+   Spec: specs/card/card.spec.md */
+
+.zds-card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background: var(--surface-card);
+  border: var(--stroke-thin) solid var(--border-default);
+  border-radius: var(--radius-none);
+  overflow: hidden;
+}
+
+.zds-card[data-shape="rounded"] {
+  border-radius: var(--radius-sm);
+}
+
+.zds-card__header,
+.zds-card__body,
+.zds-card__footer {
+  background: var(--surface-card);
+}
