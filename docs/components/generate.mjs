@@ -340,6 +340,35 @@ for (const dir of ["react-baseui", "web-components"]) {
   cpSync(join(SKILLS_SRC, "install-skills.mjs"), join(pkgDir, "bin", "install-skills.mjs"));
 }
 
+/* ---- the Claude Code plugin (distribution/plugin) --------------------------- */
+// Same sources, third wrapper: the plugin carries the skills, the component
+// catalog, the consumer DESIGN.md and a versions.json pinning the npm
+// versions it documents. Regenerated here, so the Changesets version PR
+// (whose script runs this generator) updates the pins automatically.
+{
+  const plug = join(ROOT, "distribution", "plugin", "zebra-design-system");
+  // skills
+  rmSync(join(plug, "skills"), { recursive: true, force: true });
+  mkdirSync(join(plug, "skills"), { recursive: true });
+  for (const entry of readdirSync(SKILLS_SRC, { withFileTypes: true })) {
+    if (entry.isDirectory()) cpSync(join(SKILLS_SRC, entry.name), join(plug, "skills", entry.name), { recursive: true });
+  }
+  // component catalog + design voice
+  rmSync(join(plug, "docs"), { recursive: true, force: true });
+  mkdirSync(join(plug, "docs", "components"), { recursive: true });
+  for (const f of readdirSync(OUT)) {
+    if (f.endsWith(".md")) cpSync(join(OUT, f), join(plug, "docs", "components", f));
+  }
+  writeFileSync(join(plug, "docs", "DESIGN.md"), consumerDesign);
+  // version pins (step 2.6): which npm versions this plugin documents
+  const pins = {};
+  for (const dir of ["tokens", "icons", "react-baseui", "web-components", "zeta-web"]) {
+    const m = JSON.parse(readFileSync(join(ROOT, "packages", dir, "package.json"), "utf8"));
+    pins[m.name] = m.version;
+  }
+  writeFileSync(join(plug, "docs", "versions.json"), JSON.stringify({ documents: pins }, null, 2) + "\n");
+}
+
 for (const [dir, p] of Object.entries(PACKAGES)) {
   const pkgDir = join(ROOT, "packages", dir);
   const list = componentIndex(p.has);

@@ -16,7 +16,7 @@
     "playbook:stale": "node docs/guide/stale.mjs",
     "playbook:build": "node docs/guide/build.mjs",
     "changeset": "changeset",
-    "version-packages": "changeset version",
+    "version-packages": "changeset version && node docs/components/generate.mjs",
     "release": "pnpm -r run build && changeset publish",
     "storybook": "pnpm run storybook:react & pnpm run storybook:wc & pnpm run storybook:zeta & wait",
     "storybook:react": "pnpm --filter @zebra-design-system/react-baseui run storybook",

@@ -1,0 +1,9 @@
+{
+  "documents": {
+    "@zebra-design-system/tokens": "0.1.0",
+    "@zebra-design-system/icons": "0.1.0",
+    "@zebra-design-system/react-baseui": "0.1.0",
+    "@zebra-design-system/web-components": "0.1.0",
+    "@zebra-fed/zeta-web": "1.3.6"
+  }
+}
