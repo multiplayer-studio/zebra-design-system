@@ -21,5 +21,14 @@
   "scripts": {
     "build": "node build.mjs",
     "prepack": "node build.mjs"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zebratechnologies/zebra-design-system.git",
+    "directory": "packages/tokens"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

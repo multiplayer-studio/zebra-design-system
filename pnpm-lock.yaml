@@ -109,7 +109,11 @@ importers:
 
   .: {}
 
-  packages/icons: {}
+  packages/icons:
+    devDependencies:
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
 
   packages/react-baseui:
     dependencies:
@@ -177,7 +181,7 @@ importers:
   packages/web-components:
     dependencies:
       '@zebra-design-system/icons':
-        specifier: link:../icons
+        specifier: workspace:*
         version: link:../icons
       lit:
         specifier: ^3.3.3

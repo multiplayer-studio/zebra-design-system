@@ -36,5 +36,13 @@
   "license": "MIT",
   "devDependencies": {
     "typescript": "^5.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zebratechnologies/zebra-design-system.git",
+    "directory": "packages/icons"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
