@@ -20,9 +20,9 @@
 </script>
 <script src="dist/zds.js" defer></script>
 <style>
-  /* Layout: a brand band, then one numbered setup path and a trio of ways to design.
-     Every colour, space and type value aliases Zebra's own semantic tokens, so the
-     page is itself a sample of the system it teaches. */
+  /* Layout: the playbook's shell — a brand band, then a sticky guide index beside one long
+     column, one guide per section. You talk to Claude; the page only shows what to say.
+     Every colour, space and type value aliases Zebra's own semantic tokens. */
   :root {
     --bg: var(--surface-page);
     --panel: var(--surface-subtle);
@@ -38,6 +38,7 @@
   .mode-light { color-scheme: light; }
   .mode-dark { color-scheme: dark; }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--fg); font: var(--text-body-medium); }
 
   .band { background: var(--brand); color: var(--on-brand); position: relative; overflow: hidden; }
@@ -48,23 +49,37 @@
     mask-image: linear-gradient(90deg, transparent, #000 70%);
   }
   .band-inner {
-    position: relative; z-index: 1; display: grid; gap: 20px; max-width: 880px; margin-inline: auto;
+    position: relative; z-index: 1; display: grid; gap: 20px; max-width: 1180px; margin-inline: auto;
     padding-block: 48px 56px;
     padding-left: max(16px, env(safe-area-inset-left, 0px));
     padding-right: max(16px, env(safe-area-inset-right, 0px));
   }
   .band h1 { margin: 0; font: var(--text-display-small); text-wrap: balance; }
   .band p { margin: 0; max-width: 62ch; font: var(--text-body-large); }
-  .band code { background: var(--stripe); padding: 1px 6px; border-radius: 4px; font-family: var(--mono); font-size: 0.9em; }
   .eyebrow { font: var(--text-label-small); letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85; }
 
-  main {
-    max-width: 880px; margin-inline: auto; display: grid; gap: 56px;
+  .shell {
+    display: grid; grid-template-columns: 232px minmax(0, 1fr); gap: 56px;
+    max-width: 1180px; margin-inline: auto;
     padding-block: 48px 96px;
     padding-left: max(16px, env(safe-area-inset-left, 0px));
     padding-right: max(16px, env(safe-area-inset-right, 0px));
   }
-  section { display: grid; gap: 16px; }
+  .index { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; display: grid; gap: 4px; }
+  .index p { margin: 0 0 8px; padding-inline: 12px; font: var(--text-label-small); color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+  .index a {
+    display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px;
+    color: var(--fg); text-decoration: none; font: var(--text-label-large);
+  }
+  .index a:hover { background: var(--panel); }
+  .index a:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .index .n {
+    font: var(--text-label-small); color: var(--muted); border: 1px solid var(--line);
+    border-radius: 999px; width: 22px; height: 22px; flex: none; display: inline-grid; place-items: center;
+  }
+
+  .col { display: grid; gap: 64px; min-width: 0; }
+  section { display: grid; gap: 16px; scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 24px); }
   h2 { margin: 0; font: var(--text-headline-small); display: flex; align-items: baseline; gap: 12px; text-wrap: balance; }
   h2 .step {
     font: var(--text-label-large); color: var(--on-brand); background: var(--brand);
@@ -73,16 +88,14 @@
   }
   h3 { margin: 0; font: var(--text-title-medium); }
   p { margin: 0; max-width: 68ch; }
-  p.muted, li.muted { color: var(--muted); }
+  .muted { color: var(--muted); }
   ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
   a { color: var(--accent); }
   code { font-family: var(--mono); font-size: 0.92em; }
-  p code, li code { background: var(--panel); border: 1px solid var(--line); padding: 0 5px; border-radius: 4px; }
+  p code, li code, h3 code { background: var(--panel); border: 1px solid var(--line); padding: 0 5px; border-radius: 4px; }
 
   .term { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
-  .term pre { margin: 0; padding: 14px 52px 14px 16px; overflow-x: auto; font: 400 13px/1.7 var(--mono); }
-  .term .say { color: var(--muted); }
-  .term .you { color: var(--accent); }
+  .term pre { margin: 0; padding: 14px 76px 14px 16px; overflow-x: auto; font: 400 13px/1.7 var(--mono); }
   .copy {
     position: absolute; top: 8px; right: 8px; border: 1px solid var(--line); border-radius: 6px;
     background: var(--bg); color: var(--muted); font: var(--text-label-small); padding: 4px 8px; cursor: pointer;
@@ -90,10 +103,21 @@
   .copy:hover, .copy:focus-visible { color: var(--fg); }
   .copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .prompt {
+    border-left: 3px solid var(--brand); background: color-mix(in srgb, var(--brand) 7%, var(--bg));
+    border-radius: 0 10px 10px 0; padding: 12px 16px; max-width: none;
+  }
+  .prompt .who { display: block; font: var(--text-label-small); color: var(--muted); margin-bottom: 4px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  .skill-tag {
+    display: inline-flex; align-items: center; gap: 6px; font: var(--text-label-small);
+    color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px;
+  }
+  .skill-tag code { background: none; border: 0; padding: 0; color: var(--fg); }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
   .card { border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 10px; align-content: start; background: var(--bg); }
-  .card .pick { font: var(--text-label-small); color: var(--muted); }
-  .card ul { font: var(--text-body-small); }
+  .card .pick { font: var(--text-body-small); color: var(--muted); }
 
   .demo {
     border: 1px dashed var(--line); border-radius: 12px; padding: 20px;
@@ -101,18 +125,13 @@
   }
   .demo-note { font: var(--text-body-small); color: var(--muted); width: 100%; }
 
-  .prompt {
-    border-left: 3px solid var(--brand); background: color-mix(in srgb, var(--brand) 7%, var(--bg));
-    border-radius: 0 10px 10px 0; padding: 12px 16px; font: var(--text-body-medium);
-  }
-  .prompt b { font-weight: 500; }
-
   footer { border-top: 1px solid var(--line); padding-top: 24px; display: grid; gap: 8px; font: var(--text-body-small); color: var(--muted); }
 
-  @media (prefers-reduced-motion: no-preference) {
-    .copy { transition: color 120ms ease; }
-  }
-  @media (max-width: 480px) {
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  @media (max-width: 760px) {
+    .shell { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+    .index { position: static; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+    .index p { grid-column: 1 / -1; }
     .band h1 { font: var(--text-headline-large); }
   }
 </style>
@@ -121,200 +140,212 @@
   <div class="band-inner">
     <span class="eyebrow">Zebra Design System · for builders and designers</span>
     <h1>From zero to an on-system screen with Claude Code</h1>
-    <p>One repo URL gives you everything: the component packages, three skills that build
-       with them, and the setup command that wires a project. You describe the screen —
-       in words, a Figma link, or a photo of a sketch — and Claude composes it from the
-       real library with semantic tokens, themed for light and dark from the first render.</p>
+    <p>One install gives Claude the Zebra components, tokens and skills. After that you never
+       touch a package manager: you describe the screen — in words, a Figma link, or a photo
+       of a sketch — and Claude builds it from the real library, themed for light and dark
+       from the first render.</p>
   </div>
 </header>
 
-<main>
+<div class="shell">
 
-  <section id="install" aria-labelledby="t-install">
-    <h2 id="t-install"><span class="step" aria-hidden="true">1</span>Install the plugin — once per machine</h2>
-    <p>Everything installs from the repo itself; there is no npm account or registry anywhere.
-       In any terminal with Claude Code:</p>
-    <div class="term"><button class="copy" type="button">Copy</button><pre>claude plugin marketplace add "https://github.com/zebratechnologies/zebra-design-system.git#design/init"
+  <nav class="index" aria-label="Guides">
+    <p>Guides</p>
+    <a href="#install"><span class="n" aria-hidden="true">1</span>Install the plugin</a>
+    <a href="#prototype"><span class="n" aria-hidden="true">2</span>Quick prototype</a>
+    <a href="#fresh"><span class="n" aria-hidden="true">3</span>A fresh app</a>
+    <a href="#existing"><span class="n" aria-hidden="true">4</span>An existing project</a>
+    <a href="#figma"><span class="n" aria-hidden="true">5</span>Build from Figma</a>
+    <a href="#vibe"><span class="n" aria-hidden="true">6</span>Vibe a design</a>
+    <a href="#sketch"><span class="n" aria-hidden="true">7</span>Sketch or screenshot</a>
+    <a href="#daily"><span class="n" aria-hidden="true">8</span>While you work</a>
+  </nav>
+
+  <div class="col">
+
+    <section id="install" aria-labelledby="t-install">
+      <h2 id="t-install"><span class="step" aria-hidden="true">1</span>Install the plugin — once per machine</h2>
+      <p>This is the only step that happens in a terminal. Open one, and paste these two lines
+         (your GitHub account needs access to the Zebra repo — ask the design system team if a
+         step fails with a permission error):</p>
+      <div class="term"><button class="copy" type="button">Copy</button><pre>claude plugin marketplace add "https://github.com/zebratechnologies/zebra-design-system.git#design/init"
 claude plugin install zebra-design-system@zebra-design-system</pre></div>
-    <ul>
-      <li>You get three skills — <code>zebra-figma-to-code</code>, <code>zebra-build-ui</code>,
-          <code>zebra-prototype</code> — and two commands: <code>/zebra-setup</code> and
-          <code>/zebra-components</code>.</li>
-      <li>Every skill reads the shipped <code>DESIGN.md</code> and <code>AGENTS.md</code> before
-          touching your code, so output follows the system's rules, not Claude's defaults.</li>
-      <li class="muted">The <code>#design/init</code> ref is temporary: once the branch merges to
-          <code>main</code>, re-add the marketplace by plain repo reference so
-          <code>claude plugin update</code> tracks it.</li>
-    </ul>
-  </section>
+      <p>From here on, everything is a conversation with Claude. The plugin gives it:</p>
+      <ul>
+        <li><span class="skill-tag">skill <code>zebra-figma-to-code</code></span> — turns a Figma design into working screens.</li>
+        <li><span class="skill-tag">skill <code>zebra-build-ui</code></span> — designs screens from a written brief.</li>
+        <li><span class="skill-tag">skill <code>zebra-prototype</code></span> — builds shareable prototypes as claude.ai pages.</li>
+        <li><span class="skill-tag">command <code>/zebra-setup</code></span> — wires any project to the system and fixes what's missing.</li>
+        <li><span class="skill-tag">command <code>/zebra-components</code></span> — answers "what exists?" from the official catalog.</li>
+      </ul>
+      <p class="muted">Every skill reads the system's design contract before touching anything,
+         so the output follows Zebra's rules, not Claude's general taste.</p>
+    </section>
 
-  <section id="prototype" aria-labelledby="t-prototype">
-    <h2 id="t-prototype"><span class="step" aria-hidden="true">2</span>Fastest path: a shareable prototype</h2>
-    <p>No app required. An empty folder plus two installs is enough for the
-       <code>zebra-prototype</code> skill to bundle the system and publish your idea as a
-       private claude.ai page you can share for review:</p>
-    <div class="term"><button class="copy" type="button">Copy</button><pre>mkdir zebra-proto && cd zebra-proto && npm init -y
-npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#dist/web-components" \
-      "git+https://github.com/zebratechnologies/zebra-design-system.git#dist/tokens"
-claude</pre></div>
-    <p class="prompt"><b>Then just ask:</b> "Prototype a parcel-tracking dashboard — status
-       cards, a shipments table, a details panel — and publish it as an artifact I can share."</p>
-    <p class="muted">Claude bundles the installed components, tokens and icon font into the page,
-       publishes it, and iterates on the same link as you refine. These are the real components:</p>
-    <div class="demo">
-      <zds-button flavour="primary">Primary action</zds-button>
-      <zds-button flavour="outline">Outline</zds-button>
-      <zds-button flavour="text">Text</zds-button>
-      <zds-icon name="local-shipping" label="shipping"></zds-icon>
-      <zds-icon name="check-circle" label="done"></zds-icon>
-      <span class="demo-note">Rendered live by the same <code>zds-*</code> elements your prototype
-        uses — switch your theme and they re-theme with the page.</span>
-    </div>
-  </section>
-
-  <section id="fresh" aria-labelledby="t-fresh">
-    <h2 id="t-fresh"><span class="step" aria-hidden="true">3</span>A fresh app — pick your technology</h2>
-    <p>Three libraries share the same specs, tokens and icons; pick by stack. The simplest
-       route is to let Claude do it — <span class="prompt" style="display:inline-block">"Scaffold a
-       new React app wired to the Zebra Design System, then run /zebra-setup to verify."</span> —
-       but the manual version of each is short:</p>
-    <div class="cards">
-      <div class="card">
-        <h3>React</h3>
-        <span class="pick">Pick when the app is React 19 — components wrap Base UI primitives.</span>
-        <div class="term"><button class="copy" type="button">Copy</button><pre>npm create vite@latest my-app -- --template react-ts
-cd my-app && npm i
-npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#dist/react-baseui" \
-      "git+https://github.com/zebratechnologies/zebra-design-system.git#dist/tokens"</pre></div>
-        <ul>
-          <li>Icons arrive automatically as a tagged git dependency.</li>
-          <li>In <code>src/main.tsx</code>, once:<br><code>import "@zebra-design-system/tokens/css";</code><br><code>import "@zebra-design-system/icons/icons.css";</code></li>
-        </ul>
+    <section id="prototype" aria-labelledby="t-prototype">
+      <h2 id="t-prototype"><span class="step" aria-hidden="true">2</span>Fastest path: a shareable prototype</h2>
+      <p>No app, no setup knowledge needed. Make an empty folder, open Claude Code in it, and
+         describe the idea. The <code>zebra-prototype</code> skill installs what it needs,
+         builds the page from real components, and publishes it as a private claude.ai link
+         you can share for review.</p>
+      <p class="prompt"><span class="who">You say</span>"Set this folder up for Zebra prototyping,
+         then prototype a parcel-tracking dashboard — status cards, a shipments table, a details
+         panel — and publish it as an artifact I can share."</p>
+      <p>Keep talking to refine it — "make the table denser", "show the empty state", "try it
+         in dark" — and Claude republishes to the same link each time.</p>
+      <div class="demo">
+        <zds-button flavour="primary">Primary action</zds-button>
+        <zds-button flavour="outline">Outline</zds-button>
+        <zds-button flavour="text">Text</zds-button>
+        <zds-icon name="local-shipping" label="shipping"></zds-icon>
+        <zds-icon name="check-circle" label="done"></zds-icon>
+        <span class="demo-note">These are the real components, rendered live on this page —
+          switch your theme and they re-theme. Your prototype is made of the same parts.</span>
       </div>
-      <div class="card">
-        <h3>Web Components</h3>
-        <span class="pick">Pick for any other stack, or none — <code>zds-*</code> custom elements work in plain HTML.</span>
-        <div class="term"><button class="copy" type="button">Copy</button><pre>npm create vite@latest my-app -- --template vanilla-ts
-cd my-app && npm i
-npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#dist/web-components" \
-      "git+https://github.com/zebratechnologies/zebra-design-system.git#dist/tokens"</pre></div>
-        <ul>
-          <li>In the entry, once:<br><code>import "@zebra-design-system/tokens/css";</code><br><code>import "@zebra-design-system/icons/icons.css";</code><br><code>import "@zebra-design-system/web-components";</code></li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Zeta Web</h3>
-        <span class="pick">Pick when the team already builds on the legacy <code>zeta-*</code> elements.</span>
-        <div class="term"><button class="copy" type="button">Copy</button><pre>npm i @zebra-fed/zeta-web</pre></div>
-        <ul>
-          <li>On npm today (1.3.6), and on <code>#dist/zeta-web</code> like the others.</li>
-          <li>Themes with attributes — <code>data-theme="dark"</code> — rather than mode classes.</li>
-        </ul>
-      </div>
-    </div>
-    <p class="muted">Pin a version anywhere by swapping <code>#dist/&lt;pkg&gt;</code> for the tag,
-       e.g. <code>#react-baseui-v0.1.0</code>. Branches always serve the latest release.</p>
-  </section>
+    </section>
 
-  <section id="existing" aria-labelledby="t-existing">
-    <h2 id="t-existing"><span class="step" aria-hidden="true">4</span>An existing codebase or boilerplate</h2>
-    <p>Install the packages for your stack as above, then let the setup command find what's
-       missing instead of wiring by hand:</p>
-    <div class="term"><button class="copy" type="button">Copy</button><pre>claude
-<span class="you">&gt; /zebra-setup</span></pre></div>
-    <p>It checks the packages, adds the two entry imports if absent, renders a component and
-       toggles dark mode to prove theming actually reaches it, installs the skills, and ends
-       with a status table. A hard-coded colour somewhere? It finds the cause rather than
-       patching the symptom.</p>
-  </section>
-
-  <section id="ways" aria-labelledby="t-ways">
-    <h2 id="t-ways">Three ways to design, one system</h2>
-    <p>However the idea arrives, the same rules hold: library components first, semantic tokens
-       for every value, shape chosen once at the root, dark mode for free. Claude reports any
-       gap it hits — a missing token, a component that doesn't exist — instead of papering
-       over it; pass those reports to the design system team.</p>
-    <div class="cards">
-      <div class="card">
-        <h3>From a Figma design</h3>
-        <p class="pick">Translation, not invention — the design was built from the same library.</p>
-        <p class="prompt">Paste a frame link: <b>"Build this screen in my app:
-           figma.com/design/…?node-id=…"</b></p>
-        <ul>
-          <li>Needs the Figma MCP connected in Claude Code (Settings → Connectors, or
-              <code>claude mcp add</code>).</li>
-          <li>Every Figma instance becomes the installed component with the same variants;
-              every bound value becomes its token; text styles match exactly.</li>
-          <li>Explicit dark or brand frames keep their mode; dividers drawn in Figma are
-              drawn in code.</li>
-        </ul>
+    <section id="fresh" aria-labelledby="t-fresh">
+      <h2 id="t-fresh"><span class="step" aria-hidden="true">3</span>A fresh app — pick your technology</h2>
+      <p>Three component libraries share the same designs, colours and icons; which one you
+         use depends on the app's technology. You don't install anything yourself — name the
+         choice in your prompt and Claude scaffolds, installs and verifies with
+         <code>/zebra-setup</code>. Not sure which? Say so, and Claude will ask the right
+         questions.</p>
+      <div class="cards">
+        <div class="card">
+          <h3>React</h3>
+          <p class="pick">Pick when the team builds (or wants to build) in React — the most
+             common choice for new product work.</p>
+          <p class="prompt"><span class="who">You say</span>"Scaffold a new React app wired to
+             the Zebra Design System, then run /zebra-setup to verify everything."</p>
+        </div>
+        <div class="card">
+          <h3>Web Components</h3>
+          <p class="pick">Pick for any other stack, or none — these components work in plain
+             web pages and inside other frameworks.</p>
+          <p class="prompt"><span class="who">You say</span>"Scaffold a new app on Zebra's web
+             components, then run /zebra-setup to verify everything."</p>
+        </div>
+        <div class="card">
+          <h3>Zeta Web</h3>
+          <p class="pick">Pick only when the team already builds on the legacy
+             <code>zeta-*</code> components.</p>
+          <p class="prompt"><span class="who">You say</span>"Set this app up with Zeta Web from
+             the Zebra system and verify the theming."</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>From a brief — vibe it</h3>
-        <p class="pick">No design yet? Describe the screen and let the system make it look designed.</p>
-        <p class="prompt"><b>"Design a warehouse check-in flow: scan step, exceptions list,
-           confirmation. Sharp shape, dark-friendly, one primary action per view."</b></p>
-        <ul>
-          <li>Claude composes from the installed library and the type scale — a hand-made
-              button or hex colour is treated as a bug.</li>
-          <li>Say as much or as little as you like; the DESIGN.md principles fill the gaps.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>From a sketch or screenshot</h3>
-        <p class="pick">A whiteboard photo, a napkin sketch, a screenshot of another product.</p>
-        <p class="prompt">Drag the image into the chat: <b>"Rebuild this on the Zebra system —
-           keep the layout, replace every element with our components and tokens."</b></p>
-        <ul>
-          <li>Claude maps each drawn element to the nearest library component and names what
-              didn't map, so the sketch becomes an on-system screen, not a pixel copy.</li>
-          <li>Works for modernising screenshots of legacy UI too.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+      <p class="muted">Claude installs the packages straight from the Zebra repo — no npm
+         account, no registry. To stay on an exact version or take an update later, just ask:
+         "pin the Zebra packages to the current version" or "update the Zebra packages".</p>
+    </section>
 
-  <section id="lookup" aria-labelledby="t-lookup">
-    <h2 id="t-lookup">While you work</h2>
-    <ul>
-      <li><code>/zebra-components</code> — ask what exists before building it: "is there a
-          stepper?", "what flavours does Button have?" Answers come from the shipped catalog
-          for your installed version, never from memory.</li>
-      <li>Toggle <code>mode-dark</code> on the root (Zeta: <code>data-theme="dark"</code>)
-          whenever you review — if something breaks in dark, a literal value sneaked in.</li>
-      <li>After a package update, run <code>npx zebra-skills</code> again so project-local
-          skill copies match the installed version.</li>
-    </ul>
-  </section>
+    <section id="existing" aria-labelledby="t-existing">
+      <h2 id="t-existing"><span class="step" aria-hidden="true">4</span>An existing project or boilerplate</h2>
+      <p>Open Claude Code in the project and run one command:</p>
+      <p class="prompt"><span class="who">You type</span><code>/zebra-setup</code></p>
+      <p>It checks whether the Zebra packages are installed (and installs the right ones for
+         your stack if you confirm), adds the two theme imports apps need, renders a component
+         and flips dark mode to prove theming really reaches it, installs the skills, and ends
+         with a status table — each line OK or fixed. If something in the app breaks in dark
+         mode, it finds the hard-coded colour causing it rather than patching the symptom.</p>
+    </section>
 
-  <footer>
-    <span>Packages, skills and this page install from one address:
-      <code>github.com/zebratechnologies/zebra-design-system</code>. Channel details and the
-      move to npm live in the repo's <code>DISTRIBUTION.md</code>.</span>
-    <span>Current versions: tokens · icons · react-baseui · web-components 0.1.0, zeta-web 1.3.6.</span>
-  </footer>
+    <section id="figma" aria-labelledby="t-figma">
+      <h2 id="t-figma"><span class="step" aria-hidden="true">5</span>Build from a Figma design</h2>
+      <p><span class="skill-tag">skill <code>zebra-figma-to-code</code></span></p>
+      <p>Zebra's Figma library and its code components are the same system, so a Figma screen
+         is a translation job, not a reinvention. Connect Figma once (in Claude Code:
+         Settings → Connectors → Figma, or ask Claude "connect Figma for me"), then paste the
+         frame's link:</p>
+      <p class="prompt"><span class="who">You say</span>"Build this screen in my app:
+         figma.com/design/…?node-id=… — exactly as designed."</p>
+      <ul>
+        <li>Every Figma component becomes the real installed component, with the same variant
+            choices the designer made.</li>
+        <li>Colours, spacing and text styles map to the system's tokens — nothing is eyeballed.</li>
+        <li>A frame the designer set to dark or to a brand stays that way in code.</li>
+        <li>Anything that doesn't map — a colour with no token, a part with no component —
+            is flagged in Claude's report instead of silently invented. Pass that report to
+            the design system team; it's how the system improves.</li>
+      </ul>
+    </section>
 
-</main>
+    <section id="vibe" aria-labelledby="t-vibe">
+      <h2 id="t-vibe"><span class="step" aria-hidden="true">6</span>Vibe a design from a brief</h2>
+      <p><span class="skill-tag">skill <code>zebra-build-ui</code></span></p>
+      <p>No design yet? Describe what the screen is for and let the system make it look
+         designed. Say as much or as little as you like — the system's design contract fills
+         in whatever you don't specify.</p>
+      <p class="prompt"><span class="who">You say</span>"Design a warehouse check-in flow:
+         a scan step, an exceptions list, a confirmation. Sharp corners, works in dark,
+         one clear primary action per view."</p>
+      <ul>
+        <li>Claude composes from the official components and type scale — it won't hand-draw
+            a button or pick a random colour.</li>
+        <li>Useful words to steer with: the shape ("rounded" or "sharp"), the mood ("dense" or
+            "calm"), the one action that matters most on each screen.</li>
+        <li>Review in both themes: ask "show it in dark" — if it's built right, dark is free.</li>
+      </ul>
+    </section>
+
+    <section id="sketch" aria-labelledby="t-sketch">
+      <h2 id="t-sketch"><span class="step" aria-hidden="true">7</span>From a sketch or screenshot</h2>
+      <p><span class="skill-tag">skill <code>zebra-build-ui</code></span></p>
+      <p>A whiteboard photo, a napkin sketch, a screenshot of an old tool or another product —
+         drag the image into the Claude Code chat and ask for it on-system:</p>
+      <p class="prompt"><span class="who">You say</span>"Rebuild this on the Zebra system —
+         keep the layout and intent, but replace every element with our components, colours
+         and type."</p>
+      <ul>
+        <li>Each drawn element maps to the nearest real component; the sketch becomes a
+            working, themed screen rather than a pixel copy.</li>
+        <li>Claude names anything it couldn't map, so you know what was interpreted.</li>
+        <li>This is also the fastest way to modernise screenshots of legacy UI.</li>
+      </ul>
+    </section>
+
+    <section id="daily" aria-labelledby="t-daily">
+      <h2 id="t-daily"><span class="step" aria-hidden="true">8</span>While you work</h2>
+      <ul>
+        <li><span class="skill-tag">command <code>/zebra-components</code></span> — ask what
+            exists before asking for something new: "is there a stepper?", "what flavours does
+            Button have?" Answers come from the official catalog for your installed version,
+            never from memory.</li>
+        <li>Review every screen in both themes — ask Claude to "toggle dark mode" on what it
+            just built. Something only breaking in dark means an off-system value sneaked in.</li>
+        <li>After Claude updates the Zebra packages, ask it to "refresh the Zebra skills in
+            this project" so the local copies match.</li>
+        <li>When Claude reports a gap — a missing component, token or icon — forward it to the
+            design system team. Those reports are the system's feedback channel.</li>
+      </ul>
+    </section>
+
+    <footer>
+      <span>Everything — packages, skills, this page's source — lives at
+        <code>github.com/zebratechnologies/zebra-design-system</code>. This page starts
+        private; share it from its Share menu.</span>
+      <span>Current versions: tokens · icons · react-baseui · web-components 0.1.0, zeta-web 1.3.6.</span>
+    </footer>
+
+  </div>
+</div>
 
 <script>
-  // Copy buttons for the command blocks; falls back to selecting the text where the clipboard is refused.
+  // Copy button for the one terminal block; falls back to selecting the text where the clipboard is refused.
   document.querySelectorAll(".copy").forEach(function (btn) {
     btn.addEventListener("click", function () {
       var pre = btn.parentElement.querySelector("pre");
-      var text = pre.innerText;
       function done(ok) {
         btn.textContent = ok ? "Copied" : "Select + copy";
         setTimeout(function () { btn.textContent = "Copy"; }, 1600);
       }
-      try {
-        navigator.clipboard.writeText(text).then(function () { done(true); }, function () {
-          var r = document.createRange(); r.selectNodeContents(pre);
-          var s = getSelection(); s.removeAllRanges(); s.addRange(r); done(false);
-        });
-      } catch (e) {
+      function select() {
         var r = document.createRange(); r.selectNodeContents(pre);
         var s = getSelection(); s.removeAllRanges(); s.addRange(r); done(false);
       }
+      try {
+        navigator.clipboard.writeText(pre.innerText).then(function () { done(true); }, select);
+      } catch (e) { select(); }
     });
   });
 </script>
