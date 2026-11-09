@@ -7,7 +7,8 @@
     "assets",
     "LICENSE-3RD-PARTY",
     "AGENTS.md",
-    "llms.txt"
+    "llms.txt",
+    "DESIGN.md"
   ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",

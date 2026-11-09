@@ -11,7 +11,8 @@
     "dist",
     "custom-elements.json",
     "AGENTS.md",
-    "llms.txt"
+    "llms.txt",
+    "DESIGN.md"
   ],
   "exports": {
     ".": "./dist/index.js",

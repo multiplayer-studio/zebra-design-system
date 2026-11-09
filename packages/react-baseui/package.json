@@ -57,7 +57,8 @@
   "files": [
     "dist",
     "AGENTS.md",
-    "llms.txt"
+    "llms.txt",
+    "DESIGN.md"
   ],
   "sideEffects": [
     "**/*.css"
