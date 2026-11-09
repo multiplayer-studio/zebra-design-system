@@ -277,6 +277,24 @@
 
     <div id="plays" class="stack plays"></div>
 
+    <section class="stack footnote" id="distribution" aria-labelledby="distribution-title">
+      <h2 id="distribution-title">Distribution</h2>
+      <p class="note">Five packages leave this repo. Versioning rules are in <code>VERSIONING.md</code>; the release pipeline is <code>.github/workflows/release.yml</code>; the full plan is the Zebra Distribution Plan artifact.</p>
+      <div class="wrap-x">
+        <table class="plain">
+          <thead><tr><th>Package</th><th>Version</th><th>Where</th></tr></thead>
+          <tbody>
+            <tr><td><code>@zebra-design-system/tokens</code></td><td>0.1.0</td><td rowspan="4">Local test registry only (<code>~/zds-local-packages</code>, Verdaccio on 4873). npm publish waits on the <code>@zebra-design-system</code> org and <code>NPM_TOKEN</code>, then releases on merge to <code>main</code> via Changesets.</td></tr>
+            <tr><td><code>@zebra-design-system/icons</code></td><td>0.1.0</td></tr>
+            <tr><td><code>@zebra-design-system/react-baseui</code></td><td>0.1.0</td></tr>
+            <tr><td><code>@zebra-design-system/web-components</code></td><td>0.1.0</td></tr>
+            <tr><td><code>@zebra-fed/zeta-web</code></td><td>1.3.6</td><td>On npm (1.3.6); next release goes through the manual lane in the Release workflow.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Verified 8 November 2026: a project outside the repo installs all five by name from the test registry, typechecks, bundles and renders themed. <code>docs/cdn-smoke.html</code> is ready for the first real release.</p>
+    </section>
+
     <section class="stack footnote" id="gaps" aria-labelledby="gaps-title">
       <h2 id="gaps-title">Known gaps</h2>
       <p class="note">Checked on 7 November 2026. Expect these to come up when you run the playbooks.</p>
@@ -295,7 +313,7 @@
 <tr><td>Block behaviour</td><td>Input and Select both take <code>block</code>. Without it, a field starts at 280px and never grows past its container. With it, the field fills the container. For a form column, set the column's width (Figma's 400px, for example) and let the fields fill it. Then switch rows span the same column, and each switch ends where the fields end.</td></tr>
 <tr><td>Header and rail theme lock</td><td>Global Header and Navigation Rail lock their own mode whatever the page's mode. <code>mode</code> and <code>inverse</code> only swap dark for light. They need a prop to follow the page's mode instead.</td></tr>
 <tr><td>Chat, Message Input</td><td>Experimental, with no spec. Not for product use.</td></tr>
-            <tr><td>Automatic releases</td><td><code>CONTRIBUTING.md</code> describes an Nx release setup that isn't in the repo. Commit types are followed, but version bumps aren't automatic yet.</td></tr>
+            <tr><td>Automatic releases</td><td>Changesets and the Release workflow are in place for the four <code>@zebra-design-system</code> packages; publishing stays dormant until the npm org and <code>NPM_TOKEN</code> exist. <code>CONTRIBUTING.md</code> still describes the old Nx setup for zeta-web.</td></tr>
             <tr><td>Spec noise</td><td>A 7 November review flagged 43 of 48 specs for noise: extraction diaries, resolved issues kept as changelog, the same prose repeated. Corrections are in <code>specs/spec-noise-corrections.md</code>; new spec writing follows <code>specs/spec-writing-guidance.md</code>. The specs themselves are unchanged.</td></tr>
           </tbody>
         </table>

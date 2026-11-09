@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<!-- Step 1.4 of the distribution plan: the CDN smoke test. Open this file in
+     a browser AFTER the first npm release; every URL is pinned to the
+     published version, served by jsDelivr straight from the npm tarballs.
+     Pass = both rows show a styled zds-button, the icon glyph draws, and the
+     dark row re-themes. Until the packages are on npmjs these URLs 404. -->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zebra DS CDN smoke</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@zebra-design-system/tokens@0.1.0/dist/css/index.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@zebra-design-system/icons@0.1.0/icons.css" />
+  <script type="module">
+    // +esm resolves the package's bare imports (lit) on jsDelivr's side.
+    import "https://cdn.jsdelivr.net/npm/@zebra-design-system/web-components@0.1.0/+esm";
+    customElements.whenDefined("zds-button").then(() => {
+      document.getElementById("status").textContent = "zds-button defined — CDN smoke PASS";
+    });
+  </script>
+  <style>
+    body { margin: 0; font-family: system-ui, sans-serif; }
+    .row { display: flex; gap: 12px; align-items: center; padding: 24px;
+           background: var(--surface-default); color: var(--foreground-primary); }
+    #status { padding: 12px 24px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <p id="status">waiting for zds-button…</p>
+  <div class="row">
+    <zds-button flavour="primary">CDN button</zds-button>
+    <zds-icon name="add" label="add"></zds-icon>
+  </div>
+  <div class="mode-dark">
+    <div class="row">
+      <zds-button flavour="primary">CDN button (dark)</zds-button>
+      <zds-icon name="add" label="add"></zds-icon>
+    </div>
+  </div>
+</body>
+</html>
