@@ -1,0 +1,196 @@
+{
+  "ink": {
+    "brand": {
+      "$type": "color",
+      "$value": "{primitives.color.accent.1.70}",
+      "$description": "Ghost button text and input cursors.",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:121:6194",
+          "overrides": "palette.ink.brand",
+          "extension": "companion",
+          "mode": "Light",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Light",
+          "aliasOf": "VariableID:30:1380"
+        }
+      }
+    },
+    "link": {
+      "$type": "color",
+      "$value": "{primitives.color.accent.1.60}",
+      "$description": "Text links and subtle button text.",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:63:21",
+          "overrides": "palette.ink.link",
+          "extension": "companion",
+          "mode": "Light",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Light",
+          "aliasOf": "VariableID:30:1379"
+        }
+      }
+    }
+  },
+  "line": {
+    "focus": {
+      "$type": "color",
+      "$value": "{primitives.color.accent.1.50}",
+      "$description": "Focus rings and outlines.",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2535:3742",
+          "overrides": "palette.line.focus",
+          "extension": "companion",
+          "mode": "Light",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Light",
+          "aliasOf": "VariableID:30:1378"
+        }
+      }
+    },
+    "selection": {
+      "$type": "color",
+      "$value": "{primitives.color.accent.1.60}",
+      "$description": "Borders of selected items.",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:63:32",
+          "overrides": "palette.line.selection",
+          "extension": "companion",
+          "mode": "Light",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Light",
+          "aliasOf": "VariableID:30:1379"
+        }
+      }
+    }
+  },
+  "brand": {
+    "primary": {
+      "default": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.60}",
+        "$description": "Primary brand color (theme.color.brand.primary)",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:63:2",
+            "overrides": "palette.brand.primary.default",
+            "extension": "companion",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Light",
+            "aliasOf": "VariableID:30:1379"
+          }
+        }
+      },
+      "faint": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.10}",
+        "$description": "Light brand tint for backgrounds (theme.color.brand.subtle)",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:63:5",
+            "overrides": "palette.brand.primary.faint",
+            "extension": "companion",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Light",
+            "aliasOf": "VariableID:30:1374"
+          }
+        }
+      },
+      "muted": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.20}",
+        "$description": "Muted/softened brand tone (theme.color.brand.muted)",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:63:6",
+            "overrides": "palette.brand.primary.muted",
+            "extension": "companion",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Light",
+            "aliasOf": "VariableID:30:1375"
+          }
+        }
+      },
+      "deep": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.80}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:7198:20127",
+            "overrides": "palette.brand.primary.deep",
+            "extension": "companion",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Light",
+            "aliasOf": "VariableID:30:1381"
+          }
+        }
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.50}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:386",
+            "overrides": "palette.brand.primary.subtle",
+            "extension": "companion",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Light",
+            "aliasOf": "VariableID:30:1378"
+          }
+        }
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.70}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:72:387",
+            "overrides": "palette.brand.primary.strong",
+            "extension": "companion",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Light",
+            "aliasOf": "VariableID:30:1380"
+          }
+        }
+      }
+    }
+  },
+  "fill": {
+    "selection": {
+      "$type": "color",
+      "$value": "{primitives.color.accent.1.20}",
+      "$description": "Selected item/text background (theme.color.selection.background)",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:63:31",
+          "overrides": "palette.fill.selection",
+          "extension": "companion",
+          "mode": "Light",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Light",
+          "aliasOf": "VariableID:30:1375"
+        }
+      }
+    }
+  }
+}

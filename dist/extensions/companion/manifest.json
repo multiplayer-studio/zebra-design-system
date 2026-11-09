@@ -1,0 +1,38 @@
+{
+  "name": "companion",
+  "slug": "companion",
+  "id": "VariableCollectionId:2535:2978",
+  "extends": {
+    "name": "palette",
+    "id": "VariableCollectionId:3:4",
+    "slug": "palette"
+  },
+  "root": {
+    "name": "palette",
+    "id": "VariableCollectionId:3:4"
+  },
+  "overrideCount": 11,
+  "modeMap": [
+    {
+      "mode": "Light",
+      "parentMode": "Light"
+    },
+    {
+      "mode": "Dark",
+      "parentMode": "Dark"
+    },
+    {
+      "mode": "AAA Light",
+      "parentMode": "AAA Light"
+    },
+    {
+      "mode": "AAA Dark",
+      "parentMode": "AAA Dark"
+    }
+  ],
+  "files": [
+    "extensions/companion/palette/light.json",
+    "extensions/companion/palette/dark.json"
+  ],
+  "note": "Each file holds ONLY the variables this extension overrides. Read the parent collection first, then layer this on top."
+}

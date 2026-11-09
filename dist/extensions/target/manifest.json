@@ -1,0 +1,70 @@
+{
+  "name": "target",
+  "slug": "target",
+  "note": "Several extensions share this name, each extending a different parent. Each entry under 'extends' holds ONLY the variables it overrides; read its parent first, then layer it on top.",
+  "extends": [
+    {
+      "name": "target",
+      "slug": "target",
+      "id": "VariableCollectionId:2535:3732",
+      "extends": {
+        "name": "palette",
+        "id": "VariableCollectionId:3:4",
+        "slug": "palette"
+      },
+      "root": {
+        "name": "palette",
+        "id": "VariableCollectionId:3:4"
+      },
+      "overrideCount": 18,
+      "modeMap": [
+        {
+          "mode": "Light",
+          "parentMode": "Light"
+        },
+        {
+          "mode": "Dark",
+          "parentMode": "Dark"
+        },
+        {
+          "mode": "AAA Light",
+          "parentMode": "AAA Light"
+        },
+        {
+          "mode": "AAA Dark",
+          "parentMode": "AAA Dark"
+        }
+      ],
+      "files": [
+        "extensions/target/palette/light.json",
+        "extensions/target/palette/dark.json"
+      ],
+      "note": "Each file holds ONLY the variables this extension overrides. Read the parent collection first, then layer this on top."
+    },
+    {
+      "name": "target",
+      "slug": "target",
+      "id": "VariableCollectionId:2535:3709",
+      "extends": {
+        "name": "primitives",
+        "id": "VariableCollectionId:2:2",
+        "slug": "primitives"
+      },
+      "root": {
+        "name": "primitives",
+        "id": "VariableCollectionId:2:2"
+      },
+      "overrideCount": 10,
+      "modeMap": [
+        {
+          "mode": "Value",
+          "parentMode": "Value"
+        }
+      ],
+      "files": [
+        "extensions/target/primitives/value.json"
+      ],
+      "note": "Each file holds ONLY the variables this extension overrides. Read the parent collection first, then layer this on top."
+    }
+  ]
+}
