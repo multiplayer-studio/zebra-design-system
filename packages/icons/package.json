@@ -4,10 +4,9 @@
   "description": "Zebra Design System icon fonts, generated from Figma by the zebra-figma-icon-font skill",
   "type": "module",
   "files": [
+    "dist",
     "codepoints.json",
-    "codepoints.ts",
     "fonts",
-    "icon-names.ts",
     "icons.css",
     "inventory.json"
   ],
@@ -15,15 +14,27 @@
     "./icons.css": "./icons.css",
     "./fonts/*": "./fonts/*",
     "./codepoints.json": "./codepoints.json",
-    "./names": "./icon-names.ts",
-    "./codepoints.js": "./codepoints.ts"
+    "./inventory.json": "./inventory.json",
+    "./names": {
+      "types": "./dist/icon-names.d.ts",
+      "default": "./dist/icon-names.js"
+    },
+    "./codepoints.js": {
+      "types": "./dist/codepoints.d.ts",
+      "default": "./dist/codepoints.js"
+    }
   },
   "sideEffects": [
     "*.css"
   ],
   "scripts": {
     "generate": "node ../../.claude/skills/zebra-figma-icon-font/scripts/build-icon-font.mjs --node 2046:6754 --out .",
-    "generate:dry": "node ../../.claude/skills/zebra-figma-icon-font/scripts/build-icon-font.mjs --node 2046:6754 --out . --dry-run"
+    "generate:dry": "node ../../.claude/skills/zebra-figma-icon-font/scripts/build-icon-font.mjs --node 2046:6754 --out . --dry-run",
+    "build": "tsc",
+    "prepack": "tsc"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
 }
