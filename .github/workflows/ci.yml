@@ -38,7 +38,7 @@ jobs:
       - name: Component docs + package agent context in lockstep with specs
         run: |
           node docs/components/generate.mjs
-          git diff --exit-code docs/components packages/*/AGENTS.md packages/*/llms.txt packages/*/DESIGN.md || {
+          git diff --exit-code docs/components packages/*/AGENTS.md packages/*/llms.txt packages/*/DESIGN.md packages/*/skills packages/*/bin || {
             echo "::error::generated docs are stale — run 'pnpm run docs:components' and commit the result"; exit 1; }
 
   zeta-web:

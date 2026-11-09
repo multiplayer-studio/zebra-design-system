@@ -12,7 +12,9 @@
     "custom-elements.json",
     "AGENTS.md",
     "llms.txt",
-    "DESIGN.md"
+    "DESIGN.md",
+    "skills",
+    "bin"
   ],
   "exports": {
     ".": "./dist/index.js",
@@ -56,5 +58,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "bin": {
+    "zebra-skills": "./bin/install-skills.mjs"
   }
 }

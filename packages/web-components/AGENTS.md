@@ -8,6 +8,8 @@ import "@zebra-design-system/tokens/css";
 import "@zebra-design-system/icons/icons.css"; // @font-face must load in the document
 import "@zebra-design-system/web-components";  // registers every zds-* element
 ```
+Run `npx zebra-skills` once to install this package's Claude Code skills
+(`zebra-figma-to-code`, `zebra-build-ui`) into the project's .claude/skills.
 
 ## Rules
 - Elements are `<zds-*>`; attributes/properties are documented in the

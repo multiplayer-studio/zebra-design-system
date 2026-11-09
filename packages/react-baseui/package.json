@@ -58,7 +58,9 @@
     "dist",
     "AGENTS.md",
     "llms.txt",
-    "DESIGN.md"
+    "DESIGN.md",
+    "skills",
+    "bin"
   ],
   "sideEffects": [
     "**/*.css"
@@ -74,5 +76,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "bin": {
+    "zebra-skills": "./bin/install-skills.mjs"
   }
 }

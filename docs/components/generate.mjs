@@ -10,7 +10,7 @@
  * forgets to regenerate fails the build instead of shipping stale context.
  * Run: node docs/components/generate.mjs   (root: pnpm run docs:components)
  */
-import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from "node:fs";
+import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, cpSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
@@ -167,6 +167,8 @@ import "@zebra-design-system/icons/icons.css"; // icon font faces
 \`\`\`
 React 19 is a peer dependency; a bundler is required (components import their
 own CSS as side effects — never import or recreate styles by hand).
+Run \`npx zebra-skills\` once to install this package's Claude Code skills
+(\`zebra-figma-to-code\`, \`zebra-build-ui\`) into the project's .claude/skills.
 
 ## Rules
 - Import components from \`@zebra-design-system/react-baseui\`; anything under
@@ -200,6 +202,8 @@ import "@zebra-design-system/tokens/css";
 import "@zebra-design-system/icons/icons.css"; // @font-face must load in the document
 import "@zebra-design-system/web-components";  // registers every zds-* element
 \`\`\`
+Run \`npx zebra-skills\` once to install this package's Claude Code skills
+(\`zebra-figma-to-code\`, \`zebra-build-ui\`) into the project's .claude/skills.
 
 ## Rules
 - Elements are \`<zds-*>\`; attributes/properties are documented in the
@@ -318,6 +322,22 @@ ${section("## 5. Patterns", "## 6. Where to dig deeper")}
 `;
 for (const dir of ["react-baseui", "web-components", "zeta-web"]) {
   writeFileSync(join(ROOT, "packages", dir, "DESIGN.md"), consumerDesign);
+}
+
+/* ---- consumer skills, distributed into the component libraries ------------- */
+// Authored once in distribution/skills/; each library tarball carries them
+// plus the `zebra-skills` installer that copies them into a consumer
+// project's .claude/skills (Claude Code does not discover node_modules).
+const SKILLS_SRC = join(ROOT, "distribution", "skills");
+for (const dir of ["react-baseui", "web-components"]) {
+  const pkgDir = join(ROOT, "packages", dir);
+  rmSync(join(pkgDir, "skills"), { recursive: true, force: true });
+  mkdirSync(join(pkgDir, "skills"), { recursive: true });
+  for (const entry of readdirSync(SKILLS_SRC, { withFileTypes: true })) {
+    if (entry.isDirectory()) cpSync(join(SKILLS_SRC, entry.name), join(pkgDir, "skills", entry.name), { recursive: true });
+  }
+  mkdirSync(join(pkgDir, "bin"), { recursive: true });
+  cpSync(join(SKILLS_SRC, "install-skills.mjs"), join(pkgDir, "bin", "install-skills.mjs"));
 }
 
 for (const [dir, p] of Object.entries(PACKAGES)) {
