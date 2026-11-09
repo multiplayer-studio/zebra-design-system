@@ -38,7 +38,7 @@ export class ZetaScrollbar extends LitElement {
   }
 
   connectedCallback() {
-    super.connectedCallback();
+    super.connectedCallback?.();
     // Not in the constructor: a custom element must not gain attributes there.
     this.setAttribute("aria-hidden", "true");
   }
