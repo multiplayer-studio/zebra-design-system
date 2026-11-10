@@ -1275,12 +1275,15 @@ Wrote build/zebra-design-system-production/`,
 
   consume: {
     name: "Build from a kit (consuming project)",
-    note: "Switch mode (O) to compare the prototyping and production kits.",
+    note: "Switch mode (O) to compare: prototyping unzips a kit, production gets the kit as a release PR and builds a library.",
     steps: [
       { from:"zip", to:"agent", color:"--c-seed",
-        title:"Get the kit",
-        route:"unzip · first release PR",
-        desc:"Prototyping: unzip your project's kit (or the generic one for a new project) and open the folder in the Claude desktop app. Production: add the repo to <code>consumers.json</code>; the first release PR adds <code>CLAUDE.md</code> and <code>design-system/</code> at its root.",
+        title:"Unzip the kit",
+        route:"unzip",
+        desc:"Unzip the project's kit, or the generic one for a new project, and open the folder in the Claude desktop app. No Python, Node or build tools are needed.",
+        titleProduction:"Merge the first release PR",
+        routeProduction:"consumers.json → release PR",
+        descProduction:"The DS team adds the repo to <code>consumers.json</code>. The next release (flow 6) sees no <code>design-system/</code> and opens a <strong>first install</strong> PR on <code>zebra-design-system/&lt;version&gt;</code>: the whole production kit, the project's own templates, and <code>CLAUDE.md</code> at the root. If the repo already has a <code>CLAUDE.md</code>, the PR leaves it alone and asks for the design-system section to be merged in by hand. The developer merges it.",
         payloadPrototyping:
 `zebra-design-system-prototyping-acme/
     CLAUDE.md  README.md  DESIGN.md  tokens.css  icons.json
@@ -1290,27 +1293,40 @@ Wrote build/zebra-design-system-production/`,
 `product-repo/
     CLAUDE.md               // imports @design-system/AGENTS.md
     design-system/
-        DESIGN.md  AGENTS.md  tokens.css  icons.json  scripts/`,
+        DESIGN.md  AGENTS.md  tokens.css  icons.json
+        atoms/  molecules/  organisms/
+        templates/          // this project's own, flat
+        LIBRARY.md          // the template, to fill in
+        scripts/tokens-css.py  scripts/icons-json.py`,
         chipsPrototyping:["no Python, Node or build tools"],
-        chipsProduction:["arrives as a PR"] },
+        chipsProduction:["first install PR","CLAUDE.md never overwritten"] },
       { from:"agent", to:"agent", color:"--c-compute",
         title:"Read the rules",
-        route:"CLAUDE.md → AGENTS.md → DESIGN.md",
-        desc:"The agent loads its mode's <code>CLAUDE.md</code>, then the agents guide, then the component docs it needs. If the docs don't answer a question, it asks.",
+        route:"CLAUDE.md → PROTOTYPING.AGENTS.md → DESIGN.md",
+        desc:"The agent loads the kit's <code>CLAUDE.md</code>, then <code>PROTOTYPING.AGENTS.md</code> with its Jira and Figma add-ons, then the component docs it needs. It checks <code>templates/</code> first. If the docs don't answer a question, it asks.",
+        titleProduction:"Read the rules and set up",
+        routeProduction:"CLAUDE.md → design-system/AGENTS.md",
+        descProduction:"<code>CLAUDE.md</code> imports <code>design-system/AGENTS.md</code>. Before writing any component, the agent checks both project files. <code>LIBRARY.md</code> ships as a template with a React example; the project's engineers own it and decide its conventions, and the agent asks for any blanks but never changes a convention itself. It then starts <code>CHANGES.md</code> with the installed <code>version</code>.",
         payloadPrototyping:
 `@PROTOTYPING.AGENTS.md
     @PROTOTYPING.JIRA.md    // asks for a Jira ticket (zebra-jira MCP)
     @PROTOTYPING.FIGMA.md   // offers to send the result to Figma
 check templates/ first`,
         payloadProduction:
-`@design-system/AGENTS.md
-fill in LIBRARY.md   // shipped as a template: technology, location, transform, components
-create CHANGES.md   // local doc changes + copied version`,
-        chips:["tokens, never raw values"] },
+`design-system/LIBRARY.md   // filled in by the engineers
+    technology, library folder, token file + regenerate command,
+    token-name transform, Properties → API, conventions, workflow
+design-system/CHANGES.md   // created by the agent
+    version: 2026-11-05`,
+        chips:["tokens, never raw values"],
+        chipsProduction:["LIBRARY.md: engineers own it","ask, don't guess"] },
       { from:"agent", to:"output", color:"--c-user",
-        title:"Build",
-        route:"build",
-        desc:"Prototyping: copy the starter, compose existing components, icons as inline SVG from <code>icons.json</code>. Production: generate the token file, build components bottom-up, each Properties table is the API; screens start from a template.",
+        title:"Build the prototype",
+        route:"prototypes/<name>/index.html",
+        desc:"Copy the starter, compose existing components, and inline icon SVGs from <code>icons.json</code>. The result opens in the Browser pane, with no server.",
+        titleProduction:"Build the library and screens",
+        routeProduction:"docs → code → log",
+        descProduction:"Generate the token file with the command in <code>LIBRARY.md</code> (component tokens stay aliases). Build components bottom-up in the library folder: each Properties table is the API, every state and size is implemented, and each gets a <code>LIBRARY.md</code> row. Screens start from <code>templates/</code> and use library components plus layout tokens only. Any local change goes docs, then code, then a <code>CHANGES.md</code> entry; the nightly sync carries it to the DS team (flow 5).",
         payloadPrototyping:
 `<html data-contrast="high">
 <section data-theme="dark">
@@ -1320,11 +1336,12 @@ create CHANGES.md   // local doc changes + copied version`,
 </section>`,
         payloadProduction:
 `LIBRARY.md
-| Component | Status  | Path                 |
-| Button    | built   | src/ui/Button.tsx    |
-| Dialog    | planned | —                    |`,
+| Component   | Doc                        | Code                   | Status |
+| Button      | atoms/button.md            | src/zebra/Button.tsx   | built  |
+| Icon Button | atoms/icon-button.md       | src/zebra/IconButton.tsx | built |
+| Data Table  | organisms/data-table.md †  | —                      | draft placeholders |`,
         chipsPrototyping:["opens in Browser pane","file://"],
-        chipsProduction:["docs → code → log"] }
+        chipsProduction:["docs → code → log","one library"] }
     ]
   },
 
@@ -2002,15 +2019,16 @@ function applyStep(opts){
   lastAnimatedKey = animKey;
 
   /* side panel */
-  const title = step.title == null ? "" : String(step.title);
+  const cap = capMode();
+  const pick = k => step[k + cap] !== undefined ? step[k + cap] : step[k];
+  const title = pick("title") == null ? "" : String(pick("title"));
   panelTitle.textContent = title || "—";
   /* route bubble */
-  panelRoute.innerHTML = `<span class="from">${prettyId(step.from)}</span><span class="arrow">→</span><span class="to">${prettyId(step.to)}</span><span style="margin-left:6px;color:var(--muted)">${esc(step.route || "")}</span>`;
-  panelDesc.innerHTML = sanitizeHtml(step.desc);
+  panelRoute.innerHTML = `<span class="from">${prettyId(step.from)}</span><span class="arrow">→</span><span class="to">${prettyId(step.to)}</span><span style="margin-left:6px;color:var(--muted)">${esc(pick("route") || "")}</span>`;
+  panelDesc.innerHTML = sanitizeHtml(pick("desc"));
   /* payload + chips, keyed off the active mode so renamed modes work:
      dev → payloadDev/chipsDev, v2 → payloadV2/chipsV2, etc.
      The mode-specific key WINS over the generic one (same rule for both). */
-  const cap = capMode();
   const rawPayload = step["payload" + cap] !== undefined ? step["payload" + cap] : (step.payload !== undefined ? step.payload : "");
   panelPayload.textContent = formatPayload(rawPayload);
   const chipsRaw = step["chips" + cap] !== undefined ? step["chips" + cap] : step.chips;

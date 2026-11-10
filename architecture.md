@@ -56,9 +56,15 @@ How a change to the Markdown docs flows through the generator scripts into token
 7. scripts → Kits: rebuild the prototyping zips, then update the version and icon count in `README.md`.
 
 ### 4. Build from a kit
-1. Kit → Claude. Prototyping: unzip the project's kit (or the generic one) and open the folder in the Claude desktop app. Production: add the repo to `consumers.json`; the first release PR adds `CLAUDE.md` and `design-system/` at its root.
-2. Claude → Claude: read `CLAUDE.md`, then the agent guide, then the component docs needed.
-3. Claude → Output: build. Prototyping: copy the starter, compose components, inline icon SVGs. Production: fill in `LIBRARY.md`, generate the token file, build components bottom-up, start screens from templates.
+Prototyping:
+1. Kit → Claude: unzip the project's kit (or the generic one for a new project) and open the folder in the Claude desktop app. No Python, Node or build tools.
+2. Claude → Claude: read `CLAUDE.md`, then `PROTOTYPING.AGENTS.md` (with its Jira and Figma add-ons), then the component docs needed; check `templates/` first.
+3. Claude → Output: copy the starter, compose existing components, inline icon SVGs from `icons.json`; the prototype opens in the Browser pane.
+
+Production:
+1. Kit → Claude: the DS team adds the repo to `consumers.json`; the next release (flow 6) opens a **first install** PR with the whole production kit, the project's own templates and `CLAUDE.md` at the root. An existing `CLAUDE.md` is left alone, and the PR asks for the design-system section to be merged in by hand. The developer merges it.
+2. Claude → Claude: `CLAUDE.md` imports `design-system/AGENTS.md`. Before any component, the engineers fill in `LIBRARY.md` (a template with a React example, owned by them; the agent asks for blanks but never changes a convention), and the agent starts `CHANGES.md` with the installed `version`.
+3. Claude → Output: generate the token file with the command in `LIBRARY.md`. Build components bottom-up in the library folder: each Properties table is the API, every state and size is implemented, and each gets a `LIBRARY.md` row. Screens start from `templates/` and use library components plus layout tokens only. Every local change goes docs, then code, then a `CHANGES.md` entry, which the nightly sync carries to the DS team (flow 5).
 
 ### 5. Nightly sync: consumer → tenant (production)
 1. Claude → Consumer repo: a team changes its `design-system/` copy, docs first, and logs why in `CHANGES.md`.
