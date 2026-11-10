@@ -42,6 +42,7 @@ major — plan removals in batches.
 
 ## While the packages are not yet on npmjs
 
-A local Verdaccio registry vends all five for consumer testing
-(`~/zds-local-packages/README.md`). Versions published there follow the
-same rules; prerelease suffixes (`0.1.1-local.0`) mark local-only iterations.
+All five install from the repo's git distribution branches
+(`DISTRIBUTION.md` §Git distribution): `dist/<pkg>` tracks the latest
+version, and the immutable `<pkg>-v<version>` tags follow the same
+versioning rules as npm releases will.

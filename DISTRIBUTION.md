@@ -1,26 +1,26 @@
 # Distribution state and migration
 
-The running record of how the system is distributed **today** (local test
-channels) and exactly what flips when it moves to the real registry. The full
+The running record of how the system is distributed **today** (the git
+channel) and exactly what flips when it moves to the real registry. The full
 plan with phases lives in the Zebra Distribution Plan artifact; versioning
 rules in `VERSIONING.md`; release mechanics in `.github/workflows/release.yml`.
 
-## Where distribution stands today (local test channels)
+## Where distribution stands today (pre-npmjs)
 
 | Channel | Today | Lives at |
 |---|---|---|
 | **Git distribution ×5 (live, registry-free)** | Orphan branches `dist/<pkg>` + immutable tags `<pkg>-v<version>` on this repo; `npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#dist/tokens"` | deployed by `scripts/deploy-dist-branches.mjs` (§Git distribution below) |
-| npm packages ×5 | Local Verdaccio registry on `http://localhost:4873` | storage + config + teardown notes: `~/zds-local-packages/README.md` |
-| Consumer projects | Install from the git branches (no `.npmrc` needed), or two `.npmrc` scope lines point `@zebra-design-system` and `@zebra-fed` at localhost | each test project |
+| npm packages ×5 | Not on npmjs yet — the git channel above is the only package source. (The local Verdaccio test registry was torn down 10 Nov 2026.) | — |
+| Consumer projects | Install from the git branches; no `.npmrc` needed | each test project |
 | Claude Code plugin | Installable from this repo as a marketplace — **pin the working branch**, since `main` doesn't carry the plugin until the merge | `claude plugin marketplace add "https://github.com/zebratechnologies/zebra-design-system.git#design/init"` (or a local path to a design/init checkout), then `claude plugin install zebra-design-system@zebra-design-system` |
 | In-package skills | Already real — ship in the library tarballs | `npx zebra-skills` in the consumer project |
 | CDN | Not live (needs real npm) | `docs/cdn-smoke.html` is armed with pinned jsDelivr URLs |
 | Consumer onboarding | Zebra Quickstart artifact (private; share from its Share menu) | source `docs/start/index.html`, published at <https://claude.ai/artifact/ByQaUbTKkN1EXDyp5bEvg7> |
 
-Local registry rules: Verdaccio refuses republishing a version — bump a
-`-local.N` prerelease, or delete the package's folder from
-`~/zds-local-packages/registry/storage/` and publish again. Restart after a
-reboot: `npx verdaccio@6 --config ~/zds-local-packages/registry/config.yaml --listen 4873`.
+The local Verdaccio registry that previously vended the packages was torn
+down on 10 Nov 2026 (`~/zds-local-packages` deleted, process stopped; the
+global `~/.npmrc` was never touched). Registry-behaviour tests (semver
+ranges, `npm outdated`) now wait for real npmjs.
 
 ## Git distribution (live, no registry account needed)
 
@@ -90,17 +90,16 @@ Then the flip, in order:
    and the manual lane dispatches zeta-web.
 4. Open `docs/cdn-smoke.html` in a browser — it must say "CDN smoke PASS"
    and theme the dark row. That is the go/no-go for the designer channel.
-5. Consumer projects: delete the two `.npmrc` lines (and the lockfile, which
-   pins localhost tarball URLs), reinstall. Versions are identical; nothing
-   else changes.
+5. Consumer projects on the git channel: swap each
+   `git+…#dist/<pkg>` / `#<pkg>-v<version>` dependency for the npm semver
+   range and reinstall. Versions are identical; nothing else changes.
 6. Plugin consumers: `claude plugin marketplace remove zebra-design-system`
    (if added by local path or with the `#design/init` ref), then re-add by
    plain repo reference —
    `claude plugin marketplace add zebratechnologies/zebra-design-system` —
    so `claude plugin update` tracks the repo. (Terminal CLI users can use the
    `/plugin` commands; the IDE extension uses the `claude plugin` CLI.)
-7. Tear down the local channel: `pkill -f verdaccio && rm -rf ~/zds-local-packages`.
-   That is its entire footprint; the global `~/.npmrc` was never touched.
+7. ~~Tear down the local Verdaccio channel~~ — already done (10 Nov 2026).
 
 ## Invariants that hold in both worlds
 
