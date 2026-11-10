@@ -1,0 +1,12 @@
+/* CardImage — no token governs height; the spec's own 259px is an unbound,
+   authored canvas value (spec issue), not a constraint, so this component
+   leaves height to the consumer.
+
+   Spec: specs/card/card.spec.md */
+
+.zds-card-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
