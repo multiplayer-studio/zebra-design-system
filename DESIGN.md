@@ -679,7 +679,6 @@ dimensions:  # raw component measurements; referenced ONLY by component tokens (
   dim-right-drawer-panel-max-width: 380px  # organisms/right-drawer-panel.md
   dim-right-drawer-panel-min-width: 240px  # organisms/right-drawer-panel.md
   dim-right-drawer-panel-width: '40%'  # organisms/right-drawer-panel.md
-  dim-search-bar-height: 40px  # molecules/search-bar.md
   dim-select-input-height-large: 50px  # molecules/select-input.md
   dim-select-input-height-medium: 42px  # molecules/select-input.md
   dim-select-input-height-small: 26px  # molecules/select-input.md

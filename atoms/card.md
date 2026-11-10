@@ -22,6 +22,7 @@ tokens:
   card-footer-gap: '{spacing.spacing-medium}'
   # sectioned (card container)
   card-sectioned-frame-border-width: '{border.border-size-medium}'
+  card-sectioned-frame-border-color: '{card.card-container-border-color}'
   card-sectioned-frame-radius: '{spacing.spacing-medium}'
   card-sectioned-container-radius-inset: '{border.border-size-small}'
   card-sectioned-container-background: '{colors.surface-default}'
@@ -56,7 +57,7 @@ tokens:
 | rounded (default) | `--card-container-radius-rounded` |
 | sharp | `--card-container-radius-sharp` |
 
-**Card container** (sectioned variant, a richer container): `--card-sectioned-frame-border-width` outer frame (radius `--card-sectioned-frame-radius`) around an inner card with radius `--card-sectioned-frame-radius` − `--card-sectioned-container-radius-inset` and `--card-sectioned-container-background` background; title `--card-sectioned-title-font` in `--card-sectioned-title-foreground`, subtitle `--card-sectioned-subtitle-font` in `--card-sectioned-subtitle-foreground`, optional required asterisk `--card-sectioned-required-foreground`; header/content padding `--card-sectioned-content-padding` − `--card-sectioned-frame-border-width`. It can be collapsible: a chevron [Icon](../atoms/icon.md) at the default `--icon-size` turns to point sideways when collapsed, and the header tints to `--card-sectioned-header-background-hover` on hover. The AI variant gives the frame a gradient from `--card-sectioned-ai-frame-gradient-start` to `--card-sectioned-ai-frame-gradient-end` (stop at `--card-sectioned-ai-frame-gradient-end-stop`). Expand/collapse animates over `--card-sectioned-content-duration` `--card-sectioned-content-easing`.
+**Card container** (sectioned variant, a richer container): `--card-sectioned-frame-border-width` outer frame in `--card-sectioned-frame-border-color` (the card's border colour; radius `--card-sectioned-frame-radius`) around an inner card with radius `--card-sectioned-frame-radius` − `--card-sectioned-container-radius-inset` and `--card-sectioned-container-background` background; title `--card-sectioned-title-font` in `--card-sectioned-title-foreground`, subtitle `--card-sectioned-subtitle-font` in `--card-sectioned-subtitle-foreground`, optional required asterisk `--card-sectioned-required-foreground`; header/content padding `--card-sectioned-content-padding` − `--card-sectioned-frame-border-width`. It can be collapsible: a chevron [Icon](../atoms/icon.md) at the default `--icon-size` turns to point sideways when collapsed, and the header tints to `--card-sectioned-header-background-hover` on hover. The AI variant gives the frame a gradient from `--card-sectioned-ai-frame-gradient-start` to `--card-sectioned-ai-frame-gradient-end` (stop at `--card-sectioned-ai-frame-gradient-end-stop`). Expand/collapse animates over `--card-sectioned-content-duration` `--card-sectioned-content-easing`.
 
 ## States
 The base card is static; interactivity lives in its children (icon button, buttons). A collapsible card container header tints to `--card-sectioned-header-background-hover` on hover.

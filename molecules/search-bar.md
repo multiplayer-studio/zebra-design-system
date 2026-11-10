@@ -6,14 +6,6 @@ composes: [./text-input.md, ../atoms/icon.md]
 tokens:
   search-bar-container-radius-full: '{rounded.radius-full}'
   # sizes
-  search-bar-container-height-medium: '{text-input.text-input-container-height-medium}'
-  search-bar-container-height-large: '{dimensions.dim-search-bar-height}'
-  search-bar-container-padding-medium: '{spacing.spacing-small}'
-  search-bar-container-padding-large: '{spacing.spacing-small}'
-  search-bar-icon-size-small: '{icon.icon-size-small}'
-  search-bar-icon-size-medium: '{icon.icon-size-medium}'
-  search-bar-icon-size-large: '{icon.icon-size}'
-  search-bar-input-line-height: '{spacing.spacing-2xl}'
   search-bar-divider-height-small: '{spacing.spacing-large}'
   search-bar-divider-height-medium: '{spacing.spacing-2xl}'
   search-bar-divider-height-large: '{spacing.spacing-2xl}'
@@ -29,23 +21,21 @@ tokens:
 > A text input field for entering search queries. Supports voice search where the device offers speech recognition.
 
 ## Anatomy
-1. Container – a [Text Input](./text-input.md) field: its background, border (per state), radius, caret, icon colours, value fonts and content gap govern the search bar. The search bar adds its own sizes, the full (pill) shape, the divider and the microphone.
+1. Container – a [Text Input](./text-input.md) field: its background, border (per state), radius, caret, icon colours, sizes (height, padding, value font and icon size) and content gap govern the search bar. The search bar adds the full (pill) shape, the divider and the microphone.
 2. Search icon – [Icon](../atoms/icon.md) `search`, leading, shown by default, in the text input's icon colour.
 3. Input – search query text.
-4. Clear icon – [Icon](../atoms/icon.md) `cancel`, shown only when there is a value; clears the field.
+4. Clear icon – [Icon](../atoms/icon.md) `cancel`, shown only when there is a value; clears the field. This is the only clear control: hide the native platform's own clear button, so there are never two.
 5. Divider – `--search-bar-divider-width` vertical line, shown between clear and microphone only when there is a value.
 6. Microphone icon – [Icon](../atoms/icon.md) `microphone`, trailing, only when voice search is on and the device supports speech recognition.
 
 ## Variants
-| Size | Padding | Icon size | Input font | Divider height |
-|---|---|---|---|---|
-| small | none | `--search-bar-icon-size-small` | `--text-input-value-font-small` | `--search-bar-divider-height-small` |
-| medium (default) | `--search-bar-container-padding-medium` | `--search-bar-icon-size-medium` | `--text-input-value-font-medium` | `--search-bar-divider-height-medium` |
-| large | `--search-bar-container-padding-large` | `--search-bar-icon-size-large` | `--text-input-value-font-large` | `--search-bar-divider-height-large` |
+Sizes work exactly like the [Text Input](./text-input.md)'s small, medium (default) and large: each takes the text input's height, padding, value font and icon size for that size (see its Variants table). The search bar adds only the divider height:
 
-Medium = `--search-bar-container-height-medium` tall (`--search-bar-container-padding-medium` + `--search-bar-input-line-height` line + `--search-bar-container-padding-medium`); large = `--search-bar-container-height-large` (`--search-bar-container-padding-large` + `--search-bar-icon-size-large` icon + `--search-bar-container-padding-large`).
-
-Own size overrides: the large bar stays `--search-bar-container-height-large` (shorter than the text input's large), padding is tighter than the text input's, and icons step up per size (small `--icon-size-small`, medium `--icon-size-medium`, large the icon default `--icon-size`) instead of following the text input's icon sizes. Medium height aligns with the text input's medium.
+| Size | Divider height |
+|---|---|
+| small | `--search-bar-divider-height-small` |
+| medium (default) | `--search-bar-divider-height-medium` |
+| large | `--search-bar-divider-height-large` |
 
 | Shape | Radius | Icon font |
 |---|---|---|
@@ -88,4 +78,4 @@ Context overrides: query text uses `--search-bar-input-foreground` (subtle, not 
 - Focus ring: `--text-input-container-border-width-focused` `--text-input-container-border-color-focused`.
 
 ## Stitch Prompt
-Draw a search field `--search-bar-container-height-medium` tall with a `--text-input-container-background-enabled` fill, `--text-input-container-border-width-enabled` `--text-input-container-border-color-enabled` border and either `--text-input-container-radius-rounded` corners or a fully rounded pill shape (`--search-bar-container-radius-full`). On the left, `--search-bar-container-padding-medium` in, a `--search-bar-icon-size-medium` `--text-input-icon-foreground` magnifying-glass icon, then `--text-input-value-font-medium` `--search-bar-input-foreground` placeholder text "Search". When text is entered, a `--text-input-icon-foreground` circular clear (x) icon appears at the right, followed by a thin `--search-bar-divider-height-medium`-tall `--search-bar-divider-color` vertical divider and a `--search-bar-microphone-icon-foreground` microphone icon. Hovering darkens the border to `--text-input-container-border-color-hover`; focus gives a `--text-input-container-border-width-focused` `--text-input-container-border-color-focused` border.
+Draw a search field `--text-input-container-height-medium` tall with a `--text-input-container-background-enabled` fill, `--text-input-container-border-width-enabled` `--text-input-container-border-color-enabled` border and either `--text-input-container-radius-rounded` corners or a fully rounded pill shape (`--search-bar-container-radius-full`). On the left, `--text-input-container-padding-x-medium` in, a `--text-input-icon-size-medium` `--text-input-icon-foreground` magnifying-glass icon, then `--text-input-value-font-medium` `--search-bar-input-foreground` placeholder text "Search". When text is entered, a `--text-input-icon-foreground` circular clear (x) icon appears at the right, followed by a thin `--search-bar-divider-height-medium`-tall `--search-bar-divider-color` vertical divider and a `--search-bar-microphone-icon-foreground` microphone icon. Hovering darkens the border to `--text-input-container-border-color-hover`; focus gives a `--text-input-container-border-width-focused` `--text-input-container-border-color-focused` border.

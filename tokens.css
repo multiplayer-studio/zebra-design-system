@@ -231,7 +231,6 @@
   --dim-right-drawer-panel-max-width: 380px;
   --dim-right-drawer-panel-min-width: 240px;
   --dim-right-drawer-panel-width: 40%;
-  --dim-search-bar-height: 40px;
   --dim-select-input-height-large: 50px;
   --dim-select-input-height-medium: 42px;
   --dim-select-input-height-small: 26px;
@@ -1022,6 +1021,7 @@
   --card-footer-padding: var(--spacing-large);
   --card-footer-gap: var(--spacing-medium);
   --card-sectioned-frame-border-width: var(--border-size-medium);
+  --card-sectioned-frame-border-color: var(--card-container-border-color);
   --card-sectioned-frame-radius: var(--spacing-medium);
   --card-sectioned-container-radius-inset: var(--border-size-small);
   --card-sectioned-container-background: var(--surface-default);
@@ -1107,14 +1107,6 @@
   /* message-input-field */
   /* search-bar */
   --search-bar-container-radius-full: var(--radius-full);
-  --search-bar-container-height-medium: var(--text-input-container-height-medium);
-  --search-bar-container-height-large: var(--dim-search-bar-height);
-  --search-bar-container-padding-medium: var(--spacing-small);
-  --search-bar-container-padding-large: var(--spacing-small);
-  --search-bar-icon-size-small: var(--icon-size-small);
-  --search-bar-icon-size-medium: var(--icon-size-medium);
-  --search-bar-icon-size-large: var(--icon-size);
-  --search-bar-input-line-height: var(--spacing-2xl);
   --search-bar-divider-height-small: var(--spacing-large);
   --search-bar-divider-height-medium: var(--spacing-2xl);
   --search-bar-divider-height-large: var(--spacing-2xl);
