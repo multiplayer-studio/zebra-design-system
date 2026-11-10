@@ -18,9 +18,12 @@ Every prototype is a static HTML, CSS and JS app. Do not use any other framework
 
 Prototypes must work when opened by double-click (`file://`), with no server and no Node. That means:
 - Always create prototypes in the `prototypes/` folder at the project root, each in its own folder (`prototypes/<name>/index.html`), and never anywhere else. Create the folder if it's missing.
-- Load the tokens with `<link rel="stylesheet" href="../../tokens.css">` in the `<head>`. A relative stylesheet link works over `file://`. Put everything else in a `<style>` block.
+- Start every prototype from `prototypes/_starter/index.html`: copy it to `prototypes/<name>/index.html` and build inside `<body>`. Don't link `tokens.css`. The starter carries the tokens and the component CSS in marked blocks, because the Claude desktop Browser pane loads pages as `data:` documents and doesn't resolve relative links. Put the prototype's own CSS in a new `<style>` block after `<!-- components:end -->`.
+
+<!-- Why the starter inlines tokens: the Browser pane ignores relative links. If it ever resolves them, go back to <link rel="stylesheet" href="../../tokens.css"> and retire scripts/starter-html.py. -->
+
 - Use classic `<script>` tags, not ES module imports.
-- Load nothing from a CDN except the fonts listed under Fonts and Icons.
+- Load nothing from a CDN except the IBM Plex Sans fonts listed under Fonts. Icons are inline SVG from `icons.json` (see Icons), never the icon font.
 
 Prototypes need an internet connection to load those fonts.
 
@@ -33,13 +36,13 @@ Prototypes need an internet connection to load those fonts.
 | `atoms/`, `molecules/`, `organisms/` `*.md` | One file per component, with anatomy, variants, states, sizing, properties, usage and its `tokens:` block |
 | `templates/{project_name}/*.md` | Page-level layouts saved from earlier prototypes (see Templates) |
 | `tokens.css` | Every token as a CSS custom property, generated from `DESIGN.md` and the component files |
-| `icons.json` | The only valid icon names. Each key is the ligature name to use in the markup; the value gives its label, category and search terms. |
+| `icons.json` | The only valid icons. Each key is an icon name; the value gives its label, category, search terms and its inline SVG in both styles (`round`, `sharp`). The file is large: search it, never read it whole. |
 
 A component's `composes:` list says which other components it is built from. Read those files too, because a composite only defines its own parts and context overrides; its children's tokens style everything else.
 
 ## Tokens in CSS
 
-**Link `tokens.css`; never write tokens by hand.** The file is generated, contains every component's tokens, and applies every rule below. The rules are here so you can read and check it, not so you can rewrite it. If a token you need is missing or looks out of date, don't patch it in the prototype: tell the user the generated files need regenerating.
+**Use the tokens the starter carries; never write tokens by hand.** The file is generated, contains every component's tokens, and applies every rule below. The rules are here so you can read and check it, not so you can rewrite it. If a token you need is missing or looks out of date, don't patch it in the prototype: tell the user the generated files need regenerating.
 
 **Naming:** a custom property has exactly the token's key, the same name the docs use in prose. `colors.surface-default` becomes `--surface-default`, `spacing.spacing-large` becomes `--spacing-large`, and the component token `button-primary-container-background-hover` becomes `--button-primary-container-background-hover`. Keys are unique across groups, so there is no prefix.
 
@@ -126,13 +129,21 @@ A **template** is the atomic-design level above organisms: a page-level layout (
 
 A template contains only existing components. Never invent one for it; if it needs something missing, say so instead. A template is a doc, not a prototype: the prototype stays in `prototypes/`.
 
+## Refreshing a prototype
+
+Do this when the design system is updated, or when a prototype's version comment is older than the `version` in `DESIGN.md`. It is for you, not the designer.
+
+1. Replace everything between `<!-- tokens:start -->` and `<!-- tokens:end -->` with that block from the current `prototypes/_starter/index.html`. That block carries the version comment, so the version updates with it.
+2. Do the same between `<!-- components:start -->` and `<!-- components:end -->`.
+3. Never change anything outside the markers.
+
 ## Fonts
 
 Fonts are loaded from the jsDelivr CDN, pinned to an exact version. Do not copy font files into the prototype folder, and do not load fonts from anywhere else.
 
 All typography tokens use **IBM Plex Sans**, from the `@fontsource/ibm-plex-sans` package (v5.3.0, SIL OFL), Latin subset, in the three weights the tokens use: 300 (`--light`), 400 (`--regular`) and 500 (`--medium`).
 
-1. Declare them once in the `<style>` block, before use:
+1. The starter already declares these; don't add them again. For reference:
    ```css
    @font-face { font-family: "IBM Plex Sans"; font-weight: 300; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-300-normal.woff2") format("woff2"); }
    @font-face { font-family: "IBM Plex Sans"; font-weight: 400; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-400-normal.woff2") format("woff2"); }
@@ -143,33 +154,32 @@ All typography tokens use **IBM Plex Sans**, from the `@fontsource/ibm-plex-sans
 
 ## Icons
 
-Icons come from the Zebra Icons library, the `@zebra-fed/zeta-icons` package (v1.9.8, MIT, matching `icons` in the `DESIGN.md` frontmatter). Names come from `icons.json`, which is generated from the package itself; never invent one. There are two fonts: **round** (the default) and **sharp** (used when a component's shape is sharp).
+Icons come from the Zebra Icons library, the `@zebra-fed/zeta-icons` package (v1.9.8, MIT, matching `icons` in the `DESIGN.md` frontmatter). They come only from `icons.json`, which is generated from the package itself; never invent one, and never load the icon font or anything else from the zeta-icons CDN. Each icon comes in two styles: **round** (the default) and **sharp** (used when a component's shape is sharp).
 
-1. Declare the fonts and an `.icon` class once in the `<style>` block:
+1. The starter already declares the `.icon` class; don't add it again. Icons are sized with `font-size` (the SVG is `1em` square) and coloured with `color` (the SVG paints in `currentColor`):
    ```css
-   @font-face { font-family: "Zebra Icons Round"; src: url("https://cdn.jsdelivr.net/npm/@zebra-fed/zeta-icons@1.9.8/outputs/web/zeta-icons-round.woff2") format("woff2"); }
-   @font-face { font-family: "Zebra Icons Sharp"; src: url("https://cdn.jsdelivr.net/npm/@zebra-fed/zeta-icons@1.9.8/outputs/web/zeta-icons-sharp.woff2") format("woff2"); }
-   .icon { font-family: "Zebra Icons Round"; font-style: normal; font-weight: 400; line-height: 1; letter-spacing: normal;
-     text-transform: none; white-space: nowrap; font-feature-settings: "liga"; flex: none; display: inline-block;
+   .icon { width: 1em; height: 1em; flex: none; display: inline-block; vertical-align: middle;
      font-size: var(--icon-size); color: var(--icon-foreground); }
-   .icon.sharp { font-family: "Zebra Icons Sharp"; }
    ```
-2. Use an icon by putting its **ligature name** as the element's text: `<span class="icon" aria-hidden="true">check_circle</span>`.
-   - The ligature name is the key in `icons.json` (`check_circle`, `wifi`). It is lowercase snake_case and is not always the lowercased `label` (for example the label `WiFi` has the key `wifi`). Search the `label`, `category` and `searchTerms` fields to find an icon.
-   - If an icon shows as plain words instead of a glyph, the font doesn't have it: choose another from `icons.json` or report the gap.
+2. Use an icon by pasting its SVG inline: copy the icon's `round` value from `icons.json` (or `sharp` for a sharp-shaped component) and add `class="icon" aria-hidden="true"` to the `<svg>` tag:
+   `<svg class="icon" aria-hidden="true" fill="none" viewBox="0 0 1200 1200">…</svg>`
+   - `icons.json` is large (over 1 MB). Never read it whole: search it for the icon's key and read just that entry.
+   - The key is the icon name (`check_circle`, `wifi`). It is lowercase snake_case and is not always the lowercased `label` (for example the label `WiFi` has the key `wifi`). Search the `label`, `category` and `searchTerms` fields to find an icon.
+   - Paste the SVG exactly as it is in `icons.json`. Don't edit its paths or ids, and don't redraw it. If no icon fits, report the gap.
 3. **Size and colour** come from tokens. The Icon atom's tokens are the defaults: `--icon-size` (default), `--icon-size-small`, `--icon-size-medium`, `--icon-size-large`, `--icon-foreground`, `--icon-foreground-inverse` and `--icon-foreground-disabled`. Inside a component, use that component's icon tokens or overrides where its file defines them.
 4. **Accessibility:** decorative icons get `aria-hidden="true"`, and an icon-only button needs an `aria-label` on the button. Never use an icon as the only carrier of meaning: pair it with text.
 
 ## Generated files
 
-`tokens.css` and `icons.json` are generated and committed, so nobody building a prototype needs any tooling. They are produced by two scripts in `scripts/`, which only the design-system maintainer runs (they need Python 3, the standard library only):
+`tokens.css`, `icons.json` and `prototypes/_starter/index.html` are generated and committed, so nobody building a prototype needs any tooling. They are produced by three scripts in `scripts/`, which only the design-system maintainer runs (they need Python 3, the standard library only):
 
 | Run | When | Writes |
 |---|---|---|
 | `python3 scripts/tokens-css.py` | after any change to the `DESIGN.md` frontmatter or a component's `tokens:` | `tokens.css` |
 | `python3 scripts/icons-json.py` | after the icons version in the `DESIGN.md` frontmatter changes (needs internet; it reads the npm package) | `icons.json` |
+| `python3 scripts/starter-html.py` | after either script above, or a change to `prototypes/_starter/components.css` | `prototypes/_starter/index.html` (and the showcase's marked blocks) |
 
-Never edit either file by hand.
+Never edit these files by hand.
 
 ## Running
 

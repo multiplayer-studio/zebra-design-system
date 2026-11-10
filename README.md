@@ -17,9 +17,9 @@ The docs are the specification. Every colour, size, space, radius, shadow, font 
 | [`molecules/`](molecules/) | 31 components built from atoms: inputs, tabs, segmented control, list items, banners, snackbar, pagination… |
 | [`organisms/`](organisms/) | 18 larger patterns: dialog, bottom sheet, global header, top app bar, navigation rail, stepper, data table… |
 | [`tokens.css`](tokens.css) | **Generated.** Every token as a CSS custom property, with light, dark and high-contrast blocks. |
-| [`icons.json`](icons.json) | **Generated.** The 715 valid icon names from `@zebra-fed/zeta-icons` 1.9.8, keyed by ligature name, with label, category and search terms. |
-| [`scripts/`](scripts/) | Maintainer scripts: the two generators for the files above, and the two zip bundlers (`prototyping-zip.py`, `production-zip.py`, sharing `_bundle.py`). |
-| [`prototypes/`](prototypes/) | HTML prototypes. [`showcase/`](prototypes/showcase/index.html) renders the components in every theme. |
+| [`icons.json`](icons.json) | **Generated.** The 715 valid icon names from `@zebra-fed/zeta-icons` 1.9.8, keyed by ligature name, with label, category, search terms and each icon's round and sharp SVG. |
+| [`scripts/`](scripts/) | Maintainer scripts: the two generators for the files above, the prototype starter generator (`starter-html.py`), and the two zip bundlers (`prototyping-zip.py`, `production-zip.py`, sharing `_bundle.py`). |
+| [`prototypes/`](prototypes/) | HTML prototypes. [`showcase/`](prototypes/showcase/index.html) renders the components in every theme; its tokens, components and icons blocks are filled by `starter-html.py`. [`_starter/`](prototypes/_starter/index.html) is the page every prototype starts from: `components.css` is its hand-edited source, and `index.html` is generated with `tokens.css` and the component CSS inlined. |
 | [`templates/`](templates/) | Page-level layout templates, one folder per project (`templates/{project_name}/`). Created in prototyping mode (the `create-template` skill); production builds read and edit them (see `PROTOTYPING.AGENTS.md` and `PRODUCTION.AGENTS.md`). Shipped in both zips. |
 | [`.claude/skills/`](.claude/skills/) | Claude Code skills. [`create-template`](.claude/skills/create-template/SKILL.md) writes a template doc, including its Responsiveness and Accessibility sections. Prototyping zip only. |
 | [`PRODUCTION.CLAUDE.md`](PRODUCTION.CLAUDE.md) | Template `CLAUDE.md` for production builds. The production zip ships it as `CLAUDE.md`. |
@@ -89,7 +89,7 @@ Pick one mode per project. Each zip ships its own `CLAUDE.md` (`PRODUCTION.CLAUD
 You only need the Claude desktop app. No Python, Node or build tools.
 
 1. Ask Claude for a prototype. It creates `prototypes/<name>/index.html`.
-2. The page links `../../tokens.css` and loads IBM Plex Sans and the Zebra icon fonts from jsDelivr, pinned to exact versions.
+2. The page starts from `prototypes/_starter/index.html`, which carries the tokens and component CSS inline (the Browser pane ignores relative links such as `../../tokens.css`), and loads IBM Plex Sans from jsDelivr, pinned to an exact version. Icons are inline SVG copied from `icons.json`, so they need no font or CDN.
 3. Open it in the Claude desktop Browser pane. It works over `file://` with no server; it needs internet only for the fonts.
 
 Theming in the markup:
@@ -97,7 +97,7 @@ Theming in the markup:
 ```html
 <html data-contrast="high">            <!-- whole page high contrast (light only) -->
 <section data-theme="dark">…</section>  <!-- this area and its contents dark -->
-<span class="icon" aria-hidden="true">check_circle</span>  <!-- icon by ligature name from icons.json -->
+<svg class="icon" aria-hidden="true" …>…</svg>  <!-- icon: the round/sharp SVG from icons.json -->
 ```
 
 See [`PROTOTYPING.AGENTS.md`](PROTOTYPING.AGENTS.md) for the full rules.
@@ -145,6 +145,7 @@ Only maintainers run these scripts. They need Python 3 with the standard library
 | Command | Run after | Writes |
 |---|---|---|
 | `python3 scripts/tokens-css.py` | any change to the `DESIGN.md` frontmatter or a component's `tokens:` | `tokens.css` |
+| `python3 scripts/starter-html.py` | after `tokens-css.py` or `icons-json.py`, or any change to `prototypes/_starter/components.css` | `prototypes/_starter/index.html` and the showcase's marked blocks; also reports (never fails on) `var()` names nothing defines and component tokens `components.css` doesn't use |
 | `python3 scripts/icons-json.py [version]` | changing the `icons` version in the `DESIGN.md` frontmatter (needs internet; verifies the npm tarball's integrity) | `icons.json` |
 | `python3 scripts/prototyping-zip.py` | regenerating either file above, or changing the docs, prototypes, `PROTOTYPING.CLAUDE.md`, `PROTOTYPING.AGENTS.md`, `PROTOTYPING.JIRA.md`, `PROTOTYPING.FIGMA.md`, `PROTOTYPING.README.md` or `.claude/skills/` | `zebra-design-system-prototyping.zip` |
 | `python3 scripts/production-zip.py` | regenerating either file above, or changing the docs, `PRODUCTION.CLAUDE.md` or `PRODUCTION.AGENTS.md` | `zebra-design-system-production.zip` |
@@ -164,6 +165,6 @@ The current docs version is the `version` field in the `DESIGN.md` frontmatter.
 | What | Package | Version | Licence |
 |---|---|---|---|
 | Typeface | `@fontsource/ibm-plex-sans` (Latin; weights 300, 400, 500) | 5.3.0 | SIL OFL |
-| Icons | `@zebra-fed/zeta-icons` (round and sharp fonts) | 1.9.8 | MIT |
+| Icons | `@zebra-fed/zeta-icons` (round and sharp fonts; SVGs in `icons.json`) | 1.9.8 | MIT |
 
-Both are loaded from jsDelivr at pinned versions.
+The typeface is loaded from jsDelivr at a pinned version. Prototypes use the icon SVGs from `icons.json`; production uses the icon fonts from the package.

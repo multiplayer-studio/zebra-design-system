@@ -15,7 +15,7 @@ design-system/
   molecules/
   organisms/
   templates/       page-level layouts, one folder per project: templates/{project_name}/ (read and edit only; created by the prototyping kit, see Templates)
-  icons.json       the only valid icon names, keyed by ligature name (generated)
+  icons.json       the only valid icon names, keyed by ligature name, with round/sharp SVGs (generated)
   tokens.css       every token as a CSS custom property (generated)
   scripts/         tokens-css.py and icons-json.py, the generators for the two files above
   AGENTS.md        this file
@@ -69,7 +69,7 @@ Work bottom-up. Before building a component, build (or find) everything in its `
 
 - Screens are made only of library components plus layout. Start from a matching template in `templates/{project_name}/` if one exists. Layout uses semantic `spacing`, `layout` and `typography` tokens (`DESIGN.md` §6).
 - Screens never style a component. No overriding colours, sizes or radii from the outside, no wrapper that restyles a child. If a screen needs a component to look or behave differently, that's a design-system change (below).
-- Icons come only from `icons.json` (each key is an icon's ligature name), via the Icon atom (`atoms/icon.md`). The icon font is package `@zebra-fed/zeta-icons`, at the version in the `DESIGN.md` frontmatter. `icons.json` is generated from that package by `scripts/icons-json.py`; rerun it when the version changes, and never edit it by hand. Use the sharp set for sharp-shaped components and the round set otherwise.
+- Icons come only from `icons.json` (each key is an icon's ligature name; each entry also holds its `round` and `sharp` SVG), via the Icon atom (`atoms/icon.md`). The icon font is package `@zebra-fed/zeta-icons`, at the version in the `DESIGN.md` frontmatter. `icons.json` is generated from that package by `scripts/icons-json.py`; rerun it when the version changes, and never edit it by hand. Use the sharp set for sharp-shaped components and the round set otherwise.
 
 ## Templates
 

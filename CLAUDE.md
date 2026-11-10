@@ -8,15 +8,16 @@ Whatever the prompt asks for, finish by making every doc, generated file and bun
 
 | If you change… | Also update |
 |---|---|
-| A token in the `DESIGN.md` frontmatter or a component's `tokens:` | Rerun `python3 scripts/tokens-css.py` (never hand-edit `tokens.css`). Update every component doc and `DESIGN.md` body text that mentions the value. |
+| A token in the `DESIGN.md` frontmatter or a component's `tokens:` | Rerun `python3 scripts/tokens-css.py` (never hand-edit `tokens.css`), then `python3 scripts/starter-html.py`. Update every component doc and `DESIGN.md` body text that mentions the value. |
 | A component (add, remove, rename, new variant/state/size/property) | The component file's tables and prose, `DESIGN.md` §8 Component Index (and † draft marks), the component counts in `README.md`, and any `composes` lists and prototypes that use it. |
-| The `@zebra-fed/zeta-icons` version | `version` in `DESIGN.md`, rerun `python3 scripts/icons-json.py`, and the icon count/version in `README.md`. |
+| The `@zebra-fed/zeta-icons` version | `version` in `DESIGN.md`, rerun `python3 scripts/icons-json.py` then `python3 scripts/starter-html.py`, and the icon count/version in `README.md`. |
 | `DESIGN.md` rules (body) | Component docs, `PRODUCTION.AGENTS.md`, `PROTOTYPING.AGENTS.md`, `PRODUCTION.CLAUDE.md`, `PROTOTYPING.CLAUDE.md` and `README.md` wherever they restate the rule. |
 | `PRODUCTION.AGENTS.md`, `PROTOTYPING.AGENTS.md`, `PROTOTYPING.JIRA.md`, `PROTOTYPING.FIGMA.md`, `PROTOTYPING.README.md`, `PRODUCTION.CLAUDE.md` or `PROTOTYPING.CLAUDE.md` | The others, and the README Contents table, so they never contradict each other. The two `*.CLAUDE.md` files share the same design-system section; keep them identical there. |
 | `scripts/` (any script, file or folder added or removed) | The `scripts/` row in `README.md` and every doc that names the script. |
 | Files or folders at the repo root | The README Contents table. |
 | Anything that ends up in a zip | Regenerate with `python3 scripts/prototyping-zip.py` and `python3 scripts/production-zip.py`. The zips are generated; never edit them by hand. |
-| `prototypes/` | `prototypes/showcase` if it renders the changed component or token. |
+| `prototypes/` | `prototypes/showcase` if it renders the changed component or token. Its component CSS lives in `prototypes/_starter/components.css`; edit it there, never between the showcase's markers. |
+| A component's CSS in `prototypes/_starter/components.css` | Rerun `python3 scripts/starter-html.py` (never hand-edit `prototypes/_starter/index.html`). |
 
 ## Rules
 
