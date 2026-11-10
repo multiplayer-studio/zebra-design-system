@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Avatar } from "../avatar/Avatar.js";
+import { Avatar, type AvatarSwatchColor } from "../avatar/Avatar.js";
 import { AssistChip } from "../assist-chip/AssistChip.js";
 import { BadgeLabel } from "../badge-label/BadgeLabel.js";
 import { Button } from "../button/Button.js";
@@ -42,6 +42,8 @@ export interface ChatAuthor {
   name: string;
   initials?: string;
   src?: string;
+  /** Avatar swatch behind the initials. Defaults to sea for others and orange for you; the assistant is purple. */
+  swatch?: AvatarSwatchColor;
 }
 
 /** A reaction is a glyph from the icon font, never an emoji. */
@@ -72,7 +74,7 @@ export interface ChatAction {
   pressed?: boolean;
   onSelect?: () => void;
   /** Turns the button into a menu of follow-ups, e.g. Improve → Shorter, Longer. */
-  menu?: { id: string; icon?: IconName; label: string; onSelect?: () => void }[];
+  menu?: { id: string; icon?: IconName; label: string; onSelect?: () => void; tone?: "danger" }[];
 }
 
 const ChatShapeContext = React.createContext<ChatShape>("rounded");
@@ -150,6 +152,8 @@ export interface ChatMessageProps extends Omit<React.HTMLAttributes<HTMLElement>
   shape?: ChatShape;
   /** Delivery state, for `me` only. `failed` shows a retry. */
   status?: ChatStatus;
+  /** Show the status in words beside its glyph ("Seen"). Figma: Show Read Receipts. */
+  receipts?: boolean;
   onRetry?: () => void;
   edited?: boolean;
   /** Quote of the message this one answers. */
@@ -166,15 +170,15 @@ export interface ChatMessageProps extends Omit<React.HTMLAttributes<HTMLElement>
   /** Plain text of the message; with `onEdit`, the Edit action swaps the bubble for a text field. */
   editableText?: string;
   onEdit?: (text: string) => void;
-  /** Keep the action toolbar visible instead of on hover and focus only (touch layouts). */
+  /** Keep the action toolbar visible instead of revealing it on hover, focus or long press. */
   actionsVisible?: boolean;
   /**
-   * `float` (others and you) shows the quick bar on the row's top-end corner on hover;
-   * `below` (the assistant) keeps them in a row under it; `menu` folds them
-   * into one Message actions control on hover, the quiet form for older
-   * messages once a newer one carries the row.
+   * `float` (others and you) reveals the quick bar on the row's top-end corner:
+   * on hover with a pointer, on a long press on touch, and on keyboard focus.
+   * `below` (the assistant) keeps the controls in a row under the message.
+   * Nothing else opens the bar: no button reveals it.
    */
-  actionsPosition?: "float" | "below" | "menu";
+  actionsPosition?: "float" | "below";
   className?: string;
 }
 
@@ -190,7 +194,7 @@ export interface ChatMessageProps extends Omit<React.HTMLAttributes<HTMLElement>
 export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(function ChatMessage(
   {
     role = "other", author, time, position = "single", header, avatar, footer, fill: fillProp = "light", ownStyle: ownStyleProp, shape: shapeProp,
-    status, onRetry, edited, replyTo, reactions, onReact, actions, thinking, streaming, editableText, onEdit,
+    status, receipts = true, onRetry, edited, replyTo, reactions, onReact, actions, thinking, streaming, editableText, onEdit,
     actionsVisible, actionsPosition, className, children, ...rest
   },
   ref,
@@ -200,42 +204,73 @@ export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(funct
   const inheritedOwnStyle = React.useContext(ChatOwnStyleContext);
   // Plain is text on the page: everyone else's messages, and yours in a channel.
   const plain = role !== "me" || (ownStyleProp ?? inheritedOwnStyle) === "plain";
-  // A channel sets lines at text height; a conversation gives each one a control-height slot.
+  // Conversation or channel, for the row's data-style.
   const channel = (role === "me" ? ownStyleProp ?? inheritedOwnStyle : inheritedOwnStyle) === "plain";
   const fill = plain ? "light" : fillProp;
   const [editing, setEditing] = React.useState(false);
   const [draft, setDraft] = React.useState(editableText ?? "");
   const [picking, setPicking] = React.useState(false);
   const [menuOpen, setMenuOpen] = React.useState(false);
+  // Touch has no hover: a long press reveals the bar, a tap elsewhere hides it.
+  const [held, setHeld] = React.useState(false);
+  const own = React.useRef<HTMLElement | null>(null);
+  const press = React.useRef<number | undefined>(undefined);
+  const setRef = (node: HTMLElement | null) => {
+    own.current = node;
+    if (typeof ref === "function") ref(node); else if (ref) ref.current = node;
+  };
+  const cancelPress = () => { window.clearTimeout(press.current); press.current = undefined; };
+  React.useEffect(() => {
+    if (!held) return;
+    const away = (e: PointerEvent) => { if (!own.current?.contains(e.target as Node)) setHeld(false); };
+    document.addEventListener("pointerdown", away);
+    return () => document.removeEventListener("pointerdown", away);
+  }, [held]);
+  React.useEffect(() => cancelPress, []);
   const placement = actionsPosition ?? (role === "assistant" ? "below" : "float");
   const leads = position === "single" || position === "first";
   const ends = position === "single" || position === "last";
   const showHeader = header === undefined ? leads && plain : header !== false;
   const showAvatar = avatar ?? plain;
-  const showFooter = footer === undefined ? ends : footer !== false;
+  // A thinking row is only its status line (Figma's loading state has no footer).
+  const showFooter = !thinking && (footer === undefined ? ends : footer !== false);
   const failed = status === "failed";
   const name = author?.name ?? (role === "me" ? "You" : role === "assistant" ? "Assistant" : "");
 
-  const allActions: ChatAction[] = [...(actions ?? [])];
-  if (onReact) allActions.unshift({ id: "react", icon: "react-thumbsup", label: "React", pressed: picking, onSelect: () => setPicking((p) => !p) });
+  let allActions: ChatAction[] = [...(actions ?? [])];
+  if (onReact) allActions.unshift({ id: "react", icon: "happy", label: "React", pressed: picking, onSelect: () => setPicking((p) => !p) });
   if (onEdit && editableText !== undefined) {
+    const startEdit = () => { setDraft(editableText); setEditing(true); };
+    const inMenu = allActions.some((a) => a.menu?.some((m) => m.id === "edit"));
     const i = allActions.findIndex((a) => a.id === "edit");
-    const edit = { id: "edit", icon: "edit" as IconName, label: "Edit", onSelect: () => { setDraft(editableText); setEditing(true); } };
-    if (i >= 0) allActions[i] = { ...allActions[i], ...edit };
-    else { const more = allActions.findIndex((x) => x.menu); allActions.splice(more >= 0 ? more : allActions.length, 0, edit); }
+    // Edit sits in the More menu (Figma); it opens the inline editor wherever it is.
+    if (inMenu) allActions = allActions.map((a) => a.menu ? { ...a, menu: a.menu.map((m) => m.id === "edit" ? { ...m, onSelect: startEdit } : m) } : a);
+    else if (i >= 0) allActions[i] = { ...allActions[i], onSelect: startEdit };
+    else {
+      const more = allActions.findIndex((x) => x.menu);
+      if (more >= 0) allActions[more] = { ...allActions[more], menu: [{ id: "edit", icon: "edit", label: "Edit", onSelect: startEdit }, ...allActions[more].menu!] };
+      else allActions.push({ id: "edit", icon: "edit", label: "Edit", onSelect: startEdit });
+    }
   }
 
   const toolbar = allActions.length && !editing && !thinking ? (
-    placement === "menu" ? (
-      <div className="zds-chat-message__toolbar">
-        <ChatActionsMenu actions={allActions} shape={shape} onOpenChange={setMenuOpen} />
-      </div>
-    ) : (
-      <div className="zds-chat-message__toolbar" role="toolbar" aria-label="Message actions">
-        {allActions.map((a) => <ChatActionButton key={a.id} action={a} shape={shape} onOpenChange={setMenuOpen} />)}
-      </div>
-    )
+    <div className="zds-chat-message__toolbar" role="toolbar" aria-label="Message actions">
+      {allActions.map((a) => <ChatActionButton key={a.id} action={a} shape={shape} onOpenChange={setMenuOpen} />)}
+    </div>
   ) : null;
+  const longPress = toolbar && placement === "float" ? {
+    onPointerDown: (e: React.PointerEvent<HTMLElement>) => {
+      rest.onPointerDown?.(e);
+      if (e.pointerType === "mouse") return;
+      cancelPress();
+      press.current = window.setTimeout(() => setHeld(true), 500);
+    },
+    onPointerUp: (e: React.PointerEvent<HTMLElement>) => { rest.onPointerUp?.(e); cancelPress(); },
+    onPointerMove: (e: React.PointerEvent<HTMLElement>) => { rest.onPointerMove?.(e); if (e.pointerType !== "mouse" && (Math.abs(e.movementX) > 4 || Math.abs(e.movementY) > 4)) cancelPress(); },
+    onPointerCancel: (e: React.PointerEvent<HTMLElement>) => { rest.onPointerCancel?.(e); cancelPress(); },
+    // The long press opens the bar, not the browser's own menu.
+    onContextMenu: (e: React.MouseEvent<HTMLElement>) => { rest.onContextMenu?.(e); if (held || press.current !== undefined) e.preventDefault(); },
+  } : {};
 
   const label = [author?.name ?? (role === "me" ? "You" : role === "assistant" ? "Assistant" : "Message"), time].filter(Boolean).join(", ");
 
@@ -243,8 +278,9 @@ export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(funct
     <ChatShapeContext.Provider value={shape}>
     <ChatFillContext.Provider value={fill}>
       <article
-        ref={ref}
+        ref={setRef}
         {...rest}
+        {...longPress}
         aria-label={label}
         aria-busy={thinking || streaming ? true : undefined}
         className={cx("zds-chat-message", className)}
@@ -257,7 +293,7 @@ export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(funct
         data-fill={fill}
         data-status={status}
         data-avatar={showAvatar ? "" : undefined}
-        data-actions-visible={actionsVisible || picking || menuOpen ? "" : undefined}
+        data-actions-visible={actionsVisible || picking || menuOpen || held ? "" : undefined}
         data-actions={placement}
       >
         {showAvatar ? (
@@ -266,8 +302,8 @@ export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(funct
               role === "assistant" && !author?.src
                 ? <Avatar size="xsmall" type="icon" icon="ai-stars" showClose={false} showStatus={false} showRing={false} />
                 : author?.src || name
-                  ? <Avatar size="xsmall" type={author?.src ? "photo" : "initials"} src={author?.src} initials={author?.initials ?? name.split(/\s+/).map((w) => w[0]).slice(0, 2).join("")} showClose={false} showStatus={false} showRing={false} />
-                  : <Avatar size="xsmall" type="icon" icon="person" showClose={false} showStatus={false} showRing={false} />
+                  ? <Avatar size="xsmall" type={author?.src ? "photo" : "initials"} src={author?.src} swatchColor={author?.swatch ?? (role === "me" ? "orange" : "sea")} initials={author?.initials ?? name.split(/\s+/).map((w) => w[0]).slice(0, 2).join("")} showClose={false} showStatus={false} showRing={false} />
+                  : <Avatar size="xsmall" type="icon" icon="person" swatchColor={author?.swatch ?? (role === "me" ? "orange" : "sea")} showClose={false} showStatus={false} showRing={false} />
             ) : null}
           </div>
         ) : null}
@@ -341,12 +377,13 @@ export const ChatMessage = React.forwardRef<HTMLElement, ChatMessageProps>(funct
               <span>Not sent.</span>
               {onRetry ? <Button flavour="text" size="small" shape={btnShape(shape)} onClick={onRetry}>Try again</Button> : null}
             </div>
-          ) : showFooter && ((time && !showHeader) || edited || status || (footer !== true && footer)) ? (
+          ) : showFooter && (time || edited || status || (footer !== true && footer)) ? (
+            // Figma's footer: the time (again, under a header), the status glyph, then the receipt words.
             <div className="zds-chat-message__meta">
               {edited ? <span>Edited</span> : null}
-              {time && !showHeader ? <time>{time}</time> : null}
+              {time ? <time>{time}</time> : null}
               {role === "me" && status ? <ChatStatusMark status={status} shape={shape} /> : null}
-              {footer !== true && footer ? <span>{footer}</span> : role === "me" && status ? <span>{STATUS_TEXT[status]}</span> : null}
+              {footer !== true && footer ? <span>{footer}</span> : role === "me" && status && receipts ? <span>{STATUS_TEXT[status]}</span> : null}
             </div>
           ) : null}
         </div>
@@ -367,26 +404,11 @@ function ChatActionButton({ action, shape, onOpenChange }: { action: ChatAction;
   if (action.menu) {
     return (
       <Dropdown rounded={shape === "rounded"} position="bottom" align="right" trigger={button} onOpenChange={(open: boolean) => onOpenChange(open)}>
-        {action.menu.map((m) => <MenuItem key={m.id} leadingIcon={m.icon} onClick={m.onSelect}>{m.label}</MenuItem>)}
+        {action.menu.map((m) => <MenuItem key={m.id} leadingIcon={m.icon} onClick={m.onSelect} data-chat-tone={m.tone}>{m.label}</MenuItem>)}
       </Dropdown>
     );
   }
   return <Tooltip point="bottom" shape={shape} trigger={button}>{action.label}</Tooltip>;
-}
-
-/**
- * Every action folded into one Message actions control: a chevron that opens
- * a menu. Follow-ups under More are listed in place, and a pressed toggle
- * reads as selected.
- */
-function ChatActionsMenu({ actions, shape, onOpenChange }: { actions: ChatAction[]; shape: ChatShape; onOpenChange: (open: boolean) => void }) {
-  const items = actions.flatMap((a) => a.menu ? a.menu.map((m) => ({ ...m, pressed: undefined as boolean | undefined })) : [{ id: a.id, icon: a.icon, label: a.label, onSelect: a.onSelect, pressed: a.pressed }]);
-  return (
-    <Dropdown rounded={shape === "rounded"} position="bottom" align="left" onOpenChange={(open: boolean) => onOpenChange(open)}
-      trigger={<IconButton flavour="text" size="small" shape={btnShape(shape)} icon="expand-more" label="Message actions" />}>
-      {items.map((m) => <MenuItem key={m.id} leadingIcon={m.icon} selected={!!m.pressed} onClick={m.onSelect}>{m.label}</MenuItem>)}
-    </Dropdown>
-  );
 }
 
 const STATUS_TEXT: Record<ChatStatus, string> = {
@@ -406,15 +428,22 @@ function ChatStatusMark({ status, shape }: { status: ChatStatus; shape: ChatShap
   );
 }
 
+type MenuEntry = NonNullable<ChatAction["menu"]>[number];
+/** The bar's buttons, then a More menu when it has anything in it. */
+const more = (bar: (ChatAction | false | undefined)[], menu: (MenuEntry | false | undefined)[]): ChatAction[] => {
+  const items = menu.filter(Boolean) as MenuEntry[];
+  return [...(bar.filter(Boolean) as ChatAction[]), ...(items.length ? [{ id: "more", icon: "more-horizontal" as IconName, label: "More", menu: items }] : [])];
+};
+
 /** Ready-made action sets. Pass handlers for the ones you support; the rest are left out. */
 export const chatActions = {
-  /** Someone else's message: copy, reply, like and more. */
-  forOther: (h: { onCopy?: () => void; onReply?: () => void; liked?: boolean; onLike?: () => void; onMore?: () => void }): ChatAction[] => [
-    h.onCopy && { id: "copy", icon: "copy-file" as IconName, label: "Copy", onSelect: h.onCopy },
+  /** Someone else's message: reply, then More with copy text and mark as unread. React comes from `onReact`. */
+  forOther: (h: { onReply?: () => void; onCopy?: () => void; onMarkUnread?: () => void }): ChatAction[] => more([
     h.onReply && { id: "reply", icon: "reply" as IconName, label: "Reply", onSelect: h.onReply },
-    h.onLike && { id: "like", icon: "like" as IconName, label: h.liked ? "Unlike" : "Like", pressed: !!h.liked, onSelect: h.onLike },
-    h.onMore && { id: "more", icon: "more-horizontal" as IconName, label: "More options", onSelect: h.onMore },
-  ].filter(Boolean) as ChatAction[],
+  ], [
+    h.onCopy && { id: "copy", icon: "copy-file" as IconName, label: "Copy text", onSelect: h.onCopy },
+    h.onMarkUnread && { id: "unread", icon: "chat-message-unread" as IconName, label: "Mark as unread", onSelect: h.onMarkUnread },
+  ]),
   /** An image, file or audio message: the save action named for what it saves, then reply, delete and more. */
   forAttachment: (kind: "image" | "file" | "audio", h: { onDownload?: () => void; onReply?: () => void; onDelete?: () => void; onMore?: () => void }): ChatAction[] => [
     h.onDownload && { id: "download", icon: (kind === "audio" ? "save" : "download") as IconName, label: kind === "image" ? "Download image" : kind === "file" ? "Download file" : "Save audio", onSelect: h.onDownload },
@@ -422,16 +451,16 @@ export const chatActions = {
     h.onDelete && { id: "delete", icon: "delete" as IconName, label: "Delete", onSelect: h.onDelete },
     h.onMore && { id: "more", icon: "more-horizontal" as IconName, label: "More options", onSelect: h.onMore },
   ].filter(Boolean) as ChatAction[],
-  forMine: (h: { onEdit?: () => void; onReply?: () => void; onCopy?: () => void; onForward?: () => void; onPin?: () => void; onDelete?: () => void }): ChatAction[] => [
-    h.onEdit && { id: "edit", icon: "edit" as IconName, label: "Edit", onSelect: h.onEdit },
+  /** Your message: reply, then More with edit, copy text and delete. React comes from `onReact`. */
+  forMine: (h: { onEdit?: () => void; onReply?: () => void; onCopy?: () => void; onForward?: () => void; onPin?: () => void; onDelete?: () => void }): ChatAction[] => more([
     h.onReply && { id: "reply", icon: "reply" as IconName, label: "Reply", onSelect: h.onReply },
-    h.onCopy && { id: "copy", icon: "copy-file" as IconName, label: "Copy", onSelect: h.onCopy },
-    { id: "more", icon: "more-horizontal" as IconName, label: "More", menu: [
-      h.onForward && { id: "forward", icon: "forward" as IconName, label: "Forward", onSelect: h.onForward },
-      h.onPin && { id: "pin", icon: "pin" as IconName, label: "Pin", onSelect: h.onPin },
-      h.onDelete && { id: "delete", icon: "delete" as IconName, label: "Delete", onSelect: h.onDelete },
-    ].filter(Boolean) as NonNullable<ChatAction["menu"]> },
-  ].filter(Boolean) as ChatAction[],
+  ], [
+    h.onEdit && { id: "edit", icon: "edit" as IconName, label: "Edit", onSelect: h.onEdit },
+    h.onCopy && { id: "copy", icon: "copy-file" as IconName, label: "Copy text", onSelect: h.onCopy },
+    h.onForward && { id: "forward", icon: "forward" as IconName, label: "Forward", onSelect: h.onForward },
+    h.onPin && { id: "pin", icon: "pin" as IconName, label: "Pin", onSelect: h.onPin },
+    h.onDelete && { id: "delete", icon: "delete-outline" as IconName, label: "Delete", onSelect: h.onDelete, tone: "danger" as const },
+  ]),
   /** Copy, reply, rate and regenerate stay in view; reading aloud and the Improve rewrites wait under More. */
   forAssistant: (h: { liked?: "like" | "dislike" | null; onLike?: () => void; onDislike?: () => void; onCopy?: () => void; onReply?: () => void; onRegenerate?: () => void; onImprove?: (how: string) => void; onSpeak?: () => void }): ChatAction[] => {
     const more = [
@@ -459,6 +488,11 @@ export const chatActions = {
 export function ChatText({ children }: { children: React.ReactNode }) {
   const p = <p className="zds-chat-text">{children}</p>;
   return React.useContext(ChatInCardContext) ? p : <ChatBubble>{p}</ChatBubble>;
+}
+
+/** A person named in the text, set in the medium weight. */
+export function ChatMention({ children }: { children: React.ReactNode }) {
+  return <span className="zds-chat-mention">@{children}</span>;
 }
 
 export type ChatFileKind = "pdf" | "sheet" | "doc" | "image" | "video" | "audio" | "archive" | "other";

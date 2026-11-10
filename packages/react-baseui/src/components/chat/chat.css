@@ -42,7 +42,6 @@
 .zds-chat-message {
   --zds-chat-bubble-bg: var(--surface-brand);
   --zds-chat-bubble-fg: var(--foreground-primary);
-  --zds-chat-tint: var(--surface-subtle);
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -50,7 +49,7 @@
   align-items: start;
   box-sizing: border-box;
   max-inline-size: 100%;
-  padding: var(--space-sm);
+  padding: var(--space-lg) var(--space-sm);
   border-radius: var(--zds-chat-r-md);
   transition: background-color var(--animations-smooth);
 }
@@ -59,8 +58,6 @@
 .zds-chat-message:is([data-position="first"], [data-position="middle"]) { padding-block-end: var(--space-xs); }
 .zds-chat-message:is([data-position="middle"], [data-position="last"]) { padding-block-start: 0; }
 .zds-chat-message[data-avatar] { grid-template-columns: var(--control-sm) minmax(0, 1fr); }
-/* The sender's tint, on file and voice tiles. A channel keeps yours. */
-.zds-chat-message[data-role="me"] { --zds-chat-tint: var(--surface-brand); }
 .zds-chat-message[data-side="end"] { justify-items: end; }
 .zds-chat-message[data-side="end"][data-avatar] { grid-template-columns: minmax(0, 1fr) var(--control-sm); }
 .zds-chat-message[data-side="end"] .zds-chat-message__gutter { grid-column: 2; grid-row: 1; }
@@ -70,18 +67,15 @@
    dark fill), so its text and every component inside read against it. */
 .zds-chat-message[data-fill="solid"] { --zds-chat-bubble-bg: var(--interactive-primary-background-default); }
 .zds-chat-message__gutter { display: flex; justify-content: center; }
-/* People sit on the quiet brand tint; the assistant keeps its own swatch. */
-.zds-chat-message:not([data-role="assistant"]) .zds-avatar__swatch { background: var(--surface-brand); }
-.zds-chat-message:not([data-role="assistant"]) .zds-avatar__initials { color: var(--foreground-link); }
 
 .zds-chat-message__main {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: var(--space-sm);
   min-inline-size: 0;
   max-inline-size: min(100%, calc(var(--control-lg) * 12));
 }
-.zds-chat-message[data-side="end"] .zds-chat-message__main { gap: var(--space-2xs); align-items: flex-end; }
+.zds-chat-message[data-side="end"] .zds-chat-message__main { align-items: flex-end; }
 .zds-chat-message[data-role="assistant"] .zds-chat-message__main { max-inline-size: min(100%, calc(var(--control-lg) * 15)); }
 
 /* ---- header: name and time above the message ---------------------------- */
@@ -107,10 +101,11 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-xs);
+  gap: var(--space-sm);
   min-inline-size: 0;
   max-inline-size: 100%;
 }
+/* Your run packs tighter: Figma's grouped slot is 4 on your side, unbound. */
 .zds-chat-message[data-side="end"] .zds-chat-message__blocks { gap: var(--space-2xs); align-items: flex-end; }
 
 /* ---- bubble: your surface. Everyone else's text sits on the page. Corners
@@ -129,9 +124,6 @@
   overflow-wrap: anywhere;
 }
 .zds-chat-message[data-plain] .zds-chat-bubble { padding: 0; border-radius: 0; background: none; }
-/* Conversation: every line, bubble or plain, takes a control-height slot, so
-   everyone's lines keep the same rhythm. A channel sets them at text height. */
-.zds-chat-message[data-style="conversation"] .zds-chat-bubble { min-block-size: var(--control-md); }
 .zds-chat-message[data-fill="solid"] .zds-chat-bubble { color: var(--foreground-primary); }
 .zds-chat-message[data-side="end"][data-position="first"] .zds-chat-bubble { border-end-end-radius: var(--zds-chat-r-xs); }
 .zds-chat-message[data-side="end"][data-position="middle"] .zds-chat-bubble { border-start-end-radius: var(--zds-chat-r-xs); border-end-end-radius: var(--zds-chat-r-xs); }
@@ -221,8 +213,11 @@
   gap: var(--space-3xs);
   padding: var(--space-3xs);
   border-radius: var(--zds-chat-r-md);
+  /* Figma's surface/menu has no token here; surface/overlay is the menu surface. */
   background: var(--surface-overlay);
-  box-shadow: 0 var(--shadow-xsmall-y) var(--shadow-xsmall-blur) var(--shadow-soft);
+  box-shadow:
+    var(--shadow-xsmall-x) var(--shadow-xsmall-y) var(--shadow-xsmall-blur) var(--shadow-soft),
+    var(--shadow-small-x) var(--shadow-small-y) var(--shadow-small-blur) var(--shadow-soft);
 }
 .zds-chat-message__picker { align-self: flex-start; }
 .zds-chat-message[data-side="end"] .zds-chat-message__picker { align-self: flex-end; }
@@ -251,16 +246,16 @@
   box-shadow: none;
 }
 .zds-chat-message[data-side="end"][data-actions="below"] .zds-chat-message__toolbar { align-self: flex-end; }
-/* Menu: one Message actions chevron on hover, with no surface of its own. */
-.zds-chat-message[data-actions="menu"] .zds-chat-message__toolbar { padding: 0; background: none; box-shadow: none; }
-/* Touch has no hover: the bar sits in the flow under the message instead. */
+/* Touch has no hover: a long press sets data-actions-visible, which reveals
+   the same floating bar. Tapping the row alone never shows it. */
 @media (hover: none) {
-  .zds-chat-message__toolbar { position: static; grid-column: 1 / -1; justify-self: start; margin-block-start: var(--space-xs); visibility: visible; opacity: 1; }
+  .zds-chat-message:hover:not([data-actions-visible]):not(:focus-within) .zds-chat-message__toolbar { visibility: hidden; opacity: 0; }
+  .zds-chat-message:hover:not([data-actions-visible]):not(:focus-within):not([aria-busy]) { background: none; }
+  .zds-chat-message { -webkit-touch-callout: none; }
 }
 /* Tools are neutral glyphs, here and in file tiles; a pressed toggle gets the ghost pressed fill. */
 .zds-chat-message__toolbar .zds-button[data-flavour="text"]:not([data-disabled]),
 .zds-chat-message__picker .zds-button[data-flavour="text"]:not([data-disabled]),
-.zds-chat-audio .zds-button[data-flavour="text"]:not([data-disabled]),
 .zds-chat-file .zds-button[data-flavour="text"]:not([data-disabled]) {
   --zds-button-fg: var(--interactive-neutral-foreground-default);
 }
@@ -268,6 +263,13 @@
   --zds-button-bg: var(--interactive-ghost-background-pressed);
   --zds-button-fg: var(--foreground-primary);
 }
+
+/* Delete and the like: the destructive colour on label and glyph. The menu
+   renders in a portal, so this is keyed on the item, not the message. */
+.zds-menu-item[data-chat-tone="danger"] { color: var(--interactive-destructive-background-default); }
+.zds-menu-item[data-chat-tone="danger"] * { color: inherit; }
+
+.zds-chat-mention { font-weight: var(--label-medium-font-weight); }
 
 /* ---- reactions: Assist Chips carrying a glyph and a count --------------- */
 .zds-chat-message__reactions { display: flex; flex-wrap: wrap; gap: var(--space-2xs); }
@@ -297,17 +299,17 @@
 }
 .zds-chat-message__edit-actions { display: flex; justify-content: flex-end; gap: var(--space-xs); }
 
-/* ---- text: body/small on label/medium/line height, as no one style pairs them */
+/* ---- text: body/small ---------------------------------------------------- */
 .zds-chat-text {
   margin: 0;
   white-space: pre-wrap;
   font-family: var(--body-small-font-family), system-ui, sans-serif;
   font-size: var(--body-small-font-size);
-  line-height: var(--label-medium-line-height);
+  line-height: var(--body-small-line-height);
   letter-spacing: var(--body-small-letter-spacing);
 }
 
-/* ---- file: the sender's tint, with the type on a card tile --------------- */
+/* ---- file: a card with a subtle border, the type on a card tile ---------- */
 .zds-chat-file {
   display: flex;
   align-items: center;
@@ -317,12 +319,11 @@
   min-inline-size: min(calc(var(--control-lg) * 4), 100%);
   max-inline-size: 100%;
   padding: var(--space-xs);
+  border: var(--stroke-thin) solid var(--border-subtle);
   border-radius: var(--zds-chat-r-lg);
-  background: var(--zds-chat-tint);
+  background: var(--surface-card);
   color: var(--foreground-primary);
 }
-/* The corner that meets your bubble tightens, as a group's does. */
-.zds-chat-message[data-side="end"] .zds-chat-bubble + :is(.zds-chat-file, .zds-chat-audio) { border-start-end-radius: var(--zds-chat-r-xs); }
 .zds-chat-file__tile {
   display: inline-flex;
   flex: none;
@@ -419,7 +420,7 @@ button.zds-chat-images__photo:focus-visible { outline: var(--stroke-thick) solid
 .zds-chat-card__media img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
 .zds-chat-card__actions { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
 
-/* ---- audio: the sender's tint, bars fill with the primary colour --------- */
+/* ---- audio: a card like the file's, bars fill with the primary colour ---- */
 .zds-chat-audio {
   display: flex;
   align-items: center;
@@ -427,9 +428,10 @@ button.zds-chat-images__photo:focus-visible { outline: var(--stroke-thick) solid
   box-sizing: border-box;
   inline-size: fit-content;
   max-inline-size: 100%;
-  padding: var(--space-xs);
+  padding: var(--space-xs) var(--space-md) var(--space-xs) var(--space-xs);
+  border: var(--stroke-thin) solid var(--border-subtle);
   border-radius: var(--zds-chat-r-lg);
-  background: var(--zds-chat-tint);
+  background: var(--surface-card);
   color: var(--foreground-primary);
 }
 .zds-button.zds-chat-audio__play {
@@ -479,7 +481,6 @@ button.zds-chat-images__photo:focus-visible { outline: var(--stroke-thick) solid
 .zds-chat-video__play .zds-button {
   --zds-button-bg: var(--surface-card);
   --zds-button-border: var(--surface-card);
-  --zds-button-fg: var(--interactive-neutral-foreground-default);
 }
 
 /* ---- choices, sources ---------------------------------------------------- */

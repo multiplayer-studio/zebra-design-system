@@ -1,8 +1,8 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { StatusLabel, Button, type IconName } from "../src/index.js";
+import { IconButton, StatusLabel, TopAppBar, type IconName } from "../src/index.js";
 import {
-  ChatMessage, ChatText, ChatFile, ChatImages, ChatCard, ChatAudio, ChatVideo, ChatChoices, ChatSources,
+  ChatMessage, ChatText, ChatMention, ChatFile, ChatImages, ChatCard, ChatAudio, ChatVideo, ChatChoices, ChatSources,
   ChatTyping, ChatDivider, ChatThread, ChatHeader, ChatImageViewer, chatActions, CHAT_REACTIONS, MessageInput,
   type ChatReaction, type ChatImage, type MessageSubmission,
 } from "../src/experimental.js";
@@ -170,7 +170,7 @@ export const RowStates: Story = {
   },
 };
 
-/** Photos, files, voice notes and video from someone else and from you. The tint follows the sender; video takes none. */
+/** Photos, files, voice notes and video from someone else and from you. Files and voice notes sit on a bordered card. */
 export const Attachments: Story = {
   render: () => (
     <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--space-xl)" }}>
@@ -439,101 +439,53 @@ const DELIVERY: ChatImage[] = [
 ];
 
 /**
- * The "Review Attached Content" frame, with its behaviours: older messages
- * fold their controls into one Message actions menu (items depend on the
- * content), the newest message keeps the full row, the photos fan out and
- * open a viewer, the receipt downloads with progress, the voice note plays,
- * and your messages can be edited, replied to or deleted from the composer.
+ * A short conversation with attachments. Hover a message (long press on
+ * touch) for its actions, open the photos, play the voice note, and send a
+ * reply or a file from the composer.
  */
 export const ReviewAttachedContent: Story = {
   parameters: { layout: "fullscreen" },
   render: function Review() {
-    const [draft, setDraft] = React.useState("");
-    const [sent, setSent] = React.useState<Sent[]>([]);
-    const [mine, setMine] = React.useState("Perfect, thank you. Is the receipt in the bag?");
-    const [liked, setLiked] = React.useState(false);
     const [viewing, setViewing] = React.useState<number | null>(null);
-    const [receipt, setReceipt] = React.useState<number | undefined>(undefined);
-    const [looksGood, setLooksGood] = React.useState<ChatReaction[]>([{ icon: "like", label: "Looks good", text: "Looks good", count: 3 }]);
+    const [sent, setSent] = React.useState<Sent[]>([]);
+    const [draft, setDraft] = React.useState("");
 
-    React.useEffect(() => {
-      if (receipt === undefined || receipt >= 100) return;
-      const t = window.setTimeout(() => setReceipt((p) => Math.min(100, (p ?? 0) + 5)), 150);
-      return () => window.clearTimeout(t);
-    }, [receipt]);
-
-    const download = () => setReceipt(0);
-    const reply = (to: string) => setDraft(`Replying to ${to}: `);
-    const quiet = sent.length > 0; // once you have answered, the voice note folds its controls too
     const send = (m: MessageSubmission) => {
-      const files = m.attachments.map((a) => ({ id: Date.now() + Math.random(), file: { name: a.file.name, meta: `${Math.max(1, Math.round(a.file.size / 1024))} KB · Uploaded` } }));
-      setSent((s) => [...s, ...files, ...(m.text.trim() ? [{ id: Date.now(), text: m.text.trim() }] : [])]);
+      const files = m.attachments.map((a, i) => ({ id: Date.now() + i, file: { name: a.file.name, meta: `${Math.max(1, Math.round(a.file.size / 1024))} KB` } }));
+      const text = m.text.trim() ? [{ id: Date.now() + files.length, text: m.text.trim() }] : [];
+      setSent((s) => [...s, ...files, ...text]);
       setDraft("");
     };
 
     return (
-      <div style={{ display: "grid", gridTemplateRows: "auto 1fr auto", inlineSize: 760, blockSize: "100vh", marginInline: "auto", background: "var(--surface-section)" }}>
-        <ChatHeader author={AMARA} presence="Online" online actions={<Button flavour="outline-subtle" size="small">Details</Button>} />
+      <div style={{ display: "grid", gridTemplateRows: "auto minmax(0, 1fr) auto", inlineSize: 760, blockSize: "100vh", marginInline: "auto", background: "var(--surface-section)" }}>
+        <ChatHeader author={AMARA} presence="Online" online />
 
-        <ChatThread style={{ overflow: "auto", padding: "var(--space-md)", display: "grid", alignContent: "start", gap: "var(--space-lg)" }}>
+        <ChatThread style={{ overflow: "auto" }}>
           <ChatDivider>Today</ChatDivider>
 
-          <div>
-            <ChatMessage role="other" author={AMARA} time="09:41" position="first" actionsPosition="menu"
-              actions={chatActions.forOther({ onCopy: noop, onReply: () => reply("Amara"), liked, onLike: () => setLiked((l) => !l), onMore: noop })}>
-              <ChatText>Chilled delivery is in at door 2.</ChatText>
-            </ChatMessage>
-            <ChatMessage role="other" author={AMARA} position="middle" actionsPosition="menu" actions={chatActions.forOther({ onCopy: noop, onReply: () => reply("Amara") })}>
-              <ChatText>Placed to the right of the planter.</ChatText>
-            </ChatMessage>
-            <ChatMessage role="other" author={AMARA} position="middle" actionsPosition="menu" actions={chatActions.forOther({ onCopy: noop, onReply: () => reply("Amara") })}>
-              <ChatText>I took a few photos so you can spot it.</ChatText>
-            </ChatMessage>
-            <ChatMessage role="other" author={AMARA} position="last" footer={false} actionsPosition="menu"
-              reactions={looksGood} onReact={() => setLooksGood((r) => r.map((x) => ({ ...x, mine: !x.mine, count: x.count + (x.mine ? -1 : 1) })))}
-              actions={chatActions.forAttachment("image", { onDownload: noop, onReply: () => reply("the photos"), onMore: noop })}>
-              <ChatImages images={DELIVERY} onOpen={setViewing} />
-            </ChatMessage>
-          </div>
-
-          <ChatMessage role="me" time="09:44" header status="read" footer={false} editableText={mine} onEdit={setMine} actionsPosition="menu"
-            actions={chatActions.forMine({ onReply: () => reply("your message"), onDelete: noop })}>
-            <ChatText>{mine}</ChatText>
+          <ChatMessage role="other" author={AMARA} time="09:41" actions={chatActions.forOther({ onCopy: noop, onReply: noop })}>
+            <ChatText>Chilled delivery is in at door 2.</ChatText>
+            <ChatText>I took a few photos so you can spot it.</ChatText>
+            <ChatImages images={DELIVERY} onOpen={setViewing} />
           </ChatMessage>
 
-          <div>
-            <ChatMessage role="other" author={AMARA} time="09:46" position="first" actionsPosition="menu"
-              actions={chatActions.forAttachment("file", { onDownload: download, onReply: () => reply("the receipt"), onMore: noop })}>
-              <ChatText>Yes, and I’ve attached a digital copy too.</ChatText>
-              <ChatFile name="Delivery receipt.pdf" meta="PDF · 248 KB" progress={receipt} transfer="download" onDownload={download} />
-            </ChatMessage>
-            <ChatMessage role="other" author={AMARA} position="last" footer={false} actionsPosition={quiet ? "menu" : "below"}
-              actions={quiet
-                ? chatActions.forAttachment("audio", { onDownload: noop, onReply: () => reply("the voice note"), onMore: noop })
-                : [...chatActions.forOther({ onCopy: noop, onReply: () => reply("the voice note") }), { id: "refresh", icon: "refresh", label: "Refresh", onSelect: noop },
-                   ...chatActions.forOther({ liked, onLike: () => setLiked((l) => !l), onMore: noop })]}>
-              <ChatText>One more thing — listen when you have a moment.</ChatText>
-              <ChatAudio src={tone} duration={8} />
-            </ChatMessage>
-          </div>
+          <ChatMessage role="me" time="09:44" status="read" actions={chatActions.forMine({ onCopy: noop, onReply: noop })}>
+            <ChatText>Thanks. Is the receipt in the bag?</ChatText>
+          </ChatMessage>
+
+          <ChatMessage role="other" author={AMARA} time="09:46" actions={chatActions.forOther({ onCopy: noop, onReply: noop })}>
+            <ChatText>Yes, and here is a copy and a quick voice note.</ChatText>
+            <ChatFile name="Delivery receipt.pdf" meta="PDF · 248 KB" onDownload={noop} />
+            <ChatAudio src={tone} duration={8} />
+          </ChatMessage>
 
           {sent.length ? (
-            <div>
-              {sent.map((m, i) => {
-                const last = i === sent.length - 1;
-                const position = sent.length === 1 ? "single" : i === 0 ? "first" : last ? "last" : "middle";
-                const remove = () => setSent((s) => s.filter((x) => x.id !== m.id));
-                return (
-                  <ChatMessage key={m.id} role="me" time={i === 0 ? "now" : undefined} header={i === 0} position={position}
-                    status={last ? "read" : undefined} actionsPosition={last ? "below" : "menu"}
-                    actions={m.text
-                      ? chatActions.forMine({ onEdit: () => setDraft(m.text!), onReply: () => reply("your message"), onDelete: remove })
-                      : chatActions.forAttachment("file", { onDownload: noop, onReply: () => reply(m.file!.name), onDelete: remove })}>
-                    {m.text ? <ChatText>{m.text}</ChatText> : <ChatFile name={m.file!.name} meta={m.file!.meta} />}
-                  </ChatMessage>
-                );
-              })}
-            </div>
+            <ChatMessage role="me" time="now" status="read" actions={chatActions.forMine({ onCopy: noop, onReply: noop })}>
+              {sent.map((m) => m.text
+                ? <ChatText key={m.id}>{m.text}</ChatText>
+                : <ChatFile key={m.id} name={m.file!.name} meta={m.file!.meta} />)}
+            </ChatMessage>
           ) : null}
         </ChatThread>
 
@@ -543,6 +495,145 @@ export const ReviewAttachedContent: Story = {
 
         <ChatImageViewer images={DELIVERY} index={viewing} onIndexChange={setViewing} onClose={() => setViewing(null)} />
       </div>
+    );
+  },
+};
+
+/* ---- examples from the Figma Chat Experimental page --------------------- */
+
+const img = (name: string) => new URL(`./assets/chat/${name}.jpg`, import.meta.url).href;
+const PRINTER: ChatImage[] = [
+  { src: img("printer-wide"), alt: "The label printer mid-print" },
+  { src: img("printer-rolls"), alt: "Printed rolls stacking up" },
+  { src: img("printer-magenta"), alt: "The print head with a magenta roll" },
+];
+const JORDAN = { name: "Jordan Alvarez", initials: "JA" };
+const MAYA = { name: "Maya Chen", initials: "MC" };
+const PRIYA = { name: "Priya Nair", initials: "PN" };
+const ASSISTANT = { name: "Zebra Assistant" };
+const rx = (icon: IconName, count: number, mine = false): ChatReaction => ({ icon, label: labelOf(icon), count, mine });
+
+/** A phone screen: the app bar, the thread and the composer, at Figma's 393px. */
+function Phone({ title, initials, children }: { title: string; initials?: string; children: React.ReactNode }) {
+  const [draft, setDraft] = React.useState("");
+  return (
+    <div style={{ display: "grid", gridTemplateRows: "auto minmax(0, 1fr) auto", gridTemplateColumns: "minmax(0, 1fr)", inlineSize: 393, blockSize: "100vh", marginInline: "auto", background: "var(--surface-page)" }}>
+      <TopAppBar type="default" pageTitle={title} avatarInitials={initials} trailing={<>
+        <IconButton flavour="subtle" size="small" shape="rounded" icon="world" label="Translate" />
+        <IconButton flavour="subtle" size="small" shape="rounded" icon="love" label="Favourite" />
+        <IconButton flavour="subtle" size="small" shape="rounded" icon="more-vertical" label="More" />
+      </>} />
+      <div style={{ overflow: "auto" }}>{children}</div>
+      <div style={{ padding: "var(--space-md) var(--space-sm)" }}>
+        <MessageInput placeholder="Placeholder" value={draft} onValueChange={setDraft} onSend={() => setDraft("")} />
+      </div>
+    </div>
+  );
+}
+
+/** Figma's group example: a channel, so your messages are text with your name, not bubbles. Hover (long press on touch) for React, Reply and More. */
+export const ExampleChannel: Story = {
+  parameters: { layout: "fullscreen" },
+  render: function ExampleChannel() {
+    const [viewing, setViewing] = React.useState<number | null>(null);
+    const [reactions, setReactions] = React.useState<Record<string, ChatReaction[]>>({
+      maya: [rx("like", 1)], jordan: [rx("dislike", 2, true)], calibrated: [rx("satisfied", 3, true), rx("point-heart", 1)], priya: [rx("satisfied", 1)],
+    });
+    const react = (key: string) => (icon: IconName) => setReactions((r) => ({ ...r, [key]: toggle(r[key] ?? [], icon) }));
+    const other = chatActions.forOther({ onReply: noop, onCopy: noop, onMarkUnread: noop });
+    const mine = chatActions.forMine({ onReply: noop, onEdit: noop, onCopy: noop, onDelete: noop });
+    return (
+      <Phone title="Project Team A">
+        <ChatThread ownStyle="plain">
+          <ChatMessage role="other" author={JORDAN} time="1:02" actions={other} onReact={react("a")}>
+            <ChatText>Hey, the label printer in back is doing it again 😩</ChatText>
+            <ChatText>It prints half a label then stops.</ChatText>
+            <ChatImages images={PRINTER} onOpen={setViewing} />
+          </ChatMessage>
+          <ChatMessage role="me" author={MAYA} time="1:04" status="read" receipts={false} actions={mine} reactions={reactions.maya} onReact={react("maya")}>
+            <ChatText>ugh ok</ChatText>
+            <ChatText>Did you try power cycling it?</ChatText>
+            <ChatText>And check if the ribbon is loaded right</ChatText>
+          </ChatMessage>
+          <ChatMessage role="other" author={JORDAN} time="1:06" actions={other} reactions={reactions.jordan} onReact={react("jordan")}>
+            <ChatText>Yep. For both. Still stuck</ChatText>
+          </ChatMessage>
+          <ChatMessage role="me" author={MAYA} time="1:07" status="read" receipts={false} actions={mine} onReact={react("b")}>
+            <ChatText><ChatMention>Zebra Assistant</ChatMention> can you help troubleshoot the ZD421 in the stockroom? It stops mid-print after we replaced the roll this morning, and the light is blinking amber. We’ve power cycled it twice and checked the ribbon. We have a truck delivery at 2 and need labels working before then.</ChatText>
+          </ChatMessage>
+          <ChatMessage role="assistant" author={ASSISTANT} time="1:08" thinking />
+          <ChatMessage role="assistant" author={ASSISTANT} time="1:08" actions={chatActions.forAssistant({ onCopy: noop, onReply: noop, onRegenerate: noop })}>
+            <ChatText>{"A blinking amber light after a roll change usually means the media sensor needs calibrating. Try this:\n\n•  Hold the feed button until the light flashes twice, then release.\n•  The printer will feed a few labels to calibrate.\n•  Print a test label.\n\nIf that doesn’t fix it, I can open a service ticket."}</ChatText>
+            <ChatFile name="How to calibrate a printer requiring an update" kind="pdf" meta="PDF · 248 KB" onDownload={noop} />
+          </ChatMessage>
+          <ChatMessage role="me" author={MAYA} time="1:09" status="read" receipts={false} actions={mine} onReact={react("c")}
+            replyTo={{ author: "Zebra Assistant", text: "A blinking amber light after a roll change usually means…" }}>
+            <ChatText>Create ticket for stock room</ChatText>
+          </ChatMessage>
+          <ChatMessage role="other" author={JORDAN} time="1:16" actions={other} reactions={reactions.calibrated} onReact={react("calibrated")}>
+            <ChatText>Calibration worked!! 🎉</ChatText>
+            <ChatAudio src={tone} duration={8} />
+            <ChatVideo src="" poster={img("video-team")} duration={8} label="Calibration video" />
+          </ChatMessage>
+          <ChatMessage role="other" author={PRIYA} time="1:18" actions={other} reactions={reactions.priya} onReact={react("priya")}
+            replyTo={{ author: "Jordan Alvarez", text: "Calibration worked!! 🎉" }}>
+            <ChatText>Nice work <ChatMention>Jordan Alvarez</ChatMention> 👏</ChatText>
+          </ChatMessage>
+          <ChatMessage role="me" author={MAYA} time="1:21" status="read" footer="Seen (2)" actions={mine} onReact={react("d")}>
+            <ChatText>Perfect, thanks both 🙌</ChatText>
+          </ChatMessage>
+        </ChatThread>
+        <ChatImageViewer images={PRINTER} index={viewing} onIndexChange={setViewing} onClose={() => setViewing(null)} />
+      </Phone>
+    );
+  },
+};
+
+/** Figma's one-to-one example: a conversation, so your messages are bubbles on the right. Hover (long press on touch) for React, Reply and More. */
+export const ExampleConversation: Story = {
+  parameters: { layout: "fullscreen" },
+  render: function ExampleConversation() {
+    const [viewing, setViewing] = React.useState<number | null>(null);
+    const [reactions, setReactions] = React.useState<Record<string, ChatReaction[]>>({
+      mine: [rx("like", 1)], stuck: [rx("dislike", 1, true)], worked: [rx("point-heart", 1, true)],
+    });
+    const react = (key: string) => (icon: IconName) => setReactions((r) => ({ ...r, [key]: toggle(r[key] ?? [], icon) }));
+    const other = chatActions.forOther({ onReply: noop, onCopy: noop, onMarkUnread: noop });
+    const mine = chatActions.forMine({ onReply: noop, onEdit: noop, onCopy: noop, onDelete: noop });
+    return (
+      <Phone title="Jordan Alvarez" initials="JA">
+        <ChatThread>
+          <ChatMessage role="other" author={JORDAN} time="1:02" actions={other} onReact={react("a")}>
+            <ChatText>Hey, the label printer in back is doing it again 😩</ChatText>
+            <ChatText>It prints half a label then stops.</ChatText>
+            <ChatAudio src={tone} duration={8} />
+            <ChatImages images={PRINTER} onOpen={setViewing} />
+          </ChatMessage>
+          <ChatMessage role="me" time="1:04" status="read" receipts={false} actions={mine} reactions={reactions.mine} onReact={react("mine")}>
+            <ChatText>ugh ok</ChatText>
+            <ChatText>Did you try power cycling it?</ChatText>
+            <ChatText>And check if the ribbon is loaded right</ChatText>
+          </ChatMessage>
+          <ChatMessage role="other" author={JORDAN} time="1:06" actions={other} reactions={reactions.stuck} onReact={react("stuck")}>
+            <ChatText>Yep. For both. Still stuck</ChatText>
+            <ChatVideo src="" poster={img("video-laptop")} duration={8} label="Printer video" />
+          </ChatMessage>
+          <ChatMessage role="me" time="1:07" status="read" receipts={false} actions={mine} onReact={react("b")}>
+            <ChatText>Try referencing this doc I found. Hope it offers some help into what we’re doing.</ChatText>
+            <ChatFile name="How to calibrate a printer requiring an update" kind="pdf" meta="PDF · 248 KB" onDownload={noop} />
+            <ChatText>How did that do?</ChatText>
+          </ChatMessage>
+          <ChatMessage role="other" author={JORDAN} time="1:16" actions={other} reactions={reactions.worked} onReact={react("worked")}>
+            <ChatText>Calibration worked!! 🎉</ChatText>
+            <ChatAudio src={tone} duration={8} />
+            <ChatVideo src="" poster={img("video-team")} duration={8} label="Calibration video" />
+          </ChatMessage>
+          <ChatMessage role="me" time="1:21" status="read" actions={mine} onReact={react("c")}>
+            <ChatText>Perfect, thanks Jordan 🙌</ChatText>
+          </ChatMessage>
+        </ChatThread>
+        <ChatImageViewer images={PRINTER} index={viewing} onIndexChange={setViewing} onClose={() => setViewing(null)} />
+      </Phone>
     );
   },
 };
