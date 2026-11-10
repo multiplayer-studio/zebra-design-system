@@ -25,6 +25,7 @@ Never edit these files by hand — CI diffs them against the specs.
 - [Inline Banner](./inline-banner.md) — A status message placed inside the content it is about: a form, a card, a panel. It sits in the flow at its container's 
 - [Input](./input.md) — The full field assembly, a label above, the field itself and a hint below, stacked and spaced as one unit. Type chooses 
 - [Input Chip](./input-chip.md) — Represents a person, entity or value someone has entered or picked, such as a recipient on a message, so it can be revie
+- [Lightbox](./lightbox.md) — A full-size preview over the page, opened from the item being viewed. Images, videos and PDFs render themselves; anythin
 - [Navigation Bar](./navigation-bar.md) — A horizontal bar of top-level destinations, pinned to one edge of a view. It is a container rather than a fixed design, 
 - [Navigation Item](./navigation-item.md) — A single destination inside a Navigation Bar, shown as an icon above a label with an optional badge. It is the content t
 - [Navigation Rail](./navigation-rail.md) — A vertical navigation column for the edge of a desktop view, made of a narrow icon rail and a sub menu panel beside it. 
