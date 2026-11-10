@@ -20,11 +20,11 @@ The docs are the specification. Every colour, size, space, radius, shadow, font 
 | [`icons.json`](icons.json) | **Generated.** The 715 valid icon names from `@zebra-fed/zeta-icons` 1.9.8, keyed by ligature name, with label, category and search terms. |
 | [`scripts/`](scripts/) | Maintainer scripts: the two generators for the files above, and the two zip bundlers (`prototyping-zip.py`, `production-zip.py`, sharing `_bundle.py`). |
 | [`prototypes/`](prototypes/) | HTML prototypes. [`showcase/`](prototypes/showcase/index.html) renders the components in every theme. |
-| [`templates/`](templates/) | Page-level layout templates, one folder per project (`templates/{project_name}/`). Created in prototyping mode (the `create-template` skill); production builds read and edit them (see `PROTOTYPE.md` and `AGENTS.md`). Shipped in both zips. |
+| [`templates/`](templates/) | Page-level layout templates, one folder per project (`templates/{project_name}/`). Created in prototyping mode (the `create-template` skill); production builds read and edit them (see `PROTOTYPE.md` and `PRODUCTION.AGENTS.md`). Shipped in both zips. |
 | [`.claude/skills/`](.claude/skills/) | Claude Code skills. [`create-template`](.claude/skills/create-template/SKILL.md) writes a template doc, including its Responsiveness and Accessibility sections. Prototyping zip only. |
 | [`PRODUCTION.CLAUDE.md`](PRODUCTION.CLAUDE.md) | Template `CLAUDE.md` for consuming projects. The zip scripts ship it as `CLAUDE.md` with one section kept. |
 | [`CLAUDE.md`](CLAUDE.md) | Instructions for working on this repo: keep every doc, generated file and zip in sync with each change. Not shipped in the zips. |
-| [`AGENTS.md`](AGENTS.md) | Guide for agents building a **production** component library from these docs. |
+| [`PRODUCTION.AGENTS.md`](PRODUCTION.AGENTS.md) | Guide for agents building a **production** component library from these docs. Shipped in the production zip as `design-system/AGENTS.md`. |
 | [`PROTOTYPE.md`](PROTOTYPE.md) | Guide for building **throwaway HTML prototypes** from these docs. |
 | [`PROTOTYPING.JIRA.md`](PROTOTYPING.JIRA.md) | Prototyping add-on: asks for a Jira ticket, reads and comments on it through the `zebra-jira` MCP, and explains how to set the MCP up. Imported by `PROTOTYPE.md`; prototyping zip only. |
 | [`PROTOTYPING.FIGMA.md`](PROTOTYPING.FIGMA.md) | Prototyping add-on: offers to send a finished prototype to a Figma file the designer links to, through the Figma MCP, and explains how to connect Figma. Imported by `PROTOTYPE.md`; prototyping zip only. |
@@ -103,7 +103,7 @@ See [`PROTOTYPE.md`](PROTOTYPE.md) for the full rules.
 
 ### Production component library
 
-Copy `design-system/` and `CLAUDE.md` from the production zip into the product repo's root, and follow [`AGENTS.md`](AGENTS.md). In short:
+Copy `design-system/` and `CLAUDE.md` from the production zip into the product repo's root, and follow [`PRODUCTION.AGENTS.md`](PRODUCTION.AGENTS.md) (shipped as `AGENTS.md`). In short:
 
 - Create `LIBRARY.md` (technology, library location, token-name transform, one row per built component) and `CHANGES.md` (log of local doc changes and the copied `version`).
 - Generate the token file, never hand-write it. Keep component tokens as aliases so modes flow through.
@@ -146,7 +146,7 @@ Only maintainers run these scripts. They need Python 3 with the standard library
 | `python3 scripts/tokens-css.py` | any change to the `DESIGN.md` frontmatter or a component's `tokens:` | `tokens.css` |
 | `python3 scripts/icons-json.py [version]` | changing the `icons` version in the `DESIGN.md` frontmatter (needs internet; verifies the npm tarball's integrity) | `icons.json` |
 | `python3 scripts/prototyping-zip.py` | regenerating either file above, or changing the docs, prototypes, `PRODUCTION.CLAUDE.md`, `PROTOTYPE.md`, `PROTOTYPING.JIRA.md`, `PROTOTYPING.FIGMA.md`, `PROTOTYPING.README.md` or `.claude/skills/` | `zebra-design-system-prototyping.zip` |
-| `python3 scripts/production-zip.py` | regenerating either file above, or changing the docs, `PRODUCTION.CLAUDE.md` or `AGENTS.md` | `zebra-design-system-production.zip` |
+| `python3 scripts/production-zip.py` | regenerating either file above, or changing the docs, `PRODUCTION.CLAUDE.md` or `PRODUCTION.AGENTS.md` | `zebra-design-system-production.zip` |
 
 Never edit `tokens.css`, `icons.json` or the zips by hand. Commit them (and the zips) after regenerating, so consumers never need tooling.
 

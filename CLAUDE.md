@@ -11,8 +11,8 @@ Whatever the prompt asks for, finish by making every doc, generated file and bun
 | A token in the `DESIGN.md` frontmatter or a component's `tokens:` | Rerun `python3 scripts/tokens-css.py` (never hand-edit `tokens.css`). Update every component doc and `DESIGN.md` body text that mentions the value. |
 | A component (add, remove, rename, new variant/state/size/property) | The component file's tables and prose, `DESIGN.md` §8 Component Index (and † draft marks), the component counts in `README.md`, and any `composes` lists and prototypes that use it. |
 | The `@zebra-fed/zeta-icons` version | `version` in `DESIGN.md`, rerun `python3 scripts/icons-json.py`, and the icon count/version in `README.md`. |
-| `DESIGN.md` rules (body) | Component docs, `AGENTS.md`, `PROTOTYPE.md`, `PRODUCTION.CLAUDE.md` and `README.md` wherever they restate the rule. |
-| `AGENTS.md`, `PROTOTYPE.md`, `PROTOTYPING.JIRA.md`, `PROTOTYPING.FIGMA.md`, `PROTOTYPING.README.md` or `PRODUCTION.CLAUDE.md` | The others, and the README Contents table, so they never contradict each other. Keep `PRODUCTION.CLAUDE.md` in the layout `scripts/_bundle.py` expects. |
+| `DESIGN.md` rules (body) | Component docs, `PRODUCTION.AGENTS.md`, `PROTOTYPE.md`, `PRODUCTION.CLAUDE.md` and `README.md` wherever they restate the rule. |
+| `PRODUCTION.AGENTS.md`, `PROTOTYPE.md`, `PROTOTYPING.JIRA.md`, `PROTOTYPING.FIGMA.md`, `PROTOTYPING.README.md` or `PRODUCTION.CLAUDE.md` | The others, and the README Contents table, so they never contradict each other. Keep `PRODUCTION.CLAUDE.md` in the layout `scripts/_bundle.py` expects. |
 | `scripts/` (any script, file or folder added or removed) | The `scripts/` row in `README.md` and every doc that names the script. |
 | Files or folders at the repo root | The README Contents table. |
 | Anything that ends up in a zip | Regenerate with `python3 scripts/prototyping-zip.py` and `python3 scripts/production-zip.py`. The zips are generated; never edit them by hand. |

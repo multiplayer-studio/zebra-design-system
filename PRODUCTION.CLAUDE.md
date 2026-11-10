@@ -2,7 +2,7 @@
 
 ## Design system (always applies)
 
-All UI work uses the Zebra Design System. Don't use any other source for how things look. Paths below are relative to the design-system folder: the kit's own folder when prototyping, `design-system/` in a production project.
+All UI work uses the Zebra Design System defined in this folder. Don't use any other source for how things look.
 
 - `DESIGN.md` is the foundation. Its frontmatter holds every raw value (colours, spacing, radius, typography, motion, layout and dimensions) for light, dark and high contrast. Its body holds the rules, starting with §2 Token Architecture.
 - `atoms/`, `molecules/` and `organisms/` hold one file per component, each with a `tokens:` block, anatomy, variants, states, sizes, properties and usage. Read a component's file, and the files it `composes`, before building it.
@@ -23,7 +23,7 @@ Rules:
 
 Keep this section when the project builds and maintains a real component library from the design system. Delete it otherwise.
 
-@AGENTS.md
+@design-system/AGENTS.md
 
 ---
 
