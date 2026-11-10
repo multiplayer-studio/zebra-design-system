@@ -29,17 +29,17 @@ Each package's **packed root** — dist built, `files`-filtered, denylist-checke
 
 | Package | Latest branch | Pinned tag (current) |
 |---|---|---|
-| `@zebra-design-system/tokens` | `dist/tokens` | `tokens-v0.1.0` |
-| `@zebra-design-system/icons` | `dist/icons` | `icons-v0.1.0` |
-| `@zebra-design-system/react-baseui` | `dist/react-baseui` | `react-baseui-v0.1.0` |
-| `@zebra-design-system/web-components` | `dist/web-components` | `web-components-v0.1.0` |
-| `@zebra-fed/zeta-web` | `dist/zeta-web` | `zeta-web-v1.3.6` |
+| `@zebra-design-system/tokens` | `dist/tokens` | `tokens-v0.1.1` |
+| `@zebra-design-system/icons` | `dist/icons` | `icons-v0.1.1` |
+| `@zebra-design-system/react-baseui` | `dist/react-baseui` | `react-baseui-v0.2.1` |
+| `@zebra-design-system/web-components` | `dist/web-components` | `web-components-v0.2.1` |
+| `@zebra-fed/zeta-web` | `dist/zeta-web` | `zeta-web-v1.4.0` |
 
 Consumers install with plain npm/pnpm/yarn and git access to the repo:
 
 ```bash
 npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#dist/react-baseui"      # track latest
-npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#react-baseui-v0.1.0"    # pin a version
+npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#react-baseui-v0.2.1"    # pin a version
 ```
 
 Internal dependencies resolve themselves: the branch manifests point

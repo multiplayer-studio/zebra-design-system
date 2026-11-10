@@ -131,7 +131,7 @@ export class ZetaLightbox extends Contourable(Popup(LitElement)) {
   }
 
   disconnectedCallback() {
-    if (super.disconnectedCallback) super.disconnectedCallback();
+    super.disconnectedCallback?.();
     cancelAnimationFrame(this.settleFrame);
     this.revokeAll();
   }
