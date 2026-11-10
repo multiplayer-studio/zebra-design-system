@@ -5,7 +5,7 @@ description: Write an atomic-design template for the Zebra Design System, a page
 
 # Create a template
 
-A **template** is the atomic-design level above organisms: a page-level layout (regions, and the components that fill them) with placeholder content. It's a Markdown doc, not a prototype. Prototypes stay in `prototypes/`. `PROTOTYPE.md` (Templates) says when to offer one; this skill says how to write it.
+A **template** is the atomic-design level above organisms: a page-level layout (regions, and the components that fill them) with placeholder content. It's a Markdown doc, not a prototype. Prototypes stay in `prototypes/`. `PROTOTYPING.AGENTS.md` (Templates) says when to offer one; this skill says how to write it.
 
 ## 1. Gather
 

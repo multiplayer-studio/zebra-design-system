@@ -1,22 +1,16 @@
 """Shared helpers for the zip bundlers (prototyping-zip.py, production-zip.py). Python 3, stdlib only."""
-import os, re, zipfile
+import os, zipfile
 
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 JUNK = {'.DS_Store', 'Thumbs.db'}
 
 
-def claude_md(keep):
-    """PRODUCTION.CLAUDE.md reduced to the shared rules plus the one section that imports `keep` (e.g. '@PROTOTYPE.md')."""
-    head, *sections = open(os.path.join(ROOT, 'PRODUCTION.CLAUDE.md')).read().split('\n---\n')
-    section = next(s for s in sections if keep in s)
-    assert 'Mode check' in head, 'PRODUCTION.CLAUDE.md layout changed; update _bundle.claude_md'
-    head = re.sub(r'\*\*Mode check:\*\*.*\n\n?', '', head)
-    section = re.sub(r'## Optional: (\w)', lambda m: '## ' + m[1].upper(), re.sub(r'Keep this section.*\n\n', '', section))
-    return head.rstrip() + '\n\n---\n' + section
+def read_claude(name):
+    return open(os.path.join(ROOT, name)).read()
 
 
 def write_zip(out, prefix, folders, files, renames, claude, claude_dir=None):
-    """folders/files copy as-is; renames maps repo path -> zip path; claude is the text of the shipped CLAUDE.md, written to claude_dir (default prefix)."""
+    """folders/files copy as-is; renames maps repo path -> zip path; claude is the text of the shipped CLAUDE.md (read it with read_claude), written to claude_dir (default prefix)."""
     with zipfile.ZipFile(os.path.join(ROOT, out), 'w', zipfile.ZIP_DEFLATED) as z:
         for folder in folders:
             z.write(os.path.join(ROOT, folder), os.path.join(prefix, folder))  # dir entry, so an empty folder still ships

@@ -1,4 +1,4 @@
-"""Regenerate tokens.css, the six token CSS blocks PROTOTYPE.md describes. Maintainers only (needs Python 3).
+"""Regenerate tokens.css, the six token CSS blocks PROTOTYPING.AGENTS.md describes. Maintainers only (needs Python 3).
 
 Usage: python3 scripts/tokens-css.py
 Reads the DESIGN.md frontmatter and the `tokens:` block of every component file, and writes tokens.css

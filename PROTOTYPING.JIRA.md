@@ -22,7 +22,7 @@ Check whether the `zebra-jira` MCP tools are available (`jira_get_issue`, `jira_
 
 ## Setting up the zebra-jira MCP
 
-Give these steps to the designer as written. They need [Node.js](https://nodejs.org) (LTS) installed, which the MCP server runs on. This is the only exception to "never ask the user to install Node" in `PROTOTYPE.md`, and only when they want Jira.
+Give these steps to the designer as written. They need [Node.js](https://nodejs.org) (LTS) installed, which the MCP server runs on. This is the only exception to "never ask the user to install Node" in `PROTOTYPING.AGENTS.md`, and only when they want Jira.
 
 1. **Create a Jira token.** In Jira (`https://jira.zebra.com`), click your avatar → **Profile** → **Personal Access Tokens** → **Create token**. Give it a name, copy the token, and keep it private.
 2. **Open the Claude config.** In the Claude desktop app, go to **Settings** → **Developer** → **Edit Config**. This opens `claude_desktop_config.json`.
