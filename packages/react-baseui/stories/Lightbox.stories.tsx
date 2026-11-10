@@ -1,7 +1,7 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "../src/index.js";
-import { Lightbox, MessageInput, type LightboxItem, type MessageAttachment } from "../src/experimental.js";
+import { Button, Lightbox, type LightboxItem } from "../src/index.js";
+import { MessageInput, type MessageAttachment } from "../src/experimental.js";
 
 /* Everything previewed here is generated in the browser — no network, as the
    Chat stories' photos and tone. */
@@ -61,11 +61,11 @@ const useSampleVideo = () => {
 };
 
 const meta: Meta<typeof Lightbox> = {
-  title: "Experimental/Lightbox",
+  title: "Components/Lightbox",
   component: Lightbox,
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Experimental — no Figma spec.** A full-size preview over the page: images, videos and PDFs render themselves; anything else shows a drawn file sheet and \"no preview\". The toolbar offers open in a new tab, download and close; previous / next page through the items with buttons or arrow keys. Each control hides behind its `show*` prop." } },
+    docs: { description: { component: "A full-size preview over the page: images, videos and PDFs render themselves; anything else shows a drawn file sheet and \"no preview\". The toolbar offers open in a new tab, download and close; previous / next page through the items with buttons or arrow keys. Each control hides behind its `show*` prop. Spec: specs/lightbox." } },
   },
 };
 export default meta;

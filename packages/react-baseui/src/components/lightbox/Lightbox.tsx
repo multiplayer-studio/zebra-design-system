@@ -112,24 +112,26 @@ function Media({ item, name, iconStyle, noPreview, onSized }: {
 }
 
 /**
- * EXPERIMENTAL — no Figma spec. A full-size preview over the page: images,
- * videos and PDFs render themselves; anything else shows a drawn file sheet
- * with its glyph and "no preview". A toolbar names the item and offers open
- * in a new tab, download and close; previous / next page through the items
- * (buttons and arrow keys). Each control hides behind its `show*` prop.
+ * A full-size preview over the page: images, videos and PDFs render
+ * themselves; anything else shows a drawn file sheet with its glyph and
+ * "no preview". A toolbar names the item and offers open in a new tab,
+ * download and close; previous / next page through the items (buttons and
+ * arrow keys). Each control hides behind its `show*` prop.
  *
  * Paging slides a track of frames rather than swapping one for another: the
  * neighbouring items stay mounted either side of the current one, so moving
  * between them never reloads media or flickers, and the old frame glides out
  * as the new one glides in on one CSS transition (`animated`, yielding to
  * reduced motion). The stage's height follows the current frame on the same
- * timing.
+ * timing. Opening is different: the panel springs in from the bottom
+ * (animations/spring) with the stage already at the first frame's height —
+ * the height never animates on open.
  *
  * Behaviour — backdrop, focus trap, Escape, scroll lock and portalling —
  * comes from Base UI's Dialog, as the library Dialog. Everything visual
  * comes from the token layer via `lightbox.css`.
  *
- * @spec none — experimental.
+ * @spec specs/lightbox/lightbox.spec.json
  */
 export const Lightbox = React.forwardRef<HTMLDivElement, LightboxProps>(function Lightbox(
   {
@@ -151,8 +153,9 @@ export const Lightbox = React.forwardRef<HTMLDivElement, LightboxProps>(function
   const kind = item ? lightboxKindOf(item) : "other";
   const name = item ? nameOf(item, S.untitled) : "";
   const paging = showNavigation && items.length > 1 && index !== null;
-  const prev = () => { if (paging && index! > 0) onIndexChange?.(index! - 1); };
-  const next = () => { if (paging && index! < items.length - 1) onIndexChange?.(index! + 1); };
+  // Paging arms the transitions even if no media ever reported a size.
+  const prev = () => { if (paging && index! > 0) { setSettled(true); onIndexChange?.(index! - 1); } };
+  const next = () => { if (paging && index! < items.length - 1) { setSettled(true); onIndexChange?.(index! + 1); } };
 
   const openInNew = () => { if (url) window.open(url, "_blank", "noopener"); };
   const download = () => {
@@ -169,15 +172,13 @@ export const Lightbox = React.forwardRef<HTMLDivElement, LightboxProps>(function
     if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
   };
 
-  // The first shown frame appears in place: transitions switch on one frame
-  // after opening, so only real paging slides.
+  // The panel springs in with the stage already at the first frame's height:
+  // the height and track transitions arm only once the current frame reports
+  // its real size, or on the first page — never on open itself, so opening
+  // never animates the height to meet late-loading media.
   const [settled, setSettled] = React.useState(false);
   const open = index !== null;
-  React.useEffect(() => {
-    if (!open) { setSettled(false); return; }
-    const id = requestAnimationFrame(() => setSettled(true));
-    return () => cancelAnimationFrame(id);
-  }, [open]);
+  React.useEffect(() => { if (!open) setSettled(false); }, [open]);
   const sliding = animated && settled;
 
   // The stage takes the current frame's height, re-measured when its media
@@ -188,6 +189,12 @@ export const Lightbox = React.forwardRef<HTMLDivElement, LightboxProps>(function
   const stageRef = React.useRef<HTMLDivElement | null>(null);
   const [stageHeight, setStageHeight] = React.useState<number | null>(null);
   const [measureTick, bumpMeasure] = React.useReducer((n: number) => n + 1, 0);
+  // The current frame reported real dimensions: take the height without
+  // animating, then arm the transitions one painted frame later.
+  const onCurrentSized = React.useCallback(() => {
+    bumpMeasure();
+    requestAnimationFrame(() => setSettled(true));
+  }, []);
   // Base UI mounts the popup a beat after `open` flips, so the index-change
   // effect can run before the stage exists; measuring again when the node
   // attaches covers it (media load events alone don't — a PDF iframe's load
@@ -245,7 +252,7 @@ export const Lightbox = React.forwardRef<HTMLDivElement, LightboxProps>(function
                     aria-hidden={!current || undefined} inert={!current}>
                     {near ? (
                       <Media item={it} name={nameOf(it, S.untitled)} iconStyle={iconStyle}
-                        noPreview={S.noPreview} onSized={current ? bumpMeasure : undefined} />
+                        noPreview={S.noPreview} onSized={current ? onCurrentSized : undefined} />
                     ) : null}
                   </div>
                 );

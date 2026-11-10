@@ -1,4 +1,5 @@
-/* Lightbox (EXPERIMENTAL) — every value is a semantic token. The backdrop,
+/* Spec: specs/lightbox/lightbox.spec.json
+   Lightbox — every value is a semantic token. The backdrop,
    panel, stacking and the "no elevation token" notes follow dialog.css; the
    stage sits on surface/shade so the media reads against a dimmed well.
    Keyed off data-shape on the root.
@@ -79,8 +80,8 @@
 }
 
 /* ---- stage ---------------------------------------------------------------- */
-/* The media well: surface/shade (the translucent elevate fill) dims the
-   panel behind the content; the nav floats at the sides over it. */
+/* The media well: surface/subtle sets the content apart from the panel (the
+   Figma binding, settled 2026-11-10); the nav floats at the sides over it. */
 .zds-lightbox__stage {
   position: relative;
   display: grid;
@@ -88,7 +89,7 @@
   min-block-size: calc(var(--control-lg) * 6);
   overflow: hidden;
   border-radius: var(--radius-element-sm);
-  background: var(--surface-shade);
+  background: var(--surface-subtle);
 }
 .zds-lightbox[data-shape="sharp"] .zds-lightbox__stage {
   border-radius: var(--radius-none);
@@ -179,7 +180,9 @@ video.zds-lightbox__media {
   border-end-start-radius: var(--radius-element-sm);
   border-inline-start: var(--stroke-thin) solid var(--border-default);
   border-block-end: var(--stroke-thin) solid var(--border-default);
-  background: var(--surface-sunken);
+  /* spec issue "figma-only": surface/sunken has no variable, so the fold
+     sinks with surface/subtle, as the Figma build does. */
+  background: var(--surface-subtle);
 }
 .zds-lightbox[data-shape="sharp"] .zds-lightbox__sheet,
 .zds-lightbox[data-shape="sharp"] .zds-lightbox__sheet::before {
@@ -209,6 +212,14 @@ video.zds-lightbox__media {
        far, and the slide reads as a scene change rather than a flick. */
     --zds-lightbox-duration: 400ms;
     --zds-lightbox-ease: cubic-bezier(0.33, 1, 0.68, 1);
+    /* The whole panel springs in from the bottom on open (animations/spring),
+       with the stage already at the first frame's height. */
+    transition: translate var(--animations-spring);
+  }
+  @starting-style {
+    .zds-lightbox {
+      translate: 0 calc(var(--control-lg) * 1.5);
+    }
   }
   .zds-lightbox__stage[data-animated] {
     transition: block-size var(--zds-lightbox-duration) var(--zds-lightbox-ease);

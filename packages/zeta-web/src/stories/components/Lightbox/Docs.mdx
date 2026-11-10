@@ -1,0 +1,17 @@
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+import * as Lightbox from "./lightbox.stories";
+
+<Meta of={Lightbox} title="Lightbox" />
+
+<Title />
+<Description of="zeta-lightbox" />
+<Canvas of={Lightbox.Lightbox} />
+<ArgTypes of="zeta-lightbox" />
+
+# Paging
+
+<Canvas of={Lightbox.Paging} />
+
+# No preview
+
+<Canvas of={Lightbox.NoPreview} />

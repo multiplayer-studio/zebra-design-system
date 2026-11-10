@@ -47,6 +47,7 @@ export * from "./components/accordion/accordion.js";
 export * from "./components/button-group/button-group.js";
 export * from "./components/notification-item/notification-item.js";
 export * from "./components/dialog/dialog.js";
+export * from "./components/lightbox/lightbox.js";
 export * from "./components/screen-header-bar/screen-header-bar.js";
 export * from "./components/grid-menu-item/grid-menu-item.js";
 export * from "./components/user-profile/user-profile.js";

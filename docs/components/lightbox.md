@@ -2,7 +2,7 @@
 
 > A full-size preview over the page, opened from the item being viewed. Images, videos and PDFs render themselves; anything else shows a drawn file sheet with the file's glyph and “No preview for this file”. A toolbar names the item and offers open in a new tab, download and close; previous, next and the arrow keys page through the list. Backdrop, focus trap, Escape and scroll lock come from Dialog; everything visual comes from the token layer.
 
-**Implementations:** none yet
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-lightbox>`)
 
 ## API
 
@@ -42,7 +42,7 @@
 ## Behaviour
 
 - **Motion** — Paging is one transition on the track’s slide and one on the stage’s height: 400ms on cubic-bezier(0.33, 1, 0.68, 1), slower than the small controls’ 250ms because the frames are large and travel far — the slide reads as a scene change, not a flick. Transitions, not keyed animations: an interrupted page glides to the new target instead of restarting, and nothing remounts. No motion token exists yet; the timing is a literal, as Message Input and Switch.
-- **Opening** — The first shown frame appears in place. Transitions switch on one frame after the lightbox opens, so only real paging slides — without this gate the opening frame slides in from the side.
+- **Opening** — The panel enters from the bottom on animations/spring, carrying the stage at the first frame’s measured height. The height and track transitions arm only once the current frame has reported its real size, or on the first page — so opening never animates the height to meet late-loading media. Only real paging slides and eases.
 - **Height response** — The stage’s height follows the current frame on the paging timing, as a measured length. Both ends of a height transition must be real lengths — auto never interpolates — so the height is always written as a value, never left to the content.
 - **Late media sizes** — An image or video only knows its real size once it loads, and a PDF’s load event is unreliable. The stage re-measures when media gains dimensions and again when the panel mounts; never trust the first measure.
 - **Track sizing** — The track is pinned to the stage, never sized by its content. Sized by content, the tallest frame (a 70vh document) inflates it past the stage, it overflows, and every frame centres against the oversized box instead of the visible window.
@@ -65,12 +65,12 @@
 |---|---|---|
 | Width | Fixed, overridable | control/lg × 16 by default (--zds-lightbox-width in code), capped at the viewport less space/page each side. |
 | Height | Content, capped | Fits its content up to the viewport less space/page top and bottom; the stage follows the current frame. |
-| Stage | Min height | control/lg × 6 minimum; surface/shade fill; radius/element-sm, radius/none when sharp. |
+| Stage | Min height | control/lg × 6 minimum; surface/subtle fill; radius/element-sm, radius/none when sharp. |
 | Media | Capped | Up to 70% of the viewport’s height, keeping its ratio; shadow/medium on shadow/soft — the panel itself carries shadow/large. |
 | Padding | Fixed | space/md around the panel, space/sm between toolbar and stage. |
 | Radius | Per Shape | radius/element-md on the panel, radius/element-sm on the stage; radius/none everywhere when sharp. |
 | Border | Fixed | stroke/thin on border/default around the panel. |
-| Colour | Theming | surface/overlay panel, surface/shade stage, foreground/primary text. Every value is a semantic token; nothing hardcodes a colour, so modes and extensions arrive free. |
+| Colour | Theming | surface/overlay panel, surface/subtle stage, foreground/primary text. Every value is a semantic token; nothing hardcodes a colour, so modes and extensions arrive free. |
 
 ## Accessibility
 

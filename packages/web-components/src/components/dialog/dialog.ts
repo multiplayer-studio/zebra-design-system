@@ -31,7 +31,7 @@ const FOCUSABLE =
   'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), [contenteditable=""], [contenteditable="true"]';
 
 /** First focusable element in flat-tree order, through shadow roots and slots. */
-function firstFocusable(nodes: Iterable<Node>): HTMLElement | null {
+export function firstFocusable(nodes: Iterable<Node>): HTMLElement | null {
   for (const node of nodes) {
     if (!(node instanceof HTMLElement)) continue;
     if (node.hidden || node.getAttribute("aria-hidden") === "true") continue;
@@ -46,23 +46,23 @@ function firstFocusable(nodes: Iterable<Node>): HTMLElement | null {
   return null;
 }
 
-function deepActiveElement(): HTMLElement | null {
+export function deepActiveElement(): HTMLElement | null {
   let el = document.activeElement;
   while (el?.shadowRoot?.activeElement) el = el.shadowRoot.activeElement;
   return el as HTMLElement | null;
 }
 
-// Scroll lock shared by every open dialog: the page stops scrolling while any
-// one is open, and is restored when the last closes.
+// Scroll lock shared by every open dialog (and the lightbox): the page stops
+// scrolling while any one is open, and is restored when the last closes.
 let locks = 0;
 let savedOverflow = "";
-function lockScroll() {
+export function lockScroll() {
   if (locks++ === 0) {
     savedOverflow = document.documentElement.style.overflow;
     document.documentElement.style.overflow = "hidden";
   }
 }
-function unlockScroll() {
+export function unlockScroll() {
   if (locks > 0 && --locks === 0) document.documentElement.style.overflow = savedOverflow;
 }
 

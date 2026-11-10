@@ -43,7 +43,7 @@ None exposed by swapping. The drawn media inside the variants is a placeholder (
    - **Name** — `title/medium` on `foreground/primary`, fills the row, truncates at one line.
    - **Counter** — `body/medium` on `foreground/secondary`; visible when `showNavigation`.
    - **Actions** — gap `space/2xs`: Icon Button (medium, subtle, glyph `open-in-new-window`) when `showOpenInNew`; Icon Button (medium, subtle, glyph `download`) when `showDownload`; Icon Button (medium, subtle, glyph `close`) always.
-3. **Stage** — The media well: `surface/shade` dims the panel behind the content, minimum height `control/lg` × 6 (288Px as drawn, unbound — see issues; Figma draws `surface/subtle`, also see issues). Radius `radius/element-sm` (`radius/none` when sharp), clips. Content centres both ways; the image kind pads `space/lg` top and bottom, the other kinds fill edge to edge.
+3. **Stage** — The media well: `surface/subtle` sets the content apart from the panel, minimum height `control/lg` × 6 (288Px as drawn, unbound — see issues). Radius `radius/element-sm` (`radius/none` when sharp), clips. Content centres both ways; the image kind pads `space/lg` top and bottom, the other kinds fill edge to edge.
    - **Media** (image, video) — image on `surface/card`, video on `surface/inverse` filling the stage's width; `Shadow/medium` (`shadow/medium/x·y·blur` + `shadow/small/x·y·blur`, both on `shadow/soft`).
    - **Document** (pdf) — fills the stage's width on `surface/card` with `Shadow/medium`.
    - **Unpreviewable** (other) — vertical, gap `space/md`, padding `space/3xl` top and bottom, `space/xl` sides: a **Sheet** (`surface/card`, `border/default` at `stroke/thin`, `Shadow/medium`, `radius/element-md` with the top-right corner `radius/none` under the fold), its **Fold** (`space/lg` square, `surface/subtle`, `stroke/thin` on the bottom and left sides only, anchored top-right), and **"No preview for this file"** in `body/medium` on `foreground/secondary`.
@@ -75,6 +75,7 @@ Root heights are placeholder-media measurements, not design values — in code t
 - **Dimension:** `space/none`, `space/2xs`, `space/sm`, `space/md`, `space/lg`, `space/xl`, `space/3xl`, `radius/none`, `radius/element-sm`, `radius/element-md`, `stroke/base`, `stroke/thin`, `control/md`, `shadow/small|medium|large` x·y·blur
 - **Typography:** `title/medium/*`, `body/medium/*` (text styles `title/medium`, `body/medium`)
 - **Effects:** `Shadow/large`, `Shadow/medium`
+- **Motion:** `animations/spring` (the entry; the paging timing is a literal — see issues)
 - **Theme axes** (from `tokens/manifest.json`): palette Light · Dark · AAA Light · AAA Dark; size and typography Desktop · Tablet · Mobile · Desktop Compact. Every colour is semantic, so modes and brand extensions apply with no component work.
 
 ## States, behavior & motion
@@ -83,14 +84,14 @@ Verbatim from the metadata.
 
 | State | Trigger | Duration | What changes |
 |---|---|---|---|
-| open | Index set on a closed lightbox | — | Backdrop and panel appear with the current frame already in place. Transitions arm one frame after opening, so the first frame never slides in. |
+| open | Index set on a closed lightbox | animations/spring | The backdrop fades in and the panel springs up from the bottom (animations/spring) with the stage already at the current frame's height. The height never animates on open, and the first frame never slides in. |
 | paging | Previous / next, or the arrow keys | 400ms | The track slides to the new frame — the old one glides out as the new one glides in — and the stage's height follows on the same timing. An interrupted page glides on to the new target instead of restarting. |
 | media sized | The current item's media reports real dimensions | 400ms | The stage re-measures the frame and eases to its true height. Media sizes arrive after mount, so the first measure is never final. |
 | reduced motion | OS motion preference | 0 | The whole motion block turns off: paging and height changes land instantly, whatever Animated says. |
 | closed | Close, Escape or the backdrop | — | The dialog unmounts; offscreen videos are already paused, and the open-in-place reset arms for the next open. |
 
 - **Motion** — Paging is one transition on the track's slide and one on the stage's height: 400ms on cubic-bezier(0.33, 1, 0.68, 1), slower than the small controls' 250ms because the frames are large and travel far — the slide reads as a scene change, not a flick. Transitions, not keyed animations: an interrupted page glides to the new target instead of restarting, and nothing remounts. No motion token exists yet; the timing is a literal, as Message Input and Switch.
-- **Opening** — The first shown frame appears in place. Transitions switch on one frame after the lightbox opens, so only real paging slides — without this gate the opening frame slides in from the side.
+- **Opening** — The panel enters from the bottom on animations/spring, carrying the stage at the first frame's measured height. The height and track transitions arm only once the current frame has reported its real size, or on the first page — so opening never animates the height to meet late-loading media. Only real paging slides and eases.
 - **Height response** — The stage's height follows the current frame on the paging timing, as a measured length. Both ends of a height transition must be real lengths — auto never interpolates — so the height is always written as a value, never left to the content.
 - **Late media sizes** — An image or video only knows its real size once it loads, and a PDF's load event is unreliable. The stage re-measures when media gains dimensions and again when the panel mounts; never trust the first measure.
 - **Track sizing** — The track is pinned to the stage, never sized by its content. Sized by content, the tallest frame (a 70vh document) inflates it past the stage, it overflows, and every frame centres against the oversized box instead of the visible window.
@@ -125,23 +126,23 @@ Verbatim from the metadata.
 
 - **Width** (fixed, overridable) — control/lg × 16 by default (--zds-lightbox-width in code), capped at the viewport less space/page each side.
 - **Height** (content, capped) — Fits its content up to the viewport less space/page top and bottom; the stage follows the current frame.
-- **Stage** (min height) — control/lg × 6 minimum; surface/shade fill; radius/element-sm, radius/none when sharp.
+- **Stage** (min height) — control/lg × 6 minimum; surface/subtle fill; radius/element-sm, radius/none when sharp.
 - **Media** (capped) — Up to 70% of the viewport's height, keeping its ratio; shadow/medium on shadow/soft — the panel itself carries shadow/large.
 - **Padding** (fixed) — space/md around the panel, space/sm between toolbar and stage.
 - **Radius** (per Shape) — radius/element-md on the panel, radius/element-sm on the stage; radius/none everywhere when sharp.
 - **Border** (fixed) — stroke/thin on border/default around the panel.
-- **Colour** (theming) — surface/overlay panel, surface/shade stage, foreground/primary text. Every value is a semantic token; nothing hardcodes a colour, so modes and extensions arrive free.
+- **Colour** (theming) — surface/overlay panel, surface/subtle stage, foreground/primary text. Every value is a semantic token; nothing hardcodes a colour, so modes and extensions arrive free.
 
 ## Issues
 
 **Warn**
 
-1. *cross-check* — The stage's fill is bound to `surface/subtle` in every Figma variant, but the metadata's Layout & Theming row and the implementation both say `surface/shade` (the translucent elevate fill). One of the two is wrong; the intended value is `surface/shade` so content dims what is behind it.
-2. *gaps* — The stage's minimum height is a raw measurement (288Px, matching control/lg × 6 as the metadata states) with no variable bound — Figma cannot bind min-height to arithmetic on a token. Implement it as calc on `control/lg`, not as a literal.
-3. *metadata* — Motion timing (400ms, cubic-bezier(0.33, 1, 0.68, 1)) is a literal: the token export has no motion collection. The metadata says so; the same convention is used by Message Input and Switch.
+1. *gaps* — The stage's minimum height is a raw measurement (288Px, matching control/lg × 6 as the metadata states) with no variable bound — Figma cannot bind min-height to arithmetic on a token. Implement it as calc on `control/lg`, not as a literal.
+2. *metadata* — The paging timing (400ms, cubic-bezier(0.33, 1, 0.68, 1)) is a literal: the token export has no paging-scale motion token. The entry uses the `animations/spring` token; the paging literal follows the Message Input and Switch convention.
 
 **Note**
 
+3. *cross-check* — Resolved 2026-11-10: the stage's fill is `surface/subtle`, as every Figma variant binds it. The metadata and the implementations originally said `surface/shade` and were corrected to match.
 4. *api* — `animated` exists only in code; the variants don't model it. `kind` is derived from the item's MIME type or extension, never set by a consumer — both stated in the metadata.
 5. *bindingDrift* — Stage paddingTop/Bottom (`space/lg`) is bound only in the image variants; the other kinds remove the padding so media fills the stage (intended, per the variant table). The fold's `radius/element-sm` binding exists only in rounded; sharp removes every radius.
 6. *gaps* — The sheet fold's per-side stroke weights read as a raw composite, but the two drawn sides (bottom, left) are each bound to `stroke/thin`; the zero sides are by design.

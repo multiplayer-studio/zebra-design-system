@@ -78,8 +78,11 @@ export type { InlineBannerProps, InlineBannerStatus, InlineBannerAppearance, Inl
 export { Select } from "./components/select/Select.js";
 export type { SelectProps, SelectOption, SelectFieldState, SelectSize, SelectShape, SelectFlavour, SelectState, SelectLabelType } from "./components/select/Select.js";
 
-/* Spec-less experimental components (Chat, MessageInput, Lightbox) live in
+/* Spec-less experimental components (Chat, MessageInput) live in
    ./experimental.ts, outside this entry's SemVer surface. */
+
+export { Lightbox, lightboxStrings, lightboxKindOf } from "./components/lightbox/Lightbox.js";
+export type { LightboxProps, LightboxItem, LightboxKind, LightboxShape, LightboxStrings } from "./components/lightbox/Lightbox.js";
 
 export { Table, useTableShape } from "./components/table/Table.js";
 export type {
