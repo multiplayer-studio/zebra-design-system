@@ -21,7 +21,7 @@ tokens:
 > Icons come from the Zebra Icons library (v1.9.8), a ligature icon font available in rounded and sharp styles.
 
 ## Anatomy
-1. Glyph — a font ligature: the icon name (e.g. `add`, `close`) is the text content; the font turns it into the glyph. Alternatively a custom vector glyph in the icon colour.
+1. Glyph — a font ligature: the icon name (e.g. `add`, `close`) is the text content; the font turns it into the glyph. Or the icon's inline SVG from `icons.json` (`round` / `sharp`), painted in `currentColor` and sized `1em` (how prototypes draw icons). Alternatively a custom vector glyph in the icon colour.
 2. Optional stroke — an outline of `--icon-stroke-width` (transparent by default), painted under the fill.
 
 ## Variants
