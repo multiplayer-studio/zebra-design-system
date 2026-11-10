@@ -23,7 +23,7 @@ Rules:
 
 Keep this section when the project builds and maintains a real component library from the design system. Delete it otherwise.
 
-@design-system/AGENTS.md
+@PRODUCTION.AGENTS.md
 
 ---
 
