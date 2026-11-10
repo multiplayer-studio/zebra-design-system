@@ -1,18 +1,17 @@
 ---
 name: create-template
-description: Write an atomic-design template for the Zebra Design System, a page-level layout doc in templates/{project_name}/<template-name>.md built only from existing atoms, molecules and organisms. Use when the user asks to create, save or write a template, or says yes to an offer to save a prototype's layout as a template. Also use when they ask to turn an existing screen, page or prototype (from this repo or another codebase) into a template.
+description: Write an atomic-design template for the Zebra Design System, a page-level layout doc in templates/<template-name>.md built only from existing atoms, molecules and organisms. Use when the user asks to create, save or write a template, or says yes to an offer to save a prototype's layout as a template. Also use when they ask to turn an existing screen, page or prototype (from this repo or another codebase) into a template.
 ---
 
 # Create a template
 
-A **template** is the atomic-design level above organisms: a page-level layout (regions, and the components that fill them) with placeholder content. It's a Markdown doc, not a prototype. Prototypes stay in `prototypes/`. `PROTOTYPING.AGENTS.md` (Templates) says when to offer one; this skill says how to write it.
+A **template** is the atomic-design level above organisms: a page-level layout (regions, and the components that fill them) with placeholder content. It's a Markdown doc, not a prototype. Prototypes stay in `prototypes/`. Templates belong to the project this kit was made for, and sit flat in `templates/`. `PROTOTYPING.AGENTS.md` (Templates) says when to offer one; this skill says how to write it.
 
 ## 1. Gather
 
 1. **The source.** This is a prototype in `prototypes/`, a screen in another codebase, or the user's description. Read all of it first. For a codebase, trace the page from its route down to every child component it renders. Include optional regions, empty and loading states, and anything that only appears on selection or hover.
-2. **The project name.** If the user hasn't given one, ask. Write it lowercase and hyphenated (`{project_name}`). If `templates/` already has a folder for this project, reuse it, and confirm if you're not sure.
-3. **The template name.** Use a short, hyphenated name for the pattern, not for one screen: `table-page`, not `wifi-presets`.
-4. **Existing templates.** Check `templates/{project_name}/`. If one already covers this layout, offer to update it instead of writing a second.
+2. **The template name.** Use a short, hyphenated name for the pattern, not for one screen: `table-page`, not `wifi-presets`.
+3. **Existing templates.** Check `templates/`. If one already covers this layout, offer to update it instead of writing a second.
 
 ## 2. Map every part to a component
 
@@ -23,7 +22,7 @@ For each region of the source, find the component that fills it in `atoms/`, `mo
 
 **Never invent a component.** If a part has no matching component, keep the region in the template, describe its contents using existing components, and state in bold that its container is not a design-system component, so prototypes treat it as a placeholder. Tell the user in your reply too. Where the source uses something close but different (e.g. a status label used as a removable chip), use the right design-system component and say what you swapped.
 
-## 3. Write `templates/{project_name}/<template-name>.md`
+## 3. Write `templates/<template-name>.md`
 
 Use the format of the component files:
 
@@ -32,7 +31,7 @@ Use the format of the component files:
 name: <Title Case Name>
 level: template
 status: draft
-composes: [../../organisms/<file>.md, ../../molecules/<file>.md, ../../atoms/<file>.md]
+composes: [../organisms/<file>.md, ../molecules/<file>.md, ../atoms/<file>.md]
 ---
 
 # <Name>
@@ -49,7 +48,7 @@ Where it came from (prototype path or source codebase and component), and what k
 ```
 
 - **Frontmatter.** `composes:` lists every organism, molecule and atom named anywhere in the doc, with paths relative to the template file. Add a `tokens:` block only for layout values the template itself owns, and write them as references (`'{spacing.spacing-large}'`). Never write a raw value.
-- **Anatomy.** Number the regions in reading order. For each, give the component as a link, with its variant, flavor, size and shape (e.g. "[Icon Button](../../atoms/icon-button.md) `refresh`, flavor outline, size medium, shape rounded"). Mark optional regions and say when they appear. Include the empty, loading and selection states the source has. End with: "The composed components govern their own colours, states, sizes, radius and focus rings. The template only places them."
+- **Anatomy.** Number the regions in reading order. For each, give the component as a link, with its variant, flavor, size and shape (e.g. "[Icon Button](../atoms/icon-button.md) `refresh`, flavor outline, size medium, shape rounded"). Mark optional regions and say when they appear. Include the empty, loading and selection states the source has. End with: "The composed components govern their own colours, states, sizes, radius and focus rings. The template only places them."
 - **Layout.** Start with an ASCII wireframe whose numbers match Anatomy. Then describe the page grid, region order, gaps, padding, and which region scrolls. Use only semantic `spacing` and `layout` tokens (`--grid-margin`, `--spacing-*`), written as references. Never use pixels, colours or component tokens.
 - **Responsiveness.** Required. Cover:
   - the large-screen layout (the default) and what changes at or below `--breakpoint-mobile-max`;
@@ -77,4 +76,4 @@ Where it came from (prototype path or source codebase and component), and what k
 - [ ] Missing components and draft components are flagged in the doc and in your reply.
 - [ ] Nothing was written to `prototypes/`.
 
-Then tell the user the template's path, give a one-line summary of its regions, and list anything you flagged.
+Then tell the user the template's path, give a one-line summary of its regions, and list anything you flagged. Remind them that to share it, they give the file to their project's developer, who adds it to the project repo's `design-system/templates/`; from there it reaches the design system and every later kit for the project.

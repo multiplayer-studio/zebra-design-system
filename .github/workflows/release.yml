@@ -1,0 +1,54 @@
+# Run by hand at the end of a sprint: open (or update) a PR with the current design system on every repo in
+# consumers.json, tagging this commit design-system-v<version> first. Dry run by default. See scripts/release.py.
+name: Release to consumers
+
+on:
+  workflow_dispatch:
+    inputs:
+      notes:
+        description: "Release notes for the PR body (flag mandatory standards here)"
+        required: false
+        default: ""
+      dry_run:
+        description: "Dry run: report what each repo would get, change nothing"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read   # pushes use ZEBRA_DESIGN_SYSTEM_ACCESS_TOKEN, not GITHUB_TOKEN
+
+concurrency:
+  group: release
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ZEBRA_DESIGN_SYSTEM_ACCESS_TOKEN }}   # pushes to this repo (commits, tags)
+          fetch-depth: 0   # tags: each repo is merged against the release it has installed
+
+      - name: Check the version is new
+        if: ${{ !inputs.dry_run }}
+        run: |
+          v=$(sed -n "s/^version: '\{0,1\}\([^']*\)'\{0,1\}$/\1/p" DESIGN.md | head -1)
+          echo "VERSION=$v" >> "$GITHUB_ENV"
+          if git rev-parse -q --verify "refs/tags/design-system-v$v" >/dev/null \
+             && [ "$(git rev-list -n1 "design-system-v$v")" != "$(git rev-parse HEAD)" ]; then
+            echo "design-system-v$v already tags another commit: bump version in DESIGN.md first"; exit 1
+          fi
+
+      - name: Tag the release   # first, so repos that merge can be diffed against it even if another repo fails
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git rev-parse -q --verify "refs/tags/design-system-v$VERSION" >/dev/null && exit 0
+          git tag "design-system-v$VERSION"
+          git push origin "design-system-v$VERSION"
+
+      - name: Open PRs
+        run: python3 scripts/release.py ${{ inputs.dry_run && '--dry-run' || '' }} --notes "$NOTES"
+        env:
+          NOTES: ${{ inputs.notes }}
+          DS_BOT_TOKEN: ${{ secrets.TEST_REPO_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.TEST_REPO_ACCESS_TOKEN }}

@@ -1,0 +1,5 @@
+[
+  { "repo": "zebra-dan/test-repo-design-system-1", "branch": "main", "tenant": "test-repo-design-system-1", "project": "test-repo-1" },
+  { "repo": "zebra-dan/test-repo-design-system-2", "branch": "main", "tenant": "test-repo-design-system-2", "project": "test-repo-2" },
+  { "repo": "zebra-dan/test-repo-design-system-3", "branch": "main", "tenant": "test-repo-design-system-3", "project": "test-repo-3" }
+]

@@ -34,7 +34,7 @@ Prototypes need an internet connection to load those fonts.
 | `DESIGN.md` frontmatter | All raw values. Semantic groups: `colors`, `colors-dark`, `colors-high-contrast`, `spacing`, `rounded`, `border`, `elevation`, `font-family`, `font-weight`, `typography`, `motion`, `layout`, `opacity` and `dimensions`. |
 | `DESIGN.md` body | Rules, the token architecture (§2), layout principles and usage guidance |
 | `atoms/`, `molecules/`, `organisms/` `*.md` | One file per component, with anatomy, variants, states, sizing, properties, usage and its `tokens:` block |
-| `templates/{project_name}/*.md` | Page-level layouts saved from earlier prototypes (see Templates) |
+| `templates/*.md` | This project's page-level layouts (see Templates); empty in the generic kit |
 | `tokens.css` | Every token as a CSS custom property, generated from `DESIGN.md` and the component files |
 | `icons.json` | The only valid icons. Each key is an icon name; the value gives its label, category, search terms and its inline SVG in both styles (`round`, `sharp`). The file is large: search it, never read it whole. |
 
@@ -114,7 +114,7 @@ A component's `composes:` list says which other components it is built from. Rea
 
 ## Templates
 
-A **template** is the atomic-design level above organisms: a page-level layout (regions and the components that fill them), with placeholder content. It lives in `templates/{project_name}/<template-name>.md`, next to `prototypes/`.
+A **template** is the atomic-design level above organisms: a page-level layout (regions and the components that fill them), with placeholder content. It lives in `templates/<template-name>.md`, next to `prototypes/`. A project's kit ships with that project's templates; the generic kit, for a new project, ships with none.
 
 **Use them.** Before building a prototype, check `templates/`. If a template fits, build the screen from it.
 
@@ -122,10 +122,11 @@ A **template** is the atomic-design level above organisms: a page-level layout (
 
 **Offer, don't push.**
 - Ask at a natural stopping point, after finishing the request, never mid-task. One short question naming the pattern and where it appears: "The login and reset-password prototypes share this layout. Want me to save it as a template?"
-- If they say yes, ask for the project name and use it as `{project_name}` (lowercase, hyphenated). Reuse it for later templates in the same project, and confirm it if unsure.
 - Write nothing until the designer says yes. If they decline, don't ask about that pattern again.
 
 **Write it** with the `create-template` skill (`.claude/skills/create-template/SKILL.md`), which holds the format and checks. In short: a Markdown doc in the same format as the component files, with `level: template`, `status: draft`, `composes:` listing every component it uses, and the sections Anatomy, Layout, Responsiveness, Accessibility and Usage. The designer can also ask for a template directly, e.g. "Make a template from this prototype."
+
+**Share them.** Templates reach the design system through the project's repo: the designer gives the file to the project's developer, who adds it to the repo's `design-system/templates/`. A nightly sync then copies it to the master design system, and the project's next kit includes it.
 
 A template contains only existing components. Never invent one for it; if it needs something missing, say so instead. A template is a doc, not a prototype: the prototype stays in `prototypes/`.
 

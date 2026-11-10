@@ -6,7 +6,7 @@ The docs are the specification. The code implements them. Neither changes withou
 
 ## Setup
 
-Copy the whole design system into the project as `design-system/`:
+The design system arrives as a pull request from the master design-system repo, opened by its release workflow for every repo in its `consumers.json`. The first one adds the whole design system as `design-system/`:
 
 ```
 design-system/
@@ -14,24 +14,26 @@ design-system/
   atoms/           one .md per component
   molecules/
   organisms/
-  templates/       page-level layouts, one folder per project: templates/{project_name}/ (read and edit only; created by the prototyping kit, see Templates)
+  templates/       this project's page-level layouts (project-owned; written in the prototyping kit, see Templates)
   icons.json       the only valid icon names, keyed by ligature name, with round/sharp SVGs (generated)
   tokens.css       every token as a CSS custom property (generated)
   scripts/         tokens-css.py and icons-json.py, the generators for the two files above
   AGENTS.md        this file
-  LIBRARY.md       project-specific: you create it (see below)
+  LIBRARY.md       project-specific: a template the project's engineers fill in (see below)
   CHANGES.md       project-specific: you create it (see below)
 ```
 
-The production zip also holds a `CLAUDE.md` next to `design-system/`. Put it at the project root; if the project already has a `CLAUDE.md`, merge it in. It imports this file. All paths below are relative to `design-system/`.
+The first PR also adds a `CLAUDE.md` at the project root, which imports this file. If the project already has one, the PR leaves it alone and says so: merge the design-system section in by hand. All paths below are relative to `design-system/`.
 
-On first use, before writing any component, create the two project-specific files.
+On first use, before writing any component, check both project-specific files exist and are filled in.
 
-**`LIBRARY.md`** maps the docs to the code:
+**`LIBRARY.md`** maps the docs to the code. It ships as a template with a worked React example; the project's engineers own it and decide its conventions. If its placeholders aren't filled in, ask the developer for the answers and fill them in, then delete the example. Never change a convention in it on your own. It records:
 - the technology (e.g. React, SwiftUI, Flutter, Compose, plain CSS);
 - where the component library lives (one folder, e.g. `src/components/zebra/`);
 - where the generated token file lives and the command that regenerates it;
 - the name transform from token key to code (e.g. `button-primary-container-background-hover` → `--button-primary-container-background-hover` in CSS, `buttonPrimaryContainerBackgroundHover` in Swift/Dart/Kotlin). Use one mechanical transform everywhere;
+- how a doc's Properties table becomes the component API, and the project's conventions and workflow for library changes;
+- open questions from draft components;
 - a table with one row per component built: `| Component | Doc | Code | Status |`.
 
 **`CHANGES.md`** is the log of every local change to the docs (see Changing the design system). Start it with the `version` from the `DESIGN.md` frontmatter that you copied in.
@@ -58,32 +60,32 @@ Every component file has: `level`, `status` (`stable` or `draft`), `composes`, `
 Work bottom-up. Before building a component, build (or find) everything in its `composes` list.
 
 1. **Check `LIBRARY.md` first.** If the component exists, use it. Never build a second version, a local copy, or a "simple" variant of something already in the library.
-2. **Build from the doc only:** its anatomy, variants, states, sizes, properties and tokens. Expose the doc's Properties table as the component's API (same names and options, same defaults).
+2. **Build from the doc only**, following the conventions in `LIBRARY.md`: its anatomy, variants, states, sizes, properties and tokens. Expose the doc's Properties table as the component's API (same names and options, same defaults).
 3. **Style with the component's own tokens**, then its children's. Never use semantic tokens, primitives or raw values (hex, px, ms, %, font weights) inside a component.
 4. **Compose, don't restate.** A composite renders its child components (e.g. Stepper Input renders the library's Icon Button and Text Input) with the variant and size the doc names. It never re-implements a child's colours, states or radius. Its own tokens cover only its own parts and documented context overrides.
 5. **Implement every documented state** (hover, pressed, focused, disabled, selected, error and any component-specific states) and every size, even if the current screen only needs one.
-6. **Draft components** (`status: draft`, marked † in `DESIGN.md` §8) have intent tokens but no measurements. Build them with clearly marked placeholders, list the open questions in `LIBRARY.md`, and tell the developer. Don't invent measurements silently.
+6. **Draft components** (`status: draft`, marked † in `DESIGN.md` §8) have intent tokens but no measurements. Build them with clearly marked placeholders, list the open questions in `LIBRARY.md` (Open questions), and tell the developer. Don't invent measurements silently.
 7. **Add the row to `LIBRARY.md`** in the same change.
 
 ## Building a screen
 
-- Screens are made only of library components plus layout. Start from a matching template in `templates/{project_name}/` if one exists. Layout uses semantic `spacing`, `layout` and `typography` tokens (`DESIGN.md` §6).
+- Screens are made only of library components plus layout. Start from a matching template in `templates/` if one exists. Layout uses semantic `spacing`, `layout` and `typography` tokens (`DESIGN.md` §6).
 - Screens never style a component. No overriding colours, sizes or radii from the outside, no wrapper that restyles a child. If a screen needs a component to look or behave differently, that's a design-system change (below).
 - Icons come only from `icons.json` (each key is an icon's ligature name; each entry also holds its `round` and `sharp` SVG), via the Icon atom (`atoms/icon.md`). The icon font is package `@zebra-fed/zeta-icons`, at the version in the `DESIGN.md` frontmatter. `icons.json` is generated from that package by `scripts/icons-json.py`; rerun it when the version changes, and never edit it by hand. Use the sharp set for sharp-shaped components and the round set otherwise.
 
 ## Templates
 
-A **template** is the atomic-design level above organisms: a page-level layout (regions and the library components that fill them), with placeholder content. It lives in `templates/{project_name}/<template-name>.md`.
+A **template** is the atomic-design level above organisms: a page-level layout (regions and the library components that fill them), with placeholder content. It lives in `templates/<template-name>.md`. The templates belong to this project: the release PRs never touch `templates/`, and a nightly sync copies them to the master design system (and into this project's prototyping kit).
 
-**Use them.** Before building a screen, check `templates/{project_name}/`. If a template fits, build the screen from it.
+**Use them.** Before building a screen, check `templates/`. If a template fits, build the screen from it.
 
-**Don't create them.** Templates are created only in prototyping mode, and arrive with the design system. If screens repeat a layout that has no template, tell the developer it's a template candidate for the design team, and write nothing.
+**Don't create them.** Templates are written in prototyping mode (the prototyping kit's `create-template` skill). When the developer brings one from a designer, save it in `templates/` as it is. If screens repeat a layout that has no template, tell the developer it's a template candidate for the designer, and write nothing.
 
 **Editing one.** Only when the developer asks. Keep the format: frontmatter with `level: template`, `status` and `composes:` (every organism, molecule and atom it uses, paths relative to the template file), and the sections Anatomy, Layout, Responsiveness, Accessibility and Usage. Layout and Responsiveness use only semantic `spacing` and `layout` tokens, as references. Edit the doc first, then the screens built from it, then log it.
 
 A template contains only existing library components. If an edit needs something that doesn't exist, follow the next section first.
 
-Editing a template changes the design system: log it in `CHANGES.md` (Type: template change, Files: the template path, Upstream: `propose` if other projects would benefit, else `project-only`). Templates are docs only; screens stay in the project's code.
+Log an added or edited template in `CHANGES.md` (Type: template change, Files: the template path, Upstream: `project-only`; templates reach the master design system by the nightly sync, not by review). Templates are docs only; screens stay in the project's code.
 
 ## When something is missing or doesn't fit
 
@@ -117,21 +119,28 @@ The developer may change the system to fit the project. Every change goes **docs
    - Upstream: propose | project-only
    ```
 
-Mark a change `project-only` when it's a deliberate one-off for this project. Mark it `propose` when other projects would benefit; it will be offered back to the master design system.
+Mark a change `project-only` when it's a deliberate one-off for this project. Mark it `propose` when other projects would benefit. The design-system team reads these entries when it reviews this project's differences each sprint (see Syncing).
 
 Never change the code's look or behaviour without the matching doc change, and never change a doc without updating the code that implements it.
 
 ## Syncing with the master design system
 
-The `CHANGES.md` log is what makes the sync possible.
+Both directions are automatic. Your part is keeping `CHANGES.md` accurate, because it carries the why.
 
-- **Sending changes up:** the developer shares the `propose` entries of `CHANGES.md` together with the files they list. Don't push anything upstream yourself.
-- **Pulling a new version:**
-  1. Compare the new `version` with the one recorded in `CHANGES.md`.
-  2. Diff the new docs against the local copy.
-  3. Apply the upstream changes without overwriting anything listed in `CHANGES.md`. Where an upstream change conflicts with a local one, stop and ask the developer.
-  4. Drop log entries that upstream has now adopted.
-  5. Regenerate the tokens, update the affected components, record the new version in `CHANGES.md`, and report what changed.
+- **Sending changes up:** every night the master design-system repo reads this repo's `design-system/` and compares it with the version you have installed (the `version` in `DESIGN.md`). If anything differs, it records the differences in this project's *tenant* there, next to the master docs; if nothing does, there is no tenant. Templates are copied up as they are. Don't push anything upstream yourself.
+- **What happens to a difference:** each sprint the design-system team reviews it and either adopts it into the master docs, allows it as a lasting difference for this project (e.g. your own primitive colours for theming), or rejects it.
+- **Pulling a new version:** it arrives as a pull request on branch `zebra-design-system/<version>`. The PR has already:
+  - replaced every file you hadn't changed;
+  - 3-way merged the files you had changed, so allowed differences stay and master's other edits still land;
+  - left alone anything where your change and master's overlap, listed under **Needs your agent**;
+  - listed rejected differences under **Please revert**;
+  - never touched `LIBRARY.md`, `CHANGES.md` or `templates/`, and regenerated `tokens.css`.
+
+  After the developer merges it:
+  1. Resolve each **Needs your agent** file against the new master version. Where it's unclear, stop and ask the developer.
+  2. Revert the **Please revert** items, unless the developer decides otherwise.
+  3. Regenerate the tokens, update the affected components, record the new `version` in `CHANGES.md`, and drop the entries upstream has now adopted.
+  4. Report what changed.
 
 ## Rules
 

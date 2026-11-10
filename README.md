@@ -18,20 +18,25 @@ The docs are the specification. Every colour, size, space, radius, shadow, font 
 | [`organisms/`](organisms/) | 18 larger patterns: dialog, bottom sheet, global header, top app bar, navigation rail, stepper, data table… |
 | [`tokens.css`](tokens.css) | **Generated.** Every token as a CSS custom property, with light, dark and high-contrast blocks. |
 | [`icons.json`](icons.json) | **Generated.** The 715 valid icon names from `@zebra-fed/zeta-icons` 1.9.8, keyed by ligature name, with label, category, search terms and each icon's round and sharp SVG. |
-| [`scripts/`](scripts/) | Maintainer scripts: the two generators for the files above, the prototype starter generator (`starter-html.py`), and the two zip bundlers (`prototyping-zip.py`, `production-zip.py`, sharing `_bundle.py`). |
+| [`scripts/`](scripts/) | Maintainer scripts: the two generators for the files above, the prototype starter generator (`starter-html.py`), the two bundlers (`prototyping-zip.py` for the prototyping zips, `production-bundle.py` for the production kit, sharing `_bundle.py`), and the consumer loop: `tenants-sync.py` (nightly), `tenants-approve.py` (sprint decisions) and `release.py` (PRs to every consumer), sharing `_tenants.py`. |
 | [`prototypes/`](prototypes/) | HTML prototypes. [`showcase/`](prototypes/showcase/index.html) renders the components in every theme; its tokens, components and icons blocks are filled by `starter-html.py`. [`_starter/`](prototypes/_starter/index.html) is the page every prototype starts from: `components.css` is its hand-edited source, and `index.html` is generated with `tokens.css` and the component CSS inlined. |
-| [`templates/`](templates/) | Page-level layout templates, one folder per project (`templates/{project_name}/`). Created in prototyping mode (the `create-template` skill); production builds read and edit them (see `PROTOTYPING.AGENTS.md` and `PRODUCTION.AGENTS.md`). Shipped in both zips. |
-| [`.claude/skills/`](.claude/skills/) | Claude Code skills. [`create-template`](.claude/skills/create-template/SKILL.md) writes a template doc, including its Responsiveness and Accessibility sections. Prototyping zip only. |
-| [`PRODUCTION.CLAUDE.md`](PRODUCTION.CLAUDE.md) | Template `CLAUDE.md` for production builds. The production zip ships it as `CLAUDE.md`. |
-| [`PROTOTYPING.CLAUDE.md`](PROTOTYPING.CLAUDE.md) | Template `CLAUDE.md` for prototyping. The prototyping zip ships it as `CLAUDE.md`. |
-| [`CLAUDE.md`](CLAUDE.md) | Instructions for working on this repo: keep every doc, generated file and zip in sync with each change. Not shipped in the zips. |
-| [`PRODUCTION.AGENTS.md`](PRODUCTION.AGENTS.md) | Guide for agents building a **production** component library from these docs. Shipped in the production zip as `design-system/AGENTS.md`. |
+| [`templates/`](templates/) | **Synced.** Page-level layout templates, one folder per project (`templates/<project>/`), mirrored each night from the project's repo, which owns them. Written in prototyping mode (the `create-template` skill); production builds read and edit them (see `PROTOTYPING.AGENTS.md` and `PRODUCTION.AGENTS.md`). Kits and repos hold them flat in `templates/`: a project's prototyping zip and its release PRs carry only its own. |
+| [`tenants/`](tenants/) | **Synced.** One folder per consuming repo that differs from the version it has installed: `changes.md` (each difference, and whether it's approved, rejected or needs review), `tenant.json`, the repo's `CHANGES.md` and its changed files. Written by the nightly sync; the DS team decides with `tenants-approve.py` (see `CLAUDE.md`, Sprint reconcile). Never shipped. |
+| [`consumers.json`](consumers.json) | The consuming repos: `repo`, `branch`, `tenant` and `project` for each. Read by the nightly sync and the release workflow. |
+| [`.github/workflows/`](.github/workflows/) | `tenants-sync.yml` (nightly: pulls every consumer, updates `tenants/`, `templates/` and project zips) and `release.yml` (by hand: tags the version and opens a PR on every consumer). Secrets: `TEST_REPO_ACCESS_TOKEN` (the consumer repos: contents and pull requests, read and write; the scripts read it as `DS_BOT_TOKEN`) and `ZEBRA_DESIGN_SYSTEM_ACCESS_TOKEN` (this repo: contents read and write, for the nightly commit and release tags). |
+| [`.claude/skills/`](.claude/skills/) | Claude Code skills. [`create-template`](.claude/skills/create-template/SKILL.md) writes a template doc, including its Responsiveness and Accessibility sections. Prototyping zips only. |
+| [`PRODUCTION.CLAUDE.md`](PRODUCTION.CLAUDE.md) | Template `CLAUDE.md` for production builds. The first release PR adds it to a repo as `CLAUDE.md`. |
+| [`PROTOTYPING.CLAUDE.md`](PROTOTYPING.CLAUDE.md) | Template `CLAUDE.md` for prototyping. The prototyping zips ship it as `CLAUDE.md`. |
+| [`CLAUDE.md`](CLAUDE.md) | Instructions for working on this repo: keep every doc, generated file and kit in sync with each change, and the Sprint reconcile process. Not shipped. |
+| [`PRODUCTION.LIBRARY.md`](PRODUCTION.LIBRARY.md) | Template `LIBRARY.md` in which a product repo's engineers define how they build and maintain their component library (technology, location, token transform, API and conventions, workflow, component list), with a worked React example. Shipped in the production kit as `design-system/LIBRARY.md`. |
+| [`PRODUCTION.AGENTS.md`](PRODUCTION.AGENTS.md) | Guide for agents building a **production** component library from these docs. Shipped in the production kit as `design-system/AGENTS.md`. |
 | [`PROTOTYPING.AGENTS.md`](PROTOTYPING.AGENTS.md) | Guide for building **throwaway HTML prototypes** from these docs. |
-| [`PROTOTYPING.JIRA.md`](PROTOTYPING.JIRA.md) | Prototyping add-on: asks for a Jira ticket, reads and comments on it through the `zebra-jira` MCP, and explains how to set the MCP up. Imported by `PROTOTYPING.AGENTS.md`; prototyping zip only. |
-| [`PROTOTYPING.FIGMA.md`](PROTOTYPING.FIGMA.md) | Prototyping add-on: offers to send a finished prototype to a Figma file the designer links to, through the Figma MCP, and explains how to connect Figma. Imported by `PROTOTYPING.AGENTS.md`; prototyping zip only. |
-| [`PROTOTYPING.README.md`](PROTOTYPING.README.md) | Plain-English setup guide for people who only build prototypes. Shipped as `README.md` inside the prototyping zip. |
-| [`zebra-design-system-prototyping.zip`](zebra-design-system-prototyping.zip) | **Generated.** The prototyping kit to hand to someone who only builds prototypes. |
-| [`zebra-design-system-production.zip`](zebra-design-system-production.zip) | **Generated.** The production kit to drop into a product repo as `design-system/`. |
+| [`PROTOTYPING.JIRA.md`](PROTOTYPING.JIRA.md) | Prototyping add-on: asks for a Jira ticket, reads and comments on it through the `zebra-jira` MCP, and explains how to set the MCP up. Imported by `PROTOTYPING.AGENTS.md`; prototyping zips only. |
+| [`PROTOTYPING.FIGMA.md`](PROTOTYPING.FIGMA.md) | Prototyping add-on: offers to send a finished prototype to a Figma file the designer links to, through the Figma MCP, and explains how to connect Figma. Imported by `PROTOTYPING.AGENTS.md`; prototyping zips only. |
+| [`PROTOTYPING.README.md`](PROTOTYPING.README.md) | Plain-English setup guide for people who only build prototypes. Shipped as `README.md` inside the prototyping zips. |
+| [`architecture.html`](architecture.html), [`architecture.md`](architecture.md) | Interactive, click-through diagram of how a doc change flows through the scripts into the generated files and kits, how consumers build from them, and the nightly-sync and sprint-release loop with every consuming repo. The `.md` is the same content as text. Not shipped. |
+| [`zebra-design-system-prototyping.zip`](zebra-design-system-prototyping.zip), `zebra-design-system-prototyping-<project>.zip` | **Generated.** The prototyping kits to hand to someone who only builds prototypes: the generic one for a new project (no templates), and one per `templates/<project>/` with that project's templates. |
+| `build/` | **Generated, gitignored.** `production-bundle.py` writes the production kit here (`build/zebra-design-system-production/`); `release.py` sends it to the consuming repos. |
 
 The full component list, grouped by level and purpose, is in [`DESIGN.md` §8 Component Index](DESIGN.md#8-component-index-atomic).
 
@@ -82,7 +87,7 @@ The frontmatter is followed by these sections: **Anatomy, Variants, States, Spac
 
 ## Using the design system
 
-Pick one mode per project. Each zip ships its own `CLAUDE.md` (`PRODUCTION.CLAUDE.md` or `PROTOTYPING.CLAUDE.md`), so nothing needs trimming. If you copy by hand, take the file for your mode and name it `CLAUDE.md`.
+Pick one mode per project. Each kit ships its own `CLAUDE.md` (`PRODUCTION.CLAUDE.md` or `PROTOTYPING.CLAUDE.md`), so nothing needs trimming. If you copy by hand, take the file for your mode and name it `CLAUDE.md`.
 
 ### Prototypes (HTML)
 
@@ -104,14 +109,15 @@ See [`PROTOTYPING.AGENTS.md`](PROTOTYPING.AGENTS.md) for the full rules.
 
 ### Production component library
 
-Copy `design-system/` and `CLAUDE.md` from the production zip into the product repo's root, and follow [`PRODUCTION.AGENTS.md`](PRODUCTION.AGENTS.md) (shipped as `AGENTS.md`). In short:
+Add the repo to `consumers.json`. The next release opens a PR that adds `design-system/` and `CLAUDE.md` at the repo's root; from then on, follow [`PRODUCTION.AGENTS.md`](PRODUCTION.AGENTS.md) (shipped as `AGENTS.md`). In short:
 
-- Create `LIBRARY.md` (technology, library location, token-name transform, one row per built component) and `CHANGES.md` (log of local doc changes and the copied `version`).
+- Fill in `LIBRARY.md`, shipped as a template with a React example (technology, library location, token-name transform, component API and conventions, workflow, one row per built component), and create `CHANGES.md` (log of local doc changes and the copied `version`).
 - Generate the token file, never hand-write it. Keep component tokens as aliases so modes flow through.
 - Build bottom-up from the docs. Each component's Properties table is its API, and every documented state and size gets implemented.
 - Screens use library components plus layout tokens only. They never restyle a component.
-- Screens start from a matching template in `templates/{project_name}/`. The agent edits templates on request but never creates them.
-- Every change goes **docs first, then code, then log**, in one piece of work. `propose` entries in `CHANGES.md` are offered back upstream.
+- Screens start from a matching template in `templates/`. The agent edits templates on request and saves ones a designer hands over, but never writes new ones.
+- Every change goes **docs first, then code, then log**, in one piece of work.
+- Local changes go up automatically: each night the master repo records how the repo differs from its installed version (its *tenant*), and each sprint the DS team adopts, allows or rejects each difference. New versions come back as a PR that 3-way merges the repo's changes and never touches `LIBRARY.md`, `CHANGES.md` or `templates/`.
 
 ---
 
@@ -147,16 +153,20 @@ Only maintainers run these scripts. They need Python 3 with the standard library
 | `python3 scripts/tokens-css.py` | any change to the `DESIGN.md` frontmatter or a component's `tokens:` | `tokens.css` |
 | `python3 scripts/starter-html.py` | after `tokens-css.py` or `icons-json.py`, or any change to `prototypes/_starter/components.css` | `prototypes/_starter/index.html` and the showcase's marked blocks; also reports (never fails on) `var()` names nothing defines and component tokens `components.css` doesn't use |
 | `python3 scripts/icons-json.py [version]` | changing the `icons` version in the `DESIGN.md` frontmatter (needs internet; verifies the npm tarball's integrity) | `icons.json` |
-| `python3 scripts/prototyping-zip.py` | regenerating either file above, or changing the docs, prototypes, `PROTOTYPING.CLAUDE.md`, `PROTOTYPING.AGENTS.md`, `PROTOTYPING.JIRA.md`, `PROTOTYPING.FIGMA.md`, `PROTOTYPING.README.md` or `.claude/skills/` | `zebra-design-system-prototyping.zip` |
-| `python3 scripts/production-zip.py` | regenerating either file above, or changing the docs, `PRODUCTION.CLAUDE.md` or `PRODUCTION.AGENTS.md` | `zebra-design-system-production.zip` |
+| `python3 scripts/prototyping-zip.py [project]` | regenerating either file above, or changing the docs, prototypes, `PROTOTYPING.CLAUDE.md`, `PROTOTYPING.AGENTS.md`, `PROTOTYPING.JIRA.md`, `PROTOTYPING.FIGMA.md`, `PROTOTYPING.README.md` or `.claude/skills/` (the nightly sync runs it per project when templates change) | `zebra-design-system-prototyping.zip` and one `zebra-design-system-prototyping-<project>.zip` per `templates/<project>/` (or only that project's); removes zips whose project folder is gone |
+| `python3 scripts/production-bundle.py [out-dir]` | to check the production kit (`release.py` runs it) | `build/zebra-design-system-production/` (gitignored) |
+| `python3 scripts/tenants-sync.py [tenant …]` | runs nightly in CI; by hand to refresh tenants (needs `DS_BOT_TOKEN`, e.g. `$(gh auth token)`) | `tenants/`, `templates/<project>/` and changed project zips |
+| `python3 scripts/tenants-approve.py <tenant> <key-or-path> [--reject \| --undo]` | deciding a tenant difference at sprint reconcile | that tenant's `tenant.json` and `changes.md` |
+| `python3 scripts/release.py [--dry-run] [--notes …]` | runs in the release workflow; by hand with `--dry-run` to preview | a PR per repo in `consumers.json`, on branch `zebra-design-system/<version>` |
+| `python3 scripts/_tenants.py` | changing the consumer-loop scripts | nothing: the self-test |
 
-Never edit `tokens.css`, `icons.json` or the zips by hand. Commit them (and the zips) after regenerating, so consumers never need tooling.
+Never edit `tokens.css`, `icons.json`, the zips, `tenants/` or `templates/<project>/` by hand. Commit the generated files and zips after regenerating, so prototypers never need tooling.
 
-`zebra-design-system-prototyping.zip` is the kit to hand to someone who only builds prototypes. It holds a single `zebra-design-system-prototyping/` folder containing `atoms/`, `molecules/`, `organisms/`, `prototypes/`, `templates/`, `.claude/skills/`, `DESIGN.md`, `PROTOTYPING.AGENTS.md`, `PROTOTYPING.JIRA.md`, `PROTOTYPING.FIGMA.md`, `icons.json` and `tokens.css`. It also includes `CLAUDE.md` (from `PROTOTYPING.CLAUDE.md`), and `PROTOTYPING.README.md` saved as `README.md`. Run the script after regenerating the token or icon files, so the zip carries the latest versions.
+`zebra-design-system-prototyping.zip` is the kit to hand to someone who only builds prototypes on a new project; `zebra-design-system-prototyping-<project>.zip` is the same kit for an existing project. Each holds a single folder of the same name containing `atoms/`, `molecules/`, `organisms/`, `prototypes/`, `templates/` (empty, or that project's templates flat), `.claude/skills/`, `DESIGN.md`, `PROTOTYPING.AGENTS.md`, `PROTOTYPING.JIRA.md`, `PROTOTYPING.FIGMA.md`, `icons.json` and `tokens.css`. It also includes `CLAUDE.md` (from `PROTOTYPING.CLAUDE.md`), and `PROTOTYPING.README.md` saved as `README.md`. Run the script after regenerating the token or icon files, so the zips carry the latest versions.
 
-`zebra-design-system-production.zip` is the kit to drop into a project repo. It holds a `zebra-design-system-production/` folder with two things inside, both copied straight to the project root: `CLAUDE.md` (production-builds section only, importing `@design-system/AGENTS.md`) and a `design-system/` folder (the name `AGENTS.md` expects). `design-system/` contains `atoms/`, `molecules/`, `organisms/`, `templates/`, `DESIGN.md`, `AGENTS.md`, `icons.json`, `tokens.css` and the two generators in `scripts/`.
+The production kit is what the release PRs put in a project repo; it is built, not committed. `build/zebra-design-system-production/` has two things inside, both at the project root: `CLAUDE.md` (production-builds section only, importing `@design-system/AGENTS.md`) and a `design-system/` folder (the name `AGENTS.md` expects). `design-system/` contains `atoms/`, `molecules/`, `organisms/`, `templates/` (empty; `release.py` fills it with the project's own), `DESIGN.md`, `AGENTS.md`, `LIBRARY.md` (the template), `icons.json`, `tokens.css` and the two generators in `scripts/`.
 
-The current docs version is the `version` field in the `DESIGN.md` frontmatter.
+The current docs version is the `version` field in the `DESIGN.md` frontmatter. Each release tags it `design-system-v<version>`; the nightly sync and the next release compare every repo with the tag of the version it has installed, so bump `version` before each release.
 
 ---
 

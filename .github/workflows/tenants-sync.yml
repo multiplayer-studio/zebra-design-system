@@ -1,0 +1,37 @@
+# Nightly: pull every repo in consumers.json; update tenants/ (their differences from master), templates/<project>/
+# (their templates) and that project's prototyping zip. Commits only when something changed. See scripts/tenants-sync.py.
+name: Tenants sync
+
+on:
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read   # pushes use ZEBRA_DESIGN_SYSTEM_ACCESS_TOKEN, not GITHUB_TOKEN
+
+concurrency:
+  group: tenants-sync
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ZEBRA_DESIGN_SYSTEM_ACCESS_TOKEN }}   # pushes to this repo (commits, tags)
+          fetch-depth: 0   # tags: each repo is compared with the release it has installed
+
+      - name: Sync tenants
+        run: python3 scripts/tenants-sync.py
+        env:
+          DS_BOT_TOKEN: ${{ secrets.TEST_REPO_ACCESS_TOKEN }}
+
+      - name: Commit changes
+        if: always()   # keep the repos that synced even if another failed
+        run: |
+          git add -A   # the sync only writes tenants/, templates/ and project zips
+          git diff --cached --quiet && exit 0
+          git -c user.name=zebra-design-system -c user.email=design-system@users.noreply.github.com \
+            commit -m "chore(tenants): nightly sync"
+          git push
