@@ -1,0 +1,5073 @@
+{
+  "glyphs": {
+    "alarm": {
+      "codepoint": 57344,
+      "setId": "2046:6771",
+      "figmaName": "Alarm",
+      "category": "Action",
+      "retired": false
+    },
+    "ar": {
+      "codepoint": 57345,
+      "setId": "2046:6776",
+      "figmaName": "AR",
+      "category": "Action",
+      "retired": false
+    },
+    "bookmark": {
+      "codepoint": 57346,
+      "setId": "2046:6781",
+      "figmaName": "Bookmark",
+      "category": "Action",
+      "retired": false
+    },
+    "bookmark-outline": {
+      "codepoint": 57347,
+      "setId": "2046:6786",
+      "figmaName": "Bookmark Outline",
+      "category": "Action",
+      "retired": false
+    },
+    "build": {
+      "codepoint": 57348,
+      "setId": "2046:6791",
+      "figmaName": "Build",
+      "category": "Action",
+      "retired": false
+    },
+    "cached": {
+      "codepoint": 57349,
+      "setId": "2046:6796",
+      "figmaName": "Cached",
+      "category": "Action",
+      "retired": false
+    },
+    "calendar": {
+      "codepoint": 57350,
+      "setId": "2046:6801",
+      "figmaName": "Calendar",
+      "category": "Action",
+      "retired": false
+    },
+    "calendar-3-day": {
+      "codepoint": 57351,
+      "setId": "2046:6806",
+      "figmaName": "Calendar 3 Day",
+      "category": "Action",
+      "retired": false
+    },
+    "calendar-alt-1": {
+      "codepoint": 57352,
+      "setId": "2046:6811",
+      "figmaName": "Calendar Alt 1",
+      "category": "Action",
+      "retired": false
+    },
+    "calendar-alt-2": {
+      "codepoint": 57353,
+      "setId": "2046:6816",
+      "figmaName": "Calendar Alt 2",
+      "category": "Action",
+      "retired": false
+    },
+    "calendar-available": {
+      "codepoint": 57354,
+      "setId": "2046:6821",
+      "figmaName": "Calendar Available",
+      "category": "Action",
+      "retired": false
+    },
+    "calendar-day": {
+      "codepoint": 57355,
+      "setId": "2046:6826",
+      "figmaName": "Calendar Day",
+      "category": "Action",
+      "retired": false
+    },
+    "calendar-edit": {
+      "codepoint": 57356,
+      "setId": "2046:6831",
+      "figmaName": "Calendar Edit",
+      "category": "Action",
+      "retired": false
+    },
+    "calendar-monthly": {
+      "codepoint": 57357,
+      "setId": "2046:6836",
+      "figmaName": "Calendar Monthly",
+      "category": "Action",
+      "retired": false
+    },
+    "calendar-range": {
+      "codepoint": 57358,
+      "setId": "2046:6841",
+      "figmaName": "Calendar Range",
+      "category": "Action",
+      "retired": false
+    },
+    "calendar-unavailable": {
+      "codepoint": 57359,
+      "setId": "2046:6846",
+      "figmaName": "Calendar Unavailable",
+      "category": "Action",
+      "retired": false
+    },
+    "calendar-weekly": {
+      "codepoint": 57360,
+      "setId": "2046:6851",
+      "figmaName": "Calendar Weekly",
+      "category": "Action",
+      "retired": false
+    },
+    "calendar-yearly": {
+      "codepoint": 57361,
+      "setId": "2046:6856",
+      "figmaName": "Calendar Yearly",
+      "category": "Action",
+      "retired": false
+    },
+    "check-circle": {
+      "codepoint": 57362,
+      "setId": "2046:6861",
+      "figmaName": "Check Circle",
+      "category": "Action",
+      "retired": false
+    },
+    "check-circle-outline": {
+      "codepoint": 57363,
+      "setId": "2046:6866",
+      "figmaName": "Check Circle Outline",
+      "category": "Action",
+      "retired": false
+    },
+    "check-circle-outline-alt": {
+      "codepoint": 57364,
+      "setId": "2046:6871",
+      "figmaName": "Check Circle Outline Alt",
+      "category": "Action",
+      "retired": false
+    },
+    "check-mark": {
+      "codepoint": 57365,
+      "setId": "2046:6876",
+      "figmaName": "Check Mark",
+      "category": "Action",
+      "retired": false
+    },
+    "clipboard": {
+      "codepoint": 57366,
+      "setId": "2046:6881",
+      "figmaName": "Clipboard",
+      "category": "Action",
+      "retired": false
+    },
+    "clock": {
+      "codepoint": 57367,
+      "setId": "2046:6886",
+      "figmaName": "Clock",
+      "category": "Action",
+      "retired": false
+    },
+    "clock-outline": {
+      "codepoint": 57368,
+      "setId": "2046:6891",
+      "figmaName": "Clock Outline",
+      "category": "Action",
+      "retired": false
+    },
+    "credit-card": {
+      "codepoint": 57369,
+      "setId": "2046:6896",
+      "figmaName": "Credit Card",
+      "category": "Action",
+      "retired": false
+    },
+    "delete": {
+      "codepoint": 57370,
+      "setId": "2046:6901",
+      "figmaName": "Delete",
+      "category": "Action",
+      "retired": false
+    },
+    "delete-forever": {
+      "codepoint": 57371,
+      "setId": "2046:6906",
+      "figmaName": "Delete Forever",
+      "category": "Action",
+      "retired": false
+    },
+    "delete-outline": {
+      "codepoint": 57372,
+      "setId": "2046:6911",
+      "figmaName": "Delete Outline",
+      "category": "Action",
+      "retired": false
+    },
+    "dislike": {
+      "codepoint": 57373,
+      "setId": "2046:6916",
+      "figmaName": "Dislike",
+      "category": "Action",
+      "retired": false
+    },
+    "document": {
+      "codepoint": 57374,
+      "setId": "2046:6921",
+      "figmaName": "Document",
+      "category": "Action",
+      "retired": false
+    },
+    "download": {
+      "codepoint": 57375,
+      "setId": "2046:6926",
+      "figmaName": "Download",
+      "category": "Action",
+      "retired": false
+    },
+    "filter": {
+      "codepoint": 57376,
+      "setId": "2046:6931",
+      "figmaName": "Filter",
+      "category": "Action",
+      "retired": false
+    },
+    "filter-alt": {
+      "codepoint": 57377,
+      "setId": "2046:6936",
+      "figmaName": "Filter Alt",
+      "category": "Action",
+      "retired": false
+    },
+    "hand": {
+      "codepoint": 57378,
+      "setId": "2046:6941",
+      "figmaName": "Hand",
+      "category": "Action",
+      "retired": false
+    },
+    "history": {
+      "codepoint": 57379,
+      "setId": "2046:6946",
+      "figmaName": "History",
+      "category": "Action",
+      "retired": false
+    },
+    "home": {
+      "codepoint": 57380,
+      "setId": "2046:6951",
+      "figmaName": "Home",
+      "category": "Action",
+      "retired": false
+    },
+    "info": {
+      "codepoint": 57381,
+      "setId": "2046:6956",
+      "figmaName": "Info",
+      "category": "Action",
+      "retired": false
+    },
+    "ios-share": {
+      "codepoint": 57382,
+      "setId": "2046:6961",
+      "figmaName": "iOS Share",
+      "category": "Action",
+      "retired": false
+    },
+    "label": {
+      "codepoint": 57383,
+      "setId": "2046:6966",
+      "figmaName": "Label",
+      "category": "Action",
+      "retired": false
+    },
+    "left-panel-close": {
+      "codepoint": 57384,
+      "setId": "2046:6971",
+      "figmaName": "Left Panel Close",
+      "category": "Action",
+      "retired": false
+    },
+    "left-panel-open": {
+      "codepoint": 57385,
+      "setId": "2046:6976",
+      "figmaName": "Left Panel Open",
+      "category": "Action",
+      "retired": false
+    },
+    "like": {
+      "codepoint": 57386,
+      "setId": "2046:6981",
+      "figmaName": "Like",
+      "category": "Action",
+      "retired": false
+    },
+    "lock": {
+      "codepoint": 57387,
+      "setId": "2046:6986",
+      "figmaName": "Lock",
+      "category": "Action",
+      "retired": false
+    },
+    "lock-alt": {
+      "codepoint": 57388,
+      "setId": "2046:6991",
+      "figmaName": "Lock Alt",
+      "category": "Action",
+      "retired": false
+    },
+    "log-in": {
+      "codepoint": 57389,
+      "setId": "2046:6996",
+      "figmaName": "Log In",
+      "category": "Action",
+      "retired": false
+    },
+    "log-out": {
+      "codepoint": 57390,
+      "setId": "2046:7001",
+      "figmaName": "Log Out",
+      "category": "Action",
+      "retired": false
+    },
+    "love": {
+      "codepoint": 57391,
+      "setId": "2046:7006",
+      "figmaName": "Love",
+      "category": "Action",
+      "retired": false
+    },
+    "love-outline": {
+      "codepoint": 57392,
+      "setId": "2046:7011",
+      "figmaName": "Love Outline",
+      "category": "Action",
+      "retired": false
+    },
+    "open-in-full": {
+      "codepoint": 57393,
+      "setId": "2046:7016",
+      "figmaName": "Open In Full",
+      "category": "Action",
+      "retired": false
+    },
+    "open-in-new-window": {
+      "codepoint": 57394,
+      "setId": "2046:7021",
+      "figmaName": "Open In New Window",
+      "category": "Action",
+      "retired": false
+    },
+    "pending": {
+      "codepoint": 57395,
+      "setId": "2046:7026",
+      "figmaName": "Pending",
+      "category": "Action",
+      "retired": false
+    },
+    "pin": {
+      "codepoint": 57396,
+      "setId": "2046:7031",
+      "figmaName": "Pin",
+      "category": "Action",
+      "retired": false
+    },
+    "price-or-dollar": {
+      "codepoint": 57397,
+      "setId": "2046:7036",
+      "figmaName": "Price or Dollar",
+      "category": "Action",
+      "retired": false
+    },
+    "renew": {
+      "codepoint": 57398,
+      "setId": "2046:7041",
+      "figmaName": "Renew",
+      "category": "Action",
+      "retired": false
+    },
+    "search": {
+      "codepoint": 57399,
+      "setId": "2046:7046",
+      "figmaName": "Search",
+      "category": "Action",
+      "retired": false
+    },
+    "security-check": {
+      "codepoint": 57400,
+      "setId": "2046:7051",
+      "figmaName": "Security Check",
+      "category": "Action",
+      "retired": false
+    },
+    "settings": {
+      "codepoint": 57401,
+      "setId": "2046:7056",
+      "figmaName": "Settings",
+      "category": "Action",
+      "retired": false
+    },
+    "share": {
+      "codepoint": 57402,
+      "setId": "2046:7061",
+      "figmaName": "Share",
+      "category": "Action",
+      "retired": false
+    },
+    "touch": {
+      "codepoint": 57403,
+      "setId": "2046:7066",
+      "figmaName": "Touch",
+      "category": "Action",
+      "retired": false
+    },
+    "trending-down": {
+      "codepoint": 57404,
+      "setId": "2046:7071",
+      "figmaName": "Trending Down",
+      "category": "Action",
+      "retired": false
+    },
+    "trending-up": {
+      "codepoint": 57405,
+      "setId": "2046:7076",
+      "figmaName": "Trending Up",
+      "category": "Action",
+      "retired": false
+    },
+    "unlock": {
+      "codepoint": 57406,
+      "setId": "2046:7081",
+      "figmaName": "Unlock",
+      "category": "Action",
+      "retired": false
+    },
+    "unlock-alt": {
+      "codepoint": 57407,
+      "setId": "2046:7086",
+      "figmaName": "Unlock Alt",
+      "category": "Action",
+      "retired": false
+    },
+    "update": {
+      "codepoint": 57408,
+      "setId": "2046:7091",
+      "figmaName": "Update",
+      "category": "Action",
+      "retired": false
+    },
+    "upload": {
+      "codepoint": 57409,
+      "setId": "2046:7096",
+      "figmaName": "Upload",
+      "category": "Action",
+      "retired": false
+    },
+    "user": {
+      "codepoint": 57410,
+      "setId": "2046:7101",
+      "figmaName": "User",
+      "category": "Action",
+      "retired": false
+    },
+    "user-circle": {
+      "codepoint": 57411,
+      "setId": "2046:7106",
+      "figmaName": "User Circle",
+      "category": "Action",
+      "retired": false
+    },
+    "user-settings": {
+      "codepoint": 57412,
+      "setId": "2046:7111",
+      "figmaName": "User Settings",
+      "category": "Action",
+      "retired": false
+    },
+    "verified": {
+      "codepoint": 57413,
+      "setId": "2046:7116",
+      "figmaName": "Verified",
+      "category": "Action",
+      "retired": false
+    },
+    "visibility": {
+      "codepoint": 57414,
+      "setId": "2046:7121",
+      "figmaName": "Visibility",
+      "category": "Action",
+      "retired": false
+    },
+    "visibility-off": {
+      "codepoint": 57415,
+      "setId": "2046:7126",
+      "figmaName": "Visibility Off",
+      "category": "Action",
+      "retired": false
+    },
+    "zoom-in": {
+      "codepoint": 57416,
+      "setId": "2046:7131",
+      "figmaName": "Zoom In",
+      "category": "Action",
+      "retired": false
+    },
+    "zoom-out": {
+      "codepoint": 57417,
+      "setId": "2046:7136",
+      "figmaName": "Zoom Out",
+      "category": "Action",
+      "retired": false
+    },
+    "search-tab": {
+      "codepoint": 57418,
+      "setId": "2046:7141",
+      "figmaName": "Search Tab",
+      "category": "Action",
+      "retired": false
+    },
+    "search-image": {
+      "codepoint": 57419,
+      "setId": "2046:7146",
+      "figmaName": "Search Image",
+      "category": "Action",
+      "retired": false
+    },
+    "search-refresh": {
+      "codepoint": 57420,
+      "setId": "2046:7151",
+      "figmaName": "Search Refresh",
+      "category": "Action",
+      "retired": false
+    },
+    "search-checkmark": {
+      "codepoint": 57421,
+      "setId": "2046:7156",
+      "figmaName": "Search Checkmark",
+      "category": "Action",
+      "retired": false
+    },
+    "search-settings": {
+      "codepoint": 57422,
+      "setId": "2046:7161",
+      "figmaName": "Search Settings",
+      "category": "Action",
+      "retired": false
+    },
+    "search-file": {
+      "codepoint": 57423,
+      "setId": "2046:7166",
+      "figmaName": "Search File",
+      "category": "Action",
+      "retired": false
+    },
+    "search-star": {
+      "codepoint": 57424,
+      "setId": "2046:7171",
+      "figmaName": "Search Star",
+      "category": "Action",
+      "retired": false
+    },
+    "search-document": {
+      "codepoint": 57425,
+      "setId": "2046:7176",
+      "figmaName": "Search Document",
+      "category": "Action",
+      "retired": false
+    },
+    "search-data": {
+      "codepoint": 57426,
+      "setId": "2046:7181",
+      "figmaName": "Search Data",
+      "category": "Action",
+      "retired": false
+    },
+    "point-scan": {
+      "codepoint": 57427,
+      "setId": "2046:7186",
+      "figmaName": "Point Scan",
+      "category": "Action",
+      "retired": false
+    },
+    "scan-document": {
+      "codepoint": 57428,
+      "setId": "2046:7191",
+      "figmaName": "Scan Document",
+      "category": "Action",
+      "retired": false
+    },
+    "page-detail": {
+      "codepoint": 57429,
+      "setId": "2046:7196",
+      "figmaName": "Page Detail",
+      "category": "Action",
+      "retired": false
+    },
+    "tune": {
+      "codepoint": 57430,
+      "setId": "2046:7201",
+      "figmaName": "Tune",
+      "category": "Action",
+      "retired": false
+    },
+    "frame-inspect": {
+      "codepoint": 57431,
+      "setId": "2046:7206",
+      "figmaName": "Frame inspect",
+      "category": "Action",
+      "retired": false
+    },
+    "filter-off": {
+      "codepoint": 57432,
+      "setId": "2046:7211",
+      "figmaName": "Filter Off",
+      "category": "Action",
+      "retired": false
+    },
+    "quote": {
+      "codepoint": 57433,
+      "setId": "2046:7216",
+      "figmaName": "Quote ",
+      "category": "Action",
+      "retired": false
+    },
+    "category": {
+      "codepoint": 57434,
+      "setId": "2046:7221",
+      "figmaName": "Category",
+      "category": "Action",
+      "retired": false
+    },
+    "filter-outlne": {
+      "codepoint": 57435,
+      "setId": "2046:7226",
+      "figmaName": "Filter outlne",
+      "category": "Action",
+      "retired": false
+    },
+    "side-bar-toggle": {
+      "codepoint": 57436,
+      "setId": "2046:7231",
+      "figmaName": "Side Bar Toggle",
+      "category": "Action",
+      "retired": false
+    },
+    "shopping-basket": {
+      "codepoint": 57437,
+      "setId": "2046:7236",
+      "figmaName": "Shopping Basket",
+      "category": "Action",
+      "retired": false
+    },
+    "ai-measure": {
+      "codepoint": 57438,
+      "setId": "2046:7245",
+      "figmaName": "AI Measure",
+      "category": "AI",
+      "retired": false
+    },
+    "ai-single-star": {
+      "codepoint": 57439,
+      "setId": "2046:7250",
+      "figmaName": "AI Single Star",
+      "category": "AI",
+      "retired": false
+    },
+    "ai-stars": {
+      "codepoint": 57440,
+      "setId": "2046:7255",
+      "figmaName": "AI Stars",
+      "category": "AI",
+      "retired": false
+    },
+    "add-alert": {
+      "codepoint": 57441,
+      "setId": "2046:7264",
+      "figmaName": "Add Alert",
+      "category": "Alert",
+      "retired": false
+    },
+    "alert": {
+      "codepoint": 57442,
+      "setId": "2046:7269",
+      "figmaName": "Alert",
+      "category": "Alert",
+      "retired": false
+    },
+    "alert-active": {
+      "codepoint": 57443,
+      "setId": "2046:7274",
+      "figmaName": "Alert Active",
+      "category": "Alert",
+      "retired": false
+    },
+    "alert-outline": {
+      "codepoint": 57444,
+      "setId": "2046:7279",
+      "figmaName": "Alert Outline",
+      "category": "Alert",
+      "retired": false
+    },
+    "auto-delete": {
+      "codepoint": 57445,
+      "setId": "2046:7284",
+      "figmaName": "Auto Delete",
+      "category": "Alert",
+      "retired": false
+    },
+    "error": {
+      "codepoint": 57446,
+      "setId": "2046:7289",
+      "figmaName": "Error",
+      "category": "Alert",
+      "retired": false
+    },
+    "error-outline": {
+      "codepoint": 57447,
+      "setId": "2046:7294",
+      "figmaName": "Error Outline",
+      "category": "Alert",
+      "retired": false
+    },
+    "important-notification": {
+      "codepoint": 57448,
+      "setId": "2046:7299",
+      "figmaName": "Important Notification",
+      "category": "Alert",
+      "retired": false
+    },
+    "warning": {
+      "codepoint": 57449,
+      "setId": "2046:7304",
+      "figmaName": "Warning",
+      "category": "Alert",
+      "retired": false
+    },
+    "warning-outline": {
+      "codepoint": 57450,
+      "setId": "2046:7309",
+      "figmaName": "Warning Outline",
+      "category": "Alert",
+      "retired": false
+    },
+    "closed-caption": {
+      "codepoint": 57451,
+      "setId": "2046:7318",
+      "figmaName": "Closed Caption",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "fast-forward": {
+      "codepoint": 57452,
+      "setId": "2046:7323",
+      "figmaName": "Fast Forward",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "fast-rewind": {
+      "codepoint": 57453,
+      "setId": "2046:7328",
+      "figmaName": "Fast Rewind",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "microphone": {
+      "codepoint": 57454,
+      "setId": "2046:7333",
+      "figmaName": "Microphone",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "microphone-off": {
+      "codepoint": 57455,
+      "setId": "2046:7338",
+      "figmaName": "Microphone Off",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "microphone-outline": {
+      "codepoint": 57456,
+      "setId": "2046:7343",
+      "figmaName": "Microphone Outline",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "pause": {
+      "codepoint": 57457,
+      "setId": "2046:7348",
+      "figmaName": "Pause",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "pause-circle": {
+      "codepoint": 57458,
+      "setId": "2046:7353",
+      "figmaName": "Pause Circle",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "play": {
+      "codepoint": 57459,
+      "setId": "2046:7358",
+      "figmaName": "Play",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "play-circle": {
+      "codepoint": 57460,
+      "setId": "2046:7363",
+      "figmaName": "Play Circle",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "play-outline": {
+      "codepoint": 57461,
+      "setId": "2046:7368",
+      "figmaName": "Play Outline",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "replay": {
+      "codepoint": 57462,
+      "setId": "2046:7373",
+      "figmaName": "Replay",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "skip-next": {
+      "codepoint": 57463,
+      "setId": "2046:7378",
+      "figmaName": "Skip Next",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "skip-previous": {
+      "codepoint": 57464,
+      "setId": "2046:7383",
+      "figmaName": "Skip Previous",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "stop": {
+      "codepoint": 57465,
+      "setId": "2046:7388",
+      "figmaName": "Stop",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "stop-circle": {
+      "codepoint": 57466,
+      "setId": "2046:7393",
+      "figmaName": "Stop Circle",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "video-camera": {
+      "codepoint": 57467,
+      "setId": "2046:7398",
+      "figmaName": "Video Camera",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "volume-down": {
+      "codepoint": 57468,
+      "setId": "2046:7403",
+      "figmaName": "Volume Down",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "volume-mute": {
+      "codepoint": 57469,
+      "setId": "2046:7408",
+      "figmaName": "Volume Mute",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "volume-off": {
+      "codepoint": 57470,
+      "setId": "2046:7413",
+      "figmaName": "Volume Off",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "volume-up": {
+      "codepoint": 57471,
+      "setId": "2046:7418",
+      "figmaName": "Volume Up",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "flash-on": {
+      "codepoint": 57472,
+      "setId": "2046:7423",
+      "figmaName": "Flash On",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "flash-off": {
+      "codepoint": 57473,
+      "setId": "2046:7428",
+      "figmaName": "Flash Off",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "flash-auto": {
+      "codepoint": 57474,
+      "setId": "2046:7433",
+      "figmaName": "Flash Auto",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "no-flash": {
+      "codepoint": 57475,
+      "setId": "2046:7438",
+      "figmaName": "No Flash",
+      "category": "Audio Video",
+      "retired": false
+    },
+    "analytics": {
+      "codepoint": 57476,
+      "setId": "2046:7447",
+      "figmaName": "Analytics",
+      "category": "Charts",
+      "retired": false
+    },
+    "chart-bar": {
+      "codepoint": 57477,
+      "setId": "2046:7456",
+      "figmaName": "Chart Bar",
+      "category": "Charts",
+      "retired": false
+    },
+    "chart-bubble": {
+      "codepoint": 57478,
+      "setId": "2046:7461",
+      "figmaName": "Chart Bubble",
+      "category": "Charts",
+      "retired": false
+    },
+    "chart-bubble-outline": {
+      "codepoint": 57479,
+      "setId": "2046:7466",
+      "figmaName": "Chart Bubble Outline",
+      "category": "Charts",
+      "retired": false
+    },
+    "chart-doughnut": {
+      "codepoint": 57480,
+      "setId": "2046:7471",
+      "figmaName": "Chart Doughnut",
+      "category": "Charts",
+      "retired": false
+    },
+    "chart-filled": {
+      "codepoint": 57481,
+      "setId": "2046:7476",
+      "figmaName": "Chart Filled",
+      "category": "Charts",
+      "retired": false
+    },
+    "chart-gantt": {
+      "codepoint": 57482,
+      "setId": "2046:7481",
+      "figmaName": "Chart Gantt",
+      "category": "Charts",
+      "retired": false
+    },
+    "chart-line": {
+      "codepoint": 57483,
+      "setId": "2046:7486",
+      "figmaName": "Chart Line",
+      "category": "Charts",
+      "retired": false
+    },
+    "chart-line-predict": {
+      "codepoint": 57484,
+      "setId": "2046:7491",
+      "figmaName": "Chart Line Predict",
+      "category": "Charts",
+      "retired": false
+    },
+    "chart-line-stacked": {
+      "codepoint": 57485,
+      "setId": "2046:7496",
+      "figmaName": "Chart Line Stacked",
+      "category": "Charts",
+      "retired": false
+    },
+    "chart-outline": {
+      "codepoint": 57486,
+      "setId": "2046:7501",
+      "figmaName": "Chart Outline",
+      "category": "Charts",
+      "retired": false
+    },
+    "chart-pie": {
+      "codepoint": 57487,
+      "setId": "2046:7506",
+      "figmaName": "Chart Pie",
+      "category": "Charts",
+      "retired": false
+    },
+    "chart-pie-outline": {
+      "codepoint": 57488,
+      "setId": "2046:7511",
+      "figmaName": "Chart Pie Outline",
+      "category": "Charts",
+      "retired": false
+    },
+    "chart-scatter-plot": {
+      "codepoint": 57489,
+      "setId": "2046:7516",
+      "figmaName": "Chart Scatter Plot",
+      "category": "Charts",
+      "retired": false
+    },
+    "chart-stacked": {
+      "codepoint": 57490,
+      "setId": "2046:7521",
+      "figmaName": "Chart Stacked",
+      "category": "Charts",
+      "retired": false
+    },
+    "chart-waterfall": {
+      "codepoint": 57491,
+      "setId": "2046:7526",
+      "figmaName": "Chart Waterfall",
+      "category": "Charts",
+      "retired": false
+    },
+    "report": {
+      "codepoint": 57492,
+      "setId": "2046:7531",
+      "figmaName": "Report",
+      "category": "Charts",
+      "retired": false
+    },
+    "table": {
+      "codepoint": 57493,
+      "setId": "2046:7536",
+      "figmaName": "Table",
+      "category": "Charts",
+      "retired": false
+    },
+    "charts-table": {
+      "codepoint": 57494,
+      "setId": "2046:7541",
+      "figmaName": "Table",
+      "category": "Charts",
+      "retired": false
+    },
+    "add-call": {
+      "codepoint": 57495,
+      "setId": "2046:7550",
+      "figmaName": "Add Call",
+      "category": "Communication",
+      "retired": false
+    },
+    "audio": {
+      "codepoint": 57496,
+      "setId": "2046:7555",
+      "figmaName": "Audio",
+      "category": "Communication",
+      "retired": false
+    },
+    "basket": {
+      "codepoint": 57497,
+      "setId": "2046:7560",
+      "figmaName": "Basket",
+      "category": "Communication",
+      "retired": false
+    },
+    "block": {
+      "codepoint": 57498,
+      "setId": "2046:7565",
+      "figmaName": "Block",
+      "category": "Communication",
+      "retired": false
+    },
+    "broadcast": {
+      "codepoint": 57499,
+      "setId": "2046:7570",
+      "figmaName": "Broadcast",
+      "category": "Communication",
+      "retired": false
+    },
+    "call-back": {
+      "codepoint": 57500,
+      "setId": "2046:7575",
+      "figmaName": "Call Back",
+      "category": "Communication",
+      "retired": false
+    },
+    "chat": {
+      "codepoint": 57501,
+      "setId": "2046:7580",
+      "figmaName": "Chat",
+      "category": "Communication",
+      "retired": false
+    },
+    "chat-bot": {
+      "codepoint": 57502,
+      "setId": "2046:7585",
+      "figmaName": "Chat Bot",
+      "category": "Communication",
+      "retired": false
+    },
+    "chat-bubble": {
+      "codepoint": 57503,
+      "setId": "2046:7590",
+      "figmaName": "Chat Bubble",
+      "category": "Communication",
+      "retired": false
+    },
+    "chat-bubble-outline": {
+      "codepoint": 57504,
+      "setId": "2046:7595",
+      "figmaName": "Chat Bubble Outline",
+      "category": "Communication",
+      "retired": false
+    },
+    "chat-message-read": {
+      "codepoint": 57505,
+      "setId": "2046:7600",
+      "figmaName": "Chat Message Read",
+      "category": "Communication",
+      "retired": false
+    },
+    "chat-message-unread": {
+      "codepoint": 57506,
+      "setId": "2046:7605",
+      "figmaName": "Chat Message Unread",
+      "category": "Communication",
+      "retired": false
+    },
+    "chat-search": {
+      "codepoint": 57507,
+      "setId": "2046:7610",
+      "figmaName": "Chat Search",
+      "category": "Communication",
+      "retired": false
+    },
+    "comms-chat": {
+      "codepoint": 57508,
+      "setId": "2046:7615",
+      "figmaName": "Comms Chat",
+      "category": "Communication",
+      "retired": false
+    },
+    "comms-chat-new": {
+      "codepoint": 57509,
+      "setId": "2046:7620",
+      "figmaName": "Comms Chat New",
+      "category": "Communication",
+      "retired": false
+    },
+    "comms-chat-unread": {
+      "codepoint": 57510,
+      "setId": "2046:7625",
+      "figmaName": "Comms Chat Unread",
+      "category": "Communication",
+      "retired": false
+    },
+    "conversation": {
+      "codepoint": 57511,
+      "setId": "2046:7630",
+      "figmaName": "Conversation",
+      "category": "Communication",
+      "retired": false
+    },
+    "dialpad": {
+      "codepoint": 57512,
+      "setId": "2046:7635",
+      "figmaName": "Dialpad",
+      "category": "Communication",
+      "retired": false
+    },
+    "dollar": {
+      "codepoint": 57513,
+      "setId": "2046:7640",
+      "figmaName": "Dollar",
+      "category": "Communication",
+      "retired": false
+    },
+    "email-alt": {
+      "codepoint": 57514,
+      "setId": "2046:7645",
+      "figmaName": "Email Alt",
+      "category": "Communication",
+      "retired": false
+    },
+    "email-reply-all": {
+      "codepoint": 57515,
+      "setId": "2046:7650",
+      "figmaName": "Email Reply All",
+      "category": "Communication",
+      "retired": false
+    },
+    "end-call": {
+      "codepoint": 57516,
+      "setId": "2046:7655",
+      "figmaName": "End Call",
+      "category": "Communication",
+      "retired": false
+    },
+    "forward": {
+      "codepoint": 57517,
+      "setId": "2046:7660",
+      "figmaName": "Forward",
+      "category": "Communication",
+      "retired": false
+    },
+    "gif": {
+      "codepoint": 57518,
+      "setId": "2046:7665",
+      "figmaName": "GIF",
+      "category": "Communication",
+      "retired": false
+    },
+    "headset": {
+      "codepoint": 57519,
+      "setId": "2046:7670",
+      "figmaName": "Headset",
+      "category": "Communication",
+      "retired": false
+    },
+    "hourglass": {
+      "codepoint": 57520,
+      "setId": "2046:7675",
+      "figmaName": "Hourglass",
+      "category": "Communication",
+      "retired": false
+    },
+    "inbox": {
+      "codepoint": 57521,
+      "setId": "2046:7680",
+      "figmaName": "Inbox",
+      "category": "Communication",
+      "retired": false
+    },
+    "incoming-call": {
+      "codepoint": 57522,
+      "setId": "2046:7685",
+      "figmaName": "Incoming Call",
+      "category": "Communication",
+      "retired": false
+    },
+    "incoming-video": {
+      "codepoint": 57523,
+      "setId": "2046:7690",
+      "figmaName": "Incoming Video",
+      "category": "Communication",
+      "retired": false
+    },
+    "lightbulb": {
+      "codepoint": 57524,
+      "setId": "2046:7699",
+      "figmaName": "Lightbulb",
+      "category": "Communication",
+      "retired": false
+    },
+    "location-off": {
+      "codepoint": 57525,
+      "setId": "2046:7704",
+      "figmaName": "Location Off",
+      "category": "Communication",
+      "retired": false
+    },
+    "message": {
+      "codepoint": 57526,
+      "setId": "2046:7709",
+      "figmaName": "Message",
+      "category": "Communication",
+      "retired": false
+    },
+    "missed-call": {
+      "codepoint": 57527,
+      "setId": "2046:7714",
+      "figmaName": "Missed call",
+      "category": "Communication",
+      "retired": false
+    },
+    "missed-video": {
+      "codepoint": 57528,
+      "setId": "2046:7719",
+      "figmaName": "Missed Video",
+      "category": "Communication",
+      "retired": false
+    },
+    "navigate": {
+      "codepoint": 57529,
+      "setId": "2046:7726",
+      "figmaName": "Navigate",
+      "category": "Communication",
+      "retired": false
+    },
+    "new-chat": {
+      "codepoint": 57530,
+      "setId": "2046:7731",
+      "figmaName": "New Chat",
+      "category": "Communication",
+      "retired": false
+    },
+    "notifications-off": {
+      "codepoint": 57531,
+      "setId": "2046:7736",
+      "figmaName": "Notifications Off",
+      "category": "Communication",
+      "retired": false
+    },
+    "outgoing-call": {
+      "codepoint": 57532,
+      "setId": "2046:7741",
+      "figmaName": "Outgoing call",
+      "category": "Communication",
+      "retired": false
+    },
+    "outgoing-video": {
+      "codepoint": 57533,
+      "setId": "2046:7746",
+      "figmaName": "Outgoing Video",
+      "category": "Communication",
+      "retired": false
+    },
+    "palette": {
+      "codepoint": 57534,
+      "setId": "2046:7755",
+      "figmaName": "Palette",
+      "category": "Communication",
+      "retired": false
+    },
+    "person-search": {
+      "codepoint": 57535,
+      "setId": "2046:7760",
+      "figmaName": "Person Search",
+      "category": "Communication",
+      "retired": false
+    },
+    "phone": {
+      "codepoint": 57536,
+      "setId": "2046:7765",
+      "figmaName": "Phone",
+      "category": "Communication",
+      "retired": false
+    },
+    "phone-bluetooth-speaker": {
+      "codepoint": 57537,
+      "setId": "2046:7770",
+      "figmaName": "Phone Bluetooth Speaker",
+      "category": "Communication",
+      "retired": false
+    },
+    "phone-in-talk": {
+      "codepoint": 57538,
+      "setId": "2046:7775",
+      "figmaName": "Phone In Talk",
+      "category": "Communication",
+      "retired": false
+    },
+    "point-token": {
+      "codepoint": 57539,
+      "setId": "2046:7780",
+      "figmaName": "Point Token",
+      "category": "Communication",
+      "retired": false
+    },
+    "priority": {
+      "codepoint": 57540,
+      "setId": "2046:7785",
+      "figmaName": "Priority",
+      "category": "Communication",
+      "retired": false
+    },
+    "ptt": {
+      "codepoint": 57541,
+      "setId": "2046:7790",
+      "figmaName": "PTT",
+      "category": "Communication",
+      "retired": false
+    },
+    "qr-code": {
+      "codepoint": 57542,
+      "setId": "2046:7795",
+      "figmaName": "QR Code",
+      "category": "Communication",
+      "retired": false
+    },
+    "react-add": {
+      "codepoint": 57543,
+      "setId": "2046:7800",
+      "figmaName": "React Add",
+      "category": "Communication",
+      "retired": false
+    },
+    "react-thumbsup": {
+      "codepoint": 57544,
+      "setId": "2046:7805",
+      "figmaName": "React Thumbsup",
+      "category": "Communication",
+      "retired": false
+    },
+    "recording": {
+      "codepoint": 57545,
+      "setId": "2046:7810",
+      "figmaName": "Recording",
+      "category": "Communication",
+      "retired": false
+    },
+    "rss-feed": {
+      "codepoint": 57546,
+      "setId": "2046:7815",
+      "figmaName": "RSS Feed",
+      "category": "Communication",
+      "retired": false
+    },
+    "sd-card": {
+      "codepoint": 57547,
+      "setId": "2046:7820",
+      "figmaName": "SD Card",
+      "category": "Communication",
+      "retired": false
+    },
+    "sim-card": {
+      "codepoint": 57548,
+      "setId": "2046:7825",
+      "figmaName": "SIM Card",
+      "category": "Communication",
+      "retired": false
+    },
+    "sms": {
+      "codepoint": 57549,
+      "setId": "2046:7830",
+      "figmaName": "SMS",
+      "category": "Communication",
+      "retired": false
+    },
+    "snooze": {
+      "codepoint": 57550,
+      "setId": "2046:7835",
+      "figmaName": "Snooze",
+      "category": "Communication",
+      "retired": false
+    },
+    "sticker": {
+      "codepoint": 57551,
+      "setId": "2046:7840",
+      "figmaName": "Sticker",
+      "category": "Communication",
+      "retired": false
+    },
+    "subscribe": {
+      "codepoint": 57552,
+      "setId": "2046:7845",
+      "figmaName": "Subscribe",
+      "category": "Communication",
+      "retired": false
+    },
+    "sync": {
+      "codepoint": 57553,
+      "setId": "2046:7850",
+      "figmaName": "Sync",
+      "category": "Communication",
+      "retired": false
+    },
+    "sync-disabled": {
+      "codepoint": 57554,
+      "setId": "2046:7855",
+      "figmaName": "Sync Disabled",
+      "category": "Communication",
+      "retired": false
+    },
+    "to-do": {
+      "codepoint": 57555,
+      "setId": "2046:7860",
+      "figmaName": "To Do",
+      "category": "Communication",
+      "retired": false
+    },
+    "unsubscribe": {
+      "codepoint": 57556,
+      "setId": "2046:7865",
+      "figmaName": "Unsubscribe",
+      "category": "Communication",
+      "retired": false
+    },
+    "wifi-call": {
+      "codepoint": 57557,
+      "setId": "2046:7870",
+      "figmaName": "WiFi Call",
+      "category": "Communication",
+      "retired": false
+    },
+    "setting-tool": {
+      "codepoint": 57558,
+      "setId": "2046:7879",
+      "figmaName": "Setting Tool",
+      "category": "General",
+      "retired": false
+    },
+    "activity": {
+      "codepoint": 57559,
+      "setId": "2046:7884",
+      "figmaName": "Activity",
+      "category": "General",
+      "retired": false
+    },
+    "add-task": {
+      "codepoint": 57560,
+      "setId": "2046:7889",
+      "figmaName": "Add Task",
+      "category": "General",
+      "retired": false
+    },
+    "app-edit": {
+      "codepoint": 57561,
+      "setId": "2046:7894",
+      "figmaName": "App Edit",
+      "category": "General",
+      "retired": false
+    },
+    "audit-activity": {
+      "codepoint": 57562,
+      "setId": "2046:7899",
+      "figmaName": "Audit Activity",
+      "category": "General",
+      "retired": false
+    },
+    "building": {
+      "codepoint": 57563,
+      "setId": "2046:7904",
+      "figmaName": "Building",
+      "category": "General",
+      "retired": false
+    },
+    "chat-sync": {
+      "codepoint": 57564,
+      "setId": "2046:7909",
+      "figmaName": "Chat Sync",
+      "category": "General",
+      "retired": false
+    },
+    "chat-sync-outline": {
+      "codepoint": 57565,
+      "setId": "2046:7914",
+      "figmaName": "Chat Sync outline",
+      "category": "General",
+      "retired": false
+    },
+    "clipboard-outline": {
+      "codepoint": 57566,
+      "setId": "2046:7919",
+      "figmaName": "Clipboard Outline",
+      "category": "General",
+      "retired": false
+    },
+    "contacts": {
+      "codepoint": 57567,
+      "setId": "2046:7924",
+      "figmaName": "Contacts",
+      "category": "General",
+      "retired": false
+    },
+    "contacts-outline": {
+      "codepoint": 57568,
+      "setId": "2046:7929",
+      "figmaName": "Contacts outline",
+      "category": "General",
+      "retired": false
+    },
+    "exit": {
+      "codepoint": 57569,
+      "setId": "2046:7934",
+      "figmaName": "Exit",
+      "category": "General",
+      "retired": false
+    },
+    "eye-preview": {
+      "codepoint": 57570,
+      "setId": "2046:7939",
+      "figmaName": "Eye Preview",
+      "category": "General",
+      "retired": false
+    },
+    "face-id": {
+      "codepoint": 57571,
+      "setId": "2046:7944",
+      "figmaName": "Face Id",
+      "category": "General",
+      "retired": false
+    },
+    "flip": {
+      "codepoint": 57572,
+      "setId": "2046:7949",
+      "figmaName": "Flip",
+      "category": "General",
+      "retired": false
+    },
+    "glossary": {
+      "codepoint": 57573,
+      "setId": "2046:7954",
+      "figmaName": "Glossary",
+      "category": "General",
+      "retired": false
+    },
+    "home-sync": {
+      "codepoint": 57574,
+      "setId": "2046:7959",
+      "figmaName": "Home Sync",
+      "category": "General",
+      "retired": false
+    },
+    "home-sync-outline": {
+      "codepoint": 57575,
+      "setId": "2046:7964",
+      "figmaName": "Home Sync outline",
+      "category": "General",
+      "retired": false
+    },
+    "how-do-i": {
+      "codepoint": 57576,
+      "setId": "2046:7969",
+      "figmaName": "How Do I",
+      "category": "General",
+      "retired": false
+    },
+    "link-add": {
+      "codepoint": 57577,
+      "setId": "2046:7974",
+      "figmaName": "Link Add",
+      "category": "General",
+      "retired": false
+    },
+    "list-bullet-contained": {
+      "codepoint": 57578,
+      "setId": "2046:7979",
+      "figmaName": "List Bullet Contained",
+      "category": "General",
+      "retired": false
+    },
+    "list-feedback": {
+      "codepoint": 57579,
+      "setId": "2046:7984",
+      "figmaName": "List Feedback",
+      "category": "General",
+      "retired": false
+    },
+    "list-form": {
+      "codepoint": 57580,
+      "setId": "2046:7989",
+      "figmaName": "List Form",
+      "category": "General",
+      "retired": false
+    },
+    "lock-undo": {
+      "codepoint": 57581,
+      "setId": "2046:7994",
+      "figmaName": "Lock Undo",
+      "category": "General",
+      "retired": false
+    },
+    "note": {
+      "codepoint": 57582,
+      "setId": "2046:7999",
+      "figmaName": "Note",
+      "category": "General",
+      "retired": false
+    },
+    "place-outline": {
+      "codepoint": 57583,
+      "setId": "2046:8004",
+      "figmaName": "Place outline",
+      "category": "General",
+      "retired": false
+    },
+    "priority-important": {
+      "codepoint": 57584,
+      "setId": "2046:8009",
+      "figmaName": "Priority Important",
+      "category": "General",
+      "retired": false
+    },
+    "priority-urgent": {
+      "codepoint": 57585,
+      "setId": "2046:8014",
+      "figmaName": "Priority Urgent",
+      "category": "General",
+      "retired": false
+    },
+    "queue": {
+      "codepoint": 57586,
+      "setId": "2046:8019",
+      "figmaName": "Queue",
+      "category": "General",
+      "retired": false
+    },
+    "recall": {
+      "codepoint": 57587,
+      "setId": "2046:8024",
+      "figmaName": "Recall",
+      "category": "General",
+      "retired": false
+    },
+    "reorder": {
+      "codepoint": 57588,
+      "setId": "2046:8029",
+      "figmaName": "Reorder",
+      "category": "General",
+      "retired": false
+    },
+    "repeat": {
+      "codepoint": 57589,
+      "setId": "2046:8034",
+      "figmaName": "Repeat",
+      "category": "General",
+      "retired": false
+    },
+    "review": {
+      "codepoint": 57590,
+      "setId": "2046:8039",
+      "figmaName": "Review",
+      "category": "General",
+      "retired": false
+    },
+    "school": {
+      "codepoint": 57591,
+      "setId": "2046:8044",
+      "figmaName": "School",
+      "category": "General",
+      "retired": false
+    },
+    "store": {
+      "codepoint": 57592,
+      "setId": "2046:8049",
+      "figmaName": "Store",
+      "category": "General",
+      "retired": false
+    },
+    "store-release": {
+      "codepoint": 57593,
+      "setId": "2046:8054",
+      "figmaName": "Store Release",
+      "category": "General",
+      "retired": false
+    },
+    "store-swap": {
+      "codepoint": 57594,
+      "setId": "2046:8059",
+      "figmaName": "Store Swap",
+      "category": "General",
+      "retired": false
+    },
+    "store-transfer": {
+      "codepoint": 57595,
+      "setId": "2046:8064",
+      "figmaName": "Store Transfer",
+      "category": "General",
+      "retired": false
+    },
+    "swap": {
+      "codepoint": 57596,
+      "setId": "2046:8069",
+      "figmaName": "Swap",
+      "category": "General",
+      "retired": false
+    },
+    "tag-outline": {
+      "codepoint": 57597,
+      "setId": "2046:8074",
+      "figmaName": "Tag Outline",
+      "category": "General",
+      "retired": false
+    },
+    "tiers": {
+      "codepoint": 57598,
+      "setId": "2046:8079",
+      "figmaName": "Tiers",
+      "category": "General",
+      "retired": false
+    },
+    "general-to-do": {
+      "codepoint": 57599,
+      "setId": "2046:8084",
+      "figmaName": "To do",
+      "category": "General",
+      "retired": false
+    },
+    "to-do-outline": {
+      "codepoint": 57600,
+      "setId": "2046:8089",
+      "figmaName": "To do outline",
+      "category": "General",
+      "retired": false
+    },
+    "transfer": {
+      "codepoint": 57601,
+      "setId": "2046:8094",
+      "figmaName": "Transfer",
+      "category": "General",
+      "retired": false
+    },
+    "vacation": {
+      "codepoint": 57602,
+      "setId": "2046:8099",
+      "figmaName": "Vacation",
+      "category": "General",
+      "retired": false
+    },
+    "video": {
+      "codepoint": 57603,
+      "setId": "2046:8104",
+      "figmaName": "Video",
+      "category": "General",
+      "retired": false
+    },
+    "video-off": {
+      "codepoint": 57604,
+      "setId": "2046:8109",
+      "figmaName": "Video Off",
+      "category": "General",
+      "retired": false
+    },
+    "write": {
+      "codepoint": 57605,
+      "setId": "2046:8114",
+      "figmaName": "Write",
+      "category": "General",
+      "retired": false
+    },
+    "average-current-status": {
+      "codepoint": 57606,
+      "setId": "2046:8119",
+      "figmaName": "Average Current Status",
+      "category": "General",
+      "retired": false
+    },
+    "fire": {
+      "codepoint": 57607,
+      "setId": "2046:8124",
+      "figmaName": "Fire",
+      "category": "General",
+      "retired": false
+    },
+    "payment-card": {
+      "codepoint": 57608,
+      "setId": "2046:8129",
+      "figmaName": "Payment Card",
+      "category": "General",
+      "retired": false
+    },
+    "currency-dollar": {
+      "codepoint": 57609,
+      "setId": "2046:8134",
+      "figmaName": "Currency Dollar",
+      "category": "General",
+      "retired": false
+    },
+    "local-mall": {
+      "codepoint": 57610,
+      "setId": "2046:8139",
+      "figmaName": "Local Mall",
+      "category": "General",
+      "retired": false
+    },
+    "savings": {
+      "codepoint": 57611,
+      "setId": "2046:8144",
+      "figmaName": "Savings",
+      "category": "General",
+      "retired": false
+    },
+    "universal-currency": {
+      "codepoint": 57612,
+      "setId": "2046:8149",
+      "figmaName": "Universal Currency",
+      "category": "General",
+      "retired": false
+    },
+    "general-credit-card": {
+      "codepoint": 57613,
+      "setId": "2046:8154",
+      "figmaName": "Credit Card",
+      "category": "General",
+      "retired": false
+    },
+    "universal-currency-alt": {
+      "codepoint": 57614,
+      "setId": "2046:8159",
+      "figmaName": "Universal Currency Alt",
+      "category": "General",
+      "retired": false
+    },
+    "currency-pound": {
+      "codepoint": 57615,
+      "setId": "2046:8164",
+      "figmaName": "Currency Pound",
+      "category": "General",
+      "retired": false
+    },
+    "target": {
+      "codepoint": 57616,
+      "setId": "2046:8169",
+      "figmaName": "Target",
+      "category": "General",
+      "retired": false
+    },
+    "search-check-2": {
+      "codepoint": 57617,
+      "setId": "2046:8174",
+      "figmaName": "Search Check 2",
+      "category": "General",
+      "retired": false
+    },
+    "siren-check": {
+      "codepoint": 57618,
+      "setId": "2046:8179",
+      "figmaName": "Siren Check",
+      "category": "General",
+      "retired": false
+    },
+    "award-star": {
+      "codepoint": 57619,
+      "setId": "2046:8184",
+      "figmaName": "Award Star",
+      "category": "General",
+      "retired": false
+    },
+    "achievement-sync-outline": {
+      "codepoint": 57620,
+      "setId": "2046:8189",
+      "figmaName": "Achievement Sync Outline",
+      "category": "General",
+      "retired": false
+    },
+    "achievement-sync": {
+      "codepoint": 57621,
+      "setId": "2046:8194",
+      "figmaName": "Achievement Sync",
+      "category": "General",
+      "retired": false
+    },
+    "read": {
+      "codepoint": 57622,
+      "setId": "2046:8199",
+      "figmaName": "Read",
+      "category": "General",
+      "retired": false
+    },
+    "add": {
+      "codepoint": 57623,
+      "setId": "2046:8208",
+      "figmaName": "Add",
+      "category": "Content",
+      "retired": false
+    },
+    "add-box": {
+      "codepoint": 57624,
+      "setId": "2046:8213",
+      "figmaName": "Add Box",
+      "category": "Content",
+      "retired": false
+    },
+    "add-circle": {
+      "codepoint": 57625,
+      "setId": "2046:8218",
+      "figmaName": "Add Circle",
+      "category": "Content",
+      "retired": false
+    },
+    "add-circle-outline": {
+      "codepoint": 57626,
+      "setId": "2046:8223",
+      "figmaName": "Add Circle Outline",
+      "category": "Content",
+      "retired": false
+    },
+    "android": {
+      "codepoint": 57627,
+      "setId": "2046:8228",
+      "figmaName": "Android",
+      "category": "Content",
+      "retired": false
+    },
+    "backspace": {
+      "codepoint": 57628,
+      "setId": "2046:8233",
+      "figmaName": "Backspace",
+      "category": "Content",
+      "retired": false
+    },
+    "content": {
+      "codepoint": 57629,
+      "setId": "2046:8238",
+      "figmaName": "Content",
+      "category": "Content",
+      "retired": false
+    },
+    "copy-file": {
+      "codepoint": 57630,
+      "setId": "2046:8243",
+      "figmaName": "Copy File",
+      "category": "Content",
+      "retired": false
+    },
+    "email": {
+      "codepoint": 57631,
+      "setId": "2046:8248",
+      "figmaName": "Email",
+      "category": "Content",
+      "retired": false
+    },
+    "email-outline": {
+      "codepoint": 57632,
+      "setId": "2046:8253",
+      "figmaName": "Email Outline",
+      "category": "Content",
+      "retired": false
+    },
+    "flag": {
+      "codepoint": 57633,
+      "setId": "2046:8258",
+      "figmaName": "Flag",
+      "category": "Content",
+      "retired": false
+    },
+    "push-pin-off": {
+      "codepoint": 57634,
+      "setId": "2046:8263",
+      "figmaName": "Push Pin Off",
+      "category": "Content",
+      "retired": false
+    },
+    "redo": {
+      "codepoint": 57635,
+      "setId": "2046:8268",
+      "figmaName": "Redo",
+      "category": "Content",
+      "retired": false
+    },
+    "remove": {
+      "codepoint": 57636,
+      "setId": "2046:8273",
+      "figmaName": "Remove",
+      "category": "Content",
+      "retired": false
+    },
+    "remove-box": {
+      "codepoint": 57637,
+      "setId": "2046:8278",
+      "figmaName": "Remove Box",
+      "category": "Content",
+      "retired": false
+    },
+    "remove-circle": {
+      "codepoint": 57638,
+      "setId": "2046:8283",
+      "figmaName": "Remove Circle",
+      "category": "Content",
+      "retired": false
+    },
+    "remove-circle-outline": {
+      "codepoint": 57639,
+      "setId": "2046:8288",
+      "figmaName": "Remove Circle Outline",
+      "category": "Content",
+      "retired": false
+    },
+    "reply": {
+      "codepoint": 57640,
+      "setId": "2046:8293",
+      "figmaName": "Reply",
+      "category": "Content",
+      "retired": false
+    },
+    "save-alt": {
+      "codepoint": 57641,
+      "setId": "2046:8298",
+      "figmaName": "Save Alt",
+      "category": "Content",
+      "retired": false
+    },
+    "send": {
+      "codepoint": 57642,
+      "setId": "2046:8303",
+      "figmaName": "Send",
+      "category": "Content",
+      "retired": false
+    },
+    "sort": {
+      "codepoint": 57643,
+      "setId": "2046:8308",
+      "figmaName": "Sort",
+      "category": "Content",
+      "retired": false
+    },
+    "undo": {
+      "codepoint": 57644,
+      "setId": "2046:8313",
+      "figmaName": "Undo",
+      "category": "Content",
+      "retired": false
+    },
+    "push-pin": {
+      "codepoint": 57645,
+      "setId": "2046:8318",
+      "figmaName": "Push Pin",
+      "category": "Content",
+      "retired": false
+    },
+    "push-pin-outline": {
+      "codepoint": 57646,
+      "setId": "2046:8323",
+      "figmaName": "Push Pin Outline",
+      "category": "Content",
+      "retired": false
+    },
+    "calendar-gantt": {
+      "codepoint": 57647,
+      "setId": "2046:8332",
+      "figmaName": "Calendar Gantt",
+      "category": "Date Time",
+      "retired": false
+    },
+    "calendar-next": {
+      "codepoint": 57648,
+      "setId": "2046:8337",
+      "figmaName": "Calendar Next",
+      "category": "Date Time",
+      "retired": false
+    },
+    "calendar-rollover": {
+      "codepoint": 57649,
+      "setId": "2046:8342",
+      "figmaName": "Calendar Rollover",
+      "category": "Date Time",
+      "retired": false
+    },
+    "clock-available": {
+      "codepoint": 57650,
+      "setId": "2046:8347",
+      "figmaName": "Clock Available",
+      "category": "Date Time",
+      "retired": false
+    },
+    "clock-bid": {
+      "codepoint": 57651,
+      "setId": "2046:8352",
+      "figmaName": "Clock Bid",
+      "category": "Date Time",
+      "retired": false
+    },
+    "clock-edit": {
+      "codepoint": 57652,
+      "setId": "2046:8357",
+      "figmaName": "Clock Edit",
+      "category": "Date Time",
+      "retired": false
+    },
+    "clock-flexible": {
+      "codepoint": 57653,
+      "setId": "2046:8362",
+      "figmaName": "Clock Flexible",
+      "category": "Date Time",
+      "retired": false
+    },
+    "clock-in-progress": {
+      "codepoint": 57654,
+      "setId": "2046:8367",
+      "figmaName": "Clock In Progress",
+      "category": "Date Time",
+      "retired": false
+    },
+    "clock-info": {
+      "codepoint": 57655,
+      "setId": "2046:8372",
+      "figmaName": "Clock Info",
+      "category": "Date Time",
+      "retired": false
+    },
+    "clock-missed": {
+      "codepoint": 57656,
+      "setId": "2046:8377",
+      "figmaName": "Clock Missed",
+      "category": "Date Time",
+      "retired": false
+    },
+    "clock-on": {
+      "codepoint": 57657,
+      "setId": "2046:8382",
+      "figmaName": "Clock On",
+      "category": "Date Time",
+      "retired": false
+    },
+    "clock-rollover": {
+      "codepoint": 57658,
+      "setId": "2046:8387",
+      "figmaName": "Clock Rollover",
+      "category": "Date Time",
+      "retired": false
+    },
+    "clock-segment": {
+      "codepoint": 57659,
+      "setId": "2046:8392",
+      "figmaName": "Clock Segment",
+      "category": "Date Time",
+      "retired": false
+    },
+    "clock-start": {
+      "codepoint": 57660,
+      "setId": "2046:8397",
+      "figmaName": "Clock Start",
+      "category": "Date Time",
+      "retired": false
+    },
+    "clock-stop": {
+      "codepoint": 57661,
+      "setId": "2046:8402",
+      "figmaName": "Clock Stop",
+      "category": "Date Time",
+      "retired": false
+    },
+    "clock-switch": {
+      "codepoint": 57662,
+      "setId": "2046:8407",
+      "figmaName": "Clock Switch",
+      "category": "Date Time",
+      "retired": false
+    },
+    "clock-timer": {
+      "codepoint": 57663,
+      "setId": "2046:8412",
+      "figmaName": "Clock Timer",
+      "category": "Date Time",
+      "retired": false
+    },
+    "clock-upcoming": {
+      "codepoint": 57664,
+      "setId": "2046:8417",
+      "figmaName": "Clock Upcoming",
+      "category": "Date Time",
+      "retired": false
+    },
+    "meal": {
+      "codepoint": 57665,
+      "setId": "2046:8422",
+      "figmaName": "Meal",
+      "category": "Date Time",
+      "retired": false
+    },
+    "schedule": {
+      "codepoint": 57666,
+      "setId": "2046:8427",
+      "figmaName": "Schedule",
+      "category": "Date Time",
+      "retired": false
+    },
+    "timecard": {
+      "codepoint": 57667,
+      "setId": "2046:8432",
+      "figmaName": "Timecard",
+      "category": "Date Time",
+      "retired": false
+    },
+    "timecard-approve": {
+      "codepoint": 57668,
+      "setId": "2046:8437",
+      "figmaName": "Timecard Approve",
+      "category": "Date Time",
+      "retired": false
+    },
+    "timecard-warning": {
+      "codepoint": 57669,
+      "setId": "2046:8442",
+      "figmaName": "Timecard Warning",
+      "category": "Date Time",
+      "retired": false
+    },
+    "antenna": {
+      "codepoint": 57670,
+      "setId": "2046:8451",
+      "figmaName": "Antenna",
+      "category": "Device",
+      "retired": false
+    },
+    "battery": {
+      "codepoint": 57671,
+      "setId": "2046:8456",
+      "figmaName": "Battery",
+      "category": "Device",
+      "retired": false
+    },
+    "battery-alert": {
+      "codepoint": 57672,
+      "setId": "2046:8461",
+      "figmaName": "Battery Alert",
+      "category": "Device",
+      "retired": false
+    },
+    "battery-charging": {
+      "codepoint": 57673,
+      "setId": "2046:8466",
+      "figmaName": "Battery Charging",
+      "category": "Device",
+      "retired": false
+    },
+    "bluetooth": {
+      "codepoint": 57674,
+      "setId": "2046:8471",
+      "figmaName": "Bluetooth",
+      "category": "Device",
+      "retired": false
+    },
+    "bluetooth-disabled": {
+      "codepoint": 57675,
+      "setId": "2046:8476",
+      "figmaName": "Bluetooth Disabled",
+      "category": "Device",
+      "retired": false
+    },
+    "bluetooth-searching": {
+      "codepoint": 57676,
+      "setId": "2046:8481",
+      "figmaName": "Bluetooth Searching",
+      "category": "Device",
+      "retired": false
+    },
+    "brightness": {
+      "codepoint": 57677,
+      "setId": "2046:8486",
+      "figmaName": "Brightness",
+      "category": "Device",
+      "retired": false
+    },
+    "cellular-signal": {
+      "codepoint": 57678,
+      "setId": "2046:8491",
+      "figmaName": "Cellular Signal",
+      "category": "Device",
+      "retired": false
+    },
+    "chain": {
+      "codepoint": 57679,
+      "setId": "2046:8496",
+      "figmaName": "Chain",
+      "category": "Device",
+      "retired": false
+    },
+    "dark-mode": {
+      "codepoint": 57680,
+      "setId": "2046:8501",
+      "figmaName": "Dark Mode",
+      "category": "Device",
+      "retired": false
+    },
+    "devices": {
+      "codepoint": 57681,
+      "setId": "2046:8506",
+      "figmaName": "Devices",
+      "category": "Device",
+      "retired": false
+    },
+    "ethernet": {
+      "codepoint": 57682,
+      "setId": "2046:8511",
+      "figmaName": "Ethernet",
+      "category": "Device",
+      "retired": false
+    },
+    "flight-mode": {
+      "codepoint": 57683,
+      "setId": "2046:8516",
+      "figmaName": "Flight Mode",
+      "category": "Device",
+      "retired": false
+    },
+    "hdmi": {
+      "codepoint": 57684,
+      "setId": "2046:8521",
+      "figmaName": "HDMI",
+      "category": "Device",
+      "retired": false
+    },
+    "light-mode": {
+      "codepoint": 57685,
+      "setId": "2046:8526",
+      "figmaName": "Light Mode",
+      "category": "Device",
+      "retired": false
+    },
+    "location": {
+      "codepoint": 57686,
+      "setId": "2046:8531",
+      "figmaName": "Location",
+      "category": "Device",
+      "retired": false
+    },
+    "location-point": {
+      "codepoint": 57687,
+      "setId": "2046:8536",
+      "figmaName": "Location Point",
+      "category": "Device",
+      "retired": false
+    },
+    "microsd": {
+      "codepoint": 57688,
+      "setId": "2046:8541",
+      "figmaName": "MicroSD",
+      "category": "Device",
+      "retired": false
+    },
+    "mobile-friendly": {
+      "codepoint": 57689,
+      "setId": "2046:8546",
+      "figmaName": "Mobile Friendly",
+      "category": "Device",
+      "retired": false
+    },
+    "network-signal": {
+      "codepoint": 57690,
+      "setId": "2046:8551",
+      "figmaName": "Network Signal",
+      "category": "Device",
+      "retired": false
+    },
+    "nfc": {
+      "codepoint": 57691,
+      "setId": "2046:8556",
+      "figmaName": "NFC",
+      "category": "Device",
+      "retired": false
+    },
+    "night": {
+      "codepoint": 57692,
+      "setId": "2046:8561",
+      "figmaName": "Night",
+      "category": "Device",
+      "retired": false
+    },
+    "restart-alt": {
+      "codepoint": 57693,
+      "setId": "2046:8566",
+      "figmaName": "Restart Alt",
+      "category": "Device",
+      "retired": false
+    },
+    "screen-rotation": {
+      "codepoint": 57694,
+      "setId": "2046:8571",
+      "figmaName": "Screen Rotation",
+      "category": "Device",
+      "retired": false
+    },
+    "uhf-rfid": {
+      "codepoint": 57695,
+      "setId": "2046:8576",
+      "figmaName": "UHF RFID",
+      "category": "Device",
+      "retired": false
+    },
+    "usb": {
+      "codepoint": 57696,
+      "setId": "2046:8581",
+      "figmaName": "USB",
+      "category": "Device",
+      "retired": false
+    },
+    "usb-alt": {
+      "codepoint": 57697,
+      "setId": "2046:8586",
+      "figmaName": "USB Alt",
+      "category": "Device",
+      "retired": false
+    },
+    "volte": {
+      "codepoint": 57698,
+      "setId": "2046:8591",
+      "figmaName": "VOLTE",
+      "category": "Device",
+      "retired": false
+    },
+    "wifi": {
+      "codepoint": 57699,
+      "setId": "2046:8596",
+      "figmaName": "WiFi",
+      "category": "Device",
+      "retired": false
+    },
+    "wifi-0": {
+      "codepoint": 57700,
+      "setId": "2046:8601",
+      "figmaName": "WiFi 0",
+      "category": "Device",
+      "retired": false
+    },
+    "wifi-1": {
+      "codepoint": 57701,
+      "setId": "2046:8606",
+      "figmaName": "WiFi 1",
+      "category": "Device",
+      "retired": false
+    },
+    "wifi-2": {
+      "codepoint": 57702,
+      "setId": "2046:8611",
+      "figmaName": "WiFi 2",
+      "category": "Device",
+      "retired": false
+    },
+    "wifi-alt": {
+      "codepoint": 57703,
+      "setId": "2046:8616",
+      "figmaName": "WiFi Alt",
+      "category": "Device",
+      "retired": false
+    },
+    "wifi-off": {
+      "codepoint": 57704,
+      "setId": "2046:8621",
+      "figmaName": "WiFi Off",
+      "category": "Device",
+      "retired": false
+    },
+    "wifi-off-alt": {
+      "codepoint": 57705,
+      "setId": "2046:8626",
+      "figmaName": "WiFi Off Alt",
+      "category": "Device",
+      "retired": false
+    },
+    "zebra": {
+      "codepoint": 57706,
+      "setId": "3388:835",
+      "figmaName": "Zebra",
+      "category": "Brand",
+      "retired": false
+    },
+    "align-center": {
+      "codepoint": 57707,
+      "setId": "2046:9015",
+      "figmaName": "Align Center",
+      "category": "Editor",
+      "retired": false
+    },
+    "align-horizontal-center": {
+      "codepoint": 57708,
+      "setId": "2046:9020",
+      "figmaName": "Align Horizontal Center",
+      "category": "Editor",
+      "retired": false
+    },
+    "align-horizontal-left": {
+      "codepoint": 57709,
+      "setId": "2046:9025",
+      "figmaName": "Align Horizontal Left",
+      "category": "Editor",
+      "retired": false
+    },
+    "align-horizontal-right": {
+      "codepoint": 57710,
+      "setId": "2046:9030",
+      "figmaName": "Align Horizontal Right",
+      "category": "Editor",
+      "retired": false
+    },
+    "align-left": {
+      "codepoint": 57711,
+      "setId": "2046:9035",
+      "figmaName": "Align Left",
+      "category": "Editor",
+      "retired": false
+    },
+    "align-right": {
+      "codepoint": 57712,
+      "setId": "2046:9040",
+      "figmaName": "Align Right",
+      "category": "Editor",
+      "retired": false
+    },
+    "align-vertical-bottom": {
+      "codepoint": 57713,
+      "setId": "2046:9045",
+      "figmaName": "Align Vertical Bottom",
+      "category": "Editor",
+      "retired": false
+    },
+    "align-vertical-center": {
+      "codepoint": 57714,
+      "setId": "2046:9050",
+      "figmaName": "Align Vertical Center",
+      "category": "Editor",
+      "retired": false
+    },
+    "align-vertical-top": {
+      "codepoint": 57715,
+      "setId": "2046:9055",
+      "figmaName": "Align Vertical Top",
+      "category": "Editor",
+      "retired": false
+    },
+    "attachment": {
+      "codepoint": 57716,
+      "setId": "2046:9060",
+      "figmaName": "Attachment",
+      "category": "Editor",
+      "retired": false
+    },
+    "bold": {
+      "codepoint": 57717,
+      "setId": "2046:9065",
+      "figmaName": "Bold",
+      "category": "Editor",
+      "retired": false
+    },
+    "bullet-list": {
+      "codepoint": 57718,
+      "setId": "2046:9070",
+      "figmaName": "Bullet List",
+      "category": "Editor",
+      "retired": false
+    },
+    "checklist": {
+      "codepoint": 57719,
+      "setId": "2046:9075",
+      "figmaName": "Checklist",
+      "category": "Editor",
+      "retired": false
+    },
+    "color-fill": {
+      "codepoint": 57720,
+      "setId": "2046:9080",
+      "figmaName": "Color Fill",
+      "category": "Editor",
+      "retired": false
+    },
+    "distribute-horizontal": {
+      "codepoint": 57721,
+      "setId": "2046:9085",
+      "figmaName": "Distribute Horizontal",
+      "category": "Editor",
+      "retired": false
+    },
+    "distribute-vertical": {
+      "codepoint": 57722,
+      "setId": "2046:9090",
+      "figmaName": "Distribute Vertical",
+      "category": "Editor",
+      "retired": false
+    },
+    "edit": {
+      "codepoint": 57723,
+      "setId": "2046:9095",
+      "figmaName": "Edit",
+      "category": "Editor",
+      "retired": false
+    },
+    "edit-border": {
+      "codepoint": 57724,
+      "setId": "2046:9100",
+      "figmaName": "Edit Border",
+      "category": "Editor",
+      "retired": false
+    },
+    "font-size-decrease": {
+      "codepoint": 57725,
+      "setId": "2046:9105",
+      "figmaName": "Font Size Decrease",
+      "category": "Editor",
+      "retired": false
+    },
+    "font-size-increase": {
+      "codepoint": 57726,
+      "setId": "2046:9110",
+      "figmaName": "Font Size Increase",
+      "category": "Editor",
+      "retired": false
+    },
+    "format-shapes": {
+      "codepoint": 57727,
+      "setId": "2046:9115",
+      "figmaName": "Format Shapes",
+      "category": "Editor",
+      "retired": false
+    },
+    "indent-decrease": {
+      "codepoint": 57728,
+      "setId": "2046:9120",
+      "figmaName": "Indent Decrease",
+      "category": "Editor",
+      "retired": false
+    },
+    "indent-increase": {
+      "codepoint": 57729,
+      "setId": "2046:9125",
+      "figmaName": "Indent Increase",
+      "category": "Editor",
+      "retired": false
+    },
+    "italic": {
+      "codepoint": 57730,
+      "setId": "2046:9130",
+      "figmaName": "Italic",
+      "category": "Editor",
+      "retired": false
+    },
+    "justify": {
+      "codepoint": 57731,
+      "setId": "2046:9135",
+      "figmaName": "Justify",
+      "category": "Editor",
+      "retired": false
+    },
+    "line-spacing": {
+      "codepoint": 57732,
+      "setId": "2046:9140",
+      "figmaName": "Line Spacing",
+      "category": "Editor",
+      "retired": false
+    },
+    "link": {
+      "codepoint": 57733,
+      "setId": "2046:9145",
+      "figmaName": "Link",
+      "category": "Editor",
+      "retired": false
+    },
+    "no-color": {
+      "codepoint": 57734,
+      "setId": "2046:9150",
+      "figmaName": "No Color",
+      "category": "Editor",
+      "retired": false
+    },
+    "numbered-list": {
+      "codepoint": 57735,
+      "setId": "2046:9155",
+      "figmaName": "Numbered List",
+      "category": "Editor",
+      "retired": false
+    },
+    "strikethrough": {
+      "codepoint": 57736,
+      "setId": "2046:9160",
+      "figmaName": "Strikethrough",
+      "category": "Editor",
+      "retired": false
+    },
+    "text-color": {
+      "codepoint": 57737,
+      "setId": "2046:9165",
+      "figmaName": "Text Color",
+      "category": "Editor",
+      "retired": false
+    },
+    "type": {
+      "codepoint": 57738,
+      "setId": "2046:9170",
+      "figmaName": "Type",
+      "category": "Editor",
+      "retired": false
+    },
+    "underline": {
+      "codepoint": 57739,
+      "setId": "2046:9175",
+      "figmaName": "Underline",
+      "category": "Editor",
+      "retired": false
+    },
+    "barcode": {
+      "codepoint": 57740,
+      "setId": "2046:9184",
+      "figmaName": "Barcode",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "barcode-bluetooth": {
+      "codepoint": 57741,
+      "setId": "2046:9189",
+      "figmaName": "Barcode Bluetooth",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "barcode-done": {
+      "codepoint": 57742,
+      "setId": "2046:9194",
+      "figmaName": "Barcode Done",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "barcode-image-scan": {
+      "codepoint": 57743,
+      "setId": "2046:9199",
+      "figmaName": "Barcode Image Scan",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "barcode-qr-code": {
+      "codepoint": 57744,
+      "setId": "2046:9204",
+      "figmaName": "Barcode QR Code",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "barcode-scanner-down": {
+      "codepoint": 57745,
+      "setId": "2046:9209",
+      "figmaName": "Barcode Scanner Down",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "barcode-settings": {
+      "codepoint": 57746,
+      "setId": "2046:9214",
+      "figmaName": "Barcode Settings",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "calculator": {
+      "codepoint": 57747,
+      "setId": "2046:9219",
+      "figmaName": "Calculator",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "card-orientation": {
+      "codepoint": 57748,
+      "setId": "2046:9224",
+      "figmaName": "Card Orientation",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "card-with-chip": {
+      "codepoint": 57749,
+      "setId": "2046:9229",
+      "figmaName": "Card With Chip",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "certificate": {
+      "codepoint": 57750,
+      "setId": "2046:9234",
+      "figmaName": "Certificate",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "choices": {
+      "codepoint": 57751,
+      "setId": "2046:9239",
+      "figmaName": "Choices",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "contactless-pay": {
+      "codepoint": 57752,
+      "setId": "2046:9244",
+      "figmaName": "Contactless Pay",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "credit-card-swipe": {
+      "codepoint": 57753,
+      "setId": "2046:9249",
+      "figmaName": "Credit Card Swipe",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "eas": {
+      "codepoint": 57754,
+      "setId": "2046:9254",
+      "figmaName": "EAS",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "enterprise-diagnostics": {
+      "codepoint": 57755,
+      "setId": "2046:9259",
+      "figmaName": "Enterprise Diagnostics",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "environmental": {
+      "codepoint": 57756,
+      "setId": "2046:9264",
+      "figmaName": "Environmental",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "factory": {
+      "codepoint": 57757,
+      "setId": "2046:9269",
+      "figmaName": "Factory",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "freezer": {
+      "codepoint": 57758,
+      "setId": "2046:9274",
+      "figmaName": "Freezer",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "issue-audit": {
+      "codepoint": 57759,
+      "setId": "2046:9279",
+      "figmaName": "Issue Audit",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "planogram": {
+      "codepoint": 57760,
+      "setId": "2046:9284",
+      "figmaName": "Planogram",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "productivity-apps": {
+      "codepoint": 57761,
+      "setId": "2046:9289",
+      "figmaName": "Productivity Apps",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "receipt": {
+      "codepoint": 57762,
+      "setId": "2046:9294",
+      "figmaName": "Receipt",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "road-map": {
+      "codepoint": 57763,
+      "setId": "2046:9299",
+      "figmaName": "Road Map",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "rules": {
+      "codepoint": 57764,
+      "setId": "2046:9304",
+      "figmaName": "Rules",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "scan-rate": {
+      "codepoint": 57765,
+      "setId": "2046:9309",
+      "figmaName": "Scan Rate",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "server": {
+      "codepoint": 57766,
+      "setId": "2046:9314",
+      "figmaName": "Server",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "shape-recognition": {
+      "codepoint": 57767,
+      "setId": "2046:9319",
+      "figmaName": "Shape Recognition",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "solutions": {
+      "codepoint": 57768,
+      "setId": "2046:9324",
+      "figmaName": "Solutions",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "steps": {
+      "codepoint": 57769,
+      "setId": "2046:9329",
+      "figmaName": "Steps",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "strategy": {
+      "codepoint": 57770,
+      "setId": "2046:9334",
+      "figmaName": "Strategy",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "tag": {
+      "codepoint": 57771,
+      "setId": "2046:9339",
+      "figmaName": "Tag",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "tap-to-pay": {
+      "codepoint": 57772,
+      "setId": "2046:9344",
+      "figmaName": "Tap To Pay",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "zero-scale": {
+      "codepoint": 57773,
+      "setId": "2046:9349",
+      "figmaName": "Zero Scale",
+      "category": "Enterprise",
+      "retired": false
+    },
+    "cloud": {
+      "codepoint": 57774,
+      "setId": "2046:9358",
+      "figmaName": "Cloud",
+      "category": "File",
+      "retired": false
+    },
+    "cloud-done": {
+      "codepoint": 57775,
+      "setId": "2046:9363",
+      "figmaName": "Cloud Done",
+      "category": "File",
+      "retired": false
+    },
+    "cloud-download": {
+      "codepoint": 57776,
+      "setId": "2046:9368",
+      "figmaName": "Cloud Download",
+      "category": "File",
+      "retired": false
+    },
+    "cloud-off": {
+      "codepoint": 57777,
+      "setId": "2046:9373",
+      "figmaName": "Cloud Off",
+      "category": "File",
+      "retired": false
+    },
+    "cloud-outline": {
+      "codepoint": 57778,
+      "setId": "2046:9378",
+      "figmaName": "Cloud Outline",
+      "category": "File",
+      "retired": false
+    },
+    "cloud-sync": {
+      "codepoint": 57779,
+      "setId": "2046:9383",
+      "figmaName": "Cloud Sync",
+      "category": "File",
+      "retired": false
+    },
+    "cloud-upload": {
+      "codepoint": 57780,
+      "setId": "2046:9388",
+      "figmaName": "Cloud Upload",
+      "category": "File",
+      "retired": false
+    },
+    "create-new-folder": {
+      "codepoint": 57781,
+      "setId": "2046:9393",
+      "figmaName": "Create New Folder",
+      "category": "File",
+      "retired": false
+    },
+    "downloading": {
+      "codepoint": 57782,
+      "setId": "2046:9398",
+      "figmaName": "Downloading",
+      "category": "File",
+      "retired": false
+    },
+    "file": {
+      "codepoint": 57783,
+      "setId": "2046:9403",
+      "figmaName": "File",
+      "category": "File",
+      "retired": false
+    },
+    "finished-download": {
+      "codepoint": 57784,
+      "setId": "2046:9408",
+      "figmaName": "Finished Download",
+      "category": "File",
+      "retired": false
+    },
+    "folder": {
+      "codepoint": 57785,
+      "setId": "2046:9413",
+      "figmaName": "Folder",
+      "category": "File",
+      "retired": false
+    },
+    "folder-outline": {
+      "codepoint": 57786,
+      "setId": "2046:9418",
+      "figmaName": "Folder Outline",
+      "category": "File",
+      "retired": false
+    },
+    "grid-view": {
+      "codepoint": 57787,
+      "setId": "2046:9423",
+      "figmaName": "Grid View",
+      "category": "File",
+      "retired": false
+    },
+    "maintenance": {
+      "codepoint": 57788,
+      "setId": "2046:9428",
+      "figmaName": "Maintenance",
+      "category": "File",
+      "retired": false
+    },
+    "open-new-off": {
+      "codepoint": 57789,
+      "setId": "2046:9433",
+      "figmaName": "Open New Off",
+      "category": "File",
+      "retired": false
+    },
+    "page-height": {
+      "codepoint": 57790,
+      "setId": "2046:9438",
+      "figmaName": "Page Height",
+      "category": "File",
+      "retired": false
+    },
+    "page-rotate": {
+      "codepoint": 57791,
+      "setId": "2046:9443",
+      "figmaName": "Page Rotate",
+      "category": "File",
+      "retired": false
+    },
+    "page-width": {
+      "codepoint": 57792,
+      "setId": "2046:9448",
+      "figmaName": "Page Width",
+      "category": "File",
+      "retired": false
+    },
+    "publish": {
+      "codepoint": 57793,
+      "setId": "2046:9453",
+      "figmaName": "Publish",
+      "category": "File",
+      "retired": false
+    },
+    "save": {
+      "codepoint": 57794,
+      "setId": "2046:9458",
+      "figmaName": "Save",
+      "category": "File",
+      "retired": false
+    },
+    "shared-folder-filled": {
+      "codepoint": 57795,
+      "setId": "2046:9463",
+      "figmaName": "Shared Folder Filled",
+      "category": "File",
+      "retired": false
+    },
+    "shared-folder": {
+      "codepoint": 57796,
+      "setId": "2046:9468",
+      "figmaName": "Shared Folder",
+      "category": "File",
+      "retired": false
+    },
+    "upload-file": {
+      "codepoint": 57797,
+      "setId": "2046:9473",
+      "figmaName": "Upload File",
+      "category": "File",
+      "retired": false
+    },
+    "import": {
+      "codepoint": 57798,
+      "setId": "2046:9478",
+      "figmaName": "Import",
+      "category": "File",
+      "retired": false
+    },
+    "export": {
+      "codepoint": 57799,
+      "setId": "2046:9483",
+      "figmaName": "Export",
+      "category": "File",
+      "retired": false
+    },
+    "aac-attach": {
+      "codepoint": 57800,
+      "setId": "2046:9492",
+      "figmaName": "AAC Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "ai-attach": {
+      "codepoint": 57801,
+      "setId": "2046:9497",
+      "figmaName": "AI Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "asp-attach": {
+      "codepoint": 57802,
+      "setId": "2046:9502",
+      "figmaName": "ASP Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "attach-3ds": {
+      "codepoint": 57803,
+      "setId": "2046:9507",
+      "figmaName": "Attach 3DS",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "au-attach": {
+      "codepoint": 57804,
+      "setId": "2046:9512",
+      "figmaName": "AU Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "avi-attach": {
+      "codepoint": 57805,
+      "setId": "2046:9517",
+      "figmaName": "AVI Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "bin-attach": {
+      "codepoint": 57806,
+      "setId": "2046:9522",
+      "figmaName": "BIN Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "bmp-attach": {
+      "codepoint": 57807,
+      "setId": "2046:9527",
+      "figmaName": "BMP Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "com-attach": {
+      "codepoint": 57808,
+      "setId": "2046:9532",
+      "figmaName": "COM Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "css-attach": {
+      "codepoint": 57809,
+      "setId": "2046:9537",
+      "figmaName": "CSS Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "csv-attach": {
+      "codepoint": 57810,
+      "setId": "2046:9542",
+      "figmaName": "CSV Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "dat-attach": {
+      "codepoint": 57811,
+      "setId": "2046:9547",
+      "figmaName": "DAT Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "dbf-attach": {
+      "codepoint": 57812,
+      "setId": "2046:9552",
+      "figmaName": "DBF Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "dll-attach": {
+      "codepoint": 57813,
+      "setId": "2046:9557",
+      "figmaName": "DLL Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "doc-attach": {
+      "codepoint": 57814,
+      "setId": "2046:9562",
+      "figmaName": "DOC Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "docx-attach": {
+      "codepoint": 57815,
+      "setId": "2046:9567",
+      "figmaName": "DOCX Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "dwg-attach": {
+      "codepoint": 57816,
+      "setId": "2046:9572",
+      "figmaName": "DWG Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "eml-attach": {
+      "codepoint": 57817,
+      "setId": "2046:9577",
+      "figmaName": "EML Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "eps-attach": {
+      "codepoint": 57818,
+      "setId": "2046:9582",
+      "figmaName": "EPS Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "exe-attach": {
+      "codepoint": 57819,
+      "setId": "2046:9587",
+      "figmaName": "EXE Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "ext-attach": {
+      "codepoint": 57820,
+      "setId": "2046:9592",
+      "figmaName": "EXT Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "fla-attach": {
+      "codepoint": 57821,
+      "setId": "2046:9597",
+      "figmaName": "FLA Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "fodg-attach": {
+      "codepoint": 57822,
+      "setId": "2046:9602",
+      "figmaName": "FODG Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "fodp-attach": {
+      "codepoint": 57823,
+      "setId": "2046:9607",
+      "figmaName": "FODP Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "fods-attach": {
+      "codepoint": 57824,
+      "setId": "2046:9612",
+      "figmaName": "FODS Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "gif-attach": {
+      "codepoint": 57825,
+      "setId": "2046:9617",
+      "figmaName": "GIF Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "htm-attach": {
+      "codepoint": 57826,
+      "setId": "2046:9622",
+      "figmaName": "HTM Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "html-attach": {
+      "codepoint": 57827,
+      "setId": "2046:9627",
+      "figmaName": "HTML Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "ico-attach": {
+      "codepoint": 57828,
+      "setId": "2046:9632",
+      "figmaName": "ICO Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "ini-attach": {
+      "codepoint": 57829,
+      "setId": "2046:9637",
+      "figmaName": "INI Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "iso-attach": {
+      "codepoint": 57830,
+      "setId": "2046:9642",
+      "figmaName": "ISO Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "jar-attach": {
+      "codepoint": 57831,
+      "setId": "2046:9647",
+      "figmaName": "JAR Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "jpeg-attach": {
+      "codepoint": 57832,
+      "setId": "2046:9652",
+      "figmaName": "JPEG Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "jpg-attach": {
+      "codepoint": 57833,
+      "setId": "2046:9657",
+      "figmaName": "JPG Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "js-attach": {
+      "codepoint": 57834,
+      "setId": "2046:9662",
+      "figmaName": "JS Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "json-attach": {
+      "codepoint": 57835,
+      "setId": "2046:9667",
+      "figmaName": "JSON Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "key-attach": {
+      "codepoint": 57836,
+      "setId": "2046:9672",
+      "figmaName": "KEY Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "mdb-attach": {
+      "codepoint": 57837,
+      "setId": "2046:9677",
+      "figmaName": "MDB Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "mkv-attach": {
+      "codepoint": 57838,
+      "setId": "2046:9682",
+      "figmaName": "MKV Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "mov-attach": {
+      "codepoint": 57839,
+      "setId": "2046:9687",
+      "figmaName": "MOV Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "mp3-attach": {
+      "codepoint": 57840,
+      "setId": "2046:9692",
+      "figmaName": "MP3 Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "mp4-attach": {
+      "codepoint": 57841,
+      "setId": "2046:9697",
+      "figmaName": "MP4 Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "mpeg-attach": {
+      "codepoint": 57842,
+      "setId": "2046:9702",
+      "figmaName": "MPEG Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "mpg-attach": {
+      "codepoint": 57843,
+      "setId": "2046:9707",
+      "figmaName": "MPG Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "mpga-attach": {
+      "codepoint": 57844,
+      "setId": "2046:9712",
+      "figmaName": "MPGA Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "nfo-attach": {
+      "codepoint": 57845,
+      "setId": "2046:9717",
+      "figmaName": "NFO Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "obj-attach": {
+      "codepoint": 57846,
+      "setId": "2046:9722",
+      "figmaName": "OBJ Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "odf-attach": {
+      "codepoint": 57847,
+      "setId": "2046:9727",
+      "figmaName": "ODF Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "odp-attach": {
+      "codepoint": 57848,
+      "setId": "2046:9732",
+      "figmaName": "ODP Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "ods-attach": {
+      "codepoint": 57849,
+      "setId": "2046:9737",
+      "figmaName": "ODS Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "odt-attach": {
+      "codepoint": 57850,
+      "setId": "2046:9742",
+      "figmaName": "ODT Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "oog-attach": {
+      "codepoint": 57851,
+      "setId": "2046:9747",
+      "figmaName": "OOG Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "otf-attach": {
+      "codepoint": 57852,
+      "setId": "2046:9752",
+      "figmaName": "OTF Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "ott-attach": {
+      "codepoint": 57853,
+      "setId": "2046:9757",
+      "figmaName": "OTT Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "pdf-attach": {
+      "codepoint": 57854,
+      "setId": "2046:9762",
+      "figmaName": "PDF Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "pkg-attach": {
+      "codepoint": 57855,
+      "setId": "2046:9767",
+      "figmaName": "PKG Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "png-attach": {
+      "codepoint": 57856,
+      "setId": "2046:9772",
+      "figmaName": "PNG Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "pps-attach": {
+      "codepoint": 57857,
+      "setId": "2046:9777",
+      "figmaName": "PPS Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "ppt-attach": {
+      "codepoint": 57858,
+      "setId": "2046:9782",
+      "figmaName": "PPT Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "pptx-attach": {
+      "codepoint": 57859,
+      "setId": "2046:9787",
+      "figmaName": "PPTX Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "psd-attach": {
+      "codepoint": 57860,
+      "setId": "2046:9792",
+      "figmaName": "PSD Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "rar-attach": {
+      "codepoint": 57861,
+      "setId": "2046:9797",
+      "figmaName": "RAR Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "rtf-attach": {
+      "codepoint": 57862,
+      "setId": "2046:9802",
+      "figmaName": "RTF Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "sdc-attach": {
+      "codepoint": 57863,
+      "setId": "2046:9807",
+      "figmaName": "SDC Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "sdd-attach": {
+      "codepoint": 57864,
+      "setId": "2046:9812",
+      "figmaName": "SDD Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "svg-attach": {
+      "codepoint": 57865,
+      "setId": "2046:9817",
+      "figmaName": "SVG Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "swf-attach": {
+      "codepoint": 57866,
+      "setId": "2046:9822",
+      "figmaName": "SWF Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "tif-attach": {
+      "codepoint": 57867,
+      "setId": "2046:9827",
+      "figmaName": "TIF Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "tiff-attach": {
+      "codepoint": 57868,
+      "setId": "2046:9832",
+      "figmaName": "TIFF Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "ttf-attach": {
+      "codepoint": 57869,
+      "setId": "2046:9837",
+      "figmaName": "TTF Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "txt-attach": {
+      "codepoint": 57870,
+      "setId": "2046:9842",
+      "figmaName": "TXT Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "vcf-attach": {
+      "codepoint": 57871,
+      "setId": "2046:9847",
+      "figmaName": "VCF Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "video-attach": {
+      "codepoint": 57872,
+      "setId": "2046:9852",
+      "figmaName": "VIDEO Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "wav-attach": {
+      "codepoint": 57873,
+      "setId": "2046:9857",
+      "figmaName": "WAV Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "webm-attach": {
+      "codepoint": 57874,
+      "setId": "2046:9862",
+      "figmaName": "WEBM Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "wmv-attach": {
+      "codepoint": 57875,
+      "setId": "2046:9867",
+      "figmaName": "WMV Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "woff-attach": {
+      "codepoint": 57876,
+      "setId": "2046:9872",
+      "figmaName": "WOFF Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "xlff-attach": {
+      "codepoint": 57877,
+      "setId": "2046:9877",
+      "figmaName": "XLFF Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "xliff-attach": {
+      "codepoint": 57878,
+      "setId": "2046:9882",
+      "figmaName": "XLIFF Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "xls-attach": {
+      "codepoint": 57879,
+      "setId": "2046:9887",
+      "figmaName": "XLS Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "xlsb-attach": {
+      "codepoint": 57880,
+      "setId": "2046:9892",
+      "figmaName": "XLSB Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "xlsm-attach": {
+      "codepoint": 57881,
+      "setId": "2046:9897",
+      "figmaName": "XLSM Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "xlsx-attach": {
+      "codepoint": 57882,
+      "setId": "2046:9902",
+      "figmaName": "XLSX Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "xml-attach": {
+      "codepoint": 57883,
+      "setId": "2046:9907",
+      "figmaName": "XML Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "xsd-attach": {
+      "codepoint": 57884,
+      "setId": "2046:9912",
+      "figmaName": "XSD Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "xslt-attach": {
+      "codepoint": 57885,
+      "setId": "2046:9917",
+      "figmaName": "XSLT Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "zip-attach": {
+      "codepoint": 57886,
+      "setId": "2046:9922",
+      "figmaName": "ZIP Attach",
+      "category": "File Attachments",
+      "retired": false
+    },
+    "cast": {
+      "codepoint": 57887,
+      "setId": "2046:9931",
+      "figmaName": "Cast",
+      "category": "Hardware",
+      "retired": false
+    },
+    "cast-connected": {
+      "codepoint": 57888,
+      "setId": "2046:9936",
+      "figmaName": "Cast Connected",
+      "category": "Hardware",
+      "retired": false
+    },
+    "desktop": {
+      "codepoint": 57889,
+      "setId": "2046:9941",
+      "figmaName": "Desktop",
+      "category": "Hardware",
+      "retired": false
+    },
+    "device-settings": {
+      "codepoint": 57890,
+      "setId": "2046:9946",
+      "figmaName": "Device Settings",
+      "category": "Hardware",
+      "retired": false
+    },
+    "device-profile-deployment": {
+      "codepoint": 57891,
+      "setId": "2046:9951",
+      "figmaName": "Device Profile Deployment",
+      "category": "Hardware",
+      "retired": false
+    },
+    "devices-ecosystem": {
+      "codepoint": 57892,
+      "setId": "2046:9960",
+      "figmaName": "Devices Ecosystem",
+      "category": "Hardware",
+      "retired": false
+    },
+    "headphones": {
+      "codepoint": 57893,
+      "setId": "2046:9965",
+      "figmaName": "Headphones",
+      "category": "Hardware",
+      "retired": false
+    },
+    "keyboard": {
+      "codepoint": 57894,
+      "setId": "2046:9970",
+      "figmaName": "Keyboard",
+      "category": "Hardware",
+      "retired": false
+    },
+    "laptop": {
+      "codepoint": 57895,
+      "setId": "2046:9975",
+      "figmaName": "Laptop",
+      "category": "Hardware",
+      "retired": false
+    },
+    "memory": {
+      "codepoint": 57896,
+      "setId": "2046:9980",
+      "figmaName": "Memory",
+      "category": "Hardware",
+      "retired": false
+    },
+    "monitor": {
+      "codepoint": 57897,
+      "setId": "2046:9985",
+      "figmaName": "Monitor",
+      "category": "Hardware",
+      "retired": false
+    },
+    "phone-android": {
+      "codepoint": 57898,
+      "setId": "2046:9990",
+      "figmaName": "Phone Android",
+      "category": "Hardware",
+      "retired": false
+    },
+    "phone-iphone": {
+      "codepoint": 57899,
+      "setId": "2046:9995",
+      "figmaName": "Phone iPhone",
+      "category": "Hardware",
+      "retired": false
+    },
+    "phonelink": {
+      "codepoint": 57900,
+      "setId": "2046:10000",
+      "figmaName": "Phonelink",
+      "category": "Hardware",
+      "retired": false
+    },
+    "printer": {
+      "codepoint": 57901,
+      "setId": "2046:10005",
+      "figmaName": "Printer",
+      "category": "Hardware",
+      "retired": false
+    },
+    "scanner": {
+      "codepoint": 57902,
+      "setId": "2046:10010",
+      "figmaName": "Scanner",
+      "category": "Hardware",
+      "retired": false
+    },
+    "security": {
+      "codepoint": 57903,
+      "setId": "2046:10015",
+      "figmaName": "Security",
+      "category": "Hardware",
+      "retired": false
+    },
+    "smart-phone": {
+      "codepoint": 57904,
+      "setId": "2046:10020",
+      "figmaName": "Smart Phone",
+      "category": "Hardware",
+      "retired": false
+    },
+    "speaker": {
+      "codepoint": 57905,
+      "setId": "2046:10025",
+      "figmaName": "Speaker",
+      "category": "Hardware",
+      "retired": false
+    },
+    "tablet": {
+      "codepoint": 57906,
+      "setId": "2046:10030",
+      "figmaName": "Tablet",
+      "category": "Hardware",
+      "retired": false
+    },
+    "tablet-mac": {
+      "codepoint": 57907,
+      "setId": "2046:10035",
+      "figmaName": "Tablet Mac",
+      "category": "Hardware",
+      "retired": false
+    },
+    "tv": {
+      "codepoint": 57908,
+      "setId": "2046:10040",
+      "figmaName": "TV",
+      "category": "Hardware",
+      "retired": false
+    },
+    "video-play": {
+      "codepoint": 57909,
+      "setId": "2046:10045",
+      "figmaName": "Video Play",
+      "category": "Hardware",
+      "retired": false
+    },
+    "watch": {
+      "codepoint": 57910,
+      "setId": "2046:10050",
+      "figmaName": "Watch",
+      "category": "Hardware",
+      "retired": false
+    },
+    "adjustments": {
+      "codepoint": 57911,
+      "setId": "2046:10059",
+      "figmaName": "Adjustments",
+      "category": "Image",
+      "retired": false
+    },
+    "auto": {
+      "codepoint": 57912,
+      "setId": "2046:10064",
+      "figmaName": "AUTO",
+      "category": "Image",
+      "retired": false
+    },
+    "awb": {
+      "codepoint": 57913,
+      "setId": "2046:10069",
+      "figmaName": "AWB",
+      "category": "Image",
+      "retired": false
+    },
+    "camera": {
+      "codepoint": 57914,
+      "setId": "2046:10074",
+      "figmaName": "Camera",
+      "category": "Image",
+      "retired": false
+    },
+    "camera-shutter": {
+      "codepoint": 57915,
+      "setId": "2046:10079",
+      "figmaName": "Camera Shutter",
+      "category": "Image",
+      "retired": false
+    },
+    "camera-switch": {
+      "codepoint": 57916,
+      "setId": "2046:10084",
+      "figmaName": "Camera Switch",
+      "category": "Image",
+      "retired": false
+    },
+    "contrast": {
+      "codepoint": 57917,
+      "setId": "2046:10089",
+      "figmaName": "Contrast",
+      "category": "Image",
+      "retired": false
+    },
+    "crop": {
+      "codepoint": 57918,
+      "setId": "2046:10094",
+      "figmaName": "Crop",
+      "category": "Image",
+      "retired": false
+    },
+    "exposure": {
+      "codepoint": 57919,
+      "setId": "2046:10099",
+      "figmaName": "Exposure",
+      "category": "Image",
+      "retired": false
+    },
+    "eye-dropper": {
+      "codepoint": 57920,
+      "setId": "2046:10104",
+      "figmaName": "Eye Dropper",
+      "category": "Image",
+      "retired": false
+    },
+    "grid-off": {
+      "codepoint": 57921,
+      "setId": "2046:10109",
+      "figmaName": "Grid Off",
+      "category": "Image",
+      "retired": false
+    },
+    "grid-on": {
+      "codepoint": 57922,
+      "setId": "2046:10114",
+      "figmaName": "Grid On",
+      "category": "Image",
+      "retired": false
+    },
+    "hdr": {
+      "codepoint": 57923,
+      "setId": "2046:10119",
+      "figmaName": "HDR",
+      "category": "Image",
+      "retired": false
+    },
+    "image": {
+      "codepoint": 57924,
+      "setId": "2046:10124",
+      "figmaName": "Image",
+      "category": "Image",
+      "retired": false
+    },
+    "image-library": {
+      "codepoint": 57925,
+      "setId": "2046:10129",
+      "figmaName": "Image Library",
+      "category": "Image",
+      "retired": false
+    },
+    "iso": {
+      "codepoint": 57926,
+      "setId": "2046:10134",
+      "figmaName": "ISO",
+      "category": "Image",
+      "retired": false
+    },
+    "portrait": {
+      "codepoint": 57927,
+      "setId": "2046:10139",
+      "figmaName": "Portrait",
+      "category": "Image",
+      "retired": false
+    },
+    "pro": {
+      "codepoint": 57928,
+      "setId": "2046:10144",
+      "figmaName": "PRO",
+      "category": "Image",
+      "retired": false
+    },
+    "rotate-left": {
+      "codepoint": 57929,
+      "setId": "2046:10149",
+      "figmaName": "Rotate Left",
+      "category": "Image",
+      "retired": false
+    },
+    "rotate-right": {
+      "codepoint": 57930,
+      "setId": "2046:10154",
+      "figmaName": "Rotate Right",
+      "category": "Image",
+      "retired": false
+    },
+    "slide-show": {
+      "codepoint": 57931,
+      "setId": "2046:10159",
+      "figmaName": "Slide Show",
+      "category": "Image",
+      "retired": false
+    },
+    "straighten": {
+      "codepoint": 57932,
+      "setId": "2046:10164",
+      "figmaName": "Straighten",
+      "category": "Image",
+      "retired": false
+    },
+    "timer": {
+      "codepoint": 57933,
+      "setId": "2046:10169",
+      "figmaName": "Timer",
+      "category": "Image",
+      "retired": false
+    },
+    "wb": {
+      "codepoint": 57934,
+      "setId": "2046:10174",
+      "figmaName": "WB",
+      "category": "Image",
+      "retired": false
+    },
+    "bus": {
+      "codepoint": 57935,
+      "setId": "2046:10183",
+      "figmaName": "Bus",
+      "category": "Maps",
+      "retired": false
+    },
+    "cafe": {
+      "codepoint": 57936,
+      "setId": "2046:10188",
+      "figmaName": "Cafe",
+      "category": "Maps",
+      "retired": false
+    },
+    "car": {
+      "codepoint": 57937,
+      "setId": "2046:10193",
+      "figmaName": "Car",
+      "category": "Maps",
+      "retired": false
+    },
+    "flight": {
+      "codepoint": 57938,
+      "setId": "2046:10198",
+      "figmaName": "Flight",
+      "category": "Maps",
+      "retired": false
+    },
+    "layers": {
+      "codepoint": 57939,
+      "setId": "2046:10203",
+      "figmaName": "Layers",
+      "category": "Maps",
+      "retired": false
+    },
+    "light-rail-train": {
+      "codepoint": 57940,
+      "setId": "2046:10208",
+      "figmaName": "Light Rail Train",
+      "category": "Maps",
+      "retired": false
+    },
+    "local-shipping": {
+      "codepoint": 57941,
+      "setId": "2046:10213",
+      "figmaName": "Local Shipping",
+      "category": "Maps",
+      "retired": false
+    },
+    "map": {
+      "codepoint": 57942,
+      "setId": "2046:10218",
+      "figmaName": "Map",
+      "category": "Maps",
+      "retired": false
+    },
+    "my-location": {
+      "codepoint": 57943,
+      "setId": "2046:10223",
+      "figmaName": "My Location",
+      "category": "Maps",
+      "retired": false
+    },
+    "navigation": {
+      "codepoint": 57944,
+      "setId": "2046:10228",
+      "figmaName": "Navigation",
+      "category": "Maps",
+      "retired": false
+    },
+    "near-me": {
+      "codepoint": 57945,
+      "setId": "2046:10233",
+      "figmaName": "Near Me",
+      "category": "Maps",
+      "retired": false
+    },
+    "place": {
+      "codepoint": 57946,
+      "setId": "2046:10238",
+      "figmaName": "Place",
+      "category": "Maps",
+      "retired": false
+    },
+    "ship": {
+      "codepoint": 57947,
+      "setId": "2046:10243",
+      "figmaName": "Ship",
+      "category": "Maps",
+      "retired": false
+    },
+    "taxi": {
+      "codepoint": 57948,
+      "setId": "2046:10248",
+      "figmaName": "Taxi",
+      "category": "Maps",
+      "retired": false
+    },
+    "train": {
+      "codepoint": 57949,
+      "setId": "2046:10253",
+      "figmaName": "Train",
+      "category": "Maps",
+      "retired": false
+    },
+    "world": {
+      "codepoint": 57950,
+      "setId": "2046:10258",
+      "figmaName": "World",
+      "category": "Maps",
+      "retired": false
+    },
+    "zoom-in-map": {
+      "codepoint": 57951,
+      "setId": "2046:10263",
+      "figmaName": "Zoom In Map",
+      "category": "Maps",
+      "retired": false
+    },
+    "zoom-out-map": {
+      "codepoint": 57952,
+      "setId": "2046:10268",
+      "figmaName": "Zoom Out Map",
+      "category": "Maps",
+      "retired": false
+    },
+    "las": {
+      "codepoint": 57953,
+      "setId": "2046:10273",
+      "figmaName": "LAS",
+      "category": "Maps",
+      "retired": false
+    },
+    "apps": {
+      "codepoint": 57954,
+      "setId": "2046:10282",
+      "figmaName": "Apps",
+      "category": "Navigation",
+      "retired": false
+    },
+    "arrow-back": {
+      "codepoint": 57955,
+      "setId": "2046:10287",
+      "figmaName": "Arrow Back",
+      "category": "Navigation",
+      "retired": false
+    },
+    "arrow-down": {
+      "codepoint": 57956,
+      "setId": "2046:10292",
+      "figmaName": "Arrow Down",
+      "category": "Navigation",
+      "retired": false
+    },
+    "arrow-forward": {
+      "codepoint": 57957,
+      "setId": "2046:10297",
+      "figmaName": "Arrow Forward",
+      "category": "Navigation",
+      "retired": false
+    },
+    "arrow-up": {
+      "codepoint": 57958,
+      "setId": "2046:10302",
+      "figmaName": "Arrow Up",
+      "category": "Navigation",
+      "retired": false
+    },
+    "cancel": {
+      "codepoint": 57959,
+      "setId": "2046:10307",
+      "figmaName": "Cancel",
+      "category": "Navigation",
+      "retired": false
+    },
+    "cancel-outline": {
+      "codepoint": 57960,
+      "setId": "2046:10312",
+      "figmaName": "Cancel Outline",
+      "category": "Navigation",
+      "retired": false
+    },
+    "caret-down": {
+      "codepoint": 57961,
+      "setId": "2046:10317",
+      "figmaName": "Caret Down",
+      "category": "Navigation",
+      "retired": false
+    },
+    "caret-left": {
+      "codepoint": 57962,
+      "setId": "2046:10322",
+      "figmaName": "Caret Left",
+      "category": "Navigation",
+      "retired": false
+    },
+    "caret-right": {
+      "codepoint": 57963,
+      "setId": "2046:10327",
+      "figmaName": "Caret Right",
+      "category": "Navigation",
+      "retired": false
+    },
+    "caret-sort": {
+      "codepoint": 57964,
+      "setId": "2046:10332",
+      "figmaName": "Caret Sort",
+      "category": "Navigation",
+      "retired": false
+    },
+    "caret-up": {
+      "codepoint": 57965,
+      "setId": "2046:10337",
+      "figmaName": "Caret Up",
+      "category": "Navigation",
+      "retired": false
+    },
+    "chevron-left": {
+      "codepoint": 57966,
+      "setId": "2046:10342",
+      "figmaName": "Chevron Left",
+      "category": "Navigation",
+      "retired": false
+    },
+    "chevron-right": {
+      "codepoint": 57967,
+      "setId": "2046:10347",
+      "figmaName": "Chevron Right",
+      "category": "Navigation",
+      "retired": false
+    },
+    "close": {
+      "codepoint": 57968,
+      "setId": "2046:10352",
+      "figmaName": "Close",
+      "category": "Navigation",
+      "retired": false
+    },
+    "columns": {
+      "codepoint": 57969,
+      "setId": "2046:10357",
+      "figmaName": "Columns",
+      "category": "Navigation",
+      "retired": false
+    },
+    "dashboard": {
+      "codepoint": 57970,
+      "setId": "2046:10362",
+      "figmaName": "Dashboard",
+      "category": "Navigation",
+      "retired": false
+    },
+    "double-arrow-left": {
+      "codepoint": 57971,
+      "setId": "2046:10367",
+      "figmaName": "Double Arrow Left",
+      "category": "Navigation",
+      "retired": false
+    },
+    "double-arrow-right": {
+      "codepoint": 57972,
+      "setId": "2046:10372",
+      "figmaName": "Double Arrow Right",
+      "category": "Navigation",
+      "retired": false
+    },
+    "drop-down-circle": {
+      "codepoint": 57973,
+      "setId": "2046:10377",
+      "figmaName": "Drop Down Circle",
+      "category": "Navigation",
+      "retired": false
+    },
+    "expand-less": {
+      "codepoint": 57974,
+      "setId": "2046:10382",
+      "figmaName": "Expand Less",
+      "category": "Navigation",
+      "retired": false
+    },
+    "expand-more": {
+      "codepoint": 57975,
+      "setId": "2046:10387",
+      "figmaName": "Expand More",
+      "category": "Navigation",
+      "retired": false
+    },
+    "first-page": {
+      "codepoint": 57976,
+      "setId": "2046:10392",
+      "figmaName": "First Page",
+      "category": "Navigation",
+      "retired": false
+    },
+    "full-screen": {
+      "codepoint": 57977,
+      "setId": "2046:10397",
+      "figmaName": "Full Screen",
+      "category": "Navigation",
+      "retired": false
+    },
+    "full-screen-exit": {
+      "codepoint": 57978,
+      "setId": "2046:10402",
+      "figmaName": "Full Screen Exit",
+      "category": "Navigation",
+      "retired": false
+    },
+    "hamburger-menu": {
+      "codepoint": 57979,
+      "setId": "2046:10407",
+      "figmaName": "Hamburger Menu",
+      "category": "Navigation",
+      "retired": false
+    },
+    "hamburger-menu-navigation-rail": {
+      "codepoint": 57980,
+      "setId": "2046:10412",
+      "figmaName": "Hamburger Menu Navigation Rail",
+      "category": "Navigation",
+      "retired": false
+    },
+    "hamburger-menu-thick": {
+      "codepoint": 57981,
+      "setId": "2046:10417",
+      "figmaName": "Hamburger Menu Thick",
+      "category": "Navigation",
+      "retired": false
+    },
+    "help": {
+      "codepoint": 57982,
+      "setId": "2046:10422",
+      "figmaName": "Help",
+      "category": "Navigation",
+      "retired": false
+    },
+    "help-outline": {
+      "codepoint": 57983,
+      "setId": "2046:10427",
+      "figmaName": "Help Outline",
+      "category": "Navigation",
+      "retired": false
+    },
+    "last-page": {
+      "codepoint": 57984,
+      "setId": "2046:10432",
+      "figmaName": "Last Page",
+      "category": "Navigation",
+      "retired": false
+    },
+    "locations": {
+      "codepoint": 57985,
+      "setId": "2046:10437",
+      "figmaName": "Locations",
+      "category": "Navigation",
+      "retired": false
+    },
+    "list": {
+      "codepoint": 57986,
+      "setId": "2046:10442",
+      "figmaName": "List",
+      "category": "Navigation",
+      "retired": false
+    },
+    "list-alt": {
+      "codepoint": 57987,
+      "setId": "2046:10447",
+      "figmaName": "List Alt",
+      "category": "Navigation",
+      "retired": false
+    },
+    "more-horizontal": {
+      "codepoint": 57988,
+      "setId": "2046:10452",
+      "figmaName": "More Horizontal",
+      "category": "Navigation",
+      "retired": false
+    },
+    "more-vertical": {
+      "codepoint": 57989,
+      "setId": "2046:10457",
+      "figmaName": "More Vertical",
+      "category": "Navigation",
+      "retired": false
+    },
+    "refresh": {
+      "codepoint": 57990,
+      "setId": "2046:10462",
+      "figmaName": "Refresh",
+      "category": "Navigation",
+      "retired": false
+    },
+    "unfold-less": {
+      "codepoint": 57991,
+      "setId": "2046:10467",
+      "figmaName": "Unfold Less",
+      "category": "Navigation",
+      "retired": false
+    },
+    "unfold-more": {
+      "codepoint": 57992,
+      "setId": "2046:10472",
+      "figmaName": "Unfold More",
+      "category": "Navigation",
+      "retired": false
+    },
+    "person-admin": {
+      "codepoint": 57993,
+      "setId": "2046:10481",
+      "figmaName": "Person Admin",
+      "category": "People",
+      "retired": false
+    },
+    "person-assign": {
+      "codepoint": 57994,
+      "setId": "2046:10486",
+      "figmaName": "Person Assign",
+      "category": "People",
+      "retired": false
+    },
+    "person-clock": {
+      "codepoint": 57995,
+      "setId": "2046:10491",
+      "figmaName": "Person Clock",
+      "category": "People",
+      "retired": false
+    },
+    "person-info": {
+      "codepoint": 57996,
+      "setId": "2046:10496",
+      "figmaName": "Person Info",
+      "category": "People",
+      "retired": false
+    },
+    "person-manager": {
+      "codepoint": 57997,
+      "setId": "2046:10501",
+      "figmaName": "Person Manager",
+      "category": "People",
+      "retired": false
+    },
+    "person-move": {
+      "codepoint": 57998,
+      "setId": "2046:10506",
+      "figmaName": "Person Move",
+      "category": "People",
+      "retired": false
+    },
+    "person-swap": {
+      "codepoint": 57999,
+      "setId": "2046:10511",
+      "figmaName": "Person Swap",
+      "category": "People",
+      "retired": false
+    },
+    "person-walk": {
+      "codepoint": 58000,
+      "setId": "2046:10516",
+      "figmaName": "Person Walk",
+      "category": "People",
+      "retired": false
+    },
+    "user-minor": {
+      "codepoint": 58001,
+      "setId": "2046:10521",
+      "figmaName": "User Minor",
+      "category": "People",
+      "retired": false
+    },
+    "calibrate-media": {
+      "codepoint": 58002,
+      "setId": "2046:10530",
+      "figmaName": "Calibrate Media",
+      "category": "Printer",
+      "retired": false
+    },
+    "delete-printer": {
+      "codepoint": 58003,
+      "setId": "2046:10535",
+      "figmaName": "Delete Printer",
+      "category": "Printer",
+      "retired": false
+    },
+    "print-configuration-label": {
+      "codepoint": 58004,
+      "setId": "2046:10540",
+      "figmaName": "Print Configuration Label",
+      "category": "Printer",
+      "retired": false
+    },
+    "print-directory-list": {
+      "codepoint": 58005,
+      "setId": "2046:10545",
+      "figmaName": "Print Directory List",
+      "category": "Printer",
+      "retired": false
+    },
+    "print-test-label": {
+      "codepoint": 58006,
+      "setId": "2046:10550",
+      "figmaName": "Print Test Label",
+      "category": "Printer",
+      "retired": false
+    },
+    "restart-printer": {
+      "codepoint": 58007,
+      "setId": "2046:10555",
+      "figmaName": "Restart Printer",
+      "category": "Printer",
+      "retired": false
+    },
+    "restore-printer-defaults": {
+      "codepoint": 58008,
+      "setId": "2046:10560",
+      "figmaName": "Restore Printer Defaults",
+      "category": "Printer",
+      "retired": false
+    },
+    "reset-network": {
+      "codepoint": 58009,
+      "setId": "2046:10565",
+      "figmaName": "Reset Network",
+      "category": "Printer",
+      "retired": false
+    },
+    "restore-network-defaults": {
+      "codepoint": 58010,
+      "setId": "2046:10570",
+      "figmaName": "Restore Network Defaults",
+      "category": "Printer",
+      "retired": false
+    },
+    "printer-profile-deployment": {
+      "codepoint": 58011,
+      "setId": "2046:10575",
+      "figmaName": "Printer Profile Deployment",
+      "category": "Printer",
+      "retired": false
+    },
+    "add-group": {
+      "codepoint": 58012,
+      "setId": "2046:10584",
+      "figmaName": "Add Group",
+      "category": "Social",
+      "retired": false
+    },
+    "add-person": {
+      "codepoint": 58013,
+      "setId": "2046:10589",
+      "figmaName": "Add Person",
+      "category": "Social",
+      "retired": false
+    },
+    "bad-mood": {
+      "codepoint": 58014,
+      "setId": "2046:10594",
+      "figmaName": "Bad Mood",
+      "category": "Social",
+      "retired": false
+    },
+    "blog": {
+      "codepoint": 58015,
+      "setId": "2046:10599",
+      "figmaName": "Blog",
+      "category": "Social",
+      "retired": false
+    },
+    "certified": {
+      "codepoint": 58016,
+      "setId": "2046:10604",
+      "figmaName": "Certified",
+      "category": "Social",
+      "retired": false
+    },
+    "facebook": {
+      "codepoint": 58017,
+      "setId": "2046:10609",
+      "figmaName": "Facebook",
+      "category": "Social",
+      "retired": false
+    },
+    "google-drive": {
+      "codepoint": 58018,
+      "setId": "2046:10614",
+      "figmaName": "google drive",
+      "category": "Social",
+      "retired": false
+    },
+    "group": {
+      "codepoint": 58019,
+      "setId": "2046:10619",
+      "figmaName": "Group",
+      "category": "Social",
+      "retired": false
+    },
+    "groups": {
+      "codepoint": 58020,
+      "setId": "2046:10624",
+      "figmaName": "Groups",
+      "category": "Social",
+      "retired": false
+    },
+    "instagram": {
+      "codepoint": 58021,
+      "setId": "2046:10629",
+      "figmaName": "Instagram",
+      "category": "Social",
+      "retired": false
+    },
+    "linkedin": {
+      "codepoint": 58022,
+      "setId": "2046:10634",
+      "figmaName": "LinkedIn",
+      "category": "Social",
+      "retired": false
+    },
+    "medium": {
+      "codepoint": 58023,
+      "setId": "2046:10639",
+      "figmaName": "Medium",
+      "category": "Social",
+      "retired": false
+    },
+    "money-euro": {
+      "codepoint": 58024,
+      "setId": "2046:10644",
+      "figmaName": "Money Euro",
+      "category": "Social",
+      "retired": false
+    },
+    "money-pound": {
+      "codepoint": 58025,
+      "setId": "2046:10649",
+      "figmaName": "Money Pound",
+      "category": "Social",
+      "retired": false
+    },
+    "money-usd": {
+      "codepoint": 58026,
+      "setId": "2046:10656",
+      "figmaName": "Money USD",
+      "category": "Social",
+      "retired": false
+    },
+    "partner": {
+      "codepoint": 58027,
+      "setId": "2046:10661",
+      "figmaName": "Partner",
+      "category": "Social",
+      "retired": false
+    },
+    "person": {
+      "codepoint": 58028,
+      "setId": "2046:10666",
+      "figmaName": "Person",
+      "category": "Social",
+      "retired": false
+    },
+    "person-outline": {
+      "codepoint": 58029,
+      "setId": "2046:10671",
+      "figmaName": "Person Outline",
+      "category": "Social",
+      "retired": false
+    },
+    "phrase": {
+      "codepoint": 58030,
+      "setId": "2046:10676",
+      "figmaName": "Phrase",
+      "category": "Social",
+      "retired": false
+    },
+    "point-gift": {
+      "codepoint": 58031,
+      "setId": "2046:10681",
+      "figmaName": "Point Gift",
+      "category": "Social",
+      "retired": false
+    },
+    "point-heart": {
+      "codepoint": 58032,
+      "setId": "2046:10686",
+      "figmaName": "Point Heart",
+      "category": "Social",
+      "retired": false
+    },
+    "point-money": {
+      "codepoint": 58033,
+      "setId": "2046:10695",
+      "figmaName": "Point Money",
+      "category": "Social",
+      "retired": false
+    },
+    "point-star": {
+      "codepoint": 58034,
+      "setId": "2046:10700",
+      "figmaName": "Point Star",
+      "category": "Social",
+      "retired": false
+    },
+    "remove-group": {
+      "codepoint": 58035,
+      "setId": "2046:10705",
+      "figmaName": "Remove Group",
+      "category": "Social",
+      "retired": false
+    },
+    "remove-person": {
+      "codepoint": 58036,
+      "setId": "2046:10710",
+      "figmaName": "Remove Person",
+      "category": "Social",
+      "retired": false
+    },
+    "sad": {
+      "codepoint": 58037,
+      "setId": "2046:10715",
+      "figmaName": "Sad",
+      "category": "Social",
+      "retired": false
+    },
+    "satisfied": {
+      "codepoint": 58038,
+      "setId": "2046:10720",
+      "figmaName": "Satisfied",
+      "category": "Social",
+      "retired": false
+    },
+    "switch-user": {
+      "codepoint": 58039,
+      "setId": "2046:10725",
+      "figmaName": "Switch User",
+      "category": "Social",
+      "retired": false
+    },
+    "twitter": {
+      "codepoint": 58040,
+      "setId": "2046:10730",
+      "figmaName": "Twitter",
+      "category": "Social",
+      "retired": false
+    },
+    "very-satisfied": {
+      "codepoint": 58041,
+      "setId": "2046:10735",
+      "figmaName": "Very Satisfied",
+      "category": "Social",
+      "retired": false
+    },
+    "youtube": {
+      "codepoint": 58042,
+      "setId": "2046:10740",
+      "figmaName": "YouTube",
+      "category": "Social",
+      "retired": false
+    },
+    "happy": {
+      "codepoint": 58043,
+      "setId": "2046:10745",
+      "figmaName": "Happy",
+      "category": "Social",
+      "retired": false
+    },
+    "neutral": {
+      "codepoint": 58044,
+      "setId": "2046:10750",
+      "figmaName": "Neutral",
+      "category": "Social",
+      "retired": false
+    },
+    "check-box": {
+      "codepoint": 58045,
+      "setId": "2046:10759",
+      "figmaName": "Check Box",
+      "category": "Toggle",
+      "retired": false
+    },
+    "check-box-empty": {
+      "codepoint": 58046,
+      "setId": "2046:10764",
+      "figmaName": "Check Box Empty",
+      "category": "Toggle",
+      "retired": false
+    },
+    "indeterminate-check-box": {
+      "codepoint": 58047,
+      "setId": "2046:10769",
+      "figmaName": "Indeterminate Check Box",
+      "category": "Toggle",
+      "retired": false
+    },
+    "radio-button-checked": {
+      "codepoint": 58048,
+      "setId": "2046:10774",
+      "figmaName": "Radio Button Checked",
+      "category": "Toggle",
+      "retired": false
+    },
+    "radio-button-unchecked": {
+      "codepoint": 58049,
+      "setId": "2046:10779",
+      "figmaName": "Radio Button Unchecked",
+      "category": "Toggle",
+      "retired": false
+    },
+    "star": {
+      "codepoint": 58050,
+      "setId": "2046:10784",
+      "figmaName": "Star",
+      "category": "Toggle",
+      "retired": false
+    },
+    "star-half": {
+      "codepoint": 58051,
+      "setId": "2046:10789",
+      "figmaName": "Star Half",
+      "category": "Toggle",
+      "retired": false
+    },
+    "star-outline": {
+      "codepoint": 58052,
+      "setId": "2046:10794",
+      "figmaName": "Star Outline",
+      "category": "Toggle",
+      "retired": false
+    },
+    "toggle-off": {
+      "codepoint": 58053,
+      "setId": "2046:10799",
+      "figmaName": "Toggle Off",
+      "category": "Toggle",
+      "retired": false
+    },
+    "toggle-on": {
+      "codepoint": 58054,
+      "setId": "2046:10804",
+      "figmaName": "Toggle On",
+      "category": "Toggle",
+      "retired": false
+    },
+    "locate-scanner": {
+      "codepoint": 58055,
+      "setId": "2046:10813",
+      "figmaName": "Locate Scanner",
+      "category": "Scanner",
+      "retired": false
+    },
+    "reboot-scanner": {
+      "codepoint": 58056,
+      "setId": "2046:10818",
+      "figmaName": "Reboot Scanner",
+      "category": "Scanner",
+      "retired": false
+    },
+    "retrieve-scanner-settings": {
+      "codepoint": 58057,
+      "setId": "2046:10823",
+      "figmaName": "Retrieve Scanner Settings",
+      "category": "Scanner",
+      "retired": false
+    },
+    "delete-scanner": {
+      "codepoint": 58058,
+      "setId": "2046:10828",
+      "figmaName": "Delete Scanner",
+      "category": "Scanner",
+      "retired": false
+    },
+    "scanner-profile-deployment": {
+      "codepoint": 58059,
+      "setId": "2046:10833",
+      "figmaName": "Scanner Profile Deployment",
+      "category": "Scanner",
+      "retired": false
+    },
+    "api-collection": {
+      "codepoint": 58060,
+      "setId": "4767:8483",
+      "figmaName": "API Collection",
+      "category": "Technology",
+      "retired": false
+    },
+    "api": {
+      "codepoint": 58061,
+      "setId": "4767:8488",
+      "figmaName": "API",
+      "category": "Technology",
+      "retired": false
+    },
+    "available": {
+      "codepoint": 58062,
+      "setId": "2046:10852",
+      "figmaName": "Available",
+      "category": "Status",
+      "retired": false
+    },
+    "away": {
+      "codepoint": 58063,
+      "setId": "4768:8544",
+      "figmaName": "Away",
+      "category": "Status",
+      "retired": false
+    },
+    "busy": {
+      "codepoint": 58064,
+      "setId": "4769:8565",
+      "figmaName": "Busy",
+      "category": "Status",
+      "retired": false
+    },
+    "dnd": {
+      "codepoint": 58065,
+      "setId": "4769:8582",
+      "figmaName": "DnD",
+      "category": "Status",
+      "retired": false
+    },
+    "on-shift": {
+      "codepoint": 58066,
+      "setId": "4769:8591",
+      "figmaName": "On Shift",
+      "category": "Status",
+      "retired": false
+    },
+    "offline": {
+      "codepoint": 58067,
+      "setId": "4769:8596",
+      "figmaName": "Offline",
+      "category": "Status",
+      "retired": false
+    }
+  },
+  "nextCodepoint": 58068
+}
