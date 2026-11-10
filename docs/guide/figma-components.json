@@ -1,6 +1,6 @@
 {
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
-  "readAt": "2026-11-06T19:07:28.711Z",
+  "readAt": "2026-11-10T21:10:57.072Z",
   "pages": [
     {
       "page": "Accordion",
@@ -123,14 +123,6 @@
       "subcomponents": []
     },
     {
-      "page": "Filter Selection",
-      "pageId": "5197:5075",
-      "components": [
-        "Filter Selection"
-      ],
-      "subcomponents": []
-    },
-    {
       "page": "Global header",
       "pageId": "2314:3348",
       "components": [
@@ -147,7 +139,7 @@
       "subcomponents": []
     },
     {
-      "page": "inline Banner",
+      "page": "Inline Banner",
       "pageId": "8051:4995",
       "components": [
         "Inline Banner"
@@ -176,6 +168,14 @@
       "components": [
         "Input / Select",
         "Select"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Light Box",
+      "pageId": "8181:9232",
+      "components": [
+        "Lightbox"
       ],
       "subcomponents": []
     },
