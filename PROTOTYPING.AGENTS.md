@@ -6,6 +6,10 @@ Everything produced from this design system is a **prototype**. Its purpose is t
 
 @PROTOTYPING.JIRA.md
 
+**GitHub:** once the Jira step is answered (and any ticket read), follow these instructions. Ask the Jira question and the GitHub question in two separate messages, Jira first, and never combine them into one. They find the in-flight project's GitHub repo (from `github.json`, the ticket, or the designer), have the designer download it as a `.zip` and drop it in, unzip it into `github/`, read it, and write what they learn to `prototypes/<name>/CONTEXT.md`.
+
+@PROTOTYPING.GITHUB.md
+
 **Figma:** when a prototype is done, follow these instructions. They offer to send the prototype to a Figma file, ask for the link to put it in, and use the Figma MCP.
 
 @PROTOTYPING.FIGMA.md
@@ -37,6 +41,8 @@ Prototypes need an internet connection to load those fonts.
 | `templates/*.md` | This project's page-level layouts (see Templates); empty in the generic kit |
 | `tokens.css` | Every token as a CSS custom property, generated from `DESIGN.md` and the component files |
 | `icons.json` | The only valid icons. Each key is an icon name; the value gives its label, category, search terms and its inline SVG in both styles (`round`, `sharp`). The file is large: search it, never read it whole. |
+
+`github.json`, a `github/` folder and `prototypes/<name>/CONTEXT.md` describe the in-flight project (see `PROTOTYPING.GITHUB.md`). They are context, not design sources: never take a value or a component from them.
 
 A component's `composes:` list says which other components it is built from. Read those files too, because a composite only defines its own parts and context overrides; its children's tokens style everything else.
 

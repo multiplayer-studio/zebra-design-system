@@ -34,14 +34,17 @@ def entries(folders, files=(), renames=None):
     return out
 
 
-def write_zip(out, prefix, items, claude, claude_dir=None):
-    """claude is the text of the shipped CLAUDE.md (read it with read_claude), written to claude_dir (default prefix)."""
+def write_zip(out, prefix, items, claude, claude_dir=None, extra=None):
+    """claude is the text of the shipped CLAUDE.md (read it with read_claude), written to claude_dir (default prefix).
+    extra maps bundle path -> text for generated files, e.g. a project kit's github.json."""
     with zipfile.ZipFile(os.path.join(ROOT, out), 'w', zipfile.ZIP_DEFLATED) as z:
         for src, dst in items:
             if src is None:
                 z.writestr(os.path.join(prefix, dst) + '/', '')
             else:
                 z.write(src, os.path.join(prefix, dst))
+        for dst, text in (extra or {}).items():
+            z.writestr(os.path.join(prefix, dst), text)
         z.writestr(os.path.join(claude_dir or prefix, 'CLAUDE.md'), claude)
     print(f'Wrote {out}')
 

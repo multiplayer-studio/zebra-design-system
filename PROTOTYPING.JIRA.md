@@ -4,7 +4,7 @@ Prototypes can be linked to a Jira ticket. Follow this at the start of every new
 
 ## 1. Ask for the ticket
 
-Before building anything, ask: "Is there a Jira ticket for this prototype? If so, what's the key (e.g. `PROJ-123`)?"
+Before building anything, ask: "Is there a Jira ticket for this prototype? If so, what's the key (e.g. `PROJ-123`)?" Ask only this, in a message of its own. The GitHub question (`PROTOTYPING.GITHUB.md`) comes after the designer answers, in a separate message.
 
 - If the designer has none, or says skip, build the prototype as normal and don't ask again in this conversation.
 - If they give a key, continue below.

@@ -35,6 +35,7 @@ Tips:
 - Ask for changes the same way: *"Make the button full width"* or *"Add a message for when there are no results."*
 - If your screen uses a common layout, Claude may offer to save it as a **template** so later prototypes can reuse it. Say yes or no. You can also ask for one yourself: *"Make a template from this prototype."* To share a template with your team, give the file (in the `templates` folder) to your project's developer. After that it comes with your project's kit.
 - Claude will ask if there's a **Jira ticket** for the prototype. Give the key (like `PROJ-123`) or say no. If Jira isn't connected yet, Claude explains how to set it up.
+- Claude will then ask about the project's **GitHub repo**, so the prototype fits the real app. Paste the link or say no. Claude gives you a link to download the code as a `.zip`; drag that into the chat (or into the kit folder, if Claude asks) and Claude unpacks it. It only reads that copy and never changes your repo.
 - When a prototype is done, Claude will ask if you want it in **Figma**. Say yes and paste the link to the Figma file (or ask for a new one). If Figma isn't connected yet, Claude explains how to connect it.
 - If Claude asks to edit a file or run something, click **Allow**. You can choose **Always allow** to stop being asked.
 

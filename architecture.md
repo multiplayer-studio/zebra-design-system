@@ -25,7 +25,7 @@ How a change to the Markdown docs flows through the generator scripts into token
 |---|---|---|
 | Kit | `zebra-design-system-prototyping[-<project>].zip` | `build/zebra-design-system-production/`, delivered by release PR |
 | Shipped `CLAUDE.md` | from `PROTOTYPING.CLAUDE.md` | from `PRODUCTION.CLAUDE.md`, importing `@design-system/AGENTS.md` |
-| Agent guide | `PROTOTYPING.AGENTS.md` (+ `PROTOTYPING.JIRA.md`, `PROTOTYPING.FIGMA.md`) | `design-system/AGENTS.md` (from `PRODUCTION.AGENTS.md`) |
+| Agent guide | `PROTOTYPING.AGENTS.md` (+ `PROTOTYPING.JIRA.md`, `PROTOTYPING.GITHUB.md`, `PROTOTYPING.FIGMA.md`) | `design-system/AGENTS.md` (from `PRODUCTION.AGENTS.md`) |
 | Templates | the project's, flat in `templates/` (none in the generic kit) | the project's, flat in `design-system/templates/`, owned by the repo |
 | Output | `prototypes/<name>/index.html`, viewed in the Claude Browser pane | Component library in the product repo |
 | Consumer loop (flows 5, 6) | not part of it; templates reach master through the project's repo | every repo in `consumers.json` |
