@@ -8,7 +8,7 @@ Claude reads the project's code from a copy the designer downloads from GitHub i
 
 Work through these in order and stop at the first that applies:
 
-1. **`github.json` at the kit root** (`{ "repo": "owner/name", "branch": "main" }`): ask "Is this prototype for `<repo>`?"
+1. **`github.json` at the kit root** (`{ "repo": "owner/name", "branch": "main", "path": "design-system" }`): ask "Is this prototype for `<repo>`?"
 2. **A GitHub link in the Jira ticket** you just read: ask "The ticket links to `<repo>`. Is that the project's repo?"
 3. **Otherwise ask:** "Is there a GitHub repo for the project this prototype belongs to? If so, paste its link (a branch or pull-request link works too)."
 
@@ -46,7 +46,7 @@ Read only what the brief needs. Don't read the whole repo:
 - the copy those screens use (including translation files), and their data shapes (types, mock data, fixtures);
 - the empty, loading and error states they already handle.
 
-Skip the repo's `design-system/` folder (this kit's docs are the source), dependencies (`node_modules/` and the like) and build output.
+Skip the repo's design-system folder (`path` in `github.json`, else `design-system/`; this kit's docs are the source), dependencies (`node_modules/` and the like) and build output.
 
 ## 4. Write the context note
 

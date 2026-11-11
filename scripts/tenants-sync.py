@@ -6,16 +6,16 @@ Auth:  DS_BOT_TOKEN (or GH_TOKEN) for private repos; locally: DS_BOT_TOKEN=$(gh 
        A consumers.json "repo" that is a local folder is read straight from disk, no git needed (for testing).
 
 For each consumer:
-  - templates: the repo's design-system/templates/* is mirrored into templates/<project>/ (the project owns them, no review),
-    and that project's prototyping zip is rebuilt when they change;
-  - differences: design-system/ is compared with the bundle of the version it has installed (scripts/_tenants.py).
+  - templates: the repo's <path>/templates/* (<path> is consumers.json "path", default design-system) is mirrored into
+    templates/<project>/ (the project owns them, no review), and that project's prototyping zip is rebuilt when they change;
+  - differences: <path>/ is compared with the bundle of the version it has installed (scripts/_tenants.py).
     None: tenants/<tenant>/ is removed. Some: tenants/<tenant>/ holds tenant.json (differences + the DS team's
     approved/rejected decisions, kept while they still match), changes.md, CHANGES.md and files/ (their changed files).
 Tenants whose repo is no longer in consumers.json are removed. Exits 1 if any repo failed, after doing the rest.
 """
 import json, os, shutil, subprocess, sys, tempfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _tenants import ROOT, TENANTS, base_bundle, counts, design_version, load_tenant, local_changes, run, save_tenant, value
+from _tenants import ROOT, TENANTS, base_bundle, counts, design_version, ds_path, load_tenant, local_changes, run, save_tenant, value
 
 TOKEN = os.environ.get('DS_BOT_TOKEN') or os.environ.get('GH_TOKEN')
 
@@ -52,6 +52,10 @@ def kept(old, diff, decision):
 
 
 def sync(c):
+    try:
+        p = ds_path(c)
+    except ValueError as e:
+        return str(e), False
     tmp = tempfile.mkdtemp()
     try:
         if os.path.isdir(c['repo']):  # local folder, for testing
@@ -59,12 +63,12 @@ def sync(c):
         else:
             try:
                 run('git', 'clone', '--quiet', '--depth', '1', '--branch', c['branch'], '--filter=blob:none', '--sparse', url(c['repo']), tmp)
-                run('git', 'sparse-checkout', 'set', 'design-system', cwd=tmp)
+                run('git', 'sparse-checkout', 'set', p, cwd=tmp)
             except subprocess.CalledProcessError as e:
                 return f"clone failed: {e.stderr.strip().splitlines()[-1] if e.stderr.strip() else e.returncode}", False
-        ds = os.path.join(tmp, 'design-system')
+        ds = os.path.join(tmp, p)
         if not os.path.isdir(ds):
-            return 'no design-system/ yet, skipped', True
+            return f'no {p}/ yet, skipped', True
 
         project, note = c['project'], ''
         if mirror(os.path.join(ds, 'templates'), os.path.join(ROOT, 'templates', project)):

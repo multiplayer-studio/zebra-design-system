@@ -17,7 +17,7 @@ Whatever the prompt asks for, finish by making every doc, generated file and bun
 | Files or folders at the repo root | The README Contents table. |
 | Anything that ends up in a prototyping kit | Regenerate with `python3 scripts/prototyping-zip.py` (the generic zip and one per `templates/<project>/`). The zips are generated; never edit them by hand. |
 | Anything that ends up in the production kit | Nothing to commit: `scripts/release.py` builds it with `python3 scripts/production-bundle.py` (into the gitignored `build/`) when the release workflow runs. Run it yourself to check the output. |
-| `consumers.json` | Nothing else; the next nightly sync and release pick it up. Each entry needs `repo`, `branch`, `tenant` and a unique lowercase-hyphenated `project`. |
+| `consumers.json` | Nothing else; the next nightly sync and release pick it up. Each entry needs `repo`, `branch`, `tenant` and a unique lowercase-hyphenated `project`, and may set `path` (where the repo keeps `design-system/`, relative to its root; default `design-system`). |
 | `scripts/_tenants.py`, `tenants-sync.py`, `tenants-approve.py` or `release.py` | Run `python3 scripts/_tenants.py` (self-test) and `python3 scripts/release.py --dry-run`; keep `.github/workflows/` and the `PRODUCTION.AGENTS.md` Syncing section in step with what they do. |
 | `prototypes/` | `prototypes/showcase` if it renders the changed component or token. Its component CSS lives in `prototypes/_starter/components.css`; edit it there, never between the showcase's markers. |
 | A component's CSS in `prototypes/_starter/components.css` | Rerun `python3 scripts/starter-html.py` (never hand-edit `prototypes/_starter/index.html`). |

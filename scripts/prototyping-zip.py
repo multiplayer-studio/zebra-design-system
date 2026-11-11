@@ -11,7 +11,7 @@ Each zip holds one folder, zebra-design-system-prototyping[-<project>]/, with:
   DESIGN.md PROTOTYPING.AGENTS.md PROTOTYPING.JIRA.md PROTOTYPING.GITHUB.md PROTOTYPING.FIGMA.md icons.json tokens.css   as-is
   CLAUDE.md                                  PROTOTYPING.CLAUDE.md
   README.md                                  copied from PROTOTYPING.README.md
-  github.json                                project kit only: its repo and branch from consumers.json
+  github.json                                project kit only: its repo, branch and design-system path from consumers.json
 """
 import glob, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -29,7 +29,7 @@ def kit(project=None):
                      'icons.json', 'tokens.css'],
                     {'PROTOTYPING.README.md': 'README.md'})
     c = CONSUMERS.get(project)
-    extra = {'github.json': json.dumps({'repo': c['repo'], 'branch': c['branch']}, indent=2) + '\n'} if c else None
+    extra = {'github.json': json.dumps({'repo': c['repo'], 'branch': c['branch'], 'path': c.get('path', 'design-system')}, indent=2) + '\n'} if c else None
     write_zip(f'{name}.zip', name, items + ([] if project else [(None, 'templates')]), read_claude('PROTOTYPING.CLAUDE.md'),
               extra=extra)
 

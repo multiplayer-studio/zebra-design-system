@@ -6,7 +6,7 @@ The docs are the specification. The code implements them. Neither changes withou
 
 ## Setup
 
-The design system arrives as a pull request from the master design-system repo, opened by its release workflow for every repo in its `consumers.json`. The first one adds the whole design system as `design-system/`:
+The design system arrives as a pull request from the master design-system repo, opened by its release workflow for every repo in its `consumers.json`. The first one adds the whole design system as a `design-system/` folder, at the repo root unless the project asked the design-system team for another path (`path` in the master repo's `consumers.json`, e.g. `docs/design-system`):
 
 ```
 design-system/
@@ -23,7 +23,7 @@ design-system/
   CHANGES.md       project-specific: you create it (see below)
 ```
 
-The first PR also adds, at the project root, a `CLAUDE.md` that imports this file, and the `design-system-init` skill in `.claude/skills/design-system-init/`. If the project already has a `CLAUDE.md`, the PR leaves it alone and says so: the skill offers to merge the design-system section in. All paths below are relative to `design-system/`.
+The first PR also adds, at the project root, a `CLAUDE.md` that imports this file (`@<path>/AGENTS.md`, so it names where the folder is), and the `design-system-init` skill in `.claude/skills/design-system-init/`. If the project already has a `CLAUDE.md`, the PR leaves it alone and says so: the skill offers to merge the design-system section in. All paths below are relative to the design-system folder. Don't move it yourself: ask the design-system team to change its `path` first, or the next release installs it again at the old path.
 
 On first use, before writing any component, check both project-specific files exist and are filled in.
 
@@ -128,7 +128,7 @@ Never change the code's look or behaviour without the matching doc change, and n
 
 Both directions are automatic. Your part is keeping `CHANGES.md` accurate, because it carries the why.
 
-- **Sending changes up:** every night the master design-system repo reads this repo's `design-system/` and compares it with the version you have installed (the `version` in `DESIGN.md`). If anything differs, it records the differences in this project's *tenant* there, next to the master docs; if nothing does, there is no tenant. Templates are copied up as they are. Don't push anything upstream yourself.
+- **Sending changes up:** every night the master design-system repo reads this repo's design-system folder and compares it with the version you have installed (the `version` in `DESIGN.md`). If anything differs, it records the differences in this project's *tenant* there, next to the master docs; if nothing does, there is no tenant. Templates are copied up as they are. Don't push anything upstream yourself.
 - **What happens to a difference:** each sprint the design-system team reviews it and either adopts it into the master docs, allows it as a lasting difference for this project (e.g. your own primitive colours for theming), or rejects it.
 - **Pulling a new version:** it arrives as a pull request on branch `zebra-design-system/<version>`. The PR has already:
   - replaced every file you hadn't changed;

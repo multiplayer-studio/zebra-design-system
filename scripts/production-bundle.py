@@ -7,7 +7,7 @@ The folder holds zebra-design-system-production/, containing:
   CLAUDE.md                                  PRODUCTION.CLAUDE.md, importing @design-system/AGENTS.md;
                                              goes at the project root
   .claude/skills/                            PRODUCTION.SKILLS/ (design-system-init), also at the project root
-  design-system/                             (the name AGENTS.md's Setup expects), with:
+  design-system/                             (release.py moves it to the repo's consumers.json path, if set), with:
   atoms/ molecules/ organisms/               as-is
   templates/                                 empty: release.py fills it with the project's own templates
   DESIGN.md icons.json tokens.css            as-is

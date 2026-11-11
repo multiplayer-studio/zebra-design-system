@@ -1,6 +1,7 @@
 """Shared helpers for the consumer loop (tenants-sync.py, tenants-approve.py, release.py). Python 3 stdlib + the git CLI.
 
-A consumer repo's local changes are whatever differs between its design-system/ and the production bundle
+A consumer repo's local changes are whatever differs between its design-system folder (consumers.json "path",
+default design-system/) and the production bundle
 of the version it has installed (the `version` in its DESIGN.md), never the latest master.
 Token keys (DESIGN.md frontmatter, a component's tokens:) are compared one by one; everything else per file.
 LIBRARY.md, CHANGES.md and templates/ belong to the project, and tokens.css is generated, so none of them count.
@@ -81,6 +82,14 @@ def local_changes(local, base):
             if rest_differs:
                 files[rel] = {'status': 'changed', 'hash': sha(l)}
     return {'tokens': tokens, 'files': files}
+
+
+def ds_path(c):
+    """Where a consumers.json entry keeps its design-system folder, relative to its repo root (default design-system)."""
+    p = os.path.normpath(c.get('path', 'design-system'))
+    if os.path.isabs(p) or p == '.' or p.split(os.sep)[0] == '..':
+        raise ValueError(f"{c['tenant']}: path must be a folder inside the repo, got {c['path']!r}")
+    return p
 
 
 def design_version(ds_dir):
@@ -198,6 +207,12 @@ def _self_test():
               'rejected': {'tokens': {}, 'files': {'atoms/new.md': 'sha256:stale'}}}
     assert counts(tenant) == {'needs review': 2, 'approved': 1, 'rejected': 0}  # a stale hash doesn't count
     assert '## Approved' in render('x', tenant) and '`#0a5cc2`' in render('x', tenant)
+    assert ds_path({'tenant': 'x'}) == 'design-system' and ds_path({'tenant': 'x', 'path': 'docs/ds/'}) == 'docs/ds'
+    for bad in ('../x', '/x', '.', 'a/../../x'):
+        try:
+            ds_path({'tenant': 'x', 'path': bad}); raise AssertionError(bad)
+        except ValueError:
+            pass
     shutil.rmtree(t)
     print('_tenants self-test OK')
 

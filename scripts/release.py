@@ -6,9 +6,11 @@ Usage: python3 scripts/release.py [--dry-run [--keep]] [--notes "text for the PR
 Auth:  DS_BOT_TOKEN (or GH_TOKEN), with contents and pull-requests write on the consumer repos.
        A consumers.json "repo" that is a local folder is read from disk; use --dry-run with those (for testing).
 
+Each repo's design system goes in its consumers.json "path" (default design-system); the bundle's design-system/
+is moved there and the root CLAUDE.md imports @<path>/AGENTS.md. CLAUDE.md and .claude/skills/ stay at the repo root.
 It works out per repo what to do; there is no option for it:
-  new     (no design-system/): the whole production bundle, plus the project's templates/<project>/ flattened into
-          design-system/templates/. The root CLAUDE.md is added only if the repo has none.
+  new     (no design-system folder): the whole production bundle, plus the project's templates/<project>/ flattened into
+          <path>/templates/. The root CLAUDE.md is added only if the repo has none.
   update  every bundle file and the root CLAUDE.md, against the bundle of the version the repo has installed (its base):
           unchanged locally -> replaced; changed locally -> 3-way merged (git merge-file), a conflict keeps theirs and
           is listed; removed upstream -> removed unless changed locally. LIBRARY.md, CHANGES.md and templates/ are
@@ -19,23 +21,23 @@ Never force-pushes: each version gets its own branch, zebra-design-system/<versi
 """
 import json, os, shutil, subprocess, sys, tempfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _tenants import ROOT, base_bundle, design_version, load_tenant, run, same, state
+from _tenants import ROOT, base_bundle, design_version, ds_path, load_tenant, run, same, state
 
 TOKEN = os.environ.get('DS_BOT_TOKEN') or os.environ.get('GH_TOKEN')
-OWNED = ('design-system/LIBRARY.md', 'design-system/CHANGES.md', 'design-system/tokens.css')
 
 
 def url(repo):
     return f'https://x-access-token:{TOKEN}@github.com/{repo}.git' if TOKEN else f'https://github.com/{repo}.git'
 
 
-def files_of(top):
+def files_of(top, p):
+    owned = {f'{p}/LIBRARY.md', f'{p}/CHANGES.md', f'{p}/tokens.css'}
     out = set()
     for d, dirs, names in os.walk(top):
         dirs[:] = [x for x in dirs if x != '.git']
         for n in names:
             rel = os.path.relpath(os.path.join(d, n), top)
-            if n != '.DS_Store' and rel not in OWNED and not rel.startswith('design-system/templates/'):
+            if n != '.DS_Store' and rel not in owned and not rel.startswith(f'{p}/templates/'):
                 out.add(rel)
     return out
 
@@ -45,21 +47,36 @@ def copy(src, dst):
     shutil.copyfile(src, dst)
 
 
-def new_install(repo, new, project, r):
-    for rel in sorted(files_of(new) | {'design-system/LIBRARY.md', 'design-system/tokens.css'}):
+def relocate(bundle, p, tmps):
+    """The bundle with its design-system/ moved to p and CLAUDE.md importing @p/AGENTS.md (bundle itself for the default)."""
+    if p == 'design-system':
+        return bundle
+    out = tempfile.mkdtemp(); tmps.append(out)
+    shutil.copytree(bundle, out, dirs_exist_ok=True)
+    os.makedirs(os.path.dirname(os.path.join(out, p)), exist_ok=True)
+    os.rename(os.path.join(out, 'design-system'), os.path.join(out, p))
+    claude = os.path.join(out, 'CLAUDE.md')
+    if os.path.exists(claude):
+        text = open(claude).read().replace('@design-system/AGENTS.md', f'@{p}/AGENTS.md')
+        open(claude, 'w').write(text)
+    return out
+
+
+def new_install(repo, new, project, p, r):
+    for rel in sorted(files_of(new, p) | {f'{p}/LIBRARY.md', f'{p}/tokens.css'}):
         if rel == 'CLAUDE.md' and os.path.exists(os.path.join(repo, rel)):
             r['notes'].append('This repo already has a `CLAUDE.md`, so it was left alone: merge the design-system section from '
-                              'the kit into it (see `design-system/AGENTS.md`, Setup).')
+                              f'the kit into it (see `{p}/AGENTS.md`, Setup).')
             continue
         copy(os.path.join(new, rel), os.path.join(repo, rel)); r['updated'].append(rel)
     templates = os.path.join(ROOT, 'templates', project)
-    os.makedirs(os.path.join(repo, 'design-system', 'templates'), exist_ok=True)
+    os.makedirs(os.path.join(repo, p, 'templates'), exist_ok=True)
     if os.path.isdir(templates):
-        shutil.copytree(templates, os.path.join(repo, 'design-system', 'templates'), dirs_exist_ok=True)
+        shutil.copytree(templates, os.path.join(repo, p, 'templates'), dirs_exist_ok=True)
 
 
-def update(repo, base, new, r):
-    for rel in sorted(files_of(base) | files_of(new)):
+def update(repo, base, new, p, r):
+    for rel in sorted(files_of(base, p) | files_of(new, p)):
         b, n, l = (os.path.join(x, rel) for x in (base, new, repo))
         hb, hn, hl = (os.path.exists(x) for x in (b, n, l))
         if rel.startswith('.claude/skills/'):         # master-owned: local edits are overwritten
@@ -93,17 +110,17 @@ def update(repo, base, new, r):
                 r['conflicts'].append(f'{rel}: your change and master\'s overlap')
             else:
                 raise RuntimeError(m.stderr)
-    if not os.path.exists(os.path.join(repo, 'design-system', 'LIBRARY.md')):
-        copy(os.path.join(new, 'design-system', 'LIBRARY.md'), os.path.join(repo, 'design-system', 'LIBRARY.md'))
-        r['updated'].append('design-system/LIBRARY.md')
+    if not os.path.exists(os.path.join(repo, p, 'LIBRARY.md')):
+        copy(os.path.join(new, p, 'LIBRARY.md'), os.path.join(repo, p, 'LIBRARY.md'))
+        r['updated'].append(f'{p}/LIBRARY.md')
 
 
-def body(version, c, r, notes):
+def body(version, p, r, notes):
     lines = [f'Design system **{version}**, opened by the release workflow in the master design-system repo.', '']
     if notes:
         lines += ['## Release notes', '', notes, '']
     lines += [f"This is {'a **first install**' if r['case'] == 'new' else 'an **update** from ' + r['base']}. "
-              'Merge it, then ask your agent to finish pulling the new version (`design-system/AGENTS.md`, '
+              f'Merge it, then ask your agent to finish pulling the new version (`{p}/AGENTS.md`, '
               'Syncing with the master design system).', '']
     for title, key in (('Updated', 'updated'), ('Merged with your changes', 'merged'), ('Removed upstream', 'removed')):
         if r[key]:
@@ -127,8 +144,11 @@ def release(c, version, new, dry, notes):
     local = os.path.isdir(c['repo'])
     if local and not dry:
         return 'local folders only work with --dry-run', False
+    p = ds_path(c)
     repo = tempfile.mkdtemp()
+    tmps = [repo]
     try:
+        new = relocate(new, p, tmps)
         if local:
             shutil.copytree(c['repo'], repo, dirs_exist_ok=True)
         else:
@@ -139,17 +159,17 @@ def release(c, version, new, dry, notes):
             else:
                 run('git', 'checkout', '--quiet', '-b', branch, cwd=repo)
 
-        ds = os.path.join(repo, 'design-system')
+        ds = os.path.join(repo, p)
         if not os.path.isdir(ds):
             r['case'] = 'new'
-            new_install(repo, new, c['project'], r)
+            new_install(repo, new, c['project'], p, r)
         else:
             r['case'], r['base'] = 'update', design_version(ds)
             try:
-                base = os.path.dirname(base_bundle(r['base']))
+                base = relocate(os.path.dirname(base_bundle(r['base'])), p, tmps)
             except LookupError as e:
                 return str(e), False
-            update(repo, base, new, r)
+            update(repo, base, new, p, r)
             run(sys.executable, os.path.join(ds, 'scripts', 'tokens-css.py'))
 
         summary = (f"{r['case']}{' from ' + r['base'] if r['base'] else ''}: {len(r['updated'])} updated, {len(r['merged'])} merged, "
@@ -168,7 +188,7 @@ def release(c, version, new, dry, notes):
         run('git', '-c', 'user.name=zebra-design-system', '-c', 'user.email=design-system@users.noreply.github.com',
             'commit', '--quiet', '-m', f'chore(design-system): update to {version}', cwd=repo)
         run('git', 'push', '--quiet', 'origin', branch, cwd=repo)
-        text = body(version, c, r, notes)
+        text = body(version, p, r, notes)
         prs = json.loads(run('gh', 'pr', 'list', '--repo', c['repo'], '--state', 'open', '--json', 'number,headRefName').stdout)
         mine = [p for p in prs if p['headRefName'] == branch]
         if mine:
@@ -176,12 +196,13 @@ def release(c, version, new, dry, notes):
         else:
             run('gh', 'pr', 'create', '--repo', c['repo'], '--base', c['branch'], '--head', branch,
                 '--title', f'Design system {version}', '--body', text)
-        for p in prs:
-            if p['headRefName'].startswith('zebra-design-system/') and p['headRefName'] != branch:
-                run('gh', 'pr', 'close', str(p['number']), '--repo', c['repo'], '--comment', f'Superseded by design system {version}.')
+        for pr in prs:
+            if pr['headRefName'].startswith('zebra-design-system/') and pr['headRefName'] != branch:
+                run('gh', 'pr', 'close', str(pr['number']), '--repo', c['repo'], '--comment', f'Superseded by design system {version}.')
         return summary, True
     finally:
-        shutil.rmtree(repo, ignore_errors=True)
+        for t in tmps:
+            shutil.rmtree(t, ignore_errors=True)
 
 
 args = sys.argv[1:]
@@ -196,7 +217,7 @@ for c in json.load(open(os.path.join(ROOT, 'consumers.json'))):
     if not only or c['tenant'] in only:
         try:
             msg, good = release(c, version, new, dry, notes)
-        except (subprocess.CalledProcessError, RuntimeError) as e:
+        except (subprocess.CalledProcessError, RuntimeError, ValueError) as e:
             msg, good = f'failed: {getattr(e, "stderr", e)}'.strip(), False
         ok &= good
         print(f"{c['tenant']}: {msg}")

@@ -76,4 +76,4 @@ Where it came from (prototype path or source codebase and component), and what k
 - [ ] Missing components and draft components are flagged in the doc and in your reply.
 - [ ] Nothing was written to `prototypes/`.
 
-Then tell the user the template's path, give a one-line summary of its regions, and list anything you flagged. Remind them that to share it, they give the file to their project's developer, who adds it to the project repo's `design-system/templates/`; from there it reaches the design system and every later kit for the project.
+Then tell the user the template's path, give a one-line summary of its regions, and list anything you flagged. Remind them that to share it, they give the file to their project's developer, who adds it to `templates/` in the project repo's design-system folder; from there it reaches the design system and every later kit for the project.

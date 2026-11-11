@@ -1,11 +1,11 @@
 ---
 name: design-system-init
-description: Set up the Zebra Design System in this repo. Walks the developer through filling in design-system/LIBRARY.md (technology, library location, tokens, component API, conventions, workflow, existing UI), creates CHANGES.md, wires the tokens, scaffolds the component library and builds a first component. Use when the developer asks to set up, init or onboard the design system, or to fill in LIBRARY.md, and whenever LIBRARY.md still has <…> placeholders before a component is built. On a filled-in LIBRARY.md, use it to revise one section or add a platform.
+description: Set up the Zebra Design System in this repo. Walks the developer through filling in LIBRARY.md (technology, library location, tokens, component API, conventions, workflow, existing UI), creates CHANGES.md, wires the tokens, scaffolds the component library and builds a first component. Use when the developer asks to set up, init or onboard the design system, or to fill in LIBRARY.md, and whenever LIBRARY.md still has <…> placeholders before a component is built. On a filled-in LIBRARY.md, use it to revise one section or add a platform.
 ---
 
 # Set up the design system
 
-The design system arrived as `design-system/` from a release PR. `design-system/AGENTS.md` says how the library is built. `design-system/LIBRARY.md` holds this project's answers about how, and its engineers own it. This skill fills in those answers with the developer. It doesn't set any rules of its own: where this skill and `AGENTS.md` overlap, `AGENTS.md` wins.
+The design system arrived as a `design-system/` folder from a release PR, at the repo root unless the project chose another path. Below, `design-system/` means that folder. `design-system/AGENTS.md` says how the library is built. `design-system/LIBRARY.md` holds this project's answers about how, and its engineers own it. This skill fills in those answers with the developer. It doesn't set any rules of its own: where this skill and `AGENTS.md` overlap, `AGENTS.md` wins.
 
 Work through the steps in order, one at a time. For each `LIBRARY.md` section:
 - propose answers;
@@ -17,8 +17,8 @@ If the developer stops partway, you can resume later, because a section with no 
 
 ## 0. Preflight
 
-1. Check that `design-system/` exists, with `DESIGN.md`, `AGENTS.md` and `LIBRARY.md` in it. If it doesn't, stop: the first release PR hasn't been merged.
-2. Check the root `CLAUDE.md` imports `@design-system/AGENTS.md`. If it doesn't, the repo had its own `CLAUDE.md` before the first release. Offer to add the design-system section (the "Design system (always applies)" block and the import). Show the diff, and write only after the developer says yes.
+1. Find the design-system folder: the one the root `CLAUDE.md` imports as `@<path>/AGENTS.md`, or else the folder holding `DESIGN.md`, `AGENTS.md` and `LIBRARY.md` together. If there's none, stop: the first release PR hasn't been merged.
+2. Check the root `CLAUDE.md` imports `@<path>/AGENTS.md`. If it doesn't, the repo had its own `CLAUDE.md` before the first release. Offer to add the design-system section (the "Design system (always applies)" block and the import). Show the diff, and write only after the developer says yes.
 3. Read `version` from the `DESIGN.md` frontmatter.
 4. If `LIBRARY.md` has no `<…>` placeholders and no "Example: React" section, it's already filled in. Offer a menu:
    - revise one section (1–8);
