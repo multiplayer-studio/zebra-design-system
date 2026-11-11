@@ -1,0 +1,92 @@
+/* Select — only the deltas. The field is styled by input-field.css
+   (.zds-input-field + data-size/shape/flavour/state), the label and hint by
+   input.css, the list by dropdown-menu.css and the rows by menu-item.css.
+   Every value here is a semantic token. Kept rule for rule in step with
+   packages/web-components select.styles.ts.
+
+   Spec: specs/select/select.spec.md */
+
+/* ---- field: a <button>, not a text box ------------------------------- */
+/* Reset the UA button styles input-field.css does not expect. `font: inherit`
+   also normalises the button's UA weight so both packages match. */
+.zds-select__trigger {
+  inline-size: 100%;
+  margin: 0;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+/* --zds-select-field-min-inline-size lowers Input Field's minimum where a
+   short value needs little room, such as a table's rows per page. */
+.zds-input-field.zds-select__trigger {
+  min-inline-size: var(--zds-select-field-min-inline-size, calc(6 * var(--control-sm)));
+}
+.zds-select__trigger[data-state="read-only"] { cursor: default; }
+.zds-select__trigger[data-state="disabled"] { cursor: not-allowed; }
+
+/* Keyboard focus: Input / Select's `focus` row (border/focus at
+   stroke/thick, outside), drawn from :focus-visible because a button, unlike
+   a text box, can tell keyboard from pointer. */
+.zds-select__trigger:focus-visible:not([data-state="disabled"]):not([data-state="open"]) {
+  --zds-input-border: transparent;
+  --zds-input-outline: var(--stroke-thick) solid var(--border-focus);
+}
+
+/* ---- display text: placeholder, then the value ------------------------ */
+.zds-select__value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* The placeholder shows at enabled, focus and open (spec issue 5: open keeps
+   the placeholder), in foreground/disabled. */
+.zds-select__value[data-empty] { color: var(--foreground-disabled); }
+
+.zds-select__chevron {
+  flex: none;
+  display: inline-flex;
+}
+
+/* ---- state: open (spec issue 11 — Input / Select's own name) ----------- */
+/* Same tokens as Input Field's selected: border/focus at stroke/thin. */
+.zds-input-field.zds-select__trigger[data-state="open"] {
+  --zds-input-border: var(--border-focus);
+}
+.zds-input-field.zds-select__trigger[data-flavour="gradient"][data-state="open"] {
+  --zds-input-border: var(--border-gradient-start);
+}
+/* Ghost: Figma draws open at stroke/base (zero), so only the chevron says the
+   list is open (spec issue 10). Following the intent — "the border stays at
+   focus weight" — ghost open draws border/focus at stroke/thin, the same
+   exception ghost already makes for invalid. */
+.zds-input-field.zds-select__trigger[data-flavour="ghost"][data-state="open"] {
+  --zds-input-border-width: var(--stroke-thin);
+}
+
+/* ---- list ------------------------------------------------------------- */
+/* Width = the field's (spec: "Width is inherited from field width"; issue
+   13). Height is capped at the room left in the viewport and scrolls — Figma
+   has no cap, but an uncapped list runs off screen. The z-index reserves the
+   z-order the metadata asks for. */
+.zds-select__positioner { z-index: 1; outline: none; }
+.zds-select__popup {
+  display: block;
+  box-sizing: border-box;
+  inline-size: var(--anchor-width);
+  /* As wide as the field; --zds-select-list-min-inline-size lets it grow to
+     fit its rows when the field is narrow. */
+  min-inline-size: var(--zds-select-list-min-inline-size, auto);
+  max-block-size: var(--available-height);
+  overflow-y: auto;
+  outline: none;
+}
+/* The list's width is the field's, so a long label truncates rather than
+   widening the menu as a free-standing Dropdown Menu does. */
+.zds-select__item-label {
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* The check sits where Menu Item's trailing icon does. */
+.zds-select__check { margin-inline-start: auto; }

@@ -1,0 +1,507 @@
+/* Message Input (EXPERIMENTAL) — every value is a semantic token. Buttons
+   are IconButton and chips are AssistChip, each themed by its own CSS; this file lays
+   out the composer and draws the parts that are its own: the
+   voice bar, the waveform, the spinner and the recording dot. Keyed off
+   data-state on the root (empty, filled, tray, listening, transcribing,
+   recording, playback, speaking).
+
+   Spec: none yet — built from a reference design. */
+
+/* ---- root ------------------------------------------------------------ */
+.zds-message-input {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: var(--surface-card);
+  border: var(--stroke-thin) solid var(--border-default);
+  border-radius: var(--radius-container);
+  color: var(--foreground-primary);
+}
+.zds-message-input:focus-within {
+  border-color: var(--border-focus);
+}
+.zds-message-input[data-disabled] {
+  background: var(--interactive-neutral-background-disabled);
+  border-color: var(--border-disabled);
+}
+/* Files held over the composer: the border invites the drop, the ghost
+   selected tint (as the read-aloud toggle) shows the whole card takes it. */
+.zds-message-input[data-dragging] {
+  border-style: dashed;
+  border-color: var(--border-focus);
+  background: var(--interactive-ghost-background-selected);
+}
+
+/* ---- text ------------------------------------------------------------ */
+.zds-message-input__text {
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-block-size: calc(2 * var(--body-medium-line-height));
+  max-block-size: calc(8 * var(--body-medium-line-height));
+  field-sizing: content;
+  margin: 0;
+  padding: var(--space-2xs) var(--space-md);
+  border: 0;
+  outline: none;
+  resize: none;
+  background: transparent;
+  color: var(--foreground-primary);
+  caret-color: var(--foreground-cursor);
+  font-family: var(--body-medium-font-family), system-ui, sans-serif;
+  font-size: var(--body-medium-font-size);
+  font-weight: var(--body-medium-font-weight);
+  line-height: var(--body-medium-line-height);
+  letter-spacing: var(--body-medium-letter-spacing);
+}
+.zds-message-input__text::placeholder {
+  color: var(--foreground-disabled);
+  opacity: 1;
+}
+.zds-message-input__text:disabled {
+  color: var(--foreground-disabled);
+  cursor: not-allowed;
+}
+
+/* ---- chips: attachments and the dictated tag -------------------------- */
+.zds-message-input__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.zds-message-input__chip {
+  display: flex;
+  max-inline-size: 100%;
+}
+/* The chip is Assist Chip (discardable); only a long file name needs help. */
+.zds-message-input__chip .zds-chip {
+  max-inline-size: 100%;
+}
+.zds-message-input__chip .zds-chip__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---- image attachment: the thumbnail chip ------------------------------ */
+/* Message Input's own subcomponent, on the chip base: Assist Chip's height
+   (space/xs above and below a control/icon-sm row), neutral border and
+   remove control, but a rounded rectangle, not a pill. space/2xs of padding
+   above, below and before the picture, which takes the rest of the height
+   (control/icon-md). */
+.zds-message-input__thumbnail {
+  gap: var(--space-3xs);
+  height: calc(var(--space-xs) * 2 + var(--control-icon-sm));
+  padding: var(--space-2xs);
+  padding-inline-end: var(--space-sm);
+  border-radius: var(--radius-element-md);
+  --zds-chip-bg: var(--interactive-neutral-background-default);
+  --zds-chip-border: var(--interactive-neutral-border-default);
+  --zds-chip-fg: var(--interactive-neutral-foreground-default);
+}
+.zds-message-input__thumbnail-image {
+  flex: none;
+  block-size: var(--control-icon-md);
+  aspect-ratio: 1;
+  /* One step inside the chip's own radius, so the corners stay parallel. */
+  border-radius: var(--radius-element-sm);
+  object-fit: cover;
+}
+/* The name stays short: the picture carries the identity, the full name
+   sits in the title. Indicator/medium, as the Assist Chip label. */
+.zds-message-input__thumbnail .zds-chip__label {
+  padding-inline: var(--space-2xs);
+  max-inline-size: 14ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--indicator-medium-font-family), system-ui, sans-serif;
+  font-size: var(--indicator-medium-font-size);
+  font-weight: var(--indicator-medium-font-weight);
+  line-height: var(--indicator-medium-line-height);
+  letter-spacing: var(--indicator-medium-letter-spacing);
+}
+/* Two actions, as Assist Chip splits them: the picture and name open the
+   preview, the close zone removes. Both are bare buttons whose focus ring is
+   drawn by the chip; the remove's hit area widens past the 16px glyph. */
+.zds-message-input__thumbnail-action,
+.zds-message-input__thumbnail-remove {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  /* The action wraps picture + name, so it repeats the root's space/3xs gap. */
+  gap: var(--space-3xs);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+}
+/* A clickable picture invites as the Assist Chip does: the neutral hover fill. */
+.zds-message-input__thumbnail[data-clickable]:hover:not([data-disabled]) {
+  --zds-chip-bg: var(--interactive-neutral-background-hover);
+}
+.zds-message-input__thumbnail-remove::before {
+  content: "";
+  position: absolute;
+  inset: calc(var(--space-xs) * -1);
+}
+
+/* ---- voice bar: listening, transcribing, recording, playback, speaking -- */
+.zds-message-input__voice {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.zds-message-input__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-block-size: var(--control-lg);
+  padding: var(--space-2xs) var(--space-2xs) var(--space-2xs) var(--space-md);
+  border-radius: var(--radius-element-md);
+  /* A sunken well inside the card (fill/sunken, as the open tray toggle). */
+  background: var(--surface-track);
+  color: var(--foreground-primary);
+}
+.zds-message-input[data-state="playback"] .zds-message-input__bar {
+  padding-inline-start: var(--space-2xs);
+}
+.zds-message-input__bar-label {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  font-family: var(--body-medium-font-family), system-ui, sans-serif;
+  font-size: var(--body-medium-font-size);
+  font-weight: var(--body-medium-font-weight);
+  line-height: var(--body-medium-line-height);
+  letter-spacing: var(--body-medium-letter-spacing);
+}
+.zds-message-input__time {
+  color: var(--foreground-secondary);
+  font-family: var(--body-medium-font-family), system-ui, sans-serif;
+  font-size: var(--body-medium-font-size);
+  line-height: var(--body-medium-line-height);
+  font-variant-numeric: tabular-nums;
+}
+/* In playback the time follows the waveform and pushes the controls right. */
+.zds-message-input[data-state="playback"] .zds-message-input__time {
+  margin-inline-start: auto;
+}
+.zds-message-input__hint,
+.zds-message-input__error {
+  margin: 0;
+  font-family: var(--body-xsmall-font-family), system-ui, sans-serif;
+  font-size: var(--body-xsmall-font-size);
+  font-weight: var(--body-xsmall-font-weight);
+  line-height: var(--body-xsmall-line-height);
+  letter-spacing: var(--body-xsmall-letter-spacing);
+}
+.zds-message-input__hint { color: var(--foreground-secondary); }
+.zds-message-input__error { color: var(--foreground-error); }
+
+/* The character counter: quiet until the limit, then the error colour. */
+.zds-message-input__count {
+  margin: 0;
+  align-self: flex-end;
+  color: var(--foreground-secondary);
+  font-family: var(--body-xsmall-font-family), system-ui, sans-serif;
+  font-size: var(--body-xsmall-font-size);
+  font-weight: var(--body-xsmall-font-weight);
+  line-height: var(--body-xsmall-line-height);
+  letter-spacing: var(--body-xsmall-letter-spacing);
+  font-variant-numeric: tabular-nums;
+}
+.zds-message-input__count[data-full] { color: var(--foreground-error); }
+
+/* Words landing while listening: one line, newest kept in view. */
+.zds-message-input__bar-label[data-heard] {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Waveform: bars in currentColor, height from --zds-bar-level (0–1). */
+.zds-message-input__wave {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  block-size: var(--control-icon-md);
+}
+.zds-message-input__wave > .zds-message-input__level {
+  display: block;
+  inline-size: var(--stroke-thick);
+  block-size: calc(var(--zds-bar-level) * 100%);
+  min-block-size: var(--stroke-thick);
+  padding: 0;
+  border-radius: var(--radius-pill);
+  background: currentColor;
+  opacity: 0.35;
+}
+.zds-message-input__wave > .zds-message-input__level[data-played] {
+  opacity: 1;
+}
+.zds-message-input__wave--long > .zds-message-input__level[data-played] {
+  color: var(--interactive-primary-background-default);
+}
+
+.zds-message-input__rec-dot {
+  flex: none;
+  inline-size: var(--space-sm);
+  block-size: var(--space-sm);
+  border-radius: var(--radius-pill);
+  background: var(--foreground-error);
+}
+
+/* Transcribing: Progress Circle, indeterminate (it owns the spin and its
+   reduced-motion fallback). */
+.zds-message-input__spinner {
+  flex: none;
+}
+
+/* ---- speaking: the orb and the spoken words --------------------------- */
+/* The whole composer gives way to the orb, the reply as it is spoken, and
+   one stop control. --zds-orb-level (0–1) is written by MessageInput from
+   the speech's loudness, only when it moves. It is never animated itself:
+   animating a property the rings' calc()s read restyles and repaints the
+   orb every frame. */
+@property --zds-orb-level {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+.zds-message-input__speaking {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding-block: var(--space-md) var(--space-2xs);
+}
+
+/* Outlines only: six rings stroked with the brand gradient pair. Each has
+   its own shape (set in the markup), tilt and spin speed (from --ring), and
+   swells by its own amount with the level, so loud speech pulls them apart
+   and quiet lets them settle into one sphere. A faint glow follows.
+   Everything that moves is `rotate`, `scale` or `opacity` on an element, so
+   the compositor animates it; nothing here repaints per frame. */
+.zds-message-input__orb {
+  position: relative;
+  display: block;
+  inline-size: calc(1.75 * var(--control-lg));
+  aspect-ratio: 1;
+}
+/* The glow: a soft halo band around the rings, in place of a drop-shadow
+   filter (a filter re-rasterises every frame the rings move). */
+.zds-message-input__orb::before {
+  content: "";
+  position: absolute;
+  inset: -6%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, transparent 62%, var(--surface-gradient-start) 82%, transparent);
+  opacity: calc(0.2 + var(--zds-orb-level) * 0.6);
+  scale: calc(0.94 + var(--zds-orb-level) * 0.12);
+}
+.zds-message-input__orb-stop-start { stop-color: var(--surface-gradient-start); }
+.zds-message-input__orb-stop-end { stop-color: var(--surface-gradient-end); }
+.zds-message-input__ring {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: visible;
+  /* Inner rings swell more, so they part when loud (relative to the resting
+     size drawn into each ellipse). */
+  scale: calc(1 + var(--zds-orb-level) * (0.12 + var(--ring) * 0.04) / (0.7 + var(--ring) * 0.05));
+  opacity: calc(0.45 + var(--zds-orb-level) * 0.55);
+}
+.zds-message-input__ring ellipse {
+  fill: none;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+/* The reply, word by word: the spoken word at full strength, the ones
+   behind fading as the voice moves on, the ones ahead not yet shown. Three
+   lines; older lines fade out at the top edge. */
+.zds-message-input__caption {
+  /* Positioned, so each word's offsetTop is measured from here (scrolling). */
+  position: relative;
+  box-sizing: border-box;
+  inline-size: 100%;
+  /* Three lines tall, text entering on the bottom one and scrolling up
+     into the fade, so the first words are never under it. */
+  block-size: calc(3 * var(--body-medium-line-height));
+  margin: 0;
+  padding: calc(2 * var(--body-medium-line-height)) var(--space-md) 0;
+  overflow: hidden;
+  text-align: center;
+  color: var(--foreground-primary);
+  font-family: var(--body-medium-font-family), system-ui, sans-serif;
+  font-size: var(--body-medium-font-size);
+  font-weight: var(--body-medium-font-weight);
+  line-height: var(--body-medium-line-height);
+  letter-spacing: var(--body-medium-letter-spacing);
+  mask-image: linear-gradient(to bottom, transparent 0, black var(--body-medium-line-height));
+}
+.zds-message-input__word[data-when="next"] { opacity: 0; }
+.zds-message-input__word[data-when="now"] { opacity: 1; }
+.zds-message-input__word[data-when="past"] { opacity: max(0.3, calc(1 - var(--behind) * 0.07)); color: var(--foreground-secondary); }
+/* With no position to follow, the reply simply shows, from the top. */
+.zds-message-input__caption:not([data-tracking]) { block-size: auto; max-block-size: calc(4 * var(--body-medium-line-height)); padding-block-start: 0; mask-image: none; }
+.zds-message-input__caption:not([data-tracking]) .zds-message-input__word { opacity: 1; color: var(--foreground-primary); }
+
+/* The one control: a filled neutral circle, as the open tray toggle. */
+.zds-message-input .zds-message-input__stop-speaking {
+  --zds-button-bg: var(--surface-track);
+  --zds-button-border: transparent;
+  --zds-button-fg: var(--interactive-neutral-foreground-default);
+}
+.zds-message-input .zds-message-input__stop-speaking:hover:not([data-disabled]) {
+  --zds-button-bg: var(--interactive-neutral-background-pressed);
+}
+.zds-message-input__sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---- toolbar ---------------------------------------------------------- */
+.zds-message-input__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+.zds-message-input__tools,
+.zds-message-input__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+.zds-message-input__tools { flex-wrap: wrap; }
+/* Tools are neutral glyphs, not the text flavour's brand colour; send and
+   stop (primary) stay the only coloured controls (reference design). */
+.zds-message-input .zds-button[data-flavour="text"]:not([data-disabled]) {
+  --zds-button-fg: var(--interactive-neutral-foreground-default);
+}
+/* With the tray open, the toggle sits on a filled circle (reference design)
+   and its + turns 45° to read as ×. */
+.zds-message-input__tray-toggle[data-open] {
+  --zds-button-bg: var(--interactive-neutral-background-selected);
+}
+.zds-message-input__tray-toggle[data-open] .zds-button__icon {
+  transform: rotate(45deg);
+}
+
+/* ---- attachment tray --------------------------------------------------- */
+/* Width goes 0fr → 1fr so the tray grows out of the toggle; the actions
+   fade and slide in after it, one after another. Clip margin keeps focus
+   rings and hover circles from being cut off by the clip. */
+.zds-message-input__tray {
+  display: grid;
+  grid-template-columns: 0fr;
+}
+.zds-message-input__tray[data-open] {
+  grid-template-columns: 1fr;
+}
+.zds-message-input__tray-items {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  min-inline-size: 0;
+  overflow: clip;
+  overflow-clip-margin: var(--space-2xs);
+}
+.zds-message-input__tray-items > * {
+  opacity: 0;
+  transform: translateX(calc(-1 * var(--space-sm))) scale(0.8);
+}
+.zds-message-input__tray[data-open] .zds-message-input__tray-items > * {
+  opacity: 1;
+  transform: none;
+}
+/* Read-aloud on: the toggle holds its selected fill. */
+.zds-message-input .zds-message-input__speak[data-pressed]:not([data-disabled]) {
+  --zds-button-bg: var(--interactive-ghost-background-selected);
+  --zds-button-fg: var(--foreground-info);
+}
+
+/* ---- motion ------------------------------------------------------------- */
+/* The tray uses Switch's timing and curve (250ms, ease-spring), literals as
+   on Switch because tokens/ has no motion collection. The spring's
+   overshoot gives the + its small settle past 45°. Reduced motion: the
+   tray opens and closes instantly, as Switch's state change does. */
+.zds-message-input {
+  --zds-message-input-duration: 250ms;
+  --zds-message-input-ease-spring: cubic-bezier(0.34, 1.36, 0.64, 1);
+  --zds-message-input-stagger: 30ms;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .zds-message-input__tray {
+    transition: grid-template-columns var(--zds-message-input-duration) var(--zds-message-input-ease-spring);
+  }
+  .zds-message-input__tray-items > * {
+    transition:
+      opacity var(--zds-message-input-duration) var(--zds-message-input-ease-spring),
+      transform var(--zds-message-input-duration) var(--zds-message-input-ease-spring);
+  }
+  .zds-message-input__tray[data-open] .zds-message-input__tray-items > :nth-child(2) { transition-delay: calc(1 * var(--zds-message-input-stagger)); }
+  .zds-message-input__tray[data-open] .zds-message-input__tray-items > :nth-child(3) { transition-delay: calc(2 * var(--zds-message-input-stagger)); }
+  .zds-message-input__tray[data-open] .zds-message-input__tray-items > :nth-child(4) { transition-delay: calc(3 * var(--zds-message-input-stagger)); }
+  .zds-message-input__tray[data-open] .zds-message-input__tray-items > :nth-child(n + 5) { transition-delay: calc(4 * var(--zds-message-input-stagger)); }
+  .zds-message-input__tray-toggle .zds-button__icon {
+    transition: transform var(--zds-message-input-duration) var(--zds-message-input-ease-spring);
+  }
+  /* The fill follows the tray; colour and border keep Button's own 120ms. */
+  .zds-message-input__tray-toggle {
+    transition: background-color var(--zds-message-input-duration) var(--zds-message-input-ease-spring),
+      border-color 120ms ease, color 120ms ease;
+  }
+  .zds-message-input[data-state="recording"] .zds-message-input__rec-dot { animation: zds-message-input-fade 1.2s ease-in-out infinite; }
+}
+/* The orb: a short glide between measured levels, each ring turning at its
+   own pace (alternate rings the other way); with no source it breathes.
+   Words fade in as spoken and out as they recede. */
+@media (prefers-reduced-motion: no-preference) {
+  .zds-message-input__orb::before,
+  .zds-message-input__orb[data-reactive] .zds-message-input__ring { transition: scale 90ms linear, opacity 90ms linear; }
+  .zds-message-input__ring { animation: zds-message-input-turn calc(9s + var(--ring) * 2.3s) linear infinite; }
+  .zds-message-input__ring:nth-child(odd of .zds-message-input__ring) { animation-direction: reverse; }
+  /* No source: the rings breathe, each on its own period so they drift
+     apart and back together. */
+  .zds-message-input__orb:not([data-reactive]) { --zds-orb-level: 0.1; }
+  .zds-message-input__orb:not([data-reactive]) .zds-message-input__ring {
+    animation:
+      zds-message-input-turn calc(9s + var(--ring) * 2.3s) linear infinite,
+      zds-message-input-breathe calc(2.4s + var(--ring) * 0.35s) ease-in-out infinite;
+  }
+  .zds-message-input__orb:not([data-reactive]) .zds-message-input__ring:nth-child(odd of .zds-message-input__ring) { animation-direction: reverse, normal; }
+  .zds-message-input__word { transition: opacity 250ms ease-out, color 250ms ease-out; }
+}
+/* Reduced motion: the rings hold still at their tilts and sizes; only their
+   strength and the glow follow the voice. Words change without fading. */
+@media (prefers-reduced-motion: reduce) {
+  .zds-message-input__orb:not([data-reactive]) { --zds-orb-level: 0.4; }
+}
+@keyframes zds-message-input-turn {
+  from { rotate: 0turn; }
+  to { rotate: 1turn; }
+}
+@keyframes zds-message-input-breathe {
+  50% { scale: 1.12; opacity: 0.8; }
+}
+/* The recording dot only fades: its size never changes. */
+@keyframes zds-message-input-fade { 50% { opacity: 0; } }
+
+/* AAA modes keep spoken words at full strength, because dimming them drops the caption below 7:1. */
+:is(.mode-aaa-light, .mode-aaa-dark, [data-theme-mode^="aaa-"]) .zds-message-input__word[data-when="past"] {
+  opacity: 1;
+}
