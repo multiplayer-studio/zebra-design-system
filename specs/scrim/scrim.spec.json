@@ -1,0 +1,115 @@
+{
+  "component": {
+    "name": "Scrim",
+    "slug": "scrim",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "8223:374",
+      "page": "Scrim",
+      "extractedAt": "2026-11-10",
+      "extractionNote": "One set (2 variants, no children inside either) and a full 'Scrim Metadata' frame read in full. No subcomponents."
+    }
+  },
+  "summary": "The translucent barrier between a raised surface and the page behind it. Dialog, Lightbox and Bottom Sheet draw it under their panels: it dims everything behind, keeps the page from being read as interactive, and catches the click that dismisses. It is one fill stretched edge to edge — overlay/scrim — with an opaque modal tone (overlay/modal) for a full takeover. It has no content, no shape and no motion of its own; the owning component carries all three.",
+  "api": {
+    "tone": {
+      "type": "enum", "figmaName": "Tone", "default": "scrim", "controls": ["variant"],
+      "values": ["scrim", "modal"],
+      "intent": {
+        "scrim": "The translucent barrier — overlay/scrim, the fill every backdrop in the system uses. Content behind stays visible but reads as unavailable.",
+        "modal": "The opaque takeover — overlay/modal, for the rare surface where the page behind must not show at all. It cannot serve as a see-through backdrop."
+      }
+    }
+  },
+  "internalVariations": [],
+  "contentInputs": [],
+  "anatomy": [
+    {
+      "id": "barrier", "kind": "container",
+      "role": "1. Barrier — The whole component: one rectangle, fill bound to overlay/scrim (or overlay/modal), stretched over the owning surface’s viewport. No children, no stroke, no radius, no shadow — everything else on screen belongs to the surface above or the page below.",
+      "sizing": { "horizontal": "fill (640Px measured drawing surface)", "vertical": "fill (400Px measured drawing surface)" },
+      "paint": { "fill": "overlay/scrim | overlay/modal (by tone)", "radius": "none", "stroke": "none", "effects": "none" }
+    }
+  ],
+  "variants": {
+    "axis": "tone", "base": "scrim",
+    "table": [
+      { "tone": "scrim", "barrier.fill": "overlay/scrim" },
+      { "tone": "modal", "barrier.fill": "overlay/modal" }
+    ]
+  },
+  "subcomponents": [],
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": ["overlay/scrim", "overlay/modal"],
+    "dimension": [],
+    "typography": [],
+    "themeAxes": {
+      "palette": ["Light", "Dark", "AAA Light", "AAA Dark"],
+      "extensions": "every brand extension in tokens/manifest.json resolves the two overlay tokens"
+    }
+  },
+  "states": {
+    "table": [
+      { "State": "shown", "Trigger": "An overlay component opens", "Duration": "—", "What changes": "Appears with its owner — the scrim defines no timing of its own; the owner’s entry carries it." },
+      { "State": "pressed", "Trigger": "Click or tap on the scrim", "Duration": "—", "What changes": "Dismisses the owner when the owner is dismissible. The scrim only forwards the event; it decides nothing itself." },
+      { "State": "hidden", "Trigger": "The owner closes", "Duration": "—", "What changes": "Leaves with the owner; nothing lingers." }
+    ]
+  },
+  "behavior": {
+    "table": [
+      { "Type": "Ownership", "Description": "The scrim belongs to the component it sits under. Dialog, Lightbox and Bottom Sheet draw it as their native backdrop bound to overlay/scrim — it is never placed by hand over a page, and a product never opens a bare scrim." },
+      { "Type": "Stacking", "Description": "One scrim per open surface, ordered by the native top layer. Never draw a second scrim to darken further: one overlay/scrim is the system’s entire dimming scale." },
+      { "Type": "Dismissal", "Description": "A click on the scrim closes the owner only when the owner allows it (dismissible); Escape is the keyboard parity, handled by the owner. The scrim never closes anything on its own." },
+      { "Type": "Motion", "Description": "None of its own. No motion token exists for a fade, and the owner’s entry carries the scrim with it — in code the backdrop simply appears with the dialog." }
+    ]
+  },
+  "content": {
+    "table": [
+      { "Property": "Content", "Type": "none", "Description": "A scrim carries nothing. Anything readable or interactive sits on the raised surface above it, never on the barrier itself." }
+    ]
+  },
+  "usage": {
+    "do": [
+      "Let the owning component draw the scrim — Dialog, Lightbox and Bottom Sheet already do — so there is exactly one per open surface and it leaves when the surface does.",
+      "Dim with the scrim tone. Reserve modal for a takeover where the page behind must not read at all — a first-run flow, not an everyday dialog."
+    ],
+    "dont": [
+      "Don’t stack scrims or darken one with an opacity override. One overlay/scrim is the system’s entire dimming scale, in every mode and extension.",
+      "Don’t put text or controls on the scrim. It makes no contrast promise against what is behind it, so nothing on it is reliably readable."
+    ]
+  },
+  "accessibility": [
+    "The scrim is decorative: never focusable, never named — the owning dialog traps focus and makes the page behind inert.",
+    "Dismissing by clicking the scrim always has keyboard parity: Escape on the owner.",
+    "The scrim makes no contrast promise for the content behind it; nothing that must stay readable may rely on showing through.",
+    "overlay/scrim and overlay/modal are semantic tokens, so the barrier holds its role in light, dark and every brand extension."
+  ],
+  "layoutTheming": {
+    "table": [
+      { "Property": "Size", "Type": "Fills parent", "Description": "Edge to edge over the owning surface’s viewport — the native backdrop in code, stretch constraints in a layout. Never a fixed size; the 640×400 variants are drawing surfaces." },
+      { "Property": "Fill", "Type": "Theming", "Description": "overlay/scrim for the translucent tone, overlay/modal for the opaque takeover. Both semantic; nothing hardcodes a colour." },
+      { "Property": "Radius", "Type": "None", "Description": "radius/none — the scrim has no shape of its own." },
+      { "Property": "Elevation", "Type": "None", "Description": "No shadow. The raised surface above carries the elevation; the scrim is what it is raised above." }
+    ]
+  },
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8221-400",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8223-374",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8223-375",
+    "variants": {
+      "tone": {
+        "scrim": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8223-372",
+        "modal": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8223-373"
+      }
+    }
+  },
+  "issues": [
+    { "severity": "warn", "source": "structure vs metadata", "detail": "Tone=scrim adds a paint-level opacity of 0.6 on top of overlay/scrim, which already carries its own alpha (primitives alpha/dark/60). Figma therefore draws a lighter dim than the token, and the metadata says never to darken or lighten with an opacity override. Implement the token alone, with no extra opacity." },
+    { "severity": "note", "source": "token export", "detail": "palette fill/scrim's description says the alias is fully opaque and opacity is applied at usage, but it aliases a translucent alpha primitive. The stale description is the likely cause of the paint opacity above." },
+    { "severity": "note", "source": "description vs request", "detail": "The set description says Scrim has no code element. In code, Dialog, Lightbox and a modal Bottom Sheet render the Scrim component as their backdrop." },
+    { "severity": "note", "source": "Property Breakdown", "detail": "The Default column's icon marks scrim as the default, matching Figma's default variant." },
+    { "severity": "note", "source": "coverage", "detail": "Motion is none by intent: no fade token exists and the owner carries the entry. The 640×400 size is a Figma drawing surface, not a size to implement." }
+  ]
+}

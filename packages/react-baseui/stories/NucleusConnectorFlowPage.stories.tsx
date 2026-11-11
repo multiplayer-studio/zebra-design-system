@@ -587,7 +587,7 @@ function ConnectPrinterWizard({ theme, start = "usb", wifiUnavailable = false, o
           ? { position: "absolute", zIndex: 2, insetBlockStart: 124, insetInlineEnd: 24 }
           : { position: "absolute", zIndex: 2, insetBlockStart: 748, insetInlineStart: 888, transform: "translateX(-50%)" }}>
           <div className="cp-pop" data-closing={toastClosing ? "" : undefined}>
-            <Snackbar inline open variant="contextual" flavour="positive" shape="rounded" showClose duration={shownToast.startsWith("USB") ? 0 : 5000}
+            <Snackbar inline open variant="contextual" status="positive" shape="rounded" showClose duration={shownToast.startsWith("USB") ? 0 : 5000}
               onClose={() => setToast(null)}>{shownToast}</Snackbar>
           </div>
         </div>

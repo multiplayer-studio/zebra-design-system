@@ -2,11 +2,11 @@
 
 A brief message about something the app just did, carrying at most one action. Variant chooses between a contextual pill, where Flavour sets the tint, the leading glyph and the controls together, and a plain standard bar with a filled action button. Reach for it where the message is worth noticing and not worth interrupting for, and for Dialog where the person has to answer before carrying on.
 
-Source: [Snackbar working file › Snackbar page](https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-170) (set `6551:170`, 18 variants) · extracted 2026-10-18 · default `Variant=contextual, Flavour=info, Shape=rounded`
+Source: [Zebra Design System › Snackbar page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-170) (set `6551:170`, 18 variants) · extracted 2026-11-11 · default `Variant=contextual, Status=info, Shape=rounded`
 
 > **Values are token names.** Resolved values live in [tokens/](../../tokens/); `…Px` cells are measurements of the file.
 
-> **No blockers, 5 warnings** — mostly metadata that describes the first build. See [Issues](#issues). Depends on [Button](../button/button.spec.md) and [Icon Button](../icon-button/icon-button.spec.md).
+> **No blockers, 6 warnings** — mostly metadata that describes the first build, plus a binding to a deleted variable. See [Issues](#issues). Depends on [Button](../button/button.spec.md) and [Icon Button](../icon-button/icon-button.spec.md).
 
 ## API
 
@@ -14,7 +14,7 @@ Source: [Snackbar working file › Snackbar page](https://www.figma.com/design/a
 |---|---|---|---|
 | `message` | string | | `Message` |
 | `variant` | enum | `contextual`, `standard` | `contextual` |
-| `flavour` | enum | `info`, `positive`, `warning`, `error`, `deletion`, `view`, `action`, `default` | `info` |
+| `status` | enum | `info`, `positive`, `warning`, `negative`, `deletion`, `view`, `action`, `default` | `info` |
 | `shape` | enum | `rounded`, `sharp` | `rounded` |
 | `showIcon` | boolean | | `false` |
 | `showAction` | boolean | | `true` |
@@ -28,11 +28,11 @@ Source: [Snackbar working file › Snackbar page](https://www.figma.com/design/a
 - `contextual`: A pill that takes its tint, its glyph and its controls from Flavour. Reach for it where the message is about something specific that just happened.
 - `standard`: The plain bar, dark and softly squared, with a filled action button. It carries no flavour colour, so reach for it where the message needs no status attached to it.
 
-**flavour** — Figma's default variant is info; the metadata marks default as the default. standard exists only with Flavour=default.
+**status** — Figma's default variant is info; the metadata marks default as the default. standard exists only with Status=default.
 - `info`: Something worth knowing with nothing to do about it. An Info glyph on the info tint, carrying only a close.
 - `positive`: Something finished successfully. A Check Circle on the success tint, close only.
 - `warning`: Something needs attention without having failed. A Warning glyph on the warning tint, close only.
-- `error`: Something failed. An Error glyph on the error tint with a close and nothing else, so a failure the person could retry needs a flavour that carries an action.
+- `negative`: Something failed. An Error glyph on the error tint with a close and nothing else, so a failure the person could retry needs a flavour that carries an action.
 - `deletion`: Something was removed, with Undo offered beside it. It shares the error tint, so it reads as destructive even where the message itself is neutral.
 - `view`: Something was created or filed somewhere the person can go and look at it. It carries View and no close, so acting or waiting are the only ways out.
 - `action`: A message whose action is the point. It drops the glyph, sits on the inverse surface and carries a bordered control rather than a plain text one.
@@ -82,14 +82,14 @@ Source: [Snackbar working file › Snackbar page](https://www.figma.com/design/a
 
 Cells are token names; …Px cells are measurements. Height is control/lg (minimum) on every variant; geometry other than radius and width does not vary.
 
-### By variant × flavour
+### By variant × status
 
-| variant | flavour | fill | palette mode | icon | action | close | widthPx |
+| variant | status | fill | palette mode | icon | action | close | widthPx |
 |---|---|---|---|---|---|---|---|
 | contextual | info | `feedback/info/background/subtle` | inherited | `info` | — | Icon Button subtle medium | 237 |
 | contextual | positive | `feedback/success/background/subtle` | inherited | `check-circle` | — | Icon Button subtle medium | 237 |
 | contextual | warning | `feedback/warning/background/subtle` | inherited | `warning` | — | Icon Button subtle medium | 237 |
-| contextual | error | `feedback/error/background/subtle` | inherited | `error` | — | Icon Button subtle medium | 237 |
+| contextual | negative | `feedback/error/background/subtle` | inherited | `error` | — | Icon Button subtle medium | 237 |
 | contextual | deletion | `feedback/error/background/subtle` | inherited | `delete` | Button subtle medium, "Undo" | Icon Button subtle medium | 323 |
 | contextual | view | `feedback/neutral/background/subtle` | inherited | `open-in-new-window` | Button subtle medium, "View" | — | 259 |
 | contextual | action | `surface/overlay` | Dark (explicit on the component) | icon slot (showIcon) | Button outline-subtle, "Action" — small when rounded, medium when sharp | — | 246 |
@@ -114,7 +114,7 @@ Shared by every row: height `control/lg` (min), padding `space/2xs` top/bottom, 
 ## Tokens & theming
 
 - **color:** `feedback/{info,success,warning,error,neutral}/background/subtle`, `surface/overlay`, `foreground/primary`
-- **dimension:** `control/lg`, `space/{xxs,sm,md,lg}`, `radius/{pill,md,none}`
+- **dimension:** `control/lg`, `space/{2xs,sm,md,lg}`, `radius/{pill,md,none}`
 - **typography:** `body/medium`
 - **effect:** `Shadow/medium (Figma effect style; the export carries shadow/* size tokens and shadow/soft, not the style)`
 - **Theme axes:** palette (Light, Dark). The dark variants pin palette=Dark on the component, so everything inside, the nested Button and Icon Button included, resolves in Dark.
@@ -170,7 +170,7 @@ Shared by every row: height `control/lg` (min), padding `space/2xs` top/bottom, 
 |---|---|---|
 | Size | Fixed width, hug height | 48 tall throughout. Each variant carries its own fixed width, running from 190 to 323 depending on the flavour and its controls, rather than growing with the message. |
 | Position | Fixed to the viewport | Centred horizontally, space/xl above the bottom edge of the viewport, and never wider than the viewport less space/lg on each side. It does not move with the page as it scrolls. |
-| Padding and gap | Fixed | space/2xs top and bottom, space/lg on the leading edge and space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/2xs and opens the gap to space/lg so a bordered control sits closer to the end. |
+| Padding and gap | Fixed | space/xs top and bottom, space/lg on the leading edge and space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/xs and opens the gap to space/lg so a bordered control sits closer to the end. |
 | Content | Fill | The leading icon and the message sit space/md apart, and the content block fills whatever width the controls leave it. |
 | Radius | Per Variant and Shape | contextual is radius/pill when rounded and standard is radius/md, so the two read differently at the same setting. Both drop to radius/none when sharp, and the close and the action follow. |
 | Fill | Per Flavour | info, positive, warning and error take feedback/info, success, warning and error at background/subtle. deletion shares the error tint and view takes feedback/neutral/background/subtle. action and default sit on surface/inverse, which is what moves the message to foreground/inverse. |
@@ -179,35 +179,38 @@ Shared by every row: height `control/lg` (min), padding `space/2xs` top/bottom, 
 
 ## Visual reference
 
-- [Page](https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6547-2448) · [Component set](https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-170) · [Metadata](https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6563-142)
-- [info](https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-57)
-- [positive](https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-71)
-- [warning](https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-84)
-- [error](https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-97)
-- [deletion](https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-110)
-- [view](https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-125)
-- [action](https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-135)
-- [default](https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-144)
-- [standard](https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-156)
-- [sharp (info)](https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6558-102)
-- [sharp (action)](https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6558-168)
+- [Page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6547-2448) · [Component set](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-170) · [Metadata](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6563-142)
+- [info](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-57)
+- [positive](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-71)
+- [warning](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-84)
+- [negative](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-97)
+- [deletion](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-110)
+- [view](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-125)
+- [action](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-135)
+- [default](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-144)
+- [standard](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-156)
+- [sharp (info)](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6558-102)
+- [sharp (action)](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6558-168)
 
 ## Issues
 
 ### Warn
 
-1. *metadata Layout & Theming / Anatomy / Accessibility vs structure (stale)*: Several metadata rows describe the first build, not the component as it stands. Fill: 'action and default sit on surface/inverse, which is what moves the message to foreground/inverse' — the file fills them with surface/overlay under an explicit palette=Dark mode, with foreground/primary content. Controls: 'Close is a 36 square… the bordered one at 2px on foreground/inverse and the filled one at radius/sm on interactive/inverse/background/default' — the close is now an Icon Button (subtle, medium: control/md) and every action a Button instance. Anatomy and Variant: 'Plain text on deletion and view, bordered on action and a filled button on standard' — deletion, view and standard use a subtle Button; only action carries outline-subtle. Accessibility repeats 'a 36 square around a 20 glyph'.
-2. *metadata Layout & Theming vs structure (padding)*: 'space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/2xs and opens the gap to space/lg' — every variant now has space/2xs trailing and space/lg between content and controls.
+1. *metadata Layout & Theming / Anatomy / Accessibility vs structure (stale)*: Several metadata rows describe the first build, not the component as it stands. Fill: 'action and default sit on surface/inverse, which is what moves the message to foreground/inverse' — the file fills them with surface/popover (see 6) under an explicit palette=Dark mode, with foreground/primary content. Controls: 'Close is a 36 square… the bordered one at 2px on foreground/inverse and the filled one at radius/sm on interactive/inverse/background/default' — the close is now an Icon Button (subtle, medium: control/md) and every action a Button instance. Anatomy and Variant: 'Plain text on deletion and view, bordered on action and a filled button on standard' — deletion, view and standard use a subtle Button; only action carries outline-subtle. Accessibility repeats 'a 36 square around a 20 glyph'.
+2. *metadata Layout & Theming vs structure (padding)*: 'space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/xs and opens the gap to space/lg' — every variant has space/2xs top, bottom and trailing, and space/lg between content and controls.
 3. *metadata Content & Slot / Property Breakdown vs structure (icon slot)*: The metadata gives the icon slot to standard only ('It has no effect on contextual'; 'action and default: No glyph at all'). In the file contextual action and default also carry the Icon Slot, bound to Show Icon, so Show Icon does affect them.
-4. *API vs Property Breakdown (default flavour)*: The metadata marks Flavour=default as the default; the set's default variant is Flavour=info (contextual / info / rounded).
+4. *API vs Property Breakdown (default flavour)*: The metadata marks Status=default as the default; the set's default variant is Status=info (contextual / info / rounded).
 5. *structure (action size)*: contextual / action uses a small Button when rounded and a medium one when sharp; every other action is medium. The small one sits off-centre against the bar's space/2xs trailing edge (control/sm is shorter than control/md).
+6. *token export*: action, default and standard bind surface/popover, a variable deleted from the file. It aliases the same fill as surface/overlay, so implement surface/overlay.
 
 ### Note
 
-- *code (packages/web-components zds-snackbar, packages/react-baseui Snackbar)*: Built 2026-10-18 to the file in both packages: <zds-snackbar> (web components, now exported) and Snackbar (react-baseui, controlled: open + onClose). Actions are a subtle Button on deletion, view and standard and outline-subtle on action; the close a subtle IconButton with its glyph on the bar's foreground/primary; contextual radius/pill; the message on one line; default flavour info; show-close="false" turns the close off in HTML. Deliberate differences: the action bar's button is medium in both shapes (Figma: small when rounded, warn above); a message that runs out of room ends in an ellipsis rather than running past the edge; the dark bars invert to Light on a dark page; code adds inline, duration, action-label and close-label. React does not use Base UI's Toast: it is built around a manager that owns queueing and placement, which does not fit the single controlled bar; it is the natural basis for the queue the spec says does not exist yet. Web and React were compared in a browser: pixel-identical across the Contextual, Standard, Shape, IconSlot, LongMessage and ThemingCascade stories, with matching motion, top-layer placement, timer pause and events.
+- *metadata vs structure (renames)*: Only the Property Breakdown uses Status and negative. The rest of the metadata still says Flavour and error, and is quoted as written.
+- *code (all three packages)*: Code renames flavour to status and error to negative. The old flavour (flavor in Zeta) stays as a deprecated alias.
+- *code (packages/web-components zds-snackbar, packages/react-baseui Snackbar)*: Built 2026-10-18 to the file in both packages: <zds-snackbar> (web components, now exported) and Snackbar (react-baseui, controlled: open + onClose). Actions are a subtle Button on deletion, view and standard and outline-subtle on action; the close a subtle IconButton with its glyph on the bar's foreground/primary; contextual radius/pill; the message on one line; default status info; show-close="false" turns the close off in HTML. Deliberate differences: the action bar's button is medium in both shapes (Figma: small when rounded, warn above); a message that runs out of room ends in an ellipsis rather than running past the edge; the dark bars invert to Light on a dark page; code adds inline, duration, action-label and close-label. React does not use Base UI's Toast: it is built around a manager that owns queueing and placement, which does not fit the single controlled bar; it is the natural basis for the queue the spec says does not exist yet. Web and React were compared in a browser: pixel-identical across the Contextual, Standard, Shape, IconSlot, LongMessage and ThemingCascade stories, with matching motion, top-layer placement, timer pause and events.
 
 7. *structure (theming)*: The dark variants (contextual action and default, standard) pin palette=Dark on the component itself. On a dark design, set the instance's palette mode to Light to get the inverted bar the code produces.
-8. *structure (sparse set)*: 18 variants of a possible 32: standard exists only with Flavour=default. Show Action and Show Close are bound only where the control exists by default (no action on info, positive, warning, error, default; no close on view and action).
+8. *structure (sparse set)*: 18 variants of a possible 32: standard exists only with Status=default. Show Action and Show Close are bound only where the control exists by default (no action on info, positive, warning, negative, default; no close on view and action).
 9. *internalVariations*: The action label is fixed per flavour in the metadata, but the Button instance is exposed, so its Label is editable from the instance panel in Figma.
 10. *tokens*: Elevation is the Shadow/medium effect style; the export carries shadow/* size tokens and shadow/soft but not the style itself. No untokenised colour, spacing or radius anywhere in the set.
 11. *dependencies*: Button and Icon Button follow their own specs (specs/button, specs/icon-button); the action and the close take their hover, press, focus and disabled treatment from there rather than from the snackbar.

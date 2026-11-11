@@ -18,12 +18,10 @@ export default css`
   }
 
   /* ---- backdrop ---------------------------------------------------------- */
-  /* spec issue "There is no usable backdrop token": overlay/modal aliases the
-     opaque surface/overlay fill, so the backdrop uses the translucent
-     overlay/scrim (owner's decision). ::backdrop inherits custom properties
-     from the <dialog>, so theme scopes reach it. */
+  /* The backdrop is the <zds-scrim> before the dialog (tone scrim, see
+     specs/scrim). The native ::backdrop stays only to catch the click. */
   dialog::backdrop {
-    background: var(--overlay-scrim);
+    background: transparent;
   }
 
   /* ---- anatomy: root (the panel) ------------------------------------------ */

@@ -1,6 +1,6 @@
 {
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
-  "readAt": "2026-11-10T21:35:00.942Z",
+  "readAt": "2026-11-11T18:51:51.622Z",
   "pages": [
     {
       "page": "Accordion",
@@ -200,6 +200,14 @@
       ]
     },
     {
+      "page": "Navigation Drawer",
+      "pageId": "8255:1584",
+      "components": [
+        "Navigation Drawer"
+      ],
+      "subcomponents": []
+    },
+    {
       "page": "Navigation Rail",
       "pageId": "3182:237",
       "components": [
@@ -288,6 +296,14 @@
       "pageId": "5723:658",
       "components": [
         "Segmented Control"
+      ],
+      "subcomponents": []
+    },
+    {
+      "page": "Scrim",
+      "pageId": "8221:400",
+      "components": [
+        "Scrim"
       ],
       "subcomponents": []
     },

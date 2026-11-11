@@ -66,6 +66,7 @@ Root heights are placeholder-media measurements, not design values — in code t
 
 ## Subcomponents
 
+- **Scrim** (`specs/scrim`): the backdrop, at tone scrim.
 - **Icon Button** (local, own spec) — all five actions. Lightbox pins Size=medium; Flavour=subtle in the toolbar, Flavour=contrast for navigation; Shape follows `shape`.
 - **Icon** (local, own spec) — Size=large placeholder glyphs inside the drawn media and the sheet; in code the sheet glyph comes from the file's kind.
 
@@ -141,6 +142,8 @@ Verbatim from the metadata.
 2. *metadata* — The paging timing (400ms, cubic-bezier(0.33, 1, 0.68, 1)) is a literal: the token export has no paging-scale motion token. The entry uses the `animations/spring` token; the paging literal follows the Message Input and Switch convention.
 
 **Note**
+
+- *scrim*: The backdrop is the Scrim component at tone scrim.
 
 3. *cross-check* — Resolved 2026-11-10: the stage's fill is `surface/subtle`, as every Figma variant binds it. The metadata and the implementations originally said `surface/shade` and were corrected to match.
 4. *api* — `animated` exists only in code; the variants don't model it. `kind` is derived from the item's MIME type or extension, never set by a consumer — both stated in the metadata.

@@ -64,6 +64,7 @@ import { ZetaProgressCircle } from "./components/progress-indicators/progress-ci
 import { ZetaRadioButton } from "./components/radio-button/radio-button.js";
 import { ZetaRangeSelector } from "./components/slider/range-selector/range-selector.js";
 import { ZetaScreenHeaderBar } from "./components/screen-header-bar/screen-header-bar.js";
+import { ZetaScrim } from "./components/scrim/scrim.js";
 import { ZetaScrollbar } from "./components/scrollbar/scrollbar.js";
 import { ZetaSearch } from "./components/search/search.js";
 import { ZetaSegmentedControl } from "./components/segmented-control/segmented-control.js";
@@ -158,6 +159,7 @@ export {
   ZetaRadioButton,
   ZetaRangeSelector,
   ZetaScreenHeaderBar,
+  ZetaScrim,
   ZetaScrollbar,
   ZetaSearch,
   ZetaSegmentedControl,

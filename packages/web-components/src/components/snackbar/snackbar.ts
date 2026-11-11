@@ -8,20 +8,22 @@ import type { IconName } from "@zebra-design-system/icons/names";
 import type { ButtonFlavour } from "../button/button.js";
 
 export type SnackbarVariant = "standard" | "contextual";
-export type SnackbarFlavour = "default" | "action" | "positive" | "info" | "warning" | "error" | "deletion" | "view";
+export type SnackbarStatus = "default" | "action" | "positive" | "info" | "warning" | "negative" | "deletion" | "view";
+/** @deprecated Use `SnackbarStatus`; Figma renamed Flavour to Status and error to negative. */
+export type SnackbarFlavour = Exclude<SnackbarStatus, "negative"> | "error";
 export type SnackbarCloseReason = "dismiss" | "timeout" | "action";
 export type SnackbarShape = "rounded" | "sharp";
 
 /**
- * What each contextual flavour carries (spec: variants byFlavour): a leading
+ * What each contextual status carries (spec: variants byStatus): a leading
  * glyph, an action and its Button flavour, whether it has a close, and
  * whether the bar is a dark one (which carries its own colour mode).
  */
-const FLAVOUR: Record<SnackbarFlavour, { icon?: IconName; action?: string; close: boolean; actionFlavour: ButtonFlavour; dark?: boolean }> = {
+const STATUS: Record<SnackbarStatus, { icon?: IconName; action?: string; close: boolean; actionFlavour: ButtonFlavour; dark?: boolean }> = {
   info: { icon: "info", close: true, actionFlavour: "subtle" },
   positive: { icon: "check-circle", close: true, actionFlavour: "subtle" },
   warning: { icon: "warning", close: true, actionFlavour: "subtle" },
-  error: { icon: "error", close: true, actionFlavour: "subtle" },
+  negative: { icon: "error", close: true, actionFlavour: "subtle" },
   deletion: { icon: "delete", action: "Undo", close: true, actionFlavour: "subtle" },
   view: { icon: "open-in-new-window", action: "View", close: false, actionFlavour: "subtle" },
   action: { action: "Action", close: false, actionFlavour: "outline-subtle", dark: true },
@@ -30,13 +32,13 @@ const FLAVOUR: Record<SnackbarFlavour, { icon?: IconName; action?: string; close
 
 /**
  * A brief message about something the app just did, carrying at most one
- * action. Variant chooses between a contextual pill, where Flavour sets the
+ * action. Variant chooses between a contextual pill, where Status sets the
  * tint, the leading glyph and the controls together, and a plain standard
  * bar.
  *
  * Follows specs/snackbar:
- *  - contextual info / positive / warning / error / deletion / view sit on
- *    feedback/<kind>/background/subtle (deletion shares error, view takes
+ *  - contextual info / positive / warning / negative / deletion / view sit on
+ *    feedback/<kind>/background/subtle (negative and deletion take error, view takes
  *    neutral) with their glyph; action, default and every standard bar are
  *    the dark bars, on surface/overlay.
  *  - The action is a `<zds-button>`, subtle on deletion (Undo), view (View)
@@ -48,8 +50,8 @@ const FLAVOUR: Record<SnackbarFlavour, { icon?: IconName; action?: string; close
  *  - The message stays on one line (spec: Width). Where the space runs out
  *    it ends in an ellipsis rather than running past the edge.
  *
- * The message is the default slot. `action-label` overrides the flavour's
- * action ("" removes it); `show-close` the close. The flavours without a
+ * The message is the default slot. `action-label` overrides the status's
+ * action ("" removes it); `show-close` the close. The statuses without a
  * glyph of their own (default, action, and every standard bar) take one in
  * the `icon` slot (Figma's Icon Slot / Show Icon); it is coloured and sized
  * (control/icon-md) like the built-in glyphs.
@@ -57,7 +59,7 @@ const FLAVOUR: Record<SnackbarFlavour, { icon?: IconName; action?: string; close
  * Behaviour: `open` shows it. With `duration` (ms) it closes itself, but the
  * timer pauses while the pointer or focus is inside, so nobody loses a
  * message they are reading or an Undo they are reaching for. Announced
- * politely (role=status); error interrupts (role=alert).
+ * politely (role=status); negative interrupts (role=alert).
  *
  * Dark bars carry their own colour mode: Figma pins palette=Dark on them; in
  * code the host takes .mode-dark on a light page and .mode-light on a dark
@@ -74,7 +76,7 @@ const FLAVOUR: Record<SnackbarFlavour, { icon?: IconName; action?: string; close
  * instead, for documentation.
  *
  * @slot - The message.
- * @slot icon - A leading icon, for the flavours without one of their own.
+ * @slot icon - A leading icon, for the statuses without one of their own.
  * @fires action - The action button was pressed. The snackbar then closes.
  * @fires close - It closed; `detail.reason` is "dismiss", "timeout" or "action".
  * @csspart surface - The bar.
@@ -91,18 +93,21 @@ export class ZdsSnackbar extends LitElement {
   @property({ type: String, reflect: true }) shape: SnackbarShape = "rounded";
 
   /** Contextual only: sets the glyph, the tint and the default action. */
-  @property({ type: String, reflect: true }) flavour: SnackbarFlavour = "info";
+  @property({ type: String, reflect: true }) status: SnackbarStatus = "info";
+
+  /** @deprecated Use `status`; `error` maps to `negative`. */
+  @property({ type: String }) flavour?: SnackbarFlavour;
 
   @property({ type: Boolean, reflect: true }) open = false;
 
   /** Closes itself after this many ms. 0 keeps it until dismissed. */
   @property({ type: Number }) duration = 0;
 
-  /** The action's text. Defaults per flavour (Undo, View, Action); "" removes it. */
+  /** The action's text. Defaults per status (Undo, View, Action); "" removes it. */
   @property({ type: String, attribute: "action-label" }) actionLabel: string | null = null;
 
   /**
-   * Shows the close button. Unset, it follows the flavour (spec: Show Close);
+   * Shows the close button. Unset, it follows the status (spec: Show Close);
    * `show-close` or `show-close="true"` forces it on, `show-close="false"`
    * forces it off.
    */
@@ -134,16 +139,16 @@ export class ZdsSnackbar extends LitElement {
 
   private get action() {
     if (this.actionLabel !== null) return this.actionLabel;
-    return this.contextual ? (FLAVOUR[this.flavour]?.action ?? "") : "";
+    return this.contextual ? (STATUS[this.status]?.action ?? "") : "";
   }
 
   private get close() {
-    return this.showClose ?? (this.contextual ? (FLAVOUR[this.flavour]?.close ?? true) : false);
+    return this.showClose ?? (this.contextual ? (STATUS[this.status]?.close ?? true) : false);
   }
 
   /** A dark bar: contextual default/action, or any standard bar. */
   private get dark() {
-    return this.contextual ? !!FLAVOUR[this.flavour]?.dark : true;
+    return this.contextual ? !!STATUS[this.status]?.dark : true;
   }
 
   /** The page's mode at the bar, from the nearest .mode-* ancestor across shadow roots. */
@@ -165,14 +170,15 @@ export class ZdsSnackbar extends LitElement {
   }
 
   protected willUpdate(changed: Map<string, unknown>) {
-    if (changed.has("variant") || changed.has("flavour") || (changed.has("open") && this.open)) this.syncMode();
+    if (changed.has("flavour") && this.flavour) this.status = this.flavour === "error" ? "negative" : this.flavour;
+    if (changed.has("variant") || changed.has("status") || (changed.has("open") && this.open)) this.syncMode();
     // Keep rendering through the exit when open turns off.
     if (changed.has("open") && !this.open && changed.get("open") === true && !this.inline) this.leaving = true;
     this.toggleAttribute("data-shown", this.open || this.leaving);
   }
 
   protected updated(changed: Map<string, unknown>) {
-    this.internals.role = this.contextual && this.flavour === "error" ? "alert" : "status";
+    this.internals.role = this.contextual && this.status === "negative" ? "alert" : "status";
     if (changed.has("inline")) {
       if (this.inline) {
         if (this.popover) {
@@ -265,12 +271,12 @@ export class ZdsSnackbar extends LitElement {
 
   protected render() {
     if (!this.open && !this.leaving) return nothing;
-    const icon = this.contextual ? FLAVOUR[this.flavour]?.icon : undefined;
+    const icon = this.contextual ? STATUS[this.status]?.icon : undefined;
     const onIconSlot = (e: Event) => {
       this.slottedIcon = (e.target as HTMLSlotElement).assignedNodes({ flatten: true }).length > 0;
     };
     const action = this.action;
-    const actionFlavour: ButtonFlavour = this.contextual ? (FLAVOUR[this.flavour]?.actionFlavour ?? "subtle") : "subtle";
+    const actionFlavour: ButtonFlavour = this.contextual ? (STATUS[this.status]?.actionFlavour ?? "subtle") : "subtle";
     const buttonShape = this.shape === "sharp" ? "sharp" : this.contextual ? "full" : "rounded";
     // Any control at the end sits concentric in the bar's end: the styles
     // match its end gap to its top gap.

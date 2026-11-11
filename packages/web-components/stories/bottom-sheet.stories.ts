@@ -59,3 +59,18 @@ export const Generic: Story = {
 export const CenteredHeader: Story = {
   args: { headerAlignment: "center" },
 };
+
+/** modal: the sheet presents itself over a zds-scrim, rising from the bottom edge. Escape or a scrim click closes it. */
+export const Modal: Story = {
+  render: () => {
+    const sheet = (e: Event) => (e.currentTarget as HTMLElement).closest("[data-sheet-demo]")!.querySelector("zds-bottom-sheet")!;
+    return html`<div data-sheet-demo>
+      <zds-button @click=${(e: Event) => sheet(e).show()}>Open sheet</zds-button>
+      <zds-bottom-sheet modal open @zds-leading-click=${(e: Event) => (e.currentTarget as HTMLElement & { close(): void }).close()}>
+        ${["Share", "Edit", "Move", "Duplicate", "Archive", "Delete"].map((r) => html`<zds-menu-item leading-icon="star">${r}</zds-menu-item>`)}
+        <zds-button slot="actions" flavour="outline" size="small" shape="rounded" @click=${(e: Event) => sheet(e).close()}>Cancel</zds-button>
+        <zds-button slot="actions" size="small" shape="rounded" @click=${(e: Event) => sheet(e).close()}>Apply</zds-button>
+      </zds-bottom-sheet>
+    </div>`;
+  },
+};

@@ -102,20 +102,20 @@
   --zds-snackbar-radius: var(--radius-none);
 }
 
-/* ---- fill per flavour; the dark bars by default ------------------- */
-.zds-snackbar[data-flavour="info"]:not([data-variant="standard"]) {
+/* ---- fill per status; the dark bars by default ------------------- */
+.zds-snackbar[data-status="info"]:not([data-variant="standard"]) {
   --zds-snackbar-bg: var(--feedback-info-background-subtle);
 }
-.zds-snackbar[data-flavour="positive"]:not([data-variant="standard"]) {
+.zds-snackbar[data-status="positive"]:not([data-variant="standard"]) {
   --zds-snackbar-bg: var(--feedback-success-background-subtle);
 }
-.zds-snackbar[data-flavour="warning"]:not([data-variant="standard"]) {
+.zds-snackbar[data-status="warning"]:not([data-variant="standard"]) {
   --zds-snackbar-bg: var(--feedback-warning-background-subtle);
 }
-.zds-snackbar[data-flavour="error"]:not([data-variant="standard"]),
-.zds-snackbar[data-flavour="deletion"]:not([data-variant="standard"]) {
+.zds-snackbar[data-status="negative"]:not([data-variant="standard"]),
+.zds-snackbar[data-status="deletion"]:not([data-variant="standard"]) {
   --zds-snackbar-bg: var(--feedback-error-background-subtle);
 }
-.zds-snackbar[data-flavour="view"]:not([data-variant="standard"]) {
+.zds-snackbar[data-status="view"]:not([data-variant="standard"]) {
   --zds-snackbar-bg: var(--feedback-neutral-background-subtle);
 }

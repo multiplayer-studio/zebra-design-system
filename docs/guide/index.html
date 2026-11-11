@@ -286,9 +286,9 @@
           <tbody>
             <tr><td><code>@zebra-design-system/tokens</code></td><td>0.1.1</td><td rowspan="4">Live on the repo's git distribution branches — <code>npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#dist/tokens"</code> (latest) or <code>#tokens-v0.1.1</code> (pinned); deployed by <code>scripts/deploy-dist-branches.mjs</code>, rules in <code>DISTRIBUTION.md</code>. The git branches are the only pre-npm source. npm publish still waits on the <code>@zebra-design-system</code> org and <code>NPM_TOKEN</code>.</td></tr>
             <tr><td><code>@zebra-design-system/icons</code></td><td>0.1.1</td></tr>
-            <tr><td><code>@zebra-design-system/react-baseui</code></td><td>0.2.1</td></tr>
-            <tr><td><code>@zebra-design-system/web-components</code></td><td>0.2.1</td></tr>
-            <tr><td><code>@zebra-fed/zeta-web</code></td><td>1.4.0</td><td>1.4.0 on <code>dist/zeta-web</code> (npm still carries 1.3.6); the next npm release goes through the manual lane in the Release workflow.</td></tr>
+            <tr><td><code>@zebra-design-system/react-baseui</code></td><td>0.3.0</td></tr>
+            <tr><td><code>@zebra-design-system/web-components</code></td><td>0.3.0</td></tr>
+            <tr><td><code>@zebra-fed/zeta-web</code></td><td>1.5.0</td><td>1.5.0 on <code>dist/zeta-web</code> (npm still carries 1.3.6); the next npm release goes through the manual lane in the Release workflow.</td></tr>
           </tbody>
         </table>
       </div>
@@ -314,7 +314,7 @@
 <tr><td>Input clear control</td><td>Input always shows its clear (close) control while you type in a field with a value. It needs a prop to turn it off.</td></tr>
 <tr><td>Block behaviour</td><td>Input and Select both take <code>block</code>. Without it, a field starts at 280px and never grows past its container. With it, the field fills the container. For a form column, set the column's width (Figma's 400px, for example) and let the fields fill it. Then switch rows span the same column, and each switch ends where the fields end.</td></tr>
 <tr><td>Header and rail theme lock</td><td>Global Header and Navigation Rail lock their own mode whatever the page's mode. <code>mode</code> and <code>inverse</code> only swap dark for light. They need a prop to follow the page's mode instead.</td></tr>
-<tr><td>Chat, Message Input</td><td>Experimental, with no spec. Not for product use.</td></tr>
+<tr><td>Chat, Message Input</td><td>Experimental, React only, with no spec. Not for product use.</td></tr>
             <tr><td>Automatic releases</td><td>Changesets and the Release workflow are in place for the four <code>@zebra-design-system</code> packages; publishing stays dormant until the npm org and <code>NPM_TOKEN</code> exist. <code>CONTRIBUTING.md</code> still describes the old Nx setup for zeta-web.</td></tr>
             <tr><td>Spec noise</td><td>A 7 November review flagged 43 of 48 specs for noise: extraction diaries, resolved issues kept as changelog, the same prose repeated. Corrections are in <code>specs/spec-noise-corrections.md</code>; new spec writing follows <code>specs/spec-writing-guidance.md</code>. The specs themselves are unchanged.</td></tr>
           </tbody>
@@ -358,7 +358,7 @@
   </form>
 </section>
 
-<zds-snackbar id="toast" variant="contextual" flavour="positive" duration="2000">Copied</zds-snackbar>
+<zds-snackbar id="toast" variant="contextual" status="positive" duration="2000">Copied</zds-snackbar>
 
 <!-- Live examples, one per playbook -->
 <template id="ex-setup">

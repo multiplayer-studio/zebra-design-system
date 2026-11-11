@@ -3,6 +3,7 @@ import type { ZetaBottomSheet } from "../../components/bottom-sheets/bottom-shee
 import "../../components/bottom-sheets/bottom-sheet.js";
 import "../../components/dropdown/menu-item/dropdown-menu-item.js";
 import "../../index.css";
+import { getCssVarColorValue } from "../utils.js";
 const headerText = "Title";
 const token = (el: Element, name: string) => getComputedStyle(el).getPropertyValue(name).trim();
 
@@ -141,6 +142,27 @@ describe("zeta-bottom-sheet + zeta-list-item", () => {
       const sheet = await fixture<ZetaBottomSheet>(html`<zeta-bottom-sheet contentType="grid"><div>Item</div></zeta-bottom-sheet>`);
       await elementUpdated(sheet);
       await expect(getComputedStyle(sheet.shadowRoot!.querySelector(".content")!).display).to.equal("grid");
+    });
+
+    it("modal presents the sheet over a zeta-scrim and removes both on hide", async () => {
+      const sheet = await fixture<ZetaBottomSheet>(html`<zeta-bottom-sheet modal><div>Item</div></zeta-bottom-sheet>`);
+      const scrim = () => sheet.shadowRoot!.querySelector("zeta-scrim") as HTMLElement;
+      const dialog = () => sheet.shadowRoot!.querySelector("dialog") as HTMLDialogElement;
+      await expect(dialog().open).to.equal(false);
+      sheet.show();
+      await elementUpdated(sheet);
+      await expect(dialog().open).to.equal(true);
+      await expect(scrim().matches(":popover-open")).to.equal(true);
+      await expect(getComputedStyle(scrim()).backgroundColor).to.equal(getCssVarColorValue(sheet, "--overlay-scrim"));
+      sheet.hide();
+      await elementUpdated(sheet);
+      await expect(dialog().open).to.equal(false);
+      await expect(scrim().matches(":popover-open")).to.equal(false);
+    });
+
+    it("without modal renders no dialog or scrim", async () => {
+      const sheet = await fixture<ZetaBottomSheet>(html`<zeta-bottom-sheet><div>Item</div></zeta-bottom-sheet>`);
+      await expect(sheet.shadowRoot!.querySelector("dialog, zeta-scrim")).to.equal(null);
     });
   });
 

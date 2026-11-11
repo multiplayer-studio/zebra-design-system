@@ -5,20 +5,22 @@ import { IconButton } from "../icon-button/IconButton.js";
 import "./snackbar.css";
 
 export type SnackbarVariant = "contextual" | "standard";
-export type SnackbarFlavour = "info" | "positive" | "warning" | "error" | "deletion" | "view" | "action" | "default";
+export type SnackbarStatus = "info" | "positive" | "warning" | "negative" | "deletion" | "view" | "action" | "default";
+/** @deprecated Use `SnackbarStatus`; Figma renamed Flavour to Status and error to negative. */
+export type SnackbarFlavour = Exclude<SnackbarStatus, "negative"> | "error";
 export type SnackbarShape = "rounded" | "sharp";
 export type SnackbarCloseReason = "dismiss" | "timeout" | "action";
 
 /**
- * What each contextual flavour carries (spec: variants byFlavour): a leading
+ * What each contextual status carries (spec: variants byStatus): a leading
  * glyph, an action and its Button flavour, whether it has a close, and
  * whether the bar is a dark one (which carries its own colour mode).
  */
-const FLAVOUR: Record<SnackbarFlavour, { icon?: IconName; action?: string; close: boolean; actionFlavour: ButtonFlavour; dark?: boolean }> = {
+const STATUS: Record<SnackbarStatus, { icon?: IconName; action?: string; close: boolean; actionFlavour: ButtonFlavour; dark?: boolean }> = {
   info: { icon: "info", close: true, actionFlavour: "subtle" },
   positive: { icon: "check-circle", close: true, actionFlavour: "subtle" },
   warning: { icon: "warning", close: true, actionFlavour: "subtle" },
-  error: { icon: "error", close: true, actionFlavour: "subtle" },
+  negative: { icon: "error", close: true, actionFlavour: "subtle" },
   deletion: { icon: "delete", action: "Undo", close: true, actionFlavour: "subtle" },
   view: { icon: "open-in-new-window", action: "View", close: false, actionFlavour: "subtle" },
   action: { action: "Action", close: false, actionFlavour: "outline-subtle", dark: true },
@@ -28,19 +30,21 @@ const FLAVOUR: Record<SnackbarFlavour, { icon?: IconName; action?: string; close
 export interface SnackbarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "className" | "role"> {
   variant?: SnackbarVariant;
   /** Contextual only: sets the glyph, the tint and the default controls. */
+  status?: SnackbarStatus;
+  /** @deprecated Use `status`; `error` maps to `negative`. */
   flavour?: SnackbarFlavour;
   shape?: SnackbarShape;
   /** Controlled: show the bar. Set it false from `onClose` to dismiss. */
   open: boolean;
   /** Asks to close itself after this many ms (calls `onClose("timeout")`). 0 never. Paused while hovered or focused. */
   duration?: number;
-  /** The action's text. Defaults per flavour (Undo, View, Action); "" removes it. */
+  /** The action's text. Defaults per status (Undo, View, Action); "" removes it. */
   actionLabel?: string;
-  /** Forces the close on or off. Unset, it follows the flavour (off on standard). */
+  /** Forces the close on or off. Unset, it follows the status (off on standard). */
   showClose?: boolean;
   /** Accessible name for the close button. */
   closeLabel?: string;
-  /** A leading icon for the flavours without one of their own (Figma's Icon Slot). */
+  /** A leading icon for the statuses without one of their own (Figma's Icon Slot). */
   icon?: React.ReactNode;
   /** Renders in the page flow rather than floating in the top layer, without motion. For documentation. */
   inline?: boolean;
@@ -64,7 +68,7 @@ function pageIsDark(el: Element | null) {
 
 /**
  * A brief message about something the app just did, carrying at most one
- * action. Variant chooses between a contextual pill, where Flavour sets the
+ * action. Variant chooses between a contextual pill, where Status sets the
  * tint, the leading glyph and the controls together, and a plain standard
  * bar.
  *
@@ -73,7 +77,7 @@ function pageIsDark(el: Element | null) {
  * spec's single, controlled bar or parity with `<zds-snackbar>`; it is the
  * natural basis for the queue the spec says does not exist yet. This is a
  * controlled component: the accessibility it needs is a live region
- * (role=status, alert on error), and its controls are the Base UI-based
+ * (role=status, alert on negative), and its controls are the Base UI-based
  * Button and IconButton.
  *
  * Follows specs/snackbar like `<zds-snackbar>`: the action is a subtle
@@ -93,7 +97,7 @@ function pageIsDark(el: Element | null) {
  * @spec specs/snackbar/snackbar.spec.md
  */
 export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(function Snackbar(
-  { variant = "contextual", flavour = "info", shape = "rounded", open, duration = 0, actionLabel, showClose, closeLabel = "Dismiss", icon, inline = false, onAction, onClose, className, children, ...rest },
+  { variant = "contextual", status: statusProp, flavour, shape = "rounded", open, duration = 0, actionLabel, showClose, closeLabel = "Dismiss", icon, inline = false, onAction, onClose, className, children, ...rest },
   ref,
 ) {
   const rootRef = React.useRef<HTMLDivElement | null>(null);
@@ -104,7 +108,8 @@ export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(function
     else if (ref) ref.current = node;
   };
   const contextual = variant !== "standard";
-  const preset = FLAVOUR[flavour] ?? FLAVOUR.info;
+  const status: SnackbarStatus = statusProp ?? (flavour === "error" ? "negative" : flavour) ?? "info";
+  const preset = STATUS[status] ?? STATUS.info;
   const dark = contextual ? !!preset.dark : true;
   const action = actionLabel ?? (contextual ? preset.action ?? "" : "");
   const close = showClose ?? (contextual ? preset.close : false);
@@ -170,10 +175,10 @@ export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(function
       ref={setRefs}
       {...rest}
       popover={inline ? undefined : "manual"}
-      role={contextual && flavour === "error" ? "alert" : "status"}
+      role={contextual && status === "negative" ? "alert" : "status"}
       className={["zds-snackbar", mode, className].filter(Boolean).join(" ")}
       data-variant={variant}
-      data-flavour={flavour}
+      data-status={status}
       data-shape={shape}
       data-inline={inline || undefined}
     >

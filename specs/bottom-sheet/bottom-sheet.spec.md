@@ -12,11 +12,20 @@ Source: [Bottom Sheet page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/
 |---|---|---|---|
 | `contentType` | enum | `list`, `grid`, `generic` | `list` |
 | `contentSlot` | slot | | |
+| `modal` | boolean (code only) | | `false` |
+| `open` | boolean (code only) | | `false` |
+| `dismissible` | boolean (code only) | | `true` |
 
 **contentType**
 - `list`: Use for a run of labelled actions a person reads down. Rows are full width, so an option needing its own artwork or count will not fit.
 - `grid`: Use where options are recognised by their icon rather than read, three to a row. Labels sit beneath the icon and stay short, so a long one wraps and lengthens the whole row.
 - `generic`: Use when neither arrangement fits and the content is yours to supply. Nothing is laid out for you beyond the padding, so spacing between items becomes your responsibility.
+
+**modal**: When true, the sheet presents itself at the bottom of the viewport over the Scrim component, traps focus and closes on Escape or a scrim click. When false, it only draws its surface.
+
+**open**: Shows or hides a modal sheet.
+
+**dismissible**: When false, Escape and a scrim click no longer close a modal sheet.
 
 **contentSlot**: Takes the sheet’s content on generic. It is the only arrangement with a slot, so filling it has no effect on list or grid. *(shown when contentType == generic)*
 
@@ -208,6 +217,7 @@ Set `5207:2714` · 1 variant(s) · public
 
 ## Dependencies
 
+- **Scrim** (`specs/scrim`): backdrop of a modal sheet, tone scrim
 - **Icon Button** (`2338:1763`): header leading button, small, rounded and subtle
 - **Menu Item** (`2402:6508`): list rows
 - **Card Footer** (`3311:3383`): footer, Actions=2, padding space/lg, gap space/sm
@@ -309,6 +319,8 @@ Every token resolves in the export.
 - *structure*: Grid Menu Item's Notification Indicator is the small dot, but its drawn position is the top right of the icon block. The metadata only says it sits over the icon.
 
 ### Note
+
+- *scrim*: Code adds modal, open and dismissible. A modal sheet sits over the Scrim component at tone scrim.
 
 - *structure*: Figma draws a fixed 360 wide sheet. It needs to fill its container in code.
 - *metadata*: No motion, shadow, scrim or height cap are defined, by the metadata's own statement.

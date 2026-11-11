@@ -240,11 +240,16 @@ describe("zeta-dialog", () => {
       await expect(style.borderTopLeftRadius).to.equal(getComputedStyle(subject).getPropertyValue("--radius-element-md").trim());
     });
 
-    it("dims the page behind a modal with overlay/scrim", async () => {
+    it("dims the page behind a modal with a zeta-scrim, and removes it on close", async () => {
       const el = await fixture<ZetaDialog>(html`<zeta-dialog></zeta-dialog>`);
       await el.showModal();
+      const scrim = el.shadowRoot?.querySelector("zeta-scrim") as HTMLElement;
       const dialog = el.shadowRoot?.querySelector("dialog") as HTMLElement;
-      await expect(getComputedStyle(dialog, "::backdrop").backgroundColor).to.equal(getCssVarColorValue(el, "--overlay-scrim"));
+      await expect(scrim.matches(":popover-open")).to.equal(true);
+      await expect(getComputedStyle(scrim).backgroundColor).to.equal(getCssVarColorValue(el, "--overlay-scrim"));
+      await expect(getComputedStyle(dialog, "::backdrop").backgroundColor).to.equal("rgba(0, 0, 0, 0)");
+      await el.hide();
+      await expect(scrim.matches(":popover-open")).to.equal(false);
     });
 
     it("keeps every flavour's glyph foreground/primary; flavour changes only the glyph", async () => {

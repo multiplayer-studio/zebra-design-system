@@ -32,6 +32,8 @@ export { CardFooter } from "./components/card-footer/CardFooter.js";
 export type { CardFooterProps } from "./components/card-footer/CardFooter.js";
 export { Divider } from "./components/divider/Divider.js";
 export type { DividerProps, DividerOrientation } from "./components/divider/Divider.js";
+export { Scrim } from "./components/scrim/Scrim.js";
+export type { ScrimProps, ScrimTone } from "./components/scrim/Scrim.js";
 export { NotificationIndicator } from "./components/notification-indicator/NotificationIndicator.js";
 export type {
   NotificationIndicatorProps,
@@ -69,7 +71,7 @@ export { IconIndicator } from "./components/icon-indicator/IconIndicator.js";
 export type { IconIndicatorProps, IconIndicatorSize } from "./components/icon-indicator/IconIndicator.js";
 
 export { Snackbar } from "./components/snackbar/Snackbar.js";
-export type { SnackbarProps, SnackbarVariant, SnackbarFlavour, SnackbarShape, SnackbarCloseReason } from "./components/snackbar/Snackbar.js";
+export type { SnackbarProps, SnackbarVariant, SnackbarStatus, SnackbarFlavour, SnackbarShape, SnackbarCloseReason } from "./components/snackbar/Snackbar.js";
 export { SystemBanner } from "./components/system-banner/SystemBanner.js";
 export type { SystemBannerProps, SystemBannerLayout, SystemBannerStatus, SystemBannerShape } from "./components/system-banner/SystemBanner.js";
 export { InlineBanner } from "./components/inline-banner/InlineBanner.js";
@@ -140,7 +142,7 @@ export type { GridMenuItemProps } from "./components/grid-menu-item/GridMenuItem
 export { UserProfile } from "./components/user-profile/UserProfile.js";
 export type { UserProfileProps } from "./components/user-profile/UserProfile.js";
 export { BottomSheet } from "./components/bottom-sheet/BottomSheet.js";
-export type { BottomSheetProps, BottomSheetContentType, BottomSheetHeaderAlignment } from "./components/bottom-sheet/BottomSheet.js";
+export type { BottomSheetProps, BottomSheetContentType, BottomSheetHeaderAlignment, BottomSheetOpenChangeReason } from "./components/bottom-sheet/BottomSheet.js";
 export { TopAppBar } from "./components/top-app-bar/TopAppBar.js";
 export type { TopAppBarProps, TopAppBarType, TopAppBarShape, TopAppBarHeadingLevel } from "./components/top-app-bar/TopAppBar.js";
 export { GlobalHeader } from "./components/global-header/GlobalHeader.js";
@@ -175,6 +177,8 @@ export { SubMenuHeader } from "./components/navigation-rail/SubMenuHeader.js";
 export type { SubMenuHeaderProps, SubMenuHeaderType } from "./components/navigation-rail/SubMenuHeader.js";
 export { CollapsibleMenuItem } from "./components/navigation-rail/CollapsibleMenuItem.js";
 export type { CollapsibleMenuItemProps } from "./components/navigation-rail/CollapsibleMenuItem.js";
+export { NavigationDrawer } from "./components/navigation-drawer/NavigationDrawer.js";
+export type { NavigationDrawerProps, NavigationDrawerSide, NavigationDrawerOpenChangeReason } from "./components/navigation-drawer/NavigationDrawer.js";
 export { TabBar, TabItem } from "./components/tab-bar/TabBar.js";
 export type { TabBarProps, TabBarFlavour, TabItemProps, TabItemBadge } from "./components/tab-bar/TabBar.js";
 export { StepHorizontal, StepVertical, StepCard, StepSegment } from "./components/stepper/Step.js";

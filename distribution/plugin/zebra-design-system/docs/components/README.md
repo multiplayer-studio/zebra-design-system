@@ -27,6 +27,7 @@ Never edit these files by hand — CI diffs them against the specs.
 - [Input Chip](./input-chip.md) — Represents a person, entity or value someone has entered or picked, such as a recipient on a message, so it can be revie
 - [Lightbox](./lightbox.md) — A full-size preview over the page, opened from the item being viewed. Images, videos and PDFs render themselves; anythin
 - [Navigation Bar](./navigation-bar.md) — A horizontal bar of top-level destinations, pinned to one edge of a view. It is a container rather than a fixed design, 
+- [Navigation Drawer](./navigation-drawer.md) — The app's destinations in a tall panel at the edge of the screen, opened from a menu button. Modal slides over the page 
 - [Navigation Item](./navigation-item.md) — A single destination inside a Navigation Bar, shown as an icon above a label with an optional badge. It is the content t
 - [Navigation Rail](./navigation-rail.md) — A vertical navigation column for the edge of a desktop view, made of a narrow icon rail and a sub menu panel beside it. 
 - [Navigation Rail Item](./navigation-rail-item.md) — A single destination in a Navigation Rail, shown as a glyph in a square target or, in the wide form, a glyph and label o
@@ -38,6 +39,7 @@ Never edit these files by hand — CI diffs them against the specs.
 - [Progress Circle](./progress-circle.md) — A ring that reports an ongoing process where a bar will not fit, beside an icon or inside a dense row. Five sizes cover 
 - [Radio Button](./radio-button.md) — A circular control for choosing exactly one option from a set, with an optional text label beside it. Every option in th
 - [Screen Header Bar](./screen-header-bar.md) — The bar at the top of a screen, carrying a back affordance, the screen's title and one action. It holds a single slot on
+- [Scrim](./scrim.md) — The translucent barrier between a raised surface and the page behind it. Dialog, Lightbox and Bottom Sheet draw it under
 - [Scrollbar](./scrollbar.md) — The scroll indicator for a region that clips its content. A padded gutter holds a pill handle whose position and length 
 - [Search](./search.md) — A single-line input for typing a query, with a magnifier leading it and a trailing control that takes whatever icon and 
 - [Segmented Control](./segmented-control.md) — A row of mutually exclusive options sharing one track, where exactly one is active at a time. It ships with three segmen

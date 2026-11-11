@@ -6,12 +6,11 @@
 
    Spec: none yet — experimental. */
 
-/* ---- backdrop (as Dialog's: the translucent overlay/scrim) -------------- */
-.zds-lightbox__backdrop {
+/* ---- backdrop (as Dialog's: the Scrim component at tone scrim) ---------- */
+.zds-scrim.zds-lightbox__backdrop {
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: var(--overlay-scrim);
 }
 
 /* ---- panel --------------------------------------------------------------- */

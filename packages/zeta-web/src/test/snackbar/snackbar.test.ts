@@ -10,39 +10,40 @@ const bar = (el: ZetaSnackbar) => one(el, ".snackbar-root");
 
 describe("zeta-snackbar", () => {
   describe("Accessibility", () => {
-    it("announces itself politely, and an error interrupts", async () => {
-      const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar flavor="info">Saved</zeta-snackbar>`);
+    it("announces itself politely, and negative interrupts", async () => {
+      const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar status="info">Saved</zeta-snackbar>`);
       await expect(el).to.be.accessible();
-      el.flavor = "error";
+      el.status = "negative";
       await elementUpdated(el);
       await expect(el).to.be.accessible();
     });
 
     it("names the close", async () => {
-      const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar flavor="info">Saved</zeta-snackbar>`);
+      const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar status="info">Saved</zeta-snackbar>`);
       await expect(one(el, ".close").getAttribute("aria-label")).to.equal("Dismiss");
     });
   });
 
   describe("Content", () => {
     it("shows the message, and each flavour's glyph and controls", async () => {
-      const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar flavor="deletion">Item deleted</zeta-snackbar>`);
+      const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar status="deletion">Item deleted</zeta-snackbar>`);
       const slot = el.shadowRoot!.querySelector("slot:not([name])") as HTMLSlotElement;
       await expect(slot.assignedNodes()[0].textContent).to.equal("Item deleted");
       await expect(one(el, ".lead").textContent?.trim()).to.equal("delete");
       await expect(one(el, ".action").textContent?.trim()).to.equal("Undo");
       expect(one(el, ".close")).to.exist;
-      el.flavor = "view";
+      el.status = "view";
       await elementUpdated(el);
       await expect(one(el, ".action").textContent?.trim()).to.equal("View");
       expect(one(el, ".close")).to.not.exist;
     });
 
-    it("takes the legacy status and close switch", async () => {
+    it("takes the legacy flavor and close switch", async () => {
       const el = await fixture<ZetaSnackbar>(
-        html`<zeta-snackbar status="negative" actionLabel="Retry" hasCloseAction closeActionIcon="cancel">Failed</zeta-snackbar>`
+        html`<zeta-snackbar flavor="error" actionLabel="Retry" hasCloseAction closeActionIcon="cancel">Failed</zeta-snackbar>`
       );
-      await expect(el.flavor).to.equal("error");
+      await expect(el.status).to.equal("negative");
+      await expect(el.getAttribute("status")).to.equal("negative");
       await expect(one(el, ".action").textContent?.trim()).to.equal("Retry");
       await expect(one(el, ".close").textContent?.trim()).to.equal("cancel");
     });
@@ -58,7 +59,7 @@ describe("zeta-snackbar", () => {
 
   describe("Dimensions", () => {
     it("is control/lg tall with space/lg leading padding and a pill radius", async () => {
-      const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar flavor="info">Saved</zeta-snackbar>`);
+      const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar status="info">Saved</zeta-snackbar>`);
       await expect(`${bar(el).getBoundingClientRect().height}px`).to.equal(v(el, "--control-lg"));
       await expect(getComputedStyle(bar(el)).paddingLeft).to.equal(v(el, "--space-lg"));
       await expect(getComputedStyle(bar(el)).paddingRight).to.equal(v(el, "--space-2xs"));
@@ -76,9 +77,9 @@ describe("zeta-snackbar", () => {
 
   describe("Styling", () => {
     it("tints each contextual flavour, and puts the dark bars on surface/overlay in their own mode", async () => {
-      const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar flavor="positive">Done</zeta-snackbar>`);
+      const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar status="positive">Done</zeta-snackbar>`);
       await expect(getComputedStyle(bar(el)).backgroundColor).to.equal(getCssVarColorValue(el, "--feedback-success-background-subtle"));
-      el.flavor = "default";
+      el.status = "default";
       await elementUpdated(el);
       await expect(el.getAttribute("data-theme")).to.equal("dark");
       await expect(getComputedStyle(bar(el)).backgroundColor).to.equal(getCssVarColorValue(el, "--surface-overlay"));
@@ -87,7 +88,7 @@ describe("zeta-snackbar", () => {
 
   describe("Interaction", () => {
     it("closes from the close, with reason dismiss", async () => {
-      const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar flavor="info">Saved</zeta-snackbar>`);
+      const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar status="info">Saved</zeta-snackbar>`);
       setTimeout(() => one(el, ".close").click());
       const e = await oneEvent<CustomEvent<{ reason: string }>>(el, "close");
       await expect(e.detail.reason).to.equal("dismiss");
@@ -96,7 +97,7 @@ describe("zeta-snackbar", () => {
 
     it("fires action and calls actionClick, then closes", async () => {
       let called = false;
-      const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar flavor="deletion" .actionClick=${() => (called = true)}>Deleted</zeta-snackbar>`);
+      const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar status="deletion" .actionClick=${() => (called = true)}>Deleted</zeta-snackbar>`);
       setTimeout(() => one(el, ".action").click());
       await oneEvent(el, "action");
       await expect(called).to.equal(true);
@@ -104,13 +105,13 @@ describe("zeta-snackbar", () => {
     });
 
     it("closes itself after duration", async () => {
-      const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar flavor="info" duration="50">Saved</zeta-snackbar>`);
+      const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar status="info" duration="50">Saved</zeta-snackbar>`);
       const e = await oneEvent<CustomEvent<{ reason: string }>>(el, "close");
       await expect(e.detail.reason).to.equal("timeout");
     });
 
     it("floats in the top layer when floating", async () => {
-      const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar flavor="info" floating>Saved</zeta-snackbar>`);
+      const el = await fixture<ZetaSnackbar>(html`<zeta-snackbar status="info" floating>Saved</zeta-snackbar>`);
       await elementUpdated(el);
       await expect(el.matches(":popover-open")).to.equal(true);
     });

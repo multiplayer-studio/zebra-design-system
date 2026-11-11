@@ -31,8 +31,9 @@ export default css`
   dialog[open] {
     display: flex;
   }
+  /* The backdrop is the zeta-scrim before the dialog (tone scrim, specs/scrim); ::backdrop only catches the click. */
   dialog::backdrop {
-    background: var(--overlay-scrim);
+    background: transparent;
   }
   :host(:not([rounded])) dialog {
     border-radius: var(--zebra-radius-none);

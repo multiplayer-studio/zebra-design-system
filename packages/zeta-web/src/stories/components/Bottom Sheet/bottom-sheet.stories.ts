@@ -113,3 +113,19 @@ export const BottomSheetGenericContent: StoryObj<ZetaBottomSheet> = {
       html`<p style="margin:0;font:var(--text-body-medium);color:var(--foreground-primary)">Share your live location with this conversation for one hour.</p>`
     )
 };
+
+/** modal: the sheet presents itself over a zeta-scrim, rising from the bottom edge. Escape or a scrim click closes it. */
+export const BottomSheetModal: StoryObj<ZetaBottomSheet> = {
+  args: { headerText: "Options" },
+  render: args => {
+    const find = (e: Event) => (e.currentTarget as HTMLElement).closest("[data-sheet-demo]")!.querySelector("zeta-bottom-sheet")!;
+    return html`<div data-sheet-demo>
+      <zeta-button @click=${(e: Event) => find(e).show()}>Open sheet</zeta-button>
+      <zeta-bottom-sheet modal open headerText=${args.headerText}>
+        ${rows.map(row => html`<zeta-dropdown-menu-item .rounded=${false}><zeta-icon slot="icon">${row.icon}</zeta-icon>${row.label}</zeta-dropdown-menu-item>`)}
+        <zeta-button slot="actions" flavor="outline" size="small" @click=${(e: Event) => find(e).hide()}>Cancel</zeta-button>
+        <zeta-button slot="actions" size="small" @click=${(e: Event) => find(e).hide()}>Apply</zeta-button>
+      </zeta-bottom-sheet>
+    </div>`;
+  }
+};

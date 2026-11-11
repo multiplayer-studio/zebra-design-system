@@ -27,6 +27,8 @@ declare class PopupInterface {
 export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
   class PopupClass extends superClass {
     @query("dialog") private readonly dialog!: HTMLDialogElement;
+    /** The backdrop, when the component renders a popover `zeta-scrim` before its dialog. */
+    @query("zeta-scrim") private readonly scrim?: HTMLElement | null;
 
     /** Return value of the dialog. */
     @property({ type: String }) returnValue: string = "";
@@ -55,6 +57,8 @@ export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
     async _show(isModal: boolean) {
       await this.updateComplete;
       if (isModal) {
+        // The scrim joins the top layer first, so the dialog lands directly above it.
+        if (this.scrim && !this.scrim.matches(":popover-open")) this.scrim.showPopover();
         this.dialog.showModal();
       } else {
         this.dialog.show();
@@ -67,6 +71,7 @@ export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
       await this.updateComplete;
       this.returnValue = returnValue;
       this.dialog.close(returnValue);
+      if (this.scrim?.matches(":popover-open")) this.scrim.hidePopover();
     }
 
     async cancel() {
@@ -74,6 +79,7 @@ export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
     }
 
     _onClose(_e: Event) {
+      if (this.scrim?.matches(":popover-open")) this.scrim.hidePopover();
       this.dispatchEvent(new Event("close"));
     }
 
@@ -120,6 +126,10 @@ export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
       css`
         dialog::backdrop {
           background-color: var(--overlay-scrim);
+        }
+        /* With a zeta-scrim before it, the scrim draws the backdrop and ::backdrop only catches the click. */
+        zeta-scrim + dialog::backdrop {
+          background-color: transparent;
         }
       `
     ];

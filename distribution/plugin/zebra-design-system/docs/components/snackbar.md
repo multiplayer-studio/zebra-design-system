@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | `message` | string | `Message` |  |  |
 | `variant` | enum | `contextual` | `contextual` `standard` |  |
-| `flavour` | enum | `info` | `info` `positive` `warning` `error` `deletion` `view` `action` `default` | Figma's default variant is info; the metadata marks default as the default. standard exists only with Flavour=default. |
+| `status` | enum | `info` | `info` `positive` `warning` `negative` `deletion` `view` `action` `default` | Figma's default variant is info; the metadata marks default as the default. standard exists only with Status=default. |
 | `shape` | enum | `rounded` | `rounded` `sharp` |  |
 | `showIcon` | boolean | `false` |  |  |
 | `showAction` | boolean | `true` |  |  |
@@ -61,7 +61,7 @@
 |---|---|---|
 | Size | Fixed width, hug height | 48 tall throughout. Each variant carries its own fixed width, running from 190 to 323 depending on the flavour and its controls, rather than growing with the message. |
 | Position | Fixed to the viewport | Centred horizontally, space/xl above the bottom edge of the viewport, and never wider than the viewport less space/lg on each side. It does not move with the page as it scrolls. |
-| Padding and gap | Fixed | space/xxs top and bottom, space/lg on the leading edge and space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/xxs and opens the gap to space/lg so a bordered control sits closer to the end. |
+| Padding and gap | Fixed | space/xs top and bottom, space/lg on the leading edge and space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/xs and opens the gap to space/lg so a bordered control sits closer to the end. |
 | Content | Fill | The leading icon and the message sit space/md apart, and the content block fills whatever width the controls leave it. |
 | Radius | Per Variant and Shape | contextual is radius/pill when rounded and standard is radius/md, so the two read differently at the same setting. Both drop to radius/none when sharp, and the close and the action follow. |
 | Fill | Per Flavour | info, positive, warning and error take feedback/info, success, warning and error at background/subtle. deletion shares the error tint and view takes feedback/neutral/background/subtle. action and default sit on surface/inverse, which is what moves the message to foreground/inverse. |

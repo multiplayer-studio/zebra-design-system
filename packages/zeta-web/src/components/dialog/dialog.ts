@@ -5,6 +5,7 @@ import styles from "./dialog.styles.js";
 import { ZetaButton } from "../button/button.js";
 import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { Contourable, Popup } from "../../mixins/mixins.js";
+import "../scrim/scrim.js";
 
 export type DialogFlavor = "default" | "info" | "success" | "warning" | "error";
 
@@ -174,6 +175,7 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
     const count = this.handleActionButtonChange();
 
     return html`
+      <zeta-scrim popover="manual" tone="scrim"></zeta-scrim>
       <dialog .returnValue=${this.returnValue} id=${this.id} ?open=${this.initialOpen} part="dialog">
         <header part="header">
           ${this.showLeadingIcon ? html`<zeta-icon part="header-icon" .rounded=${this.rounded} name=${this.leadingIcon ?? this.getHeaderIconName()}></zeta-icon>` : ""}

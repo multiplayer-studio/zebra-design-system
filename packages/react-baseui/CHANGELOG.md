@@ -1,5 +1,25 @@
 # @zebra-design-system/react-baseui
 
+## 0.3.0
+
+### Minor Changes
+
+- Navigation Drawer ships from its new spec (`specs/navigation-drawer`). In
+  react-baseui `NavigationDrawer` graduates from `/experimental` to the main
+  entry; web-components gains `<zds-navigation-drawer>` with the same API. It is
+  built from the Navigation Rail family (header, Sub Menu Item rows, Collapsible
+  Menu Item groups, Divider). Modal (default) slides in over a Scrim and closes on
+  Escape, a scrim click, the header's close button (`showClose`, on by default)
+  or a chosen destination; `modal={false}` sits in the layout. Only the header is
+  sticky; the footer follows the menu.
+- Scrim ships as a spec-built component (`specs/scrim`): `Scrim` / `<zds-scrim>`
+  with `tone` scrim (overlay/scrim) or modal (overlay/modal). Dialog, Lightbox
+  and a modal Bottom Sheet now draw it as their backdrop, using the token alone
+  (the spec drops Figma's extra 0.6 opacity).
+- Snackbar follows Figma's rename: `status` replaces `flavour`, and `negative`
+  replaces `error`. `flavour` stays as a deprecated alias that maps `error` to
+  `negative`, so existing code keeps working.
+
 ## 0.2.1
 
 ### Patch Changes

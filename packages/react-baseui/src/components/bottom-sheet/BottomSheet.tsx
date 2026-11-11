@@ -1,12 +1,18 @@
 import * as React from "react";
 import { Menu } from "@base-ui/react/menu";
+import { Dialog as BaseDialog } from "@base-ui/react/dialog";
 import { CardFooter } from "../card-footer/CardFooter.js";
 import { IconButton } from "../icon-button/IconButton.js";
 import type { IconName } from "../icon/Icon.js";
+import { Scrim } from "../scrim/Scrim.js";
 import "./bottom-sheet.css";
 
 export type BottomSheetContentType = "list" | "grid" | "generic";
 export type BottomSheetHeaderAlignment = "start" | "center";
+/** Why a modal sheet opened or closed. */
+export type BottomSheetOpenChangeReason = "escape" | "backdrop" | "other";
+
+const REASON: Record<string, BottomSheetOpenChangeReason> = { "escape-key": "escape", "outside-press": "backdrop" };
 
 export interface BottomSheetProps extends Omit<React.ComponentPropsWithoutRef<"section">, "className"> {
   /** How the items are arranged: `MenuItem` rows, `GridMenuItem` tiles or anything else. */
@@ -25,6 +31,16 @@ export interface BottomSheetProps extends Omit<React.ComponentPropsWithoutRef<"s
   headerAlignment?: BottomSheetHeaderAlignment;
   /** The footer actions, usually an outline and a primary `Button` at size small. */
   actions?: React.ReactNode;
+  /** Present the sheet at the bottom of the viewport over a `Scrim`, with focus trapped inside. Code only. */
+  modal?: boolean;
+  /** Whether a modal sheet is shown. */
+  open?: boolean;
+  /** Escape and a scrim click close a modal sheet. Turn off when the sheet needs a decision. */
+  dismissible?: boolean;
+  /** A modal sheet asked to open or close. */
+  onOpenChange?: (open: boolean, reason: BottomSheetOpenChangeReason) => void;
+  /** Where a modal sheet and its scrim portal to; defaults to document.body. */
+  portalContainer?: React.ComponentPropsWithoutRef<typeof BaseDialog.Portal>["container"];
   className?: string;
 }
 
@@ -32,9 +48,12 @@ export interface BottomSheetProps extends Omit<React.ComponentPropsWithoutRef<"s
  * A surface anchored to the bottom edge of the screen, holding supplementary
  * content or a short set of actions.
  *
- * It only draws the surface. Presenting it, the scrim, moving focus in and
- * dismissing it all belong to the screen, and Figma defines no motion, shadow
- * or height cap, so no Base UI primitive applies.
+ * By default it only draws the surface, and the screen presents it. With
+ * `modal`, it presents itself through Base UI's Dialog: anchored to the bottom
+ * of the viewport over a `Scrim` (tone scrim), focus trapped, Escape and a
+ * scrim click closing it when `dismissible`. It rises from the bottom edge
+ * (animations/smooth; none under reduced motion). Figma defines no motion,
+ * so that is a code decision.
  *
  * Departures from Figma, each a spec issue:
  * - `heading`, `headerIcon`, `showLeadingIcon`, `headerAlignment` and
@@ -46,12 +65,12 @@ export interface BottomSheetProps extends Omit<React.ComponentPropsWithoutRef<"s
  * @spec specs/bottom-sheet/bottom-sheet.spec.md
  */
 export const BottomSheet = React.forwardRef<HTMLElement, BottomSheetProps>(function BottomSheet(
-  { contentType = "list", heading = "Sheet Title", headerIcon = "arrow-back", showLeadingIcon = true, leadingLabel = "Back", onLeadingClick, headerAlignment = "start", actions, className, children, ...rest },
+  { contentType = "list", heading = "Sheet Title", headerIcon = "arrow-back", showLeadingIcon = true, leadingLabel = "Back", onLeadingClick, headerAlignment = "start", actions, modal = false, open = false, dismissible = true, onOpenChange, portalContainer, className, children, ...rest },
   ref,
 ) {
   const titleId = React.useId();
   const [content, setContent] = React.useState<HTMLDivElement | null>(null);
-  return (
+  const sheet = (
     <section
       ref={ref}
       aria-labelledby={titleId}
@@ -80,5 +99,26 @@ export const BottomSheet = React.forwardRef<HTMLElement, BottomSheetProps>(funct
       </div>
       {actions ? <CardFooter className="zds-bottom-sheet__footer">{actions}</CardFooter> : null}
     </section>
+  );
+  if (!modal) return sheet;
+  return (
+    <BaseDialog.Root
+      open={open}
+      disablePointerDismissal={!dismissible}
+      onOpenChange={(next, details) => {
+        if (!dismissible && !next && (details.reason === "escape-key" || details.reason === "outside-press")) {
+          details.cancel();
+          return;
+        }
+        onOpenChange?.(next, REASON[details.reason] ?? "other");
+      }}
+    >
+      <BaseDialog.Portal container={portalContainer}>
+        <BaseDialog.Backdrop className="zds-bottom-sheet__backdrop" render={<Scrim tone="scrim" />} />
+        <BaseDialog.Popup className="zds-bottom-sheet__popup" aria-labelledby={titleId}>
+          {sheet}
+        </BaseDialog.Popup>
+      </BaseDialog.Portal>
+    </BaseDialog.Root>
   );
 });

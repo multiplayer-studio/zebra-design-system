@@ -108,4 +108,47 @@ export default css`
   ::slotted([slot="actions"]) {
     flex: 1 1 0;
   }
+
+  /* Modal: the sheet is a native dialog pinned to the bottom of the viewport. The backdrop is the zeta-scrim before it
+     (tone scrim, specs/scrim); ::backdrop only catches the click. Rising from the bottom edge is a code decision. */
+  dialog.sheet {
+    position: fixed;
+    inset: auto 0 0 0;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    max-height: var(--bottom-sheet-max-height, 90vh);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    overflow: hidden;
+    outline: none;
+  }
+
+  dialog.sheet[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  dialog.sheet::backdrop {
+    background: transparent;
+  }
+
+  dialog.sheet .container {
+    min-height: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    dialog.sheet {
+      transition: translate var(--animations-smooth);
+    }
+
+    @starting-style {
+      dialog.sheet[open] {
+        translate: 0 100%;
+      }
+    }
+  }
 `;

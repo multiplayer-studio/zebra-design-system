@@ -2,6 +2,7 @@ import { customElement, property, state } from "lit/decorators.js";
 import { LitElement, html, nothing, type PropertyValues } from "lit";
 import styles from "./lightbox.styles.js";
 import { Contourable, Popup } from "../../mixins/mixins.js";
+import "../scrim/scrim.js";
 import "../icon/icon.js";
 import "../button/icon-button/icon-button.js";
 
@@ -255,6 +256,7 @@ export class ZetaLightbox extends Contourable(Popup(LitElement)) {
     const shape = this.rounded ? "rounded" : "sharp";
 
     return html`
+      <zeta-scrim popover="manual" tone="scrim"></zeta-scrim>
       <dialog .returnValue=${this.returnValue} id=${this.id} ?open=${this.initialOpen} part="dialog" aria-label=${name} @keydown=${this.onKeydown}>
         <div class="toolbar">
           <h1 class="name" title=${name}>${name}</h1>

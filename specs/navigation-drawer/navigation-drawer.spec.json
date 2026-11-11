@@ -1,0 +1,216 @@
+{
+  "component": {
+    "name": "Navigation Drawer",
+    "slug": "navigation-drawer",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "8257:401",
+      "key": "d9e6d4224b348c612126c69e07c41fdd05cc04ba",
+      "page": "Navigation Drawer",
+      "pageNodeId": "8255:1584",
+      "metadataFrameId": "8258:413",
+      "extractedAt": "2026-11-11",
+      "extractionNote": "One set (2 variants) and the full 'Navigation Drawer Metadata' frame. Its parts are the Navigation Rail family's own sets, specified in specs/navigation-rail and specs/sub-menu-item."
+    }
+  },
+  "summary": "The app's destinations in a tall panel at the edge of the screen, opened from a menu button. Modal slides over the page on a Scrim and closes on Escape, a scrim click, the header's close button or a chosen destination. Standard sits in the layout beside the content and pushes it. Built from the Navigation Rail family with no new parts.",
+  "api": {
+    "modal": {
+      "type": "enum", "figmaName": "Modal", "values": ["true", "false"], "default": "true", "controls": ["variant"],
+      "intent": {
+        "true": "Slides over the page on a Scrim, traps focus and closes on dismissal or a chosen destination.",
+        "false": "Standard: sits in the layout beside the content and pushes it. Closed, it narrows to nothing. The trigger lives on the main page content"
+      }
+    },
+    "showAction": {
+      "type": "boolean", "figmaName": "Show Action#8257:5", "default": true, "controls": ["action"],
+      "intent": {
+        "true": "Shows a full-width primary Button under the header, for a create or compose entry point.",
+        "false": "Hides it, for a drawer that is purely navigational."
+      }
+    },
+    "menuSlot": {
+      "type": "slot", "figmaName": "Menu Slot#8257:3", "controls": ["menuSlot"],
+      "prefers": "Sub Menu Item (specs/sub-menu-item), Collapsible Menu Item (specs/navigation-rail), Divider (specs/divider)",
+      "preferredOnly": true
+    },
+    "footerSlot": {
+      "type": "slot", "figmaName": "Footer Slot#8257:4", "controls": ["footerSlot"],
+      "prefers": "Sub Menu Item (specs/sub-menu-item), Collapsible Menu Item (specs/navigation-rail), Divider (specs/divider)",
+      "preferredOnly": true
+    },
+    "side": {
+      "type": "enum", "figmaName": null, "codeOnly": true, "values": ["start", "end"], "default": "start",
+      "intent": { "start": "Code only. Comes from the leading edge (Left).", "end": "Comes from the trailing edge (Right)." }
+    },
+    "shape": {
+      "type": "enum", "figmaName": null, "codeOnly": true, "values": ["rounded", "sharp"], "default": "rounded",
+      "tokens": { "rounded": "radius/sm", "sharp": "radius/none" },
+      "intent": {
+        "rounded": "Code only. Rounds the rows, groups and buttons inside (radius/sm). The drawer itself is never rounded.",
+        "sharp": "Square corners (radius/none) on everything inside."
+      }
+    },
+    "dismissible": {
+      "type": "boolean", "figmaName": null, "codeOnly": true, "default": true,
+      "intent": { "true": "Code only. Escape and a scrim click close a modal drawer.", "false": "Only the close button or a destination closes it." }
+    },
+    "closeOnNavigate": {
+      "type": "boolean", "figmaName": null, "codeOnly": true, "default": true,
+      "intent": { "true": "Code only. Choosing a destination closes a modal drawer. Opening a group never does.", "false": "The drawer stays open after a destination is chosen." }
+    },
+    "width": {
+      "type": "length", "figmaName": null, "codeOnly": true, "default": "320Px (literal, no token)",
+      "intent": { "320px": "Code only. A literal", "length": "The project sets its own width. A modal drawer always leaves control/lg of page visible." }
+    }
+  },
+  "internalVariations": [
+    {
+      "part": "header", "via": "Navigation Header (exposed nested instance)", "property": "Show Icon Button", "default": true,
+      "glyph": "close",
+      "intent": {
+        "true": "Set on the exposed Navigation Header (Show Icon Button). Its icon button shows the close glyph and closes the drawer.",
+        "false": "No close button. Escape, a scrim click or a destination still closes a modal drawer."
+      }
+    },
+    { "part": "header", "via": "Navigation Header", "property": "Type", "options": ["avatar", "logo"], "default": "logo", "glyph": "zebra" }
+  ],
+  "contentInputs": [
+    { "part": "header", "input": "title", "sample": "Project Name" },
+    { "part": "action", "input": "label", "sample": "New task", "glyph": "add-circle-outline" },
+    { "part": "menuSlot", "input": "rows", "sample": "Home (selected, home), Inbox (badge 2, inbox), Schedule (calendar), Documents group (folder), Divider, Reports group (chart-bar), Team group (group)" },
+    { "part": "footerSlot", "input": "rows", "sample": "Settings (settings), Help (help)" }
+  ],
+  "anatomy": [
+    {
+      "id": "root", "kind": "container",
+      "role": "surface/overlay with Shadow/large when modal, surface/section when standard. No corner radius.",
+      "layout": { "direction": "horizontal", "gap": "space/none", "padding": "space/none" },
+      "sizing": { "h": "hug", "v": "fixed" }, "observed": { "heightPx": 800 },
+      "paint": { "fill": "surface/overlay", "effects": "Shadow/large" }
+    },
+    {
+      "id": "panel", "kind": "container",
+      "layout": { "direction": "vertical", "gap": "space/md", "padding": { "top": "space/card", "bottom": "space/card", "left": "space/md", "right": "space/md" } },
+      "sizing": { "h": "fixed", "v": "fill" }, "observed": { "widthPx": 320 }, "clips": true
+    },
+    {
+      "id": "header", "kind": "instance", "ref": "Navigation Header", "refVariant": "Type=logo, Expanded=true", "number": 1,
+      "role": "The Navigation Header and the optional action. Sticky at the top; the only frozen part.",
+      "sizing": { "h": "fill", "v": "fixed" }, "exposed": true
+    },
+    {
+      "id": "action", "kind": "instance", "ref": "Button", "refVariant": "Size=large, Shape=rounded, Flavour=primary, State=default, Disabled=false",
+      "sizing": { "h": "fill", "v": "fixed" }, "visibleWhen": "showAction"
+    },
+    {
+      "id": "menu", "kind": "container", "number": 2,
+      "role": "The Menu Slot. Takes the free height when content is short and never scrolls on its own.",
+      "layout": { "direction": "vertical", "gap": "space/2xs", "padding": "space/none" },
+      "sizing": { "h": "fill", "v": "fill" }
+    },
+    {
+      "id": "menuSlot", "kind": "slot", "parent": "menu",
+      "layout": { "direction": "vertical", "gap": "space/2xs", "padding": "space/none" },
+      "sizing": { "h": "fill", "v": "hug" }
+    },
+    {
+      "id": "footer", "kind": "container", "number": 3,
+      "role": "The Footer Slot, straight after the menu. Scrolls with it; not pinned.",
+      "layout": { "direction": "vertical", "gap": "space/2xs", "padding": "space/none" },
+      "sizing": { "h": "fill", "v": "hug" }
+    },
+    {
+      "id": "footerSlot", "kind": "slot", "parent": "footer",
+      "layout": { "direction": "vertical", "gap": "space/2xs", "padding": "space/none" },
+      "sizing": { "h": "fill", "v": "hug" }
+    }
+  ],
+  "anatomyNumbering": { "1": "header", "2": "menu", "3": "footer", "4": "root (Surface)" },
+  "variants": {
+    "axis": "modal",
+    "base": "true",
+    "table": [
+      { "modal": "true", "root.fill": "surface/overlay", "root.effects": "Shadow/large" },
+      { "modal": "false", "root.fill": "surface/section", "root.effects": "none" }
+    ]
+  },
+  "subcomponents": [],
+  "dependencies": [
+    { "name": "Navigation Header", "key": "cf4c5052fb861abf49a59730d6cef14907e4bf56", "spec": "specs/navigation-rail" },
+    { "name": "Button", "key": "42bf13a5210cd307b7bd4563f2521b78cfd74dae", "spec": "specs/button" },
+    { "name": "Sub Menu Item", "key": "2ab793c034c0de9ea281372bbcd70b44920e11ae", "spec": "specs/sub-menu-item" },
+    { "name": "Collapsible Menu Item", "key": "7f862b1894f492b75ce0aa35ee5178b760e11269", "spec": "specs/navigation-rail" },
+    { "name": "Divider", "key": "d0ebc910e87ef304f62d037c99458a69b9eabf39", "spec": "specs/divider" },
+    { "name": "Scrim", "spec": "specs/scrim", "note": "The modal drawer's backdrop. Not inside the set." }
+  ],
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": ["surface/overlay", "surface/section", "overlay/scrim"],
+    "dimension": ["space/none", "space/2xs", "space/md", "space/card", "control/lg", "radius/sm", "radius/none"],
+    "effect": ["Shadow/large (shadow/large/x, shadow/large/y, shadow/large/blur, shadow/soft; shadow/small/x, shadow/small/y, shadow/small/blur, shadow/hard)"],
+    "motion": ["animations/smooth"],
+    "glyphs": ["close", "zebra", "add-circle-outline"],
+    "themeAxes": { "palette": ["Light", "Dark", "AAA Light", "AAA Dark"], "size": ["Desktop", "Mobile", "Tablet", "Desktop Compact"], "extensions": "every brand extension in tokens/manifest.json" }
+  },
+  "states": [
+    { "state": "Open (modal)", "trigger": "Menu button, or open set from outside", "duration": "animations/smooth", "whatChanges": "Slides in from its edge while the Scrim fades in. Focus moves to the first control inside." },
+    { "state": "Close (modal)", "trigger": "Escape, scrim click, close button or a chosen destination", "duration": "animations/smooth", "whatChanges": "Slides back out and the Scrim fades. Focus returns to the menu button." },
+    { "state": "Open / close (standard)", "trigger": "open set from outside, usually a menu button beside the content", "duration": "animations/smooth", "whatChanges": "Widens from nothing and pushes the content. Closed, it is inert." },
+    { "state": "Group open / close", "trigger": "Collapsible Menu Item header", "duration": "animations/smooth", "whatChanges": "The group's rows show or hide and its caret turns. The drawer stays open." },
+    { "state": "Reduced motion", "trigger": "prefers-reduced-motion", "duration": "—", "whatChanges": "Opens and closes with no slide, fade or width change." }
+  ],
+  "behavior": [
+    { "type": "Motion", "description": "Modal slides from its edge and the Scrim fades; standard widens. All use animations/smooth, and none run under reduced motion." },
+    { "type": "Dismissal", "description": "Escape, a scrim click, the close button or a chosen destination close a modal drawer. Dismissible=false ignores Escape and the scrim." },
+    { "type": "Focus", "description": "Modal traps focus, starts on the first control and returns to the menu button on close. The page behind is inert and does not scroll." },
+    { "type": "Scrolling", "description": "Only the header is frozen; it sticks to the top. The menu never scrolls on its own and the footer is never pinned. Standard scrolls with the page; modal scrolls as one surface with no scrollbar." },
+    { "type": "Vertical fill", "description": "When content is short the menu takes the free height, so the footer sits at the bottom. Figma draws a fixed 800px." },
+    { "type": "Colour mode", "description": "Follows the page's mode. Unlike Navigation Rail, it is not locked to dark." }
+  ],
+  "content": [
+    { "property": "Menu Slot", "type": "slot, preferred only: Sub Menu Item, Collapsible Menu Item, Divider", "description": "The destinations. Top-level rows are Sub Menu Items so glyphs and labels line up; groups are Collapsible Menu Items; a Divider separates sections." },
+    { "property": "Footer Slot", "type": "slot, preferred only: Sub Menu Item, Collapsible Menu Item, Divider", "description": "Destinations after the menu, such as Settings and Help. It scrolls with the menu; it is not pinned." },
+    { "property": "Navigation Header", "type": "exposed nested instance", "description": "The top of the drawer: logo or avatar and title. Its icon button is the close button; where there is no separate close control." },
+    { "property": "Action", "type": "nested Button, Show Action", "description": "Primary, large, full width. A create or compose entry point, not a destination; pressing it does not close the drawer." }
+  ],
+  "usage": {
+    "do": [
+      "Use Sub Menu Item for every top-level destination and Collapsible Menu Item for groups, so every row lines up.",
+      "Use modal on small screens or when navigation is occasional. Use standard beside the content on wide layouts."
+    ],
+    "dont": [
+      "Don't use Navigation Rail Item in the drawer. The drawer has no collapsed form, so the rail's square targets don't line up.",
+      "Don't pin the footer or give the menu its own scroll. Only the header stays put."
+    ]
+  },
+  "accessibility": [
+    "The drawer is a nav landmark named by navLabel; modal is also a dialog with that name. Modal traps focus, returns it to the menu button and makes the page behind inert. Escape is the keyboard match for a scrim click. The selected row carries aria-current=page and group headers report aria-expanded. Every icon-only control, the close button included, needs an accessible name."
+  ],
+  "layoutTheming": [
+    { "property": "Width", "type": "Fixed", "description": "320px, a literal: no width token exists. Never wider than the viewport less control/lg." },
+    { "property": "Height", "type": "Fill", "description": "Fills the viewport (modal) or at least its row (standard) and grows with its content. Figma draws 800px." },
+    { "property": "Padding", "type": "Fixed", "description": "space/card top and bottom, space/md left and right." },
+    { "property": "Item spacing", "type": "Fixed", "description": "space/md between header, action, menu and footer; space/2xs between rows." },
+    { "property": "Corners", "type": "None", "description": "No radius on the drawer in either shape. Shape only rounds what is inside." },
+    { "property": "Elevation", "type": "Theming", "description": "Modal: Shadow/large over the Scrim (overlay/scrim). Standard: none." },
+    { "property": "Fill", "type": "Theming", "description": "surface/overlay when modal, surface/section when standard." },
+    { "property": "Colour", "type": "Theming", "description": "The drawer binds only its surface. Rows, header and button bring their own tokens and follow any mode or brand extension." }
+  ],
+  "visualReference": {
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8255-1584",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8257-401",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8258-413",
+    "variants": {
+      "modal": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8256-2233",
+      "standard": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8257-384"
+    }
+  },
+  "issues": [
+    { "severity": "warn", "source": "gaps", "detail": "The panel's width is a raw 320Px with no token. The metadata says so; implement it as one named literal." },
+    { "severity": "note", "source": "api", "detail": "Show Close is not a set property. It is the exposed Navigation Header's Show Icon Button, with its glyph swapped to close. Code exposes it as one drawer prop." },
+    { "severity": "note", "source": "api vs metadata", "detail": "Side, Shape, Dismissible, Close On Navigate and Width are code only; Figma draws start, rounded and 320Px." },
+    { "severity": "note", "source": "api vs metadata", "detail": "Menu Slot and Footer Slot are listed under Content & Slot, not the Property Breakdown." },
+    { "severity": "note", "source": "coverage", "detail": "Motion, the sticky header and the Scrim backdrop are not drawn in the set; States, Behavior and Layout & Theming describe them." }
+  ]
+}

@@ -102,4 +102,52 @@ export default css`
   ::slotted([slot="actions"]) {
     flex: 1 1 0;
   }
+
+  /* ---- modal ------------------------------------------------------------- */
+  /* With \`modal\`, the sheet is a native <dialog> pinned to the bottom of the
+     viewport. The backdrop is the <zds-scrim> before it (tone scrim, see
+     specs/scrim); the native ::backdrop stays only to catch the click. */
+  dialog.sheet {
+    position: fixed;
+    inset: auto 0 0 0;
+    box-sizing: border-box;
+    inline-size: 100%;
+    max-inline-size: none;
+    /* Figma defines no height cap; stop short of the top so the page still reads behind. */
+    max-block-size: calc(100dvh - var(--space-page));
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    overflow: hidden;
+    outline: none;
+  }
+  dialog.sheet[open] {
+    display: flex;
+    flex-direction: column;
+  }
+  dialog.sheet::backdrop {
+    background: transparent;
+  }
+  dialog.sheet .surface {
+    min-block-size: 0;
+  }
+  /* When the cap is reached, the items scroll; the header and footer stay put. */
+  dialog.sheet .content {
+    min-block-size: 0;
+    overflow-y: auto;
+  }
+
+  /* Figma defines no motion: rising from the bottom edge is a code decision. */
+  @media (prefers-reduced-motion: no-preference) {
+    dialog.sheet {
+      transition: translate var(--animations-smooth);
+    }
+    @starting-style {
+      dialog.sheet[open] {
+        translate: 0 100%;
+      }
+    }
+  }
 `;

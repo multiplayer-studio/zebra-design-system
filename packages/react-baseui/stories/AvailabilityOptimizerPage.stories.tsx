@@ -349,7 +349,7 @@ function AvailabilityOptimizer({ shelfId: initialShelf = "", scenario = "gaps", 
           {shooting ? (
             <span style={{ position: "absolute", insetBlockEnd: "var(--space-xl)", insetInline: 0, display: "flex", justifyContent: "center" }}>
               <span className="ao-hint" aria-live="polite">
-                <Snackbar inline open variant="contextual" flavour={hint === "ready" ? "positive" : "warning"} showClose={false}>{HINT_TEXT[hint]}</Snackbar>
+                <Snackbar inline open variant="contextual" status={hint === "ready" ? "positive" : "warning"} showClose={false}>{HINT_TEXT[hint]}</Snackbar>
               </span>
             </span>
           ) : null}
@@ -393,7 +393,7 @@ function AvailabilityOptimizer({ shelfId: initialShelf = "", scenario = "gaps", 
           </Scrim>
         ) : null}
         {toast ? <div style={{ position: "absolute", insetInline: "var(--space-lg)", insetBlockEnd: 216, zIndex: 3 }}>
-          <Snackbar inline open variant="contextual" flavour="info" duration={4000} onClose={() => setToast(null)}>{toast}</Snackbar></div> : null}
+          <Snackbar inline open variant="contextual" status="info" duration={4000} onClose={() => setToast(null)}>{toast}</Snackbar></div> : null}
         <style>{`.ao-scan{animation:ao-scan 1.6s ease-in-out infinite alternate}@keyframes ao-scan{from{top:8%}to{top:88%}}@media (prefers-reduced-motion:reduce){.ao-scan{animation:none;top:50%}}`}</style>
       </Phone>
     );
@@ -488,7 +488,7 @@ function AvailabilityOptimizer({ shelfId: initialShelf = "", scenario = "gaps", 
         </Scrim>
       ) : null}
       {toast ? <div style={{ position: "absolute", insetInline: "var(--space-lg)", insetBlockEnd: "var(--space-xl)", zIndex: 3 }}>
-        <Snackbar inline open variant="contextual" flavour="positive" duration={4000} onClose={() => setToast(null)}>{toast}</Snackbar></div> : null}
+        <Snackbar inline open variant="contextual" status="positive" duration={4000} onClose={() => setToast(null)}>{toast}</Snackbar></div> : null}
     </Phone>
   );
 }

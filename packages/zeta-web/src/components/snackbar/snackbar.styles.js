@@ -96,21 +96,21 @@ export default css`
     --_radius: var(--zebra-radius-none);
   }
 
-  /* ---- fill per flavour (contextual only) ---- */
-  :host([flavor="info"]:not([variant="standard"])) {
+  /* ---- fill per status (contextual only) ---- */
+  :host([status="info"]:not([variant="standard"])) {
     --_bg: var(--feedback-info-background-subtle);
   }
-  :host([flavor="positive"]:not([variant="standard"])) {
+  :host([status="positive"]:not([variant="standard"])) {
     --_bg: var(--feedback-success-background-subtle);
   }
-  :host([flavor="warning"]:not([variant="standard"])) {
+  :host([status="warning"]:not([variant="standard"])) {
     --_bg: var(--feedback-warning-background-subtle);
   }
-  :host([flavor="error"]:not([variant="standard"])),
-  :host([flavor="deletion"]:not([variant="standard"])) {
+  :host([status="negative"]:not([variant="standard"])),
+  :host([status="deletion"]:not([variant="standard"])) {
     --_bg: var(--feedback-error-background-subtle);
   }
-  :host([flavor="view"]:not([variant="standard"])) {
+  :host([status="view"]:not([variant="standard"])) {
     --_bg: var(--feedback-neutral-background-subtle);
   }
 `;

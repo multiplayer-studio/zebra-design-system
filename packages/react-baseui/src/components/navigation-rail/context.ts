@@ -26,7 +26,8 @@ export interface NavigationRailContextValue {
   expanded: boolean;
   showLabels: boolean;
   shape: NavigationRailShape;
-  modeClass: NavigationRailModeClass;
+  /** `null` in a Navigation Drawer (experimental), which follows the page's mode. */
+  modeClass: NavigationRailModeClass | null;
 }
 export const NavigationRailContext = React.createContext<NavigationRailContextValue | null>(null);
 

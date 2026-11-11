@@ -197,6 +197,7 @@
     }
   },
   "subcomponents": [
+    { "name": "Scrim", "spec": "specs/scrim", "usedAt": ["backdrop"], "note": "The backdrop, at tone scrim." },
     { "name": "Icon Button", "key": "aee1f4fe89a3f70a26978e68621194baf1271b8a", "remote": false, "usedAt": ["openInNew", "download", "close", "previous", "next"], "note": "Own spec; Lightbox pins Size=medium and uses Flavour=subtle in the toolbar, Flavour=contrast for navigation, Shape following shape." },
     { "name": "Icon", "key": "a469ac1cf34202af3e094593468d9ef20a37a703", "remote": false, "usedAt": ["media", "document", "sheet"], "note": "Size=large placeholder glyphs inside the drawn media; in code the real file renders and the sheet glyph comes from the file’s kind." }
   ],
@@ -281,6 +282,7 @@
     }
   },
   "issues": [
+    { "severity": "note", "source": "scrim", "detail": "The backdrop is the Scrim component at tone scrim." },
     { "severity": "note", "source": "cross-check", "detail": "Resolved 2026-11-10: the stage’s fill is surface/subtle, as every Figma variant binds it. The metadata and the implementations originally said surface/shade and were corrected to match." },
     { "severity": "warn", "source": "gaps", "detail": "The stage’s minimum height is a raw measurement (288Px, matching control/lg × 6 as the metadata states) with no variable bound — Figma has no way to bind min-height to control/lg × 16-style arithmetic. Implement it as calc on control/lg, not as a literal." },
     { "severity": "warn", "source": "metadata", "detail": "The paging timing (400ms, cubic-bezier(0.33, 1, 0.68, 1)) is a literal: the token export has no paging-scale motion token. The entry uses the animations/spring token; the paging literal follows the Message Input and Switch convention." },

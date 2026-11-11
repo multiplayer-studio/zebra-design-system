@@ -3,9 +3,9 @@ import { css } from "lit";
 /**
  * Spec: specs/snackbar/snackbar.spec.json. Contextual takes its ideas from the owner's
  * reference (2026-10-18) — a pill, control/lg tall, with a soft shadow; a
- * leading glyph per flavour; an attention bar with a plain View; a dark bar
+ * leading glyph per status; an attention bar with a plain View; a dark bar
  * with an outlined action — and draws every value from semantic tokens:
- *  - info / positive / warning / error / deletion: feedback/<flavour>/
+ *  - info / positive / warning / negative / deletion: feedback/<kind>/
  *    background/subtle with foreground/primary text and icons.
  *  - view (attention): feedback/neutral/background/subtle, so it reads
  *    apart from info.
@@ -132,25 +132,25 @@ export default css`
     --zds-snackbar-radius: var(--radius-none);
   }
 
-  /* ---- fill per flavour; the dark bars by default ------------------- */
+  /* ---- fill per status; the dark bars by default ------------------- */
   :host {
     --zds-snackbar-bg: var(--surface-overlay);
     --zds-snackbar-fg: var(--foreground-primary);
   }
-  :host([flavour="info"]:not([variant="standard"])) {
+  :host([status="info"]:not([variant="standard"])) {
     --zds-snackbar-bg: var(--feedback-info-background-subtle);
   }
-  :host([flavour="positive"]:not([variant="standard"])) {
+  :host([status="positive"]:not([variant="standard"])) {
     --zds-snackbar-bg: var(--feedback-success-background-subtle);
   }
-  :host([flavour="warning"]:not([variant="standard"])) {
+  :host([status="warning"]:not([variant="standard"])) {
     --zds-snackbar-bg: var(--feedback-warning-background-subtle);
   }
-  :host([flavour="error"]:not([variant="standard"])),
-  :host([flavour="deletion"]:not([variant="standard"])) {
+  :host([status="negative"]:not([variant="standard"])),
+  :host([status="deletion"]:not([variant="standard"])) {
     --zds-snackbar-bg: var(--feedback-error-background-subtle);
   }
-  :host([flavour="view"]:not([variant="standard"])) {
+  :host([status="view"]:not([variant="standard"])) {
     --zds-snackbar-bg: var(--feedback-neutral-background-subtle);
   }
 `;

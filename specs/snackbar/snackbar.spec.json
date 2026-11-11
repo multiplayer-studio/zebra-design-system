@@ -4,16 +4,16 @@
     "slug": "snackbar",
     "status": "experimental",
     "source": {
-      "fileKey": "a141EitftpzBk3asu3a315",
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
       "setId": "6551:170",
       "page": "Snackbar",
       "pageNodeId": "6547:2448",
       "metadataFrameId": "6563:142",
-      "url": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-170",
-      "extractedAt": "2026-10-18",
+      "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-170",
+      "extractedAt": "2026-11-11",
       "variantCount": 18,
-      "defaultVariant": "Variant=contextual, Flavour=info, Shape=rounded",
-      "extractionNote": "All 18 variants (Variant x Flavour x Shape, sparse: standard exists only with Flavour=default) read part by part: root, Content, the leading icon or icon slot, Message, Controls, and the nested Button (action) and Icon Button (close) with their variant properties. Glyph names resolved through codepoints.json. The set lives in the Snackbar working file, not the main library."
+      "defaultVariant": "Variant=contextual, Status=info, Shape=rounded",
+      "extractionNote": "All 18 variants (Variant x Status x Shape, sparse: standard exists only with Status=default) read part by part: root, Content, the leading icon or icon slot, Message, Controls, and the nested Button (action) and Icon Button (close) with their variant properties. Glyph names resolved through codepoints.json. The set now lives in the main library, where Flavour was renamed Status and error renamed negative."
     }
   },
   "summary": "A brief message about something the app just did, carrying at most one action. Variant chooses between a contextual pill, where Flavour sets the tint, the leading glyph and the controls together, and a plain standard bar with a filled action button. Reach for it where the message is worth noticing and not worth interrupting for, and for Dialog where the person has to answer before carrying on.",
@@ -43,14 +43,14 @@
         "standard": "The plain bar, dark and softly squared, with a filled action button. It carries no flavour colour, so reach for it where the message needs no status attached to it."
       }
     },
-    "flavour": {
+    "status": {
       "type": "enum",
-      "figmaName": "Flavour",
+      "figmaName": "Status",
       "values": [
         "info",
         "positive",
         "warning",
-        "error",
+        "negative",
         "deletion",
         "view",
         "action",
@@ -64,13 +64,13 @@
         "info": "Something worth knowing with nothing to do about it. An Info glyph on the info tint, carrying only a close.",
         "positive": "Something finished successfully. A Check Circle on the success tint, close only.",
         "warning": "Something needs attention without having failed. A Warning glyph on the warning tint, close only.",
-        "error": "Something failed. An Error glyph on the error tint with a close and nothing else, so a failure the person could retry needs a flavour that carries an action.",
+        "negative": "Something failed. An Error glyph on the error tint with a close and nothing else, so a failure the person could retry needs a flavour that carries an action.",
         "deletion": "Something was removed, with Undo offered beside it. It shares the error tint, so it reads as destructive even where the message itself is neutral.",
         "view": "Something was created or filed somewhere the person can go and look at it. It carries View and no close, so acting or waiting are the only ways out.",
         "action": "A message whose action is the point. It drops the glyph, sits on the inverse surface and carries a bordered control rather than a plain text one.",
         "default": "No status at all. The inverse surface with a close and nothing else, for a message that reports rather than signals."
       },
-      "note": "Figma's default variant is info; the metadata marks default as the default. standard exists only with Flavour=default."
+      "note": "Figma's default variant is info; the metadata marks default as the default. standard exists only with Status=default."
     },
     "shape": {
       "type": "enum",
@@ -95,7 +95,7 @@
       "controls": [
         "iconSlot (visible)"
       ],
-      "visibleWhen": "flavour in (action, default) or variant = standard",
+      "visibleWhen": "status in (action, default) or variant = standard",
       "intent": {
         "false": "No icon slot, which is where standard starts. It has no effect on contextual, where Flavour supplies the glyph instead.",
         "true": "Opens an icon slot on standard, for a glyph the message needs and that Flavour is not there to choose."
@@ -150,7 +150,7 @@
       "role": "The bar: a horizontal row holding Content and Controls.",
       "layout": {
         "direction": "horizontal",
-        "padding": "space/xxs top and bottom; space/lg leading; space/xxs trailing",
+        "padding": "space/2xs top and bottom; space/lg leading; space/2xs trailing",
         "gap": "space/lg (content to controls)",
         "counterAlign": "center"
       },
@@ -214,7 +214,7 @@
       "role": "The action and the close.",
       "layout": {
         "direction": "horizontal",
-        "gap": "space/xxs"
+        "gap": "space/2xs"
       }
     },
     {
@@ -241,13 +241,13 @@
   ],
   "variants": {
     "_note": "Cells are token names; …Px cells are measurements. Height is control/lg (minimum) on every variant; geometry other than radius and width does not vary.",
-    "byFlavour": {
-      "axis": "variant × flavour",
+    "byStatus": {
+      "axis": "variant × status",
       "base": "contextual / info",
       "table": [
         {
           "variant": "contextual",
-          "flavour": "info",
+          "status": "info",
           "fill": "feedback/info/background/subtle",
           "paletteMode": "inherited",
           "icon": "info",
@@ -258,7 +258,7 @@
         },
         {
           "variant": "contextual",
-          "flavour": "positive",
+          "status": "positive",
           "fill": "feedback/success/background/subtle",
           "paletteMode": "inherited",
           "icon": "check-circle",
@@ -269,7 +269,7 @@
         },
         {
           "variant": "contextual",
-          "flavour": "warning",
+          "status": "warning",
           "fill": "feedback/warning/background/subtle",
           "paletteMode": "inherited",
           "icon": "warning",
@@ -280,7 +280,7 @@
         },
         {
           "variant": "contextual",
-          "flavour": "error",
+          "status": "negative",
           "fill": "feedback/error/background/subtle",
           "paletteMode": "inherited",
           "icon": "error",
@@ -291,7 +291,7 @@
         },
         {
           "variant": "contextual",
-          "flavour": "deletion",
+          "status": "deletion",
           "fill": "feedback/error/background/subtle",
           "paletteMode": "inherited",
           "icon": "delete",
@@ -302,7 +302,7 @@
         },
         {
           "variant": "contextual",
-          "flavour": "view",
+          "status": "view",
           "fill": "feedback/neutral/background/subtle",
           "paletteMode": "inherited",
           "icon": "open-in-new-window",
@@ -313,7 +313,7 @@
         },
         {
           "variant": "contextual",
-          "flavour": "action",
+          "status": "action",
           "fill": "surface/popover",
           "paletteMode": "Dark (explicit on the component)",
           "icon": "icon slot (showIcon)",
@@ -324,7 +324,7 @@
         },
         {
           "variant": "contextual",
-          "flavour": "default",
+          "status": "default",
           "fill": "surface/popover",
           "paletteMode": "Dark (explicit on the component)",
           "icon": "icon slot (showIcon)",
@@ -335,7 +335,7 @@
         },
         {
           "variant": "standard",
-          "flavour": "default",
+          "status": "default",
           "fill": "surface/popover",
           "paletteMode": "Dark (explicit on the component)",
           "icon": "icon slot (showIcon)",
@@ -549,7 +549,7 @@
     {
       "property": "Padding and gap",
       "type": "Fixed",
-      "description": "space/xxs top and bottom, space/lg on the leading edge and space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/xxs and opens the gap to space/lg so a bordered control sits closer to the end."
+      "description": "space/xs top and bottom, space/lg on the leading edge and space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/xs and opens the gap to space/lg so a bordered control sits closer to the end."
     },
     {
       "property": "Content",
@@ -578,24 +578,39 @@
     }
   ],
   "visualReference": {
-    "page": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6547-2448",
-    "componentSet": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-170",
-    "metadata": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6563-142",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6547-2448",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-170",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6563-142",
     "perAxis": {
-      "info": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-57",
-      "positive": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-71",
-      "warning": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-84",
-      "error": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-97",
-      "deletion": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-110",
-      "view": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-125",
-      "action": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-135",
-      "default": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-144",
-      "standard": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-156",
-      "sharp (info)": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6558-102",
-      "sharp (action)": "https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6558-168"
+      "info": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-57",
+      "positive": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-71",
+      "warning": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-84",
+      "negative": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-97",
+      "deletion": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-110",
+      "view": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-125",
+      "action": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-135",
+      "default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-144",
+      "standard": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-156",
+      "sharp (info)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6558-102",
+      "sharp (action)": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6558-168"
     }
   },
   "issues": [
+    {
+      "severity": "warn",
+      "source": "token export",
+      "detail": "action, default and standard bind surface/popover, a variable deleted from the file. It aliases the same fill as surface/overlay, so implement surface/overlay."
+    },
+    {
+      "severity": "note",
+      "source": "metadata vs structure (renames)",
+      "detail": "Only the Property Breakdown uses Status and negative. The rest of the metadata still says Flavour and error, and is quoted as written."
+    },
+    {
+      "severity": "note",
+      "source": "code (all three packages)",
+      "detail": "Code renames flavour to status and error to negative. The old flavour (flavor in Zeta) stays as a deprecated alias."
+    },
     {
       "severity": "warn",
       "source": "metadata Layout & Theming / Anatomy / Accessibility vs structure (stale)",
@@ -604,7 +619,7 @@
     {
       "severity": "warn",
       "source": "metadata Layout & Theming vs structure (padding)",
-      "detail": "'space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/xxs and opens the gap to space/lg' — every variant now has space/xxs trailing and space/lg between content and controls."
+      "detail": "'space/sm on the trailing one, with space/sm between the content and the controls. The action flavour tightens the trailing edge to space/xs and opens the gap to space/lg' — every variant has space/2xs top, bottom and trailing and space/lg between content and controls."
     },
     {
       "severity": "warn",
@@ -614,17 +629,17 @@
     {
       "severity": "warn",
       "source": "API vs Property Breakdown (default flavour)",
-      "detail": "The metadata marks Flavour=default as the default; the set's default variant is Flavour=info (contextual / info / rounded)."
+      "detail": "The metadata marks Status=default as the default; the set's default variant is Status=info (contextual / info / rounded)."
     },
     {
       "severity": "warn",
       "source": "structure (action size)",
-      "detail": "contextual / action uses a small Button when rounded and a medium one when sharp; every other action is medium. The small one sits off-centre against the bar's space/xxs trailing edge (control/sm is shorter than control/md)."
+      "detail": "contextual / action uses a small Button when rounded and a medium one when sharp; every other action is medium. The small one sits off-centre against the bar's space/2xs trailing edge (control/sm is shorter than control/md)."
     },
     {
       "severity": "note",
       "source": "code (packages/web-components zds-snackbar, packages/react-baseui Snackbar)",
-      "detail": "Built 2026-10-18 to the file in both packages: <zds-snackbar> (web components, now exported) and Snackbar (react-baseui, controlled: open + onClose). Actions are a subtle Button on deletion, view and standard and outline-subtle on action; the close a subtle IconButton with its glyph on the bar's foreground/primary; contextual radius/pill; the message on one line; default flavour info; show-close=\"false\" turns the close off in HTML. Deliberate differences: the action bar's button is medium in both shapes (Figma: small when rounded, warn above); a message that runs out of room ends in an ellipsis rather than running past the edge; the dark bars invert to Light on a dark page; code adds inline, duration, action-label and close-label. React does not use Base UI's Toast: it is built around a manager that owns queueing and placement, which does not fit the single controlled bar; it is the natural basis for the queue the spec says does not exist yet. Web and React were compared in a browser: pixel-identical across the Contextual, Standard, Shape, IconSlot, LongMessage and ThemingCascade stories, with matching motion, top-layer placement, timer pause and events."
+      "detail": "Built 2026-10-18 to the file in both packages: <zds-snackbar> (web components, now exported) and Snackbar (react-baseui, controlled: open + onClose). Actions are a subtle Button on deletion, view and standard and outline-subtle on action; the close a subtle IconButton with its glyph on the bar's foreground/primary; contextual radius/pill; the message on one line; default status info; show-close=\"false\" turns the close off in HTML. Deliberate differences: the action bar's button is medium in both shapes (Figma: small when rounded, warn above); a message that runs out of room ends in an ellipsis rather than running past the edge; the dark bars invert to Light on a dark page; code adds inline, duration, action-label and close-label. React does not use Base UI's Toast: it is built around a manager that owns queueing and placement, which does not fit the single controlled bar; it is the natural basis for the queue the spec says does not exist yet. Web and React were compared in a browser: pixel-identical across the Contextual, Standard, Shape, IconSlot, LongMessage and ThemingCascade stories, with matching motion, top-layer placement, timer pause and events."
     },
     {
       "severity": "note",
@@ -634,7 +649,7 @@
     {
       "severity": "note",
       "source": "structure (sparse set)",
-      "detail": "18 variants of a possible 32: standard exists only with Flavour=default. Show Action and Show Close are bound only where the control exists by default (no action on info, positive, warning, error, default; no close on view and action)."
+      "detail": "18 variants of a possible 32: standard exists only with Status=default. Show Action and Show Close are bound only where the control exists by default (no action on info, positive, warning, negative, default; no close on view and action)."
     },
     {
       "severity": "note",

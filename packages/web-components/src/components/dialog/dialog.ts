@@ -4,6 +4,7 @@ import styles from "./dialog.styles.js";
 import "../icon/icon.js";
 import "../icon-button/icon-button.js";
 import "../button/button.js";
+import { raiseScrim, lowerScrim } from "../scrim/scrim.js";
 import { defaultTrue } from "../chip/chip.js";
 import type { IconName } from "@zebra-design-system/icons/names";
 
@@ -76,7 +77,8 @@ export function unlockScroll() {
  *
  * Modal behaviour comes from the native `<dialog>` and `showModal()`: the top
  * layer (above every page stacking context), the inert page behind it, and
- * Escape. On top of that: the backdrop click, `dismissible`, initial focus
+ * Escape. The backdrop is a `<zds-scrim>` (tone scrim), shown in the top layer
+ * just before the dialog so it sits directly beneath. On top of that: the backdrop click, `dismissible`, initial focus
  * (the first focusable — the close button when shown), focus returned to
  * whatever had it (the trigger) on close, and page scroll lock. An element in
  * the `trigger` slot opens it on click.
@@ -142,6 +144,7 @@ export class ZdsDialog extends LitElement {
   @property({ type: Boolean, reflect: true }) inline = false;
 
   @query("dialog") private dialogEl?: HTMLDialogElement;
+  @query("zds-scrim") private scrimEl?: HTMLElement;
 
   private returnFocus: HTMLElement | null = null;
   private locked = false;
@@ -226,8 +229,10 @@ export class ZdsDialog extends LitElement {
       if (this.locked) { unlockScroll(); this.locked = false; }
       return;
     }
+    if (!this.open) lowerScrim(this.scrimEl);
     if (this.open && !dlg.open) {
       this.returnFocus = deepActiveElement();
+      raiseScrim(this.scrimEl);
       dlg.showModal();
       if (!this.locked) { lockScroll(); this.locked = true; }
       this.focusInitial(dlg);
@@ -304,7 +309,7 @@ export class ZdsDialog extends LitElement {
       <slot name="trigger" @click=${this.onTriggerClick}></slot>
       ${this.inline
         ? html`<div class="panel inline" part="dialog" role="dialog" aria-labelledby="title" aria-describedby="body">${content}</div>`
-        : html`<dialog class="panel" part="dialog" aria-labelledby="title" aria-describedby="body"
+        : html`<zds-scrim popover="manual" tone="scrim"></zds-scrim><dialog class="panel" part="dialog" aria-labelledby="title" aria-describedby="body"
             @keydown=${this.onKeydown} @cancel=${this.onCancel} @close=${this.onNativeClose} @click=${this.onDialogClick}>${content}</dialog>`}
     `;
   }

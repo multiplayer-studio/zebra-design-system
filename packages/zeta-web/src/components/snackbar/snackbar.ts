@@ -8,18 +8,19 @@ import { Interactive } from "../../mixins/interactive.js";
 import { ContourableThree } from "../../mixins/contourable-three.js";
 import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 
-export type ZetaSnackbarFlavor = "default" | "action" | "positive" | "info" | "warning" | "error" | "deletion" | "view";
+export type ZetaSnackbarStatus = "default" | "action" | "positive" | "info" | "warning" | "negative" | "deletion" | "view";
+/** @deprecated Use `ZetaSnackbarStatus`; `error` is now `negative`. */
+export type ZetaSnackbarFlavor = Exclude<ZetaSnackbarStatus, "negative"> | "error";
 export type ZetaSnackbarCloseReason = "dismiss" | "timeout" | "action";
-type LegacyStatus = "default" | "positive" | "info" | "warning" | "negative" | "view";
 
-/* What each contextual flavour carries: a glyph, a default action and its Button flavour, a close, and whether it is
+/* What each contextual status carries: a glyph, a default action and its Button flavour, a close, and whether it is
    a dark bar. */
-const FLAVORS: Record<ZetaSnackbarFlavor, { icon?: ZetaIconName; action?: string; close: boolean; actionFlavor: "subtle" | "outline-subtle"; dark?: boolean }> =
+const STATUSES: Record<ZetaSnackbarStatus, { icon?: ZetaIconName; action?: string; close: boolean; actionFlavor: "subtle" | "outline-subtle"; dark?: boolean }> =
   {
     info: { icon: "info", close: true, actionFlavor: "subtle" },
     positive: { icon: "check_circle", close: true, actionFlavor: "subtle" },
     warning: { icon: "warning", close: true, actionFlavor: "subtle" },
-    error: { icon: "error", close: true, actionFlavor: "subtle" },
+    negative: { icon: "error", close: true, actionFlavor: "subtle" },
     deletion: { icon: "delete", action: "Undo", close: true, actionFlavor: "subtle" },
     view: { icon: "open_in_new_window", action: "View", close: false, actionFlavor: "subtle" },
     action: { action: "Action", close: false, actionFlavor: "outline-subtle", dark: true },
@@ -32,20 +33,20 @@ const showCloseConverter = {
 };
 
 /** A brief message about something the app just did, carrying at most one action. `variant` chooses a contextual pill,
- * where `flavor` sets the tint, the glyph and the controls together, or a plain dark standard bar.
+ * where `status` sets the tint, the glyph and the controls together, or a plain dark standard bar.
  *
  * It sits in the page by default, as Zeta's snackbar always has. `floating` lifts it into the top layer, centred above
  * the bottom of the viewport, sliding in over 300ms and out over 200ms (a fade only with reduced motion). With
- * `duration` it closes itself, pausing while the pointer or focus is inside. It announces itself politely (an error
+ * `duration` it closes itself, pausing while the pointer or focus is inside. It announces itself politely (negative
  * interrupts). The dark bars carry their own colour mode, so on a dark page they invert to light.
  *
  * @slot - The message: one short line, which ends in an ellipsis where it runs out of room.
- * @slot icon - A leading icon, for the flavours without a glyph of their own (default, action and standard).
+ * @slot icon - A leading icon, for the statuses without a glyph of their own (default, action and standard).
  * @part surface - The bar.
  * @event action - The action button was pressed. The snackbar then closes.
  * @event close - It closed; `detail.reason` is "dismiss", "timeout" or "action".
  *
- * @figma https://www.figma.com/design/a141EitftpzBk3asu3a315/Snackbar?node-id=6551-170
+ * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-170
  * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-snackbar--docs
  */
 @customElement("zeta-snackbar")
@@ -53,11 +54,11 @@ export class ZetaSnackbar extends ContourableThree(Interactive(LitElement)) {
   /** The contextual pill, or the plain dark standard bar. */
   @property({ type: String, reflect: true }) variant: "contextual" | "standard" = "contextual";
 
-  /** Contextual only: the glyph, the tint and the controls, picked for what happened (spec: flavour). */
-  @property({ type: String, reflect: true }) flavor: ZetaSnackbarFlavor = "default";
+  /** Contextual only: the glyph, the tint and the controls, picked for what happened (spec: status). */
+  @property({ type: String, reflect: true }) status: ZetaSnackbarStatus = "default";
 
-  /** The legacy name for `flavor`; `negative` maps to `error`. */
-  @property({ type: String }) status?: LegacyStatus;
+  /** @deprecated Use `status`; `error` maps to `negative`. */
+  @property({ type: String }) flavor?: ZetaSnackbarFlavor;
 
   /** Shows it. On by default, so a snackbar placed in the page shows as it always has. */
   @property({ type: Boolean, reflect: true }) open = true;
@@ -68,13 +69,13 @@ export class ZetaSnackbar extends ContourableThree(Interactive(LitElement)) {
   /** Closes it after this many ms. 0 keeps it until dismissed. */
   @property({ type: Number }) duration = 0;
 
-  /** The action's text. Defaults per flavour (Undo, View, Action); "" removes it. */
+  /** The action's text. Defaults per status (Undo, View, Action); "" removes it. */
   @property({ type: String }) actionLabel?: string;
 
   /** Called when the action is pressed, as well as the `action` event. */
   @property({ attribute: false }) actionClick?: () => void;
 
-  /** Shows the close. Unset, it follows the flavour; `show-close="false"` turns it off. */
+  /** Shows the close. Unset, it follows the status; `show-close="false"` turns it off. */
   @property({ attribute: "show-close", converter: showCloseConverter }) showClose: boolean | null = null;
 
   /** The legacy switch for the close. */
@@ -99,17 +100,17 @@ export class ZetaSnackbar extends ContourableThree(Interactive(LitElement)) {
 
   private get action() {
     if (this.actionLabel !== undefined) return this.actionLabel;
-    return this.contextual ? (FLAVORS[this.flavor]?.action ?? "") : "Action";
+    return this.contextual ? (STATUSES[this.status]?.action ?? "") : "Action";
   }
 
   private get close() {
     if (this.showClose !== null) return this.showClose;
     if (this.hasCloseAction) return true;
-    return this.contextual ? (FLAVORS[this.flavor]?.close ?? true) : true;
+    return this.contextual ? (STATUSES[this.status]?.close ?? true) : true;
   }
 
   private get dark() {
-    return this.contextual ? !!FLAVORS[this.flavor]?.dark : true;
+    return this.contextual ? !!STATUSES[this.status]?.dark : true;
   }
 
   /** The page's mode at the bar: the nearest data-theme above it, else the OS preference. */
@@ -140,15 +141,15 @@ export class ZetaSnackbar extends ContourableThree(Interactive(LitElement)) {
   }
 
   protected willUpdate(changed: PropertyValues<this>) {
-    if (changed.has("status") && this.status) this.flavor = this.status === "negative" ? "error" : this.status;
+    if (changed.has("flavor") && this.flavor) this.status = this.flavor === "error" ? "negative" : this.flavor;
     if (changed.has("shape") && this.shape === "full") this.shape = "rounded";
-    if (changed.has("variant") || changed.has("flavor") || changed.has("status") || (changed.has("open") && this.open)) this.syncMode();
+    if (changed.has("variant") || changed.has("status") || (changed.has("open") && this.open)) this.syncMode();
     if (changed.has("open") && !this.open && changed.get("open") === true && this.floating) this.leaving = true;
     this.toggleAttribute("data-shown", this.open || this.leaving);
   }
 
   protected updated(changed: PropertyValues<this>) {
-    this.internals.role = this.contextual && this.flavor === "error" ? "alert" : "status";
+    this.internals.role = this.contextual && this.status === "negative" ? "alert" : "status";
     if (changed.has("floating")) {
       if (this.floating) this.popover = "manual";
       else if (this.popover) {
@@ -238,9 +239,9 @@ export class ZetaSnackbar extends ContourableThree(Interactive(LitElement)) {
 
   render() {
     if (!this.open && !this.leaving) return nothing;
-    const icon = this.contextual ? FLAVORS[this.flavor]?.icon : undefined;
+    const icon = this.contextual ? STATUSES[this.status]?.icon : undefined;
     const action = this.action;
-    const actionFlavor = this.contextual ? (FLAVORS[this.flavor]?.actionFlavor ?? "subtle") : "subtle";
+    const actionFlavor = this.contextual ? (STATUSES[this.status]?.actionFlavor ?? "subtle") : "subtle";
     const shape = this.shape === "sharp" ? "sharp" : this.contextual ? "full" : "rounded";
     return html`<div
       part="surface"

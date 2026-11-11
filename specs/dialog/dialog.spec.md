@@ -83,6 +83,7 @@ The two axes are independent and every other value is the same in all 10 cells.
 ### Dependencies
 | Component | Spec | Used for |
 |---|---|---|
+| Scrim | `specs/scrim` | the backdrop, tone scrim |
 | Button | `specs/button` | footer tertiary, secondary and primary; preferred slot content |
 | Icon Button | `specs/icon-button` | preferred slot content only (not the close control) |
 | Icon | `specs/icon` | header close |
@@ -154,6 +155,8 @@ Dev Deviation, verbatim: "Code implementation uses a the same dialog component f
 The stated values agree with the bindings: padding `space/md`, header gap `space/sm`, body bottom `space/section`, round radius `radius/element-md`.
 
 ## Issues
+
+- **note:** The backdrop is the Scrim component at tone scrim. This answers the backdrop-token question below.
 
 **Warn**
 - **Modal behaviour is unspecified.** Backdrop, focus trap and return, dismissal and stacking appear nowhere on the page. Base UI's defaults will apply until design decides.

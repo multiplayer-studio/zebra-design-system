@@ -11,7 +11,7 @@ finds a new one, and remove a row when the component gains the option.
 | Global Header | Draws a bottom border | Has no bottom border | `.xx-header{border-block-end:var(--stroke-thin) solid var(--border-default)}` |
 | Global Header | 52px tall | 57px (medium icon button plus padding) | None; ~5px taller |
 | Status Label | Swaps the leading icon for another glyph | Icon fixed per status (spec says fixed) | None; shows the status icon |
-| Snackbar | Turns off the icon (Show Icon) | Always draws the flavour icon on contextual variants, inline-styled | `.xx .zds-snackbar__lead{display:none!important}` |
+| Snackbar | Turns off the icon (Show Icon) | Always draws the status icon on contextual variants, inline-styled | `.xx .zds-snackbar__lead{display:none!important}` |
 | Snackbar | Hugs the message | Fixed width | `.xx .zds-snackbar{inline-size:auto}` |
 | Input (password) | Shows visibility-off while hidden | Shows visibility while hidden | None |
 | Bottom Sheet | Handle opens and closes the sheet | Handle is decorative | Page makes it a button through the DOM |

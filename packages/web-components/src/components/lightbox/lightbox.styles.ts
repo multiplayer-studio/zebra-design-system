@@ -16,9 +16,9 @@ export default css`
     display: none;
   }
 
-  /* ---- backdrop (as Dialog's: the translucent overlay/scrim) -------------- */
+  /* ---- backdrop (as Dialog's: a <zds-scrim> at tone scrim) ---------------- */
   dialog::backdrop {
-    background: var(--overlay-scrim);
+    background: transparent;
   }
 
   /* ---- panel --------------------------------------------------------------- */

@@ -89,3 +89,46 @@
   flex-direction: column;
   gap: var(--space-2xs);
 }
+
+/* ---- modal --------------------------------------------------------------- */
+/* With `modal`, the backdrop is the Scrim component at tone scrim
+   (specs/scrim); here it only covers the viewport instead of its parent.
+   No z-index token exists, so this matches Dialog's. */
+.zds-scrim.zds-bottom-sheet__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+}
+
+.zds-bottom-sheet__popup {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  /* Figma defines no height cap; stop short of the top so the page still reads behind. */
+  max-block-size: calc(100dvh - var(--space-page));
+  outline: none;
+}
+
+.zds-bottom-sheet__popup > .zds-bottom-sheet {
+  min-block-size: 0;
+}
+
+/* When the cap is reached, the items scroll; the header and footer stay put. */
+.zds-bottom-sheet__popup .zds-bottom-sheet__content {
+  min-block-size: 0;
+  overflow-y: auto;
+}
+
+/* Figma defines no motion: rising from the bottom edge is a code decision. */
+@media (prefers-reduced-motion: no-preference) {
+  .zds-bottom-sheet__popup {
+    transition: translate var(--animations-smooth);
+  }
+  .zds-bottom-sheet__popup[data-starting-style],
+  .zds-bottom-sheet__popup[data-ending-style] {
+    translate: 0 100%;
+  }
+}

@@ -2,6 +2,7 @@ import * as React from "react";
 import { Dialog as BaseDialog } from "@base-ui/react/dialog";
 import { Icon, type IconName } from "../icon/Icon.js";
 import { IconButton } from "../icon-button/IconButton.js";
+import { Scrim } from "../scrim/Scrim.js";
 import { Button } from "../button/Button.js";
 import "./dialog.css";
 
@@ -240,7 +241,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function Dia
     >
       {trigger ? <BaseDialog.Trigger render={trigger} /> : null}
       <BaseDialog.Portal container={portalContainer}>
-        <BaseDialog.Backdrop className="zds-dialog__backdrop" />
+        <BaseDialog.Backdrop className="zds-dialog__backdrop" render={<Scrim tone="scrim" />} />
         <BaseDialog.Popup ref={ref} {...shared}>
           {panel}
         </BaseDialog.Popup>

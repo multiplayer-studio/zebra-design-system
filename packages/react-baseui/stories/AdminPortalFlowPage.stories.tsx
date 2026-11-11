@@ -622,11 +622,11 @@ function AdminPortalFlowPage({ theme, mode = "light", start = "empty", multiSele
         <div className="ap-toast" style={{ position: "absolute", zIndex: 2, insetBlockStart: 876, insetInlineStart: 716, transform: "translateX(-50%)" }}>
           <div className="ap-pop" data-closing={toastClosing ? "" : undefined}>
             {shownToast.undo ? (
-              <Snackbar inline open variant="contextual" flavour="deletion" actionLabel="Undo" showClose={false} duration={6000}
+              <Snackbar inline open variant="contextual" status="deletion" actionLabel="Undo" showClose={false} duration={6000}
                 onAction={() => { const back = shownToast.undo ?? []; setDevices(DEVICES.filter((d) => back.some((b) => b.id === d.id) || devices.some((x) => x.id === d.id))); setToast(null); }}
                 onClose={() => setToast(null)}>{shownToast.text}</Snackbar>
             ) : (
-              <Snackbar inline open variant="contextual" flavour="positive" duration={5000} onClose={() => setToast(null)}>{shownToast.text}</Snackbar>
+              <Snackbar inline open variant="contextual" status="positive" duration={5000} onClose={() => setToast(null)}>{shownToast.text}</Snackbar>
             )}
           </div>
         </div>

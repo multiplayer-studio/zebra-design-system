@@ -5,6 +5,7 @@ import "../icon/icon.js";
 import "../icon-button/icon-button.js";
 import { defaultTrue } from "../chip/chip.js";
 import { lockScroll, unlockScroll, deepActiveElement } from "../dialog/dialog.js";
+import { raiseScrim, lowerScrim } from "../scrim/scrim.js";
 import type { IconName } from "@zebra-design-system/icons/names";
 
 export type LightboxKind = "image" | "video" | "pdf" | "other";
@@ -127,6 +128,7 @@ export class ZdsLightbox extends LitElement {
   @property({ type: Boolean, reflect: true }) inline = false;
 
   @query("dialog") private dialogEl?: HTMLDialogElement;
+  @query("zds-scrim") private scrimEl?: HTMLElement;
   @query(".stage") private stageEl?: HTMLElement;
 
   // The stage takes the current frame's height, re-measured when its media
@@ -243,8 +245,10 @@ export class ZdsLightbox extends LitElement {
       this.settled = true;
       return;
     }
+    if (!this.open) lowerScrim(this.scrimEl);
     if (this.open && !dlg.open) {
       this.returnFocus = deepActiveElement();
+      raiseScrim(this.scrimEl);
       dlg.showModal();
       if (!this.locked) { lockScroll(); this.locked = true; }
       // The panel springs in pre-sized; the height and track transitions arm
@@ -355,7 +359,7 @@ export class ZdsLightbox extends LitElement {
 
     return this.inline
       ? html`<div class="panel inline" part="lightbox" role="dialog" aria-labelledby="name" @keydown=${this.onKeydown}>${content}</div>`
-      : html`<dialog class="panel" part="lightbox" aria-labelledby="name"
+      : html`<zds-scrim popover="manual" tone="scrim"></zds-scrim><dialog class="panel" part="lightbox" aria-labelledby="name"
           @keydown=${this.onKeydown} @cancel=${this.onCancel} @click=${this.onDialogClick}>${content}</dialog>`;
   }
 }

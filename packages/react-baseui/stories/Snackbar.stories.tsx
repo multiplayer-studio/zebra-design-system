@@ -1,16 +1,16 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Snackbar, Icon } from "../src/index.js";
-import type { SnackbarFlavour } from "../src/index.js";
+import type { SnackbarStatus } from "../src/index.js";
 
-const FLAVOURS = ["info", "positive", "warning", "error", "view", "action", "default", "deletion"] as const;
-const MESSAGES: Record<SnackbarFlavour, string> = {
+const STATUSES = ["info", "positive", "warning", "negative", "view", "action", "default", "deletion"] as const;
+const MESSAGES: Record<SnackbarStatus, string> = {
   default: "Your changes were saved.",
   action: "This is an Attention Notification",
   positive: "This is a Success Notification",
   info: "This is an Information Notification",
   warning: "This is a Warning Notification",
-  error: "This is an Error Notification",
+  negative: "This is an Error Notification",
   deletion: "3 items deleted.",
   view: "This is an Attention Notification",
 };
@@ -28,17 +28,17 @@ const meta: Meta<typeof Snackbar> = {
       story: { inline: false, height: "200px" },
       description: {
         component:
-          "contextual: a pill where `flavour` sets the tint, the glyph and the controls; standard: a plain dark bar. The action is a subtle Button (outline-subtle on action), the close a subtle IconButton. One line, never wrapping. Floats in the top layer; `inline` keeps it in the flow for these docs. Spec: specs/snackbar.",
+          "contextual: a pill where `status` sets the tint, the glyph and the controls; standard: a plain dark bar. The action is a subtle Button (outline-subtle on action), the close a subtle IconButton. One line, never wrapping. Floats in the top layer; `inline` keeps it in the flow for these docs. Spec: specs/snackbar.",
       },
     },
   },
   argTypes: {
     variant: { control: "inline-radio", options: ["standard", "contextual"] },
-    flavour: { control: "select", options: FLAVOURS },
+    status: { control: "select", options: STATUSES },
     shape: { control: "inline-radio", options: ["rounded", "sharp"] },
     duration: { control: { type: "number", step: 1000 } },
   },
-  args: { variant: "contextual", flavour: "deletion", shape: "rounded", duration: 0, open: true, children: MESSAGES.deletion },
+  args: { variant: "contextual", status: "deletion", shape: "rounded", duration: 0, open: true, children: MESSAGES.deletion },
 };
 export default meta;
 type Story = StoryObj<typeof Snackbar>;
@@ -60,10 +60,10 @@ export const Standard: Story = {
   ),
 };
 
-/** Every contextual flavour with its default controls. */
+/** Every contextual status with its default controls. */
 export const Contextual: Story = {
   parameters: { docs: { story: { height: "660px" } } },
-  render: () => <Centre>{FLAVOURS.map((k) => <Snackbar key={k} inline open flavour={k} style={{ width: "max-content", maxWidth: "100%" }}>{MESSAGES[k]}</Snackbar>)}</Centre>,
+  render: () => <Centre>{STATUSES.map((k) => <Snackbar key={k} inline open status={k} style={{ width: "max-content", maxWidth: "100%" }}>{MESSAGES[k]}</Snackbar>)}</Centre>,
 };
 
 /** Shape: rounded (a pill; radius/md on standard) or sharp (radius/none), carried into the buttons. */
@@ -73,8 +73,8 @@ export const Shape: Story = {
     <Centre>
       {(["rounded", "sharp"] as const).map((sh) => (
         <React.Fragment key={sh}>
-          <Snackbar inline open shape={sh} flavour="deletion" style={{ width: "max-content" }}>3 items deleted.</Snackbar>
-          <Snackbar inline open shape={sh} flavour="action" style={{ width: "max-content" }}>You're offline.</Snackbar>
+          <Snackbar inline open shape={sh} status="deletion" style={{ width: "max-content" }}>3 items deleted.</Snackbar>
+          <Snackbar inline open shape={sh} status="action" style={{ width: "max-content" }}>You're offline.</Snackbar>
           <Snackbar inline open shape={sh} variant="standard" actionLabel="Undo" showClose style={{ width: "max-content" }}>Conversation archived.</Snackbar>
         </React.Fragment>
       ))}
@@ -82,13 +82,13 @@ export const Shape: Story = {
   ),
 };
 
-/** The flavours without a glyph of their own take one in the icon slot. */
+/** The statuses without a glyph of their own take one in the icon slot. */
 export const IconSlot: Story = {
   parameters: { docs: { story: { height: "300px" } } },
   render: () => (
     <Centre>
-      <Snackbar inline open flavour="default" icon={<Icon name="cloud-done" />} style={{ width: "max-content" }}>Backup complete.</Snackbar>
-      <Snackbar inline open flavour="action" actionLabel="Reconnect" icon={<Icon name="wifi-off" />} style={{ width: "max-content" }}>You're offline.</Snackbar>
+      <Snackbar inline open status="default" icon={<Icon name="cloud-done" />} style={{ width: "max-content" }}>Backup complete.</Snackbar>
+      <Snackbar inline open status="action" actionLabel="Reconnect" icon={<Icon name="wifi-off" />} style={{ width: "max-content" }}>You're offline.</Snackbar>
       <Snackbar inline open variant="standard" actionLabel="Undo" icon={<Icon name="inbox" />} style={{ width: "max-content" }}>Conversation archived.</Snackbar>
     </Centre>
   ),
@@ -99,7 +99,7 @@ export const LongMessage: Story = {
   parameters: { docs: { story: { height: "140px" } } },
   render: () => (
     <Stack>
-      <Snackbar inline open flavour="warning" actionLabel="Review">
+      <Snackbar inline open status="warning" actionLabel="Review">
         Two devices in this group haven't checked in for more than 24 hours and may be out of range or powered off.
       </Snackbar>
     </Stack>
@@ -124,7 +124,7 @@ export const Behaviour: Story = {
           <button id="snackbar-hide" onClick={() => setOpen(false)}>Hide</button>
         </div>
         <div style={{ position: "fixed", inset: "auto 0 0 0", height: 96, zIndex: 2147483647, background: "repeating-linear-gradient(45deg,var(--surface-section),var(--surface-section) 8px,var(--border-default) 8px,var(--border-default) 16px)", display: "grid", placeItems: "center", font: "12px system-ui" }}>z-index: 2147483647</div>
-        <Snackbar id="snackbar-demo" open={open} flavour="deletion" duration={5000} onAction={() => add("action")} onClose={(r) => { add(`close (${r})`); setOpen(false); }}>Item deleted.</Snackbar>
+        <Snackbar id="snackbar-demo" open={open} status="deletion" duration={5000} onAction={() => add("action")} onClose={(r) => { add(`close (${r})`); setOpen(false); }}>Item deleted.</Snackbar>
         <pre id="snackbar-log" style={{ font: "12px/1.4 ui-monospace,monospace", margin: 0 }}>{log.join("\n")}</pre>
       </div>
     );
@@ -139,7 +139,7 @@ export const ThemingCascade: Story = {
         <div key={cls} className={cls} style={{ padding: 16, borderRadius: 8, background: "var(--surface-page)", color: "var(--foreground-primary)", border: "1px solid var(--border-default)", display: "grid", gap: 8 }}>
           <div style={{ font: "500 12px/1.4 system-ui", opacity: 0.7 }}>{cls || "base / light"}</div>
           <Snackbar inline open variant="standard" actionLabel="Undo">Conversation archived.</Snackbar>
-          {(["positive", "error", "deletion"] as const).map((k) => <Snackbar key={k} inline open flavour={k}>{MESSAGES[k]}</Snackbar>)}
+          {(["positive", "negative", "deletion"] as const).map((k) => <Snackbar key={k} inline open status={k}>{MESSAGES[k]}</Snackbar>)}
         </div>
       ))}
     </div>

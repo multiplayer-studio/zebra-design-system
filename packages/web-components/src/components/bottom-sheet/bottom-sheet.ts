@@ -1,12 +1,17 @@
-import { LitElement, html, nothing } from "lit";
-import { customElement, property, state } from "lit/decorators.js";
+import { LitElement, html, nothing, type PropertyValues } from "lit";
+import { customElement, property, query, state } from "lit/decorators.js";
 import styles from "./bottom-sheet.styles.js";
 import "../card-footer/card-footer.js";
 import "../icon-button/icon-button.js";
+import { raiseScrim, lowerScrim } from "../scrim/scrim.js";
+import { lockScroll, unlockScroll, deepActiveElement, firstFocusable } from "../dialog/dialog.js";
+import { defaultTrue } from "../chip/chip.js";
 import type { IconName } from "@zebra-design-system/icons/names";
 
 export type BottomSheetContentType = "list" | "grid" | "generic";
 export type BottomSheetHeaderAlignment = "start" | "center";
+/** Why a modal sheet closed. */
+export type BottomSheetOpenChangeReason = "escape" | "backdrop" | "other";
 
 /** A unique id for the title, so the sheet can name itself with it. */
 const ID = () => `zds-bottom-sheet-${Math.random().toString(36).slice(2)}`;
@@ -16,9 +21,12 @@ const ID = () => `zds-bottom-sheet-${Math.random().toString(36).slice(2)}`;
  * content or a short set of actions. `content-type` lays out `zds-menu-item`
  * rows, `zds-grid-menu-item` tiles or anything else.
  *
- * It only draws the surface. Presenting it, the scrim, moving focus in and
- * dismissing it all belong to the screen, and Figma defines no motion, shadow
- * or height cap.
+ * By default it only draws the surface, and the screen presents it. With
+ * `modal`, it presents itself: a native `<dialog>` anchored to the bottom of
+ * the viewport over a `<zds-scrim>` (tone scrim), focus moved in and returned,
+ * page scroll locked, and Escape or a scrim click closing it when
+ * `dismissible`. It rises from the bottom edge (animations/smooth; none under
+ * reduced motion). Figma defines no motion, so that is a code decision.
  *
  * Departures from Figma, each a spec issue:
  * - `heading`, `header-icon`, `show-leading-icon`, `header-alignment` and the
@@ -30,6 +38,7 @@ const ID = () => `zds-bottom-sheet-${Math.random().toString(36).slice(2)}`;
  * @csspart surface - The sheet.
  * @csspart handle - The drag affordance. It has no control behind it.
  * @fires zds-leading-click - The leading button was activated.
+ * @fires zds-open-change - `{ open, reason }` when Escape or a scrim click closes a modal sheet. Not fired for a programmatic `open` change.
  * @csspart header - The title row.
  * @csspart content - The region holding the items.
  * @csspart footer - The `zds-card-footer`.
@@ -58,7 +67,86 @@ export class ZdsBottomSheet extends LitElement {
   /** `center` centres the title and pins the icon to the leading edge. */
   @property({ type: String, reflect: true, attribute: "header-alignment" }) headerAlignment: BottomSheetHeaderAlignment = "start";
 
+  /** Present the sheet at the bottom of the viewport over a scrim, with focus inside. Code only. */
+  @property({ type: Boolean, reflect: true }) modal = false;
+
+  /** Whether a modal sheet is shown. Reflected. */
+  @property({ type: Boolean, reflect: true }) open = false;
+
+  /** Escape and a scrim click close a modal sheet. `dismissible="false"` when the sheet needs a decision. */
+  @property({ type: Boolean, reflect: true, converter: defaultTrue }) dismissible = true;
+
   @state() private hasActions = false;
+
+  @query("dialog") private dialogEl?: HTMLDialogElement;
+  @query("zds-scrim") private scrimEl?: HTMLElement;
+  private returnFocus: HTMLElement | null = null;
+  private locked = false;
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    if (this.locked) { unlockScroll(); this.locked = false; }
+  }
+
+  /** Opens a modal sheet (same as `open = true`). */
+  show() { this.open = true; }
+
+  /** Closes a modal sheet (same as `open = false`). */
+  close() { this.open = false; }
+
+  private setOpen(open: boolean, reason: BottomSheetOpenChangeReason) {
+    if (this.open === open) return;
+    this.open = open;
+    this.dispatchEvent(new CustomEvent("zds-open-change", { detail: { open, reason }, bubbles: true, composed: true }));
+  }
+
+  private onKeydown = (e: KeyboardEvent) => {
+    if (e.key !== "Escape") return;
+    e.preventDefault();
+    e.stopPropagation();
+    if (this.dismissible) this.setOpen(false, "escape");
+  };
+
+  private onCancel = (e: Event) => {
+    e.preventDefault();
+    if (this.dismissible) this.setOpen(false, "escape");
+  };
+
+  // The ::backdrop hit-tests as the <dialog>; the dialog box is the sheet, so
+  // a click outside it is a click on the scrim.
+  private onDialogClick = (e: MouseEvent) => {
+    const dlg = this.dialogEl;
+    if (!dlg || e.target !== dlg || !this.dismissible) return;
+    const r = dlg.getBoundingClientRect();
+    const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+    if (!inside) this.setOpen(false, "backdrop");
+  };
+
+  protected updated(changed: PropertyValues<this>) {
+    if (changed.has("open") || changed.has("modal")) this.syncDialog();
+  }
+
+  private syncDialog() {
+    const dlg = this.dialogEl;
+    if (!this.modal || !dlg) {
+      if (this.locked) { unlockScroll(); this.locked = false; }
+      return;
+    }
+    if (!this.open) lowerScrim(this.scrimEl);
+    if (this.open && !dlg.open) {
+      this.returnFocus = deepActiveElement();
+      raiseScrim(this.scrimEl);
+      dlg.showModal();
+      if (!this.locked) { lockScroll(); this.locked = true; }
+      (firstFocusable(dlg.childNodes) ?? dlg).focus();
+    } else if (!this.open && dlg.open) {
+      dlg.close();
+      if (this.locked) { unlockScroll(); this.locked = false; }
+      const back = this.returnFocus;
+      this.returnFocus = null;
+      if (back?.isConnected) back.focus();
+    }
+  }
 
   #titleId = ID();
 
@@ -67,7 +155,7 @@ export class ZdsBottomSheet extends LitElement {
   }
 
   protected render() {
-    return html`
+    const surface = html`
       <section part="surface" class="surface" aria-labelledby=${this.#titleId}>
         <div part="handle" class="handle"><span class="bar"></span></div>
         <div part="header" class="header">
@@ -88,6 +176,9 @@ export class ZdsBottomSheet extends LitElement {
         </zds-card-footer>
       </section>
     `;
+    if (!this.modal) return surface;
+    return html`<zds-scrim popover="manual" tone="scrim"></zds-scrim><dialog class="sheet" aria-labelledby=${this.#titleId}
+      @keydown=${this.onKeydown} @cancel=${this.onCancel} @click=${this.onDialogClick}>${surface}</dialog>`;
   }
 }
 

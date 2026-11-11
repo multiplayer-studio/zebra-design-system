@@ -567,6 +567,14 @@
   ],
   "dependencies": [
     {
+      "name": "Scrim",
+      "spec": "specs/scrim",
+      "usedAt": [
+        "backdrop"
+      ],
+      "pinned": "Tone=scrim"
+    },
+    {
       "name": "Button",
       "id": "2060:15072",
       "key": "42bf13a5210cd307b7bd4563f2521b78cfd74dae",
@@ -718,7 +726,7 @@
   ],
   "modalExpectations": {
     "_note": "What the page says, or doesn't, about modal behaviour. Code builds on Base UI's Dialog, which supplies these; the design file only constrains the panel.",
-    "overlayBackdrop": "Not modelled. No backdrop, scrim or overlay layer exists on the page, and the component binds no overlay token. The summary calls it 'A modal message that interrupts the current task', which implies a backdrop, but its colour and opacity are unspecified (see issues for the token candidates).",
+    "overlayBackdrop": "In code, the backdrop is the Scrim component (tone scrim). On the page: not modelled. No backdrop, scrim or overlay layer exists on the page, and the component binds no overlay token. The summary calls it 'A modal message that interrupts the current task', which implies a backdrop, but its colour and opacity are unspecified (see issues for the token candidates).",
     "focusTrapAndReturn": "Explicitly unspecified: 'Nothing in this file marks how the dialog traps focus or returns it when it closes, so that behaviour needs confirming outside Figma.'",
     "dismissal": "Partly implied, not specified. A close glyph sits in every header, and the summary says the dialog stays 'until the user responds or dismisses it'. Escape, outside-click/backdrop dismissal, and whether dismissal is allowed when the footer asks for a decision are not stated. The close control is a bare Icon with no accessible name, hit area or states drawn.",
     "stacking": "Not modelled. Nothing about z-order, nested dialogs, or what happens when a second dialog opens.",
@@ -833,6 +841,11 @@
     }
   },
   "issues": [
+    {
+      "severity": "note",
+      "source": "scrim",
+      "detail": "The backdrop is the Scrim component at tone scrim. It answers the backdrop-token question below."
+    },
     {
       "severity": "warn",
       "source": "modal behaviour",

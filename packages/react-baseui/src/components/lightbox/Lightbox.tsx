@@ -2,6 +2,7 @@ import * as React from "react";
 import { Dialog as BaseDialog } from "@base-ui/react/dialog";
 import { Icon, type IconName } from "../icon/Icon.js";
 import { IconButton } from "../icon-button/IconButton.js";
+import { Scrim } from "../scrim/Scrim.js";
 import "./lightbox.css";
 
 export type LightboxKind = "image" | "video" | "pdf" | "other";
@@ -225,7 +226,7 @@ export const Lightbox = React.forwardRef<HTMLDivElement, LightboxProps>(function
   return (
     <BaseDialog.Root open={open} onOpenChange={(next) => { if (!next) onClose(); }}>
       <BaseDialog.Portal container={portalContainer}>
-        <BaseDialog.Backdrop className="zds-lightbox__backdrop" />
+        <BaseDialog.Backdrop className="zds-lightbox__backdrop" render={<Scrim tone="scrim" />} />
         <BaseDialog.Popup ref={ref} onKeyDown={onKeyDown}
           className={["zds-lightbox", className].filter(Boolean).join(" ")} data-shape={shape}>
           <div className="zds-lightbox__toolbar">

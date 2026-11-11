@@ -57,3 +57,30 @@ export const Generic: Story = {
 
 /** center centres the title and pins the icon to the leading edge. */
 export const CenteredHeader: Story = { args: { headerAlignment: "center" } };
+
+/** modal: the sheet presents itself over a Scrim, rising from the bottom edge. Escape or a scrim click closes it. */
+export const Modal: Story = {
+  render: function Render() {
+    const [open, setOpen] = React.useState(true);
+    const close = () => setOpen(false);
+    return (
+      <>
+        <Button onClick={() => setOpen(true)}>Open sheet</Button>
+        <BottomSheet
+          modal
+          open={open}
+          onOpenChange={(next) => setOpen(next)}
+          onLeadingClick={close}
+          actions={
+            <>
+              <Button flavour="outline" size="small" shape="rounded" onClick={close}>Cancel</Button>
+              <Button size="small" shape="rounded" onClick={close}>Apply</Button>
+            </>
+          }
+        >
+          {rows.map((r) => <MenuItem key={r} leadingIcon="star" onClick={close}>{r}</MenuItem>)}
+        </BottomSheet>
+      </>
+    );
+  },
+};

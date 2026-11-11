@@ -18,6 +18,39 @@
   },
   "summary": "A surface anchored to the bottom edge of the screen, holding supplementary content or a short set of actions without moving a person off the view behind it. Content Type picks between a run of list rows, a grid of tiles, and a slot that takes whatever the product supplies. All three carry the same drag handle, header and two action footer, so the only thing that changes between them is what sits in the middle.",
   "api": {
+    "modal": {
+      "type": "boolean",
+      "figmaName": null,
+      "default": false,
+      "controls": [],
+      "codeOnly": true,
+      "intent": {
+        "true": "The sheet presents itself at the bottom of the viewport over the Scrim component, traps focus and closes on Escape or a scrim click.",
+        "false": "The sheet only draws its surface; the screen presents it."
+      }
+    },
+    "open": {
+      "type": "boolean",
+      "figmaName": null,
+      "default": false,
+      "controls": [],
+      "codeOnly": true,
+      "intent": {
+        "true": "A modal sheet is shown.",
+        "false": "A modal sheet is hidden."
+      }
+    },
+    "dismissible": {
+      "type": "boolean",
+      "figmaName": null,
+      "default": true,
+      "controls": [],
+      "codeOnly": true,
+      "intent": {
+        "true": "Escape and a scrim click close a modal sheet.",
+        "false": "Only the sheet's own actions close it."
+      }
+    },
     "contentType": {
       "type": "enum",
       "figmaName": "Content Type",
@@ -514,6 +547,11 @@
   ],
   "dependencies": [
     {
+      "name": "Scrim",
+      "spec": "specs/scrim",
+      "usedAs": "backdrop of a modal sheet, tone scrim"
+    },
+    {
       "name": "Icon Button",
       "id": "2338:1763",
       "spec": "specs/dropdown",
@@ -772,6 +810,11 @@
     }
   },
   "issues": [
+    {
+      "severity": "note",
+      "source": "scrim",
+      "detail": "Code adds modal, open and dismissible. A modal sheet sits over the Scrim component at tone scrim."
+    },
     {
       "severity": "warn",
       "source": "metadata vs code",

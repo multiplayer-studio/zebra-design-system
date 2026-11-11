@@ -5,17 +5,15 @@
    Spec: specs/dialog/dialog.spec.md */
 
 /* ---- backdrop ------------------------------------------------------------ */
-/* spec issue "There is no usable backdrop token": overlay/modal aliases the
-   opaque surface/overlay fill, so the backdrop uses the translucent
-   overlay/scrim (owner's decision). */
-.zds-dialog__backdrop {
+/* The backdrop is the Scrim component at tone scrim (specs/scrim), which
+   brings the fill. Here it only covers the viewport instead of its parent. */
+.zds-scrim.zds-dialog__backdrop {
   position: fixed;
   inset: 0;
   /* Stacking: no z-index token exists. The portal already puts the backdrop
      and panel last in the document; this lifts them over positioned page
      content too (the WC version uses the browser's top layer instead). */
   z-index: 1000;
-  background: var(--overlay-scrim);
 }
 
 /* ---- anatomy: root (the panel) -------------------------------------------- */

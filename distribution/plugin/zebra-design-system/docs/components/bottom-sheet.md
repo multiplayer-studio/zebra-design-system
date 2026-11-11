@@ -8,6 +8,9 @@
 
 | Prop | Type | Default | Values | Notes |
 |---|---|---|---|---|
+| `modal` | boolean | `false` |  |  |
+| `open` | boolean | `false` |  |  |
+| `dismissible` | boolean | `true` |  |  |
 | `contentType` | enum | `list` | `list` `grid` `generic` |  |
 | `contentSlot` | slot |  |  |  |
 
