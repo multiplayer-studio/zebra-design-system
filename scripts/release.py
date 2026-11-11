@@ -12,7 +12,8 @@ It works out per repo what to do; there is no option for it:
   update  every bundle file and the root CLAUDE.md, against the bundle of the version the repo has installed (its base):
           unchanged locally -> replaced; changed locally -> 3-way merged (git merge-file), a conflict keeps theirs and
           is listed; removed upstream -> removed unless changed locally. LIBRARY.md, CHANGES.md and templates/ are
-          never touched (the project owns them), and tokens.css is regenerated from the result.
+          never touched (the project owns them), and tokens.css is regenerated from the result. The shipped skills in
+          .claude/skills/ are master-owned: always replaced (or removed with upstream), never merged.
 Differences the DS team rejected (tenants/<tenant>/tenant.json) are listed in the PR as "please revert".
 Never force-pushes: each version gets its own branch, zebra-design-system/<version>; older release PRs are closed.
 """
@@ -61,6 +62,12 @@ def update(repo, base, new, r):
     for rel in sorted(files_of(base) | files_of(new)):
         b, n, l = (os.path.join(x, rel) for x in (base, new, repo))
         hb, hn, hl = (os.path.exists(x) for x in (b, n, l))
+        if rel.startswith('.claude/skills/'):         # master-owned: local edits are overwritten
+            if hn and not (hl and same(l, n)):
+                copy(n, l); r['updated'].append(rel)
+            elif not hn and hl:
+                os.remove(l); r['removed'].append(rel)
+            continue
         if not hn:                                   # removed upstream
             if hl and hb and same(l, b):
                 os.remove(l); r['removed'].append(rel)

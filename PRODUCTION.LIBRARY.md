@@ -4,7 +4,9 @@ How this project builds and maintains its component library from the Zebra Desig
 
 Your engineers own this file and fill it in once, before the first component is built. The agent reads it before every component change (`AGENTS.md`, Building a component) and keeps the Components table up to date. It never changes the conventions on its own.
 
-**To fill it in:** replace every `<…>` placeholder, delete any guidance you don't need, and delete the React example at the end once your own sections are complete. If your project uses React, you can start from the example instead.
+**To fill it in:** ask your agent to run the `design-system-init` skill (`/design-system-init`). It scans the repo, proposes answers section by section for you to confirm, then wires the tokens and builds a first component. To fill it in by hand instead, replace every `<…>` placeholder, delete any guidance you don't need, and delete the React example at the end once your own sections are complete.
+
+**More than one platform** (e.g. React web and a Flutter app in one repo): repeat sections 1–5 under a `### <Platform>` heading for each. Sections 6–9 are shared.
 
 ---
 
@@ -73,12 +75,21 @@ Questions raised by draft components (`status: draft`, † in `DESIGN.md` §8) o
 | Component | Question | Asked | Answer |
 |---|---|---|---|
 
-## 8. Components
+## 8. Existing UI
+
+Components the project had before the design system, and what happens to each. Migration is done one component at a time, like any other build. Delete this section if there were none.
+
+| Existing component | Path | Maps to doc | Plan |
+|---|---|---|---|
+
+Plan is `replace` (the library component takes over and screens move to it), `extend doc` (it needs something the doc lacks: `AGENTS.md`, When something is missing) or `keep` (stays outside the library, with the reason).
+
+## 9. Components
 
 One row per component built. The agent adds the row in the same change that builds the component.
 
-| Component | Doc | Code | Status |
-|---|---|---|---|
+| Component | Platform | Doc | Code | Status |
+|---|---|---|---|---|
 
 Status is `stable`, or `draft` while it has placeholders from section 7.
 
@@ -203,11 +214,18 @@ export function Button({
 |---|---|---|---|
 | Data Table † | Row height and cell padding are placeholders. What are the measurements? | 2026-11-10 | |
 
-### 8. Components
+### 8. Existing UI
 
-| Component | Doc | Code | Status |
+| Existing component | Path | Maps to doc | Plan |
 |---|---|---|---|
-| Icon | `design-system/atoms/icon.md` | `src/components/zebra/Icon/` | stable |
-| Button | `design-system/atoms/button.md` | `src/components/zebra/Button/` | stable |
-| Text Input | `design-system/molecules/text-input.md` | `src/components/zebra/TextInput/` | stable |
-| Data Table | `design-system/organisms/data-table.md` | `src/components/zebra/DataTable/` | draft |
+| `AppButton` | `src/ui/AppButton.tsx` | `design-system/atoms/button.md` | replace |
+| `StatusPill` | `src/ui/StatusPill.tsx` | `design-system/atoms/status-label.md` | extend doc: needs a `pending` colour |
+
+### 9. Components
+
+| Component | Platform | Doc | Code | Status |
+|---|---|---|---|---|
+| Icon | React | `design-system/atoms/icon.md` | `src/components/zebra/Icon/` | stable |
+| Button | React | `design-system/atoms/button.md` | `src/components/zebra/Button/` | stable |
+| Text Input | React | `design-system/molecules/text-input.md` | `src/components/zebra/TextInput/` | stable |
+| Data Table | React | `design-system/organisms/data-table.md` | `src/components/zebra/DataTable/` | draft |

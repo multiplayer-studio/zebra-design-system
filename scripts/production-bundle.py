@@ -6,6 +6,7 @@ The release workflow (scripts/release.py) runs this and opens a PR with the resu
 The folder holds zebra-design-system-production/, containing:
   CLAUDE.md                                  PRODUCTION.CLAUDE.md, importing @design-system/AGENTS.md;
                                              goes at the project root
+  .claude/skills/                            PRODUCTION.SKILLS/ (design-system-init), also at the project root
   design-system/                             (the name AGENTS.md's Setup expects), with:
   atoms/ molecules/ organisms/               as-is
   templates/                                 empty: release.py fills it with the project's own templates
@@ -20,7 +21,7 @@ from _bundle import entries, read_claude, write_dir
 
 write_dir(
     sys.argv[1] if len(sys.argv) > 1 else 'build', 'zebra-design-system-production/design-system',
-    entries(['atoms', 'molecules', 'organisms'],
+    entries(['atoms', 'molecules', 'organisms', ('PRODUCTION.SKILLS', '../.claude/skills')],
             ['DESIGN.md', 'icons.json', 'tokens.css', 'scripts/tokens-css.py', 'scripts/icons-json.py'],
             {'PRODUCTION.AGENTS.md': 'AGENTS.md', 'PRODUCTION.LIBRARY.md': 'LIBRARY.md'}) + [(None, 'templates')],
     read_claude('PRODUCTION.CLAUDE.md').replace('@PRODUCTION.AGENTS.md', '@design-system/AGENTS.md'),

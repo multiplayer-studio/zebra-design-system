@@ -124,7 +124,7 @@ A **template** is the atomic-design level above organisms: a page-level layout (
 - Ask at a natural stopping point, after finishing the request, never mid-task. One short question naming the pattern and where it appears: "The login and reset-password prototypes share this layout. Want me to save it as a template?"
 - Write nothing until the designer says yes. If they decline, don't ask about that pattern again.
 
-**Write it** with the `create-template` skill (`.claude/skills/create-template/SKILL.md`), which holds the format and checks. In short: a Markdown doc in the same format as the component files, with `level: template`, `status: draft`, `composes:` listing every component it uses, and the sections Anatomy, Layout, Responsiveness, Accessibility and Usage. The designer can also ask for a template directly, e.g. "Make a template from this prototype."
+**Write it** with the `create-template` skill (`.claude/skills/create-template/SKILL.md` in this kit), which holds the format and checks. In short: a Markdown doc in the same format as the component files, with `level: template`, `status: draft`, `composes:` listing every component it uses, and the sections Anatomy, Layout, Responsiveness, Accessibility and Usage. The designer can also ask for a template directly, e.g. "Make a template from this prototype."
 
 **Share them.** Templates reach the design system through the project's repo: the designer gives the file to the project's developer, who adds it to the repo's `design-system/templates/`. A nightly sync then copies it to the master design system, and the project's next kit includes it.
 

@@ -23,18 +23,19 @@ design-system/
   CHANGES.md       project-specific: you create it (see below)
 ```
 
-The first PR also adds a `CLAUDE.md` at the project root, which imports this file. If the project already has one, the PR leaves it alone and says so: merge the design-system section in by hand. All paths below are relative to `design-system/`.
+The first PR also adds, at the project root, a `CLAUDE.md` that imports this file, and the `design-system-init` skill in `.claude/skills/design-system-init/`. If the project already has a `CLAUDE.md`, the PR leaves it alone and says so: the skill offers to merge the design-system section in. All paths below are relative to `design-system/`.
 
 On first use, before writing any component, check both project-specific files exist and are filled in.
 
-**`LIBRARY.md`** maps the docs to the code. It ships as a template with a worked React example; the project's engineers own it and decide its conventions. If its placeholders aren't filled in, ask the developer for the answers and fill them in, then delete the example. Never change a convention in it on your own. It records:
+**`LIBRARY.md`** maps the docs to the code. It ships as a template with a worked React example; the project's engineers own it and decide its conventions. If its placeholders aren't filled in, run the `design-system-init` skill: it proposes the answers from the repo, the developer confirms each section, and it then wires the tokens, scaffolds the library and builds a first component. Never change a convention in it on your own. It records (sections 1–5 once per platform, if the repo has more than one):
 - the technology (e.g. React, SwiftUI, Flutter, Compose, plain CSS);
 - where the component library lives (one folder, e.g. `src/components/zebra/`);
 - where the generated token file lives and the command that regenerates it;
 - the name transform from token key to code (e.g. `button-primary-container-background-hover` → `--button-primary-container-background-hover` in CSS, `buttonPrimaryContainerBackgroundHover` in Swift/Dart/Kotlin). Use one mechanical transform everywhere;
 - how a doc's Properties table becomes the component API, and the project's conventions and workflow for library changes;
 - open questions from draft components;
-- a table with one row per component built: `| Component | Doc | Code | Status |`.
+- the UI components the project had before, each mapped to a doc with a plan (replace, extend doc or keep);
+- a table with one row per component built: `| Component | Platform | Doc | Code | Status |`.
 
 **`CHANGES.md`** is the log of every local change to the docs (see Changing the design system). Start it with the `version` from the `DESIGN.md` frontmatter that you copied in.
 
@@ -134,7 +135,8 @@ Both directions are automatic. Your part is keeping `CHANGES.md` accurate, becau
   - 3-way merged the files you had changed, so allowed differences stay and master's other edits still land;
   - left alone anything where your change and master's overlap, listed under **Needs your agent**;
   - listed rejected differences under **Please revert**;
-  - never touched `LIBRARY.md`, `CHANGES.md` or `templates/`, and regenerated `tokens.css`.
+  - never touched `LIBRARY.md`, `CHANGES.md` or `templates/`, and regenerated `tokens.css`;
+  - replaced the shipped skills in `.claude/skills/` outright. They belong to the master design system, so don't edit them here: local edits are overwritten and never synced up.
 
   After the developer merges it:
   1. Resolve each **Needs your agent** file against the new master version. Where it's unclear, stop and ask the developer.

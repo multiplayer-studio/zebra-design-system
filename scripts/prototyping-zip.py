@@ -5,7 +5,8 @@ Usage: python3 scripts/prototyping-zip.py              every kit; deletes projec
        python3 scripts/prototyping-zip.py <project>    only that project's kit (the nightly tenants sync runs this)
 
 Each zip holds one folder, zebra-design-system-prototyping[-<project>]/, with:
-  atoms/ molecules/ organisms/ prototypes/ .claude/skills/   as-is
+  atoms/ molecules/ organisms/ prototypes/  as-is
+  .claude/skills/                            PROTOTYPING.SKILLS/ (create-template)
   templates/                                 empty (generic kit), or templates/<project>/ flattened (project kit)
   DESIGN.md PROTOTYPING.AGENTS.md PROTOTYPING.JIRA.md PROTOTYPING.FIGMA.md icons.json tokens.css   as-is
   CLAUDE.md                                  PROTOTYPING.CLAUDE.md
@@ -21,7 +22,7 @@ NAME = 'zebra-design-system-prototyping'
 def kit(project=None):
     name = f'{NAME}-{project}' if project else NAME
     templates = [(f'templates/{project}', 'templates')] if project else []
-    items = entries(['atoms', 'molecules', 'organisms', 'prototypes', '.claude/skills', *templates],
+    items = entries(['atoms', 'molecules', 'organisms', 'prototypes', ('PROTOTYPING.SKILLS', '.claude/skills'), *templates],
                     ['DESIGN.md', 'PROTOTYPING.AGENTS.md', 'PROTOTYPING.JIRA.md', 'PROTOTYPING.FIGMA.md', 'icons.json', 'tokens.css'],
                     {'PROTOTYPING.README.md': 'README.md'})
     write_zip(f'{name}.zip', name, items + ([] if project else [(None, 'templates')]), read_claude('PROTOTYPING.CLAUDE.md'))
