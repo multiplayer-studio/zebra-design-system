@@ -1,6 +1,6 @@
 # Prototyping with GitHub
 
-A prototype for a project that's already in flight should fit the real app: its screens, navigation, layouts, copy and data. Follow this at the start of every new prototype, after the Jira step in `PROTOTYPING.JIRA.md`. Ask the Jira question on its own and wait for the answer (and read the ticket, if there is one) before asking anything here, in a new message. Never ask about Jira and GitHub in the same message.
+A prototype for a project that's already in flight should fit the real app: its screens, navigation, layouts, copy and data. Follow this at the start of every new prototype, after the Jira step in `PROTOTYPING.JIRA.md`. Ask the Jira question on its own and wait for the answer (and read the ticket, if there is one) before asking anything here, in a new prompt. Never ask about Jira and GitHub in the same prompt. Ask every question here with the question prompt (see Asking the designer in `PROTOTYPING.AGENTS.md`), except the download steps in step 2.
 
 Claude reads the project's code from a copy the designer downloads from GitHub into this folder. That needs no connector, token or install, and it works for any private repo the designer can open on GitHub.
 
@@ -10,7 +10,7 @@ Work through these in order and stop at the first that applies:
 
 1. **`github.json` at the kit root** (`{ "repo": "owner/name", "branch": "main", "path": "design-system" }`): ask "Is this prototype for `<repo>`?"
 2. **A GitHub link in the Jira ticket** you just read: ask "The ticket links to `<repo>`. Is that the project's repo?"
-3. **Otherwise ask:** "Is there a GitHub repo for the project this prototype belongs to? If so, paste its link (a branch or pull-request link works too)."
+3. **Otherwise ask:** "Is there a GitHub repo for the project this prototype belongs to? If so, paste its link (a branch or pull-request link works too)." Offer **No repo**; the designer pastes a link in the prompt's text field.
 
 - If the designer has none, or says skip, build the prototype as normal and don't ask again in this conversation.
 - Accept `https://github.com/<owner>/<repo>`, `…/tree/<branch>` (use that branch) and `…/pull/<number>` (use that pull request's branch). Otherwise use the branch in `github.json`, or `main`. If the link is anything else, say so and ask again.
@@ -20,7 +20,7 @@ Work through these in order and stop at the first that applies:
 
 If `github/` already has a folder for that repo and branch (`github/<repo>-<branch>/`, with any `/` in the branch name as `-`), tell the designer when it was downloaded (the folder's date) and ask whether that's recent enough. If it is, go to step 3.
 
-Otherwise give them these steps as written, filling in the link:
+Otherwise give them these steps as written, filling in the link, as plain text in your reply. Don't use the question prompt here: end your turn and wait for the designer's next message with the `.zip`.
 
 1. Open **`https://github.com/<owner>/<repo>/archive/refs/heads/<branch>.zip`** in your browser, signed in to GitHub. It downloads the code as a `.zip`. (For a pull request, the branch name is shown at the top of the pull request page. Or, on GitHub, pick the branch and click **Code** → **Download ZIP**.)
 2. Drag the downloaded `.zip` into this chat. Don't unzip it; Claude does that.

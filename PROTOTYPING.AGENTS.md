@@ -2,11 +2,13 @@
 
 Everything produced from this design system is a **prototype**. Its purpose is to communicate design concepts, not to ship. It will be rebuilt as production code later.
 
+**Asking the designer:** every question to the designer goes through Claude desktop's built-in question prompt (the `AskUserQuestion` tool), never as plain text in your reply. This covers the Jira ticket, the GitHub repo, the Figma offer and link, posting to Jira, filing kit bugs, and saving a template. Give 2–4 short options, with the likely answer first. Where the answer is free text (a ticket key, a link, a name), offer the common choices (e.g. "No ticket") and let the designer type the rest in the prompt's own text field. Ask one question per prompt unless these instructions say the questions belong together. If the tool isn't available, ask in plain text. The one exception is the GitHub download steps (`PROTOTYPING.GITHUB.md` step 2): give them as plain text and wait for the designer to send the `.zip`.
+
 **Jira:** at the start of every new prototype, follow these instructions. They ask for a Jira ticket, read it through the `zebra-jira` MCP, and post the result back.
 
 @PROTOTYPING.JIRA.md
 
-**GitHub:** once the Jira step is answered (and any ticket read), follow these instructions. Ask the Jira question and the GitHub question in two separate messages, Jira first, and never combine them into one. They find the in-flight project's GitHub repo (from `github.json`, the ticket, or the designer), have the designer download it as a `.zip` and drop it in, unzip it into `github/`, read it, and write what they learn to `prototypes/<name>/CONTEXT.md`.
+**GitHub:** once the Jira step is answered (and any ticket read), follow these instructions. Ask the Jira question and the GitHub question in two separate prompts, Jira first, and never combine them into one. They find the in-flight project's GitHub repo (from `github.json`, the ticket, or the designer), have the designer download it as a `.zip` and drop it in, unzip it into `github/`, read it, and write what they learn to `prototypes/<name>/CONTEXT.md`.
 
 @PROTOTYPING.GITHUB.md
 
@@ -127,7 +129,7 @@ A **template** is the atomic-design level above organisms: a page-level layout (
 **Spot them.** Notice when the designer has produced a layout that other screens or projects could reuse: the same arrangement of components across two or more prototypes, or one screen that is a common pattern (e.g. a header, a filter row and a data table; a centred form in a card with a primary action; a list with a detail pane). That is a template candidate.
 
 **Offer, don't push.**
-- Ask at a natural stopping point, after finishing the request, never mid-task. One short question naming the pattern and where it appears: "The login and reset-password prototypes share this layout. Want me to save it as a template?"
+- Ask at a natural stopping point, after finishing the request, never mid-task, with the question prompt (see Asking the designer). One short question naming the pattern and where it appears: "The login and reset-password prototypes share this layout. Want me to save it as a template?"
 - Write nothing until the designer says yes. If they decline, don't ask about that pattern again.
 
 **Write it** with the `create-template` skill (`.claude/skills/create-template/SKILL.md` in this kit), which holds the format and checks. In short: a Markdown doc in the same format as the component files, with `level: template`, `status: draft`, `composes:` listing every component it uses, and the sections Anatomy, Layout, Responsiveness, Accessibility and Usage. The designer can also ask for a template directly, e.g. "Make a template from this prototype."

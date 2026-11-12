@@ -13,7 +13,8 @@ Each zip holds one folder, zebra-design-system-prototyping[-<project>]/, with:
   CLAUDE.md                                  PROTOTYPING.CLAUDE.md
   README.md                                  copied from PROTOTYPING.README.md
   github.json                                project kit only: its repo, branch and design-system path from consumers.json
-The testing kit is the generic kit plus PROTOTYPING.TESTING.md, imported at the end of its CLAUDE.md, with
+The testing kit is the generic kit plus PROTOTYPING.TESTING.md and the scripts that regenerate tokens.css and the
+starter (TESTING_SCRIPTS), since testers may edit the docs; PROTOTYPING.TESTING.md is imported at the end of its PROTOTYPING.AGENTS.md, with
 PROTOTYPING.TESTING.README.md appended to its README.md. 'testing' is therefore a reserved project name.
 """
 import glob, json, os, sys
@@ -25,6 +26,7 @@ CONSUMERS = {c['project']: c for c in json.load(open(os.path.join(ROOT, 'consume
 
 
 TESTING = 'testing'
+TESTING_SCRIPTS = ['scripts/tokens-css.py', 'scripts/starter-html.py', 'scripts/_bundle.py']  # Claude regenerates after doc edits
 
 
 def kit(project=None):
@@ -32,16 +34,15 @@ def kit(project=None):
     testing = project == TESTING
     templates = [(f'templates/{project}', 'templates')] if project and not testing else []
     items = entries(['atoms', 'molecules', 'organisms', 'prototypes', ('PROTOTYPING.SKILLS', '.claude/skills'), *templates],
-                    ['DESIGN.md', 'PROTOTYPING.AGENTS.md', 'PROTOTYPING.JIRA.md', 'PROTOTYPING.GITHUB.md', 'PROTOTYPING.FIGMA.md',
-                     'icons.json', 'tokens.css', *(['PROTOTYPING.TESTING.md'] if testing else [])],
+                    ['DESIGN.md', *([] if testing else ['PROTOTYPING.AGENTS.md']), 'PROTOTYPING.JIRA.md', 'PROTOTYPING.GITHUB.md', 'PROTOTYPING.FIGMA.md',
+                     'icons.json', 'tokens.css', *(['PROTOTYPING.TESTING.md', *TESTING_SCRIPTS] if testing else [])],
                     {} if testing else {'PROTOTYPING.README.md': 'README.md'})
     c = CONSUMERS.get(project)
     extra = {'github.json': json.dumps({'repo': c['repo'], 'branch': c['branch'], 'path': c.get('path', 'design-system')}, indent=2) + '\n'} if c else {}
-    claude = read_claude('PROTOTYPING.CLAUDE.md')
     if testing:
-        claude = claude.rstrip('\n') + '\n\n@PROTOTYPING.TESTING.md\n'
+        extra['PROTOTYPING.AGENTS.md'] = read_claude('PROTOTYPING.AGENTS.md').rstrip('\n') + '\n\n@PROTOTYPING.TESTING.md\n'
         extra['README.md'] = read_claude('PROTOTYPING.README.md').rstrip('\n') + '\n' + read_claude('PROTOTYPING.TESTING.README.md')
-    write_zip(f'{name}.zip', name, items + ([] if templates else [(None, 'templates')]), claude, extra=extra)
+    write_zip(f'{name}.zip', name, items + ([] if templates else [(None, 'templates')]), read_claude('PROTOTYPING.CLAUDE.md'), extra=extra)
 
 
 TEMPLATES = os.path.join(ROOT, 'templates')  # may be missing: git doesn't keep an empty folder

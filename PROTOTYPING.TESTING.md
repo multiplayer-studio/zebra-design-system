@@ -1,52 +1,82 @@
 # Testing the kit
 
-This is a **testing kit**: the designer is trying the design system out. Besides building prototypes, log every bug in the kit to `CHANGES.md` and file each one to Jira, so the design-system team can fix it.
+This is a **testing kit**: the designer is trying the design system out. Unlike the other prototyping kits, **the designer may edit the design-system docs here**. Every edit they make is the feedback: log each one in `CHANGES.md` and file it to Jira as a Bug or a Story, so the design-system team can bring it into the master docs.
 
-## What counts
+Where this file and `PROTOTYPING.AGENTS.md` disagree, this file wins in this kit.
 
-A **kit bug** is something in this kit that is wrong or missing, so you can't follow the docs faithfully. For example:
-- a token that is wrong, missing, or doesn't match its doc;
-- docs that contradict each other or leave a question unanswered;
-- a broken `prototypes/_starter/index.html` or `tokens.css`;
-- a component that renders differently from its doc;
-- an icon, variant, state or component the design needs that the system doesn't have.
+## What gets filed
 
-You can spot one yourself while building, and the designer can report one ("the tabs look wrong"). A designer's own design preference, or a change to their prototype, is not a kit bug.
+**Edits to the design-system docs, and nothing else:** the `DESIGN.md` frontmatter and body, and the component files in `atoms/`, `molecules/` and `organisms/`. For example, a changed token value, a new variant, state, size or token, a new component, or a fix to a doc that was wrong.
+
+**Only documentation changes are logged and filed.** Nothing else is, even when it changed because of a doc edit.
+
+These are not logged or filed:
+- **Generated files and the starter:** `tokens.css`, `prototypes/_starter/`, `prototypes/showcase/` and `icons.json`. Regenerating them after a doc edit is housekeeping. Never mention them in an entry or a ticket, and never log a change made to them directly.
+- **Changes to a prototype.** That's normal prototyping.
+- **Templates.** They reach the design system through the project's repo (see Templates in `PROTOTYPING.AGENTS.md`).
+- **Problems you spot without an edit.** When you find one (a missing or wrong token, docs that contradict each other, a component that renders differently from its doc), tell the designer and suggest the doc edit that would fix it. Only an edit the designer approves gets logged and filed.
+
+## Making an edit
+
+Make every edit yourself, when the designer asks for it or approves your suggestion. Follow **docs first, then generated files, then log**, in one piece of work:
+
+1. **Edit the doc.**
+   - A new value goes in the `DESIGN.md` frontmatter, in the right semantic group; raw values live nowhere else.
+   - Component tokens point at it with a reference.
+   - Update the component's tables and prose to match.
+   - A new component gets a new file in the right level folder, in the same format as its neighbours, and a row in the `DESIGN.md` §8 index.
+2. **Regenerate the generated files.** This kit ships the scripts in `scripts/`. Run them yourself, in this order:
+   - `python3 scripts/tokens-css.py` writes `tokens.css`;
+   - `python3 scripts/starter-html.py` writes `prototypes/_starter/index.html` and the showcase.
+
+   Never ask the designer to run them; they may need to click **Allow**. If Python 3 isn't installed, don't install it: tell the designer the edit is logged but won't show in prototypes until the next kit, and carry on.
+3. **Refresh the prototypes that use it**, with the steps in Refreshing a prototype (`PROTOTYPING.AGENTS.md`).
+4. **Log it** (below). Log the doc change only, not steps 2 and 3.
+
+If the designer says they edited a doc by hand, ask what they changed and why, check that it follows the rules above, then regenerate and log it the same way.
 
 ## Log it
 
-As soon as you find one, add an entry to `CHANGES.md` at the kit root. Create the file the first time, starting with the `version` from the `DESIGN.md` frontmatter. One entry per bug:
+Add an entry to `CHANGES.md` at the kit root for every edit. Create the file the first time, starting with the `version` from the `DESIGN.md` frontmatter. One entry per edit:
 
 ```markdown
 ## YYYY-MM-DD: <short title>
-- Type: bug | missing
-- Files: atoms/button.md, tokens.css
+- Type: fix | token change | new token | new variant | new component | context override
+- Files: atoms/button.md, DESIGN.md (frontmatter: colors)   (docs only)
+- Change: <what changed, before → after, e.g. "button-container-height-large: '{dimensions.dim-button-height-large}' added">
+- Why: <the designer's reason, in one or two sentences>
 - Prototype: prototypes/<name>/ (ticket: PROJ-123 | none)
-- Prompt: <what the designer asked for when it came up>
-- Expected: <what the docs say should happen>
-- Actual: <what happened instead>
+- Acceptance criteria: <how the master docs look once a developer has adopted it, e.g. "atoms/button.md lists a `large` size with its height token">
 - Jira: unfiled
 ```
-
-Keep building; don't stop the designer's task for it. Work around the bug as `PROTOTYPING.AGENTS.md` says (flag it, never patch a token or a generated file).
 
 ## File it
 
 At the next natural stopping point (after finishing the designer's request, never mid-task), file every entry still marked `Jira: unfiled`:
 
-1. Say in one line: "Filing 2 kit bugs to Jira: <title>, <title>." File them unless the designer says no to one; mark that one `Jira: dropped`.
+1. Ask with the question prompt (see Asking the designer in `PROTOTYPING.AGENTS.md`): "File these design-system edits to Jira?" Make it a multi-select with one option per entry (its title), all of them recommended. File the ones the designer keeps, and mark the rest `Jira: dropped`. If there are more than four, ask in batches of four.
 2. **Check for a duplicate** with `jira_search_issues`:
    `project = UX AND component = Agentic AND labels = prototyping-feedback AND statusCategory != Done AND text ~ "<two or three key words>"`.
-   If an open ticket describes the same problem, call `jira_add_comment` on it with this entry's details, and mark the entry `Jira: <KEY> (commented)`.
+   If an open ticket covers the same change, call `jira_add_comment` on it with this entry's details, and mark the entry `Jira: <KEY> (commented)`.
 3. **Otherwise create one ticket per entry** with `jira_create_issue`:
    - `projectKey`: `UX`
-   - `issueType`: `Bug` if something is broken, `Story` if something is missing
+   - `issueType`: `Bug` when the doc was wrong (Type `fix`), `Story` for anything that changes or adds to the design
    - `summary`: the entry's title
-   - `description`: the `DESIGN.md` version, then the entry's Files, Prototype (and its ticket key, if any), Prompt, Expected and Actual
+   - `description`: the `DESIGN.md` version, then the entry's Files, Change, Why and Prototype (with its ticket key, if any). Describe only the doc change.
    - `assignee`: `DE7924`
    - `components`: `["Agentic"]`
    - `labels`: `["prototyping-feedback"]`
    - no priority
+   - `customFields`, for a **Bug** only (Jira rejects a Bug without them; leave them off a Story):
+     ```json
+     {
+       "customfield_13003": { "value": "Dog food test" },
+       "customfield_13002": { "value": "Common" },
+       "customfield_13605": { "value": "Unknown" },
+       "customfield_13005": "<the entry's Acceptance criteria>"
+     }
+     ```
+     These are Source, OS Version, Release Found In and Acceptance Criteria. For a Story, put the acceptance criteria at the end of the description instead.
 
    Mark the entry `Jira: <KEY>`.
 4. Tell the designer the keys as links: `https://jira.zebra.com/browse/<KEY>`.

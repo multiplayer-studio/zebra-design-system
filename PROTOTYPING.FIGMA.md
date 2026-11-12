@@ -4,14 +4,14 @@ A finished prototype can be sent to a Figma file. Follow this whenever a prototy
 
 ## 1. Offer it
 
-When the designer is happy with a prototype, ask: "Do you want this prototype in Figma too?"
+When the designer is happy with a prototype, ask with the question prompt (see Asking the designer in `PROTOTYPING.AGENTS.md`): "Do you want this prototype in Figma too?" (**Yes** / **No**). Ask the questions below the same way.
 
 - If they say no, stop. Don't offer again for that prototype unless they ask.
 - If they say yes, continue below.
 
 ## 2. Ask where it should go
 
-Ask for the link to the Figma file where they want the design, e.g. `https://www.figma.com/design/<fileKey>/<name>`. If they want it on a particular page or inside a particular frame, they can copy the link to that page or frame (right-click → **Copy link to selection**), which adds `?node-id=…`.
+Ask for the link to the Figma file where they want the design (offer **Create a new file**; they paste a link in the prompt's text field), e.g. `https://www.figma.com/design/<fileKey>/<name>`. If they want it on a particular page or inside a particular frame, they can copy the link to that page or frame (right-click → **Copy link to selection**), which adds `?node-id=…`.
 
 - If they have no file, offer to create a new Figma Design file instead, and ask what to call it.
 - If the link isn't a `figma.com/design/` (or `figma.com/file/`) link, say so and ask again.

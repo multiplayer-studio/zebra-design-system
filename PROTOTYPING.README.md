@@ -31,6 +31,7 @@ Type what you want in the message box, in plain English. For example:
 > Build a settings page with sections for Notifications, Privacy and Account.
 
 Tips:
+- When Claude needs an answer from you, it pops up a question with buttons. Click one, or type your own answer in the box.
 - Say what the screen is for and who will use it. The more context, the better the result.
 - Ask for changes the same way: *"Make the button full width"* or *"Add a message for when there are no results."*
 - If your screen uses a common layout, Claude may offer to save it as a **template** so later prototypes can reuse it. Say yes or no. You can also ask for one yourself: *"Make a template from this prototype."* To share a template with your team, give the file (in the `templates` folder) to your project's developer. After that it comes with your project's kit.
