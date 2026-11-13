@@ -14,7 +14,7 @@ How a change to the Markdown docs flows through the generator scripts into token
 | Prototype starter | `prototypes/_starter/index.html` (tokens and component CSS inlined) and the showcase's marked blocks. |
 | Prototyping zips / production kit | Prototyping: `zebra-design-system-prototyping.zip` (generic, no templates), `zebra-design-system-prototyping-testing.zip` (generic, plus `PROTOTYPING.TESTING.md` and the scripts to regenerate after a doc edit) and one `zebra-design-system-prototyping-<project>.zip` per `templates/<project>/`, committed. Production: `build/zebra-design-system-production/`, built in CI and not committed. |
 | `consumers.json` | The consuming repos: `repo`, `branch`, `tenant`, `project`, and optionally `path` (where the repo keeps `design-system/`, e.g. `docs/design-system`). |
-| `tenants/` | One folder per consuming repo that differs from the version it has installed: `tenant.json`, `changes.md`, its `CHANGES.md` and changed files. No differences, no tenant. |
+| `tenants/` | One folder per consuming repo that differs from the version it has installed: `tenant.json`, `changelog.md`, its `CHANGES.md` and changed files. No differences, no tenant. |
 | Nightly sync | `.github/workflows/tenants-sync.yml` in this repo, running `tenants-sync.py` over `consumers.json`. |
 | Release workflow | `.github/workflows/release.yml` in this repo, run by hand: tags the version and runs `release.py` over `consumers.json`. |
 | Claude (consumer) | The agent in a consuming project, driven by its kit's `CLAUDE.md`. |
@@ -64,7 +64,7 @@ Prototyping:
 
 Production:
 1. Kit → Claude: the DS team adds the repo to `consumers.json`; the next release (flow 6) opens a **first install** PR with the whole production kit (in `design-system/`, or the entry's `path`), the project's own templates, and `CLAUDE.md` and `.claude/skills/design-system-init/` at the root. If the repo already has a `CLAUDE.md`, the PR only appends the `@<path>/AGENTS.md` import; the skill offers to merge in the rest of the design-system section. The developer merges it.
-2. Claude → Claude: `CLAUDE.md` imports `design-system/AGENTS.md`. Before any component, the agent runs the `design-system-init` skill while `LIBRARY.md` (a template with a React example, owned by the engineers) has blanks. The skill scans the repo, proposes each section for the developer to confirm (per platform, plus an Existing UI migration plan) and never changes a convention itself. It then starts `CHANGES.md` with the installed `version`, wires the tokens, scaffolds the library and builds a first component.
+2. Claude → Claude: `CLAUDE.md` imports `design-system/AGENTS.md`. Before any component, the agent runs the `design-system-init` skill while `LIBRARY.md` (a template with a React example, owned by the engineers) has blanks. The skill scans the repo, proposes each section for the developer to confirm (per platform, plus an Existing UI migration plan) and never changes a convention itself. It then checks `CHANGES.md` (shipped with the installed `version` filled in), wires the tokens, scaffolds the library and builds a first component.
 3. Claude → Output: generate the token file with the command in `LIBRARY.md`. Build components bottom-up in the library folder: each Properties table is the API, every state and size is implemented, and each gets a `LIBRARY.md` row. Screens start from `templates/` and use library components plus layout tokens only. Every local change goes docs, then code, then a `CHANGES.md` entry, which the nightly sync carries to the DS team (flow 5).
 
 ### 5. Nightly sync: consumer → tenant (production)
@@ -73,7 +73,7 @@ Production:
 3. Nightly sync → `tenants/<tenant>/`: only the differences are stored, each marked approved, rejected or needs review; decisions are kept while they still match. A repo in sync has no tenant. Separately, the repo's templates are mirrored into `templates/<project>/` (no review) and that project's prototyping zip is rebuilt. The workflow commits only when something changed.
 
 ### 6. Sprint: reconcile and release (production)
-1. `tenants/` → DS team: read the **Needs review** rows of each `changes.md`, the repo's `CHANGES.md` and its files.
+1. `tenants/` → DS team: read the **Needs review** rows of each `changelog.md`, the repo's `CHANGES.md` and its files.
 2. DS team → `tenants/`: **allow** a lasting difference (e.g. a project's theme primitives) or **reject** one, with `tenants-approve.py`.
 3. DS team → Master docs: **adopt** what everyone should have (generalised where it helps), then bump `version` (`BREAKING.YYMM.N`, e.g. `2.2611.0` → `2.2611.1`; see `CLAUDE.md`, Sprint reconcile).
 4. Master docs → scripts: the usual sync chain (flows 1–3).

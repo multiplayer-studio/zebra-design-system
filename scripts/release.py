@@ -64,7 +64,7 @@ def relocate(bundle, p, tmps):
 
 
 def new_install(repo, new, project, p, r):
-    for rel in sorted(files_of(new, p) | {f'{p}/LIBRARY.md', f'{p}/tokens.css'}):
+    for rel in sorted(files_of(new, p) | {f'{p}/LIBRARY.md', f'{p}/CHANGES.md', f'{p}/tokens.css'}):
         claude = os.path.join(repo, rel)
         if rel == 'CLAUDE.md' and os.path.exists(claude):
             text = open(claude).read()

@@ -1,6 +1,6 @@
 ---
 name: design-system-init
-description: Set up the Zebra Design System in this repo. Walks the developer through filling in LIBRARY.md (technology, library location, tokens, component API, conventions, workflow, existing UI), creates CHANGES.md, wires the tokens, scaffolds the component library and builds a first component. Use when the developer asks to set up, init or onboard the design system, or to fill in LIBRARY.md, and whenever LIBRARY.md still has <…> placeholders before a component is built. On a filled-in LIBRARY.md, use it to revise one section or add a platform.
+description: Set up the Zebra Design System in this repo. Walks the developer through filling in LIBRARY.md (technology, library location, tokens, component API, conventions, workflow, existing UI), starts CHANGES.md, wires the tokens, scaffolds the component library and builds a first component. Use when the developer asks to set up, init or onboard the design system, or to fill in LIBRARY.md, and whenever LIBRARY.md still has <…> placeholders before a component is built. On a filled-in LIBRARY.md, use it to revise one section or add a platform.
 ---
 
 # Set up the design system
@@ -95,15 +95,7 @@ After the developer confirms, write the table in §8 Existing UI. If there were 
 ## 5. Finish LIBRARY.md and start CHANGES.md
 
 1. Delete the "Example: React" section and the "To fill it in" line. Check that no `<…>` is left.
-2. Create `design-system/CHANGES.md` if it doesn't exist:
-
-   ```markdown
-   # CHANGES.md
-
-   Local changes to the design-system docs (see `AGENTS.md`, Changing the design system).
-
-   Installed version: <version from DESIGN.md>
-   ```
+2. Check `design-system/CHANGES.md` exists. It ships with the installed version filled in; if it's missing (repos installed before it shipped), create it with a `# CHANGES.md` heading, a line pointing to `AGENTS.md` (Changing the design system) and `Installed version: <version from the DESIGN.md frontmatter>`.
 
 ## 6. Wire the tokens
 

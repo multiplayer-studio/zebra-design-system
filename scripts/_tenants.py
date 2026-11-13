@@ -172,7 +172,7 @@ def save_tenant(name, tenant):
     os.makedirs(tdir, exist_ok=True)
     with open(os.path.join(tdir, 'tenant.json'), 'w') as f:
         json.dump(tenant, f, indent=2, sort_keys=True); f.write('\n')
-    with open(os.path.join(tdir, 'changes.md'), 'w') as f:
+    with open(os.path.join(tdir, 'changelog.md'), 'w') as f:
         f.write(render(name, tenant))
 
 

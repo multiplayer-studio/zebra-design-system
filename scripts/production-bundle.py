@@ -13,11 +13,13 @@ The folder holds zebra-design-system-production/, containing:
   DESIGN.md icons.json tokens.css            as-is
   AGENTS.md                                  PRODUCTION.AGENTS.md, renamed
   LIBRARY.md                                 PRODUCTION.LIBRARY.md, renamed: the template the project fills in
+  CHANGES.md                                 PRODUCTION.CHANGES.md, renamed, with the DESIGN.md version filled in: the project's log
   scripts/tokens-css.py scripts/icons-json.py   the generators AGENTS.md asks projects to keep
 """
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _bundle import entries, read_claude, write_dir
+from _bundle import ROOT, entries, read_claude, write_dir
+from _tenants import design_version
 
 write_dir(
     sys.argv[1] if len(sys.argv) > 1 else 'build', 'zebra-design-system-production/design-system',
@@ -26,4 +28,5 @@ write_dir(
             {'PRODUCTION.AGENTS.md': 'AGENTS.md', 'PRODUCTION.LIBRARY.md': 'LIBRARY.md'}) + [(None, 'templates')],
     read_claude('PRODUCTION.CLAUDE.md').replace('@PRODUCTION.AGENTS.md', '@design-system/AGENTS.md'),
     claude_dir='zebra-design-system-production',
+    extra={'CHANGES.md': read_claude('PRODUCTION.CHANGES.md').replace('<version from DESIGN.md>', design_version(ROOT))},
 )

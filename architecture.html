@@ -1072,7 +1072,7 @@ drift check (report only): 0 undefined, N unused component tokens`,
     design-system/
         atoms/ molecules/ organisms/ templates/   // templates: filled per project at release
         DESIGN.md icons.json tokens.css
-        AGENTS.md LIBRARY.md   // from PRODUCTION.AGENTS.md, PRODUCTION.LIBRARY.md
+        AGENTS.md LIBRARY.md CHANGES.md   // from PRODUCTION.AGENTS.md, .LIBRARY.md, .CHANGES.md
         scripts/tokens-css.py scripts/icons-json.py`,
         chipsPrototyping:["generated","commit with the docs"],
         chipsProduction:["built, not committed"] }
@@ -1207,6 +1207,7 @@ Wrote build/zebra-design-system-production/`,
         atoms/  molecules/  organisms/
         templates/          // this project's own, flat
         LIBRARY.md          // the template, to fill in
+        CHANGES.md          // log of local changes, version filled in
         scripts/tokens-css.py  scripts/icons-json.py`,
         chipsPrototyping:["no Python, Node or build tools"],
         chipsProduction:["first install PR","existing CLAUDE.md: import appended"] },
@@ -1216,7 +1217,7 @@ Wrote build/zebra-design-system-production/`,
         desc:"The agent loads the kit's <code>CLAUDE.md</code>, then <code>PROTOTYPING.AGENTS.md</code> with its Jira, GitHub and Figma add-ons, then the component docs it needs. It checks <code>templates/</code> first, and offers to save a reusable layout as a template with the <code>create-template</code> skill. In the testing kit, <code>PROTOTYPING.TESTING.md</code> also lets the designer edit the docs: Claude regenerates with the kit's scripts, logs each edit in <code>CHANGES.md</code> and files it to Jira. If the docs don't answer a question, it asks.",
         titleProduction:"Read the rules and set up",
         routeProduction:"CLAUDE.md → design-system/AGENTS.md",
-        descProduction:"<code>CLAUDE.md</code> imports <code>design-system/AGENTS.md</code>. Before writing any component, the agent checks both project files. <code>LIBRARY.md</code> ships as a template with a React example; the project's engineers own it and decide its conventions. While it has blanks, the agent runs the <code>design-system-init</code> skill: it scans the repo, proposes each section for the developer to confirm (per platform, plus an Existing UI migration plan), starts <code>CHANGES.md</code> with the installed <code>version</code>, wires the tokens, scaffolds the library and builds a first component. It never changes a convention itself.",
+        descProduction:"<code>CLAUDE.md</code> imports <code>design-system/AGENTS.md</code>. Before writing any component, the agent checks both project files. <code>LIBRARY.md</code> ships as a template with a React example; the project's engineers own it and decide its conventions. While it has blanks, the agent runs the <code>design-system-init</code> skill: it scans the repo, proposes each section for the developer to confirm (per platform, plus an Existing UI migration plan), checks <code>CHANGES.md</code> (shipped with the installed <code>version</code> filled in), wires the tokens, scaffolds the library and builds a first component. It never changes a convention itself.",
         payloadPrototyping:
 `@PROTOTYPING.AGENTS.md
     @PROTOTYPING.JIRA.md    // asks for a Jira ticket (zebra-jira MCP)
@@ -1228,7 +1229,7 @@ check templates/ first`,
 `design-system/LIBRARY.md   // filled in by the engineers
     technology, library folder, token file + regenerate command,
     token-name transform, Properties → API, conventions, workflow
-design-system/CHANGES.md   // created by the agent
+design-system/CHANGES.md   // template; the agent logs each change
     version: 2.2611.0`,
         chips:["tokens, never raw values"],
         chipsProduction:["LIBRARY.md: engineers own it","ask, don't guess"] },
@@ -1289,7 +1290,7 @@ acme-dock-app: in sync with 2.2611.0, templates updated`,
         payload:
 `tenants/acme-scanner-app/
     tenant.json   // base version, differences, approved / rejected
-    changes.md    // Needs review | Approved | Rejected
+    changelog.md    // Needs review | Approved | Rejected
     CHANGES.md    // their reasons
     files/DESIGN.md
 
@@ -1305,8 +1306,8 @@ acme-dock-app: in sync with 2.2611.0, templates updated`,
     steps: [
       { from:"tenants", to:"maintainer", color:"--c-vector",
         title:"Review the open tenants",
-        route:"changes.md · Needs review",
-        desc:"For each tenant, the DS team reads the <strong>Needs review</strong> rows of <code>changes.md</code>, the repo's reasons in <code>CHANGES.md</code>, and its files. Each difference is decided with <code>DESIGN.md</code> §9.",
+        route:"changelog.md · Needs review",
+        desc:"For each tenant, the DS team reads the <strong>Needs review</strong> rows of <code>changelog.md</code>, the repo's reasons in <code>CHANGES.md</code>, and its files. Each difference is decided with <code>DESIGN.md</code> §9.",
         payload:
 `## Needs review
 | DESIGN.md:primitives.color-pure-white | #ffffff | #fafafa |

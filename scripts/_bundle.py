@@ -49,8 +49,8 @@ def write_zip(out, prefix, items, claude, claude_dir=None, extra=None):
     print(f'Wrote {out}')
 
 
-def write_dir(out, prefix, items, claude, claude_dir=None):
-    """Same as write_zip, as plain files under out/ (relative to the repo root unless absolute).
+def write_dir(out, prefix, items, claude, claude_dir=None, extra=None):
+    """Same as write_zip (extra too), as plain files under out/ (relative to the repo root unless absolute).
     The bundle's top folder (the first part of prefix) is replaced, so deletions carry; the rest of out/ is left alone."""
     out = os.path.join(ROOT, out)
     shutil.rmtree(os.path.join(out, prefix.split('/')[0]), ignore_errors=True)
@@ -61,6 +61,10 @@ def write_dir(out, prefix, items, claude, claude_dir=None):
         else:
             os.makedirs(os.path.dirname(path), exist_ok=True)
             shutil.copyfile(src, path)
+    for dst, text in (extra or {}).items():
+        path = os.path.join(out, prefix, dst)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        open(path, 'w').write(text)
     path = os.path.join(out, claude_dir or prefix, 'CLAUDE.md')
     os.makedirs(os.path.dirname(path), exist_ok=True)
     open(path, 'w').write(claude)

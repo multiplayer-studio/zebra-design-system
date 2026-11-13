@@ -10,7 +10,7 @@ For each consumer:
     templates/<project>/ (the project owns them, no review), and that project's prototyping zip is rebuilt when they change;
   - differences: <path>/ is compared with the bundle of the version it has installed (scripts/_tenants.py).
     None: tenants/<tenant>/ is removed. Some: tenants/<tenant>/ holds tenant.json (differences + the DS team's
-    approved/rejected decisions, kept while they still match), changes.md, CHANGES.md and files/ (their changed files).
+    approved/rejected decisions, kept while they still match), changelog.md, CHANGES.md and files/ (their changed files).
 Tenants whose repo is no longer in consumers.json are removed. Exits 1 if any repo failed, after doing the rest.
 """
 import json, os, shutil, subprocess, sys, tempfile

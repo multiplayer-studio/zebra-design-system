@@ -20,7 +20,7 @@ design-system/
   scripts/         tokens-css.py and icons-json.py, the generators for the two files above
   AGENTS.md        this file
   LIBRARY.md       project-specific: a template the project's engineers fill in (see below)
-  CHANGES.md       project-specific: you create it (see below)
+  CHANGES.md       project-specific: the project's log of local changes (see below)
 ```
 
 The first PR also adds, at the project root, a `CLAUDE.md` that imports this file (`@<path>/AGENTS.md`, so it names where the folder is), and the `design-system-init` skill in `.claude/skills/design-system-init/`. If the project already has a `CLAUDE.md`, the PR only appends the `@<path>/AGENTS.md` import to it (unless it's already there) and says so: the skill offers to merge in the rest of the design-system section. All paths below are relative to the design-system folder. Don't move it yourself: ask the design-system team to change its `path` first, or the next release installs it again at the old path.
@@ -37,7 +37,7 @@ On first use, before writing any component, check both project-specific files ex
 - the UI components the project had before, each mapped to a doc with a plan (replace, extend doc or keep);
 - a table with one row per component built: `| Component | Platform | Doc | Code | Status |`.
 
-**`CHANGES.md`** is the log of every local change to the docs (see Changing the design system). Start it with the `version` from the `DESIGN.md` frontmatter that you copied in.
+**`CHANGES.md`** is the log of every local change to the docs (see Changing the design system). It ships with the installed `version` filled in; add an entry for every change.
 
 ## How the system is built
 
