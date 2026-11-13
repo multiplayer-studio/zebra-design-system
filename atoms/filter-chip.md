@@ -108,5 +108,5 @@ Hover, focus and dragged are driven by interaction, never set on a static layout
 - Disabled chips drop the border; check `--filter-chip-container-background-disabled` and `--filter-chip-label-foreground-disabled` against the surface.
 - The label (`--filter-chip-label-font`) is small; check it against the active palette as well as the inactive one.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a row of Zebra filter chips `--filter-chip-group-gap` apart: each a `--filter-chip-container-height`-tall white (`--filter-chip-container-background-enabled`) pill with a thin light-grey (`--filter-chip-container-border-color`) outline, `--filter-chip-container-padding-x` side padding and a short near-black label in `--filter-chip-label-font`. One or two chips are active: they invert to a near-black (`--filter-chip-active-container-background`) pill with white (`--filter-chip-active-label-foreground`) text and a `--filter-chip-icon-size` check-mark icon before the label. Hover is very light grey `--filter-chip-container-background-hover`; a disabled chip is flat light grey `--filter-chip-container-background-disabled` with grey text and no outline.

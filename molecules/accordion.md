@@ -116,5 +116,5 @@ Hover is driven by interaction, never set on a static layout. The last row never
 - With In card off there is no border or divider; check the list still reads as a list at rest.
 - Titles are heading-sized (`--accordion-title-font`); check the hierarchy on a screen that has real headings.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a full-width list with a thin light grey `--accordion-container-border-color` border and softly rounded outer corners (`--accordion-container-radius-rounded`), holding a stack of `--accordion-header-height` rows separated by thin light grey lines. Each row has a near-black `--accordion-title-font` IBM Plex Sans title `--accordion-header-padding` from the left and a small down-pointing caret at the right. The second row is open: its caret points up, and below it sits plain body content with `--accordion-content-padding` padding. A hovered row tints very faint grey (`--accordion-header-background-hover`). In the selectable version each row instead starts with a rounded ghost icon button holding the caret, and a selected row shows a check mark at its right edge.

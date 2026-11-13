@@ -61,5 +61,5 @@ The line has no padding or margin of its own. The space either side of it comes 
 - In code, expose it with the separator role (`<hr>`, or `role="separator"`), and add `aria-orientation="vertical"` to the vertical variant so assistive tech announces it correctly. A purely decorative line inside a component that already groups its content can be hidden from assistive tech instead.
 - `--divider-line-color` is a low-contrast neutral by design. Never rely on a divider alone to show that two things are separate; spacing and headings carry the grouping.
 
-## Stitch Prompt
+## Claude Prompt
 Separate content with a Zebra divider: a hairline `--divider-line-thickness` light grey line (`--divider-line-color`) with square ends (`--divider-line-radius`). A horizontal divider runs the full width of its container between stacked rows or sections; a vertical divider runs the full height of a row between side-by-side items or toolbar groups. It has no padding of its own; the surrounding layout gap spaces it.

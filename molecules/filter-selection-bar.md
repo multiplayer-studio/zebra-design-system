@@ -68,5 +68,5 @@ The bar fills the width of its parent; the chip row takes the remaining space an
 - Every chip, and the leading and trailing buttons, stays reachable by keyboard even when the row is scrolled; the row's padding keeps their focus rings visible.
 - Give the icon-only buttons accessible names ("Open filters", "Clear all filters"), and announce the updated result count politely.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a single horizontal row of filter chips under a page header, `--filter-selection-bar-chip-gap` apart and scrolling sideways off the right edge. Inactive chips are white (`--filter-chip-container-background-enabled`) pills with a thin grey border (`--filter-chip-container-border-color`) and a dark label; active chips are near-black (`--filter-chip-active-container-background`) with a white check mark and label. A subtle filter icon button sits at the start of the row and a clear-filters icon button at the end, `--filter-selection-bar-container-gap` from the chips.

@@ -94,5 +94,5 @@ Figma offers Progress as fixed samples because a variant can't hold a number; th
 - Indeterminate and Buffering convey that work continues through movement; pair them with text for anyone who can't perceive the animation.
 - The fill and track are separated by colour alone; check `--progress-bar-indicator-background` against `--progress-bar-track-background` on the surface the bar sits on.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a Zebra progress bar: a `--progress-bar-label-font` grey label (`--progress-bar-label-foreground`) above, then `--progress-bar-gap` below it a full-width `--progress-bar-track-height-small` light grey track (`--progress-bar-track-background`) with rounded ends, filled from the left in Zebra blue (`--progress-bar-indicator-background`) to the current value. The large size is `--progress-bar-track-height-large` tall. A sharp bar has square ends. Indeterminate progress is a short blue segment sweeping across; a buffering bar adds a faint darker band ahead of the blue fill.

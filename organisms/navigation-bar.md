@@ -109,5 +109,5 @@ Navigation item:
 - Only the top edge is drawn; on a surface close to `--navigation-bar-container-border-color` the boundary disappears.
 - Keep the Action Slot visually distinct; everything else in the bar navigates.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a mobile bottom navigation bar across the full width, with only a thin light grey top line (`--navigation-bar-container-border-color`) and no fill. Inside, four destinations, each `--navigation-bar-item-height` tall with `--navigation-bar-item-padding-x` side padding: a `--navigation-bar-item-icon-size` rounded icon over a `--navigation-bar-item-label-font` label, both near-black (`--navigation-bar-item-foreground`). The current destination's icon and label are blue (`--navigation-bar-item-foreground-active`) with no background or underline. One icon has a small red dot badge on its top-right corner.

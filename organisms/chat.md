@@ -108,5 +108,5 @@ Long words wrap inside the bubble rather than widening it.
 - Interactive parts (top app bar actions, message input, avatars that open a profile) bring their own touch targets and focus rings.
 - Outgoing text (`--chat-outgoing-bubble-foreground` on `--chat-outgoing-bubble-background`) and incoming text keep AA contrast in every mode.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a mobile chat screen: a top app bar with back arrow, a small avatar and the contact name. Below, a scrolling conversation where incoming messages are `--chat-incoming-bubble-background` bubbles with `--chat-bubble-radius-rounded` corners on the left with a small avatar, and outgoing messages are `--chat-outgoing-bubble-background` bubbles with `--chat-outgoing-bubble-foreground` text on the right. Bubbles have `--chat-bubble-padding-y` / `--chat-bubble-padding-x` padding and `--chat-bubble-font` text; under each, a tiny `--chat-timestamp-foreground` timestamp with a check icon and "Read". At the bottom, a message input with an attach icon, a text box and a microphone/send button.

@@ -133,5 +133,5 @@ Hover, pressed and focus are driven by interaction, never set on a static layout
 - Disabled is a visual state only; say why the action is unavailable nearby.
 - The icon's meaning must be clear without colour; pick a glyph that matches the action.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a Zebra floating action button: a `--fab-container-size-small` square with `--fab-container-radius-rounded-small` corners, solid blue `--fab-primary-container-background-enabled`, holding a centred `--fab-icon-size-small` white (`--fab-primary-icon-foreground`) rounded icon such as "add". A large version is `--fab-container-size-large` with a `--fab-icon-size-large` icon and `--fab-container-radius-rounded-large` corners; the full shape makes it a perfect circle. An optional short caption in `--fab-label-font` text sits `--fab-label-padding-top` below the button. The extended version is a `--fab-container-height-extended`-tall blue rounded rectangle (`--fab-container-radius-rounded-extended` corners) containing the icon followed by a `--fab-label-font-extended` white label. An inverse version is near-black `--fab-inverse-container-background-enabled` with light content; a secondary version is orange `--fab-secondary-container-background-enabled` with white content.

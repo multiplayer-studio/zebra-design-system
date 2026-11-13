@@ -89,5 +89,5 @@ The hint only ever shows the hint message, never an error; there is no error sta
 - The value field accepts typing and the arrow keys.
 - Associate the hint with the value field so it is announced.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a horizontal numeric stepper: a `--stepper-input-button-size-medium` square button with a thin light grey outline and a dark minus icon, then `--stepper-input-container-gap` later a `--stepper-input-field-width` wide white input box with a thin light grey border showing a number in `--stepper-input-value-font`, then a matching plus button. Corners are slightly rounded (`--stepper-input-button-radius-rounded`), or square when sharp. Below, `--stepper-input-hint-gap` down, a small grey hint line with an info icon. A disabled stepper has grey filled buttons and a grey field, and no hint.

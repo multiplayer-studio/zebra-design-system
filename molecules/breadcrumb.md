@@ -103,5 +103,5 @@ Collapsed and Open are Figma-only: Collapsed derives from maxItems and Open from
 - Hover is colour alone, so keyboard users rely on the focus ring (`--breadcrumb-focus-ring-width` `--breadcrumb-focus-ring-color`).
 - Label crumbs so they make sense read on their own.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a single-line breadcrumb trail in `--breadcrumb-crumb-label-font`: a small `--breadcrumb-crumb-icon-size` near-black location icon followed by "Sites", then small near-black chevron-right separators (`--breadcrumb-separator-foreground`) `--breadcrumb-container-gap` from each crumb, between mid-grey (`--breadcrumb-crumb-label-foreground-enabled`) labels "North America", "Warehouse 12", "Receiving", ending on the current page "Dock 4" in near-black (`--breadcrumb-crumb-label-foreground-current`). A hovered crumb turns link blue (`--breadcrumb-crumb-label-foreground-hover`). In a collapsed copy, a small square outlined button with a three-dot icon replaces the middle crumbs, and below it a compact white menu with a soft shadow lists the hidden levels.

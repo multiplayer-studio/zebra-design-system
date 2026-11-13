@@ -127,5 +127,5 @@ On narrow screens the presets panel stacks above the calendar and the divider mo
 - Today, selected and in-range are never shown by colour alone: today adds weight and an outline, selection is exposed with `aria-selected`.
 - The month title is a polite live region so paging months is announced.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a date input field with a calendar icon; below it, a white (`--date-picker-popover-background`) popover card with `--date-picker-popover-radius-rounded` corners and a soft `--date-picker-popover-shadow`. The popover shows a month header ("March 2026") in `--date-picker-header-font` with chevron left/right icon buttons, a row of weekday initials, and a 7-column grid of `--date-picker-day-size` day numbers. A selected start and end day are solid blue (`--date-picker-day-background-selected`) with white numbers (`--date-picker-day-foreground-selected`), and the days between have a pale blue (`--date-picker-day-background-in-range`) band. A left column lists presets like "Today", "Last 7 Days", "Last 30 Days". A footer holds an outline Cancel and a blue Apply button.

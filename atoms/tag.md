@@ -71,5 +71,5 @@ Width hugs the label. Measurements are provisional: there is no Figma source yet
 - `--tag-label-foreground` on `--tag-container-background` is a high-contrast pair in every mode.
 - The tag takes no focus and has no interactive states.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a tag: a `--tag-container-height`-tall light grey (`--tag-container-background`) label shaped like a luggage tag or arrow — a rectangle with `--tag-label-padding-x` side padding and `--tag-label-font` near-black `--tag-label-foreground` text, ending in a `--tag-point-width`-deep triangular point on the right (or left). With the rounded style the far corners have a `--tag-container-radius-rounded` radius and the arrow tip is gently rounded; the sharp style has square corners and a pointed tip.

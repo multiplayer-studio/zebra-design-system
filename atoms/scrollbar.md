@@ -72,5 +72,5 @@ Hover is driven by the pointer and never set on a static layout. Value (handle l
 - The resting handle is `--scrollbar-handle-background`, a deliberately quiet tone. Check it stays visible against every surface the region scrolls over.
 - Hover is the only state change and colour its only signal.
 
-## Stitch Prompt
+## Claude Prompt
 Give a scrolling list a Zebra scrollbar: a slim `--scrollbar-container-thickness` gutter along the right edge with `--scrollbar-container-padding` padding all round and an invisible track, holding a `--scrollbar-handle-thickness` wide pill-shaped (`--scrollbar-handle-radius`) mid-grey handle (`--scrollbar-handle-background`) whose length shows how much of the content is visible. On hover the gutter takes a faint grey tint (`--scrollbar-track-background-hover`) and the handle darkens (`--scrollbar-handle-background-hover`). Horizontal scrollbars lie along the bottom edge the same way.

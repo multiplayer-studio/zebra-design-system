@@ -126,5 +126,5 @@ Measurements are provisional: the component has no Figma source yet.
 - Selection is exposed with `aria-pressed`; overdue is written out in text with an icon.
 - The scrolling timeline is a focusable region, so it can be scrolled from the keyboard. Composed atoms and molecules keep their own accessibility.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a project timeline in a white (`--gantt-view-container-background`) panel with a thin `--gantt-view-container-border-color` border: a left column `--gantt-view-task-column-width` wide listing task names with small avatars, and to the right a horizontally scrolling grid with month and week labels across the top and faint vertical gridlines. Each task has a rounded horizontal bar `--gantt-view-bar-height` tall spanning its dates, partly filled in blue (`--gantt-view-bar-progress-background`) to show progress; a dark vertical line (`--gantt-view-today-marker-background`) marks today. A segmented control above toggles Day / Week / Month.

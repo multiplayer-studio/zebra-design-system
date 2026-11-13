@@ -95,5 +95,5 @@ Hover and focus are driven by interaction, never set on a static layout.
 - The label (`--input-chip-label-font`) carries the actual value; don't set it smaller.
 - The avatar is decorative here (the label names the person); hide it from assistive tech.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a Zebra input chip: a `--input-chip-container-height`-tall transparent pill with a thin `--input-chip-container-border-width` light-grey (`--input-chip-container-border-color`) outline and `--input-chip-container-padding-x` side padding, holding a tiny circular avatar with initials on the left, a short near-black (`--input-chip-label-foreground`) name in `--input-chip-label-font`, and a `--input-chip-icon-size` close "×" icon on the right, each `--input-chip-container-gap` apart. Hover tints it faintly grey (`--input-chip-container-background-hover`); a disabled chip is flat light grey `--input-chip-container-background-disabled` with grey text and no outline. Show several chips wrapped inside a text field, as message recipients.

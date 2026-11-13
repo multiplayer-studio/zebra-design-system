@@ -107,5 +107,5 @@ Focus is driven by interaction, never set on a static layout.
 - A disabled switch can't be toggled but stays readable; explain nearby why it's disabled when that isn't obvious.
 - Respect reduced motion: switch instantly, keep the colour change.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a Zebra switch: a `--switch-track-width` by `--switch-track-height` fully rounded pill track with `--switch-track-padding` padding and a white (`--switch-thumb-background`) `--switch-thumb-size` circular thumb. Off, the track is mid-grey `--switch-track-background-off` with the thumb on the left and a small white `--switch-icon-size` icon (e.g. microphone off) visible at the right end; on, the track is Zebra blue `--switch-track-background-on` with the thumb on the right and the "on" icon (e.g. microphone) visible at the left end. A plain version has no icons. Disabled uses a pale grey `--switch-track-background-disabled` track with a grey thumb. Focus adds a `--switch-focus-ring-width` blue border inside the track. A `--switch-label-font` label sits `--switch-label-gap` beside it.

@@ -12,7 +12,7 @@ The docs are the specification. Every colour, size, space, radius, shadow, font 
 
 | Path | What it is |
 |---|---|
-| [`DESIGN.md`](DESIGN.md) | The foundation. The **frontmatter** holds every raw value (the primitive colour ramps and size scale; semantic colours for light, dark, AAA and AAA dark; space, control sizes, radius, stroke, container, shadow, typography, motion, layout, opacity and component sizes). The **body** holds the rules: theme, token architecture, colour, typography, components, layout, notes for Stitch generation, the component index and governance. |
+| [`DESIGN.md`](DESIGN.md) | The foundation. The **frontmatter** holds every raw value (the primitive colour ramps and size scale; semantic colours for light, dark, AAA and AAA dark; space, control sizes, radius, stroke, container, shadow, typography, motion, layout, opacity and component sizes). The **body** holds the rules: theme, token architecture, colour, typography, components, layout, notes for Claude generation, the component index and governance. |
 | [`atoms/`](atoms/) | 25 basic components: Button, Icon Button, FAB, Icon, Checkbox, Radio Button, Switch, Slider, Avatar, Chips, Divider, Scrim, Tooltip, Progress Bar… |
 | [`molecules/`](molecules/) | 31 components built from atoms (and other molecules): inputs, select, search, card, tab bar, menu items, segmented control, banners, snackbar, pagination… |
 | [`organisms/`](organisms/) | 19 larger patterns: dialog, bottom sheet, lightbox, global header, top app bar, navigation bar, rail and drawer, stepper, table… |
@@ -82,7 +82,7 @@ tokens:
 ---
 ```
 
-The frontmatter is followed by these sections: **Anatomy, Variants, States, Spacing & Sizing, Properties, Usage, Accessibility, Stitch Prompt**.
+The frontmatter is followed by these sections: **Anatomy, Variants, States, Spacing & Sizing, Properties, Usage, Accessibility, Claude Prompt**.
 
 - **Composites don't restate their children.** A molecule names the child, variant and size it uses (e.g. "Icon Button, outline-subtle, medium"). The child's own tokens style it. The composite's tokens only cover its own parts and deliberate context overrides.
 - **Draft components** (`status: draft`, marked † in the index) have their purpose, anatomy and composition defined, but not their measurements. They include Date Picker, Chat and Dial Pad; see the index for the full list. Any measurements used for them are placeholders and must be called out as such.

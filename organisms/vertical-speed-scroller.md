@@ -87,5 +87,5 @@ Measurements are provisional: the component has no Figma source yet.
 - The active letter changes weight as well as colour, and the bubble repeats it, so state is never colour alone.
 - The list is a focusable region that scrolls from the keyboard; list rows keep their own accessibility.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a mobile contacts list with letter section headers ("A", "B"…) on a pale grey band (`--vertical-speed-scroller-section-header-background`) and contact rows with avatars. Along the right edge, a slim `--vertical-speed-scroller-index-width` column of small grey letters A to Z (`--vertical-speed-scroller-index-label-foreground`); the currently touched letter is highlighted in blue (`--vertical-speed-scroller-index-label-foreground-pressed`) and shown enlarged in a round blue bubble (`--vertical-speed-scroller-bubble-background`, white letter) beside the rail.

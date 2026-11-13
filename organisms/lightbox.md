@@ -142,5 +142,5 @@ Open in new and download disable themselves when the item has no URL. With a sin
 - The file sheet names the file and says "No preview for this file", so an unpreviewable item is still announced.
 - A frame slid out of view pauses its video, so sound never continues behind another frame. Neighbouring frames stay mounted, so pause them explicitly.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a `--lightbox-container-width`-wide white preview panel (`--lightbox-container-background`) with a thin light grey `--lightbox-container-border-color` border, `--lightbox-container-radius-rounded` corners and a soft large shadow, over a dark translucent scrim. At the top a toolbar shows the file name in `--lightbox-name-font`, a grey "2 of 5" counter in `--lightbox-counter-font`, and three plain icon buttons at the right: open in new window, download and close. Below, a pale grey stage (`--lightbox-stage-background`, `--lightbox-stage-radius-rounded` corners) shows a photo centred at its own ratio, with two dark square arrow buttons floating at its left and right edges, vertically centred. For a file with no preview, the stage instead shows a white document sheet with a folded corner and a grey document icon above the grey text "No preview for this file".

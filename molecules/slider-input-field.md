@@ -94,5 +94,5 @@ The field fills its container; only the slider column stretches. Measurements ar
 - Invalid is announced only through the message: associate it with the box and set its invalid state.
 - Disabled dims every part; say why the value is locked in nearby text.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a horizontal control: an optional small `--slider-input-field-label-font` label above; a Zebra slider with a near-black fill and thumb on a light grey track; under its ends, small grey "0" and "100" labels (`--slider-input-field-range-label-foreground`). `--slider-input-field-gap` to the right sits a `--slider-input-field-input-width` by `--slider-input-field-input-height` white box with a thin light grey border (`--slider-input-field-input-border-color`) and `--slider-input-field-input-radius` corners, showing the value "50" centred in `--slider-input-field-input-font` near-black text.

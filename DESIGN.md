@@ -1054,7 +1054,7 @@ These cover push-to-talk and voice workflows: round comms buttons (call, video, 
 
 ---
 
-## 7. Design System Notes for Stitch Generation
+## 7. Design System Notes for Claude Generation
 
 ### Language to Use
 "Clean enterprise UI on a crisp white canvas with cool blue-grey neutrals; graphite text in IBM Plex Sans; a single vivid Zebra-blue accent for primary actions; lightly rounded rectangles with hairline grey borders; soft shadows only on floating layers; strict 4px grid; calm, functional, accessible; status shown with tinted surfaces plus coloured icon and label."
@@ -1069,7 +1069,7 @@ Resolve each token from the frontmatter `colors` group (then its primitive):
 - Evergreen `--color-status-success-default` · Amber Ochre `--color-status-warning-default` · Alarm Red `--color-status-error-default` · Electric Blue `--color-status-info-default`
 
 ### Component Prompts
-Substitute the frontmatter values when sending these prompts to Stitch.
+Substitute the frontmatter values when sending these prompts to Claude.
 1. *"A dark global header bar on `--color-fill-default` (dark mode). On the left: the Zebra logo, the platform name and four text menu items in `--color-ink-high` `--type-label-medium`. On the right: a search field, three icon buttons, and a small circular avatar with initials and the user's name."*
 2. *"A form card on `--color-fill-default` with a `--stroke-thin` `--color-line-default` border, `--radius-container` corners and `--space-card` padding. A 'Site details' title in `--type-title-large` `--color-ink-high`, then three stacked medium inputs, each with a label above, an outlined field and a `--type-body-xsmall` `--color-ink-medium` hint below. One field shows the error state with a `--color-status-error-default` border and hint. Footer: a right-aligned 'Cancel' outline button and a 'Save' solid `--color-brand-primary-default` button."*
 3. *"A dense task list. Each row has a medium avatar on the left, a `--type-title-medium` title and a `--type-body-small` `--color-ink-medium` subtitle. On the right of each row: a priority pill and a chevron. Rows are separated by `--color-line-subtle` dividers and hover to `--color-fill-faint`."*
@@ -1085,7 +1085,7 @@ Substitute the frontmatter values when sending these prompts to Stitch.
 
 ## 8. Component Index (atomic)
 
-Each file contains a `tokens:` block (its component tokens, see §2) followed by anatomy, variants, states, spacing & sizing, properties, usage, accessibility and a Stitch prompt. Files marked † are **draft** (`status: draft`): their purpose, anatomy and composition are defined, but their measurements are still to be confirmed. Most drafts have no Figma source yet; the rest have only a thin one.
+Each file contains a `tokens:` block (its component tokens, see §2) followed by anatomy, variants, states, spacing & sizing, properties, usage, accessibility and a Claude prompt. Files marked † are **draft** (`status: draft`): their purpose, anatomy and composition are defined, but their measurements are still to be confirmed. Most drafts have no Figma source yet; the rest have only a thin one.
 
 ### Atoms: [`atoms/`](atoms/)
 | Group | Components |

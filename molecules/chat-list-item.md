@@ -92,5 +92,5 @@ The row fills the list's width; the text column takes the remaining space and tr
 - Status icons (read, delivered, muted) and presence need a text equivalent, e.g. visually hidden text.
 - The focus ring (`--chat-list-item-focus-ring-width` `--chat-list-item-focus-ring-color`) sits inside the row so neighbouring rows don't clip it.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a white full-width chat row with `--chat-list-item-row-padding-x` side padding: a circular avatar with a small status dot on the left, then a near-black contact name (`--chat-list-item-name-font-unread` when unread) with a single-line grey `--chat-list-item-preview-font` message preview below it, and on the right a small grey `--chat-list-item-meta-font` timestamp above a small red unread-count badge. Separate rows with a thin light grey `--chat-list-item-divider-color` line.

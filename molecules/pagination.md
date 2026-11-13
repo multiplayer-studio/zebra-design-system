@@ -110,5 +110,5 @@ Hover, pressed and focused are driven by interaction. The page range shown (whic
 - Give each page indicator a name such as "Page 3".
 - Keyboard focus shows the `--pagination-focus-ring-width` `--pagination-focus-ring-color` ring on every control and indicator.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a horizontal pagination bar of `--pagination-item-size` white squares (`--pagination-item-background-enabled`) `--pagination-container-gap` apart, with `--pagination-item-radius-rounded` corners: first-page and chevron-left icon buttons in near-black (`--pagination-item-foreground-enabled`), page numbers "1", "2", "3" in `--pagination-indicator-font`, with "2" selected as a near-black square (`--pagination-item-background-selected`) holding white text (`--pagination-item-foreground-selected`), then a three-dot overflow square, "10", and chevron-right and last-page icons. Show a second bar with a `--pagination-outline-item-border-width` light grey outline (`--pagination-outline-item-border-color-enabled`) on every square, with the first two controls disabled on light grey (`--pagination-item-background-disabled`) with grey icons.

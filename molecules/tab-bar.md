@@ -103,5 +103,5 @@ Hover and focus are driven by interaction. Each tab is set on itself; the bar ex
 - Tab labels come from the implementation and must be real words.
 - `--tab-bar-item-height` meets the minimum touch target.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a white (`--tab-bar-container-background`) horizontal tab bar `--tab-bar-item-height` tall with four equal-width tabs, each with `--tab-bar-item-padding-x` side padding, a small `--tab-bar-icon-size` icon and a `--tab-bar-label-font` label `--tab-bar-item-gap` apart: "Overview", "Items", "History", "Invoices". Inactive tabs are mid grey (`--tab-bar-item-label-foreground-enabled`); the selected tab has near-black text (`--tab-bar-item-label-foreground-selected`) and a `--tab-bar-indicator-width` Zebra blue underline (`--tab-bar-indicator-color-selected`) along its bottom edge; a disabled tab is light grey (`--tab-bar-item-label-foreground-disabled`). One tab shows a small red notification dot after its label.

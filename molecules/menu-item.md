@@ -123,5 +123,5 @@ Hover, focus and selected focus are driven by interaction, never set on a static
 - The leading icon decorates or repeats the label and is hidden from assistive tech; the label must stand on its own.
 - `--menu-item-container-height` meets the minimum touch target.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a menu row `--menu-item-container-height` tall that fills its panel's width, with `--menu-item-container-padding-x` side padding: a small `--menu-item-icon-size` near-black (`--menu-item-icon-foreground`) icon, then `--menu-item-container-gap` later a `--menu-item-label-font` near-black (`--menu-item-label-foreground`) label such as "Batch scan", and an optional chevron-right at the trailing edge. The row has no background at rest, a faint grey wash (`--menu-item-container-background-hover`) on hover and a pale blue tint (`--menu-item-container-background-selected`) when selected; keyboard focus draws a thin `--menu-item-focus-ring-color` ring inside its edges. Disabled rows have grey text (`--menu-item-label-foreground-disabled`). Checkbox and radio rows replace the icon with a real checkbox or radio control flush to the left edge. Corners are softly rounded (`--menu-item-container-radius-rounded`), or square in a sharp menu.

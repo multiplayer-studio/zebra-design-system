@@ -94,5 +94,5 @@ Width fills the screen (Figma draws a 390 phone frame). A layout that assumes on
 - On the contextual types the count is the only report of the selection, so announce it when it changes (a polite live region).
 - The title colour isn't bound in Figma; this system binds it to `--top-app-bar-title-foreground` so it follows every mode.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a white mobile top bar (`--top-app-bar-container-background`) with `--top-app-bar-container-padding-y` vertical and `--top-app-bar-container-padding-x` horizontal padding and softly rounded corners (`--top-app-bar-container-radius-rounded`). On the left a small borderless hamburger icon button, then `--top-app-bar-leading-gap` later a small round photo avatar and the screen title "Deliveries" in `--top-app-bar-title-font` near-black (`--top-app-bar-title-foreground`). On the right, three small borderless icon buttons (globe, heart, vertical dots). For the extended version, keep the icons on the top row and place the title on its own row `--top-app-bar-extended-container-gap` below; for centered, centre a smaller title (`--top-app-bar-centered-title-font`) between a hamburger and one icon; for contextual, show a close icon, "2 items" and four action icons.

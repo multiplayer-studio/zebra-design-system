@@ -95,5 +95,5 @@ Hover and focus are driven by interaction, never set on a static layout.
 - Focus is the only visual record of keyboard interaction: a `--radio-button-focus-ring-width` `--radio-button-focus-ring-color` ring around the control.
 - Disabled is visual only; say why the option is unavailable in nearby text.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a Zebra radio button: a `--radio-button-ring-size-large` circle with a `--radio-button-ring-border-width` mid-grey border (`--radio-button-ring-border-color-enabled`) and no fill, centred in an invisible `--radio-button-target-size` target, with a `--radio-button-label-font` IBM Plex Sans label in near-black `--radio-button-label-foreground` directly beside the target. When checked the ring turns Zebra blue (`--radio-button-ring-border-color-selected`) and a solid blue `--radio-button-dot-size-large` dot (`--radio-button-dot-background-selected`) sits in its centre. Hover darkens the ring to `--radio-button-ring-border-color-hover`, or to `--radio-button-ring-border-color-selected-hover` when checked. Disabled radios have a light grey ring (`--radio-button-ring-border-color-disabled`) and grey label text (`--radio-button-label-foreground-disabled`). The medium size is a smaller `--radio-button-ring-size-medium` ring with a `--radio-button-dot-size-medium` dot. Stack options vertically under a shared group label.

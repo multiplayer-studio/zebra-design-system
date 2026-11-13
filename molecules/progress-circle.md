@@ -100,5 +100,5 @@ Always square; never hugs its content.
 - The arc and track are separated by colour alone; check `--progress-circle-arc-color` against `--progress-circle-track-color` on the surface behind them.
 - At xxsmall the fixed stroke is heavy for the diameter; check it still reads as a ring.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a Zebra progress circle: a `--progress-circle-size-medium` ring with a `--progress-circle-stroke-width` light grey track (`--progress-circle-track-color`) and a blue arc (`--progress-circle-arc-color`) with round caps, starting at the top and sweeping clockwise about three quarters of the way. An upload version shows a small "75%" in `--progress-circle-percentage-font` near-black text at the centre; with Stop on, the percentage is replaced by a round, faintly tinted cancel button holding a close icon. Smaller rings go down to `--progress-circle-size-xxsmall`.

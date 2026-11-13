@@ -111,5 +111,5 @@ Hover and selected are driven by interaction, never set on a static layout. The 
 - The thumb is small: give it a `--slider-thumb-touch-target-size` hit area on touch UIs.
 - Disabled is carried by colour alone; say why the value can't be changed in nearby text.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a Zebra slider: a thin `--slider-track-height` light grey track (`--slider-track-background`) with slightly rounded ends (`--slider-track-radius-rounded`), filled near-black (`--slider-active-track-background-default`) from the left up to a `--slider-thumb-size` near-black circular thumb (`--slider-thumb-background-default`). Tiny white `--slider-step-dot-size` dots mark the steps along the track. While dragged, the fill and thumb turn blue (`--slider-active-track-background-selected`) and the thumb grows to `--slider-thumb-size-active` with a blue focus ring. A range slider has two thumbs with the fill between them. A sharp slider has a square thumb and square track ends. Disabled sliders turn the fill and thumb grey (`--slider-active-track-background-disabled`).

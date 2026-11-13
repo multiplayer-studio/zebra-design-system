@@ -70,5 +70,5 @@ Set the bar to fill its container: Figma ships it at a fixed width, so a placed 
 - The bar is transparent (`--screen-header-bar-container-background`); check the title and the action against whatever screen sits behind it.
 - With the leading icon off on a pushed screen, something else must provide a way back.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a transparent header strip at the top of a screen, `--screen-header-bar-container-padding-x` side padding and `--screen-header-bar-container-padding-y` top and bottom. On the left a `--screen-header-bar-icon-size` left chevron in near-black, then the screen title "Add Subscribers" in `--screen-header-bar-title-font` near-black (`--screen-header-bar-title-foreground`) filling the row; on the far right a single medium blue primary button "Save". Everything vertically centred, no border or shadow.

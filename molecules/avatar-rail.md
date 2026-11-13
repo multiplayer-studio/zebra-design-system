@@ -91,5 +91,5 @@ In code, Max sets how many avatars show. Everyone past Max is counted into the o
 - The rail turns presence off on every avatar, so nothing can rely on presence here.
 - Nothing in the rail is focusable or announces itself. Where people join or leave while someone is on the page, the surrounding structure has to report it.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a Zebra avatar rail: four `--avatar-container-size-medium` circular avatars in a row, each overlapping the next by a quarter of its diameter, separated by a crisp white stroke (`--avatar-rail-avatar-border-color`, `--avatar-rail-avatar-border-width`). Some show photos and some show white initials on vivid swatches (purple `--avatar-purple-container-background`, blue, teal, coral), with no rings or badges. The first avatar sits on top of the second, and so on along the row. The rail ends with a same-sized overflow circle in very pale grey-blue (`--avatar-rail-overflow-background`) with a thin light-grey outline (`--avatar-rail-overflow-border-color`) and a dark "+2" (`--avatar-rail-overflow-label-foreground`) in medium-weight `--avatar-rail-overflow-label-font`.

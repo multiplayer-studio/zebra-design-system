@@ -130,5 +130,5 @@ Show Logo exists in Figma but nothing is bound to it; the Logo slot is what vari
 - Focus is the only state that draws a border on the account control (`--global-header-profile-focus-ring-color`), so never suppress it.
 - Locked to Dark, the header keeps its contrast whatever the page does; check custom logos against `--global-header-container-background` in Dark and AAA Dark.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a full-width near-black application header (`--global-header-container-background` in Dark mode) with `--global-header-container-padding` padding and softly rounded corners (`--global-header-container-radius-rounded`), with every control inside rounded too. On the left: a white hamburger icon button, a small white Zebra logo, and the product name "Fulfilment Hub" in `--global-header-platform-name-font` white (`--global-header-platform-name-foreground`). In the middle, right-aligned: a dark search field with a thin grey outline, at most `--global-header-search-max-width` wide, and two small white icon buttons (alerts, help). On the right: an account control with the user's name in `--global-header-profile-label-font`, a tiny round avatar and a down chevron, then a grid app-switcher icon. Everything is vertically centred in one row a medium control tall.

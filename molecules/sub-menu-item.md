@@ -119,5 +119,5 @@ Hover, active and focus are driven by interaction, never set on a static layout.
 - Nested rows use a 12px type style (`--sub-menu-item-nested-label-font`); check it against your minimum readable size.
 - A count badge needs a text equivalent in the row's accessible name.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a navigation row `--sub-menu-item-container-min-height` tall that fills its column, with `--sub-menu-item-container-radius-rounded` corners and `--sub-menu-item-container-padding-x` horizontal padding. On the left a `--sub-menu-item-icon-size` rounded icon in near-black (`--sub-menu-item-label-foreground`), then the label in `--sub-menu-item-label-font`; on the right an optional small red count badge and a small chevron caret. Hovering adds a faint grey wash (`--sub-menu-item-container-background-hover`); the selected row has a pale blue tint (`--sub-menu-item-container-background-selected`) with blue text and icon (`--sub-menu-item-label-foreground-selected`). A nested row is indented to `--sub-menu-item-nested-container-padding-start` with smaller grey text (`--sub-menu-item-nested-label-font`, `--sub-menu-item-nested-label-foreground`). An open group shows its header with a slightly darker wash and the nested rows on a light grey panel (`--sub-menu-item-group-background`) below.

@@ -65,5 +65,5 @@ The hint hugs its content and is smaller than the field's own text, so the value
 - Error is never colour alone: the wording carries it too, and in code the `error` glyph.
 - The icon is decorative; hide it from assistive technology.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a field hint line: a `--input-hint-icon-size` info icon in near-black (`--input-hint-icon-foreground`) followed `--input-hint-gap` later by small grey `--input-hint-font` text (`--input-hint-foreground`). The error version swaps in an error icon and turns both icon and text red (`--input-hint-foreground-error`); the disabled version turns them grey (`--input-hint-foreground-disabled`).

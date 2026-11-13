@@ -109,5 +109,5 @@ The pad is three keys wide plus gaps and padding; the actions sit in the same th
 - The number display is a status region, so screen readers hear each digit as it's entered.
 - Composed controls keep their own accessibility (comms buttons, FAB and icon button targets and focus rings). Never rely on colour alone: Call and Security differ in icon and label too.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a mobile dial pad: the dialled number in large `--dial-pad-number-font` text at the top with a backspace icon to its right, then a 4-row by 3-column grid of `--dial-pad-key-size` keys with `--dial-pad-key-radius-rounded` corners, a white (`--dial-pad-key-background-enabled`) fill and a thin `--dial-pad-key-border-color` border, showing digits 1–9, *, 0, # with small `--dial-pad-key-sublabel-foreground` letter groups beneath the digits. Under the grid, a large green circular call button in the centre and a distinct red security quick-dial button beside it, each labelled underneath.

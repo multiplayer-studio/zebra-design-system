@@ -77,5 +77,5 @@ In the AAA modes the component is always sharp (DESIGN.md §5).
 - When collapsed, the title is gone, so expose the name another way (the avatar's accessible name or a tooltip).
 - Check `--navigation-header-title-foreground` against the parent surface in every mode the parent can render in.
 
-## Stitch Prompt
+## Claude Prompt
 Draw the top of a navigation panel: a row with `--navigation-header-container-padding-x` side padding holding a small round avatar, the user's name in `--navigation-header-title-font` near-black (`--navigation-header-title-foreground`) `--navigation-header-container-gap` to its right, and a small borderless settings icon button at the far right. In the logo version, replace the avatar with a `--navigation-header-logo-height` tall product mark and show the product name. Collapsed, only the avatar remains, centred.

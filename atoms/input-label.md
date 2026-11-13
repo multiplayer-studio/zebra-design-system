@@ -89,5 +89,5 @@ Width hugs the text. Measurements are provisional: the Figma section is thin, th
 - The information icon has no text. Where it opens an explanation it is a control and needs its own name and a target of at least the Icon's framed size.
 - The required marker keeps its colour when disabled; check the whole stack at one state.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a form field label: a field name in `--input-label-name-font` near-black (`--input-label-name-foreground`), optionally followed `--input-label-row-gap` later by a `--input-label-icon-size` info icon and a red asterisk (`--input-label-required-foreground`) for required fields, or the word "(optional)" in smaller grey `--input-label-optional-font` text. An optional grey description line sits `--input-label-gap` below. Disabled labels turn grey (`--input-label-name-foreground-disabled`).

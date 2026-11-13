@@ -131,5 +131,5 @@ Drawn 360 wide; in a list the item fills the list width. Height hugs the content
 - The body truncates, so make the full message reachable another way (open the item, or expose the full text to assistive tech).
 - The border sits at zero width so a high-contrast theme can raise `--notification-item-container-border-width`; by default an entry is bounded by its fill and spacing.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a Zebra notification entry `--notification-item-container-padding-y` / `--notification-item-container-padding-x` padded with `--notification-item-container-radius` corners on a white fill (`--notification-item-container-background-unread`). On the left a `--notification-item-visual-size` circular avatar. To its right: a header row with a small blue unread dot, a `--notification-item-title-font-unread` near-black title, and a `--notification-item-timestamp-font` grey timestamp (`--notification-item-timestamp-foreground`) with a small red clock badge; beneath it one line of `--notification-item-body-font` message text; then a blue (`--notification-item-attachment-foreground`) paperclip icon and filename; then a full-width small primary button. Read entries have no fill, no dot and a regular-weight title. A grouped unread entry shows a thin light-blue bar (`--notification-item-group-bar-background`) along its bottom edge.

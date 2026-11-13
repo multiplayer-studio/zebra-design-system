@@ -97,5 +97,5 @@ The zone fills the width of its parent; its height hugs the content.
 - The error state changes the caption text as well as its colour (`--file-upload-caption-foreground-error`), so it never relies on colour alone.
 - Give the hidden file input an accessible name through the Select Files button that opens it.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a wide upload area with a `--file-upload-container-border-width` dashed `--file-upload-container-border-color-enabled` border and `--file-upload-container-radius-rounded` corners, `--file-upload-container-padding` padding, contents centred in a column with `--file-upload-container-gap` gaps. Show a `--file-upload-headline-font` headline like "Drop files here", a small `--file-upload-caption-foreground` "or", a solid primary (`--button-primary-container-background-enabled`) "Select Files" button with `--button-container-radius-rounded` corners, and below it a `--file-upload-caption-font` `--file-upload-caption-foreground` caption "Supports: JPG, JPEG2000, PNG. Max file size 100mb". In the drag-over state, the border turns `--file-upload-container-border-color-active` and the fill becomes `--file-upload-container-background-active`. Uploaded files appear as rows below the area.

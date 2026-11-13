@@ -85,5 +85,5 @@ Only the header is frozen. A standard drawer scrolls with the page; a modal draw
 - The selected row carries `aria-current="page"`; group headers report `aria-expanded`.
 - Every icon-only control, the close button included, needs an accessible name. The menu button reports `aria-expanded` and `aria-controls`.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a tall white navigation drawer (`--navigation-drawer-container-background-modal`) `--navigation-drawer-container-width` wide on the left edge of a phone or tablet screen, over a dark translucent scrim that dims the page, with a large soft shadow (`--navigation-drawer-container-shadow-modal`) and square corners. Inside, `--navigation-drawer-container-padding-x` side padding: at the top a small product logo with the product name and a close icon at the far right; below it a full-width blue primary button "New task"; then a list of navigation rows, each a small icon and a label, `--navigation-drawer-list-gap` apart, one row selected with a pale blue tint and blue text; a thin divider; then Settings and Help rows at the bottom.

@@ -106,5 +106,5 @@ In the AAA modes the component is always sharp (DESIGN.md §5).
 - The close target is `--upload-item-close-size`, which meets the recommended touch-target size; its focus ring is `--upload-item-focus-ring-width` `--upload-item-focus-ring-color`.
 - Announce completion and failure politely (e.g. an `aria-live` region on the list), so screen-reader users learn the result without moving focus.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a `--upload-item-container-min-height`-tall white (`--upload-item-default-container-background`) file row with `--upload-item-container-padding-x` side padding: a small file thumbnail on the left, then a stacked `--upload-item-title-font` near-black file name and a `--upload-item-subtitle-font` grey (`--upload-item-default-subtitle-foreground`) subtitle "4.6MB of 5.7MB", and on the right a `--upload-item-progress-size` circular upload progress ring. Show a completed version with a pale green `--upload-item-completed-container-background` background, green subtitle and green check-circle icon plus a close (x) icon, and an error version with a pale red `--upload-item-error-container-background` background, red subtitle and red error icon plus a close icon.

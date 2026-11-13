@@ -137,5 +137,5 @@ Hover, focus, selected and typing are driven by interaction, never set on a stat
 - The clear control appears only while typing; announce the change or keep it reachable.
 - The placeholder uses `--search-placeholder-foreground`, the lowest-contrast text in the field; don't rely on it to carry meaning.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a Zebra search field `--search-container-width` wide and `--search-container-height-large` tall with a white fill (`--search-container-background-enabled`), a thin `--search-container-border-width` light grey border (`--search-container-border-color-enabled`) and softly rounded corners (`--search-container-radius-rounded`), or a full pill shape (`--search-container-radius-full`). Inside, `--search-container-padding-x` from the left, a `--search-icon-size` near-black magnifier icon, then grey placeholder text "Search" in `--search-value-font-large` (`--search-placeholder-foreground`), and at the right a microphone icon. While typing, a circular clear (x) icon, a thin vertical divider and the microphone sit together at the right, and the border turns blue (`--search-container-border-color-typing`). On focus the border thickens to `--search-container-border-width-focused`. A ghost version has no border; a gradient version has a purple-to-navy gradient border.

@@ -62,5 +62,5 @@ The scrim has no motion of its own: it enters and leaves with its owner, and in 
 - Nothing that must stay readable may rely on showing through the barrier.
 - `--scrim-barrier-background-scrim` follows the mode, so the barrier keeps its role in light, dark and AAA.
 
-## Stitch Prompt
+## Claude Prompt
 Behind any modal panel, cover the whole screen with a Zebra scrim: a flat, edge-to-edge near-black wash at about 60% opacity (`--scrim-barrier-background-scrim`) with no corners, border or shadow, so the page underneath is still visible but clearly dimmed and unavailable. The raised panel (dialog, sheet, drawer or lightbox) sits on top of it and carries its own shadow. Never place text or buttons on the scrim itself.

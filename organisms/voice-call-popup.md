@@ -82,5 +82,5 @@ The surface fills the width it is given (a sheet on handhelds, a fixed card on d
 - Toggles expose their state with `aria-pressed` and change their label ("Mute" → "Muted").
 - All controls are composed components and keep their own accessibility (comms button and icon button touch targets and focus rings); never rely on colour alone.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a floating white (`--voice-call-popup-container-background`) call card with a `--voice-call-popup-container-shadow` shadow, a thin `--voice-call-popup-container-border-color` border and `--voice-call-popup-container-radius-rounded` corners over a dimmed (`--voice-call-popup-scrim-background`) screen. It shows a large round avatar, the caller's name in `--voice-call-popup-title-font`, "Incoming call" in small `--voice-call-popup-subtitle-foreground` text with a phone icon, and a row of round controls with labels underneath: a red decline button and a green answer button with phone icons.

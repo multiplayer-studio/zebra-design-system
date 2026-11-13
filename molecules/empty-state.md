@@ -81,5 +81,5 @@ In the AAA modes the component is always sharp (DESIGN.md §5).
 - `--empty-state-description-foreground` on the page background meets AA for body text.
 - Button labels must make sense on their own ("Clear filters", not "OK").
 
-## Stitch Prompt
+## Claude Prompt
 Draw a centred empty-state block no wider than `--empty-state-container-max-width`: a `--empty-state-illustration-height`-tall line illustration (e.g. a disconnected server), then a `--empty-state-title-font` near-black heading "No results found", `--empty-state-title-margin-bottom` below it a `--empty-state-description-font` grey (`--empty-state-description-foreground`) centred description, and `--empty-state-actions-margin-top` below that two buttons side by side `--empty-state-actions-gap` apart — a secondary outline button and a primary blue button, both with gently rounded corners.

@@ -89,5 +89,5 @@ Flavour and shape of the items are fixed by the group. Hover, pressed and focus 
 - Icon-only items need an `aria-label`. Icons beside a label are decorative (`aria-hidden`), so they aren't read twice.
 - Nothing marks an action as current. If the row needs a selected state, it's a [Segmented Control](./segmented-control.md), not a button group.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a horizontal row of three joined actions, `--button-container-height-medium` tall, on a single white surface (`--button-group-container-background`) with a thin light grey outline (`--button-group-container-border-width` `--button-group-container-border-color`) and softly rounded outer corners (`--button-group-container-radius-rounded`). Each action is a transparent subtle button with near-black `--button-label-font-medium` text (`--button-subtle-label-foreground`), `--button-container-padding-x-medium` horizontal padding and an optional `--button-icon-size-medium` leading icon; a 1px vertical divider (`--button-group-divider-color`) separates neighbours, with none after the last. Hovering an action tints it faint grey (`--button-subtle-container-background-hover`). A sharp version squares the outer outline (`--button-group-container-radius-sharp`); the items inside stay square either way.

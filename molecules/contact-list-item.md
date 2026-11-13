@@ -86,5 +86,5 @@ The row fills the list's width; the text column takes the remaining space and tr
 - The open area and the actions are separate buttons in reading order; don't nest one inside the other.
 - The focus ring (`--contact-list-item-focus-ring-width` `--contact-list-item-focus-ring-color`) is drawn inside the open area so the row edges don't clip it.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a white full-width contact row with `--contact-list-item-container-padding-x` side padding: a circular avatar with initials and a small green presence dot, a `--contact-list-item-name-font` near-black name with a grey `--contact-list-item-secondary-font` role line beneath, and on the right two small grey icon buttons for phone and message. A thin light grey `--contact-list-item-divider-color` divider runs below.

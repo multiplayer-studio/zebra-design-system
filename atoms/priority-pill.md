@@ -120,5 +120,5 @@ Height is the circle plus twice the vertical padding at both sizes; the badge is
 - Small text is below comfortable reading size for a long name.
 - Nothing is focusable and nothing announces itself; a level change must be announced by the surrounding structure.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a Zebra priority pill: a `--priority-pill-container-radius` pill filled in the level colour, with `--priority-pill-container-padding-start-large` padding at the start and `--priority-pill-container-padding-end-large` at the end, starting with a `--priority-pill-circle-size-large` white circle that holds a small glyph in the pill's colour, followed by the priority name in light `--priority-pill-label-font-large` text. Low is dark grey (`--priority-pill-low-container-background`) with a down arrow, medium is blue (`--priority-pill-medium-container-background`) with a dash, high is amber (`--priority-pill-high-container-background`) with an up arrow, and urgent is red (`--priority-pill-urgent-container-background`) with a priority mark. The badge variant is just the circle in its coloured ring; the small size uses a `--priority-pill-circle-size-small` circle and `--priority-pill-label-font-small` text. A ranked version shows a number in the circle instead of the glyph.

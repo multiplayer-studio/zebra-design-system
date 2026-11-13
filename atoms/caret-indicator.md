@@ -64,5 +64,5 @@ Square, no padding; the frame is exactly the glyph size. Measurements are provis
 - Rotation is the only sign of the open state, so the state must be exposed in markup, never left to the glyph.
 - The glyph inherits the parent's foreground; contrast is a property of the surface it sits on.
 
-## Stitch Prompt
+## Claude Prompt
 At the trailing end of an expandable row or header, draw a Zebra caret: a small `--caret-indicator-icon-size-small` near-black (`--caret-indicator-icon-foreground`) rounded chevron with no background. In accordions and collapsible cards it points down when closed and up when open (`--caret-indicator-icon-size-medium` there); in sub-menu rows it points right when closed and down when open. The chevron rotates smoothly between positions (`--caret-indicator-icon-transition`).

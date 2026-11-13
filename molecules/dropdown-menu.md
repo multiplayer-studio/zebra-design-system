@@ -108,5 +108,5 @@ Figma only: the panel has two built-in rows above a slot, and each Rounded and C
 - The panel neither traps focus nor caps its height, and nothing stops it opening off-screen: flip Position near a viewport edge in code.
 - There is no border, so `--dropdown-menu-panel-shadow` alone separates the menu from what is behind it; check it reads on the surfaces you open it over.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a primary Zebra button labelled "Assign to" and, `--dropdown-menu-panel-offset` below it with its left edge aligned, an open white floating panel (`--dropdown-menu-panel-background`) with `--dropdown-menu-panel-radius-rounded` corners, `--dropdown-menu-panel-padding` padding and a soft two-layer drop shadow (`--dropdown-menu-panel-shadow`), no border. Inside, stack four `--menu-item-container-height` rows `--dropdown-menu-content-gap` apart, each with a small near-black icon and a `--menu-item-label-font` label ("Dock 1", "Dock 2", "Dock 3", "Dock 4"); one row is hovered with a faint grey wash (`--menu-item-container-background-hover`), one is selected with a pale blue tint (`--menu-item-container-background-selected`) and one is disabled with grey text. The panel hugs its widest row.

@@ -88,5 +88,5 @@ Point names the intended side; actual anchoring against a real trigger is done w
 - Check `--tooltip-label-foreground` on `--tooltip-container-background` against the surface it floats over; the shadow helps it separate.
 - Under reduced motion, show and hide without the slide.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a Zebra tooltip: a small near-black (`--tooltip-container-background`) bubble with `--tooltip-container-radius-rounded` corners, `--tooltip-container-padding-x` horizontal and `--tooltip-container-padding-y` vertical padding, holding a short phrase in white `--tooltip-label-font` text (`--tooltip-label-foreground`) and casting a soft `--tooltip-container-shadow` drop shadow. A tiny `--tooltip-pointer-width` × `--tooltip-pointer-height` triangle of the same colour sticks out of the centre of the bottom edge (or top, left or right) pointing at the control it describes. Sharp tooltips have square corners and a sharp tip.

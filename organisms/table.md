@@ -179,5 +179,5 @@ Width fills its container (Figma draws a fixed frame); columns trade width when 
 - The truncation tooltip is hidden from assistive technology; the cell itself carries the full text.
 - Disabled rows need a reason nearby; the dimmed text alone doesn't say why.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a white data table with no outer frame and `--table-container-radius-rounded` corners. At the top, a controls bar with `--table-bar-padding-x` side padding: a blue "2 selected" label on the left and, on the right, a small search field and a settings icon button. Below, a header row with a checkbox column, column titles in `--table-header-label-font` near-black with small grey sort carets, and a filter icon on one column, over a grey bottom line (`--table-header-cell-border-color`). Rows are `--table-cell-padding-y` top and bottom, separated by light hairlines (`--table-cell-border-color`), text in `--table-cell-text-font`; one column shows a small avatar with a name and a grey subtitle, one shows coloured status labels, and the last column has a vertical-dots icon button. Two selected rows are tinted pale blue (`--table-cell-background-selected`). The footer shows "Showing 1–8 of 126" in grey (`--table-footer-text-foreground`), a rows-per-page select, and pagination at the right.

@@ -92,5 +92,5 @@ Colour is not a property: the glyph inherits its parent's foreground. Most embed
 - There are no interaction states here. Focus and disabled treatments come from the embedding component.
 - Don't rely on icon colour alone to convey status; pair it with text.
 
-## Stitch Prompt
+## Claude Prompt
 Use Zebra icons as simple, solid, single-colour glyphs on a square, `--icon-size-small` by default and `--icon-size-medium` inside buttons, drawn in near-black `--icon-foreground` (or white `--icon-foreground-inverse` on coloured fills). The default rounded set has softly rounded terminals and corners; the sharp set has square corners for sharp-cornered interfaces. Icons cover Zebra enterprise themes such as barcodes, scanners, printers, RFID, batteries and wifi, alongside the usual navigation, communication, calendar and file-type glyphs. A standalone tappable icon sits centred in an invisible `--icon-frame-size` square.

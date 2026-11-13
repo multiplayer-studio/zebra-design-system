@@ -118,5 +118,5 @@ The header icon and the close are always shown; neither is a property.
 - The header glyph is the only flavour signal and is decorative; the title and body carry the meaning.
 - Footer buttons keep the Button focus ring (`--button-focus-ring-width` `--button-focus-ring-color`).
 
-## Stitch Prompt
+## Claude Prompt
 Draw a centred white modal panel (`--dialog-container-background`) with a thin light grey `--dialog-container-border-color` border, `--dialog-container-radius-round` corners and a soft large shadow, over a dark translucent scrim (`--dialog-scrim-background`). Inside `--dialog-container-padding` padding, a `--dialog-header-height` header row holds a near-black `--dialog-header-icon-size` status icon, a single-line `--dialog-title-font` title and a close icon at the far right. Below, `--dialog-body-font` body text, with extra space underneath. The footer row puts a blue text button on the left and, on the right, a light-grey outlined Cancel button beside a solid blue primary button (`--button-primary-container-background-enabled`), each `--dialog-footer-button-height` tall and `--dialog-footer-gap` apart.

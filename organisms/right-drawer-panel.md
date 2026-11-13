@@ -99,5 +99,5 @@ The header and footer stay fixed; only the content scrolls. A long title truncat
 - The scrim is decorative: it must not be the only way to close the panel.
 - Never rely on colour alone to convey content state inside the panel.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a desktop page dimmed by a dark scrim (`--right-drawer-panel-scrim-background`) with a white (`--right-drawer-panel-container-background`) full-height panel against the right edge, about `--right-drawer-panel-container-width` of the screen wide, with a strong soft drop shadow (`--right-drawer-panel-container-elevation`) on its left side and `--right-drawer-panel-container-radius-rounded` left corners. At the top of the panel, a `--right-drawer-panel-title-font` title and an X close icon button, with a thin divider below; then a scrollable stack of form fields, list rows and a card; at the bottom, behind a thin divider, a right-aligned outline Cancel button and a solid blue (`--button-primary-container-background-enabled`) primary button.

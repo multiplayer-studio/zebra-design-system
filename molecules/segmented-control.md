@@ -104,5 +104,5 @@ Hover and focus are driven by interaction.
 - Icon-only segments carry no text; give each an `aria-label`. Icons beside a label are decorative.
 - The label (`--segmented-control-label-font`) is the option's only name in two of the three flavours.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a compact horizontal toggle: a light grey track (`--segmented-control-track-background`) with `--segmented-control-track-radius-rounded` corners and `--segmented-control-track-padding` padding holding three segments `--segmented-control-segment-height` tall, `--segmented-control-track-gap` apart. Each segment has a `--segmented-control-icon-size` icon and a short label in `--segmented-control-label-font`, `--segmented-control-segment-padding-start` padding on the left and `--segmented-control-segment-padding-end` on the right. The active segment sits on a white fill (`--segmented-control-indicator-background`) with `--segmented-control-indicator-radius-rounded` corners and near-black text (`--segmented-control-label-foreground-selected`); the others are dark grey (`--segmented-control-label-foreground`) directly on the track. Segments hug their content, so widths differ.

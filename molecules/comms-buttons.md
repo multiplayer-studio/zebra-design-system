@@ -65,5 +65,5 @@ Lay several buttons out in a row with even spacing. Measurements are provisional
 - Keep targets at least `--comms-buttons-container-size-minimum`.
 - Answer and end must not rely on green and red alone; the icon and the name carry the meaning.
 
-## Stitch Prompt
+## Claude Prompt
 Draw a row of circular communication buttons, each a `--comms-buttons-container-size-minimum` solid round button with a single centred icon: a green phone (answer), a red phone-down (end call), and neutral white buttons with a thin grey outline for mute, video and speaker. Under each button sits a short `--comms-buttons-label-font` label. Use the Zebra style: IBM Plex Sans labels, flat fills, no gradients.

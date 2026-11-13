@@ -63,5 +63,5 @@ The glyph is not a property.
 - One colour at one strength: where it sits on a tinted surface, check the circle still separates from what is behind it.
 - Nothing here is focusable and nothing announces a change.
 
-## Stitch Prompt
+## Claude Prompt
 Beside a line of text, draw a Zebra icon indicator: a small dark grey (`--icon-indicator-container-background`) circle, `--icon-indicator-container-size-small` across, with a tiny white (`--icon-indicator-icon-foreground`) clock glyph centred inside it. Larger rows use the `--icon-indicator-container-size-medium` or `--icon-indicator-container-size-large` circle with the clock scaled to match.

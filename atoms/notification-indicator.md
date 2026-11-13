@@ -73,5 +73,5 @@ Usually overlapped on the corner of the thing it is pinned to (a nav item, tab, 
 - It is not focusable and a change in the count does not announce itself. The surrounding structure must announce that the number moved, where that matters.
 - The zero-width border (`--notification-indicator-container-border-width`) lets a high-contrast theme separate the indicator from a busy background.
 
-## Stitch Prompt
+## Claude Prompt
 Pin a Zebra notification indicator to the corner of a nav icon or tab: a red (`--notification-indicator-container-background`) pill `--notification-indicator-container-height-large` tall and at least `--notification-indicator-container-min-width-large` wide, with `--notification-indicator-container-padding-x-large` side padding and a white (`--notification-indicator-value-foreground`) count in `--notification-indicator-value-font`, such as "3" or "99+". A medium indicator is a `--notification-indicator-container-size-medium` red circle holding a single digit; a small one is a plain `--notification-indicator-container-size-small` red dot with no number.
