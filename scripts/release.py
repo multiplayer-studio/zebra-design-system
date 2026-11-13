@@ -10,7 +10,8 @@ Each repo's design system goes in its consumers.json "path" (default design-syst
 is moved there and the root CLAUDE.md imports @<path>/AGENTS.md. CLAUDE.md and .claude/skills/ stay at the repo root.
 It works out per repo what to do; there is no option for it:
   new     (no design-system folder): the whole production bundle, plus the project's templates/<project>/ flattened into
-          <path>/templates/. The root CLAUDE.md is added only if the repo has none.
+          <path>/templates/. The root CLAUDE.md is added if the repo has none; if it has one that doesn't import
+          @<path>/AGENTS.md, the import is appended to it.
   update  every bundle file and the root CLAUDE.md, against the bundle of the version the repo has installed (its base):
           unchanged locally -> replaced; changed locally -> 3-way merged (git merge-file), a conflict keeps theirs and
           is listed; removed upstream -> removed unless changed locally. LIBRARY.md, CHANGES.md and templates/ are
@@ -64,9 +65,14 @@ def relocate(bundle, p, tmps):
 
 def new_install(repo, new, project, p, r):
     for rel in sorted(files_of(new, p) | {f'{p}/LIBRARY.md', f'{p}/tokens.css'}):
-        if rel == 'CLAUDE.md' and os.path.exists(os.path.join(repo, rel)):
-            r['notes'].append('This repo already has a `CLAUDE.md`, so it was left alone: merge the design-system section from '
-                              f'the kit into it (see `{p}/AGENTS.md`, Setup).')
+        claude = os.path.join(repo, rel)
+        if rel == 'CLAUDE.md' and os.path.exists(claude):
+            text = open(claude).read()
+            if f'@{p}/AGENTS.md' not in text:
+                open(claude, 'w').write(text.rstrip('\n') + f'\n\n@{p}/AGENTS.md\n')
+                r['updated'].append(rel)
+                r['notes'].append(f'This repo already has a `CLAUDE.md`, so only the `@{p}/AGENTS.md` import was added to it. '
+                                  'The `design-system-init` skill offers to merge in the rest of the design-system section.')
             continue
         copy(os.path.join(new, rel), os.path.join(repo, rel)); r['updated'].append(rel)
     templates = os.path.join(ROOT, 'templates', project)

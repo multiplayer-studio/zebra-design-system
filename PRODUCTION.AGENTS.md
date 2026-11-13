@@ -23,7 +23,7 @@ design-system/
   CHANGES.md       project-specific: you create it (see below)
 ```
 
-The first PR also adds, at the project root, a `CLAUDE.md` that imports this file (`@<path>/AGENTS.md`, so it names where the folder is), and the `design-system-init` skill in `.claude/skills/design-system-init/`. If the project already has a `CLAUDE.md`, the PR leaves it alone and says so: the skill offers to merge the design-system section in. All paths below are relative to the design-system folder. Don't move it yourself: ask the design-system team to change its `path` first, or the next release installs it again at the old path.
+The first PR also adds, at the project root, a `CLAUDE.md` that imports this file (`@<path>/AGENTS.md`, so it names where the folder is), and the `design-system-init` skill in `.claude/skills/design-system-init/`. If the project already has a `CLAUDE.md`, the PR only appends the `@<path>/AGENTS.md` import to it (unless it's already there) and says so: the skill offers to merge in the rest of the design-system section. All paths below are relative to the design-system folder. Don't move it yourself: ask the design-system team to change its `path` first, or the next release installs it again at the old path.
 
 On first use, before writing any component, check both project-specific files exist and are filled in.
 

@@ -18,7 +18,7 @@ If the developer stops partway, you can resume later, because a section with no 
 ## 0. Preflight
 
 1. Find the design-system folder: the one the root `CLAUDE.md` imports as `@<path>/AGENTS.md`, or else the folder holding `DESIGN.md`, `AGENTS.md` and `LIBRARY.md` together. If there's none, stop: the first release PR hasn't been merged.
-2. Check the root `CLAUDE.md` imports `@<path>/AGENTS.md`. If it doesn't, the repo had its own `CLAUDE.md` before the first release. Offer to add the design-system section (the "Design system (always applies)" block and the import). Show the diff, and write only after the developer says yes.
+2. Check the root `CLAUDE.md` has the design-system section (the "Design system (always applies)" block and the `@<path>/AGENTS.md` import). If it only has the import, the repo had its own `CLAUDE.md` before the first release, and the release PR appended just the import. Offer to add the block (or the import too, if someone removed it). Show the diff, and write only after the developer says yes.
 3. Read `version` from the `DESIGN.md` frontmatter.
 4. If `LIBRARY.md` has no `<…>` placeholders and no "Example: React" section, it's already filled in. Offer a menu:
    - revise one section (1–8);
