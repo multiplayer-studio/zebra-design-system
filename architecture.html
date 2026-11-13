@@ -8,9 +8,9 @@
   only; no fetch/XHR/websocket, no frames, no form posts. If you deliberately
   add an external image or script, extend the matching directive below.
 -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data:; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' 'self' file:; font-src https://cdn.jsdelivr.net; img-src data:; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="color-scheme" content="dark light" />
+<meta name="color-scheme" content="light dark" />
 <meta name="generator" content="architecture-diagram-skill 1.5.0" />
 <title>Zebra Design System · Architecture</title>
 <!--
@@ -33,57 +33,62 @@
   about unknown node ids, flows without tabs, and leftover double-brace placeholders.
   ============================================================
 -->
-<!-- Remove the three font <link> tags below for fully offline use; fonts fall back to system UI. -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"></noscript>
+<!-- Styled with the Zebra Design System: every colour, radius, shadow, font and duration below is a
+     token from tokens.css (generated from DESIGN.md), so the page follows the docs and its themes.
+     IBM Plex Sans is pinned to the same jsDelivr version as the prototype starter. -->
+<link rel="stylesheet" href="tokens.css">
 <style>
+  @font-face { font-family: "IBM Plex Sans"; font-weight: 300; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-300-normal.woff2") format("woff2"); }
+  @font-face { font-family: "IBM Plex Sans"; font-weight: 400; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "IBM Plex Sans"; font-weight: 500; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-500-normal.woff2") format("woff2"); }
   :root{
-    color-scheme: dark;
-    /* Dark base, tuned for didactic clarity.
-       Text tokens keep ≥ 4.5:1 on --bg and --panel (WCAG AA for small text). */
-    --bg:        #0a0d12;
-    --bg-2:      #0f1419;
-    --panel:     #121821;
-    --panel-2:   #182030;
-    --border:    #1f2937;
-    --border-2:  #2a3650;
-    --text:      #e6edf7;
-    --muted:     #8492a8;
-    --dim:       #7a889e;
+    color-scheme: light;
+    /* Diagram variables → Zebra semantic tokens (tokens.css). Light/dark come from
+       data-theme on <html>, which re-resolves every --color-* below. */
+    --bg:        var(--color-fill-canvas);
+    --bg-2:      var(--color-fill-default);
+    --panel:     var(--color-fill-default);
+    --panel-2:   var(--color-fill-faint);
+    --border:    var(--color-line-subtle);
+    --border-2:  var(--color-line-default);
+    --text:      var(--color-ink-high);
+    --muted:     var(--color-ink-medium);
+    --dim:       var(--color-ink-low);
 
-    /* Accent text that must stay readable on surfaces (pills, mode badge, hover text).
-       Dark can reuse the role colors; light overrides these with darker inks. */
-    --accent-fg:  #46f9b8;
-    --accent-bg:  rgba(70,249,184,.14);
-    --mode-a-fg:  #6aa9ff;
-    --mode-a-bg:  rgba(106,169,255,.16);
-    --mode-b-fg:  #d9a6ff;
-    --mode-b-bg:  rgba(162,1,255,.18);
+    /* Text on tinted surfaces: brand ink on the selection fill. */
+    --accent-fg:  var(--color-ink-brand);
+    --accent-bg:  var(--color-fill-selection);
+    --mode-a-fg:  var(--color-ink-brand);
+    --mode-a-bg:  var(--color-brand-primary-faint);
+    --mode-b-fg:  var(--color-brand-secondary-deep);
+    --mode-b-bg:  var(--color-brand-secondary-faint);
 
-    /* component colors — each role has its own */
-    --c-user:        #46f9b8;   /* mint */
-    --c-orch:        #6aa9ff;   /* sky */
-    --c-compute:      #ff6b8a;   /* magenta */
-    --c-embed:       #ffc14d;   /* amber */
-    --c-vector:      #b388ff;   /* violet */
-    --c-seed:        #ff9457;   /* orange */
-    --c-ext:         #94a3b8;   /* slate — external / 3rd-party */
+    /* Role colours: the categorical data series (graphics only, never text). */
+    --c-user:    var(--color-data-1);
+    --c-orch:    var(--color-data-6);
+    --c-compute: var(--color-data-4);
+    --c-embed:   var(--color-data-7);
+    --c-vector:  var(--color-data-5);
+    --c-seed:    var(--color-data-2);
+    --c-ext:     var(--color-data-neutral);
 
-    /* Brand accents */
-    --brand-violet:  #a201ff;
-    --brand-mint:    #46f9b8;
+    /* The one brand accent: Zebra Blue. */
+    --brand-violet:  var(--color-gradient-default-start);
+    --brand-mint:    var(--color-brand-primary-default);
 
-    --radius:        14px;
-    --radius-sm:     8px;
+    --radius:        var(--radius-container);
+    --radius-sm:     var(--radius-element-sm);
 
-    --shadow-soft:   0 10px 30px rgba(0,0,0,.45);
-    --shadow-pop:    0 0 0 1px rgba(255,255,255,.04), 0 18px 50px rgba(0,0,0,.55);
+    --shadow-soft:   var(--shadow-xsmall);
+    --shadow-pop:    var(--shadow-medium);
 
-    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-    --sans: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --focus-ring:    var(--stroke-thick) solid var(--color-line-focus);
+    --ease:          var(--motion-fast) var(--easing-standard);
+
+    --mono: ui-monospace, SFMono-Regular, Menlo, monospace;   /* code only; the system has no mono face */
+    --sans: var(--font-family-regular);
   }
+  [data-theme="dark"]{ color-scheme: dark; }
 
   *{ box-sizing:border-box; }
   html,body{ margin:0; padding:0; }
@@ -91,25 +96,11 @@
     background: var(--bg);
     color: var(--text);
     font-family: var(--sans);
-    font-feature-settings: "ss01","ss02","cv11";
     min-height:100vh;
     overflow-x:hidden;
-    background-image:
-      radial-gradient(1200px 600px at 15% -10%, rgba(106,169,255,.07), transparent 60%),
-      radial-gradient(1000px 500px at 100% 0%, rgba(162,1,255,.06), transparent 60%),
-      radial-gradient(800px 600px at 50% 120%, rgba(70,249,184,.04), transparent 60%);
+    font: var(--type-body-medium);
   }
 
-  /* faint grid */
-  body::before{
-    content:"";
-    position:fixed; inset:0; pointer-events:none; z-index:0;
-    background-image:
-      linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 75%);
-  }
 
   /* ───────── header ───────── */
   header{
@@ -119,29 +110,25 @@
   }
   .eyebrow{
     display:inline-flex; align-items:center; gap:8px;
-    font-family: var(--mono); font-size:11px; letter-spacing:.18em;
-    color: var(--muted); text-transform: uppercase;
-    padding: 6px 10px;
-    border:1px solid var(--border);
-    border-radius: 999px;
-    background: rgba(255,255,255,.015);
+    font: var(--type-label-small);
+    color: var(--muted);
+    padding: 4px 12px;
+    border: var(--stroke-thin) solid var(--border);
+    border-radius: var(--radius-pill);
+    background: var(--panel);
   }
   .eyebrow .dot{
     width:6px; height:6px; border-radius:50%; background: var(--brand-mint);
-    box-shadow: 0 0 12px var(--brand-mint);
   }
   h1{
     margin: 16px 0 6px;
-    font-size: clamp(28px, 3.6vw, 44px);
-    font-weight: 600; letter-spacing:-.02em;
-    line-height: 1.05;
+    font: var(--type-display-small);
   }
   h1 .accent{
-    background: linear-gradient(90deg, var(--accent-fg), var(--c-orch) 50%, var(--brand-violet));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
+    color: var(--color-ink-brand);
   }
   .sub{
-    color: var(--muted); font-size: 15px; max-width: 70ch;
+    color: var(--muted); font: var(--type-body-medium); max-width: 70ch;
     margin: 0;
   }
 
@@ -155,25 +142,25 @@
 
   .modepick{
     display:inline-flex; padding:4px;
-    background: var(--panel); border:1px solid var(--border);
-    border-radius: 12px;
+    background: var(--color-fill-sunken); border: 0;
+    border-radius: var(--radius-element-md);
   }
   .modepick button{
     border:0; background:transparent; color: var(--muted);
-    font-family: var(--sans); font-weight:500; font-size:13px;
-    padding: 9px 16px; border-radius: 8px; cursor:pointer;
+    font: var(--type-label-medium);
+    padding: 6px 16px; border-radius: var(--radius-element-sm); cursor:pointer;
     display:inline-flex; align-items:center; gap:8px;
-    transition: all .25s ease;
+    transition: all var(--ease);
   }
   .modepick button .pill{
-    font-family: var(--mono); font-size:10px;
-    padding: 2px 6px; border-radius: 4px;
-    background: rgba(255,255,255,.05); color: var(--muted);
+    font: var(--type-label-small);
+    padding: 0 6px; border-radius: var(--radius-xs);
+    background: var(--color-fill-transparent-emphasis); color: var(--muted);
   }
   .modepick button[aria-pressed="true"]{
-    background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    background: var(--color-fill-default);
     color: var(--text);
-    box-shadow: inset 0 0 0 1px var(--border-2);
+    box-shadow: var(--shadow-small);
   }
   /* generic accent — covers a 3rd+ mode; the 1st / 2nd mode button (offline/online,
      dev/prod, v1/v2 …) get --mode-a / --mode-b below, by position not by key */
@@ -183,10 +170,10 @@
 
   .legend{
     display:flex; flex-wrap:wrap; gap:14px;
-    font-family: var(--mono); font-size:11px; color: var(--muted);
+    font: var(--type-body-xsmall); color: var(--muted);
   }
   .legend .item{ display:inline-flex; align-items:center; gap:6px; }
-  .legend .swatch{ width:10px; height:10px; border-radius:3px; box-shadow: 0 0 0 1px rgba(255,255,255,.06); }
+  .legend .swatch{ width:10px; height:10px; border-radius: var(--radius-xs); }
   /* theme / reset / fullscreen stay together at the right end, even when the bar wraps.
      Two equal auto margins keep the legend centred between mode picker and actions. */
   .ctl-actions{ display:flex; gap:8px; margin-left:auto; }
@@ -199,27 +186,26 @@
     display:flex; flex-wrap:wrap; gap:8px;
   }
   .flowtab{
-    appearance:none; border:1px solid var(--border);
-    background: var(--panel); color: var(--muted);
-    font-family: var(--mono); font-size: 12px; letter-spacing:.04em;
-    padding: 10px 14px; border-radius: 10px;
-    display:inline-flex; align-items:center; gap:10px;
-    cursor:pointer; transition: all .2s ease;
+    appearance:none; border: var(--stroke-thin) solid var(--border-2);
+    background: var(--panel); color: var(--text);
+    font: var(--type-label-medium);
+    min-height: var(--control-sm); padding: 0 12px; border-radius: var(--radius-element-sm);
+    display:inline-flex; align-items:center; gap:8px;
+    cursor:pointer; transition: all var(--ease);
   }
   .flowtab .num{
-    font-size:10px;
-    background: rgba(255,255,255,.06); color: var(--muted);
-    padding: 2px 6px; border-radius: 4px;
+    font: var(--type-label-small);
+    background: var(--color-fill-sunken); color: var(--text);
+    padding: 0 6px; border-radius: var(--radius-xs);
   }
-  .flowtab:hover{ color: var(--text); border-color: var(--border-2); }
+  .flowtab:hover{ background: var(--color-fill-faint); border-color: var(--color-line-strong); }
   .flowtab[aria-pressed="true"]{
-    border-color: var(--brand-mint);
-    color: var(--text);
-    background: linear-gradient(180deg, rgba(70,249,184,.10), rgba(70,249,184,.02));
-    box-shadow: 0 0 0 4px rgba(70,249,184,.06);
+    border-color: var(--color-line-selection);
+    color: var(--color-ink-selection);
+    background: var(--color-fill-selection);
   }
   .flowtab[aria-pressed="true"] .num{
-    background: var(--brand-mint); color: #08120e;
+    background: var(--color-brand-primary-default); color: var(--color-brand-primary-on);
   }
 
   /* ───────── main layout ───────── */
@@ -236,24 +222,20 @@
   /* ───────── canvas (the diagram) ───────── */
   .canvas{
     position:relative;
-    background:
-      radial-gradient(800px 400px at 50% 20%, rgba(106,169,255,.06), transparent 60%),
-      linear-gradient(180deg, var(--panel) 0%, var(--bg-2) 100%);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 36px 28px 28px;
+    background: var(--panel);
+    border: var(--stroke-thin) solid var(--border);
+    border-radius: var(--radius-container);
+    padding: 24px 24px 24px;
     min-height: 540px;
-    box-shadow: var(--shadow-soft);
     /* the stage keeps a minimum width (below); a narrower canvas scrolls it sideways */
     overflow-x: auto; overflow-y: hidden;
   }
   .canvas::before{
     content:""; position:absolute; inset:0; pointer-events:none;
     background-image:
-      linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      radial-gradient(circle, var(--color-line-subtle) 1px, transparent 1.5px);
     background-size: 48px 48px;  /* matches body grid + drag SNAP_PX so nodes snap onto visible lines */
-    mask-image: radial-gradient(circle at 50% 40%, #000 30%, transparent 80%);
+    background-position: 24px 24px;
   }
 
   .canvas-head{
@@ -261,33 +243,33 @@
     margin-bottom: 18px; position:relative; z-index:2;
   }
   .canvas-title{
-    font-family: var(--mono); font-size:11px; letter-spacing:.16em;
-    color: var(--muted); text-transform: uppercase;
+    font: var(--type-title-medium);
+    color: var(--text);
   }
   .player{
     display:flex; gap:6px; align-items:center;
-    font-family: var(--mono); font-size: 11px; color: var(--muted);
+    font: var(--type-body-small); color: var(--muted);
   }
   .player button{
-    appearance:none; border:1px solid var(--border); background: var(--panel-2);
-    color: var(--muted); cursor:pointer;
-    width: 30px; height: 30px; border-radius: 8px;
+    appearance:none; border: var(--stroke-thin) solid var(--border-2); background: var(--panel);
+    color: var(--text); cursor:pointer;
+    width: var(--control-sm); height: var(--control-sm); border-radius: var(--radius-element-sm);
     display:inline-flex; align-items:center; justify-content:center;
-    transition: all .15s ease;
+    transition: all var(--ease);
   }
-  .player button:hover{ color: var(--text); border-color: var(--border-2); }
+  .player button:hover{ background: var(--color-fill-faint); border-color: var(--color-line-strong); }
   .player button[aria-pressed="true"]{
-    background: var(--accent-bg); border-color: var(--brand-mint); color: var(--accent-fg);
+    background: var(--color-brand-primary-default); border-color: var(--color-brand-primary-default); color: var(--color-brand-primary-on);
   }
-  .player button:disabled{ opacity:.4; cursor:not-allowed; }
+  .player button:disabled{ background: var(--color-fill-disabled); border-color: var(--color-line-subtle); color: var(--color-ink-disabled); cursor:not-allowed; }
   .player .stepidx{
     padding: 0 10px; min-width: 64px; text-align:center;
   }
 
   /* flow-level note (the flow's `note`, plus an offline-only hint from `onlineNote`) */
   .flow-note{
-    font-family: var(--mono); font-size: 11px; color: var(--dim);
-    margin: 8px 0 0; line-height: 1.4;
+    font: var(--type-body-small); color: var(--muted);
+    margin: 8px 0 0;
   }
   .flow-note:empty{ display:none; }
 
@@ -295,8 +277,8 @@
      canvas itself echoes the current step title. Hidden on the two-column layout. */
   .step-brief{
     display:none;
-    font-family: var(--mono); font-size: 11.5px; color: var(--muted);
-    margin: 10px 0 0; line-height: 1.4;
+    font: var(--type-body-small); color: var(--muted);
+    margin: 10px 0 0;
   }
   .step-brief strong{ color: var(--text); font-weight: 600; }
   @media (max-width: 1180px){ .step-brief{ display:block; } }
@@ -304,21 +286,20 @@
   /* text-style button used for the shortcuts on/off switch */
   .linkbtn{
     appearance:none; border:0; background:transparent; padding:0; margin:0;
-    font: inherit; color: var(--accent-fg); text-decoration: underline; cursor:pointer;
+    font: inherit; color: var(--color-ink-link); text-decoration: underline; cursor:pointer;
   }
-  .linkbtn:hover{ color: var(--text); }
+  .linkbtn:hover{ color: var(--color-ink-brand); }
 
   /* flow progress bar */
   .progress-track{
-    width:100%; height: 3px; background: var(--border);
-    border-radius: 2px; margin-top: 4px;
+    width:100%; height: 4px; background: var(--color-fill-sunken);
+    border-radius: var(--radius-pill); margin-top: 12px;
     grid-column: 1 / -1;
   }
   .progress-fill{
-    height:100%; border-radius: 2px;
-    background: var(--brand-mint);
-    transition: width .35s ease;
-    box-shadow: 0 0 8px rgba(70,249,184,.3);
+    height:100%; border-radius: var(--radius-pill);
+    background: var(--color-brand-primary-default);
+    transition: width var(--motion-slow) var(--easing-standard);
   }
 
   /* ── stage where nodes & svg live ── */
@@ -340,12 +321,12 @@
   .node{
     position:absolute;
     width: 150px;
-    padding: 14px 14px 12px;
-    background: var(--panel-2);
-    border: 1px solid var(--border-2);
+    padding: 12px 12px 12px 16px;
+    background: var(--color-fill-elevated);
+    border: var(--stroke-thin) solid var(--border-2);
     border-radius: var(--radius);
     box-shadow: var(--shadow-soft);
-    transition: transform .35s cubic-bezier(.2,.8,.2,1), opacity .35s ease, border-color .25s ease, box-shadow .25s ease;
+    transition: transform var(--motion-medium) var(--easing-standard), opacity var(--motion-medium) var(--easing-standard), border-color var(--ease), box-shadow var(--ease);
     z-index: 2;
     cursor: pointer;
     user-select: none;
@@ -357,45 +338,43 @@
      viewers learn "these are clickable". Click = jump to first step where
      this node appears in the current flow. */
   .node:hover{
-    border-color: color-mix(in srgb, var(--c) 60%, var(--border-2));
+    border-color: var(--color-line-strong);
     transform: translateY(-1px);
-    box-shadow: var(--shadow-soft), 0 0 0 1px color-mix(in srgb, var(--c) 30%, transparent);
+    box-shadow: var(--shadow-small);
   }
-  .node:hover .label{ color: var(--c); }
   /* Declared after :hover so the drag styling wins while the pointer is over the node. */
   .node.dragging, .node.dragging:hover{
     z-index: 100;
     cursor: grabbing;
     transition: none;
-    box-shadow: 0 0 0 2px var(--c), 0 20px 60px rgba(0,0,0,.5);
+    box-shadow: 0 0 0 var(--stroke-thick) var(--c), var(--shadow-large);
     transform: scale(1.04);
   }
   .node:focus-visible{
-    outline: 2px solid var(--c);
+    outline: var(--focus-ring);
     outline-offset: 4px;
   }
   .node .label{
-    font-size: 13px; font-weight: 600; letter-spacing:-.01em;
+    font: var(--type-label-medium);
     margin: 0 0 4px;
   }
   /* long unbroken tokens (Kafka topics, ARNs, image tags) wrap inside the tile */
   .node .label, .node .tech, .node .port{ overflow-wrap: anywhere; }
   body.unfilled .node .label, body.unfilled .node .tech, body.unfilled .node .port{ overflow-wrap: normal; }  /* raw template preview */
   .node .tech{
-    font-family: var(--mono); font-size: 10.5px; color: var(--muted);
-    line-height: 1.4;
+    font: var(--type-body-xsmall); color: var(--muted);
   }
   .node .port{
     margin-top: 8px;
-    font-family: var(--mono); font-size: 10.5px;
-    color: var(--c-orch);
+    font: var(--type-body-xsmall);
+    color: var(--color-ink-low);
   }
   .node .icon{
-    width: 28px; height: 28px; border-radius: 8px;
+    width: var(--control-icon-md); height: var(--control-icon-md); border-radius: var(--radius-element-sm);
     display:inline-flex; align-items:center; justify-content:center;
     margin-bottom: 8px;
-    background: rgba(255,255,255,.04);
-    border: 1px solid var(--border-2);
+    background: color-mix(in srgb, var(--c) 12%, transparent);
+    border: 0;
   }
   .node[data-role="user"]   { --c: var(--c-user); }
   .node[data-role="orch"]   { --c: var(--c-orch); }
@@ -406,9 +385,8 @@
   .node[data-role="ext"]    { --c: var(--c-ext); }
   .node .icon{ color: var(--c); }
   .node::before{
-    content:""; position:absolute; left:0; top:14px; bottom:14px; width:3px;
-    background: var(--c); border-radius: 3px;
-    opacity:.7;
+    content:""; position:absolute; left:0; top:12px; bottom:12px; width:4px;
+    background: var(--c); border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
   }
 
   /* hidden nodes when mode mismatched */
@@ -427,8 +405,8 @@
   .node.active{
     border-color: var(--c);
     box-shadow:
-      0 0 0 1px var(--c),
-      0 0 0 6px color-mix(in srgb, var(--c) 18%, transparent),
+      0 0 0 var(--stroke-thin) var(--c),
+      0 0 0 4px color-mix(in srgb, var(--c) 16%, transparent),
       var(--shadow-pop);
     transform: translateY(-2px);
   }
@@ -437,9 +415,8 @@
   .node.active-from{
     border-color: var(--c);
     box-shadow:
-      0 0 0 1px color-mix(in srgb, var(--c) 70%, transparent),
-      0 0 0 4px color-mix(in srgb, var(--c) 10%, transparent),
-      var(--shadow-soft);
+      0 0 0 var(--stroke-thin) color-mix(in srgb, var(--c) 70%, transparent),
+      var(--shadow-small);
     opacity: .95;
   }
   /* participant = appears somewhere in this flow but not in this step.
@@ -458,12 +435,12 @@
   .node .step-badge{
     position:absolute; top:-10px; right:-10px;
     width:24px; height:24px; border-radius:50%;
-    background: var(--c); color:#0a0d12;
-    font-family: var(--mono); font-weight:600; font-size: 11px;
+    background: var(--color-fill-inverse); color: var(--color-ink-inverse);
+    font: var(--type-label-small);
     display:flex; align-items:center; justify-content:center;
     opacity: 0; transform: scale(.6);
     transition: opacity .2s ease, transform .25s cubic-bezier(.2,1.2,.2,1);
-    box-shadow: 0 4px 14px rgba(0,0,0,.4), 0 0 0 2px var(--bg-2);
+    box-shadow: 0 0 0 var(--stroke-thick) var(--c), var(--shadow-small);
   }
   .node.has-badge .step-badge{ opacity:1; transform: scale(1); }
 
@@ -482,7 +459,6 @@
     stroke-width: 2.5;
     stroke-dasharray: 0;
     opacity: 1;
-    filter: drop-shadow(0 0 6px var(--wire-color, var(--brand-mint)));
   }
   /* preview = other steps of CURRENT flow — show the full path at once */
   .wire.preview{
@@ -498,88 +474,84 @@
   .packet{
     r: 5;
     fill: var(--wire-color, var(--brand-mint));
-    filter: drop-shadow(0 0 8px var(--wire-color, var(--brand-mint)));
     opacity: 0;
   }
   .packet.run{ opacity: 1; }
 
   /* tiny wire label */
   .wire-label{
-    font-family: var(--mono); font-size: 10px;
+    font: var(--type-body-xsmall);
     fill: var(--muted);
     paint-order: stroke;
-    stroke: var(--bg-2); stroke-width: 4;
+    stroke: var(--panel); stroke-width: 5;
     transition: fill .3s ease;
   }
-  .wire-label.active{ fill: var(--wire-color, var(--brand-mint)); font-weight: 600; }
+  .wire-label.active{ fill: var(--text); font-weight: 500; }
   .wire-label.preview{ fill: var(--muted); }
 
   /* ───────── side panel ───────── */
   aside{
     position: sticky; top: 18px;
-    background:
-      linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.005));
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 20px 20px 18px;
-    box-shadow: var(--shadow-soft);
+    background: var(--panel);
+    border: var(--stroke-thin) solid var(--border);
+    border-radius: var(--radius-container);
+    padding: 24px;
     min-height: 540px;
     display:flex; flex-direction:column;
   }
   .panel-head{
     display:flex; justify-content:space-between; align-items:flex-start;
     gap: 12px;
-    padding-bottom: 14px;
-    border-bottom: 1px dashed var(--border);
+    padding-bottom: 12px;
+    border-bottom: var(--stroke-thin) solid var(--border);
   }
   .panel-step{
-    font-family: var(--mono); font-size: 11px; letter-spacing:.16em;
-    color: var(--muted); text-transform: uppercase;
+    font: var(--type-body-small);
+    color: var(--muted);
   }
   .panel-step strong{
-    color: var(--text); font-weight: 600;
+    color: var(--text); font-weight: 500;
   }
   .panel-mode{
-    font-family: var(--mono); font-size: 10px;
-    padding: 4px 8px; border-radius: 6px;
-    background: rgba(255,255,255,.04); color: var(--muted);
-    border:1px solid var(--border);
+    font: var(--type-label-small);
+    padding: 2px 8px; border-radius: var(--radius-xs);
+    background: var(--panel-2); color: var(--muted);
   }
-  .panel-mode[data-mode]{ color: var(--accent-fg); border-color: var(--accent-bg); }
-  .panel-mode[data-slot="a"]{ color: var(--mode-a-fg); border-color: var(--mode-a-bg); }
-  .panel-mode[data-slot="b"]{ color: var(--mode-b-fg); border-color: var(--mode-b-bg); }
+  .panel-mode[data-mode]{ color: var(--accent-fg); background: var(--accent-bg); }
+  .panel-mode[data-slot="a"]{ color: var(--mode-a-fg); background: var(--mode-a-bg); }
+  .panel-mode[data-slot="b"]{ color: var(--mode-b-fg); background: var(--mode-b-bg); }
   .panel-mode[hidden]{ display:none; }
 
   .panel-title{
-    font-size: 18px; font-weight: 600; margin: 14px 0 4px;
-    letter-spacing:-.01em;
+    font: var(--type-title-large); margin: 16px 0 8px;
   }
   .panel-route{
-    font-family: var(--mono); font-size: 12px;
+    font: var(--type-body-small);
     color: var(--muted); margin-bottom: 12px;
     display:inline-flex; align-items:center; gap:8px; flex-wrap:wrap;
   }
   .panel-route .from, .panel-route .to{
     color: var(--text);
-    padding: 3px 7px; border-radius: 6px;
-    background: rgba(255,255,255,.04);
-    border:1px solid var(--border);
+    padding: 2px 8px; border-radius: var(--radius-xs);
+    background: var(--panel-2);
   }
-  .panel-route .arrow{ color: var(--accent-fg); }
+  .panel-route .arrow{ color: var(--color-ink-brand); }
 
   .panel-desc{
-    color: var(--muted); font-size: 13.5px; line-height: 1.55;
-    margin: 0 0 14px;
+    color: var(--text); font: var(--type-body-small);
+    margin: 0 0 16px;
   }
-  .panel-desc em{ color: var(--text); font-style: normal; }
+  .panel-desc em{ font-style: normal; font-weight: 500; }
+  .panel-desc code, .nojs code{ font-family: var(--mono); font-size: .9em; background: var(--panel-2); padding: 0 4px; border-radius: var(--radius-xs); }
+  .panel-desc a{ color: var(--color-ink-link); }
 
   .panel-payload{
-    font-family: var(--mono); font-size: 11.5px;
-    background: #08111c;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px 14px;
-    color: #c9d6e8;
+    font-family: var(--mono); font-size: 12px;
+    background: var(--panel-2);
+    border: var(--stroke-thin) solid var(--border);
+    border-radius: var(--radius-element-md);
+    padding: 12px 16px;
+    color: var(--text);
     overflow:auto; max-height: 260px;
     line-height: 1.6;
     margin: 0 0 14px;
@@ -587,39 +559,39 @@
     -webkit-overflow-scrolling: touch;
   }
   .panel-payload:empty{ display:none; }
-  .panel-payload .k{ color: #ffc14d; }
-  .panel-payload .s{ color: #46f9b8; }
-  .panel-payload .n{ color: #b388ff; }
-  .panel-payload .c{ color: var(--muted); }
+  .panel-payload .k{ color: var(--color-ink-brand); }
+  .panel-payload .s{ color: var(--text); }
+  .panel-payload .n{ color: var(--text); font-weight: 500; }
+  .panel-payload .c{ color: var(--dim); }
 
   .panel-meta{
     margin-top:auto; padding-top: 12px;
-    border-top: 1px dashed var(--border);
+    border-top: var(--stroke-thin) solid var(--border);
     display:flex; gap: 8px; flex-wrap:wrap;
   }
   .chip{
-    font-family: var(--mono); font-size: 10.5px;
-    padding: 5px 9px; border-radius: 999px;
-    background: rgba(255,255,255,.035); border:1px solid var(--border);
-    color: var(--muted);
+    font: var(--type-label-small);
+    padding: 4px 12px; border-radius: var(--radius-pill);
+    background: var(--panel); border: var(--stroke-thin) solid var(--border-2);
+    color: var(--text);
   }
-  .chip.lat::before{ content:"⏱ "; color: var(--accent-fg); }
-  .chip.size::before{ content:"⛁ "; color: var(--c-vector); }
+  .chip.lat::before{ content:"⏱ "; color: var(--muted); }
+  .chip.size::before{ content:"⛁ "; color: var(--muted); }
 
   /* prev/next */
   .step-nav{
     display:flex; gap:8px; margin-top: 14px;
   }
   .step-nav button{
-    flex:1; padding: 9px 12px;
-    background: var(--panel-2); color: var(--text);
-    border:1px solid var(--border); border-radius: 9px;
-    font-family: var(--sans); font-size: 12.5px; cursor:pointer;
-    transition: all .15s ease;
+    flex:1; min-height: var(--control-md); padding: 0 16px;
+    background: var(--panel); color: var(--text);
+    border: var(--stroke-thin) solid var(--border-2); border-radius: var(--radius-element-sm);
+    font: var(--type-label-large); cursor:pointer;
+    transition: all var(--ease);
     display:inline-flex; align-items:center; justify-content:center; gap:6px;
   }
-  .step-nav button:hover{ border-color: var(--brand-mint); color: var(--accent-fg); }
-  .step-nav button:disabled{ opacity:.4; cursor:not-allowed; }
+  .step-nav button:hover{ background: var(--color-fill-faint); border-color: var(--color-line-strong); }
+  .step-nav button:disabled{ background: var(--color-fill-disabled); border-color: var(--color-line-subtle); color: var(--color-ink-disabled); cursor:not-allowed; }
 
   /* visually hidden, still announced by screen readers (step-change live region) */
   .sr-only{
@@ -628,15 +600,14 @@
   }
   .nojs{
     position:relative; z-index:2; max-width:1480px; margin:14px auto 0; padding:12px 32px;
-    color: var(--text); font-size:14px;
+    color: var(--text); font: var(--type-body-small);
   }
 
   /* footer / legend below */
   .scenario-note{
     position: relative; z-index: 2;
     max-width: 1480px; margin: 14px auto 0; padding: 0 32px;
-    color: var(--dim); font-size: 12px;
-    font-family: var(--mono);
+    color: var(--muted); font: var(--type-body-small);
   }
   /* touch: nodes can't be dragged and there is no keyboard, so show the tap hint instead */
   .scenario-note .touch-hint{ display:none; }
@@ -645,9 +616,9 @@
     .scenario-note .touch-hint{ display:inline; }
   }
   .scenario-note kbd{
-    font-family: var(--mono); font-size: 11px;
-    padding: 2px 6px; border-radius: 4px;
-    background: var(--panel-2); border:1px solid var(--border); color: var(--text);
+    font: var(--type-label-small);
+    padding: 0 6px; border-radius: var(--radius-xs);
+    background: var(--panel); border: var(--stroke-thin) solid var(--border-2); color: var(--text);
   }
 
   /* tablets (single column): slimmer side gutters so the 680px stage fits the canvas
@@ -662,8 +633,8 @@
   @media (max-width: 720px){
     .stage{ min-width: 640px; }
     .node{ width: 132px; padding: 12px; }
-    .node .label{ font-size: 12px; }
-    .node .tech{ font-size: 10px; }
+    .node .label{ font: var(--type-label-small); }
+    .node .tech{ font: var(--type-body-xsmall); }
   }
 
   /* mobile adjustments */
@@ -680,9 +651,9 @@
 
   /* keyboard focus rings */
   button:focus-visible, .flowtab:focus-visible{
-    outline: 2px solid var(--accent-fg); outline-offset: 2px;
+    outline: var(--focus-ring); outline-offset: 2px;
   }
-  .canvas:focus-visible{ outline: 2px solid var(--accent-fg); outline-offset: -2px; }
+  .canvas:focus-visible{ outline: var(--focus-ring); outline-offset: -2px; }
 
   /* Respect users who ask for reduced motion: no flying packet, near-instant transitions. */
   @media (prefers-reduced-motion: reduce){
@@ -695,87 +666,16 @@
     .progress-fill{ transition: none !important; }
   }
 
-  /* ───────── light theme ───────── */
-  body.light{
-    color-scheme: light;
-    --bg:        #f6f7fa;
-    --bg-2:      #ffffff;
-    --panel:     #ffffff;
-    --panel-2:   #f1f3f8;
-    --border:    #e2e6ee;
-    --border-2:  #c8d0dd;
-    --text:      #0f1419;
-    --muted:     #555f70;
-    --dim:       #5f6b7e;
-
-    --accent-fg:  #00714a;
-    --accent-bg:  rgba(0,179,119,.12);
-    --mode-a-fg:  #1f5fc4;
-    --mode-a-bg:  rgba(42,111,219,.12);
-    --mode-b-fg:  #6d28d9;
-    --mode-b-bg:  rgba(122,28,217,.12);
-
-    --c-user:    #00b377;
-    --c-orch:    #2a6fdb;
-    --c-compute: #d63a5f;
-    --c-embed:   #c98a00;
-    --c-vector:  #7a4ed1;
-    --c-seed:    #d96e2c;
-    --c-ext:     #64748b;
-
-    --brand-violet: #7a1cd9;
-    --brand-mint:   #00b377;
-
-    --shadow-soft: 0 4px 18px rgba(15,20,25,.06);
-    --shadow-pop:  0 0 0 1px rgba(15,20,25,.04), 0 8px 24px rgba(15,20,25,.08);
-
-    background-image:
-      radial-gradient(1200px 600px at 15% -10%, rgba(42,111,219,.05), transparent 60%),
-      radial-gradient(1000px 500px at 100% 0%, rgba(122,28,217,.04), transparent 60%),
-      radial-gradient(800px 600px at 50% 120%, rgba(0,179,119,.03), transparent 60%);
-  }
-  body.light::before{
-    background-image:
-      linear-gradient(rgba(0,0,0,.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,0,0,.03) 1px, transparent 1px);
-  }
-  body.light .panel-payload{
-    background: #f0f2f7;
-    color: #1e2838;
-    border-color: var(--border);
-  }
-  body.light .panel-payload .k{ color: #8a5a00; }
-  body.light .panel-payload .s{ color: #00714a; }
-  body.light .node:hover .label{ color: color-mix(in srgb, var(--c) 65%, var(--text)); }
-  body.light .panel-payload .n{ color: #6b3faf; }
-  body.light .eyebrow{ background: rgba(0,0,0,.02); }
-  body.light .eyebrow .dot{ box-shadow: 0 0 8px var(--brand-mint); }
-  body.light .legend .swatch{ box-shadow: 0 0 0 1px rgba(0,0,0,.08); }
-  body.light .wire-label{ stroke: var(--panel); stroke-width: 5; }
-  /* Light role colors are tuned for strokes/fills; as small text or a focus ring
-     on white they need darker ink to keep 4.5:1 (text) / 3:1 (ring). */
-  body.light .wire-label.active{ fill: color-mix(in srgb, var(--wire-color, var(--brand-mint)) 60%, #000); }
-  body.light .node .port{ color: color-mix(in srgb, var(--c-orch) 85%, #000); }
-  body.light .node:focus-visible{ outline-color: color-mix(in srgb, var(--c) 75%, #000); }
-  body.light .node .step-badge:is([data-color="--c-orch"],[data-color="--c-compute"],[data-color="--c-vector"],[data-color="--c-ext"]){ color: #fff; }
-  body.light .flowtab:not([aria-pressed="true"]) .num,
-  body.light .modepick button:not([aria-pressed="true"]) .pill{ background: rgba(0,0,0,.06); }
-  body.light .node{ box-shadow: 0 2px 8px rgba(0,0,0,.06); }
-  body.light .node.active{ box-shadow: 0 0 0 1px var(--c), 0 0 0 6px color-mix(in srgb, var(--c) 12%, transparent), 0 4px 16px rgba(0,0,0,.08); }
-  body.light .wire.active{ filter: drop-shadow(0 0 4px var(--wire-color, var(--brand-mint))); }
-  body.light .chip{ background: rgba(0,0,0,.04); }
-  body.light aside{ background: linear-gradient(180deg, rgba(0,0,0,.01), rgba(0,0,0,.005)); }
-
   /* theme toggle */
   .theme-toggle, .layout-reset, .fullscreen-toggle{
-    appearance:none; border:1px solid var(--border); background: var(--panel);
-    color: var(--muted); cursor:pointer;
-    width: 34px; height: 34px; border-radius: 10px;
+    appearance:none; border: var(--stroke-thin) solid var(--border-2); background: var(--panel);
+    color: var(--text); cursor:pointer;
+    width: var(--control-sm); height: var(--control-sm); border-radius: var(--radius-element-sm);
     display:inline-flex; align-items:center; justify-content:center;
-    transition: all .2s ease;
+    transition: all var(--ease);
     flex-shrink: 0;
   }
-  .theme-toggle:hover, .layout-reset:hover, .fullscreen-toggle:hover{ color: var(--text); border-color: var(--border-2); }
+  .theme-toggle:hover, .layout-reset:hover, .fullscreen-toggle:hover{ background: var(--color-fill-faint); border-color: var(--color-line-strong); }
   .layout-reset{ display:none; }
   .layout-reset.has-custom{ display:inline-flex; }
   .theme-toggle .icon-sun{ display:none; }
@@ -799,13 +699,13 @@
     position:fixed; top:0; left:0; right:0; height: var(--fs-top); z-index:10001;
     margin:0; max-width:none; padding: 0 16px;
     flex-wrap: nowrap; overflow-x:auto; gap:14px;
-    background: var(--bg); border-bottom:1px solid var(--border);
+    background: var(--bg); border-bottom: var(--stroke-thin) solid var(--border);
   }
   body.is-fullscreen .flowtabs{
     position:fixed; bottom:0; left:0; right:0; min-height: var(--fs-bottom); z-index:10001;
     margin:0; max-width:none; padding: 10px 16px;
     overflow-x:auto; flex-wrap: nowrap; align-items:center;
-    background: var(--bg); border-top:1px solid var(--border);
+    background: var(--bg); border-top: var(--stroke-thin) solid var(--border);
   }
   .canvas.is-fullscreen{
     position:fixed; top: var(--fs-top); bottom: var(--fs-bottom); left:0; right:0; z-index:9999;
@@ -822,7 +722,7 @@
   body.is-fullscreen aside{
     position:fixed; top: calc(var(--fs-top) + 12px); right:12px; bottom: calc(var(--fs-bottom) + 12px); width:392px;
     z-index:10000; overflow:auto; min-height:0;
-    background: var(--panel);
+    background: var(--panel); box-shadow: var(--shadow-large);
   }
   /* Panel overlay only where the 680px stage still fits beside it (680 + 28 + 428). */
   @media (max-width: 1140px){
@@ -835,7 +735,7 @@
   @media (max-width: 1140px){ body.is-fullscreen .legend{ display:none; } }
 </style>
 </head>
-<body>
+<body class="light">
 
 <header>
   <span class="eyebrow"><span class="dot"></span> zebra-design-system</span>
@@ -993,7 +893,7 @@
         <div class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
         <div class="label">scripts/</div>
         <div class="tech">Python 3 stdlib</div>
-        <div class="port">8 scripts</div>
+        <div class="port">10 scripts</div>
         <span class="step-badge">·</span>
       </div>
 
@@ -1032,7 +932,7 @@
       <div class="node" data-role="seed" data-id="zip" style="left: 78%; top: 70%;">
         <div class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
         <div class="label" data-label-prototyping="Prototyping zips" data-label-production="Production kit">Prototyping zips</div>
-        <div class="tech" data-tech-prototyping="generic + per project" data-tech-production="build/ (CI)">generic + per project</div>
+        <div class="tech" data-tech-prototyping="generic, testing, per project" data-tech-production="build/ (CI)">generic + per project</div>
         <div class="port" data-port-prototyping="committed" data-port-production="not committed">committed</div>
         <span class="step-badge">·</span>
       </div>
@@ -1145,14 +1045,14 @@ button-primary-container-background-hover: '{colors.color-brand-primary-strong}'
         route:"_starter/index.html + showcase blocks",
         desc:"Writes <code>prototypes/_starter/index.html</code> with the tokens and component CSS inlined (the Browser pane ignores relative links), and refills the showcase's marked blocks. Also reports drift: <code>var()</code> names nothing defines.",
         payload:
-`prototypes/_starter/index.html: tokens from DESIGN.md 2026-11-05
+`prototypes/_starter/index.html: tokens from DESIGN.md 2.2611.0
 prototypes/showcase/index.html: tokens, components and icons blocks refreshed
 drift check (report only): 0 undefined, N unused component tokens`,
         chips:["report only, never fails"] },
       { from:"scripts", to:"zip", color:"--c-seed",
         title:"Rebuild the kits",
         route:"prototyping-zip.py · production-bundle.py",
-        desc:"Both bundlers share <code>_bundle.py</code>. Each kit ships its own <code>*.CLAUDE.md</code> as <code>CLAUDE.md</code>; this repo's <code>CLAUDE.md</code> is never shipped. Prototyping: the generic zip plus one per <code>templates/&lt;project&gt;/</code>, committed. Production: built into the gitignored <code>build/</code>, and only sent out by the release workflow (flow 6).",
+        desc:"Both bundlers share <code>_bundle.py</code>. Each kit ships its own <code>*.CLAUDE.md</code> as <code>CLAUDE.md</code>; this repo's <code>CLAUDE.md</code> is never shipped. Prototyping: the generic zip, the testing zip (generic plus <code>PROTOTYPING.TESTING.md</code> and the scripts to regenerate after a doc edit) and one per <code>templates/&lt;project&gt;/</code>, all committed. Production: built into the gitignored <code>build/</code>, and only sent out by the release workflow (flow 6).",
         payloadPrototyping:
 `zebra-design-system-prototyping[-<project>]/
     atoms/ molecules/ organisms/ prototypes/
@@ -1160,9 +1060,11 @@ drift check (report only): 0 undefined, N unused component tokens`,
     templates/   // empty, or that project's templates, flat
     DESIGN.md PROTOTYPING.AGENTS.md PROTOTYPING.JIRA.md PROTOTYPING.GITHUB.md
     PROTOTYPING.FIGMA.md icons.json tokens.css
-    github.json   // project kit only: its repo and branch
+    github.json   // project kit only: its repo, branch and design-system path
     CLAUDE.md   // from PROTOTYPING.CLAUDE.md
-    README.md   // from PROTOTYPING.README.md`,
+    README.md   // from PROTOTYPING.README.md
+// testing zip adds: PROTOTYPING.TESTING.md, scripts/tokens-css.py,
+//     scripts/starter-html.py, scripts/_bundle.py`,
         payloadProduction:
 `build/zebra-design-system-production/   // gitignored
     CLAUDE.md   // from PRODUCTION.CLAUDE.md, imports @design-system/AGENTS.md
@@ -1212,6 +1114,7 @@ drift check (report only): 0 undefined, N unused component tokens`,
         desc:"Every prototyping zip carries <code>prototypes/</code>, so each picks up the new starter. The production kit ships the component docs; the next release sends them.",
         payloadPrototyping:
 `Wrote zebra-design-system-prototyping.zip
+Wrote zebra-design-system-prototyping-testing.zip
 Wrote zebra-design-system-prototyping-acme.zip`,
         payloadProduction:`python3 scripts/production-bundle.py   // optional check; release.py builds it`,
         chips:[] }
@@ -1272,6 +1175,7 @@ GET <dist.tarball>                                           // the .tgz`,
         desc:"Every kit ships <code>icons.json</code>. Afterwards the version and icon count in <code>README.md</code> are updated to match.",
         payload:
 `Wrote zebra-design-system-prototyping.zip
+Wrote zebra-design-system-prototyping-testing.zip
 Wrote zebra-design-system-prototyping-acme.zip
 Wrote build/zebra-design-system-production/`,
         chips:["README count"] }
@@ -1285,10 +1189,10 @@ Wrote build/zebra-design-system-production/`,
       { from:"zip", to:"agent", color:"--c-seed",
         title:"Unzip the kit",
         route:"unzip",
-        desc:"Unzip the project's kit, or the generic one for a new project, and open the folder in the Claude desktop app. No Python, Node or build tools are needed.",
+        desc:"Unzip the project's kit, the generic one for a new project, or the testing one to try the system out, and open the folder in the Claude desktop app. No Python, Node or build tools are needed.",
         titleProduction:"Merge the first release PR",
         routeProduction:"consumers.json → release PR",
-        descProduction:"The DS team adds the repo to <code>consumers.json</code>. The next release (flow 6) sees no <code>design-system/</code> and opens a <strong>first install</strong> PR on <code>zebra-design-system/&lt;version&gt;</code>: the whole production kit, the project's own templates, and <code>CLAUDE.md</code> at the root. If the repo already has a <code>CLAUDE.md</code>, the PR leaves it alone and asks for the design-system section to be merged in by hand. The developer merges it.",
+        descProduction:"The DS team adds the repo to <code>consumers.json</code>. The next release (flow 6) sees no <code>design-system/</code> and opens a <strong>first install</strong> PR on <code>zebra-design-system/&lt;version&gt;</code>: the whole production kit (in <code>design-system/</code>, or the entry's <code>path</code>, e.g. <code>docs/design-system</code>), the project's own templates, and <code>CLAUDE.md</code> and <code>.claude/skills/design-system-init/</code> at the root. If the repo already has a <code>CLAUDE.md</code>, the PR only appends the <code>@&lt;path&gt;/AGENTS.md</code> import to it; the skill offers to merge in the rest of the design-system section. The developer merges it.",
         payloadPrototyping:
 `zebra-design-system-prototyping-acme/
     CLAUDE.md  README.md  DESIGN.md  tokens.css  icons.json
@@ -1305,11 +1209,11 @@ Wrote build/zebra-design-system-production/`,
         LIBRARY.md          // the template, to fill in
         scripts/tokens-css.py  scripts/icons-json.py`,
         chipsPrototyping:["no Python, Node or build tools"],
-        chipsProduction:["first install PR","CLAUDE.md never overwritten"] },
+        chipsProduction:["first install PR","existing CLAUDE.md: import appended"] },
       { from:"agent", to:"agent", color:"--c-compute",
         title:"Read the rules",
         route:"CLAUDE.md → PROTOTYPING.AGENTS.md → DESIGN.md",
-        desc:"The agent loads the kit's <code>CLAUDE.md</code>, then <code>PROTOTYPING.AGENTS.md</code> with its Jira and Figma add-ons, then the component docs it needs. It checks <code>templates/</code> first. If the docs don't answer a question, it asks.",
+        desc:"The agent loads the kit's <code>CLAUDE.md</code>, then <code>PROTOTYPING.AGENTS.md</code> with its Jira, GitHub and Figma add-ons, then the component docs it needs. It checks <code>templates/</code> first, and offers to save a reusable layout as a template with the <code>create-template</code> skill. In the testing kit, <code>PROTOTYPING.TESTING.md</code> also lets the designer edit the docs: Claude regenerates with the kit's scripts, logs each edit in <code>CHANGES.md</code> and files it to Jira. If the docs don't answer a question, it asks.",
         titleProduction:"Read the rules and set up",
         routeProduction:"CLAUDE.md → design-system/AGENTS.md",
         descProduction:"<code>CLAUDE.md</code> imports <code>design-system/AGENTS.md</code>. Before writing any component, the agent checks both project files. <code>LIBRARY.md</code> ships as a template with a React example; the project's engineers own it and decide its conventions. While it has blanks, the agent runs the <code>design-system-init</code> skill: it scans the repo, proposes each section for the developer to confirm (per platform, plus an Existing UI migration plan), starts <code>CHANGES.md</code> with the installed <code>version</code>, wires the tokens, scaffolds the library and builds a first component. It never changes a convention itself.",
@@ -1318,13 +1222,14 @@ Wrote build/zebra-design-system-production/`,
     @PROTOTYPING.JIRA.md    // asks for a Jira ticket (zebra-jira MCP)
     @PROTOTYPING.GITHUB.md  // reads a downloaded copy of the project repo
     @PROTOTYPING.FIGMA.md   // offers to send the result to Figma
+    @PROTOTYPING.TESTING.md // testing kit only: doc edits → CHANGES.md → Jira
 check templates/ first`,
         payloadProduction:
 `design-system/LIBRARY.md   // filled in by the engineers
     technology, library folder, token file + regenerate command,
     token-name transform, Properties → API, conventions, workflow
 design-system/CHANGES.md   // created by the agent
-    version: 2026-11-05`,
+    version: 2.2611.0`,
         chips:["tokens, never raw values"],
         chipsProduction:["LIBRARY.md: engineers own it","ask, don't guess"] },
       { from:"agent", to:"output", color:"--c-user",
@@ -1371,11 +1276,11 @@ design-system/CHANGES.md   // created by the agent
       { from:"output", to:"nightly", color:"--c-seed",
         title:"The nightly workflow pulls the repo",
         route:"tenants-sync.py",
-        desc:"<code>.github/workflows/tenants-sync.yml</code> runs in this repo. It clones each consumer's <code>design-system/</code> and compares it with the bundle of the version that repo has installed (its <code>version</code>, built from the tag <code>design-system-v&lt;version&gt;</code>), never the latest master. Token keys are compared one by one; other files whole. <code>LIBRARY.md</code>, <code>CHANGES.md</code>, <code>templates/</code> and <code>tokens.css</code> don't count.",
+        desc:"<code>.github/workflows/tenants-sync.yml</code> runs in this repo. It clones each consumer's <code>design-system/</code> (at the entry's <code>path</code>, if set) and compares it with the bundle of the version that repo has installed (its <code>version</code>, built from the tag <code>design-system-v&lt;version&gt;</code>), never the latest master. Token keys are compared one by one; other files whole. <code>LIBRARY.md</code>, <code>CHANGES.md</code>, <code>templates/</code> and <code>tokens.css</code> don't count.",
         payload:
-`acme-scanner-app: 1 need review, 0 approved, 0 rejected (base 2026-11-05)
-acme-warehouse-web: in sync with 2026-11-05
-acme-dock-app: in sync with 2026-11-05, templates updated`,
+`acme-scanner-app: 1 need review, 0 approved, 0 rejected (base 2.2611.0)
+acme-warehouse-web: in sync with 2.2611.0
+acme-dock-app: in sync with 2.2611.0, templates updated`,
         chips:["nightly","vs installed version"] },
       { from:"nightly", to:"tenants", color:"--c-seed",
         title:"Record the differences in the tenant",
@@ -1418,10 +1323,10 @@ python3 scripts/tenants-approve.py acme-scanner-app atoms/button.md --reject`,
       { from:"maintainer", to:"docs", color:"--c-user",
         title:"Adopt into the master docs",
         route:"DESIGN.md · components",
-        desc:"Changes worth having everywhere are adopted (generalised where it helps: a new variant, size or token), then <code>version</code> is bumped. An adopted difference disappears once the repo merges the release.",
+        desc:"Changes worth having everywhere are adopted (generalised where it helps: a new variant, size or token), then <code>version</code> is bumped. It is <code>BREAKING.YYMM.N</code>: BREAKING goes up only for a change that breaks consumers, YYMM is the release month, N counts releases in that month. An adopted difference disappears once the repo merges the release.",
         payload:
 `menu-item: adopt as new size "large" (3 tenants asked)
-version: '2026-11-28'`,
+version: '2.2611.1'`,
         chips:["governance §9","bump version"] },
       { from:"docs", to:"scripts", color:"--c-vector",
         title:"Regenerate",
@@ -1438,7 +1343,7 @@ version: '2026-11-28'`,
 notes:   "Mandatory: new focus ring on every button"
 dry_run: false
 
-acme-scanner-app: update from 2026-11-05: 61 updated, 1 merged, 0 removed, 1 conflicts, 1 to revert`,
+acme-scanner-app: update from 2.2611.0: 61 updated, 1 merged, 0 removed, 1 conflicts, 1 to revert`,
         chips:["manual","dry run first"] },
       { from:"release", to:"output", color:"--c-seed",
         title:"Open a PR on every repo",
@@ -1459,7 +1364,7 @@ LIBRARY.md, CHANGES.md and your templates were not touched.`,
         desc:"After merging, the agent resolves the listed overlaps (asking where unsure), reverts rejected items, regenerates tokens, updates components, records the version and drops adopted <code>CHANGES.md</code> entries. Only allowed differences remain, so the tenant shrinks to just those, or disappears.",
         payload:
 `CHANGES.md
-- version: 2026-11-28
+- version: 2.2611.1
 - dropped: "Taller list rows" (adopted upstream)`,
         chips:["loop closed"] }
     ]
@@ -2184,6 +2089,7 @@ function pickMode(m){
 const btnTheme = document.getElementById("btnTheme");
 function applyTheme(light){
   document.body.classList.toggle("light", light);
+  document.documentElement.setAttribute("data-theme", light ? "light" : "dark");
   btnTheme.setAttribute("aria-pressed", light ? "true" : "false");
   /* No redraw needed: wire/packet/label colors resolve from live CSS variables,
      which re-evaluate automatically when the .light class flips :root. */
