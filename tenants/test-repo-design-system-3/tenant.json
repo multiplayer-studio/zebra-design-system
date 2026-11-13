@@ -3,11 +3,11 @@
     "files": {},
     "tokens": {}
   },
-  "base": "2.2611.2",
+  "base": "2.2611.2-beta",
   "differences": {
     "files": {
       "atoms/button.md": {
-        "hash": "sha256:43d0621485e707308b5e7b1619fc5173d01ac7bab0e0eff7c4b1168cd476772b",
+        "hash": "sha256:0e5ce1292114c4080620e764ea29cd2da7241530076ece959c5898bdb81e99b5",
         "status": "changed"
       }
     },
