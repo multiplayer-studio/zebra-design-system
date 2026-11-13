@@ -1,0 +1,21 @@
+{
+  "approved": {
+    "files": {},
+    "tokens": {}
+  },
+  "base": "2.2611.0",
+  "differences": {
+    "files": {
+      "atoms/button.md": {
+        "hash": "sha256:2e3d1badaaef92e86d704f4392d911415b168b42b5d8acf72ad30a2a2c90b298",
+        "status": "changed"
+      }
+    },
+    "tokens": {}
+  },
+  "rejected": {
+    "files": {},
+    "tokens": {}
+  },
+  "repo": "zebra-dan/test-repo-design-system-3"
+}
