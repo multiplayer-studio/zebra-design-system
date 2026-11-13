@@ -1,0 +1,46 @@
+{
+  "approved": {
+    "files": {},
+    "tokens": {}
+  },
+  "base": "2.2611.2",
+  "differences": {
+    "files": {
+      "atoms/button.md": {
+        "hash": "sha256:43d0621485e707308b5e7b1619fc5173d01ac7bab0e0eff7c4b1168cd476772b",
+        "status": "changed"
+      }
+    },
+    "tokens": {
+      "atoms/button.md:tokens.button-eccentric-container-background-disabled": {
+        "base": null,
+        "local": "{colors.color-fill-disabled}"
+      },
+      "atoms/button.md:tokens.button-eccentric-container-background-enabled": {
+        "base": null,
+        "local": "{colors.color-brand-tertiary-default}"
+      },
+      "atoms/button.md:tokens.button-eccentric-container-background-hover": {
+        "base": null,
+        "local": "{colors.color-brand-tertiary-strong}"
+      },
+      "atoms/button.md:tokens.button-eccentric-container-background-pressed": {
+        "base": null,
+        "local": "{colors.color-brand-tertiary-deep}"
+      },
+      "atoms/button.md:tokens.button-eccentric-label-foreground": {
+        "base": null,
+        "local": "{colors.color-brand-tertiary-on}"
+      },
+      "atoms/button.md:tokens.button-eccentric-label-foreground-disabled": {
+        "base": null,
+        "local": "{colors.color-ink-disabled}"
+      }
+    }
+  },
+  "rejected": {
+    "files": {},
+    "tokens": {}
+  },
+  "repo": "zebra-dan/test-repo-design-system-3"
+}
