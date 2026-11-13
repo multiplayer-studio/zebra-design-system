@@ -1,27 +1,30 @@
 ---
 name: Tag
 level: atom
-status: stable
+status: draft
 composes: []
 tokens:
-  tag-container-height: '{dimensions.dim-tag-height}'
-  tag-container-background: '{colors.main-light}'
-  tag-container-radius-rounded: '{rounded.radius-minimal}'
-  tag-point-width: '{dimensions.dim-tag-point-width}'
-  tag-label-padding-y: '{spacing.spacing-minimum}'
-  tag-label-padding-x: '{spacing.spacing-small}'
-  tag-label-line-height: '{spacing.spacing-2xl}'
-  tag-label-font: '{typography.body-medium}'
-  tag-label-foreground: '{colors.main-default}'
+  # colour
+  tag-container-background: '{colors.color-fill-sunken}'
+  tag-label-foreground: '{colors.color-ink-high}'
+  # shape
+  tag-container-radius-rounded: '{radius.radius-sm}'
+  tag-container-radius-sharp: '{radius.radius-none}'
+  # sizes
+  tag-container-height: '{primitives.scale-11}'
+  tag-point-width: '{primitives.scale-6}'
+  tag-label-padding-y: '{space.space-2xs}'
+  tag-label-padding-x: '{space.space-sm}'
+  tag-label-font: '{typography.type-body-medium}'
 ---
 
 # Tag
 
-> Tags are used to draw attention to a specific area or information. The arrow shape helps direct the users attention to the desired place.
+> Tags draw attention to a specific area or piece of information. The arrow shape directs the user's attention to the place it points at.
 
 ## Anatomy
-1. Text block — grey rectangle with the label; announced to assistive technology as a note.
-2. Point — `--tag-point-width` × `--tag-container-height` arrowhead in the same grey, attached to one end.
+1. Text block — a filled rectangle (`--tag-container-background`) holding the label in `--tag-label-font` `--tag-label-foreground`.
+2. Point — a `--tag-point-width` × `--tag-container-height` arrowhead in the same fill, attached to one end.
 
 ## Variants
 | Direction | Layout |
@@ -32,20 +35,23 @@ tokens:
 | Shape | Text block corners | Arrow tip |
 |---|---|---|
 | rounded (default) | `--tag-container-radius-rounded` on the two corners away from the point | softly rounded tip |
-| sharp | square | sharp tip |
+| sharp | `--tag-container-radius-sharp` | sharp tip |
+
+In the AAA modes the component is always sharp (DESIGN.md §5).
 
 ## States
-Static, non-interactive.
+Static and non-interactive: no hover, pressed, focus or disabled state, and no motion.
 
 ## Spacing & Sizing
 | Property | Token |
 |---|---|
 | Fill (text + point) | `--tag-container-background` |
-| Text padding (v / h) | `--tag-label-padding-y` / `--tag-label-padding-x` |
-| Text line box | `--tag-label-line-height` |
-| Total height | `--tag-label-line-height` + twice `--tag-label-padding-y` = `--tag-container-height` |
+| Text padding (V / H) | `--tag-label-padding-y` / `--tag-label-padding-x` |
+| Total height | the line box of `--tag-label-font` plus twice `--tag-label-padding-y` = `--tag-container-height` |
 | Point | `--tag-point-width` × `--tag-container-height` |
-| Font | `--tag-label-font`, `--tag-label-foreground` |
+| Label | `--tag-label-font`, `--tag-label-foreground` |
+
+Width hugs the label. Measurements are provisional: there is no Figma source yet.
 
 ## Properties
 | Property | Options | Default |
@@ -55,9 +61,15 @@ Static, non-interactive.
 | Rounded | on / off | on |
 
 ## Usage
-- Use to point at, or call out, an adjacent area or piece of information; keep text short.
-- Always give the tag a text label so screen readers get the note text.
-- Not interactive; don't use as a filter (use a [filter chip](../atoms/filter-chip.md)).
+- Use to point at, or call out, an adjacent area or piece of information; keep the text short.
+- Point the arrow at the thing it describes, and keep the tag next to it.
+- Not interactive; don't use it as a filter (use a [Filter Chip](../atoms/filter-chip.md)) or as a status (use a [Label](../atoms/label.md)).
+
+## Accessibility
+- Always give the tag a text label; it is announced to assistive technology as a note (`role="note"`), so the text must make sense on its own.
+- The arrow direction is visual only. If the relationship matters, say what the tag refers to in the text or link it with `aria-describedby`.
+- `--tag-label-foreground` on `--tag-container-background` is a high-contrast pair in every mode.
+- The tag takes no focus and has no interactive states.
 
 ## Stitch Prompt
-Draw a tag: a `--tag-container-height`-tall `--tag-container-background` label shaped like a luggage tag/arrow — a rectangle with `--tag-label-padding-x` side padding and `--tag-label-font` `--tag-label-foreground` text, ending in a `--tag-point-width`-deep triangular point on the right (or left). With the rounded style the far corners have a `--tag-container-radius-rounded` radius and the arrow tip is gently rounded; the sharp style has square corners and a pointed tip.
+Draw a tag: a `--tag-container-height`-tall light grey (`--tag-container-background`) label shaped like a luggage tag or arrow — a rectangle with `--tag-label-padding-x` side padding and `--tag-label-font` near-black `--tag-label-foreground` text, ending in a `--tag-point-width`-deep triangular point on the right (or left). With the rounded style the far corners have a `--tag-container-radius-rounded` radius and the arrow tip is gently rounded; the sharp style has square corners and a pointed tip.

@@ -26,7 +26,7 @@ Make every edit yourself, when the designer asks for it or approves your suggest
    - Update the component's tables and prose to match.
    - A new component gets a new file in the right level folder, in the same format as its neighbours, and a row in the `DESIGN.md` §8 index.
 2. **Regenerate the generated files.** This kit ships the scripts in `scripts/`. Run them yourself, in this order:
-   - `python3 scripts/tokens-css.py` writes `tokens.css`;
+   - `python3 scripts/tokens-css.py` writes `tokens.css`. If it lists token errors (an undefined reference, a component referencing a colour primitive or a component it doesn't compose, a duplicate name), fix the doc edit and rerun it;
    - `python3 scripts/starter-html.py` writes `prototypes/_starter/index.html` and the showcase.
 
    Never ask the designer to run them; they may need to click **Allow**. If Python 3 isn't installed, don't install it: tell the designer the edit is logged but won't show in prototypes until the next kit, and carry on.
@@ -43,7 +43,7 @@ Add an entry to `CHANGES.md` at the kit root for every edit. Create the file the
 ## YYYY-MM-DD: <short title>
 - Type: fix | token change | new token | new variant | new component | context override
 - Files: atoms/button.md, DESIGN.md (frontmatter: colors)   (docs only)
-- Change: <what changed, before → after, e.g. "button-container-height-large: '{dimensions.dim-button-height-large}' added">
+- Change: <what changed, before → after, e.g. "button-container-height-large: '{control.control-lg}' → '{primitives.scale-16}'">
 - Why: <the designer's reason, in one or two sentences>
 - Prototype: prototypes/<name>/ (ticket: PROJ-123 | none)
 - Acceptance criteria: <how the master docs look once a developer has adopted it, e.g. "atoms/button.md lists a `large` size with its height token">

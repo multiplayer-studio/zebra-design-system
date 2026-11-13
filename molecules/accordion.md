@@ -2,110 +2,119 @@
 name: Accordion
 level: molecule
 status: stable
-composes: [../atoms/icon.md]
+composes: [../atoms/icon-button.md, ../atoms/caret-indicator.md, ../atoms/divider.md, ../atoms/icon.md]
 tokens:
   # container
-  accordion-container-background-enabled: '{colors.surface-default}'
-  accordion-container-border-width: '{border.border-size-small}'
-  accordion-in-card-container-border-color: '{colors.border-subtle}'
-  accordion-container-radius-rounded: '{rounded.radius-rounded}'
-  accordion-container-radius-sharp: '{rounded.radius-none}'
-  accordion-divider-border-width: '{border.border-size-small}'
+  accordion-container-border-color: '{colors.color-line-default}'
+  accordion-container-border-width: '{stroke.stroke-thin}'
+  accordion-container-radius-sharp: '{radius.radius-none}'
+  accordion-container-radius-rounded: '{radius.radius-lg}'
+  accordion-container-gap: '{space.space-none}'
   # header
-  accordion-header-height: '{dimensions.dim-accordion-header-height}'
-  accordion-header-background-hover: '{colors.surface-hover}'
-  accordion-title-foreground: '{colors.main-default}'
-  accordion-title-font: '{typography.title-large}'
-  accordion-title-padding-y: '{spacing.spacing-large}'
-  accordion-title-padding-left: '{spacing.spacing-large}'
-  accordion-trailing-icon-padding-right: '{spacing.spacing-large}'
-  accordion-trailing-icon-foreground-selected: '{colors.main-primary}'
-  accordion-leading-icon-background-hover: '{colors.surface-selected-hover}'
-  accordion-leading-icon-radius: '{rounded.radius-rounded}'
-  accordion-leading-icon-padding-y: '{spacing.spacing-medium}'
-  accordion-leading-icon-padding-right: '{spacing.spacing-small}'
-  accordion-leading-icon-padding-left: '{spacing.spacing-large}'
-  accordion-header-extra-margin-x: '{spacing.spacing-large}'
-  accordion-header-extra-margin-bottom: '{spacing.spacing-large}'
-  accordion-header-extra-margin-top: '{spacing.spacing-none}'
-  # body
-  accordion-body-font: '{typography.body-small}'
-  accordion-body-padding-y: '{spacing.spacing-none}'
-  accordion-body-padding-x: '{spacing.spacing-large}'
-  accordion-body-padding-y-expanded: '{spacing.spacing-large}'
-  accordion-body-duration: '{motion.motion-medium}'
-  accordion-body-easing: '{motion.easing-out}'
+  accordion-header-height: '{primitives.scale-16}'
+  accordion-header-background-enabled: '{colors.color-status-ghost-default}'
+  accordion-header-background-hover: '{colors.color-status-ghost-faint}'
+  accordion-header-padding: '{space.space-lg}'
+  accordion-header-gap: '{space.space-sm}'
+  accordion-selectable-header-padding: '{space.space-sm}'
+  accordion-selectable-header-gap: '{space.space-2xs}'
+  accordion-title-foreground: '{colors.color-ink-high}'
+  accordion-title-font: '{typography.type-title-medium}'
+  accordion-selected-mark-foreground: '{colors.color-ink-high}'
+  accordion-selected-mark-size: '{icon.icon-frame-size}'
+  # divider
+  accordion-divider-color: '{colors.color-line-default}'
+  accordion-divider-width: '{stroke.stroke-thin}'
+  # content
+  accordion-content-padding: '{space.space-lg}'
+  accordion-content-gap: '{space.space-sm}'
 ---
 
 # Accordion
 
-> The accordion is a control element comprising a vertically stacked list of items, such as labels or thumbnails. Each item can be "expanded" or "collapsed" to reveal the content associated with that item. There can be zero expanded items, exactly one, or more than one item expanded at a time, depending on the configuration.
+> A vertically stacked list of disclosure rows sharing one container, for a page with more sections than room to show them.
 
 ## Anatomy
-1. Accordion container – white block; optional card border (in-card).
-2. Item header row – title + trailing [Icon](../atoms/icon.md).
-3. Trailing icon – [Icon](../atoms/icon.md) at its default size and colour: `expand_more` (expandable; rotates 180° open), `chevron_right` (navigation), or `check_mark` (selectable & selected). Context override: the selected `check_mark` is drawn in `--accordion-trailing-icon-foreground-selected` to mark selection.
-4. Leading chevron (selectable items with content) – [Icon](../atoms/icon.md) `chevron_right` in its own tap zone, rotates 90° when expanded.
-5. Header extra – optional content under the title.
-6. Body – item content, animated open/closed (`--accordion-body-duration` `--accordion-body-easing`).
-7. Dividers – `--accordion-divider-border-width` lines between items (in card mode).
+1. Container — the outer frame: owns the border, the radius and the vertical stack (`--accordion-container-gap`, no padding). It has no fill; every surface colour comes from the rows.
+2. Row — one item: a header, an optional [Divider](../atoms/divider.md) (`--accordion-divider-width` `--accordion-divider-color`) closing it off from the next row, and, when open, the content beneath.
+3. Header — `--accordion-header-height` tall, `--accordion-header-background-enabled` at rest. Holds:
+   - Leading control (Selectable on) — an [Icon Button](../atoms/icon-button.md) (subtle, medium) carrying the caret; it opens and closes the row and takes its shape from the accordion.
+   - Title — one line of plain text in `--accordion-title-font` `--accordion-title-foreground`. The only text the row takes.
+   - Caret (Selectable off) — a [Caret Indicator](../atoms/caret-indicator.md) (`expand_more`, size medium: `--caret-indicator-icon-size-medium`, `--caret-indicator-icon-foreground`) trailing the title. Not a control: the whole header is the target.
+   - Selection mark (Selected on) — a framed `check_mark` [Icon](../atoms/icon.md), `--accordion-selected-mark-size` square, `--accordion-selected-mark-foreground`, at the trailing edge. It reports the selection rather than offering it.
+4. Content slot (Open on) — any content, `--accordion-content-padding` on every side and `--accordion-content-gap` between its children. It sets the open row's height.
 
 ## Variants
-| Item type | Tap behaviour | Trailing icon |
-|---|---|---|
-| expandable (default) | whole row toggles | `expand_more` |
-| selectable (no content) | whole row toggles selection | `check_mark` when selected |
-| selectable + content | left chevron expands, rest selects | leading `chevron_right` + `check_mark` |
-| navigation | whole row navigates; body hidden | `chevron_right` |
+| Selectable | Header padding | Header gap | Controls | Tap behaviour |
+|---|---|---|---|---|
+| on (default) | `--accordion-selectable-header-padding` | `--accordion-selectable-header-gap` | leading Icon Button, title, selection mark when selected | the leading control opens and closes; the rest of the header selects |
+| off | `--accordion-header-padding` | `--accordion-header-gap` | title, trailing caret | the whole header opens and closes |
 
-| Container | Border | Radius |
+| In card | Border | Dividers |
 |---|---|---|
-| default | `--accordion-container-border-width` transparent | `--accordion-container-radius-rounded` when rounded |
-| in-card | `--accordion-container-border-width` `--accordion-in-card-container-border-color` + `--accordion-divider-border-width` dividers between items | `--accordion-container-radius-rounded` when rounded, else `--accordion-container-radius-sharp` |
+| on (default) | `--accordion-container-border-width` inside, `--accordion-container-border-color` | under every row except the last |
+| off | none | none; the surrounding layout supplies the separation |
+
+Shape (the `rounded` property): on (default) → `--accordion-container-radius-rounded`, rounded leading Icon Buttons; off → `--accordion-container-radius-sharp`, sharp leading Icon Buttons. Only the container's outer corners respond, so the difference shows at the first and last rows. Figma defaults to sharp; the system default is rounded. In the AAA modes the component is always sharp (DESIGN.md §5).
 
 ## States
-| State | Style |
-|---|---|
-| enabled | bg `--accordion-container-background-enabled`, title `--accordion-title-foreground` |
-| header hover | `--accordion-header-background-hover` |
-| leading chevron hover | `--accordion-leading-icon-background-hover`, radius `--accordion-leading-icon-radius` |
-| expanded | trailing chevron rotated 180° (leading 90°); body visible |
-| selected | `check_mark` icon `--accordion-trailing-icon-foreground-selected` |
+| State | Background | Notes |
+|---|---|---|
+| default | `--accordion-header-background-enabled` | resting row |
+| hover | `--accordion-header-background-hover` | pointer devices only; title, caret and mark hold, so the background carries the whole change |
+| open | unchanged | the content appears below the header and the caret rotates to point at it |
+| selected | unchanged | Selectable only: the mark appears and the title gives up the width it needs |
+
+No transition is defined for the content: opening a row is the content appearing, while the caret turns over its own `--caret-indicator-icon-transition`. Only one row is open at a time. The container itself never repaints; hover belongs to the rows, and the leading Icon Button runs its own interaction states.
 
 ## Spacing & Sizing
-| Property | Value |
-|---|---|
-| Title font | `--accordion-title-font` |
-| Title margin | `--accordion-title-padding-y` top/bottom → `--accordion-header-height` header |
-| Title left margin (non-selectable) | `--accordion-title-padding-left` |
-| Trailing icon right margin | `--accordion-trailing-icon-padding-right` |
-| Leading chevron padding | `--accordion-leading-icon-padding-y` top/bottom, `--accordion-leading-icon-padding-right` right, `--accordion-leading-icon-padding-left` left |
-| Body padding | `--accordion-body-padding-y` `--accordion-body-padding-x`; `--accordion-body-padding-y-expanded` top/bottom when open |
-| Header extra margin | `--accordion-header-extra-margin-x` sides, `--accordion-header-extra-margin-bottom` bottom, `--accordion-header-extra-margin-top` top |
+| Part | Size | Padding | Gap |
+|---|---|---|---|
+| Container | fills the available width, hugs the rows | none | `--accordion-container-gap` |
+| Header (Selectable off) | `--accordion-header-height` | `--accordion-header-padding` | `--accordion-header-gap` |
+| Header (Selectable on) | `--accordion-header-height` | `--accordion-selectable-header-padding` (the leading control is taller than the title) | `--accordion-selectable-header-gap` |
+| Divider | `--accordion-divider-width`, added under the row | — | — |
+| Content | hugs its content | `--accordion-content-padding` | `--accordion-content-gap` |
+
+A row with its divider is `--accordion-header-height` plus `--accordion-divider-width` tall. The leading control is a medium Icon Button; the caret is `--caret-indicator-icon-size-medium`; the selection mark is `--accordion-selected-mark-size`.
 
 ## Properties
 **Accordion**
 | Property | Options | Default |
 |---|---|---|
-| In card | on / off | off |
-| Expand multiple | on / off | off (one open at a time) |
-| Select multiple | on / off | off |
-| Rounded | on / off | on |
+| Selectable | on / off | on |
+| rounded | on / off | on |
+| In card | on / off | on |
+| Items | rows (a single content slot in code) | — |
 
-**Item**
+**Row**
 | Property | Options | Default |
 |---|---|---|
-| Title | text | — |
-| Type | expandable, selectable, navigation | expandable |
-| Expanded | on / off | off |
-| Selected | on / off | off |
-| Header extra content | optional | none |
+| Title | text | Heading |
+| Open | on / off | off |
+| Selected | on / off (Selectable only) | off |
+| Show divider | on / off (set by the accordion from In card and position) | on |
+| Content | slot, any content (Open only) | — |
+
+Hover is driven by interaction, never set on a static layout. The last row never shows its divider.
 
 ## Usage
-- Use to progressively disclose related sections; keep titles short and descriptive.
-- Default allows one open item; enable expand multiple when users compare sections.
-- Use in-card when the accordion stands alone on a surface.
-- Header rows are `--accordion-header-height`, a comfortable touch target; ensure items are keyboard operable and expose expanded state.
+- Choose Selectable once for a whole list, before filling it. A row that selects beside rows that only open reads as two different controls.
+- Use Selectable off for content reveal, an FAQ or a settings group where nothing is chosen; use it on when people must mark items, not just read them.
+- Write titles that name the section: the caret says a row opens, never what is inside.
+- Keep In card consistent across sibling lists on one screen; it governs the dividers as well as the border.
+- Whether one row or several may be selected is decided where the accordion is used; rows don't link their selections.
+- Don't put a second control inside a non-selectable row: the whole header is one target.
+- Don't use Selected without Selectable: the mark would appear with no control behind it.
+
+## Accessibility
+- Selectable off: each header is a single button carrying `aria-expanded` and controlling its content region.
+- Selectable on: two targets per row, each with its own name. The leading control carries `aria-expanded` ("Show details for …"); the rest of the header carries the selection (`aria-pressed` or `aria-checked`). The trailing mark is decorative once the state is exposed.
+- The caret's rotation is the only visual sign of open; expose expanded and collapsed as real state.
+- Opening a row inserts content into the reading order; keep it directly after its header so it is reached next.
+- Hover changes only the background, so keyboard users rely on a focus ring on the header and on the Icon Button's own ring. Figma models no focus state; build it in code.
+- With In card off there is no border or divider; check the list still reads as a list at rest.
+- Titles are heading-sized (`--accordion-title-font`); check the hierarchy on a screen that has real headings.
 
 ## Stitch Prompt
-Draw a white card with `--accordion-container-radius-rounded` corners and a `--accordion-container-border-width` very light grey (`--accordion-in-card-container-border-color`) border containing a vertical stack of `--accordion-header-height` rows separated by `--accordion-divider-border-width` light grey lines. Each row has a `--accordion-title-font` near-black IBM Plex Sans title `--accordion-title-padding-left` from the left and a grey down-chevron `--accordion-trailing-icon-padding-right` from the right. The second row is expanded: its chevron points up and below it sits `--accordion-body-font` body text with `--accordion-body-padding-x` padding. Hovered rows tint pale grey-blue (`--accordion-header-background-hover`).
+Draw a full-width list with a thin light grey `--accordion-container-border-color` border and softly rounded outer corners (`--accordion-container-radius-rounded`), holding a stack of `--accordion-header-height` rows separated by thin light grey lines. Each row has a near-black `--accordion-title-font` IBM Plex Sans title `--accordion-header-padding` from the left and a small down-pointing caret at the right. The second row is open: its caret points up, and below it sits plain body content with `--accordion-content-padding` padding. A hovered row tints very faint grey (`--accordion-header-background-hover`). In the selectable version each row instead starts with a rounded ghost icon button holding the caret, and a selected row shows a check mark at its right edge.

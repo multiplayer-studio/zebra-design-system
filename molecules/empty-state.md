@@ -1,55 +1,62 @@
 ---
 name: Empty State
 level: molecule
-status: stable
+status: draft
 composes: [../atoms/button.md]
 tokens:
-  empty-state-container-max-width: '{dimensions.dim-empty-state-max-width}'
-  empty-state-illustration-height: '{spacing.spacing-11xl}'
-  empty-state-illustration-margin-y: '{spacing.spacing-2xl}'
-  empty-state-content-margin-top: '{spacing.spacing-large}'
-  empty-state-title-font: '{typography.title-large}'
-  empty-state-title-margin-top: '{spacing.spacing-6xl}'
-  empty-state-title-margin-bottom: '{spacing.spacing-small}'
-  empty-state-description-font: '{typography.body-small}'
-  empty-state-description-foreground: '{colors.main-subtle}'
-  empty-state-actions-margin-top: '{spacing.spacing-large}'
-  empty-state-actions-gap: '{spacing.spacing-small}'
+  # colour
+  empty-state-title-foreground: '{colors.color-ink-high}'
+  empty-state-description-foreground: '{colors.color-ink-medium}'
+  # type
+  empty-state-title-font: '{typography.type-title-large}'
+  empty-state-description-font: '{typography.type-body-small}'
+  # sizes
+  empty-state-container-max-width: '{component-sizes.size-empty-state-max-width}'
+  empty-state-illustration-height: '{primitives.scale-19}'
+  empty-state-illustration-margin-y: '{space.space-xl}'
+  empty-state-content-margin-top: '{space.space-lg}'
+  empty-state-title-margin-top: '{space.space-3xl}'
+  empty-state-title-margin-bottom: '{space.space-sm}'
+  empty-state-actions-margin-top: '{space.space-lg}'
+  empty-state-actions-gap: '{space.space-sm}'
 ---
 
 # Empty State
 
-> Empty states are used to convey there is no data is available for display. Types include No results, First use, No Data, User Cleared.
+> Empty states tell the user that no data is available to display, and what to do next. Types include No results, First use, No data and User cleared.
 
 ## Anatomy
-1. Container – centred column, max width `--empty-state-container-max-width`.
-2. Illustration – a line illustration from the Zebra illustration set (e.g. server disconnect).
-3. Title – short heading.
-4. Description – one or two sentences.
-5. Actions – secondary then primary [Button](../atoms/button.md) (flavors outline and primary, size medium; shape follows the Rounded property), side by side, centred. The buttons' own tokens govern their colours, states and radius.
+1. Container — a centred column, at most `--empty-state-container-max-width` wide, text centred.
+2. Illustration — a line illustration from the Zebra illustration set (e.g. a disconnected server), `--empty-state-illustration-height` tall, scaled to fit.
+3. Title — a short heading, `--empty-state-title-font` `--empty-state-title-foreground`.
+4. Description — one or two sentences, `--empty-state-description-font` `--empty-state-description-foreground`.
+5. Actions — a secondary then a primary [Button](../atoms/button.md) (flavours outline and primary, size medium; shape follows the Rounded property), side by side and centred. The buttons' own tokens govern their colours, states and radius.
 
 ## Variants
-| Type | Notes |
+| Type | When |
 |---|---|
-| No results | Search / filter returned nothing |
-| First use | Nothing created yet |
-| No data | Source has no data |
-| User cleared | User removed all items |
+| No results | A search or filter returned nothing |
+| First use | Nothing has been created yet |
+| No data | The source has no data |
+| User cleared | The user removed every item |
 
-All types share one layout; they differ by illustration and copy. Per-type illustrations: to be defined.
+All types share one layout; they differ by illustration and copy. Per-type illustrations are still to be defined.
 
 ## States
-Static. Actions follow the Button's own states (e.g. primary `--button-primary-container-background-enabled` → hover `--button-primary-container-background-hover` → pressed `--button-primary-container-background-pressed`).
+Static. The actions follow the Button's own states; the empty state adds no motion.
 
 ## Spacing & Sizing
-| Property | Value |
+| Property | Token |
 |---|---|
 | Max width | `--empty-state-container-max-width` |
-| Illustration | height `--empty-state-illustration-height`, margin `--empty-state-illustration-margin-y` top/bottom, scaled to fit |
+| Illustration | height `--empty-state-illustration-height`, margin `--empty-state-illustration-margin-y` above and below |
 | Content block top margin | `--empty-state-content-margin-top` |
-| Title | `--empty-state-title-font`, centred, margin-top `--empty-state-title-margin-top`, margin-bottom `--empty-state-title-margin-bottom` |
-| Description | `--empty-state-description-font`, `--empty-state-description-foreground`, centred |
-| Actions | margin-top `--empty-state-actions-margin-top`, gap `--empty-state-actions-gap`, centred |
+| Title | margin-top `--empty-state-title-margin-top`, margin-bottom `--empty-state-title-margin-bottom` |
+| Actions | margin-top `--empty-state-actions-margin-top`, gap `--empty-state-actions-gap`; they wrap onto two lines when narrow |
+
+The block centres itself in the empty area. Measurements are provisional: there is no Figma source yet.
+
+In the AAA modes the component is always sharp (DESIGN.md §5).
 
 ## Properties
 | Property | Options | Default |
@@ -65,7 +72,14 @@ Static. Actions follow the Button's own states (e.g. primary `--button-primary-c
 ## Usage
 - Explain why the area is empty and what to do next; offer at most one primary and one secondary action.
 - Keep the title short and the description to one or two sentences.
-- Give the illustration meaningful alt text or mark it decorative.
+- For No results, echo the query and suggest a way out (clear filters, check spelling).
+- Don't use an empty state for errors that need attention; use a banner.
+
+## Accessibility
+- Make the title a real heading at the right level for the page, so screen-reader users can find it.
+- Give the illustration meaningful alt text, or mark it decorative when the title already says it all.
+- `--empty-state-description-foreground` on the page background meets AA for body text.
+- Button labels must make sense on their own ("Clear filters", not "OK").
 
 ## Stitch Prompt
-Draw a centred empty-state block no wider than `--empty-state-container-max-width`: a `--empty-state-illustration-height`-tall line illustration (e.g. a disconnected server), then a `--empty-state-title-font` near-black heading "No results found", `--empty-state-title-margin-bottom` below it a `--empty-state-description-font` grey (`--empty-state-description-foreground`) centred description, and `--empty-state-actions-margin-top` below that two buttons side by side `--empty-state-actions-gap` apart — a secondary outline button and a primary blue (`--button-primary-container-background-enabled`) button with `--button-container-radius-rounded` corners.
+Draw a centred empty-state block no wider than `--empty-state-container-max-width`: a `--empty-state-illustration-height`-tall line illustration (e.g. a disconnected server), then a `--empty-state-title-font` near-black heading "No results found", `--empty-state-title-margin-bottom` below it a `--empty-state-description-font` grey (`--empty-state-description-foreground`) centred description, and `--empty-state-actions-margin-top` below that two buttons side by side `--empty-state-actions-gap` apart — a secondary outline button and a primary blue button, both with gently rounded corners.

@@ -4,85 +4,96 @@ level: atom
 status: stable
 composes: []
 tokens:
-  radio-button-ring-radius: '{rounded.radius-full}'
-  radio-button-ring-border-width: '{border.border-size-medium}'
-  radio-button-ring-size-small: '{spacing.spacing-medium}'
-  radio-button-ring-size-medium: '{spacing.spacing-large}'
-  radio-button-ring-size-large: '{spacing.spacing-xl}'
-  radio-button-dot-size-small: '{dimensions.dim-radio-button-dot-size-small}'
-  radio-button-dot-size-medium: '{dimensions.dim-radio-button-dot-size-medium}'
-  radio-button-dot-size-large: '{dimensions.dim-radio-button-dot-size-large}'
-  radio-button-label-font-small: '{typography.body-small}'
-  radio-button-label-font-medium: '{typography.body-medium}'
-  radio-button-label-font-large: '{typography.body-medium}'
-  radio-button-container-gap-small: '{spacing.spacing-small}'
-  radio-button-container-gap-medium: '{spacing.spacing-medium}'
-  radio-button-container-gap-large: '{spacing.spacing-medium}'
-  radio-button-container-touch-target: '{layout.touch-target-ios}'
-  # states
-  radio-button-ring-background-enabled: '{colors.surface-default}'
-  radio-button-ring-background-hover: '{colors.surface-default}'
-  radio-button-ring-background-selected: '{colors.surface-default}'
-  radio-button-ring-background-selected-hover: '{colors.surface-default}'
-  radio-button-ring-background-disabled: '{colors.surface-disabled}'
-  radio-button-ring-border-color-enabled: '{colors.main-subtle}'
-  radio-button-ring-border-color-hover: '{colors.border-hover}'
-  radio-button-ring-border-color-selected: '{colors.surface-primary}'
-  radio-button-ring-border-color-selected-hover: '{colors.border-hover}'
-  radio-button-ring-border-color-disabled: '{colors.surface-disabled}'
-  radio-button-dot-background-selected: '{colors.main-primary}'
-  radio-button-dot-background-selected-hover: '{colors.border-hover}'
-  radio-button-dot-background-disabled: '{colors.surface-disabled}'
-  radio-button-label-foreground-disabled: '{colors.main-disabled}'
-  radio-button-focus-ring-width: '{border.border-size-medium}'
-  radio-button-focus-ring-color: '{colors.border-primary}'
+  # ring
+  radio-button-ring-border-color-enabled: '{colors.color-line-strong}'
+  radio-button-ring-border-color-hover: '{colors.color-line-stronger}'
+  radio-button-ring-border-color-selected: '{colors.color-brand-primary-default}'
+  radio-button-ring-border-color-selected-hover: '{colors.color-line-stronger}'
+  radio-button-ring-border-color-disabled: '{colors.color-line-subtle}'
+  # dot (inner fill)
+  radio-button-dot-background-selected: '{colors.color-brand-primary-default}'
+  radio-button-dot-background-disabled: '{colors.color-fill-disabled}'
+  # label
+  radio-button-label-foreground: '{colors.color-ink-high}'
+  radio-button-label-foreground-disabled: '{colors.color-ink-disabled}'
+  radio-button-label-font: '{typography.type-label-medium}'
+  # focus
+  radio-button-focus-ring-width: '{stroke.stroke-thick}'
+  radio-button-focus-ring-color: '{colors.color-line-focus}'
+  # shape and sizes
+  radio-button-ring-radius: '{radius.radius-pill}'
+  radio-button-ring-border-width: '{stroke.stroke-thick}'
+  radio-button-target-size: '{control.control-target-min}'
+  radio-button-container-gap: '{space.space-none}'
+  radio-button-ring-size-large: '{control.control-xs}'
+  radio-button-ring-size-medium: '{control.control-icon-sm}'
+  radio-button-ring-padding-large: '{space.space-2xs}'
+  radio-button-ring-padding-medium: '{space.space-3xs}'
+  radio-button-dot-size-large: '{control.control-icon-xs}'
+  radio-button-dot-size-medium: '{control.control-icon-xxs}'
 ---
 
 # Radio Button
 
-> Radio buttons are used for mutually exclusive choices, not for multiple choices. Only one radio button can be selected at a time. When a user chooses a new item, the previous choice is automatically deselected.
+> A circular control for choosing exactly one option from a set, with an optional label; choosing one deselects the others in its group.
 
 ## Anatomy
-1. Row — ring + label; the whole row is clickable.
-2. Ring — circle (`--radio-button-ring-radius`), `--radio-button-ring-border-width` border.
-3. Dot — filled circle centred in the ring, shown only when selected.
-4. Label text.
+1. Touch target — a fixed `--radio-button-target-size` square holding the ring, centred. It is the pressable area and supplies the space between the ring and the label on its own.
+2. Ring — a circle (`--radio-button-ring-radius`) with a `--radio-button-ring-border-width` border and no fill, coloured by Checked and State together.
+3. Dot — a separate filled circle centred inside the ring, `--radio-button-ring-padding-large` in from the border; shown only when checked.
+4. Label (optional) — the option's name in `--radio-button-label-font`, directly beside the target with no gap (`--radio-button-container-gap`).
 
 ## Variants
-| Size | Ring | Dot | Label font | Gap |
+| Size | Ring | Ring padding | Dot | Target |
 |---|---|---|---|---|
-| small | `--radio-button-ring-size-small` | `--radio-button-dot-size-small` | `--radio-button-label-font-small` | `--radio-button-container-gap-small` |
-| medium (default) | `--radio-button-ring-size-medium` | `--radio-button-dot-size-medium` | `--radio-button-label-font-medium` | `--radio-button-container-gap-medium` |
-| large | `--radio-button-ring-size-large` | `--radio-button-dot-size-large` | `--radio-button-label-font-large` | `--radio-button-container-gap-large` |
+| large (default) | `--radio-button-ring-size-large` | `--radio-button-ring-padding-large` | `--radio-button-dot-size-large` | `--radio-button-target-size` |
+| medium | `--radio-button-ring-size-medium` | `--radio-button-ring-padding-medium` | `--radio-button-dot-size-medium` | `--radio-button-target-size` |
 
-Always circular (`--radio-button-ring-radius`); the radio button has no sharp variant.
+Always circular; the radio button has no sharp variant. Only the ring and dot change with size: the target and the label stay the same.
 
 ## States
-| State | Ring background | Ring border | Dot |
+| State | Ring border | Dot | Label |
 |---|---|---|---|
-| unselected | `--radio-button-ring-background-enabled` | `--radio-button-ring-border-width` `--radio-button-ring-border-color-enabled` | hidden |
-| unselected hover | `--radio-button-ring-background-hover` | `--radio-button-ring-border-color-hover` | hidden |
-| selected | `--radio-button-ring-background-selected` | `--radio-button-ring-border-color-selected` | `--radio-button-dot-background-selected` |
-| selected hover | `--radio-button-ring-background-selected-hover` | `--radio-button-ring-border-color-selected-hover` | `--radio-button-dot-background-selected-hover` |
-| disabled | `--radio-button-ring-background-disabled` | `--radio-button-ring-border-color-disabled` | `--radio-button-dot-background-disabled`; label `--radio-button-label-foreground-disabled` |
-| focus | — | `--radio-button-focus-ring-width` `--radio-button-focus-ring-color` outline | — |
+| unchecked | `--radio-button-ring-border-color-enabled` | hidden | `--radio-button-label-foreground` |
+| unchecked hover | `--radio-button-ring-border-color-hover` | hidden | unchanged |
+| checked | `--radio-button-ring-border-color-selected` | `--radio-button-dot-background-selected` | `--radio-button-label-foreground` |
+| checked hover | `--radio-button-ring-border-color-selected-hover` | unchanged | unchanged |
+| focused | unchanged, with a second `--radio-button-focus-ring-width` `--radio-button-focus-ring-color` ring drawn around it | follows Checked | unchanged |
+| disabled | `--radio-button-ring-border-color-disabled` | `--radio-button-dot-background-disabled` when checked, otherwise hidden | `--radio-button-label-foreground-disabled` |
+
+No transition is defined: every state is a colour and visibility swap, except focus, which adds a second ring rather than altering the existing one. Hover changes the ring colour only; the dot stays tied to Checked. The design file ships only an unchecked disabled variant (with its dot drawn in the disabled tone); in code show the disabled dot only when the option is checked, so a disabled radio still reports its value.
 
 ## Spacing & Sizing
-- Border `--radio-button-ring-border-width`; ring `--radio-button-ring-size-small` / `--radio-button-ring-size-medium` / `--radio-button-ring-size-large`; dot `--radio-button-dot-size-small` / `--radio-button-dot-size-medium` / `--radio-button-dot-size-large`.
-- Label gap `--radio-button-container-gap-small` / `--radio-button-container-gap-medium` / `--radio-button-container-gap-large`.
+| Size | Target | Ring | Border | Ring padding | Dot | Label font | Gap |
+|---|---|---|---|---|---|---|---|
+| large (default) | `--radio-button-target-size` square | `--radio-button-ring-size-large` | `--radio-button-ring-border-width` | `--radio-button-ring-padding-large` | `--radio-button-dot-size-large` | `--radio-button-label-font` | `--radio-button-container-gap` |
+| medium | `--radio-button-target-size` square | `--radio-button-ring-size-medium` | `--radio-button-ring-border-width` | `--radio-button-ring-padding-medium` | `--radio-button-dot-size-medium` | `--radio-button-label-font` | `--radio-button-container-gap` |
+
+Both ring sizes sit centred in the same target, so a column of mixed sizes still aligns. The dot fills the space inside the border and padding exactly. Removing the label collapses the control to its target; nothing else shifts.
 
 ## Properties
 | Property | Options | Default |
 |---|---|---|
-| Selected | on / off | off |
+| Checked | false, true | false |
+| Size | large, medium | large |
+| Label | on / off, text | on |
 | Disabled | on / off | off |
-| Size | small, medium, large | medium |
-| Label | text | none |
+
+Hover and focus are driven by interaction, never set on a static layout.
 
 ## Usage
-- Use for a single choice from 2–7 visible options, presented as one group.
-- Pre-select a sensible default when possible; never use a lone radio button (use a checkbox or switch).
-- Keep the label clickable and the row ≥ `--radio-button-container-touch-target` on touch UIs; selection is shown by the dot, not colour alone.
+- Use for a single choice from a short, fixed list of mutually exclusive options, presented as one group. A long or growing list is better served by a [Dropdown Menu](../molecules/dropdown-menu.md) or [Select](../molecules/select.md).
+- Give every option its own radio button in the same group, with exactly one checked at a time; pre-select a sensible default where possible.
+- Don't use a lone radio button for a yes/no choice; use a [Checkbox](../atoms/checkbox.md) or [Switch](../atoms/switch.md).
+- Pair each radio with a label that states the option in full; the control alone doesn't say what is being chosen.
+- Selection is shown by the dot, not colour alone.
+
+## Accessibility
+- Grouping is what makes exactly one option selectable, and nothing in the control carries it: group the radios in code (a shared `name` inside a `fieldset` with a `legend`, or `role="radiogroup"` with a name) so arrow keys move the choice and the group is announced.
+- The label is the option's name. With the label off, the name has to come from nearby structure (`aria-label` or `aria-labelledby`).
+- The `--radio-button-target-size` target is larger than the ring at both sizes. Keep the whole square pressable, and let the label extend it.
+- Focus is the only visual record of keyboard interaction: a `--radio-button-focus-ring-width` `--radio-button-focus-ring-color` ring around the control.
+- Disabled is visual only; say why the option is unavailable in nearby text.
 
 ## Stitch Prompt
-Draw a radio button: a `--radio-button-ring-size-medium` circle with a `--radio-button-ring-border-width` `--radio-button-ring-border-color-enabled` border on `--radio-button-ring-background-enabled`, followed `--radio-button-container-gap-medium` later by a `--radio-button-label-font-medium` label. When selected the ring turns `--radio-button-ring-border-color-selected` and a `--radio-button-dot-size-medium` solid `--radio-button-dot-background-selected` dot sits in its centre. Hover darkens ring and dot to `--radio-button-ring-border-color-selected-hover` and `--radio-button-dot-background-selected-hover`. Disabled radios are flat `--radio-button-ring-background-disabled` circles with `--radio-button-label-foreground-disabled` text. Stack options vertically with a shared group label.
+Draw a Zebra radio button: a `--radio-button-ring-size-large` circle with a `--radio-button-ring-border-width` mid-grey border (`--radio-button-ring-border-color-enabled`) and no fill, centred in an invisible `--radio-button-target-size` target, with a `--radio-button-label-font` IBM Plex Sans label in near-black `--radio-button-label-foreground` directly beside the target. When checked the ring turns Zebra blue (`--radio-button-ring-border-color-selected`) and a solid blue `--radio-button-dot-size-large` dot (`--radio-button-dot-background-selected`) sits in its centre. Hover darkens the ring to `--radio-button-ring-border-color-hover`, or to `--radio-button-ring-border-color-selected-hover` when checked. Disabled radios have a light grey ring (`--radio-button-ring-border-color-disabled`) and grey label text (`--radio-button-label-foreground-disabled`). The medium size is a smaller `--radio-button-ring-size-medium` ring with a `--radio-button-dot-size-medium` dot. Stack options vertically under a shared group label.

@@ -61,7 +61,7 @@ def same(a, b):
 
 def local_changes(local, base):
     """Compare two design-system/ folders. Returns
-    {'tokens': {'DESIGN.md:primitives.blue-50': {'base': '#0073e6', 'local': '#0a5cc2'}},   (None = key absent)
+    {'tokens': {'DESIGN.md:primitives.color-brand-main-60': {'base': '#1f69ff', 'local': '#0a5cc2'}},   (None = key absent)
      'files':  {'molecules/banner.md': {'status': 'changed' | 'added' | 'deleted', 'hash': 'sha256:…' | 'deleted'}}}"""
     tokens, files = {}, {}
     lf, bf = tree(local), tree(base)
@@ -182,28 +182,28 @@ def _self_test():
     t = tempfile.mkdtemp()
     def write(path, text):
         os.makedirs(os.path.dirname(path), exist_ok=True); open(path, 'w').write(text)
-    design = "---\nversion: '2026-11-05'\nprimitives:\n  blue-50: '#0073e6'\n  grey-10: '#f3f6fa'\n---\n\n# Rules\n"
-    button = "---\nname: Button\ntokens:\n  button-bg: '{colors.state-primary-enabled}'\n---\n\nA button.\n"
+    design = "---\nversion: '1.0.0'\nprimitives:\n  color-brand-main-60: '#1f69ff'\n  color-neutral-cool-10: '#f8fbff'\n---\n\n# Rules\n"
+    button = "---\nname: Button\ntokens:\n  button-primary-container-background-enabled: '{colors.color-brand-primary-default}'\n---\n\nA button.\n"
     base, local = os.path.join(t, 'base'), os.path.join(t, 'local')
     for d in (base, local):
         write(f'{d}/DESIGN.md', design); write(f'{d}/atoms/button.md', button)
         write(f'{d}/LIBRARY.md', 'template'); write(f'{d}/tokens.css', ':root{}')
-    write(f'{local}/DESIGN.md', design.replace("blue-50: '#0073e6'", "blue-50: '#0a5cc2'  # theirs"))
+    write(f'{local}/DESIGN.md', design.replace("color-brand-main-60: '#1f69ff'", "color-brand-main-60: '#0a5cc2'  # theirs"))
     write(f'{local}/atoms/button.md', button.replace('A button.', 'A big button.'))
     write(f'{local}/atoms/new.md', 'new')
     write(f'{local}/LIBRARY.md', 'filled in'); write(f'{local}/CHANGES.md', 'log')
     write(f'{local}/templates/scan-list.md', 'layout'); write(f'{local}/tokens.css', ':root{--x:1}')
 
     c = local_changes(local, base)
-    assert c['tokens'] == {'DESIGN.md:primitives.blue-50': {'base': '#0073e6', 'local': '#0a5cc2'}}, c['tokens']
+    assert c['tokens'] == {'DESIGN.md:primitives.color-brand-main-60': {'base': '#1f69ff', 'local': '#0a5cc2'}}, c['tokens']
     assert sorted(c['files']) == ['atoms/button.md', 'atoms/new.md'], c['files']
     assert c['files']['atoms/new.md']['status'] == 'added' and c['files']['atoms/button.md']['status'] == 'changed'
     assert local_changes(base, base) == {'tokens': {}, 'files': {}}
     os.remove(f'{local}/atoms/button.md')
     assert local_changes(local, base)['files']['atoms/button.md'] == {'status': 'deleted', 'hash': 'deleted'}
 
-    tenant = {'repo': 'org/x', 'base': '2026-11-05', 'differences': c,
-              'approved': {'tokens': {'DESIGN.md:primitives.blue-50': '#0a5cc2'}, 'files': {}},
+    tenant = {'repo': 'org/x', 'base': '1.0.0', 'differences': c,
+              'approved': {'tokens': {'DESIGN.md:primitives.color-brand-main-60': '#0a5cc2'}, 'files': {}},
               'rejected': {'tokens': {}, 'files': {'atoms/new.md': 'sha256:stale'}}}
     assert counts(tenant) == {'needs review': 2, 'approved': 1, 'rejected': 0}  # a stale hash doesn't count
     assert '## Approved' in render('x', tenant) and '`#0a5cc2`' in render('x', tenant)

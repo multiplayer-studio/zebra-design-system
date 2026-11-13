@@ -16,7 +16,7 @@ A **template** is the atomic-design level above organisms: a page-level layout (
 ## 2. Map every part to a component
 
 For each region of the source, find the component that fills it in `atoms/`, `molecules/` or `organisms/`, and read that file. For a composite, also read every file in its `composes:` list. Note:
-- the exact variant, flavor, size, shape and type the source uses, picked only from what the component file lists;
+- the exact variant, flavour, size, shape and type the source uses, picked only from what the component file lists;
 - whether the component is a draft (`status: draft`, † in `DESIGN.md` §8);
 - icon names, which must be keys in `icons.json`.
 
@@ -47,15 +47,15 @@ Where it came from (prototype path or source codebase and component), and what k
 ## Usage
 ```
 
-- **Frontmatter.** `composes:` lists every organism, molecule and atom named anywhere in the doc, with paths relative to the template file. Add a `tokens:` block only for layout values the template itself owns, and write them as references (`'{spacing.spacing-large}'`). Never write a raw value.
-- **Anatomy.** Number the regions in reading order. For each, give the component as a link, with its variant, flavor, size and shape (e.g. "[Icon Button](../atoms/icon-button.md) `refresh`, flavor outline, size medium, shape rounded"). Mark optional regions and say when they appear. Include the empty, loading and selection states the source has. End with: "The composed components govern their own colours, states, sizes, radius and focus rings. The template only places them."
-- **Layout.** Start with an ASCII wireframe whose numbers match Anatomy. Then describe the page grid, region order, gaps, padding, and which region scrolls. Use only semantic `spacing` and `layout` tokens (`--grid-margin`, `--spacing-*`), written as references. Never use pixels, colours or component tokens.
+- **Frontmatter.** `composes:` lists every organism, molecule and atom named anywhere in the doc, with paths relative to the template file. Add a `tokens:` block only for layout values the template itself owns, and write them as references (`'{space.space-lg}'`). Never write a raw value.
+- **Anatomy.** Number the regions in reading order. For each, give the component as a link, with its variant, flavour, size and shape (e.g. "[Icon Button](../atoms/icon-button.md) `refresh`, flavour outline, size medium, shape rounded"). Mark optional regions and say when they appear. Include the empty, loading and selection states the source has. End with: "The composed components govern their own colours, states, sizes, radius and focus rings. The template only places them."
+- **Layout.** Start with an ASCII wireframe whose numbers match Anatomy. Then describe the page grid, region order, gaps, padding, and which region scrolls. Use only semantic `space` and `layout` tokens (`--grid-margin`, `--space-*`), written as references. Never use pixels, colours or component tokens.
 - **Responsiveness.** Required. Cover:
   - the large-screen layout (the default) and what changes at or below `--breakpoint-mobile-max`;
-  - navigation: the global header and left rail on large screens, the top app bar and bottom sheet on handhelds (`DESIGN.md` §6, Adaptive navigation);
+  - navigation: the global header and navigation rail on large screens, the top app bar, navigation bar and bottom sheet on handhelds (`DESIGN.md` §6, Adaptive navigation);
   - for each region, whether it stays, stacks, wraps, collapses into a menu, becomes full width or is hidden, and what replaces anything that's hidden;
   - how wide content behaves (e.g. a table scrolls horizontally inside its region, with the first column pinned if the source pins it);
-  - touch: on handhelds, controls are at least `--touch-target-min` and recommended `--touch-target-recommended`; call out any composed size that falls below this (e.g. small icon buttons) and how to give it a bigger hit area.
+  - touch: on handhelds, controls are at least `--control-target-min`; call out any composed size that falls below this (e.g. small icon buttons) and how to give it a bigger hit area.
 
   If the source has no small-screen design, say so, and give the behaviour that follows from `DESIGN.md` §6 as a proposal for the designer to confirm.
 - **Accessibility.** Required. Cover:
@@ -71,7 +71,7 @@ Where it came from (prototype path or source codebase and component), and what k
 
 - [ ] Every component in the doc exists and is listed in `composes:`, and every `composes:` path resolves.
 - [ ] Every variant, size, shape and type is one the component file lists. Every icon is a key in `icons.json`.
-- [ ] Layout and Responsiveness use only `spacing` and `layout` token references. There are no raw values.
+- [ ] Layout and Responsiveness use only `space` and `layout` token references. There are no raw values.
 - [ ] Responsiveness and Accessibility sections are present and specific to this layout, not generic.
 - [ ] Missing components and draft components are flagged in the doc and in your reply.
 - [ ] Nothing was written to `prototypes/`.

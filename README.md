@@ -2,7 +2,7 @@
 
 The Zebra Design System written as plain Markdown, so that people and AI agents can both read it and build from it.
 
-The Zebra Design System is an enterprise utility language for frontline workers who scan screens quickly, often on rugged handheld devices, with gloves on or in poor light. It uses cool-neutral greys, a single Zebra Blue accent, IBM Plex Sans, a strict mini-unit grid and low, quiet depth. It works in light, dark and high-contrast modes.
+The Zebra Design System is an enterprise utility language for frontline workers who scan screens quickly, often on rugged handheld devices, with gloves on or in poor light. It uses cool-neutral greys, a single Zebra Blue accent, IBM Plex Sans, a strict mini-unit grid and low, quiet depth. It works in four modes: light, dark, AAA contrast and AAA dark.
 
 The docs are the specification. Every colour, size, space, radius, shadow, font and duration is defined once as a token, and every component is described in its own file.
 
@@ -12,11 +12,11 @@ The docs are the specification. Every colour, size, space, radius, shadow, font 
 
 | Path | What it is |
 |---|---|
-| [`DESIGN.md`](DESIGN.md) | The foundation. The **frontmatter** holds every raw value (colours for light, dark and high contrast, spacing, radius, borders, elevation, typography, motion, layout, opacity, component dimensions). The **body** holds the rules: theme, token architecture, colour, typography, components, layout, notes for Stitch generation, the component index and governance. |
-| [`atoms/`](atoms/) | 22 basic components: Button, Icon Button, FAB, Icon, Checkbox, Radio Button, Switch, Slider, Avatar, Chips, Tooltip, Progress… |
-| [`molecules/`](molecules/) | 31 components built from atoms: inputs, tabs, segmented control, list items, banners, snackbar, pagination… |
-| [`organisms/`](organisms/) | 18 larger patterns: dialog, bottom sheet, global header, top app bar, navigation rail, stepper, data table… |
-| [`tokens.css`](tokens.css) | **Generated.** Every token as a CSS custom property, with light, dark and high-contrast blocks. |
+| [`DESIGN.md`](DESIGN.md) | The foundation. The **frontmatter** holds every raw value (the primitive colour ramps and size scale; semantic colours for light, dark, AAA and AAA dark; space, control sizes, radius, stroke, container, shadow, typography, motion, layout, opacity and component sizes). The **body** holds the rules: theme, token architecture, colour, typography, components, layout, notes for Stitch generation, the component index and governance. |
+| [`atoms/`](atoms/) | 25 basic components: Button, Icon Button, FAB, Icon, Checkbox, Radio Button, Switch, Slider, Avatar, Chips, Divider, Scrim, Tooltip, Progress Bar… |
+| [`molecules/`](molecules/) | 31 components built from atoms (and other molecules): inputs, select, search, card, tab bar, menu items, segmented control, banners, snackbar, pagination… |
+| [`organisms/`](organisms/) | 19 larger patterns: dialog, bottom sheet, lightbox, global header, top app bar, navigation bar, rail and drawer, stepper, table… |
+| [`tokens.css`](tokens.css) | **Generated.** Every token as a CSS custom property, with light, dark, AAA and AAA dark blocks. |
 | [`icons.json`](icons.json) | **Generated.** The 715 valid icon names from `@zebra-fed/zeta-icons` 1.9.8, keyed by ligature name, with label, category, search terms and each icon's round and sharp SVG. |
 | [`scripts/`](scripts/) | Maintainer scripts: the two generators for the files above, the prototype starter generator (`starter-html.py`), the two bundlers (`prototyping-zip.py` for the prototyping zips, `production-bundle.py` for the production kit, sharing `_bundle.py`), and the consumer loop: `tenants-sync.py` (nightly), `tenants-approve.py` (sprint decisions) and `release.py` (PRs to every consumer), sharing `_tenants.py`. `tokens-css.py`, `starter-html.py` and `_bundle.py` also ship in the testing zip, where Claude runs them after a doc edit. |
 | [`prototypes/`](prototypes/) | HTML prototypes. [`showcase/`](prototypes/showcase/index.html) renders the components in every theme; its tokens, components and icons blocks are filled by `starter-html.py`. [`_starter/`](prototypes/_starter/index.html) is the page every prototype starts from: `components.css` is its hand-edited source, and `index.html` is generated with `tokens.css` and the component CSS inlined. |
@@ -52,14 +52,14 @@ Tokens form three layers. Each layer only references the one below it.
 
 | Layer | Lives in | Example |
 |---|---|---|
-| **1. Primitives** | `DESIGN.md` frontmatter: `primitives`, `primitives-dark` | `--color-blue-50` |
-| **2. Semantic** | `DESIGN.md` frontmatter: `colors` (+ `colors-dark`, `colors-high-contrast`), `spacing`, `rounded`, `border`, `elevation`, `typography`, `motion`, `layout`, `opacity`, `dimensions`, … | `--state-primary-hover` |
+| **1. Primitives** | `DESIGN.md` frontmatter: `primitives` (colour ramps `color-*` and the size scale `scale-*`) | `--color-brand-main-70` |
+| **2. Semantic** | `DESIGN.md` frontmatter: `colors` (+ `colors-dark`, `colors-aaa`, `colors-aaa-dark`), `space`, `control`, `radius`, `stroke`, `container`, `shadow`, `typography`, `motion`, `layout`, `opacity`, `component-sizes`, … | `--color-brand-primary-strong` |
 | **3. Component** | the `tokens:` block of each component file | `--button-primary-container-background-hover` |
 
 - **Raw values live only in the `DESIGN.md` frontmatter.** A value that isn't there doesn't exist in the system.
-- **Primitives are never used directly.** Only semantic colours point at them.
-- **Component tokens are references only:** `'{colors.state-primary-hover}'`, or `'{child.token}'` for a component listed in `composes`.
-- **Modes are free.** Semantic keys are the same in every mode, so dark and high contrast re-theme every component without any per-component work.
+- **Primitives are never used directly.** Only semantic tokens point at them; a component may use a `scale-*` step only for a fixed measurement that matches it exactly.
+- **Component tokens are references only:** `'{colors.color-brand-primary-strong}'`, or `'{child.token}'` for a component listed in `composes`.
+- **Modes are free.** Semantic keys are the same in every mode, so dark, AAA and AAA dark re-theme every component without any per-component work.
 - **Names are traceable.** A token's key is its name everywhere (`--<key>` in CSS), so any value in code can be found in the docs with a text search.
 
 Naming pattern: `<component>-[<variant>-]<part>-<property>[-<state>|-<size>]`. See [`DESIGN.md` §2](DESIGN.md#2-token-architecture) for the full rules and a worked example.
@@ -77,15 +77,15 @@ level: atom            # atom | molecule | organism
 status: stable         # stable | draft
 composes: [../atoms/icon.md]
 tokens:
-  button-primary-container-background-hover: '{colors.state-primary-hover}'
+  button-primary-container-background-hover: '{colors.color-brand-primary-strong}'
   # …
 ---
 ```
 
-The frontmatter is followed by these sections: **Anatomy, Variants, States, Spacing & Sizing, Properties, Usage, Stitch Prompt**.
+The frontmatter is followed by these sections: **Anatomy, Variants, States, Spacing & Sizing, Properties, Usage, Accessibility, Stitch Prompt**.
 
 - **Composites don't restate their children.** A molecule names the child, variant and size it uses (e.g. "Icon Button, outline-subtle, medium"). The child's own tokens style it. The composite's tokens only cover its own parts and deliberate context overrides.
-- **Draft components** (`status: draft`, marked † in the index) have their purpose, anatomy and composition defined, but not their measurements. There are 16 of them, including Data Table, Date Picker, Chat and Dial Pad. Any measurements used for them are placeholders and must be called out as such.
+- **Draft components** (`status: draft`, marked † in the index) have their purpose, anatomy and composition defined, but not their measurements. They include Date Picker, Chat and Dial Pad; see the index for the full list. Any measurements used for them are placeholders and must be called out as such.
 
 ---
 
@@ -104,7 +104,7 @@ You only need the Claude desktop app. No Python, Node or build tools.
 Theming in the markup:
 
 ```html
-<html data-contrast="high">            <!-- whole page high contrast (light only) -->
+<html data-contrast="aaa">             <!-- whole page AAA contrast (light and dark) -->
 <section data-theme="dark">…</section>  <!-- this area and its contents dark -->
 <svg class="icon" aria-hidden="true" …>…</svg>  <!-- icon: the round/sharp SVG from icons.json -->
 ```
@@ -130,7 +130,7 @@ Add the repo to `consumers.json`. The next release opens a PR that adds `design-
 - **Use tokens, never raw values.** That covers colour, spacing, radius, shadow, font and duration.
 - **Use existing components before inventing new ones.** If nothing fits, follow [Governance](#governance).
 - **Icons come only from `icons.json`.** Use the round set by default and the sharp set for sharp-shaped components.
-- **Accessibility is part of the design:** WCAG 2.2 AA contrast (the semantic colours already meet it), a visible focus ring on every interactive element, touch targets of at least `--touch-target-min`, and no meaning carried by colour alone.
+- **Accessibility is part of the design:** WCAG 2.2 AA contrast (the semantic colours already meet it), a visible focus ring on every interactive element, touch targets of at least `--control-target-min`, and no meaning carried by colour alone.
 - **If the docs don't answer it, ask.** Don't guess, and record the decision in the doc.
 
 ---
@@ -154,7 +154,7 @@ Only maintainers run these scripts. They need Python 3 with the standard library
 
 | Command | Run after | Writes |
 |---|---|---|
-| `python3 scripts/tokens-css.py` | any change to the `DESIGN.md` frontmatter or a component's `tokens:` | `tokens.css` |
+| `python3 scripts/tokens-css.py` | any change to the `DESIGN.md` frontmatter or a component's `tokens:` | `tokens.css`; then exits 1 if a reference is undefined, a component references a colour primitive or a component it doesn't compose, or two tokens share a CSS name |
 | `python3 scripts/starter-html.py` | after `tokens-css.py` or `icons-json.py`, or any change to `prototypes/_starter/components.css` | `prototypes/_starter/index.html` and the showcase's marked blocks; also reports (never fails on) `var()` names nothing defines and component tokens `components.css` doesn't use |
 | `python3 scripts/icons-json.py [version]` | changing the `icons` version in the `DESIGN.md` frontmatter (needs internet; verifies the npm tarball's integrity) | `icons.json` |
 | `python3 scripts/prototyping-zip.py [project]` | regenerating either file above, or changing the docs, prototypes, `PROTOTYPING.CLAUDE.md`, `PROTOTYPING.AGENTS.md`, `PROTOTYPING.JIRA.md`, `PROTOTYPING.GITHUB.md`, `PROTOTYPING.FIGMA.md`, `PROTOTYPING.TESTING.md`, `PROTOTYPING.README.md`, `PROTOTYPING.TESTING.README.md` or `PROTOTYPING.SKILLS/` (the nightly sync runs it per project when templates change) | `zebra-design-system-prototyping.zip`, `zebra-design-system-prototyping-testing.zip` and one `zebra-design-system-prototyping-<project>.zip` per `templates/<project>/` (or only that project's); removes zips whose project folder is gone |

@@ -1110,27 +1110,29 @@ const flows = {
         route:"DESIGN.md frontmatter",
         desc:"The maintainer changes a raw value in the <code>DESIGN.md</code> frontmatter (or a reference in a component's <code>tokens:</code> block), then updates any prose that mentions the value.",
         payload:
-`# DESIGN.md frontmatter, colors:
-state-primary-hover: '#0061c2'
+`# DESIGN.md frontmatter, primitives:
+color-brand-main-70: '#0e53e5'
+# DESIGN.md frontmatter, colors:
+color-brand-primary-strong: '{primitives.color-brand-main-70}'
 
 # atoms/button.md tokens: (references only)
-button-primary-container-background-hover: '{colors.state-primary-hover}'`,
+button-primary-container-background-hover: '{colors.color-brand-primary-strong}'`,
         chips:["docs first","one source per fact"] },
       { from:"docs", to:"scripts", color:"--c-vector",
         title:"tokens-css.py reads the docs",
         route:"python3 scripts/tokens-css.py",
         desc:"The generator parses the frontmatter of <code>DESIGN.md</code> and every component file, resolving references layer by layer.",
         payload:
-`primitives → semantic (light, dark, high contrast) → component tokens`,
+`primitives → semantic (light, dark, AAA, AAA dark) → component tokens`,
         chips:["stdlib only"] },
       { from:"scripts", to:"generated", color:"--c-vector",
         title:"Write tokens.css",
         route:"tokens.css",
-        desc:"Every token becomes a CSS custom property, with light, dark and high-contrast blocks. Component tokens stay as <code>var()</code> aliases so modes flow through.",
+        desc:"Every token becomes a CSS custom property, with light, dark, AAA and AAA dark blocks. Semantic and component tokens stay as <code>var()</code> aliases so modes flow through. It exits 1 on a broken reference.",
         payload:
-`:root { --state-primary-hover: #0061c2; ... }
-[data-theme="dark"] { --state-primary-hover: #599fe5; ... }
---button-primary-container-background-hover: var(--state-primary-hover);`,
+`:root { --color-brand-main-70: #0e53e5; --color-brand-primary-strong: var(--color-brand-main-70); ... }
+[data-contrast="aaa"] { --color-brand-primary-strong: var(--color-brand-main-90); ... }
+--button-primary-container-background-hover: var(--color-brand-primary-strong);`,
         chips:["never hand-edit"] },
       { from:"generated", to:"scripts", color:"--c-vector",
         title:"starter-html.py picks up tokens.css",
@@ -1185,7 +1187,7 @@ drift check (report only): 0 undefined, N unused component tokens`,
         desc:"The component's tables and prose change first, then its CSS in <code>prototypes/_starter/components.css</code>. Never edit between the showcase's markers.",
         payload:
 `/* prototypes/_starter/components.css */
-.button--primary:hover {
+.btn:hover {
     background: var(--button-primary-container-background-hover);
 }`,
         chips:["tokens only, no raw values"] },
@@ -1333,10 +1335,10 @@ design-system/CHANGES.md   // created by the agent
         routeProduction:"docs → code → log",
         descProduction:"Generate the token file with the command in <code>LIBRARY.md</code> (component tokens stay aliases). Build components bottom-up in the library folder: each Properties table is the API, every state and size is implemented, and each gets a <code>LIBRARY.md</code> row. Screens start from <code>templates/</code> and use library components plus layout tokens only. Any local change goes docs, then code, then a <code>CHANGES.md</code> entry; the nightly sync carries it to the DS team (flow 5).",
         payloadPrototyping:
-`<html data-contrast="high">
+`<html data-contrast="aaa">
 <section data-theme="dark">
-    <button class="button button--primary">
-        <svg class="icon" aria-hidden="true">…</svg> Scan
+    <button class="btn">
+        <svg class="icon" aria-hidden="true">…</svg><span class="btn-label">Scan</span>
     </button>
 </section>`,
         payloadProduction:
@@ -1344,7 +1346,7 @@ design-system/CHANGES.md   // created by the agent
 | Component   | Doc                        | Code                   | Status |
 | Button      | atoms/button.md            | src/zebra/Button.tsx   | built  |
 | Icon Button | atoms/icon-button.md       | src/zebra/IconButton.tsx | built |
-| Data Table  | organisms/data-table.md †  | —                      | draft placeholders |`,
+| Date Picker | organisms/date-picker.md † | —                      | draft placeholders |`,
         chipsPrototyping:["opens in Browser pane","file://"],
         chipsProduction:["docs → code → log","one library"] }
     ]
@@ -1386,7 +1388,7 @@ acme-dock-app: in sync with 2026-11-05, templates updated`,
     CHANGES.md    // their reasons
     files/DESIGN.md
 
-| DESIGN.md:primitives.color-pure-0 | #fff | #fafafa |`,
+| DESIGN.md:primitives.color-pure-white | #ffffff | #fafafa |`,
         chips:["only differences","templates mirrored"] }
     ]
   },
@@ -1402,7 +1404,7 @@ acme-dock-app: in sync with 2026-11-05, templates updated`,
         desc:"For each tenant, the DS team reads the <strong>Needs review</strong> rows of <code>changes.md</code>, the repo's reasons in <code>CHANGES.md</code>, and its files. Each difference is decided with <code>DESIGN.md</code> §9.",
         payload:
 `## Needs review
-| DESIGN.md:primitives.color-pure-0 | #fff | #fafafa |
+| DESIGN.md:primitives.color-pure-white | #ffffff | #fafafa |
 | atoms/button.md                   |      | changed |`,
         chips:["per sprint"] },
       { from:"maintainer", to:"tenants", color:"--c-user",
@@ -1418,7 +1420,7 @@ python3 scripts/tenants-approve.py acme-scanner-app atoms/button.md --reject`,
         route:"DESIGN.md · components",
         desc:"Changes worth having everywhere are adopted (generalised where it helps: a new variant, size or token), then <code>version</code> is bumped. An adopted difference disappears once the repo merges the release.",
         payload:
-`list-item: adopt as new size "large" (3 tenants asked)
+`menu-item: adopt as new size "large" (3 tenants asked)
 version: '2026-11-28'`,
         chips:["governance §9","bump version"] },
       { from:"docs", to:"scripts", color:"--c-vector",

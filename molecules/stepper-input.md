@@ -2,70 +2,92 @@
 name: Stepper Input
 level: molecule
 status: stable
-composes: [../atoms/icon-button.md, ./text-input.md, ../atoms/icon.md]
+composes: [../atoms/icon-button.md, ./input.md, ../atoms/input-hint.md, ../atoms/icon.md]
 tokens:
-  # layout (aligned with the composed field and buttons)
-  stepper-input-container-height-medium: '{text-input.text-input-container-height-medium}'
-  stepper-input-container-height-large: '{text-input.text-input-container-height-large}'
-  stepper-input-container-gap: '{spacing.spacing-small}'
-  stepper-input-field-width: '{dimensions.dim-stepper-input-field-width}'
-  stepper-input-hint-margin: '{spacing.spacing-minimum}'
+  # layout
+  stepper-input-container-gap: '{space.space-sm}'
+  stepper-input-hint-gap: '{space.space-sm}'
+  # step buttons
+  stepper-input-button-size-medium: '{control.control-md}'
+  stepper-input-button-size-large: '{control.control-lg}'
+  stepper-input-button-radius-sharp: '{radius.radius-none}'
+  stepper-input-button-radius-rounded: '{radius.radius-element-sm}'
+  # value field
+  stepper-input-field-width: '{component-sizes.size-stepper-input-field-width}'
+  stepper-input-field-height-medium: '{input.input-container-height-medium}'
+  stepper-input-field-height-large: '{input.input-container-height-large}'
+  stepper-input-field-radius-sharp: '{input.input-container-radius-sharp}'
+  stepper-input-field-radius-rounded: '{input.input-container-radius-rounded}'
+  stepper-input-value-font: '{input.input-value-font-medium}'
 ---
 
 # Stepper Input
 
-> A stepper input, also called numeric stepper, is a common UI element that allows users to input a number or value simply by clicking the plus and minus buttons.
+> A number with a button either side to decrease or increase it, and an optional hint below.
 
 ## Anatomy
-1. Decrement button – [Icon Button](../atoms/icon-button.md) `remove`, flavor outline-subtle, size medium (large stepper → size large), shape rounded (Rounded off → sharp).
-2. Value field – [Text Input](./text-input.md) field (no label, no clear button), value centred, fixed `--stepper-input-field-width` wide, same size and shape as the stepper.
-3. Increment button – [Icon Button](../atoms/icon-button.md) `add`, same flavor, size and shape as the decrement button.
-4. Hint / error row – the [Text Input](./text-input.md) hint row (`--text-input-hint-icon-size` `info` / `error` [icon](../atoms/icon.md) + text).
+1. Remove button — [Icon Button](../atoms/icon-button.md) with the `remove` glyph, flavour outline-subtle, `--stepper-input-button-size-medium` square. Its own properties are locked.
+2. Value — an [Input](./input.md) field holding the number (type text, no label, no hint, no clear control), `--stepper-input-field-width` wide, in `--stepper-input-value-font`. It is directly editable.
+3. Add button — the same Icon Button with the `add` glyph, on the other side of the value.
+4. Hint (optional) — an [Input Hint](../atoms/input-hint.md), Type default, below the row. Turned on by Hint.
 
-The icon buttons and text input govern their own colours, borders, radius, states and focus ring; the stepper defines only the row layout.
+The three controls sit in a row `--stepper-input-container-gap` apart; the hint sits `--stepper-input-hint-gap` below. The Icon Buttons and the Input field draw their own colours, borders and states.
 
 ## Variants
-| Size | Buttons | Field | Overall height |
+| Size | Buttons | Value field | Width |
 |---|---|---|---|
-| medium (default) | Icon Button size medium (`--icon-button-container-size-medium` square) | Text Input size medium | `--stepper-input-container-height-medium` |
-| large | Icon Button size large (`--icon-button-container-size-large` square) | Text Input size large | `--stepper-input-container-height-large` |
+| medium (default) | `--stepper-input-button-size-medium` square | `--stepper-input-field-height-medium` tall | two buttons + two gaps + `--stepper-input-field-width` |
+| large | `--stepper-input-button-size-large` square | `--stepper-input-field-height-large` tall | the value keeps its width; only the buttons grow |
 
-| Rounded | Buttons | Field |
+| Rounded | Buttons | Value field |
 |---|---|---|
-| on (default) | Icon Button shape rounded | Text Input shape rounded |
-| off | Icon Button shape sharp | Text Input shape sharp |
+| true (default) | `--stepper-input-button-radius-rounded` | `--stepper-input-field-radius-rounded` |
+| false | `--stepper-input-button-radius-sharp` | `--stepper-input-field-radius-sharp` |
+
+Figma defaults to sharp; the system default is rounded. In the AAA modes the component is always sharp (DESIGN.md §5).
 
 ## States
-| State | Field | Buttons (outline-subtle) |
-|---|---|---|
-| enabled / hover / pressed / focused | Text Input enabled | Icon Button outline-subtle states |
-| at min / max | – | the relevant button becomes disabled |
-| disabled | Text Input disabled | Icon Button disabled |
-| error | field unchanged | hint row switches to the Text Input error colour (`--text-input-hint-foreground-error`) |
+| State | Buttons | Value field | Hint |
+|---|---|---|---|
+| enabled | Icon Button outline-subtle (its hover, pressed and focus states) | Input enabled; focus, typing and filled as Input | shown when Hint is on |
+| disabled | both switch to Icon Button primary, disabled | Input disabled | removed, even when Hint is on |
+
+No transition is defined for the hint appearing or for Disabled or Rounded changing.
 
 ## Spacing & Sizing
-| Property | Value |
+| Part | Token |
 |---|---|
-| Button ↔ field gap | `--stepper-input-container-gap` |
-| Field width | `--stepper-input-field-width`, text centred |
-| Row → hint | `--stepper-input-hint-margin` |
-| Hint | Text Input hint row: `--text-input-hint-font` `--text-input-hint-foreground`, `--text-input-hint-icon-size` icon, `--text-input-hint-gap` gap |
+| Button ↔ value gap | `--stepper-input-container-gap` |
+| Row → hint | `--stepper-input-hint-gap` |
+| Value field | `--stepper-input-field-width` wide, value in `--stepper-input-value-font` at both sizes, the Input's padding |
+| Buttons | `--stepper-input-button-size-medium` / `--stepper-input-button-size-large` square |
+
+The value type is the same at both sizes; only the buttons grow. The hint adds its own height plus the gap.
 
 ## Properties
 | Property | Options | Default |
 |---|---|---|
 | Size | medium, large | medium |
-| Value / Min / Max | number | — |
-| Hint text / Error text | text | none |
-| Error | on / off | off |
-| Rounded | on / off | on |
-| Disabled | on / off | off |
+| Rounded | true, false | true |
+| Disabled | true, false | false |
+| Hint | true, false | false |
+| Value | number | — |
+| Hint text | text | — |
+
+The hint only ever shows the hint message, never an error; there is no error state.
 
 ## Usage
-- Use for small numeric adjustments (quantities); for wide ranges use [Slider Input Field](./slider-input-field.md).
-- Set a minimum and maximum so the buttons disable at the bounds.
-- Buttons are `--icon-button-container-size-medium`–`--icon-button-container-size-large`, meeting touch-target guidance; the value is also directly editable.
-- Give the stepper a visible or accessible label in the surrounding form.
+- Use it for small numeric adjustments, such as quantities. For a wide range use a [Slider Input Field](./slider-input-field.md).
+- Use the hint to explain a constraint on the value, such as the minimum and maximum.
+- Use large on touch surfaces where the buttons need to be easy to hit without precision.
+- Don't expect the hint while Disabled is on; it is removed.
+
+## Accessibility
+- Group the controls and give the group and the value field a name from the surrounding form (for example "Cartons").
+- Name the buttons with what they change ("Decrease cartons", "Increase cartons"); they are glyphs with no text.
+- Announce the new value when a button changes it (a live region or the field's own value change).
+- The value field accepts typing and the arrow keys.
+- Associate the hint with the value field so it is announced.
 
 ## Stitch Prompt
-Draw a horizontal numeric stepper `--stepper-input-container-height-medium` tall: a white `--icon-button-container-size-medium` square outline-subtle icon button (thin light grey border, slightly rounded corners, dark minus icon); `--stepper-input-container-gap` gap; a thin-bordered text-input value box about `--stepper-input-field-width` wide showing a centred near-black number; `--stepper-input-container-gap` gap; then a matching plus button. Beneath, a small grey info icon with `--text-input-hint-font` hint text. Buttons tint pale grey on hover.
+Draw a horizontal numeric stepper: a `--stepper-input-button-size-medium` square button with a thin light grey outline and a dark minus icon, then `--stepper-input-container-gap` later a `--stepper-input-field-width` wide white input box with a thin light grey border showing a number in `--stepper-input-value-font`, then a matching plus button. Corners are slightly rounded (`--stepper-input-button-radius-rounded`), or square when sharp. Below, `--stepper-input-hint-gap` down, a small grey hint line with an info icon. A disabled stepper has grey filled buttons and a grey field, and no hint.

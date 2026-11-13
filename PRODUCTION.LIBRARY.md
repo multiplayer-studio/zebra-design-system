@@ -38,7 +38,7 @@ Your engineers own this file and fill it in once, before the first component is 
   |---|---|
   | `button-primary-container-background-hover` | `<e.g. var(--button-primary-container-background-hover)>` |
 
-- **Modes:** `<how light, dark and high contrast are switched, e.g. data-theme / data-contrast attributes, a ThemeMode provider>`
+- **Modes:** `<how light, dark, AAA and AAA dark are switched, e.g. data-theme / data-contrast attributes, a ThemeMode provider>`
 
 ## 4. Component API
 
@@ -116,7 +116,7 @@ A complete version of this file for a React project. Delete this section once yo
       Button.tsx            the component; its props are the doc's Properties table
       Button.module.css     styles, component tokens only
       Button.test.tsx       one test per documented state
-      Button.stories.tsx    every variant and size, in light, dark and high contrast
+      Button.stories.tsx    every variant and size, in light, dark, AAA and AAA dark
       index.ts              export { Button } from './Button'
     index.ts                re-exports every component
   ```
@@ -134,12 +134,12 @@ A complete version of this file for a React project. Delete this section once yo
   |---|---|
   | `button-primary-container-background-hover` | `var(--button-primary-container-background-hover)` |
 
-- **Modes:** `data-theme="dark"` and `data-contrast="high"` on `<html>` or any container, as defined in `tokens.css`. A `ThemeProvider` in `src/app/` sets them; components never read the mode.
+- **Modes:** `data-theme="dark"` (on `<html>` or any container) and `data-contrast="aaa"` (on `<html>`), alone or together, as defined in `tokens.css`. A `ThemeProvider` in `src/app/` sets them; components never read the mode.
 
 ### 4. Component API
 
-- **Property names:** camelCase of the doc's property name: `Flavor` → `flavor`, `Leading icon` → `leadingIcon`.
-- **Options:** a TypeScript string union of the doc's options, exactly as written: `flavor?: 'primary' | 'positive' | 'negative' | 'outline' | 'outline-subtle' | 'text' | 'subtle'`.
+- **Property names:** camelCase of the doc's property name: `Flavour` → `flavour`, `Leading icon` → `leadingIcon`.
+- **Options:** a TypeScript string union of the doc's options, exactly as written: `flavour?: 'primary' | 'positive' | 'negative' | 'contrast' | 'gradient' | 'outline' | 'outline-subtle' | 'outline-contrast' | 'text' | 'text-gradient' | 'subtle'`.
 - **Defaults:** set in the destructuring, matching the doc's Default column.
 - **On/off properties:** booleans (`disabled?: boolean`).
 - **Text properties:** `children` for the main label, named props for anything else.
@@ -155,7 +155,7 @@ import { Icon, type IconName } from '../Icon';
 import styles from './Button.module.css';
 
 type Props = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className' | 'style'> & {
-  flavor?: 'primary' | 'positive' | 'negative' | 'outline' | 'outline-subtle' | 'text' | 'subtle';
+  flavour?: 'primary' | 'positive' | 'negative' | 'contrast' | 'gradient' | 'outline' | 'outline-subtle' | 'outline-contrast' | 'text' | 'text-gradient' | 'subtle';
   shape?: 'sharp' | 'rounded' | 'full';
   size?: 'small' | 'medium' | 'large';
   leadingIcon?: IconName;
@@ -163,7 +163,7 @@ type Props = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className' | 'style'
 };
 
 export function Button({
-  flavor = 'primary', shape = 'rounded', size = 'medium',
+  flavour = 'primary', shape = 'rounded', size = 'medium',
   leadingIcon, trailingIcon, children, type = 'button', ...rest
 }: Props) {
   const iconVariant = shape === 'sharp' ? 'sharp' : 'rounded'; // atoms/icon.md: sharp set for sharp shapes
@@ -171,10 +171,10 @@ export function Button({
     <button
       {...rest}
       type={type}
-      className={[styles.button, styles[flavor], styles[shape], styles[size]].join(' ')}
+      className={[styles.button, styles[flavour], styles[shape], styles[size]].join(' ')}
     >
       {leadingIcon && <Icon name={leadingIcon} variant={iconVariant} />}
-      {children}
+      <span className={styles.label}>{children}</span>
       {trailingIcon && <Icon name={trailingIcon} variant={iconVariant} />}
     </button>
   );
@@ -187,10 +187,12 @@ export function Button({
 .primary:hover { background: var(--button-primary-container-background-hover); }
 .primary:active { background: var(--button-primary-container-background-pressed); }
 .button:focus-visible { outline: var(--button-focus-ring-width) solid var(--button-focus-ring-color); }
-.small { padding: var(--button-container-padding-y-small) var(--button-container-padding-x-small); gap: var(--button-container-gap-small); }
+.primary:disabled { background: var(--button-primary-container-background-disabled); color: var(--button-primary-label-foreground-disabled); }
+.rounded { border-radius: var(--button-container-radius-rounded); }
+.small { height: var(--button-container-height-small); padding: var(--button-container-padding-y) var(--button-container-padding-x-small); }
+.small .label { padding: 0 var(--button-label-padding-x-small); font: var(--button-label-font-small); }
 .small svg { width: var(--button-icon-size-small); height: var(--button-icon-size-small); }
-.button:disabled { background: var(--button-container-background-disabled); color: var(--button-label-foreground-disabled); }
-/* …one block per flavor, shape and size in the doc */
+/* …one block per flavour, shape and size in the doc */
 ```
 
 ### 5. Conventions
@@ -198,21 +200,21 @@ export function Button({
 - **States:** CSS pseudo-classes for hover (inside `@media (hover: hover)`), pressed (`:active`) and focused (`:focus-visible`); the native `disabled` attribute for disabled; `aria-selected`, `aria-checked` and `aria-invalid` selectors for selected, checked and error. Never a state held in React state just for styling.
 - **Composites:** render children from `@/components/zebra` with the variant and size the doc names. A composite's CSS module only styles its own parts.
 - **Tests:** Vitest + Testing Library. One test per documented state, plus an `axe` check on the default render.
-- **Previews:** one Storybook story per component, with controls for every property and a toolbar switch for light, dark and high contrast.
+- **Previews:** one Storybook story per component, with controls for every property and a toolbar switch for light, dark, AAA and AAA dark.
 - **Review:** any PR touching `src/components/zebra/` or `design-system/` needs a review from the front-end lead, who checks it against the doc's tables.
 
 ### 6. Workflow
 
 1. Branch `zebra/<component>-<change>`, e.g. `zebra/button-add-loading-state`.
 2. Docs first, then `python3 design-system/scripts/tokens-css.py`, then code, then `CHANGES.md` (see `AGENTS.md`).
-3. Run `npm test` and `npm run storybook` and check the component in all three modes.
+3. Run `npm test` and `npm run storybook` and check the component in all four modes.
 4. PR title `zebra: <summary>`, with the `CHANGES.md` entry pasted in the description.
 
 ### 7. Open questions
 
 | Component | Question | Asked | Answer |
 |---|---|---|---|
-| Data Table † | Row height and cell padding are placeholders. What are the measurements? | 2026-11-10 | |
+| Date Picker † | Day-cell size and spacing are placeholders. What are the measurements? | 2026-11-10 | |
 
 ### 8. Existing UI
 
@@ -227,5 +229,5 @@ export function Button({
 |---|---|---|---|---|
 | Icon | React | `design-system/atoms/icon.md` | `src/components/zebra/Icon/` | stable |
 | Button | React | `design-system/atoms/button.md` | `src/components/zebra/Button/` | stable |
-| Text Input | React | `design-system/molecules/text-input.md` | `src/components/zebra/TextInput/` | stable |
-| Data Table | React | `design-system/organisms/data-table.md` | `src/components/zebra/DataTable/` | draft |
+| Input | React | `design-system/molecules/input.md` | `src/components/zebra/Input/` | stable |
+| Date Picker | React | `design-system/organisms/date-picker.md` | `src/components/zebra/DatePicker/` | draft |

@@ -2,110 +2,111 @@
 name: Dropdown Menu
 level: molecule
 status: stable
-composes: [../atoms/button.md, ../atoms/icon.md, ../atoms/checkbox.md, ../atoms/radio-button.md]
+composes: [./menu-item.md, ../atoms/button.md, ../atoms/icon-button.md]
 tokens:
   # panel
-  dropdown-menu-panel-padding: '{spacing.spacing-medium}'
-  dropdown-menu-panel-gap: '{spacing.spacing-minimum}'
-  dropdown-menu-panel-elevation: '{elevation.elevation-3}'
-  dropdown-menu-panel-radius: '{rounded.radius-minimal}'
-  # item sizes
-  dropdown-menu-item-padding-small: '{spacing.spacing-small}'
-  dropdown-menu-item-padding-y-medium: '{spacing.spacing-small}'
-  dropdown-menu-item-padding-x-medium: '{spacing.spacing-medium}'
-  dropdown-menu-item-padding-y-large: '{spacing.spacing-medium}'
-  dropdown-menu-item-padding-x-large: '{spacing.spacing-large}'
-  dropdown-menu-item-gap-small: '{spacing.spacing-minimum}'
-  dropdown-menu-item-gap-medium: '{spacing.spacing-small}'
-  dropdown-menu-item-gap-large: '{spacing.spacing-small}'
-  dropdown-menu-item-font-small: '{typography.label-small}'
-  dropdown-menu-item-font-medium: '{typography.body-medium}'
-  dropdown-menu-item-font-large: '{typography.body-medium}'
-  dropdown-menu-item-icon-size-small: '{icon.icon-size-small}'
-  dropdown-menu-item-icon-size-medium: '{icon.icon-size-medium}'
-  dropdown-menu-item-icon-size-large: '{icon.icon-size-medium}'
-  dropdown-menu-item-height-medium: '{spacing.spacing-6xl}'
-  # checkbox / radio rows
-  dropdown-menu-selection-item-height: '{spacing.spacing-6xl}'
-  dropdown-menu-selection-item-padding-y: '{spacing.spacing-none}'
-  dropdown-menu-selection-item-padding-x: '{spacing.spacing-medium}'
-  dropdown-menu-selection-item-radius: '{rounded.radius-minimal}'
-  # item states
-  dropdown-menu-item-background-enabled: '{colors.surface-default}'
-  dropdown-menu-item-background-hover: '{colors.surface-hover}'
-  dropdown-menu-item-background-pressed: '{colors.surface-selected}'
-  dropdown-menu-item-background-disabled: '{colors.surface-disabled}'
-  dropdown-menu-item-icon-foreground: '{colors.main-subtle}'
-  dropdown-menu-item-foreground-disabled: '{colors.main-disabled}'
+  dropdown-menu-panel-background: '{colors.color-fill-overlay}'
+  dropdown-menu-panel-shadow: '{shadow.shadow-medium}'
+  # shape
+  dropdown-menu-panel-radius-sharp: '{radius.radius-none}'
+  dropdown-menu-panel-radius-rounded: '{radius.radius-element-md}'
+  # sizes
+  dropdown-menu-panel-padding: '{space.space-card}'
+  dropdown-menu-panel-padding-compact: '{space.space-xs}'
+  dropdown-menu-content-gap: '{space.space-2xs}'
+  # placement (dropdown template)
+  dropdown-menu-panel-offset: '{space.space-sm}'
 ---
 
 # Dropdown Menu
 
-> Dropdown menus allow users to select an option from a list that appears when the menu is clicked or tapped. A button opens a menu panel containing a list of items.
+> A floating panel of Menu Item rows that opens from a trigger, for a short list of actions or options.
 
 ## Anatomy
-1. Anchor – [Button](../atoms/button.md), flavor primary by default, size as the menu size; its tokens govern colours, states, radius and label. It shows its default text or the selected label, with a trailing `chevron_left` [Icon](../atoms/icon.md) rotated −90° while open.
-2. Menu panel – floating white panel, `--dropdown-menu-panel-elevation`.
-3. Menu items – one of:
-   - text item: optional leading [Icon](../atoms/icon.md) + label. Context override: item icons are smaller than the Icon default (`--dropdown-menu-item-icon-size-small` / `--dropdown-menu-item-icon-size-medium` / `--dropdown-menu-item-icon-size-large`) and drawn in the subtler `--dropdown-menu-item-icon-foreground` so they sit behind the label;
-   - [Checkbox](../atoms/checkbox.md) item;
-   - [Radio Button](../atoms/radio-button.md) item.
+1. Panel — the outer frame. Hugs its content on both axes and carries the `--dropdown-menu-panel-background` surface, the radius and the `--dropdown-menu-panel-shadow` elevation. It needs nothing behind it.
+2. Content — the vertical stack inside the padding, rows `--dropdown-menu-content-gap` apart.
+3. Rows — [Menu Item](./menu-item.md) instances: icon, checkbox, radio or custom rows. The menu passes its Rounded value to every row, so the rows round (`--menu-item-container-radius-rounded`) or square off (`--menu-item-container-radius-sharp`) with the panel.
+4. Trigger (in the dropdown template) — the control the menu opens from: a [Button](../atoms/button.md) by default, or an [Icon Button](../atoms/icon-button.md). Its own flavour, size and label stay editable.
+
+The menu is placed relative to its trigger through the dropdown template, not nudged by hand. The template reserves only the trigger's space: the open panel is positioned absolutely, `--dropdown-menu-panel-offset` from the trigger on the side Position picks, and overlaps whatever is below.
 
 ## Variants
-| Type | Item content | Selection |
+| Rounded | Panel radius | Row radius |
 |---|---|---|
-| text (default) | icon + label | single; the anchor text can update to the selected label |
-| checkbox | checkbox + label | multiple |
-| radio | radio + label | single |
+| on (default) | `--dropdown-menu-panel-radius-rounded` | `--menu-item-container-radius-rounded` |
+| off | `--dropdown-menu-panel-radius-sharp` | `--menu-item-container-radius-sharp` |
 
-| Item size | Padding | Gap | Font | Icon |
-|---|---|---|---|---|
-| small | `--dropdown-menu-item-padding-small` | `--dropdown-menu-item-gap-small` | `--dropdown-menu-item-font-small` | `--dropdown-menu-item-icon-size-small` |
-| medium (default) | `--dropdown-menu-item-padding-y-medium` / `--dropdown-menu-item-padding-x-medium` | `--dropdown-menu-item-gap-medium` | `--dropdown-menu-item-font-medium` | `--dropdown-menu-item-icon-size-medium` |
-| large | `--dropdown-menu-item-padding-y-large` / `--dropdown-menu-item-padding-x-large` | `--dropdown-menu-item-gap-large` | `--dropdown-menu-item-font-large` | `--dropdown-menu-item-icon-size-large` |
+Figma defaults to sharp; the system default is rounded. In the AAA modes the component is always sharp (DESIGN.md §5).
 
-Checkbox / radio rows: height `--dropdown-menu-selection-item-height`, `--dropdown-menu-selection-item-padding-y` / `--dropdown-menu-selection-item-padding-x` padding.
+| Compact | Panel padding | Use |
+|---|---|---|
+| off (default) | `--dropdown-menu-panel-padding` | everywhere with room to spare |
+| on | `--dropdown-menu-panel-padding-compact` | a cramped spot: a rail, a table footer, a breadcrumb overflow |
 
-Anchor button: flavor primary by default (any Button flavor), sizes small / medium / large as Button. Panel opens below (default), above, left or right of the anchor.
+Placement (dropdown template):
+
+| Position | Align options | Lines up |
+|---|---|---|
+| bottom (default) | left (default), right | the leading or trailing edges of menu and trigger |
+| top | left, right | as bottom |
+| right | top, bottom | the top or bottom edges |
+| left | top, bottom | as right |
+
+Align top and bottom do nothing while Position is bottom or top, and left and right do nothing while Position is left or right.
 
 ## States
-| Element / state | Background | Text / icon |
+The panel has no interaction states of its own. Hover, selection, focus and disabled all live on the [Menu Item](./menu-item.md) rows, so the panel never changes appearance by itself.
+
+| Template state | Shows | Notes |
 |---|---|---|
-| item – enabled | `--dropdown-menu-item-background-enabled` | inherited text; icon `--dropdown-menu-item-icon-foreground` |
-| item – hover | `--dropdown-menu-item-background-hover` | – |
-| item – pressed | `--dropdown-menu-item-background-pressed` | – |
-| item – disabled | `--dropdown-menu-item-background-disabled` | `--dropdown-menu-item-foreground-disabled` |
-| anchor | per Button flavor, e.g. primary `--button-primary-container-background-enabled` → hover `--button-primary-container-background-hover` → pressed `--button-primary-container-background-pressed` | white |
+| closed (default) | trigger only | the menu is present but hidden, so its rows are kept |
+| open | trigger + panel | the panel appears `--dropdown-menu-panel-offset` from the trigger |
+
+No transition is defined: opening and closing is a switch, not an animation. `--dropdown-menu-panel-shadow` is the only thing separating the panel from the surface beneath, and no property changes it.
 
 ## Spacing & Sizing
 | Property | Value |
 |---|---|
-| Panel padding | `--dropdown-menu-panel-padding` |
-| Gap between items | `--dropdown-menu-panel-gap` |
-| Panel shadow | `--dropdown-menu-panel-elevation` |
-| Panel radius | `--dropdown-menu-panel-radius` when rounded; items in checkbox/radio rows `--dropdown-menu-selection-item-radius` |
-| Panel width | matches the anchor (default) or fits content |
+| Panel padding | `--dropdown-menu-panel-padding` on all sides; Compact `--dropdown-menu-panel-padding-compact` |
+| Row gap | `--dropdown-menu-content-gap` |
+| Row height | `--menu-item-container-height` |
+| Radius | `--dropdown-menu-panel-radius-sharp` / `--dropdown-menu-panel-radius-rounded` |
+| Elevation | `--dropdown-menu-panel-shadow` |
+| Offset from trigger | `--dropdown-menu-panel-offset` |
+| Width | hugs the widest row; a long label widens the whole menu instead of wrapping |
+
+Height grows with the number of rows. The panel neither scrolls nor caps its height, so a menu long enough to run past the viewport is a design decision the component doesn't prevent; in code, cap it and scroll the content (as [Phone Input](./phone-input.md) does past eight rows).
 
 ## Properties
 | Property | Options | Default |
 |---|---|---|
-| Type | text, checkbox, radio | text |
-| Items | label, optional icon, checked, disabled | — |
-| Default text | text | — |
-| Anchor shows selection | on / off | on |
-| Open | on / off | off |
-| Direction | bottom, top, left, right | bottom |
-| Match anchor width | on / off | on |
-| Flavor | any Button flavor | primary |
-| Size | small, medium, large | medium |
 | Rounded | on / off | on |
-| Disabled | on / off | off |
+| Compact | on / off | off |
+| More Items | on / off (shows the slot below the two built-in rows) | on |
+| Rows | Menu Items in the slot | two |
+| Open (template) | on / off | off |
+| Position (template) | bottom, top, right, left | bottom |
+| Align (template) | left, right, top, bottom | left |
+| Trigger (template) | Button, Icon Button | Button |
+
+Figma only: the panel has two built-in rows above a slot, and each Rounded and Compact variant stores its slot content separately, so content placed in the slot doesn't carry when either changes. The template's menu is pinned to Rounded on. In code the rows are simply the menu's children.
 
 ## Usage
-- Use for a compact list of actions or options behind a button; for form fields use [Select Input](./select-input.md).
-- Use the checkbox type for multi-select, radio for single-select with visible state.
-- Items are keyboard focusable (Enter/Space/arrow keys); medium items are `--dropdown-menu-item-height-medium` tall.
-- Keep labels short; disable rather than hide unavailable items.
+- Use a dropdown menu for a short list of actions or options behind a trigger; for a form field use [Select](./select.md).
+- Place it through the dropdown template so position comes from Position and Align, not manual nudging. Use top near the bottom of the view, right in a narrow column or side rail, left near the trailing edge.
+- Keep Rounded consistent with the surfaces around the menu; the rows follow it.
+- Use Compact only where room is short; a long list then reads as one dense block.
+- Use checkbox rows for multi-select and radio rows for a single choice with visible state.
+- Don't add a background or shadow behind the menu; it already carries both, and a second reads as two stacked panels.
+- Turning More Items off hides the slot and everything someone placed in it.
+- Disable rather than hide an unavailable option, so the menu keeps its shape.
+
+## Accessibility
+- The panel is a container and announces nothing itself; each row needs a clear label.
+- The trigger needs an accessible name and `aria-haspopup` and `aria-expanded`; neither is modelled in the design.
+- Showing and hiding the menu, moving focus into it, arrow-key movement between rows, closing on Escape and returning focus to the trigger all belong to the implementation.
+- The panel neither traps focus nor caps its height, and nothing stops it opening off-screen: flip Position near a viewport edge in code.
+- There is no border, so `--dropdown-menu-panel-shadow` alone separates the menu from what is behind it; check it reads on the surfaces you open it over.
 
 ## Stitch Prompt
-Draw a blue (`--button-primary-container-background-enabled`) button with `--button-container-radius-rounded` corners and white `--button-label-font-medium` label "Select" plus a white chevron, and directly below it an open white menu panel the same width, with `--dropdown-menu-panel-radius` corners, `--dropdown-menu-panel-padding` padding and a soft drop shadow (`--dropdown-menu-panel-elevation`). Inside, stack `--dropdown-menu-item-height-medium` rows `--dropdown-menu-panel-gap` apart, each with a `--dropdown-menu-item-icon-size-medium` grey icon and a `--dropdown-menu-item-font-medium` near-black label `--dropdown-menu-item-gap-medium` apart; one row is hovered with a pale grey-blue (`--dropdown-menu-item-background-hover`) fill and one is disabled with a light grey (`--dropdown-menu-item-background-disabled`) fill and grey text.
+Draw a primary Zebra button labelled "Assign to" and, `--dropdown-menu-panel-offset` below it with its left edge aligned, an open white floating panel (`--dropdown-menu-panel-background`) with `--dropdown-menu-panel-radius-rounded` corners, `--dropdown-menu-panel-padding` padding and a soft two-layer drop shadow (`--dropdown-menu-panel-shadow`), no border. Inside, stack four `--menu-item-container-height` rows `--dropdown-menu-content-gap` apart, each with a small near-black icon and a `--menu-item-label-font` label ("Dock 1", "Dock 2", "Dock 3", "Dock 4"); one row is hovered with a faint grey wash (`--menu-item-container-background-hover`), one is selected with a pale blue tint (`--menu-item-container-background-selected`) and one is disabled with grey text. The panel hugs its widest row.

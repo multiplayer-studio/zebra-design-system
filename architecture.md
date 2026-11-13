@@ -35,7 +35,7 @@ How a change to the Markdown docs flows through the generator scripts into token
 ### 1. Change a token
 1. Maintainer → Docs: edit the value in the `DESIGN.md` frontmatter (or a reference in a component's `tokens:`), and any prose that mentions it.
 2. Docs → scripts: `python3 scripts/tokens-css.py` reads all the frontmatter.
-3. scripts → Generated: writes `tokens.css` (light, dark and high-contrast blocks; component tokens stay as `var()` aliases).
+3. scripts → Generated: writes `tokens.css` (light, dark, AAA and AAA dark blocks; semantic and component tokens stay as `var()` aliases) and exits 1 on a broken reference.
 4. Generated → scripts: `python3 scripts/starter-html.py` reads `tokens.css`, `components.css` and `icons.json`.
 5. scripts → Starter: writes `prototypes/_starter/index.html`, refills the showcase blocks, and prints a drift report (never fails).
 6. scripts → Kits: `prototyping-zip.py` rebuilds every prototyping zip (committed with the docs); the production kit is only built when the release runs (flow 6).
@@ -82,7 +82,7 @@ Production:
 
 ## Workshop scenarios
 
-- "I changed `state-primary-hover`. What else must I run?" Walk flow 1.
+- "I changed `color-brand-primary-strong`. What else must I run?" Walk flow 1.
 - "Why can't a prototype just link `../../tokens.css`?" Flow 1, step 5: the Browser pane ignores relative links, so the starter inlines everything.
 - "Why does the production kit carry two scripts?" Flow 4: production projects regenerate their own token and icon files.
 - "Our product needs its own brand colours. Will every release overwrite them?" No. Flows 5 and 6: the DS team allows the difference, and the release 3-way merges around it.

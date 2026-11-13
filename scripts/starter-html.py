@@ -38,9 +38,9 @@ html = f'''<!doctype html>
 {plex}
 * {{ box-sizing: border-box; }}
 [hidden] {{ display: none !important; }}
-body {{ margin: 0; font: var(--body-medium); color: var(--main-default); background: var(--surface-default); }}
+body {{ margin: 0; font: var(--type-body-medium); color: var(--color-ink-high); background: var(--color-fill-default); }}
 h1, h2, h3, h4, h5, h6, p {{ margin: 0; }}
-main {{ padding: var(--grid-margin); }}
+main {{ padding: var(--space-page); }}
 </style>
 <!-- tokens:start -->
 {tokens}
@@ -70,6 +70,7 @@ path = os.path.join(ROOT, 'prototypes', 'showcase', 'index.html')
 html = open(path).read()
 for name, body in (('tokens', tokens), ('components', components), ('icons', icons)):
     html = fill(html, name, body)
+html = re.sub(r'Showcase · v[^<]*', f'Showcase · v{version}', html)  # header version follows DESIGN.md
 with open(path, 'w') as f:
     f.write(html)
 print('prototypes/showcase/index.html: tokens, components and icons blocks refreshed')
@@ -77,14 +78,14 @@ print('prototypes/showcase/index.html: tokens, components and icons blocks refre
 # Drift check between components.css and the tokens (report-only for now: it never fails the run).
 #   undefined: var(--x) in components.css that neither tokens.css nor components.css itself defines
 #              (renamed/removed tokens, or values a prototype's script or inline style must set)
-#   unused:    component tokens (tokens.css section 6, grouped by component) that components.css never uses
+#   unused:    component tokens (tokens.css section 7, grouped by component) that components.css never uses
 css_src = read('prototypes', '_starter', 'components.css')
 used = set(re.findall(r'var\(--([\w-]+)', css_src))
 tokens_src = read('tokens.css')
 defined = set(re.findall(r'--([\w-]+)\s*:', tokens_src)) | set(re.findall(r'--([\w-]+)\s*:', css_src))
 undefined = sorted(used - defined)
 unused, component = {}, None
-for line in tokens_src.split('/* 6. component tokens', 1)[1].splitlines():
+for line in tokens_src.split('/* 7. component tokens', 1)[1].split('/* 8.', 1)[0].splitlines():
     m = re.match(r'\s*/\* ([a-z0-9-]+) \*/', line) or re.match(r'\s*--([\w-]+):', line)
     if not m: continue
     if line.lstrip().startswith('/*'): component = m[1]

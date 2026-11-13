@@ -4,25 +4,26 @@ level: atom
 status: stable
 composes: []
 tokens:
-  icon-size: '{spacing.spacing-2xl}'
-  icon-size-small: '{spacing.spacing-large}'
-  icon-size-medium: '{spacing.spacing-xl}'
-  icon-size-large: '{spacing.spacing-5xl}'
-  icon-foreground: '{colors.main-default}'
-  icon-foreground-inverse: '{colors.main-inverse}'
-  icon-foreground-disabled: '{colors.main-disabled}'
-  icon-stroke-width: '{border.border-size-medium}'
-  icon-glyph-duration: '{motion.motion-slow}'
-  icon-glyph-easing: '{motion.easing-standard}'
+  # sizes
+  icon-size: '{control.control-icon-sm}'
+  icon-size-xsmall: '{control.control-icon-xs}'
+  icon-size-small: '{control.control-icon-sm}'
+  icon-size-medium: '{control.control-icon-md}'
+  icon-size-large: '{control.control-icon-lg}'
+  icon-frame-size: '{control.control-target-min}'
+  # colour (inherited from the parent by default)
+  icon-foreground: '{colors.color-ink-high}'
+  icon-foreground-inverse: '{colors.color-ink-inverse}'
+  icon-foreground-disabled: '{colors.color-ink-disabled}'
 ---
 
 # Icon
 
-> Icons come from the Zebra Icons library (v1.9.8), a ligature icon font available in rounded and sharp styles.
+> Wraps a single glyph from the Zebra Icons library (v1.9.8, rounded and sharp) so it can be sized consistently and embedded in other components.
 
 ## Anatomy
-1. Glyph — a font ligature: the icon name (e.g. `add`, `close`) is the text content; the font turns it into the glyph. Or the icon's inline SVG from `icons.json` (`round` / `sharp`), painted in `currentColor` and sized `1em` (how prototypes draw icons). Alternatively a custom vector glyph in the icon colour.
-2. Optional stroke — an outline of `--icon-stroke-width` (transparent by default), painted under the fill.
+1. Frame — the component's own box. With Framed off it hugs the glyph exactly; with Framed on it is a fixed `--icon-frame-size` square with the glyph centred. It has no fill, padding or radius, so Framed adds room and nothing visible.
+2. Glyph — a font ligature (the icon name, e.g. `add`, is the text content and the font draws the glyph), or the icon's inline SVG from `icons.json` (`round` / `sharp`), painted in `currentColor` and sized `1em` (how prototypes draw icons). It takes its colour from the component that embeds it.
 
 ## Variants
 | Variant | Font family | When |
@@ -50,33 +51,46 @@ Components pass the style down automatically (e.g. a sharp button → sharp icon
 | Brands | 7 | facebook, instagram, linkedin, youtube, google_drive, android |
 
 ## States
-Icons are not interactive on their own. Colour inherits from the parent component's state (e.g. disabled → `--icon-foreground-disabled`). Changes animate over `--icon-glyph-duration` with `--icon-glyph-easing`.
+Icon has no interaction states of its own. Hover, pressed, focus and disabled are all rendered by the parent, and the glyph follows the parent's foreground colour (e.g. disabled → `--icon-foreground-disabled`). It is static: any transition belongs to the embedding component.
 
 ## Spacing & Sizing
-| Property | Default |
-|---|---|
-| size (square) | `--icon-size` |
-| colour | `--icon-foreground` |
-| stroke width | `--icon-stroke-width` |
-| stroke colour | transparent |
+| Size | Glyph | Framed box |
+|---|---|---|
+| xsmall | `--icon-size-xsmall` | `--icon-frame-size` |
+| small (default) | `--icon-size-small` | `--icon-frame-size` |
+| medium | `--icon-size-medium` | `--icon-frame-size` |
+| large | `--icon-size-large` | `--icon-frame-size` |
 
-The glyph can be slightly narrower than its square (the font draws it at about 0.96 of the size wide), so never rely on it filling its box. **An icon placed inside another element (a checkbox box, an icon button, a chip, an avatar, a badge) is perfectly centred in that element, horizontally and vertically**, even when the icon is as large as or larger than the space available.
+`--icon-size` is the default glyph size. Always square, no padding. With Framed on, the box stays `--icon-frame-size` at every size and the glyph keeps its own size, centred.
 
-Common component sizes: `--icon-size-small` (small button), `--icon-size-medium` (button md/lg, chips, checkbox), `--icon-size` (icon button, FAB small, default), `--icon-size-large` (FAB large). Icons never shrink when space is tight and are not text-selectable.
+The glyph can be slightly narrower than its square (the font draws it at about 0.96 of the size wide), so never rely on it filling its box. **An icon placed inside another element (a checkbox box, an icon button, a chip, an avatar, a badge) is perfectly centred in that element, horizontally and vertically**, even when the icon is as large as or larger than the space available. Icons never shrink when space is tight and are not text-selectable.
+
+Common component sizes: `--icon-size-small` (small button and icon button), `--icon-size-medium` (button and icon button medium/large — the most used step), `--icon-size-large` (navigation header only; use it only where the icon is the focal point).
 
 ## Properties
 | Property | Options | Default |
 |---|---|---|
 | Name | any icon name from the library | — |
 | Style | rounded, sharp | rounded |
-| Size | any spacing token | `--icon-size` |
-| Colour | any main/state colour token | `--icon-foreground` |
+| Size | xsmall, small, medium, large | small |
+| Framed | on / off | off |
+
+Colour is not a property: the glyph inherits its parent's foreground. Most embedding components lock Size and Framed, leaving the glyph as the only choice.
 
 ## Usage
 - Browse and download icons from the Zebra Icons library (Sharp/Round toggle, multi-select download).
+- Set the glyph deliberately every time; there is no sensible default icon.
 - Match the icon style to the component shape: rounded UI → round font, sharp UI → sharp font.
-- Decorative icons should be hidden from assistive tech; meaningful standalone icons need an accessible label on their interactive parent.
+- Turn Framed on only where the icon is tappable on its own. Inside a button or a menu row the parent already provides the target.
+- Don't override the glyph's colour on an instance. Recolour the parent instead, or the parent's states stop working.
+- Don't rely on an icon alone to carry meaning; pair it with a visible label.
+
+## Accessibility
+- Icon carries no text. Anything it communicates has to be repeated in a visible label or an accessible name on its interactive parent; decorative icons are hidden from assistive tech.
+- Framed pads the glyph to `--icon-frame-size`, the minimum tappable size. A bare `--icon-size-small` or `--icon-size-medium` icon is not a target on its own.
+- The glyph inherits its parent's foreground colour, so contrast is a property of the surface it lands on rather than of this component.
+- There are no interaction states here. Focus and disabled treatments come from the embedding component.
 - Don't rely on icon colour alone to convey status; pair it with text.
 
 ## Stitch Prompt
-Use Zebra icons as simple, solid, single-colour glyphs on a `--icon-size` square, drawn in near-black `--icon-foreground` by default (or white/light `--icon-foreground-inverse` on coloured fills). The default rounded set has softly rounded terminals and corners; the sharp set has square corners for sharp-cornered interfaces. Icons cover Zebra enterprise themes such as barcodes, scanners, printers, RFID, batteries and wifi, alongside the usual navigation, communication, calendar and file-type glyphs. Size them `--icon-size-small` in small controls, `--icon-size-medium` in buttons and chips, and `--icon-size` elsewhere.
+Use Zebra icons as simple, solid, single-colour glyphs on a square, `--icon-size-small` by default and `--icon-size-medium` inside buttons, drawn in near-black `--icon-foreground` (or white `--icon-foreground-inverse` on coloured fills). The default rounded set has softly rounded terminals and corners; the sharp set has square corners for sharp-cornered interfaces. Icons cover Zebra enterprise themes such as barcodes, scanners, printers, RFID, batteries and wifi, alongside the usual navigation, communication, calendar and file-type glyphs. A standalone tappable icon sits centred in an invisible `--icon-frame-size` square.

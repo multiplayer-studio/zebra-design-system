@@ -2,107 +2,159 @@
 name: Snackbar
 level: molecule
 status: stable
-composes: [../atoms/icon.md, ../atoms/button.md]
+composes: [../atoms/icon.md, ../atoms/icon-button.md, ../atoms/button.md]
 tokens:
-  snackbar-container-radius-rounded: '{rounded.radius-minimal}'
-  snackbar-container-radius-full: '{rounded.radius-full}'
-  snackbar-container-radius-sharp: '{rounded.radius-none}'
-  snackbar-container-padding-y: '{spacing.spacing-medium}'
-  snackbar-container-padding-x: '{spacing.spacing-large}'
-  snackbar-container-gap: '{spacing.spacing-small}'
-  snackbar-container-height: '{spacing.spacing-8xl}'
-  snackbar-content-gap: '{spacing.spacing-large}'
-  snackbar-label-line-height: '{spacing.spacing-2xl}'
-  snackbar-default-close-icon-foreground: '{colors.main-inverse}'
-  # default
-  snackbar-default-container-background: '{colors.surface-default-inverse}'
-  snackbar-default-label-foreground: '{colors.main-inverse}'
-  snackbar-default-icon-foreground: '{colors.main-inverse}'
-  snackbar-default-action-foreground: '{colors.main-primary}'
-  # positive
-  snackbar-positive-container-background: '{colors.surface-positive-subtle}'
-  snackbar-positive-label-foreground: '{colors.main-default}'
-  snackbar-positive-icon-foreground: '{colors.main-positive}'
-  snackbar-positive-action-foreground: '{colors.main-default}'
-  # info
-  snackbar-info-container-background: '{colors.surface-info-subtle}'
-  snackbar-info-label-foreground: '{colors.main-default}'
-  snackbar-info-icon-foreground: '{colors.main-info}'
-  snackbar-info-action-foreground: '{colors.main-default}'
-  # warning
-  snackbar-warning-container-background: '{colors.surface-warning-subtle}'
-  snackbar-warning-label-foreground: '{colors.main-default}'
-  snackbar-warning-icon-foreground: '{colors.main-warning}'
-  snackbar-warning-action-foreground: '{colors.main-default}'
-  # negative
-  snackbar-negative-container-background: '{colors.surface-negative-subtle}'
-  snackbar-negative-label-foreground: '{colors.main-default}'
-  snackbar-negative-icon-foreground: '{colors.main-negative}'
-  snackbar-negative-action-foreground: '{colors.main-default}'
-  # view
-  snackbar-view-container-background: '{colors.surface-primary-subtle}'
-  snackbar-view-label-foreground: '{colors.main-default}'
-  snackbar-view-icon-foreground: '{colors.main-primary}'
-  snackbar-view-action-foreground: '{colors.main-default}'
+  # contextual default
+  snackbar-default-container-background: '{colors.color-fill-overlay}'
+  snackbar-default-message-foreground: '{colors.color-ink-high}'
+  # contextual info
+  snackbar-info-container-background: '{colors.color-status-info-faint}'
+  snackbar-info-message-foreground: '{colors.color-ink-high}'
+  snackbar-info-icon-foreground: '{colors.color-ink-high}'
+  # contextual positive
+  snackbar-positive-container-background: '{colors.color-status-success-faint}'
+  snackbar-positive-message-foreground: '{colors.color-ink-high}'
+  snackbar-positive-icon-foreground: '{colors.color-ink-high}'
+  # contextual warning
+  snackbar-warning-container-background: '{colors.color-status-warning-faint}'
+  snackbar-warning-message-foreground: '{colors.color-ink-high}'
+  snackbar-warning-icon-foreground: '{colors.color-ink-high}'
+  # contextual negative
+  snackbar-negative-container-background: '{colors.color-status-error-faint}'
+  snackbar-negative-message-foreground: '{colors.color-ink-high}'
+  snackbar-negative-icon-foreground: '{colors.color-ink-high}'
+  # contextual deletion
+  snackbar-deletion-container-background: '{colors.color-status-error-faint}'
+  snackbar-deletion-message-foreground: '{colors.color-ink-high}'
+  snackbar-deletion-icon-foreground: '{colors.color-ink-high}'
+  # contextual view
+  snackbar-view-container-background: '{colors.color-status-neutral-faint}'
+  snackbar-view-message-foreground: '{colors.color-ink-high}'
+  snackbar-view-icon-foreground: '{colors.color-ink-high}'
+  # contextual action
+  snackbar-action-container-background: '{colors.color-fill-overlay}'
+  snackbar-action-message-foreground: '{colors.color-ink-high}'
+  # standard
+  snackbar-standard-container-background: '{colors.color-fill-inverse}'
+  snackbar-standard-message-foreground: '{colors.color-ink-inverse}'
+  snackbar-standard-icon-foreground: '{colors.color-ink-inverse}'
+  # shape
+  snackbar-contextual-container-radius-rounded: '{radius.radius-pill}'
+  snackbar-standard-container-radius-rounded: '{radius.radius-md}'
+  snackbar-container-radius-sharp: '{radius.radius-none}'
+  # elevation
+  snackbar-container-shadow-near: '{shadow.shadow-small}'
+  snackbar-container-shadow-far: '{shadow.shadow-medium}'
+  # sizes
+  snackbar-container-height: '{control.control-lg}'
+  snackbar-container-padding-y: '{space.space-2xs}'
+  snackbar-container-padding-leading: '{space.space-lg}'
+  snackbar-container-padding-trailing: '{space.space-2xs}'
+  snackbar-container-gap: '{space.space-lg}'
+  snackbar-content-padding-y: '{space.space-sm}'
+  snackbar-content-gap: '{space.space-md}'
+  snackbar-controls-gap: '{space.space-2xs}'
+  snackbar-message-font: '{typography.type-body-medium}'
+  snackbar-icon-size: '{icon.icon-size-medium}'
+  snackbar-close-size: '{control.control-md}'
+  snackbar-close-padding: '{space.space-2xs}'
+  # position
+  snackbar-position-offset-bottom: '{space.space-xl}'
+  snackbar-position-margin-x: '{space.space-lg}'
+  # motion
+  snackbar-enter-duration: '{motion.motion-slow}'
+  snackbar-exit-duration: '{motion.motion-fast}'
+  snackbar-easing: '{motion.easing-out}'
 ---
 
 # Snackbar
 
-> Snackbars provide brief messages about app processes at the bottom of the screen. Contextual snackbars provide brief messages in relation to an action that has been taken by the user.
+> A brief message about something the app just did, floating at the bottom of the viewport and carrying at most one action.
 
 ## Anatomy
-1. Container – horizontal bar, content left, actions right.
-2. Leading icon (optional) – [Icon](../atoms/icon.md).
-3. Message – text.
-4. Action (optional) – [Button](../atoms/button.md), flavor text, size medium (font `--button-label-font-medium`). Context override: its label colour follows the snackbar status (Action text column below) so it stays legible on the tinted / inverse background, and it has no hover background.
-5. Close button (optional) – `cancel` [icon](../atoms/icon.md) (or a chosen close icon).
+1. Container — one row at least `--snackbar-container-height` tall, content leading and controls trailing, `--snackbar-container-gap` apart. It has no border; two drop shadows (`--snackbar-container-shadow-near` and `--snackbar-container-shadow-far`) lift it off whatever it covers.
+2. Leading glyph (optional) — [Icon](../atoms/icon.md) at `--snackbar-icon-size`. On contextual, Status chooses it: info (info), check_circle (positive), warning (warning), error (negative), delete (deletion), open_in_new_window (view); action and default have none. On standard, Show Icon opens a slot whose glyph the consumer picks.
+3. Message — one short sentence in `--snackbar-message-font`, `--snackbar-content-gap` after the glyph. It sits on a single line and never wraps. It is the only text the component takes in.
+4. Action (per Status) — a [Button](../atoms/button.md) drawn by the bar, with a fixed label: Undo on deletion, View on view, Action on action and standard. Its shape follows the bar.
+   - deletion, view: subtle, medium.
+   - action: outline-subtle, small.
+   - standard: contrast (filled), small, rounded.
+5. Close (per Status) — a subtle [Icon Button](../atoms/icon-button.md) `close`, `--snackbar-close-size` square with `--snackbar-close-padding` around the glyph. Absent on view (the action is the only way out) and on action.
 
-Icon colours (Icon column below, and `--snackbar-default-close-icon-foreground`) are context overrides of the icon default colour: status-coloured on tinted backgrounds, light on the inverse default background.
+Controls sit `--snackbar-controls-gap` apart.
 
 ## Variants
-| Status | Background | Text | Icon | Action text |
-|---|---|---|---|---|
-| default | `--snackbar-default-container-background` | `--snackbar-default-label-foreground` | `--snackbar-default-icon-foreground` | `--snackbar-default-action-foreground` |
-| positive | `--snackbar-positive-container-background` | `--snackbar-positive-label-foreground` | `--snackbar-positive-icon-foreground` | `--snackbar-positive-action-foreground` |
-| info | `--snackbar-info-container-background` | `--snackbar-info-label-foreground` | `--snackbar-info-icon-foreground` | `--snackbar-info-action-foreground` |
-| warning | `--snackbar-warning-container-background` | `--snackbar-warning-label-foreground` | `--snackbar-warning-icon-foreground` | `--snackbar-warning-action-foreground` |
-| negative | `--snackbar-negative-container-background` | `--snackbar-negative-label-foreground` | `--snackbar-negative-icon-foreground` | `--snackbar-negative-action-foreground` |
-| view | `--snackbar-view-container-background` | `--snackbar-view-label-foreground` | `--snackbar-view-icon-foreground` | `--snackbar-view-action-foreground` |
+Variant chooses the silhouette and whether Status applies. Status is a preset: tint, glyph and controls move together.
 
-| Shape | Radius |
-|---|---|
-| rounded (default) | `--snackbar-container-radius-rounded` |
-| full | `--snackbar-container-radius-full` (pill) |
-| sharp | `--snackbar-container-radius-sharp` |
+| Variant · Status | Background | Message | Glyph | Action | Close |
+|---|---|---|---|---|---|
+| contextual · default (default) | `--snackbar-default-container-background` | `--snackbar-default-message-foreground` | none | none | yes |
+| contextual · info | `--snackbar-info-container-background` | `--snackbar-info-message-foreground` | info, `--snackbar-info-icon-foreground` | none | yes |
+| contextual · positive | `--snackbar-positive-container-background` | `--snackbar-positive-message-foreground` | check_circle, `--snackbar-positive-icon-foreground` | none | yes |
+| contextual · warning | `--snackbar-warning-container-background` | `--snackbar-warning-message-foreground` | warning, `--snackbar-warning-icon-foreground` | none | yes |
+| contextual · negative | `--snackbar-negative-container-background` | `--snackbar-negative-message-foreground` | error, `--snackbar-negative-icon-foreground` | none | yes |
+| contextual · deletion | `--snackbar-deletion-container-background` | `--snackbar-deletion-message-foreground` | delete, `--snackbar-deletion-icon-foreground` | Undo (subtle) | yes |
+| contextual · view | `--snackbar-view-container-background` | `--snackbar-view-message-foreground` | open_in_new_window, `--snackbar-view-icon-foreground` | View (subtle) | no |
+| contextual · action | `--snackbar-action-container-background` | `--snackbar-action-message-foreground` | none | Action (outline-subtle) | no |
+| standard | `--snackbar-standard-container-background` | `--snackbar-standard-message-foreground` | optional, `--snackbar-standard-icon-foreground` | Action (contrast) | yes |
+
+Deletion shares the error tint, so it reads as destructive even where the message is neutral. On standard the close glyph takes `--snackbar-standard-icon-foreground` so it reads on the dark bar.
+
+Shape: rounded (default) → `--snackbar-contextual-container-radius-rounded` (a pill) on contextual and `--snackbar-standard-container-radius-rounded` (a soft rectangle) on standard; sharp → `--snackbar-container-radius-sharp` on both. The close and the action follow: Button and Icon Button shape full on rounded contextual, rounded on standard, sharp on sharp. In the AAA modes the component is always sharp (DESIGN.md §5).
 
 ## States
-Static surface. Close icon in default status is `--snackbar-default-close-icon-foreground`. Action and close buttons have transparent backgrounds and no hover styling.
+| State | Trigger | What changes |
+|---|---|---|
+| static | — | The bar has no interaction states. Nothing answers hover, focus or press; the action and close carry their own. |
+| entering | opened | Rises from below its resting place while fading in, over `--snackbar-enter-duration` with `--snackbar-easing`. |
+| leaving | closed by its close, its action or its timer | Rises a little further and fades out over `--snackbar-exit-duration`, then is removed. |
+
+It stays on screen until the exit has finished, and a bar opened again while it is leaving returns fully visible. The timer pauses while the pointer or keyboard focus is on the bar. With reduced motion it only fades, over 150ms (no motion token yet), without moving.
 
 ## Spacing & Sizing
-| Property | Value |
+| Part | Value |
 |---|---|
-| Padding | `--snackbar-container-padding-y` `--snackbar-container-padding-x` |
-| Gap icon ↔ text, action ↔ close | `--snackbar-content-gap` |
-| Gap between content and actions | `--snackbar-container-gap` |
-| Action font | Button size medium, `--button-label-font-medium` |
-| Height (one line with action) | `--snackbar-container-padding-y` + `--snackbar-label-line-height` line + `--snackbar-container-padding-y` (= `--snackbar-container-height`) |
+| Height | `--snackbar-container-height` throughout |
+| Padding | `--snackbar-container-padding-y` top and bottom, `--snackbar-container-padding-leading` leading, `--snackbar-container-padding-trailing` trailing |
+| Content → controls | `--snackbar-container-gap` |
+| Content | `--snackbar-content-padding-y` top and bottom; glyph → message `--snackbar-content-gap` |
+| Between controls | `--snackbar-controls-gap` |
+| Close | `--snackbar-close-size` square, glyph `--snackbar-icon-size` |
+| Action | Button medium (`--button-container-height-medium`) on deletion and view; Button small (`--button-container-height-small`) on action and standard |
+| Position | Fixed to the viewport, centred, `--snackbar-position-offset-bottom` above the bottom edge, never wider than the viewport less `--snackbar-position-margin-x` each side |
+
+Figma gives each status its own fixed width (190 to 323); in code the bar hugs its content up to the viewport limit, and the message stays on one line, so message length is a constraint on what gets written. The bar floats in the browser's top layer (a popover), above any z-index on the page, modals included. It neither takes focus nor blocks the page. Two bars open at once occupy the same spot; there is no queue yet.
 
 ## Properties
 | Property | Options | Default |
 |---|---|---|
-| Status | default, positive, negative, info, warning, view | default |
-| Leading icon | icon | none |
-| Message | text | none |
-| Action label | text | none |
-| Close button | on / off | off |
-| Close icon | icon | cancel |
-| Shape | sharp, rounded, full | rounded |
+| Variant | contextual, standard | contextual |
+| Status (contextual) | default, info, positive, warning, negative, deletion, view, action | default |
+| Shape | rounded, sharp | rounded |
+| Message | text | Message |
+| Show Icon (standard) | on / off | off |
+| Icon (standard) | any icon | — |
+| Show Action | on / off (only where the status carries one) | on |
+| Show Close | on / off (only where the status carries one) | on |
+
+The action label is fixed per status and is not an input.
 
 ## Usage
-- Show at the bottom of the screen for brief, non-blocking feedback; one snackbar at a time.
-- Keep messages to a single short sentence; at most one action.
-- Use status colours consistently and include an icon so meaning is not colour-only.
-- Give the close button an accessible label; don't put critical information only in a snackbar.
+- Use it for something worth noticing and not worth interrupting for. Where the person has to answer before carrying on, use a [Dialog](../organisms/dialog.md).
+- Pick the status for what happened rather than for the colour. Each one brings its own glyph and controls, so the choice settles the whole bar.
+- Keep the message to one short line. The bar does not wrap.
+- Don't turn the close off on a bar with no action and no timer. That leaves a person with a message and no way to clear it.
+- Don't use deletion just to get an error tint. It promises an Undo, and offering one the product cannot honour is worse than a plain error.
+- A failure the person could retry needs a status that carries an action; negative carries only a close.
+- Don't put critical information only in a snackbar; it goes away.
+
+## Accessibility
+- A snackbar appears without being asked for, so it has to announce itself. Nothing in the component does that: the structure around it uses a live region (`role="status"`).
+- The tints are subtle by design, so the glyph and the words are what separate info from error for anyone who cannot rely on colour.
+- View carries no close. Where it does not dismiss itself, its action is the only way out and has to be reachable by keyboard.
+- The close is a real target, not decoration. Give it an accessible name ("Close"), because the glyph carries no text.
+- Check the bar does not settle over something a person still needs to read or reach.
+- Its movement respects reduced motion: with that preference set it fades without sliding.
 
 ## Stitch Prompt
-Draw a horizontal toast bar at the bottom of a screen with `--snackbar-container-radius-rounded` corners, `--snackbar-container-padding-y` vertical and `--snackbar-container-padding-x` horizontal padding: `--snackbar-default-container-background` background, a `--snackbar-default-icon-foreground` icon and `--snackbar-default-label-foreground` message "Message sent" on the left, and on the right a `--snackbar-default-action-foreground` `--button-label-font-medium` "Undo" text action and a `--snackbar-default-close-icon-foreground` circular close icon, `--snackbar-content-gap` apart. Status variants use pale tinted backgrounds (`--snackbar-positive-container-background`, `--snackbar-info-container-background`, `--snackbar-warning-container-background`, `--snackbar-negative-container-background`, `--snackbar-view-container-background`) with `--snackbar-positive-label-foreground` text, `--snackbar-positive-action-foreground` action text and a matching coloured icon.
+Draw a Zebra snackbar floating `--snackbar-position-offset-bottom` above the bottom of the screen, centred: a single-line pill (`--snackbar-contextual-container-radius-rounded`) `--snackbar-container-height` tall with a soft drop shadow, `--snackbar-container-padding-leading` padding at the start and `--snackbar-container-padding-trailing` at the end. A deletion snackbar has a pale red tint (`--snackbar-deletion-container-background`), a near-black `--snackbar-icon-size` delete icon, the message "Order removed" in `--snackbar-message-font` near-black text, then a pill "Undo" text button and a round close (x) icon button at the end. Info, success and warning versions use pale blue, green and amber tints with info, check-circle and warning icons and only a close. The default and action versions are white (`--snackbar-default-container-background`); the action version has a thin grey outlined "Action" button. The standard version is a near-black soft rectangle (`--snackbar-standard-container-background`, `--snackbar-standard-container-radius-rounded` corners) with white text and a filled contrast "Action" button in the bar's own inverse colour.

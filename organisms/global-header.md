@@ -2,107 +2,133 @@
 name: Global Header
 level: organism
 status: stable
-composes: [../atoms/button.md, ../atoms/icon-button.md, ../atoms/avatar.md, ../atoms/icon.md, ../molecules/search-bar.md, ../molecules/dropdown-menu.md]
+composes: [../atoms/icon-button.md, ../atoms/button.md, ../atoms/divider.md, ../molecules/search.md, ../atoms/avatar.md, ../molecules/dropdown-menu.md, ../atoms/icon.md]
 tokens:
-  global-header-container-background: '{colors.surface-default}'
-  global-header-container-height: '{dimensions.dim-global-header-height}'
-  global-header-container-padding: '{spacing.spacing-1-5}'
-  global-header-container-gap-compact: '{spacing.spacing-6xl}'
-  global-header-breakpoint-compact: '{dimensions.dim-global-header-breakpoint-compact}'
-  global-header-text-foreground: '{colors.main-default}'
-  global-header-text-subtle-foreground: '{colors.main-subtle}'
-  global-header-divider-width: '{border.border-size-small}'
-  global-header-divider-color: '{colors.border-default}'
-  # logo
-  global-header-logo-foreground: '{colors.state-inverse-enabled}'
-  global-header-logo-width: '{dimensions.dim-global-header-logo-width}'
-  global-header-logo-height: '{dimensions.dim-global-header-logo-height}'
-  global-header-logo-artwork-width: '{dimensions.dim-global-header-logo-svg-width}'
-  global-header-logo-margin-left: '{spacing.spacing-small}'
-  global-header-logo-margin-right: '{spacing.spacing-large}'
-  global-header-app-switcher-margin-right: '{spacing.spacing-2-5}'
-  global-header-platform-name-font: '{typography.title-medium}'
-  # menu and actions
-  global-header-menu-item-font: '{typography.label-medium}' # override: Button label font
-  global-header-menu-item-padding-left: '{spacing.spacing-small}'
-  global-header-actions-gap: '{spacing.spacing-large}'
-  global-header-actions-padding-right: '{spacing.spacing-small}'
-  global-header-action-icon-foreground: '{icon.icon-foreground}' # override: Icon Button subtle icon colour
-  # user info
-  global-header-user-name-font: '{typography.label-small}'
-  global-header-info-margin-right: '{spacing.spacing-large}'
+  # container (locked to Dark mode)
+  global-header-container-background: '{colors.color-fill-default}'
+  global-header-container-border-color: '{colors.color-line-default}'
+  global-header-container-border-width: '{stroke.stroke-base}'
+  global-header-container-padding: '{space.space-sm}'
+  global-header-container-gap: '{space.space-gutter}'
+  global-header-container-radius-sharp: '{radius.radius-none}'
+  global-header-container-radius-rounded: '{radius.radius-element-sm}'
+  # regions
+  global-header-leading-gap: '{space.space-gutter}'
+  global-header-middle-gap: '{space.space-sm}'
+  global-header-menu-gap: '{space.space-3xs}'
+  global-header-actions-gap: '{space.space-3xs}'
+  global-header-account-gap: '{space.space-gutter}'
+  global-header-search-max-width: '{component-sizes.size-global-header-search-max-width}'
+  # platform name
+  global-header-platform-name-foreground: '{colors.color-ink-high}'
+  global-header-platform-name-font: '{typography.type-title-medium}'
+  # account control
+  global-header-profile-height: '{control.control-md}'
+  global-header-profile-padding-y: '{space.space-2xs}'
+  global-header-profile-padding-x: '{space.space-sm}'
+  global-header-profile-gap: '{space.space-2xs}'
+  global-header-profile-radius-sharp: '{radius.radius-none}'
+  global-header-profile-radius-rounded: '{radius.radius-sm}'
+  global-header-profile-background-enabled: '{colors.color-fill-default}'
+  global-header-profile-background-hover: '{colors.color-fill-faint}'
+  global-header-profile-background-pressed: '{colors.color-fill-sunken}'
+  global-header-profile-background-focused: '{colors.color-fill-default}'
+  global-header-profile-background-disabled: '{colors.color-fill-disabled}'
+  global-header-profile-border-color: '{colors.color-line-default}'
+  global-header-profile-border-color-disabled: '{colors.color-line-subtle}'
+  global-header-profile-border-width: '{stroke.stroke-base}'
+  global-header-profile-focus-ring-width: '{stroke.stroke-thin}'
+  global-header-profile-focus-ring-color: '{colors.color-line-focus}'
+  global-header-profile-label-foreground: '{colors.color-ink-high}'
+  global-header-profile-label-foreground-disabled: '{colors.color-ink-disabled}'
+  global-header-profile-label-font: '{typography.type-label-small}'
+  global-header-profile-icon-size: '{icon.icon-size-small}'
 ---
 
 # Global Header
 
-> The topmost, persistent navigation bar across the application — product logo, primary navigation, search and user profile access.
+> The bar across the top of an application: the product's identity at the leading edge, navigation and search in the middle, and the person's account at the trailing edge.
 
 ## Anatomy
-1. Container — full-width bar, **dark theme by default**.
-2. App switcher (optional) — [Icon Button](../atoms/icon-button.md), flavor subtle, size medium.
-3. Logo — default Zebra logo (or a custom logo), `--global-header-logo-width` × `--global-header-logo-height`.
-4. Platform name — text.
-5. Menu items — up to **6** [Buttons](../atoms/button.md), flavor subtle, size small / [Dropdown Menu](../molecules/dropdown-menu.md) buttons, separated from the name by a `--global-header-divider-width` divider.
-6. Search (optional) — [Search Bar](../molecules/search-bar.md).
-7. Action items — up to **6** [Icon Buttons](../atoms/icon-button.md), flavor subtle, size medium / action-menu buttons, followed by a `--global-header-divider-width` divider.
-8. User info — name text + [Avatar](../atoms/avatar.md), purple, size xxs (`--avatar-container-size-xxs`).
-
-The buttons, icon buttons, search bar and avatar govern their own colours, states, radius and focus ring; the header defines its bar, layout, text and dividers, plus the two overrides below.
+1. Bar — one row on `--global-header-container-background`, padded `--global-header-container-padding` on every side, its three regions `--global-header-container-gap` apart. A `--global-header-container-border-color` stroke sits on it at `--global-header-container-border-width` (zero): a theming hook a high-contrast theme can thicken.
+2. Leading group (hugs) — `--global-header-leading-gap` apart:
+   - Menu button — an [Icon Button](../atoms/icon-button.md), subtle, medium, hamburger glyph. Always present.
+   - Brand mark — the Logo slot; the Zebra horizontal logo by default. Always drawn.
+   - Platform name (optional) — the product's name in `--global-header-platform-name-font` `--global-header-platform-name-foreground`.
+3. Middle band (fills, packed to its trailing edge, `--global-header-middle-gap` apart):
+   - Navigation region (MenuItems) — the Menu Items slot, `--global-header-menu-gap` between controls; ships with a subtle medium Icon Button and a subtle medium [Button](../atoms/button.md). It takes the spare width, so it's what absorbs a wider viewport.
+   - Search (SearchBar) — a [Search](../molecules/search.md) at medium, its shape following Rounded, never wider than `--global-header-search-max-width`.
+   - Action region (ActionMenu) — the Menu Actions slot, hugging its controls `--global-header-actions-gap` apart; ships with two subtle medium Icon Buttons.
+4. Account group (hugs, `--global-header-account-gap` apart):
+   - Account control — a username in `--global-header-profile-label-font`, an [Avatar](../atoms/avatar.md) at xxsmall and an `expand_more` [Icon](../atoms/icon.md) at `--global-header-profile-icon-size`, `--global-header-profile-gap` apart, `--global-header-profile-height` tall, padded `--global-header-profile-padding-y` / `--global-header-profile-padding-x`. It's the trigger of a [Dropdown Menu](../molecules/dropdown-menu.md).
+   - App switcher (optional) — an Icon Button, subtle, medium, fixed `apps` glyph.
+5. Dividers (optional) — two vertical [Divider](../atoms/divider.md)s, one before the middle band and one after, stretching to the row height. One toggle shows both.
 
 ## Variants
-| Theme | Background | Text | Subtle | Divider |
-|---|---|---|---|---|
-| dark (default) | `--global-header-container-background` (colors-dark) | `--global-header-text-foreground` (colors-dark) | `--global-header-text-subtle-foreground` (colors-dark) | `--global-header-divider-color` (colors-dark) |
-| light | `--global-header-container-background` | `--global-header-text-foreground` | `--global-header-text-subtle-foreground` | `--global-header-divider-color` |
+Theme: the header is locked to Dark mode whatever the page's mode, and everything inside follows it. A project can override the mode on the header itself (for example Light on a dark product). In code, set `data-theme="dark"` on the header (override: `data-theme="light"`); its tokens then resolve in that mode, and AAA still applies when the page asks for it.
 
-Base text/logo fill: `--global-header-logo-foreground` (resolved per theme). Avatar: Avatar purple (`--avatar-purple-container-background`, resolved per theme), initials `--avatar-content-foreground`.
+Rounded: on (default) → `--global-header-container-radius-rounded` on the bar, every nested control rounded, and `--global-header-profile-radius-rounded` on the account control; off → `--global-header-container-radius-sharp` on the bar, every nested control sharp, and `--global-header-profile-radius-sharp` on the account control. Set once on the bar; it carries into every control. Figma defaults to sharp; the system default is rounded. In the AAA modes the component is always sharp (DESIGN.md §5).
 
 ## States
-| Condition | Behaviour |
-|---|---|
-| > 6 menu or action items | extra items hidden |
-| 6 menu + 6 action items, viewport ≤ `--global-header-breakpoint-compact` | search bar hidden |
-| viewport ≤ `--global-header-breakpoint-compact` | main gap becomes `--global-header-container-gap-compact` |
-| Item hover/pressed/focus | inherited from button / icon button |
+The header is static; hover, focus and press belong to the controls inside. Each region toggle takes the region out of the layout, so the rest close up. No transition is defined.
+
+Account control:
+
+| State | Background | Label and chevron | Border |
+|---|---|---|---|
+| enabled | `--global-header-profile-background-enabled` | `--global-header-profile-label-foreground` | `--global-header-profile-border-color` at `--global-header-profile-border-width` |
+| hover | `--global-header-profile-background-hover` | unchanged | as enabled |
+| pressed | `--global-header-profile-background-pressed` | unchanged | as enabled |
+| focused | `--global-header-profile-background-focused` | unchanged | `--global-header-profile-focus-ring-width` `--global-header-profile-focus-ring-color`: the only visible border |
+| disabled | `--global-header-profile-background-disabled` | `--global-header-profile-label-foreground-disabled` | `--global-header-profile-border-color-disabled`; not interactive |
+
+Open, the account control shows its Dropdown Menu; the menu's behaviour is its own.
 
 ## Spacing & Sizing
 | Part | Value |
 |---|---|
-| Bar padding | `--global-header-container-padding` |
-| Layout | row, groups pushed to each end; right group gap `--global-header-actions-gap` |
-| Logo | `--global-header-logo-width` × `--global-header-logo-height` (artwork `--global-header-logo-artwork-width` wide), `--global-header-logo-margin-left` left and `--global-header-logo-margin-right` right margin |
-| Platform name | `--global-header-platform-name-font` |
-| Menu items | Button subtle (icons and text `--button-subtle-label-foreground`), left padding `--global-header-menu-item-padding-left`. Override: label font `--global-header-menu-item-font` (between the Button's small and medium label fonts, to fit the bar) |
-| Action icons | Icon Button subtle, icon `--icon-size`; group right padding `--global-header-actions-padding-right`. Override: icon colour `--global-header-action-icon-foreground` (the Icon default colour rather than the subtle grey, so actions read as primary chrome) |
-| Dividers | `--global-header-divider-width` `--global-header-divider-color` |
-| User name | `--global-header-user-name-font` |
-| Header info right margin | `--global-header-info-margin-right`; app-switcher right margin `--global-header-app-switcher-margin-right` |
+| Bar | fills the width; `--global-header-container-padding` on every side; the content row is one medium control tall |
+| Region gap | `--global-header-container-gap` |
+| Leading / account gaps | `--global-header-leading-gap` / `--global-header-account-gap` |
+| Middle band | `--global-header-middle-gap`; navigation `--global-header-menu-gap`; actions `--global-header-actions-gap` |
+| Search | medium, at most `--global-header-search-max-width` |
+| Account control | `--global-header-profile-height` tall, hugs its width |
+
+The end groups hug their content, so a longer product name or an extra action takes width from navigation. With navigation off, search sits next to the account group rather than in the centre.
 
 ## Properties
 | Property | Options | Default |
 |---|---|---|
-| Theme | dark, light | dark |
-| Platform name | text | none |
-| User name | text | none |
-| User initials | text | none |
-| App switcher | on / off | off |
-| Search bar | on / off | off |
 | Rounded | on / off | on |
+| AppSwitcher | on / off | on |
+| SearchBar | on / off | on |
+| MenuItems (+ Menu Items slot) | on / off | off |
+| ActionMenu (+ Menu Actions slot) | on / off | off |
+| Dividers | on / off | off |
+| PlatformName | text | Platform Name |
+| Show Platform Name | on / off | on |
+| Logo slot | the product's mark | Zebra horizontal logo |
+| Username | text | — |
+| Avatar | any Avatar property, at xxsmall | — |
+| Theme | dark, light (override on the header) | dark |
 
-## Content regions
-| Region | Expects |
-|---|---|
-| Platform name | text |
-| Menu items | buttons or dropdown menu buttons |
-| Action items | icon buttons or action menu buttons |
-| User avatar | avatar, size xxs |
-| Logo | custom logo replacing the Zebra logo |
+Show Logo exists in Figma but nothing is bound to it; the Logo slot is what varies the mark.
 
 ## Usage
-- Keep it consistent across all views; it anchors the user in the application.
-- Max 6 menu items and 6 action items — anything more is hidden; plan overflow into menus.
-- At full load (6 + 6) the search disappears at ≤ `--global-header-breakpoint-compact` — don't rely on it as the only search entry.
-- Icon-only actions need accessible labels/tooltips; targets ≥ `--button-touch-target-size-minimum`; focus ring is the Button focus ring (`--button-focus-ring-width` `--button-focus-ring-color`).
+- Keep it identical across every view; it anchors people in the application.
+- Set Rounded once on the header and let it carry; setting a nested control's shape separately is how a header ends up inconsistent.
+- Keep PlatformName to the product's name; it doesn't change as people navigate.
+- A slot only shows while its toggle is on: fill Menu Items with MenuItems on and Menu Actions with ActionMenu on.
+- Don't lean on search to absorb a wider viewport; it holds its width, and navigation grows instead.
+- Use Dividers where the regions hold enough to blur together.
+- Drop the app switcher in a single-product app; there's nothing to switch to.
+
+## Accessibility
+- The header is a `header` landmark (banner) and the navigation region inside it needs its own `nav` with a name.
+- Every Icon Button is glyph-only, so the menu button, app switcher and trailing actions each need an accessible name.
+- The account control is a menu trigger: name it with the person it represents, and expose `aria-haspopup="menu"` and `aria-expanded`.
+- Focus is the only state that draws a border on the account control (`--global-header-profile-focus-ring-color`), so never suppress it.
+- Locked to Dark, the header keeps its contrast whatever the page does; check custom logos against `--global-header-container-background` in Dark and AAA Dark.
 
 ## Stitch Prompt
-Draw a full-width dark (`--global-header-container-background` from colors-dark) top bar about `--global-header-container-height` tall. On the left: a grid app-switcher icon, a `--global-header-logo-foreground` Zebra logo, the platform name in `--global-header-platform-name-font` `--global-header-text-foreground` text, a thin `--global-header-divider-width` `--global-header-divider-color` divider, then up to six `--global-header-menu-item-font` text menu buttons in `--global-header-text-subtle-foreground`. On the right: an optional rounded search field, up to six subtle icon buttons with `--icon-size` `--global-header-action-icon-foreground` icons (alerts, help, settings), a thin divider, the user's name in `--global-header-user-name-font` text and a small round purple (`--avatar-purple-container-background`) xxs avatar with initials. Spacing between groups is `--global-header-actions-gap`, everything vertically centred.
+Draw a full-width near-black application header (`--global-header-container-background` in Dark mode) with `--global-header-container-padding` padding and softly rounded corners (`--global-header-container-radius-rounded`), with every control inside rounded too. On the left: a white hamburger icon button, a small white Zebra logo, and the product name "Fulfilment Hub" in `--global-header-platform-name-font` white (`--global-header-platform-name-foreground`). In the middle, right-aligned: a dark search field with a thin grey outline, at most `--global-header-search-max-width` wide, and two small white icon buttons (alerts, help). On the right: an account control with the user's name in `--global-header-profile-label-font`, a tiny round avatar and a down chevron, then a grid app-switcher icon. Everything is vertically centred in one row a medium control tall.

@@ -1,88 +1,98 @@
 ---
 name: Slider Input Field
 level: molecule
-status: stable
+status: draft
 composes: [../atoms/slider.md]
 tokens:
   # label
-  slider-input-field-label-padding-left: '{spacing.spacing-small}'
-  slider-input-field-label-gap: '{spacing.spacing-minimum}'
-  slider-input-field-label-foreground-disabled: '{colors.main-disabled}'
-  # range labels
-  slider-input-field-range-label-padding-right: '{spacing.spacing-minimum}'
-  slider-input-field-range-label-padding-bottom: '{spacing.spacing-minimum}'
-  slider-input-field-range-label-padding-left: '{spacing.spacing-small}'
-  slider-input-field-range-label-line-height: '{spacing.spacing-2xl}'
-  slider-input-field-range-label-margin-y: '{spacing.spacing-small}'
-  # number input
-  slider-input-field-gap: '{spacing.spacing-large}'
-  slider-input-field-input-width: '{dimensions.dim-slider-input-field-input-width}'
-  slider-input-field-input-height: '{spacing.spacing-8xl}'
-  slider-input-field-input-font: '{typography.body-medium}'
-  slider-input-field-input-background: '{colors.surface-default}'
-  slider-input-field-input-foreground: '{colors.main-subtle}'
-  slider-input-field-input-border-width: '{border.border-size-small}'
-  slider-input-field-input-border-color: '{colors.border-default}'
-  slider-input-field-input-background-error: '{colors.surface-negative-subtle}'
-  slider-input-field-input-border-color-error: '{colors.border-negative}'
-  slider-input-field-input-background-disabled: '{colors.surface-disabled}'
-  slider-input-field-input-border-color-disabled: '{colors.border-disabled}'
-  slider-input-field-input-foreground-disabled: '{colors.main-disabled}'
+  slider-input-field-label-font: '{typography.type-label-medium}'
+  slider-input-field-label-foreground: '{colors.color-ink-high}'
+  slider-input-field-label-foreground-disabled: '{colors.color-ink-disabled}'
+  slider-input-field-label-gap: '{space.space-2xs}'
+  # range labels (min / max)
+  slider-input-field-range-label-font: '{typography.type-indicator-medium}'
+  slider-input-field-range-label-foreground: '{colors.color-ink-medium}'
+  slider-input-field-range-label-foreground-disabled: '{colors.color-ink-disabled}'
+  # layout
+  slider-input-field-gap: '{space.space-gutter}'
+  slider-input-field-slider-gap: '{space.space-lg}'
+  slider-input-field-slider-padding-top: '{space.space-sm}'
+  # number box
+  slider-input-field-input-width: '{primitives.scale-16}'
+  slider-input-field-input-height: '{control.control-md}'
+  slider-input-field-input-padding-x: '{space.space-md}'
+  slider-input-field-input-radius: '{radius.radius-sm}'
+  slider-input-field-input-font: '{typography.type-body-medium}'
+  slider-input-field-input-foreground: '{colors.color-ink-high}'
+  slider-input-field-input-foreground-disabled: '{colors.color-ink-disabled}'
+  slider-input-field-input-background: '{colors.color-fill-default}'
+  slider-input-field-input-background-disabled: '{colors.color-fill-disabled}'
+  slider-input-field-input-border-width: '{stroke.stroke-thin}'
+  slider-input-field-input-border-width-focused: '{stroke.stroke-thick}'
+  slider-input-field-input-border-color: '{colors.color-line-default}'
+  slider-input-field-input-border-color-focused: '{colors.color-line-focus}'
+  slider-input-field-input-border-color-invalid: '{colors.color-status-error-default}'
+  slider-input-field-input-border-color-disabled: '{colors.color-line-subtle}'
 ---
 
 # Slider Input Field
 
-> A text input and slider field for entering numerical values.
+> A slider paired with a number box, for both quick dragging and precise typed entry of one value.
 
 ## Anatomy
-1. Label (optional) – above the row, indented `--slider-input-field-label-padding-left`.
-2. [Slider](../atoms/slider.md), default type – single handle, filling the remaining width. Its own tokens govern the track, filled part, handle, hover scale and step dots; the Rounded property is passed to its shape.
-3. Range labels – minimum value at left, maximum value at right, under the track.
-4. Number input – `--slider-input-field-input-width` × `--slider-input-field-input-height` box to the right of the slider, synced with the handle.
+1. Label (optional) — above the row, `--slider-input-field-label-font` in `--slider-input-field-label-foreground`, `--slider-input-field-label-gap` above it.
+2. Slider column — `--slider-input-field-slider-padding-top` from the top, filling the width the number box leaves:
+   1. [Slider](../atoms/slider.md), single value. Its own tokens govern the track, active track, thumb, step dots and states.
+   2. Range labels — the minimum at the left and the maximum at the right, `--slider-input-field-slider-gap` below the slider, in `--slider-input-field-range-label-font` `--slider-input-field-range-label-foreground`.
+3. Number box — `--slider-input-field-input-width` × `--slider-input-field-input-height`, `--slider-input-field-gap` to the right of the slider column, showing the value in `--slider-input-field-input-font`. It stays in sync with the thumb both ways.
 
 ## Variants
-| Rounded | Handle | Number box |
-|---|---|---|
-| on (default) | circle (`--slider-handle-radius-rounded`) | square |
-| off | square | square |
-
-A step increment adds snap points shown as `--slider-step-dot-size` white (`--slider-step-dot-background`) dots on the track.
+Shape and Stepped are the [Slider](../atoms/slider.md)'s and pass straight through. The number box keeps `--slider-input-field-input-radius` on both shapes. In the AAA modes the component is always sharp (DESIGN.md §5).
 
 ## States
-| State | Track / handle | Number box |
-|---|---|---|
-| enabled | track `--slider-track-background-enabled`; filled part `--slider-selected-background-enabled` + handle `--slider-handle-background-enabled` | bg `--slider-input-field-input-background`, `--slider-input-field-input-border-width` `--slider-input-field-input-border-color`, text `--slider-input-field-input-foreground` |
-| handle hover | handle scales by `--slider-handle-scale-hover` | – |
-| error | – | bg `--slider-input-field-input-background-error`, `--slider-input-field-input-border-width` `--slider-input-field-input-border-color-error` |
-| disabled | handle `--slider-handle-background-disabled`, filled part hidden | bg `--slider-input-field-input-background-disabled`, border `--slider-input-field-input-border-color-disabled`, text `--slider-input-field-input-foreground-disabled`; label `--slider-input-field-label-foreground-disabled` |
+| State | Slider | Number box | Labels |
+|---|---|---|---|
+| enabled | Slider default | `--slider-input-field-input-background`, `--slider-input-field-input-border-width` `--slider-input-field-input-border-color`, text `--slider-input-field-input-foreground` | label `--slider-input-field-label-foreground`, range labels `--slider-input-field-range-label-foreground` |
+| focus (number box) | unchanged | `--slider-input-field-input-border-width-focused` `--slider-input-field-input-border-color-focused` | unchanged |
+| dragging / thumb focus | Slider hover and selected | value updates live | unchanged |
+| invalid | unchanged | `--slider-input-field-input-border-color-invalid` | a message explains the range |
+| disabled | Slider disabled | `--slider-input-field-input-background-disabled`, `--slider-input-field-input-border-color-disabled`, text `--slider-input-field-input-foreground-disabled` | `--slider-input-field-label-foreground-disabled`, `--slider-input-field-range-label-foreground-disabled` |
+
+Dragging updates the box; typing moves the thumb. A typed value outside the range puts the box into invalid and leaves the thumb where it was. No transition is defined.
 
 ## Spacing & Sizing
-| Property | Value |
+| Part | Token |
 |---|---|
-| Label ↔ row gap | `--slider-input-field-label-gap` |
-| Slider ↔ number box gap | `--slider-input-field-gap` |
-| Handle | `--slider-handle-size` square/circle |
-| Track height | `--slider-track-height` |
-| Step dots | `--slider-step-dot-size`, `--slider-step-dot-background` |
-| Range labels | padding 0 `--slider-input-field-range-label-padding-right` `--slider-input-field-range-label-padding-bottom` `--slider-input-field-range-label-padding-left`; line-height `--slider-input-field-range-label-line-height`, `--slider-input-field-range-label-margin-y` vertical margin |
-| Number box | `--slider-input-field-input-width` × `--slider-input-field-input-height`, centred `--slider-input-field-input-font` |
+| Label → row | `--slider-input-field-label-gap` |
+| Slider column ↔ number box | `--slider-input-field-gap` |
+| Slider → range labels | `--slider-input-field-slider-gap`, after `--slider-input-field-slider-padding-top` above the slider |
+| Number box | `--slider-input-field-input-width` × `--slider-input-field-input-height`, `--slider-input-field-input-padding-x` horizontal padding, value centred |
+
+The field fills its container; only the slider column stretches. Measurements are provisional: the Figma section is thin, and the label gap, the number box width and the focus, invalid and disabled states are carried over from the previous spec.
 
 ## Properties
 | Property | Options | Default |
 |---|---|---|
 | Label | text | none |
 | Value | number | 50 |
-| Minimum / maximum | numbers | 0 / 100 |
-| Step increment | number (snap points + step dots) | none |
-| Error | on / off | off |
+| Min / max | number | 0 / 100 |
+| Stepped / Step | as Slider | as Slider |
+| Shape | rounded, sharp | rounded |
+| Invalid | on / off | off |
 | Disabled | on / off | off |
-| Rounded | on / off | on |
 
 ## Usage
-- Use when users need both quick dragging and precise typed entry of a single value.
-- Show min/max so the scale is clear; use a step increment for discrete values.
-- The `--slider-input-field-input-height` number box gives a compliant touch target; the `--slider-handle-size` handle should be paired with keyboard support on the slider.
-- Error is indicated by the input's pink fill and coral border — pair with explanatory text nearby.
+- Use it when people need both quick dragging and an exact typed value.
+- Keep the range labels so the scale is clear; turn Stepped on for discrete values.
+- Pair an invalid box with a message that says the allowed range; the border alone says nothing.
+- For a span of values use a [Slider](../atoms/slider.md) with Range on.
+
+## Accessibility
+- Give the slider and the number box the same accessible name (the label), so they read as one value.
+- The number box is the keyboard-precise path and its `--slider-input-field-input-height` height gives a usable touch target; the thumb is small.
+- The range labels repeat the slider's min and max; hide them from assistive technology so they are not read twice.
+- Invalid is announced only through the message: associate it with the box and set its invalid state.
+- Disabled dims every part; say why the value is locked in nearby text.
 
 ## Stitch Prompt
-Draw a horizontal control: an optional small label above; a thin `--slider-track-height` light grey (`--slider-track-background-enabled`) track whose left portion up to the value is filled near-black (`--slider-selected-background-enabled`), with a `--slider-handle-size` near-black circular handle; under the track's ends, the min ("0") and max ("100") numbers in grey. `--slider-input-field-gap` to the right sits a `--slider-input-field-input-width` by `--slider-input-field-input-height` white box with a `--slider-input-field-input-border-width` light grey (`--slider-input-field-input-border-color`) border showing the current value "50" centred in `--slider-input-field-input-font` grey (`--slider-input-field-input-foreground`) text.
+Draw a horizontal control: an optional small `--slider-input-field-label-font` label above; a Zebra slider with a near-black fill and thumb on a light grey track; under its ends, small grey "0" and "100" labels (`--slider-input-field-range-label-foreground`). `--slider-input-field-gap` to the right sits a `--slider-input-field-input-width` by `--slider-input-field-input-height` white box with a thin light grey border (`--slider-input-field-input-border-color`) and `--slider-input-field-input-radius` corners, showing the value "50" centred in `--slider-input-field-input-font` near-black text.

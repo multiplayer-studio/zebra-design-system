@@ -37,7 +37,7 @@ Prototypes need an internet connection to load those fonts.
 
 | Source | What it gives you |
 |---|---|
-| `DESIGN.md` frontmatter | All raw values. Semantic groups: `colors`, `colors-dark`, `colors-high-contrast`, `spacing`, `rounded`, `border`, `elevation`, `font-family`, `font-weight`, `typography`, `motion`, `layout`, `opacity` and `dimensions`. |
+| `DESIGN.md` frontmatter | All raw values. Primitives (`primitives`: colour ramps and the `scale-*` size steps) and the semantic groups: `colors`, `colors-dark`, `colors-aaa`, `colors-aaa-dark`, `space`, `control`, `radius`, `stroke`, `container`, `shadow`, `font-family`, `font-weight`, `typography`, `motion`, `layout`, `opacity` and `component-sizes`. |
 | `DESIGN.md` body | Rules, the token architecture (§2), layout principles and usage guidance |
 | `atoms/`, `molecules/`, `organisms/` `*.md` | One file per component, with anatomy, variants, states, sizing, properties, usage and its `tokens:` block |
 | `templates/*.md` | This project's page-level layouts (see Templates); empty in the generic kit |
@@ -52,73 +52,81 @@ A component's `composes:` list says which other components it is built from. Rea
 
 **Use the tokens the starter carries; never write tokens by hand.** The file is generated, contains every component's tokens, and applies every rule below. The rules are here so you can read and check it, not so you can rewrite it. If a token you need is missing or looks out of date, don't patch it in the prototype: tell the user the generated files need regenerating.
 
-**Naming:** a custom property has exactly the token's key, the same name the docs use in prose. `colors.surface-default` becomes `--surface-default`, `spacing.spacing-large` becomes `--spacing-large`, and the component token `button-primary-container-background-hover` becomes `--button-primary-container-background-hover`. Keys are unique across groups, so there is no prefix.
+**Naming:** a custom property has exactly the token's key, the same name the docs use in prose. `colors.color-fill-default` becomes `--color-fill-default`, `space.space-lg` becomes `--space-lg`, and the component token `button-primary-container-background-hover` becomes `--button-primary-container-background-hover`. Keys are unique across groups, so there is no prefix.
 
 **What becomes a custom property**
-- Every key of `colors`, `spacing`, `rounded`, `border`, `elevation`, `font-weight`, `typography`, `motion`, `layout` (lengths only), `opacity` and `dimensions`, written as its literal value.
+- Every key of `primitives` (colour ramps and the `scale-*` size steps), `colors`, `space`, `control`, `radius`, `stroke`, `container`, `shadow`, `font-weight`, `typography`, `motion`, `layout` (lengths only), `opacity` and `component-sizes`.
 - The `tokens:` of every component. These are written as `var()` references.
-- **Never** `primitives`, `primitives-dark` or `roles`. Semantic colours are already resolved hex values, and `roles` are only aliases for tooling.
+- **Never** `roles`: they are only aliases for tooling.
 
 **Value conversions**
-- **Typography:** a typography token becomes a `font` shorthand, e.g. `--label-large: 500 16px/24px "IBM Plex Sans", sans-serif;`. The `h1`–`h6` aliases point at their target: `--h4: var(--title-large);`.
-- **`dimensions` font shorthands** written as `500 10/14` become `500 10px/14px "IBM Plex Sans", sans-serif`.
-- **`dimensions` keys ending in `-scale`:** these are ratios of the component's own size. Write them as plain numbers (`40%` → `0.4`, `1.25` stays `1.25`) and use them in `calc()`, e.g. `calc(var(--avatar-container-size-m) * var(--dim-avatar-initials-scale))`.
-- **Component token references:** `'{colors.state-primary-hover}'` becomes `var(--state-primary-hover)`. A child reference `'{icon-button.icon-button-container-size-medium}'` becomes `var(--icon-button-container-size-medium)`.
+- **References:** a semantic token that points at a primitive, or a component token, becomes a `var()`: `'{primitives.color-brand-main-70}'` becomes `var(--color-brand-main-70)`, `'{colors.color-brand-primary-strong}'` becomes `var(--color-brand-primary-strong)`, and a child reference `'{icon.icon-size-small}'` becomes `var(--icon-size-small)`. Other values are written as literals.
+- **Typography:** a typography token becomes a `font` shorthand, e.g. `--type-label-large: 500 16px/24px "IBM Plex Sans", sans-serif;`. The `type-h1`–`type-h6` aliases point at their target: `--type-h4: var(--type-title-large);`.
 
-**Six blocks, in this order:**
+**Seven blocks, in this order:**
 
 ```css
-:root {  /* 1. light colours + every non-colour token, as literals */
-  --surface-default: #ffffff;
-  --main-default: #1d1e23;
-  --state-primary-enabled: #0073e6;
-  --spacing-large: 16px;
-  --radius-minimal: 4px;
-  --label-large: 500 16px/24px "IBM Plex Sans", sans-serif;
-  --elevation-3: 0 4px 8px 0 rgba(96,104,112,.16),0 0 2px 0 rgba(40,51,61,.04);
-  --dim-button-height-medium: 40px;
+:root {  /* 1. primitives, light colours (AA) + every non-colour token */
+  --color-brand-main-60: #1f69ff;
+  --color-brand-main-70: #0e53e5;
+  --scale-7: 16px;
+  --space-lg: var(--scale-7);
+  --control-md: var(--scale-13);
+  --radius-element-sm: var(--scale-3);
+  --shadow-small: 0px 2px 6px 0 rgba(12,13,14,.1);
+  --type-label-large: 500 16px/24px "IBM Plex Sans", sans-serif;
+  --color-brand-primary-default: var(--color-brand-main-60);
+  --color-fill-default: var(--color-pure-white);
   /* … */
 }
-[data-contrast="high"] {  /* 2. high contrast (light): every key from colors-high-contrast */
-  --main-default: #0c0d0e;
-  --state-primary-enabled: #004d99;
+[data-theme="dark"] {  /* 2. dark: every key from colors-dark */
+  --color-fill-default: var(--color-neutral-cool-100);
+  --color-ink-high: var(--color-pure-white);
   /* … */
 }
-[data-theme="dark"] {  /* 3. dark: every key from colors-dark */
-  --surface-default: #151519;
-  --main-default: #f3f6fa;
-  --state-primary-enabled: #599fe5;
+[data-contrast="aaa"] {  /* 3. AAA contrast (light): every key from colors-aaa */
+  --color-brand-primary-default: var(--color-brand-main-80);
   /* … */
 }
 [data-theme="light"] {  /* 4. back to light inside a dark area: the colors block again */
-  --surface-default: #ffffff;
+  --color-fill-default: var(--color-pure-white);
   /* … */
 }
-[data-contrast="high"] [data-theme="light"] {  /* 5. light area inside a high-contrast page */
-  --main-default: #0c0d0e;
+[data-contrast="aaa"] [data-theme="light"], [data-theme="light"][data-contrast="aaa"] {  /* 5. AAA light inside a dark area: colors-aaa again */
+  --color-brand-primary-default: var(--color-brand-main-80);
   /* … */
 }
-:root, [data-theme], [data-contrast] {  /* 6. component tokens, recomputed in every themed scope */
-  --button-primary-container-background-enabled: var(--state-primary-enabled);
-  --button-primary-container-background-hover: var(--state-primary-hover);
-  --button-container-height-medium: var(--dim-button-height-medium);
-  --stepper-input-container-height-medium: var(--text-input-container-height-medium);
+[data-contrast="aaa"] [data-theme="dark"], [data-theme="dark"] [data-contrast="aaa"], [data-theme="dark"][data-contrast="aaa"] {  /* 6. AAA dark: every key from colors-aaa-dark */
+  --color-brand-primary-default: var(--color-brand-main-30);
+  /* … */
+}
+:root, [data-theme], [data-contrast] {  /* 7. component tokens, recomputed in every themed scope */
+  --button-primary-container-background-enabled: var(--color-brand-primary-default);
+  --button-primary-container-background-hover: var(--color-brand-primary-strong);
+  --button-container-height-medium: var(--control-md);
+  --button-icon-size-small: var(--icon-size-small);
   /* … every component */
+}
+[data-contrast="aaa"], [data-contrast="aaa"] [data-theme] {  /* 8. AAA is always sharp: every shape and corner radius → none */
+  --button-container-radius-rounded: var(--radius-none);
+  /* … every component radius except meaningful circles (radio, switch, avatar, dots) */
 }
 ```
 
-- **Why block 6 lists `[data-theme]` and `[data-contrast]`:** a custom property that uses `var()` is computed where it is declared, then inherited. If the component tokens were declared only on `:root`, a dark area would inherit their light values.
+- **Why block 7 lists `[data-theme]` and `[data-contrast]`:** a custom property that uses `var()` is computed where it is declared, then inherited. If the component tokens were declared only on `:root`, a dark area would inherit their light values.
 - **Order matters:** later blocks override earlier ones at equal specificity.
+- **AAA is sharp:** block 8 makes every component sharp under `data-contrast="aaa"`, and `components.css` switches icons to the sharp set there. Rounded is every component's default otherwise (DESIGN.md §5). Never re-round a component in AAA.
 - **Switching theme:** set `data-theme="dark"` on any element to make it and its contents dark, and `data-theme="light"` to switch back inside a dark area. Never choose a dark colour by hand.
 - **Always-dark components:** components the docs describe as always dark carry `data-theme="dark"` on their own element, e.g. the Global Header.
-- **High contrast:** set `data-contrast="high"` on `<html>` only; it is a whole-page setting. The system defines high-contrast values for light mode only. A dark area inside a high-contrast page uses the normal dark values; say so if it matters to the design.
+- **AAA contrast:** set `data-contrast="aaa"` on `<html>`; it is a whole-page setting. It works in both themes: dark areas inside an AAA page use the AAA dark values, and light areas the AAA light ones.
 
 ## Building components
 
 - Style a component with **its own tokens first**, then the tokens of the components it composes. Never use semantic tokens directly in component CSS. If a value you need has no component token, it isn't part of the design: ask, or flag it.
+- Where the starter's component CSS gives a component's markup in a comment, use it exactly, e.g. a button's label sits in `<span class="btn-label">`.
 - Build a composite from its children as the component file describes it, e.g. "Icon Button, outline-subtle, medium". Then apply the composite's own tokens and context overrides on top.
 - Only use the variants, sizes, states and anatomy the component file lists.
-- **Draft components** (`status: draft`, marked † in the `DESIGN.md` index) have no measurements yet. If a prototype needs one, use only the tokens it defines and its composed children. Lay out the rest with the `spacing` scale, and say in the prototype and in your reply that its measurements are placeholders.
+- **Draft components** (`status: draft`, marked † in the `DESIGN.md` index) have no measurements yet. If a prototype needs one, use only the tokens it defines and its composed children. Lay out the rest with the `space` scale, and say in the prototype and in your reply that its measurements are placeholders.
 
 ## Templates
 
@@ -150,7 +158,7 @@ Do this when the design system is updated, or when a prototype's version comment
 
 Fonts are loaded from the jsDelivr CDN, pinned to an exact version. Do not copy font files into the prototype folder, and do not load fonts from anywhere else.
 
-All typography tokens use **IBM Plex Sans**, from the `@fontsource/ibm-plex-sans` package (v5.3.0, SIL OFL), Latin subset, in the three weights the tokens use: 300 (`--light`), 400 (`--regular`) and 500 (`--medium`).
+All typography tokens use **IBM Plex Sans**, from the `@fontsource/ibm-plex-sans` package (v5.3.0, SIL OFL), Latin subset, in the three weights the tokens use: 300 (`--font-weight-light`), 400 (`--font-weight-regular`) and 500 (`--font-weight-medium`).
 
 1. The starter already declares these; don't add them again. For reference:
    ```css
@@ -158,7 +166,7 @@ All typography tokens use **IBM Plex Sans**, from the `@fontsource/ibm-plex-sans
    @font-face { font-family: "IBM Plex Sans"; font-weight: 400; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-400-normal.woff2") format("woff2"); }
    @font-face { font-family: "IBM Plex Sans"; font-weight: 500; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-500-normal.woff2") format("woff2"); }
    ```
-2. Set text through typography tokens, either a component's font token or, for page-level text, the typography group (e.g. `font: var(--body-medium)`). Do not write a font family or weight by hand.
+2. Set text through typography tokens, either a component's font token or, for page-level text, the typography group (e.g. `font: var(--type-body-medium)`). Do not write a font family or weight by hand.
 3. Only the Latin subset and normal (non-italic) style are used. If a design needs Cyrillic, Greek or italics, use the matching file from the same package path (`ibm-plex-sans-<subset>-<weight>-<style>.woff2`) and tell the user.
 
 ## Icons
@@ -175,7 +183,7 @@ Icons come from the Zebra Icons library, the `@zebra-fed/zeta-icons` package (v1
    - `icons.json` is large (over 1 MB). Never read it whole: search it for the icon's key and read just that entry.
    - The key is the icon name (`check_circle`, `wifi`). It is lowercase snake_case and is not always the lowercased `label` (for example the label `WiFi` has the key `wifi`). Search the `label`, `category` and `searchTerms` fields to find an icon.
    - Paste the SVG exactly as it is in `icons.json`. Don't edit its paths or ids, and don't redraw it. If no icon fits, report the gap.
-3. **Size and colour** come from tokens. The Icon atom's tokens are the defaults: `--icon-size` (default), `--icon-size-small`, `--icon-size-medium`, `--icon-size-large`, `--icon-foreground`, `--icon-foreground-inverse` and `--icon-foreground-disabled`. Inside a component, use that component's icon tokens or overrides where its file defines them.
+3. **Size and colour** come from tokens. The Icon atom's tokens are the defaults: `--icon-size` (default), `--icon-size-xsmall`, `--icon-size-small`, `--icon-size-medium`, `--icon-size-large`, `--icon-foreground`, `--icon-foreground-inverse` and `--icon-foreground-disabled`. Inside a component, use that component's icon tokens or overrides where its file defines them.
 4. **Accessibility:** decorative icons get `aria-hidden="true"`, and an icon-only button needs an `aria-label` on the button. Never use an icon as the only carrier of meaning: pair it with text.
 
 ## Generated files
@@ -184,7 +192,7 @@ Icons come from the Zebra Icons library, the `@zebra-fed/zeta-icons` package (v1
 
 | Run | When | Writes |
 |---|---|---|
-| `python3 scripts/tokens-css.py` | after any change to the `DESIGN.md` frontmatter or a component's `tokens:` | `tokens.css` |
+| `python3 scripts/tokens-css.py` | after any change to the `DESIGN.md` frontmatter or a component's `tokens:` | `tokens.css`; exits 1 if a token reference is broken |
 | `python3 scripts/icons-json.py` | after the icons version in the `DESIGN.md` frontmatter changes (needs internet; it reads the npm package) | `icons.json` |
 | `python3 scripts/starter-html.py` | after either script above, or a change to `prototypes/_starter/components.css` | `prototypes/_starter/index.html` (and the showcase's marked blocks) |
 
@@ -206,7 +214,7 @@ Open the prototype in the Browser pane straight from `file://`; it renders style
 - **Accessibility baselines** are part of the design, not production polish:
   - WCAG 2.2 AA contrast, which the semantic colours already meet. Don't add opacity to text.
   - A visible focus ring on every interactive element, using that component's focus-ring tokens.
-  - Touch targets of at least `--touch-target-min`, ideally `--touch-target-recommended`.
+  - Touch targets of at least `--control-target-min`.
   - No meaning carried by colour alone.
 - **Make intent obvious.** Name things after the design concept, and add a brief comment where a shortcut stands in for real behaviour (e.g. `// mock data`).
 - **Say what's faked.** If something is faked, simplified or left out (including placeholder measurements for draft components), say so briefly so it isn't mistaken for production behaviour.
