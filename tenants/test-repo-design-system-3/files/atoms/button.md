@@ -119,7 +119,7 @@ tokens:
 
 # Button
 
-> Buttons trigger an action from a text label, with optional icons on either side. Which has been edited by a project. 
+> Buttons trigger an action from a text label, with optional icons on either side. 
 
 ## Anatomy
 1. Container — horizontal row, content centred, height fixed per size. Carries the background, border and radius. The row has no gap (`--button-container-gap`).
