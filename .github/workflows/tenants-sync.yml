@@ -1,5 +1,5 @@
 # Nightly: pull every repo in consumers.json; update tenants/ (their differences from master), templates/<project>/
-# (their templates) and that project's prototyping zip. Commits only when something changed. See scripts/tenants-sync.py.
+# (their templates) and, when either changed, that project's prototyping zip. Commits only when something changed. See scripts/tenants-sync.py.
 name: Tenants sync
 
 on:
@@ -30,7 +30,7 @@ jobs:
       - name: Commit changes
         if: always()   # keep the repos that synced even if another failed
         run: |
-          git add -A   # the sync only writes tenants/, templates/ and project zips
+          git add -A   # the sync only writes tenants/, templates/ and prototyping-kits/
           git diff --cached --quiet && exit 0
           git -c user.name=zebra-design-system -c user.email=design-system@users.noreply.github.com \
             commit -m "chore(tenants): nightly sync"

@@ -1052,7 +1052,7 @@ drift check (report only): 0 undefined, N unused component tokens`,
       { from:"scripts", to:"zip", color:"--c-seed",
         title:"Rebuild the kits",
         route:"prototyping-zip.py · production-bundle.py",
-        desc:"Both bundlers share <code>_bundle.py</code>. Each kit ships its own <code>*.CLAUDE.md</code> as <code>CLAUDE.md</code>; this repo's <code>CLAUDE.md</code> is never shipped. Prototyping: the generic zip, the testing zip (generic plus <code>PROTOTYPING.TESTING.md</code> and the scripts to regenerate after a doc edit) and one per <code>templates/&lt;project&gt;/</code>, all committed. Production: built into the gitignored <code>build/</code>, and only sent out by the release workflow (flow 6).",
+        desc:"Both bundlers share <code>_bundle.py</code>. Each kit ships its own <code>*.CLAUDE.md</code> as <code>CLAUDE.md</code>; this repo's <code>CLAUDE.md</code> is never shipped. Prototyping: the generic zip, the testing zip (generic plus <code>PROTOTYPING.TESTING.md</code> and the scripts to regenerate after a doc edit) and one per project with <code>templates/&lt;project&gt;/</code> or a tenant (taking the tenant's docs), all committed in <code>prototyping-kits/</code>. Production: built into the gitignored <code>build/</code>, and only sent out by the release workflow (flow 6).",
         payloadPrototyping:
 `zebra-design-system-prototyping[-<project>]/
     atoms/ molecules/ organisms/ prototypes/

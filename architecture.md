@@ -12,7 +12,7 @@ How a change to the Markdown docs flows through the generator scripts into token
 | npm registry | Source of `@zebra-fed/zeta-icons`. Only `icons-json.py` talks to it. |
 | Generated files | `tokens.css` and `icons.json`. Never hand-edited. |
 | Prototype starter | `prototypes/_starter/index.html` (tokens and component CSS inlined) and the showcase's marked blocks. |
-| Prototyping zips / production kit | Prototyping: `zebra-design-system-prototyping.zip` (generic, no templates), `zebra-design-system-prototyping-testing.zip` (generic, plus `PROTOTYPING.TESTING.md` and the scripts to regenerate after a doc edit) and one `zebra-design-system-prototyping-<project>.zip` per `templates/<project>/`, committed. Production: `build/zebra-design-system-production/`, built in CI and not committed. |
+| Prototyping zips / production kit | Prototyping: `zebra-design-system-prototyping.zip` (generic, no templates), `zebra-design-system-prototyping-testing.zip` (generic, plus `PROTOTYPING.TESTING.md` and the scripts to regenerate after a doc edit) and one `zebra-design-system-prototyping-<project>.zip` per project with `templates/<project>/` or a tenant (its templates, plus the tenant's docs with `tokens.css` and the starter rebuilt from them), committed in `prototyping-kits/`. Production: `build/zebra-design-system-production/`, built in CI and not committed. |
 | `consumers.json` | The consuming repos: `repo`, `branch`, `tenant`, `project`, and optionally `path` (where the repo keeps `design-system/`, e.g. `docs/design-system`). |
 | `tenants/` | One folder per consuming repo that differs from the version it has installed: `tenant.json`, `changelog.md`, its `CHANGES.md` and changed files. No differences, no tenant. |
 | Nightly sync | `.github/workflows/tenants-sync.yml` in this repo, running `tenants-sync.py` over `consumers.json`. |
@@ -24,7 +24,7 @@ How a change to the Markdown docs flows through the generator scripts into token
 
 | | Prototyping | Production |
 |---|---|---|
-| Kit | `zebra-design-system-prototyping[-<project>\|-testing].zip` | `build/zebra-design-system-production/`, delivered by release PR |
+| Kit | `prototyping-kits/zebra-design-system-prototyping[-<project>\|-testing].zip` | `build/zebra-design-system-production/`, delivered by release PR |
 | Shipped `CLAUDE.md` | from `PROTOTYPING.CLAUDE.md` | from `PRODUCTION.CLAUDE.md`, importing `@design-system/AGENTS.md` |
 | Agent guide | `PROTOTYPING.AGENTS.md` (+ `PROTOTYPING.JIRA.md`, `PROTOTYPING.GITHUB.md`, `PROTOTYPING.FIGMA.md`; testing kit also `PROTOTYPING.TESTING.md`) | `design-system/AGENTS.md` (from `PRODUCTION.AGENTS.md`) |
 | Templates | the project's, flat in `templates/` (none in the generic or testing kit); written with the `create-template` skill | the project's, flat in `design-system/templates/`, owned by the repo |
@@ -70,7 +70,7 @@ Production:
 ### 5. Nightly sync: consumer → tenant (production)
 1. Claude → Consumer repo: a team changes its `design-system/` copy, docs first, and logs why in `CHANGES.md`.
 2. Consumer repo → Nightly sync: this repo clones each consumer's `design-system/` (at the entry's `path`, if set) and compares it with the bundle of the version it has installed (`version` in its `DESIGN.md`, built from tag `design-system-v<version>`), never the latest master. Token keys are compared one by one, other files whole. `LIBRARY.md`, `CHANGES.md`, `templates/` and `tokens.css` don't count.
-3. Nightly sync → `tenants/<tenant>/`: only the differences are stored, each marked approved, rejected or needs review; decisions are kept while they still match. A repo in sync has no tenant. Separately, the repo's templates are mirrored into `templates/<project>/` (no review) and that project's prototyping zip is rebuilt. The workflow commits only when something changed.
+3. Nightly sync → `tenants/<tenant>/`: only the differences are stored, each marked approved, rejected or needs review; decisions are kept while they still match. A repo in sync has no tenant. Separately, the repo's templates are mirrored into `templates/<project>/` (no review). If its templates or tenant changed, that project's prototyping zip is rebuilt. The workflow commits only when something changed.
 
 ### 6. Sprint: reconcile and release (production)
 1. `tenants/` → DS team: read the **Needs review** rows of each `changelog.md`, the repo's `CHANGES.md` and its files.

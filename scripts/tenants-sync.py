@@ -7,10 +7,11 @@ Auth:  DS_BOT_TOKEN (or GH_TOKEN) for private repos; locally: DS_BOT_TOKEN=$(gh 
 
 For each consumer:
   - templates: the repo's <path>/templates/* (<path> is consumers.json "path", default design-system) is mirrored into
-    templates/<project>/ (the project owns them, no review), and that project's prototyping zip is rebuilt when they change;
+    templates/<project>/ (the project owns them, no review);
   - differences: <path>/ is compared with the bundle of the version it has installed (scripts/_tenants.py).
     None: tenants/<tenant>/ is removed. Some: tenants/<tenant>/ holds tenant.json (differences + the DS team's
     approved/rejected decisions, kept while they still match), changelog.md, CHANGES.md and files/ (their changed files).
+When a consumer's templates or tenant changed, its project's prototyping zip is rebuilt (scripts/prototyping-zip.py).
 Tenants whose repo is no longer in consumers.json are removed. Exits 1 if any repo failed, after doing the rest.
 """
 import json, os, shutil, subprocess, sys, tempfile
@@ -27,6 +28,10 @@ def url(repo):
 def files_of(top):
     return {os.path.relpath(os.path.join(d, n), top): os.path.join(d, n)
             for d, _, names in os.walk(top) for n in names if n != '.DS_Store'} if os.path.isdir(top) else {}
+
+
+def snapshot(top):
+    return {rel: open(path, 'rb').read() for rel, path in files_of(top).items()}
 
 
 def mirror(src, dst):
@@ -70,10 +75,7 @@ def sync(c):
         if not os.path.isdir(ds):
             return f'no {p}/ yet, skipped', True
 
-        project, note = c['project'], ''
-        if mirror(os.path.join(ds, 'templates'), os.path.join(ROOT, 'templates', project)):
-            run(sys.executable, os.path.join(ROOT, 'scripts', 'prototyping-zip.py'), project)
-            note = ', templates updated'
+        note = ', templates updated' if mirror(os.path.join(ds, 'templates'), os.path.join(ROOT, 'templates', c['project'])) else ''
 
         version = design_version(ds)
         try:
@@ -109,7 +111,11 @@ only = set(sys.argv[1:])
 ok = True
 for c in consumers:
     if not only or c['tenant'] in only:
+        dirs = [os.path.join(ROOT, 'templates', c['project']), os.path.join(TENANTS, c['tenant'])]
+        before = [snapshot(d) for d in dirs]
         msg, good = sync(c)
+        if [snapshot(d) for d in dirs] != before:  # the project's kit carries both
+            run(sys.executable, os.path.join(ROOT, 'scripts', 'prototyping-zip.py'), c['project'], check=False)
         ok &= good
         print(f"{c['tenant']}: {msg}")
 if not only and os.path.isdir(TENANTS):

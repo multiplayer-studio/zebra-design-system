@@ -6,7 +6,7 @@ Describe a screen in plain English and Claude builds a clickable prototype using
 
 ## Step 1: Set up (one time)
 
-1. **Pick your kit and unzip it.** If your project already has a kit, use `zebra-design-system-prototyping-<your-project>.zip`: it comes with your project's templates. For a new project, use `zebra-design-system-prototyping.zip`.
+1. **Pick your kit and unzip it.** If your project already has a kit, use `zebra-design-system-prototyping-<your-project>.zip`: it comes with your project's templates and its own changes to the design system. For a new project, use `zebra-design-system-prototyping.zip`.
    - **Mac:** double-click the `.zip` file. A folder with the same name appears next to it.
    - **Windows:** right-click the `.zip`, choose **Extract All…**, then **Extract**.
 2. **Move the unzipped folder somewhere easy to find**, like Documents. Don't work from inside the `.zip` file.
