@@ -1,6 +1,9 @@
 {
   "approved": {
-    "files": {},
+    "files": {
+      "DESIGN.md": "sha256:967895585efceb0cb96e90f38c161de9007a928c610766464eff6a5431112e3f",
+      "organisms/global-header.md": "sha256:8407d5f7845572dbf87714676b6f14f7f6ac4b9a3c402f73ade2748f3dc0d5a6"
+    },
     "tokens": {}
   },
   "base": "2.2611.2-beta",
