@@ -80,7 +80,7 @@ Every icon is an [Icon](../atoms/icon.md) in `--search-icon-foreground`. Both tr
 | gradient | `--search-gradient-container-background-enabled` | `--search-container-border-width`, a 129° gradient `--search-gradient-container-border-color-start` → `--search-gradient-container-border-color-end` |
 | ghost | `--search-ghost-container-background-enabled` (none) | `--search-ghost-container-border-width` `--search-ghost-container-border-color` (zero weight) |
 
-Default suits forms. Gradient marks a unique interaction such as an AI companion search. Ghost has no visible border, for a field in a surface that already bounds it, such as a header; its border is bound at zero weight as a theming hook.
+Default suits forms. Gradient marks an AI interaction, such as an AI companion search (DESIGN.md §3). Ghost has no visible border, for a field in a surface that already bounds it, such as a header; its border is bound at zero weight as a theming hook.
 
 **Shape**: rounded (default) → `--search-container-radius-rounded`; sharp → `--search-container-radius-sharp` with zeta-icons-sharp; full → `--search-container-radius-full` (pill). Shape changes nothing but the corners. Figma defaults to sharp; the system default is rounded. In the AAA modes the component is always sharp (DESIGN.md §5).
 
@@ -124,7 +124,7 @@ Hover, focus, selected and typing are driven by interaction, never set on a stat
 ## Usage
 - Keep hasLeading on unless the context already says this is search; the magnifier is the fastest signal.
 - Use ghost in a surface that already bounds the field, such as a header, and default inside a form.
-- Don't use gradient on an ordinary search field; it marks a distinct interaction such as an AI companion.
+- Don't use gradient on an ordinary search field; it marks an AI interaction, such as an AI companion.
 - Typing is the only state with a clear control. Don't treat it as a style.
 - Offer voice input only where the device supports speech recognition, and never as the only way to search.
 - Show only one clear control: hide the platform's own search clear button.

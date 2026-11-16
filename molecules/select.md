@@ -77,7 +77,7 @@ Flavour (light mode shown by the tokens; dark and AAA follow automatically):
 | Flavour | Background | Border | Use |
 |---|---|---|---|
 | default | `--select-field-background-enabled` | `--select-field-border-width` `--select-field-border-color-enabled` | inside a form |
-| gradient | `--select-field-background-enabled` | `--select-field-border-width` 90° gradient `--select-gradient-field-border-color-start` → `--select-gradient-field-border-color-end`; hover `--select-gradient-field-border-color-hover`; open `--select-gradient-field-border-color-open` | one special field, such as an AI companion |
+| gradient | `--select-field-background-enabled` | `--select-field-border-width` 90° gradient `--select-gradient-field-border-color-start` → `--select-gradient-field-border-color-end`; hover `--select-gradient-field-border-color-hover`; open `--select-gradient-field-border-color-open` | an AI field, such as an AI companion (DESIGN.md §3) |
 | ghost | `--select-ghost-field-background-enabled` | `--select-ghost-field-border-width` `--select-ghost-field-border-color` (a theming hook that draws nothing in the standard modes) | a surface that already bounds the field |
 
 Gradient's focus, invalid, read-only and disabled borders are the default flavour's.
@@ -133,7 +133,7 @@ Hover, focus and open are driven by interaction (open also by the Open property)
 - Keep Show Hint on for any field that can fail validation, so the space is reserved and an error message doesn't shift the layout.
 - Set the field to invalid and the hint to error together: the border carries the signal and the hint the reason.
 - Use read-only where a person still needs to read or copy the value, and disabled where they don't.
-- Use gradient for a single special field only; on an ordinary field it spends the signal for nothing. Use ghost only on a surface that already bounds the field.
+- Use gradient only for a field to do with AI; on an ordinary field it spends the signal for nothing. Use ghost only on a surface that already bounds the field.
 - Inside scrolling or clipped containers (dialogs, tables) the menu must float above the container rather than be cut off.
 - Write labels noun-first in sentence case, and keep the hint to one line at the field's width.
 

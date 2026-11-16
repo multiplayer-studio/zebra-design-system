@@ -147,7 +147,7 @@ Each slot keeps its content when Shape changes. On a collapsible card the body c
 - Switch the header off for a media-led card so the image meets the top edge.
 - Turn the footer off when the card is purely informational; there is no body toggle, so a card always reserves its body.
 - Let cards grow downward. Cards in a grid should share width and structure so they compare easily.
-- Use the gradient flavour on at most one card in a group; it exists to single one out.
+- Use the gradient flavour only for a card about AI, such as AI-generated content or an AI feature (DESIGN.md §3), and on at most one card in a group.
 - Use the collapsible type only when the body can genuinely be hidden; content that is always visible belongs in a standard card with a real footer.
 - Don't make the whole card a click target if it also holds buttons; keep each action separately focusable.
 

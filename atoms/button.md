@@ -187,7 +187,7 @@ Hover, pressed and focus are driven by interaction, never set on a static layout
 - Use one primary per view or per group. Everything else steps down to outline, subtle or text so the single most important action stays findable. Two outline buttons side by side read as equal weight.
 - Write the label as the verb the user is about to perform, Save rather than OK.
 - Use positive only for the confirmation of a constructive outcome (approve, publish), and negative only for destructive actions the user can't undo. Keep the cancel beside a negative button no stronger than subtle.
-- Use gradient (or text-gradient) for one promotional moment per screen only; it outranks primary.
+- Use gradient (or text-gradient) only for an action to do with AI (DESIGN.md §3). It outranks primary, so keep it to one per view.
 - Pair contrast with outline-contrast, outline or text, not with primary; outline-subtle suits a busy surface where an accent border would compete.
 - Text and subtle have nothing behind them at rest, so on a coloured or busy surface they stop reading as controls.
 - Use a trailing icon for directional or disclosure actions. Both icons on at small leave little room for the label.

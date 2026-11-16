@@ -90,7 +90,7 @@ Flavour (light mode shown by the tokens; dark and AAA follow automatically):
 | Flavour | Country control | Number | Use |
 |---|---|---|---|
 | default | `--phone-input-country-background-enabled`, `--phone-input-container-border-width` `--phone-input-country-border-color-enabled` | `--phone-input-number-background-enabled`, `--phone-input-container-border-width` `--phone-input-number-border-color-enabled` | inside a form |
-| gradient | border `--phone-input-gradient-country-border-color`, running into the number's | 129° gradient border `--phone-input-gradient-number-border-color-start` → `--phone-input-gradient-number-border-color-end` | a distinct interaction; goes back to the default borders when invalid |
+| gradient | border `--phone-input-gradient-country-border-color`, running into the number's | 129° gradient border `--phone-input-gradient-number-border-color-start` → `--phone-input-gradient-number-border-color-end` | an AI interaction (DESIGN.md §3); goes back to the default borders when invalid |
 | ghost | `--phone-input-ghost-container-background-enabled`; hover `--phone-input-ghost-country-background-hover`, pressed `--phone-input-ghost-country-background-pressed`, open `--phone-input-ghost-country-background-open` | `--phone-input-ghost-container-background-enabled` | a surface that already bounds the field |
 
 Ghost holds a `--phone-input-ghost-container-border-width` `--phone-input-ghost-container-border-color` border on both parts: a theming hook that draws nothing in the standard modes.
@@ -172,7 +172,7 @@ Hover, pressed, focus and typing are driven by interaction. The number, dial cod
 - Don't make the flag the only sign of the country: the dial code and the country's name in the menu carry it too.
 - Pair the field with validation, and set invalid with the reason in the hint. Grouping is visual: it doesn't prove a number exists.
 - Picking a country changes the dial code and format and keeps the digits, dropping any beyond the new format's length. Without a format, digits stop at the E.164 limit.
-- Use gradient for one distinct interaction only, and ghost only on a surface that already bounds the field.
+- Use gradient only for an AI interaction, and ghost only on a surface that already bounds the field.
 - In code, mount the menu in a portal positioned against the control, with collision handling.
 
 ## Accessibility

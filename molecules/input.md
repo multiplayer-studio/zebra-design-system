@@ -103,7 +103,7 @@ Every icon and control in the field (leading, trailing, type control, clear) is 
 | gradient | `--input-gradient-container-background-enabled` | `--input-container-border-width`, a 90° gradient `--input-gradient-container-border-color-start` → `--input-gradient-container-border-color-end` |
 | ghost | `--input-ghost-container-background-enabled` (none) | `--input-ghost-container-border-width` `--input-ghost-container-border-color` (zero weight) |
 
-Gradient marks a unique interaction such as an AI companion field. Ghost has no visible border, for a field on a surface that already bounds it. Its border is bound at zero weight as a theming hook, so a high-contrast theme can give it an outline.
+Gradient marks an AI interaction, such as an AI companion field (DESIGN.md §3). Ghost has no visible border, for a field on a surface that already bounds it. Its border is bound at zero weight as a theming hook, so a high-contrast theme can give it an outline.
 
 **Shape**: sharp → `--input-container-radius-sharp`; rounded (default) → `--input-container-radius-rounded`; full → `--input-container-radius-full` (pill). Sharp fields use the zeta-icons-sharp glyphs. In the AAA modes the component is always sharp (DESIGN.md §5).
 
@@ -158,7 +158,7 @@ Label Type, Disabled, Show Information and Show Sub Label are set on the [Input 
 - Don't turn Show Hint off on a field that can fail validation; adding the line later pushes everything below it down.
 - Use read-only where people still need to read or copy the value, and disabled where they don't.
 - Don't leave the parts on different states; a full-strength label over a disabled field reads as a mistake.
-- Use default inside forms, ghost on a surface that already bounds the field, and gradient for one special interaction only.
+- Use default inside forms, ghost on a surface that already bounds the field, and gradient only for an AI interaction.
 - State 12- or 24-hour expectations in the hint of a time field.
 - Use leading icons only where they say something the placeholder cannot.
 - Show only one clear control: hide the platform's own clear and picker buttons.

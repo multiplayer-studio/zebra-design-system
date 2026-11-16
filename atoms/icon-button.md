@@ -174,7 +174,7 @@ Hover, pressed and focus are driven by interaction, never set on a static layout
 - Use one primary per cluster, the action that matters most (such as the confirm in a toolbar). Subtle is the usual choice for secondary toolbar controls; outline-subtle gives a visible edge on a busy toolbar; outline keeps the accent edge.
 - Text has nothing behind it at rest, so on a busy surface the target becomes hard to find.
 - Use positive only where the glyph already reads as approval, and back negative (destructive) with a confirmation step; with no label the colour does all the work.
-- Use gradient (or text-gradient) for one promotional moment only; in a row of icon buttons it wins every time.
+- Use gradient (or text-gradient) only for an action to do with AI (DESIGN.md §3); in a row of icon buttons it wins every time.
 - Pair contrast with outline-contrast, outline or text, not with primary.
 - Full (circle) suits a floating or standalone action; it looks wrong inside a form control.
 - Don't leave a placeholder glyph in place; an overflow glyph will be understood as an overflow menu.
