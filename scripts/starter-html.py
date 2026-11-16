@@ -4,7 +4,8 @@ Maintainers only (Python 3, stdlib).
 Usage: python3 scripts/starter-html.py
 Rerun after tokens.css or icons.json is regenerated, or prototypes/_starter/components.css changes. Same inputs, same bytes.
 The showcase (prototypes/showcase/index.html) gets the same tokens and components blocks, plus an icons block holding
-every icon's round and sharp SVG from icons.json. Nothing outside its markers is touched.
+the @font-face rules for the @zebra-fed/zeta-icons fonts (from jsDelivr, at icons.json's version) and every icon name.
+Nothing outside its markers is touched.
 It then reports drift between components.css and the tokens: var() names nothing defines, and component tokens
 components.css never uses. Report-only: it lists them but never fails.
 
@@ -63,9 +64,12 @@ def fill(html, name, body):
     assert len(pattern.findall(html)) == 1, f'showcase needs exactly one {name} block'
     return pattern.sub(lambda m: m[1] + body + '\n' + m[2], html)
 
-icons = {k: [v['round'], v['sharp']] for k, v in json.loads(read('icons.json'))['icons'].items()}
-icons = '<script>\n// every icon from icons.json: name -> [round SVG, sharp SVG]\nvar ICONS = ' + \
-    json.dumps(icons, separators=(',', ':')).replace('</', '<\\/') + ';\n</script>'
+icon_json = json.loads(read('icons.json'))
+icon_cdn = f"https://cdn.jsdelivr.net/npm/{icon_json['package']}@{icon_json['version']}/outputs/web"
+icons = '<style>\n/* the @zebra-fed/zeta-icons fonts, straight from the package */\n' + '\n'.join(
+    f'@font-face {{ font-family: "zeta-icons-{s}"; font-display: block; src: url("{icon_cdn}/zeta-icons-{s}.woff2") format("woff2"); }}'
+    for s in ('round', 'sharp')) + '\n</style>\n<script>\n// every icon name in the package (from icons.json)\nvar ICON_NAMES = ' + \
+    json.dumps(list(icon_json['icons']), separators=(',', ':')) + ';\n</script>'
 path = os.path.join(ROOT, 'prototypes', 'showcase', 'index.html')
 html = open(path).read()
 for name, body in (('tokens', tokens), ('components', components), ('icons', icons)):

@@ -72,9 +72,9 @@ tokens:
 > A brief message about something the app just did, floating at the bottom of the viewport and carrying at most one action.
 
 ## Anatomy
-1. Container — one row at least `--snackbar-container-height` tall, content leading and controls trailing, `--snackbar-container-gap` apart. It has no border; two drop shadows (`--snackbar-container-shadow-near` and `--snackbar-container-shadow-far`) lift it off whatever it covers.
+1. Container — one row at least `--snackbar-container-height` tall (taller when the message wraps), content leading and controls trailing, `--snackbar-container-gap` apart. It has no border; two drop shadows (`--snackbar-container-shadow-near` and `--snackbar-container-shadow-far`) lift it off whatever it covers.
 2. Leading glyph (optional) — [Icon](../atoms/icon.md) at `--snackbar-icon-size`. On contextual, Status chooses it: info (info), check_circle (positive), warning (warning), error (negative), delete (deletion), open_in_new_window (view); action and default have none. On standard, Show Icon opens a slot whose glyph the consumer picks.
-3. Message — one short sentence in `--snackbar-message-font`, `--snackbar-content-gap` after the glyph. It sits on a single line and never wraps. It is the only text the component takes in.
+3. Message — one short sentence in `--snackbar-message-font`, `--snackbar-content-gap` after the glyph. It sits on one line while it fits and wraps onto more lines when it doesn't, breaking a long word or URL rather than overflowing. The glyph and controls stay centred on the bar. It is the only text the component takes in.
 4. Action (per Status) — a [Button](../atoms/button.md) drawn by the bar, with a fixed label: Undo on deletion, View on view, Action on action and standard. Its shape follows the bar.
    - deletion, view: subtle, medium.
    - action: outline-subtle, small.
@@ -100,7 +100,7 @@ Variant chooses the silhouette and whether Status applies. Status is a preset: t
 
 Deletion shares the error tint, so it reads as destructive even where the message is neutral. On standard the close glyph takes `--snackbar-standard-icon-foreground` so it reads on the dark bar.
 
-Shape: rounded (default) → `--snackbar-contextual-container-radius-rounded` (a pill) on contextual and `--snackbar-standard-container-radius-rounded` (a soft rectangle) on standard; sharp → `--snackbar-container-radius-sharp` on both. The close and the action follow: Button and Icon Button shape full on rounded contextual, rounded on standard, sharp on sharp. In the AAA modes the component is always sharp (DESIGN.md §5).
+Shape: rounded (default) → `--snackbar-contextual-container-radius-rounded` (a pill) on contextual, capped at half `--snackbar-container-height` so a wrapped bar keeps the one-line corners instead of growing round ends, and `--snackbar-standard-container-radius-rounded` (a soft rectangle) on standard; sharp → `--snackbar-container-radius-sharp` on both. The close and the action follow: Button and Icon Button shape full on rounded contextual, rounded on standard, sharp on sharp. In the AAA modes the component is always sharp (DESIGN.md §5).
 
 ## States
 | State | Trigger | What changes |
@@ -114,16 +114,16 @@ It stays on screen until the exit has finished, and a bar opened again while it 
 ## Spacing & Sizing
 | Part | Value |
 |---|---|
-| Height | `--snackbar-container-height` throughout |
+| Height | at least `--snackbar-container-height`; grows with a wrapped message |
 | Padding | `--snackbar-container-padding-y` top and bottom, `--snackbar-container-padding-leading` leading, `--snackbar-container-padding-trailing` trailing |
 | Content → controls | `--snackbar-container-gap` |
 | Content | `--snackbar-content-padding-y` top and bottom; glyph → message `--snackbar-content-gap` |
 | Between controls | `--snackbar-controls-gap` |
 | Close | `--snackbar-close-size` square, glyph `--snackbar-icon-size` |
 | Action | Button medium (`--button-container-height-medium`) on deletion and view; Button small (`--button-container-height-small`) on action and standard |
-| Position | Fixed to the viewport, centred, `--snackbar-position-offset-bottom` above the bottom edge, never wider than the viewport less `--snackbar-position-margin-x` each side |
+| Position | Fixed to the viewport, centred, `--snackbar-position-offset-bottom` above the bottom edge, never wider than the viewport less `--snackbar-position-margin-x` each side. Placed in a layout instead, it is never wider than its container. |
 
-Figma gives each status its own fixed width (190 to 323); in code the bar hugs its content up to the viewport limit, and the message stays on one line, so message length is a constraint on what gets written. The bar floats in the browser's top layer (a popover), above any z-index on the page, modals included. It neither takes focus nor blocks the page. Two bars open at once occupy the same spot; there is no queue yet.
+Figma gives each status its own fixed width (190 to 323); in code the bar hugs its content up to the viewport limit, and past that the message wraps while the controls keep their size at the trailing end, so it works from a handheld up to a desktop. The bar floats in the browser's top layer (a popover), above any z-index on the page, modals included. It neither takes focus nor blocks the page. Two bars open at once occupy the same spot; there is no queue yet.
 
 ## Properties
 | Property | Options | Default |
@@ -142,7 +142,7 @@ The action label is fixed per status and is not an input.
 ## Usage
 - Use it for something worth noticing and not worth interrupting for. Where the person has to answer before carrying on, use a [Dialog](../organisms/dialog.md).
 - Pick the status for what happened rather than for the colour. Each one brings its own glyph and controls, so the choice settles the whole bar.
-- Keep the message to one short line. The bar does not wrap.
+- Keep the message short. It wraps when it has to, but a snackbar that runs to several lines on a handheld is asking to be a [Dialog](../organisms/dialog.md) or an [Inline Banner](inline-banner.md).
 - Don't turn the close off on a bar with no action and no timer. That leaves a person with a message and no way to clear it.
 - Don't use deletion just to get an error tint. It promises an Undo, and offering one the product cannot honour is worse than a plain error.
 - A failure the person could retry needs a status that carries an action; negative carries only a close.
@@ -157,4 +157,4 @@ The action label is fixed per status and is not an input.
 - Its movement respects reduced motion: with that preference set it fades without sliding.
 
 ## Claude Prompt
-Draw a Zebra snackbar floating `--snackbar-position-offset-bottom` above the bottom of the screen, centred: a single-line pill (`--snackbar-contextual-container-radius-rounded`) `--snackbar-container-height` tall with a soft drop shadow, `--snackbar-container-padding-leading` padding at the start and `--snackbar-container-padding-trailing` at the end. A deletion snackbar has a pale red tint (`--snackbar-deletion-container-background`), a near-black `--snackbar-icon-size` delete icon, the message "Order removed" in `--snackbar-message-font` near-black text, then a pill "Undo" text button and a round close (x) icon button at the end. Info, success and warning versions use pale blue, green and amber tints with info, check-circle and warning icons and only a close. The default and action versions are white (`--snackbar-default-container-background`); the action version has a thin grey outlined "Action" button. The standard version is a near-black soft rectangle (`--snackbar-standard-container-background`, `--snackbar-standard-container-radius-rounded` corners) with white text and a filled contrast "Action" button in the bar's own inverse colour.
+Draw a Zebra snackbar floating `--snackbar-position-offset-bottom` above the bottom of the screen, centred: a pill (`--snackbar-contextual-container-radius-rounded`) `--snackbar-container-height` tall (a longer message wraps and the bar grows taller, keeping its corners) with a soft drop shadow, `--snackbar-container-padding-leading` padding at the start and `--snackbar-container-padding-trailing` at the end. A deletion snackbar has a pale red tint (`--snackbar-deletion-container-background`), a near-black `--snackbar-icon-size` delete icon, the message "Order removed" in `--snackbar-message-font` near-black text, then a pill "Undo" text button and a round close (x) icon button at the end. Info, success and warning versions use pale blue, green and amber tints with info, check-circle and warning icons and only a close. The default and action versions are white (`--snackbar-default-container-background`); the action version has a thin grey outlined "Action" button. The standard version is a near-black soft rectangle (`--snackbar-standard-container-background`, `--snackbar-standard-container-radius-rounded` corners) with white text and a filled contrast "Action" button in the bar's own inverse colour.

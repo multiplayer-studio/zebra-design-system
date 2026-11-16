@@ -294,11 +294,10 @@
   --size-assist-chip-height: 34px;
   --size-avatar-badge-large: 18px;
   --size-avatar-badge-xxsmall: 10px;
-  --size-avatar-close-icon: 5px;
   --size-avatar-icon-ratio: 0.5;
   --size-avatar-label-ratio: 0.333;
   --size-avatar-rail-overlap-ratio: 0.25;
-  --size-avatar-status-icon-ratio: 0.42;
+  --size-avatar-status-icon-ratio: 0.6;
   --size-avatar-xxlarge: 120px;
   --size-avatar-xxxlarge: 200px;
   --size-bottom-sheet-grid-item-width: 92px;
@@ -1197,7 +1196,7 @@
   --avatar-offline-icon-foreground: var(--color-ink-medium);
   --avatar-custom-badge-background: var(--color-data-1);
   --avatar-close-badge-background: var(--color-data-12);
-  --avatar-close-icon-size: var(--size-avatar-close-icon);
+  --avatar-close-icon-size-ratio: var(--size-avatar-status-icon-ratio);
   --avatar-close-focus-ring-width: var(--stroke-thick);
   --avatar-close-focus-ring-color: var(--color-line-focus);
   --avatar-close-touch-target-size-minimum: var(--control-target-min);
