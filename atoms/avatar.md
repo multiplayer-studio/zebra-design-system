@@ -66,7 +66,7 @@ tokens:
   avatar-custom-badge-background: '{colors.color-data-1}'
   # close
   avatar-close-badge-background: '{colors.color-data-12}'
-  avatar-close-icon-size: '{component-sizes.size-avatar-close-icon}'
+  avatar-close-icon-size-ratio: '{component-sizes.size-avatar-status-icon-ratio}'
   avatar-close-focus-ring-width: '{stroke.stroke-thick}'
   avatar-close-focus-ring-color: '{colors.color-line-focus}'
   avatar-close-touch-target-size-minimum: '{control.control-target-min}'
@@ -82,7 +82,7 @@ tokens:
    - a photo, cropped to the circle, no swatch;
    - an [Icon](../atoms/icon.md) on a swatch, in `--avatar-content-foreground`, sized `--avatar-icon-size-ratio` of the diameter.
 2. Ring (optional) — an outline on the container's edge, `--avatar-ring-border-color`, weight per size (`--avatar-ring-border-width-medium` at medium). Drawn over the content, so it adds no size.
-3. Close badge (optional) — pinned flush to the top-right corner, inside the avatar's bounds. A `--avatar-close-badge-background` circle with a `close` [Icon](../atoms/icon.md) at a fixed `--avatar-close-icon-size`. In code it is a button.
+3. Close badge (optional) — pinned flush to the top-right corner, inside the avatar's bounds. A `--avatar-close-badge-background` circle with a `close` [Icon](../atoms/icon.md) sized `--avatar-close-icon-size-ratio` of the badge. In code it is a button.
 4. Status badge (optional) — pinned flush to the bottom-right corner, inside the bounds. A circle showing presence, with its own glyph per state (see Variants), sized `--avatar-status-icon-size-ratio` of the badge.
 
 Both badges are `--avatar-badge-radius` circles with a `--avatar-badge-border-width` `--avatar-badge-border-color` edge that cuts them away from the avatar beneath. Both sit at the same size step (`--avatar-badge-size-medium` at medium).
@@ -143,8 +143,7 @@ The badges change only when their properties change. Avatar has no motion: any t
 Medium is the base step that every other size is scaled from. Each size is a fixed square, and it isn't resizable apart from the Size property.
 
 - The badges are a third of the avatar at medium. Above medium they grow more slowly than the avatar, so a large avatar is never dominated by its badge.
-- The status glyph keeps a constant share of its badge (`--avatar-status-icon-size-ratio`).
-- The close glyph is a fixed `--avatar-close-icon-size` at every size, so on the largest avatars it sits small inside its badge.
+- The status and close glyphs each keep a constant share of their badge (`--avatar-status-icon-size-ratio`, `--avatar-close-icon-size-ratio`).
 - Initials (`--avatar-label-size-ratio`) and the content icon (`--avatar-icon-size-ratio`) scale with the diameter.
 - Both badges stay inside the avatar's bounds, pinned to their corners. They move with the avatar and never independently.
 
@@ -181,7 +180,6 @@ Figma sets the content type and swatch by swapping the nested instance. Code tak
 - An avatar alone doesn't convey a name. Pair it with visible text or give it an accessible name (alt text on the photo, or a label on the container).
 - Each presence state has its own glyph as well as its colour, and Offline is hollow. Still give the status a text equivalent (e.g. "Dana Moreno, away"), because at the smallest sizes the glyph is only a few pixels across.
 - The close badge is a button named for what it removes ("Remove Dana Moreno"), with the `--avatar-close-focus-ring-width` `--avatar-close-focus-ring-color` ring on focus. Its badge is far smaller than `--avatar-close-touch-target-size-minimum`, so extend its hit area to at least that.
-- The close glyph is a fixed `--avatar-close-icon-size`. On the largest avatars, check it still reads as a target.
 - A custom status glyph needs a text equivalent beside it.
 
 ## Claude Prompt

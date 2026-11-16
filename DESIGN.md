@@ -789,11 +789,10 @@ component-sizes:  # fixed component measurements Figma hard-codes and no scale-*
   size-assist-chip-height: 34px  # atoms/assist-chip.md
   size-avatar-badge-large: 18px  # atoms/avatar.md
   size-avatar-badge-xxsmall: 10px  # atoms/avatar.md
-  size-avatar-close-icon: 5px  # atoms/avatar.md
   size-avatar-icon-ratio: '0.5'  # atoms/avatar.md (content icon ÷ diameter)
   size-avatar-label-ratio: '0.333'  # atoms/avatar.md (initials font size ÷ diameter; label-large at medium)
   size-avatar-rail-overlap-ratio: '0.25'  # molecules/avatar-rail.md (overlap ÷ diameter)
-  size-avatar-status-icon-ratio: '0.42'  # atoms/avatar.md (status glyph ÷ badge)
+  size-avatar-status-icon-ratio: '0.6'  # atoms/avatar.md (status and close glyph ÷ badge)
   size-avatar-xxlarge: 120px  # atoms/avatar.md
   size-avatar-xxxlarge: 200px  # atoms/avatar.md
   size-bottom-sheet-grid-item-width: 92px  # organisms/bottom-sheet.md
@@ -832,7 +831,7 @@ The Zebra Design System is an **enterprise utility language**. It is calm, preci
 The geometry is strict and quiet. Everything snaps to the 4px-based size scale. Every component is rounded by default: controls take `--radius-element-sm` corners and containers `--radius-container`; each can switch to fully sharp (`--radius-none`) or, where offered, to full pills (`--radius-pill`). The AAA modes are always sharp. Depth is low: hairline strokes (`--stroke-thin`) and soft cool shadows (`--shadow-xsmall` … `--shadow-large`) only on floating layers. Type is **IBM Plex Sans** (`--font-family-regular`), a humanist-grotesque with an engineered feel. Display sizes use the light weight for an airy look, headings use regular, and all UI labels and titles use medium. The overall impression is *trustworthy industrial software*: dense enough for data, generous enough for touch, and accessible in all four theme modes (light, dark, AAA light, AAA dark).
 
 **Key characteristics**
-- Cool-neutral greys with a single saturated blue accent; a gradient (`--color-gradient-default-start` → `--color-gradient-default-end`) reserved for one promotional moment per screen
+- Cool-neutral greys with a single saturated blue accent; a gradient (`--color-gradient-default-start` → `--color-gradient-default-end`) reserved for AI
 - A 4px-based size scale for spacing, control heights, radii and strokes
 - Rounded is the default shape for every component, with sharp / rounded / full switching; AAA modes are always sharp
 - Hairline strokes over shadows; shadows appear only on floating layers
@@ -949,7 +948,7 @@ Every status has the steps `faint` (tinted container), `subtle`, `default` (text
 
 ### Data and gradient
 - **Data:** `--color-data-1` … `--color-data-12` plus `--color-data-neutral`, for chart series and avatar swatches. Never use them for text, because they may not meet contrast.
-- **Gradient:** `--color-gradient-<default|strong|subtle>-<start|end>`, the purple-to-blue promotional gradient (gradient buttons, AI cards, gradient text).
+- **Gradient:** `--color-gradient-<default|strong|subtle>-<start|end>`, the purple-to-blue AI gradient. Use the gradient flavours (gradient and text-gradient buttons and icon buttons, gradient fields, the gradient card) for anything to do with AI, such as an AI assistant or companion, AI-generated content or an action that runs AI, and for nothing else. Not for promotion or emphasis: the gradient always means AI.
 
 ### Theme modes
 - **Dark** (`colors-dark`, `[data-theme="dark"]`): the palette points at different primitive steps. Fills become near-black, ink becomes near-white, and brand and status steps move lighter so they keep their contrast.
@@ -996,7 +995,7 @@ Shared mechanics that apply to every component below:
 - **Motion:** short and functional: colour tints over `--motion-smooth`, springy movement over `--motion-spring`, and the durations `--motion-instant` … `--motion-slower` with `--easing-standard` / `--easing-out`. There is no decorative animation.
 
 ### Buttons → [atoms/button.md](atoms/button.md), [atoms/icon-button.md](atoms/icon-button.md), [atoms/fab.md](atoms/fab.md), [molecules/button-group.md](molecules/button-group.md), [molecules/segmented-control.md](molecules/segmented-control.md)
-Buttons are crisp rectangles with `--radius-element-sm` corners, set in `--type-label-large`, with optional leading and trailing icons. Primary is solid `--color-brand-primary-default` with `--color-brand-primary-on` text. Outline uses a thin `--color-brand-primary-default` stroke on white. Text buttons have no container. Contrast is near-black on light pages and near-white on dark; gradient carries the promotional gradient. Icon buttons are the square, label-less version; FABs float as circles or extended pills.
+Buttons are crisp rectangles with `--radius-element-sm` corners, set in `--type-label-large`, with optional leading and trailing icons. Primary is solid `--color-brand-primary-default` with `--color-brand-primary-on` text. Outline uses a thin `--color-brand-primary-default` stroke on white. Text buttons have no container. Contrast is near-black on light pages and near-white on dark; gradient carries the AI gradient. Icon buttons are the square, label-less version; FABs float as circles or extended pills.
 
 ### Cards & Containers → [molecules/card.md](molecules/card.md), [molecules/accordion.md](molecules/accordion.md), [organisms/dialog.md](organisms/dialog.md), [organisms/bottom-sheet.md](organisms/bottom-sheet.md), [organisms/lightbox.md](organisms/lightbox.md)
 Cards are `--color-fill-default` panels with a `--stroke-thin` `--color-line-default` hairline and `--radius-container` corners, divided into header, body and footer; a collapsible card adds an expand caret and an optional gradient border. They are flat by default. Shadows (`--shadow-small` … `--shadow-large`) appear only on floating layers: menus, tooltips, dialogs, sheets and drawers. Dialogs and sheets sit over the `--color-fill-scrim` barrier (see [Scrim](atoms/scrim.md)).

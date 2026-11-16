@@ -141,7 +141,7 @@ span.chips-assist::before { content: none; }
 .av-status.offline { --_fill: var(--avatar-offline-badge-background); --_edge: var(--avatar-offline-badge-border-color); --_glyph: var(--avatar-offline-icon-foreground); }
 .av-status.custom { --_fill: var(--avatar-custom-badge-background); }
 .avatar .av-close { top: 0; --_fill: var(--avatar-close-badge-background); cursor: pointer; }
-.avatar .av-close .icon { font-size: var(--avatar-close-icon-size); color: inherit; }
+.avatar .av-close .icon { font-size: calc(var(--_b) * var(--avatar-close-icon-size-ratio)); color: inherit; }
 .avatar .av-close::before { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
   width: var(--avatar-close-touch-target-size-minimum); height: var(--avatar-close-touch-target-size-minimum); } /* hit area */
 .avatar .av-close:focus-visible { outline: var(--avatar-close-focus-ring-width) solid var(--avatar-close-focus-ring-color); }
