@@ -1059,7 +1059,7 @@ drift check (report only): 0 undefined, N unused component tokens`,
     .claude/skills/   // from PROTOTYPING.SKILLS/
     templates/   // universal/, plus that project's templates, flat
     DESIGN.md PROTOTYPING.AGENTS.md PROTOTYPING.JIRA.md PROTOTYPING.GITHUB.md
-    PROTOTYPING.FIGMA.md icons.json tokens.css
+    icons.json tokens.css
     github.json   // project kit only: its repo, branch and design-system path
     CLAUDE.md   // from PROTOTYPING.CLAUDE.md
     README.md   // from PROTOTYPING.README.md
@@ -1222,7 +1222,8 @@ Wrote build/zebra-design-system-production/`,
 `@PROTOTYPING.AGENTS.md
     @PROTOTYPING.JIRA.md    // asks for a Jira ticket (zebra-jira MCP)
     @PROTOTYPING.GITHUB.md  // reads a downloaded copy of the project repo
-    @PROTOTYPING.FIGMA.md   // offers to send the result to Figma
+    build-from-reference skill // when given a reference design
+    send-to-figma skill     // offers to send the result to Figma
     @PROTOTYPING.TESTING.md // testing kit only: doc edits → CHANGES.md → Jira
 check templates/ first`,
         payloadProduction:

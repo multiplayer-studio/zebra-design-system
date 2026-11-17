@@ -227,8 +227,8 @@
   --color-alpha-light-80: rgba(212,221,230,0.8);
   --color-alpha-light-90: rgba(212,221,230,0.9);
   --space-page: var(--scale-7);
-  --space-section: var(--scale-9);
-  --space-card: var(--scale-6);
+  --space-section: var(--scale-11);
+  --space-card: var(--scale-7);
   --space-gutter: var(--scale-7);
   --space-3xs: var(--scale-2);
   --space-2xs: var(--scale-3);
@@ -236,6 +236,7 @@
   --space-sm: var(--scale-5);
   --space-md: var(--scale-6);
   --space-lg: var(--scale-7);
+  --space-lg-plus: var(--scale-8);
   --space-xl: var(--scale-9);
   --space-2xl: var(--scale-11);
   --space-3xl: var(--scale-13);
@@ -272,6 +273,7 @@
   --stroke-thick: var(--scale-2);
   --stroke-heavy: var(--scale-3);
   --container-default: var(--scale-container-3);
+  --container-reading: var(--scale-container-1);
   --shadow-xsmall: 0px 1px 1px 0 rgba(12,13,14,.1);
   --shadow-small: 0px 2px 6px 0 rgba(12,13,14,.1);
   --shadow-medium: 0px 8px 16px 0 rgba(12,13,14,.1);
@@ -279,6 +281,7 @@
   --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
+  --font-weight-semibold: 600;
   --font-weight-bold: 700;
   --motion-spring: 250ms cubic-bezier(0.34, 1.36, 0.64, 1);
   --motion-smooth: 250ms ease-in-out;
@@ -328,15 +331,24 @@
   --grid-unit: 4px;
   --grid-margin: 24px;
   --breakpoint-mobile-max: 1024px;
+  --frame-handheld-width: 360px;
+  --frame-handheld-height: 720px;
+  --frame-status-bar-height: 24px;
   --type-display-large: 300 52px/60px "IBM Plex Sans", sans-serif;
   --type-display-medium: 300 44px/52px "IBM Plex Sans", sans-serif;
   --type-display-small: 300 36px/40px "IBM Plex Sans", sans-serif;
   --type-heading-large: 400 32px/36px "IBM Plex Sans", sans-serif;
+  --type-heading-large-bold: 700 32px/36px "IBM Plex Sans", sans-serif;
   --type-heading-medium: 400 28px/32px "IBM Plex Sans", sans-serif;
+  --type-heading-medium-bold: 700 28px/32px "IBM Plex Sans", sans-serif;
   --type-heading-small: 400 24px/28px "IBM Plex Sans", sans-serif;
+  --type-heading-small-bold: 700 24px/28px "IBM Plex Sans", sans-serif;
   --type-title-large: 500 20px/24px "IBM Plex Sans", sans-serif;
+  --type-title-large-bold: 600 20px/24px "IBM Plex Sans", sans-serif;
   --type-title-medium: 500 16px/20px "IBM Plex Sans", sans-serif;
+  --type-title-medium-bold: 600 16px/20px "IBM Plex Sans", sans-serif;
   --type-title-small: 500 12px/16px "IBM Plex Sans", sans-serif;
+  --type-title-small-bold: 600 12px/16px "IBM Plex Sans", sans-serif;
   --type-body-large: 400 20px/24px "IBM Plex Sans", sans-serif;
   --type-body-medium: 400 16px/24px "IBM Plex Sans", sans-serif;
   --type-body-small: 400 14px/18px "IBM Plex Sans", sans-serif;
@@ -1443,10 +1455,10 @@
   /* bottom-sheet */
   --bottom-sheet-container-background: var(--color-fill-overlay);
   --bottom-sheet-container-radius: var(--radius-container);
-  --bottom-sheet-container-padding-bottom: var(--space-card);
+  --bottom-sheet-container-padding-bottom: var(--space-md);
   --bottom-sheet-container-width: var(--size-bottom-sheet-width);
   --bottom-sheet-handle-padding-y: var(--space-lg);
-  --bottom-sheet-handle-padding-x: var(--space-section);
+  --bottom-sheet-handle-padding-x: var(--space-xl);
   --bottom-sheet-handle-bar-width: var(--control-target-min);
   --bottom-sheet-handle-bar-height: var(--scale-3);
   --bottom-sheet-handle-bar-background: var(--color-line-default);
@@ -1488,7 +1500,7 @@
   --dropdown-menu-panel-shadow: var(--shadow-medium);
   --dropdown-menu-panel-radius-sharp: var(--radius-none);
   --dropdown-menu-panel-radius-rounded: var(--radius-element-md);
-  --dropdown-menu-panel-padding: var(--space-card);
+  --dropdown-menu-panel-padding: var(--space-md);
   --dropdown-menu-panel-padding-compact: var(--space-xs);
   --dropdown-menu-content-gap: var(--space-2xs);
   --dropdown-menu-panel-offset: var(--space-sm);
@@ -1962,7 +1974,7 @@
   --dialog-title-font: var(--type-title-large);
   --dialog-close-foreground: var(--color-ink-high);
   --dialog-body-padding: var(--space-md);
-  --dialog-body-padding-bottom: var(--space-section);
+  --dialog-body-padding-bottom: var(--space-xl);
   --dialog-body-foreground: var(--color-ink-high);
   --dialog-body-font: var(--type-body-medium);
   --dialog-footer-padding: var(--space-md);
@@ -2431,14 +2443,14 @@
   --navigation-drawer-container-width: var(--size-navigation-drawer-width);
   --navigation-drawer-container-inset-min: var(--control-lg);
   --navigation-drawer-container-padding-x: var(--space-md);
-  --navigation-drawer-container-padding-y: var(--space-card);
+  --navigation-drawer-container-padding-y: var(--space-md);
   --navigation-drawer-container-gap: var(--space-md);
   --navigation-drawer-list-gap: var(--space-2xs);
   --navigation-drawer-container-transition: var(--motion-smooth);
   /* navigation-rail */
   --navigation-rail-container-background: var(--color-fill-default);
   --navigation-rail-container-padding-x: var(--space-md);
-  --navigation-rail-container-padding-y: var(--space-card);
+  --navigation-rail-container-padding-y: var(--space-md);
   --navigation-rail-container-gap: var(--space-md);
   --navigation-rail-container-width-expanded: var(--size-navigation-rail-width-expanded);
   --navigation-rail-container-transition: var(--motion-smooth);
@@ -2486,7 +2498,7 @@
   --notification-item-container-border-width: var(--stroke-base);
   --notification-item-container-radius: var(--radius-md);
   --notification-item-container-padding-y: var(--space-gutter);
-  --notification-item-container-padding-x: var(--space-card);
+  --notification-item-container-padding-x: var(--space-md);
   --notification-item-container-gap: var(--space-sm);
   --notification-item-visual-size: var(--control-sm);
   --notification-item-visual-radius: var(--radius-pill);
@@ -2514,7 +2526,7 @@
   --notification-item-actions-gap: var(--space-2xs);
   --notification-item-group-bar-background: var(--color-line-focus);
   --notification-item-group-bar-height: var(--scale-3);
-  --notification-item-group-bar-inset: var(--space-card);
+  --notification-item-group-bar-inset: var(--space-md);
   --notification-item-group-bar-radius: var(--radius-md);
   /* pagination */
   --pagination-item-background-enabled: var(--color-fill-default);

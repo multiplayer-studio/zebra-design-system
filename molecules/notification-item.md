@@ -11,7 +11,7 @@ tokens:
   notification-item-container-border-width: '{stroke.stroke-base}'
   notification-item-container-radius: '{radius.radius-md}'
   notification-item-container-padding-y: '{space.space-gutter}'
-  notification-item-container-padding-x: '{space.space-card}'
+  notification-item-container-padding-x: '{space.space-md}'
   notification-item-container-gap: '{space.space-sm}'
   # leading visual
   notification-item-visual-size: '{control.control-sm}'
@@ -46,7 +46,7 @@ tokens:
   # group indicator
   notification-item-group-bar-background: '{colors.color-line-focus}'
   notification-item-group-bar-height: '{primitives.scale-3}'
-  notification-item-group-bar-inset: '{space.space-card}'
+  notification-item-group-bar-inset: '{space.space-md}'
   notification-item-group-bar-radius: '{radius.radius-md}'
 ---
 

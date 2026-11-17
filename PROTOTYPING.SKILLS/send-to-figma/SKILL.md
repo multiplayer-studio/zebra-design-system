@@ -1,4 +1,9 @@
-# Prototyping to Figma
+---
+name: send-to-figma
+description: Send a finished prototype to a Figma file, as editable design layers or a clickable code layer, through the Figma MCP. Use when a prototype is done and the designer is happy with it (offer it then), or whenever the designer asks to put a prototype in Figma.
+---
+
+# Send a prototype to Figma
 
 A finished prototype can be sent to a Figma file. Follow this whenever a prototype is done.
 

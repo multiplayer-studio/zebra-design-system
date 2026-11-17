@@ -24,7 +24,7 @@ tokens:
   dialog-close-foreground: '{colors.color-ink-high}'
   # body
   dialog-body-padding: '{space.space-md}'
-  dialog-body-padding-bottom: '{space.space-section}'
+  dialog-body-padding-bottom: '{space.space-xl}'
   dialog-body-foreground: '{colors.color-ink-high}'
   dialog-body-font: '{typography.type-body-medium}'
   # footer

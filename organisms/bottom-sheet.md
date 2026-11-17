@@ -7,11 +7,11 @@ tokens:
   # container
   bottom-sheet-container-background: '{colors.color-fill-overlay}'
   bottom-sheet-container-radius: '{radius.radius-container}'
-  bottom-sheet-container-padding-bottom: '{space.space-card}'
+  bottom-sheet-container-padding-bottom: '{space.space-md}'
   bottom-sheet-container-width: '{component-sizes.size-bottom-sheet-width}'
   # handle
   bottom-sheet-handle-padding-y: '{space.space-lg}'
-  bottom-sheet-handle-padding-x: '{space.space-section}'
+  bottom-sheet-handle-padding-x: '{space.space-xl}'
   bottom-sheet-handle-bar-width: '{control.control-target-min}'
   bottom-sheet-handle-bar-height: '{primitives.scale-3}'
   bottom-sheet-handle-bar-background: '{colors.color-line-default}'

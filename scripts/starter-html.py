@@ -25,7 +25,7 @@ components = f"<style>\n{read('prototypes', '_starter', 'components.css').rstrip
 plex = '\n'.join(
     f'@font-face {{ font-family: "IBM Plex Sans"; font-weight: {w}; font-style: normal; font-display: swap; '
     f'src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-{w}-normal.woff2") format("woff2"); }}'
-    for w in (300, 400, 500))
+    for w in (300, 400, 500, 600, 700))
 
 html = f'''<!doctype html>
 <html lang="en">

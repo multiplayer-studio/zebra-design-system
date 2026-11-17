@@ -1,6 +1,6 @@
 ---
 name: Zebra Design System
-version: '2.2611.2-beta'
+version: '3.2611.0-beta'
 icons: "Zebra Icons 1.9.8 (zeta-icons-round / zeta-icons-sharp), package @zebra-fed/zeta-icons"
 # ── TOKEN ARCHITECTURE ──────────────────────────────────────────────────────────
 # Three layers (mirrors the Figma variable collections):
@@ -678,8 +678,8 @@ colors-aaa-dark:  # Figma 'palette' semantic colours, dark, AAA contrast. Same k
   color-gradient-subtle-end: '{primitives.color-extend-4-80}'
 space:
   space-page: '{primitives.scale-7}'
-  space-section: '{primitives.scale-9}'
-  space-card: '{primitives.scale-6}'
+  space-section: '{primitives.scale-11}'
+  space-card: '{primitives.scale-7}'
   space-gutter: '{primitives.scale-7}'
   space-3xs: '{primitives.scale-2}'
   space-2xs: '{primitives.scale-3}'
@@ -687,6 +687,7 @@ space:
   space-sm: '{primitives.scale-5}'
   space-md: '{primitives.scale-6}'
   space-lg: '{primitives.scale-7}'
+  space-lg-plus: '{primitives.scale-8}'
   space-xl: '{primitives.scale-9}'
   space-2xl: '{primitives.scale-11}'
   space-3xl: '{primitives.scale-13}'
@@ -727,6 +728,7 @@ stroke:
   stroke-heavy: '{primitives.scale-3}'
 container:
   container-default: '{primitives.scale-container-3}'
+  container-reading: '{primitives.scale-container-1}'
 shadow:  # Figma size/shadow x, y, blur; colour is primitives color-alpha-dark-10
   shadow-xsmall: '0px 1px 1px 0 rgba(12,13,14,.1)'
   shadow-small: '0px 2px 6px 0 rgba(12,13,14,.1)'
@@ -737,11 +739,17 @@ typography:  # Figma 'typography' text styles, IBM Plex Sans; h1=heading-large �
   type-display-medium: { fontFamily: IBM Plex Sans, fontSize: 44px, fontWeight: '300', lineHeight: 52px, letterSpacing: 0px }
   type-display-small: { fontFamily: IBM Plex Sans, fontSize: 36px, fontWeight: '300', lineHeight: 40px, letterSpacing: 0px }
   type-heading-large: { fontFamily: IBM Plex Sans, fontSize: 32px, fontWeight: '400', lineHeight: 36px, letterSpacing: 0px }
+  type-heading-large-bold: { fontFamily: IBM Plex Sans, fontSize: 32px, fontWeight: '700', lineHeight: 36px, letterSpacing: 0px }
   type-heading-medium: { fontFamily: IBM Plex Sans, fontSize: 28px, fontWeight: '400', lineHeight: 32px, letterSpacing: 0px }
+  type-heading-medium-bold: { fontFamily: IBM Plex Sans, fontSize: 28px, fontWeight: '700', lineHeight: 32px, letterSpacing: 0px }
   type-heading-small: { fontFamily: IBM Plex Sans, fontSize: 24px, fontWeight: '400', lineHeight: 28px, letterSpacing: 0px }
+  type-heading-small-bold: { fontFamily: IBM Plex Sans, fontSize: 24px, fontWeight: '700', lineHeight: 28px, letterSpacing: 0px }
   type-title-large: { fontFamily: IBM Plex Sans, fontSize: 20px, fontWeight: '500', lineHeight: 24px, letterSpacing: 0px }
+  type-title-large-bold: { fontFamily: IBM Plex Sans, fontSize: 20px, fontWeight: '600', lineHeight: 24px, letterSpacing: 0px }
   type-title-medium: { fontFamily: IBM Plex Sans, fontSize: 16px, fontWeight: '500', lineHeight: 20px, letterSpacing: 0px }
+  type-title-medium-bold: { fontFamily: IBM Plex Sans, fontSize: 16px, fontWeight: '600', lineHeight: 20px, letterSpacing: 0px }
   type-title-small: { fontFamily: IBM Plex Sans, fontSize: 12px, fontWeight: '500', lineHeight: 16px, letterSpacing: 0px }
+  type-title-small-bold: { fontFamily: IBM Plex Sans, fontSize: 12px, fontWeight: '600', lineHeight: 16px, letterSpacing: 0px }
   type-body-large: { fontFamily: IBM Plex Sans, fontSize: 20px, fontWeight: '400', lineHeight: 24px, letterSpacing: 0px }
   type-body-medium: { fontFamily: IBM Plex Sans, fontSize: 16px, fontWeight: '400', lineHeight: 24px, letterSpacing: 0px }
   type-body-small: { fontFamily: IBM Plex Sans, fontSize: 14px, fontWeight: '400', lineHeight: 18px, letterSpacing: 0px }
@@ -765,6 +773,7 @@ font-weight:
   font-weight-light: '300'
   font-weight-regular: '400'
   font-weight-medium: '500'
+  font-weight-semibold: '600'
   font-weight-bold: '700'
 motion:  # motion-spring / motion-smooth are the Figma animations; the durations and easings have no Figma equivalent
   motion-spring: 250ms cubic-bezier(0.34, 1.36, 0.64, 1)
@@ -783,6 +792,9 @@ layout:
   grid-margin: 24px
   breakpoint-mobile-max: 1024px
   aspect-ratios: '1:1, 2:1, 2:3, 3:2, 4:3, 16:9'
+  frame-handheld-width: 360px  # Zebra TC-series 6" handheld, 1080 × 2160 at 3×; prototype device frame
+  frame-handheld-height: 720px
+  frame-status-bar-height: 24px  # Android status bar; prototype device frame
 opacity:
   opacity-hover-tint: '10%'
 component-sizes:  # fixed component measurements Figma hard-codes and no scale-* step matches; each notes its owner
@@ -969,12 +981,33 @@ Every status has the steps `faint` (tinted container), `subtle`, `default` (text
 | Body | `--type-body-large` · `--type-body-medium` · `--type-body-small` · `--type-body-xsmall` | `--font-weight-regular` | p = `--type-body-medium` | Reading text, descriptions, hints |
 | Label | `--type-label-large` · `--type-label-medium` · `--type-label-small` | `--font-weight-medium` | n/a | Buttons, chips, tabs, field labels |
 | Indicator | `--type-indicator-medium` · `--type-indicator-small` | medium · regular | n/a | Notification counts in indicators |
+| Bold | `--type-heading-<size>-bold` · `--type-title-<size>-bold` | `--font-weight-bold` (headings) · `--font-weight-semibold` (titles) | n/a | A heavier heading or title where the design calls for one; same size and line height as the base style |
 
 `--type-h1` … `--type-h6` alias heading-large … title-small.
 
+### Choosing a style
+Choose a style by the text's role, not by how big it should feel.
+
+| Role | Token |
+|---|---|
+| Page title on desktop | `--type-heading-large` |
+| Screen title on handheld, or a page section on desktop | `--type-heading-small` |
+| Section or card-group title | `--type-title-large` |
+| Card or list-item title | `--type-title-medium` |
+| Body text | `--type-body-medium` |
+| Supporting text, descriptions, helper text | `--type-body-small` |
+| Metadata, timestamps, captions | `--type-body-xsmall` |
+| Text inside controls | the component's own `--type-label-*`; never restyle it |
+
+- **Few styles:** at most four text styles on one screen; three is better.
+- **One heading-level style per screen.** If two things both look like the title, one of them is wrong.
+- **Floor:** text the person must read to finish the task is 14px or larger on every device. 12px is for metadata only.
+- **Weight comes from the token.** Don't add weight to a style; use its `-bold` variant. Use either a role's base style or its bold variant across a screen, not both.
+- **Line length:** running text holds 45 to 75 characters a line; cap its column at `--container-reading`.
+
 ### Spacing Principles
 - **One scale:** sizes and line-heights follow the 4px-based scale. `--type-body-small` and `--type-label-medium` are documented exceptions that break the grid rhythm.
-- **Weight contrast instead of size jumps:** UI uses three weights (light, regular, medium); `--font-weight-bold` exists in the primitives but no text style uses it. Hierarchy comes from medium versus regular at similar sizes.
+- **One clear step per level:** move between levels of hierarchy by changing one property clearly: a weight step (regular to medium, or a style to its `-bold` variant), a full type step, or a colour role (`--color-ink-high` to `--color-ink-medium`). Never a 1–2px size change. Base styles use light, regular and medium; semibold and bold appear only in the `-bold` variants.
 - **Light for big, medium for small:** display text is light to stay elegant, and interactive labels are medium to stay legible at small sizes.
 - **Letter-spacing:** every style uses the default tracking (0); there is no uppercase-tracked eyebrow style.
 - **Principles:** optimise for readability, create visual harmony, and contextualise for different users and operating systems.
@@ -1035,8 +1068,33 @@ These cover push-to-talk and voice workflows: round comms buttons (call, video, 
 
 ### Whitespace Strategy
 - The spacing scale runs from `--space-3xs` to `--space-5xl`, with role tokens `--space-card` (inside cards), `--space-section` (between sections) and `--space-page`. Component internals mostly use `--space-2xs` to `--space-lg`, and sections use `--space-xl` to `--space-4xl`. Negative steps (`--space-neg-xs` … `--space-neg-xl`) overlap elements such as avatar stacks.
-- Vertical rhythm is built by adding fixed-scale margins to the top or bottom of boxes.
+- **Gap, not margins:** space between siblings is the container's `gap` (flex or grid). Don't put margins on elements.
+- **Space shows grouping:** the gap inside a group is smaller than the gap between groups, stepping up at least one token at each level outward:
+
+| Relationship | Gap |
+|---|---|
+| Icon and its label | `--space-2xs` |
+| Title and its subtitle; label and its field | `--space-sm` |
+| Items in a tight list; controls in a row | `--space-md` |
+| Fields in a form; card padding | `--space-lg` (`--space-card`) |
+| Between groups | `--space-xl` |
+| Between sections | `--space-section` |
+
+- **A heading belongs to what follows it:** put it in the group below it, so the space above it (between groups) is larger than the space below it.
+- **Padding is at least the inner gap:** a container's padding is never smaller than the gap between its children.
+- **Same rank, same space:** equal things get equal gaps on every screen, and gutters don't change between screens.
+- **Separate with space first,** then a [Divider](atoms/divider.md), then a surface (a bordered or filled container). Don't border everything, and don't nest a card in a card. Shadows stay on floating layers (§5).
+- **Few edges:** text and controls in a region share one start edge.
+- **Don't stretch:** on large screens cap forms and reading text at `--container-reading` and leave the rest empty. When a screen feels crowded, remove content or borders before removing space.
 - Density is moderate: comfortable for touch, but tight enough for operational tables and lists.
+
+### Hierarchy
+- **One primary thing per screen.** Decide what the person came to see and to do: that content gets the screen's largest text style, and that action its only primary button (see [Button](atoms/button.md) Usage for how the other actions step down).
+- **At most three levels of emphasis in a region:** the title or value, body text in `--color-ink-high`, and supporting text in `--color-ink-medium`. Step between them as §4 describes.
+- **Quieten before you shout:** to make something stand out, first drop what surrounds it to `--color-ink-medium` or a smaller style; enlarge it only if that isn't enough.
+- **Values outrank their labels:** in a label and value pair, the value is the larger or stronger one.
+- **Colour is for meaning:** the brand colour marks actions and selection, status colours mark status. Neither is decoration.
+- **Order follows the task:** top to bottom is the order the person reads and acts in. The primary action sits at the end of that path, or pinned to the bottom on handhelds.
 
 ### Alignment & Visual Balance
 - Content is left-aligned (start-aligned) by default. Centring is an opt-in for app bars, banners, sheet headers and dialogs.
@@ -1045,7 +1103,7 @@ These cover push-to-talk and voice workflows: round comms buttons (call, video, 
 - Monochrome layouts with one blue focal point per view.
 
 ### Responsive Behavior & Touch
-- **Touch targets:** a minimum of `--control-target-min`. Hit areas are enforced with min-height and min-width rather than padding alone; controls smaller than the minimum (small buttons, small icon buttons) need surrounding hit area on touch UIs.
+- **Touch targets:** a minimum of `--control-target-min`, with at least `--space-sm` between neighbouring targets. Hit areas are enforced with min-height and min-width rather than padding alone; controls smaller than the minimum (small buttons, small icon buttons) need surrounding hit area on touch UIs.
 - **Breakpoint:** the documented mobile breakpoint is `--breakpoint-mobile-max`.
 - **Contrast:** the palette meets WCAG AA in the default modes and AAA in the AAA modes. Don't add opacity to text.
 - **Focus** is never suppressed. Icon-only controls need an accessible label.
@@ -1054,6 +1112,8 @@ These cover push-to-talk and voice workflows: round comms buttons (call, video, 
 ---
 
 ## 7. Design System Notes for Claude Generation
+
+This section describes the generic Zebra look, for work with no reference design. When a reference exists (a Figma frame or a screenshot), match the reference instead.
 
 ### Language to Use
 "Clean enterprise UI on a crisp white canvas with cool blue-grey neutrals; graphite text in IBM Plex Sans; a single vivid Zebra-blue accent for primary actions; lightly rounded rectangles with hairline grey borders; soft shadows only on floating layers; strict 4px grid; calm, functional, accessible; status shown with tinted surfaces plus coloured icon and label."
@@ -1077,7 +1137,7 @@ Substitute the frontmatter values when sending these prompts to Claude.
 - Start monochrome (white, greys, graphite), then add blue **only** to the one primary action or selected state per region.
 - When adding status, use the `faint` tint as the background, the coloured `default` hairline and a coloured icon, and keep the text `--color-ink-high`.
 - Keep every control radius at `--radius-element-sm` and containers at `--radius-container`, unless the element is a pill (chips, avatars, full buttons → `--radius-pill`).
-- If something looks heavy, remove shadows before removing borders; the system prefers hairlines.
+- If something looks heavy, remove shadows first, then any border that space alone can replace (§6). Where an edge is needed, it's a hairline.
 - For the dark and AAA themes, swap to the `colors-dark` / `colors-aaa` / `colors-aaa-dark` values of the same tokens. Don't invent new hues.
 
 ---

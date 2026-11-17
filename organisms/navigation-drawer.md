@@ -11,7 +11,7 @@ tokens:
   navigation-drawer-container-width: '{component-sizes.size-navigation-drawer-width}'
   navigation-drawer-container-inset-min: '{control.control-lg}'
   navigation-drawer-container-padding-x: '{space.space-md}'
-  navigation-drawer-container-padding-y: '{space.space-card}'
+  navigation-drawer-container-padding-y: '{space.space-md}'
   navigation-drawer-container-gap: '{space.space-md}'
   navigation-drawer-list-gap: '{space.space-2xs}'
   navigation-drawer-container-transition: '{motion.motion-smooth}'

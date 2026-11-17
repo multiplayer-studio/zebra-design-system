@@ -7,10 +7,10 @@ Usage: python3 scripts/prototyping-zip.py              every kit; deletes projec
 
 Each zip holds one folder, zebra-design-system-prototyping[-<project>]/, with:
   atoms/ molecules/ organisms/ prototypes/  as-is
-  .claude/skills/                            PROTOTYPING.SKILLS/ (create-template)
+  .claude/skills/                            PROTOTYPING.SKILLS/ (create-template, build-from-reference, send-to-figma)
   templates/universal/                       templates/universal/ (master's universal templates), in every kit
   templates/                                 project kit only: templates/<project>/ flattened
-  DESIGN.md PROTOTYPING.AGENTS.md PROTOTYPING.JIRA.md PROTOTYPING.GITHUB.md PROTOTYPING.FIGMA.md icons.json tokens.css   as-is
+  DESIGN.md PROTOTYPING.AGENTS.md PROTOTYPING.JIRA.md PROTOTYPING.GITHUB.md icons.json tokens.css   as-is
   CLAUDE.md                                  PROTOTYPING.CLAUDE.md
   README.md                                  copied from PROTOTYPING.README.md
   github.json                                project kit only: its repo, branch and design-system path from consumers.json
@@ -69,7 +69,7 @@ def kit(project=None):
     testing = project == TESTING
     templates = [(f'templates/{project}', 'templates')] if project and not testing and os.path.isdir(os.path.join(ROOT, 'templates', project)) else []
     items = entries(['atoms', 'molecules', 'organisms', 'prototypes', ('PROTOTYPING.SKILLS', '.claude/skills'), 'templates/universal', *templates],
-                    ['DESIGN.md', *([] if testing else ['PROTOTYPING.AGENTS.md']), 'PROTOTYPING.JIRA.md', 'PROTOTYPING.GITHUB.md', 'PROTOTYPING.FIGMA.md',
+                    ['DESIGN.md', *([] if testing else ['PROTOTYPING.AGENTS.md']), 'PROTOTYPING.JIRA.md', 'PROTOTYPING.GITHUB.md',
                      'icons.json', 'tokens.css', *(['PROTOTYPING.TESTING.md', *TESTING_SCRIPTS] if testing else [])],
                     {} if testing else {'PROTOTYPING.README.md': 'README.md'})
     c = CONSUMERS.get(project)

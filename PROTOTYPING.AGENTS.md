@@ -12,9 +12,11 @@ Everything produced from this design system is a **prototype**. Its purpose is t
 
 @PROTOTYPING.GITHUB.md
 
-**Figma:** when a prototype is done, follow these instructions. They offer to send the prototype to a Figma file, ask for the link to put it in, and use the Figma MCP.
+**Reference designs:** whenever the designer gives a design to build from (a Figma link, frame or flow, or a screenshot), use the `build-from-reference` skill (`.claude/skills/build-from-reference/SKILL.md`) before writing any markup. The reference outranks everything here except that every value is still a token.
 
-@PROTOTYPING.FIGMA.md
+**No reference:** compose the screen by `DESIGN.md` §4 (Choosing a style) and §6 (Whitespace Strategy and Hierarchy), then check it with Before you hand over.
+
+**Figma:** when the designer is happy with a finished prototype, use the `send-to-figma` skill (`.claude/skills/send-to-figma/SKILL.md`). It offers to send the prototype to a Figma file and does it through the Figma MCP.
 
 ## Stack
 
@@ -32,6 +34,14 @@ Prototypes must work when opened by double-click (`file://`), with no server and
 - Load nothing from a CDN except the IBM Plex Sans fonts listed under Fonts. Icons are inline SVG from `icons.json` (see Icons), never the icon font.
 
 Prototypes need an internet connection to load those fonts.
+
+## Screens
+
+- **Handheld** prototypes are built inside the starter's device frame: `.device-stage` > `.device`, a `--frame-handheld-width` × `--frame-handheld-height` screen (a Zebra TC-series handheld) that's centred on a desktop viewport and fills a phone one. Inside it, in order: `.status-bar`, the header, `.device-body` (the only part that scrolls), and pinned actions. The markup is in the starter's component CSS comment.
+- **Desktop** prototypes use the whole viewport.
+- **Prototype controls** (restart, light/dark) go in `.proto-controls`, outside the frame, so they're never mistaken for the design. Every prototype has a light/dark control.
+
+The device frame, status bar and prototype controls are prototype chrome, not design-system components.
 
 ## Where the design lives
 
@@ -159,13 +169,15 @@ Do this when the design system is updated, or when a prototype's version comment
 
 Fonts are loaded from the jsDelivr CDN, pinned to an exact version. Do not copy font files into the prototype folder, and do not load fonts from anywhere else.
 
-All typography tokens use **IBM Plex Sans**, from the `@fontsource/ibm-plex-sans` package (v5.3.0, SIL OFL), Latin subset, in the three weights the tokens use: 300 (`--font-weight-light`), 400 (`--font-weight-regular`) and 500 (`--font-weight-medium`).
+All typography tokens use **IBM Plex Sans**, from the `@fontsource/ibm-plex-sans` package (v5.3.0, SIL OFL), Latin subset, in the five weights the tokens use: 300 (`--font-weight-light`), 400 (`--font-weight-regular`), 500 (`--font-weight-medium`), 600 (`--font-weight-semibold`) and 700 (`--font-weight-bold`).
 
 1. The starter already declares these; don't add them again. For reference:
    ```css
    @font-face { font-family: "IBM Plex Sans"; font-weight: 300; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-300-normal.woff2") format("woff2"); }
    @font-face { font-family: "IBM Plex Sans"; font-weight: 400; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-400-normal.woff2") format("woff2"); }
    @font-face { font-family: "IBM Plex Sans"; font-weight: 500; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-500-normal.woff2") format("woff2"); }
+   @font-face { font-family: "IBM Plex Sans"; font-weight: 600; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-600-normal.woff2") format("woff2"); }
+   @font-face { font-family: "IBM Plex Sans"; font-weight: 700; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-700-normal.woff2") format("woff2"); }
    ```
 2. Set text through typography tokens, either a component's font token or, for page-level text, the typography group (e.g. `font: var(--type-body-medium)`). Do not write a font family or weight by hand.
 3. Only the Latin subset and normal (non-italic) style are used. If a design needs Cyrillic, Greek or italics, use the matching file from the same package path (`ibm-plex-sans-<subset>-<weight>-<style>.woff2`) and tell the user.
@@ -211,11 +223,25 @@ Open the prototype in the Browser pane straight from `file://`; it renders style
 - **Minimum build.** Build only what's needed to show the concept, with static or mock data and hardcoded content.
 - **No production concerns** unless asked: backend or API integration, auth, persistence, error handling, performance tuning, build tooling, tests and scalable architecture.
 - **Throwaway code.** Keep it simple. Do not abstract, generalise or future-proof.
-- **Stay faithful to the design system.** Follow the `DESIGN.md` frontmatter and rules, the component files and `icons.json`. Never hardcode a value: every colour, size, space, radius, shadow, font and duration is a `var()` of a token. Never invent icons, variants, states, anatomy or tokens.
+- **Stay faithful to the design system.** Follow the `DESIGN.md` frontmatter and rules, the component files and `icons.json`. Never hardcode a value: every colour, size, space, radius, shadow, font and duration is a `var()` of a token. If a design needs a value with no token, use the nearest token and report the value as a token request. Never invent icons, variants, states, anatomy or tokens.
 - **Accessibility baselines** are part of the design, not production polish:
   - WCAG 2.2 AA contrast, which the semantic colours already meet. Don't add opacity to text.
   - A visible focus ring on every interactive element, using that component's focus-ring tokens.
   - Touch targets of at least `--control-target-min`.
   - No meaning carried by colour alone.
+- **Animate appearances,** even where only end states are drawn: sheets slide from their edge, scrims fade, dialogs ease in, using the `motion` tokens. All of it is off under `prefers-reduced-motion`.
 - **Make intent obvious.** Name things after the design concept, and add a brief comment where a shortcut stands in for real behaviour (e.g. `// mock data`).
 - **Say what's faked.** If something is faked, simplified or left out (including placeholder measurements for draft components), say so briefly so it isn't mistaken for production behaviour.
+
+## Before you hand over
+
+Measure, don't eyeball: read the computed values from the rendered page. With a reference, use the checks in the `build-from-reference` skill instead of the first five below.
+
+- [ ] One primary button and one heading-level style per screen.
+- [ ] Four text styles or fewer; nothing needed to finish the task under 14px.
+- [ ] Every gap and padding is a token, and gaps inside groups are smaller than gaps between them.
+- [ ] Squint at the screen: the first thing seen is the main content, the second the main action.
+- [ ] View it in greyscale: the hierarchy still reads without colour.
+- [ ] Light and dark; phone width and desktop; visible keyboard focus.
+
+Then report: the screens built, the components used, any hand-built parts and why, every token request, and anything faked.

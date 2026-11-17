@@ -11,7 +11,7 @@ tokens:
   dropdown-menu-panel-radius-sharp: '{radius.radius-none}'
   dropdown-menu-panel-radius-rounded: '{radius.radius-element-md}'
   # sizes
-  dropdown-menu-panel-padding: '{space.space-card}'
+  dropdown-menu-panel-padding: '{space.space-md}'
   dropdown-menu-panel-padding-compact: '{space.space-xs}'
   dropdown-menu-content-gap: '{space.space-2xs}'
   # placement (dropdown template)

@@ -33,6 +33,7 @@ Type what you want in the message box, in plain English. For example:
 Tips:
 - When Claude needs an answer from you, it pops up a question with buttons. Click one, or type your own answer in the box.
 - Say what the screen is for and who will use it. The more context, the better the result.
+- Already have a design? Paste the Figma link (or drop in a screenshot) and say *"Build this."* Claude matches it using the design system, and tells you anywhere the system couldn't match it exactly.
 - Ask for changes the same way: *"Make the button full width"* or *"Add a message for when there are no results."*
 - If your screen uses a common layout, Claude may offer to save it as a **template** so later prototypes can reuse it. Say yes or no. You can also ask for one yourself: *"Make a template from this prototype."* To share a template with your team, give the file (in the `templates` folder) to your project's developer. After that it comes with your project's kit.
 - Claude will ask if there's a **Jira ticket** for the prototype. Give the key (like `PROJ-123`) or say no. If Jira isn't connected yet, Claude explains how to set it up.

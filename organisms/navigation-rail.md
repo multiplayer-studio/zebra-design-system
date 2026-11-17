@@ -7,7 +7,7 @@ tokens:
   # container (locked to Dark mode)
   navigation-rail-container-background: '{colors.color-fill-default}'
   navigation-rail-container-padding-x: '{space.space-md}'
-  navigation-rail-container-padding-y: '{space.space-card}'
+  navigation-rail-container-padding-y: '{space.space-md}'
   navigation-rail-container-gap: '{space.space-md}'
   navigation-rail-container-width-expanded: '{component-sizes.size-navigation-rail-width-expanded}'
   navigation-rail-container-transition: '{motion.motion-smooth}'
