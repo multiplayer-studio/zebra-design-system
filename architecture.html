@@ -932,7 +932,7 @@
       <div class="node" data-role="seed" data-id="zip" style="left: 78%; top: 70%;">
         <div class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
         <div class="label" data-label-prototyping="Prototyping zips" data-label-production="Production kit">Prototyping zips</div>
-        <div class="tech" data-tech-prototyping="generic, testing, per project" data-tech-production="build/ (CI)">generic + per project</div>
+        <div class="tech" data-tech-prototyping="generic, per project, plugin" data-tech-production="build/ (CI)">generic + per project</div>
         <div class="port" data-port-prototyping="committed" data-port-production="not committed">committed</div>
         <span class="step-badge">·</span>
       </div>
@@ -1052,19 +1052,19 @@ drift check (report only): 0 undefined, N unused component tokens`,
       { from:"scripts", to:"zip", color:"--c-seed",
         title:"Rebuild the kits",
         route:"prototyping-zip.py · production-bundle.py",
-        desc:"Both bundlers share <code>_bundle.py</code>. Each kit ships its own <code>*.CLAUDE.md</code> as <code>CLAUDE.md</code>; this repo's <code>CLAUDE.md</code> is never shipped. Prototyping: the generic zip, the testing zip (generic plus <code>PROTOTYPING.TESTING.md</code> and the scripts to regenerate after a doc edit) and one per project with <code>templates/&lt;project&gt;/</code> or a tenant (taking the tenant's docs), all committed in <code>prototyping-kits/</code>. Production: built into the gitignored <code>build/</code>, and only sent out by the release workflow (flow 6).",
+        desc:"Both bundlers share <code>_bundle.py</code>. Each kit ships its own <code>*.CLAUDE.md</code> as <code>CLAUDE.md</code>; this repo's <code>CLAUDE.md</code> is never shipped. Prototyping: the generic zip and one per project with <code>templates/&lt;project&gt;/</code> or a tenant (taking the tenant's docs), plus the <code>zebra-prototyping</code> plugin (the generic kit as a folder, installed from the release tag), all committed in <code>prototyping-kits/</code>. Production: built into the gitignored <code>build/</code>, and only sent out by the release workflow (flow 6).",
         payloadPrototyping:
 `zebra-design-system-prototyping[-<project>]/
     atoms/ molecules/ organisms/ prototypes/
     .claude/skills/   // from PROTOTYPING.SKILLS/
     templates/   // universal/, plus that project's templates, flat
-    DESIGN.md PROTOTYPING.AGENTS.md PROTOTYPING.JIRA.md PROTOTYPING.GITHUB.md
+    DESIGN.md PROTOTYPING.AGENTS.md
     icons.json tokens.css
     github.json   // project kit only: its repo, branch and design-system path
     CLAUDE.md   // from PROTOTYPING.CLAUDE.md
     README.md   // from PROTOTYPING.README.md
-// testing zip adds: PROTOTYPING.TESTING.md, scripts/tokens-css.py,
-//     scripts/starter-html.py, scripts/_bundle.py`,
+// plugin/: the same docs, skills/, CLAUDE.md (PROTOTYPING.PLUGIN.md +
+//     PROTOTYPING.CLAUDE.md) and .claude-plugin/plugin.json`,
         payloadProduction:
 `build/zebra-design-system-production/   // gitignored
     CLAUDE.md   // from PRODUCTION.CLAUDE.md, imports @design-system/AGENTS.md
@@ -1114,7 +1114,7 @@ drift check (report only): 0 undefined, N unused component tokens`,
         desc:"Every prototyping zip carries <code>prototypes/</code>, so each picks up the new starter. The production kit ships the component docs; the next release sends them.",
         payloadPrototyping:
 `Wrote zebra-design-system-prototyping.zip
-Wrote zebra-design-system-prototyping-testing.zip
+Wrote prototyping-kits/plugin/
 Wrote zebra-design-system-prototyping-acme.zip`,
         payloadProduction:`python3 scripts/production-bundle.py   // optional check; release.py builds it`,
         chips:[] }
@@ -1175,7 +1175,7 @@ GET <dist.tarball>                                           // the .tgz`,
         desc:"Every kit ships <code>icons.json</code>. Afterwards the version and icon count in <code>README.md</code> are updated to match.",
         payload:
 `Wrote zebra-design-system-prototyping.zip
-Wrote zebra-design-system-prototyping-testing.zip
+Wrote prototyping-kits/plugin/
 Wrote zebra-design-system-prototyping-acme.zip
 Wrote build/zebra-design-system-production/`,
         chips:["README count"] }
@@ -1214,17 +1214,16 @@ Wrote build/zebra-design-system-production/`,
       { from:"agent", to:"agent", color:"--c-compute",
         title:"Read the rules",
         route:"CLAUDE.md → PROTOTYPING.AGENTS.md → DESIGN.md",
-        desc:"The agent loads the kit's <code>CLAUDE.md</code>, then <code>PROTOTYPING.AGENTS.md</code> with its Jira, GitHub and Figma add-ons, then the component docs it needs. It checks <code>templates/</code> then <code>templates/universal/</code> first, and offers to save a reusable layout as a template with the <code>create-template</code> skill. In the testing kit, <code>PROTOTYPING.TESTING.md</code> also lets the designer edit the docs: Claude regenerates with the kit's scripts, logs each edit in <code>CHANGES.md</code> and files it to Jira. If the docs don't answer a question, it asks.",
+        desc:"The agent loads the kit's <code>CLAUDE.md</code>, then <code>PROTOTYPING.AGENTS.md</code>, then the component docs it needs, and starts each prototype with the <code>new-prototype</code> skill (Jira, then GitHub). It checks <code>templates/</code> then <code>templates/universal/</code> first, and offers to save a reusable layout as a template with the <code>create-template</code> skill. If the docs don't answer a question, it asks.",
         titleProduction:"Read the rules and set up",
         routeProduction:"CLAUDE.md → design-system/AGENTS.md",
         descProduction:"<code>CLAUDE.md</code> imports <code>design-system/AGENTS.md</code>. Before writing any component, the agent checks both project files. <code>LIBRARY.md</code> ships as a template with a React example; the project's engineers own it and decide its conventions. While it has blanks, the agent runs the <code>design-system-init</code> skill: it scans the repo, proposes each section for the developer to confirm (per platform, plus an Existing UI migration plan), checks <code>CHANGES.md</code> (shipped with the installed <code>version</code> filled in), wires the tokens, scaffolds the library and builds a first component. It never changes a convention itself.",
         payloadPrototyping:
 `@PROTOTYPING.AGENTS.md
-    @PROTOTYPING.JIRA.md    // asks for a Jira ticket (zebra-jira MCP)
-    @PROTOTYPING.GITHUB.md  // reads a downloaded copy of the project repo
+    new-prototype skill     // Jira ticket (zebra-jira MCP), then a downloaded copy of the project repo
     build-from-reference skill // when given a reference design
     send-to-figma skill     // offers to send the result to Figma
-    @PROTOTYPING.TESTING.md // testing kit only: doc edits → CHANGES.md → Jira
+    refresh-prototype skill // offers to update an outdated prototype
 check templates/ first`,
         payloadProduction:
 `design-system/LIBRARY.md   // filled in by the engineers

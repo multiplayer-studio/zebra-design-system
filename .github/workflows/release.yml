@@ -29,6 +29,14 @@ jobs:
           token: ${{ secrets.ZEBRA_DESIGN_SYSTEM_ACCESS_TOKEN }}   # pushes to this repo (commits, tags)
           fetch-depth: 0   # tags: each repo is merged against the release it has installed
 
+      - name: Check the plugin is current   # designers install prototyping-kits/plugin/ from the release tag
+        run: |
+          python3 scripts/prototyping-zip.py >/dev/null
+          if [ -n "$(git status --porcelain -- prototyping-kits/plugin)" ]; then
+            git status --porcelain -- prototyping-kits/plugin
+            echo "prototyping-kits/plugin is stale: run python3 scripts/prototyping-zip.py and commit first"; exit 1
+          fi
+
       - name: Check the version is new
         if: ${{ !inputs.dry_run }}
         run: |
@@ -45,6 +53,15 @@ jobs:
           git rev-parse -q --verify "refs/tags/design-system-v$VERSION" >/dev/null && exit 0
           git tag "design-system-v$VERSION"
           git push origin "design-system-v$VERSION"
+
+      - name: Pin the plugin to this release   # marketplace.json points designers at the tag
+        if: ${{ !inputs.dry_run }}
+        run: |
+          sed -i "s|\"ref\": \"design-system-v[^\"]*\"|\"ref\": \"design-system-v$VERSION\"|" .claude-plugin/marketplace.json
+          git diff --quiet -- .claude-plugin/marketplace.json && exit 0
+          git -c user.name=zebra-design-system -c user.email=design-system@users.noreply.github.com \
+            commit -m "chore(plugin): pin zebra-prototyping to design-system-v$VERSION" -- .claude-plugin/marketplace.json
+          git push origin HEAD:${{ github.ref_name }}
 
       - name: Open PRs
         run: python3 scripts/release.py ${{ inputs.dry_run && '--dry-run' || '' }} --notes "$NOTES"

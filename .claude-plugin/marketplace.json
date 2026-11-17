@@ -1,0 +1,18 @@
+{
+  "name": "zebra-design-system",
+  "owner": { "name": "Zebra Design System team" },
+  "metadata": { "description": "Claude Code plugins for the Zebra Design System" },
+  "plugins": [
+    {
+      "name": "zebra-prototyping",
+      "source": {
+        "source": "git-subdir",
+        "url": "zebratechnologies/zebra-design-system",
+        "path": "prototyping-kits/plugin",
+        "ref": "design-system-v3.2611.0-beta"
+      },
+      "description": "The design pathway: throwaway HTML prototypes built from the Zebra Design System docs, with Jira, GitHub and Figma steps, reference matching and templates.",
+      "category": "design"
+    }
+  ]
+}

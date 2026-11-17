@@ -1,0 +1,20 @@
+{
+  "name": "zebra-prototyping",
+  "version": "3.2611.0-beta",
+  "description": "The design pathway: throwaway HTML prototypes built from the Zebra Design System docs.",
+  "author": {
+    "name": "Zebra Design System team"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat \"${CLAUDE_PLUGIN_ROOT}/CLAUDE.md\"; printf '\\nKit folder: %s\\n' \"${CLAUDE_PLUGIN_ROOT}\""
+          }
+        ]
+      }
+    ]
+  }
+}

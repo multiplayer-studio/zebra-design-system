@@ -1,6 +1,6 @@
 # Prototyping with GitHub
 
-A prototype for a project that's already in flight should fit the real app: its screens, navigation, layouts, copy and data. Follow this at the start of every new prototype, after the Jira step in `PROTOTYPING.JIRA.md`. Ask the Jira question on its own and wait for the answer (and read the ticket, if there is one) before asking anything here, in a new prompt. Never ask about Jira and GitHub in the same prompt. Ask every question here with the question prompt (see Asking the designer in `PROTOTYPING.AGENTS.md`), except the download steps in step 2.
+A prototype for a project that's already in flight should fit the real app: its screens, navigation, layouts, copy and data. This is step 2 of the `new-prototype` skill, after the Jira step (`JIRA.md`). Ask the Jira question on its own and wait for the answer (and read the ticket, if there is one) before asking anything here, in a new prompt. Never ask about Jira and GitHub in the same prompt. Ask every question here with the question prompt (see Asking the designer in `PROTOTYPING.AGENTS.md`), except the download steps in step 2.
 
 Claude reads the project's code from a copy the designer downloads from GitHub into this folder. That needs no connector, token or install, and it works for any private repo the designer can open on GitHub.
 

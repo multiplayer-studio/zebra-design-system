@@ -1,10 +1,10 @@
 # Prototyping with Jira
 
-Prototypes can be linked to a Jira ticket. Follow this at the start of every new prototype.
+Prototypes can be linked to a Jira ticket. This is step 1 of the `new-prototype` skill.
 
 ## 1. Ask for the ticket
 
-Before building anything, ask with the question prompt (see Asking the designer in `PROTOTYPING.AGENTS.md`): "Is there a Jira ticket for this prototype? If so, type its key (e.g. `PROJ-123`)." Offer **No ticket**; the designer types a key in the prompt's text field. Ask only this, in a prompt of its own. The GitHub question (`PROTOTYPING.GITHUB.md`) comes after the designer answers, in a separate prompt.
+Before building anything, ask with the question prompt (see Asking the designer in `PROTOTYPING.AGENTS.md`): "Is there a Jira ticket for this prototype? If so, type its key (e.g. `PROJ-123`)." Offer **No ticket**; the designer types a key in the prompt's text field. Ask only this, in a prompt of its own. The GitHub question (`GITHUB.md`, step 2) comes after the designer answers, in a separate prompt.
 
 - If the designer has none, or says skip, build the prototype as normal and don't ask again in this conversation.
 - If they give a key, continue below.

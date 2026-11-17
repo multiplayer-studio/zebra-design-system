@@ -2,15 +2,13 @@
 
 Everything produced from this design system is a **prototype**. Its purpose is to communicate design concepts, not to ship. It will be rebuilt as production code later.
 
-**Asking the designer:** every question to the designer goes through Claude desktop's built-in question prompt (the `AskUserQuestion` tool), never as plain text in your reply. This covers the Jira ticket, the GitHub repo, the Figma offer and link, posting to Jira, filing kit bugs, and saving a template. Give 2–4 short options, with the likely answer first. Where the answer is free text (a ticket key, a link, a name), offer the common choices (e.g. "No ticket") and let the designer type the rest in the prompt's own text field. Ask one question per prompt unless these instructions say the questions belong together. If the tool isn't available, ask in plain text. The one exception is the GitHub download steps (`PROTOTYPING.GITHUB.md` step 2): give them as plain text and wait for the designer to send the `.zip`.
+**Asking the designer:** every question to the designer goes through Claude desktop's built-in question prompt (the `AskUserQuestion` tool), never as plain text in your reply. This covers the Jira ticket, the GitHub repo, the Figma offer and link, posting to Jira, refreshing a prototype and saving a template. Give 2–4 short options, with the likely answer first. Where the answer is free text (a ticket key, a link, a name), offer the common choices (e.g. "No ticket") and let the designer type the rest in the prompt's own text field. Ask one question per prompt unless these instructions say the questions belong together. If the tool isn't available, ask in plain text. The one exception is the GitHub download steps (step 2 of the `new-prototype` skill's `GITHUB.md`): give them as plain text and wait for the designer to send the `.zip`.
 
-**Jira:** at the start of every new prototype, follow these instructions. They ask for a Jira ticket, read it through the `zebra-jira` MCP, and post the result back.
+**Starting:** begin every new prototype with the `new-prototype` skill (`.claude/skills/new-prototype/SKILL.md`). It asks for a Jira ticket, then the in-flight project's GitHub repo (two separate prompts, Jira first), copies the starter, and builds.
 
-@PROTOTYPING.JIRA.md
+**Opening an existing prototype:** if its version is older than the `version` in `DESIGN.md`, use the `refresh-prototype` skill (`.claude/skills/refresh-prototype/SKILL.md`), which offers to update it.
 
-**GitHub:** once the Jira step is answered (and any ticket read), follow these instructions. Ask the Jira question and the GitHub question in two separate prompts, Jira first, and never combine them into one. They find the in-flight project's GitHub repo (from `github.json`, the ticket, or the designer), have the designer download it as a `.zip` and drop it in, unzip it into `github/`, read it, and write what they learn to `prototypes/<name>/CONTEXT.md`.
-
-@PROTOTYPING.GITHUB.md
+**Browsing the system:** when the designer asks what exists or wants to look around, use the `showcase` skill (`.claude/skills/showcase/SKILL.md`).
 
 **Reference designs:** whenever the designer gives a design to build from (a Figma link, frame or flow, or a screenshot), use the `build-from-reference` skill (`.claude/skills/build-from-reference/SKILL.md`) before writing any markup. The reference outranks everything here except that every value is still a token.
 
@@ -22,7 +20,7 @@ Everything produced from this design system is a **prototype**. Its purpose is t
 
 Every prototype is a static HTML, CSS and JS app. Do not use any other framework or build tool. The tokens from `DESIGN.md` and the component files are already written out as CSS custom properties in `tokens.css` (see Tokens in CSS), with names identical to the docs so every value can be traced back to its source.
 
-**Claude desktop is the only software needed to build and view a prototype.** Never ask the user to install, or run, Python, Node, npm or any script. The one exception is the optional Jira setup in `PROTOTYPING.JIRA.md`. `tokens.css` and `icons.json` are generated files that are already committed; only whoever maintains the design system regenerates them (see Generated files below).
+**Claude desktop is the only software needed to build and view a prototype.** Never ask the user to install, or run, Python, Node, npm or any script. The one exception is the optional Jira setup in the `new-prototype` skill's `JIRA.md`. `tokens.css` and `icons.json` are generated files that are already committed; only whoever maintains the design system regenerates them (see Generated files below).
 
 Prototypes must work when opened by double-click (`file://`), with no server and no Node. That means:
 - Always create prototypes in the `prototypes/` folder at the project root, each in its own folder (`prototypes/<name>/index.html`), and never anywhere else. Create the folder if it's missing.
@@ -55,7 +53,7 @@ The device frame, status bar and prototype controls are prototype chrome, not de
 | `tokens.css` | Every token as a CSS custom property, generated from `DESIGN.md` and the component files |
 | `icons.json` | The only valid icons. Each key is an icon name; the value gives its label, category, search terms and its inline SVG in both styles (`round`, `sharp`). The file is large: search it, never read it whole. |
 
-`github.json`, a `github/` folder and `prototypes/<name>/CONTEXT.md` describe the in-flight project (see `PROTOTYPING.GITHUB.md`). They are context, not design sources: never take a value or a component from them.
+`github.json`, a `github/` folder and `prototypes/<name>/CONTEXT.md` describe the in-flight project (see the `new-prototype` skill's `GITHUB.md`). They are context, not design sources: never take a value or a component from them.
 
 A component's `composes:` list says which other components it is built from. Read those files too, because a composite only defines its own parts and context overrides; its children's tokens style everything else.
 
@@ -156,14 +154,6 @@ A **template** is the atomic-design level above organisms: a page-level layout (
 **Share them.** Templates reach the design system through the project's repo: the designer gives the file to the project's developer, who adds it to the repo's `design-system/templates/`. A nightly sync then copies it to the master design system, and the project's next kit includes it.
 
 A template contains only existing components. Never invent one for it; if it needs something missing, say so instead. A template is a doc, not a prototype: the prototype stays in `prototypes/`.
-
-## Refreshing a prototype
-
-Do this when the design system is updated, or when a prototype's version comment is older than the `version` in `DESIGN.md`. It is for you, not the designer.
-
-1. Replace everything between `<!-- tokens:start -->` and `<!-- tokens:end -->` with that block from the current `prototypes/_starter/index.html`. That block carries the version comment, so the version updates with it.
-2. Do the same between `<!-- components:start -->` and `<!-- components:end -->`.
-3. Never change anything outside the markers.
 
 ## Fonts
 

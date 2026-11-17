@@ -57,7 +57,7 @@ def kept(old, diff, decision):
 
 
 def sync(c):
-    if c['project'] in ('testing', 'universal'):
+    if c['project'] == 'universal':
         return f"project name {c['project']!r} is reserved; rename it in consumers.json", False
     try:
         p = ds_path(c)

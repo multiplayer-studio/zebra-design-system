@@ -1,39 +1,41 @@
-"""Bundle the prototyping kits into prototyping-kits/: the generic zebra-design-system-prototyping.zip, the testing kit
-zebra-design-system-prototyping-testing.zip, plus one zebra-design-system-prototyping-<project>.zip per consumers.json
-project that has templates/<project>/ or an open tenant (tenants/<tenant>/). Maintainers only (Python 3, stdlib).
+"""Bundle the prototyping kits into prototyping-kits/: the generic zebra-design-system-prototyping.zip, one
+zebra-design-system-prototyping-<project>.zip per consumers.json project that has templates/<project>/ or an open tenant
+(tenants/<tenant>/), and the zebra-prototyping Claude Code plugin in plugin/. Maintainers only (Python 3, stdlib).
 
-Usage: python3 scripts/prototyping-zip.py              every kit; deletes project zips with neither templates nor a tenant
+Usage: python3 scripts/prototyping-zip.py              every kit and the plugin; deletes project zips with neither templates nor a tenant
        python3 scripts/prototyping-zip.py <project>    only that project's kit (the nightly tenants sync runs this)
 
 Each zip holds one folder, zebra-design-system-prototyping[-<project>]/, with:
   atoms/ molecules/ organisms/ prototypes/  as-is
-  .claude/skills/                            PROTOTYPING.SKILLS/ (create-template, build-from-reference, send-to-figma)
+  .claude/skills/                            PROTOTYPING.SKILLS/
   templates/universal/                       templates/universal/ (master's universal templates), in every kit
   templates/                                 project kit only: templates/<project>/ flattened
-  DESIGN.md PROTOTYPING.AGENTS.md PROTOTYPING.JIRA.md PROTOTYPING.GITHUB.md icons.json tokens.css   as-is
+  DESIGN.md PROTOTYPING.AGENTS.md icons.json tokens.css   as-is
   CLAUDE.md                                  PROTOTYPING.CLAUDE.md
   README.md                                  copied from PROTOTYPING.README.md
   github.json                                project kit only: its repo, branch and design-system path from consumers.json
 A project kit whose project has a tenant is that tenant's view of the system: its DESIGN.md, component docs and universal templates from
 tenants/<tenant>/files/ replace (or add to) master's, files it deleted are left out, and tokens.css and the starter
 and showcase are regenerated from the result (warns, but still writes, when tokens-css.py finds a token error).
-The testing kit is the generic kit plus PROTOTYPING.TESTING.md and the scripts that regenerate tokens.css and the
-starter (TESTING_SCRIPTS), since testers may edit the docs; PROTOTYPING.TESTING.md is imported at the end of its PROTOTYPING.AGENTS.md, with
-PROTOTYPING.TESTING.README.md appended to its README.md. 'testing' is therefore a reserved project name, as is 'universal'
-(templates/universal/ holds the universal templates).
+'universal' is a reserved project name (templates/universal/ holds the universal templates).
+
+The plugin (plugin/, listed in .claude-plugin/marketplace.json) is the generic kit as a folder, with PROTOTYPING.SKILLS/
+as skills/, a CLAUDE.md of PROTOTYPING.PLUGIN.md then PROTOTYPING.CLAUDE.md, and .claude-plugin/plugin.json (version =
+DESIGN.md version) whose SessionStart hook prints that CLAUDE.md and the plugin's path as context. Designers install it
+from the release tag the release workflow pins in marketplace.json, so main's copy only reaches them at a release.
 """
 import contextlib, glob, io, json, os, shutil, subprocess, sys, tempfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _bundle import ROOT, entries, read_claude, write_dir, write_zip
+from _tenants import design_version
 
 NAME = 'zebra-design-system-prototyping'
 OUT = os.path.join(ROOT, 'prototyping-kits')
 CONSUMERS = {c['project']: c for c in json.load(open(os.path.join(ROOT, 'consumers.json')))}
-
-
-TESTING = 'testing'
-TESTING_SCRIPTS = ['scripts/tokens-css.py', 'scripts/starter-html.py', 'scripts/_bundle.py']  # Claude regenerates after doc edits
+REGEN = ['scripts/tokens-css.py', 'scripts/starter-html.py', 'scripts/_bundle.py']  # rebuild a tenant kit's tokens.css and starter
 DOCS = ('DESIGN.md', 'atoms/', 'molecules/', 'organisms/', 'templates/universal/')  # the tenant files a kit takes; the rest are production-only
+KIT_FOLDERS = ['atoms', 'molecules', 'organisms', 'prototypes', 'templates/universal']
+KIT_FILES = ['DESIGN.md', 'PROTOTYPING.AGENTS.md', 'icons.json', 'tokens.css']
 
 
 def tenant_dir(project):
@@ -52,7 +54,7 @@ def tenant_kit(out, name, items, claude, extra, tenant):
     tmp = tempfile.mkdtemp()
     try:
         with contextlib.redirect_stdout(io.StringIO()):
-            write_dir(tmp, name, items + [(os.path.join(ROOT, s), s) for s in TESTING_SCRIPTS], claude, extra=extra)
+            write_dir(tmp, name, items + [(os.path.join(ROOT, s), s) for s in REGEN], claude, extra=extra)
         for script in ('tokens-css.py', 'starter-html.py'):
             r = subprocess.run([sys.executable, os.path.join(tmp, name, 'scripts', script)], capture_output=True, text=True)
             if r.returncode:
@@ -66,17 +68,10 @@ def tenant_kit(out, name, items, claude, extra, tenant):
 
 def kit(project=None):
     name = f'{NAME}-{project}' if project else NAME
-    testing = project == TESTING
-    templates = [(f'templates/{project}', 'templates')] if project and not testing and os.path.isdir(os.path.join(ROOT, 'templates', project)) else []
-    items = entries(['atoms', 'molecules', 'organisms', 'prototypes', ('PROTOTYPING.SKILLS', '.claude/skills'), 'templates/universal', *templates],
-                    ['DESIGN.md', *([] if testing else ['PROTOTYPING.AGENTS.md']), 'PROTOTYPING.JIRA.md', 'PROTOTYPING.GITHUB.md',
-                     'icons.json', 'tokens.css', *(['PROTOTYPING.TESTING.md', *TESTING_SCRIPTS] if testing else [])],
-                    {} if testing else {'PROTOTYPING.README.md': 'README.md'})
+    templates = [(f'templates/{project}', 'templates')] if project and os.path.isdir(os.path.join(ROOT, 'templates', project)) else []
+    items = entries([*KIT_FOLDERS, ('PROTOTYPING.SKILLS', '.claude/skills'), *templates], KIT_FILES, {'PROTOTYPING.README.md': 'README.md'})
     c = CONSUMERS.get(project)
     extra = {'github.json': json.dumps({'repo': c['repo'], 'branch': c['branch'], 'path': c.get('path', 'design-system')}, indent=2) + '\n'} if c else {}
-    if testing:
-        extra['PROTOTYPING.AGENTS.md'] = read_claude('PROTOTYPING.AGENTS.md').rstrip('\n') + '\n\n@PROTOTYPING.TESTING.md\n'
-        extra['README.md'] = read_claude('PROTOTYPING.README.md').rstrip('\n') + '\n' + read_claude('PROTOTYPING.TESTING.README.md')
     os.makedirs(OUT, exist_ok=True)
     out, tenant = os.path.join(os.path.relpath(OUT, ROOT), f'{name}.zip'), tenant_dir(project)
     if tenant:
@@ -85,11 +80,25 @@ def kit(project=None):
         write_zip(out, name, items, read_claude('PROTOTYPING.CLAUDE.md'), extra=extra)
 
 
+def plugin():
+    manifest = {
+        'name': 'zebra-prototyping',
+        'version': design_version(ROOT),
+        'description': 'The design pathway: throwaway HTML prototypes built from the Zebra Design System docs.',
+        'author': {'name': 'Zebra Design System team'},
+        'hooks': {'SessionStart': [{'hooks': [{'type': 'command',
+                  'command': 'cat "${CLAUDE_PLUGIN_ROOT}/CLAUDE.md"; printf \'\\nKit folder: %s\\n\' "${CLAUDE_PLUGIN_ROOT}"'}]}]},
+    }
+    items = entries([*KIT_FOLDERS, ('PROTOTYPING.SKILLS', 'skills')], KIT_FILES)
+    write_dir(os.path.relpath(OUT, ROOT), 'plugin', items, read_claude('PROTOTYPING.PLUGIN.md') + read_claude('PROTOTYPING.CLAUDE.md'),
+              extra={'.claude-plugin/plugin.json': json.dumps(manifest, indent=2) + '\n'})
+
+
 TEMPLATES = os.path.join(ROOT, 'templates')  # may be missing: git doesn't keep an empty folder
 projects = sorted(({d for d in os.listdir(TEMPLATES) if os.path.isdir(os.path.join(TEMPLATES, d)) and d != 'universal'} if os.path.isdir(TEMPLATES) else set())
                   | {p for p in CONSUMERS if tenant_dir(p)})
-if {TESTING, 'universal'} & ({*projects} | CONSUMERS.keys()):
-    sys.exit(f"'{TESTING}' and 'universal' are reserved project names; rename the project in consumers.json")
+if 'universal' in CONSUMERS:
+    sys.exit("'universal' is a reserved project name; rename the project in consumers.json")
 if len(sys.argv) > 1:
     project = sys.argv[1]
     if project in projects:
@@ -101,10 +110,10 @@ if len(sys.argv) > 1:
         sys.exit(f'no templates/{project}/ folder or tenant')
 else:
     kit()
-    kit(TESTING)
+    plugin()
     for project in projects:
         kit(project)
     for path in glob.glob(os.path.join(OUT, f'{NAME}-*.zip')):
-        if os.path.basename(path)[len(NAME) + 1:-4] not in projects + [TESTING]:
+        if os.path.basename(path)[len(NAME) + 1:-4] not in projects:
             os.remove(path)
             print(f'Removed {os.path.basename(path)}')
