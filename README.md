@@ -98,11 +98,10 @@ You only need the Claude desktop app. No Python, Node or build tools.
 Get the system either as a prototyping zip from `prototyping-kits/` (see `PROTOTYPING.README.md`), or, if you have git access to this repo, as the `zebra-prototyping` plugin, which needs no download and updates at each design-system release (turn on auto-update for the marketplace in `/plugin` → **Marketplaces**). Installing clones this repo with your own git credentials. Install it once, then open any empty folder for your prototypes:
 
 ```
-/plugin marketplace add zebratechnologies/zebra-design-system
-/plugin install zebra-prototyping@zebra-design-system
+plugin install zebra-prototyping --marketplace zebratechnologies/zebra-design-system
 ```
 
-The plugin puts every session into prototyping mode, so install it only where you prototype (install with project scope to keep it to one folder). If you added the library's `zebra-design-system` marketplace from the `design/init` branch, remove it first (`/plugin marketplace remove zebra-design-system`). It carries the generic system: for a project's own templates and design-system changes, use its zip.
+It installs for your user, so every Claude session is in prototyping mode while the plugin is enabled (turn it off in `/plugin` for other work). If you added the library's `zebra-design-system` marketplace from the `design/init` branch, remove it first (`/plugin marketplace remove zebra-design-system`). It carries the generic system: for a project's own templates and design-system changes, use its zip.
 
 1. Ask Claude for a prototype. It creates `prototypes/<name>/index.html`.
 2. The page starts from `prototypes/_starter/index.html`, which carries the tokens and component CSS inline (the Browser pane ignores relative links such as `../../tokens.css`), and loads IBM Plex Sans from jsDelivr, pinned to an exact version. Icons are inline SVG copied from `icons.json`, so they need no font or CDN.
