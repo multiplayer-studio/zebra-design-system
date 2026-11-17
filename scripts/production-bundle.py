@@ -9,7 +9,8 @@ The folder holds zebra-design-system-production/, containing:
   .claude/skills/                            PRODUCTION.SKILLS/ (design-system-init), also at the project root
   design-system/                             (release.py moves it to the repo's consumers.json path, if set), with:
   atoms/ molecules/ organisms/               as-is
-  templates/                                 empty: release.py fills it with the project's own templates
+  templates/universal/                       templates/universal/ (master's universal templates); release.py adds
+                                             the project's own templates flat in templates/
   DESIGN.md icons.json tokens.css            as-is
   AGENTS.md                                  PRODUCTION.AGENTS.md, renamed
   LIBRARY.md                                 PRODUCTION.LIBRARY.md, renamed: the template the project fills in
@@ -23,9 +24,9 @@ from _tenants import design_version
 
 write_dir(
     sys.argv[1] if len(sys.argv) > 1 else 'build', 'zebra-design-system-production/design-system',
-    entries(['atoms', 'molecules', 'organisms', ('PRODUCTION.SKILLS', '../.claude/skills')],
+    entries(['atoms', 'molecules', 'organisms', 'templates/universal', ('PRODUCTION.SKILLS', '../.claude/skills')],
             ['DESIGN.md', 'icons.json', 'tokens.css', 'scripts/tokens-css.py', 'scripts/icons-json.py'],
-            {'PRODUCTION.AGENTS.md': 'AGENTS.md', 'PRODUCTION.LIBRARY.md': 'LIBRARY.md'}) + [(None, 'templates')],
+            {'PRODUCTION.AGENTS.md': 'AGENTS.md', 'PRODUCTION.LIBRARY.md': 'LIBRARY.md'}),
     read_claude('PRODUCTION.CLAUDE.md').replace('@PRODUCTION.AGENTS.md', '@design-system/AGENTS.md'),
     claude_dir='zebra-design-system-production',
     extra={'CHANGES.md': read_claude('PRODUCTION.CHANGES.md').replace('<version from DESIGN.md>', design_version(ROOT))},

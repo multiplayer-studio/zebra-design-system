@@ -6,8 +6,8 @@ Auth:  DS_BOT_TOKEN (or GH_TOKEN) for private repos; locally: DS_BOT_TOKEN=$(gh 
        A consumers.json "repo" that is a local folder is read straight from disk, no git needed (for testing).
 
 For each consumer:
-  - templates: the repo's <path>/templates/* (<path> is consumers.json "path", default design-system) is mirrored into
-    templates/<project>/ (the project owns them, no review);
+  - templates: the repo's <path>/templates/* (<path> is consumers.json "path", default design-system), except
+    universal/ (master's, compared below like any doc), is mirrored into templates/<project>/ (the project owns them, no review);
   - differences: <path>/ is compared with the bundle of the version it has installed (scripts/_tenants.py).
     None: tenants/<tenant>/ is removed. Some: tenants/<tenant>/ holds tenant.json (differences + the DS team's
     approved/rejected decisions, kept while they still match), changelog.md, CHANGES.md and files/ (their changed files).
@@ -35,13 +35,13 @@ def snapshot(top):
 
 
 def mirror(src, dst):
-    """Make dst an exact copy of src (missing or empty src removes dst). True if anything changed."""
-    s, d = files_of(src), files_of(dst)
+    """Make dst an exact copy of src, less src/universal/ (missing or empty src removes dst). True if anything changed."""
+    s, d = {k: v for k, v in files_of(src).items() if not k.startswith('universal' + os.sep)}, files_of(dst)
     if s.keys() == d.keys() and all(open(s[k], 'rb').read() == open(d[k], 'rb').read() for k in s):
         return False
     shutil.rmtree(dst, ignore_errors=True)
     if s:
-        shutil.copytree(src, dst, ignore=shutil.ignore_patterns('.DS_Store'))
+        shutil.copytree(src, dst, ignore=lambda d, names: {'.DS_Store'} | ({'universal'} if d == src else set()))
     return True
 
 
@@ -57,6 +57,8 @@ def kept(old, diff, decision):
 
 
 def sync(c):
+    if c['project'] in ('testing', 'universal'):
+        return f"project name {c['project']!r} is reserved; rename it in consumers.json", False
     try:
         p = ds_path(c)
     except ValueError as e:

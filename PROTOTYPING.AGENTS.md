@@ -41,6 +41,7 @@ Prototypes need an internet connection to load those fonts.
 | `DESIGN.md` body | Rules, the token architecture (§2), layout principles and usage guidance |
 | `atoms/`, `molecules/`, `organisms/` `*.md` | One file per component, with anatomy, variants, states, sizing, properties, usage and its `tokens:` block |
 | `templates/*.md` | This project's page-level layouts (see Templates); empty in the generic kit |
+| `templates/universal/*.md` | The universal page-level layouts, shared by every project (see Templates) |
 | `tokens.css` | Every token as a CSS custom property, generated from `DESIGN.md` and the component files |
 | `icons.json` | The only valid icons. Each key is an icon name; the value gives its label, category, search terms and its inline SVG in both styles (`round`, `sharp`). The file is large: search it, never read it whole. |
 
@@ -130,9 +131,9 @@ A component's `composes:` list says which other components it is built from. Rea
 
 ## Templates
 
-A **template** is the atomic-design level above organisms: a page-level layout (regions and the components that fill them), with placeholder content. It lives in `templates/<template-name>.md`, next to `prototypes/`. A project's kit ships with that project's templates; the generic kit, for a new project, ships with none.
+A **template** is the atomic-design level above organisms: a page-level layout (regions and the components that fill them), with placeholder content. It lives in `templates/<template-name>.md`, next to `prototypes/`. Every kit ships the **universal** templates in `templates/universal/`: layouts proven in production and shared by every project. A project's kit also ships that project's own templates, flat in `templates/`.
 
-**Use them.** Before building a prototype, check `templates/`. If a template fits, build the screen from it.
+**Use them.** Before building a prototype, check `templates/`, then `templates/universal/`. If a template fits, build the screen from it; where both fit, the project's own wins.
 
 **Spot them.** Notice when the designer has produced a layout that other screens or projects could reuse: the same arrangement of components across two or more prototypes, or one screen that is a common pattern (e.g. a header, a filter row and a data table; a centred form in a card with a primary action; a list with a detail pane). That is a template candidate.
 
@@ -140,7 +141,7 @@ A **template** is the atomic-design level above organisms: a page-level layout (
 - Ask at a natural stopping point, after finishing the request, never mid-task, with the question prompt (see Asking the designer). One short question naming the pattern and where it appears: "The login and reset-password prototypes share this layout. Want me to save it as a template?"
 - Write nothing until the designer says yes. If they decline, don't ask about that pattern again.
 
-**Write it** with the `create-template` skill (`.claude/skills/create-template/SKILL.md` in this kit), which holds the format and checks. In short: a Markdown doc in the same format as the component files, with `level: template`, `status: draft`, `composes:` listing every component it uses, and the sections Anatomy, Layout, Responsiveness, Accessibility and Usage. The designer can also ask for a template directly, e.g. "Make a template from this prototype."
+**Write it** with the `create-template` skill (`.claude/skills/create-template/SKILL.md` in this kit), which holds the format and checks. In short: a Markdown doc in the same format as the component files, with `level: template`, `status: draft`, `composes:` listing every component it uses, and the sections Anatomy, Layout, Responsiveness, Accessibility and Usage. The designer can also ask for a template directly, e.g. "Make a template from this prototype." Never write or edit in `templates/universal/`: those belong to the master design system. To vary one, save a new template in `templates/`.
 
 **Share them.** Templates reach the design system through the project's repo: the designer gives the file to the project's developer, who adds it to the repo's `design-system/templates/`. A nightly sync then copies it to the master design system, and the project's next kit includes it.
 

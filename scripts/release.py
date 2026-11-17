@@ -9,15 +9,16 @@ Auth:  DS_BOT_TOKEN (or GH_TOKEN), with contents and pull-requests write on the 
 Each repo's design system goes in its consumers.json "path" (default design-system); the bundle's design-system/
 is moved there and the root CLAUDE.md imports @<path>/AGENTS.md. CLAUDE.md and .claude/skills/ stay at the repo root.
 It works out per repo what to do; there is no option for it:
-  new     (no design-system folder): the whole production bundle, plus the project's templates/<project>/ flattened into
-          <path>/templates/. The root CLAUDE.md is added if the repo has none; if it has one that doesn't import
+  new     (no design-system folder): the whole production bundle (with master's universal templates in
+          <path>/templates/universal/), plus the project's templates/<project>/ flattened into <path>/templates/. The root CLAUDE.md is added if the repo has none; if it has one that doesn't import
           @<path>/AGENTS.md, the import is appended to it.
   update  every bundle file and the root CLAUDE.md, against the bundle of the version the repo has installed (its base):
           unchanged locally -> replaced; changed locally -> 3-way merged (git merge-file), a conflict keeps theirs and
-          is listed; removed upstream -> removed unless changed locally. LIBRARY.md, CHANGES.md and templates/ are
-          never touched (the project owns them), and tokens.css is regenerated from the result. The shipped skills in
+          is listed; removed upstream -> removed unless changed locally. LIBRARY.md, CHANGES.md and the project's own templates (templates/
+          outside universal/) are never touched (the project owns them), and tokens.css is regenerated from the result. The shipped skills in
           .claude/skills/ are master-owned: always replaced (or removed with upstream), never merged.
-Differences the DS team rejected (tenants/<tenant>/tenant.json) are listed in the PR as "please revert".
+Differences the DS team rejected (tenants/<tenant>/tenant.json) are listed in the PR as "please revert", and a project
+template with the same name as a universal one (it was promoted) is listed for the repo to delete.
 Never force-pushes: each version gets its own branch, zebra-design-system/<version>; older release PRs are closed.
 """
 import json, os, shutil, subprocess, sys, tempfile
@@ -38,7 +39,7 @@ def files_of(top, p):
         dirs[:] = [x for x in dirs if x != '.git']
         for n in names:
             rel = os.path.relpath(os.path.join(d, n), top)
-            if n != '.DS_Store' and rel not in owned and not rel.startswith(f'{p}/templates/'):
+            if n != '.DS_Store' and rel not in owned and (not rel.startswith(f'{p}/templates/') or rel.startswith(f'{p}/templates/universal/')):
                 out.add(rel)
     return out
 
@@ -137,7 +138,7 @@ def body(version, p, r, notes):
     if r['rejected']:
         lines += ['## Please revert', '', 'The design-system team reviewed these local differences and rejected them:', '',
                   *[f'- `{x}`' for x in r['rejected']], '']
-    lines += [*r['notes'], '', '`LIBRARY.md`, `CHANGES.md` and your templates were not touched.']
+    lines += [*r['notes'], '', '`LIBRARY.md`, `CHANGES.md` and your own templates (outside `templates/universal/`) were not touched.']
     return '\n'.join(lines)
 
 
@@ -177,6 +178,11 @@ def release(c, version, new, dry, notes):
                 return str(e), False
             update(repo, base, new, p, r)
             run(sys.executable, os.path.join(ds, 'scripts', 'tokens-css.py'))
+        universal = os.path.join(ROOT, 'templates', 'universal')
+        for n in sorted(os.listdir(universal)) if os.path.isdir(universal) else []:
+            if os.path.isfile(os.path.join(ds, 'templates', n)):
+                r['notes'].append(f'`{p}/templates/{n}` is now a universal template (`{p}/templates/universal/{n}`). '
+                                  'Point its screens at the universal one and delete your copy.')
 
         summary = (f"{r['case']}{' from ' + r['base'] if r['base'] else ''}: {len(r['updated'])} updated, {len(r['merged'])} merged, "
                    f"{len(r['removed'])} removed, {len(r['conflicts'])} conflicts, {len(r['rejected'])} to revert")

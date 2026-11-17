@@ -15,6 +15,7 @@ design-system/
   molecules/
   organisms/
   templates/       this project's page-level layouts (project-owned; written in the prototyping kit, see Templates)
+    universal/     the universal page-level layouts, shared by every project (master-owned, see Templates)
   icons.json       the only valid icon names, keyed by ligature name, with round/sharp SVGs (generated)
   tokens.css       every token as a CSS custom property (generated)
   scripts/         tokens-css.py and icons-json.py, the generators for the two files above
@@ -70,23 +71,26 @@ Work bottom-up. Before building a component, build (or find) everything in its `
 
 ## Building a screen
 
-- Screens are made only of library components plus layout. Start from a matching template in `templates/` if one exists. Layout uses semantic `space`, `layout` and `typography` tokens (`DESIGN.md` §6).
+- Screens are made only of library components plus layout. Start from a matching template if one exists (see Templates). Layout uses semantic `space`, `layout` and `typography` tokens (`DESIGN.md` §6).
 - Screens never style a component. No overriding colours, sizes or radii from the outside, no wrapper that restyles a child. If a screen needs a component to look or behave differently, that's a design-system change (below).
 - Icons come only from `icons.json` (each key is an icon's ligature name; each entry also holds its `round` and `sharp` SVG), via the Icon atom (`atoms/icon.md`). The icon font is package `@zebra-fed/zeta-icons`, at the version in the `DESIGN.md` frontmatter. `icons.json` is generated from that package by `scripts/icons-json.py`; rerun it when the version changes, and never edit it by hand. Use the sharp set for sharp-shaped components and the round set otherwise.
 
 ## Templates
 
-A **template** is the atomic-design level above organisms: a page-level layout (regions and the library components that fill them), with placeholder content. It lives in `templates/<template-name>.md`. The templates belong to this project: the release PRs never touch `templates/`, and a nightly sync copies them to the master design system (and into this project's prototyping kit).
+A **template** is the atomic-design level above organisms: a page-level layout (regions and the library components that fill them), with placeholder content. There are two kinds:
 
-**Use them.** Before building a screen, check `templates/`. If a template fits, build the screen from it.
+- **This project's own**, in `templates/<template-name>.md`. They belong to this project: the release PRs never touch them, and a nightly sync copies them to the master design system (and into this project's prototyping kit).
+- **Universal**, in `templates/universal/<template-name>.md`. Layouts proven in production in a project and promoted by the design-system team for every project. They belong to the master design system: the release PRs update them like any other doc.
 
-**Don't create them.** Templates are written in prototyping mode (the prototyping kit's `create-template` skill). When the developer brings one from a designer, save it in `templates/` as it is. If screens repeat a layout that has no template, tell the developer it's a template candidate for the designer, and write nothing.
+**Use them.** Before building a screen, check `templates/`, then `templates/universal/`. If a template fits, build the screen from it; where both fit, this project's own wins.
+
+**Don't create them.** Templates are written in prototyping mode (the prototyping kit's `create-template` skill). When the developer brings one from a designer, save it in `templates/` as it is (never in `templates/universal/`). If screens repeat a layout that has no template, tell the developer it's a template candidate for the designer, and write nothing.
 
 **Editing one.** Only when the developer asks. Keep the format: frontmatter with `level: template`, `status` and `composes:` (every organism, molecule and atom it uses, paths relative to the template file), and the sections Anatomy, Layout, Responsiveness, Accessibility and Usage. Layout and Responsiveness use only semantic `space` and `layout` tokens, as references. Edit the doc first, then the screens built from it, then log it.
 
 A template contains only existing library components. If an edit needs something that doesn't exist, follow the next section first.
 
-Log an added or edited template in `CHANGES.md` (Type: template change, Files: the template path, Upstream: `project-only`; templates reach the master design system by the nightly sync, not by review). Templates are docs only; screens stay in the project's code.
+Log an added or edited template in `CHANGES.md` (Type: template change, Files: the template path). For this project's own, Upstream is `project-only`: they reach the master design system by the nightly sync, not by review. An edit to a universal template is a design-system change like any other doc: Upstream `propose` or `project-only`, and the design-system team reviews it. Templates are docs only; screens stay in the project's code.
 
 ## When something is missing or doesn't fit
 
@@ -128,19 +132,20 @@ Never change the code's look or behaviour without the matching doc change, and n
 
 Both directions are automatic. Your part is keeping `CHANGES.md` accurate, because it carries the why.
 
-- **Sending changes up:** every night the master design-system repo reads this repo's design-system folder and compares it with the version you have installed (the `version` in `DESIGN.md`). If anything differs, it records the differences in this project's *tenant* there, next to the master docs; if nothing does, there is no tenant. Templates are copied up as they are. Don't push anything upstream yourself.
+- **Sending changes up:** every night the master design-system repo reads this repo's design-system folder and compares it with the version you have installed (the `version` in `DESIGN.md`). If anything differs, it records the differences in this project's *tenant* there, next to the master docs; if nothing does, there is no tenant. This project's own templates are copied up as they are; `templates/universal/` counts like any other doc. Don't push anything upstream yourself.
 - **What happens to a difference:** each sprint the design-system team reviews it and either adopts it into the master docs, allows it as a lasting difference for this project (e.g. your own primitive colours for theming), or rejects it.
 - **Pulling a new version:** it arrives as a pull request on branch `zebra-design-system/<version>`. The PR has already:
   - replaced every file you hadn't changed;
   - 3-way merged the files you had changed, so allowed differences stay and master's other edits still land;
   - left alone anything where your change and master's overlap, listed under **Needs your agent**;
   - listed rejected differences under **Please revert**;
-  - never touched `LIBRARY.md`, `CHANGES.md` or `templates/`, and regenerated `tokens.css`;
+  - never touched `LIBRARY.md`, `CHANGES.md` or this project's own templates (it updates `templates/universal/` like any doc), and regenerated `tokens.css`;
+  - listed any of this project's templates that has been promoted to `templates/universal/`;
   - replaced the shipped skills in `.claude/skills/` outright. They belong to the master design system, so don't edit them here: local edits are overwritten and never synced up.
 
   After the developer merges it:
   1. Resolve each **Needs your agent** file against the new master version. Where it's unclear, stop and ask the developer.
-  2. Revert the **Please revert** items, unless the developer decides otherwise.
+  2. Revert the **Please revert** items, unless the developer decides otherwise. For each template the PR says is now universal, point its screens at the universal one and delete this project's copy.
   3. Regenerate the tokens, update the affected components, record the new `version` in `CHANGES.md`, and drop the entries upstream has now adopted.
   4. Report what changed.
 

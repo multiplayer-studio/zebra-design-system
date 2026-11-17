@@ -4,7 +4,8 @@ A consumer repo's local changes are whatever differs between its design-system f
 default design-system/) and the production bundle
 of the version it has installed (the `version` in its DESIGN.md), never the latest master.
 Token keys (DESIGN.md frontmatter, a component's tokens:) are compared one by one; everything else per file.
-LIBRARY.md, CHANGES.md and templates/ belong to the project, and tokens.css is generated, so none of them count.
+LIBRARY.md, CHANGES.md and templates/ belong to the project, and tokens.css is generated, so none of them count;
+the exception is templates/universal/, master's universal templates, which count like any other doc.
 
 Self-test: python3 scripts/_tenants.py
 """
@@ -26,7 +27,7 @@ def run(*cmd, cwd=ROOT, check=True):
 
 
 def counted(rel):
-    return rel not in SKIP and not rel.startswith('templates/')
+    return rel not in SKIP and (not rel.startswith('templates/') or rel.startswith('templates/universal/'))
 
 
 def tree(top):
@@ -193,10 +194,11 @@ def _self_test():
     write(f'{local}/atoms/new.md', 'new')
     write(f'{local}/LIBRARY.md', 'filled in'); write(f'{local}/CHANGES.md', 'log')
     write(f'{local}/templates/scan-list.md', 'layout'); write(f'{local}/tokens.css', ':root{--x:1}')
+    write(f'{local}/templates/universal/table-page.md', 'edited universal')
 
     c = local_changes(local, base)
     assert c['tokens'] == {'DESIGN.md:primitives.color-brand-main-60': {'base': '#1f69ff', 'local': '#0a5cc2'}}, c['tokens']
-    assert sorted(c['files']) == ['atoms/button.md', 'atoms/new.md'], c['files']
+    assert sorted(c['files']) == ['atoms/button.md', 'atoms/new.md', 'templates/universal/table-page.md'], c['files']
     assert c['files']['atoms/new.md']['status'] == 'added' and c['files']['atoms/button.md']['status'] == 'changed'
     assert local_changes(base, base) == {'tokens': {}, 'files': {}}
     os.remove(f'{local}/atoms/button.md')
@@ -205,7 +207,7 @@ def _self_test():
     tenant = {'repo': 'org/x', 'base': '1.0.0', 'differences': c,
               'approved': {'tokens': {'DESIGN.md:primitives.color-brand-main-60': '#0a5cc2'}, 'files': {}},
               'rejected': {'tokens': {}, 'files': {'atoms/new.md': 'sha256:stale'}}}
-    assert counts(tenant) == {'needs review': 2, 'approved': 1, 'rejected': 0}  # a stale hash doesn't count
+    assert counts(tenant) == {'needs review': 3, 'approved': 1, 'rejected': 0}  # a stale hash doesn't count
     assert '## Approved' in render('x', tenant) and '`#0a5cc2`' in render('x', tenant)
     assert ds_path({'tenant': 'x'}) == 'design-system' and ds_path({'tenant': 'x', 'path': 'docs/ds/'}) == 'docs/ds'
     for bad in ('../x', '/x', '.', 'a/../../x'):

@@ -1057,7 +1057,7 @@ drift check (report only): 0 undefined, N unused component tokens`,
 `zebra-design-system-prototyping[-<project>]/
     atoms/ molecules/ organisms/ prototypes/
     .claude/skills/   // from PROTOTYPING.SKILLS/
-    templates/   // empty, or that project's templates, flat
+    templates/   // universal/, plus that project's templates, flat
     DESIGN.md PROTOTYPING.AGENTS.md PROTOTYPING.JIRA.md PROTOTYPING.GITHUB.md
     PROTOTYPING.FIGMA.md icons.json tokens.css
     github.json   // project kit only: its repo, branch and design-system path
@@ -1070,7 +1070,7 @@ drift check (report only): 0 undefined, N unused component tokens`,
     CLAUDE.md   // from PRODUCTION.CLAUDE.md, imports @design-system/AGENTS.md
     .claude/skills/design-system-init/   // from PRODUCTION.SKILLS/
     design-system/
-        atoms/ molecules/ organisms/ templates/   // templates: filled per project at release
+        atoms/ molecules/ organisms/ templates/   // templates: universal/, plus the project's at release
         DESIGN.md icons.json tokens.css
         AGENTS.md LIBRARY.md CHANGES.md   // from PRODUCTION.AGENTS.md, .LIBRARY.md, .CHANGES.md
         scripts/tokens-css.py scripts/icons-json.py`,
@@ -1205,7 +1205,7 @@ Wrote build/zebra-design-system-production/`,
     design-system/
         DESIGN.md  AGENTS.md  tokens.css  icons.json
         atoms/  molecules/  organisms/
-        templates/          // this project's own, flat
+        templates/          // this project's own, flat; universal/ from master
         LIBRARY.md          // the template, to fill in
         CHANGES.md          // log of local changes, version filled in
         scripts/tokens-css.py  scripts/icons-json.py`,
@@ -1214,7 +1214,7 @@ Wrote build/zebra-design-system-production/`,
       { from:"agent", to:"agent", color:"--c-compute",
         title:"Read the rules",
         route:"CLAUDE.md → PROTOTYPING.AGENTS.md → DESIGN.md",
-        desc:"The agent loads the kit's <code>CLAUDE.md</code>, then <code>PROTOTYPING.AGENTS.md</code> with its Jira, GitHub and Figma add-ons, then the component docs it needs. It checks <code>templates/</code> first, and offers to save a reusable layout as a template with the <code>create-template</code> skill. In the testing kit, <code>PROTOTYPING.TESTING.md</code> also lets the designer edit the docs: Claude regenerates with the kit's scripts, logs each edit in <code>CHANGES.md</code> and files it to Jira. If the docs don't answer a question, it asks.",
+        desc:"The agent loads the kit's <code>CLAUDE.md</code>, then <code>PROTOTYPING.AGENTS.md</code> with its Jira, GitHub and Figma add-ons, then the component docs it needs. It checks <code>templates/</code> then <code>templates/universal/</code> first, and offers to save a reusable layout as a template with the <code>create-template</code> skill. In the testing kit, <code>PROTOTYPING.TESTING.md</code> also lets the designer edit the docs: Claude regenerates with the kit's scripts, logs each edit in <code>CHANGES.md</code> and files it to Jira. If the docs don't answer a question, it asks.",
         titleProduction:"Read the rules and set up",
         routeProduction:"CLAUDE.md → design-system/AGENTS.md",
         descProduction:"<code>CLAUDE.md</code> imports <code>design-system/AGENTS.md</code>. Before writing any component, the agent checks both project files. <code>LIBRARY.md</code> ships as a template with a React example; the project's engineers own it and decide its conventions. While it has blanks, the agent runs the <code>design-system-init</code> skill: it scans the repo, proposes each section for the developer to confirm (per platform, plus an Existing UI migration plan), checks <code>CHANGES.md</code> (shipped with the installed <code>version</code> filled in), wires the tokens, scaffolds the library and builds a first component. It never changes a convention itself.",
@@ -1277,7 +1277,7 @@ design-system/CHANGES.md   // template; the agent logs each change
       { from:"output", to:"nightly", color:"--c-seed",
         title:"The nightly workflow pulls the repo",
         route:"tenants-sync.py",
-        desc:"<code>.github/workflows/tenants-sync.yml</code> runs in this repo. It clones each consumer's <code>design-system/</code> (at the entry's <code>path</code>, if set) and compares it with the bundle of the version that repo has installed (its <code>version</code>, built from the tag <code>design-system-v&lt;version&gt;</code>), never the latest master. Token keys are compared one by one; other files whole. <code>LIBRARY.md</code>, <code>CHANGES.md</code>, <code>templates/</code> and <code>tokens.css</code> don't count.",
+        desc:"<code>.github/workflows/tenants-sync.yml</code> runs in this repo. It clones each consumer's <code>design-system/</code> (at the entry's <code>path</code>, if set) and compares it with the bundle of the version that repo has installed (its <code>version</code>, built from the tag <code>design-system-v&lt;version&gt;</code>), never the latest master. Token keys are compared one by one; other files whole. <code>LIBRARY.md</code>, <code>CHANGES.md</code>, <code>templates/</code> (except <code>templates/universal/</code>) and <code>tokens.css</code> don't count.",
         payload:
 `acme-scanner-app: 1 need review, 0 approved, 0 rejected (base 2.2611.0)
 acme-warehouse-web: in sync with 2.2611.0
@@ -1286,7 +1286,7 @@ acme-dock-app: in sync with 2.2611.0, templates updated`,
       { from:"nightly", to:"tenants", color:"--c-seed",
         title:"Record the differences in the tenant",
         route:"tenants/<tenant>/",
-        desc:"Only the differences are stored. A repo in sync has no tenant (it is removed). Decisions the DS team made earlier are kept while they still match. Separately, the repo's templates are mirrored into <code>templates/&lt;project&gt;/</code> with no review, and that project's prototyping zip is rebuilt.",
+        desc:"Only the differences are stored. A repo in sync has no tenant (it is removed). Decisions the DS team made earlier are kept while they still match. Separately, the repo's own templates (not <code>universal/</code>) are mirrored into <code>templates/&lt;project&gt;/</code> with no review, and that project's prototyping zip is rebuilt.",
         payload:
 `tenants/acme-scanner-app/
     tenant.json   // base version, differences, approved / rejected
@@ -1349,7 +1349,7 @@ acme-scanner-app: update from 2.2611.0: 61 updated, 1 merged, 0 removed, 1 confl
       { from:"release", to:"output", color:"--c-seed",
         title:"Open a PR on every repo",
         route:"zebra-design-system/<version>",
-        desc:"It works out each case itself. <strong>New</strong> repo: the whole kit plus its project's templates. <strong>Update</strong>: unchanged files replaced; changed files 3-way merged against the installed version, so allowed differences stay; overlaps kept and listed; <code>LIBRARY.md</code>, <code>CHANGES.md</code> and <code>templates/</code> never touched; the shipped skills in <code>.claude/skills/</code> replaced outright; <code>tokens.css</code> regenerated. Never force-pushes; older release PRs are closed.",
+        desc:"It works out each case itself. <strong>New</strong> repo: the whole kit plus its project's templates. <strong>Update</strong>: unchanged files replaced; changed files 3-way merged against the installed version, so allowed differences stay; overlaps kept and listed; <code>LIBRARY.md</code>, <code>CHANGES.md</code> and the project's own templates never touched; the shipped skills in <code>.claude/skills/</code> replaced outright; <code>tokens.css</code> regenerated. Never force-pushes; older release PRs are closed.",
         payload:
 `## Needs your agent
 - design-system/atoms/button.md: your change and master's overlap
@@ -1357,7 +1357,7 @@ acme-scanner-app: update from 2.2611.0: 61 updated, 1 merged, 0 removed, 1 confl
 ## Please revert
 - atoms/button.md
 
-LIBRARY.md, CHANGES.md and your templates were not touched.`,
+LIBRARY.md, CHANGES.md and your own templates (outside templates/universal/) were not touched.`,
         chips:["PRs only","3-way merge"] },
       { from:"output", to:"agent", color:"--c-compute",
         title:"The consumer merges and finishes",

@@ -5,13 +5,13 @@ description: Write an atomic-design template for the Zebra Design System, a page
 
 # Create a template
 
-A **template** is the atomic-design level above organisms: a page-level layout (regions, and the components that fill them) with placeholder content. It's a Markdown doc, not a prototype. Prototypes stay in `prototypes/`. Templates belong to the project this kit was made for, and sit flat in `templates/`. `PROTOTYPING.AGENTS.md` (Templates) says when to offer one; this skill says how to write it.
+A **template** is the atomic-design level above organisms: a page-level layout (regions, and the components that fill them) with placeholder content. It's a Markdown doc, not a prototype. Prototypes stay in `prototypes/`. Templates belong to the project this kit was made for, and sit flat in `templates/`. `templates/universal/` holds the universal templates from the master design system: read them, never write there. `PROTOTYPING.AGENTS.md` (Templates) says when to offer one; this skill says how to write it.
 
 ## 1. Gather
 
 1. **The source.** This is a prototype in `prototypes/`, a screen in another codebase, or the user's description. Read all of it first. For a codebase, trace the page from its route down to every child component it renders. Include optional regions, empty and loading states, and anything that only appears on selection or hover.
 2. **The template name.** Use a short, hyphenated name for the pattern, not for one screen: `table-page`, not `wifi-presets`.
-3. **Existing templates.** Check `templates/`. If one already covers this layout, offer to update it instead of writing a second.
+3. **Existing templates.** Check `templates/` and `templates/universal/`. If one of the project's already covers this layout, offer to update it instead of writing a second. If a universal one does, offer to use it; write a new one in `templates/` only if the designer needs a variation.
 
 ## 2. Map every part to a component
 
