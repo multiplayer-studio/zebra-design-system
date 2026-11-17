@@ -5521,12 +5521,15 @@ tr[aria-disabled="true"] .dtab-sub { color: var(--table-cell-text-foreground-dis
 /* ═════════════ PROTOTYPE CHROME — not design-system components; never sent to production ═════════════ */
 
 /* Device frame — a Zebra handheld screen, centred on a desktop viewport and filling a phone one. Markup:
-   <div class="device-stage"><div class="device">
+   <div class="device-stage">
+   <div class="proto-controls">…</div>
+   <div class="device">
      <div class="status-bar"><span>9:41</span><span class="status-bar-icons"><svg class="icon">signal</svg><svg class="icon">wifi</svg><svg class="icon">battery</svg></span></div>
      <header>…</header> <main class="device-body">…</main> <footer>…pinned actions</footer>
    </div></div>
    Only .device-body scrolls; header and pinned actions stay put. Use it for handheld prototypes only. */
-.device-stage { min-height: 100dvh; display: grid; place-items: center; background: var(--color-fill-canvas); }
+.device-stage { min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--space-lg); padding-block: var(--space-lg); box-sizing: border-box; background: var(--color-fill-canvas); }
 .device { width: min(var(--frame-handheld-width), 100vw); height: min(var(--frame-handheld-height), 100dvh);
   display: flex; flex-direction: column; overflow: hidden; position: relative;
   background: var(--color-fill-default); color: var(--color-ink-high); outline: var(--stroke-thin) solid var(--color-line-default); }
@@ -5538,9 +5541,10 @@ tr[aria-disabled="true"] .dtab-sub { color: var(--table-cell-text-foreground-dis
 .status-bar-icons { display: flex; align-items: center; gap: var(--space-2xs); }
 .status-bar .icon { font-size: var(--icon-size-small); color: inherit; }
 
-/* Prototype controls — restart, light/dark: fixed outside the frame so they're never mistaken for the design.
-   <div class="proto-controls"><button class="btn subtle sm">Restart</button><button class="btn subtle sm">Dark</button></div> */
-.proto-controls { position: fixed; inset-block-start: var(--space-lg); inset-inline-end: var(--space-lg); display: flex; gap: var(--space-sm); }
+/* Prototype controls — restart, light/dark: in the page flow above the frame (first child of .device-stage), never over it,
+   so they're never mistaken for the design. On a phone the frame fills the screen and the controls sit above it.
+   <div class="proto-controls"><button class="btn subtle sm"><span class="btn-label">Restart</span></button><button class="btn subtle sm"><span class="btn-label">Dark</span></button></div> */
+.proto-controls { display: flex; gap: var(--space-sm); }
 </style>
 <!-- components:end -->
 </head>

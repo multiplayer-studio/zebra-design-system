@@ -39,7 +39,7 @@ Prototypes need an internet connection to load those fonts.
 
 - **Handheld** prototypes are built inside the starter's device frame: `.device-stage` > `.device`, a `--frame-handheld-width` × `--frame-handheld-height` screen (a Zebra TC-series handheld) that's centred on a desktop viewport and fills a phone one. Inside it, in order: `.status-bar`, the header, `.device-body` (the only part that scrolls), and pinned actions. The markup is in the starter's component CSS comment.
 - **Desktop** prototypes use the whole viewport.
-- **Prototype controls** (restart, light/dark) go in `.proto-controls`, outside the frame, so they're never mistaken for the design. Every prototype has a light/dark control.
+- **Prototype controls** (restart, light/dark) go in `.proto-controls`, outside the design: the first child of `.device-stage` (above the frame) on handheld, and the page's top end corner on desktop. Never put them over the design. Every prototype has a light/dark control.
 
 The device frame, status bar and prototype controls are prototype chrome, not design-system components.
 
