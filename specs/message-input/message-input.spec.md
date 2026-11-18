@@ -11,6 +11,7 @@ Values are token names; they resolve in [tokens/](../../tokens/). Literals are m
 | Prop | Type | Values | Default | Controls |
 |---|---|---|---|---|
 | state | enum | empty, filled, attachment-open, listening, transcribing, dictated, recording, playback, speaking, disabled | empty | variant |
+| showReply | boolean | | false | replyBar |
 | attachmentFileSlot | slot | Assist Chip | empty | attachments |
 | moreToolsSlot | slot | Icon Button | empty | moreTools |
 
@@ -24,6 +25,7 @@ Values are token names; they resolve in [tokens/](../../tokens/). Literals are m
 - **state playback**: A take waiting to be sent or discarded. The only chance to hear it first.
 - **state speaking**: The assistant is replying aloud. The only state with no toolbar at all.
 - **state disabled**: Composing is unavailable. Say why in the value text, or there is nothing to act on.
+- **showReply**: Shows the Reply Bar above the body, naming who and what is being answered. Not on speaking or disabled.
 - **attachmentFileSlot**: Holds whatever the product attaches, above the text. Empty until the product fills it.
 - **moreToolsSlot**: Room for product tools beside Attachment. Icon controls only, at the toolbar's size.
 
@@ -38,6 +40,8 @@ Values are token names; they resolve in [tokens/](../../tokens/). Literals are m
 **Waveform.** Bars with sample heights: 9 while listening or recording, 24 in playback.
 
 **Caption.** The assistant's spoken reply, while speaking.
+
+**Reply.** The name being answered and the quoted line. Not Figma properties. Samples: "Jordan Alvarez", "Calibration worked!!...".
 
 ## Anatomy
 
@@ -58,6 +62,10 @@ Values are token names; they resolve in [tokens/](../../tokens/). Literals are m
    - **Tools**: gap space/2xs. Attachment (Open follows attachment-open), then the More Tools slot.
    - **Actions**: gap space/2xs. Dictate (`microphone`, subtle), or Stop (`stop`, primary) while listening or recording, then Send (`send`, primary). Every control is an Icon Button Size=small, Shape=full, sized control/sm.
 3. **Slots** — Attachment File above the body (filled, attachment-open). More Tools beside Attachment, absent on attachment-open, listening and speaking. Both are horizontal, gap space/2xs.
+4. **Reply Bar** (showReply; every state except speaking and disabled) — the root's first child, above the Attachment File slot. The whole bar is one button that cancels the reply. Horizontal, gap space/sm, padding space/2xs top and bottom, space/md at the sides, fill surface/success, radius radius/element-md, fills width, measured 48Px tall. In order:
+   - `reply` glyph, Icon Size=small;
+   - "Replying to" at body/xsmall on foreground/secondary, the name at label/small on foreground/primary, then the quote at body/xsmall on foreground/secondary, one line, truncated, filling the rest. The three sit space/3xs apart;
+   - `close` glyph, Icon Size=small. It is the bar's glyph, not a control of its own.
 
 Root: vertical, gap space/sm, padding space/md, fill surface/card, stroke border/default at stroke/thin inside, radius radius/container. Measured 440Px wide; hugs its height.
 
@@ -77,6 +85,8 @@ Root: vertical, gap space/sm, padding space/md, fill surface/card, stroke border
 | disabled | text "Can't send right now" | Dictate Flavour=text, disabled | disabled | 126Px |
 
 Disabled also moves the root to interactive/neutral/background/disabled with a border/disabled stroke.
+
+Show Reply adds the Reply Bar and one space/sm gap (56Px) to every state except speaking and disabled.
 
 ## Subcomponents
 
@@ -127,10 +137,10 @@ Accessibility: The toggle is an icon with no text. It needs a name, and the name
 
 ## Tokens & theming
 
-- **Color:** surface/card, surface/subtle, surface/gradient/start, surface/gradient/end, border/default, border/disabled, foreground/primary, foreground/secondary, foreground/disabled, foreground/error, interactive/neutral/background/disabled, interactive/ghost/background/default, interactive/ghost/background/pressed
+- **Color:** surface/card, surface/subtle, surface/success, surface/gradient/start, surface/gradient/end, border/default, border/disabled, foreground/primary, foreground/secondary, foreground/disabled, foreground/error, interactive/neutral/background/disabled, interactive/ghost/background/default, interactive/ghost/background/pressed
 - **Dimension:** space/3xs, space/2xs, space/sm, space/md, radius/container, radius/element-md, radius/pill, stroke/thin, stroke/thick, control/sm, control/lg, control/icon-md
-- **Typography:** body/medium, body/xsmall
-- **Glyphs:** add, close, attachment, camera, sticker, audio, microphone, send, stop, play, replay, delete, document, video. All are rounded font glyphs and take currentColor.
+- **Typography:** body/medium, body/xsmall, label/small
+- **Glyphs:** add, close, attachment, camera, sticker, audio, microphone, send, stop, play, replay, delete, document, video, reply. All are rounded font glyphs and take currentColor.
 - **Theme axes:** palette (Light, Dark, AAA Light, AAA Dark), size (Desktop, Mobile, Tablet, Desktop Compact) and every brand extension.
 - **Dependencies:** Icon Button, Icon, Assist Chip, Progress Circle.
 
@@ -164,6 +174,7 @@ Accessibility: The toggle is an icon with no text. It needs a name, and the name
 | Slots | More Tools Slot | Sits beside Attachment in the toolbar. Absent on attachment-open and listening. |
 | Nested controls | Icon Button and Attachment | Every control is an Icon Button at Shape=full. Attachment has its own frame. |
 | Voice and Speaking | drawn | The waveform, timer, orb and caption are drawn by the component, not passed in. |
+| Reply Bar | text, product supplied; one button | The name and the quoted line come from the product. The quote stays on one line and truncates. The whole bar is one button that cancels the reply; Close is its glyph, not a control of its own. |
 
 ## Usage (do / don't)
 
@@ -180,7 +191,7 @@ Send is disabled in five of the ten states. Disabled does not say why, so the va
 Every control is an icon with no label. Each needs a name, and the names differ by state even where the glyph repeats.
 While speaking there is no toolbar and only Stop speaking interrupts it. That control has to be reachable by keyboard.
 
-Names from the Figma layers: Dictate, Send, Stop, Cancel dictation, Cancel transcription, Discard recording, Play, Record again, Delete voice message, Stop speaking.
+Names from the Figma layers: Dictate, Send, Stop, Cancel dictation, Cancel transcription, Discard recording, Play, Record again, Delete voice message, Stop speaking. The Reply Bar is one button with no layer name to use; name it "Cancel reply".
 
 ## Layout & theming intents
 
@@ -193,6 +204,7 @@ Names from the Figma layers: Dictate, Send, Stop, Cancel dictation, Cancel trans
 | Body region | One of three | Text, Voice or Speaking. Text carries body/medium at 16px. |
 | Toolbar | Fixed | Tools on the left, Actions on the right. Controls are 36 square, Send and Stop 40. |
 | Voice bar | Fixed | 48 tall on surface/track, holding a 2px bar waveform, a label, a timer and one trailing control. |
+| Reply Bar | Fill width, fixed height | 48 tall on surface/success at radius/element-md, space/md at the sides. A Reply glyph, "Replying to", the name, the quote, then Close. |
 
 ## Visual reference
 
@@ -213,8 +225,11 @@ Names from the Figma layers: Dictate, Send, Stop, Cancel dictation, Cancel trans
 - The speaking caption's first run is foreground/disabled and the rest foreground/primary. The metadata doesn't say what the split means.
 - The Attachment toggle and its slot controls are all named Icon Button, so they give no name to carry into code.
 - The orb rings' stroke width and opacity have no token. The Text region's minimum height has no token either.
+- Both Reply Bar glyph layers are named "Cancel transcription", so the bar gives no name to carry into code. Name the button "Cancel reply".
+- The Reply Bar is fixed at 414Px wide in Figma. It should fill the composer's width.
 
 **Note**
+- The Reply Bar's name and quote are not exposed as text properties.
 - Disabled Dictate switches Flavour from subtle to text. Send keeps its flavour.
 - Playback drops Dictate from Actions. The metadata doesn't say so.
 - Each voice state has a hint line in body/xsmall at foreground/secondary. The metadata doesn't mention it.

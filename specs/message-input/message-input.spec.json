@@ -47,6 +47,15 @@
         "disabled": "Composing is unavailable. Say why in the value text, or there is nothing to act on."
       }
     },
+    "showReply": {
+      "type": "boolean",
+      "figmaName": "Show Reply#8623:0",
+      "default": false,
+      "controls": [
+        "replyBar"
+      ],
+      "intent": "Shows the Reply Bar above the body, naming who and what is being answered. Not on speaking or disabled."
+    },
     "attachmentFileSlot": {
       "type": "slot",
       "figmaName": "Attachment File Slot#7085:0",
@@ -111,12 +120,19 @@
       "part": "caption",
       "input": "text",
       "sample": "I found a table for four at Marlow's on Friday at seven. …"
+    },
+    {
+      "part": "replyBar",
+      "input": "text: the name and the quoted line",
+      "sample": "Jordan Alvarez / Calibration worked!!...",
+      "_note": "Not Figma properties. The metadata says both come from the product."
     }
   ],
   "anatomyNumbering": {
     "1": "body",
     "2": "toolbar",
-    "3": "slots"
+    "3": "slots",
+    "4": "replyBar"
   },
   "anatomy": [
     {
@@ -140,6 +156,94 @@
         },
         "radius": "radius/container"
       }
+    },
+    {
+      "id": "replyBar",
+      "kind": "button",
+      "role": "Who and what is being answered. The whole bar is one button that cancels the reply. First child of the root, above the Attachment File Slot.",
+      "visibleWhen": "showReply and state not in [speaking, disabled]",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/sm",
+        "padding": {
+          "block": "space/2xs",
+          "inline": "space/md"
+        },
+        "counterAlign": "center"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "fixed (measured 48Px)"
+      },
+      "paint": {
+        "fill": "surface/success",
+        "radius": "radius/element-md"
+      }
+    },
+    {
+      "id": "replyBar.icon",
+      "parent": "replyBar",
+      "kind": "instance",
+      "of": "Icon",
+      "props": {
+        "size": "small"
+      },
+      "glyph": "reply"
+    },
+    {
+      "id": "replyBar.text",
+      "parent": "replyBar",
+      "kind": "container",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/3xs",
+        "counterAlign": "center"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      }
+    },
+    {
+      "id": "replyBar.label",
+      "parent": "replyBar.text",
+      "kind": "text",
+      "textStyle": "body/xsmall",
+      "color": "foreground/secondary",
+      "sample": "Replying to"
+    },
+    {
+      "id": "replyBar.name",
+      "parent": "replyBar.text",
+      "kind": "text",
+      "textStyle": "label/small",
+      "color": "foreground/primary",
+      "sample": "Jordan Alvarez"
+    },
+    {
+      "id": "replyBar.quote",
+      "parent": "replyBar.text",
+      "kind": "text",
+      "textStyle": "body/xsmall",
+      "color": "foreground/secondary",
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      },
+      "maxLines": 1,
+      "truncates": true,
+      "sample": "Calibration worked!!..."
+    },
+    {
+      "id": "replyBar.close",
+      "parent": "replyBar",
+      "kind": "instance",
+      "of": "Icon",
+      "props": {
+        "size": "small"
+      },
+      "glyph": "close",
+      "role": "The bar's glyph. Not a control of its own."
     },
     {
       "id": "attachments",
@@ -599,7 +703,15 @@
           "send": "disabled",
           "measuredHeightPx": 126
         }
-      ]
+      ],
+      "showReply": {
+        "adds": "replyBar above the attachments and body",
+        "measuredHeightPx": "+56 (48 bar + space/sm gap)",
+        "notIn": [
+          "speaking",
+          "disabled"
+        ]
+      }
     }
   ],
   "subcomponents": [
@@ -787,6 +899,7 @@
     "color": [
       "surface/card",
       "surface/subtle",
+      "surface/success",
       "surface/gradient/start",
       "surface/gradient/end",
       "border/default",
@@ -815,7 +928,8 @@
     ],
     "typography": [
       "body/medium",
-      "body/xsmall"
+      "body/xsmall",
+      "label/small"
     ],
     "glyphs": [
       "add",
@@ -831,7 +945,8 @@
       "replay",
       "delete",
       "document",
-      "video"
+      "video",
+      "reply"
     ],
     "glyphNote": "All icons are font glyphs in the rounded family and take currentColor from their Icon Button or Assist Chip. All exist in packages/icons/codepoints.json and none is retired.",
     "themeAxes": "palette (Light, Dark, AAA Light, AAA Dark), size (Desktop, Mobile, Tablet, Desktop Compact) and every brand extension."
@@ -946,6 +1061,11 @@
       "Property": "Voice and Speaking",
       "Type": "drawn",
       "Description": "The waveform, timer, orb and caption are drawn by the component, not passed in."
+    },
+    {
+      "Property": "Reply Bar",
+      "Type": "text, product supplied; one button",
+      "Description": "The name and the quoted line come from the product. The quote stays on one line and truncates. The whole bar is one button that cancels the reply; Close is its glyph, not a control of its own."
     }
   ],
   "usage": {
@@ -976,7 +1096,9 @@
     "play": "Play",
     "recordAgain": "Record again",
     "delete": "Delete voice message",
-    "stopSpeaking": "Stop speaking"
+    "stopSpeaking": "Stop speaking",
+    "cancelReply": "Cancel reply",
+    "_noteReply": "Cancel reply names the whole Reply Bar, which is one button. It is not a Figma layer name."
   },
   "layoutTheming": [
     {
@@ -1013,6 +1135,11 @@
       "Property": "Voice bar",
       "Type": "Fixed",
       "Description": "48 tall on surface/track, holding a 2px bar waveform, a label, a timer and one trailing control."
+    },
+    {
+      "Property": "Reply Bar",
+      "Type": "Fill width, fixed height",
+      "Description": "48 tall on surface/success at radius/element-md, space/md at the sides. A Reply glyph, \"Replying to\", the name, the quote, then Close."
     }
   ],
   "visualReference": {
@@ -1121,6 +1248,21 @@
       "severity": "note",
       "source": "Motion",
       "detail": "No transition is defined for Message Input or Attachment. Each state is a swap."
+    },
+    {
+      "severity": "warn",
+      "source": "Reply Bar",
+      "detail": "Fixed at 414Px wide in Figma. It should fill the composer's width."
+    },
+    {
+      "severity": "note",
+      "source": "Reply Bar",
+      "detail": "The name and the quote are not exposed as text properties."
+    },
+    {
+      "severity": "warn",
+      "source": "Reply Bar",
+      "detail": "Both glyph layers are named \"Cancel transcription\", so the bar gives no name to carry into code. Name the button \"Cancel reply\"."
     }
   ]
 }

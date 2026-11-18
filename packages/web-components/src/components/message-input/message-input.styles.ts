@@ -121,6 +121,29 @@ export default css`
     line-height: var(--body-xsmall-line-height);
     letter-spacing: var(--body-xsmall-letter-spacing);
   }
+  /* The Reply Bar (spec Show Reply): one button that cancels the reply. */
+  .reply {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    inline-size: 100%;
+    min-block-size: var(--control-lg);
+    padding: var(--space-2xs) var(--space-md);
+    border: 0;
+    border-radius: var(--radius-element-md);
+    background: var(--surface-success);
+    color: var(--foreground-primary);
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+  }
+  .reply:focus-visible { outline: var(--stroke-thick) solid var(--border-focus); outline-offset: var(--stroke-thick); }
+  .reply-text { display: flex; align-items: center; gap: var(--space-3xs); flex: 1 1 0; min-inline-size: 0; }
+  .reply-label, .reply-quote { font: var(--text-body-xsmall); letter-spacing: var(--body-xsmall-letter-spacing); color: var(--foreground-secondary); }
+  .reply-label, .reply-name { flex: none; white-space: nowrap; }
+  .reply-name { font: var(--text-label-small); letter-spacing: var(--label-small-letter-spacing); }
+  .reply-quote { flex: 1 1 0; min-inline-size: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
   .hint { color: var(--foreground-secondary); }
   .error { color: var(--foreground-error); }
   .count { align-self: flex-end; color: var(--foreground-secondary); font-variant-numeric: tabular-nums; }

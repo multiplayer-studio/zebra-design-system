@@ -146,10 +146,10 @@ const exampleMessage = (m: ExampleMessage, platform: "mobile" | "desktop", key: 
   <ChatMessage key={key} platform={platform} chatStyle={m.chatStyle} role={m.role} state={m.state} sequence={m.sequence}
     name={m.name} time={m.time} replyTo={m.replyTo} replyText={m.replyText} showAvatar={m.showAvatar}
     showControls={m.showControls} menu={MENU}
-    // Keep the assistant's steps on their own lines.
-    message={m.text?.split("\n").flatMap((line, i) => (i ? [<br key={i} />, line] : [line]))}
+    // A blank line starts a paragraph; a single line break stays inside it.
+    message={m.text?.split("\n\n").map((para, p) => <p key={p}>{para.split("\n").flatMap((line, i) => (i ? [<br key={i} />, line] : [line]))}</p>)}
     // The assistant's own avatar is the companion glyph.
-    avatar={m.assistantAvatar ? { icon: "companion" } : m.initials ? { initials: m.initials } : undefined}
+    avatar={m.assistantAvatar ? { icon: "companion", swatchColor: "purple" } : m.initials ? { initials: m.initials, swatchColor: m.color } : undefined}
     attachments={m.attachments ? <>{m.attachments.map(exampleAttachment)}</> : undefined}
     reactions={m.reactions ? <>{m.reactions.map((r) => <AssistChip key={r.glyph} icon={r.glyph}>{String(r.count)}</AssistChip>)}</> : undefined}
     thread={m.thread ? <ChatThread replyCount={m.thread.replies.length} defaultOpen>{m.thread.replies.map((r, i) => exampleMessage(r, platform, i))}</ChatThread> : undefined} />
@@ -160,7 +160,7 @@ function ExampleScreen({ ex }: { ex: ChatExample }) {
   const mobile = ex.container === "mobile";
   const trailing = ex.people ? (
     <>
-      <AvatarRail size="xsmall" max={2} label="Members">{ex.people.map((p) => <Avatar key={p} initials={p} />)}</AvatarRail>
+      <AvatarRail size="xsmall" max={2} label="Members">{ex.people.map((p) => <Avatar key={p.initials} initials={p.initials} swatchColor={p.color} />)}</AvatarRail>
       <IconButton flavour="text" size="medium" icon="world" label="Translate" />
     </>
   ) : (

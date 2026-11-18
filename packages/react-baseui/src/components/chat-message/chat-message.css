@@ -171,6 +171,9 @@
   color: var(--foreground-primary);
   overflow-wrap: anywhere;
 }
+/* Paragraphs in the message sit one body/small line apart, a blank line; line breaks inside a paragraph stay tight. */
+.zds-chat-bubble > p { margin: 0; }
+.zds-chat-bubble > p + p { margin-block-start: var(--body-small-line-height); }
 /* A fill bubble hugs its text and wraps at 80% of the chat (spec). */
 .zds-chat-bubble[data-style="fill"] {
   max-inline-size: 80%;

@@ -3,6 +3,7 @@ import { customElement, property, query, state } from "lit/decorators.js";
 import { repeat } from "lit/directives/repeat.js";
 import { styleMap } from "lit/directives/style-map.js";
 import styles from "./message-input.styles.js";
+import "../icon/icon.js";
 import "../icon-button/icon-button.js";
 import "../assist-chip/assist-chip.js";
 import "../progress-circle/progress-circle.js";
@@ -61,6 +62,8 @@ export const messageInputStrings = {
   cancelDictation: "Cancel dictation",
   cancelTranscription: "Cancel transcription",
   discardRecording: "Discard recording",
+  replyingTo: "Replying to",
+  cancelReply: "Cancel reply to {name}",
   dictated: "Dictated",
   undoDictation: "Undo dictation",
   attached: "Attached",
@@ -157,6 +160,7 @@ const newId = () => `att-${Date.now().toString(36)}-${uid++}`;
  * @fires zds-stop-speaking - Stop speaking was pressed.
  * @fires zds-speak-response-change - The read-aloud toggle changed. `detail.value`.
  * @fires zds-preview-attachment - An image chip was activated. `detail.attachment`.
+ * @fires zds-cancel-reply - The Reply Bar was pressed. The whole bar is one button that cancels the reply.
  *
  * @spec specs/message-input/message-input.spec.json
  */
@@ -207,6 +211,10 @@ export class ZdsMessageInput extends LitElement {
   @property({ type: Boolean }) dictated = false;
   @property({ type: Boolean, attribute: "tray-open" }) trayOpen = false;
   @property({ type: String }) label = "Message";
+  /** Who is being answered. Setting it shows the Reply Bar above the body (the spec's Show Reply). Not shown while speaking or disabled. */
+  @property({ type: String, attribute: "reply-to" }) replyTo = "";
+  /** The quoted line being answered. One line, truncated. */
+  @property({ type: String, attribute: "reply-text" }) replyText = "";
 
   @state() private mode: Mode = "compose";
   @state() private elapsed = 0;
@@ -586,6 +594,13 @@ export class ZdsMessageInput extends LitElement {
     return html`<div class="root" role="group" aria-label=${this.label} ?data-dragging=${this.dragging}
       @dragenter=${this.onDragEnter} @dragover=${this.onDragOver} @dragleave=${this.onDragLeave} @drop=${this.onDrop}
       @keydown=${this.onKeyDown}>
+      ${this.replyTo && !this.disabled && this.derived !== "disabled" ? html`<button class="reply" type="button"
+        aria-label=${fmt(S.cancelReply, { name: this.replyTo })} @click=${() => this.emit("zds-cancel-reply")}>
+        <zds-icon name="reply" size="small"></zds-icon>
+        <span class="reply-text"><span class="reply-label">${S.replyingTo}</span><span class="reply-name">${this.replyTo}</span>${this.replyText
+          ? html`<span class="reply-quote">${this.replyText}</span>` : nothing}</span>
+        <zds-icon name="close" size="small"></zds-icon>
+      </button>` : nothing}
       <ul class="chips" aria-label=${S.attached} ?hidden=${mode !== "compose"}>
         ${showChips && this.dictated ? html`<li><zds-assist-chip icon="microphone" color="blue" discardable discard-label=${S.undoDictation}
           @zds-discard=${() => { this.setText(this.dictatedBefore); this.dictated = false; }}>${S.dictated}</zds-assist-chip></li>` : nothing}

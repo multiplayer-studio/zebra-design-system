@@ -2,6 +2,13 @@ import { css } from "lit";
 
 /* Chat Bubble — part of Chat Message. */
 export default css`
+  /* Paragraphs in the message sit one body/small line apart, a blank line; line breaks inside a paragraph stay tight. */
+  ::slotted(p) {
+    margin: 0;
+  }
+  ::slotted(p:not(:first-of-type)) {
+    margin-block-start: var(--body-small-line-height);
+  }
   :host {
     box-sizing: border-box;
     display: block;

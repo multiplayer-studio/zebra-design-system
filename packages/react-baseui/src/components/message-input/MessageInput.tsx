@@ -70,6 +70,8 @@ export const messageInputStrings = {
   cancelDictation: "Cancel dictation",
   cancelTranscription: "Cancel transcription",
   discardRecording: "Discard recording",
+  replyingTo: "Replying to",
+  cancelReply: "Cancel reply to {name}",
   dictated: "Dictated",
   undoDictation: "Undo dictation",
   attached: "Attached",
@@ -204,6 +206,15 @@ export interface MessageInputProps {
    * while the tray is open and while listening.
    */
   moreTools?: React.ReactNode;
+  /**
+   * Who is being answered. Setting it shows the Reply Bar above the body
+   * (the spec's Show Reply). Not shown while speaking or disabled.
+   */
+  replyTo?: string;
+  /** The quoted line being answered. One line, truncated. */
+  replyText?: string;
+  /** Called when the Reply Bar is pressed: the whole bar is one button that cancels the reply. */
+  onCancelReply?: () => void;
   disabled?: boolean;
   "aria-label"?: string;
   className?: string;
@@ -516,7 +527,7 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
     attachmentColor = defaultAttachmentColor, onPreviewAttachment, transcribe, lang,
     speakResponse: speakProp, defaultSpeakResponse, onSpeakResponseChange, speaking = false, onStopSpeaking,
     speakingSource = null, speakingLevel, speakingText, speakingCharIndex,
-    state: pinned, preview: previewProp, attachmentSlot, moreTools,
+    state: pinned, preview: previewProp, attachmentSlot, moreTools, replyTo, replyText, onCancelReply,
     disabled: disabledProp = false, "aria-label": ariaLabel = "Message", className,
   },
   ref,
@@ -915,6 +926,17 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
       className={["zds-message-input", className].filter(Boolean).join(" ")}
       data-state={state} data-disabled={disabled || undefined} data-dragging={dragging || undefined}
       onDragEnter={onDragEnter} onDragOver={onDragOver} onDragLeave={onDragLeave} onDrop={onDrop} onKeyDown={onKeyDown}>
+      {replyTo && !disabled ? (
+        <BaseButton className="zds-message-input__reply" aria-label={fmt(S.cancelReply, { name: replyTo })} onClick={() => onCancelReply?.()}>
+          <Icon name="reply" size="small" iconStyle="rounded" />
+          <span className="zds-message-input__reply-text">
+            <span className="zds-message-input__reply-label">{S.replyingTo}</span>
+            <span className="zds-message-input__reply-name">{replyTo}</span>
+            {replyText ? <span className="zds-message-input__reply-quote">{replyText}</span> : null}
+          </span>
+          <Icon name="close" size="small" iconStyle="rounded" />
+        </BaseButton>
+      ) : null}
       {(attachments.length > 0 || dictated || attachmentSlot) && mode === "compose" ? (
         <ul className="zds-message-input__chips" aria-label={S.attached}>
           {dictated ? (

@@ -122,9 +122,10 @@ const exampleMessage = (m: ExampleMessage, platform: "mobile" | "desktop"): Temp
     replyText=${m.replyText ?? nothing}
     initials=${m.initials ?? nothing}
     avatarIcon=${m.assistantAvatar ? "companion" : nothing}
+    avatarColor=${m.assistantAvatar ? "purple" : (m.color ?? nothing)}
     .showAvatar=${m.showAvatar ?? true}
     .showControls=${m.showControls ?? true}
-    >${m.text?.split("\n").map((line, i) => (i ? html`<br />${line}` : line))}${(m.attachments ?? []).map(exampleAttachment)}${(
+    >${m.text?.split("\n\n").map(para => html`<p>${para.split("\n").map((line, i) => (i ? html`<br />${line}` : line))}</p>`)}${(m.attachments ?? []).map(exampleAttachment)}${(
       m.reactions ?? []
     ).map(r => html`<zeta-assist-chip slot="reactions" icon=${ligature(r.glyph)}>${r.count}</zeta-assist-chip>`)}${m.thread
       ? html`<zeta-chat-thread slot="thread" replyCount=${m.thread.replies.length} open
@@ -137,7 +138,7 @@ const exampleMessage = (m: ExampleMessage, platform: "mobile" | "desktop"): Temp
 const exampleScreen = (ex: ChatExample) => {
   const mobile = ex.container === "mobile";
   const trailing = ex.people
-    ? html`<zeta-avatar-rail slot="trailing" size="xs" max="2">${ex.people.map(p => html`<zeta-avatar>${p}</zeta-avatar>`)}</zeta-avatar-rail>
+    ? html`<zeta-avatar-rail slot="trailing" size="xs" max="2">${ex.people.map(p => html`<zeta-avatar swatch-color=${p.color}>${p.initials}</zeta-avatar>`)}</zeta-avatar-rail>
         <zeta-icon-button slot="trailing" flavor="text" size="medium" aria-label="Translate">world</zeta-icon-button>`
     : html`<zeta-icon-button slot="trailing" flavor="text" size="medium" aria-label="Translate">world</zeta-icon-button>
         <zeta-icon-button slot="trailing" flavor="text" size="medium" aria-label="Favourite">love</zeta-icon-button>

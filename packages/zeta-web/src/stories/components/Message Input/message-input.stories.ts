@@ -59,6 +59,21 @@ export const Playback: StoryObj<ZetaMessageInput> = { args: { state: "playback" 
 /** The assistant replying aloud: the orb and the caption, with Stop speaking and no toolbar. */
 export const Speaking: StoryObj<ZetaMessageInput> = { args: { state: "speaking" } };
 
+/** The spec's Show Reply: `replyTo` shows the Reply Bar above the body. The whole bar is one button that fires `cancelreply`. */
+export const Reply: StoryObj<ZetaMessageInput> = {
+  render: () =>
+    html`<div style="max-inline-size: 440px">
+      <zeta-message-input
+        placeholder="Placeholder"
+        replyTo="Jordan Alvarez"
+        replyText="Calibration worked!! The labels line up now."
+        @cancelreply=${(e: Event) => {
+          (e.currentTarget as ZetaMessageInput).replyTo = "";
+        }}
+      ></zeta-message-input>
+    </div>`
+};
+
 /** The spec's slots: product content above the text, a tool beside Attachment and an extra type in the tray. */
 export const Slots: StoryObj<ZetaMessageInput> = {
   render: () =>

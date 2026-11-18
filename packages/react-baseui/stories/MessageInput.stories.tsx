@@ -49,6 +49,23 @@ export const Empty: Story = {};
 export const Filled: Story = { args: { defaultValue: "Message goes in here." } };
 
 /**
+ * The spec's Show Reply: set `replyTo` (and `replyText`) to show the Reply Bar
+ * above the body. The whole bar is one button; pressing it calls
+ * `onCancelReply`. It is not shown while speaking or disabled.
+ */
+export const Reply: Story = {
+  render: function Render(a) {
+    const [replying, setReplying] = React.useState(true);
+    return (
+      <div style={{ maxInlineSize: 440 }}>
+        <MessageInput {...a} replyTo={replying ? "Jordan Alvarez" : undefined} replyText="Calibration worked!! The labels line up now."
+          onCancelReply={() => setReplying(false)} onSend={() => setReplying(false)} />
+      </div>
+    );
+  },
+};
+
+/**
  * The spec's two slots. `attachmentSlot` adds the product's own content to the
  * row above the text; `moreTools` puts icon controls beside Attachment, and
  * drops out while the tray is open and while listening.

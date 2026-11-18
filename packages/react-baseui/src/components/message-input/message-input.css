@@ -205,6 +205,50 @@
   line-height: var(--body-xsmall-line-height);
   letter-spacing: var(--body-xsmall-letter-spacing);
 }
+/* The Reply Bar (spec Show Reply): one button that cancels the reply. */
+.zds-message-input__reply {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  min-height: var(--control-lg);
+  padding: var(--space-2xs) var(--space-md);
+  border: 0;
+  border-radius: var(--radius-element-md);
+  background: var(--surface-success);
+  color: var(--foreground-primary);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+.zds-message-input__reply:focus-visible {
+  outline: var(--stroke-thick) solid var(--border-focus);
+  outline-offset: var(--stroke-thick);
+}
+.zds-message-input__reply-text {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  flex: 1 1 0;
+  min-width: 0;
+}
+.zds-message-input__reply-label,
+.zds-message-input__reply-quote {
+  font: var(--text-body-xsmall);
+  color: var(--foreground-secondary);
+}
+.zds-message-input__reply-label,
+.zds-message-input__reply-name { flex: none; white-space: nowrap; }
+.zds-message-input__reply-name { font: var(--text-label-small); }
+.zds-message-input__reply-quote {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .zds-message-input__hint { color: var(--foreground-secondary); }
 .zds-message-input__error { color: var(--foreground-error); }
 

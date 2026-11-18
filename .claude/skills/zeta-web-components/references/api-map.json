@@ -856,6 +856,7 @@
    "Attachment": "zeta-message-input"
   },
   "props": {
+   "showReply": "derived: shown when replyTo is set",
    "attachmentFileSlot": "slot attachments",
    "moreToolsSlot": "slot more-tools",
    "Attachment.open": "property trayOpen",

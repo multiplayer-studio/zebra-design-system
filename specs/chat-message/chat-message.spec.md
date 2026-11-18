@@ -137,7 +137,7 @@ Rounded=false moves the root and every nested part to radius/none.
 - **role receiver**: Someone else, not an assistant or yourself, the sender.
 
 - **root**: layout horizontal, padding space/sm block, space/md inline; fill sender interactive/primary/background/default · receiver surface/brand · Style=none: none and no padding; radius radius/lg, with the inner corners at radius/xs per Status; radius/none when Rounded=false
-- **message**: textStyle body/small; color foreground/on-strong (fill sender) · foreground/primary otherwise; sizing fill
+- **message**: textStyle body/small; color foreground/on-strong (fill sender) · foreground/primary otherwise; paragraphs one body/small line apart (a blank line), line breaks within a paragraph stay tight; sizing fill
 - **Status corners** (radius/xs on the inner corners): first: sender: bottom-end radius/xs · receiver: bottom-start radius/xs; middle: sender: top-end and bottom-end · receiver: top-start and bottom-start; last: sender: top-end · receiver: top-start
 - Style=none exists only at Status=single.
 

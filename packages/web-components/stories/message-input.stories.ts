@@ -41,6 +41,16 @@ export const State: Story = {
 };
 
 /**
+ * The spec's Show Reply: set `reply-to` (and `reply-text`) to show the Reply
+ * Bar above the body. The whole bar is one button; pressing it fires
+ * `zds-cancel-reply`. It is not shown while speaking or disabled.
+ */
+export const Reply: Story = {
+  render: () => frame(html`<zds-message-input placeholder="Placeholder" reply-to="Jordan Alvarez" reply-text="Calibration worked!! The labels line up now."
+    @zds-cancel-reply=${(e: Event) => { (e.currentTarget as HTMLElement & { replyTo: string }).replyTo = ""; }}></zds-message-input>`),
+};
+
+/**
  * The spec's slots: `attachments` adds the product's own content above the
  * text; `more-tools` puts icon controls beside Attachment and drops out while
  * the tray is open and while listening; `attachment-controls` adds types to

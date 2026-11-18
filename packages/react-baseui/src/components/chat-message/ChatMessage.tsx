@@ -1,7 +1,7 @@
 import * as React from "react";
 import { createPortal } from "react-dom";
 import { Menu } from "@base-ui/react/menu";
-import { Avatar } from "../avatar/Avatar.js";
+import { Avatar, type AvatarSwatchColor } from "../avatar/Avatar.js";
 import { Icon, type IconName } from "../icon/Icon.js";
 import { IconButton } from "../icon-button/IconButton.js";
 import { Dropdown } from "../dropdown/Dropdown.js";
@@ -354,7 +354,8 @@ export interface ChatMessageProps {
   expandMenu?: boolean;
   onExpandMenuChange?: (open: boolean) => void;
   name?: string;
-  avatar?: { src?: string; initials?: string; icon?: IconName };
+  /** The sender's avatar. `swatchColor` sets the swatch behind initials or an icon: give each person their own, and the assistant purple. */
+  avatar?: { src?: string; initials?: string; icon?: IconName; swatchColor?: AvatarSwatchColor | (string & {}) };
   /** The send time, formatted. */
   time?: string;
   /** The message text. Rendered in a Bubble. */
@@ -524,7 +525,7 @@ export const ChatMessage = React.forwardRef<HTMLDivElement, ChatMessageProps>(fu
 
   const lead = first ? (
     showAvatar && !ownBubble ? <Avatar className="zds-chat-message__avatar" size="xsmall" showStatus={false} showClose={false} showRing={false} src={avatar?.src} initials={avatar?.initials}
-      icon={avatar?.icon} type={avatar?.src ? "photo" : avatar?.icon ? "icon" : "initials"} alt="" /> : null
+      icon={avatar?.icon} swatchColor={avatar?.swatchColor} type={avatar?.src ? "photo" : avatar?.icon ? "icon" : "initials"} alt="" /> : null
   ) : (
     <span className="zds-chat-message__time-column" data-hide-time={hideTime || undefined}>
       {time ? <ChatTimestamp>{time}</ChatTimestamp> : null}

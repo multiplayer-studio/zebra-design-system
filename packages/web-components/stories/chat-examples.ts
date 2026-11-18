@@ -5,8 +5,11 @@
  *   8600:21204 Desktop · Assistant conversation
  * Plain data; the same file sits beside each package's Chat Message stories.
  * Where Figma mixes platforms inside one screen, the container's platform wins.
+ * In text, a blank line starts a paragraph and a single line break stays inside it.
  */
 
+/** The Avatar swatches. */
+export type AvatarColor = "purple" | "blue" | "sea" | "yellow" | "orange" | "green" | "burgundy";
 export type ExampleReaction = { glyph: "like" | "dislike" | "satisfied" | "point-heart"; count: number };
 export type ExampleAttachment =
   | { kind: "photos"; photos: ("photo-lead" | "photo-top" | "photo-bottom")[] }
@@ -20,6 +23,8 @@ export interface ExampleMessage {
   state?: "loading" | "active";
   name?: string;
   initials?: string;
+  /** Avatar swatch (Figma): one per person; the assistant is always purple. */
+  color?: AvatarColor;
   assistantAvatar?: boolean;
   showAvatar?: boolean;
   time?: string;
@@ -37,17 +42,19 @@ export interface ChatExample {
   instance: "Group channel" | "Assistant conversation";
   figma: string;
   title: string;
-  people?: string[];
+  people?: { initials: string; color: AvatarColor }[];
   replying?: { to: string; text: string };
   messages: ExampleMessage[];
 }
 
 const ASSISTANT_REPLY =
-  "Try the following:  A blinking amber light after a roll change usually means the media sensor needs calibrating. Try this: \nHold the feed button until the light flashes twice, then release.\nThe printer will feed a few labels to calibrate.\nPrint a test label. \nIf that doesn’t fix it, I can open a service ticket.";
+  "Try the following:\n\nA blinking amber light after a roll change usually means the media sensor needs calibrating. Try this:\n\nHold the feed button until the light flashes twice, then release.\nThe printer will feed a few labels to calibrate.\nPrint a test label.\n\nIf that doesn’t fix it, I can open a service ticket.";
 const CALIBRATE = { kind: "file", name: "How to calibrate a printer requiring an update", meta: "PDF · 248 KB" } as const;
-const JA = { name: "Jordan Alvarez", initials: "JA" };
-const MC = { name: "Maya Chen", initials: "MC" };
-const PN = { name: "Priya Nair", initials: "PN" };
+/* Each person keeps the swatch Figma gives them. */
+const JA = { name: "Jordan Alvarez", initials: "JA", color: "sea" } as const;
+const MC = { name: "Maya Chen", initials: "MC", color: "orange" } as const;
+const PN = { name: "Priya Nair", initials: "PN", color: "green" } as const;
+const PEOPLE = [JA, MC, PN].map(({ initials, color }) => ({ initials, color }));
 
 /** From "Yep. For both." on, the mobile and desktop group channels show the same conversation. */
 const groupTail: ExampleMessage[] = [
@@ -70,7 +77,7 @@ const groupTail: ExampleMessage[] = [
 export const CHAT_EXAMPLES: ChatExample[] = [
   {
     id: "mobile-group-channel", container: "mobile", instance: "Group channel", figma: "8600-8354", title: "Project Team A",
-    people: ["JA", "MC", "PN"], replying: { to: "Jordan Alvarez", text: "Calibration worked!!..." },
+    people: PEOPLE, replying: { to: "Jordan Alvarez", text: "Calibration worked!!..." },
     messages: [
       { role: "receiver", chatStyle: "channel", ...JA, time: "09:41", text: "Hey, the label printer in back is doing it again 😩" },
       { role: "receiver", chatStyle: "channel", sequence: "consecutive", time: "09:41", text: "It prints half a label then stops.",
@@ -87,7 +94,7 @@ export const CHAT_EXAMPLES: ChatExample[] = [
   },
   {
     id: "desktop-group-channel", container: "desktop", instance: "Group channel", figma: "8600-16431", title: "Project Team A",
-    people: ["JA", "MC", "PN"], messages: groupTail,
+    people: PEOPLE, messages: groupTail,
   },
   {
     id: "desktop-assistant-conversation", container: "desktop", instance: "Assistant conversation", figma: "8600-21204", title: "Assistant",

@@ -12,6 +12,9 @@ export default css`
   :host([hidden]) { display: none; }
   /* Message actions are neutral glyphs; send-like primaries stay the only coloured controls. */
   zds-icon-button[flavour="text"]:not([disabled]) { --zds-button-fg: var(--interactive-neutral-foreground-default); }
+  /* Message text is slotted here and forwarded into the bubble. Paragraphs in the message sit one body/small line apart, a blank line; line breaks inside a paragraph stay tight. */
+  ::slotted(p) { margin: 0; }
+  ::slotted(p:not(:first-of-type)) { margin-block-start: var(--body-small-line-height); }
   .root {
     position: relative; box-sizing: border-box; display: flex; gap: var(--space-sm); padding: var(--space-sm);
     border-radius: var(--radius-none); color: var(--foreground-primary); -webkit-tap-highlight-color: transparent;

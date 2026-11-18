@@ -16,6 +16,11 @@ describe("zeta-message-input", () => {
       await expect(subject).shadowDom.to.be.accessible();
     });
 
+    it("is accessible with the Reply Bar", async () => {
+      const subject = await fixture<ZetaMessageInput>(html`<zeta-message-input replyTo="Jordan Alvarez" replyText="Calibration worked!!"></zeta-message-input>`);
+      await expect(subject).shadowDom.to.be.accessible();
+    });
+
     it("names the composer and every icon control", async () => {
       const subject = await createComponent();
       expect(root(subject).getAttribute("aria-label")).to.equal("Message");
@@ -63,6 +68,27 @@ describe("zeta-message-input", () => {
       expect(labels(subject)).to.deep.equal(["Stop speaking"]);
     });
 
+    it("shows the Reply Bar when replyTo is set, as one button that cancels the reply", async () => {
+      const subject = await fixture<ZetaMessageInput>(html`<zeta-message-input replyTo="Jordan Alvarez" replyText="Calibration worked!!"></zeta-message-input>`);
+      const bar = subject.shadowRoot!.querySelector<HTMLButtonElement>("button.reply")!;
+      expect(bar).to.exist;
+      expect(root(subject).firstElementChild).to.equal(bar);
+      expect(bar.getAttribute("aria-label")).to.equal("Cancel reply to Jordan Alvarez");
+      expect(bar.querySelector(".reply-name")!.textContent).to.equal("Jordan Alvarez");
+      expect(bar.querySelector("zeta-icon-button")).to.not.exist;
+      setTimeout(() => bar.click());
+      await oneEvent(subject, "cancelreply");
+    });
+
+    it("has no Reply Bar without replyTo, while speaking or when disabled", async () => {
+      const none = await createComponent();
+      expect(none.shadowRoot!.querySelector(".reply")).to.not.exist;
+      for (const state of ["speaking", "disabled"] as const) {
+        const subject = await fixture<ZetaMessageInput>(html`<zeta-message-input .state=${state} replyTo="Jordan Alvarez"></zeta-message-input>`);
+        expect(subject.shadowRoot!.querySelector(".reply")).to.not.exist;
+      }
+    });
+
     it("sends the text and clears", async () => {
       const subject = await createComponent(undefined, "Book a table");
       setTimeout(() => send(subject).click());
@@ -95,6 +121,18 @@ describe("zeta-message-input", () => {
       probe.style.background = "var(--interactive-neutral-background-disabled)";
       document.body.append(probe);
       expect(getComputedStyle(root(subject)).backgroundColor).to.equal(getComputedStyle(probe).backgroundColor);
+      probe.remove();
+    });
+
+    it("draws the Reply Bar on surface/success with radius/element-md", async () => {
+      const subject = await fixture<ZetaMessageInput>(html`<zeta-message-input replyTo="Jordan Alvarez"></zeta-message-input>`);
+      const probe = document.createElement("div");
+      probe.style.background = "var(--surface-success)";
+      probe.style.borderRadius = "var(--radius-element-md)";
+      document.body.append(probe);
+      const bar = subject.shadowRoot!.querySelector<HTMLElement>(".reply")!;
+      expect(getComputedStyle(bar).backgroundColor).to.equal(getComputedStyle(probe).backgroundColor);
+      expect(getComputedStyle(bar).borderTopLeftRadius).to.equal(getComputedStyle(probe).borderTopLeftRadius);
       probe.remove();
     });
 

@@ -736,6 +736,7 @@
         "message": {
           "textStyle": "body/small",
           "color": "foreground/on-strong (fill sender) · foreground/primary otherwise",
+          "paragraphs": "one body/small line apart (a blank line); line breaks within a paragraph stay tight",
           "sizing": "fill"
         }
       },

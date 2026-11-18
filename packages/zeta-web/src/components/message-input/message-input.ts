@@ -3,6 +3,7 @@ import { customElement, property, query, state } from "lit/decorators.js";
 import { repeat } from "lit/directives/repeat.js";
 import { styleMap } from "lit/directives/style-map.js";
 import styles from "./message-input.styles.js";
+import "../icon/icon.js";
 import "../button/icon-button/icon-button.js";
 import "../chips/assist-chip/assist-chip.js";
 import "../progress-indicators/progress-circle/progress-circle.js";
@@ -71,6 +72,8 @@ export const messageInputStrings = {
   cancelDictation: "Cancel dictation",
   cancelTranscription: "Cancel transcription",
   discardRecording: "Discard recording",
+  replyingTo: "Replying to",
+  cancelReply: "Cancel reply to {name}",
   dictated: "Dictated",
   undoDictation: "Undo dictation",
   attached: "Attached",
@@ -178,6 +181,7 @@ const newId = () => `att-${Date.now().toString(36)}-${uid++}`;
  * @event {CustomEvent} stopspeaking - Fired when Stop speaking is pressed.
  * @event {CustomEvent<{ value: boolean }>} speakresponsechange - Fired when the read-aloud toggle changes.
  * @event {CustomEvent<{ attachment: MessageAttachment }>} previewattachment - Fired when an image chip is activated.
+ * @event {CustomEvent} cancelreply - Fired when the Reply Bar is pressed. The whole bar is one button that cancels the reply.
  * @part root - The composer surface.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6649-196
@@ -230,6 +234,10 @@ export class ZetaMessageInput extends LitElement {
   @property({ type: Boolean }) dictated = false;
   @property({ type: Boolean }) trayOpen = false;
   @property({ type: String }) label = "Message";
+  /** Who is being answered. Setting it shows the Reply Bar above the body (the spec's Show Reply). Not shown while speaking or disabled. */
+  @property({ type: String }) replyTo = "";
+  /** The quoted line being answered. One line, truncated. */
+  @property({ type: String }) replyText = "";
 
   @state() private mode: Mode = "compose";
   @state() private elapsed = 0;
@@ -754,6 +762,19 @@ export class ZetaMessageInput extends LitElement {
       @drop=${this.onDrop}
       @keydown=${this.onKeyDown}
     >
+      ${
+        this.replyTo && !this.disabled && this.derived !== "disabled"
+          ? html`<button class="reply" type="button" aria-label=${fmt(S.cancelReply, { name: this.replyTo })} @click=${() => this.emit("cancelreply")}>
+              <zeta-icon rounded>reply</zeta-icon>
+              <span class="reply-text"
+                ><span class="reply-label">${S.replyingTo}</span><span class="reply-name">${this.replyTo}</span>${
+                  this.replyText ? html`<span class="reply-quote">${this.replyText}</span>` : nothing
+                }</span
+              >
+              <zeta-icon rounded>close</zeta-icon>
+            </button>`
+          : nothing
+      }
       <ul class="chips" aria-label=${S.attached} ?hidden=${mode !== "compose"}>
         ${
           showChips && this.dictated

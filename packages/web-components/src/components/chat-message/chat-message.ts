@@ -82,6 +82,8 @@ export class ZdsChatMessage extends LitElement {
   @property({ type: String, attribute: "avatar-src" }) avatarSrc = "";
   /** A glyph for the avatar instead of initials: the assistant's own avatar (companion). */
   @property({ type: String, attribute: "avatar-icon" }) avatarIcon = "";
+  /** The avatar's swatch behind initials or an icon: give each person their own, and the assistant purple. */
+  @property({ type: String, attribute: "avatar-color" }) avatarColor = "";
   @property({ type: String }) time = "";
   @property({ type: String, attribute: "bubble-status" }) bubbleStatus: ChatBubbleStatus = "single";
   @property({ type: String, attribute: "loading-label" }) loadingLabel = "";
@@ -165,7 +167,7 @@ export class ZdsChatMessage extends LitElement {
     const shape = this.rounded ? "rounded" : "sharp";
     const lead = first
       ? (this.showAvatar && !own ? html`<zds-avatar size="xsmall" type=${this.avatarSrc ? "photo" : this.avatarIcon ? "icon" : "initials"} initials=${this.initials}
-          src=${this.avatarSrc || nothing} icon=${this.avatarIcon || nothing} .showStatus=${false} .showClose=${false} .showRing=${false}></zds-avatar>` : nothing)
+          src=${this.avatarSrc || nothing} icon=${this.avatarIcon || nothing} swatch-color=${this.avatarColor || nothing} .showStatus=${false} .showClose=${false} .showRing=${false}></zds-avatar>` : nothing)
       : html`<span class="time-column">${this.time ? html`<zds-chat-timestamp>${this.time}</zds-chat-timestamp>` : nothing}</span>`;
     const desktopControls = !mobile && !assistant && !this.loading
       ? html`<div class="float">

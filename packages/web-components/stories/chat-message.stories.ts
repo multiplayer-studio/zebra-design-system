@@ -99,8 +99,9 @@ const exampleMessage = (m: ExampleMessage, platform: "mobile" | "desktop"): Temp
   platform=${platform} chat-style=${m.chatStyle} role-name=${m.role} state=${m.state ?? nothing} sequence=${m.sequence ?? "first"}
   name=${m.name ?? nothing} time=${m.time ?? nothing} reply-to=${m.replyTo ?? nothing} reply-text=${m.replyText ?? nothing}
   initials=${m.initials ?? nothing} avatar-icon=${m.assistantAvatar ? "companion" : nothing}
+  avatar-color=${m.assistantAvatar ? "purple" : m.color ?? nothing}
   .showAvatar=${m.showAvatar ?? true} .showControls=${m.showControls ?? true}
-  >${m.text?.split("\n").map((line, i) => (i ? html`<br />${line}` : line))}${(m.attachments ?? []).map(exampleAttachment)}${(m.reactions ?? []).map(
+  >${m.text?.split("\n\n").map((para) => html`<p>${para.split("\n").map((line, i) => (i ? html`<br />${line}` : line))}</p>`)}${(m.attachments ?? []).map(exampleAttachment)}${(m.reactions ?? []).map(
     (r) => html`<zds-assist-chip slot="reactions" icon=${r.glyph}>${r.count}</zds-assist-chip>`)}${m.thread
     ? html`<zds-chat-thread slot="thread" reply-count=${m.thread.replies.length} open>${m.thread.replies.map((r) => exampleMessage(r, platform))}</zds-chat-thread>`
     : nothing}${MENU}</zds-chat-message>`;
@@ -109,7 +110,7 @@ const exampleMessage = (m: ExampleMessage, platform: "mobile" | "desktop"): Temp
 const exampleScreen = (ex: ChatExample) => {
   const mobile = ex.container === "mobile";
   const trailing = ex.people
-    ? html`<zds-avatar-rail slot="trailing" size="xsmall" max="2" label="Members">${ex.people.map((p) => html`<zds-avatar initials=${p}></zds-avatar>`)}</zds-avatar-rail>
+    ? html`<zds-avatar-rail slot="trailing" size="xsmall" max="2" label="Members">${ex.people.map((p) => html`<zds-avatar initials=${p.initials} swatch-color=${p.color}></zds-avatar>`)}</zds-avatar-rail>
         <zds-icon-button slot="trailing" flavour="text" size="medium" icon="world" label="Translate"></zds-icon-button>`
     : html`<zds-icon-button slot="trailing" flavour="text" size="medium" icon="world" label="Translate"></zds-icon-button>
         <zds-icon-button slot="trailing" flavour="text" size="medium" icon="love" label="Favourite"></zds-icon-button>

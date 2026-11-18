@@ -9,6 +9,7 @@
 | Prop | Type | Default | Values | Notes |
 |---|---|---|---|---|
 | `state` | enum | `empty` | `empty` `filled` `attachment-open` `listening` `transcribing` `dictated` `recording` `playback` `speaking` `disabled` |  |
+| `showReply` | boolean | `false` |  |  |
 | `attachmentFileSlot` | slot | `empty` |  |  |
 | `moreToolsSlot` | slot | `empty` |  |  |
 
@@ -56,11 +57,13 @@
 |  |  |  |
 |  |  |  |
 |  |  |  |
+|  |  |  |
 
 ## Layout & theming
 
 | Property | Sizing | Guidance |
 |---|---|---|
+|  |  |  |
 |  |  |  |
 |  |  |  |
 |  |  |  |

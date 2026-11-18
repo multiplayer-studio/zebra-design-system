@@ -91,6 +91,9 @@ export class ZetaChatMessage extends Contourable(LitElement) {
   /** A Zebra glyph (kebab-case) for the avatar instead of initials: the assistant's own avatar (companion). */
   @property({ type: String }) avatarIcon = "";
 
+  /** The avatar's swatch behind initials or an icon: give each person their own, and the assistant purple. */
+  @property({ type: String }) avatarColor = "";
+
   /** The send time, formatted. */
   @property({ type: String }) time = "";
 
@@ -226,7 +229,7 @@ export class ZetaChatMessage extends Contourable(LitElement) {
     const shape = this.rounded ? "rounded" : "sharp";
     const lead = first
       ? this.showAvatar && !own
-        ? html`<zeta-avatar size="xs"
+        ? html`<zeta-avatar size="xs" swatch-color=${this.avatarColor || nothing}
             >${this.avatarIcon
               ? html`<span class="avatar-glyph" aria-hidden="true">${zebraIconGlyphs[this.avatarIcon]}</span>`
               : this.initials}</zeta-avatar

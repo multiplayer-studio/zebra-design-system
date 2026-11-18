@@ -67,6 +67,13 @@ describe("zeta-chat-message", () => {
       expect(q(subject, ".float")).to.not.exist;
     });
 
+    it("sets paragraphs one body/small line apart", async () => {
+      const subject = await fixture<ZetaChatMessage>(html`<zeta-chat-message><p>One.</p><p>Two.</p></zeta-chat-message>`);
+      const [first, second] = subject.querySelectorAll("p");
+      expect(getComputedStyle(first).marginTop).to.equal("0px");
+      expect(getComputedStyle(second).marginTop).to.equal(getComputedStyle(second).lineHeight);
+    });
+
     it("draws an icon avatar from the Zebra font in place of initials", async () => {
       const subject = await createComponent({ roleName: "assistant", avatarIcon: "companion" });
       const glyph = q(subject, "zeta-avatar .avatar-glyph")!;

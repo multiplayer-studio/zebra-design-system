@@ -14,6 +14,14 @@ export default css`
     --icon-size: var(--control-icon-sm);
   }
 
+  /* Message text is slotted here and forwarded into the bubble. Paragraphs in the message sit one body/small line apart, a blank line; line breaks inside a paragraph stay tight. */
+  ::slotted(p) {
+    margin: 0;
+  }
+  ::slotted(p:not(:first-of-type)) {
+    margin-block-start: var(--body-small-line-height);
+  }
+
   :host {
     display: block;
   }

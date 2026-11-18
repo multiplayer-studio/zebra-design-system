@@ -20,6 +20,12 @@ import * as MessageInput from "./message-input.stories";
 
 <Canvas of={MessageInput.Speaking} />
 
+## Reply
+
+Set `replyTo` (and `replyText`) to show the Reply Bar above the body. The whole bar is one button; pressing it fires `cancelreply`. It is not shown while speaking or disabled.
+
+<Canvas of={MessageInput.Reply} />
+
 ## Slots
 
 <Canvas of={MessageInput.Slots} />
