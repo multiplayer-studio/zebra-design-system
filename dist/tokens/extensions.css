@@ -1,0 +1,131 @@
+/* Extensions — brand/theme overrides
+   Generated from tokens/ by scripts/build-tokens-css.mjs — do not edit by hand.
+   Apply .ext-<name> on any element; values cascade to its subtree. Combine with .mode-dark / .mode-light.
+*/
+
+
+/* ── companion ─────────────────────────────────────────────── */
+.ext-companion {
+  --palette-brand-primary-deep: var(--primitives-color-accent-1-70);
+  --palette-brand-primary-default: var(--primitives-color-accent-1-60);
+  --palette-brand-primary-faint: var(--primitives-color-accent-1-10);
+  --palette-brand-primary-muted: var(--primitives-color-accent-1-20);
+  --palette-brand-primary-on: var(--primitives-color-neutral-cool-10);
+  --palette-brand-primary-subtle: var(--primitives-color-accent-1-50);
+}
+
+.ext-companion.mode-dark,
+.mode-dark .ext-companion,
+.ext-companion .mode-dark {
+  --palette-brand-primary-deep: var(--primitives-color-accent-1-40);
+  --palette-brand-primary-default: var(--primitives-color-accent-1-60);
+  --palette-brand-primary-faint: var(--primitives-color-accent-1-100);
+  --palette-brand-primary-muted: var(--primitives-color-accent-1-90);
+  --palette-brand-primary-subtle: var(--primitives-color-accent-1-50);
+}
+
+.ext-companion.mode-light,
+.mode-light .ext-companion,
+.ext-companion .mode-light {
+  --palette-brand-primary-deep: var(--primitives-color-accent-1-70);
+  --palette-brand-primary-default: var(--primitives-color-accent-1-60);
+  --palette-brand-primary-faint: var(--primitives-color-accent-1-10);
+  --palette-brand-primary-muted: var(--primitives-color-accent-1-20);
+  --palette-brand-primary-on: var(--primitives-color-neutral-cool-10);
+  --palette-brand-primary-subtle: var(--primitives-color-accent-1-50);
+}
+
+/* ── target ────────────────────────────────────────────────── */
+.ext-target {
+  --palette-brand-primary-deep: var(--primitives-color-extend-4-70);
+  --palette-brand-primary-default: var(--primitives-color-extend-4-60);
+  --palette-brand-primary-faint: var(--primitives-color-extend-4-10);
+  --palette-brand-primary-muted: var(--primitives-color-extend-4-20);
+  --palette-brand-primary-on: var(--primitives-color-neutral-warm-10);
+  --palette-brand-primary-subtle: var(--primitives-color-extend-4-50);
+  --palette-brand-secondary-deep: var(--primitives-color-extend-3-70);
+  --palette-brand-secondary-default: var(--primitives-color-extend-3-60);
+  --palette-brand-secondary-faint: var(--primitives-color-extend-3-10);
+  --palette-brand-secondary-subtle: var(--primitives-color-extend-3-50);
+  --palette-gradient-default-start: var(--primitives-color-extend-3-80);
+  --palette-gradient-strong-start: var(--primitives-color-extend-3-90);
+  --palette-gradient-subtle-start: var(--primitives-color-extend-3-70);
+  --palette-ink-brand: var(--primitives-color-extend-4-70);
+  --palette-ink-link: var(--primitives-color-extend-4-60);
+  --palette-line-focus: var(--primitives-color-accent-1-60);
+  --palette-line-selection: var(--primitives-color-extend-4-60);
+  --primitives-color-extend-4-100: #140000;
+  --primitives-color-extend-4-10: #f9e5e5;
+  --primitives-color-extend-4-20: #efb2b2;
+  --primitives-color-extend-4-30: #e57f7f;
+  --primitives-color-extend-4-40: #db4c4c;
+  --primitives-color-extend-4-50: #d11919;
+  --primitives-color-extend-4-60: #cc0000;
+  --primitives-color-extend-4-70: #b70000;
+  --primitives-color-extend-4-80: #660000;
+  --primitives-color-extend-4-90: #3d0000;
+}
+
+.ext-target.mode-dark,
+.mode-dark .ext-target,
+.ext-target .mode-dark {
+  --palette-brand-primary-deep: var(--primitives-color-extend-4-40);
+  --palette-brand-primary-default: var(--primitives-color-extend-4-60);
+  --palette-brand-primary-faint: var(--primitives-color-extend-4-100);
+  --palette-brand-primary-muted: var(--primitives-color-extend-4-90);
+  --palette-brand-primary-on: var(--primitives-color-neutral-warm-10);
+  --palette-brand-primary-subtle: var(--primitives-color-extend-4-70);
+  --palette-brand-secondary-deep: var(--primitives-color-extend-3-40);
+  --palette-brand-secondary-default: var(--primitives-color-extend-3-50);
+  --palette-brand-secondary-faint: var(--primitives-color-extend-3-100);
+  --palette-brand-secondary-subtle: var(--primitives-color-extend-3-60);
+  --palette-gradient-default-start: var(--primitives-color-extend-3-70);
+  --palette-gradient-strong-start: var(--primitives-color-extend-3-50);
+  --palette-gradient-subtle-start: var(--primitives-color-extend-3-80);
+  --palette-ink-brand: var(--primitives-color-extend-4-40);
+  --palette-ink-link: var(--primitives-color-extend-4-50);
+  --palette-line-focus: var(--primitives-color-accent-1-60);
+  --palette-line-selection: var(--primitives-color-extend-4-50);
+  --primitives-color-extend-4-100: #140000;
+  --primitives-color-extend-4-10: #f9e5e5;
+  --primitives-color-extend-4-20: #efb2b2;
+  --primitives-color-extend-4-30: #e57f7f;
+  --primitives-color-extend-4-40: #db4c4c;
+  --primitives-color-extend-4-50: #d11919;
+  --primitives-color-extend-4-60: #cc0000;
+  --primitives-color-extend-4-70: #b70000;
+  --primitives-color-extend-4-80: #660000;
+  --primitives-color-extend-4-90: #3d0000;
+}
+
+.ext-target.mode-light,
+.mode-light .ext-target,
+.ext-target .mode-light {
+  --palette-brand-primary-deep: var(--primitives-color-extend-4-70);
+  --palette-brand-primary-default: var(--primitives-color-extend-4-60);
+  --palette-brand-primary-faint: var(--primitives-color-extend-4-10);
+  --palette-brand-primary-muted: var(--primitives-color-extend-4-20);
+  --palette-brand-primary-on: var(--primitives-color-neutral-warm-10);
+  --palette-brand-primary-subtle: var(--primitives-color-extend-4-50);
+  --palette-brand-secondary-deep: var(--primitives-color-extend-3-70);
+  --palette-brand-secondary-default: var(--primitives-color-extend-3-60);
+  --palette-brand-secondary-faint: var(--primitives-color-extend-3-10);
+  --palette-brand-secondary-subtle: var(--primitives-color-extend-3-50);
+  --palette-gradient-default-start: var(--primitives-color-extend-3-80);
+  --palette-gradient-strong-start: var(--primitives-color-extend-3-90);
+  --palette-gradient-subtle-start: var(--primitives-color-extend-3-70);
+  --palette-ink-brand: var(--primitives-color-extend-4-70);
+  --palette-ink-link: var(--primitives-color-extend-4-60);
+  --palette-line-focus: var(--primitives-color-accent-1-60);
+  --palette-line-selection: var(--primitives-color-extend-4-60);
+  --primitives-color-extend-4-100: #140000;
+  --primitives-color-extend-4-10: #f9e5e5;
+  --primitives-color-extend-4-20: #efb2b2;
+  --primitives-color-extend-4-30: #e57f7f;
+  --primitives-color-extend-4-40: #db4c4c;
+  --primitives-color-extend-4-50: #d11919;
+  --primitives-color-extend-4-60: #cc0000;
+  --primitives-color-extend-4-70: #b70000;
+  --primitives-color-extend-4-80: #660000;
+  --primitives-color-extend-4-90: #3d0000;
+}
