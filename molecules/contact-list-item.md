@@ -22,19 +22,21 @@ tokens:
   contact-list-item-container-padding-x: '{space.space-lg}'
   contact-list-item-container-gap: '{space.space-md}'
   contact-list-item-text-gap: '{space.space-3xs}'
-  contact-list-item-action-size-min: '{primitives.scale-14}'
+  contact-list-item-action-size-min: '{control.control-target-min}'
 ---
 
 # Contact List Item
 
 > One person in a contact directory or picker: who they are, their presence, and quick actions to reach them.
 
+It is a specialised row; a product may build it on the generic [List Item](list-item.md), keeping the parts and tokens below.
+
 ## Anatomy
 1. Row — a [Menu Item](./menu-item.md) row, `--contact-list-item-container-background-enabled`, with a `--contact-list-item-divider-width` `--contact-list-item-divider-color` line under every row except the last. The row is not one control: the open area and each action are.
 2. Open area — the avatar and text together, one button that opens the contact.
 3. Leading — an [Avatar](../atoms/avatar.md) (initials or photo), optionally with its presence status.
-4. Name — `--contact-list-item-name-font` `--contact-list-item-name-foreground`, one line.
-5. Secondary line — role, number or presence, `--contact-list-item-secondary-font` `--contact-list-item-secondary-foreground`, one line, truncated.
+4. Name — `--contact-list-item-name-font` `--contact-list-item-name-foreground`, one line; a long name truncates at the end.
+5. Secondary line — role, number or presence, `--contact-list-item-secondary-font` `--contact-list-item-secondary-foreground`, one line, truncated at the end.
 6. Trailing actions — e.g. call and message [Icon Buttons](../atoms/icon-button.md), flavour subtle, each at least `--contact-list-item-action-size-min`; the Icon Button governs their colours, states and focus ring.
 
 ## Variants
@@ -64,7 +66,7 @@ The action buttons keep their own Icon Button states. All changes are instant.
 | Open area and action targets | at least `--contact-list-item-action-size-min` tall |
 | Divider | `--contact-list-item-divider-width` |
 
-The row fills the list's width; the text column takes the remaining space and truncates. Measurements are provisional: there is no Figma source yet.
+The row fills the list's width; the text column takes the remaining space and truncates, with the full text on hover and on focus of the open area ([patterns 5.30](../patterns/05-sizes-devices.md)). Measurements are provisional: there is no Figma source yet.
 
 ## Properties
 | Property | Options | Default |
@@ -81,9 +83,9 @@ The row fills the list's width; the text column takes the remaining space and tr
 - Put the role or department in the secondary line, and lead with presence when it matters ("Online · Picker").
 
 ## Accessibility
-- Presence must be conveyed with text or an accessible label, not only the status colour.
-- Icon-only actions need accessible names that include the person ("Call Rosa Tan"), and targets of at least `--contact-list-item-action-size-min`.
-- The open area and the actions are separate buttons in reading order; don't nest one inside the other.
+- Presence is conveyed with text or an accessible label, never the status colour alone ([patterns 6.11](../patterns/06-accessibility.md)).
+- Icon-only actions need accessible names that include the person ("Call Rosa Tan"), and targets of at least `--contact-list-item-action-size-min` ([patterns 6.16](../patterns/06-accessibility.md)).
+- The open area and the actions are separate buttons in reading order; don't nest one inside the other. The open area's accessible name carries the full, untruncated name and secondary line, and on focus the full text also shows visually ([patterns 6.60](../patterns/06-accessibility.md)).
 - The focus ring (`--contact-list-item-focus-ring-width` `--contact-list-item-focus-ring-color`) is drawn inside the open area so the row edges don't clip it.
 
 ## Claude Prompt

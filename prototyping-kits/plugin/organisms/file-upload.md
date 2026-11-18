@@ -12,7 +12,7 @@ tokens:
   file-upload-container-border-color-active: '{colors.color-line-selection}'
   file-upload-container-border-color-error: '{colors.color-line-default}'
   # shape
-  file-upload-container-radius-rounded: '{radius.radius-sm}'
+  file-upload-container-radius-rounded: '{radius.radius-element-md}'
   file-upload-container-radius-sharp: '{radius.radius-none}'
   # text
   file-upload-headline-font: '{typography.type-title-medium}'
@@ -36,8 +36,8 @@ tokens:
 1. Drop zone — dashed-border container accepting drag and drop and click-to-browse.
 2. Headline — primary instruction text.
 3. "or" — small subtle separator text.
-4. "Select Files" — [Button](../atoms/button.md), flavour primary, size medium, shape follows the drop zone (rounded → rounded, sharp → sharp); opens the file picker. The button governs its own colours, states, radius and focus ring.
-5. Caption — supported formats and size limits; replaced by the error message and recoloured on error.
+4. "Select files" — [Button](../atoms/button.md), flavour primary, size medium, shape follows the drop zone (rounded → rounded, sharp → sharp); opens the file picker. The button governs its own colours, states, radius and focus ring.
+5. Caption — supported formats and size limits; on error, replaced by the error message with an error [Icon](../atoms/icon.md) and recoloured.
 6. Uploaded files — a list of [Upload Items](../molecules/upload-item.md) below the zone, one per file, `--file-upload-files-gap` apart.
 
 ## Variants
@@ -55,9 +55,9 @@ Multiple files (default on) allows several files, including via drag and drop.
 |---|---|---|---|
 | enabled | `--file-upload-container-border-width` dashed `--file-upload-container-border-color-enabled` | `--file-upload-container-background-enabled` | `--file-upload-caption-foreground` |
 | active (drag-over) | `--file-upload-container-border-width` dashed `--file-upload-container-border-color-active` | `--file-upload-container-background-active` | `--file-upload-caption-foreground` |
-| error | `--file-upload-container-border-width` dashed `--file-upload-container-border-color-error` | `--file-upload-container-background-enabled` | `--file-upload-caption-foreground-error`, text replaced by the reason |
+| error | `--file-upload-container-border-width` dashed `--file-upload-container-border-color-error` | `--file-upload-container-background-enabled` | `--file-upload-caption-foreground-error`, an error icon and the reason in words |
 
-The zone turns active while a file is dragged over it and returns to enabled when the file leaves or is dropped. The error border stays neutral: the caption carries the error, in words and colour.
+The zone turns active while a file is dragged over it and returns to enabled when the file leaves or is dropped. The error border stays neutral: the caption carries the error in icon and words ([patterns 6.11](../patterns/06-accessibility.md)).
 
 ## Spacing & Sizing
 Measurements are provisional: this component has no Figma source yet.
@@ -86,16 +86,15 @@ The zone fills the width of its parent; its height hugs the content.
 | Shape | rounded, sharp | rounded |
 
 ## Usage
-- State accepted formats and maximum size in the caption, e.g. "Supports: JPG, JPEG2000, PNG. Max file size 100mb".
-- On error, put the reason in the caption; don't rely on the colour change alone.
+- State accepted formats and maximum size in the caption, e.g. "JPG, JPEG 2000 or PNG, 100 MB or less".
+- On error, the caption says what happened and what to do ("Photo.heic isn't a supported format. Select a JPG, JPEG 2000 or PNG file", [patterns 7.33](../patterns/07-content-copy.md)).
 - Show each chosen file as an [Upload Item](../molecules/upload-item.md) with its own progress, success and error states.
-- Keep the Select Files button's shape in step with the drop zone.
+- Keep the Select files button's shape in step with the drop zone.
 
 ## Accessibility
-- Drag and drop is an enhancement only. The Select Files button must always work from the keyboard; it brings its own focus ring (`--button-focus-ring-width` `--button-focus-ring-color`) and touch target (`--button-touch-target-size-minimum`).
+- Drag and drop is an enhancement only. The Select files button must always work from the keyboard; it brings its own focus ring (`--button-focus-ring-width` `--button-focus-ring-color`) and touch target (`--button-touch-target-size-minimum`).
 - Announce caption changes (errors, rejected files) politely to assistive technology, for example with a live region on the caption.
-- The error state changes the caption text as well as its colour (`--file-upload-caption-foreground-error`), so it never relies on colour alone.
-- Give the hidden file input an accessible name through the Select Files button that opens it.
+- Give the hidden file input an accessible name through the Select files button that opens it.
 
 ## Claude Prompt
-Draw a wide upload area with a `--file-upload-container-border-width` dashed `--file-upload-container-border-color-enabled` border and `--file-upload-container-radius-rounded` corners, `--file-upload-container-padding` padding, contents centred in a column with `--file-upload-container-gap` gaps. Show a `--file-upload-headline-font` headline like "Drop files here", a small `--file-upload-caption-foreground` "or", a solid primary (`--button-primary-container-background-enabled`) "Select Files" button with `--button-container-radius-rounded` corners, and below it a `--file-upload-caption-font` `--file-upload-caption-foreground` caption "Supports: JPG, JPEG2000, PNG. Max file size 100mb". In the drag-over state, the border turns `--file-upload-container-border-color-active` and the fill becomes `--file-upload-container-background-active`. Uploaded files appear as rows below the area.
+Draw a wide upload area with a `--file-upload-container-border-width` dashed `--file-upload-container-border-color-enabled` border and `--file-upload-container-radius-rounded` corners, `--file-upload-container-padding` padding, contents centred in a column with `--file-upload-container-gap` gaps. Show a `--file-upload-headline-font` headline like "Drop files here", a small `--file-upload-caption-foreground` "or", a solid primary (`--button-primary-container-background-enabled`) "Select files" button with `--button-container-radius-rounded` corners, and below it a `--file-upload-caption-font` `--file-upload-caption-foreground` caption "JPG, JPEG 2000 or PNG, 100 MB or less". In the drag-over state, the border turns `--file-upload-container-border-color-active` and the fill becomes `--file-upload-container-background-active`. Uploaded files appear as rows below the area.

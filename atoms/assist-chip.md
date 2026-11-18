@@ -33,6 +33,7 @@ tokens:
   assist-chip-container-border-width: '{stroke.stroke-thin}'
   assist-chip-focus-ring-width: '{stroke.stroke-thick}'
   assist-chip-focus-ring-color: '{colors.color-line-focus}'
+  assist-chip-transition: '{motion.motion-feedback}'
   # sizes
   assist-chip-container-height: '{component-sizes.size-assist-chip-height}'
   assist-chip-container-padding-y: '{space.space-xs}'
@@ -49,7 +50,7 @@ tokens:
 > Offers a contextual action, or stands for an item someone can discard such as an attached file, with an optional colour marking its kind.
 
 ## Anatomy
-1. Container — horizontal row hugging its content at a fixed height (`--assist-chip-container-height`). Carries the background, the border and the radius; parts sit `--assist-chip-container-gap` apart.
+1. Container — horizontal row hugging its content, at least `--assist-chip-container-height` tall; a label that doesn't fit wraps and the chip grows taller. Carries the background, the border and the radius; parts sit `--assist-chip-container-gap` apart.
 2. Leading icon (optional) — [Icon](../atoms/icon.md) at `--assist-chip-icon-size`, naming the action's domain. Any glyph; it takes the label colour.
 3. Label — the action, phrased as a verb, in a wrapper padded `--assist-chip-label-padding-x` each side. The only text the chip takes.
 4. Remove control (Discardable, on by default) — a `close` [Icon](../atoms/icon.md) at `--assist-chip-icon-size` after the label, in the label colour. It is a separate target from the chip.
@@ -59,11 +60,13 @@ Colour sets the border and the foreground (label, icon and remove control); the 
 
 | Colour | Border | Text / icon | Use for |
 |---|---|---|---|
-| neutral (default) | `--assist-chip-neutral-container-border-color` | `--assist-chip-neutral-label-foreground` | no state or kind of item to mark |
-| green | `--assist-chip-green-container-border-color` | `--assist-chip-green-label-foreground` | a positive state, or one kind of item (e.g. spreadsheets) |
-| orange | `--assist-chip-orange-container-border-color` | `--assist-chip-orange-label-foreground` | a state that needs attention, or one kind of item |
-| blue | `--assist-chip-blue-container-border-color` | `--assist-chip-blue-label-foreground` | an informative state, or one kind of item (e.g. documents) |
-| red | `--assist-chip-red-container-border-color` | `--assist-chip-red-label-foreground` | a failed state, or one kind of item (e.g. PDFs) |
+| neutral (default) | `--assist-chip-neutral-container-border-color` | `--assist-chip-neutral-label-foreground` | no kind of item to mark |
+| green | `--assist-chip-green-container-border-color` | `--assist-chip-green-label-foreground` | one kind of item (for example spreadsheets) |
+| orange | `--assist-chip-orange-container-border-color` | `--assist-chip-orange-label-foreground` | one kind of item |
+| blue | `--assist-chip-blue-container-border-color` | `--assist-chip-blue-label-foreground` | one kind of item (for example documents) |
+| red | `--assist-chip-red-container-border-color` | `--assist-chip-red-label-foreground` | one kind of item (for example PDFs) |
+
+Colours mark kinds of item only, never a state: a status goes in a [Status Label](../atoms/status-label.md).
 
 The border is `--assist-chip-container-border-width`, drawn inside the container so it adds no size.
 
@@ -79,12 +82,12 @@ Shape: rounded (default) → `--assist-chip-container-radius-rounded` (pill) wit
 | dragged | `--assist-chip-container-background-dragged` | unchanged | unchanged | while the chip is being reordered |
 | disabled | `--assist-chip-container-background-disabled` | none | `--assist-chip-label-foreground-disabled` (label, icon, remove) | neutral colour only; not interactive |
 
-Every state change is an instant colour swap: no transition is authored. What the chip does when activated, and what removing it does, belongs to the implementation.
+Every state change is a colour change over `--assist-chip-transition` (the press feedback timing). What the chip does when activated, and what removing it does, belongs to the implementation.
 
 ## Spacing & Sizing
 | Property | Token |
 |---|---|
-| Height | `--assist-chip-container-height` |
+| Height (minimum) | `--assist-chip-container-height` |
 | Padding (V / H) | `--assist-chip-container-padding-y` / `--assist-chip-container-padding-x` |
 | Gap | `--assist-chip-container-gap` |
 | Label padding (H) | `--assist-chip-label-padding-x` |
@@ -92,7 +95,7 @@ Every state change is an instant colour swap: no transition is authored. What th
 | Icon and remove control | `--assist-chip-icon-size` |
 | Border | `--assist-chip-container-border-width` |
 
-Width hugs the icon, label and remove control. The height is the same in every state, so a mixed row sits level. The chip is shorter than `--assist-chip-touch-target-size-minimum`; extend its hit area (and the remove control's) to that size on touch UIs.
+Width hugs the icon, label and remove control. The height is the same in every state, so a mixed row sits level. The chip is shorter than `--assist-chip-touch-target-size-minimum`; extend its hit area (and the remove control's) to that size on touch ([patterns 6.16](../patterns/06-accessibility.md)), keeping the two apart ([patterns 6.17](../patterns/06-accessibility.md)).
 
 ## Properties
 | Property | Options | Default |
@@ -109,20 +112,20 @@ Width hugs the icon, label and remove control. The height is the same in every s
 Hover, focus and dragged are driven by interaction, never set on a static layout. In code the foreground, background and border each accept a colour override on top of Colour, so one kind of item can hold one colour across a view; keep foreground and border in the same family. Figma's `active` axis has a single value and is not a property.
 
 ## Usage
-- Phrase the label as a verb: the chip is a thing to do, not a thing to pick. A noun label reads as a filter or a tag.
+- Phrase the label as a verb ([patterns 7.16](../patterns/07-content-copy.md)): the chip is a thing to do, not a thing to pick. A noun label reads as a filter or a tag.
 - Keep the leading icon consistent across a row; one chip without an icon among several with them looks misaligned. Prefer no icon to an invented one.
 - Use Discardable for items someone can remove, such as attached files.
 - Hold one colour for every chip of the same kind in a view (all PDFs red, all spreadsheets green).
 - Don't use an assist chip for the main action on the screen; that is a [Button](../atoms/button.md). Don't use it to narrow content; that is a [Filter Chip](../atoms/filter-chip.md).
 - Don't use Selected to mean an action has stuck. A chip that stays selected is usually a filter chip in disguise.
-- Disabled is drawn for the neutral colour only. Say why the action is unavailable nearby.
+- Disabled is drawn for the neutral colour only. Say why the action is unavailable beside it ([patterns 3.10](../patterns/03-controls-interaction.md)), and keep it focusable where the reason matters ([patterns 6.34](../patterns/06-accessibility.md)).
 
 ## Accessibility
 - The chip is a control: give it a button role and a name stating the action.
 - The remove control is a separate target with its own accessible name that says what it removes (Remove Document.pdf, not Remove).
-- The focus ring (`--assist-chip-focus-ring-width` `--assist-chip-focus-ring-color`) is drawn outside the chip; make sure a scrolling row doesn't clip it.
+- The focus ring (`--assist-chip-focus-ring-width` `--assist-chip-focus-ring-color`) is drawn outside the chip ([patterns 6.23](../patterns/06-accessibility.md)); make sure a scrolling row doesn't clip it.
 - The leading icon is decorative. Anything it means that the label doesn't must be in text.
-- Colour marks the kind of item but never replaces the label. Check each colour (and any code override) for contrast against the surface.
+- Colour marks the kind of item but never replaces the label ([patterns 6.11](../patterns/06-accessibility.md)). Each colour (and any code override) meets the contrast floors against the surface ([patterns 6.1](../patterns/06-accessibility.md)).
 - Disabled chips drop the border and rely on `--assist-chip-container-background-disabled` and `--assist-chip-label-foreground-disabled` alone; check both against the surface.
 - The label (`--assist-chip-label-font`) is the action's only name; don't abbreviate it.
 

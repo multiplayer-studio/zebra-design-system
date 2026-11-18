@@ -23,9 +23,9 @@ version = re.search(r"^version:\s*'?([^'\n]+)", read('DESIGN.md'), re.M).group(1
 tokens = f"<style>\n/* tokens.css from Zebra Design System, DESIGN.md version {version} */\n{read('tokens.css').rstrip()}\n</style>"
 components = f"<style>\n{read('prototypes', '_starter', 'components.css').rstrip()}\n</style>"
 plex = '\n'.join(
-    f'@font-face {{ font-family: "IBM Plex Sans"; font-weight: {w}; font-style: normal; font-display: swap; '
-    f'src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-{w}-normal.woff2") format("woff2"); }}'
-    for w in (300, 400, 500, 600, 700))
+    f'@font-face {{ font-family: "IBM Plex {name}"; font-weight: {w}; font-style: normal; font-display: swap; '
+    f'src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-{slug}@5.3.0/files/ibm-plex-{slug}-latin-{w}-normal.woff2") format("woff2"); }}'
+    for name, slug, weights in (('Sans', 'sans', (300, 400, 500, 600, 700)), ('Mono', 'mono', (400, 500))) for w in weights)
 
 html = f'''<!doctype html>
 <html lang="en">

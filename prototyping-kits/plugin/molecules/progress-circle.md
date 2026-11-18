@@ -65,7 +65,7 @@ Rounded is a line cap, not a corner radius; it only shows where the arc starts a
 | upload, Stop | the percentage swaps for the cancel button |
 | upload, hover or focus (implementation behaviour) | code also reveals the cancel button on hover and keyboard focus |
 
-The ring has no hover, pressed, focus or disabled states. Determinate, indeterminate and cancel-on-hover are implementation behaviour, not Figma properties: Figma draws the arc fixed at about three quarters in every variant as a placeholder; the sweep and the spin belong to the implementation. Showing or hiding the upload control doesn't resize the ring. Respect reduced motion: stop the spin and keep nearby text saying work is in progress.
+The ring has no hover, pressed, focus or disabled states. Determinate, indeterminate and cancel-on-hover are implementation behaviour, not Figma properties: Figma draws the arc fixed at about three quarters in every variant as a placeholder; the sweep and the spin belong to the implementation. Showing or hiding the upload control doesn't resize the ring. With reduced motion the spin stops ([patterns 6.66](../patterns/06-accessibility.md)); nearby text keeps saying work is in progress.
 
 ## Spacing & Sizing
 | Part | Token |
@@ -91,12 +91,13 @@ Always square; never hugs its content.
 - Use it for compact or inline progress (beside an icon, in a dense row, in an upload); use a [Progress Bar](../atoms/progress-bar.md) for page-level progress.
 - Use medium or large whenever Upload is on; the control is a fixed size, so smaller rings leave it almost no margin. Upload does nothing at xsmall and xxsmall.
 - Pair the ring with nearby text; on its own it says something is happening but never what.
+- Show it only once work has run for about a second, and keep it for at least about half a second so it doesn't flicker ([patterns 4.13–4.14](../patterns/04-states-feedback.md)). Past about 5 seconds, show measured progress where the amount of work is known.
 - Keep Show Track on; without it the arc has nothing to be measured against.
 - Don't read the Figma arc as a value; drive it from the real number.
 
 ## Accessibility
-- Expose the ring as a progress indicator with its value, range and a name for the task (`progressbar`); indeterminate rings omit the value.
-- The cancel action is a real control: give it a name ("Cancel upload") and a keyboard path, and show a `--progress-circle-cancel-focus-ring-width` `--progress-circle-cancel-focus-ring-color` ring on focus. Reveal it on keyboard focus as well as hover.
+- Expose the ring as a progress indicator with its value, range and a name for the task (`progressbar`); indeterminate rings omit the value. Announce progress and completion without moving focus ([patterns 6.53](../patterns/06-accessibility.md)).
+- The cancel action is a real control: give it a name ("Cancel upload") and a keyboard path, and show a `--progress-circle-cancel-focus-ring-width` `--progress-circle-cancel-focus-ring-color` ring on focus. Reveal it on keyboard focus as well as hover. It is drawn `--progress-circle-upload-size`, below `--control-target-min`; extend its hit area to that on touch ([patterns 6.16](../patterns/06-accessibility.md)).
 - The arc and track are separated by colour alone; check `--progress-circle-arc-color` against `--progress-circle-track-color` on the surface behind them.
 - At xxsmall the fixed stroke is heavy for the diameter; check it still reads as a ring.
 

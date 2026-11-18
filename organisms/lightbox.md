@@ -6,9 +6,9 @@ composes: [../atoms/icon-button.md, ../atoms/icon.md, ../atoms/scrim.md]
 tokens:
   # panel
   lightbox-container-background: '{colors.color-fill-overlay}'
-  lightbox-container-border-color: '{colors.color-line-default}'
+  lightbox-container-border-color: '{colors.color-fill-transparent}'
   lightbox-container-border-width: '{stroke.stroke-thin}'
-  lightbox-container-radius-rounded: '{radius.radius-element-md}'
+  lightbox-container-radius-rounded: '{radius.radius-container}'
   lightbox-container-radius-sharp: '{radius.radius-none}'
   lightbox-container-padding: '{space.space-md}'
   lightbox-container-gap: '{space.space-sm}'
@@ -65,9 +65,9 @@ tokens:
 > A full-size preview over the page that pages through a list of images, videos, PDFs and other files.
 
 ## Anatomy
-1. Panel — the raised surface over the backdrop: `--lightbox-container-background`, a `--lightbox-container-border-width` `--lightbox-container-border-color` border, `--lightbox-container-shadow`, radius from Shape. `--lightbox-container-padding` inside, `--lightbox-container-gap` between toolbar and stage.
+1. Panel — the raised surface over the backdrop: `--lightbox-container-background`, a `--lightbox-container-border-width` `--lightbox-container-border-color` border (transparent, so the edge shows in forced colours, [patterns 6.10](../patterns/06-accessibility.md)), `--lightbox-container-shadow`, radius from Shape. `--lightbox-container-padding` inside, `--lightbox-container-gap` between toolbar and stage.
 2. Toolbar — a row `--lightbox-toolbar-gap` apart:
-   - Name — the item's name, its file's name or its URL; "Untitled" when none exists. `--lightbox-name-font`, `--lightbox-name-foreground`.
+   - Name — the item's name, its file's name or its URL; "Untitled" when none exists. `--lightbox-name-font`, `--lightbox-name-foreground`. A long file name or URL truncates in the middle, keeping its extension, with the full name on hover and focus ([patterns 5.31](../patterns/05-sizes-devices.md)).
    - Counter — "{index} of {count}", shown only while paging through several items. `--lightbox-counter-font`, `--lightbox-counter-foreground`.
    - Actions — open in new (`open_in_new_window`), download (`download`) and close (`close`), each an [Icon Button](../atoms/icon-button.md) (subtle, `--lightbox-action-size` square), `--lightbox-actions-gap` apart. Open in new and download each sit behind their own property.
 3. Stage — the media well: `--lightbox-stage-background`, radius from Shape, at least `--lightbox-stage-min-height` tall. A track of frames slides inside it, clipped; neighbouring frames stay mounted either side of the current one.
@@ -96,8 +96,8 @@ Shape: rounded (default) → `--lightbox-container-radius-rounded` panel, `--lig
 | open | an index is set on a closed lightbox | the backdrop fades in over `--lightbox-scrim-transition` and the panel springs up from the bottom over `--lightbox-open-transition`, the stage already at the current frame's height; the height never animates on open and the first frame never slides in |
 | paging | previous / next, or the arrow keys | the track slides to the new frame and the stage's height follows, both over `--lightbox-paging-transition`; an interrupted page glides on to the new target instead of restarting |
 | media sized | the current media reports its real size | the stage re-measures and eases to the true height over `--lightbox-paging-transition` |
-| reduced motion | the OS preference | paging and height changes land instantly, whatever Animated says |
-| closed | close, Escape or the backdrop | the lightbox unmounts; offscreen videos are already paused |
+| reduced motion | the OS preference | the panel fades in instead of springing up; paging and height changes land at once, the new frame fading in over `--lightbox-scrim-transition`, whatever Animated says ([patterns 6.66](../patterns/06-accessibility.md)) |
+| closed | close, Escape, the system Back or the backdrop | the lightbox unmounts; offscreen videos are already paused |
 
 Paging is slower than the small controls because the frames are large and travel far: the slide reads as a scene change, not a flick. Use transitions, not keyed animations, so nothing remounts. The stage's height is always written as a measured length, never `auto` (which can't animate); measure again once the panel mounts and whenever media gains its real size, and arm the height and track transitions only after the first real measure or the first page. Pin the track to the stage: sized by its content, the tallest frame inflates it and every frame centres against the oversized box.
 
@@ -135,12 +135,12 @@ Open in new and download disable themselves when the item has no URL. With a sin
 - Use [Dialog](dialog.md) for a message; the lightbox is only for previewing content.
 
 ## Accessibility
-- Backdrop, focus trap, Escape and scroll lock behave as in [Dialog](dialog.md): focus can't leave the panel while it is open.
+- Backdrop, scroll lock and focus follow the overlay rules ([patterns 6.28](../patterns/06-accessibility.md), [6.29](../patterns/06-accessibility.md)), as in [Dialog](dialog.md). The system Back closes it.
 - Previous and next are labelled buttons and the arrow keys page as well; with one item, navigation disappears entirely.
 - Open in new and download disable themselves when the item has no URL, rather than failing silently.
-- Reduced motion turns all sliding off; nothing is communicated by motion alone.
+- Under reduced motion sliding becomes a fade; nothing is communicated by motion alone.
 - The file sheet names the file and says "No preview for this file", so an unpreviewable item is still announced.
 - A frame slid out of view pauses its video, so sound never continues behind another frame. Neighbouring frames stay mounted, so pause them explicitly.
 
 ## Claude Prompt
-Draw a `--lightbox-container-width`-wide white preview panel (`--lightbox-container-background`) with a thin light grey `--lightbox-container-border-color` border, `--lightbox-container-radius-rounded` corners and a soft large shadow, over a dark translucent scrim. At the top a toolbar shows the file name in `--lightbox-name-font`, a grey "2 of 5" counter in `--lightbox-counter-font`, and three plain icon buttons at the right: open in new window, download and close. Below, a pale grey stage (`--lightbox-stage-background`, `--lightbox-stage-radius-rounded` corners) shows a photo centred at its own ratio, with two dark square arrow buttons floating at its left and right edges, vertically centred. For a file with no preview, the stage instead shows a white document sheet with a folded corner and a grey document icon above the grey text "No preview for this file".
+Draw a `--lightbox-container-width`-wide white preview panel (`--lightbox-container-background`) with a transparent thin border, `--lightbox-container-radius-rounded` corners and a soft large shadow, over a dark translucent scrim. At the top a toolbar shows the file name in `--lightbox-name-font`, a grey "2 of 5" counter in `--lightbox-counter-font`, and three plain icon buttons at the right: open in new window, download and close. Below, a pale grey stage (`--lightbox-stage-background`, `--lightbox-stage-radius-rounded` corners) shows a photo centred at its own ratio, with two dark square arrow buttons floating at its left and right edges, vertically centred. For a file with no preview, the stage instead shows a white document sheet with a folded corner and a grey document icon above the grey text "No preview for this file".

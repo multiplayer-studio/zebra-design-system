@@ -9,6 +9,6 @@ description: Update a prototype's tokens and component CSS to the installed Zebr
 
 1. Replace everything between `<!-- tokens:start -->` and `<!-- tokens:end -->` with that block from the current `prototypes/_starter/index.html`. The block carries the version comment, so the version updates with it.
 2. Do the same between `<!-- components:start -->` and `<!-- components:end -->`.
-3. Never change anything outside the markers.
+3. Never change anything outside the markers, with one exception: if the starter's first `<style>` block has `@font-face` rules the prototype's lacks (e.g. IBM Plex Mono), add them to the prototype's first `<style>` block.
 
-Then open the prototype and check it still renders. Tell the designer the old and new versions, and anything that now looks different because a component or token changed.
+Then open the prototype and check it still renders. If the first number of the version went up (a breaking release), search the prototype's own markup, CSS and script for class names and `--` tokens that no longer exist in the new blocks, and update them from the component files. Tell the designer the old and new versions, what you updated, and anything that now looks different because a component or token changed.

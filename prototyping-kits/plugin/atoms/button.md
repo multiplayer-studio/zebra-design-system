@@ -95,7 +95,11 @@ tokens:
   button-container-border-width: '{stroke.stroke-thin}'
   button-focus-ring-width: '{stroke.stroke-thick}'
   button-focus-ring-color: '{colors.color-line-focus}'
-  button-container-transition: '{motion.motion-smooth}'
+  button-container-transition: '{motion.motion-feedback}'
+  # busy, hold to confirm
+  button-busy-indicator-stroke-width: '{stroke.stroke-thick}'
+  button-busy-indicator-duration: '{motion.motion-spin}'
+  button-hold-fill-duration: '{motion.motion-spin}'
   # sizes
   button-container-height-small: '{control.control-sm}'
   button-container-height-medium: '{control.control-md}'
@@ -122,10 +126,12 @@ tokens:
 > Buttons trigger an action from a text label, with optional icons on either side.
 
 ## Anatomy
-1. Container — horizontal row, content centred, height fixed per size. Carries the background, border and radius. The row has no gap (`--button-container-gap`).
+1. Container — horizontal row, content centred, with a minimum height per size. Carries the background, border and radius. The row has no gap (`--button-container-gap`).
 2. Leading icon (optional) — [Icon](../atoms/icon.md), coloured with the label foreground; style follows the button shape.
 3. Label — the button text, in a wrapper whose own horizontal padding (`--button-label-padding-x-medium`) is what separates it from the icons. Write it as the verb the user is about to perform.
 4. Trailing icon (optional) — [Icon](../atoms/icon.md), as the leading icon.
+5. Busy indicator (busy state only) — a spinning arc in the leading icon's place, `--button-icon-size-<size>` square, `--button-busy-indicator-stroke-width` wide, coloured with the label foreground, one turn per `--button-busy-indicator-duration`.
+6. Hold fill (Hold to confirm only) — a fill in the flavour's pressed background that grows from the leading edge to the trailing edge while the button is held, over `--button-hold-fill-duration`.
 
 ## Variants
 Flavour (light mode shown by the tokens; every flavour follows dark and AAA automatically). Label and icon colour stay the same in every interactive state, except on text-gradient.
@@ -155,9 +161,13 @@ Shape: sharp → `--button-container-radius-sharp` with zeta-icons-sharp; rounde
 | hover | per flavour (hover column) | unchanged | pointer devices only |
 | pressed | per flavour (pressed column) | unchanged | |
 | focused | per flavour (enabled) | unchanged | `--button-focus-ring-width` `--button-focus-ring-color` ring drawn outside the bounds, replacing the resting border; identical on every flavour |
-| disabled | `--button-<flavour>-container-background-disabled` | `--button-<flavour>-label-foreground-disabled` text + icon | outline borders → `--button-<flavour>-container-border-color-disabled`; no flavour keeps its accent colour; not interactive |
+| busy | per flavour (enabled) | unchanged | the action is running: the busy indicator replaces the leading icon (or sits before the label), the button ignores presses until the action ends, and it's announced as busy. Colours don't change ([patterns 3.3](../patterns/03-controls-interaction.md)) |
+| holding | per flavour (enabled), hold fill growing | unchanged | Hold to confirm only: the fill grows while held; releasing early cancels and the fill drains back |
+| disabled | `--button-<flavour>-container-background-disabled` | `--button-<flavour>-label-foreground-disabled` text + icon | outline borders → `--button-<flavour>-container-border-color-disabled`; no flavour keeps its accent colour; doesn't act, but stays focusable when its reason matters (see Accessibility) |
 
-Every state change is colour-only, a tint over `--button-container-transition`, with no scale, shadow or elevation shift. The gradient flavours never swap to a flat colour (a browser can't interpolate a gradient to a solid fill, so it flickers): on hover the gradient slides until the end colour covers the fill (the label on text-gradient), on press it slides the other way until the start colour covers it, and leaving or releasing slides it back. The focus ring is the only change to the outer footprint, so leave room around a button in a tight row.
+Busy follows the loading timings ([patterns 4.13–4.15](../patterns/04-states-feedback.md)): the button stops taking presses at once, the indicator appears only if the action takes longer than about a second, and once shown it stays for at least half a second. After success the label briefly shows the result ("Saved"), then the screen moves on; after a failure the button returns to enabled and the error shows where it belongs. A second press while busy does nothing, and the service rejects the duplicate too ([patterns 3.4](../patterns/03-controls-interaction.md)).
+
+Every state change is colour-only, a tint over `--button-container-transition` (the press and release feedback timing), with no scale, shadow or elevation shift. The gradient flavours never swap to a flat colour (a browser can't interpolate a gradient to a solid fill, so it flickers): on hover the gradient slides until the end colour covers the fill (the label on text-gradient), on press it slides the other way until the start colour covers it, and leaving or releasing slides it back. The focus ring is the only change to the outer footprint, so leave room around a button in a tight row.
 
 ## Spacing & Sizing
 | Size | Height | Padding (V / H) | Label padding (H) | Font | Icon |
@@ -166,7 +176,7 @@ Every state change is colour-only, a tint over `--button-container-transition`, 
 | medium (default) | `--button-container-height-medium` | `--button-container-padding-y` / `--button-container-padding-x-medium` | `--button-label-padding-x-medium` | `--button-label-font-medium` | `--button-icon-size-medium` |
 | large | `--button-container-height-large` | `--button-container-padding-y` / `--button-container-padding-x-large` | `--button-label-padding-x-large` | `--button-label-font-large` | `--button-icon-size-large` |
 
-Width always hugs the label and any visible icons, never fixed; each icon shown adds its own icon size to the width. The label never truncates or wraps, so a long label (or one swapped at runtime) widens the control and shifts its neighbours. The fixed height does the real work; vertical padding is the same at every size.
+Width always hugs the label and any visible icons, never fixed; each icon shown adds its own icon size to the width. The label never truncates. Where the space is narrower than the label (a long translation, large text), the label wraps onto more lines and the button grows taller: each height token is a minimum, not a fixed height ([patterns 6.60](../patterns/06-accessibility.md)). Vertical padding is the same at every size.
 
 Icon size is a context override: buttons use the icon atom's `--icon-size-small` / `--icon-size-medium` steps; large reuses medium, so the icon's large step never appears inside a button.
 
@@ -180,26 +190,33 @@ Icon size is a context override: buttons use the icon atom's `--icon-size-small`
 | Leading icon | on / off, any icon | off |
 | Trailing icon | on / off, any icon | off |
 | Disabled | on / off | off |
+| Busy | on / off | off |
+| Hold to confirm | on / off | off |
+
+Hold to confirm is for safety actions that must not fire by accident ([patterns 3.91](../patterns/03-controls-interaction.md)): the action starts on press, the hold fill shows progress, and it acts only when the fill completes. Use it on filled flavours (primary, positive, negative, contrast), never on gradient flavours. Assistive technology and the keyboard reach the action through a confirmation step instead of the hold, and the same action is never also on a gesture that could fire by accident.
 
 Hover, pressed and focus are driven by interaction, never set on a static layout.
 
 ## Usage
-- Use one primary per view or per group. Everything else steps down to outline, subtle or text so the single most important action stays findable. Two outline buttons side by side read as equal weight.
-- Write the label as the verb the user is about to perform, Save rather than OK.
-- Use positive only for the confirmation of a constructive outcome (approve, publish), and negative only for destructive actions the user can't undo. Keep the cancel beside a negative button no stronger than subtle.
-- Use gradient (or text-gradient) only for an action to do with AI (DESIGN.md §3). It outranks primary, so keep it to one per view.
+- Use one primary per screen ([patterns 1.72](../patterns/01-screen-composition.md)). A region's leading action steps down to the next level of emphasis, and everything else to outline, subtle or text. Where several actions are equally important, none is primary. Two outline buttons side by side read as equal weight.
+- Write the label as a verb naming what happens ([patterns 7.16](../patterns/07-content-copy.md)).
+- Use positive only for the confirmation of a constructive outcome (approve, publish). Use negative for every destructive action: reversible ones act at once and offer Undo, irreversible ones confirm first ([patterns 3.86](../patterns/03-controls-interaction.md)). Keep the cancel beside a negative button no stronger than subtle.
+- A destructive action is never the default action, the one Enter or a confirming hardware key triggers ([patterns 3.6](../patterns/03-controls-interaction.md)).
+- A button that opens something before acting says so: on desktop, end its label with an ellipsis ("Export as…") ([patterns 3.9](../patterns/03-controls-interaction.md)).
+- Use gradient (or text-gradient) only for an action to do with AI (DESIGN.md §3). An AI action ranks like any other action: gradient only when AI is the screen's main purpose (it then takes the primary's place), otherwise text-gradient at the emphasis its rank calls for ([patterns 9.3](../patterns/09-ai.md)). The gradient is never the only AI marker.
 - Pair contrast with outline-contrast, outline or text, not with primary; outline-subtle suits a busy surface where an accent border would compete.
 - Text and subtle have nothing behind them at rest, so on a coloured or busy surface they stop reading as controls.
 - Use a trailing icon for directional or disclosure actions. Both icons on at small leave little room for the label.
 - Don't build an icon-only button by hiding the label; use [Icon Button](../atoms/icon-button.md).
 - Don't mix shapes inside one button group, and keep the shape consistent with the surrounding UI (sharp UIs use sharp icons).
-- Touch target: small (`--button-container-height-small`) is below `--button-touch-target-size-minimum`; add surrounding hit area on touch UIs.
+- Touch target: small and medium (`--button-container-height-small`, `--button-container-height-medium`) are below `--button-touch-target-size-minimum`; extend their hit area to it on touch ([patterns 6.16](../patterns/06-accessibility.md)). A pointer-only product may use `--control-target-pointer-min` instead ([patterns 6.18](../patterns/06-accessibility.md)).
 
 ## Accessibility
-- The focus ring (`--button-focus-ring-width` `--button-focus-ring-color`) is drawn outside the control and is identical on every flavour, so it stays visible whatever the button sits on.
-- Disabled is a visual state only. Say why the action is unavailable in nearby text; a disabled control with no explanation looks broken.
+- The focus ring (`--button-focus-ring-width` `--button-focus-ring-color`) is drawn outside the control and is identical on every flavour ([patterns 6.23](../patterns/06-accessibility.md)).
+- An unavailable button stays visible with its reason beside it ([patterns 3.10](../patterns/03-controls-interaction.md)). Where its existence or reason matters, it stays focusable with `aria-disabled="true"` and announces itself as unavailable ([patterns 6.34](../patterns/06-accessibility.md)). Next and Submit are never disabled for an incomplete form: they stay enabled and check the form when pressed ([patterns 4.43](../patterns/04-states-feedback.md)). Dimming is allowed as the state because it's announced and the reason is shown ([patterns 6.11](../patterns/06-accessibility.md)). The short disable while busy needs no reason.
+- Busy is exposed as busy (`aria-busy="true"`) with the button still focusable, and the result ("Saved") is announced without moving focus.
 - The icon repeats the label rather than adding to it. Every state change is colour-only, so nothing may be signalled by hover or pressed alone.
-- Positive and negative must not rely on colour: the label carries the meaning.
+- Positive and negative never rely on colour alone; the label carries the meaning ([patterns 6.11](../patterns/06-accessibility.md)).
 - Labels must make sense out of context (Save, not OK), because screen readers announce them on their own.
 
 ## Claude Prompt

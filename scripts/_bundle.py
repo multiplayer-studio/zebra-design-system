@@ -49,8 +49,9 @@ def write_zip(out, prefix, items, claude, claude_dir=None, extra=None):
     print(f'Wrote {out}')
 
 
-def write_dir(out, prefix, items, claude, claude_dir=None, extra=None):
+def write_dir(out, prefix, items, claude, claude_dir=None, extra=None, claude_name='CLAUDE.md'):
     """Same as write_zip (extra too), as plain files under out/ (relative to the repo root unless absolute).
+    claude_name renames the CLAUDE.md file (the plugin ships it as CONTEXT.md).
     The bundle's top folder (the first part of prefix) is replaced, so deletions carry; the rest of out/ is left alone."""
     out = os.path.join(ROOT, out)
     shutil.rmtree(os.path.join(out, prefix.split('/')[0]), ignore_errors=True)
@@ -65,7 +66,7 @@ def write_dir(out, prefix, items, claude, claude_dir=None, extra=None):
         path = os.path.join(out, prefix, dst)
         os.makedirs(os.path.dirname(path), exist_ok=True)
         open(path, 'w').write(text)
-    path = os.path.join(out, claude_dir or prefix, 'CLAUDE.md')
+    path = os.path.join(out, claude_dir or prefix, claude_name)
     os.makedirs(os.path.dirname(path), exist_ok=True)
     open(path, 'w').write(claude)
     print(f"Wrote {os.path.relpath(os.path.join(out, prefix.split('/')[0]), ROOT)}/")

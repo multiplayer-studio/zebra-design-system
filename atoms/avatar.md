@@ -6,10 +6,10 @@ composes: [../atoms/icon.md]
 tokens:
   # swatch (behind initials or an icon; never behind a photo)
   avatar-purple-container-background: '{colors.color-data-4}'
-  avatar-blue-container-background: '{colors.color-data-1}'
+  avatar-magenta-container-background: '{colors.color-data-10}'
   avatar-indigo-container-background: '{colors.color-data-9}'
   avatar-yellow-container-background: '{colors.color-data-7}'
-  avatar-coral-container-background: '{colors.color-data-11}'
+  avatar-coral-container-background: '{colors.color-data-2}'
   avatar-teal-container-background: '{colors.color-data-6}'
   avatar-burgundy-container-background: '{colors.color-data-5}'
   # content
@@ -59,11 +59,11 @@ tokens:
   avatar-away-badge-background: '{colors.color-data-8}'
   avatar-busy-badge-background: '{colors.color-status-error-default}'
   avatar-dnd-badge-background: '{colors.color-data-4}'
-  avatar-on-shift-badge-background: '{colors.color-data-1}'
+  avatar-on-shift-badge-background: '{colors.color-data-9}'
   avatar-offline-badge-background: '{colors.color-ink-inverse}'
   avatar-offline-badge-border-color: '{colors.color-ink-medium}'
   avatar-offline-icon-foreground: '{colors.color-ink-medium}'
-  avatar-custom-badge-background: '{colors.color-data-1}'
+  avatar-custom-badge-background: '{colors.color-data-9}'
   # close
   avatar-close-badge-background: '{colors.color-data-12}'
   avatar-close-icon-size-ratio: '{component-sizes.size-avatar-status-icon-ratio}'
@@ -95,14 +95,12 @@ The status badge is presence only. For an unread or notification count, use a [N
 | Swatch | Background |
 |---|---|
 | purple (default) | `--avatar-purple-container-background` |
-| blue | `--avatar-blue-container-background` |
+| magenta | `--avatar-magenta-container-background` |
 | indigo | `--avatar-indigo-container-background` |
 | yellow | `--avatar-yellow-container-background` |
 | coral | `--avatar-coral-container-background` |
 | teal | `--avatar-teal-container-background` |
 | burgundy | `--avatar-burgundy-container-background` |
-
-Code also accepts any colour token as the swatch.
 
 **Status.** Every state carries its own glyph as well as its colour.
 
@@ -154,7 +152,7 @@ Every colour resolves separately in light, dark and AAA modes.
 |---|---|---|
 | Size | xxxsmall, xxsmall, xsmall, small, medium, large, xlarge, xxlarge, xxxlarge | xxxsmall |
 | Content | initials, photo, icon (set on the instance, not a property) | initials |
-| Swatch | purple, blue, indigo, yellow, coral, teal, burgundy | purple |
+| Swatch | purple, magenta, indigo, yellow, coral, teal, burgundy | purple |
 | Photo | any image (content photo only) | — |
 | Show Status | on / off | on |
 | Status | Available, Away, Busy, DND, On Shift, Offline, Close, Icon | Available |
@@ -178,9 +176,9 @@ Figma sets the content type and swatch by swapping the nested instance. Code tak
 
 ## Accessibility
 - An avatar alone doesn't convey a name. Pair it with visible text or give it an accessible name (alt text on the photo, or a label on the container).
-- Each presence state has its own glyph as well as its colour, and Offline is hollow. Still give the status a text equivalent (e.g. "Dana Moreno, away"), because at the smallest sizes the glyph is only a few pixels across.
-- The close badge is a button named for what it removes ("Remove Dana Moreno"), with the `--avatar-close-focus-ring-width` `--avatar-close-focus-ring-color` ring on focus. Its badge is far smaller than `--avatar-close-touch-target-size-minimum`, so extend its hit area to at least that.
+- Each presence state has its own glyph as well as its colour, and Offline is hollow ([patterns 6.11](../patterns/06-accessibility.md)). Still give the status a text equivalent (e.g. "Dana Moreno, away"), because at the smallest sizes the glyph is only a few pixels across.
+- The close badge is a button named for what it removes ("Remove Dana Moreno"), with the `--avatar-close-focus-ring-width` `--avatar-close-focus-ring-color` ring on focus. Its badge is far smaller than `--avatar-close-touch-target-size-minimum`, so extend its hit area to at least that ([patterns 6.16](../patterns/06-accessibility.md)).
 - A custom status glyph needs a text equivalent beside it.
 
 ## Claude Prompt
-Draw a Zebra avatar: a perfect circle `--avatar-container-size-medium` across, filled with a vivid purple swatch (`--avatar-purple-container-background`) and two white uppercase initials (`--avatar-content-foreground`) in medium-weight `--avatar-label-font`, about a third of the diameter tall. A thin light-grey ring (`--avatar-ring-border-color`, `--avatar-ring-border-width-medium`) traces its edge. A small `--avatar-badge-size-medium` green presence dot (`--avatar-available-badge-background`) with a tiny white check sits flush in the bottom-right corner, cut out from the avatar by a white edge (`--avatar-badge-border-color`). An optional grey close badge (`--avatar-close-badge-background`) with a tiny white "x" sits in the top-right corner. Other presence dots are tan with a clock (away), red with a dash (busy), purple with a no-entry sign (do not disturb), blue with a clock (on shift), and a hollow white circle with a grey outline (offline). Other swatches are blue, indigo, yellow, coral, teal and burgundy. Photo avatars crop the image into the circle. Sizes run from `--avatar-container-size-xxxsmall` to `--avatar-container-size-xxxlarge`, with every part scaling with the size.
+Draw a Zebra avatar: a perfect circle `--avatar-container-size-medium` across, filled with a vivid purple swatch (`--avatar-purple-container-background`) and two white uppercase initials (`--avatar-content-foreground`) in medium-weight `--avatar-label-font`, about a third of the diameter tall. A thin light-grey ring (`--avatar-ring-border-color`, `--avatar-ring-border-width-medium`) traces its edge. A small `--avatar-badge-size-medium` green presence dot (`--avatar-available-badge-background`) with a tiny white check sits flush in the bottom-right corner, cut out from the avatar by a white edge (`--avatar-badge-border-color`). An optional grey close badge (`--avatar-close-badge-background`) with a tiny white "x" sits in the top-right corner. Other presence dots are tan with a clock (away), red with a dash (busy), purple with a no-entry sign (do not disturb), indigo with a clock (on shift), and a hollow white circle with a grey outline (offline). Other swatches are magenta, indigo, yellow, coral, teal and burgundy. Photo avatars crop the image into the circle. Sizes run from `--avatar-container-size-xxxsmall` to `--avatar-container-size-xxxlarge`, with every part scaling with the size.

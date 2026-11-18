@@ -96,15 +96,15 @@ The bar hugs its content: its width grows with the number of page indicators sho
 Hover, pressed and focused are driven by interaction. The page range shown (which numbers, where the overflow sits) comes from the implementation. Figma only: each Outline × Rounded combination keeps its own page-number slot, so slot content doesn't survive switching either; one extra Main Slot 1 property is wired to nothing and can be ignored.
 
 ## Usage
-- Use pagination below tables and long lists, including the [Table](../organisms/table.md) footer.
+- Use pagination at the bottom of data tables and of collections people need to come back to a place in, or share it, including the [Table](../organisms/table.md) footer. Long lists on handhelds load more as the person scrolls instead ([patterns 1.93](../patterns/01-screen-composition.md)).
 - Leave it out when there is only ever one page; an empty or single-page bar looks unfinished.
 - Use Show Controls and Show More independently: drop the jump buttons for a short range, keep the overflow for a long one.
 - Disable first and previous on page 1 and next and last on the final page rather than hiding them, so the bar keeps its shape.
 - Set Outline and Rounded once for the whole bar.
-- `--pagination-item-size` is below the minimum touch target; add spacing or a larger hit area on touch UIs.
+- `--pagination-item-size` is below `--control-target-min`; extend each item's hit area to it on touch ([patterns 6.16–6.17](../patterns/06-accessibility.md)).
 
 ## Accessibility
-- Wrap the bar in a `nav` with a label such as "Pagination".
+- Wrap the bar in a `nav` with a label such as "Pagination" ([patterns 6.52](../patterns/06-accessibility.md)).
 - Mark the current page with `aria-current="page"`; selection is otherwise a fill and contrast change.
 - The jump controls and the overflow have no visible text: give each an accessible name ("First page", "Previous page", "More pages") rather than reading the glyph.
 - Give each page indicator a name such as "Page 3".

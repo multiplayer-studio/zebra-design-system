@@ -6,7 +6,7 @@ Usage: python3 scripts/prototyping-zip.py              every kit and the plugin;
        python3 scripts/prototyping-zip.py <project>    only that project's kit (the nightly tenants sync runs this)
 
 Each zip holds one folder, zebra-design-system-prototyping[-<project>]/, with:
-  atoms/ molecules/ organisms/ prototypes/  as-is
+  atoms/ molecules/ organisms/ patterns/ prototypes/  as-is
   .claude/skills/                            PROTOTYPING.SKILLS/
   templates/universal/                       templates/universal/ (master's universal templates), in every kit
   templates/                                 project kit only: templates/<project>/ flattened
@@ -14,14 +14,15 @@ Each zip holds one folder, zebra-design-system-prototyping[-<project>]/, with:
   CLAUDE.md                                  PROTOTYPING.CLAUDE.md
   README.md                                  copied from PROTOTYPING.README.md
   github.json                                project kit only: its repo, branch and design-system path from consumers.json
-A project kit whose project has a tenant is that tenant's view of the system: its DESIGN.md, component docs and universal templates from
+A project kit whose project has a tenant is that tenant's view of the system: its DESIGN.md, component docs, patterns and universal templates from
 tenants/<tenant>/files/ replace (or add to) master's, files it deleted are left out, and tokens.css and the starter
 and showcase are regenerated from the result (warns, but still writes, when tokens-css.py finds a token error).
 'universal' is a reserved project name (templates/universal/ holds the universal templates).
 
 The plugin (plugin/, listed in .claude-plugin/marketplace.json) is the generic kit as a folder, with PROTOTYPING.SKILLS/
-as skills/, a CLAUDE.md of PROTOTYPING.PLUGIN.md then PROTOTYPING.CLAUDE.md, and .claude-plugin/plugin.json (version =
-DESIGN.md version) whose SessionStart hook prints that CLAUDE.md and the plugin's path as context. Designers install it
+as skills/, a CONTEXT.md of PROTOTYPING.PLUGIN.md then PROTOTYPING.CLAUDE.md, and .claude-plugin/plugin.json (version =
+DESIGN.md version) whose SessionStart hook prints that CONTEXT.md and the plugin's path as context (Claude Code doesn't
+load a plugin's own CLAUDE.md, so it isn't named that). Designers install it
 from the release tag the release workflow pins in marketplace.json, so main's copy only reaches them at a release.
 """
 import contextlib, glob, io, json, os, shutil, subprocess, sys, tempfile
@@ -33,8 +34,8 @@ NAME = 'zebra-design-system-prototyping'
 OUT = os.path.join(ROOT, 'prototyping-kits')
 CONSUMERS = {c['project']: c for c in json.load(open(os.path.join(ROOT, 'consumers.json')))}
 REGEN = ['scripts/tokens-css.py', 'scripts/starter-html.py', 'scripts/_bundle.py']  # rebuild a tenant kit's tokens.css and starter
-DOCS = ('DESIGN.md', 'atoms/', 'molecules/', 'organisms/', 'templates/universal/')  # the tenant files a kit takes; the rest are production-only
-KIT_FOLDERS = ['atoms', 'molecules', 'organisms', 'prototypes', 'templates/universal']
+DOCS = ('DESIGN.md', 'atoms/', 'molecules/', 'organisms/', 'patterns/', 'templates/universal/')  # the tenant files a kit takes; the rest are production-only
+KIT_FOLDERS = ['atoms', 'molecules', 'organisms', 'patterns', 'prototypes', 'templates/universal']
 KIT_FILES = ['DESIGN.md', 'PROTOTYPING.AGENTS.md', 'icons.json', 'tokens.css']
 
 
@@ -87,11 +88,11 @@ def plugin():
         'description': 'The design pathway: throwaway HTML prototypes built from the Zebra Design System docs.',
         'author': {'name': 'Zebra Design System team'},
         'hooks': {'SessionStart': [{'hooks': [{'type': 'command',
-                  'command': 'cat "${CLAUDE_PLUGIN_ROOT}/CLAUDE.md"; printf \'\\nKit folder: %s\\n\' "${CLAUDE_PLUGIN_ROOT}"'}]}]},
+                  'command': 'cat "${CLAUDE_PLUGIN_ROOT}/CONTEXT.md"; printf \'\\nKit folder: %s\\n\' "${CLAUDE_PLUGIN_ROOT}"'}]}]},
     }
     items = entries([*KIT_FOLDERS, ('PROTOTYPING.SKILLS', 'skills')], KIT_FILES)
     write_dir(os.path.relpath(OUT, ROOT), 'plugin', items, read_claude('PROTOTYPING.PLUGIN.md') + read_claude('PROTOTYPING.CLAUDE.md'),
-              extra={'.claude-plugin/plugin.json': json.dumps(manifest, indent=2) + '\n'})
+              extra={'.claude-plugin/plugin.json': json.dumps(manifest, indent=2) + '\n'}, claude_name='CONTEXT.md')
 
 
 TEMPLATES = os.path.join(ROOT, 'templates')  # may be missing: git doesn't keep an empty folder

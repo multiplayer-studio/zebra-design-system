@@ -8,26 +8,14 @@ tokens:
   fab-primary-container-background-enabled: '{colors.color-brand-primary-default}'
   fab-primary-container-background-hover: '{colors.color-brand-primary-strong}'
   fab-primary-container-background-pressed: '{colors.color-brand-primary-deep}'
-  fab-primary-container-background-disabled: '{button.button-primary-container-background-disabled}'
   fab-primary-icon-foreground: '{colors.color-brand-primary-on}'
   fab-primary-label-foreground: '{colors.color-brand-primary-on}'
-  fab-primary-content-foreground-disabled: '{button.button-primary-label-foreground-disabled}'
   # inverse
   fab-inverse-container-background-enabled: '{colors.color-fill-inverse}'
   fab-inverse-container-background-hover: '{colors.color-fill-inverse-sunken}'
   fab-inverse-container-background-pressed: '{colors.color-fill-inverse-elevated}'
-  fab-inverse-container-background-disabled: '{button.button-contrast-container-background-disabled}'
   fab-inverse-icon-foreground: '{colors.color-ink-inverse}'
   fab-inverse-label-foreground: '{colors.color-ink-inverse}'
-  fab-inverse-content-foreground-disabled: '{button.button-contrast-label-foreground-disabled}'
-  # secondary
-  fab-secondary-container-background-enabled: '{colors.color-brand-secondary-default}'
-  fab-secondary-container-background-hover: '{colors.color-brand-secondary-strong}'
-  fab-secondary-container-background-pressed: '{colors.color-brand-secondary-deep}'
-  fab-secondary-container-background-disabled: '{button.button-primary-container-background-disabled}'
-  fab-secondary-icon-foreground: '{colors.color-brand-secondary-on}'
-  fab-secondary-label-foreground: '{colors.color-brand-secondary-on}'
-  fab-secondary-content-foreground-disabled: '{button.button-primary-label-foreground-disabled}'
   # shape
   fab-container-radius-sharp: '{radius.radius-none}'
   fab-container-radius-rounded-small: '{radius.radius-md}'
@@ -37,6 +25,7 @@ tokens:
   # focus, motion
   fab-focus-ring-width: '{button.button-focus-ring-width}'
   fab-focus-ring-color: '{button.button-focus-ring-color}'
+  fab-container-transition: '{button.button-container-transition}'
   fab-container-radius-duration: '{motion.motion-slow}'
   fab-container-radius-easing: '{motion.easing-standard}'
   # sizes
@@ -59,10 +48,10 @@ tokens:
 
 # FAB
 
-> Floating Action Buttons trigger the primary action on a screen. They are square or circular buttons that float above the content.
+> Floating Action Buttons trigger a screen's main creating action (add, new, compose). They are square or circular buttons that float above the content.
 
 ## Anatomy
-1. Container — square (icon only), or a pill / rounded rectangle when extended. Built on the [Button](../atoms/button.md) base: its focus ring and disabled styling come from the Button's tokens; the FAB defines its own flavours, shapes and sizes.
+1. Container — square (icon only), or a pill / rounded rectangle when extended, with a minimum height (the extended label may wrap). Built on the [Button](../atoms/button.md) base: its focus ring and tint timing come from the Button's tokens; the FAB defines its own flavours, shapes and sizes.
 2. Icon — [Icon](../atoms/icon.md) at `--fab-icon-size-small` (large FAB: `--fab-icon-size-large`, a bigger glyph for the bigger box); sharp style when the shape is sharp, round otherwise. The icon colour is set per flavour (light on the coloured fill), see below.
 3. Label — inside the button (after the icon) when extended, in `--fab-label-font-extended`; otherwise shown **below** the button in `--fab-label-font` `--fab-label-foreground` text with `--fab-label-padding-top` above it.
 
@@ -73,9 +62,8 @@ tokens:
 |---|---|---|---|---|
 | primary (default) | `--fab-primary-container-background-enabled` | `--fab-primary-container-background-hover` | `--fab-primary-container-background-pressed` | `--fab-primary-icon-foreground` / `--fab-primary-label-foreground` |
 | inverse | `--fab-inverse-container-background-enabled` | `--fab-inverse-container-background-hover` | `--fab-inverse-container-background-pressed` | `--fab-inverse-icon-foreground` / `--fab-inverse-label-foreground` |
-| secondary | `--fab-secondary-container-background-enabled` | `--fab-secondary-container-background-hover` | `--fab-secondary-container-background-pressed` | `--fab-secondary-icon-foreground` / `--fab-secondary-label-foreground` |
 
-Inverse is near-black in light mode and near-white in dark, like the Button's contrast flavour. Secondary uses the Zebra secondary brand colour (orange).
+Inverse is near-black in light mode and near-white in dark, like the Button's contrast flavour. There is no secondary (orange) flavour: a second action colour competes with the primary ([DESIGN.md §3](../DESIGN.md)).
 
 **Shape → radius**
 
@@ -94,9 +82,10 @@ In the AAA modes the component is always sharp (DESIGN.md §5).
 | hover | `--fab-<flavour>-container-background-hover` | unchanged | pointer devices only |
 | pressed | `--fab-<flavour>-container-background-pressed` | unchanged | |
 | focused | per flavour (enabled) | unchanged | `--fab-focus-ring-width` `--fab-focus-ring-color` ring outside the bounds (the Button's ring) |
-| disabled | `--fab-<flavour>-container-background-disabled` | `--fab-<flavour>-content-foreground-disabled` icon + label | the external label stays on a transparent background; not interactive |
 
-State changes are colour-only. Radius changes (switching shape or size) animate over `--fab-container-radius-duration` with `--fab-container-radius-easing`.
+There is no disabled state: when its action is unavailable, the FAB is removed, not greyed ([DESIGN.md §5 Disabled](../DESIGN.md)).
+
+State changes are colour-only, a tint over `--fab-container-transition`. Radius changes (switching shape or size) animate over `--fab-container-radius-duration` with `--fab-container-radius-easing`.
 
 ## Spacing & Sizing
 | Size | Box | Padding | Icon |
@@ -110,28 +99,26 @@ The button and its external label stack vertically, separated by `--fab-label-pa
 ## Properties
 | Property | Options | Default |
 |---|---|---|
-| Flavour | primary, inverse, secondary | primary |
+| Flavour | primary, inverse | primary |
 | Size | small, large | small |
 | Shape | sharp, rounded, full | rounded |
 | Extended | on / off | off |
 | Icon | any icon | — |
 | Label | short text | none |
-| Disabled | on / off | off |
 
 Hover, pressed and focus are driven by interaction, never set on a static layout.
 
 ## Usage
-- One FAB per screen, for the single primary action; it floats above content (typically bottom-right).
+- One FAB per screen, for its main creating action. It floats above content at the trailing bottom corner, above the bottom navigation, and toasts sit above it, never over it ([patterns 1.63](../patterns/01-screen-composition.md)). At expanded width its action moves into the [Navigation Rail](../organisms/navigation-rail.md)'s header action instead of floating.
 - Use the extended form when the icon alone is ambiguous; otherwise put a short label beneath.
 - Use inverse on light, busy backgrounds where blue would compete with content.
 - Don't stack a FAB over content the user needs to reach; leave scroll room below the last item.
 
 ## Accessibility
 - Always provide an accessible name: the extended label, the external label (linked to the button), or an `aria-label` on an icon-only FAB.
-- The small FAB (`--fab-container-size-small`) meets the recommended touch-target minimum; the large one exceeds it.
-- The focus ring (`--fab-focus-ring-width` `--fab-focus-ring-color`) is the Button's and is identical on every flavour.
-- Disabled is a visual state only; say why the action is unavailable nearby.
-- The icon's meaning must be clear without colour; pick a glyph that matches the action.
+- The small FAB (`--fab-container-size-small`) meets `--control-target-min`; the large one exceeds it. The extended FAB (`--fab-container-height-extended`) is below it, so extend its hit area on touch ([patterns 6.16](../patterns/06-accessibility.md)).
+- The focus ring (`--fab-focus-ring-width` `--fab-focus-ring-color`) is the Button's and is identical on every flavour ([patterns 6.23](../patterns/06-accessibility.md)).
+- The icon's meaning must be clear without colour; pick a glyph that matches the action ([patterns 6.11](../patterns/06-accessibility.md)).
 
 ## Claude Prompt
-Draw a Zebra floating action button: a `--fab-container-size-small` square with `--fab-container-radius-rounded-small` corners, solid blue `--fab-primary-container-background-enabled`, holding a centred `--fab-icon-size-small` white (`--fab-primary-icon-foreground`) rounded icon such as "add". A large version is `--fab-container-size-large` with a `--fab-icon-size-large` icon and `--fab-container-radius-rounded-large` corners; the full shape makes it a perfect circle. An optional short caption in `--fab-label-font` text sits `--fab-label-padding-top` below the button. The extended version is a `--fab-container-height-extended`-tall blue rounded rectangle (`--fab-container-radius-rounded-extended` corners) containing the icon followed by a `--fab-label-font-extended` white label. An inverse version is near-black `--fab-inverse-container-background-enabled` with light content; a secondary version is orange `--fab-secondary-container-background-enabled` with white content.
+Draw a Zebra floating action button: a `--fab-container-size-small` square with `--fab-container-radius-rounded-small` corners, solid blue `--fab-primary-container-background-enabled`, holding a centred `--fab-icon-size-small` white (`--fab-primary-icon-foreground`) rounded icon such as "add". A large version is `--fab-container-size-large` with a `--fab-icon-size-large` icon and `--fab-container-radius-rounded-large` corners; the full shape makes it a perfect circle. An optional short caption in `--fab-label-font` text sits `--fab-label-padding-top` below the button. The extended version is a `--fab-container-height-extended`-tall blue rounded rectangle (`--fab-container-radius-rounded-extended` corners) containing the icon followed by a `--fab-label-font-extended` white label. An inverse version is near-black `--fab-inverse-container-background-enabled` with light content.

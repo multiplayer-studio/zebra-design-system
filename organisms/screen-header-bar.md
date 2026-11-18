@@ -29,7 +29,7 @@ tokens:
 ## Anatomy
 1. Container — a horizontal row, items centred, packed from the start, padded `--screen-header-bar-container-padding-y` / `--screen-header-bar-container-padding-x`, `--screen-header-bar-container-gap` between parts, on `--screen-header-bar-container-background` (transparent). No border, radius or shadow.
 2. Leading icon (optional) — a back chevron (`chevron_left`), an [Icon](../atoms/icon.md) at `--screen-header-bar-icon-size` in `--screen-header-bar-icon-foreground`. Only its visibility is exposed; the glyph is fixed.
-3. Heading — the title in `--screen-header-bar-title-font` `--screen-header-bar-title-foreground`. It fills the space between the icon and the slot, which holds the action hard right.
+3. Heading — the title in `--screen-header-bar-title-font` `--screen-header-bar-title-foreground`. It fills the space between the icon and the slot, which holds the action hard right, and wraps rather than truncating ([patterns 5.29](../patterns/05-sizes-devices.md)).
 4. Action Slot — the trailing region, hugging its content, `--screen-header-bar-action-gap` between controls. Ships with one [Button](../atoms/button.md), medium, primary.
 
 ## Variants
@@ -44,22 +44,23 @@ The bar is static and declares no hover, focus, pressed or disabled states; the 
 | Padding | `--screen-header-bar-container-padding-y` top and bottom, `--screen-header-bar-container-padding-x` left and right |
 | Gap | `--screen-header-bar-container-gap` between icon, heading and slot |
 | Leading icon | `--screen-header-bar-icon-size` |
-| Height | one medium Button plus padding |
+| Height | at least one medium Button plus padding, growing when the title wraps |
 
 Set the bar to fill its container: Figma ships it at a fixed width, so a placed instance won't stretch on its own.
 
 ## Properties
 | Property | Options | Default |
 |---|---|---|
-| Title | text | Add Subscribers |
+| Title | text | Add subscribers |
 | Show Leading Icon | on / off | on |
 | Rounded | on / off (shape of the slot's Button) | on |
 | Action Slot | one Button (any flavour) | Button, medium, primary |
 
 ## Usage
 - Use it as the top bar of a pushed screen, with the back chevron on and a single action on the right. Use [Top App Bar](top-app-bar.md) when the screen needs several actions or a different leading control.
-- Name the screen, not the task in progress; the bar doesn't change as people work.
-- Turn the leading icon off only on a root screen with nowhere to go back to.
+- Name the screen; the bar doesn't change as people work. In a wizard, name the task and its object ("Add subscribers") and keep it on every step ([patterns 2.37](../patterns/02-navigation-flow.md)).
+- Turn the leading icon off only on the start screen; every screen below the top level has a way back at the leading end ([patterns 2.18](../patterns/02-navigation-flow.md), [2.19](../patterns/02-navigation-flow.md)).
+- The header stays when content scrolls ([patterns 1.44](../patterns/01-screen-composition.md)).
 - Match Rounded to the buttons elsewhere on the screen.
 - Don't put more than one control in the Action Slot; the bar was drawn around one.
 
@@ -68,7 +69,7 @@ Set the bar to fill its container: Figma ships it at a fixed width, so a placed 
 - No focus state exists in the set; focus order and the `--screen-header-bar-focus-ring-color` ring come from code.
 - The title names the screen, so mark it up as a real heading.
 - The bar is transparent (`--screen-header-bar-container-background`); check the title and the action against whatever screen sits behind it.
-- With the leading icon off on a pushed screen, something else must provide a way back.
+- The system Back does what the back chevron does ([patterns 2.18](../patterns/02-navigation-flow.md)).
 
 ## Claude Prompt
-Draw a transparent header strip at the top of a screen, `--screen-header-bar-container-padding-x` side padding and `--screen-header-bar-container-padding-y` top and bottom. On the left a `--screen-header-bar-icon-size` left chevron in near-black, then the screen title "Add Subscribers" in `--screen-header-bar-title-font` near-black (`--screen-header-bar-title-foreground`) filling the row; on the far right a single medium blue primary button "Save". Everything vertically centred, no border or shadow.
+Draw a transparent header strip at the top of a screen, `--screen-header-bar-container-padding-x` side padding and `--screen-header-bar-container-padding-y` top and bottom. On the left a `--screen-header-bar-icon-size` left chevron in near-black, then the screen title "Add subscribers" in `--screen-header-bar-title-font` near-black (`--screen-header-bar-title-foreground`) filling the row; on the far right a single medium blue primary button "Save". Everything vertically centred, no border or shadow.

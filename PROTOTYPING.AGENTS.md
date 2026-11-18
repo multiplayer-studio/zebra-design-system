@@ -12,7 +12,7 @@ Everything produced from this design system is a **prototype**. Its purpose is t
 
 **Reference designs:** whenever the designer gives a design to build from (a Figma link, frame or flow, or a screenshot), use the `build-from-reference` skill (`.claude/skills/build-from-reference/SKILL.md`) before writing any markup. The reference outranks everything here except that every value is still a token.
 
-**No reference:** compose the screen by `DESIGN.md` §4 (Choosing a style) and §6 (Whitespace Strategy and Hierarchy), then check it with Before you hand over.
+**No reference:** compose the screen by the UX patterns (see UX patterns), then `DESIGN.md` §4 (Choosing a style) and §6 (Whitespace Strategy and Hierarchy), then check it with Before you hand over.
 
 **Figma:** when the designer is happy with a finished prototype, use the `send-to-figma` skill (`.claude/skills/send-to-figma/SKILL.md`). It offers to send the prototype to a Figma file and does it through the Figma MCP.
 
@@ -29,7 +29,7 @@ Prototypes must work when opened by double-click (`file://`), with no server and
 <!-- Why the starter inlines tokens: the Browser pane ignores relative links. If it ever resolves them, go back to <link rel="stylesheet" href="../../tokens.css"> and retire scripts/starter-html.py. -->
 
 - Use classic `<script>` tags, not ES module imports.
-- Load nothing from a CDN except the IBM Plex Sans fonts listed under Fonts. Icons are inline SVG from `icons.json` (see Icons), never the icon font.
+- Load nothing from a CDN except the IBM Plex Sans and IBM Plex Mono fonts listed under Fonts. Icons are inline SVG from `icons.json` (see Icons), never the icon font.
 
 Prototypes need an internet connection to load those fonts.
 
@@ -37,6 +37,7 @@ Prototypes need an internet connection to load those fonts.
 
 - **Handheld** prototypes are built inside the starter's device frame: `.device-stage` > `.device`, a `--frame-handheld-width` × `--frame-handheld-height` screen (a Zebra TC-series handheld) that's centred on a desktop viewport and fills a phone one. Inside it, in order: `.status-bar`, the header, `.device-body` (the only part that scrolls), and pinned actions. The markup is in the starter's component CSS comment.
 - **Desktop** prototypes use the whole viewport.
+- **Size classes:** lay a responsive screen out narrowest first, by the size classes in `DESIGN.md` §6 Grid & Structure ([patterns 5.1–5.15](patterns/05-sizes-devices.md)). A media query can't read a custom property, so write the token's value with its name in a comment: `@media (min-width: 600px) /* --breakpoint-medium-min */`. This is the only raw value allowed. Never use `--breakpoint-mobile-max` (deprecated).
 - **Prototype controls** (restart, light/dark) go in `.proto-controls`, outside the design: the first child of `.device-stage` (above the frame) on handheld, and the page's top end corner on desktop. Never put them over the design. Every prototype has a light/dark control.
 
 The device frame, status bar and prototype controls are prototype chrome, not design-system components.
@@ -48,6 +49,7 @@ The device frame, status bar and prototype controls are prototype chrome, not de
 | `DESIGN.md` frontmatter | All raw values. Primitives (`primitives`: colour ramps and the `scale-*` size steps) and the semantic groups: `colors` and its theme-mode overrides (`colors-dark`, `colors-aaa`, `colors-aaa-dark`, `colors-companion`, `colors-companion-dark`, `colors-companion-aaa`, `colors-companion-aaa-dark`; DESIGN.md §3 Theme modes), `space`, `control`, `radius`, `stroke`, `container`, `shadow`, `font-family`, `font-weight`, `typography`, `motion`, `layout`, `opacity` and `component-sizes`. |
 | `DESIGN.md` body | Rules, the token architecture (§2), layout principles and usage guidance |
 | `atoms/`, `molecules/`, `organisms/` `*.md` | One file per component, with anatomy, variants, states, sizing, properties, usage and its `tokens:` block |
+| `patterns/*.md` | The binding UX rules: how screens are composed and behave (see UX patterns) |
 | `templates/*.md` | This project's page-level layouts (see Templates); empty in the generic kit |
 | `templates/universal/*.md` | The universal page-level layouts, shared by every project (see Templates) |
 | `tokens.css` | Every token as a CSS custom property, generated from `DESIGN.md` and the component files |
@@ -56,6 +58,16 @@ The device frame, status bar and prototype controls are prototype chrome, not de
 `github.json`, a `github/` folder and `prototypes/<name>/CONTEXT.md` describe the in-flight project (see the `new-prototype` skill's `GITHUB.md`). They are context, not design sources: never take a value or a component from them.
 
 A component's `composes:` list says which other components it is built from. Read those files too, because a composite only defines its own parts and context overrides; its children's tokens style everything else.
+
+## UX patterns
+
+`patterns/` holds the UX rules every screen follows: ten numbered files on screen composition, navigation, controls, states and feedback, sizes and devices, accessibility, content and copy, visual theming, AI and data display. They are binding. `DESIGN.md` and the component files say what things look like; the patterns say how screens are put together and behave.
+
+- **Read only the files the task touches.** The routing table in [`patterns/README.md`](patterns/README.md) says which file covers what. Don't read all ten.
+- **Cite by number:** `6.11` is rule 11 of `06-accessibility.md`. When you report a choice a rule made, name the rule.
+- If a pattern rule and a component file disagree, don't pick one: tell the designer.
+- **Overrides:** only a rule or sentence that starts "By default" may be overridden for a project, with the reason recorded in `CHANGES.md` (Type: pattern override). Strict rules change only upstream ([patterns precedence](patterns/README.md#precedence)).
+- **Copy:** write real copy that follows `patterns/07-content-copy.md`. Never leave Figma placeholder strings such as "Label", "Action" or "Message" on a screen.
 
 ## Tokens in CSS
 
@@ -143,7 +155,7 @@ A component's `composes:` list says which other components it is built from. Rea
 - **AAA is sharp:** block 8 makes every component sharp under `data-contrast="aaa"`, and `components.css` switches icons to the sharp set there. Rounded is every component's default otherwise (DESIGN.md §5). Never re-round a component in AAA.
 - **Switching theme:** set `data-theme="dark"` on any element to make it and its contents dark, and `data-theme="light"` to switch back inside a dark area. Never choose a dark colour by hand.
 - **Always-dark components:** components the docs describe as always dark carry `data-theme="dark"` on their own element, e.g. the Global Header.
-- **AAA contrast:** set `data-contrast="aaa"` on `<html>`; it is a whole-page setting. It works in both themes: dark areas inside an AAA page use the AAA dark values, and light areas the AAA light ones.
+- **AAA contrast** is the high-contrast scheme ([patterns 6.9](patterns/06-accessibility.md)): set `data-contrast="aaa"` on `<html>`; it is a whole-page setting. Turn it on when `matchMedia('(prefers-contrast: more)')` matches, and offer it in the prototype controls as the in-product setting. It works in both themes: dark areas inside an AAA page use the AAA dark values, and light areas the AAA light ones.
 - **Companion:** set `data-brand="companion"` on `<html>` or any container to turn the brand primary purple there. It works in both themes and with AAA: dark areas inside it use Companion dark, and an AAA page uses Companion AAA (light or dark).
 
 ## Building components
@@ -176,7 +188,7 @@ A template contains only existing components. Never invent one for it; if it nee
 
 Fonts are loaded from the jsDelivr CDN, pinned to an exact version. Do not copy font files into the prototype folder, and do not load fonts from anywhere else.
 
-All typography tokens use **IBM Plex Sans**, from the `@fontsource/ibm-plex-sans` package (v5.3.0, SIL OFL), Latin subset, in the five weights the tokens use: 300 (`--font-weight-light`), 400 (`--font-weight-regular`), 500 (`--font-weight-medium`), 600 (`--font-weight-semibold`) and 700 (`--font-weight-bold`).
+All typography tokens use **IBM Plex Sans**, from the `@fontsource/ibm-plex-sans` package (v5.3.0, SIL OFL), Latin subset, in the five weights the tokens use: 300 (`--font-weight-light`), 400 (`--font-weight-regular`), 500 (`--font-weight-medium`), 600 (`--font-weight-semibold`) and 700 (`--font-weight-bold`). The exception is `--type-code` (`--font-family-mono`), for codes, serial numbers and IDs: it uses **IBM Plex Mono**, from `@fontsource/ibm-plex-mono` (v5.3.0, SIL OFL), Latin subset, weights 400 and 500.
 
 1. The starter already declares these; don't add them again. For reference:
    ```css
@@ -185,9 +197,11 @@ All typography tokens use **IBM Plex Sans**, from the `@fontsource/ibm-plex-sans
    @font-face { font-family: "IBM Plex Sans"; font-weight: 500; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-500-normal.woff2") format("woff2"); }
    @font-face { font-family: "IBM Plex Sans"; font-weight: 600; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-600-normal.woff2") format("woff2"); }
    @font-face { font-family: "IBM Plex Sans"; font-weight: 700; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5.3.0/files/ibm-plex-sans-latin-700-normal.woff2") format("woff2"); }
+   @font-face { font-family: "IBM Plex Mono"; font-weight: 400; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-mono@5.3.0/files/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); }
+   @font-face { font-family: "IBM Plex Mono"; font-weight: 500; font-style: normal; font-display: swap; src: url("https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-mono@5.3.0/files/ibm-plex-mono-latin-500-normal.woff2") format("woff2"); }
    ```
 2. Set text through typography tokens, either a component's font token or, for page-level text, the typography group (e.g. `font: var(--type-body-medium)`). Do not write a font family or weight by hand.
-3. Only the Latin subset and normal (non-italic) style are used. If a design needs Cyrillic, Greek or italics, use the matching file from the same package path (`ibm-plex-sans-<subset>-<weight>-<style>.woff2`) and tell the user.
+3. Only the Latin subset and normal (non-italic) style are used. If a design needs Cyrillic, Greek or italics, use the matching file from the same package path (`ibm-plex-sans-<subset>-<weight>-<style>.woff2`, or `ibm-plex-mono-…`) and tell the user.
 
 ## Icons
 
@@ -231,12 +245,12 @@ Open the prototype in the Browser pane straight from `file://`; it renders style
 - **No production concerns** unless asked: backend or API integration, auth, persistence, error handling, performance tuning, build tooling, tests and scalable architecture.
 - **Throwaway code.** Keep it simple. Do not abstract, generalise or future-proof.
 - **Stay faithful to the design system.** Follow the `DESIGN.md` frontmatter and rules, the component files and `icons.json`. Never hardcode a value: every colour, size, space, radius, shadow, font and duration is a `var()` of a token. If a design needs a value with no token, use the nearest token and report the value as a token request. Never invent icons, variants, states, anatomy or tokens.
-- **Accessibility baselines** are part of the design, not production polish:
-  - WCAG 2.2 AA contrast, which the semantic colours already meet. Don't add opacity to text.
-  - A visible focus ring on every interactive element, using that component's focus-ring tokens.
-  - Touch targets of at least `--control-target-min`.
-  - No meaning carried by colour alone.
-- **Animate appearances,** even where only end states are drawn: sheets slide from their edge, scrims fade, dialogs ease in, using the `motion` tokens. All of it is off under `prefers-reduced-motion`.
+- **Accessibility baselines** are part of the design, not production polish ([patterns 06](patterns/06-accessibility.md)):
+  - WCAG 2.2 AA contrast ([patterns 6.1–6.3](patterns/06-accessibility.md)). Use the text colours the component files give; `--color-ink-low` is never for text. Don't add opacity to text.
+  - A visible focus ring on every interactive element, using that component's focus-ring tokens ([patterns 6.23](patterns/06-accessibility.md)).
+  - Touch targets of at least `--control-target-min` ([patterns 6.16](patterns/06-accessibility.md)); `--control-target-pointer-min` only in a pointer-only product, `--control-target-gloved` in a gloved one.
+  - Never colour alone ([patterns 6.11](patterns/06-accessibility.md)).
+- **Animate appearances,** even where only end states are drawn (sheets slide from their edge, scrims fade, dialogs ease in), with the motion tokens as `DESIGN.md` §5 Motion sets them, including reduced motion. A static mock-up still needs this: it's how the designer judges the flow.
 - **Make intent obvious.** Name things after the design concept, and add a brief comment where a shortcut stands in for real behaviour (e.g. `// mock data`).
 - **Say what's faked.** If something is faked, simplified or left out (including placeholder measurements for draft components), say so briefly so it isn't mistaken for production behaviour.
 
@@ -244,11 +258,12 @@ Open the prototype in the Browser pane straight from `file://`; it renders style
 
 Measure, don't eyeball: read the computed values from the rendered page. With a reference, use the checks in the `build-from-reference` skill instead of the first five below.
 
-- [ ] One primary button and one heading-level style per screen.
+- [ ] One primary button ([patterns 1.17](patterns/01-screen-composition.md)) and one heading-level style per screen.
 - [ ] Four text styles or fewer; nothing needed to finish the task under 14px.
-- [ ] Every gap and padding is a token, and gaps inside groups are smaller than gaps between them.
+- [ ] Every gap and padding is a token, and gaps inside groups are smaller than gaps between them ([patterns 1.11](patterns/01-screen-composition.md)).
 - [ ] Squint at the screen: the first thing seen is the main content, the second the main action.
 - [ ] View it in greyscale: the hierarchy still reads without colour.
-- [ ] Light and dark; phone width and desktop; visible keyboard focus.
+- [ ] Light and dark; compact, medium, expanded and large widths, and a landscape handheld (the device frame's width and height swapped; [patterns 5.42](patterns/05-sizes-devices.md)); visible keyboard focus.
+- [ ] Real copy, with no Figma placeholder strings ([patterns 07](patterns/07-content-copy.md)).
 
 Then report: the screens built, the components used, any hand-built parts and why, every token request, and anything faked.

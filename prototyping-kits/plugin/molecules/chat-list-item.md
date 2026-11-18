@@ -33,11 +33,13 @@ tokens:
 
 > One conversation in a chat feed: who, the latest message, when, and how much is unread.
 
+It is a specialised row; a product may build it on the generic [List Item](list-item.md), keeping the parts and tokens below.
+
 ## Anatomy
 1. Row — a [Menu Item](./menu-item.md) row used as one button, `--chat-list-item-row-background-enabled`, with a `--chat-list-item-divider-width` `--chat-list-item-divider-color` line under every row except the last. The interaction states below are this item's own.
 2. Leading — an [Avatar](../atoms/avatar.md) (initials, photo or group icon), optionally with its presence status.
-3. Name — the contact or group name, `--chat-list-item-name-font` `--chat-list-item-name-foreground` (`--chat-list-item-name-font-unread` when unread), one line.
-4. Preview — the last message, `--chat-list-item-preview-font` `--chat-list-item-preview-foreground` (`--chat-list-item-preview-foreground-unread` when unread), one line, truncated.
+3. Name — the contact or group name, `--chat-list-item-name-font` `--chat-list-item-name-foreground` (`--chat-list-item-name-font-unread` when unread), one line; a long name truncates at the end.
+4. Preview — the last message, `--chat-list-item-preview-font` `--chat-list-item-preview-foreground` (`--chat-list-item-preview-foreground-unread` when unread), one line, truncated at the end.
 5. Trailing meta — a timestamp in `--chat-list-item-meta-font` `--chat-list-item-meta-foreground`, above either the unread count ([Notification Indicator](../atoms/notification-indicator.md)) or a status [Icon](../atoms/icon.md) (read, delivered, muted) in `--chat-list-item-meta-foreground`.
 
 ## Variants
@@ -67,7 +69,7 @@ Opening a conversation marks it read: the name and preview drop to their read st
 | Timestamp ↔ count / icon | `--chat-list-item-meta-gap` |
 | Divider | `--chat-list-item-divider-width` |
 
-The row fills the list's width; the text column takes the remaining space and truncates. Measurements are provisional: there is no Figma source yet.
+The row fills the list's width; the text column takes the remaining space and truncates, with the full name and preview on hover and focus ([patterns 5.30](../patterns/05-sizes-devices.md)). Measurements are provisional: there is no Figma source yet.
 
 ## Properties
 | Property | Options | Default |
@@ -82,13 +84,13 @@ The row fills the list's width; the text column takes the remaining space and tr
 
 ## Usage
 - Use in chat feeds; one row per conversation, newest first.
-- Truncate previews to one line; the full row is the tap target.
+- Previews truncate to one line; the full row is the tap target, and the full text shows on hover and focus.
 - Prefix the preview with the sender in group chats ("Rosa: …") and with "You:" for your own messages.
 - See [Chat](../organisms/chat.md).
 
 ## Accessibility
-- The whole row is one button; its accessible name should read naturally (name, preview, time, unread count).
-- Unread must not rely on colour alone: it is shown by the heavier name and the count, and the count has an accessible label ("3 unread messages").
+- The whole row is one button; its accessible name reads naturally and carries the full, untruncated text (name, preview, time, unread count). On focus the full preview also shows visually, as on hover ([patterns 6.60](../patterns/06-accessibility.md)).
+- Unread is shown by the heavier name and the count, never colour alone ([patterns 6.11](../patterns/06-accessibility.md)); the count has an accessible label ("3 unread messages").
 - Status icons (read, delivered, muted) and presence need a text equivalent, e.g. visually hidden text.
 - The focus ring (`--chat-list-item-focus-ring-width` `--chat-list-item-focus-ring-color`) sits inside the row so neighbouring rows don't clip it.
 

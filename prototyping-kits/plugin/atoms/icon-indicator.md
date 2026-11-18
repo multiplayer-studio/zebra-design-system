@@ -54,7 +54,7 @@ The glyph is not a property.
 
 ## Usage
 - Match the size to the text it sits beside: small inline, large for a row of its own.
-- Pair it with text that says what is pending. The glyph is fixed, so the indicator cannot name what it refers to.
+- Pair it with text that says what is pending ([patterns 6.11](../patterns/06-accessibility.md)). The glyph is fixed, so the indicator cannot name what it refers to.
 - Don't expect to swap the glyph; it carries one meaning.
 - Don't use it where a count matters; use [Notification Indicator](../atoms/notification-indicator.md).
 

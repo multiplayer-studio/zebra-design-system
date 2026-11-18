@@ -35,7 +35,7 @@ tokens:
 1. Crumb — a link back up one level: an optional leading [Icon](../atoms/icon.md) at `--breadcrumb-crumb-icon-size` and a `--breadcrumb-crumb-label-font` label, `--breadcrumb-crumb-gap` apart. The label is the only required part.
 2. Separator — a `chevron_right` [Icon](../atoms/icon.md) at `--breadcrumb-separator-size` after every crumb but the last. Decorative.
 3. Overflow control (collapsed only) — an [Icon Button](../atoms/icon-button.md), small, outline-subtle, `more_horizontal`, standing in for the hidden middle crumbs. Its shape follows Shape.
-4. Overflow menu (open only) — a [Dropdown Menu](./dropdown-menu.md) with Compact on and Rounded following Shape, `--breadcrumb-menu-offset` below the control and left aligned. Each hidden crumb is a [Menu Item](./menu-item.md) row, with its icon if it has one.
+4. Overflow menu (open only) — a [Dropdown Menu](./dropdown-menu.md) with Compact on (a placement exception, [patterns 5.48](../patterns/05-sizes-devices.md)) and Rounded following Shape, `--breadcrumb-menu-offset` below the control and left aligned. Each hidden crumb is a [Menu Item](./menu-item.md) row, with its icon if it has one.
 5. Current page — the last item. Text, never a link.
 
 ## Variants
@@ -89,15 +89,16 @@ The trail hugs its content. A long trail wraps; the separator stays at the end o
 Collapsed and Open are Figma-only: Collapsed derives from maxItems and Open from the menu. Show Icon and Show Separator are also Figma-only; in code a crumb shows its icon when it has one and the separator renders after every crumb but the last. The trail in Figma is sample content.
 
 ## Usage
-- Use a breadcrumb on pages more than one level deep, with the root first.
-- Keep labels short; the trail should read as one line.
+- Use a breadcrumb on pages more than one level deep, with the root first, above the page title on expanded screens. On compact screens it gives way to Back ([patterns 1.51](../patterns/01-screen-composition.md)).
+- The trail follows the structure, not the path the person took, and each crumb opens its level as it was left ([patterns 2.78](../patterns/02-navigation-flow.md)).
+- Keep labels short; the trail should read as one line. A long crumb label (a name someone created) may truncate at the end, with the full text on hover and focus ([patterns 5.30](../patterns/05-sizes-devices.md)).
 - Set maxItems wherever the trail could outgrow its row.
 - Don't use it for steps in a flow: [Stepper](../organisms/stepper.md) is for a sequence, a breadcrumb for a place.
-- Don't give the current page a link, even when it has an href.
+- The current page is last and is never a link, even when it has an href ([patterns 2.78](../patterns/02-navigation-flow.md)).
 - Use accent sparingly; default suits nearly every page.
 
 ## Accessibility
-- Render a labelled `nav` holding an ordered list. The last item carries `aria-current="page"` and is not a link.
+- Render a labelled `nav` holding an ordered list ([patterns 6.52](../patterns/06-accessibility.md)). The last item carries `aria-current="page"`.
 - Separators are hidden from assistive tech.
 - The overflow control has no visible text, so overflowLabel names it. Opening the menu moves focus to its rows; arrow keys move through them; Escape closes it and returns focus to the control.
 - Hover is colour alone, so keyboard users rely on the focus ring (`--breadcrumb-focus-ring-width` `--breadcrumb-focus-ring-color`).

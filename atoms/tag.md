@@ -63,7 +63,7 @@ Width hugs the label. Measurements are provisional: there is no Figma source yet
 ## Usage
 - Use to point at, or call out, an adjacent area or piece of information; keep the text short.
 - Point the arrow at the thing it describes, and keep the tag next to it.
-- Not interactive; don't use it as a filter (use a [Filter Chip](../atoms/filter-chip.md)) or as a status (use a [Label](../atoms/label.md)).
+- Not interactive; don't use it as a filter (use a [Filter Chip](../atoms/filter-chip.md)) as a category (use a [Label](../atoms/label.md)) or as a status (use a [Status Label](../atoms/status-label.md)).
 
 ## Accessibility
 - Always give the tag a text label; it is announced to assistive technology as a note (`role="note"`), so the text must make sense on its own.

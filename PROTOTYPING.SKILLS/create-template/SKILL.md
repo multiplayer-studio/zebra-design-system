@@ -11,7 +11,8 @@ A **template** is the atomic-design level above organisms: a page-level layout (
 
 1. **The source.** This is a prototype in `prototypes/`, a screen in another codebase, or the user's description. Read all of it first. For a codebase, trace the page from its route down to every child component it renders. Include optional regions, empty and loading states, and anything that only appears on selection or hover.
 2. **The template name.** Use a short, hyphenated name for the pattern, not for one screen: `table-page`, not `wifi-presets`.
-3. **Existing templates.** Check `templates/` and `templates/universal/`. If one of the project's already covers this layout, offer to update it instead of writing a second. If a universal one does, offer to use it; write a new one in `templates/` only if the designer needs a variation.
+3. **The patterns.** Read the `patterns/` files the layout touches (the routing table in `patterns/README.md` says which); they are binding. You will cite their rules in the doc.
+4. **Existing templates.** Check `templates/` and `templates/universal/`. If one of the project's already covers this layout, offer to update it instead of writing a second. If a universal one does, offer to use it; write a new one in `templates/` only if the designer needs a variation.
 
 ## 2. Map every part to a component
 
@@ -50,14 +51,15 @@ Where it came from (prototype path or source codebase and component), and what k
 - **Frontmatter.** `composes:` lists every organism, molecule and atom named anywhere in the doc, with paths relative to the template file. Add a `tokens:` block only for layout values the template itself owns, and write them as references (`'{space.space-lg}'`). Never write a raw value.
 - **Anatomy.** Number the regions in reading order. For each, give the component as a link, with its variant, flavour, size and shape (e.g. "[Icon Button](../atoms/icon-button.md) `refresh`, flavour outline, size medium, shape rounded"). Mark optional regions and say when they appear. Include the empty, loading and selection states the source has. End with: "The composed components govern their own colours, states, sizes, radius and focus rings. The template only places them."
 - **Layout.** Start with an ASCII wireframe whose numbers match Anatomy. Then describe the page grid, region order, gaps, padding, and which region scrolls. Use only semantic `space` and `layout` tokens (`--grid-margin`, `--space-*`), written as references. Never use pixels, colours or component tokens.
-- **Responsiveness.** Required. Cover:
-  - the large-screen layout (the default) and what changes at or below `--breakpoint-mobile-max`;
-  - navigation: the global header and navigation rail on large screens, the top app bar, navigation bar and bottom sheet on handhelds (`DESIGN.md` §6, Adaptive navigation);
+- **Responsiveness.** Required. Write it narrowest first, one size class at a time: compact, then medium, expanded and large (`DESIGN.md` §6 Grid & Structure; `patterns/05-sizes-devices.md` 5.1–5.15). Never use `--breakpoint-mobile-max` (deprecated). Cover:
+  - what the structure is at each size class and what changes when it crosses one;
+  - navigation by width, as the size-class table in `DESIGN.md` §6 Grid & Structure sets it (`patterns/05-sizes-devices.md` 5.15);
   - for each region, whether it stays, stacks, wraps, collapses into a menu, becomes full width or is hidden, and what replaces anything that's hidden;
-  - how wide content behaves (e.g. a table scrolls horizontally inside its region, with the first column pinned if the source pins it);
-  - touch: on handhelds, controls are at least `--control-target-min`; call out any composed size that falls below this (e.g. small icon buttons) and how to give it a bigger hit area.
+  - how wide content behaves: a table either scrolls horizontally inside its region with its identifier column and header pinned, or its rows reflow into label/value pairs at compact;
+  - touch: controls are at least `--control-target-min` (`patterns/06-accessibility.md` 6.16); call out any composed size that falls below this (e.g. small icon buttons) and how to give it a bigger hit area.
 
-  If the source has no small-screen design, say so, and give the behaviour that follows from `DESIGN.md` §6 as a proposal for the designer to confirm.
+  If the source has no small-screen design, say so, and give the behaviour that follows from `patterns/05-sizes-devices.md` and `DESIGN.md` §6 as a proposal for the designer to confirm.
+- **Pattern rules.** Wherever the doc follows a pattern rule, cite it as a link to its file, e.g. `([patterns 1.17](../patterns/01-screen-composition.md))`. Cite, don't restate.
 - **Accessibility.** Required. Cover:
   - landmarks and headings: which region is `header`, `nav`, `main`, and so on; one `h1` (the page title), and the heading level of each section below it;
   - focus order: it follows the reading order of Anatomy; where focus goes when a region appears or disappears (dialogs, action bars, empty states); nothing traps focus except modal dialogs;
@@ -65,14 +67,15 @@ Where it came from (prototype path or source codebase and component), and what k
   - names and announcements: every icon-only control has an accessible label (name each one); live changes such as result counts, selection counts, loading and errors are announced; the current page or tab is announced;
   - never colour alone: the states in the template (selected, sorted, filtered, status) each have a non-colour cue;
   - anything the composed components already handle, and that the template must not break, as links to their Usage sections, not restated.
-- **Usage.** When to use the template and when not to; rules for the content (one primary action per area, how many tabs, etc.); the draft components it uses, with a note that their measurements are placeholders; and "Prototypes using this template:" with paths, or "none yet".
+- **Usage.** When to use the template and when not to; rules for the content (one primary action per screen, how many tabs, etc.); the draft components it uses, with a note that their measurements are placeholders; and "Prototypes using this template:" with paths, or "none yet".
 
 ## 4. Check before finishing
 
 - [ ] Every component in the doc exists and is listed in `composes:`, and every `composes:` path resolves.
 - [ ] Every variant, size, shape and type is one the component file lists. Every icon is a key in `icons.json`.
 - [ ] Layout and Responsiveness use only `space` and `layout` token references. There are no raw values.
-- [ ] Responsiveness and Accessibility sections are present and specific to this layout, not generic.
+- [ ] Responsiveness and Accessibility sections are present and specific to this layout, not generic. Responsiveness goes narrowest first by size class.
+- [ ] The pattern rules the layout follows are cited as links, and it breaks none.
 - [ ] Missing components and draft components are flagged in the doc and in your reply.
 - [ ] Nothing was written to `prototypes/`.
 
