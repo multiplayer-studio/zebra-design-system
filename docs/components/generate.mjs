@@ -143,7 +143,7 @@ for (const slug of slugs) {
   summaries.set(slug, { name: s.component.name, summary: s.summary ?? "" });
 }
 const docsUrl = (slug) =>
-  `https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/${slug}.md`;
+  `https://github.com/multiplayer-studio/zebra-design-system/blob/main/docs/components/${slug}.md`;
 
 const componentIndex = (has) =>
   slugs.filter(has).map((slug) => {
@@ -381,8 +381,8 @@ for (const [dir, p] of Object.entries(PACKAGES)) {
 ## Docs
 - [AGENTS.md](./AGENTS.md): the usage contract for agents, shipped in this package
 - [DESIGN.md](./DESIGN.md): the system's design voice (principles, shape inheritance, patterns) — in the component-library packages
-- [Component usage docs](https://github.com/zebratechnologies/zebra-design-system/tree/main/docs/components): one page per component
-- [Versioning policy](https://github.com/zebratechnologies/zebra-design-system/blob/main/VERSIONING.md)
+- [Component usage docs](https://github.com/multiplayer-studio/zebra-design-system/tree/main/docs/components): one page per component
+- [Versioning policy](https://github.com/multiplayer-studio/zebra-design-system/blob/main/VERSIONING.md)
 `);
 }
 console.log(`generated ${slugs.length} component docs + index, and AGENTS.md + llms.txt for ${Object.keys(PACKAGES).length} packages`);

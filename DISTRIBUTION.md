@@ -9,10 +9,10 @@ rules in `VERSIONING.md`; release mechanics in `.github/workflows/release.yml`.
 
 | Channel | Today | Lives at |
 |---|---|---|
-| **Git distribution ×5 (live, registry-free)** | Orphan branches `dist/<pkg>` + immutable tags `<pkg>-v<version>` on this repo; `npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#dist/tokens"` | deployed by `scripts/deploy-dist-branches.mjs` (§Git distribution below) |
+| **Git distribution ×5 (live, registry-free)** | Orphan branches `dist/<pkg>` + immutable tags `<pkg>-v<version>` on this repo; `npm i "git+https://github.com/multiplayer-studio/zebra-design-system.git#dist/tokens"` | deployed by `scripts/deploy-dist-branches.mjs` (§Git distribution below) |
 | npm packages ×5 | Not on npmjs yet — the git channel above is the only package source. (The local Verdaccio test registry was torn down 10 Nov 2026.) | — |
 | Consumer projects | Install from the git branches; no `.npmrc` needed | each test project |
-| Claude Code plugin | Installable from this repo as a marketplace — **pin the working branch**, since `main` doesn't carry the plugin until the merge | `claude plugin marketplace add "https://github.com/zebratechnologies/zebra-design-system.git#design/init"` (or a local path to a design/init checkout), then `claude plugin install zebra-design-system@zebra-design-system` |
+| Claude Code plugin | Installable from this repo as a marketplace — **pin the working branch**, since `main` doesn't carry the plugin until the merge | `claude plugin marketplace add "https://github.com/multiplayer-studio/zebra-design-system.git#design/init"` (or a local path to a design/init checkout), then `claude plugin install zebra-design-system@zebra-design-system` |
 | In-package skills | Already real — ship in the library tarballs | `npx zebra-skills` in the consumer project |
 | CDN | Not live (needs real npm) | `docs/cdn-smoke.html` is armed with pinned jsDelivr URLs |
 | Consumer onboarding | Zebra Quickstart artifact (private; share from its Share menu) | source `docs/start/index.html`, published at <https://claude.ai/artifact/ByQaUbTKkN1EXDyp5bEvg7> |
@@ -38,8 +38,8 @@ Each package's **packed root** — dist built, `files`-filtered, denylist-checke
 Consumers install with plain npm/pnpm/yarn and git access to the repo:
 
 ```bash
-npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#dist/react-baseui"      # track latest
-npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#react-baseui-v0.5.0"    # pin a version
+npm i "git+https://github.com/multiplayer-studio/zebra-design-system.git#dist/react-baseui"      # track latest
+npm i "git+https://github.com/multiplayer-studio/zebra-design-system.git#react-baseui-v0.5.0"    # pin a version
 ```
 
 Internal dependencies resolve themselves: the branch manifests point
@@ -96,7 +96,7 @@ Then the flip, in order:
 6. Plugin consumers: `claude plugin marketplace remove zebra-design-system`
    (if added by local path or with the `#design/init` ref), then re-add by
    plain repo reference —
-   `claude plugin marketplace add zebratechnologies/zebra-design-system` —
+   `claude plugin marketplace add multiplayer-studio/zebra-design-system` —
    so `claude plugin update` tracks the repo. (Terminal CLI users can use the
    `/plugin` commands; the IDE extension uses the `claude plugin` CLI.)
 7. ~~Tear down the local Verdaccio channel~~ — already done (10 Nov 2026).

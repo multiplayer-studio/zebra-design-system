@@ -30,7 +30,7 @@ Prototyping needs the real packages: the page bundles its assets from
 `web-components` is not installed, stop and run the setup (or `/zebra-setup`)
 before prototyping anything. Until the packages are on npmjs they install
 straight from the repo's distribution branches, no registry needed:
-`npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#dist/web-components" "git+https://github.com/zebratechnologies/zebra-design-system.git#dist/tokens"`
+`npm i "git+https://github.com/multiplayer-studio/zebra-design-system.git#dist/web-components" "git+https://github.com/multiplayer-studio/zebra-design-system.git#dist/tokens"`
 (icons arrives automatically as a git-tagged dep; pin with `#<pkg>-v<version>`).
 
 ## Bundle the system into the page's assets

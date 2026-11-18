@@ -30,7 +30,7 @@
   "description": "Zebra Zeta Design System - Web Components",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zebratechnologies/zebra-design-system.git",
+    "url": "git+https://github.com/multiplayer-studio/zebra-design-system.git",
     "directory": "packages/zeta-web"
   },
   "publishConfig": {

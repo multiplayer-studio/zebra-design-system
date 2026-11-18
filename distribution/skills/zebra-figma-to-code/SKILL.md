@@ -24,7 +24,7 @@ full**, both of these:
    the setup (or `/zebra-setup`) before building anything. Until the
    packages are on npmjs they install straight from the repo's
    distribution branches, no registry needed:
-   `npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#dist/react-baseui"`
+   `npm i "git+https://github.com/multiplayer-studio/zebra-design-system.git#dist/react-baseui"`
    (or `#dist/web-components`; pin with `#<pkg>-v<version>`). Internal
    deps resolve themselves via version tags.
 2. **`AGENTS.md`** beside the same package — the usage contract and the

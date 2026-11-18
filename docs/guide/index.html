@@ -284,7 +284,7 @@
         <table class="plain">
           <thead><tr><th>Package</th><th>Version</th><th>Where</th></tr></thead>
           <tbody>
-            <tr><td><code>@zebra-design-system/tokens</code></td><td>0.2.0</td><td rowspan="4">Live on the repo's git distribution branches — <code>npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#dist/tokens"</code> (latest) or <code>#tokens-v0.2.0</code> (pinned); deployed by <code>scripts/deploy-dist-branches.mjs</code>, rules in <code>DISTRIBUTION.md</code>. The git branches are the only pre-npm source. npm publish still waits on the <code>@zebra-design-system</code> org and <code>NPM_TOKEN</code>.</td></tr>
+            <tr><td><code>@zebra-design-system/tokens</code></td><td>0.2.0</td><td rowspan="4">Live on the repo's git distribution branches — <code>npm i "git+https://github.com/multiplayer-studio/zebra-design-system.git#dist/tokens"</code> (latest) or <code>#tokens-v0.2.0</code> (pinned); deployed by <code>scripts/deploy-dist-branches.mjs</code>, rules in <code>DISTRIBUTION.md</code>. The git branches are the only pre-npm source. npm publish still waits on the <code>@zebra-design-system</code> org and <code>NPM_TOKEN</code>.</td></tr>
             <tr><td><code>@zebra-design-system/icons</code></td><td>0.2.0</td></tr>
             <tr><td><code>@zebra-design-system/react-baseui</code></td><td>0.5.0</td></tr>
             <tr><td><code>@zebra-design-system/web-components</code></td><td>0.5.0</td></tr>
@@ -549,7 +549,7 @@
       steps: [
         { text: "Install Node 24, Google Chrome, Python 3 and Claude Code." },
         { text: "Get the repo, switch to <code>design/init</code>, where all current work happens, and install each library. There is no shared install, so each one runs separately.",
-          run: "git clone https://github.com/zebratechnologies/zebra-design-system.git\ncd zebra-design-system\ngit switch design/init\ncorepack enable\n(cd packages/web-components && pnpm install)\n(cd packages/react-baseui && pnpm install)\n(cd packages/zeta-web && yarn install)" },
+          run: "git clone https://github.com/multiplayer-studio/zebra-design-system.git\ncd zebra-design-system\ngit switch design/init\ncorepack enable\n(cd packages/web-components && pnpm install)\n(cd packages/react-baseui && pnpm install)\n(cd packages/zeta-web && yarn install)" },
         { text: "Connect the Figma MCP in Claude Code. Every Figma skill relies on it." },
         { text: "Ask a developer for a Figma token, and save it in <code>.env</code> at the repo root. Never commit that file.",
           run: "FIGMA_PERSONAL_ACCESS_TOKEN=\nFIGMA_FILE_KEY=hvRmnZZOZrmTW0wf8hbrt5" },

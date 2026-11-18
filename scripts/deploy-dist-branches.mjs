@@ -3,8 +3,8 @@
  * `dist/<pkg>` in this repo, plus an immutable tag `<pkg>-v<version>` per
  * deploy, so consumers install without any npm registry:
  *
- *   npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#dist/tokens"        # latest
- *   npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#tokens-v0.1.0"      # pinned
+ *   npm i "git+https://github.com/multiplayer-studio/zebra-design-system.git#dist/tokens"        # latest
+ *   npm i "git+https://github.com/multiplayer-studio/zebra-design-system.git#tokens-v0.1.0"      # pinned
  *
  * The branch copy differs from the npm tarball in exactly two sanitizations
  * (both required for git installs, both documented in DISTRIBUTION.md):
