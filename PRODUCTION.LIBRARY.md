@@ -38,7 +38,7 @@ Your engineers own this file and fill it in once, before the first component is 
   |---|---|
   | `button-primary-container-background-hover` | `<e.g. var(--button-primary-container-background-hover)>` |
 
-- **Modes:** `<how light, dark, AAA and AAA dark are switched, e.g. data-theme / data-contrast attributes, a ThemeMode provider>`
+- **Modes:** `<how light, dark, AAA and AAA dark, each with and without Companion, are switched, e.g. data-theme / data-contrast / data-brand attributes, a ThemeMode provider>`
 
 ## 4. Component API
 
@@ -134,7 +134,7 @@ A complete version of this file for a React project. Delete this section once yo
   |---|---|
   | `button-primary-container-background-hover` | `var(--button-primary-container-background-hover)` |
 
-- **Modes:** `data-theme="dark"` (on `<html>` or any container) and `data-contrast="aaa"` (on `<html>`), alone or together, as defined in `tokens.css`. A `ThemeProvider` in `src/app/` sets them; components never read the mode.
+- **Modes:** `data-theme="dark"` (on `<html>` or any container), `data-contrast="aaa"` (on `<html>`) and `data-brand="companion"` (on `<html>` or any container), alone or together, as defined in `tokens.css`. A `ThemeProvider` in `src/app/` sets them; components never read the mode.
 
 ### 4. Component API
 
@@ -207,7 +207,7 @@ export function Button({
 
 1. Branch `zebra/<component>-<change>`, e.g. `zebra/button-add-loading-state`.
 2. Docs first, then `python3 design-system/scripts/tokens-css.py`, then code, then `CHANGES.md` (see `AGENTS.md`).
-3. Run `npm test` and `npm run storybook` and check the component in all four modes.
+3. Run `npm test` and `npm run storybook` and check the component in every theme mode.
 4. PR title `zebra: <summary>`, with the `CHANGES.md` entry pasted in the description.
 
 ### 7. Open questions

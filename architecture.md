@@ -36,7 +36,7 @@ How a change to the Markdown docs flows through the generator scripts into token
 ### 1. Change a token
 1. Maintainer → Docs: edit the value in the `DESIGN.md` frontmatter (or a reference in a component's `tokens:`), and any prose that mentions it.
 2. Docs → scripts: `python3 scripts/tokens-css.py` reads all the frontmatter.
-3. scripts → Generated: writes `tokens.css` (light, dark, AAA and AAA dark blocks; semantic and component tokens stay as `var()` aliases) and exits 1 on a broken reference.
+3. scripts → Generated: writes `tokens.css` (light, dark, AAA, AAA dark and Companion blocks, each mode merged onto its base; semantic and component tokens stay as `var()` aliases) and exits 1 on a broken reference.
 4. Generated → scripts: `python3 scripts/starter-html.py` reads `tokens.css`, `components.css` and `icons.json`.
 5. scripts → Starter: writes `prototypes/_starter/index.html`, refills the showcase blocks, and prints a drift report (never fails).
 6. scripts → Kits: `prototyping-zip.py` rebuilds every prototyping zip (committed with the docs); the production kit is only built when the release runs (flow 6).

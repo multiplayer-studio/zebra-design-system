@@ -101,7 +101,7 @@ After the developer confirms, write the table in §8 Existing UI. If there were 
 
 - **CSS:** import `design-system/tokens.css` once in the entry point recorded in §3.
 - **Other platforms:** write the generator at the path agreed in §3, following `AGENTS.md` (Tokens in code): it reads the frontmatter of `DESIGN.md` and every component file, outputs every layer except `roles`, and keeps component tokens as references to the semantic ones (and semantic ones as references to the primitives). Run it, and check that it has no raw values in its component tokens.
-- **Modes:** add the switch recorded in §3 (e.g. a `ThemeProvider` that sets `data-theme="dark"`/`data-contrast="aaa"`, or a `ThemeMode` that swaps the extension). Check that light, dark, AAA and AAA dark all resolve.
+- **Modes:** add the switch recorded in §3 (e.g. a `ThemeProvider` that sets `data-theme="dark"`/`data-contrast="aaa"`/`data-brand="companion"`, or a `ThemeMode` that swaps the extension). Check that light, dark, AAA and AAA dark all resolve, with and without Companion.
 
 ## 7. Scaffold the library
 

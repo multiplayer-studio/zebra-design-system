@@ -7,8 +7,9 @@ icons: "Zebra Icons 1.9.8 (zeta-icons-round / zeta-icons-sharp), package @zebra-
 #   1. primitives ........................... raw colours (color-*) and the size scale (scale-*).
 #      Colours are referenced only by the semantic groups. Components may reference a scale-* step
 #      only for a fixed measurement that matches it exactly (e.g. '{primitives.scale-9}' for 24px).
-#   2. semantic groups (this frontmatter) ... colors (+ colors-dark, colors-aaa, colors-aaa-dark:
-#      same keys per mode, the Figma 'palette'), space, control, radius, stroke, container,
+#   2. semantic groups (this frontmatter) ... colors (the Figma 'palette', full set) + the theme modes
+#      colors-dark, colors-aaa, colors-aaa-dark and colors-companion(-dark, -aaa, -aaa-dark), each listing
+#      only the keys it overrides (see §3 Theme modes), space, control, radius, stroke, container,
 #      shadow, typography, font-family, font-weight, motion, layout, opacity, plus component-sizes
 #      (fixed measurements with no scale step, e.g. a dialog width)
 #   3. component tokens ..................... a `tokens:` block in each atoms/ molecules/
@@ -260,7 +261,7 @@ primitives:  # raw values from Figma 'primitives'; referenced ONLY by the semant
   color-alpha-light-70: 'rgba(212,221,230,0.7)'
   color-alpha-light-80: 'rgba(212,221,230,0.8)'
   color-alpha-light-90: 'rgba(212,221,230,0.9)'
-colors:  # Figma 'palette' semantic colours, light, AA (default). Same keys in all four modes
+colors:  # Figma 'palette' semantic colours, light, AA (default). The full set; every other mode lists only overrides
   color-brand-primary-default: '{primitives.color-brand-main-60}'
   color-brand-primary-faint: '{primitives.color-brand-main-10}'
   color-brand-primary-subtle: '{primitives.color-brand-main-50}'
@@ -364,26 +365,14 @@ colors:  # Figma 'palette' semantic colours, light, AA (default). Same keys in a
   color-gradient-strong-end: '{primitives.color-extend-4-80}'
   color-gradient-subtle-start: '{primitives.color-accent-1-50}'
   color-gradient-subtle-end: '{primitives.color-extend-4-40}'
-colors-dark:  # Figma 'palette' semantic colours, dark, AA. Same keys in all four modes
-  color-brand-primary-default: '{primitives.color-brand-main-60}'
+colors-dark:  # Figma 'palette' semantic colours, dark, AA. Overrides colors
   color-brand-primary-faint: '{primitives.color-brand-main-100}'
-  color-brand-primary-subtle: '{primitives.color-brand-main-50}'
-  color-brand-primary-strong: '{primitives.color-brand-main-70}'
-  color-brand-primary-deep: '{primitives.color-brand-main-80}'
   color-brand-primary-muted: '{primitives.color-brand-main-90}'
-  color-brand-primary-on: '{primitives.color-pure-white}'
   color-brand-secondary-default: '{primitives.color-brand-alternative-50}'
   color-brand-secondary-faint: '{primitives.color-brand-alternative-100}'
   color-brand-secondary-subtle: '{primitives.color-brand-alternative-60}'
-  color-brand-secondary-strong: '{primitives.color-brand-alternative-70}'
-  color-brand-secondary-deep: '{primitives.color-brand-alternative-80}'
-  color-brand-secondary-on: '{primitives.color-pure-white}'
   color-brand-tertiary-default: '{primitives.color-accent-5-50}'
   color-brand-tertiary-faint: '{primitives.color-accent-5-100}'
-  color-brand-tertiary-subtle: '{primitives.color-accent-5-50}'
-  color-brand-tertiary-strong: '{primitives.color-accent-5-70}'
-  color-brand-tertiary-deep: '{primitives.color-accent-5-80}'
-  color-brand-tertiary-on: '{primitives.color-pure-white}'
   color-fill-canvas: '{primitives.color-neutral-cool-90}'
   color-fill-default: '{primitives.color-neutral-cool-100}'
   color-fill-elevated: '{primitives.color-neutral-cool-100}'
@@ -391,7 +380,6 @@ colors-dark:  # Figma 'palette' semantic colours, dark, AA. Same keys in all fou
   color-fill-inverse: '{primitives.color-neutral-cool-20}'
   color-fill-sunken: '{primitives.color-neutral-cool-80}'
   color-fill-faint: '{primitives.color-neutral-cool-90}'
-  color-fill-scrim: '{primitives.color-alpha-dark-60}'
   color-fill-selection: '{primitives.color-brand-main-90}'
   color-fill-hover: '{primitives.color-neutral-cool-40}'
   color-fill-inverse-sunken: '{primitives.color-neutral-cool-30}'
@@ -400,7 +388,6 @@ colors-dark:  # Figma 'palette' semantic colours, dark, AA. Same keys in all fou
   color-fill-transparent-emphasis: '{primitives.color-alpha-light-5}'
   color-fill-transparent-elevate: '{primitives.color-alpha-light-10}'
   color-fill-transparent-obsure: '{primitives.color-alpha-light-30}'
-  color-fill-transparent: '{primitives.color-alpha-light-0}'
   color-ink-high: '{primitives.color-pure-white}'
   color-ink-medium: '{primitives.color-neutral-cool-40}'
   color-ink-low: '{primitives.color-neutral-cool-50}'
@@ -409,28 +396,16 @@ colors-dark:  # Figma 'palette' semantic colours, dark, AA. Same keys in all fou
   color-ink-link: '{primitives.color-brand-main-50}'
   color-ink-brand: '{primitives.color-brand-main-40}'
   color-ink-selection: '{primitives.color-neutral-cool-10}'
-  color-ink-always-white: '{primitives.color-pure-white}'
-  color-ink-always-blank: '{primitives.color-neutral-cool-100}'
-  color-status-success-default: '{primitives.color-system-positive-60}'
   color-status-success-faint: '{primitives.color-system-positive-100}'
-  color-status-success-deep: '{primitives.color-system-positive-80}'
-  color-status-success-strong: '{primitives.color-system-positive-70}'
   color-status-success-subtle: '{primitives.color-system-positive-70}'
   color-status-warning-default: '{primitives.color-system-warning-50}'
   color-status-warning-faint: '{primitives.color-system-warning-100}'
   color-status-warning-deep: '{primitives.color-system-warning-40}'
   color-status-warning-strong: '{primitives.color-system-warning-40}'
   color-status-warning-subtle: '{primitives.color-system-warning-70}'
-  color-status-error-default: '{primitives.color-system-negative-60}'
   color-status-error-faint: '{primitives.color-system-negative-100}'
-  color-status-error-deep: '{primitives.color-system-negative-80}'
-  color-status-error-subtle: '{primitives.color-system-negative-50}'
-  color-status-error-strong: '{primitives.color-system-negative-70}'
-  color-status-info-default: '{primitives.color-system-info-60}'
   color-status-info-faint: '{primitives.color-system-info-100}'
-  color-status-info-deep: '{primitives.color-system-info-80}'
   color-status-info-subtle: '{primitives.color-system-info-60}'
-  color-status-info-strong: '{primitives.color-system-info-70}'
   color-status-ghost-default: '{primitives.color-alpha-light-0}'
   color-status-ghost-faint: '{primitives.color-alpha-light-5}'
   color-status-ghost-deep: '{primitives.color-alpha-light-10}'
@@ -462,102 +437,59 @@ colors-dark:  # Figma 'palette' semantic colours, dark, AA. Same keys in all fou
   color-data-11: '{primitives.color-system-negative-60}'
   color-data-12: '{primitives.color-extend-1-60}'
   color-data-neutral: '{primitives.color-neutral-cool-60}'
-  color-gradient-default-start: '{primitives.color-accent-1-60}'
-  color-gradient-default-end: '{primitives.color-extend-4-60}'
   color-gradient-strong-start: '{primitives.color-accent-1-40}'
   color-gradient-strong-end: '{primitives.color-extend-4-40}'
   color-gradient-subtle-start: '{primitives.color-accent-1-70}'
   color-gradient-subtle-end: '{primitives.color-extend-4-80}'
-colors-aaa:  # Figma 'palette' semantic colours, light, AAA contrast. Same keys in all four modes
+colors-aaa:  # Figma 'palette' semantic colours, light, AAA contrast. Overrides colors
   color-brand-primary-default: '{primitives.color-brand-main-80}'
-  color-brand-primary-faint: '{primitives.color-brand-main-10}'
   color-brand-primary-subtle: '{primitives.color-brand-main-30}'
   color-brand-primary-strong: '{primitives.color-brand-main-90}'
   color-brand-primary-deep: '{primitives.color-brand-main-100}'
-  color-brand-primary-muted: '{primitives.color-brand-main-20}'
-  color-brand-primary-on: '{primitives.color-pure-white}'
   color-brand-secondary-default: '{primitives.color-brand-alternative-90}'
-  color-brand-secondary-faint: '{primitives.color-brand-alternative-10}'
   color-brand-secondary-subtle: '{primitives.color-brand-alternative-30}'
   color-brand-secondary-strong: '{primitives.color-brand-alternative-100}'
   color-brand-secondary-deep: '{primitives.color-brand-alternative-100}'
-  color-brand-secondary-on: '{primitives.color-pure-white}'
   color-brand-tertiary-default: '{primitives.color-accent-5-90}'
-  color-brand-tertiary-faint: '{primitives.color-accent-5-10}'
   color-brand-tertiary-subtle: '{primitives.color-accent-5-30}'
   color-brand-tertiary-strong: '{primitives.color-accent-5-100}'
   color-brand-tertiary-deep: '{primitives.color-accent-5-100}'
-  color-brand-tertiary-on: '{primitives.color-pure-white}'
-  color-fill-canvas: '{primitives.color-neutral-cool-20}'
-  color-fill-default: '{primitives.color-pure-white}'
-  color-fill-elevated: '{primitives.color-pure-white}'
-  color-fill-overlay: '{primitives.color-pure-white}'
-  color-fill-inverse: '{primitives.color-neutral-cool-90}'
   color-fill-sunken: '{primitives.color-neutral-cool-20}'
-  color-fill-faint: '{primitives.color-neutral-cool-20}'
-  color-fill-scrim: '{primitives.color-alpha-dark-60}'
-  color-fill-selection: '{primitives.color-brand-main-20}'
-  color-fill-hover: '{primitives.color-neutral-cool-70}'
-  color-fill-inverse-sunken: '{primitives.color-neutral-cool-80}'
-  color-fill-inverse-elevated: '{primitives.color-neutral-cool-100}'
-  color-fill-disabled: '{primitives.color-neutral-cool-30}'
-  color-fill-transparent-emphasis: '{primitives.color-alpha-dark-5}'
-  color-fill-transparent-elevate: '{primitives.color-alpha-dark-10}'
-  color-fill-transparent-obsure: '{primitives.color-alpha-dark-30}'
-  color-fill-transparent: '{primitives.color-alpha-light-0}'
-  color-ink-high: '{primitives.color-neutral-cool-100}'
   color-ink-medium: '{primitives.color-neutral-cool-80}'
   color-ink-low: '{primitives.color-neutral-cool-80}'
   color-ink-disabled: '{primitives.color-neutral-cool-80}'
-  color-ink-inverse: '{primitives.color-pure-white}'
   color-ink-link: '{primitives.color-brand-main-90}'
   color-ink-brand: '{primitives.color-brand-main-90}'
-  color-ink-selection: '{primitives.color-neutral-cool-100}'
-  color-ink-always-white: '{primitives.color-pure-white}'
-  color-ink-always-blank: '{primitives.color-neutral-cool-100}'
   color-status-success-default: '{primitives.color-system-positive-80}'
-  color-status-success-faint: '{primitives.color-system-positive-10}'
   color-status-success-deep: '{primitives.color-system-positive-100}'
   color-status-success-strong: '{primitives.color-system-positive-90}'
   color-status-success-subtle: '{primitives.color-system-positive-30}'
   color-status-warning-default: '{primitives.color-system-warning-80}'
-  color-status-warning-faint: '{primitives.color-system-warning-10}'
   color-status-warning-deep: '{primitives.color-system-warning-100}'
   color-status-warning-strong: '{primitives.color-system-warning-90}'
   color-status-warning-subtle: '{primitives.color-system-warning-30}'
   color-status-error-default: '{primitives.color-system-negative-80}'
-  color-status-error-faint: '{primitives.color-system-negative-10}'
   color-status-error-deep: '{primitives.color-system-negative-100}'
   color-status-error-subtle: '{primitives.color-system-negative-30}'
   color-status-error-strong: '{primitives.color-system-negative-90}'
   color-status-info-default: '{primitives.color-system-info-80}'
-  color-status-info-faint: '{primitives.color-system-info-10}'
   color-status-info-deep: '{primitives.color-system-info-100}'
   color-status-info-subtle: '{primitives.color-system-info-30}'
   color-status-info-strong: '{primitives.color-system-info-90}'
-  color-status-ghost-default: '{primitives.color-alpha-dark-0}'
-  color-status-ghost-faint: '{primitives.color-alpha-dark-5}'
-  color-status-ghost-deep: '{primitives.color-alpha-dark-10}'
-  color-status-ghost-subtle: '{primitives.color-alpha-dark-0}'
-  color-status-ghost-strong: '{primitives.color-alpha-dark-20}'
   color-status-ghost-tint: 'rgba(0,63,189,0.1)'
   color-status-neutral-default: '{primitives.color-neutral-cool-80}'
-  color-status-neutral-faint: '{primitives.color-neutral-cool-10}'
   color-status-neutral-deep: '{primitives.color-neutral-cool-100}'
-  color-status-neutral-subtle: '{primitives.color-neutral-cool-50}'
   color-status-neutral-strong: '{primitives.color-neutral-cool-90}'
   color-line-selection: '{primitives.color-brand-main-80}'
   color-line-focus: '{primitives.color-brand-main-80}'
   color-line-default: '{primitives.color-neutral-cool-60}'
   color-line-subtle: '{primitives.color-neutral-cool-50}'
-  color-line-inverse: '{primitives.color-pure-white}'
   color-line-strong: '{primitives.color-neutral-cool-70}'
   color-line-stronger: '{primitives.color-neutral-cool-80}'
   color-data-1: '{primitives.color-brand-main-80}'
   color-data-2: '{primitives.color-brand-alternative-90}'
   color-data-3: '{primitives.color-accent-5-90}'
   color-data-4: '{primitives.color-accent-1-80}'
-  color-data-5: '{primitives.color-accent-4-80}'
   color-data-6: '{primitives.color-accent-3-80}'
   color-data-7: '{primitives.color-accent-2-90}'
   color-data-8: '{primitives.color-extend-3-90}'
@@ -568,85 +500,47 @@ colors-aaa:  # Figma 'palette' semantic colours, light, AAA contrast. Same keys 
   color-data-neutral: '{primitives.color-neutral-cool-80}'
   color-gradient-default-start: '{primitives.color-accent-1-80}'
   color-gradient-default-end: '{primitives.color-extend-4-80}'
-  color-gradient-strong-start: '{primitives.color-accent-1-80}'
-  color-gradient-strong-end: '{primitives.color-extend-4-80}'
-  color-gradient-subtle-start: '{primitives.color-accent-1-50}'
-  color-gradient-subtle-end: '{primitives.color-extend-4-40}'
-colors-aaa-dark:  # Figma 'palette' semantic colours, dark, AAA contrast. Same keys in all four modes
+colors-aaa-dark:  # Figma 'palette' semantic colours, dark, AAA contrast. Overrides colors-dark
   color-brand-primary-default: '{primitives.color-brand-main-30}'
-  color-brand-primary-faint: '{primitives.color-brand-main-100}'
   color-brand-primary-subtle: '{primitives.color-brand-main-90}'
   color-brand-primary-strong: '{primitives.color-brand-main-20}'
   color-brand-primary-deep: '{primitives.color-brand-main-10}'
-  color-brand-primary-muted: '{primitives.color-brand-main-90}'
   color-brand-primary-on: '{primitives.color-neutral-cool-100}'
   color-brand-secondary-default: '{primitives.color-brand-alternative-30}'
-  color-brand-secondary-faint: '{primitives.color-brand-alternative-100}'
   color-brand-secondary-subtle: '{primitives.color-brand-alternative-90}'
   color-brand-secondary-strong: '{primitives.color-brand-alternative-20}'
   color-brand-secondary-deep: '{primitives.color-brand-alternative-10}'
   color-brand-secondary-on: '{primitives.color-neutral-cool-100}'
   color-brand-tertiary-default: '{primitives.color-accent-5-40}'
-  color-brand-tertiary-faint: '{primitives.color-accent-5-100}'
   color-brand-tertiary-subtle: '{primitives.color-accent-5-90}'
   color-brand-tertiary-strong: '{primitives.color-accent-5-30}'
   color-brand-tertiary-deep: '{primitives.color-accent-5-20}'
   color-brand-tertiary-on: '{primitives.color-neutral-cool-100}'
-  color-fill-canvas: '{primitives.color-neutral-cool-90}'
-  color-fill-default: '{primitives.color-neutral-cool-100}'
-  color-fill-elevated: '{primitives.color-neutral-cool-100}'
   color-fill-overlay: '{primitives.color-neutral-cool-90}'
-  color-fill-inverse: '{primitives.color-neutral-cool-20}'
   color-fill-sunken: '{primitives.color-neutral-cool-90}'
-  color-fill-faint: '{primitives.color-neutral-cool-90}'
-  color-fill-scrim: '{primitives.color-alpha-dark-60}'
-  color-fill-selection: '{primitives.color-brand-main-90}'
-  color-fill-hover: '{primitives.color-neutral-cool-40}'
-  color-fill-inverse-sunken: '{primitives.color-neutral-cool-30}'
-  color-fill-inverse-elevated: '{primitives.color-neutral-cool-10}'
-  color-fill-disabled: '{primitives.color-neutral-cool-80}'
-  color-fill-transparent-emphasis: '{primitives.color-alpha-light-5}'
-  color-fill-transparent-elevate: '{primitives.color-alpha-light-10}'
-  color-fill-transparent-obsure: '{primitives.color-alpha-light-30}'
-  color-fill-transparent: '{primitives.color-alpha-light-0}'
-  color-ink-high: '{primitives.color-pure-white}'
   color-ink-medium: '{primitives.color-neutral-cool-30}'
   color-ink-low: '{primitives.color-neutral-cool-40}'
   color-ink-disabled: '{primitives.color-neutral-cool-40}'
-  color-ink-inverse: '{primitives.color-neutral-cool-100}'
   color-ink-link: '{primitives.color-brand-main-20}'
   color-ink-brand: '{primitives.color-brand-main-20}'
-  color-ink-selection: '{primitives.color-neutral-cool-10}'
   color-ink-always-white: '{primitives.color-neutral-cool-100}'
-  color-ink-always-blank: '{primitives.color-neutral-cool-100}'
   color-status-success-default: '{primitives.color-system-positive-30}'
-  color-status-success-faint: '{primitives.color-system-positive-100}'
   color-status-success-deep: '{primitives.color-system-positive-10}'
   color-status-success-strong: '{primitives.color-system-positive-20}'
   color-status-success-subtle: '{primitives.color-system-positive-40}'
   color-status-warning-default: '{primitives.color-system-warning-30}'
-  color-status-warning-faint: '{primitives.color-system-warning-100}'
   color-status-warning-deep: '{primitives.color-system-warning-10}'
   color-status-warning-strong: '{primitives.color-system-warning-20}'
   color-status-warning-subtle: '{primitives.color-system-warning-40}'
   color-status-error-default: '{primitives.color-system-negative-30}'
-  color-status-error-faint: '{primitives.color-system-negative-100}'
   color-status-error-deep: '{primitives.color-system-negative-10}'
   color-status-error-subtle: '{primitives.color-system-negative-40}'
   color-status-error-strong: '{primitives.color-system-negative-20}'
   color-status-info-default: '{primitives.color-system-info-30}'
-  color-status-info-faint: '{primitives.color-system-info-100}'
   color-status-info-deep: '{primitives.color-system-info-10}'
   color-status-info-subtle: '{primitives.color-system-info-40}'
   color-status-info-strong: '{primitives.color-system-info-20}'
-  color-status-ghost-default: '{primitives.color-alpha-light-0}'
-  color-status-ghost-faint: '{primitives.color-alpha-light-5}'
-  color-status-ghost-deep: '{primitives.color-alpha-light-10}'
-  color-status-ghost-subtle: '{primitives.color-alpha-light-0}'
-  color-status-ghost-strong: '{primitives.color-alpha-light-20}'
-  color-status-ghost-tint: 'rgba(141,192,255,0.1)'
   color-status-neutral-default: '{primitives.color-neutral-warm-40}'
-  color-status-neutral-faint: '{primitives.color-neutral-warm-100}'
   color-status-neutral-deep: '{primitives.color-neutral-warm-20}'
   color-status-neutral-subtle: '{primitives.color-neutral-warm-50}'
   color-status-neutral-strong: '{primitives.color-neutral-warm-30}'
@@ -654,9 +548,7 @@ colors-aaa-dark:  # Figma 'palette' semantic colours, dark, AAA contrast. Same k
   color-line-focus: '{primitives.color-brand-main-30}'
   color-line-default: '{primitives.color-neutral-cool-50}'
   color-line-subtle: '{primitives.color-neutral-cool-60}'
-  color-line-inverse: '{primitives.color-pure-black}'
   color-line-strong: '{primitives.color-neutral-cool-40}'
-  color-line-stronger: '{primitives.color-neutral-cool-30}'
   color-data-1: '{primitives.color-brand-main-30}'
   color-data-2: '{primitives.color-brand-alternative-30}'
   color-data-3: '{primitives.color-accent-5-40}'
@@ -674,8 +566,123 @@ colors-aaa-dark:  # Figma 'palette' semantic colours, dark, AAA contrast. Same k
   color-gradient-default-end: '{primitives.color-extend-4-40}'
   color-gradient-strong-start: '{primitives.color-accent-1-30}'
   color-gradient-strong-end: '{primitives.color-extend-4-30}'
-  color-gradient-subtle-start: '{primitives.color-accent-1-70}'
-  color-gradient-subtle-end: '{primitives.color-extend-4-80}'
+colors-companion:  # Companion brand, light, AA. Overrides colors
+  color-brand-primary-default: '{primitives.color-accent-1-60}'
+  color-brand-primary-faint: '{primitives.color-accent-1-10}'
+  color-brand-primary-subtle: '{primitives.color-accent-1-50}'
+  color-brand-primary-strong: '{primitives.color-accent-1-70}'
+  color-brand-primary-deep: '{primitives.color-accent-1-80}'
+  color-brand-primary-muted: '{primitives.color-accent-1-20}'
+  color-fill-canvas: '{primitives.color-neutral-cool-10}'
+  color-fill-overlay: '{primitives.color-neutral-cool-10}'
+  color-fill-selection: '{primitives.color-accent-1-20}'
+  color-ink-link: '{primitives.color-accent-1-60}'
+  color-ink-brand: '{primitives.color-accent-1-60}'
+  color-status-success-default: '{primitives.color-system-positive-70}'
+  color-status-warning-default: '{primitives.color-system-warning-70}'
+  color-status-error-default: '{primitives.color-system-negative-70}'
+  color-status-info-default: '{primitives.color-accent-1-70}'
+  color-status-info-faint: '{primitives.color-accent-1-10}'
+  color-status-info-deep: '{primitives.color-accent-1-80}'
+  color-status-info-subtle: '{primitives.color-accent-1-50}'
+  color-status-info-strong: '{primitives.color-accent-1-70}'
+  color-status-neutral-default: '{primitives.color-neutral-cool-70}'
+  color-line-selection: '{primitives.color-accent-1-60}'
+  color-line-focus: '{primitives.color-accent-1-60}'
+  color-gradient-default-start: '{primitives.color-extend-2-60}'
+  color-gradient-strong-start: '{primitives.color-extend-2-60}'
+  color-gradient-strong-end: '{primitives.color-extend-4-60}'
+colors-companion-dark:  # Companion brand, dark, AA. Overrides colors-dark
+  color-brand-primary-default: '{primitives.color-accent-1-60}'
+  color-brand-primary-faint: '{primitives.color-accent-1-100}'
+  color-brand-primary-subtle: '{primitives.color-accent-1-50}'
+  color-brand-primary-strong: '{primitives.color-accent-1-70}'
+  color-brand-primary-deep: '{primitives.color-accent-1-80}'
+  color-brand-primary-muted: '{primitives.color-accent-1-90}'
+  color-fill-canvas: '{primitives.color-neutral-cool-100}'
+  color-fill-default: '{primitives.color-neutral-cool-90}'
+  color-fill-elevated: '{primitives.color-neutral-cool-90}'
+  color-fill-inverse: '{primitives.color-pure-white}'
+  color-fill-selection: '{primitives.color-accent-1-90}'
+  color-ink-medium: '{primitives.color-neutral-cool-50}'
+  color-ink-link: '{primitives.color-accent-1-50}'
+  color-ink-brand: '{primitives.color-accent-1-50}'
+  color-status-success-default: '{primitives.color-system-positive-30}'
+  color-status-success-faint: '{primitives.color-system-positive-90}'
+  color-status-warning-default: '{primitives.color-system-warning-30}'
+  color-status-warning-faint: '{primitives.color-system-warning-90}'
+  color-status-error-default: '{primitives.color-system-negative-30}'
+  color-status-error-faint: '{primitives.color-system-negative-90}'
+  color-status-info-default: '{primitives.color-accent-1-30}'
+  color-status-info-faint: '{primitives.color-accent-1-90}'
+  color-status-info-deep: '{primitives.color-accent-1-80}'
+  color-status-info-subtle: '{primitives.color-accent-1-60}'
+  color-status-info-strong: '{primitives.color-accent-1-70}'
+  color-status-ghost-tint: 'rgba(31,105,255,0.1)'
+  color-status-neutral-default: '{primitives.color-neutral-cool-30}'
+  color-status-neutral-faint: '{primitives.color-neutral-cool-70}'
+  color-line-selection: '{primitives.color-accent-1-60}'
+  color-line-focus: '{primitives.color-accent-1-60}'
+  color-line-strong: '{primitives.color-neutral-cool-60}'
+  color-gradient-default-start: '{primitives.color-extend-2-50}'
+  color-gradient-default-end: '{primitives.color-extend-4-50}'
+  color-gradient-strong-start: '{primitives.color-extend-2-50}'
+  color-gradient-strong-end: '{primitives.color-extend-4-50}'
+colors-companion-aaa:  # Companion brand, light, AAA contrast. Overrides colors-aaa
+  color-brand-primary-default: '{primitives.color-accent-1-70}'
+  color-brand-primary-faint: '{primitives.color-accent-1-10}'
+  color-brand-primary-subtle: '{primitives.color-accent-1-30}'
+  color-brand-primary-strong: '{primitives.color-accent-1-80}'
+  color-brand-primary-deep: '{primitives.color-accent-1-90}'
+  color-brand-primary-muted: '{primitives.color-accent-1-20}'
+  color-fill-canvas: '{primitives.color-pure-white}'
+  color-fill-overlay: '{primitives.color-neutral-cool-10}'
+  color-fill-inverse: '{primitives.color-neutral-cool-100}'
+  color-fill-sunken: '{primitives.color-neutral-cool-30}'
+  color-fill-faint: '{primitives.color-neutral-cool-10}'
+  color-fill-scrim: '{primitives.color-alpha-dark-80}'
+  color-fill-selection: '{primitives.color-accent-1-20}'
+  color-fill-disabled: '{primitives.color-neutral-cool-40}'
+  color-ink-disabled: '{primitives.color-neutral-cool-60}'
+  color-ink-link: '{primitives.color-accent-1-80}'
+  color-ink-brand: '{primitives.color-accent-1-80}'
+  color-status-success-default: '{primitives.color-system-positive-90}'
+  color-status-warning-default: '{primitives.color-system-warning-90}'
+  color-status-error-default: '{primitives.color-system-negative-90}'
+  color-status-info-default: '{primitives.color-accent-1-90}'
+  color-status-info-faint: '{primitives.color-accent-1-10}'
+  color-status-info-deep: '{primitives.color-accent-1-100}'
+  color-status-info-subtle: '{primitives.color-accent-1-30}'
+  color-status-info-strong: '{primitives.color-accent-1-90}'
+  color-status-ghost-tint: 'rgba(31,105,255,0.1)'
+  color-status-neutral-default: '{primitives.color-neutral-cool-90}'
+  color-line-selection: '{primitives.color-accent-1-80}'
+  color-line-focus: '{primitives.color-accent-1-80}'
+  color-line-strong: '{primitives.color-neutral-cool-80}'
+  color-gradient-default-start: '{primitives.color-extend-2-70}'
+  color-gradient-default-end: '{primitives.color-extend-4-70}'
+  color-gradient-strong-start: '{primitives.color-extend-2-70}'
+  color-gradient-strong-end: '{primitives.color-extend-4-70}'
+colors-companion-aaa-dark:  # Companion brand, dark, AAA contrast. Overrides colors-aaa-dark
+  color-brand-primary-default: '{primitives.color-accent-1-30}'
+  color-brand-primary-faint: '{primitives.color-accent-1-100}'
+  color-brand-primary-subtle: '{primitives.color-accent-1-90}'
+  color-brand-primary-strong: '{primitives.color-accent-1-20}'
+  color-brand-primary-deep: '{primitives.color-accent-1-10}'
+  color-brand-primary-muted: '{primitives.color-accent-1-90}'
+  color-fill-selection: '{primitives.color-accent-1-90}'
+  color-ink-link: '{primitives.color-accent-1-20}'
+  color-ink-brand: '{primitives.color-accent-1-20}'
+  color-status-info-default: '{primitives.color-accent-1-30}'
+  color-status-info-faint: '{primitives.color-accent-1-100}'
+  color-status-info-deep: '{primitives.color-accent-1-10}'
+  color-status-info-subtle: '{primitives.color-accent-1-40}'
+  color-status-info-strong: '{primitives.color-accent-1-20}'
+  color-status-ghost-tint: 'rgba(31,105,255,0.1)'
+  color-line-selection: '{primitives.color-accent-1-30}'
+  color-line-focus: '{primitives.color-accent-1-30}'
+  color-gradient-default-start: '{primitives.color-extend-2-40}'
+  color-gradient-strong-start: '{primitives.color-extend-2-30}'
 space:
   space-page: '{primitives.scale-7}'
   space-section: '{primitives.scale-11}'
@@ -836,11 +843,11 @@ component-sizes:  # fixed component measurements Figma hard-codes and no scale-*
 
 ## 1. Visual Theme & Atmosphere
 
-> **Token rule:** every value in this document is a token reference written as `--<key>`. Raw values live only in the frontmatter above. To read a value, look up `<key>` in the relevant group (`colors`, `space`, `control`, `radius`, `stroke`, `container`, `shadow`, `typography`, `font-weight`, `motion`, `layout`, `opacity`). Dark and AAA values share the same key in `colors-dark`, `colors-aaa` and `colors-aaa-dark`. Component tokens (e.g. `--dialog-container-width`) are defined in the `tokens:` block of their component file. See §2 Token Architecture.
+> **Token rule:** every value in this document is a token reference written as `--<key>`. Raw values live only in the frontmatter above. To read a value, look up `<key>` in the relevant group (`colors`, `space`, `control`, `radius`, `stroke`, `container`, `shadow`, `typography`, `font-weight`, `motion`, `layout`, `opacity`). Other theme modes override some of those keys, under the same names (§3 Theme modes). Component tokens (e.g. `--dialog-container-width`) are defined in the `tokens:` block of their component file. See §2 Token Architecture.
 
 The Zebra Design System is an **enterprise utility language**. It is calm, precise and built for frontline workers who scan screens quickly, often on rugged handheld devices, with gloves on or in bad light. Components sit on pure white (`--color-fill-default`) over a faintly blue-tinted cool-grey canvas (`--color-fill-canvas`). Ink is a near-black graphite (`--color-ink-high`), never pure black. A single confident **Zebra Blue** (`--color-brand-primary-default`) carries every primary action and selection. Colour is spent "sparingly … as a means to employ meaning and discretion". Most screens are monochrome greys plus one blue, and red, green, amber and the secondary orange appear only when they mean something.
 
-The geometry is strict and quiet. Everything snaps to the 4px-based size scale. Every component is rounded by default: controls take `--radius-element-sm` corners and containers `--radius-container`; each can switch to fully sharp (`--radius-none`) or, where offered, to full pills (`--radius-pill`). The AAA modes are always sharp. Depth is low: hairline strokes (`--stroke-thin`) and soft cool shadows (`--shadow-xsmall` … `--shadow-large`) only on floating layers. Type is **IBM Plex Sans** (`--font-family-regular`), a humanist-grotesque with an engineered feel. Display sizes use the light weight for an airy look, headings use regular, and all UI labels and titles use medium. The overall impression is *trustworthy industrial software*: dense enough for data, generous enough for touch, and accessible in all four theme modes (light, dark, AAA light, AAA dark).
+The geometry is strict and quiet. Everything snaps to the 4px-based size scale. Every component is rounded by default: controls take `--radius-element-sm` corners and containers `--radius-container`; each can switch to fully sharp (`--radius-none`) or, where offered, to full pills (`--radius-pill`). The AAA modes are always sharp. Depth is low: hairline strokes (`--stroke-thin`) and soft cool shadows (`--shadow-xsmall` … `--shadow-large`) only on floating layers. Type is **IBM Plex Sans** (`--font-family-regular`), a humanist-grotesque with an engineered feel. Display sizes use the light weight for an airy look, headings use regular, and all UI labels and titles use medium. The overall impression is *trustworthy industrial software*: dense enough for data, generous enough for touch, and accessible in every theme mode (light, dark, AAA light, AAA dark, and Companion in each of those four).
 
 **Key characteristics**
 - Cool-neutral greys with a single saturated blue accent; a gradient (`--color-gradient-default-start` → `--color-gradient-default-end`) reserved for AI
@@ -859,7 +866,7 @@ Zebra Design System tokens form three layers that mirror the Figma variable coll
 | Layer | Lives in | Holds | Example |
 |---|---|---|---|
 | **1. Primitives** | frontmatter `primitives` (Figma *primitives*) | Raw colour ramps (`color-brand-main-10` … `-100`, neutrals, system, accent, extend, alpha) and the size scale (`scale-0` … `scale-21`, `scale-neg-*`, `scale-container-*`) | `--color-brand-main-70` |
-| **2. Semantic** | frontmatter `colors` (+ `colors-dark`, `colors-aaa`, `colors-aaa-dark`; Figma *palette*), `space`, `control`, `radius`, `stroke`, `container`, `shadow` (Figma *size*), `typography` (Figma *typography*), `font-family`, `font-weight`, `motion`, `layout`, `opacity`, `component-sizes` | Purpose-named decisions shared by the whole system. `component-sizes` holds the few fixed component measurements no scale step matches (`size-…`). | `--color-brand-primary-strong` |
+| **2. Semantic** | frontmatter `colors` (+ the theme-mode overrides `colors-dark`, `colors-aaa`, `colors-aaa-dark`, `colors-companion`, `colors-companion-dark`, `colors-companion-aaa`, `colors-companion-aaa-dark`; Figma *palette*), `space`, `control`, `radius`, `stroke`, `container`, `shadow` (Figma *size*), `typography` (Figma *typography*), `font-family`, `font-weight`, `motion`, `layout`, `opacity`, `component-sizes` | Purpose-named decisions shared by the whole system. `component-sizes` holds the few fixed component measurements no scale step matches (`size-…`). | `--color-brand-primary-strong` |
 | **3. Component** | `tokens:` block in each `atoms/`, `molecules/` and `organisms/` file | Each component's own named decisions. They are references only, never raw values. | `--button-primary-container-background-hover` |
 
 Every semantic key carries its layer prefix (`color-`, `space-`, `control-`, `radius-`, `stroke-`, `shadow-`, `type-`, `motion-`, `size-`), so a semantic CSS name never collides with a component token.
@@ -871,7 +878,7 @@ A component token's value is a single reference to a semantic key, written `'{gr
 - `button-label-font-medium: '{typography.type-label-large}'`
 - `button-container-height-medium: '{control.control-md}'`
 
-Component tokens never reference `roles`, `colors-dark`, `colors-aaa`, `colors-aaa-dark` or colour primitives. The one primitive they may use is a `scale-*` step, and only for a fixed measurement that matches it exactly (e.g. `'{primitives.scale-9}'` for a 24px avatar). `scripts/tokens-css.py` enforces all of this and fails on an undefined reference.
+Component tokens never reference `roles`, a theme-mode group (`colors-dark`, `colors-aaa`, …) or colour primitives. The one primitive they may use is a `scale-*` step, and only for a fixed measurement that matches it exactly (e.g. `'{primitives.scale-9}'` for a 24px avatar). `scripts/tokens-css.py` enforces all of this and fails on an undefined reference.
 
 **Composition (reuse, not restatement):** a component may also reference the tokens of components listed in its `composes`, written `'{child.token}'` (e.g. `button-icon-size-small: '{icon.icon-size-small}'`). A composite never restates a child's styling. It says which child, variant and size it uses ("[Icon Button](atoms/icon-button.md), subtle, medium"), and the child's own tokens govern its colours, states and radius. The composite defines its own tokens only for:
 - **its own parts:** container, layout, gap, dividers, header;
@@ -888,12 +895,12 @@ References may chain (organism → molecule → atom), but every chain must end 
 ### Rules
 - **Strict layering:** a component file's text and tables cite only its own component tokens and those of the components it composes. They never cite semantic tokens directly. This document's prose cites semantic tokens, plus a component's tokens where it describes that component.
 - **Changes propagate:** restyling an atom (e.g. the icon button's hover) automatically restyles every molecule and organism that composes it, unless that composite has a deliberate context override.
-- **Theming flows through:** semantic keys are identical in every mode, so `colors-dark`, `colors-aaa` and `colors-aaa-dark` re-theme every component automatically.
+- **Theming flows through:** a theme mode only overrides `colors` keys, never adds new ones, so every mode re-themes every component automatically.
 - **Re-theming one component** means pointing its component token at a different semantic key. Nothing else changes.
 
 ### Worked example: primary button hover
 `--color-brand-main-70` (primitive) → `--color-brand-primary-strong` (semantic, `colors`) → `--button-primary-container-background-hover` (component, `atoms/button.md`).
-In dark mode the same chain resolves through `colors-dark.color-brand-primary-strong`, which points at a lighter step of the same ramp.
+`colors-dark` doesn't override `color-brand-primary-strong`, so dark mode resolves the same chain. `colors-companion` does, pointing it at `--color-accent-1-70`, so under `[data-brand="companion"]` the hover turns purple.
 
 ---
 
@@ -901,7 +908,7 @@ In dark mode the same chain resolves through `colors-dark.color-brand-primary-st
 
 The Zebra Design System uses a **two-tier colour model**, taken from the Figma *primitives* and *palette* collections:
 1. **Primitives** (frontmatter `primitives`, `color-*`): ramps of 10 steps (10 lightest → 100 darkest) for the cool and warm neutrals, the brand main (blue) and alternative (orange), the four system hues (positive, negative, warning, info), five accents and four extended hues, plus `color-pure-white` / `-black` and the `color-alpha-dark-*` / `color-alpha-light-*` transparencies. Primitives are never used by components.
-2. **Palette** (frontmatter `colors`): role tokens that point at primitive steps, in seven families. The same keys exist in all four modes.
+2. **Palette** (frontmatter `colors`): role tokens that point at primitive steps, in seven families. Theme modes override some of these keys (see Theme modes below).
 
 ### Brand — `--color-brand-<primary|secondary|tertiary>-<step>`
 | Step | Primary (Zebra Blue) | Role |
@@ -963,8 +970,22 @@ Every status has the steps `faint` (tinted container), `subtle`, `default` (text
 - **Gradient:** `--color-gradient-<default|strong|subtle>-<start|end>`, the purple-to-blue AI gradient. Use the gradient flavours (gradient and text-gradient buttons and icon buttons, gradient fields, the gradient card) for anything to do with AI, such as an AI assistant or companion, AI-generated content or an action that runs AI, and for nothing else. Not for promotion or emphasis: the gradient always means AI.
 
 ### Theme modes
+`colors` is the only full palette. **Every theme mode lists only its overrides:** the keys whose value differs from its base, never a key `colors` lacks. Light modes override `colors` and dark modes override `colors-dark`; each group's frontmatter comment names its base. A key a mode doesn't list keeps its base's value, and `scripts/tokens-css.py` merges each mode onto its base. To change a mode, add, change or remove an override; never copy the base's keys into it.
+
+| Mode | Group | Overrides | Switched on by |
+|---|---|---|---|
+| Light (default) | `colors` | (full set) | nothing, or `[data-theme="light"]` inside a dark area |
+| Dark | `colors-dark` | `colors` | `[data-theme="dark"]` |
+| AAA | `colors-aaa` | `colors` | `[data-contrast="aaa"]` |
+| AAA dark | `colors-aaa-dark` | `colors-dark` | both |
+| Companion | `colors-companion` | `colors` | `[data-brand="companion"]` |
+| Companion dark | `colors-companion-dark` | `colors-dark` | `[data-brand="companion"]` with `[data-theme="dark"]` |
+| Companion AAA | `colors-companion-aaa` | `colors-aaa` | `[data-brand="companion"]` with `[data-contrast="aaa"]` |
+| Companion AAA dark | `colors-companion-aaa-dark` | `colors-aaa-dark` | all three |
+
 - **Dark** (`colors-dark`, `[data-theme="dark"]`): the palette points at different primitive steps. Fills become near-black, ink becomes near-white, and brand and status steps move lighter so they keep their contrast.
 - **AAA** (`colors-aaa`, `[data-contrast="aaa"]`) and **AAA dark** (`colors-aaa-dark`, both attributes): the palette shifts to stronger steps so text, borders and fills meet WCAG AAA contrast, and every component turns **sharp** (see §5 Shape).
+- **Companion** (`[data-brand="companion"]`, in all four of light, dark, AAA and AAA dark): the brand primary and info status turn purple (`--color-accent-1-*`), along with selection fill and line, focus line, and link and brand ink. The AI gradient shifts to magenta-to-blue (`--color-extend-2-*` → `--color-extend-4-*`). Some surfaces, ink and status steps shift too; each `colors-companion*` group in the frontmatter lists exactly which. Everything else keeps its base mode's value. Companion AAA is sharp like every AAA mode. Like `data-theme`, `data-brand` works on `<html>` or on any container.
 
 ---
 
@@ -1138,7 +1159,7 @@ Substitute the frontmatter values when sending these prompts to Claude.
 - When adding status, use the `faint` tint as the background, the coloured `default` hairline and a coloured icon, and keep the text `--color-ink-high`.
 - Keep every control radius at `--radius-element-sm` and containers at `--radius-container`, unless the element is a pill (chips, avatars, full buttons → `--radius-pill`).
 - If something looks heavy, remove shadows first, then any border that space alone can replace (§6). Where an edge is needed, it's a hairline.
-- For the dark and AAA themes, swap to the `colors-dark` / `colors-aaa` / `colors-aaa-dark` values of the same tokens. Don't invent new hues.
+- For another theme mode, swap to its override of the same token where it has one (`colors-dark`, `colors-aaa`, `colors-aaa-dark`, `colors-companion`, `colors-companion-dark`, `colors-companion-aaa`, `colors-companion-aaa-dark`), and its base's value where it doesn't (§3 Theme modes). Don't invent new hues.
 
 ---
 

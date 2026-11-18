@@ -2,7 +2,7 @@
 
 The Zebra Design System written as plain Markdown, so that people and AI agents can both read it and build from it.
 
-The Zebra Design System is an enterprise utility language for frontline workers who scan screens quickly, often on rugged handheld devices, with gloves on or in poor light. It uses cool-neutral greys, a single Zebra Blue accent, IBM Plex Sans, a strict mini-unit grid and low, quiet depth. It works in four modes: light, dark, AAA contrast and AAA dark.
+The Zebra Design System is an enterprise utility language for frontline workers who scan screens quickly, often on rugged handheld devices, with gloves on or in poor light. It uses cool-neutral greys, a single Zebra Blue accent, IBM Plex Sans, a strict mini-unit grid and low, quiet depth. It works in eight theme modes: light, dark, AAA contrast and AAA dark, each in Zebra Blue or the purple Companion brand.
 
 The docs are the specification. Every colour, size, space, radius, shadow, font and duration is defined once as a token, and every component is described in its own file.
 
@@ -51,7 +51,7 @@ Tokens form three layers. Each layer only references the one below it.
 | Layer | Lives in | Example |
 |---|---|---|
 | **1. Primitives** | `DESIGN.md` frontmatter: `primitives` (colour ramps `color-*` and the size scale `scale-*`) | `--color-brand-main-70` |
-| **2. Semantic** | `DESIGN.md` frontmatter: `colors` (+ `colors-dark`, `colors-aaa`, `colors-aaa-dark`), `space`, `control`, `radius`, `stroke`, `container`, `shadow`, `typography`, `motion`, `layout`, `opacity`, `component-sizes`, … | `--color-brand-primary-strong` |
+| **2. Semantic** | `DESIGN.md` frontmatter: `colors` (+ theme-mode overrides `colors-dark`, `colors-aaa`, `colors-aaa-dark`, `colors-companion`, `colors-companion-dark`, `colors-companion-aaa`, `colors-companion-aaa-dark`), `space`, `control`, `radius`, `stroke`, `container`, `shadow`, `typography`, `motion`, `layout`, `opacity`, `component-sizes`, … | `--color-brand-primary-strong` |
 | **3. Component** | the `tokens:` block of each component file | `--button-primary-container-background-hover` |
 
 - **Raw values live only in the `DESIGN.md` frontmatter.** A value that isn't there doesn't exist in the system.
@@ -112,6 +112,7 @@ Theming in the markup:
 ```html
 <html data-contrast="aaa">             <!-- whole page AAA contrast (light and dark) -->
 <section data-theme="dark">…</section>  <!-- this area and its contents dark -->
+<html data-brand="companion">           <!-- Companion brand (light, dark and AAA) -->
 <svg class="icon" aria-hidden="true" …>…</svg>  <!-- icon: the round/sharp SVG from icons.json -->
 ```
 

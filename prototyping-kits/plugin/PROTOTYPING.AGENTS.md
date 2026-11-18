@@ -45,7 +45,7 @@ The device frame, status bar and prototype controls are prototype chrome, not de
 
 | Source | What it gives you |
 |---|---|
-| `DESIGN.md` frontmatter | All raw values. Primitives (`primitives`: colour ramps and the `scale-*` size steps) and the semantic groups: `colors`, `colors-dark`, `colors-aaa`, `colors-aaa-dark`, `space`, `control`, `radius`, `stroke`, `container`, `shadow`, `font-family`, `font-weight`, `typography`, `motion`, `layout`, `opacity` and `component-sizes`. |
+| `DESIGN.md` frontmatter | All raw values. Primitives (`primitives`: colour ramps and the `scale-*` size steps) and the semantic groups: `colors` and its theme-mode overrides (`colors-dark`, `colors-aaa`, `colors-aaa-dark`, `colors-companion`, `colors-companion-dark`, `colors-companion-aaa`, `colors-companion-aaa-dark`; DESIGN.md §3 Theme modes), `space`, `control`, `radius`, `stroke`, `container`, `shadow`, `font-family`, `font-weight`, `typography`, `motion`, `layout`, `opacity` and `component-sizes`. |
 | `DESIGN.md` body | Rules, the token architecture (§2), layout principles and usage guidance |
 | `atoms/`, `molecules/`, `organisms/` `*.md` | One file per component, with anatomy, variants, states, sizing, properties, usage and its `tokens:` block |
 | `templates/*.md` | This project's page-level layouts (see Templates); empty in the generic kit |
@@ -88,12 +88,12 @@ A component's `composes:` list says which other components it is built from. Rea
   --color-fill-default: var(--color-pure-white);
   /* … */
 }
-[data-theme="dark"] {  /* 2. dark: every key from colors-dark */
+[data-theme="dark"] {  /* 2. dark: colors-dark merged onto colors, every key */
   --color-fill-default: var(--color-neutral-cool-100);
   --color-ink-high: var(--color-pure-white);
   /* … */
 }
-[data-contrast="aaa"] {  /* 3. AAA contrast (light): every key from colors-aaa */
+[data-contrast="aaa"] {  /* 3. AAA contrast (light): colors-aaa merged onto colors */
   --color-brand-primary-default: var(--color-brand-main-80);
   /* … */
 }
@@ -105,11 +105,27 @@ A component's `composes:` list says which other components it is built from. Rea
   --color-brand-primary-default: var(--color-brand-main-80);
   /* … */
 }
-[data-contrast="aaa"] [data-theme="dark"], [data-theme="dark"] [data-contrast="aaa"], [data-theme="dark"][data-contrast="aaa"] {  /* 6. AAA dark: every key from colors-aaa-dark */
+[data-contrast="aaa"] [data-theme="dark"], [data-theme="dark"] [data-contrast="aaa"], [data-theme="dark"][data-contrast="aaa"] {  /* 6. AAA dark: colors-aaa-dark merged onto colors-dark */
   --color-brand-primary-default: var(--color-brand-main-30);
   /* … */
 }
-:root, [data-theme], [data-contrast] {  /* 7. component tokens, recomputed in every themed scope */
+:is([data-brand="companion"], [data-brand="companion"] [data-theme="light"]) {  /* 6a. Companion: every key a Companion mode overrides */
+  --color-brand-primary-default: var(--color-accent-1-60);
+  /* … */
+}
+:is([data-brand="companion"][data-theme="dark"], …) {  /* 6b. Companion dark */
+  --color-brand-primary-faint: var(--color-accent-1-100);
+  /* … */
+}
+[data-contrast="aaa"]:is(…6a…), [data-contrast="aaa"] :is(…6a…) {  /* 6c. Companion AAA: more specific, so it beats 6a */
+  --color-brand-primary-default: var(--color-accent-1-70);
+  /* … */
+}
+[data-contrast="aaa"]:is(…6b…), [data-contrast="aaa"] :is(…6b…) {  /* 6d. Companion AAA dark */
+  --color-brand-primary-default: var(--color-accent-1-30);
+  /* … */
+}
+:root, [data-theme], [data-contrast], [data-brand] {  /* 7. component tokens, recomputed in every themed scope */
   --button-primary-container-background-enabled: var(--color-brand-primary-default);
   --button-primary-container-background-hover: var(--color-brand-primary-strong);
   --button-container-height-medium: var(--control-md);
@@ -122,12 +138,13 @@ A component's `composes:` list says which other components it is built from. Rea
 }
 ```
 
-- **Why block 7 lists `[data-theme]` and `[data-contrast]`:** a custom property that uses `var()` is computed where it is declared, then inherited. If the component tokens were declared only on `:root`, a dark area would inherit their light values.
+- **Why block 7 lists `[data-theme]`, `[data-contrast]` and `[data-brand]`:** a custom property that uses `var()` is computed where it is declared, then inherited. If the component tokens were declared only on `:root`, a dark area would inherit their light values.
 - **Order matters:** later blocks override earlier ones at equal specificity.
 - **AAA is sharp:** block 8 makes every component sharp under `data-contrast="aaa"`, and `components.css` switches icons to the sharp set there. Rounded is every component's default otherwise (DESIGN.md §5). Never re-round a component in AAA.
 - **Switching theme:** set `data-theme="dark"` on any element to make it and its contents dark, and `data-theme="light"` to switch back inside a dark area. Never choose a dark colour by hand.
 - **Always-dark components:** components the docs describe as always dark carry `data-theme="dark"` on their own element, e.g. the Global Header.
 - **AAA contrast:** set `data-contrast="aaa"` on `<html>`; it is a whole-page setting. It works in both themes: dark areas inside an AAA page use the AAA dark values, and light areas the AAA light ones.
+- **Companion:** set `data-brand="companion"` on `<html>` or any container to turn the brand primary purple there. It works in both themes and with AAA: dark areas inside it use Companion dark, and an AAA page uses Companion AAA (light or dark).
 
 ## Building components
 

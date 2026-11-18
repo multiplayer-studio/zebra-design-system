@@ -10,13 +10,20 @@ references a colour primitive or a component it doesn't compose, or two tokens s
 AAA modes are sharp: block 8 points at --radius-none, under [data-contrast="aaa"], every component radius token that is a
 shape variant (`*-radius-rounded*`, `*-radius-round`, `*-radius-full*`) or a plain corner (any radius except radius-pill).
 Meaningful circles (radio, switch, avatar, dots) reference radius-pill under a non-shape name, so they stay round.
+Theme modes in the frontmatter list only the keys they override (BASE names what each overrides); the light, dark and
+AAA blocks are written out in full, merged onto their base. Each Companion block (6a-6d) sets every key any Companion
+mode overrides, so a Companion AA override never leaks into Companion AAA. Their selectors use :is() so each block has one
+specificity: AAA (0,3,0) beats AA (0,2,0), and dark beats light by coming later.
 """
 import re, sys, os
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 FONT = '"IBM Plex Sans", sans-serif'
 REF = re.compile(r"^'?\{([a-z0-9-]+)\.([a-z0-9-]+)\}'?$")
 SHAPE = re.compile(r'-radius-(rounded|round|full)(-|$)')  # shape-variant tokens that go sharp in AAA
-MODES = ['colors', 'colors-dark', 'colors-aaa', 'colors-aaa-dark']
+MODES = ['colors', 'colors-dark', 'colors-aaa', 'colors-aaa-dark', 'colors-companion', 'colors-companion-dark', 'colors-companion-aaa', 'colors-companion-aaa-dark']
+BASE = {'colors-dark': 'colors', 'colors-aaa': 'colors', 'colors-aaa-dark': 'colors-dark', 'colors-companion': 'colors', 'colors-companion-dark': 'colors-dark', 'colors-companion-aaa': 'colors-aaa', 'colors-companion-aaa-dark': 'colors-aaa-dark'}
+COMPANION = '[data-brand="companion"], [data-brand="companion"] [data-theme="light"]'
+COMPANION_DARK = '[data-brand="companion"][data-theme="dark"], [data-brand="companion"] [data-theme="dark"], [data-theme="dark"] [data-brand="companion"]'
 PLAIN = ['primitives', 'space', 'control', 'radius', 'stroke', 'container', 'shadow', 'font-weight', 'motion', 'opacity', 'component-sizes']
 
 def val(raw):
@@ -55,9 +62,14 @@ def main():
     root += [css(k, v, 'layout') for k, v in g['layout'].items() if re.fullmatch(r'[\d.]+px', val(v))]
     root += [f'  --{k}: {typo(v)};' for k, v in g['typography'].items()]
     for k in g['typography']: names.setdefault(k, 'typography')
-    modes = {m: [css(k, v, 'colors') for k, v in g[m].items()] for m in MODES}
+    for m in MODES: g.setdefault(m, {})  # an older DESIGN.md (e.g. a tenant's copy) may lack a mode: no overrides
+    full = {'colors': g['colors']}  # each mode merged onto its base, in colors key order
     for m in MODES[1:]:
-        if set(g[m]) != set(g['colors']): errors.append(f'{m} keys differ from colors: {sorted(set(g[m]) ^ set(g["colors"]))}')
+        if set(g[m]) - set(g['colors']): errors.append(f'{m} overrides keys colors does not have: {sorted(set(g[m]) - set(g["colors"]))}')
+        full[m] = {**full[BASE[m]], **g[m]}
+    modes = {m: [css(k, v, 'colors') for k, v in full[m].items()] for m in MODES[:4]}
+    union = [k for k in g['colors'] if any(k in g[m] for m in MODES[4:])]  # every key some Companion mode overrides
+    modes.update({m: [css(k, full[m][k], 'colors') for k in union] for m in MODES[4:]})
 
     # semantic references must land on a defined key in the named group
     for grp in PLAIN + MODES:
@@ -100,7 +112,11 @@ def main():
       '[data-theme="light"] {  /* 4. light inside a dark area */', *modes['colors'], '}',
       '[data-contrast="aaa"] [data-theme="light"], [data-theme="light"][data-contrast="aaa"] {  /* 5. AAA light inside a dark area */', *modes['colors-aaa'], '}',
       '[data-contrast="aaa"] [data-theme="dark"], [data-theme="dark"] [data-contrast="aaa"], [data-theme="dark"][data-contrast="aaa"] {  /* 6. AAA dark */', *modes['colors-aaa-dark'], '}',
-      ':root, [data-theme], [data-contrast] {  /* 7. component tokens: ' + ', '.join(n for n, _, _ in order) + ' */', *comp, '}',
+      f':is({COMPANION}) {{  /* 6a. Companion (light) */', *modes['colors-companion'], '}',
+      f':is({COMPANION_DARK}) {{  /* 6b. Companion dark */', *modes['colors-companion-dark'], '}',
+      f'[data-contrast="aaa"]:is({COMPANION}), [data-contrast="aaa"] :is({COMPANION}) {{  /* 6c. Companion AAA (light) */', *modes['colors-companion-aaa'], '}',
+      f'[data-contrast="aaa"]:is({COMPANION_DARK}), [data-contrast="aaa"] :is({COMPANION_DARK}) {{  /* 6d. Companion AAA dark */', *modes['colors-companion-aaa-dark'], '}',
+      ':root, [data-theme], [data-contrast], [data-brand] {  /* 7. component tokens: ' + ', '.join(n for n, _, _ in order) + ' */', *comp, '}',
       '[data-contrast="aaa"], [data-contrast="aaa"] [data-theme] {  /* 8. AAA is always sharp: shape tokens → radius-none */',
       *[f'  --{k}: var(--radius-none);' for k in sharp], '}'])
     with open(os.path.join(ROOT, 'tokens.css'), 'w') as f:

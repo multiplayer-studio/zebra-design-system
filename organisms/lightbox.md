@@ -110,7 +110,7 @@ Paging is slower than the small controls because the frames are large and travel
 | Media | up to `--lightbox-media-max-height`, keeping its ratio | — |
 | Toolbar actions, navigation | `--lightbox-action-size`, `--lightbox-navigation-size` | navigation inset `--lightbox-navigation-inset` |
 
-Every colour is a semantic token, so all four modes work without overrides.
+Every colour is a semantic token, so every theme mode works without overrides.
 
 ## Properties
 | Property | Options | Default |

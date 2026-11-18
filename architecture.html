@@ -1028,7 +1028,7 @@ button-primary-container-background-hover: '{colors.color-brand-primary-strong}'
       { from:"scripts", to:"generated", color:"--c-vector",
         title:"Write tokens.css",
         route:"tokens.css",
-        desc:"Every token becomes a CSS custom property, with light, dark, AAA and AAA dark blocks. Semantic and component tokens stay as <code>var()</code> aliases so modes flow through. It exits 1 on a broken reference.",
+        desc:"Every token becomes a CSS custom property, with light, dark, AAA, AAA dark and Companion blocks (each mode merged onto its base). Semantic and component tokens stay as <code>var()</code> aliases so modes flow through. It exits 1 on a broken reference.",
         payload:
 `:root { --color-brand-main-70: #0e53e5; --color-brand-primary-strong: var(--color-brand-main-70); ... }
 [data-contrast="aaa"] { --color-brand-primary-strong: var(--color-brand-main-90); ... }
