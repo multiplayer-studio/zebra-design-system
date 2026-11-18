@@ -9,7 +9,7 @@
         "source": "git-subdir",
         "url": "zebratechnologies/zebra-design-system",
         "path": "prototyping-kits/plugin",
-        "ref": "design-system-v3.2611.0-beta"
+        "ref": "design-system-v4.2611.0-alpha"
       },
       "description": "The design pathway: throwaway HTML prototypes built from the Zebra Design System docs, with Jira, GitHub and Figma steps, reference matching and templates.",
       "category": "design"
