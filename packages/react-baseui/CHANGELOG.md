@@ -1,5 +1,41 @@
 # @zebra-design-system/react-baseui
 
+## 0.4.0
+
+### Minor Changes
+
+- Chat Message, Message Input and File Upload ship as spec-built components.
+  
+  - **Chat Message** (`specs/chat-message`): the message with its Bubble,
+    Controls, Loading Indicator, Timestamp, Thread, Photos and Attachment parts.
+    web-components gains the `zds-chat-*` elements with the same API.
+  - **Message Input** (`specs/message-input`): in react-baseui it graduates from
+    `/experimental` to the main entry; web-components gains
+    `<zds-message-input>`, which shows image attachments as a file chip without
+    React's thumbnail.
+  - **File Upload** (`specs/file-upload`): File Upload, File Upload Item and File
+    Indicator. In react-baseui it graduates from `/experimental`.
+  
+  The earlier experimental `Chat*` exports are removed from
+  `@zebra-design-system/react-baseui/experimental`, which is now empty (the
+  experimental surface carried no SemVer promise). Import Message Input and File
+  Upload from the package root.
+
+### Patch Changes
+
+- Companion follows the Companion token set, and the Target extension is removed.
+  
+  - **Companion** now overrides 41 palette tokens. Info status is purple, gradients
+    run violet to blue, status fills use Companion's bold steps, and surfaces and
+    neutrals follow Companion's values.
+  - **Companion in AAA Light and AAA Dark** is purple; both modes previously fell
+    back to Zebra blue.
+  - **Target is gone** (removed from Figma on 17 November 2026): `.ext-target` and
+    `data-brand="target"` no longer exist in the token CSS. This is a token removal,
+    shipped as a 0.x minor.
+- Updated dependencies
+  - @zebra-design-system/icons@0.2.0
+
 ## 0.3.0
 
 ### Minor Changes

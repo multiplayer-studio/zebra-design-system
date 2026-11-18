@@ -29,22 +29,22 @@ Each package's **packed root** — dist built, `files`-filtered, denylist-checke
 
 | Package | Latest branch | Pinned tag (current) |
 |---|---|---|
-| `@zebra-design-system/tokens` | `dist/tokens` | `tokens-v0.1.1` |
-| `@zebra-design-system/icons` | `dist/icons` | `icons-v0.1.1` |
-| `@zebra-design-system/react-baseui` | `dist/react-baseui` | `react-baseui-v0.3.0` |
-| `@zebra-design-system/web-components` | `dist/web-components` | `web-components-v0.3.0` |
-| `@zebra-fed/zeta-web` | `dist/zeta-web` | `zeta-web-v1.5.0` |
+| `@zebra-design-system/tokens` | `dist/tokens` | `tokens-v0.2.0` |
+| `@zebra-design-system/icons` | `dist/icons` | `icons-v0.2.0` |
+| `@zebra-design-system/react-baseui` | `dist/react-baseui` | `react-baseui-v0.4.0` |
+| `@zebra-design-system/web-components` | `dist/web-components` | `web-components-v0.4.0` |
+| `@zebra-fed/zeta-web` | `dist/zeta-web` | `zeta-web-v1.6.0` |
 
 Consumers install with plain npm/pnpm/yarn and git access to the repo:
 
 ```bash
 npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#dist/react-baseui"      # track latest
-npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#react-baseui-v0.3.0"    # pin a version
+npm i "git+https://github.com/zebratechnologies/zebra-design-system.git#react-baseui-v0.4.0"    # pin a version
 ```
 
 Internal dependencies resolve themselves: the branch manifests point
 `@zebra-design-system/*` deps at this repo's version tags, so installing
-react-baseui pulls icons from `#icons-v0.1.0` with no registry anywhere.
+react-baseui pulls icons from `#icons-v0.2.0` with no registry anywhere.
 Updates: branches are force-updated to the newest version (re-run `npm update`
 / reinstall to move); tags never move, and every branch commit is tagged, so
 old lockfile SHAs stay fetchable forever.

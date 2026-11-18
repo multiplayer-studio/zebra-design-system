@@ -1,5 +1,11 @@
 # @zebra-design-system/icons
 
+## 0.2.0
+
+### Minor Changes
+
+- New glyph: `companion` (AI category). No glyph was removed or renamed.
+
 ## 0.1.1
 
 ### Patch Changes
