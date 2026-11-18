@@ -43,7 +43,7 @@ const args = process.argv.slice(2);
 const push = args.includes("--push");
 const force = args.includes("--force");
 const repoFlag = args.indexOf("--repo");
-const pkgs = args.filter((a, i) => !a.startsWith("--") && i !== repoFlag + 1);
+const pkgs = args.filter((a, i) => !a.startsWith("--") && (repoFlag < 0 || i !== repoFlag + 1));
 const targets = pkgs.length ? pkgs : ALL;
 for (const t of targets) if (!ALL.includes(t)) { console.error(`unknown package: ${t}`); process.exit(1); }
 
