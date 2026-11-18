@@ -1,6 +1,6 @@
 ---
 name: Zebra Design System
-version: '4.2611.0-alpha'
+version: '4.2611.1-alpha'
 icons: "Zebra Icons 1.9.8 (zeta-icons-round / zeta-icons-sharp), package @zebra-fed/zeta-icons"
 # ── TOKEN ARCHITECTURE ──────────────────────────────────────────────────────────
 # Three layers (mirrors the Figma variable collections):
