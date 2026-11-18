@@ -6,11 +6,11 @@ composes: []
 tokens:
   # colour
   notification-indicator-container-background: '{colors.color-status-error-default}'
-  notification-indicator-container-border-color: '{colors.color-line-inverse}'
+  notification-indicator-container-border-color: '{colors.color-line-contrast}'
   notification-indicator-value-foreground: '{colors.color-ink-always-white}'
   # shape and border
   notification-indicator-container-radius: '{radius.radius-pill}'
-  notification-indicator-container-border-width: '{stroke.stroke-base}'
+  notification-indicator-container-border-width: '{stroke.stroke-thin}'
   # sizes
   notification-indicator-container-height-large: '{primitives.scale-8}'
   notification-indicator-container-min-width-large: '{primitives.scale-10}'
@@ -27,7 +27,7 @@ tokens:
 ## Anatomy
 1. Surround — a fully round (`--notification-indicator-container-radius`) fill in `--notification-indicator-container-background`, sized by Size.
 2. Value — the count, in `--notification-indicator-value-font` `--notification-indicator-value-foreground`, centred horizontally and vertically. Present at large and medium, absent at small. The text line is taller than the medium box, so centre it on the box (flex centring) rather than letting it flow from the top.
-3. Border — a stroke in `--notification-indicator-container-border-color` at `--notification-indicator-container-border-width` (zero). It is a theming hook, not an omission: a high-contrast theme raises the width to outline the indicator where it overlaps something.
+3. Border — a `--notification-indicator-container-border-width` stroke inside the edge in `--notification-indicator-container-border-color`, a colour that is transparent by default and visible in the AAA modes (DESIGN.md §3 Theme modes), so in high contrast the indicator is outlined where it overlaps something.
 
 ## Variants
 | Size | Box | Value |
@@ -68,10 +68,10 @@ Usually overlapped on the corner of the thing it is pinned to (a nav item, tab, 
 - Remove the indicator at zero rather than showing `0`.
 
 ## Accessibility
-- The indicator is colour and shape only, and at small it has no text. Whatever it is pinned to must name what is waiting and how many in its accessible name (e.g. "Messages, 3 unread"); hide the indicator itself from assistive tech, or give a standalone one `role="img"` with a label.
+- The indicator is colour and shape only, and at small it has no text, so it never carries meaning alone ([patterns 6.11](../patterns/06-accessibility.md)). Whatever it is pinned to must name what is waiting and how many in its accessible name (e.g. "Messages, 3 unread"); hide the indicator itself from assistive tech, or give a standalone one `role="img"` with a label.
 - A visible zero reads as a notification about nothing; remove the indicator instead.
-- It is not focusable and a change in the count does not announce itself. The surrounding structure must announce that the number moved, where that matters.
-- The zero-width border (`--notification-indicator-container-border-width`) lets a high-contrast theme separate the indicator from a busy background.
+- It is not focusable and a change in the count does not announce itself. The surrounding structure announces that the number moved, without moving focus, where that matters ([patterns 6.53](../patterns/06-accessibility.md)).
+- The border (`--notification-indicator-container-border-color`) is transparent by default and shows in the AAA modes, separating the indicator from a busy background.
 
 ## Claude Prompt
 Pin a Zebra notification indicator to the corner of a nav icon or tab: a red (`--notification-indicator-container-background`) pill `--notification-indicator-container-height-large` tall and at least `--notification-indicator-container-min-width-large` wide, with `--notification-indicator-container-padding-x-large` side padding and a white (`--notification-indicator-value-foreground`) count in `--notification-indicator-value-font`, such as "3" or "99+". A medium indicator is a `--notification-indicator-container-size-medium` red circle holding a single digit; a small one is a plain `--notification-indicator-container-size-small` red dot with no number.

@@ -18,6 +18,7 @@ specificity: AAA (0,3,0) beats AA (0,2,0), and dark beats light by coming later.
 import re, sys, os
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 FONT = '"IBM Plex Sans", sans-serif'
+MONO = '"IBM Plex Mono", monospace'
 REF = re.compile(r"^'?\{([a-z0-9-]+)\.([a-z0-9-]+)\}'?$")
 SHAPE = re.compile(r'-radius-(rounded|round|full)(-|$)')  # shape-variant tokens that go sharp in AAA
 MODES = ['colors', 'colors-dark', 'colors-aaa', 'colors-aaa-dark', 'colors-companion', 'colors-companion-dark', 'colors-companion-aaa', 'colors-companion-aaa-dark']
@@ -55,11 +56,11 @@ def main():
     def typo(v):
         if 'alias' in v: return f'var(--{re.search(r"alias: ([a-z0-9-]+)", v).group(1)})'
         m = dict(re.findall(r"(\w+): '?([^,'}]+)'?", v))
-        return f"{m['fontWeight']} {m['fontSize'].strip()}/{m['lineHeight'].strip()} {FONT}"
+        return f"{m['fontWeight']} {m['fontSize'].strip()}/{m['lineHeight'].strip()} {MONO if 'Mono' in m.get('fontFamily', '') else FONT}"
 
     root = []
     for grp in PLAIN: root += [css(k, v, grp) for k, v in g[grp].items()]
-    root += [css(k, v, 'layout') for k, v in g['layout'].items() if re.fullmatch(r'[\d.]+px', val(v))]
+    root += [css(k, v, 'layout') for k, v in g['layout'].items() if re.fullmatch(r'[\d.]+(px)?', val(v))]  # px sizes and unitless counts (grid columns)
     root += [f'  --{k}: {typo(v)};' for k, v in g['typography'].items()]
     for k in g['typography']: names.setdefault(k, 'typography')
     for m in MODES: g.setdefault(m, {})  # an older DESIGN.md (e.g. a tenant's copy) may lack a mode: no overrides

@@ -60,7 +60,7 @@ Every change is a tint over `--button-container-transition`. The group defines n
 | medium (default) | `--button-container-height-medium` | `--button-container-padding-y` / `--button-container-padding-x-medium` | `--button-label-font-medium` | `--button-icon-size-medium` |
 | large | `--button-container-height-large` | `--button-container-padding-y` / `--button-container-padding-x-large` | `--button-label-font-large` | `--button-icon-size-large` |
 
-Size is set on the group and every item inherits it; never set it per item. Height is fixed per size and the outline sits inside it. Width hugs the items, and each item hugs its label and icons.
+Size is set on the group and every item inherits it, so peers are the same size step ([patterns 3.5](../patterns/03-controls-interaction.md)); never set it per item. Each height is a minimum: a label that wraps, or a larger text size, makes every item in the row grow together, and the outline sits inside it ([patterns 5.37](../patterns/05-sizes-devices.md)). Width hugs the items, and each item hugs its label and icons. Labels wrap rather than truncate ([patterns 5.29](../patterns/05-sizes-devices.md)).
 
 ## Properties
 | Property | Options | Default |
@@ -80,7 +80,9 @@ Flavour and shape of the items are fixed by the group. Hover, pressed and focus 
 - Don't expect Shape to round the items. It rounds the group's outline only.
 - Use a trailing `expand_more` icon on an item that opens a [Dropdown Menu](./dropdown-menu.md).
 - Keep labels short and parallel; icon-only items are fine when every icon is unambiguous.
-- Small (`--button-container-height-small`) is below `--button-touch-target-size-minimum`; prefer medium or large on touch UIs.
+- Small and medium are below `--button-touch-target-size-minimum`; on touch products use large or extend the hit area ([patterns 6.16](../patterns/06-accessibility.md)).
+- An unavailable item stays visible with its reason beside the group ([patterns 3.10](../patterns/03-controls-interaction.md)); see the [Button](../atoms/button.md)'s disabled state.
+- In the patterns, a "button group" means any set of action buttons; this component is one specific joined form of it.
 
 ## Accessibility
 - Give the group `role="group"` and an accessible name that says what the actions have in common.
@@ -90,4 +92,4 @@ Flavour and shape of the items are fixed by the group. Hover, pressed and focus 
 - Nothing marks an action as current. If the row needs a selected state, it's a [Segmented Control](./segmented-control.md), not a button group.
 
 ## Claude Prompt
-Draw a horizontal row of three joined actions, `--button-container-height-medium` tall, on a single white surface (`--button-group-container-background`) with a thin light grey outline (`--button-group-container-border-width` `--button-group-container-border-color`) and softly rounded outer corners (`--button-group-container-radius-rounded`). Each action is a transparent subtle button with near-black `--button-label-font-medium` text (`--button-subtle-label-foreground`), `--button-container-padding-x-medium` horizontal padding and an optional `--button-icon-size-medium` leading icon; a 1px vertical divider (`--button-group-divider-color`) separates neighbours, with none after the last. Hovering an action tints it faint grey (`--button-subtle-container-background-hover`). A sharp version squares the outer outline (`--button-group-container-radius-sharp`); the items inside stay square either way.
+Draw a horizontal row of three joined actions, at least `--button-container-height-medium` tall, on a single white surface (`--button-group-container-background`) with a thin light grey outline (`--button-group-container-border-width` `--button-group-container-border-color`) and softly rounded outer corners (`--button-group-container-radius-rounded`). Each action is a transparent subtle button with near-black `--button-label-font-medium` text (`--button-subtle-label-foreground`), `--button-container-padding-x-medium` horizontal padding and an optional `--button-icon-size-medium` leading icon; a 1px vertical divider (`--button-group-divider-color`) separates neighbours, with none after the last. Hovering an action tints it faint grey (`--button-subtle-container-background-hover`). A sharp version squares the outer outline (`--button-group-container-radius-sharp`); the items inside stay square either way.

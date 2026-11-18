@@ -42,7 +42,7 @@ Font hierarchy is the first thing that reads as wrong. For every text node read 
 
 - **Brand.** Build with this kit's tokens: a project kit already carries its project's own colours. If the reference's primary action colour or page surface doesn't match the kit's, say so before building, because the reference may belong to another product or brand.
 - **Mode per frame.** A frame drawn dark gets `data-theme="dark"` on its own wrapper (for example a camera screen inside a light flow). Anything drawn over a photo keeps the mode the reference drew it in. Never pick a dark colour by hand.
-- **Density.** Read control heights from the reference and set each component's size to match (48px is `large`, 40px the default medium).
+- **Density.** Density is one product-wide choice of component sizes, never mixed on a page (`patterns/05-sizes-devices.md` 5.45–5.50). Read control heights from the reference (48px is `large`, 40px the default medium) and use the size most of it uses for every component of that kind. Report any control drawn at another size.
 
 ## 6. Shape is decided once
 
@@ -93,7 +93,7 @@ Measure, don't eyeball: read the computed values from the rendered page and comp
 - [ ] Every control is the reference's size, shape and flavour.
 - [ ] Alignment matches on both axes; fill and hug match.
 - [ ] Every divider, icon and image is present and in place.
-- [ ] The checks in Before you hand over (`PROTOTYPING.AGENTS.md`) that always apply: light and dark, phone and desktop, visible keyboard focus.
+- [ ] The checks in Before you hand over (`PROTOTYPING.AGENTS.md`) that always apply: light and dark, each size class (compact, medium, expanded) and a landscape handheld, visible keyboard focus.
 
 ## 12. Report
 

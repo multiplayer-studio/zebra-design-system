@@ -8,7 +8,7 @@ tokens:
   accordion-container-border-color: '{colors.color-line-default}'
   accordion-container-border-width: '{stroke.stroke-thin}'
   accordion-container-radius-sharp: '{radius.radius-none}'
-  accordion-container-radius-rounded: '{radius.radius-lg}'
+  accordion-container-radius-rounded: '{radius.radius-element-md}'
   accordion-container-gap: '{space.space-none}'
   # header
   accordion-header-height: '{primitives.scale-16}'
@@ -37,9 +37,9 @@ tokens:
 ## Anatomy
 1. Container — the outer frame: owns the border, the radius and the vertical stack (`--accordion-container-gap`, no padding). It has no fill; every surface colour comes from the rows.
 2. Row — one item: a header, an optional [Divider](../atoms/divider.md) (`--accordion-divider-width` `--accordion-divider-color`) closing it off from the next row, and, when open, the content beneath.
-3. Header — `--accordion-header-height` tall, `--accordion-header-background-enabled` at rest. Holds:
+3. Header — at least `--accordion-header-height` tall, `--accordion-header-background-enabled` at rest. Holds:
    - Leading control (Selectable on) — an [Icon Button](../atoms/icon-button.md) (subtle, medium) carrying the caret; it opens and closes the row and takes its shape from the accordion.
-   - Title — one line of plain text in `--accordion-title-font` `--accordion-title-foreground`. The only text the row takes.
+   - Title — plain text in `--accordion-title-font` `--accordion-title-foreground`, wrapping onto further lines rather than truncating; the header grows with it ([patterns 5.29](../patterns/05-sizes-devices.md)). The only text the row takes.
    - Caret (Selectable off) — a [Caret Indicator](../atoms/caret-indicator.md) (`expand_more`, size medium: `--caret-indicator-icon-size-medium`, `--caret-indicator-icon-foreground`) trailing the title. Not a control: the whole header is the target.
    - Selection mark (Selected on) — a framed `check_mark` [Icon](../atoms/icon.md), `--accordion-selected-mark-size` square, `--accordion-selected-mark-foreground`, at the trailing edge. It reports the selection rather than offering it.
 4. Content slot (Open on) — any content, `--accordion-content-padding` on every side and `--accordion-content-gap` between its children. It sets the open row's height.
@@ -65,18 +65,18 @@ Shape (the `rounded` property): on (default) → `--accordion-container-radius-r
 | open | unchanged | the content appears below the header and the caret rotates to point at it |
 | selected | unchanged | Selectable only: the mark appears and the title gives up the width it needs |
 
-No transition is defined for the content: opening a row is the content appearing, while the caret turns over its own `--caret-indicator-icon-transition`. Only one row is open at a time. The container itself never repaints; hover belongs to the rows, and the leading Icon Button runs its own interaction states.
+No transition is defined for the content: opening a row is the content appearing, while the caret turns over its own `--caret-indicator-icon-transition`. By default one row is open at a time; where people need to compare sections, let several stay open. The container itself never repaints; hover belongs to the rows, and the leading Icon Button runs its own interaction states.
 
 ## Spacing & Sizing
 | Part | Size | Padding | Gap |
 |---|---|---|---|
 | Container | fills the available width, hugs the rows | none | `--accordion-container-gap` |
-| Header (Selectable off) | `--accordion-header-height` | `--accordion-header-padding` | `--accordion-header-gap` |
-| Header (Selectable on) | `--accordion-header-height` | `--accordion-selectable-header-padding` (the leading control is taller than the title) | `--accordion-selectable-header-gap` |
+| Header (Selectable off) | at least `--accordion-header-height` | `--accordion-header-padding` | `--accordion-header-gap` |
+| Header (Selectable on) | at least `--accordion-header-height` | `--accordion-selectable-header-padding` (the leading control is taller than the title) | `--accordion-selectable-header-gap` |
 | Divider | `--accordion-divider-width`, added under the row | — | — |
 | Content | hugs its content | `--accordion-content-padding` | `--accordion-content-gap` |
 
-A row with its divider is `--accordion-header-height` plus `--accordion-divider-width` tall. The leading control is a medium Icon Button; the caret is `--caret-indicator-icon-size-medium`; the selection mark is `--accordion-selected-mark-size`.
+A closed row with its divider is at least `--accordion-header-height` plus `--accordion-divider-width` tall; the header grows with its title and the text size ([patterns 5.37](../patterns/05-sizes-devices.md)). The leading control is a medium Icon Button; the caret is `--caret-indicator-icon-size-medium`; the selection mark is `--accordion-selected-mark-size`.
 
 ## Properties
 **Accordion**
@@ -99,6 +99,7 @@ A row with its divider is `--accordion-header-height` plus `--accordion-divider-
 Hover is driven by interaction, never set on a static layout. The last row never shows its divider.
 
 ## Usage
+- Use an accordion for long content on compact screens where the sections are independent. Don't use it when people need most of the content, when there's little of it, for anything critical, or to hide information inside a dialog or panel ([patterns 1.106](../patterns/01-screen-composition.md)).
 - Choose Selectable once for a whole list, before filling it. A row that selects beside rows that only open reads as two different controls.
 - Use Selectable off for content reveal, an FAQ or a settings group where nothing is chosen; use it on when people must mark items, not just read them.
 - Write titles that name the section: the caret says a row opens, never what is inside.
@@ -110,9 +111,10 @@ Hover is driven by interaction, never set on a static layout. The last row never
 ## Accessibility
 - Selectable off: each header is a single button carrying `aria-expanded` and controlling its content region.
 - Selectable on: two targets per row, each with its own name. The leading control carries `aria-expanded` ("Show details for …"); the rest of the header carries the selection (`aria-pressed` or `aria-checked`). The trailing mark is decorative once the state is exposed.
-- The caret's rotation is the only visual sign of open; expose expanded and collapsed as real state.
+- The caret's rotation is the only visual sign of open; expose expanded and collapsed as real state ([patterns 6.48](../patterns/06-accessibility.md)).
 - Opening a row inserts content into the reading order; keep it directly after its header so it is reached next.
-- Hover changes only the background, so keyboard users rely on a focus ring on the header and on the Icon Button's own ring. Figma models no focus state; build it in code.
+- Hover changes only the background, so keyboard users rely on a focus ring on the header and on the Icon Button's own ring ([patterns 6.23](../patterns/06-accessibility.md)). Figma models no focus state; build it in code with the system focus ring (`--stroke-thick`, `--color-line-focus`).
+- Closing a row whose content holds focus moves focus to its header ([patterns 6.31](../patterns/06-accessibility.md)).
 - With In card off there is no border or divider; check the list still reads as a list at rest.
 - Titles are heading-sized (`--accordion-title-font`); check the hierarchy on a screen that has real headings.
 

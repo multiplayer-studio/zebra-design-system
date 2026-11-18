@@ -34,7 +34,7 @@ tokens:
 ## Anatomy
 1. Bar — the surface, `--top-app-bar-container-background`, holding one content row padded `--top-app-bar-container-padding-y` top and bottom and `--top-app-bar-container-padding-x` each side. Extended adds a second row beneath, `--top-app-bar-extended-container-gap` below the first.
 2. Leading control — an [Icon Button](../atoms/icon-button.md), small, subtle, at the start. Its glyph follows Type (hamburger, close or back) and isn't an input. `--top-app-bar-leading-gap` separates it from what follows.
-3. Title — the screen's name in `--top-app-bar-title-font` `--top-app-bar-title-foreground` (centered: `--top-app-bar-centered-title-font`). On default, a small photo [Avatar](../atoms/avatar.md) sits `--top-app-bar-title-gap` before it.
+3. Title — the screen's name in `--top-app-bar-title-font` `--top-app-bar-title-foreground` (centered: `--top-app-bar-centered-title-font`). It wraps to two lines rather than truncating; only a name someone created (a printer, a tenant) may truncate, with the full name on the page ([patterns 5.29](../patterns/05-sizes-devices.md)). On default, a small photo [Avatar](../atoms/avatar.md) sits `--top-app-bar-title-gap` before it.
 4. Trailing region — the Trailing Slot (default, extended), the Contextual Control Slot (contextual, contextual alt), a single fixed Icon Button (centered), or nothing (search). Slots hold small subtle Icon Buttons, `--top-app-bar-trailing-gap` apart, and hug them.
 5. Selection count (contextual types) — plain text in `--top-app-bar-count-font` `--top-app-bar-count-foreground` on contextual; the label of a small subtle [Button](../atoms/button.md) on contextual alt.
 6. Search field (search only) — a [Search](../molecules/search.md), small, ghost, filling the width beside the back control, `--top-app-bar-search-gap` from it, shown in its typing state.
@@ -57,6 +57,8 @@ Shape: rounded (default) → `--top-app-bar-container-radius-rounded`; sharp →
 ## States
 The bar is static. Hover, focus and press belong to the controls placed inside it. No transition is defined: changing Type replaces the contents outright and nothing animates.
 
+With scrolling ([patterns 1.44](../patterns/01-screen-composition.md), [2.10](../patterns/02-navigation-flow.md)): the bar stays pinned while content scrolls, and extended collapses its title row into the first row. On compact screens the bar may slide away on scroll down, and returns on the first scroll up; the title and the way back stay reachable.
+
 ## Spacing & Sizing
 | Part | Value |
 |---|---|
@@ -64,7 +66,7 @@ The bar is static. Hover, focus and press belong to the controls placed inside i
 | Row gap | `--top-app-bar-container-gap`; extended `--top-app-bar-extended-container-gap` |
 | Content row | leading group and trailing region spread to opposite ends; search lays its two parts out from the start, `--top-app-bar-search-gap` apart |
 | Leading group | `--top-app-bar-leading-gap` after the leading control; `--top-app-bar-title-gap` avatar to title |
-| Height | one small control plus padding on five types; extended is taller by its title row |
+| Height | at least one small control plus padding on five types, growing when the title wraps; extended is taller by its title row |
 
 Width fills the screen (Figma draws a 390 phone frame). A layout that assumes one bar height shifts when Type becomes extended.
 
@@ -80,18 +82,20 @@ Width fills the screen (Figma draws a 390 phone frame). A layout that assumes on
 
 ## Usage
 - Pick Type for what the screen is doing; each is a different arrangement, not a style on one layout.
-- Keep Page Title to the screen's name. Setting it on contextual, contextual alt or search changes nothing; they draw no title.
+- Keep Page Title to the screen's name. In a wizard it names the task and its object ("Add printer") and stays the same on every step ([patterns 2.37](../patterns/02-navigation-flow.md)). Setting it on contextual, contextual alt or search changes nothing; they draw no title.
+- Below the top level, the leading control is back, and it goes to the parent screen without leaving the product ([patterns 2.18](../patterns/02-navigation-flow.md), [2.19](../patterns/02-navigation-flow.md)); the system Back is always handled.
+- Hold one or two trailing actions at most; the rest go into an overflow Icon Button (`more_vertical`) at the trailing end ([patterns 1.43](../patterns/01-screen-composition.md)).
 - Use centered only when one trailing control is enough.
-- Use contextual while items are selected; use contextual alt when the count must be settable or pressable.
+- Use contextual while items are selected, as the selection bar that replaces the header's actions ([patterns 1.80](../patterns/01-screen-composition.md)); use contextual alt when the count must be settable or pressable.
 - Search takes over the whole bar; nothing but back is reachable while searching.
 - Don't expect Shape to reshape the controls inside.
 - App-wide navigation belongs in the [Global Header](global-header.md), not here.
 
 ## Accessibility
-- The bar is a landmark, not a control; it takes its role and name from the screen (usually `header`).
+- The bar is a landmark, not a control; it takes its role and name from the screen (usually `header`, [patterns 6.52](../patterns/06-accessibility.md)).
 - Every control is glyph-only, so the leading control and each trailing action need an accessible name, and the leading name must follow Type (menu, close or back).
 - The title should match what the screen is announced as, and be a real heading.
-- On the contextual types the count is the only report of the selection, so announce it when it changes (a polite live region).
+- On the contextual types the count is the only report of the selection, so announce it when it changes ([patterns 6.53](../patterns/06-accessibility.md)).
 - The title colour isn't bound in Figma; this system binds it to `--top-app-bar-title-foreground` so it follows every mode.
 
 ## Claude Prompt

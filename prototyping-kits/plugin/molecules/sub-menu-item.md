@@ -72,9 +72,9 @@ Shape: rounded (default) → `--sub-menu-item-container-radius-rounded` on the r
 | pressed | `--sub-menu-item-container-background-pressed` | `--sub-menu-item-label-foreground-pressed` | nested and top-level rows converge here |
 | selected | `--sub-menu-item-container-background-selected` | `--sub-menu-item-label-foreground-selected` | the only state with a fill of its own; exactly one row across the navigation |
 | focused | per state | per state | `--sub-menu-item-focus-ring-width` `--sub-menu-item-focus-ring-color` ring inside the row; Figma models no focus, so code draws it |
-| disabled | `--sub-menu-item-container-background-disabled` | `--sub-menu-item-label-foreground-disabled` | resting rows only, so a row is never selected and disabled at once; not interactive |
+| disabled | `--sub-menu-item-container-background-disabled` | `--sub-menu-item-label-foreground-disabled` | resting rows only, so a row is never selected and disabled at once; stays focusable and says why |
 
-Every state change is colour only, with no movement, scale or elevation, and Figma stores no timing for them. A Collapsible Menu Item opens and closes over `--sub-menu-item-group-transition`: the group reveals or hides and its caret turns (one glyph rotating, not two swapped). The row never drives its own caret; whatever expands it turns the caret with it. Turn the motion off under reduced motion.
+Every state change is colour only, with no movement, scale or elevation, and Figma stores no timing for them. A Collapsible Menu Item opens and closes over `--sub-menu-item-group-transition`: the group reveals or hides and its caret turns (one glyph rotating, not two swapped). The row never drives its own caret; whatever expands it turns the caret with it. Under reduced motion the group fades in place instead of sliding ([patterns 6.66](../patterns/06-accessibility.md)).
 
 ## Spacing & Sizing
 | Part | Value |
@@ -85,7 +85,7 @@ Every state change is colour only, with no movement, scale or elevation, and Fig
 | Icon and caret | `--sub-menu-item-icon-size` |
 | Group | `--sub-menu-item-group-padding` inset, `--sub-menu-item-group-gap` between rows |
 
-Width fills the slot, so every row in a list is the same width and the label doesn't hug. In the Navigation Rail the panel sizes to its widest top-level row; a group never widens it. Labels that don't fit end in an ellipsis; hovering a cut-off label for 3 seconds shows it in full in a tooltip (supplied by the rail or drawer), and keyboard focus shows it at once.
+Width fills the slot, so every row in a list is the same width and the label doesn't hug. In the Navigation Rail the panel sizes to its widest top-level row; a group never widens it. Labels wrap rather than truncate, and the row grows past its minimum height ([patterns 5.29](../patterns/05-sizes-devices.md)). Only a name someone created (a site, a tenant) may truncate, after two lines, with the full name on hover and on focus ([patterns 5.30](../patterns/05-sizes-devices.md)).
 
 ## Properties
 | Property | Options | Default |
@@ -105,15 +105,16 @@ Hover, active and focus are driven by interaction, never set on a static layout.
 - Turn the caret off for rows that go straight to a destination. The caret promises another level.
 - Keep the leading icon on for every row in a list, or off for all; mixing them breaks the label alignment.
 - Use a Collapsible Menu Item for a group of destinations; opening a group is not navigation, so it never closes a drawer.
-- Don't nest more than one level. Only one indent step exists.
+- Don't nest more than one level. Only one indent step exists, and a third level moves into the content ([patterns 2.3](../patterns/02-navigation-flow.md)).
 - This badge is the counter size and sits in the layout; the Navigation Rail item's badge is a dot that floats over the glyph. They're not interchangeable.
 - Swap the placeholder glyph on every row.
+- Leave out destinations the person's role can't use ([patterns 2.80](../patterns/02-navigation-flow.md)). Use Disabled only for a destination that's temporarily unavailable, with its reason.
 
 ## Accessibility
 - Selection is the only state with a fill of its own; also mark the current row with `aria-current="page"`.
 - Hover and press are a translucent scrim only and never reach keyboard or screen reader users.
 - Figma has no focus variant; code draws the `--sub-menu-item-focus-ring-width` `--sub-menu-item-focus-ring-color` ring.
-- Disabled is visual only and nothing on the row says why; explain nearby.
+- A disabled row stays focusable with `aria-disabled`, and its reason shows on focus ([patterns 6.34](../patterns/06-accessibility.md)).
 - Express nesting in code (a nested list, or `aria-level`); a group header is a button with `aria-expanded`.
 - The caret says a level exists but not what's in it, so the label must carry that.
 - Nested rows use a 12px type style (`--sub-menu-item-nested-label-font`); check it against your minimum readable size.

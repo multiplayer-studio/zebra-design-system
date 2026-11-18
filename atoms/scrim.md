@@ -56,7 +56,7 @@ The scrim has no motion of its own: it enters and leaves with its owner, and in 
 - Don't put text or controls on the scrim. It makes no contrast promise against what is behind it, so nothing on it is reliably readable.
 
 ## Accessibility
-- The scrim is decorative: never focusable and never named. The owning surface traps focus and makes the page behind inert.
+- The scrim is decorative: never focusable and never named. The owning surface moves focus in, traps it, makes the page behind inert and returns focus on close ([patterns 6.28–6.29](../patterns/06-accessibility.md)).
 - Clicking the scrim to dismiss always has a keyboard equivalent: Escape on the owner, which the owner handles.
 - The scrim closes nothing by itself; the owner decides whether it is dismissible.
 - Nothing that must stay readable may rely on showing through the barrier.

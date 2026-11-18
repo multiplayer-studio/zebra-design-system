@@ -5,6 +5,6 @@ description: Open the Zebra Design System component showcase, which renders ever
 
 # Open the showcase
 
-Open `prototypes/showcase/index.html` in the Browser pane. It is part of the design system: never copy, edit or refresh it.
+Open `prototypes/showcase/index.html` in the Browser. It is part of the design system: never copy, edit or refresh it.
 
 To answer "is there a component for…", check `DESIGN.md` §8 Component Index as well, and open that component's file for its variants and usage.

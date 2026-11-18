@@ -8,6 +8,8 @@ tokens:
   navigation-drawer-container-background-modal: '{colors.color-fill-overlay}'
   navigation-drawer-container-background-standard: '{colors.color-fill-default}'
   navigation-drawer-container-shadow-modal: '{shadow.shadow-large}'
+  navigation-drawer-container-border-width: '{stroke.stroke-thin}'
+  navigation-drawer-container-border-color: '{colors.color-fill-transparent}'
   navigation-drawer-container-width: '{component-sizes.size-navigation-drawer-width}'
   navigation-drawer-container-inset-min: '{control.control-lg}'
   navigation-drawer-container-padding-x: '{space.space-md}'
@@ -15,6 +17,8 @@ tokens:
   navigation-drawer-container-gap: '{space.space-md}'
   navigation-drawer-list-gap: '{space.space-2xs}'
   navigation-drawer-container-transition: '{motion.motion-smooth}'
+  navigation-drawer-container-exit-duration: '{motion.motion-instant}'
+  navigation-drawer-container-exit-easing: '{motion.easing-in}'
 ---
 
 # Navigation Drawer
@@ -22,9 +26,9 @@ tokens:
 > The app's destinations in a tall panel at the edge of the screen, opened from a menu button: modal over a scrim, or standard beside the content.
 
 ## Anatomy
-1. Surface — the panel, `--navigation-drawer-container-width` wide, padded `--navigation-drawer-container-padding-y` top and bottom and `--navigation-drawer-container-padding-x` left and right, with `--navigation-drawer-container-gap` between header, action, menu and footer. No corner radius in either shape.
+1. Surface — the panel, `--navigation-drawer-container-width` wide, padded `--navigation-drawer-container-padding-y` top and bottom and `--navigation-drawer-container-padding-x` left and right, with `--navigation-drawer-container-gap` between header, action, menu and footer. No corner radius in either shape: it reaches the screen edge, so it has none on that side (DESIGN.md §5). Its inner edge has a `--navigation-drawer-container-border-width` border in `--navigation-drawer-container-border-color` (transparent, so the edge shows in forced colours, [patterns 6.10](../patterns/06-accessibility.md)).
 2. Header — a [Navigation Header](../molecules/navigation-header.md) (logo or avatar and title). Its icon button shows the close glyph and closes the drawer. Sticky at the top: the only frozen part.
-3. Action (optional) — a primary, large, full-width [Button](../atoms/button.md) under the header: a create or compose entry point, not a destination. Pressing it doesn't close the drawer.
+3. Action (optional) — a primary, large, full-width [Button](../atoms/button.md) under the header: the product's one main create or compose action, not a destination ([patterns 2.14](../patterns/02-navigation-flow.md)). Pressing it doesn't close the drawer.
 4. Menu — the Menu Slot: top-level [Sub Menu Item](../molecules/sub-menu-item.md) rows, Collapsible Menu Item groups, and a [Divider](../atoms/divider.md) between sections, `--navigation-drawer-list-gap` apart. It takes the free height when content is short, so the footer sits at the bottom; it never scrolls on its own.
 5. Footer — the Footer Slot (Settings, Help and the like), same content rules as the menu, straight after it. Not pinned; it scrolls with the menu.
 6. Scrim (modal only) — a [Scrim](../atoms/scrim.md) behind the drawer, covering the page; it fades in and out with the drawer.
@@ -43,11 +47,11 @@ Shape: rounded (default) gives the rounded shape to the rows, groups and buttons
 | State | Trigger | What changes |
 |---|---|---|
 | open (modal) | menu button, or open set from outside | slides in from its edge while the scrim fades in; focus moves to the first control inside |
-| closed (modal) | Escape, scrim click, close button or a chosen destination | slides back out and the scrim fades; focus returns to the menu button |
+| closed (modal) | Escape, the system Back, scrim click, close button or a chosen destination | slides back out and the scrim fades; focus returns to the menu button |
 | open / closed (standard) | open set from outside, usually a menu button beside the content | widens from nothing and pushes the content; closed, it's inert |
 | group open / closed | a Collapsible Menu Item header | the group's rows show or hide and its caret turns; the drawer stays open |
 
-Every transition runs on `--navigation-drawer-container-transition`; none run under reduced motion, where the drawer opens and closes with no slide, fade or width change. Rows carry their own hover, pressed, selected, focus and disabled states.
+Opening runs on `--navigation-drawer-container-transition`. Closing is shorter and accelerates away: `--navigation-drawer-container-exit-duration` with `--navigation-drawer-container-exit-easing`. Under reduced motion the slide and the width change become a fade of the drawer's opacity on the same timings, and the scrim still fades ([patterns 6.66](../patterns/06-accessibility.md)). Rows carry their own hover, pressed, selected, focus and disabled states.
 
 ## Spacing & Sizing
 | Part | Value |
@@ -74,14 +78,16 @@ Only the header is frozen. A standard drawer scrolls with the page; a modal draw
 
 ## Usage
 - Use Sub Menu Item for every top-level destination and Collapsible Menu Item for groups, so every row lines up.
-- Use modal on small screens or when navigation is occasional; use standard beside the content on wide layouts.
+- Use modal below `--breakpoint-expanded-min` or when navigation is occasional; use standard beside the content on expanded widths ([patterns 5.15](../patterns/05-sizes-devices.md)).
+- Show at most two levels: top-level rows and one level of groups. A third level moves into the content ([patterns 2.3](../patterns/02-navigation-flow.md)).
+- Leave out destinations the person's role can't use ([patterns 2.80](../patterns/02-navigation-flow.md)). A row is disabled only while it's temporarily unavailable, and says why.
 - Don't use Navigation Rail items in the drawer. It has no collapsed form, so the rail's square targets don't line up.
 - Don't pin the footer or give the menu its own scroll; only the header stays put.
 - With Show Close off, Escape, a scrim click or a destination still close a modal drawer; with Dismissible off as well, only a destination does, so keep one of them.
 
 ## Accessibility
-- The drawer is a `nav` landmark named by its nav label; modal is also a dialog with that name.
-- Modal traps focus, starts on the first control, returns focus to the menu button on close, and makes the page behind inert and unscrollable. Escape is the keyboard match for a scrim click (unless Dismissible is off).
+- The drawer is a `nav` landmark named by its nav label ([patterns 6.52](../patterns/06-accessibility.md)); modal is also a dialog with that name.
+- Modal follows the overlay focus rules ([patterns 6.28](../patterns/06-accessibility.md), [6.29](../patterns/06-accessibility.md)) and makes the page behind inert and unscrollable. Escape and the system Back are the matches for a scrim click (unless Dismissible is off).
 - The selected row carries `aria-current="page"`; group headers report `aria-expanded`.
 - Every icon-only control, the close button included, needs an accessible name. The menu button reports `aria-expanded` and `aria-controls`.
 

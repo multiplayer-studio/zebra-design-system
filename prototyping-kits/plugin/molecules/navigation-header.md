@@ -12,7 +12,7 @@ tokens:
   navigation-header-title-foreground: '{colors.color-ink-high}'
   navigation-header-title-font: '{typography.type-label-medium}'
   # logo
-  navigation-header-logo-height: '{control.control-target-min}'
+  navigation-header-logo-height: '{control.control-md}'
   navigation-header-logo-foreground: '{colors.color-ink-high}'
 ---
 
@@ -48,7 +48,7 @@ Measurements are provisional: Figma's section for this part is thin (layer struc
 | Padding | `--navigation-header-container-padding-x` left and right |
 | Gap | `--navigation-header-container-gap` (expanded); `--navigation-header-container-gap-collapsed` (collapsed) |
 | Logo | `--navigation-header-logo-height` tall, width from the artwork |
-| Title | `--navigation-header-title-font`, single line, ellipsis when cut off |
+| Title | `--navigation-header-title-font`; wraps to two lines. A product name never truncates; a person's name past two lines truncates at the end, with the full name on hover and focus ([patterns 5.29–5.32](../patterns/05-sizes-devices.md)) |
 | Icon button | small |
 
 Colour follows the parent: inside the Navigation Rail it renders in Dark mode with the rail; in the Navigation Drawer it follows the page.

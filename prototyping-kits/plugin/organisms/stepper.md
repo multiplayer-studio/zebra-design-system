@@ -2,7 +2,7 @@
 name: Stepper
 level: organism
 status: stable
-composes: [../atoms/icon.md]
+composes: [../atoms/icon.md, ../atoms/button.md]
 tokens:
   # indicator (shared by Step / Horizontal, Step / Vertical and Step Card)
   stepper-indicator-background-default: '{colors.color-fill-default}'
@@ -24,13 +24,13 @@ tokens:
   stepper-indicator-foreground-error: '{colors.color-ink-always-white}'
   stepper-indicator-foreground-disabled: '{colors.color-ink-disabled}'
   # step label and subtitle (Step / Horizontal, Step / Vertical)
-  stepper-label-foreground-default: '{colors.color-ink-low}'
-  stepper-label-foreground-complete: '{colors.color-ink-low}'
-  stepper-label-foreground-partial: '{colors.color-ink-low}'
+  stepper-label-foreground-default: '{colors.color-ink-medium}'
+  stepper-label-foreground-complete: '{colors.color-ink-medium}'
+  stepper-label-foreground-partial: '{colors.color-ink-medium}'
   stepper-label-foreground-active: '{colors.color-ink-high}'
   stepper-label-foreground-error: '{colors.color-status-error-default}'
   stepper-label-foreground-disabled: '{colors.color-ink-disabled}'
-  stepper-subtitle-foreground: '{colors.color-ink-low}'
+  stepper-subtitle-foreground: '{colors.color-ink-medium}'
   stepper-subtitle-foreground-disabled: '{colors.color-ink-disabled}'
   # connector
   stepper-connector-color-default: '{colors.color-line-default}'
@@ -72,13 +72,20 @@ tokens:
   stepper-segment-end-background-error: '{colors.color-status-error-default}'
   stepper-segment-end-background-disabled: '{colors.color-line-subtle}'
   # compact summary
-  stepper-compact-count-foreground: '{colors.color-ink-low}'
+  stepper-compact-count-foreground: '{colors.color-ink-medium}'
   stepper-compact-title-foreground: '{colors.color-ink-high}'
   stepper-compact-subtitle-foreground: '{colors.color-ink-medium}'
+  # interactive step (completed steps that can be revisited; Button's scrim and ring)
+  stepper-step-background-hover: '{button.button-text-container-background-hover}'
+  stepper-step-background-pressed: '{button.button-text-container-background-pressed}'
+  stepper-step-focus-ring-width: '{button.button-focus-ring-width}'
+  stepper-step-focus-ring-color: '{button.button-focus-ring-color}'
+  stepper-step-radius: '{radius.radius-element-sm}'
   # shape
   stepper-indicator-radius: '{radius.radius-pill}'
   stepper-card-container-radius-sharp: '{radius.radius-none}'
   stepper-card-container-radius-rounded: '{radius.radius-sm}'
+  stepper-card-container-min-height: '{control.control-lg}'
   stepper-segment-radius: '{radius.radius-pill}'
   # border
   stepper-indicator-border-width: '{stroke.stroke-thick}'
@@ -115,7 +122,7 @@ tokens:
 
 # Stepper
 
-> Steppers show where a person is in a fixed sequence of steps: what is finished, what is current and what is still ahead.
+> Steppers show where a person is in a sequence of steps: what is finished, what is current and what is still ahead. Completed steps can be revisited from it.
 
 ## Anatomy
 1. Container — Horizontal Stepper (a row of steps, or on compact a summary over a segment bar) or Vertical Stepper (a column of steps or step cards). The stepper paints nothing itself; every colour comes from the steps it holds.
@@ -124,7 +131,7 @@ tokens:
 4. Text — the label in `--stepper-label-font` (the step's name, always present) and, when Show Subtitle is on, a subtitle in `--stepper-subtitle-font` `--stepper-text-gap` beneath it; the text block has `--stepper-text-padding-top` above it and nothing below. Centred under the indicator on Step / Horizontal, beside it on Step / Vertical and Step Card.
 5. Connector — a `--stepper-connector-width` line from this step to the next, drawn by the step itself: to the right on Step / Horizontal, below on Step / Vertical. Step Card has none; Show Line turns it off on the last step.
 6. Step Card surface (cards arrangement) — a bordered card holding the indicator and text side by side; fill, border and corner come from Status and the set.
-7. Compact summary (Horizontal Stepper, compact) — the count ("Step 3 / 5": step label, current step, divider, total steps) in `--stepper-compact-count-font` `--stepper-compact-count-foreground`, then the current step's title in `--stepper-compact-title-font` `--stepper-compact-title-foreground` and subtitle in `--stepper-compact-subtitle-font` `--stepper-compact-subtitle-foreground`.
+7. Compact summary (Horizontal Stepper, compact) — the count ("Step 3 of 5": step label, current step, "of", total steps; or "Step 3" alone when Show Total is off) in `--stepper-compact-count-font` `--stepper-compact-count-foreground`, then the current step's title in `--stepper-compact-title-font` `--stepper-compact-title-foreground` and subtitle in `--stepper-compact-subtitle-font` `--stepper-compact-subtitle-foreground`.
 8. Step Segment (compact) — one division of the bar, `--stepper-segment-height` tall at `--stepper-segment-radius`, split into a Start and an End half. It carries no text.
 
 ## Variants
@@ -181,6 +188,16 @@ Active fills exactly as complete and disabled exactly as default, so the summary
 
 No transition is defined. Progress changes by resetting each step's Status, and the page decides whether anything moves as the content behind it changes.
 
+**Interactive steps.** Completed (and partial) steps can be revisited from the list; upcoming steps can't be jumped to while creating something, though any step can be opened when editing something that already exists ([patterns 2.38](../patterns/02-navigation-flow.md)). A step that can be opened is a control with these states, from the Button's own scrim and ring:
+
+| State | Change |
+|---|---|
+| hover | `--stepper-step-background-hover` behind the whole step (indicator and text), corners `--stepper-step-radius`; pointer only |
+| pressed | `--stepper-step-background-pressed` |
+| focused | `--stepper-step-focus-ring-width` `--stepper-step-focus-ring-color` ring outside the step |
+
+A step that can't be opened has none of these states and isn't focusable. Opening a step doesn't change any Status.
+
 ## Spacing & Sizing
 | Part | Value |
 |---|---|
@@ -189,11 +206,11 @@ No transition is defined. Progress changes by resetting each step's Status, and 
 | Step / Vertical | rail (indicator above connector) `--stepper-vertical-step-gap` from the text; the step hugs its content and the connector stretches with the step's height, at least `--stepper-vertical-connector-length` |
 | Vertical Stepper | steps `--stepper-vertical-steps-gap` apart (rail), `--stepper-vertical-cards-gap` (cards) |
 | Indicator | `--stepper-indicator-size` square at `--stepper-indicator-radius`, `--stepper-indicator-border-width` inside border |
-| Step Card | fills the column width; padding `--stepper-card-container-padding-y` / `--stepper-card-container-padding-x`; `--stepper-card-container-gap` between indicator and text; `--stepper-card-container-border-width` border; the text fills the width left beside the indicator |
+| Step Card | fills the column width; padding `--stepper-card-container-padding-y` / `--stepper-card-container-padding-x`; `--stepper-card-container-gap` between indicator and text; `--stepper-card-container-border-width` border; at least `--stepper-card-container-min-height` tall, growing with its text; the text fills the width left beside the indicator |
 | Horizontal Stepper (compact) | no side padding; summary and bar `--stepper-compact-container-gap` apart; inside the summary, count and heading `--stepper-compact-summary-gap` apart, count parts `--stepper-compact-count-gap` apart |
 | Segment bar | segments `--stepper-compact-segments-gap` apart, each an equal share of the width, `--stepper-segment-height` tall; the radius is on the segment, so a part-filled segment keeps rounded ends and a straight join in the middle |
 
-On horizontal steps all indicators keep the same length and fill behaviour so steps stay evenly spaced; the row top-aligns to the tallest step. A Step Card has a fixed height in Figma and does not grow with a subtitle. The minimum connector length on Step / Vertical (`--stepper-vertical-connector-length`) is not specified in Figma and is provisional, as is the segment height (`--stepper-segment-height`): Figma's prose names a space/xxs step that doesn't exist, so the bound space/2xs is used.
+On horizontal steps all indicators keep the same length and fill behaviour so steps stay evenly spaced; the row top-aligns to the tallest step. A Step Card is at least `--stepper-card-container-min-height` tall (provisional: Figma gives it a fixed height) and grows with a subtitle or wrapped label. The minimum connector length on Step / Vertical (`--stepper-vertical-connector-length`) is not specified in Figma and is provisional, as is the segment height (`--stepper-segment-height`): Figma's prose names a space/xxs step that doesn't exist, so the bound space/2xs is used.
 
 ## Properties
 **Horizontal Stepper**
@@ -205,6 +222,7 @@ On horizontal steps all indicators keep the same length and fill behaviour so st
 | Segments (compact) | one Step Segment per step | — |
 | Current Step (compact) | number | 3 |
 | Total Steps (compact) | number | 5 |
+| Show Total (compact) | on / off; off reads "Step 3" when later steps depend on answers | on |
 | Label (compact) | text, the current step's title | Label |
 | Subtitle (compact) | text | Subtitle |
 | Show Subtitle (compact) | on / off | on |
@@ -237,22 +255,23 @@ On horizontal steps all indicators keep the same length and fill behaviour so st
 Complete and error hide the step number behind their glyph.
 
 ## Usage
-- Use for a fixed sequence of 2 to 8 steps. With more, group steps; don't add one part way through, because the stepper promises a known number.
+- Use for a sequence of 2 to 8 steps; with more, group steps. Show only steps that apply, and mark optional ones in the subtitle ("Optional"). Where later steps depend on answers, show that more follow instead of a fixed total: Show Total off on compact ("Step 3"), and on the default and vertical arrangements only the steps known so far, the last with Show Line on ([patterns 2.38](../patterns/02-navigation-flow.md)).
 - Keep exactly one step on active; it is the only status that marks position.
 - Give every step a short noun label, ideally one word. Steps divide the width evenly, so a long label runs into its neighbour before it wraps; where labels can't be shortened, use the vertical stepper.
 - Turn Show Line off on the last step, or it trails a line into nothing.
 - Don't treat complete and partial as interchangeable: partial means entered and left unfinished.
-- Use default on desktop and compact on mobile. Compact drops every label but the current one, so it is not the default resized. Don't put a long sequence on the compact bar; every segment shortens as steps are added.
+- Choose by width, not device: compact below `--breakpoint-medium-min`, default (or the vertical stepper at the leading side on expanded widths) above it ([patterns 1.120](../patterns/01-screen-composition.md)). Compact drops every label but the current one, so it is not the default resized. Don't put a long sequence on the compact bar; every segment shortens as steps are added.
 - Use partial on a segment only where a step was left half done.
-- Use the cards arrangement for a more visual column of stages; match the rounded or sharp set to the surrounding UI. Don't give a card more text than its height holds.
+- Use the cards arrangement for a more visual column of stages; match the rounded or sharp set to the surrounding UI. Keep card text short; the card grows rather than cutting it off.
 - Use horizontal and vertical steps only in their own orientation.
+- For work the system runs, with statuses such as running, needs approval or failed, use a [Task List](../molecules/task-list.md) instead; a stepper is a sequence the person moves through.
 
 ## Accessibility
-- Give the stepper an accessible name, and announce position in words ("Step 3 of 5: Put-away") rather than by colour alone; mark the active step as current.
-- Status is carried by the indicator's fill and its glyph together (check_mark on complete, priority on error), which keeps complete and error apart without relying on hue.
+- Give the stepper an accessible name, and announce position in words ("Step 3 of 5: Put-away"); mark the active step as current (`aria-current="step"`).
+- Status is carried by the indicator's fill and its glyph together (check_mark on complete, priority on error), never by colour alone ([patterns 6.11](../patterns/06-accessibility.md)); include the status in each step's name ("Delivery, completed").
 - The label (and subtitle) is the step's accessible name, so write it as a noun a person recognises out of context.
 - The compact bar holds no text and active fills like complete, so the count and title above it are the only account of position; a failed segment needs saying in words elsewhere on the screen.
-- Whether a person can move freely between steps is decided by the implementation; if steps are interactive, they need focus states from the page.
+- An interactive step is a button (or a link in a web console) in the tab order with the focus ring above; steps that can't be opened are plain text. After opening a step, focus moves to the start of that step ([patterns 6.33](../patterns/06-accessibility.md)).
 
 ## Claude Prompt
-Draw a Zebra horizontal stepper: a row of evenly spaced steps, each a `--stepper-indicator-size` circle with a `--stepper-indicator-border-width` border and a small `--stepper-indicator-font` number, its `--stepper-label-font` label centred beneath, and a thin `--stepper-connector-width` grey line (`--stepper-connector-color-default`) running from the circle to the next step. Finished steps are solid green circles (`--stepper-indicator-background-complete`) with a white check and a green connector; a half-done step is a pale green circle with a green border; the current step is a solid blue circle (`--stepper-indicator-background-active`) with a white number and a dark label; future steps are white circles with grey borders and grey labels (`--stepper-label-foreground-default`); a failed step is a red circle with a white priority glyph and a red label. The vertical version stacks the same steps in a column with labels to the right and connectors running down; the card version wraps each step in a bordered card with `--stepper-card-container-radius-rounded` corners, the current one tinted pale blue (`--stepper-card-container-background-active`) with a blue border. On mobile, show "Step 3 / 5", a `--stepper-compact-title-font` title and a subtitle above a bar of `--stepper-segment-height` pill segments, blue for done and current, light grey for ahead.
+Draw a Zebra horizontal stepper: a row of evenly spaced steps, each a `--stepper-indicator-size` circle with a `--stepper-indicator-border-width` border and a small `--stepper-indicator-font` number, its `--stepper-label-font` label centred beneath, and a thin `--stepper-connector-width` grey line (`--stepper-connector-color-default`) running from the circle to the next step. Finished steps are solid green circles (`--stepper-indicator-background-complete`) with a white check and a green connector; a half-done step is a pale green circle with a green border; the current step is a solid blue circle (`--stepper-indicator-background-active`) with a white number and a dark label; future steps are white circles with grey borders and grey labels (`--stepper-label-foreground-default`); a failed step is a red circle with a white priority glyph and a red label. The vertical version stacks the same steps in a column with labels to the right and connectors running down; the card version wraps each step in a bordered card with `--stepper-card-container-radius-rounded` corners, the current one tinted pale blue (`--stepper-card-container-background-active`) with a blue border. On mobile, show "Step 3 of 5", a `--stepper-compact-title-font` title and a subtitle above a bar of `--stepper-segment-height` pill segments, blue for done and current, light grey for ahead.

@@ -36,7 +36,7 @@ Rotation is the only visual change between the four combinations; the colour and
 | closed (Open off) | `expand_more`, turned to the Direction's closed position | default |
 | open (Open on) | turned to the Direction's open position | set by the parent when it expands |
 
-The glyph rotates to its new position over `--caret-indicator-icon-transition` when the parent opens or closes (one glyph that turns, never a swap between two); under `prefers-reduced-motion` it jumps with no rotation. Hover, pressed, focus and disabled belong to the parent; the glyph inherits the parent's foreground colour when the parent recolours it (e.g. disabled).
+The glyph rotates to its new position over `--caret-indicator-icon-transition` when the parent opens or closes (one glyph that turns, never a swap between two); under reduced motion it jumps with no rotation ([patterns 6.66](../patterns/06-accessibility.md)). Hover, pressed, focus and disabled belong to the parent; the glyph inherits the parent's foreground colour when the parent recolours it (e.g. disabled).
 
 ## Spacing & Sizing
 | Size | Glyph | Used by |

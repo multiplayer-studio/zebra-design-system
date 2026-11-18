@@ -4,7 +4,7 @@ This session has the `zebra-prototyping` plugin, so it works in prototyping mode
 
 | The instructions name | It is in |
 |---|---|
-| `DESIGN.md`, `atoms/`, `molecules/`, `organisms/`, `icons.json`, `tokens.css`, `templates/universal/`, `prototypes/_starter/`, `prototypes/showcase/`, `PROTOTYPING.AGENTS.md` | the kit folder |
+| `DESIGN.md`, `atoms/`, `molecules/`, `organisms/`, `patterns/`, `icons.json`, `tokens.css`, `templates/universal/`, `prototypes/_starter/`, `prototypes/showcase/`, `PROTOTYPING.AGENTS.md` | the kit folder |
 | `prototypes/<name>/` (every prototype you make), `templates/*.md` (this project's templates), `github.json`, `github/`, and "the kit root" or "this kit's folder" where the designer drops a file | the working folder; create a folder there when it's missing |
 | `.claude/skills/<skill>/SKILL.md` | this plugin's `<skill>` skill; a file "in this skill's folder" sits next to its `SKILL.md` in the kit folder's `skills/<skill>/` |
 

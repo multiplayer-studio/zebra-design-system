@@ -8,7 +8,7 @@ The folder holds zebra-design-system-production/, containing:
                                              goes at the project root
   .claude/skills/                            PRODUCTION.SKILLS/ (design-system-init), also at the project root
   design-system/                             (release.py moves it to the repo's consumers.json path, if set), with:
-  atoms/ molecules/ organisms/               as-is
+  atoms/ molecules/ organisms/ patterns/     as-is
   templates/universal/                       templates/universal/ (master's universal templates); release.py adds
                                              the project's own templates flat in templates/
   DESIGN.md icons.json tokens.css            as-is
@@ -24,7 +24,7 @@ from _tenants import design_version
 
 write_dir(
     sys.argv[1] if len(sys.argv) > 1 else 'build', 'zebra-design-system-production/design-system',
-    entries(['atoms', 'molecules', 'organisms', 'templates/universal', ('PRODUCTION.SKILLS', '../.claude/skills')],
+    entries(['atoms', 'molecules', 'organisms', 'patterns', 'templates/universal', ('PRODUCTION.SKILLS', '../.claude/skills')],
             ['DESIGN.md', 'icons.json', 'tokens.css', 'scripts/tokens-css.py', 'scripts/icons-json.py'],
             {'PRODUCTION.AGENTS.md': 'AGENTS.md', 'PRODUCTION.LIBRARY.md': 'LIBRARY.md'}),
     read_claude('PRODUCTION.CLAUDE.md').replace('@PRODUCTION.AGENTS.md', '@design-system/AGENTS.md'),

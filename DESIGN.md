@@ -1,6 +1,6 @@
 ---
 name: Zebra Design System
-version: '3.2611.0-beta'
+version: '4.2611.0-alpha'
 icons: "Zebra Icons 1.9.8 (zeta-icons-round / zeta-icons-sharp), package @zebra-fed/zeta-icons"
 # ── TOKEN ARCHITECTURE ──────────────────────────────────────────────────────────
 # Three layers (mirrors the Figma variable collections):
@@ -346,6 +346,8 @@ colors:  # Figma 'palette' semantic colours, light, AA (default). The full set; 
   color-line-inverse: '{primitives.color-pure-white}'
   color-line-strong: '{primitives.color-neutral-cool-60}'
   color-line-stronger: '{primitives.color-neutral-cool-70}'
+  color-line-contrast: '{primitives.color-alpha-light-0}'
+  color-line-contrast-brand: '{primitives.color-alpha-light-0}'
   color-data-1: '{primitives.color-brand-main-60}'
   color-data-2: '{primitives.color-brand-alternative-60}'
   color-data-3: '{primitives.color-accent-5-60}'
@@ -373,9 +375,9 @@ colors-dark:  # Figma 'palette' semantic colours, dark, AA. Overrides colors
   color-brand-secondary-subtle: '{primitives.color-brand-alternative-60}'
   color-brand-tertiary-default: '{primitives.color-accent-5-50}'
   color-brand-tertiary-faint: '{primitives.color-accent-5-100}'
-  color-fill-canvas: '{primitives.color-neutral-cool-90}'
-  color-fill-default: '{primitives.color-neutral-cool-100}'
-  color-fill-elevated: '{primitives.color-neutral-cool-100}'
+  color-fill-canvas: '{primitives.color-neutral-cool-100}'
+  color-fill-default: '{primitives.color-neutral-cool-90}'
+  color-fill-elevated: '{primitives.color-neutral-cool-80}'
   color-fill-overlay: '{primitives.color-neutral-cool-80}'
   color-fill-inverse: '{primitives.color-neutral-cool-20}'
   color-fill-sunken: '{primitives.color-neutral-cool-80}'
@@ -486,6 +488,8 @@ colors-aaa:  # Figma 'palette' semantic colours, light, AAA contrast. Overrides 
   color-line-subtle: '{primitives.color-neutral-cool-50}'
   color-line-strong: '{primitives.color-neutral-cool-70}'
   color-line-stronger: '{primitives.color-neutral-cool-80}'
+  color-line-contrast: '{primitives.color-neutral-cool-70}'
+  color-line-contrast-brand: '{primitives.color-brand-main-80}'
   color-data-1: '{primitives.color-brand-main-80}'
   color-data-2: '{primitives.color-brand-alternative-90}'
   color-data-3: '{primitives.color-accent-5-90}'
@@ -499,7 +503,9 @@ colors-aaa:  # Figma 'palette' semantic colours, light, AAA contrast. Overrides 
   color-data-12: '{primitives.color-extend-1-80}'
   color-data-neutral: '{primitives.color-neutral-cool-80}'
   color-gradient-default-start: '{primitives.color-accent-1-80}'
-  color-gradient-default-end: '{primitives.color-extend-4-80}'
+  color-gradient-default-end: '{primitives.color-accent-1-80}'
+  color-gradient-strong-end: '{primitives.color-accent-1-80}'
+  color-gradient-subtle-end: '{primitives.color-accent-1-50}'
 colors-aaa-dark:  # Figma 'palette' semantic colours, dark, AAA contrast. Overrides colors-dark
   color-brand-primary-default: '{primitives.color-brand-main-30}'
   color-brand-primary-subtle: '{primitives.color-brand-main-90}'
@@ -549,6 +555,8 @@ colors-aaa-dark:  # Figma 'palette' semantic colours, dark, AAA contrast. Overri
   color-line-default: '{primitives.color-neutral-cool-50}'
   color-line-subtle: '{primitives.color-neutral-cool-60}'
   color-line-strong: '{primitives.color-neutral-cool-40}'
+  color-line-contrast: '{primitives.color-neutral-cool-40}'
+  color-line-contrast-brand: '{primitives.color-brand-main-30}'
   color-data-1: '{primitives.color-brand-main-30}'
   color-data-2: '{primitives.color-brand-alternative-30}'
   color-data-3: '{primitives.color-accent-5-40}'
@@ -563,9 +571,10 @@ colors-aaa-dark:  # Figma 'palette' semantic colours, dark, AAA contrast. Overri
   color-data-12: '{primitives.color-extend-1-30}'
   color-data-neutral: '{primitives.color-neutral-cool-40}'
   color-gradient-default-start: '{primitives.color-accent-1-40}'
-  color-gradient-default-end: '{primitives.color-extend-4-40}'
+  color-gradient-default-end: '{primitives.color-accent-1-40}'
   color-gradient-strong-start: '{primitives.color-accent-1-30}'
-  color-gradient-strong-end: '{primitives.color-extend-4-30}'
+  color-gradient-strong-end: '{primitives.color-accent-1-30}'
+  color-gradient-subtle-end: '{primitives.color-accent-1-70}'
 colors-companion:  # Companion brand, light, AA. Overrides colors
   color-brand-primary-default: '{primitives.color-accent-1-60}'
   color-brand-primary-faint: '{primitives.color-accent-1-10}'
@@ -581,14 +590,8 @@ colors-companion:  # Companion brand, light, AA. Overrides colors
   color-status-success-default: '{primitives.color-system-positive-70}'
   color-status-warning-default: '{primitives.color-system-warning-70}'
   color-status-error-default: '{primitives.color-system-negative-70}'
-  color-status-info-default: '{primitives.color-accent-1-70}'
-  color-status-info-faint: '{primitives.color-accent-1-10}'
-  color-status-info-deep: '{primitives.color-accent-1-80}'
-  color-status-info-subtle: '{primitives.color-accent-1-50}'
-  color-status-info-strong: '{primitives.color-accent-1-70}'
   color-status-neutral-default: '{primitives.color-neutral-cool-70}'
   color-line-selection: '{primitives.color-accent-1-60}'
-  color-line-focus: '{primitives.color-accent-1-60}'
   color-gradient-default-start: '{primitives.color-extend-2-60}'
   color-gradient-strong-start: '{primitives.color-extend-2-60}'
   color-gradient-strong-end: '{primitives.color-extend-4-60}'
@@ -599,9 +602,6 @@ colors-companion-dark:  # Companion brand, dark, AA. Overrides colors-dark
   color-brand-primary-strong: '{primitives.color-accent-1-70}'
   color-brand-primary-deep: '{primitives.color-accent-1-80}'
   color-brand-primary-muted: '{primitives.color-accent-1-90}'
-  color-fill-canvas: '{primitives.color-neutral-cool-100}'
-  color-fill-default: '{primitives.color-neutral-cool-90}'
-  color-fill-elevated: '{primitives.color-neutral-cool-90}'
   color-fill-inverse: '{primitives.color-pure-white}'
   color-fill-selection: '{primitives.color-accent-1-90}'
   color-ink-medium: '{primitives.color-neutral-cool-50}'
@@ -613,16 +613,10 @@ colors-companion-dark:  # Companion brand, dark, AA. Overrides colors-dark
   color-status-warning-faint: '{primitives.color-system-warning-90}'
   color-status-error-default: '{primitives.color-system-negative-30}'
   color-status-error-faint: '{primitives.color-system-negative-90}'
-  color-status-info-default: '{primitives.color-accent-1-30}'
-  color-status-info-faint: '{primitives.color-accent-1-90}'
-  color-status-info-deep: '{primitives.color-accent-1-80}'
-  color-status-info-subtle: '{primitives.color-accent-1-60}'
-  color-status-info-strong: '{primitives.color-accent-1-70}'
   color-status-ghost-tint: 'rgba(31,105,255,0.1)'
   color-status-neutral-default: '{primitives.color-neutral-cool-30}'
   color-status-neutral-faint: '{primitives.color-neutral-cool-70}'
   color-line-selection: '{primitives.color-accent-1-60}'
-  color-line-focus: '{primitives.color-accent-1-60}'
   color-line-strong: '{primitives.color-neutral-cool-60}'
   color-gradient-default-start: '{primitives.color-extend-2-50}'
   color-gradient-default-end: '{primitives.color-extend-4-50}'
@@ -649,20 +643,16 @@ colors-companion-aaa:  # Companion brand, light, AAA contrast. Overrides colors-
   color-status-success-default: '{primitives.color-system-positive-90}'
   color-status-warning-default: '{primitives.color-system-warning-90}'
   color-status-error-default: '{primitives.color-system-negative-90}'
-  color-status-info-default: '{primitives.color-accent-1-90}'
-  color-status-info-faint: '{primitives.color-accent-1-10}'
-  color-status-info-deep: '{primitives.color-accent-1-100}'
-  color-status-info-subtle: '{primitives.color-accent-1-30}'
-  color-status-info-strong: '{primitives.color-accent-1-90}'
   color-status-ghost-tint: 'rgba(31,105,255,0.1)'
   color-status-neutral-default: '{primitives.color-neutral-cool-90}'
   color-line-selection: '{primitives.color-accent-1-80}'
-  color-line-focus: '{primitives.color-accent-1-80}'
+  color-line-contrast-brand: '{primitives.color-accent-1-70}'
   color-line-strong: '{primitives.color-neutral-cool-80}'
   color-gradient-default-start: '{primitives.color-extend-2-70}'
-  color-gradient-default-end: '{primitives.color-extend-4-70}'
+  color-gradient-default-end: '{primitives.color-extend-2-70}'
   color-gradient-strong-start: '{primitives.color-extend-2-70}'
-  color-gradient-strong-end: '{primitives.color-extend-4-70}'
+  color-gradient-strong-end: '{primitives.color-extend-2-70}'
+  color-gradient-subtle-end: '{primitives.color-accent-1-50}'
 colors-companion-aaa-dark:  # Companion brand, dark, AAA contrast. Overrides colors-aaa-dark
   color-brand-primary-default: '{primitives.color-accent-1-30}'
   color-brand-primary-faint: '{primitives.color-accent-1-100}'
@@ -673,16 +663,14 @@ colors-companion-aaa-dark:  # Companion brand, dark, AAA contrast. Overrides col
   color-fill-selection: '{primitives.color-accent-1-90}'
   color-ink-link: '{primitives.color-accent-1-20}'
   color-ink-brand: '{primitives.color-accent-1-20}'
-  color-status-info-default: '{primitives.color-accent-1-30}'
-  color-status-info-faint: '{primitives.color-accent-1-100}'
-  color-status-info-deep: '{primitives.color-accent-1-10}'
-  color-status-info-subtle: '{primitives.color-accent-1-40}'
-  color-status-info-strong: '{primitives.color-accent-1-20}'
   color-status-ghost-tint: 'rgba(31,105,255,0.1)'
   color-line-selection: '{primitives.color-accent-1-30}'
-  color-line-focus: '{primitives.color-accent-1-30}'
+  color-line-contrast-brand: '{primitives.color-accent-1-30}'
   color-gradient-default-start: '{primitives.color-extend-2-40}'
   color-gradient-strong-start: '{primitives.color-extend-2-30}'
+  color-gradient-default-end: '{primitives.color-extend-2-40}'
+  color-gradient-strong-end: '{primitives.color-extend-2-30}'
+  color-gradient-subtle-end: '{primitives.color-accent-1-70}'
 space:
   space-page: '{primitives.scale-7}'
   space-section: '{primitives.scale-11}'
@@ -706,8 +694,8 @@ space:
   space-neg-md: '{primitives.scale-neg-3}'
   space-neg-lg: '{primitives.scale-neg-5}'
   space-neg-xl: '{primitives.scale-neg-6}'
-control:
-  control-target-min: '{primitives.scale-13}'
+control:  # control-target-min = touch minimum (patterns 6.16); -pointer-min for pointer-only products (6.18); -gloved for gloved or large-target products (6.19)
+  control-target-min: '{primitives.scale-15}'
   control-xs: '{primitives.scale-9}'
   control-sm: '{primitives.scale-12}'
   control-md: '{primitives.scale-13}'
@@ -717,6 +705,8 @@ control:
   control-icon-sm: '{primitives.scale-7}'
   control-icon-md: '{primitives.scale-8}'
   control-icon-lg: '{primitives.scale-10}'
+  control-target-pointer-min: '{primitives.scale-13}'
+  control-target-gloved: '{primitives.scale-16}'
 radius:
   radius-none: '{primitives.scale-0}'
   radius-xs: '{primitives.scale-2}'
@@ -772,10 +762,12 @@ typography:  # Figma 'typography' text styles, IBM Plex Sans; h1=heading-large �
   type-h4: { alias: type-title-large }
   type-h5: { alias: type-title-medium }
   type-h6: { alias: type-title-small }
+  type-code: { fontFamily: IBM Plex Mono, fontSize: 14px, fontWeight: '400', lineHeight: 20px, letterSpacing: 0px }
 font-family:
   font-family-regular: "'IBM Plex Sans', sans-serif"
   icon-family-round: zeta-icons-round
   icon-family-sharp: zeta-icons-sharp
+  font-family-mono: "'IBM Plex Mono', monospace"
 font-weight:
   font-weight-light: '300'
   font-weight-regular: '400'
@@ -793,15 +785,24 @@ motion:  # motion-spring / motion-smooth are the Figma animations; the durations
   motion-spin: 1.5s
   easing-standard: ease-in-out
   easing-out: ease-out
+  motion-feedback: 100ms ease-out  # press, toggle, check feedback (patterns 3.120)
+  easing-in: ease-in  # leaving elements accelerate (patterns 3.122)
+  motion-timeout-toast: 5s  # minimum; pauses on hover/focus, extends with the device accessibility timeout
 layout:
   grid-unit: 4px
   grid-columns: '12'
   grid-margin: 24px
-  breakpoint-mobile-max: 1024px
+  breakpoint-mobile-max: 1024px  # DEPRECATED: use the size-class breakpoints; removed at the next breaking release
   aspect-ratios: '1:1, 2:1, 2:3, 3:2, 4:3, 16:9'
   frame-handheld-width: 360px  # Zebra TC-series 6" handheld, 1080 × 2160 at 3×; prototype device frame
   frame-handheld-height: 720px
   frame-status-bar-height: 24px  # Android status bar; prototype device frame
+  breakpoint-medium-min: 600px  # compact below, medium from here (= scale-container-1)
+  breakpoint-expanded-min: 840px  # expanded from here (= scale-container-2)
+  breakpoint-large-min: 1200px  # large, the widest class (= scale-container-3)
+  grid-columns-compact: '4'
+  grid-columns-medium: '8'
+  grid-columns-expanded: '12'
 opacity:
   opacity-hover-tint: '10%'
 component-sizes:  # fixed component measurements Figma hard-codes and no scale-* step matches; each notes its owner
@@ -843,19 +844,21 @@ component-sizes:  # fixed component measurements Figma hard-codes and no scale-*
 
 ## 1. Visual Theme & Atmosphere
 
-> **Token rule:** every value in this document is a token reference written as `--<key>`. Raw values live only in the frontmatter above. To read a value, look up `<key>` in the relevant group (`colors`, `space`, `control`, `radius`, `stroke`, `container`, `shadow`, `typography`, `font-weight`, `motion`, `layout`, `opacity`). Other theme modes override some of those keys, under the same names (§3 Theme modes). Component tokens (e.g. `--dialog-container-width`) are defined in the `tokens:` block of their component file. See §2 Token Architecture.
+> **Token rule:** every value in this document is a token reference written as `--<key>`. Raw values live only in the frontmatter above. To read a value, look up `<key>` in the relevant group (`colors`, `space`, `control`, `radius`, `stroke`, `container`, `shadow`, `typography`, `font-weight`, `motion`, `layout`, `opacity`). Other theme modes override some of those keys, under the same names (§3 Theme modes). Component tokens (e.g. `--dialog-content-width`) are defined in the `tokens:` block of their component file. See §2 Token Architecture.
 
 The Zebra Design System is an **enterprise utility language**. It is calm, precise and built for frontline workers who scan screens quickly, often on rugged handheld devices, with gloves on or in bad light. Components sit on pure white (`--color-fill-default`) over a faintly blue-tinted cool-grey canvas (`--color-fill-canvas`). Ink is a near-black graphite (`--color-ink-high`), never pure black. A single confident **Zebra Blue** (`--color-brand-primary-default`) carries every primary action and selection. Colour is spent "sparingly … as a means to employ meaning and discretion". Most screens are monochrome greys plus one blue, and red, green, amber and the secondary orange appear only when they mean something.
 
-The geometry is strict and quiet. Everything snaps to the 4px-based size scale. Every component is rounded by default: controls take `--radius-element-sm` corners and containers `--radius-container`; each can switch to fully sharp (`--radius-none`) or, where offered, to full pills (`--radius-pill`). The AAA modes are always sharp. Depth is low: hairline strokes (`--stroke-thin`) and soft cool shadows (`--shadow-xsmall` … `--shadow-large`) only on floating layers. Type is **IBM Plex Sans** (`--font-family-regular`), a humanist-grotesque with an engineered feel. Display sizes use the light weight for an airy look, headings use regular, and all UI labels and titles use medium. The overall impression is *trustworthy industrial software*: dense enough for data, generous enough for touch, and accessible in every theme mode (light, dark, AAA light, AAA dark, and Companion in each of those four).
+The geometry is strict and quiet. Everything snaps to the 4px-based size scale. Every component is rounded by default, with the radius set by its role (§5 Shape): controls take `--radius-element-sm`, containers `--radius-element-md` and large surfaces `--radius-container`; each can switch to fully sharp (`--radius-none`) or, where offered, to full pills (`--radius-pill`). The AAA modes are always sharp. Depth is low: hairline strokes (`--stroke-thin`) and soft cool shadows (`--shadow-xsmall` … `--shadow-large`) only on overlays and dragged items. Type is **IBM Plex Sans** (`--font-family-regular`), a humanist-grotesque with an engineered feel. Display sizes use the light weight and are kept for splash and welcome screens, headings use regular, and all UI labels and titles use medium. The overall impression is *trustworthy industrial software*: dense enough for data, generous enough for touch, and accessible in every theme mode (light, dark, AAA light, AAA dark, and Companion in each of those four).
 
 **Key characteristics**
 - Cool-neutral greys with a single saturated blue accent; a gradient (`--color-gradient-default-start` → `--color-gradient-default-end`) reserved for AI
 - A 4px-based size scale for spacing, control heights, radii and strokes
 - Rounded is the default shape for every component, with sharp / rounded / full switching; AAA modes are always sharp
-- Hairline strokes over shadows; shadows appear only on floating layers
-- Status colour is always paired with an icon and text, never colour alone
+- Hairline strokes over shadows; shadows appear only on overlays and dragged items
+- Status colour is always paired with an icon and text ([patterns 6.11](patterns/06-accessibility.md))
 - Components are theme-agnostic: they only reference semantic tokens, so dark and AAA modes come for free
+
+**Behaviour lives in [`patterns/`](patterns/README.md).** This file says how Zebra looks. How screens are composed and behave (layout, navigation, controls, states, sizes, accessibility, copy, AI and data) is in the pattern files, which are binding like this file. Before building, read the pattern files the task touches (the routing table in [patterns/README.md](patterns/README.md)). Rules are cited as `patterns 6.11`, linked to their file.
 
 ---
 
@@ -891,12 +894,16 @@ References may chain (organism → molecule → atom), but every chain must end 
 - **Parts:** `container`, `label`, `icon`, `track`, `thumb`, `indicator`, `divider`, `focus-ring`, …
 - **Properties:** `background`, `foreground`, `border-color`, `border-width`, `outline-color`, `outline-width`, `radius`, `padding-x`, `padding-y`, `margin`, `gap`, `offset`, `inset`, `travel`, `height`, `width`, `size`, `min-height`, `min-width`, `max-height`, `max-width`, `font`, `font-weight`, `line-height`, `opacity`, `scale`, `shadow`, `transition`, `duration`, `easing`; gradients split into `-start` / `-end`
 - **States:** `enabled` (Figma *default*), `hover`, `pressed`, `focused`, `disabled`, `selected`, `error`. Component-specific states: `on` / `off` (switch), `open`, `filled` (has a value), `active`, `typing`, `read-only`.
+- **Names describe use, never a colour:** category, then property, then role, then state (`color-line-focus`, not `color-blue`). Two names break this and are renamed at the next breaking release: `--color-ink-always-white` / `--color-ink-always-blank`, and the `ghost` status family, which holds button tints rather than a status.
 
 ### Rules
 - **Strict layering:** a component file's text and tables cite only its own component tokens and those of the components it composes. They never cite semantic tokens directly. This document's prose cites semantic tokens, plus a component's tokens where it describes that component.
 - **Changes propagate:** restyling an atom (e.g. the icon button's hover) automatically restyles every molecule and organism that composes it, unless that composite has a deliberate context override.
 - **Theming flows through:** a theme mode only overrides `colors` keys, never adds new ones, so every mode re-themes every component automatically.
 - **Re-theming one component** means pointing its component token at a different semantic key. Nothing else changes.
+- **Roles keep their meaning:** a theme or product changes values, never a role's name or meaning. `--color-status-error-*` stays error and `--color-brand-primary-*` stays action, whatever their values. A product theme overrides the default's values; it never forks the palette (§3 Theme modes).
+- **No colour is set directly** anywhere a theme must reach. That is how dark and AAA modes break (§9).
+- **Platforms share the names:** a platform (web, Flutter, Android) may adapt values such as size and density, but uses the same token names.
 
 ### Worked example: primary button hover
 `--color-brand-main-70` (primitive) → `--color-brand-primary-strong` (semantic, `colors`) → `--button-primary-container-background-hover` (component, `atoms/button.md`).
@@ -909,6 +916,14 @@ References may chain (organism → molecule → atom), but every chain must end 
 The Zebra Design System uses a **two-tier colour model**, taken from the Figma *primitives* and *palette* collections:
 1. **Primitives** (frontmatter `primitives`, `color-*`): ramps of 10 steps (10 lightest → 100 darkest) for the cool and warm neutrals, the brand main (blue) and alternative (orange), the four system hues (positive, negative, warning, info), five accents and four extended hues, plus `color-pure-white` / `-black` and the `color-alpha-dark-*` / `color-alpha-light-*` transparencies. Primitives are never used by components.
 2. **Palette** (frontmatter `colors`): role tokens that point at primitive steps, in seven families. Theme modes override some of these keys (see Theme modes below).
+
+**Choosing a colour**
+- **By role, never by look.** Every colour names its purpose (surface, text, border, action, selected, focus or a status), and the token is chosen because its role matches. A colour picked because it looks right breaks in the other modes.
+- **Colours come in pairs.** Text and icons on a coloured fill use that fill's partner: `--color-brand-primary-on` on brand primary, success and error fills, `--color-ink-inverse` on `--color-fill-inverse`, the `--color-ink-*` roles on neutral fills. A fill token is never used for text.
+- **Mostly neutral.** Neutrals carry backgrounds, surfaces, default text and secondary controls, which is what makes coloured things stand out.
+- **One action colour.** `--color-brand-primary-*` marks the primary action, links, interactive accents and the selected marker, so saturated colour on controls and text means "can be acted on" or "needs attention". The only other colour is labelling accents (avatars, categories), illustration and the AI gradient. Brand secondary and tertiary are accents of that kind, never a second action colour.
+- **One meaning everywhere.** The brand primary doesn't appear on text that can't be acted on, except the selected or current marker. A status colour never decorates.
+- **Labelling accents are interchangeable.** Swapping one avatar or category colour for another changes nothing, and they never stand in for a status.
 
 ### Brand — `--color-brand-<primary|secondary|tertiary>-<step>`
 | Step | Primary (Zebra Blue) | Role |
@@ -930,81 +945,103 @@ Secondary (orange, `--color-brand-secondary-*`) and tertiary (`--color-brand-ter
 | `--color-fill-faint` / `--color-fill-sunken` | Neutral hover / pressed, recessed wells and tracks |
 | `--color-fill-selection` | Selected item background |
 | `--color-fill-disabled` | Disabled fills |
-| `--color-fill-inverse` (+ `-sunken`, `-elevated`) | Inverse surfaces: tooltips, contrast buttons, default snackbars |
+| `--color-fill-inverse` (+ `-sunken`, `-elevated`) | Inverse surfaces: tooltips, contrast buttons, standard snackbars |
 | `--color-fill-scrim` | Modal barrier |
 | `--color-fill-transparent`, `--color-fill-transparent-emphasis` / `-elevate` / `-obsure` | Transparent and see-through tints |
+
+- **Surfaces form a ladder:** the page on `--color-fill-canvas`, cards and panels on `--color-fill-default`, and what floats on `--color-fill-elevated` / `--color-fill-overlay`. Overlapping containers use different steps. Zebra products are used in bright light and on rugged screens, so surfaces that must be told apart also keep a `--stroke-thin` hairline, rather than relying on tone alone.
+- **Inverse surfaces** (the opposite tone to the mode) are for passing overlays (tooltips, snackbars) and the contrast flavour. They never spotlight one item.
 
 ### Ink — text and icons
 | Token | Role |
 |---|---|
-| `--color-ink-high` / `--color-ink-medium` / `--color-ink-low` | High, medium and low emphasis text and icons |
+| `--color-ink-high` / `--color-ink-medium` | High and medium emphasis text and icons; `--color-ink-medium` is also placeholder text |
+| `--color-ink-low` | Decorative icons and non-text marks only. **Never text:** it is below 4.5:1 on light surfaces ([patterns 6.1](patterns/06-accessibility.md)) |
 | `--color-ink-disabled` | Disabled text and icons |
 | `--color-ink-inverse` | Text on inverse surfaces |
-| `--color-ink-link` / `--color-ink-brand` | Text links / ghost-button text and input cursors |
+| `--color-ink-link` / `--color-ink-brand` | Text links (underlined in running text, [patterns 6.13](patterns/06-accessibility.md)) / ghost-button text and input cursors |
 | `--color-ink-selection` | Text inside a selection |
 | `--color-ink-always-white` / `--color-ink-always-blank` | White / near-black that never change with mode |
 
 ### Line — borders
 | Token | Role |
 |---|---|
-| `--color-line-default` | Input outlines, card borders, outline-subtle buttons |
+| `--color-line-default` | Card borders, outline-subtle buttons. Never the only boundary of a control (about 1.5:1 on white) |
 | `--color-line-subtle` | Dividers, list separators, disabled outlines |
-| `--color-line-strong` / `--color-line-stronger` | Hovered / pressed outlines |
-| `--color-line-selection` | Borders of selected items |
+| `--color-line-strong` / `--color-line-stronger` | Field outlines and the edges of controls / hovered and pressed outlines |
+| `--color-line-contrast` | A border only the high-contrast (AAA) modes draw: transparent in every other mode |
+| `--color-line-contrast-brand` | The brand-primary border only the high-contrast (AAA) modes draw, at the component's normal width (e.g. a ghost field's outline): transparent in every other mode. Theme modes change colours, never widths |
+| `--color-line-selection` | Borders and marks of selected items |
 | `--color-line-focus` | **Focus ring** (`--stroke-thick`, solid) |
 | `--color-line-inverse` | Borders on inverse surfaces |
 
+- **The edge of something interactive is stronger than a divider.** A field's outline is a real boundary (`--color-line-strong`); a divider is lighter and never defines a target.
+- **Focus has its own colour,** `--color-line-focus`, used for nothing else. Selection has its own roles (`--color-fill-selection`, `--color-line-selection`) plus a mark that isn't colour (§5 States), and never uses the focus, link or action colour on its own.
+
 ### Status — `--color-status-<family>-<step>`
-Every status has the steps `faint` (tinted container), `subtle`, `default` (text, borders, bold banners), `strong` and `deep` (emphasis, hover / pressed).
-| Family | Character | Use |
+Every status has the steps `faint` (tinted container), `subtle`, `default` (text, borders, bold banners), `strong` and `deep` (emphasis, hover / pressed). The severities are **success, warning, error and info**, plus **neutral**; every component that expresses severity uses these names.
+| Family | Character | Means |
 |---|---|---|
-| `success` | Evergreen | Positive outcomes, positive buttons |
-| `warning` | Amber Ochre | Warnings |
-| `error` | Alarm Red | Errors, destructive buttons |
-| `info` | Electric Blue | Information |
-| `neutral` | Graphite | Neutral status |
-| `ghost` | Transparent tints | Ghost buttons: `default` at rest, `faint` on hover, `deep` when pressed, `tint` when selected |
+| `success` | Evergreen | Done, with nothing to do. Also the positive button flavour |
+| `warning` | Amber Ochre | Needs attention, but isn't blocked. There is one warning level |
+| `error` | Alarm Red | Blocked or failed. Also the negative (destructive) button flavour |
+| `info` | Electric Blue | Helpful and not urgent |
+| `neutral` | Graphite | Draft, not started, inactive |
+| `ghost` | Transparent tints | Ghost buttons: `default` at rest, `faint` on hover, `deep` when pressed, `tint` when selected (a button tint, not a status; see §2 Naming) |
+
+- **Never colour alone:** a status always comes with its icon and a word ([patterns 6.11](patterns/06-accessibility.md)). Each severity has one glyph everywhere ([Icon](atoms/icon.md)); neutral uses `lightbulb`.
+- **A group shows its most severe member's colour** (a list header, a summary, a navigation badge).
+- **Statuses stay fixed when the brand changes.** No theme mode re-colours success, warning, error or info; a mode may move a status to another step of its own hue to keep contrast.
+- **Priority is not status.** Priority (urgent, high, normal, low) is its own scale, shown by position, a word, an index and an icon. [Priority Pill](atoms/priority-pill.md) uses neutral fills and never borrows status colours.
 
 ### Data and gradient
-- **Data:** `--color-data-1` … `--color-data-12` plus `--color-data-neutral`, for chart series and avatar swatches. Never use them for text, because they may not meet contrast.
-- **Gradient:** `--color-gradient-<default|strong|subtle>-<start|end>`, the purple-to-blue AI gradient. Use the gradient flavours (gradient and text-gradient buttons and icon buttons, gradient fields, the gradient card) for anything to do with AI, such as an AI assistant or companion, AI-generated content or an action that runs AI, and for nothing else. Not for promotion or emphasis: the gradient always means AI.
+- **Data:** `--color-data-1` … `--color-data-12` plus `--color-data-neutral`, for chart series and avatar swatches. Never use them for text, because they may not meet contrast. `--color-data-1` (the brand blue) and `--color-data-11` (the error red family) are left out of categorical use, so a series never reads as an action or an error. Chart rules: [patterns 10](patterns/10-data-display.md) and [Chart](organisms/chart.md).
+- **Gradient:** `--color-gradient-<default|strong|subtle>-<start|end>`, the purple-to-blue AI gradient, carried by the gradient flavours (gradient and text-gradient buttons and icon buttons, gradient fields, the gradient card).
+  - **It marks AI and nothing else:** an AI assistant, content AI produced, chose or ranked, or an action that runs AI ([patterns 9.8](patterns/09-ai.md)). It is never decoration, never a "new" signal and never for promotion or emphasis. Long-established recognition (barcode decoding, spell check, speech-to-text) isn't marked.
+  - **Never the only marker.** The AI marker is always the `ai_stars` icon and a word, opening an explanation ([AI Mark](atoms/ai-mark.md)). The gradient may reinforce it; in the AAA modes it is a solid colour.
+  - **An AI action ranks like any action** ([patterns 9.3](patterns/09-ai.md)): it takes the gradient flavour as the primary only when AI is the screen's main purpose, and is otherwise secondary with the AI mark.
+  - **A variant, not a different component.** A gradient component behaves like its normal flavour. Once a person changes AI-produced content, it returns to the normal style, keeping a way back to the AI version.
+  - **The AI gradient is its own role.** It never shows data, and it keeps the contrast floors wherever text or a boundary sits on it.
 
 ### Theme modes
-`colors` is the only full palette. **Every theme mode lists only its overrides:** the keys whose value differs from its base, never a key `colors` lacks. Light modes override `colors` and dark modes override `colors-dark`; each group's frontmatter comment names its base. A key a mode doesn't list keeps its base's value, and `scripts/tokens-css.py` merges each mode onto its base. To change a mode, add, change or remove an override; never copy the base's keys into it.
+`colors` is the only full palette. **Every theme mode lists only its overrides:** the keys whose value differs from its base, never a key `colors` lacks. Light modes override `colors` and dark modes override `colors-dark`; each group's frontmatter comment names its base. A key a mode doesn't list keeps its base's value, and `scripts/tokens-css.py` merges each mode onto its base. To change a mode, add, change or remove an override; never copy the base's keys into it. A mode changes values, never roles: every role has a value in every mode, so components switch without changes.
 
 | Mode | Group | Overrides | Switched on by |
 |---|---|---|---|
 | Light (default) | `colors` | (full set) | nothing, or `[data-theme="light"]` inside a dark area |
 | Dark | `colors-dark` | `colors` | `[data-theme="dark"]` |
-| AAA | `colors-aaa` | `colors` | `[data-contrast="aaa"]` |
+| AAA (high contrast) | `colors-aaa` | `colors` | `[data-contrast="aaa"]`, set from `prefers-contrast: more` and from an in-product setting |
 | AAA dark | `colors-aaa-dark` | `colors-dark` | both |
 | Companion | `colors-companion` | `colors` | `[data-brand="companion"]` |
 | Companion dark | `colors-companion-dark` | `colors-dark` | `[data-brand="companion"]` with `[data-theme="dark"]` |
 | Companion AAA | `colors-companion-aaa` | `colors-aaa` | `[data-brand="companion"]` with `[data-contrast="aaa"]` |
 | Companion AAA dark | `colors-companion-aaa-dark` | `colors-aaa-dark` | all three |
 
-- **Dark** (`colors-dark`, `[data-theme="dark"]`): the palette points at different primitive steps. Fills become near-black, ink becomes near-white, and brand and status steps move lighter so they keep their contrast.
-- **AAA** (`colors-aaa`, `[data-contrast="aaa"]`) and **AAA dark** (`colors-aaa-dark`, both attributes): the palette shifts to stronger steps so text, borders and fills meet WCAG AAA contrast, and every component turns **sharp** (see §5 Shape).
-- **Companion** (`[data-brand="companion"]`, in all four of light, dark, AAA and AAA dark): the brand primary and info status turn purple (`--color-accent-1-*`), along with selection fill and line, focus line, and link and brand ink. The AI gradient shifts to magenta-to-blue (`--color-extend-2-*` → `--color-extend-4-*`). Some surfaces, ink and status steps shift too; each `colors-companion*` group in the frontmatter lists exactly which. Everything else keeps its base mode's value. Companion AAA is sharp like every AAA mode. Like `data-theme`, `data-brand` works on `<html>` or on any container.
+- **Choosing a mode:** light is the default for reading and working, and dark is a full mode, not an afterthought. Products used in low light (in-cab, night shift) default to dark and never dazzle a driver. A product follows the device's appearance setting by default; products on shared or managed devices also offer an in-product choice, so one worker's need doesn't depend on the device's setting.
+- **Dark** (`colors-dark`, `[data-theme="dark"]`): re-tuned for dark, not inverted. Fills become near-black graphite rather than pure black, ink becomes near-white, saturated colours soften, and brand and status steps move lighter so they keep their contrast. **Nearer surfaces are lighter:** `--color-fill-canvas` is the darkest, `--color-fill-default` (cards) is lighter and `--color-fill-elevated` lighter still, because shadows are hard to see on dark. Shadows stay, but nothing relies on them. Large surfaces stay dark, and the brand colour sits only on a few key elements. Images and icons get dark versions where the light one fails; true content (photos, label previews, documents, customer logos) is never altered ([patterns 8.102](patterns/08-visual-theming.md)).
+- **AAA** (`colors-aaa`, `[data-contrast="aaa"]`) and **AAA dark** (`colors-aaa-dark`, both attributes) are Zebra's **high-contrast** modes, their own modes rather than dark mode ([patterns 6.9](patterns/06-accessibility.md)). The palette shifts to stronger steps so text, borders and fills meet WCAG AAA contrast; gradients become solid; decoration goes; borders appear wherever two surfaces of the same tone meet, and every edge that matters is a real line; and every component turns **sharp** (see §5 Shape). Turn them on from `prefers-contrast: more` and from an in-product setting. Theme modes change colours, never widths: a border that only high contrast needs (a plain Label, a Notification Indicator, a Notification Item) is drawn at `--stroke-thin` in `--color-line-contrast`, which is transparent outside the AAA modes and a visible line inside them.
+- **Companion** (`[data-brand="companion"]`, in all four of light, dark, AAA and AAA dark): the brand primary turns purple (`--color-accent-1-*`), along with the selection fill and line and the link and brand ink. The AI gradient shifts to magenta-to-blue (`--color-extend-2-*` → `--color-extend-4-*`). Some surfaces, ink and status steps shift too; each `colors-companion*` group in the frontmatter lists exactly which. Companion never re-colours a status's hue or the focus ring. Everything else keeps its base mode's value. Companion AAA is sharp like every AAA mode. Like `data-theme`, `data-brand` works on `<html>` or on any container.
+- **Theme and mode are independent.** Every mode exists for every theme (Companion has all four), high contrast is always offered, and each combination is checked on its own. A single-mode product, such as a monochrome printer panel, has only that mode.
 
 ---
 
 ## 4. Typography Rules
 
-**Typeface:** IBM Plex Sans (`--font-family-regular`), "clean, distinctive and designed for digital world use cases", free and multilingual for localisation. **Icon fonts:** `--icon-family-round` (default) and `--icon-family-sharp` (used when a component is `sharp`).
+**Typeface:** IBM Plex Sans (`--font-family-regular`), "clean, distinctive and designed for digital world use cases", free and multilingual for localisation. **Monospace:** IBM Plex Mono (`--font-family-mono`), only through `--type-code`. **Icon fonts:** `--icon-family-round` (default) and `--icon-family-sharp` (used when a component is `sharp`).
 
 ### Hierarchy & Weights
 | Role | Tokens | Weight | HTML default | Use |
 |---|---|---|---|---|
-| Display | `--type-display-large` · `--type-display-medium` · `--type-display-small` | `--font-weight-light` | n/a | Hero numbers, splash, marketing |
-| Heading | `--type-heading-large` · `--type-heading-medium` · `--type-heading-small` | `--font-weight-regular` | h1 / h2 / h3 | Page and section titles |
+| Display | `--type-display-large` · `--type-display-medium` · `--type-display-small` | `--font-weight-light` | n/a | Splash and welcome screens only; never in a working screen |
+| Heading | `--type-heading-large` · `--type-heading-medium` · `--type-heading-small` | `--font-weight-regular` | h1 / h2 / h3 | Page and section titles; a single key metric |
 | Title | `--type-title-large` · `--type-title-medium` · `--type-title-small` | `--font-weight-medium` | h4 / h5 / h6 | Card, dialog and list headers |
 | Body | `--type-body-large` · `--type-body-medium` · `--type-body-small` · `--type-body-xsmall` | `--font-weight-regular` | p = `--type-body-medium` | Reading text, descriptions, hints |
 | Label | `--type-label-large` · `--type-label-medium` · `--type-label-small` | `--font-weight-medium` | n/a | Buttons, chips, tabs, field labels |
 | Indicator | `--type-indicator-medium` · `--type-indicator-small` | medium · regular | n/a | Notification counts in indicators |
+| Code | `--type-code` | `--font-weight-regular` | code | Codes and identifiers: serial numbers, IDs, network addresses, barcode data, printer command code |
 | Bold | `--type-heading-<size>-bold` · `--type-title-<size>-bold` | `--font-weight-bold` (headings) · `--font-weight-semibold` (titles) | n/a | A heavier heading or title where the design calls for one; same size and line height as the base style |
 
-`--type-h1` … `--type-h6` alias heading-large … title-small.
+`--type-h1` … `--type-h6` alias heading-large … title-small. These styles are the whole set: no size is used outside it, and working screens use only this product scale (no larger marketing scale).
 
 ### Choosing a style
 Choose a style by the text's role, not by how big it should feel.
@@ -1015,21 +1052,31 @@ Choose a style by the text's role, not by how big it should feel.
 | Screen title on handheld, or a page section on desktop | `--type-heading-small` |
 | Section or card-group title | `--type-title-large` |
 | Card or list-item title | `--type-title-medium` |
+| A single key metric (a dashboard figure, a count) | `--type-heading-large` or `--type-heading-medium`, regular weight; never a display style |
 | Body text | `--type-body-medium` |
 | Supporting text, descriptions, helper text | `--type-body-small` |
 | Metadata, timestamps, captions | `--type-body-xsmall` |
+| Codes and identifiers shown as code | `--type-code` (it keeps 0 and O, and 1, l and I, clearly apart) |
 | Text inside controls | the component's own `--type-label-*`; never restyle it |
 
 - **Few styles:** at most four text styles on one screen; three is better.
 - **One heading-level style per screen.** If two things both look like the title, one of them is wrong.
+- **Headings mark sections,** in order, never bold body text.
+- **The biggest styles are for short text and numbers** only.
 - **Floor:** text the person must read to finish the task is 14px or larger on every device. 12px is for metadata only.
 - **Weight comes from the token.** Don't add weight to a style; use its `-bold` variant. Use either a role's base style or its bold variant across a screen, not both.
 - **Line length:** running text holds 45 to 75 characters a line; cap its column at `--container-reading`.
+- **Line spacing comes from the token:** large styles are set tighter and body and label text looser. Don't override it; three or more lines are never set tight.
+- **Numbers compared in columns** (tables, metrics, timers) use figures of equal width: CSS `font-variant-numeric: tabular-nums` (there is no token for it).
+- **Text follows the person's text-size setting,** and the hierarchy holds as it grows: no height is fixed around text ([patterns 5.37](patterns/05-sizes-devices.md)).
+- **Every script the product ships in** uses a face designed for it (the IBM Plex family covers the main scripts), with taller line spacing for tall scripts (Thai, Devanagari, Arabic). Italics, all caps and synthetic bold aren't relied on where a script has none.
 
 ### Spacing Principles
 - **One scale:** sizes and line-heights follow the 4px-based scale. `--type-body-small` and `--type-label-medium` are documented exceptions that break the grid rhythm.
-- **One clear step per level:** move between levels of hierarchy by changing one property clearly: a weight step (regular to medium, or a style to its `-bold` variant), a full type step, or a colour role (`--color-ink-high` to `--color-ink-medium`). Never a 1–2px size change. Base styles use light, regular and medium; semibold and bold appear only in the `-bold` variants.
-- **Light for big, medium for small:** display text is light to stay elegant, and interactive labels are medium to stay legible at small sizes.
+- **One clear step per level:** move between levels of hierarchy by changing one property clearly: a weight step (regular to medium, or a style to its `-bold` variant), a full type step, or a colour role (`--color-ink-high` to `--color-ink-medium`). Never a 1–2px size change. Weight and size trade off: a larger regular style can outrank a smaller bold one.
+- **Few weights:** regular for reading, medium for labels, titles and emphasis; semibold and bold appear only in the `-bold` variants and are rare. Light appears only at display sizes, on splash and welcome screens; no light or thin text in working screens.
+- **De-emphasis** uses `--color-ink-medium`. `--color-ink-low` is never used for text.
+- **Emphasis without caps:** emphasis comes from weight, size or colour, never all caps. Acronyms, unit codes and product identifiers keep their own case. Italics are kept for titles, terms and captions.
 - **Letter-spacing:** every style uses the default tracking (0); there is no uppercase-tracked eyebrow style.
 - **Principles:** optimise for readability, create visual harmony, and contextualise for different users and operating systems.
 
@@ -1038,59 +1085,107 @@ Choose a style by the text's role, not by how big it should feel.
 ## 5. Component Stylings
 
 Shared mechanics that apply to every component below:
-- **Shape:** sharp (`--radius-none`), rounded (`--radius-element-sm`) and, for buttons, chips and fields, full (`--radius-pill`). **Rounded is the default for every component.** Containers use `--radius-container`. Sharp components use sharp icons.
+- **Shape:** sharp (`--radius-none`), rounded and, for buttons, chips and fields, full (`--radius-pill`). **Rounded is the default for every component**, and its radius is set by role, the same role always taking the same radius:
+
+  | Role | Examples | Radius |
+  |---|---|---|
+  | Small detail | badges, checkboxes | `--radius-xs` |
+  | Control | buttons, fields, navigation items | `--radius-element-sm` |
+  | Container | cards, menus, popovers, floating panels | `--radius-element-md` |
+  | Large surface | dialogs, sheets, drawers | `--radius-container` |
+  | Person | avatars | `--radius-pill` |
+
+  - Nested corners are concentric: an inner corner is the outer corner minus the padding between them. A focus ring's radius is its control's radius plus the ring's offset.
+  - An edge that reaches the screen edge isn't rounded (a bottom sheet rounds only its top corners; a drawer or side panel only the corners away from the screen edge; a [Global Header](organisms/global-header.md) that spans the full width is sharp, rounded only when it floats inset with a margin). The parts of one control (a split button, a segmented control) share one outer shape, with no gaps.
+  - Dense, information-heavy containers are only modestly rounded; stroke weight grows with the element's size.
+  - On native mobile, system UI (system dialogs, pickers, the keyboard) keeps the platform's shapes; Zebra components keep these. Sharp components use sharp icons.
 - **AAA is sharp:** under `[data-contrast="aaa"]` every component renders sharp, whatever its Shape setting, and its icons switch to the sharp set. `scripts/tokens-css.py` does this centrally (tokens.css block 8): every shape-variant radius token (`*-radius-rounded`, `*-radius-round`, `*-radius-full`) and every plain corner radius resolves to `--radius-none`. **Meaningful circles stay round**: a radio ring, switch track, avatar, indicator and stepper dots, the scrollbar handle. They reference `--radius-pill` under a non-shape token name, so a component that needs a true circle names its token `<component>-<part>-radius` and points it at `radius-pill`.
 - **Flavours:** primary, positive, negative, contrast, gradient, outline, outline-subtle, outline-contrast, text, text-gradient and subtle (see [Button](atoms/button.md)).
   - Filled flavours step their own fill: `default` → `strong` on hover → `deep` on press, with `--color-brand-primary-on` text.
   - Outline flavours keep their stroke and shift a neutral fill underneath (`--color-fill-faint` / `--color-fill-sunken`). Ghost flavours raise a transparent tint (`--color-status-ghost-faint` / `--color-status-ghost-deep`).
-- **Focus:** a `--stroke-thick` solid ring in `--color-line-focus`, drawn outside the control and always visible on `:focus-visible`.
-- **Disabled:** `--color-fill-disabled` fill (or transparent for ghost flavours), `--color-ink-disabled` text and a not-allowed cursor.
-- **Sizes:** most controls ship small, medium (default) and large, at the control heights `--control-sm`, `--control-md` and `--control-lg`. Icons inside controls use `--control-icon-sm` at small and `--control-icon-md` otherwise.
-- **Motion:** short and functional: colour tints over `--motion-smooth`, springy movement over `--motion-spring`, and the durations `--motion-instant` … `--motion-slower` with `--easing-standard` / `--easing-out`. There is no decorative animation.
+  - Positive and negative are action styles, not severities. Negative marks **every** destructive action: a reversible one acts at once and offers Undo, an irreversible one asks to confirm.
+- **States:** derived from the resting colour by the one fixed relationship above, never chosen per component, so the same state looks the same everywhere. Hover is the smallest change and pressed a stronger one.
+  - Hover and pressed are temporary and sit on top of selected: something selected and hovered still reads as selected, and selected and focused keeps both.
+  - **Selection is shown by shape too,** never colour alone: a check, a `--stroke-thick` `--color-line-selection` underline or border, a filled icon or a change of shape ([patterns 6.3](patterns/06-accessibility.md)).
+  - An icon button shows its state on a background behind the icon, not by recolouring the icon.
+  - No state lowers a control's contrast with its surroundings, or the contrast of its focus or selection.
+- **Focus:** a `--stroke-thick` solid ring in `--color-line-focus`, drawn outside the control, one step out and following its shape ([patterns 6.23](patterns/06-accessibility.md)). The control's own colour doesn't change, and only one thing on a screen has focus.
+- **Disabled:** `--color-fill-disabled` fill (or transparent for ghost flavours), `--color-ink-disabled` text, no elevation, no hover response and a not-allowed cursor. It still looks like the control it is.
+  - Only actions, choices and inputs can be disabled; containers never are. An unavailable floating action button is removed, not greyed. Steps not yet reachable and features locked by licence or permission show as locked, with the reason.
+  - A control whose existence or reason matters stays focusable (`aria-disabled`) with its reason visible beside it. Dimming is allowed as the state when it is announced and the reason is shown ([patterns 6.11](patterns/06-accessibility.md)). Submit and Next stay enabled and check the form when pressed ([patterns 4.43](patterns/04-states-feedback.md)).
+- **Forced colours:** nothing important disappears ([patterns 6.10](patterns/06-accessibility.md)). Floating layers (menus, popovers, tooltips, dialogs, sheets, drawers, snackbars) carry a transparent `--stroke-thin` border, so their edge shows when shadows are dropped. A state shown only by a tint also changes a border, weight, icon or text.
+- **Sizes:** most controls ship small, medium (default) and large, at the control heights `--control-sm`, `--control-md` and `--control-lg`. Icons inside controls use `--control-icon-sm` at small and `--control-icon-md` otherwise. **Every control and row height is a minimum:** product copy (titles, navigation labels, menu items, buttons, chips) wraps and the control grows ([patterns 5.37](patterns/05-sizes-devices.md)). Only user or data content may truncate, file names and IDs in the middle, with the full text on hover and focus.
+- **Elevation:** a few levels, each tied to a kind of surface: sunken (`--color-fill-sunken`, a well for grouping), default (the page and its cards, flat), raised (an item being dragged) and overlay (menus, popovers, dialogs, sheets, drawers, floating bars).
+  - Most surfaces are flat: tone and Zebra's hairlines separate layers, and shadow is the exception (space first, then a divider, then a container; §6).
+  - Shadow size means distance: `--shadow-xsmall` and `--shadow-small` are close, `--shadow-medium` and `--shadow-large` far. Light comes from one direction (above) across the whole product.
+  - Shadows appear only on overlays, on an item being dragged (it rises to the overlay level and returns when dropped) and to protect elements over busy content such as a camera view. Hover never lifts anything.
+  - A modal sits over `--color-fill-scrim` ([Scrim](atoms/scrim.md)), one fixed role.
+  - Content scrolled under a pinned header or footer is shown by a `--color-line-subtle` border; a shadow only where a border wouldn't be noticed. Coloured surfaces (brand and status fills) take no neutral shadow.
+  - Controls and navigation form a layer above content. A translucent or glass treatment, where the platform uses one, stays in that layer and never appears in content.
+- **Icons:** one style, sized to the text beside it, outlined for available and filled for selected; see [Icon](atoms/icon.md).
+- **Motion:** short and functional, with two registers. Quick, quiet motion is the default; fuller motion (`--motion-slow`) is kept for rare, significant moments, and `--motion-slower` only for motion nobody triggered. There is no decorative animation.
+  - **Feedback** on a control (press, toggle, check) uses `--motion-feedback`. Larger colour changes use `--motion-smooth`; springy movement uses `--motion-spring` (the switch thumb keeps its spring).
+  - **Easing:** entering elements slow into place with `--easing-out`, leaving elements speed up out with `--easing-in`, and elements that stay or will return use `--easing-standard`. Constant motion is only for things that run at a constant rate, such as a spinner (`--motion-spin`).
+  - **Duration** grows with distance and size, from `--motion-instant` to `--motion-slow`, and exits are quicker than entrances (e.g. enter over `--motion-fast`, exit over `--motion-instant`).
+  - **Toasts** stay at least `--motion-timeout-toast`, pause on hover and focus, and extend with the device's accessibility timeout.
+  - **Reduced motion** (`prefers-reduced-motion: reduce`) is a mode the system carries, not a per-component exception: slides, zooms and depth become fades, automatic and repeating motion stops, springs lose their bounce, and colour and opacity changes stay ([patterns 6.66](patterns/06-accessibility.md)).
 
 ### Buttons → [atoms/button.md](atoms/button.md), [atoms/icon-button.md](atoms/icon-button.md), [atoms/fab.md](atoms/fab.md), [molecules/button-group.md](molecules/button-group.md), [molecules/segmented-control.md](molecules/segmented-control.md)
-Buttons are crisp rectangles with `--radius-element-sm` corners, set in `--type-label-large`, with optional leading and trailing icons. Primary is solid `--color-brand-primary-default` with `--color-brand-primary-on` text. Outline uses a thin `--color-brand-primary-default` stroke on white. Text buttons have no container. Contrast is near-black on light pages and near-white on dark; gradient carries the AI gradient. Icon buttons are the square, label-less version; FABs float as circles or extended pills.
+Buttons are crisp rectangles with `--radius-element-sm` corners, set in `--type-label-large`, with optional leading and trailing icons. Primary is solid `--color-brand-primary-default` with `--color-brand-primary-on` text; a screen has one primary button ([patterns 1.72](patterns/01-screen-composition.md)). Outline uses a thin `--color-brand-primary-default` stroke on white. Text buttons have no container. Contrast is near-black on light pages and near-white on dark; gradient carries the AI gradient. Icon buttons are the square, label-less version; FABs float as circles or extended pills, one per screen for its main creating action.
 
 ### Cards & Containers → [molecules/card.md](molecules/card.md), [molecules/accordion.md](molecules/accordion.md), [organisms/dialog.md](organisms/dialog.md), [organisms/bottom-sheet.md](organisms/bottom-sheet.md), [organisms/lightbox.md](organisms/lightbox.md)
-Cards are `--color-fill-default` panels with a `--stroke-thin` `--color-line-default` hairline and `--radius-container` corners, divided into header, body and footer; a collapsible card adds an expand caret and an optional gradient border. They are flat by default. Shadows (`--shadow-small` … `--shadow-large`) appear only on floating layers: menus, tooltips, dialogs, sheets and drawers. Dialogs and sheets sit over the `--color-fill-scrim` barrier (see [Scrim](atoms/scrim.md)).
+Cards are `--color-fill-default` panels with a `--stroke-thin` `--color-line-default` hairline and `--radius-element-md` corners, divided into header, body and footer; a collapsible card adds an expand caret and an optional gradient border. They are flat. A whole card opens its object, and its own controls are separate targets; cards are never used for comparison (use [Table](organisms/table.md)). Dialogs, sheets and drawers are large surfaces with `--radius-container` corners and an overlay shadow, over the `--color-fill-scrim` barrier (see [Scrim](atoms/scrim.md)).
 
-### Navigation → [organisms/global-header.md](organisms/global-header.md), [organisms/top-app-bar.md](organisms/top-app-bar.md), [organisms/screen-header-bar.md](organisms/screen-header-bar.md), [organisms/navigation-rail.md](organisms/navigation-rail.md), [organisms/navigation-drawer.md](organisms/navigation-drawer.md), [organisms/navigation-bar.md](organisms/navigation-bar.md), [molecules/tab-bar.md](molecules/tab-bar.md), [molecules/breadcrumb.md](molecules/breadcrumb.md), [molecules/pagination.md](molecules/pagination.md)
+### Navigation → [organisms/global-header.md](organisms/global-header.md), [organisms/top-app-bar.md](organisms/top-app-bar.md), [organisms/screen-header-bar.md](organisms/screen-header-bar.md), [organisms/navigation-rail.md](organisms/navigation-rail.md), [organisms/navigation-drawer.md](organisms/navigation-drawer.md), [organisms/navigation-bar.md](organisms/navigation-bar.md), [molecules/tab-bar.md](molecules/tab-bar.md), [molecules/breadcrumb.md](molecules/breadcrumb.md), [molecules/pagination.md](molecules/pagination.md), [molecules/site-switcher.md](molecules/site-switcher.md)
 - **Global Header** and **Navigation Rail** are locked to dark mode (they always render with the `colors-dark` values).
+- **Global navigation follows width** (§6 Grid & Structure). The primary navigation may hold the product's one main create action ([patterns 2.14](patterns/02-navigation-flow.md)).
 - **Top App Bar:** the in-screen bar, with a leading control, a title and trailing actions.
 - **Tab Bar:** the selected tab gets a `--stroke-thick` `--color-line-selection` underline.
-- **Navigation Bar:** the bottom bar of icon-and-label destinations on handhelds; **Navigation Drawer** slides in from the side.
+- **Navigation Bar:** the bottom bar of icon-and-label destinations; **Navigation Drawer** slides in from the side.
 
-### Inputs & Forms → [molecules/input.md](molecules/input.md) (text, number, password, date and time types), [molecules/select.md](molecules/select.md), [molecules/phone-input.md](molecules/phone-input.md), [molecules/search.md](molecules/search.md), [molecules/stepper-input.md](molecules/stepper-input.md), [atoms/checkbox.md](atoms/checkbox.md), [atoms/radio-button.md](atoms/radio-button.md), [atoms/switch.md](atoms/switch.md), [atoms/slider.md](atoms/slider.md)
-Fields are `--color-fill-default` boxes with a `--stroke-thin` `--color-line-default` outline and `--radius-element-sm` corners.
-- An [Input Label](atoms/input-label.md) sits above the field and an [Input Hint](atoms/input-hint.md) below; in the error state the hint becomes `--color-status-error-default` text.
-- Hover strengthens the outline to `--color-line-strong`, and focus adds the `--color-line-focus` ring.
+### Inputs & Forms → [molecules/input.md](molecules/input.md) (text, number, password, date and time types), [molecules/select.md](molecules/select.md), [molecules/combobox.md](molecules/combobox.md), [molecules/phone-input.md](molecules/phone-input.md), [molecules/search.md](molecules/search.md), [molecules/stepper-input.md](molecules/stepper-input.md), [atoms/checkbox.md](atoms/checkbox.md), [atoms/radio-button.md](atoms/radio-button.md), [atoms/switch.md](atoms/switch.md), [atoms/slider.md](atoms/slider.md)
+Fields are `--color-fill-default` boxes with a `--stroke-thin` `--color-line-strong` outline (the field's real boundary) and `--radius-element-sm` corners. Placeholder text is `--color-ink-medium` and never replaces the label.
+- **Each field reads label, hint, error, input** ([patterns 1.124, 1.64](patterns/01-screen-composition.md)): the [Input Label](atoms/input-label.md) on top; the [Input Hint](atoms/input-hint.md) under it, above the input, which stays visible when an error shows; the error, when there is one, on its own line between hint and input, with an icon and `--color-status-error-default` words that say how to fix it; then the input. This holds for Input, Select, Combobox, Phone Input, Stepper Input, Slider Input Field, Search where it has a hint, and the Date Picker's field.
+- **Required and optional:** mark whichever is the minority in words after the label, "(required)" or "(optional)", never with an asterisk alone ([patterns 7.31](patterns/07-content-copy.md)).
+- Hover strengthens the outline, focus adds the `--color-line-focus` ring, and the error state turns the outline `--color-status-error-default`.
 - Checkbox, radio and switch take on `--color-brand-primary-default` when on.
 
-### Feedback & Status → [molecules/snackbar.md](molecules/snackbar.md), [molecules/inline-banner.md](molecules/inline-banner.md), [molecules/system-banner.md](molecules/system-banner.md), [atoms/status-label.md](atoms/status-label.md), [atoms/label.md](atoms/label.md), [atoms/notification-indicator.md](atoms/notification-indicator.md), [atoms/icon-indicator.md](atoms/icon-indicator.md), [atoms/progress-bar.md](atoms/progress-bar.md), [molecules/progress-circle.md](molecules/progress-circle.md), [molecules/empty-state.md](molecules/empty-state.md)
-Status always uses the token family: a tinted `faint` fill, a coloured `default` stroke and a coloured icon plus text.
-- **Inline banners** sit inside the page, one at a time.
-- **System banners** are full-width solid strips in the status's `default` fill with always-white text (dark text on warning).
-- **Snackbars** sit at the bottom of the screen: an inverse toast by default, tinted for statuses.
+### Feedback & Status → [molecules/snackbar.md](molecules/snackbar.md), [molecules/inline-banner.md](molecules/inline-banner.md), [molecules/system-banner.md](molecules/system-banner.md), [atoms/status-label.md](atoms/status-label.md), [atoms/label.md](atoms/label.md), [atoms/notification-indicator.md](atoms/notification-indicator.md), [atoms/icon-indicator.md](atoms/icon-indicator.md), [atoms/progress-bar.md](atoms/progress-bar.md), [molecules/progress-circle.md](molecules/progress-circle.md), [atoms/skeleton.md](atoms/skeleton.md), [atoms/meter.md](atoms/meter.md), [molecules/connection-status.md](molecules/connection-status.md), [molecules/empty-state.md](molecules/empty-state.md)
+Status uses the severities success, warning, error and info (plus neutral) from the token family: a tinted `faint` fill, a coloured `default` stroke and a coloured icon plus text. Each message kind has one home ([patterns 1.57](patterns/01-screen-composition.md)).
+- **Inline banners** sit in the content, at the top of the page, section or element they're about ([patterns 1.60](patterns/01-screen-composition.md)).
+- **System banners** are full-width solid strips in the status's `default` fill with always-white text (dark text on warning), directly below the header, one at a time ([patterns 1.58–1.59](patterns/01-screen-composition.md)).
+- **Snackbars** are toasts at the bottom of the content area, one at a time, a newer one replacing the older ([patterns 1.63](patterns/01-screen-composition.md)). They confirm and inform; a snackbar never carries an error or a warning ([patterns 4.31](patterns/04-states-feedback.md)).
+- **Status Label** leads with the status icon by default; **Label** is for categories only and never shows a status.
 - **Indicators** are small counts (99+ cap) or icons pinned to avatars and icons.
 
-### Domain-specific (Zebra frontline) → [molecules/comms-buttons.md](molecules/comms-buttons.md), [organisms/dial-pad.md](organisms/dial-pad.md), [organisms/voice-call-popup.md](organisms/voice-call-popup.md), [molecules/message-input.md](molecules/message-input.md), [atoms/priority-pill.md](atoms/priority-pill.md), [organisms/gantt-view.md](organisms/gantt-view.md)
-These cover push-to-talk and voice workflows: round comms buttons (call, video, mute), a dial pad with a quick-dial security action, voice recording inside the message input and call pop-ups. Task priority uses pills with a level index. Shift and task scheduling uses a Gantt view.
+### Domain-specific (Zebra frontline) → [molecules/comms-buttons.md](molecules/comms-buttons.md), [molecules/push-to-talk.md](molecules/push-to-talk.md), [organisms/dial-pad.md](organisms/dial-pad.md), [organisms/voice-call-popup.md](organisms/voice-call-popup.md), [molecules/message-input.md](molecules/message-input.md), [atoms/priority-pill.md](atoms/priority-pill.md), [organisms/gantt-view.md](organisms/gantt-view.md)
+These cover voice and messaging workflows: round comms buttons (call, video, mute), the [Push To Talk](molecules/push-to-talk.md) hold-to-talk control, a dial pad with a quick-dial security action, voice recording inside the message input and call pop-ups (an ongoing call minimises to a floating element). Task priority uses neutral pills with a level index and icon. Shift and task scheduling uses a Gantt view.
 
 ---
 
 ## 6. Layout Principles
 
 ### Grid & Structure
-- **4px base:** all boxes, margins, padding, icon sizes and line-heights come from the `scale-*` steps through the size tokens; the base unit is `--grid-unit`.
-- **Column grid** of `--grid-columns` columns, fluid, sized in `fr` units, inside a `--container-default` maximum width.
-- **Outer margins** are `--space-page` on handhelds and `--grid-margin` on large screens, fixed within a breakpoint even when columns are fluid; `--space-gutter` separates columns.
-- **Sizing scale:** fixed sizes are size tokens (`--control-*`, `--space-*`) and fluid sizes are column widths. Boxes are often hybrid: a fixed height with a fluid width.
+- **4px base:** all boxes, margins, padding, icon sizes and line-heights come from the `scale-*` steps through the size tokens; the base unit is `--grid-unit`. Every space is a step on that scale; in-between values exist only to align icons with text.
+- **Size classes:** layout follows the width the window actually has, never the device type or its orientation ([patterns 5.1](patterns/05-sizes-devices.md)). Design the narrowest class first. Crossing a class changes the structure (panes, navigation, overlays), not just the scale ([patterns 5.3–5.17](patterns/05-sizes-devices.md)).
+
+  | Class | Width | Columns | Outer margin | Global navigation | Panes |
+  |---|---|---|---|---|---|
+  | Compact | below `--breakpoint-medium-min` | `--grid-columns-compact` | `--space-page` | [Navigation Bar](organisms/navigation-bar.md) | one |
+  | Medium | from `--breakpoint-medium-min` | `--grid-columns-medium` | `--grid-margin` | [Navigation Rail](organisms/navigation-rail.md) | one (two only for light content) |
+  | Expanded | from `--breakpoint-expanded-min` | `--grid-columns-expanded` | `--grid-margin` | Navigation Rail | up to two |
+  | Large | from `--breakpoint-large-min` | `--grid-columns-expanded` | `--grid-margin` | Navigation Rail, expanded (with labels) | up to three |
+
+  Media queries can't read CSS variables, so a query writes the breakpoint's frontmatter value and names the token in a comment. `--breakpoint-mobile-max` is **deprecated**: don't use it; it is removed at the next breaking release.
+- **Column grid:** fluid columns sized in `fr` units, inside a `--container-default` maximum width; `--space-gutter` separates them. Only top-level containers align to columns; elements inside a card, table, form or overlay use the spacing scale.
+- **Outer margins** are fixed within a class even when columns are fluid, and one product uses one set of margins on every screen.
+- **Sizing scale:** fixed sizes are size tokens (`--control-*`, `--space-*`) and fluid sizes are column widths. Boxes are often hybrid: a fixed **minimum** height with a fluid width; nothing has a fixed height around text ([patterns 5.37](patterns/05-sizes-devices.md)).
 - **Aspect ratios:** only the set listed in `--aspect-ratios`.
 
 ### Whitespace Strategy
-- The spacing scale runs from `--space-3xs` to `--space-5xl`, with role tokens `--space-card` (inside cards), `--space-section` (between sections) and `--space-page`. Component internals mostly use `--space-2xs` to `--space-lg`, and sections use `--space-xl` to `--space-4xl`. Negative steps (`--space-neg-xs` … `--space-neg-xl`) overlap elements such as avatar stacks.
+- The spacing scale runs from `--space-3xs` to `--space-5xl`, with role tokens `--space-card` (inside cards), `--space-section` (between sections) and `--space-page`. Component internals mostly use `--space-2xs` to `--space-lg`, and sections use `--space-xl` to `--space-4xl`. Negative steps (`--space-neg-xs` … `--space-neg-xl`) overlap elements such as avatar stacks. Spacing is a theme dimension: a density or platform may swap the values, while the names stay.
 - **Gap, not margins:** space between siblings is the container's `gap` (flex or grid). Don't put margins on elements.
-- **Space shows grouping:** the gap inside a group is smaller than the gap between groups, stepping up at least one token at each level outward:
+- **Space shows grouping** ([patterns 1.7, 1.11](patterns/01-screen-composition.md)): more space means a weaker relationship. The gap inside a group is smaller than the gap between groups, stepping up at least one token at each level outward:
 
 | Relationship | Gap |
 |---|---|
@@ -1101,34 +1196,34 @@ These cover push-to-talk and voice workflows: round comms buttons (call, video, 
 | Between groups | `--space-xl` |
 | Between sections | `--space-section` |
 
-- **A heading belongs to what follows it:** put it in the group below it, so the space above it (between groups) is larger than the space below it.
+- **A heading belongs to what follows it:** put it in the group below it, so the space above it (between groups) is larger than the space below it ([patterns 1.125](patterns/01-screen-composition.md)).
 - **Padding is at least the inner gap:** a container's padding is never smaller than the gap between its children.
 - **Same rank, same space:** equal things get equal gaps on every screen, and gutters don't change between screens.
-- **Separate with space first,** then a [Divider](atoms/divider.md), then a surface (a bordered or filled container). Don't border everything, and don't nest a card in a card. Shadows stay on floating layers (§5).
-- **Few edges:** text and controls in a region share one start edge.
-- **Don't stretch:** on large screens cap forms and reading text at `--container-reading` and leave the rest empty. When a screen feels crowded, remove content or borders before removing space.
-- Density is moderate: comfortable for touch, but tight enough for operational tables and lists.
+- **Separate with space first,** then a [Divider](atoms/divider.md), then a surface ([patterns 1.7–1.10](patterns/01-screen-composition.md)). Shadows stay on overlays (§5 Elevation).
+- **Few edges:** items in a region share one leading edge ([patterns 1.14](patterns/01-screen-composition.md)).
+- **Don't stretch:** forms and reading text cap at `--container-reading`, and larger elements stop stretching on wide screens ([patterns 1.107](patterns/01-screen-composition.md), [5.11–5.13](patterns/05-sizes-devices.md)). When a screen feels crowded, remove content or borders before removing space.
+- **Density** is a product-wide choice of the existing component sizes (small, medium, large), never mixed on one page and never chosen by width. A denser setting reduces space and row height, never text size or the touch target. The gloved setting is its own density, with `--control-target-gloved` targets on every surface gloved people touch ([patterns 5.45–5.50](patterns/05-sizes-devices.md)).
 
 ### Hierarchy
-- **One primary thing per screen.** Decide what the person came to see and to do: that content gets the screen's largest text style, and that action its only primary button (see [Button](atoms/button.md) Usage for how the other actions step down).
+Screen hierarchy is set by [patterns 01](patterns/01-screen-composition.md) (1.13–1.17, 1.72, 1.136); in token terms:
+- **One primary thing per screen:** the content the person came for gets the screen's largest text style, and the action they came to do its only primary button (see [Button](atoms/button.md) Usage for how the other actions step down).
 - **At most three levels of emphasis in a region:** the title or value, body text in `--color-ink-high`, and supporting text in `--color-ink-medium`. Step between them as §4 describes.
 - **Quieten before you shout:** to make something stand out, first drop what surrounds it to `--color-ink-medium` or a smaller style; enlarge it only if that isn't enough.
-- **Values outrank their labels:** in a label and value pair, the value is the larger or stronger one.
-- **Colour is for meaning:** the brand colour marks actions and selection, status colours mark status. Neither is decoration.
-- **Order follows the task:** top to bottom is the order the person reads and acts in. The primary action sits at the end of that path, or pinned to the bottom on handhelds.
+- **Values outrank their labels** ([patterns 1.108](patterns/01-screen-composition.md)).
+- **Colour is for meaning:** the brand colour marks actions and selection, status colours mark status (§3).
 
 ### Alignment & Visual Balance
-- Content is left-aligned (start-aligned) by default. Centring is an opt-in for app bars, banners, sheet headers and dialogs.
+- Content is start-aligned by default. Centring is an opt-in for app bars, banners, sheet headers and dialogs.
 - Leading and trailing regions are a universal pattern (menu items, app bars, inputs, buttons).
 - Icons and marks inside a container (checkbox marks, icon-button glyphs, avatar and indicator content) are perfectly centred in it, horizontally and vertically (see `atoms/icon.md`).
-- Monochrome layouts with one blue focal point per view.
+- Monochrome layouts with one blue focal point per screen.
+- **Right-to-left:** in right-to-left languages the layout mirrors, so lay out with logical properties (`inline-start` / `inline-end`), never left and right. Digits, phone and serial numbers, clocks, circular progress, media controls, logos, the check mark and photographs never mirror; paragraphs of three or more lines align to their own language ([patterns 5.39–5.41](patterns/05-sizes-devices.md)).
 
 ### Responsive Behavior & Touch
-- **Touch targets:** a minimum of `--control-target-min`, with at least `--space-sm` between neighbouring targets. Hit areas are enforced with min-height and min-width rather than padding alone; controls smaller than the minimum (small buttons, small icon buttons) need surrounding hit area on touch UIs.
-- **Breakpoint:** the documented mobile breakpoint is `--breakpoint-mobile-max`.
-- **Contrast:** the palette meets WCAG AA in the default modes and AAA in the AAA modes. Don't add opacity to text.
-- **Focus** is never suppressed. Icon-only controls need an accessible label.
-- **Adaptive navigation:** the global header and navigation rail are used on large screens, the top app bar, navigation bar and bottom sheet on handhelds.
+- **Targets** ([patterns 6.16–6.19](patterns/06-accessibility.md)): every touch target is at least `--control-target-min`, enforced with min-height and min-width rather than padding alone; controls drawn smaller (small buttons, small icon buttons) get the surrounding hit area. A pointer-only product (a desktop console) may go down to `--control-target-pointer-min`, never below; a product used with gloves uses `--control-target-gloved`. Keep at least `--space-sm` between neighbouring targets.
+- **Navigation by width** follows the size-class table in Grid & Structure ([patterns 5.15](patterns/05-sizes-devices.md)). The Global Header is used from medium up; the Top App Bar and Bottom Sheet are the compact forms.
+- **Contrast:** the light and dark modes are built for WCAG AA and the AAA modes for AAA, but not every pair of tokens passes, so check a pair before relying on it ([patterns 6.1–6.3](patterns/06-accessibility.md)). Known limits: `--color-ink-low` and the `--color-data-*` colours are never text, and `--color-line-default` is never the only boundary of a control. Don't add opacity to text.
+- **Focus** is never suppressed (§5 Focus). Icon-only controls need an accessible label.
 
 ---
 
@@ -1137,27 +1232,27 @@ These cover push-to-talk and voice workflows: round comms buttons (call, video, 
 This section describes the generic Zebra look, for work with no reference design. When a reference exists (a Figma frame or a screenshot), match the reference instead.
 
 ### Language to Use
-"Clean enterprise UI on a crisp white canvas with cool blue-grey neutrals; graphite text in IBM Plex Sans; a single vivid Zebra-blue accent for primary actions; lightly rounded rectangles with hairline grey borders; soft shadows only on floating layers; strict 4px grid; calm, functional, accessible; status shown with tinted surfaces plus coloured icon and label."
+"Clean enterprise UI on a crisp white canvas with cool blue-grey neutrals; graphite text in IBM Plex Sans; a single vivid Zebra-blue accent for primary actions; lightly rounded rectangles with hairline grey borders; soft shadows only on overlays; strict 4px grid; calm, functional, accessible; status shown with tinted surfaces plus coloured icon and label."
 
 ### Color References
 Resolve each token from the frontmatter `colors` group (then its primitive):
 - Zebra Blue `--color-brand-primary-default` (primary action, selection) → hover `--color-brand-primary-strong` → pressed `--color-brand-primary-deep`
 - Paper White `--color-fill-default` components · Frost canvas `--color-fill-canvas` · Mist `--color-fill-faint` hover
 - Graphite `--color-ink-high` text · Slate `--color-ink-medium` secondary · Pewter `--color-ink-disabled` disabled
-- Border Grey `--color-line-default` · Divider `--color-line-subtle`
+- Border Grey `--color-line-default` (cards) · Field Edge `--color-line-strong` (field outlines) · Divider `--color-line-subtle`
 - Night Ink `--color-fill-inverse` for tooltips, contrast buttons and snackbars
 - Evergreen `--color-status-success-default` · Amber Ochre `--color-status-warning-default` · Alarm Red `--color-status-error-default` · Electric Blue `--color-status-info-default`
 
 ### Component Prompts
 Substitute the frontmatter values when sending these prompts to Claude.
 1. *"A dark global header bar on `--color-fill-default` (dark mode). On the left: the Zebra logo, the platform name and four text menu items in `--color-ink-high` `--type-label-medium`. On the right: a search field, three icon buttons, and a small circular avatar with initials and the user's name."*
-2. *"A form card on `--color-fill-default` with a `--stroke-thin` `--color-line-default` border, `--radius-container` corners and `--space-card` padding. A 'Site details' title in `--type-title-large` `--color-ink-high`, then three stacked medium inputs, each with a label above, an outlined field and a `--type-body-xsmall` `--color-ink-medium` hint below. One field shows the error state with a `--color-status-error-default` border and hint. Footer: a right-aligned 'Cancel' outline button and a 'Save' solid `--color-brand-primary-default` button."*
+2. *"A form card on `--color-fill-default` with a `--stroke-thin` `--color-line-default` border, `--radius-element-md` corners and `--space-card` padding. A 'Site details' title in `--type-title-large` `--color-ink-high`, then three stacked medium inputs, each reading label, hint, input: the label on top, a `--type-body-xsmall` `--color-ink-medium` hint under it, then a field with a `--stroke-thin` `--color-line-strong` outline. One field shows the error state: an error line with an icon and `--color-status-error-default` words between its hint and its field, which takes a `--color-status-error-default` outline. Footer, at the trailing end: a 'Cancel' outline button, then a 'Save' solid `--color-brand-primary-default` button, the screen's only primary."*
 3. *"A dense task list. Each row has a medium avatar on the left, a `--type-title-medium` title and a `--type-body-small` `--color-ink-medium` subtitle. On the right of each row: a priority pill and a chevron. Rows are separated by `--color-line-subtle` dividers and hover to `--color-fill-faint`."*
 
 ### Incremental Iteration
-- Start monochrome (white, greys, graphite), then add blue **only** to the one primary action or selected state per region.
+- Start monochrome (white, greys, graphite), then add blue **only** to the screen's one primary action and to selected states.
 - When adding status, use the `faint` tint as the background, the coloured `default` hairline and a coloured icon, and keep the text `--color-ink-high`.
-- Keep every control radius at `--radius-element-sm` and containers at `--radius-container`, unless the element is a pill (chips, avatars, full buttons → `--radius-pill`).
+- Keep each radius to its role (§5 Shape): details `--radius-xs`, controls `--radius-element-sm`, containers `--radius-element-md`, large surfaces `--radius-container`, and pills (chips, avatars, full buttons) `--radius-pill`.
 - If something looks heavy, remove shadows first, then any border that space alone can replace (§6). Where an edge is needed, it's a hairline.
 - For another theme mode, swap to its override of the same token where it has one (`colors-dark`, `colors-aaa`, `colors-aaa-dark`, `colors-companion`, `colors-companion-dark`, `colors-companion-aaa`, `colors-companion-aaa-dark`), and its base's value where it doesn't (§3 Theme modes). Don't invent new hues.
 
@@ -1172,28 +1267,28 @@ Each file contains a `tokens:` block (its component tokens, see §2) followed by
 |---|---|
 | Actions | [button](atoms/button.md) · [icon-button](atoms/icon-button.md) · [fab](atoms/fab.md)† |
 | Selection | [checkbox](atoms/checkbox.md) · [radio-button](atoms/radio-button.md) · [switch](atoms/switch.md) · [slider](atoms/slider.md) · [assist-chip](atoms/assist-chip.md) · [filter-chip](atoms/filter-chip.md) |
-| Identity & marks | [icon](atoms/icon.md) · [avatar](atoms/avatar.md) · [notification-indicator](atoms/notification-indicator.md) · [icon-indicator](atoms/icon-indicator.md) · [caret-indicator](atoms/caret-indicator.md)† |
-| Status | [label](atoms/label.md) · [status-label](atoms/status-label.md) · [priority-pill](atoms/priority-pill.md) · [tag](atoms/tag.md)† · [progress-bar](atoms/progress-bar.md) · [tooltip](atoms/tooltip.md) |
+| Identity & marks | [icon](atoms/icon.md) · [avatar](atoms/avatar.md) · [notification-indicator](atoms/notification-indicator.md) · [icon-indicator](atoms/icon-indicator.md) · [caret-indicator](atoms/caret-indicator.md)† · [ai-mark](atoms/ai-mark.md)† |
+| Status & labels | [label](atoms/label.md) · [status-label](atoms/status-label.md) · [priority-pill](atoms/priority-pill.md) · [tag](atoms/tag.md)† · [progress-bar](atoms/progress-bar.md) · [tooltip](atoms/tooltip.md) · [skeleton](atoms/skeleton.md)† · [meter](atoms/meter.md)† · [sparkline](atoms/sparkline.md)† |
 | Form parts | [input-label](atoms/input-label.md)† · [input-hint](atoms/input-hint.md)† |
-| Structure | [divider](atoms/divider.md) · [scrim](atoms/scrim.md) · [scrollbar](atoms/scrollbar.md) |
+| Structure | [divider](atoms/divider.md) · [scrim](atoms/scrim.md) · [scrollbar](atoms/scrollbar.md) · [drag-handle](atoms/drag-handle.md)† |
 
 ### Molecules: [`molecules/`](molecules/)
 | Group | Components |
 |---|---|
-| Actions | [button-group](molecules/button-group.md) · [segmented-control](molecules/segmented-control.md) · [dropdown-menu](molecules/dropdown-menu.md) · [menu-item](molecules/menu-item.md) · [comms-buttons](molecules/comms-buttons.md)† |
-| Inputs | [input](molecules/input.md) · [select](molecules/select.md) · [phone-input](molecules/phone-input.md) · [search](molecules/search.md) · [stepper-input](molecules/stepper-input.md) · [slider-input-field](molecules/slider-input-field.md)† · [input-chip](molecules/input-chip.md) · [message-input](molecules/message-input.md) |
-| Navigation | [tab-bar](molecules/tab-bar.md) · [breadcrumb](molecules/breadcrumb.md) · [pagination](molecules/pagination.md) · [navigation-header](molecules/navigation-header.md)† · [sub-menu-item](molecules/sub-menu-item.md) |
+| Actions | [button-group](molecules/button-group.md) · [segmented-control](molecules/segmented-control.md) · [dropdown-menu](molecules/dropdown-menu.md) · [menu-item](molecules/menu-item.md) · [comms-buttons](molecules/comms-buttons.md)† · [push-to-talk](molecules/push-to-talk.md)† · [commit-bar](molecules/commit-bar.md)† |
+| Inputs | [input](molecules/input.md) · [select](molecules/select.md) · [phone-input](molecules/phone-input.md) · [search](molecules/search.md) · [stepper-input](molecules/stepper-input.md) · [slider-input-field](molecules/slider-input-field.md)† · [input-chip](molecules/input-chip.md) · [message-input](molecules/message-input.md) · [combobox](molecules/combobox.md)† · [ai-suggestion](molecules/ai-suggestion.md)† |
+| Navigation | [tab-bar](molecules/tab-bar.md) · [breadcrumb](molecules/breadcrumb.md) · [pagination](molecules/pagination.md) · [navigation-header](molecules/navigation-header.md)† · [sub-menu-item](molecules/sub-menu-item.md) · [site-switcher](molecules/site-switcher.md)† |
 | Containers | [card](molecules/card.md) · [accordion](molecules/accordion.md) |
-| Lists | [notification-item](molecules/notification-item.md) · [upload-item](molecules/upload-item.md)† · [avatar-rail](molecules/avatar-rail.md) · [chat-list-item](molecules/chat-list-item.md)† · [contact-list-item](molecules/contact-list-item.md)† |
-| Feedback | [snackbar](molecules/snackbar.md) · [inline-banner](molecules/inline-banner.md) · [system-banner](molecules/system-banner.md) · [progress-circle](molecules/progress-circle.md) · [empty-state](molecules/empty-state.md)† · [filter-selection-bar](molecules/filter-selection-bar.md)† |
+| Lists | [notification-item](molecules/notification-item.md) · [upload-item](molecules/upload-item.md)† · [avatar-rail](molecules/avatar-rail.md) · [chat-list-item](molecules/chat-list-item.md)† · [contact-list-item](molecules/contact-list-item.md)† · [list-item](molecules/list-item.md)† · [key-value-list](molecules/key-value-list.md)† · [task-list](molecules/task-list.md)† |
+| Feedback | [snackbar](molecules/snackbar.md) · [inline-banner](molecules/inline-banner.md) · [system-banner](molecules/system-banner.md) · [progress-circle](molecules/progress-circle.md) · [empty-state](molecules/empty-state.md)† · [filter-selection-bar](molecules/filter-selection-bar.md)† · [connection-status](molecules/connection-status.md)† |
 
 ### Organisms: [`organisms/`](organisms/)
 | Group | Components |
 |---|---|
 | Overlays | [dialog](organisms/dialog.md) · [bottom-sheet](organisms/bottom-sheet.md) · [lightbox](organisms/lightbox.md) · [file-upload](organisms/file-upload.md)† · [right-drawer-panel](organisms/right-drawer-panel.md)† · [voice-call-popup](organisms/voice-call-popup.md)† |
 | App chrome | [global-header](organisms/global-header.md) · [top-app-bar](organisms/top-app-bar.md) · [screen-header-bar](organisms/screen-header-bar.md) · [navigation-rail](organisms/navigation-rail.md) · [navigation-drawer](organisms/navigation-drawer.md) · [navigation-bar](organisms/navigation-bar.md) |
-| Data & flow | [table](organisms/table.md) · [stepper](organisms/stepper.md) · [gantt-view](organisms/gantt-view.md)† · [date-picker](organisms/date-picker.md)† · [vertical-speed-scroller](organisms/vertical-speed-scroller.md)† |
-| Communication | [chat](organisms/chat.md)† · [dial-pad](organisms/dial-pad.md)† |
+| Data & flow | [table](organisms/table.md) · [stepper](organisms/stepper.md) · [gantt-view](organisms/gantt-view.md)† · [date-picker](organisms/date-picker.md)† · [vertical-speed-scroller](organisms/vertical-speed-scroller.md)† · [chart](organisms/chart.md)† · [map-view](organisms/map-view.md)† · [compare-view](organisms/compare-view.md)† · [camera-scan-view](organisms/camera-scan-view.md)† |
+| Communication | [chat](organisms/chat.md)† · [dial-pad](organisms/dial-pad.md)† · [notification-centre](organisms/notification-centre.md)† |
 
 ---
 
@@ -1203,5 +1298,6 @@ Each file contains a `tokens:` block (its component tokens, see §2) followed by
 - **Shape:** rounded is the default for every component; the AAA modes are always sharp (§5). Don't override a component's radius to keep it rounded in AAA.
 - **Primitives are never used directly** in screens. Components use them only for an exact `scale-*` measurement (see §2).
 - **New design requests** are reviewed with three questions: does a component already exist, does it meet the requirements, and is it extensible beyond this project? The outcome is either a project "snowflake", a modification of an existing component, or a new design-system component.
+- **Pattern defaults:** a rule or sentence in [patterns](patterns/README.md) that starts "By default" may be overridden by a project; it records the override and its reason in its `CHANGES.md` (Type: pattern override), so the sprint reconcile reviews it. Every other pattern rule changes only here, upstream.
 - **Draft components** (†) must have their measurements confirmed (in Figma, then as component tokens) before they are used in production designs.
 - **Icons** come from the Zebra Icons library (see `icons` in the frontmatter and [atoms/icon.md](atoms/icon.md)).

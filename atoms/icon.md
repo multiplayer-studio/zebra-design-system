@@ -10,7 +10,7 @@ tokens:
   icon-size-small: '{control.control-icon-sm}'
   icon-size-medium: '{control.control-icon-md}'
   icon-size-large: '{control.control-icon-lg}'
-  icon-frame-size: '{control.control-target-min}'
+  icon-frame-size: '{control.control-md}'
   # colour (inherited from the parent by default)
   icon-foreground: '{colors.color-ink-high}'
   icon-foreground-inverse: '{colors.color-ink-inverse}'
@@ -83,14 +83,26 @@ Colour is not a property: the glyph inherits its parent's foreground. Most embed
 - Match the icon style to the component shape: rounded UI → round font, sharp UI → sharp font.
 - Turn Framed on only where the icon is tappable on its own. Inside a button or a menu row the parent already provides the target.
 - Don't override the glyph's colour on an instance. Recolour the parent instead, or the parent's states stop working.
-- Don't rely on an icon alone to carry meaning; pair it with a visible label.
+
+### Icon rules
+These are the system's rules for icons (they were patterns 8.62–8.69, and now live here).
+- **One style across the product:** the same stroke weight, detail, perspective and corner treatment. Rounded and sharp are the two styles, and a product uses the one that matches its shape.
+- **Size is tied to the text beside it, and the ratio never changes.** Icons centre on the text, not its baseline, and match its weight and colour unless the icon is the point.
+- **Outlined means available or not selected; filled means selected or emphasised.** A slashed version means the thing it names is off (muted, disconnected). Unavailable icons follow their parent's unavailable state ([DESIGN.md §5 Disabled](../DESIGN.md)).
+- **The smallest icons inform and are never tapped.** An interactive icon sits in a target of at least `--control-target-min` on touch, centred optically ([patterns 6.16](../patterns/06-accessibility.md)).
+- **Icons carry a visible label, except the few everyone knows (search, home, close).** One icon has one meaning everywhere, and the same function has the same icon everywhere ([patterns 6.46](../patterns/06-accessibility.md)).
+- **Status icons take the status colour, one glyph per severity:** `error`, `warning`, `check_circle` (success), `info`, and `lightbulb` for neutral. Ordinary icons don't take colour, except the action colour on interactive and selected icons. Only icons that carry their own meaning (a red icon for data loss) use more than one colour.
+- **Animated icons show change or activity,** such as a pulse for ongoing work or one bounce for "something happened". They aren't decoration, and they stop under reduced motion ([patterns 6.66](../patterns/06-accessibility.md)).
+- **Icons that imply direction flip in right-to-left layouts** (arrows, chevrons, back, send). Icons of real objects (a clock, a check mark, a barcode) don't.
+- **Meanings travel across cultures.** Avoid local objects, hand gestures and marks whose meaning differs by region; where a meaning can't travel, the word carries it ([patterns 8.108](../patterns/08-visual-theming.md)).
 
 ## Accessibility
-- Icon carries no text. Anything it communicates has to be repeated in a visible label or an accessible name on its interactive parent; decorative icons are hidden from assistive tech.
-- Framed pads the glyph to `--icon-frame-size`, the minimum tappable size. A bare `--icon-size-small` or `--icon-size-medium` icon is not a target on its own.
+- Icon carries no text. Anything it communicates has to be repeated in a visible label or an accessible name on its interactive parent; decorative icons are hidden from assistive tech ([patterns 6.49](../patterns/06-accessibility.md)).
+- Framed pads the glyph to `--icon-frame-size`, which meets the pointer-only minimum (`--control-target-pointer-min`) but not the touch minimum. On touch, extend a framed icon's hit area to `--control-target-min` ([patterns 6.16](../patterns/06-accessibility.md)). A bare `--icon-size-small` or `--icon-size-medium` icon is not a target on its own.
 - The glyph inherits its parent's foreground colour, so contrast is a property of the surface it lands on rather than of this component.
 - There are no interaction states here. Focus and disabled treatments come from the embedding component.
-- Don't rely on icon colour alone to convey status; pair it with text.
+- Icon colour alone never conveys status; pair it with text ([patterns 6.11](../patterns/06-accessibility.md)).
+- An icon that carries meaning keeps 3:1 against what's behind it ([patterns 6.2](../patterns/06-accessibility.md)), and grows with the text at large text sizes ([patterns 6.61](../patterns/06-accessibility.md)).
 
 ## Claude Prompt
 Use Zebra icons as simple, solid, single-colour glyphs on a square, `--icon-size-small` by default and `--icon-size-medium` inside buttons, drawn in near-black `--icon-foreground` (or white `--icon-foreground-inverse` on coloured fills). The default rounded set has softly rounded terminals and corners; the sharp set has square corners for sharp-cornered interfaces. Icons cover Zebra enterprise themes such as barcodes, scanners, printers, RFID, batteries and wifi, alongside the usual navigation, communication, calendar and file-type glyphs. A standalone tappable icon sits centred in an invisible `--icon-frame-size` square.

@@ -116,7 +116,7 @@ A complete version of this file for a React project. Delete this section once yo
       Button.tsx            the component; its props are the doc's Properties table
       Button.module.css     styles, component tokens only
       Button.test.tsx       one test per documented state
-      Button.stories.tsx    every variant and size, in light, dark, AAA and AAA dark
+      Button.stories.tsx    every variant and size, in every theme mode
       index.ts              export { Button } from './Button'
     index.ts                re-exports every component
   ```
@@ -187,9 +187,9 @@ export function Button({
 .primary:hover { background: var(--button-primary-container-background-hover); }
 .primary:active { background: var(--button-primary-container-background-pressed); }
 .button:focus-visible { outline: var(--button-focus-ring-width) solid var(--button-focus-ring-color); }
-.primary:disabled { background: var(--button-primary-container-background-disabled); color: var(--button-primary-label-foreground-disabled); }
+.primary[aria-disabled="true"] { background: var(--button-primary-container-background-disabled); color: var(--button-primary-label-foreground-disabled); }
 .rounded { border-radius: var(--button-container-radius-rounded); }
-.small { height: var(--button-container-height-small); padding: var(--button-container-padding-y) var(--button-container-padding-x-small); }
+.small { min-height: var(--button-container-height-small); padding: var(--button-container-padding-y) var(--button-container-padding-x-small); }
 .small .label { padding: 0 var(--button-label-padding-x-small); font: var(--button-label-font-small); }
 .small svg { width: var(--button-icon-size-small); height: var(--button-icon-size-small); }
 /* …one block per flavour, shape and size in the doc */
@@ -197,10 +197,10 @@ export function Button({
 
 ### 5. Conventions
 
-- **States:** CSS pseudo-classes for hover (inside `@media (hover: hover)`), pressed (`:active`) and focused (`:focus-visible`); the native `disabled` attribute for disabled; `aria-selected`, `aria-checked` and `aria-invalid` selectors for selected, checked and error. Never a state held in React state just for styling.
+- **States:** CSS pseudo-classes for hover (inside `@media (hover: hover)`), pressed (`:active`) and focused (`:focus-visible`); `aria-disabled` for disabled, so the control stays focusable and its reason can be read ([patterns 6.6, 6.11](patterns/06-accessibility.md)); height tokens are minimums (`min-height`), so product copy wraps; `aria-selected`, `aria-checked` and `aria-invalid` selectors for selected, checked and error. Never a state held in React state just for styling.
 - **Composites:** render children from `@/components/zebra` with the variant and size the doc names. A composite's CSS module only styles its own parts.
 - **Tests:** Vitest + Testing Library. One test per documented state, plus an `axe` check on the default render.
-- **Previews:** one Storybook story per component, with controls for every property and a toolbar switch for light, dark, AAA and AAA dark.
+- **Previews:** one Storybook story per component, with controls for every property and a toolbar switch for every theme mode.
 - **Review:** any PR touching `src/components/zebra/` or `design-system/` needs a review from the front-end lead, who checks it against the doc's tables.
 
 ### 6. Workflow
