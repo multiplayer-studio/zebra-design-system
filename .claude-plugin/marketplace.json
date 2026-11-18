@@ -7,7 +7,7 @@
       "name": "zebra-prototyping",
       "source": {
         "source": "git-subdir",
-        "url": "zebratechnologies/zebra-design-system",
+        "url": "https://github.com/zebratechnologies/zebra-design-system.git",
         "path": "prototyping-kits/plugin",
         "ref": "design-system-v3.2611.0-beta"
       },
