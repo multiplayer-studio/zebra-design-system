@@ -1,6 +1,6 @@
 {
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
-  "readAt": "2026-11-11T18:51:51.622Z",
+  "readAt": "2026-11-17T22:33:19.396Z",
   "pages": [
     {
       "page": "Accordion",
@@ -80,6 +80,22 @@
       ]
     },
     {
+      "page": "Chat Message",
+      "pageId": "8414:18615",
+      "components": [
+        "Chat Message"
+      ],
+      "subcomponents": [
+        "Bubble",
+        "Controls",
+        "Loading Indicator",
+        "Photos",
+        "Attachments",
+        "Timestamp",
+        "Thread"
+      ]
+    },
+    {
       "page": "Checkbox",
       "pageId": "6382:52",
       "components": [
@@ -121,6 +137,17 @@
         "Dropdown Menu"
       ],
       "subcomponents": []
+    },
+    {
+      "page": "File Upload",
+      "pageId": "8286:923",
+      "components": [
+        "File Upload",
+        "File Upload Item"
+      ],
+      "subcomponents": [
+        "File Indicator"
+      ]
     },
     {
       "page": "Global header",
