@@ -1,0 +1,402 @@
+/* Chat Message and its parts — every value is a semantic token. Avatar,
+   IconButton, Dropdown, Divider, CaretIndicator and Scrim carry their own
+   CSS; this file lays out the message and draws the parts that are its own.
+
+   Spec: specs/chat-message/chat-message.spec.json */
+
+/* ---- root ---------------------------------------------------------------- */
+.zds-chat-message {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  color: var(--foreground-primary);
+  -webkit-tap-highlight-color: transparent;
+}
+.zds-chat-message:not([data-rounded]) { border-radius: var(--radius-none); }
+/* First messages with a header sit down space/card (spec note). */
+.zds-chat-message[data-header] { padding-block-start: var(--space-card); }
+/* Conversation: your messages sit on the right, without avatar or header. */
+.zds-chat-message[data-style="conversation"][data-role="sender"] { justify-content: flex-end; }
+
+/* ---- active: desktop hover or focus, pinned, or a panel open -------------- */
+.zds-chat-message[data-platform="desktop"]:is(:hover, :focus-within):not([data-state="loading"]),
+.zds-chat-message[data-platform="desktop"][data-state="active"] {
+  background: var(--interactive-ghost-background-hover);
+}
+
+/* ---- avatar and the time column ------------------------------------------- */
+.zds-chat-message__avatar { flex: none; }
+/* One body/small line tall with the time centred in it, so the time sits on the
+   message's first line (Figma: an 18 slot holding the 16 time). In a conversation
+   it drops by the bubble's space/sm padding to stay on the text inside it. */
+.zds-chat-message__time-column {
+  flex: none;
+  box-sizing: content-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--control-sm);
+  block-size: var(--body-small-line-height);
+}
+.zds-chat-message[data-style="conversation"] .zds-chat-message__time-column { padding-block-start: var(--space-sm); }
+.zds-chat-message__time-column[data-hide-time] .zds-chat-timestamp { visibility: hidden; }
+.zds-chat-message:is(:hover, :focus-within, [data-state="active"]) .zds-chat-message__time-column .zds-chat-timestamp { visibility: visible; }
+.zds-chat-message[data-style="conversation"][data-role="sender"] .zds-chat-message__time-column { order: -1; }
+
+/* ---- main column -------------------------------------------------------------- */
+.zds-chat-message__main {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+.zds-chat-message[data-style="conversation"][data-role="sender"] .zds-chat-message__main { align-items: flex-end; }
+.zds-chat-message__header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+}
+.zds-chat-message__name { font: var(--text-label-medium); letter-spacing: var(--label-medium-letter-spacing); color: var(--foreground-primary); }
+.zds-chat-message__reply {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  max-inline-size: 100%;
+  min-inline-size: 0;
+}
+.zds-chat-message__reply-to { flex: none; font: var(--text-label-small); letter-spacing: var(--label-small-letter-spacing); color: var(--foreground-primary); }
+.zds-chat-message__reply-text {
+  min-inline-size: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font: var(--text-body-xsmall);
+  letter-spacing: var(--body-xsmall-letter-spacing);
+  color: var(--foreground-secondary);
+}
+.zds-chat-message__content,
+.zds-chat-message__attachments {
+  display: flex;
+  flex-direction: column;
+  align-items: inherit;
+  gap: var(--space-sm);
+  align-self: stretch;
+}
+.zds-chat-message__content { align-items: flex-start; }
+.zds-chat-message[data-style="conversation"][data-role="sender"] .zds-chat-message__content { align-items: flex-end; }
+.zds-chat-message__reactions { display: flex; flex-wrap: wrap; gap: var(--space-2xs); }
+.zds-chat-message__footer {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font: var(--text-body-xsmall);
+  letter-spacing: var(--body-xsmall-letter-spacing);
+  color: var(--foreground-secondary);
+}
+
+/* ---- desktop controls: floating over the top edge -------------------------- */
+/* Overlaps the message by space/lg from the top so the bubble stays clear (spec). */
+.zds-chat-message__float {
+  position: absolute;
+  inset-block-start: var(--space-lg);
+  inset-inline-end: var(--space-sm);
+  z-index: 1;
+  display: none;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-2xs);
+  translate: 0 -100%;
+}
+.zds-chat-message:is(:hover, :focus-within, [data-state="active"]) > .zds-chat-message__float { display: flex; }
+
+/* ---- the assistant's controls: under the message, space kept when hidden --- */
+.zds-chat-message__assistant-controls { margin-inline-start: calc(-1 * var(--space-2xs)); }
+.zds-chat-message__assistant-controls[data-hidden] { visibility: hidden; }
+.zds-chat-message[data-platform="desktop"]:is(:hover, :focus-within) .zds-chat-message__assistant-controls[data-hidden] { visibility: visible; }
+
+/* ---- the reactions row ----------------------------------------------------- */
+.zds-chat-message__reactions-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  padding: var(--space-3xs);
+  border-radius: var(--radius-md);
+  background: var(--surface-overlay);
+  box-shadow: var(--shadow-small-x) var(--shadow-small-y) var(--shadow-small-blur) var(--shadow-soft);
+}
+.zds-chat-message__reactions-row:not([data-rounded]) { border-radius: var(--radius-none); }
+.zds-chat-message__reaction-option {
+  display: inline-grid;
+  place-items: center;
+  inline-size: var(--control-sm);
+  block-size: var(--control-sm);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--interactive-ghost-background-default);
+  font-size: var(--body-large-font-size);
+  cursor: pointer;
+}
+.zds-chat-message__reaction-option:hover { background: var(--interactive-ghost-background-hover); }
+.zds-chat-message__reaction-option:active { background: var(--interactive-ghost-background-pressed); }
+.zds-chat-message__reaction-option:focus-visible { outline: var(--stroke-thick) solid var(--border-focus); outline-offset: 0; }
+
+/* ---- mobile long press: lifted over the scrim ------------------------------- */
+.zds-chat-message[data-platform="mobile"] { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.zds-chat-message__scrim { position: fixed; inset: 0; z-index: 1000; }
+.zds-chat-message[data-held] {
+  z-index: 1001;
+  background: var(--surface-card);
+  translate: 0 var(--zds-chat-lift, 0);
+}
+.zds-chat-message__held-reactions {
+  position: absolute;
+  inset-block-end: calc(100% + var(--space-sm));
+  inset-inline-start: var(--space-sm);
+}
+.zds-chat-message[data-style="conversation"][data-role="sender"] .zds-chat-message__held-reactions { inset-inline-start: auto; inset-inline-end: var(--space-sm); }
+.zds-chat-message__held-positioner { z-index: 1002; }
+
+/* ---- Bubble ----------------------------------------------------------------- */
+.zds-chat-bubble {
+  box-sizing: border-box;
+  max-inline-size: 100%;
+  font: var(--text-body-small);
+  letter-spacing: var(--body-small-letter-spacing);
+  color: var(--foreground-primary);
+  overflow-wrap: anywhere;
+}
+/* A fill bubble hugs its text and wraps at 80% of the chat (spec). */
+.zds-chat-bubble[data-style="fill"] {
+  max-inline-size: 80%;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-none);
+}
+.zds-chat-bubble[data-style="fill"][data-role="sender"] {
+  background: var(--interactive-primary-background-default);
+  color: var(--foreground-on-strong);
+}
+.zds-chat-bubble[data-style="fill"][data-role="receiver"] { background: var(--surface-brand); }
+.zds-chat-bubble[data-style="fill"][data-rounded] { border-radius: var(--radius-lg); }
+/* In a run the corner toward the neighbour tightens to radius/xs: the end side for yours, the start side for others'. */
+.zds-chat-bubble[data-rounded][data-role="sender"][data-status="first"] { border-end-end-radius: var(--radius-xs); }
+.zds-chat-bubble[data-rounded][data-role="sender"][data-status="middle"] { border-start-end-radius: var(--radius-xs); border-end-end-radius: var(--radius-xs); }
+.zds-chat-bubble[data-rounded][data-role="sender"][data-status="last"] { border-start-end-radius: var(--radius-xs); }
+.zds-chat-bubble[data-rounded][data-role="receiver"][data-status="first"] { border-end-start-radius: var(--radius-xs); }
+.zds-chat-bubble[data-rounded][data-role="receiver"][data-status="middle"] { border-start-start-radius: var(--radius-xs); border-end-start-radius: var(--radius-xs); }
+.zds-chat-bubble[data-rounded][data-role="receiver"][data-status="last"] { border-start-start-radius: var(--radius-xs); }
+
+/* ---- Timestamp ---------------------------------------------------------------- */
+.zds-chat-timestamp { font: var(--text-body-xsmall); letter-spacing: var(--body-xsmall-letter-spacing); color: var(--foreground-secondary); white-space: nowrap; }
+
+/* ---- Loading Indicator --------------------------------------------------------- */
+.zds-chat-loading { display: inline-flex; align-items: center; gap: var(--space-xs); }
+.zds-chat-loading__dots { display: inline-flex; gap: var(--space-3xs); }
+.zds-chat-loading__dots > span {
+  inline-size: var(--space-2xs);
+  block-size: var(--space-2xs);
+  border-radius: var(--radius-none);
+  background: var(--foreground-tertiary);
+}
+.zds-chat-loading[data-rounded] .zds-chat-loading__dots > span { border-radius: var(--radius-pill); }
+/* At rest the three read 1, 0.6 and 0.3 strong (Figma's literal opacities; motion, not tokens). */
+.zds-chat-loading__dots > span:nth-child(2) { opacity: 0.6; }
+.zds-chat-loading__dots > span:nth-child(3) { opacity: 0.3; }
+.zds-chat-loading__label { font: var(--text-label-small); letter-spacing: var(--label-small-letter-spacing); color: var(--foreground-tertiary); }
+@media (prefers-reduced-motion: no-preference) {
+  .zds-chat-loading__dots > span { animation: zds-chat-ripple 1.2s ease-in-out infinite; }
+  .zds-chat-loading__dots > span:nth-child(2) { animation-delay: 0.2s; }
+  .zds-chat-loading__dots > span:nth-child(3) { animation-delay: 0.4s; }
+  .zds-chat-loading__label {
+    background: linear-gradient(90deg, var(--foreground-tertiary) 40%, var(--foreground-primary) 50%, var(--foreground-tertiary) 60%) 0 0 / 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: zds-chat-sweep 2s linear infinite;
+  }
+}
+@keyframes zds-chat-ripple { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+@keyframes zds-chat-sweep { from { background-position: 100% 0; } to { background-position: 0 0; } }
+
+/* ---- Controls ------------------------------------------------------------------ */
+.zds-chat-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  padding: var(--space-3xs);
+  border-radius: var(--radius-none);
+}
+.zds-chat-controls[data-rounded] { border-radius: var(--radius-md); }
+.zds-chat-controls[data-style="fill"] {
+  background: var(--surface-overlay);
+  box-shadow: var(--shadow-small-x) var(--shadow-small-y) var(--shadow-small-blur) var(--shadow-soft);
+}
+/* An open toggle keeps the pressed ghost surface while its row or menu is open. */
+.zds-chat-controls .zds-button[data-pressed] { --zds-button-bg: var(--interactive-ghost-background-pressed); }
+:is(.zds-chat-controls, .zds-chat-message__reactions-row) .zds-button[data-flavour="text"]:not([data-disabled]) { --zds-button-fg: var(--interactive-neutral-foreground-default); }
+
+/* ---- the thread's own container ----------------------------------------------------- */
+/* Under the message and outside its surface, so the thread never lights the
+   parent: each reply has its own hover. Indented to the message text: the
+   message's space/sm padding, the lead column (control/sm) and its space/sm gap. */
+.zds-chat-message__thread {
+  padding-inline: calc(2 * var(--space-sm) + var(--control-sm)) var(--space-sm);
+}
+.zds-chat-message__thread[data-style="conversation"][data-role="sender"] { padding-inline: var(--space-sm); }
+
+/* ---- Thread --------------------------------------------------------------------- */
+.zds-chat-thread { display: flex; flex-direction: column; align-self: stretch; }
+.zds-chat-thread__toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-block-size: calc(var(--control-icon-md) + 2 * var(--space-2xs));
+  padding: var(--space-2xs) 0;
+  border: 0;
+  background: none;
+  color: var(--foreground-secondary);
+  font: var(--text-body-xsmall);
+  letter-spacing: var(--body-xsmall-letter-spacing);
+  text-align: start;
+  cursor: pointer;
+}
+.zds-chat-thread__toggle:focus-visible { outline: var(--stroke-thick) solid var(--border-focus); outline-offset: var(--space-3xs); }
+.zds-chat-thread__count { flex: none; }
+/* Thread's count text binds no colour in Figma (spec gap); foreground/secondary as its meta text. */
+/* Divider stretches by default; here it centres on the row with the count and caret (spec). */
+.zds-chat-thread__divider { flex: 1 1 auto; align-self: center; }
+.zds-chat-thread__replies { display: flex; flex-direction: column; padding-block-end: var(--space-sm); }
+
+/* ---- Photos ---------------------------------------------------------------------- */
+.zds-chat-photos {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3xs);
+  inline-size: min(100%, calc(6 * var(--control-lg)));
+  aspect-ratio: 3 / 2;
+}
+.zds-chat-photos[data-count="2"] { grid-template-columns: 1fr 1fr; aspect-ratio: 2 / 1; }
+.zds-chat-photos:is([data-count="3"], [data-count="more"]) { grid-template-columns: 2fr 1fr; }
+.zds-chat-photos__stack { display: grid; grid-template-rows: 1fr 1fr; gap: var(--space-3xs); min-block-size: 0; }
+.zds-chat-photos__photo {
+  display: grid;
+  place-items: center;
+  min-block-size: 0;
+  overflow: hidden;
+  padding: 0;
+  border: var(--stroke-thin) solid var(--border-subtle);
+  border-radius: var(--radius-none);
+  background: var(--surface-card);
+  color: var(--foreground-tertiary);
+}
+.zds-chat-photos[data-rounded] .zds-chat-photos__photo { border-radius: var(--radius-lg); }
+button.zds-chat-photos__photo { cursor: zoom-in; }
+.zds-chat-photos__photo img { inline-size: 100%; block-size: 100%; object-fit: cover; }
+.zds-chat-photos__extra {
+  position: absolute;
+  inset-block-end: var(--space-xs);
+  inset-inline-end: var(--space-xs);
+  padding: var(--space-3xs) var(--space-xs);
+  border-radius: var(--radius-pill);
+  background: var(--surface-inverse);
+  color: var(--foreground-inverse);
+  font: var(--text-body-xsmall);
+}
+
+/* ---- Attachments ------------------------------------------------------------------ */
+.zds-chat-attachment {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  max-inline-size: 100%;
+  padding: var(--space-sm) var(--space-xs);
+  background: var(--surface-card);
+  border: var(--stroke-thin) solid var(--border-subtle);
+  border-radius: var(--radius-none);
+}
+.zds-chat-attachment[data-rounded] { border-radius: var(--radius-lg); }
+.zds-chat-attachment__tile {
+  flex: none;
+  display: grid;
+  place-items: center;
+  inline-size: var(--control-sm);
+  block-size: var(--control-sm);
+  color: var(--interactive-primary-background-default);
+}
+.zds-chat-attachment__text {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding-inline-end: var(--space-lg);
+}
+.zds-chat-attachment__name { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font: var(--text-label-medium); color: var(--foreground-primary); }
+.zds-chat-attachment__meta, .zds-chat-attachment__duration { font: var(--text-body-xsmall); color: var(--foreground-tertiary); font-variant-numeric: tabular-nums; }
+.zds-chat-attachment__download { display: grid; place-items: center; inline-size: var(--control-md); block-size: var(--control-md); color: var(--foreground-secondary); }
+/* Download is a text Icon Button whose glyph Figma overrides to foreground/secondary, in every state. */
+.zds-chat-attachment .zds-chat-attachment__download.zds-button:not([data-disabled]),
+.zds-chat-attachment .zds-chat-attachment__download.zds-button:not([data-disabled]):is(:hover, :active) { --zds-button-fg: var(--foreground-secondary); }
+.zds-chat-attachment[data-type="video"] {
+  display: grid;
+  place-items: center;
+  inline-size: min(100%, calc(6 * var(--control-lg)));
+  aspect-ratio: 16 / 9;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: var(--surface-subtle);
+  color: var(--foreground-tertiary);
+}
+.zds-chat-attachment[data-type="video"] > :is(video, img) { grid-area: 1 / 1; inline-size: 100%; block-size: 100%; object-fit: cover; }
+.zds-chat-attachment[data-type="video"] > * { grid-area: 1 / 1; }
+/* The placeholder glyph sits in the top-start corner, clear of the centred play control (Figma). */
+.zds-chat-attachment[data-type="video"] > .zds-chat-attachment__poster { place-self: start; margin: var(--space-sm); }
+.zds-chat-attachment[data-type="video"][data-playing] .zds-chat-attachment__play { opacity: 0; }
+.zds-chat-attachment[data-type="video"][data-playing]:is(:hover, :focus-within) .zds-chat-attachment__play { opacity: 1; }
+.zds-chat-attachment__chip {
+  align-self: end;
+  justify-self: end;
+  margin: var(--space-xs);
+  padding: var(--space-3xs) var(--space-xs);
+  border-radius: var(--radius-pill);
+  background: var(--surface-inverse);
+  color: var(--foreground-inverse);
+  font: var(--text-body-xsmall);
+}
+/* Audio hugs its content by default, capped at its container (spec layout: Hug, capped). */
+.zds-chat-attachment[data-type="audio"] { inline-size: fit-content; padding-inline-end: var(--space-md); }
+/* Play and pause are primary Icon Buttons that Figma overrides to a surface/card fill with an
+   interactive/primary/background/default glyph (border at stroke/base, so none shows). Hover and pressed have no
+   Figma state; they take the neutral interactive tints. */
+.zds-chat-attachment :is(.zds-chat-attachment__play, .zds-chat-attachment__audio-play).zds-button:not([data-disabled]) {
+  --zds-button-bg: var(--surface-card);
+  --zds-button-border: var(--surface-card);
+  --zds-button-fg: var(--interactive-primary-background-default);
+}
+.zds-chat-attachment :is(.zds-chat-attachment__play, .zds-chat-attachment__audio-play).zds-button:not([data-disabled]):hover { --zds-button-bg: var(--interactive-neutral-background-hover); }
+.zds-chat-attachment :is(.zds-chat-attachment__play, .zds-chat-attachment__audio-play).zds-button:not([data-disabled]):active { --zds-button-bg: var(--interactive-neutral-background-pressed); }
+/* Audio's play is Icon Button Size=small at control/xs (spec). */
+.zds-chat-attachment__audio-play.zds-button { inline-size: var(--control-xs); block-size: var(--control-xs); min-inline-size: var(--control-xs); padding: 0; }
+.zds-chat-attachment__wave {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  block-size: var(--control-icon-md);
+  padding-inline-end: var(--space-lg);
+}
+.zds-chat-attachment__wave > span {
+  inline-size: var(--stroke-thick);
+  block-size: calc(var(--zds-level) * 100%);
+  border-radius: var(--radius-pill);
+  background: var(--interactive-primary-background-disabled);
+}
+.zds-chat-attachment__wave > span[data-played] { background: var(--interactive-primary-background-default); }

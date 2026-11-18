@@ -1,0 +1,139 @@
+/* Slider — every colour and dimension is a semantic token from the shared
+   token layer. Keyed off Base UI's own [data-dragging] / [data-disabled] and
+   our data-shape. Nothing here knows about themes: an .ext-* / .mode-* class
+   on any ancestor changes what these tokens resolve to.
+
+   Kept rule-for-rule in step with packages/web-components slider.styles.ts.
+
+   Spec: specs/slider/slider.spec.md */
+
+.zds-slider {
+  /* --- geometry ---------------------------------------------------------- */
+  /* Track height and dot size have no token in the spec (spec warn "raw
+     values"); bound to the line-weight tokens that resolve to the measured
+     sizes. The thumb's box is always the larger size so the value-to-position
+     mapping never shifts; at rest a transparent border insets the visible
+     thumb to the smaller size. Width and height share one token. */
+  --zds-slider-track: var(--stroke-heavy);
+  --zds-slider-dot: var(--stroke-thick);
+  --zds-slider-thumb-box: var(--control-icon-md);
+  --zds-slider-thumb-inset: calc((var(--control-icon-md) - var(--control-icon-sm)) / 2);
+
+  /* --- shape: rounded (default) ------------------------------------------ */
+  --zds-slider-track-radius: var(--radius-xs);
+  --zds-slider-thumb-radius: var(--radius-pill);
+
+  /* --- state: default ---------------------------------------------------- */
+  --zds-slider-active: var(--interactive-neutral-foreground-default);
+  --zds-slider-thumb-fill: var(--interactive-neutral-foreground-default);
+
+  display: block;
+  min-inline-size: calc(4 * var(--zds-slider-thumb-box));
+  touch-action: none;
+}
+
+.zds-slider__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* Tall enough for the larger thumb, which overhangs the track. */
+  block-size: var(--zds-slider-thumb-box);
+}
+
+/* 1. Track: the base, full width, in surface/track. Near-invisible against
+   the page in both modes (spec warn); built faithfully. */
+.zds-slider__track {
+  position: relative;
+  inline-size: 100%;
+  block-size: var(--zds-slider-track);
+  border-radius: var(--zds-slider-track-radius);
+  background: var(--surface-track);
+}
+
+/* 1. Active fill: from the start of the span to the value, rounded with the
+   base track as Figma binds it (spec warn: the metadata says square-ended).
+   Base UI positions it; in a range it runs between the two thumbs. */
+.zds-slider__fill {
+  block-size: 100%;
+  border-radius: var(--zds-slider-track-radius);
+  background: var(--zds-slider-active);
+}
+
+/* 2. Step dots: one per stop, at the value each marks, across the whole
+   track; above both track layers and below the thumbs. Invisible on the
+   unfilled side (spec warn); built faithfully. */
+.zds-slider__dots {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: calc(50% - var(--zds-slider-dot) / 2);
+  block-size: var(--zds-slider-dot);
+  pointer-events: none;
+}
+.zds-slider__dot {
+  position: absolute;
+  inline-size: var(--zds-slider-dot);
+  block-size: var(--zds-slider-dot);
+  margin-inline-start: calc(var(--zds-slider-dot) / -2);
+  border-radius: var(--radius-pill);
+  background: var(--foreground-inverse);
+}
+
+/* 3. Thumbs: Base UI positions them, centred on their values. */
+.zds-slider__thumb {
+  box-sizing: border-box;
+  inline-size: var(--zds-slider-thumb-box);
+  block-size: var(--zds-slider-thumb-box);
+  border: var(--zds-slider-thumb-inset) solid transparent;
+  border-radius: var(--zds-slider-thumb-radius);
+  background: var(--zds-slider-thumb-fill);
+  background-clip: padding-box;
+  box-shadow: var(--zds-slider-thumb-ring, none);
+  cursor: pointer;
+  outline: none;
+}
+
+/* ---- shape -------------------------------------------------------------- */
+.zds-slider[data-shape="sharp"] {
+  --zds-slider-track-radius: var(--radius-none);
+  --zds-slider-thumb-radius: var(--radius-none);
+}
+
+/* ---- state: hover --------------------------------------------------------- */
+/* Size follows the pointer and nothing else: only the thumb under it, or the
+   one being dragged, takes the larger size, in every state (designer
+   clarifications 2026-10-14). */
+/* Base UI sets [data-dragging] on EVERY thumb while any one is dragged, so
+   the dragged thumb is found by focus instead: Base UI focuses the active
+   thumb's input when the drag starts. */
+.zds-slider:not([data-disabled]) .zds-slider__thumb:hover,
+.zds-slider:not([data-disabled])[data-dragging] .zds-slider__thumb:focus-within {
+  border-width: 0;
+}
+
+/* ---- state: selected (pressed or keyboard focus) ------------------------ */
+/* A thumb is being dragged, or a thumb has keyboard focus: the fill and BOTH
+   thumbs take the selected foreground. Colour only; size is above. */
+.zds-slider[data-dragging],
+.zds-slider:not([data-disabled]):has(.zds-slider__thumb input:focus-visible) {
+  --zds-slider-active: var(--interactive-ghost-foreground-default);
+  --zds-slider-thumb-fill: var(--interactive-ghost-foreground-default);
+}
+
+/* ---- state: disabled ---------------------------------------------------- */
+.zds-slider[data-disabled] {
+  --zds-slider-active: var(--interactive-neutral-foreground-disabled);
+  --zds-slider-thumb-fill: var(--interactive-neutral-foreground-disabled);
+}
+.zds-slider[data-disabled] .zds-slider__thumb {
+  cursor: not-allowed;
+}
+
+/* ---- focus ring --------------------------------------------------------- */
+/* On top of the selected colour, the focused thumb alone gets a
+   border/focus ring at stroke/thick, so in a range it says which end the
+   keys will move. Not in the Figma file. */
+.zds-slider__thumb:has(input:focus-visible) {
+  --zds-slider-thumb-ring: 0 0 0 var(--stroke-thick) var(--border-focus);
+}
+
+/* No transitions: the spec defines no motion. */

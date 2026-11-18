@@ -1,0 +1,265 @@
+/* InputField — ported rule for rule from packages/web-components
+   input-field.styles.ts. Every value is a semantic token.
+
+   Spec: specs/input/input.spec.md (subcomponents.inputField) */
+
+  .zds-input-field {
+    /* 280 is a start width, not a fixed one (spec decision): the field never
+       outgrows its container, and block fills it. */
+    display: block;
+    inline-size: 280px;
+    max-inline-size: 100%;
+    min-inline-size: min(calc(6 * var(--control-sm)), 100%);
+  }
+  .zds-input-field[data-block] {
+    inline-size: 100%;
+  }
+  .zds-input-field[hidden] {
+    display: none;
+  }
+
+  /* ---- root ---------------------------------------------------------- */
+  .zds-input-field {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    gap: var(--space-2xs);
+    padding: var(--space-sm) var(--space-md);
+    block-size: var(--zds-input-height);
+    border-radius: var(--zds-input-radius);
+    background: var(--zds-input-bg);
+    border: var(--zds-input-border-width) solid var(--zds-input-border);
+    /* Focus is the one stroke drawn outside the edge (spec: stroke/thick,
+       outside): an outline at offset 0, so nothing inside shifts. */
+    outline: var(--zds-input-outline, none);
+    outline-offset: 0;
+    color: var(--zds-input-fg);
+    cursor: text;
+  }
+
+  .zds-input-field__icon {
+    flex: none;
+  }
+  .zds-input-field__leading-content {
+    flex: none;
+    padding-inline-start: var(--space-2xs);
+    font-family: var(--body-medium-font-family), system-ui, sans-serif;
+    font-size: var(--body-medium-font-size);
+    font-weight: var(--body-medium-font-weight);
+    line-height: var(--body-medium-line-height);
+    letter-spacing: var(--body-medium-letter-spacing);
+  }
+  .zds-input-field[data-size="small"] .zds-input-field__leading-content {
+    font-family: var(--body-small-font-family), system-ui, sans-serif;
+    font-size: var(--body-small-font-size);
+    font-weight: var(--body-small-font-weight);
+    line-height: var(--body-small-line-height);
+    letter-spacing: var(--body-small-letter-spacing);
+  }
+
+  /* ---- text (padding 0 space/xs) --------------------------------------- */
+  .zds-input-field__input {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+    margin: 0;
+    padding: 0 var(--space-2xs);
+    box-sizing: border-box;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: var(--zds-input-fg);
+    caret-color: var(--foreground-cursor);
+    font-family: var(--body-medium-font-family), system-ui, sans-serif;
+    font-size: var(--body-medium-font-size);
+    font-weight: var(--body-medium-font-weight);
+    line-height: var(--body-medium-line-height);
+    letter-spacing: var(--body-medium-letter-spacing);
+    -webkit-appearance: none;
+    appearance: none;
+    -moz-appearance: textfield;
+  }
+  .zds-input-field__input::placeholder {
+    color: var(--foreground-disabled);
+    opacity: 1;
+  }
+  /* The field draws its own controls in place of the platform's. */
+  .zds-input-field__input::-webkit-inner-spin-button,
+  .zds-input-field__input::-webkit-outer-spin-button,
+  .zds-input-field__input::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+  .zds-input-field__input::-ms-reveal {
+    display: none;
+  }
+  /* An empty date / time shows the platform's format (mm/dd/yyyy, --:-- --):
+     that is the spec's placeholder, so it takes the placeholder colour. */
+  .zds-input-field[data-type="date"][data-state="enabled"] .zds-input-field__input,
+  .zds-input-field[data-type="date"][data-state="hover"] .zds-input-field__input,
+  .zds-input-field[data-type="date"][data-state="focus"] .zds-input-field__input,
+  .zds-input-field[data-type="date"][data-state="selected"] .zds-input-field__input,
+  .zds-input-field[data-type="time"][data-state="enabled"] .zds-input-field__input,
+  .zds-input-field[data-type="time"][data-state="hover"] .zds-input-field__input,
+  .zds-input-field[data-type="time"][data-state="focus"] .zds-input-field__input,
+  .zds-input-field[data-type="time"][data-state="selected"] .zds-input-field__input {
+    color: var(--foreground-disabled);
+  }
+  .zds-input-field__input::-webkit-datetime-edit-fields-wrapper,
+  .zds-input-field__input::-webkit-datetime-edit-text,
+  .zds-input-field__input::-webkit-datetime-edit-month-field,
+  .zds-input-field__input::-webkit-datetime-edit-day-field,
+  .zds-input-field__input::-webkit-datetime-edit-year-field,
+  .zds-input-field__input::-webkit-datetime-edit-hour-field,
+  .zds-input-field__input::-webkit-datetime-edit-minute-field,
+  .zds-input-field__input::-webkit-datetime-edit-ampm-field {
+    padding-block: 0;
+  }
+
+  /* ---- trailing: type control, clear, divider --------------------------- */
+  .zds-input-field__trailing {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    /* Spec typing group: clear · divider · control, gap space/sm. */
+    gap: var(--space-sm);
+    block-size: var(--control-icon-md);
+  }
+  .zds-input-field__divider {
+    align-self: stretch;
+  }
+  .zds-input-field__control {
+    position: relative;
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    border-radius: var(--radius-pill);
+  }
+  /* A target past the glyph (the spec asks for a large enough target). */
+  .zds-input-field__control::before {
+    content: "";
+    position: absolute;
+    inset: calc(-1 * var(--space-sm));
+    border-radius: inherit;
+  }
+  .zds-input-field__control:focus-visible {
+    outline: var(--stroke-thick) solid var(--border-focus);
+    outline-offset: var(--space-3xs);
+  }
+  .zds-input-field__control:disabled {
+    cursor: not-allowed;
+  }
+
+  /* ---- size ---------------------------------------------------------- */
+  .zds-input-field {
+    --zds-input-height: var(--control-md);
+  }
+  .zds-input-field[data-size="large"] {
+    --zds-input-height: var(--control-lg);
+  }
+  .zds-input-field[data-size="small"] {
+    --zds-input-height: var(--control-sm);
+  }
+  .zds-input-field[data-size="small"] .zds-input-field__input {
+    font-family: var(--body-small-font-family), system-ui, sans-serif;
+    font-size: var(--body-small-font-size);
+    font-weight: var(--body-small-font-weight);
+    line-height: var(--body-small-line-height);
+    letter-spacing: var(--body-small-letter-spacing);
+  }
+
+  /* ---- shape --------------------------------------------------------- */
+  .zds-input-field {
+    --zds-input-radius: var(--radius-none);
+  }
+  .zds-input-field[data-shape="rounded"] {
+    --zds-input-radius: var(--radius-sm);
+  }
+  .zds-input-field[data-shape="full"] {
+    --zds-input-radius: var(--radius-pill);
+  }
+
+  /* ---- state x flavour: default ---------------------------------------- */
+  .zds-input-field {
+    --zds-input-bg: var(--interactive-neutral-background-default);
+    --zds-input-border: var(--interactive-neutral-border-default);
+    --zds-input-border-width: var(--stroke-thin);
+    /* Value, icons and controls share one colour (spec). */
+    --zds-input-fg: var(--foreground-primary);
+  }
+  .zds-input-field[data-state="enabled"]:hover,
+  .zds-input-field[data-state="filled"]:hover {
+    --zds-input-border: var(--interactive-neutral-border-hover);
+  }
+  .zds-input-field[data-state="focus"] {
+    --zds-input-border: transparent;
+    --zds-input-outline: var(--stroke-thick) solid var(--border-focus);
+  }
+  .zds-input-field[data-state="selected"],
+  .zds-input-field[data-state="typing"] {
+    --zds-input-border: var(--border-focus);
+  }
+  .zds-input-field[data-state="invalid"] {
+    --zds-input-border: var(--border-error);
+  }
+  .zds-input-field[data-state="read-only"] {
+    --zds-input-border: var(--border-subtle);
+    cursor: default;
+  }
+  .zds-input-field[data-state="disabled"] {
+    --zds-input-bg: var(--interactive-neutral-background-disabled);
+    --zds-input-border: var(--interactive-neutral-border-disabled);
+    --zds-input-fg: var(--foreground-disabled);
+    cursor: not-allowed;
+  }
+  .zds-input-field[data-state="disabled"] .zds-input-field__input {
+    cursor: not-allowed;
+  }
+
+  /* ---- flavour: gradient ----------------------------------------------- */
+  /* Enabled and filled draw a foreground/gradient/start → end border (a
+     second background clipped to the border box); hover border/gradient/end;
+     selected and typing border/gradient/start. Focus, invalid, read-only and
+     disabled use default's tokens (spec, metadata corrected 2026-10-15). */
+  .zds-input-field[data-flavour="gradient"][data-state="enabled"],
+  .zds-input-field[data-flavour="gradient"][data-state="filled"] {
+    --zds-input-border: transparent;
+    background:
+      linear-gradient(var(--zds-input-bg), var(--zds-input-bg)) padding-box,
+      linear-gradient(to right, var(--foreground-gradient-start), var(--foreground-gradient-end)) border-box;
+  }
+  .zds-input-field[data-flavour="gradient"][data-state="enabled"]:hover,
+  .zds-input-field[data-flavour="gradient"][data-state="filled"]:hover {
+    --zds-input-border: var(--border-gradient-end);
+    background: var(--zds-input-bg);
+  }
+  .zds-input-field[data-flavour="gradient"][data-state="selected"],
+  .zds-input-field[data-flavour="gradient"][data-state="typing"] {
+    --zds-input-border: var(--border-gradient-start);
+  }
+
+  /* ---- flavour: ghost -------------------------------------------------- */
+  /* No surface; border weight stroke/base in every state but focus
+     (stroke/thick) and invalid (stroke/thin). stroke/base is zero, so hover,
+     selected and typing draw no border: the spec's open warning, built as
+     designed. */
+  .zds-input-field[data-flavour="ghost"] {
+    --zds-input-bg: transparent;
+    --zds-input-border-width: var(--stroke-base);
+  }
+  .zds-input-field[data-flavour="ghost"][data-state="enabled"],
+  .zds-input-field[data-flavour="ghost"][data-state="filled"] {
+    --zds-input-border: var(--interactive-ghost-border-default);
+  }
+  .zds-input-field[data-flavour="ghost"][data-state="invalid"] {
+    --zds-input-border-width: var(--stroke-thin);
+  }
+  .zds-input-field[data-flavour="ghost"][data-state="disabled"] {
+    --zds-input-bg: transparent;
+    --zds-input-border: var(--interactive-ghost-border-disabled);
+  }
+
+  /* No transitions: the spec defines no motion. */
