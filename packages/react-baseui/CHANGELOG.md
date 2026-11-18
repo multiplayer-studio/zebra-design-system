@@ -1,5 +1,21 @@
 # @zebra-design-system/react-baseui
 
+## 0.5.0
+
+### Minor Changes
+
+- Message Input gains the Reply Bar (the spec's Show Reply), and Chat Message
+  gets two small additions.
+  
+  - **Message Input**: set `replyTo` (and `replyText`) to show who and what is
+    being answered above the body; web-components uses `reply-to` and
+    `reply-text`. The whole bar is one button that cancels the reply: it calls
+    `onCancelReply` in react-baseui and fires `zds-cancel-reply` in
+    web-components. It is not shown while speaking or disabled. Two new strings,
+    `replyingTo` and `cancelReply`.
+  - **Chat Message**: the avatar takes a `swatchColor`, and paragraphs in a
+    message sit one line apart while line breaks inside a paragraph stay tight.
+
 ## 0.4.0
 
 ### Minor Changes
