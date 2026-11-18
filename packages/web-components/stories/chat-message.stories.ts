@@ -122,15 +122,9 @@ const exampleScreen = (ex: ChatExample) => {
     <div style="flex:1 1 auto;min-block-size:0;overflow-x:hidden;overflow-y:auto;padding:var(--space-2xl) var(--space-sm) var(--space-sm)">
       ${ex.messages.map((m) => exampleMessage(m, ex.container))}
     </div>
-    ${ex.replying
-      ? html`<div style="display:flex;align-items:center;gap:var(--space-xs);padding-inline:var(--space-md) var(--space-xs);border-block-start:var(--stroke-thin) solid var(--border-subtle);color:var(--foreground-secondary)">
-          <span style="font:var(--text-body-xsmall)">Replying to</span>
-          <span style="font:var(--text-label-small);color:var(--foreground-primary)">${ex.replying.to}</span>
-          <span style="flex:1 1 auto;min-inline-size:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font:var(--text-body-xsmall)">${ex.replying.text}</span>
-          <zds-icon-button flavour="text" size="small" icon="close" label="Cancel reply"></zds-icon-button>
-        </div>`
-      : nothing}
-    <div style="padding:var(--space-sm)"><zds-message-input placeholder="Placeholder"></zds-message-input></div>
+    <!-- The reply sits in the Message Input's own Reply Bar; pressing the bar cancels it. -->
+    <div style="padding:var(--space-sm)"><zds-message-input placeholder="Placeholder" reply-to=${ex.replying?.to ?? nothing} reply-text=${ex.replying?.text ?? nothing}
+      @zds-cancel-reply=${(e: Event) => { (e.currentTarget as HTMLElement & { replyTo: string }).replyTo = ""; }}></zds-message-input></div>
   </div>`;
 };
 

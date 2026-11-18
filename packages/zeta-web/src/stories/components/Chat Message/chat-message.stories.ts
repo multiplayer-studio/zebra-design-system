@@ -159,20 +159,17 @@ const exampleScreen = (ex: ChatExample) => {
     >
       ${ex.messages.map(m => exampleMessage(m, ex.container))}
     </div>
-    ${ex.replying
-      ? html`<div
-          style="display: flex; align-items: center; gap: var(--space-xs); padding-inline: var(--space-md) var(--space-xs); border-block-start: var(--stroke-thin) solid var(--zebra-border-subtle); color: var(--foreground-secondary)"
-        >
-          <span style="font: var(--text-body-xsmall)">Replying to</span>
-          <span style="font: var(--text-label-small); color: var(--foreground-primary)">${ex.replying.to}</span>
-          <span
-            style="flex: 1 1 auto; min-inline-size: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font: var(--text-body-xsmall)"
-            >${ex.replying.text}</span
-          >
-          <zeta-icon-button flavor="text" size="small" aria-label="Cancel reply">close</zeta-icon-button>
-        </div>`
-      : nothing}
-    <div style="padding: var(--space-sm)"><zeta-message-input placeholder="Placeholder"></zeta-message-input></div>
+    <!-- The reply sits in the Message Input's own Reply Bar; pressing the bar cancels it. -->
+    <div style="padding: var(--space-sm)">
+      <zeta-message-input
+        placeholder="Placeholder"
+        replyTo=${ex.replying?.to ?? nothing}
+        replyText=${ex.replying?.text ?? nothing}
+        @cancelreply=${(e: Event) => {
+          (e.currentTarget as HTMLElement & { replyTo: string }).replyTo = "";
+        }}
+      ></zeta-message-input>
+    </div>
   </div>`;
 };
 

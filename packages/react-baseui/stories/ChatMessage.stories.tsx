@@ -158,6 +158,7 @@ const exampleMessage = (m: ExampleMessage, platform: "mobile" | "desktop", key: 
 /** A screen from the Message Sample page: app bar, the conversation scrolling under it, then the Message Input. */
 function ExampleScreen({ ex }: { ex: ChatExample }) {
   const mobile = ex.container === "mobile";
+  const [replying, setReplying] = React.useState(ex.replying);
   const trailing = ex.people ? (
     <>
       <AvatarRail size="xsmall" max={2} label="Members">{ex.people.map((p) => <Avatar key={p.initials} initials={p.initials} swatchColor={p.color} />)}</AvatarRail>
@@ -179,16 +180,10 @@ function ExampleScreen({ ex }: { ex: ChatExample }) {
       <div style={{ flex: "1 1 auto", minBlockSize: 0, overflowX: "hidden", overflowY: "auto", padding: "var(--space-2xl) var(--space-sm) var(--space-sm)" }}>
         {ex.messages.map((m, i) => exampleMessage(m, ex.container, i))}
       </div>
-      {ex.replying ? (
-        <div style={{ display: "flex", alignItems: "center", gap: "var(--space-xs)", paddingInline: "var(--space-md) var(--space-xs)",
-          borderBlockStart: "var(--stroke-thin) solid var(--border-subtle)", color: "var(--foreground-secondary)" }}>
-          <span style={{ font: "var(--text-body-xsmall)" }}>Replying to</span>
-          <span style={{ font: "var(--text-label-small)", color: "var(--foreground-primary)" }}>{ex.replying.to}</span>
-          <span style={{ flex: "1 1 auto", minInlineSize: 0, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", font: "var(--text-body-xsmall)" }}>{ex.replying.text}</span>
-          <IconButton flavour="text" size="small" icon="close" label="Cancel reply" />
-        </div>
-      ) : null}
-      <div style={{ padding: "var(--space-sm)" }}><MessageInput placeholder="Placeholder" /></div>
+      {/* The reply sits in the Message Input's own Reply Bar; pressing the bar cancels it. */}
+      <div style={{ padding: "var(--space-sm)" }}>
+        <MessageInput placeholder="Placeholder" replyTo={replying?.to} replyText={replying?.text} onCancelReply={() => setReplying(undefined)} />
+      </div>
     </div>
   );
 }
