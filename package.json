@@ -1,0 +1,52 @@
+{
+  "name": "@zebra-design-system/icons",
+  "version": "0.2.0",
+  "description": "Zebra Design System icon fonts, generated from Figma by the zebra-figma-icon-font skill",
+  "type": "module",
+  "files": [
+    "dist",
+    "codepoints.json",
+    "fonts",
+    "icons.css",
+    "inventory.json",
+    "AGENTS.md",
+    "llms.txt"
+  ],
+  "exports": {
+    "./icons.css": "./icons.css",
+    "./fonts/*": "./fonts/*",
+    "./codepoints.json": "./codepoints.json",
+    "./inventory.json": "./inventory.json",
+    "./names": {
+      "types": "./dist/icon-names.d.ts",
+      "default": "./dist/icon-names.js"
+    },
+    "./codepoints.js": {
+      "types": "./dist/codepoints.d.ts",
+      "default": "./dist/codepoints.js"
+    }
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "generate": "node ../../.claude/skills/zebra-figma-icon-font/scripts/build-icon-font.mjs --node 2046:6754 --out . && tsc",
+    "generate:dry": "node ../../.claude/skills/zebra-figma-icon-font/scripts/build-icon-font.mjs --node 2046:6754 --out . --dry-run",
+    "build": "tsc"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zebratechnologies/zebra-design-system.git",
+    "directory": "packages/icons"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "distChannel": {
+    "type": "git",
+    "repo": "https://github.com/multiplayer-studio/zebra-design-system.git",
+    "tag": "icons-v0.2.0",
+    "builtFrom": "e351c12d"
+  }
+}
