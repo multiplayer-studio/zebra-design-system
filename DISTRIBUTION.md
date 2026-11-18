@@ -12,7 +12,7 @@ rules in `VERSIONING.md`; release mechanics in `.github/workflows/release.yml`.
 | **Git distribution ×5 (live, registry-free)** | Orphan branches `dist/<pkg>` + immutable tags `<pkg>-v<version>` on this repo; `npm i "git+https://github.com/multiplayer-studio/zebra-design-system.git#dist/tokens"` | deployed by `scripts/deploy-dist-branches.mjs` (§Git distribution below) |
 | npm packages ×5 | Not on npmjs yet — the git channel above is the only package source. (The local Verdaccio test registry was torn down 10 Nov 2026.) | — |
 | Consumer projects | Install from the git branches; no `.npmrc` needed | each test project |
-| Claude Code plugin | Installable from this repo as a marketplace — **pin the working branch**, since `main` doesn't carry the plugin until the merge | `claude plugin marketplace add "https://github.com/multiplayer-studio/zebra-design-system.git#design/init"` (or a local path to a design/init checkout), then `claude plugin install zebra-design-system@zebra-design-system` |
+| Claude Code plugin | Installable from this repo as a marketplace, from `main` | `claude plugin marketplace add "https://github.com/multiplayer-studio/zebra-design-system.git#main"` (or a local path to a main checkout), then `claude plugin install zebra-design-system@zebra-design-system` |
 | In-package skills | Already real — ship in the library tarballs | `npx zebra-skills` in the consumer project |
 | CDN | Not live (needs real npm) | `docs/cdn-smoke.html` is armed with pinned jsDelivr URLs |
 | Consumer onboarding | Zebra Quickstart artifact (private; share from its Share menu) | source `docs/start/index.html`, published at <https://claude.ai/artifact/ByQaUbTKkN1EXDyp5bEvg7> |
@@ -85,7 +85,8 @@ Account work, once, by a manager:
 
 Then the flip, in order:
 
-3. Merge `design/init` → `main`. CI gates arm; the Release workflow's
+3. ~~Merge `design/init` → `main`~~ — done 18 Nov 2026; all work and releases
+   now go from `main`. With `NPM_TOKEN` set, the Release workflow's
    Changesets job publishes every version the registry lacks (the 0.1.0s),
    and the manual lane dispatches zeta-web.
 4. Open `docs/cdn-smoke.html` in a browser — it must say "CDN smoke PASS"
@@ -94,7 +95,7 @@ Then the flip, in order:
    `git+…#dist/<pkg>` / `#<pkg>-v<version>` dependency for the npm semver
    range and reinstall. Versions are identical; nothing else changes.
 6. Plugin consumers: `claude plugin marketplace remove zebra-design-system`
-   (if added by local path or with the `#design/init` ref), then re-add by
+   (if added by local path or with a branch ref), then re-add by
    plain repo reference —
    `claude plugin marketplace add multiplayer-studio/zebra-design-system` —
    so `claude plugin update` tracks the repo. (Terminal CLI users can use the

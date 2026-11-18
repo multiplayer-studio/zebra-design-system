@@ -518,8 +518,8 @@
     <table class="plain">
       <thead><tr><th>Branch</th><th>Use</th><th>Status</th></tr></thead>
       <tbody>
-        <tr><td><code>design/init</code></td><td>All current work: specs, tokens, icons, the three libraries, skills and this playbook</td><td><zds-badge-label variant="positive">Work here</zds-badge-label></td></tr>
-        <tr><td><code>main</code></td><td>Released code. It takes <code>design/init</code> once the team agrees to merge</td><td><zds-badge-label variant="warning">Don't commit</zds-badge-label></td></tr>
+        <tr><td><code>main</code></td><td>All current work and every release: specs, tokens, icons, the three libraries, skills and this playbook</td><td><zds-badge-label variant="positive">Work here</zds-badge-label></td></tr>
+        <tr><td><code>design/init</code></td><td>The old work branch, merged into <code>main</code> on 18 Nov 2026</td><td><zds-badge-label variant="warning">Retired</zds-badge-label></td></tr>
         <tr><td><code>design-updates</code>, <code>tooling/instructions</code></td><td>Old branches, deleted on GitHub</td><td><zds-badge-label variant="neutral">Gone</zds-badge-label></td></tr>
       </tbody>
     </table>
@@ -548,8 +548,8 @@
       when: "A new laptop, or someone new joining the work.",
       steps: [
         { text: "Install Node 24, Google Chrome, Python 3 and Claude Code." },
-        { text: "Get the repo, switch to <code>design/init</code>, where all current work happens, and install each library. There is no shared install, so each one runs separately.",
-          run: "git clone https://github.com/multiplayer-studio/zebra-design-system.git\ncd zebra-design-system\ngit switch design/init\ncorepack enable\n(cd packages/web-components && pnpm install)\n(cd packages/react-baseui && pnpm install)\n(cd packages/zeta-web && yarn install)" },
+        { text: "Get the repo, stay on <code>main</code>, where all current work happens, and install each library. There is no shared install, so each one runs separately.",
+          run: "git clone https://github.com/multiplayer-studio/zebra-design-system.git\ncd zebra-design-system\ncorepack enable\n(cd packages/web-components && pnpm install)\n(cd packages/react-baseui && pnpm install)\n(cd packages/zeta-web && yarn install)" },
         { text: "Connect the Figma MCP in Claude Code. Every Figma skill relies on it." },
         { text: "Ask a developer for a Figma token, and save it in <code>.env</code> at the repo root. Never commit that file.",
           run: "FIGMA_PERSONAL_ACCESS_TOKEN=\nFIGMA_FILE_KEY=hvRmnZZOZrmTW0wf8hbrt5" },
@@ -747,22 +747,22 @@
     },
     {
       id: "repo", title: "Update the repo", icon: "refresh", tags: ["Every working session", "Claude Code"],
-      when: "Before you start work, and whenever someone else has pushed. All current work lives on <code>design/init</code>.",
+      when: "Before you start work, and whenever someone else has pushed. All current work lives on <code>main</code>.",
       steps: [
-        { text: "Work only on <code>design/init</code>. Nobody commits to <code>main</code> until the team agrees to merge." },
-        { say: "Check I'm on design/init with nothing uncommitted, then pull the latest from GitHub." },
-        { text: "Or in the terminal:", run: "git switch design/init\ngit pull" },
+        { text: "Work only on <code>main</code>. Releases are cut from it too." },
+        { say: "Check I'm on main with nothing uncommitted, then pull the latest from GitHub." },
+        { text: "Or in the terminal:", run: "git switch main\ngit pull" },
         { say: "Tell me what changed since my last pull, and whether any library needs a fresh install." },
         { text: "If a library's lock file changed, reinstall that library before starting its Storybook.",
           run: "(cd packages/web-components && pnpm install)\n(cd packages/react-baseui && pnpm install)\n(cd packages/zeta-web && yarn install)" },
         { text: "When your own work is ready, save it back with Commit and ship." }
       ],
       example: "ex-repo",
-      done: ["On `design/init`", "`git status` says up to date with `origin/design/init`", "All three Storybooks still start"],
+      done: ["On `main`", "`git status` says up to date with `origin/main`", "All three Storybooks still start"],
       trouble: [
         ["Pull says local changes would be overwritten", "You have uncommitted work. Ask Claude Code to show it, then commit it with Commit and ship or set it aside, before pulling again."],
-        ["The branches have diverged", "Someone pushed while you had unpushed commits. Ask Claude Code to rebase your commits onto <code>origin/design/init</code> and explain any conflicts before it resolves them."],
-        ["You're on another branch", "Old branches such as <code>design-updates</code> are gone from GitHub. Switch back to <code>design/init</code> rather than working there."]
+        ["The branches have diverged", "Someone pushed while you had unpushed commits. Ask Claude Code to rebase your commits onto <code>origin/main</code> and explain any conflicts before it resolves them."],
+        ["You're on another branch", "Old branches such as <code>design-updates</code> are gone from GitHub, and <code>design/init</code> is retired. Switch back to <code>main</code> rather than working there."]
       ]
     },
     {
@@ -771,11 +771,11 @@
       steps: [
         { text: "Check the checks passed. Claude Code only commits when you ask it to." },
         { say: "Show me what's changed and propose commits. Don't commit yet." },
-        { say: "Commit these using Conventional Commits and push to design/init." },
-        { text: "Merging into <code>main</code> happens once, when the team agrees <code>design/init</code> is ready. It isn't part of everyday work." }
+        { say: "Commit these using Conventional Commits and push to main." },
+        { text: "Packages and the plugin are released from <code>main</code>, so what you push is what the next release ships." }
       ],
       example: "ex-ship",
-      done: ["No secrets, `.env` or `.env` backup files in the diff", "Commit messages follow the format", "Pushed to `origin/design/init`"],
+      done: ["No secrets, `.env` or `.env` backup files in the diff", "Commit messages follow the format", "Pushed to `origin/main`"],
       trouble: [
         ["A secret was committed", "Revoke it first, because deleting the file doesn't remove it from history. Copies such as <code>.env_backup</code> count too."],
         ["Push is rejected", "Someone pushed first. Run Update the repo, then push again."],
