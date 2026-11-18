@@ -12,7 +12,7 @@ component, every value is a semantic token, every text uses Figma's style.
 
 It works for any project: any Figma file or section, any frame size (desktop,
 tablet, handheld) and any brand extension. Take the frame size and any
-extension (`ext-companion`, `ext-target`) from the Figma frames, never from an
+extension (`ext-companion`) from the Figma frames, never from an
 earlier page.
 
 ## Rules

@@ -78,4 +78,4 @@
 - Nested rows drop to a 12px type style, which is small for a navigation target. Check it against your minimum readable size.
 
 ---
-*Generated from `specs/sub-menu-item` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/sub-menu-item` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

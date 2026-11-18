@@ -195,6 +195,7 @@ export const iconNames = [
   "comms-chat",
   "comms-chat-new",
   "comms-chat-unread",
+  "companion",
   "contactless-pay",
   "contacts",
   "contacts-outline",

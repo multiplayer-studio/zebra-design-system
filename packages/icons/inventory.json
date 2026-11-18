@@ -3,7 +3,7 @@
     "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
     "nodeId": "2046:6754"
   },
-  "generatedAt": "2026-09-22",
+  "generatedAt": "2026-11-17",
   "styles": [
     "rounded",
     "sharp"
@@ -12,17 +12,17 @@
     {
       "style": "rounded",
       "fontName": "ZdsIcons-Rounded",
-      "glyphs": 715
+      "glyphs": 716
     },
     {
       "style": "sharp",
       "fontName": "ZdsIcons-Sharp",
-      "glyphs": 715
+      "glyphs": 716
     }
   ],
   "counts": {
-    "icons": 724,
-    "glyphs": 1430,
+    "icons": 725,
+    "glyphs": 1432,
     "rejected": 18,
     "retired": 0
   },
@@ -782,6 +782,13 @@
       "figmaName": "AI Stars",
       "category": "AI",
       "setId": "2046:7255"
+    },
+    {
+      "name": "companion",
+      "codepoint": "U+E2D4",
+      "figmaName": "Companion",
+      "category": "AI",
+      "setId": "8606:27690"
     },
     {
       "name": "add-alert",

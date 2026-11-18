@@ -81,4 +81,4 @@
 - The footer’s two actions are the only controls present on every arrangement, which makes them the dependable way out.
 
 ---
-*Generated from `specs/bottom-sheet` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/bottom-sheet` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

@@ -49,10 +49,8 @@ const PROBES = [
   ["companion-dark-same", ["ext-companion mode-dark"]],
   ["dark-then-companion", ["mode-dark", "ext-companion"]],
   ["companion-then-dark", ["ext-companion", "mode-dark"]],
-  ["target", ["ext-target"]],
-  ["target-dark", ["ext-target mode-dark"]],
   ["dark-then-light", ["mode-dark", "mode-light"]],
-  ["deep", ["ext-target", "", "", "mode-dark", ""]],
+  ["deep", ["ext-companion", "", "", "mode-dark", ""]],
 ];
 
 const READ = [
@@ -96,10 +94,8 @@ const EXPECT = [
   ["companion-dark-same", P, "#7e0cff", "extension + mode on one element"],
   ["dark-then-companion", P, "#7e0cff", "mode outside, extension inside"],
   ["companion-then-dark", P, "#7e0cff", "extension outside, mode inside"],
-  ["target", P, "#cc0000", "extension reaches semantics THROUGH primitives"],
-  ["target-dark", P, "#cc0000", "two-layer extension + dark"],
   ["dark-then-light", "--surface-page", "#f3f6fa", "mode-light returns to light inside dark"],
-  ["deep", P, "#cc0000", "survives several levels of nesting"],
+  ["deep", P, "#7e0cff", "survives several levels of nesting"],
   ["deep", "--control-sm", "36px", "dimension tokens unaffected by colour themes"],
 ];
 

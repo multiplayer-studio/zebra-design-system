@@ -1,10 +1,9 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button, Lightbox, type LightboxItem } from "../src/index.js";
-import { MessageInput, type MessageAttachment } from "../src/experimental.js";
+import { MessageInput, type MessageAttachment } from "../src/index.js";
 
-/* Everything previewed here is generated in the browser — no network, as the
-   Chat stories' photos and tone. */
+/* Everything previewed here is generated in the browser — no network. */
 
 const scene = (name: string, sky: string, hill: string): LightboxItem => {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240"><rect width="320" height="240" fill="${sky}"/><circle cx="250" cy="60" r="32" fill="#ffd34d"/><path d="M0 240 120 110l70 70 50-50 80 80v30z" fill="${hill}"/></svg>`;

@@ -76,4 +76,4 @@
 - The drawer is a nav landmark named by navLabel; modal is also a dialog with that name. Modal traps focus, returns it to the menu button and makes the page behind inert. Escape is the keyboard match for a scrim click. The selected row carries aria-current=page and group headers report aria-expanded. Every icon-only control, the close button included, needs an accessible name.
 
 ---
-*Generated from `specs/navigation-drawer` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/navigation-drawer` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

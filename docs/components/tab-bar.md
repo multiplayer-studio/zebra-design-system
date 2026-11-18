@@ -67,4 +67,4 @@
 - The badge is a dot with no text. Where it stands for a count or an alert, that has to be available to a reader some other way.
 
 ---
-*Generated from `specs/tab-bar` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/tab-bar` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

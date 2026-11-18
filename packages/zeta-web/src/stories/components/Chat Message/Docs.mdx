@@ -1,0 +1,118 @@
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+import * as ChatMessage from "./chat-message.stories";
+import * as ChatPhotos from "./chat-photos.stories";
+import * as ChatAttachment from "./chat-attachment.stories";
+
+<Meta of={ChatMessage} title="Chat Message" />
+
+<Title />
+<Description of="zeta-chat-message" />
+<Canvas of={ChatMessage.ChatMessage} />
+<ArgTypes of="zeta-chat-message" />
+
+## Conversation
+
+<Canvas of={ChatMessage.Conversation} />
+
+## Assistant
+
+<Canvas of={ChatMessage.Assistant} />
+
+## Loading
+
+<Canvas of={ChatMessage.Loading} />
+
+## Mobile
+
+<Canvas of={ChatMessage.Mobile} />
+
+## Content
+
+<Canvas of={ChatMessage.Content} />
+
+# Examples
+
+The three Message Sample screens from Figma.
+
+## Mobile · Group channel
+
+Container: Mobile. Instance: Group channel. Press and hold a message for reactions and actions.
+
+<Canvas of={ChatMessage.ExampleMobileGroupChannel} />
+
+## Desktop · Group channel
+
+Container: Desktop. Instance: Group channel. Hover a message for its controls.
+
+<Canvas of={ChatMessage.ExampleDesktopGroupChannel} />
+
+## Desktop · Assistant conversation
+
+Container: Desktop. Instance: Assistant conversation. Your messages sit in bubbles on the right.
+
+<Canvas of={ChatMessage.ExampleDesktopAssistantConversation} />
+
+# Parts
+
+<Description of="zeta-chat-bubble" />
+<ArgTypes of="zeta-chat-bubble" />
+<Description of="zeta-chat-controls" />
+<ArgTypes of="zeta-chat-controls" />
+<Description of="zeta-chat-thread" />
+<ArgTypes of="zeta-chat-thread" />
+
+# Photos
+
+<Description of="zeta-chat-photos" />
+<Canvas of={ChatPhotos.Photos} />
+<ArgTypes of={ChatPhotos} />
+
+## Count
+
+One fills the width, two sit side by side, three put one large tile beside two stacked, and more shows the hidden total on the last tile.
+
+<Canvas of={ChatPhotos.PhotosCount} />
+
+## Show Icon
+
+The placeholder glyph on empty tiles. Turn it off once tiles hold real images.
+
+<Canvas of={ChatPhotos.PhotosShowIcon} />
+
+## Rounded
+
+<Canvas of={ChatPhotos.PhotosRounded} />
+
+# Attachment
+
+<Description of="zeta-chat-attachment" />
+<Canvas of={ChatAttachment.Attachment} />
+<ArgTypes of={ChatAttachment} />
+
+## Type
+
+A file tile with download, a video preview with play and duration, an audio waveform with play and duration.
+
+<Canvas of={ChatAttachment.AttachmentType} />
+
+## Playback
+
+Default is not playing. Active is playing: play becomes pause, and the waveform fills as it plays. A playing video shows its pause control on hover or focus.
+
+<Canvas of={ChatAttachment.AttachmentPlayback} />
+
+## Show Icon
+
+The placeholder glyph on a video with no poster.
+
+<Canvas of={ChatAttachment.AttachmentShowIcon} />
+
+## Long file name
+
+The name truncates at the end; meta is type and size.
+
+<Canvas of={ChatAttachment.AttachmentLongFileName} />
+
+## Rounded
+
+<Canvas of={ChatAttachment.AttachmentRounded} />

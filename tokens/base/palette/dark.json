@@ -1085,7 +1085,7 @@
       },
       "default": {
         "$type": "color",
-        "$value": "{primitives.color.system.negative.60}",
+        "$value": "{primitives.color.system.negative.50}",
         "$description": "Error color (theme.color.error.default)",
         "$extensions": {
           "com.figma": {
@@ -1094,7 +1094,7 @@
             "mode": "Dark",
             "resolvedType": "COLOR",
             "scopes": [],
-            "aliasOf": "VariableID:30:1349"
+            "aliasOf": "VariableID:30:1348"
           }
         }
       },

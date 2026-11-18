@@ -5,7 +5,7 @@ import {
   NavigationItem, PriorityPill, ProgressBar, ScreenHeaderBar, StatusLabel,
 } from "../src/index.js";
 import { Scrollbar } from "../src/index.js";
-import { MessageInput, type MessageAttachment, type MessageSubmission } from "../src/experimental.js";
+import { MessageInput, type MessageAttachment, type MessageSubmission } from "../src/index.js";
 
 /** A clipped region paired with the library Scrollbar (specs/scrollbar): the region keeps the scroll,
     the bar mirrors it as an overlay on the trailing edge. The native scrollbar is hidden; the bar

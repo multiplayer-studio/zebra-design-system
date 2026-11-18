@@ -61,4 +61,4 @@
 - Hover is the only state change and colour its only signal, so nothing here reaches someone who cannot see the bar move.
 
 ---
-*Generated from `specs/scrollbar` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/scrollbar` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

@@ -1,0 +1,1556 @@
+{
+  "component": {
+    "name": "Chat Message",
+    "slug": "chat-message",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "8414:18698",
+      "key": "56e31b332cecfa31044b9622ef2d3fe34b7422d5",
+      "page": "Chat Message",
+      "pageNodeId": "8414:18615",
+      "metadataFrameId": "8465:4774",
+      "subcomponentMetadataFrameId": "8465:5030",
+      "extractedAt": "2026-11-17",
+      "extractionNote": "Eight sets on the page: Chat Message (116 variants) and its seven parts, Bubble (20), Controls (4), Loading Indicator (2), Photos (8), Attachments (10), Thread (2) and Timestamp. The master was read as one outline per Style × Role × State × Sequence, then compared across Platform and Rounded. The example frames on the page are ignored."
+    }
+  },
+  "summary": "One message in a chat, from someone else, you or the assistant. Style sets the setting: channel for group chats, conversation for assistant and one-to-one chats. Platform sets how actions open: hover on desktop, long press on mobile. Sequence separates the first message in a run, which carries the header, from the consecutive messages under it.",
+  "api": {
+    "platform": {
+      "type": "enum",
+      "figmaName": "Platform",
+      "values": [
+        "mobile",
+        "desktop"
+      ],
+      "default": "desktop",
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "desktop": "Controls appear on hover or focus, beside the header.",
+        "mobile": "No controls on the message. A long press opens reactions and actions over a scrim. The message component container is also surfaced above the scrim."
+      }
+    },
+    "style": {
+      "type": "enum",
+      "figmaName": "Style",
+      "values": [
+        "conversation",
+        "channel"
+      ],
+      "default": "channel",
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "channel": "Used in group conversations within organizations. Every message, yours included, uses a text-style bubble on the page with avatar and name, and is right aligned within the chat area",
+        "conversation": "Used in AI assistant conversations and one-to-one chats. Your messages sit in a bubble on the right; others stay on the left."
+      }
+    },
+    "role": {
+      "type": "enum",
+      "figmaName": "Role",
+      "values": [
+        "receiver",
+        "sender",
+        "assistant"
+      ],
+      "figmaValues": [
+        "receiver (other)",
+        "sender (you)",
+        "assistant (ai)"
+      ],
+      "default": "receiver",
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "receiver": "Someone else, not an assistant or yourself, the sender. Avatar and name on the left. A bubble message style is used in conversation, while a no fill bubble is used in channels.",
+        "sender": "Yourself, the first-person perspective of the chat. A bubble message style is used in conversation, while a no fill bubble is used in channels.",
+        "assistant": "The assistant. It uses it’s own avatar and always uses no fill bubbles for both channel and conversations."
+      }
+    },
+    "state": {
+      "type": "enum",
+      "figmaName": "State",
+      "values": [
+        "default",
+        "active",
+        "loading"
+      ],
+      "default": "default",
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "default": "A message at it’s rest state, with no hover state or controls shown.",
+        "active": "Enabled by hovering on message on desktop, on press/hold of a message on mobile. Shows actions for the one message.",
+        "loading": "For the assistant role, this shows a loading state when a message is generating. For receiver roles, this loading state is used to show when a message is being typed by them."
+      }
+    },
+    "sequence": {
+      "type": "enum",
+      "figmaName": "Sequence",
+      "values": [
+        "first",
+        "consecutive"
+      ],
+      "default": "first",
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "first": "Starts a run from one sender. Shows avatar, name and timestamp.",
+        "consecutive": "Follows a message from the same sender. Header and avatar are hidden on default and content lines up under the first. A message is considered a consecutive message if it is a separate input/entry from the text field."
+      }
+    },
+    "rounded": {
+      "type": "boolean",
+      "figmaName": "Rounded",
+      "default": true,
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "true": "Rounded corners on the bubble, controls and attachments.",
+        "false": "Sharp corners throughout."
+      }
+    },
+    "showAvatar": {
+      "type": "boolean",
+      "figmaName": "Show Avatar#7230:0",
+      "default": true,
+      "controls": [
+        "avatar"
+      ],
+      "intent": "The avatar icon. Avatar is off on consecutive messages and not shown on sender convo style messages."
+    },
+    "showHeader": {
+      "type": "boolean",
+      "figmaName": "Show Header#7230:7",
+      "default": true,
+      "controls": [
+        "header"
+      ],
+      "intent": "Name and timestamp. Off on consecutive messages."
+    },
+    "showReply": {
+      "type": "boolean",
+      "figmaName": "Show Reply#7230:14",
+      "default": false,
+      "controls": [
+        "reply"
+      ],
+      "intent": "A quoted line tagging the user and the message this one message is answering in response to."
+    },
+    "showReactions": {
+      "type": "boolean",
+      "figmaName": "Show Reactions#7230:21",
+      "default": false,
+      "controls": [
+        "reactions"
+      ],
+      "intent": "Turns on Reactions Slot under the content, showing all reactions selected from the Reaction Controls."
+    },
+    "showFooter": {
+      "type": "boolean",
+      "figmaName": "Show Footer#7230:35",
+      "default": false,
+      "controls": [
+        "footer"
+      ],
+      "intent": "Delivery status/read receipts under your own message. Is only applicable to your most recently sent message."
+    },
+    "attachments": {
+      "type": "boolean",
+      "figmaName": "Attachments#7272:12",
+      "default": false,
+      "controls": [
+        "attachments"
+      ],
+      "intent": "Turns on Attachment Slot under the text."
+    },
+    "hideTime": {
+      "type": "boolean",
+      "figmaName": "Hide Time#8414:31",
+      "default": true,
+      "controls": [
+        "timeColumn (visibility)"
+      ],
+      "intent": "Keeps the timestamp hidden for consecutive messages until hover states. When hidden, the slot should remain present, meaning the messages will remain indented regardless of the timestamp being hidden or revealed."
+    },
+    "reactionControls": {
+      "type": "boolean",
+      "figmaName": "Reaction Controls#8440:331",
+      "default": false,
+      "controls": [
+        "reactionRow"
+      ],
+      "intent": "Shows the reactions row above the controls."
+    },
+    "showControls": {
+      "type": "boolean",
+      "figmaName": "Show Controls#8592:0",
+      "default": true,
+      "controls": [
+        "controls (assistant)"
+      ],
+      "intent": "Only applicant to the assistant message variants. Hides the controls below the message when false. Show Controls should be set to false for all desktop previous assistant messages excluding the most recent one it has sent."
+    },
+    "expandMenu": {
+      "type": "boolean",
+      "figmaName": "Expand Menu#7856:44",
+      "default": false,
+      "controls": [
+        "menu"
+      ],
+      "intent": "Shows the action menu, including a slot to include more action controls."
+    },
+    "name": {
+      "type": "string",
+      "figmaName": "Name#7230:42",
+      "default": "First Last",
+      "controls": [
+        "name"
+      ],
+      "intent": "The example uses placeholder copies, but should surface the user’s name for the respective message."
+    },
+    "replyTo": {
+      "type": "string",
+      "figmaName": "Reply To#7230:63",
+      "default": "First Last",
+      "controls": [
+        "reply.author"
+      ],
+      "intent": "The example uses placeholder copies, but should surface the user’s who’s message is being responded too for when “Show Reply” is true"
+    },
+    "replyText": {
+      "type": "string",
+      "figmaName": "Reply Text#7230:70",
+      "default": "Is the chilled delivery here yet?",
+      "controls": [
+        "reply.text"
+      ],
+      "intent": "The example uses placeholder copies, but should feature respectively the the message being responded to when “Show Reply” is true."
+    },
+    "attachmentSlot": {
+      "type": "slot",
+      "figmaName": "Attachment Slot#7272:5",
+      "accepts": [
+        "Photos",
+        "Attachments",
+        "Thread (moves to the thread container in code)"
+      ],
+      "preferredCount": 6,
+      "controls": [
+        "attachments"
+      ],
+      "intent": "The message body that included along with a message. This slot could hold photos, attachments or a thread containing message bubbles but never another message bubble on it’s own."
+    },
+    "reactionsSlot": {
+      "type": "slot",
+      "figmaName": "Reactions Slot#8152:9",
+      "accepts": [
+        "Assist Chip"
+      ],
+      "controls": [
+        "reactions"
+      ],
+      "intent": "A slot carrying reaction chips that indicate the selected type and number of each reaction for a single message."
+    },
+    "timestampSlot": {
+      "type": "slot",
+      "figmaName": "Timestamp Slot#8414:0",
+      "accepts": [
+        "Timestamp"
+      ],
+      "controls": [
+        "timeColumn"
+      ],
+      "intent": "Holds the Timestamp."
+    }
+  },
+  "internalVariations": [
+    {
+      "part": "bubble",
+      "subcomponent": "Bubble",
+      "options": "Style (fill|none), Status (single|first|middle|last), Role (sender|receiver)",
+      "_note": "Pinned per variant from Style and Role (see variants). Status follows the run, which the parent doesn't expose."
+    }
+  ],
+  "contentInputs": [
+    {
+      "part": "bubble.message",
+      "input": "text",
+      "sample": "Chilled delivery is in at door 2."
+    },
+    {
+      "part": "timestamp",
+      "input": "time, formatted by the product",
+      "sample": "09:41"
+    },
+    {
+      "part": "loading.label",
+      "input": "label",
+      "sample": "Thinking (assistant) / Typing (receiver, sender)"
+    },
+    {
+      "part": "reactions",
+      "input": "Assist Chip per reaction (emoji and count)",
+      "sampleCount": 2,
+      "sample": "3 (Color=blue), 1 (Color=neutral)"
+    },
+    {
+      "part": "footer.status",
+      "input": "label",
+      "sample": "Seen",
+      "_note": "The text layer is hidden; only the check-mark glyph shows."
+    },
+    {
+      "part": "menu",
+      "input": "Dropdown Menu items",
+      "_note": "Not readable on the page. Metadata lists Copy text, Reply, Forward, Mark as unread, plus product actions."
+    }
+  ],
+  "anatomyNumbering": {
+    "1": "avatar and header",
+    "2": "message content",
+    "3": "reactions and footer",
+    "4": "controls"
+  },
+  "anatomy": [
+    {
+      "id": "root",
+      "kind": "container",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/sm",
+        "padding": {
+          "top": "space/card on Sequence=first with a header, space/sm otherwise",
+          "inline": "space/sm",
+          "bottom": "space/sm"
+        }
+      },
+      "sizing": {
+        "h": "fixed (measured 400Px; fills the list per the metadata)",
+        "v": "hug"
+      },
+      "paint": {
+        "fill": "none at rest · interactive/ghost/background/hover when Platform=desktop and State=active",
+        "radius": "radius/md (radius/none when Rounded=false)"
+      }
+    },
+    {
+      "id": "avatar",
+      "kind": "instance",
+      "of": "Avatar",
+      "props": {
+        "Size": "xsmall",
+        "Show Status": false,
+        "Show Ring": false,
+        "Show Close": false
+      },
+      "visibleWhen": "showAvatar and Sequence=first and not (Style=conversation and Role=sender)"
+    },
+    {
+      "id": "timeColumn",
+      "kind": "slot",
+      "role": "Timestamp Slot. Takes the avatar's column on consecutive messages, so their content lines up under the first.",
+      "visibleWhen": "Sequence=consecutive and hideTime",
+      "layout": {
+        "blockSize": "one body/small line (the slot is 18 for the 16 time)",
+        "align": "time centred on the message's first line",
+        "paddingTop": "space/sm in conversation (the bubble's padding)"
+      },
+      "sizing": {
+        "h": "fixed (avatar width)"
+      },
+      "content": "Timestamp, shown only when State=active"
+    },
+    {
+      "id": "main",
+      "kind": "container",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/sm",
+        "counterAlign": "end for Style=conversation, Role=sender"
+      },
+      "sizing": {
+        "h": "fill (hug for conversation sender)",
+        "v": "hug"
+      },
+      "clips": true
+    },
+    {
+      "id": "header",
+      "parent": "main",
+      "kind": "container",
+      "visibleWhen": "showHeader and Sequence=first and not (Style=conversation and Role=sender)",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/xs",
+        "counterAlign": "baseline"
+      },
+      "children": {
+        "name": {
+          "kind": "text",
+          "textStyle": "label/medium",
+          "color": "foreground/primary",
+          "from": "name"
+        },
+        "timestamp": {
+          "kind": "instance",
+          "of": "Timestamp"
+        }
+      }
+    },
+    {
+      "id": "reply",
+      "parent": "main",
+      "kind": "container",
+      "visibleWhen": "showReply",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/2xs",
+        "counterAlign": "center"
+      },
+      "children": {
+        "icon": {
+          "glyph": "reply",
+          "size": "control/icon-xs"
+        },
+        "author": {
+          "kind": "text",
+          "textStyle": "label/small",
+          "color": "foreground/primary",
+          "from": "replyTo"
+        },
+        "text": {
+          "kind": "text",
+          "textStyle": "body/xsmall",
+          "color": "foreground/secondary",
+          "from": "replyText",
+          "sizing": "fill"
+        }
+      },
+      "_note": "Mobile conversation receiver puts the reply line above the header; elsewhere it sits under it."
+    },
+    {
+      "id": "content",
+      "parent": "main",
+      "kind": "container",
+      "visibleWhen": "State != loading",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/sm"
+      },
+      "children": {
+        "bubble": {
+          "kind": "instance",
+          "of": "Bubble"
+        },
+        "attachments": {
+          "kind": "slot",
+          "from": "attachmentSlot",
+          "visibleWhen": "attachments",
+          "layout": {
+            "direction": "vertical",
+            "gap": "space/sm"
+          }
+        }
+      }
+    },
+    {
+      "id": "loading",
+      "kind": "instance",
+      "of": "Loading Indicator",
+      "visibleWhen": "State=loading",
+      "_note": "Inside main under the header on a first message; in place of main on consecutive ones."
+    },
+    {
+      "id": "reactions",
+      "parent": "main",
+      "kind": "slot",
+      "from": "reactionsSlot",
+      "visibleWhen": "showReactions and Role != assistant",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/2xs"
+      }
+    },
+    {
+      "id": "footer",
+      "parent": "main",
+      "kind": "container",
+      "visibleWhen": "showFooter and Role != assistant",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/2xs",
+        "counterAlign": "center"
+      },
+      "children": {
+        "icon": {
+          "glyph": "check-mark",
+          "size": "Icon Size=small"
+        },
+        "status": {
+          "kind": "text",
+          "textStyle": "body/xsmall",
+          "color": "foreground/secondary",
+          "hidden": true
+        }
+      }
+    },
+    {
+      "id": "thread",
+      "kind": "container",
+      "role": "The reply thread. Figma carries it in the Attachment Slot; in code it moves to its own container under the message, outside the message's surface.",
+      "layout": {
+        "padding": {
+          "inline-start": "space/sm + control/sm + space/sm (lines up with the message text)",
+          "inline-end": "space/sm"
+        }
+      },
+      "behavior": "Opening it or hovering a reply never makes the parent active. Hover highlights only the item under the pointer (spec Threads)."
+    },
+    {
+      "id": "controls",
+      "kind": "instance",
+      "of": "Controls",
+      "perRole": {
+        "receiver, sender": {
+          "visibleWhen": "Platform=desktop and State=active",
+          "props": "Style=fill",
+          "position": "absolute, top-right (anchor right/top), lifted to overlap the message top",
+          "glyphs": [
+            "happy",
+            "reply",
+            "forward",
+            "more-horizontal"
+          ]
+        },
+        "assistant": {
+          "visibleWhen": "showControls and State != loading",
+          "props": "Style=none",
+          "position": "in flow, last in main",
+          "glyphs": [
+            "copy-file",
+            "reply",
+            "refresh"
+          ]
+        }
+      }
+    },
+    {
+      "id": "reactionRow",
+      "kind": "instance",
+      "of": "Controls",
+      "props": "Style=fill",
+      "visibleWhen": "reactionControls and State=active and Role != assistant",
+      "position": "absolute. Desktop: top-right above the controls. Mobile: above the message, left (right for conversation sender)."
+    },
+    {
+      "id": "menu",
+      "kind": "instance",
+      "of": "Dropdown Menu",
+      "props": {
+        "Compact": true,
+        "More Items": true
+      },
+      "visibleWhen": "expandMenu and State=active and Role != assistant",
+      "position": "absolute. Desktop: right, under the controls. Mobile: under the message, left (right for conversation sender)."
+    }
+  ],
+  "variants": [
+    {
+      "axis": "style × role",
+      "base": "channel, receiver",
+      "table": [
+        {
+          "style": "channel",
+          "role": "receiver",
+          "avatar": "yes",
+          "bubble": "Style=none, Role=receiver",
+          "align": "start"
+        },
+        {
+          "style": "channel",
+          "role": "sender",
+          "avatar": "yes",
+          "bubble": "Style=none, Role=sender",
+          "align": "start"
+        },
+        {
+          "style": "channel",
+          "role": "assistant",
+          "avatar": "—",
+          "bubble": "Style=none, Role=sender",
+          "align": "start",
+          "_note": "Consecutive only; no first variant."
+        },
+        {
+          "style": "conversation",
+          "role": "receiver",
+          "avatar": "yes",
+          "bubble": "Style=fill, Role=receiver",
+          "align": "start"
+        },
+        {
+          "style": "conversation",
+          "role": "sender",
+          "avatar": "no, no header",
+          "bubble": "Style=fill, Role=sender",
+          "align": "end"
+        },
+        {
+          "style": "conversation",
+          "role": "assistant",
+          "avatar": "yes",
+          "bubble": "Style=none, Role=receiver (first) / sender (consecutive)",
+          "align": "start",
+          "controls": "in flow, Style=none"
+        }
+      ]
+    },
+    {
+      "axis": "state",
+      "base": "default",
+      "table": [
+        {
+          "state": "default",
+          "surface": "none",
+          "controls": "assistant only"
+        },
+        {
+          "state": "active",
+          "surface": "interactive/ghost/background/hover on desktop; none on mobile",
+          "controls": "desktop: floating Controls Style=fill; reactionRow and menu behind their toggles"
+        },
+        {
+          "state": "loading",
+          "content": "Loading Indicator in place of the bubble",
+          "exists": "assistant conversation first, and every role consecutive"
+        }
+      ]
+    },
+    {
+      "axis": "sequence",
+      "base": "first",
+      "table": [
+        {
+          "sequence": "first",
+          "leading": "avatar",
+          "header": "shown",
+          "paddingTop": "space/card"
+        },
+        {
+          "sequence": "consecutive",
+          "leading": "timeColumn (Timestamp on active)",
+          "header": "hidden",
+          "paddingTop": "space/sm",
+          "measuredHeightPx": "34 single line, 50 with a fill bubble"
+        }
+      ]
+    },
+    {
+      "axis": "rounded",
+      "base": "true",
+      "table": [
+        {
+          "rounded": "true",
+          "root": "radius/md",
+          "children": "Rounded=true"
+        },
+        {
+          "rounded": "false",
+          "root": "radius/none",
+          "children": "Rounded=false"
+        }
+      ]
+    }
+  ],
+  "subcomponents": [
+    {
+      "name": "Bubble",
+      "setId": "8414:19217",
+      "key": "931f61902d58a664ab1175226ae0781d87327f59",
+      "api": {
+        "message": {
+          "type": "string",
+          "figmaName": "Message#7229:0",
+          "default": "On my way.",
+          "intent": "The message text surfaced within a bubble."
+        },
+        "style": {
+          "type": "enum",
+          "values": [
+            "fill",
+            "none"
+          ],
+          "default": "fill",
+          "intent": {
+            "fill": "A tinted bubble. Receiver or sender messages in a conversation are in bubbles.",
+            "none": "Plain text, with no filled bubble. Everyone in channel; others in conversations."
+          }
+        },
+        "status": {
+          "type": "enum",
+          "values": [
+            "single",
+            "first",
+            "middle",
+            "last"
+          ],
+          "default": "single",
+          "intent": {
+            "single": "A singular on its own, not followed by a consecutive message. All corners round.",
+            "first": "Opens a run. The corner toward the next message tightens.",
+            "middle": "Inside a run. Both inner corners tighten.",
+            "last": "Closes a run. The corner toward the previous message tightens."
+          }
+        },
+        "role": {
+          "type": "enum",
+          "values": [
+            "sender",
+            "receiver"
+          ],
+          "default": "sender",
+          "intent": {
+            "sender": "Yourself, the first-person perspective of the chat.",
+            "receiver": "Someone else, not an assistant or yourself, the sender."
+          }
+        },
+        "rounded": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "anatomy": {
+        "root": {
+          "layout": "horizontal, padding space/sm block, space/md inline",
+          "fill": "sender interactive/primary/background/default · receiver surface/brand · Style=none: none and no padding",
+          "radius": "radius/lg, with the inner corners at radius/xs per Status; radius/none when Rounded=false"
+        },
+        "message": {
+          "textStyle": "body/small",
+          "color": "foreground/on-strong (fill sender) · foreground/primary otherwise",
+          "sizing": "fill"
+        }
+      },
+      "statusCorners": {
+        "first": "sender: bottom-end radius/xs · receiver: bottom-start radius/xs",
+        "middle": "sender: top-end and bottom-end · receiver: top-start and bottom-start",
+        "last": "sender: top-end · receiver: top-start"
+      },
+      "variantNote": "Style=none exists only at Status=single."
+    },
+    {
+      "name": "Controls",
+      "setId": "8414:19258",
+      "key": "3480e3b51e7d5c1c2561dfdb8a7dae346de9bffa",
+      "api": {
+        "controlSlot": {
+          "type": "slot",
+          "figmaName": "Control Slot#7270:0",
+          "accepts": [
+            "Icon Button"
+          ],
+          "intent": "Extra actions that are enabled alongside basic selections such as reactions, reply and more."
+        },
+        "style": {
+          "type": "enum",
+          "values": [
+            "none",
+            "fill"
+          ],
+          "default": "fill",
+          "intent": {
+            "fill": "Control bar has a filled color.",
+            "none": "Control bar does not have a filled cover and is transparent."
+          }
+        },
+        "rounded": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "anatomy": {
+        "root": {
+          "layout": "horizontal, gap and padding space/3xs",
+          "fill": "surface/overlay (Style=fill) · none",
+          "effect": "Shadow/small",
+          "radius": "radius/md · radius/none"
+        },
+        "react": {
+          "of": "Icon Button Size=small, Flavour=text",
+          "glyph": "happy",
+          "intent": "Opens the reactions row above the controls."
+        },
+        "controlSlot": {
+          "default": "Reply (Icon Button, glyph reply)",
+          "intent": "Reply by default. Holds extra product actions."
+        },
+        "more": {
+          "of": "Icon Button Size=small, Flavour=text",
+          "glyph": "more-horizontal",
+          "intent": "Opens the action menu as a popover. Closes the reactions row."
+        }
+      }
+    },
+    {
+      "name": "Loading Indicator",
+      "setId": "8414:19269",
+      "key": "297721d3f558a706df7d593f5423a856a75f9d62",
+      "api": {
+        "label": {
+          "type": "string",
+          "figmaName": "Label#7815:2",
+          "default": "Thinking",
+          "intent": "Indicates what the the assistant or receiver is doing as a loading indication on the sender’s end. Typically indicated as “Thinking” or “Pondering” for assistant, and “Typing” for receivers. Short, present tense."
+        },
+        "rounded": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "anatomy": {
+        "root": {
+          "layout": "horizontal, gap space/xs, centred"
+        },
+        "dots": {
+          "count": 3,
+          "gap": "space/3xs",
+          "size": "space/2xs",
+          "fill": "foreground/tertiary",
+          "opacity": "1, 0.6, 0.3 (no token)",
+          "radius": "radius/lg · radius/none"
+        },
+        "label": {
+          "textStyle": "label/small",
+          "color": "foreground/tertiary"
+        }
+      }
+    },
+    {
+      "name": "Timestamp",
+      "setId": "8414:24563",
+      "key": "cd8d1064860b1b6306b08597fa2b50d016a6e16d",
+      "api": {},
+      "anatomy": {
+        "time": {
+          "textStyle": "body/xsmall",
+          "color": "foreground/secondary",
+          "sample": "09:41",
+          "_note": "Not a property. The product formats it."
+        }
+      }
+    },
+    {
+      "name": "Thread",
+      "setId": "8440:34713",
+      "key": "b95bb271f5beaa42bda37a0e28cfb5470c6d3b32",
+      "api": {
+        "state": {
+          "type": "enum",
+          "figmaName": "state",
+          "values": [
+            "default",
+            "open"
+          ],
+          "default": "default",
+          "intent": {
+            "default": "Collapsed on default. \"X replies\" and a down caret to indicated number of replies within a thread.",
+            "open": "Expanded. Caret points up; Thread Slot shows the replies."
+          }
+        },
+        "replyCount": {
+          "type": "string",
+          "figmaName": "Reply Count#8440:390",
+          "default": "3",
+          "intent": "Number of replies within a thread."
+        },
+        "threadSlot": {
+          "type": "slot",
+          "figmaName": "Thread Slot#8440:393",
+          "accepts": [
+            "Chat Message"
+          ],
+          "preferredCount": 3,
+          "intent": "The reply messages, each a Chat Message."
+        }
+      },
+      "anatomy": {
+        "toggle": {
+          "layout": "horizontal, gap space/xs, padding space/2xs block, centred",
+          "count": "Reply Count + \"replies\" (\"reply\" for one), body/xsmall, gap space/3xs (colour unbound, see issues)",
+          "divider": "Divider, horizontal, fills",
+          "caret": "Caret Indicator, Direction=vertical, Size=medium; expand-more closed, expand-less open",
+          "alignment": "count, divider and caret centred on the row (metadata); the divider must not stretch"
+        },
+        "threadSlot": {
+          "visibleWhen": "state=open",
+          "layout": "vertical, padding-bottom space/sm",
+          "sizing": "fill"
+        }
+      }
+    },
+    {
+      "name": "Photos",
+      "setId": "8414:19282",
+      "key": "5dd7b38a47c3bdfb48c4e6fac088840c6f9585ff",
+      "api": {
+        "count": {
+          "type": "enum",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "more"
+          ],
+          "default": "1",
+          "intent": {
+            "1": "One photo, full width.",
+            "2": "Two equal tiles.",
+            "3": "One large tile and two stacked.",
+            "more": "As 3, with the last tile showing Extra Count."
+          }
+        },
+        "extraCount": {
+          "type": "string",
+          "figmaName": "Extra Count#7815:5",
+          "default": "+2",
+          "intent": "How many photos are hidden on default view."
+        },
+        "showIcon": {
+          "type": "boolean",
+          "figmaName": "Show Icon#8152:0",
+          "default": true,
+          "intent": "The placeholder indicating file-type icon. Show Icon should be false once a component has been filled with a real image."
+        },
+        "rounded": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "anatomy": {
+        "root": {
+          "layout": "horizontal, gap space/3xs",
+          "sizing": "measured 288×192Px"
+        },
+        "photo": {
+          "fill": "image over surface/card",
+          "stroke": "border/subtle at stroke/thin",
+          "radius": "radius/lg · radius/none",
+          "icon": "image glyph foreground/tertiary, Icon Size=medium, centred, when showIcon"
+        },
+        "stack": {
+          "visibleWhen": "count in [3, more]",
+          "layout": "vertical, gap space/3xs, two tiles"
+        },
+        "extraCount": {
+          "visibleWhen": "count=more",
+          "position": "absolute, bottom-right",
+          "layout": "padding space/3xs block, space/xs inline",
+          "fill": "surface/inverse",
+          "radius": "radius/pill",
+          "text": "body/xsmall, foreground/inverse"
+        }
+      }
+    },
+    {
+      "name": "Attachments",
+      "setId": "8414:19335",
+      "key": "3ffd9e4182f62213a3bc83fef1ac758f0ca2068c",
+      "api": {
+        "type": {
+          "type": "enum",
+          "values": [
+            "file",
+            "video",
+            "audio"
+          ],
+          "default": "file",
+          "intent": {
+            "file": "A file tile with name, meta and download icon.",
+            "video": "A video preview with play and duration. One per attachment.",
+            "audio": "A waveform with play and duration."
+          }
+        },
+        "playback": {
+          "type": "enum",
+          "values": [
+            "default",
+            "active"
+          ],
+          "default": "default",
+          "intent": {
+            "default": "Not playing.",
+            "active": "Playing. Play becomes pause; the waveform fills."
+          },
+          "_note": "No file × active variant."
+        },
+        "fileName": {
+          "type": "string",
+          "figmaName": "File Name#7834:0",
+          "default": "Delivery receipt.pdf"
+        },
+        "fileMeta": {
+          "type": "string",
+          "figmaName": "File Meta#7834:19",
+          "default": "PDF · 248 KB"
+        },
+        "duration": {
+          "type": "string",
+          "figmaName": "Duration#7834:38",
+          "default": "0:08"
+        },
+        "showIcon": {
+          "type": "boolean",
+          "figmaName": "Show Icon#8461:825",
+          "default": true
+        },
+        "rounded": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "anatomy": {
+        "file": {
+          "root": "horizontal, gap space/sm, padding space/sm block, space/xs inline; surface/card, border/subtle at stroke/thin, radius/lg",
+          "tile": "control/sm square, surface/card, document glyph interactive/primary/background/default (Icon Size=large)",
+          "text": "vertical, gap space/2xs, padding-end space/lg; name label/medium foreground/primary, one line, truncates; meta body/xsmall foreground/tertiary",
+          "download": "Icon Button Size=medium, Flavour=text, glyph download overridden to foreground/secondary"
+        },
+        "video": {
+          "root": "surface/subtle, radius/lg, clips",
+          "poster": "image glyph foreground/tertiary, top-start, when showIcon",
+          "play": "Icon Button Size=large, Shape=full (sharp when not rounded), Flavour=primary overridden to surface/card fill and an interactive/primary/background/default glyph",
+          "durationChip": "surface/inverse, radius/pill, body/xsmall foreground/inverse"
+        },
+        "audio": {
+          "root": "as file, padding-end space/md",
+          "play": "Icon Button Size=small, Shape=full (sharp when not rounded), Flavour=primary overridden to surface/card fill and an interactive/primary/background/default glyph, control/xs; pause when active",
+          "waveform": "bars stroke/thick wide, radius/pill, gap space/3xs, height control/icon-md; interactive/primary/background/disabled, played bars interactive/primary/background/default",
+          "duration": "body/xsmall foreground/tertiary (Elapsed while active)"
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    "Avatar",
+    "Icon",
+    "Icon Button",
+    "Assist Chip",
+    "Dropdown Menu",
+    "Divider",
+    "Caret Indicator",
+    "Scrim (mobile long press, outside the component)"
+  ],
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "interactive/ghost/background/hover",
+      "interactive/primary/background/default",
+      "interactive/primary/background/disabled",
+      "surface/brand",
+      "surface/overlay",
+      "surface/card",
+      "surface/subtle",
+      "surface/inverse",
+      "border/subtle",
+      "foreground/primary",
+      "foreground/secondary",
+      "foreground/tertiary",
+      "foreground/on-strong",
+      "foreground/inverse"
+    ],
+    "dimension": [
+      "space/none",
+      "space/3xs",
+      "space/2xs",
+      "space/xs",
+      "space/sm",
+      "space/md",
+      "space/lg",
+      "space/card",
+      "radius/none",
+      "radius/xs",
+      "radius/md",
+      "radius/lg",
+      "radius/pill",
+      "stroke/thin",
+      "stroke/thick",
+      "control/xs",
+      "control/sm",
+      "control/md",
+      "control/lg",
+      "control/icon-xs",
+      "control/icon-md"
+    ],
+    "typography": [
+      "label/medium",
+      "label/small",
+      "body/small",
+      "body/xsmall"
+    ],
+    "effects": [
+      "Shadow/small"
+    ],
+    "motion": [
+      "animations/smooth"
+    ],
+    "glyphs": [
+      "reply",
+      "check-mark",
+      "happy",
+      "forward",
+      "more-horizontal",
+      "copy-file",
+      "refresh",
+      "image",
+      "document",
+      "download",
+      "play",
+      "pause",
+      "expand-more",
+      "expand-less"
+    ],
+    "glyphNote": "All are rounded font glyphs, present and not retired in packages/icons/codepoints.json. They take currentColor from their Icon or Icon Button.",
+    "themeAxes": "palette (Light, Dark, AAA Light, AAA Dark), size (Desktop, Mobile, Tablet, Desktop Compact) and every brand extension."
+  },
+  "states": [
+    {
+      "State": "default",
+      "Trigger": "Resting",
+      "Duration": "—",
+      "What changes": "No controls. Transparent surface."
+    },
+    {
+      "State": "active · desktop",
+      "Trigger": "Pointer over the message, or focus inside it",
+      "Duration": "animations/smooth",
+      "What changes": "Surface of message takes interactive/ghost/background/hover. Controls appear in the gap beside the header."
+    },
+    {
+      "State": "reactions open · desktop",
+      "Trigger": "Reactions control pressed",
+      "Duration": "—",
+      "What changes": "A row of 5 or more emoji appears above the controls. Closes the expanded menu if it was open."
+    },
+    {
+      "State": "menu open · desktop",
+      "Trigger": "More control pressed",
+      "Duration": "—",
+      "What changes": "The menu opens as a popover layered above the message list. Closes the reactions row if it was open."
+    },
+    {
+      "State": "press/hold · mobile",
+      "Trigger": "Long press on the message",
+      "Duration": "about 450 ms",
+      "What changes": "A scrim covers the screen. The pressed message shows in focus above the scrim, reactions above it, actions below. The basic controls are not shown here, and are covered by the reaction controls and expanded menu only."
+    },
+    {
+      "State": "dismissed",
+      "Trigger": "Escape, a press outside, or a tap on the scrim",
+      "Duration": "—",
+      "What changes": "Everything closes. Focus returns to the message."
+    },
+    {
+      "State": "loading",
+      "Trigger": "Assistant or receiver starts a reply",
+      "Duration": "until first text",
+      "What changes": "Content is the Loading Indicator with its label. The loading ellipses slowly fade in a rippling effect from left to right."
+    },
+    {
+      "State": "consecutive",
+      "Trigger": "Same sender follows on",
+      "Duration": "—",
+      "What changes": "Avatar and header hide. Each consecutive message keeps its own controls."
+    },
+    {
+      "State": "Thread open",
+      "Trigger": "Reply count or caret pressed",
+      "Duration": "—",
+      "What changes": "Caret flips. Replies appear in the Thread Slot under it. Pressing again collapses."
+    },
+    {
+      "State": "Playback active",
+      "Trigger": "Play pressed on audio or video",
+      "Duration": "length of the clip",
+      "What changes": "Play becomes pause. The audio waveform fills as it plays."
+    },
+    {
+      "State": "Control pressed",
+      "Trigger": "Reactions or more pressed",
+      "Duration": "—",
+      "What changes": "The control takes the pressed ghost surface while its row or menu is open."
+    }
+  ],
+  "behavior": [
+    {
+      "Type": "Grouping",
+      "Description": "Only the first message in a run shows avatar, name and time. Every message keeps its own controls; actions never apply to a whole group."
+    },
+    {
+      "Type": "Desktop controls",
+      "Description": "Reactions toggle, menu toggle, and a slot for extra actions. Shown on hover or focus, placed in the gap beside the header. Additionally,  reactions row and the menu never show together. Opening one closes the other. Controls appear with 16px overlap using space/lg token, into the parent component’s container from the top, to avoid covering the bubble."
+    },
+    {
+      "Type": "Desktop menu",
+      "Description": "A popover layered above the message list. It does not push the list or the message."
+    },
+    {
+      "Type": "Mobile long press",
+      "Description": "No three-dot control. On mobile, every message works by long press only. A long press opens a scrim and shows for each pressed message, with the message in focus above the scrim, the reaction controls above it and the action menu below it, layered above the scrim as well, so it is clear which message was picked. When the menu won’t fit, slide the held message up just enough, leaving space/sm at the bottom and keeping the reactions on screen."
+    },
+    {
+      "Type": "Mobile actions",
+      "Description": "Copy text, Reply, Forward, Mark as unread, plus product actions through the slot."
+    },
+    {
+      "Type": "Threads",
+      "Description": "In Figma, a thread in the Attachment Slot shows \"X replies\" and a caret. In implementation, move the thread out of the Attachment Slot into its own container under the message, indented to line up with the message text. Pressing it expands the replies into its own slot, and collapses them. When a thread is opened or expanded, the parent’s message should no longer be in an active/hover state because each individual message within the thread has it’s own active/hover state behavior. Hover highlights only the item under the pointer (message or reply), not both."
+    },
+    {
+      "Type": "Motion",
+      "Description": "Hover surface and controls fade with animations/smooth. Scrim and lift on mobile have no motion defined yet."
+    },
+    {
+      "Type": "Assistant message controls",
+      "Description": "For messages with an assistant on desktop only, controls will always shown as the default state only on the assistant’s most recently sent message. Other prior messages from the assistant will use the default state behavior, which only shows the controls on hover. The space for the controls should always be maintained consistent if Show Controls is true or false, in order to avoid shifting messages height when hovering.  On mobile, controls will always be visible as the default state for all messages, regardless of order. Reaction controls and expanded menu are not applicable to assistant messages on both mobile and desktop behavior."
+    },
+    {
+      "Type": "Thread (subcomponent)",
+      "Description": "Expand and collapse in place. Replies push the messages below down; they do not open a new view."
+    },
+    {
+      "Type": "Photos and videos",
+      "Description": "Photos group into one grid. Videos send as separate Attachments so each can preview."
+    },
+    {
+      "Type": "Controls (subcomponent)",
+      "Description": "Reactions and more are toggles. Only one of their panels is open at a time on desktop. Mobile surfaces only the reaction controls and expanded menu."
+    },
+    {
+      "Type": "Motion (subcomponents)",
+      "Description": "Loading dots and label sweep repeat until text arrives. No other motion is defined."
+    }
+  ],
+  "content": [
+    {
+      "Property": "Message Content",
+      "Type": "layer",
+      "Description": "The body that includes text, photos, video, audio, files. Never another message. A follow-up is its own Chat Message at Sequence=consecutive."
+    },
+    {
+      "Property": "Attachment Slot",
+      "Type": "slot, product filled",
+      "Description": "Photos, Attachments or a Thread, under the message’s text."
+    },
+    {
+      "Property": "Thread",
+      "Type": "nested subcomponent",
+      "Description": "Can be placed in the Attachment Slot. Not a property of the message. Shows a sequence of message that respond to the original message it is nested within."
+    },
+    {
+      "Property": "Reactions Slot",
+      "Type": "slot, product filled",
+      "Description": "Carries reaction chips with counts of each. Show Reactions turns it on."
+    },
+    {
+      "Property": "Control Slot",
+      "Type": "slot, product filled",
+      "Description": "Extra desktop actions beside reactions and the menu. On mobile, extra items go in the action menu."
+    },
+    {
+      "Property": "Timestamp Slot",
+      "Type": "slot",
+      "Description": "Holds the Timestamp subcomponent."
+    },
+    {
+      "Property": "Name and Reply",
+      "Type": "text",
+      "Description": "Sender name, and the author and text of a quoted message."
+    },
+    {
+      "Property": "Thread Slot",
+      "Type": "slot, product filled",
+      "Description": "Reply messages only. Each is a Chat Message with its own controls."
+    },
+    {
+      "Property": "Bubble text",
+      "Type": "text",
+      "Description": "Message text. Hugs the contents and should wrap if bubble reaches 80% width of chat container. If; links and mentions inline."
+    },
+    {
+      "Property": "Loading label",
+      "Type": "text",
+      "Description": "One or two words: Thinking, Searching, Typing."
+    },
+    {
+      "Property": "Attachment text",
+      "Type": "text",
+      "Description": "File name truncates at the end. Meta is type and size."
+    },
+    {
+      "Property": "Photos",
+      "Type": "image fills",
+      "Description": "The product supplies images; Extra Count is the hidden total."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Use Sequence=consecutive for a follow-up from the same sender. Each message keeps its own controls.",
+      "On mobile, keep the held message in view between the reactions row and the menu, so people see what message they selected.",
+      "Put a Thread in the Attachment Slot of the message it belongs to.",
+      "Send each video as its own Attachment so it can preview. Group photos in in Photo subcomponents."
+    ],
+    "dont": [
+      "Don't put a message inside the attachment slot, unless including a thread message within the thread subcomponent’s own slot. The message’s attachment slot should only include media, files, a thread.",
+      "Don't show the reactions row and the menu together on desktop. One opens, the other closes.",
+      "Don't use Bubble Status to join messages from different senders.",
+      "Don’t have bubbles exceed 80% of the chat’s containers width. Hug messages below 80% width or wrap at 80% if message bubbles run longer than 80% chat container width on both desktop and mobile platform."
+    ]
+  },
+  "accessibility": [
+    "The reactions row and menu close on Escape and return focus to their trigger.",
+    "The Thread toggle is a button that says whether it is expanded and includes the count (\"3 replies\")."
+  ],
+  "layoutTheming": [
+    {
+      "Property": "Width",
+      "Type": "Fills the list",
+      "Description": "Text caps at 12 × control/lg wide, 15 × for the assistant. Bubbles hug their text but follow exact behavior indicated in subcomponent metadata for bubble layouts."
+    },
+    {
+      "Property": "Padding and gap",
+      "Type": "Fixed",
+      "Description": "space/sm around each message and between avatar and content. space/xs inside the header and between blocks."
+    },
+    {
+      "Property": "Surface",
+      "Type": "Per State",
+      "Description": "Transparent at rest, interactive/ghost/background/hover when active. Off while loading."
+    },
+    {
+      "Property": "Bubble",
+      "Type": "Per Style and Role",
+      "Description": "Your messages in conversation: surface/brand. Everything else is plain text on the page. follow exact behavior indicated in subcomponent metadata for bubble layouts."
+    },
+    {
+      "Property": "Controls and menu - sender and receiver",
+      "Type": "Floating",
+      "Description": "surface/overlay with a soft xsmall shadow, layered above the list."
+    },
+    {
+      "Property": "Controls - assistant",
+      "Type": "Bottom left alignment within message’s content frame",
+      "Description": "The controls on an assistant message will always sit below the message and does not have a floating behavior. The controls for an assistant message will always have a no-fill “none” style."
+    },
+    {
+      "Property": "Mobile scrim",
+      "Type": "Overlay",
+      "Description": "The Scrim component, under the lifted message and its menus."
+    },
+    {
+      "Property": "Corners",
+      "Type": "Per Rounded",
+      "Description": "Bubble and attachments round; joins inside a run of your messages tighten to the small radius. All rounded or sharpened property behaviors of the component and it’s nested component’s properties should be consistent based on the parent component’s configuration."
+    },
+    {
+      "Property": "Bubble (subcomponent)",
+      "Type": "Hugs, wraps to a next line when reached 80% width of chat container.",
+      "Description": "space/sm by space/md padding. Fill uses surface/brand; joins tighten to the small chat radius. Message bubbles should hug it’s contents or otherwise wrap to the next line if the bubble reaches and exceeds 80% of the width of the total chat container. The sender’s bubble always uses a interactive/primary/background/default token fill with foreground/on-strong token for it’s text. The receiver’s bubble always uses surface/brand fill with foreground/primary for it’s text."
+    },
+    {
+      "Property": "Controls (subcomponent)",
+      "Type": "Floating",
+      "Description": "surface/overlay, soft xsmall shadow, space/3xs padding and gap."
+    },
+    {
+      "Property": "Timestamp",
+      "Type": "Text",
+      "Description": "body/xsmall in foreground/secondary."
+    },
+    {
+      "Property": "Thread",
+      "Type": "Fills content width",
+      "Description": "Count and caret on one line with a border/default divider between. The reply count, divider, and caret should be vertically center aligned to each other."
+    },
+    {
+      "Property": "Photos",
+      "Type": "Grid",
+      "Description": "Tiles keep a fixed gap and the tile radius. Count sets the layout."
+    },
+    {
+      "Property": "Attachments",
+      "Type": "Hug, capped",
+      "Description": "File and audio sit on the bubble tint with space/xs padding."
+    },
+    {
+      "Property": "Theming",
+      "Type": "Tokens only",
+      "Description": "Every part follows the theme scope it sits in: dark, extension and nested."
+    }
+  ],
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-18615",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-18698",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8465-4774",
+    "subcomponentMetadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8465-5030",
+    "variants": {
+      "desktop · channel · receiver · default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-18699",
+      "desktop · channel · receiver · active": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-18889",
+      "desktop · conversation · sender · default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-19065",
+      "desktop · conversation · assistant · default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-19099",
+      "desktop · conversation · assistant · loading": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-18720",
+      "desktop · channel · receiver · consecutive": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-24374",
+      "mobile · channel · receiver · active": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8440-35649",
+      "mobile · conversation · sender · active": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8442-5667"
+    },
+    "subcomponents": {
+      "Bubble": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-19217",
+      "Controls": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-19258",
+      "Loading Indicator": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-19269",
+      "Photos": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-19282",
+      "Attachments": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-19335",
+      "Thread": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8440-34713",
+      "Timestamp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-24563"
+    }
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "Variant matrix",
+      "detail": "There is no channel assistant message at Sequence=first, and no loading variant at Sequence=first for receiver or sender. 116 of the 144 combinations exist."
+    },
+    {
+      "severity": "warn",
+      "source": "Metadata vs Bubble colours",
+      "detail": "The master metadata says your conversation bubbles are surface/brand. Bubble binds sender to interactive/primary/background/default and receiver to surface/brand, as the subcomponent metadata says."
+    },
+    {
+      "severity": "warn",
+      "source": "Metadata vs Controls shadow",
+      "detail": "Both metadata frames say a soft xsmall shadow. Controls uses the Shadow/small effect style."
+    },
+    {
+      "severity": "warn",
+      "source": "Metadata vs width rule",
+      "detail": "The master metadata caps text at 12 × control/lg (15 × for the assistant). The subcomponent metadata wraps bubbles at 80% of the chat container."
+    },
+    {
+      "severity": "warn",
+      "source": "Metadata vs channel alignment",
+      "detail": "The metadata says channel messages are right aligned. Every channel variant, yours included, is start aligned."
+    },
+    {
+      "severity": "warn",
+      "source": "Metadata vs gaps",
+      "detail": "The metadata says space/xs between blocks. Main stacks its blocks at space/sm."
+    },
+    {
+      "severity": "warn",
+      "source": "Hide Time",
+      "detail": "Hide Time is bound to the Timestamp Slot's visibility, so false removes the slot and the indent. The metadata says the slot should stay. The time itself shows only in the active variants."
+    },
+    {
+      "severity": "warn",
+      "source": "Controls overlap",
+      "detail": "The metadata says controls overlap the message top by space/lg. First messages overlap that much; consecutive ones overlap less, between 7 and 12Px measured."
+    },
+    {
+      "severity": "warn",
+      "source": "Popover anchoring",
+      "detail": "Menu and reaction-row anchors vary between equivalent variants, for example the menu on desktop channel sender consecutive and on mobile conversation sender first."
+    },
+    {
+      "severity": "warn",
+      "source": "Bubble Status in the master",
+      "detail": "Conversation sender consecutive uses Status=first. Conversation receiver consecutive uses single on desktop and first on mobile. Status should follow the run."
+    },
+    {
+      "severity": "warn",
+      "source": "Assistant loading",
+      "detail": "The assistant's first loading variant has a Bubble inside its hidden Attachment Slot. The metadata says the slot never holds a bubble."
+    },
+    {
+      "severity": "warn",
+      "source": "Controls corners",
+      "detail": "With Rounded=true, React is Shape=sharp beside rounded Reply and More, and Style=none is sharp throughout. With Rounded=false, Style=fill keeps Reply and More rounded."
+    },
+    {
+      "severity": "warn",
+      "source": "Attachments video",
+      "detail": "Playback=active removes the play control and the duration, so a playing video has no pause. The metadata says play becomes pause."
+    },
+    {
+      "severity": "warn",
+      "source": "Attachments surface",
+      "detail": "The metadata says file and audio sit on the bubble tint with space/xs padding. They bind surface/card with a border/subtle stroke, padding space/sm block and space/xs inline."
+    },
+    {
+      "severity": "warn",
+      "source": "Token gaps",
+      "detail": "Thread's count and \"replies\" text have no colour token. Attachments' file tile radius has no token, nor Controls' slot gap or the loading dots' opacity."
+    },
+    {
+      "severity": "note",
+      "source": "Footer",
+      "detail": "Footer exists on receiver variants too. The metadata scopes it to your own most recent message. Its Status text is hidden, leaving only the check-mark glyph."
+    },
+    {
+      "severity": "note",
+      "source": "Reply placement",
+      "detail": "Mobile conversation receiver puts the reply line above the header. Every other variant puts it under the header."
+    },
+    {
+      "severity": "note",
+      "source": "Assistant bubble",
+      "detail": "The assistant's first message uses Bubble Role=receiver and its consecutive ones Role=sender. Both are Style=none, so only the binding differs."
+    },
+    {
+      "severity": "note",
+      "source": "Root top padding",
+      "detail": "First messages with a header use space/card at the top; everything else uses space/sm."
+    },
+    {
+      "severity": "note",
+      "source": "Mobile active",
+      "detail": "Mobile active looks like default until Reaction Controls or Expand Menu is on. The scrim and lift live outside the component."
+    },
+    {
+      "severity": "note",
+      "source": "Menu contents",
+      "detail": "The Dropdown Menu and reaction row content can't be read from the hidden instances. The metadata lists Copy text, Reply, Forward and Mark as unread."
+    },
+    {
+      "severity": "note",
+      "source": "Fixed text",
+      "detail": "Thread's \"replies\" and Timestamp's time are fixed text, not properties."
+    },
+    {
+      "severity": "note",
+      "source": "Rounded=false",
+      "detail": "Audio waveform bars keep radius/pill when Rounded=false."
+    },
+    {
+      "severity": "note",
+      "source": "Loading dots",
+      "detail": "The dots are sized with space/2xs. Their ripple is motion, not a token."
+    },
+    {
+      "severity": "note",
+      "source": "Accessibility coverage",
+      "detail": "The master metadata gives one accessibility line. Names for the icon-only controls and how the long press is reached by keyboard are not stated."
+    },
+    {
+      "severity": "note",
+      "source": "Component description",
+      "detail": "The Chat Message set has no Figma description. The summary comes from the metadata."
+    }
+  ]
+}

@@ -1,44 +1,8 @@
 {
   "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
-  "extractedAt": "2026-11-07",
+  "extractedAt": "2026-11-17",
   "source": "Figma Plugin API via use_figma (zebra-figma-token-export skill)",
   "collections": [
-    {
-      "name": "size",
-      "slug": "size",
-      "id": "VariableCollectionId:2013:6723",
-      "modes": [
-        "Desktop",
-        "Mobile",
-        "Tablet",
-        "Desktop Compact"
-      ],
-      "defaultMode": "Desktop",
-      "variableCount": 61,
-      "isExtension": false,
-      "hiddenFromPublishing": false,
-      "files": [
-        "base/size/desktop.json",
-        "base/size/mobile.json",
-        "base/size/tablet.json",
-        "base/size/desktop-compact.json"
-      ]
-    },
-    {
-      "name": "semantics",
-      "slug": "semantics",
-      "id": "VariableCollectionId:2:3",
-      "modes": [
-        "Base"
-      ],
-      "defaultMode": "Base",
-      "variableCount": 194,
-      "isExtension": false,
-      "hiddenFromPublishing": false,
-      "files": [
-        "base/semantics/base.json"
-      ]
-    },
     {
       "name": "primitives",
       "slug": "primitives",
@@ -55,24 +19,18 @@
       ]
     },
     {
-      "name": "typography",
-      "slug": "typography",
-      "id": "VariableCollectionId:2207:329",
+      "name": "semantics",
+      "slug": "semantics",
+      "id": "VariableCollectionId:2:3",
       "modes": [
-        "Desktop",
-        "Tablet",
-        "Mobile",
-        "Desktop Compact"
+        "Base"
       ],
-      "defaultMode": "Desktop",
-      "variableCount": 90,
+      "defaultMode": "Base",
+      "variableCount": 194,
       "isExtension": false,
       "hiddenFromPublishing": false,
       "files": [
-        "base/typography/desktop.json",
-        "base/typography/tablet.json",
-        "base/typography/mobile.json",
-        "base/typography/desktop-compact.json"
+        "base/semantics/base.json"
       ]
     },
     {
@@ -95,9 +53,89 @@
         "base/palette/aaa-light.json",
         "base/palette/aaa-dark.json"
       ]
+    },
+    {
+      "name": "size",
+      "slug": "size",
+      "id": "VariableCollectionId:2013:6723",
+      "modes": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "defaultMode": "Desktop",
+      "variableCount": 61,
+      "isExtension": false,
+      "hiddenFromPublishing": false,
+      "files": [
+        "base/size/desktop.json",
+        "base/size/mobile.json",
+        "base/size/tablet.json",
+        "base/size/desktop-compact.json"
+      ]
+    },
+    {
+      "name": "typography",
+      "slug": "typography",
+      "id": "VariableCollectionId:2207:329",
+      "modes": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ],
+      "defaultMode": "Desktop",
+      "variableCount": 90,
+      "isExtension": false,
+      "hiddenFromPublishing": false,
+      "files": [
+        "base/typography/desktop.json",
+        "base/typography/tablet.json",
+        "base/typography/mobile.json",
+        "base/typography/desktop-compact.json"
+      ]
     }
   ],
   "extensions": [
+    {
+      "name": "companion",
+      "slug": "companion",
+      "extends": {
+        "name": "palette",
+        "id": "VariableCollectionId:3:4",
+        "slug": "palette"
+      },
+      "root": {
+        "name": "palette",
+        "id": "VariableCollectionId:3:4"
+      },
+      "overrideCount": 41,
+      "modeMap": [
+        {
+          "mode": "Light",
+          "parentMode": "Light"
+        },
+        {
+          "mode": "Dark",
+          "parentMode": "Dark"
+        },
+        {
+          "mode": "AAA Light",
+          "parentMode": "AAA Light"
+        },
+        {
+          "mode": "AAA Dark",
+          "parentMode": "AAA Dark"
+        }
+      ],
+      "files": [
+        "extensions/companion/palette/light.json",
+        "extensions/companion/palette/dark.json",
+        "extensions/companion/palette/aaa-light.json",
+        "extensions/companion/palette/aaa-dark.json"
+      ]
+    },
     {
       "name": "condensed",
       "slug": "condensed",
@@ -169,101 +207,6 @@
       ],
       "files": [
         "extensions/condensed/size/desktop.json"
-      ]
-    },
-    {
-      "name": "companion",
-      "slug": "companion",
-      "extends": {
-        "name": "palette",
-        "id": "VariableCollectionId:3:4",
-        "slug": "palette"
-      },
-      "root": {
-        "name": "palette",
-        "id": "VariableCollectionId:3:4"
-      },
-      "overrideCount": 11,
-      "modeMap": [
-        {
-          "mode": "Light",
-          "parentMode": "Light"
-        },
-        {
-          "mode": "Dark",
-          "parentMode": "Dark"
-        },
-        {
-          "mode": "AAA Light",
-          "parentMode": "AAA Light"
-        },
-        {
-          "mode": "AAA Dark",
-          "parentMode": "AAA Dark"
-        }
-      ],
-      "files": [
-        "extensions/companion/palette/light.json",
-        "extensions/companion/palette/dark.json"
-      ]
-    },
-    {
-      "name": "target",
-      "slug": "target",
-      "extends": {
-        "name": "primitives",
-        "id": "VariableCollectionId:2:2",
-        "slug": "primitives"
-      },
-      "root": {
-        "name": "primitives",
-        "id": "VariableCollectionId:2:2"
-      },
-      "overrideCount": 10,
-      "modeMap": [
-        {
-          "mode": "Value",
-          "parentMode": "Value"
-        }
-      ],
-      "files": [
-        "extensions/target/primitives/value.json"
-      ]
-    },
-    {
-      "name": "target",
-      "slug": "target",
-      "extends": {
-        "name": "palette",
-        "id": "VariableCollectionId:3:4",
-        "slug": "palette"
-      },
-      "root": {
-        "name": "palette",
-        "id": "VariableCollectionId:3:4"
-      },
-      "overrideCount": 18,
-      "modeMap": [
-        {
-          "mode": "Light",
-          "parentMode": "Light"
-        },
-        {
-          "mode": "Dark",
-          "parentMode": "Dark"
-        },
-        {
-          "mode": "AAA Light",
-          "parentMode": "AAA Light"
-        },
-        {
-          "mode": "AAA Dark",
-          "parentMode": "AAA Dark"
-        }
-      ],
-      "files": [
-        "extensions/target/palette/light.json",
-        "extensions/target/palette/dark.json"
       ]
     }
   ],
@@ -501,11 +444,11 @@
   ],
   "counts": {
     "collections": 5,
-    "extensions": 5,
+    "extensions": 3,
     "tokens": 1473,
-    "overrideTokens": 148,
+    "overrideTokens": 195,
     "textStyles": 18,
-    "files": 29
+    "files": 27
   },
   "conventions": {
     "alias": "{<collection name>.<dotted variable name>}",
@@ -520,10 +463,6 @@
     "Extension 'condensed' mode 'Mobile' overrides nothing; no file written",
     "Extension 'condensed' mode 'Tablet' overrides nothing; no file written",
     "Extension 'condensed' mode 'Desktop Compact' overrides nothing; no file written",
-    "Extension 'companion' mode 'AAA Light' overrides nothing; no file written",
-    "Extension 'companion' mode 'AAA Dark' overrides nothing; no file written",
-    "Extension 'target' mode 'AAA Light' overrides nothing; no file written",
-    "Extension 'target' mode 'AAA Dark' overrides nothing; no file written",
     "Font families declared by tokens but used by no text style: ['Zebra Sans']",
     "4 variables deleted from the file but still referenced, not exported: ['color/border/primary', 'surface/menu', 'surface/popover', 'surface/sheet']",
     "224 values sit on deleted modes ['2201:1'] and were skipped, e.g. ['scale/1 @ 2201:1', 'scale/10 @ 2201:1', 'scale/11 @ 2201:1']"

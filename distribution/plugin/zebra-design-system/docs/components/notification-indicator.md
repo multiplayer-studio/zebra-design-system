@@ -60,4 +60,4 @@
 - Nothing here is focusable and a change in the count does not announce itself. The structure around it has to report that the number moved.
 
 ---
-*Generated from `specs/notification-indicator` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/notification-indicator` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

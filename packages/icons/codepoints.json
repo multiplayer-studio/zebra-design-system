@@ -5067,7 +5067,14 @@
       "figmaName": "Offline",
       "category": "Status",
       "retired": false
+    },
+    "companion": {
+      "codepoint": 58068,
+      "setId": "8606:27690",
+      "figmaName": "Companion",
+      "category": "AI",
+      "retired": false
     }
   },
-  "nextCodepoint": 58068
+  "nextCodepoint": 58069
 }

@@ -1,0 +1,25 @@
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+import * as MessageInput from "./message-input.stories";
+
+<Meta of={MessageInput} title="Message Input" />
+
+<Title />
+<Description of="zeta-message-input" />
+<Canvas of={MessageInput.MessageInput} />
+<ArgTypes of="zeta-message-input" />
+
+## Recording
+
+<Canvas of={MessageInput.Recording} />
+
+## Playback
+
+<Canvas of={MessageInput.Playback} />
+
+## Speaking
+
+<Canvas of={MessageInput.Speaking} />
+
+## Slots
+
+<Canvas of={MessageInput.Slots} />

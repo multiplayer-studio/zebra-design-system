@@ -28,4 +28,4 @@
 - Uses the border/default semantic token for its color, which resolves separately for light and dark mode, don't override it with a hardcoded color
 
 ---
-*Generated from `specs/divider` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/divider` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

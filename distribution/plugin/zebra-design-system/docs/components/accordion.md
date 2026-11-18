@@ -14,4 +14,4 @@
 | `items` | slot |  |  | Figma holds two slot properties, one per Selectable value; preferred content is _Accordion Item Selectable and _Accordion Item respectively. The metadata states that in code this is a single content slot. |
 
 ---
-*Generated from `specs/accordion` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/accordion` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

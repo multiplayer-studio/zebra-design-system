@@ -1,11 +1,12 @@
-/* Message Input (EXPERIMENTAL) — every value is a semantic token. Buttons
-   are IconButton and chips are AssistChip, each themed by its own CSS; this file lays
-   out the composer and draws the parts that are its own: the
-   voice bar, the waveform, the spinner and the recording dot. Keyed off
-   data-state on the root (empty, filled, tray, listening, transcribing,
-   recording, playback, speaking).
+/* Message Input — every value is a semantic token. Buttons are IconButton
+   and chips are AssistChip, each themed by its own CSS; this file lays out
+   the composer and draws the parts that are its own: the voice bar, the
+   waveform, the recording dot and the orb. Keyed off data-state on the root,
+   which carries the spec's State values (empty, filled, attachment-open,
+   listening, transcribing, dictated, recording, playback, speaking,
+   disabled).
 
-   Spec: none yet — built from a reference design. */
+   Spec: specs/message-input/message-input.spec.json */
 
 /* ---- root ------------------------------------------------------------ */
 .zds-message-input {
@@ -38,7 +39,9 @@
 .zds-message-input__text {
   box-sizing: border-box;
   inline-size: 100%;
-  min-block-size: calc(2 * var(--body-medium-line-height));
+  /* Spec: the Text region is at least 56 tall, two body/medium lines plus
+     its space/2xs padding (the 56 itself has no token, spec issue). */
+  min-block-size: calc(2 * var(--body-medium-line-height) + 2 * var(--space-2xs));
   max-block-size: calc(8 * var(--body-medium-line-height));
   field-sizing: content;
   margin: 0;
@@ -166,8 +169,8 @@
   min-block-size: var(--control-lg);
   padding: var(--space-2xs) var(--space-2xs) var(--space-2xs) var(--space-md);
   border-radius: var(--radius-element-md);
-  /* A sunken well inside the card (fill/sunken, as the open tray toggle). */
-  background: var(--surface-track);
+  /* Figma binds surface/subtle; the metadata's surface/track is a spec issue. */
+  background: var(--surface-subtle);
   color: var(--foreground-primary);
 }
 .zds-message-input[data-state="playback"] .zds-message-input__bar {
@@ -355,15 +358,6 @@
 .zds-message-input__caption:not([data-tracking]) { block-size: auto; max-block-size: calc(4 * var(--body-medium-line-height)); padding-block-start: 0; mask-image: none; }
 .zds-message-input__caption:not([data-tracking]) .zds-message-input__word { opacity: 1; color: var(--foreground-primary); }
 
-/* The one control: a filled neutral circle, as the open tray toggle. */
-.zds-message-input .zds-message-input__stop-speaking {
-  --zds-button-bg: var(--surface-track);
-  --zds-button-border: transparent;
-  --zds-button-fg: var(--interactive-neutral-foreground-default);
-}
-.zds-message-input .zds-message-input__stop-speaking:hover:not([data-disabled]) {
-  --zds-button-bg: var(--interactive-neutral-background-pressed);
-}
 .zds-message-input__sr-only {
   position: absolute;
   inline-size: 1px;
@@ -387,18 +381,15 @@
   gap: var(--space-2xs);
 }
 .zds-message-input__tools { flex-wrap: wrap; }
-/* Tools are neutral glyphs, not the text flavour's brand colour; send and
-   stop (primary) stay the only coloured controls (reference design). */
-.zds-message-input .zds-button[data-flavour="text"]:not([data-disabled]) {
-  --zds-button-fg: var(--interactive-neutral-foreground-default);
+/* More Tools: product icon controls beside Attachment, space/2xs apart. */
+.zds-message-input__more-tools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
 }
-/* With the tray open, the toggle sits on a filled circle (reference design)
-   and its + turns 45° to read as ×. */
+/* Attachment open: the toggle holds the pressed ghost surface (spec). */
 .zds-message-input__tray-toggle[data-open] {
-  --zds-button-bg: var(--interactive-neutral-background-selected);
-}
-.zds-message-input__tray-toggle[data-open] .zds-button__icon {
-  transform: rotate(45deg);
+  --zds-button-bg: var(--interactive-ghost-background-pressed);
 }
 
 /* ---- attachment tray --------------------------------------------------- */

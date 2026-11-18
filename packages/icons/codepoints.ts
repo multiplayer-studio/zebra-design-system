@@ -726,5 +726,6 @@ export const iconGlyphs: Record<IconName, string> = {
   "busy": "",
   "dnd": "",
   "on-shift": "",
-  "offline": ""
+  "offline": "",
+  "companion": ""
 };

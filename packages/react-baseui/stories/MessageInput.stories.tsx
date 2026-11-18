@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { MessageInput, type MessageAttachment, type MessageSubmission, type MessageVoiceNote } from "../src/experimental.js";
+import { IconButton, MessageInput, type MessageAttachment, type MessageSubmission, type MessageVoiceNote } from "../src/index.js";
 
 const file = (name: string, type: string): MessageAttachment =>
   ({ id: name, file: new File([""], name, { type }), kind: type.startsWith("video/") ? "video" : "document" });
@@ -29,13 +29,16 @@ const sampleVoiceNote = (): MessageVoiceNote => {
 };
 
 const meta: Meta<typeof MessageInput> = {
-  title: "Experimental/Message Input",
+  title: "Components/Message Input",
   component: MessageInput,
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Experimental — no Figma spec.** A composer for conversational, AI-assisted surfaces: type, attach files (tray, drag and drop, or paste), dictate a prompt (Listening → Transcribing → Dictated, the words landing as they're heard), record a voice message (Recording → Playback), and ask for the reply to be read aloud. Escape cancels a live voice state or closes the tray; `maxLength`, `maxAttachments` and `maxFileBytes` refuse politely on the error row; every string is replaceable through `strings`. The state stories render each state without touching the microphone; use **Interactive** to try the real thing." } },
+    docs: { description: { component: "Built from `specs/message-input`. A composer for conversational, AI-assisted surfaces: type, attach files (tray, drag and drop, or paste), dictate a prompt (Listening → Transcribing → Dictated, the words landing as they're heard), record a voice message (Recording → Playback), and ask for the reply to be read aloud. Escape cancels a live voice state or closes the tray; `maxLength`, `maxAttachments` and `maxFileBytes` refuse politely on the error row; every string is replaceable through `strings`. The `state` prop pins any of the spec's ten states without touching the microphone; use **Interactive** to try the real thing." } },
   },
   args: { placeholder: "Placeholder" },
+  argTypes: {
+    state: { control: "select", options: [undefined, "empty", "filled", "attachment-open", "listening", "transcribing", "dictated", "recording", "playback", "speaking", "disabled"] },
+  },
   render: (a) => <div style={{ maxInlineSize: 440 }}><MessageInput {...a} /></div>,
 };
 export default meta;
@@ -44,6 +47,19 @@ type Story = StoryObj<typeof MessageInput>;
 export const Empty: Story = {};
 
 export const Filled: Story = { args: { defaultValue: "Message goes in here." } };
+
+/**
+ * The spec's two slots. `attachmentSlot` adds the product's own content to the
+ * row above the text; `moreTools` puts icon controls beside Attachment, and
+ * drops out while the tray is open and while listening.
+ */
+export const Slots: Story = {
+  args: {
+    defaultValue: "Message goes in here.",
+    defaultAttachments: [file("Document.pdf", "application/pdf"), file("Video_file.mp4", "video/mp4")],
+    moreTools: <IconButton flavour="subtle" shape="full" icon="sticker" label="Add a sticker" />,
+  },
+};
 
 /**
  * The + turns into a close control and opens file, camera, sticker and
@@ -95,16 +111,16 @@ export const Localised: Story = {
 };
 
 /** Voice prompt, step 1: the microphone is open and the speech becomes text when stopped. */
-export const Listening: Story = { args: { preview: "listening" } };
+export const Listening: Story = { args: { state: "listening" } };
 
 /** Voice prompt, step 2. */
-export const Transcribing: Story = { args: { preview: "transcribing" } };
+export const Transcribing: Story = { args: { state: "transcribing" } };
 
 /** Voice prompt, step 3: the transcript lands in the field, tagged. × on the tag undoes it. */
 export const Dictated: Story = { args: { defaultValue: "Book a table for four on Friday at 7", defaultDictated: true } };
 
 /** Voice message, step 1: recording, up to two minutes. */
-export const Recording: Story = { args: { preview: "recording" } };
+export const Recording: Story = { args: { state: "recording" } };
 
 /** Voice message, step 2: listen back, record again or delete, then send. */
 export const Playback: Story = { render: (a) => <div style={{ maxInlineSize: 440 }}><MessageInput {...a} defaultVoiceNote={sampleVoiceNote()} /></div> };
@@ -201,7 +217,7 @@ export const ThemingCascade: Story = {
         <div key={cls} className={cls} style={{ padding: 16, borderRadius: 8, background: "var(--surface-page)", color: "var(--foreground-primary)", display: "grid", gap: 8 }}>
           <div style={{ font: "500 12px/1.4 system-ui", opacity: 0.7 }}>{cls || "base / light"}</div>
           <MessageInput placeholder="Placeholder" defaultValue="Book a table for four" defaultDictated />
-          <MessageInput preview="recording" />
+          <MessageInput state="recording" />
           <MessageInput speaking speakingLevel={0.5} speakingText="It is by the window, and they can hold it until six thirty." speakingCharIndex={30} />
         </div>
       ))}

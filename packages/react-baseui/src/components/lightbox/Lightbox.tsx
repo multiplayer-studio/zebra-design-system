@@ -34,7 +34,7 @@ export type LightboxStrings = typeof lightboxStrings;
 export interface LightboxProps {
   /** What can be paged through. One item is fine; the navigation then hides itself. */
   items: LightboxItem[];
-  /** Which item shows; null is closed — controlled, as ChatImageViewer's. */
+  /** Which item shows; null is closed — controlled. */
   index: number | null;
   onIndexChange?: (index: number) => void;
   onClose: () => void;

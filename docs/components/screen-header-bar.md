@@ -67,4 +67,4 @@
 - Turning the leading icon off removes the only back affordance. On a pushed screen something else then has to provide one.
 
 ---
-*Generated from `specs/screen-header-bar` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/screen-header-bar` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

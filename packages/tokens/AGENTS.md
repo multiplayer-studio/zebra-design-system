@@ -2,7 +2,7 @@
 
 - `import "@zebra-design-system/tokens/css"` gives every token as a CSS
   custom property with class-scoped themes (`.mode-dark`, `.ext-companion`,
-  `.ext-target`, `.bp-*`). `/css-attributes` is the same layer scoped by
+  `.bp-*`). `/css-attributes` is the same layer scoped by
   `[data-theme]`/`[data-brand]`/`[data-breakpoint]` for Zeta-style stacks.
 - Build UI against the unprefixed semantic names (`--surface-default`,
   `--foreground-primary`, `--interactive-primary-background-default`,

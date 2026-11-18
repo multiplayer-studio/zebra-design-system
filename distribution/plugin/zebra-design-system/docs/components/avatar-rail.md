@@ -69,4 +69,4 @@
 - Nothing in the rail is focusable and nothing announces itself. Where people join or leave the group while a person is on the page, the structure around it has to report that.
 
 ---
-*Generated from `specs/avatar-rail` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/avatar-rail` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

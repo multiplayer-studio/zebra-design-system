@@ -2,7 +2,7 @@
   "ink": {
     "brand": {
       "$type": "color",
-      "$value": "{primitives.color.accent.1.70}",
+      "$value": "{primitives.color.accent.1.60}",
       "$description": "Ghost button text and input cursors.",
       "$extensions": {
         "com.figma": {
@@ -13,7 +13,7 @@
           "resolvedType": "COLOR",
           "scopes": [],
           "parentMode": "Light",
-          "aliasOf": "VariableID:30:1380"
+          "aliasOf": "VariableID:30:1379"
         }
       }
     },
@@ -35,10 +35,246 @@
       }
     }
   },
+  "status": {
+    "info": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.50}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:2057:6745",
+            "overrides": "palette.status.info.subtle",
+            "extension": "companion",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Light",
+            "aliasOf": "VariableID:30:1378"
+          }
+        }
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.70}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:2057:6746",
+            "overrides": "palette.status.info.strong",
+            "extension": "companion",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Light",
+            "aliasOf": "VariableID:30:1380"
+          }
+        }
+      },
+      "default": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.70}",
+        "$description": "Info text, borders and bold banners.",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:63:202",
+            "overrides": "palette.status.info.default",
+            "extension": "companion",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Light",
+            "aliasOf": "VariableID:30:1380"
+          }
+        }
+      },
+      "faint": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.10}",
+        "$description": "Backgrounds of info messages and containers.",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:63:203",
+            "overrides": "palette.status.info.faint",
+            "extension": "companion",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Light",
+            "aliasOf": "VariableID:30:1374"
+          }
+        }
+      },
+      "deep": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.80}",
+        "$description": "Highest emphasis info elements.",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:63:204",
+            "overrides": "palette.status.info.deep",
+            "extension": "companion",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Light",
+            "aliasOf": "VariableID:30:1381"
+          }
+        }
+      }
+    },
+    "success": {
+      "default": {
+        "$type": "color",
+        "$value": "{primitives.color.system.positive.70}",
+        "$description": "Success color (theme.color.success.default)",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:63:22",
+            "overrides": "palette.status.success.default",
+            "extension": "companion",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Light",
+            "aliasOf": "VariableID:30:1340"
+          }
+        }
+      }
+    },
+    "warning": {
+      "default": {
+        "$type": "color",
+        "$value": "{primitives.color.system.warning.70}",
+        "$description": "Warning text, borders and bold banners.",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:63:25",
+            "overrides": "palette.status.warning.default",
+            "extension": "companion",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Light",
+            "aliasOf": "VariableID:30:1360"
+          }
+        }
+      }
+    },
+    "error": {
+      "default": {
+        "$type": "color",
+        "$value": "{primitives.color.system.negative.70}",
+        "$description": "Error color (theme.color.error.default)",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:63:28",
+            "overrides": "palette.status.error.default",
+            "extension": "companion",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Light",
+            "aliasOf": "VariableID:30:1350"
+          }
+        }
+      }
+    },
+    "neutral": {
+      "default": {
+        "$type": "color",
+        "$value": "{primitives.color.neutral.cool.70}",
+        "$description": "Neutral color (theme.color.neutral.default)",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:6412:2340",
+            "overrides": "palette.status.neutral.default",
+            "extension": "companion",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Light",
+            "aliasOf": "VariableID:30:1299"
+          }
+        }
+      }
+    },
+    "ghost": {
+      "tint": {
+        "$type": "color",
+        "$value": "{primitives.color.accent.1.60}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:7580:3833",
+            "overrides": "palette.status.ghost.tint",
+            "extension": "companion",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Light",
+            "aliasOf": "VariableID:30:1379",
+            "aliasOpacity": 0.1
+          }
+        }
+      }
+    }
+  },
+  "gradient": {
+    "default": {
+      "start": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.2.60}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:2315:9011",
+            "overrides": "palette.gradient.default.start",
+            "extension": "companion",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Light",
+            "aliasOf": "VariableID:38:37"
+          }
+        }
+      }
+    },
+    "strong": {
+      "start": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.2.60}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:2315:9013",
+            "overrides": "palette.gradient.strong.start",
+            "extension": "companion",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Light",
+            "aliasOf": "VariableID:38:37"
+          }
+        }
+      },
+      "end": {
+        "$type": "color",
+        "$value": "{primitives.color.extend.4.60}",
+        "$extensions": {
+          "com.figma": {
+            "id": "VariableID:2315:9014",
+            "overrides": "palette.gradient.strong.end",
+            "extension": "companion",
+            "mode": "Light",
+            "resolvedType": "COLOR",
+            "scopes": [],
+            "parentMode": "Light",
+            "aliasOf": "VariableID:38:57"
+          }
+        }
+      }
+    }
+  },
   "line": {
     "focus": {
       "$type": "color",
-      "$value": "{primitives.color.accent.1.50}",
+      "$value": "{primitives.color.accent.1.60}",
       "$description": "Focus rings and outlines.",
       "$extensions": {
         "com.figma": {
@@ -49,7 +285,7 @@
           "resolvedType": "COLOR",
           "scopes": [],
           "parentMode": "Light",
-          "aliasOf": "VariableID:30:1378"
+          "aliasOf": "VariableID:30:1379"
         }
       }
     },
@@ -67,6 +303,59 @@
           "scopes": [],
           "parentMode": "Light",
           "aliasOf": "VariableID:30:1379"
+        }
+      }
+    }
+  },
+  "fill": {
+    "overlay": {
+      "$type": "color",
+      "$value": "{primitives.color.neutral.cool.10}",
+      "$description": "Modal/popover panel background (theme.color.surface.overlay)",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:63:12",
+          "overrides": "palette.fill.overlay",
+          "extension": "companion",
+          "mode": "Light",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Light",
+          "aliasOf": "VariableID:30:1293"
+        }
+      }
+    },
+    "selection": {
+      "$type": "color",
+      "$value": "{primitives.color.accent.1.20}",
+      "$description": "Selected item/text background (theme.color.selection.background)",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:63:31",
+          "overrides": "palette.fill.selection",
+          "extension": "companion",
+          "mode": "Light",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Light",
+          "aliasOf": "VariableID:30:1375"
+        }
+      }
+    },
+    "canvas": {
+      "$type": "color",
+      "$value": "{primitives.color.neutral.cool.10}",
+      "$description": "App/page base background (theme.color.surface.canvas)",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:63:9",
+          "overrides": "palette.fill.canvas",
+          "extension": "companion",
+          "mode": "Light",
+          "resolvedType": "COLOR",
+          "scopes": [],
+          "parentMode": "Light",
+          "aliasOf": "VariableID:30:1293"
         }
       }
     }
@@ -170,25 +459,6 @@
             "parentMode": "Light",
             "aliasOf": "VariableID:30:1380"
           }
-        }
-      }
-    }
-  },
-  "fill": {
-    "selection": {
-      "$type": "color",
-      "$value": "{primitives.color.accent.1.20}",
-      "$description": "Selected item/text background (theme.color.selection.background)",
-      "$extensions": {
-        "com.figma": {
-          "id": "VariableID:63:31",
-          "overrides": "palette.fill.selection",
-          "extension": "companion",
-          "mode": "Light",
-          "resolvedType": "COLOR",
-          "scopes": [],
-          "parentMode": "Light",
-          "aliasOf": "VariableID:30:1375"
         }
       }
     }

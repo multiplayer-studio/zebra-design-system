@@ -72,4 +72,4 @@
 - The label uses indicator/medium at 12px over a 14px line. Check it against the inverse palette as well as the neutral one.
 
 ---
-*Generated from `specs/filter-chip` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/filter-chip` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

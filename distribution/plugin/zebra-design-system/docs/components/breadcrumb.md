@@ -85,4 +85,4 @@
 - Hover is colour alone, so keyboard users rely on the focus ring.
 
 ---
-*Generated from `specs/breadcrumb` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/breadcrumb` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

@@ -66,4 +66,4 @@
 - The Upload control's cancel action is a real control. It needs an accessible name and a keyboard path, neither of which is modelled here.
 
 ---
-*Generated from `specs/progress-circle` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/progress-circle` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

@@ -848,5 +848,62 @@
    "": "zeta-scrim"
   },
   "props": {}
+ },
+ "message-input": {
+  "spec": "specs/message-input/message-input.spec.json",
+  "parts": {
+   "": "zeta-message-input",
+   "Attachment": "zeta-message-input"
+  },
+  "props": {
+   "attachmentFileSlot": "slot attachments",
+   "moreToolsSlot": "slot more-tools",
+   "Attachment.open": "property trayOpen",
+   "Attachment.attachmentControlSlot": "slot attachment-controls"
+  }
+ },
+ "file-upload": {
+  "spec": "specs/file-upload/file-upload.spec.json",
+  "parts": {
+   "": "zeta-file-upload",
+   "File Upload Item": "zeta-upload-item",
+   "File Indicator": "zeta-file-indicator"
+  },
+  "props": {
+   "shape": "property rounded",
+   "files": "slot (default)",
+   "File Upload Item.shape": "property rounded",
+   "File Upload Item.fileName": "property fileName",
+   "File Upload Item.extension": "property extension"
+  }
+ },
+ "chat-message": {
+  "spec": "specs/chat-message/chat-message.spec.json",
+  "parts": {
+   "": "zeta-chat-message",
+   "Bubble": "zeta-chat-bubble",
+   "Controls": "zeta-chat-controls",
+   "Loading Indicator": "zeta-chat-loading-indicator",
+   "Timestamp": "zeta-chat-timestamp",
+   "Thread": "zeta-chat-thread",
+   "Photos": "zeta-chat-photos",
+   "Attachments": "zeta-chat-attachment"
+  },
+  "props": {
+   "style": "property chatStyle",
+   "role": "property roleName",
+   "showReply": "derived: shown when replyTo is set",
+   "attachmentSlot": "slot attachments",
+   "reactionsSlot": "slot reactions",
+   "timestampSlot": "derived: the time property fills the header or the consecutive time column",
+   "Bubble.message": "slot (default)",
+   "Bubble.style": "property bubbleStyle",
+   "Bubble.role": "property roleName",
+   "Controls.controlSlot": "slot (default)",
+   "Controls.style": "property controlsStyle",
+   "Thread.threadSlot": "slot (default)",
+   "Photos.extraCount": "derived: photos.length less the three shown",
+   "Attachments.playback": "property playing"
+  }
  }
 }

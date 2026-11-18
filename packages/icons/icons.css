@@ -756,3 +756,4 @@
 .zds-icon-dnd::before { content: "\e2d1"; }
 .zds-icon-on-shift::before { content: "\e2d2"; }
 .zds-icon-offline::before { content: "\e2d3"; }
+.zds-icon-companion::before { content: "\e2d4"; }

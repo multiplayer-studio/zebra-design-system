@@ -48,4 +48,4 @@
 - Keyboard and focus behaviour belongs to the nested _controls and _indicators states, not to Pagination itself. The overflow control has no visible label, it needs an accessible name supplied in code, something like "more pages" rather than reading the glyph.
 
 ---
-*Generated from `specs/pagination` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/pagination` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

@@ -77,4 +77,4 @@
 - The badge is a dot with no number at the size this component pins, so whatever it signals needs a text equivalent.
 
 ---
-*Generated from `specs/navigation-rail-item` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/navigation-rail-item` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

@@ -82,4 +82,4 @@
 - On the selection arrangements the count is the only report of how many items are held, so it needs to be announced when it changes rather than only drawn.
 
 ---
-*Generated from `specs/top-app-bar` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/top-app-bar` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

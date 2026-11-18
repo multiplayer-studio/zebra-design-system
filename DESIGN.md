@@ -38,7 +38,7 @@ Shape is decided once, at the page, and flows down. This is the rule to internal
 - `full` (pill) is a deliberate choice on a single element such as an icon button. It is never inherited. Under a rounded parent, children use `rounded`; under a sharp parent, they use `sharp`.
 - **Defaults follow the rounded contour** (Button and Icon Button default `medium`/`rounded`, matching Figma), so a sharp surface sets shape explicitly rather than relying on defaults.
 - Components spell shape differently: `shape="rounded" | "sharp"`, `rounded: boolean`, or Figma's `Rounded=true/false`. The rule is the same for all of them.
-- **In code,** a container passes its shape to its children and a child's own prop overrides it. Chat does this through `ChatShapeContext`. Radii read `--radius-*` tokens and collapse to `--radius-none` when sharp.
+- **In code,** a container passes its shape to its children and a child's own prop overrides it. Radii read `--radius-*` tokens and collapse to `--radius-none` when sharp.
 - **In Figma,** nested instances are set to the matching `Rounded`/`Shape` variant of their parent.
 
 ---
@@ -101,7 +101,7 @@ Each step carries `font family`, `font size`, `font weight`, `line height` and `
 Put these on any ancestor (they work in both packages and on plain HTML):
 
 - `mode-light` / `mode-dark` switch the palette.
-- `ext-companion`, `ext-target` and `ext-condensed` apply a brand or density extension.
+- `ext-companion` and `ext-condensed` apply a brand or density extension.
 - `bp-*` applies a size and typography mode.
 
 ---
@@ -201,7 +201,6 @@ Find these in Storybook under `Experimental/*`. They must not be used in product
 | Component | Key props | Where |
 |---|---|---|
 | Message Input | text, attachments (Assist Chips), voice, actions | `packages/react-baseui/src/components/message-input` |
-| Chat (Message, Thread and content blocks) | `role` me/other/assistant, `position`, `header`, `avatar`, `footer`, `fill` light/solid, `actions`, `actionsPosition`, `reactions`, `shape` | `packages/react-baseui/src/components/chat`, with a Figma draft on the Chat branch |
 
 ---
 

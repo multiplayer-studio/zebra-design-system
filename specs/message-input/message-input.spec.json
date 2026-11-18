@@ -1,0 +1,1126 @@
+{
+  "component": {
+    "name": "Message Input",
+    "slug": "message-input",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "6962:798",
+      "key": "9d215b05a77801219c5d752bc9de737e04f8be61",
+      "page": "Message Prompt",
+      "pageNodeId": "6649:196",
+      "metadataFrameId": "7093:2",
+      "extractedAt": "2026-11-17",
+      "extractionNote": "Two sets on the page: Message Input (10 variants) and Attachment (2), each with its own metadata frame. Two loose Message Input instances on the page are ignored."
+    }
+  },
+  "summary": "A composer for conversational, AI-assisted surfaces: type, attach, dictate, record a voice message, hear the reply.",
+  "api": {
+    "state": {
+      "type": "enum",
+      "figmaName": "State",
+      "values": [
+        "empty",
+        "filled",
+        "attachment-open",
+        "listening",
+        "transcribing",
+        "dictated",
+        "recording",
+        "playback",
+        "speaking",
+        "disabled"
+      ],
+      "default": "empty",
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "empty": "The resting composer, nothing typed. Send stays off until there is something to send.",
+        "filled": "A typed message ready to go. Send turns on here and nowhere earlier.",
+        "attachment-open": "The attachment tray is showing its choices. Transient, not a resting state.",
+        "listening": "Dictation is capturing speech. Extra tools drop away so nothing competes with Stop.",
+        "transcribing": "Speech captured, text not back yet. Everything is off, so it must not linger.",
+        "dictated": "Dictation returned text the person can still edit. Treat it as filled, not as sent.",
+        "recording": "A voice message is being captured. Unlike listening, this ends as audio.",
+        "playback": "A take waiting to be sent or discarded. The only chance to hear it first.",
+        "speaking": "The assistant is replying aloud. The only state with no toolbar at all.",
+        "disabled": "Composing is unavailable. Say why in the value text, or there is nothing to act on."
+      }
+    },
+    "attachmentFileSlot": {
+      "type": "slot",
+      "figmaName": "Attachment File Slot#7085:0",
+      "accepts": [
+        "Assist Chip"
+      ],
+      "default": "empty",
+      "controls": [
+        "attachments"
+      ],
+      "intent": "Holds whatever the product attaches, above the text. Empty until the product fills it."
+    },
+    "moreToolsSlot": {
+      "type": "slot",
+      "figmaName": "More Tools Slot#7088:14",
+      "accepts": [
+        "Icon Button"
+      ],
+      "default": "empty",
+      "controls": [
+        "moreTools"
+      ],
+      "intent": "Room for product tools beside Attachment. Icon controls only, at the toolbar's size."
+    }
+  },
+  "internalVariations": [],
+  "contentInputs": [
+    {
+      "part": "value",
+      "input": "text",
+      "sample": "Placeholder / Message goes in here.",
+      "_note": "Not a Figma property. The metadata says it comes from the implementation."
+    },
+    {
+      "part": "attachments",
+      "input": "Assist Chip per file (Discardable, Show Leading Icon, Color=neutral)",
+      "sampleCount": 2,
+      "sample": "Document.pdf (document), Video_file.mp4 (video)"
+    },
+    {
+      "part": "voice.label",
+      "input": "label",
+      "sample": "Listening… / Transcribing… / Recording"
+    },
+    {
+      "part": "voice.time",
+      "input": "label",
+      "sample": "0:07 / 0:00/0:04"
+    },
+    {
+      "part": "voice.hint",
+      "input": "label",
+      "sample": "Speak naturally. Tap Stop when you're done. / Usually takes a second or two. / Up to 2:00. You can listen back before sending."
+    },
+    {
+      "part": "waveform",
+      "input": "levels",
+      "sampleCount": 24,
+      "_note": "9 bars live, 24 in playback. Bar heights are sample data."
+    },
+    {
+      "part": "caption",
+      "input": "text",
+      "sample": "I found a table for four at Marlow's on Friday at seven. …"
+    }
+  ],
+  "anatomyNumbering": {
+    "1": "body",
+    "2": "toolbar",
+    "3": "slots"
+  },
+  "anatomy": [
+    {
+      "id": "root",
+      "kind": "container",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/sm",
+        "padding": "space/md"
+      },
+      "sizing": {
+        "h": "fixed (measured 440Px)",
+        "v": "hug"
+      },
+      "paint": {
+        "fill": "surface/card",
+        "stroke": {
+          "color": "border/default",
+          "width": "stroke/thin",
+          "align": "inside"
+        },
+        "radius": "radius/container"
+      }
+    },
+    {
+      "id": "attachments",
+      "kind": "slot",
+      "role": "Attachment File Slot, above the body.",
+      "visibleWhen": "state in [filled, attachment-open]",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/2xs",
+        "counterAlign": "center"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      },
+      "clips": true
+    },
+    {
+      "id": "body",
+      "kind": "region",
+      "role": "Text, Voice or Speaking. One at a time, and it sets the height."
+    },
+    {
+      "id": "text",
+      "parent": "body",
+      "kind": "container",
+      "visibleWhen": "state in [empty, filled, attachment-open, dictated, disabled]",
+      "layout": {
+        "direction": "vertical",
+        "padding": {
+          "block": "space/2xs",
+          "inline": "space/md"
+        }
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug",
+        "minHeightPx": 56
+      },
+      "clips": true
+    },
+    {
+      "id": "value",
+      "parent": "text",
+      "kind": "text",
+      "textStyle": "body/medium",
+      "color": "foreground/disabled (placeholder) · foreground/primary (value)",
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      }
+    },
+    {
+      "id": "dictatedChip",
+      "kind": "instance",
+      "of": "Assist Chip",
+      "visibleWhen": "state = dictated",
+      "props": {
+        "Label": "Dictated",
+        "Color": "blue",
+        "Discardable": true,
+        "Show Leading Icon": true
+      },
+      "glyph": "microphone",
+      "_note": "Sits in a plain frame above the text, not in the Attachment File Slot (see issues)."
+    },
+    {
+      "id": "voice",
+      "parent": "body",
+      "kind": "container",
+      "visibleWhen": "state in [listening, transcribing, recording, playback]",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/sm"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      }
+    },
+    {
+      "id": "voiceBar",
+      "parent": "voice",
+      "kind": "container",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/sm",
+        "padding": {
+          "block": "space/2xs",
+          "start": "space/md (space/2xs in playback)",
+          "end": "space/2xs"
+        },
+        "counterAlign": "center"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug",
+        "minHeight": "control/lg"
+      },
+      "paint": {
+        "fill": "surface/subtle",
+        "radius": "radius/element-md"
+      },
+      "clips": true
+    },
+    {
+      "id": "recordingDot",
+      "parent": "voiceBar",
+      "kind": "shape",
+      "shape": "ellipse",
+      "visibleWhen": "state = recording",
+      "size": "space/sm",
+      "fill": "foreground/error"
+    },
+    {
+      "id": "progress",
+      "parent": "voiceBar",
+      "kind": "instance",
+      "of": "Progress Circle",
+      "visibleWhen": "state = transcribing",
+      "props": {
+        "Size": "xxsmall",
+        "Show Track": true,
+        "Upload": false,
+        "Rounded": "true"
+      }
+    },
+    {
+      "id": "play",
+      "parent": "voiceBar",
+      "kind": "instance",
+      "of": "Icon Button",
+      "visibleWhen": "state = playback",
+      "props": "Icon Button Size=small, Shape=full, Flavour=primary, Disabled=false",
+      "glyph": "play",
+      "name": "Play"
+    },
+    {
+      "id": "waveform",
+      "parent": "voiceBar",
+      "kind": "container",
+      "visibleWhen": "state in [listening, recording, playback]",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/3xs",
+        "counterAlign": "center"
+      },
+      "sizing": {
+        "h": "hug",
+        "v": "control/icon-md"
+      },
+      "children": {
+        "level": {
+          "kind": "shape",
+          "width": "stroke/thick",
+          "height": "varies (sample data)",
+          "radius": "radius/pill",
+          "fill": "foreground/primary"
+        }
+      }
+    },
+    {
+      "id": "voiceLabel",
+      "parent": "voiceBar",
+      "kind": "text",
+      "textStyle": "body/medium",
+      "color": "foreground/primary",
+      "sizing": {
+        "h": "fill"
+      },
+      "visibleWhen": "state in [listening, transcribing, recording]"
+    },
+    {
+      "id": "time",
+      "parent": "voiceBar",
+      "kind": "text",
+      "textStyle": "body/medium",
+      "color": "foreground/secondary",
+      "visibleWhen": "state in [listening, recording, playback]",
+      "_note": "Fills the bar in playback, where there is no label."
+    },
+    {
+      "id": "voiceControls",
+      "parent": "voiceBar",
+      "kind": "instance",
+      "of": "Icon Button",
+      "props": "Icon Button Size=small, Shape=full, Flavour=subtle, Disabled=false",
+      "perState": {
+        "listening": {
+          "name": "Cancel dictation",
+          "glyph": "close"
+        },
+        "transcribing": {
+          "name": "Cancel transcription",
+          "glyph": "close"
+        },
+        "recording": {
+          "name": "Discard recording",
+          "glyph": "close"
+        },
+        "playback": [
+          {
+            "name": "Record again",
+            "glyph": "replay"
+          },
+          {
+            "name": "Delete voice message",
+            "glyph": "delete"
+          }
+        ]
+      }
+    },
+    {
+      "id": "hint",
+      "parent": "voice",
+      "kind": "text",
+      "textStyle": "body/xsmall",
+      "color": "foreground/secondary",
+      "sizing": {
+        "h": "hug"
+      }
+    },
+    {
+      "id": "speaking",
+      "parent": "body",
+      "kind": "container",
+      "visibleWhen": "state = speaking",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/md",
+        "padding": {
+          "top": "space/md",
+          "bottom": "space/2xs"
+        },
+        "counterAlign": "center"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      }
+    },
+    {
+      "id": "orb",
+      "parent": "speaking",
+      "kind": "drawing",
+      "sizing": {
+        "h": "fixed (measured 98Px)",
+        "v": "fixed (measured 98Px)"
+      },
+      "children": {
+        "ring": {
+          "kind": "ellipse",
+          "count": 6,
+          "visible": "rings 5 and 6 only",
+          "rotationStepDeg": 30,
+          "opacity": "0.75 (no token)",
+          "stroke": {
+            "gradient": [
+              "surface/gradient/start",
+              "surface/gradient/end"
+            ],
+            "width": "1.5 (no token, see issues)"
+          }
+        }
+      }
+    },
+    {
+      "id": "caption",
+      "parent": "speaking",
+      "kind": "text",
+      "textStyle": "body/medium",
+      "align": "center",
+      "color": "foreground/disabled for the first run, foreground/primary for the rest (see issues)",
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      }
+    },
+    {
+      "id": "stopSpeaking",
+      "parent": "speaking",
+      "kind": "instance",
+      "of": "Icon Button",
+      "props": "Icon Button Size=small, Shape=full, Flavour=subtle, Disabled=false",
+      "glyph": "stop",
+      "name": "Stop speaking"
+    },
+    {
+      "id": "toolbar",
+      "kind": "container",
+      "visibleWhen": "state != speaking",
+      "layout": {
+        "direction": "horizontal",
+        "primaryAlign": "space-between",
+        "counterAlign": "center"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      },
+      "clips": true
+    },
+    {
+      "id": "tools",
+      "parent": "toolbar",
+      "kind": "container",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/2xs",
+        "counterAlign": "center"
+      },
+      "sizing": {
+        "h": "hug",
+        "v": "hug"
+      }
+    },
+    {
+      "id": "attachment",
+      "parent": "tools",
+      "kind": "instance",
+      "of": "Attachment",
+      "props": {
+        "Open": "true when state = attachment-open, else false"
+      }
+    },
+    {
+      "id": "moreTools",
+      "parent": "tools",
+      "kind": "slot",
+      "role": "More Tools Slot.",
+      "visibleWhen": "state not in [attachment-open, listening, speaking]",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/2xs",
+        "counterAlign": "center"
+      }
+    },
+    {
+      "id": "actions",
+      "parent": "toolbar",
+      "kind": "container",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/2xs",
+        "counterAlign": "center"
+      },
+      "sizing": {
+        "h": "hug",
+        "v": "hug"
+      }
+    },
+    {
+      "id": "dictate",
+      "parent": "actions",
+      "kind": "instance",
+      "of": "Icon Button",
+      "name": "Dictate",
+      "glyph": "microphone",
+      "props": "Icon Button Size=small, Shape=full, Flavour=subtle, Disabled=false",
+      "visibleWhen": "state in [empty, filled, attachment-open, transcribing, dictated, disabled]",
+      "size": "control/sm"
+    },
+    {
+      "id": "stop",
+      "parent": "actions",
+      "kind": "instance",
+      "of": "Icon Button",
+      "name": "Stop",
+      "glyph": "stop",
+      "props": "Icon Button Size=small, Shape=full, Flavour=primary, Disabled=false",
+      "visibleWhen": "state in [listening, recording]",
+      "size": "control/sm"
+    },
+    {
+      "id": "send",
+      "parent": "actions",
+      "kind": "instance",
+      "of": "Icon Button",
+      "name": "Send",
+      "glyph": "send",
+      "props": "Icon Button Size=small, Shape=full, Flavour=primary, Disabled=true unless state in [filled, attachment-open, dictated, playback]",
+      "size": "control/sm"
+    }
+  ],
+  "variants": [
+    {
+      "axis": "state",
+      "base": "empty",
+      "table": [
+        {
+          "state": "empty",
+          "body": "text",
+          "value": "Placeholder, foreground/disabled",
+          "send": "disabled",
+          "measuredHeightPx": 126
+        },
+        {
+          "state": "filled",
+          "attachments": "shown",
+          "value": "foreground/primary",
+          "send": "enabled",
+          "measuredHeightPx": 164
+        },
+        {
+          "state": "attachment-open",
+          "attachments": "shown",
+          "attachment": "Open=true",
+          "moreTools": "removed",
+          "send": "enabled",
+          "measuredHeightPx": 164
+        },
+        {
+          "state": "listening",
+          "body": "voice: waveform, label, time, Cancel dictation",
+          "moreTools": "removed",
+          "actions": "Stop, Send disabled",
+          "measuredHeightPx": 142
+        },
+        {
+          "state": "transcribing",
+          "body": "voice: progress, label, Cancel transcription",
+          "dictate": "Flavour=text, Disabled=true",
+          "send": "disabled",
+          "measuredHeightPx": 142
+        },
+        {
+          "state": "dictated",
+          "above body": "Dictated chip",
+          "value": "foreground/primary",
+          "send": "enabled",
+          "measuredHeightPx": 164
+        },
+        {
+          "state": "recording",
+          "body": "voice: dot, waveform, label, time, Discard recording",
+          "actions": "Stop, Send disabled",
+          "measuredHeightPx": 142
+        },
+        {
+          "state": "playback",
+          "body": "voice: Play, waveform, time, Record again, Delete voice message",
+          "actions": "Send enabled (no Dictate)",
+          "measuredHeightPx": 142
+        },
+        {
+          "state": "speaking",
+          "body": "speaking: orb, caption, Stop speaking",
+          "toolbar": "removed",
+          "measuredHeightPx": 272
+        },
+        {
+          "state": "disabled",
+          "root.fill": "interactive/neutral/background/disabled",
+          "root.stroke": "border/disabled",
+          "value": "Can't send right now, foreground/disabled",
+          "dictate": "Flavour=text, Disabled=true",
+          "send": "disabled",
+          "measuredHeightPx": 126
+        }
+      ]
+    }
+  ],
+  "subcomponents": [
+    {
+      "name": "Attachment",
+      "private": false,
+      "setId": "6683:11946",
+      "key": "7153924212a716da746d62ef7add888f55f99911",
+      "metadataFrameId": "7093:265",
+      "summary": "The attachment control in Message Input's toolbar. Closed it is a single add button. Open it expands into a row of attachment type controls the product supplies through a slot.",
+      "api": {
+        "open": {
+          "type": "boolean",
+          "figmaName": "Open",
+          "default": false,
+          "controls": [
+            "variant"
+          ],
+          "intent": {
+            "false": "The resting control, one button. Use it wherever the choices are not needed on screen.",
+            "true": "The tray is showing its choices. Transient, because the toolbar loses its other tools while it is open."
+          }
+        },
+        "attachmentControlSlot": {
+          "type": "slot",
+          "figmaName": "Attachment Control Slot#7087:11",
+          "accepts": [
+            "Icon Button"
+          ],
+          "default": "empty",
+          "controls": [
+            "controls"
+          ],
+          "intent": "The attachment types the product offers. Left empty it opens onto nothing."
+        }
+      },
+      "anatomyNumbering": {
+        "1": "toggle",
+        "2": "controls",
+        "3": "open width"
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/2xs",
+            "counterAlign": "center"
+          },
+          "sizing": {
+            "h": "hug",
+            "v": "hug"
+          }
+        },
+        {
+          "id": "toggle",
+          "kind": "instance",
+          "of": "Icon Button",
+          "props": "Size=small, Shape=full, Flavour=subtle",
+          "glyph": "add (Open=false) · close (Open=true)",
+          "state": "default (Open=false) · pressed (Open=true)",
+          "paint": {
+            "fill": "interactive/ghost/background/default · interactive/ghost/background/pressed"
+          }
+        },
+        {
+          "id": "controls",
+          "kind": "slot",
+          "visibleWhen": "open",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/2xs",
+            "counterAlign": "center"
+          },
+          "sizing": {
+            "h": "hug",
+            "v": "hug"
+          },
+          "sample": "four Icon Buttons, Flavour=subtle: attachment, camera, sticker, audio"
+        }
+      ],
+      "variants": [
+        {
+          "axis": "open",
+          "base": "false",
+          "table": [
+            {
+              "open": "false",
+              "measuredPx": "36×36"
+            },
+            {
+              "open": "true",
+              "measuredPx": "196×36",
+              "toggle": "close, pressed",
+              "controls": "shown"
+            }
+          ]
+        }
+      ],
+      "states": [
+        {
+          "State": "Open=false",
+          "Trigger": "Resting",
+          "Duration": "—",
+          "What changes": "A single add control."
+        },
+        {
+          "State": "Open=true",
+          "Trigger": "Control pressed",
+          "Duration": "—",
+          "What changes": "The glyph becomes close, the button takes its pressed surface and the slot appears."
+        }
+      ],
+      "behavior": [
+        {
+          "Type": "Motion",
+          "Description": "No transition is defined. Opening is a swap, not an animation."
+        },
+        {
+          "Type": "Toolbar cost",
+          "Description": "Open, it takes the room the More Tools slot would use, and the parent drops that slot."
+        }
+      ],
+      "content": [
+        {
+          "Property": "Attachment Control Slot",
+          "Type": "slot, product filled",
+          "Description": "Takes one icon control per attachment type. Four fit at the drawn width."
+        },
+        {
+          "Property": "Toggle control",
+          "Type": "nested Icon Button",
+          "Description": "Drawn by the component. Its glyph flips between add and close with Open."
+        }
+      ],
+      "usage": {
+        "do": [
+          "Fill the slot with the types the product supports. An open tray with nothing in it is a dead end.",
+          "Close the tray once a type is chosen. It costs the toolbar its other tools while open."
+        ],
+        "dont": [
+          "Don't leave it open as a resting state. The More Tools slot disappears while it is.",
+          "Don't put labelled buttons in the slot. It is sized for icon controls at the toolbar's height."
+        ]
+      },
+      "accessibility": [
+        "The toggle is an icon with no text. It needs a name, and the name changes with Open.",
+        "Opening the tray reveals controls without moving focus. That change has to be announced.",
+        "Each control in the slot is an icon only, so every one needs a name saying what it attaches.",
+        "The tray and the toolbar share a row. Keyboard order has to follow what a person sees."
+      ],
+      "layoutTheming": [
+        {
+          "Property": "Size",
+          "Type": "Fixed per Open",
+          "Description": "36 square closed, 196 by 36 open."
+        },
+        {
+          "Property": "Toggle control",
+          "Type": "Fixed",
+          "Description": "A 36 Icon Button at Shape=full, Flavour=subtle."
+        },
+        {
+          "Property": "Control slot",
+          "Type": "Fixed",
+          "Description": "156 by 36 when open, sized for four 36 controls."
+        },
+        {
+          "Property": "Surface",
+          "Type": "Theming",
+          "Description": "The toggle takes interactive/ghost/background, default closed and pressed open."
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    "Icon Button",
+    "Icon",
+    "Assist Chip",
+    "Progress Circle"
+  ],
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "surface/card",
+      "surface/subtle",
+      "surface/gradient/start",
+      "surface/gradient/end",
+      "border/default",
+      "border/disabled",
+      "foreground/primary",
+      "foreground/secondary",
+      "foreground/disabled",
+      "foreground/error",
+      "interactive/neutral/background/disabled",
+      "interactive/ghost/background/default",
+      "interactive/ghost/background/pressed"
+    ],
+    "dimension": [
+      "space/3xs",
+      "space/2xs",
+      "space/sm",
+      "space/md",
+      "radius/container",
+      "radius/element-md",
+      "radius/pill",
+      "stroke/thin",
+      "stroke/thick",
+      "control/sm",
+      "control/lg",
+      "control/icon-md"
+    ],
+    "typography": [
+      "body/medium",
+      "body/xsmall"
+    ],
+    "glyphs": [
+      "add",
+      "close",
+      "attachment",
+      "camera",
+      "sticker",
+      "audio",
+      "microphone",
+      "send",
+      "stop",
+      "play",
+      "replay",
+      "delete",
+      "document",
+      "video"
+    ],
+    "glyphNote": "All icons are font glyphs in the rounded family and take currentColor from their Icon Button or Assist Chip. All exist in packages/icons/codepoints.json and none is retired.",
+    "themeAxes": "palette (Light, Dark, AAA Light, AAA Dark), size (Desktop, Mobile, Tablet, Desktop Compact) and every brand extension."
+  },
+  "states": [
+    {
+      "State": "empty",
+      "Trigger": "Resting",
+      "Duration": "—",
+      "What changes": "Placeholder at foreground/disabled, Send disabled."
+    },
+    {
+      "State": "filled",
+      "Trigger": "Text entered",
+      "Duration": "—",
+      "What changes": "The value moves to foreground/primary and Send enables."
+    },
+    {
+      "State": "attachment-open",
+      "Trigger": "Attachment pressed",
+      "Duration": "—",
+      "What changes": "Attachment expands to its open form and the More Tools slot drops out."
+    },
+    {
+      "State": "listening",
+      "Trigger": "Dictation started",
+      "Duration": "—",
+      "What changes": "Text swaps for the Voice bar. Actions become Stop and a disabled Send."
+    },
+    {
+      "State": "transcribing",
+      "Trigger": "Dictation stopped",
+      "Duration": "—",
+      "What changes": "The Voice bar holds while every control disables."
+    },
+    {
+      "State": "dictated",
+      "Trigger": "Transcript returned",
+      "Duration": "—",
+      "What changes": "The Voice bar swaps back to Text carrying the transcript, and Send enables."
+    },
+    {
+      "State": "recording",
+      "Trigger": "Record started",
+      "Duration": "—",
+      "What changes": "The Voice bar gains a foreground/error dot and a discard control. Send stays off."
+    },
+    {
+      "State": "playback",
+      "Trigger": "Record stopped",
+      "Duration": "—",
+      "What changes": "The Voice bar gains Play, a full waveform and an elapsed timer. Send enables."
+    },
+    {
+      "State": "speaking",
+      "Trigger": "Assistant replies",
+      "Duration": "—",
+      "What changes": "The body becomes an orb and a caption. The toolbar is gone entirely."
+    },
+    {
+      "State": "disabled",
+      "Trigger": "—",
+      "Duration": "—",
+      "What changes": "Surface and border take their disabled tokens and every control turns off."
+    }
+  ],
+  "behavior": [
+    {
+      "Type": "Motion",
+      "Description": "No transition is defined. Each state is a swap of the body region and the toolbar."
+    },
+    {
+      "Type": "Body region",
+      "Description": "Text, Voice and Speaking are mutually exclusive. Only one is ever present."
+    },
+    {
+      "Type": "Send enablement",
+      "Description": "Send is on only where there is something to send, at filled, attachment-open, dictated and playback."
+    },
+    {
+      "Type": "Two voice paths",
+      "Description": "Dictation ends as editable text. Recording ends as an audio message. They share the Voice bar and nothing else."
+    }
+  ],
+  "content": [
+    {
+      "Property": "Message value",
+      "Type": "text",
+      "Description": "The typed or dictated text. Not exposed as an input, so it comes from the implementation."
+    },
+    {
+      "Property": "Slots",
+      "Type": "two, product filled",
+      "Description": "The only places a product adds content of its own."
+    },
+    {
+      "Property": "Slots",
+      "Type": "Attachment File Slot",
+      "Description": "Sits above the text on filled and attachment-open."
+    },
+    {
+      "Property": "Slots",
+      "Type": "More Tools Slot",
+      "Description": "Sits beside Attachment in the toolbar. Absent on attachment-open and listening."
+    },
+    {
+      "Property": "Nested controls",
+      "Type": "Icon Button and Attachment",
+      "Description": "Every control is an Icon Button at Shape=full. Attachment has its own frame."
+    },
+    {
+      "Property": "Voice and Speaking",
+      "Type": "drawn",
+      "Description": "The waveform, timer, orb and caption are drawn by the component, not passed in."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Say why in the value text when disabled. A composer that refuses input without a reason reads as broken.",
+      "Keep playback in the recording flow. It is the only chance to hear a take before sending it."
+    ],
+    "dont": [
+      "Don't use listening for a voice message. It ends as text, recording ends as audio.",
+      "Don't put a toolbar back during speaking. It is absent so nothing can be composed over the reply."
+    ]
+  },
+  "accessibility": [
+    "State changes are not announced. Dictation starting, transcription finishing and the assistant speaking all need announcing by the surrounding structure.",
+    "The waveform and the orb carry no text. The label and timer beside them are all a reader gets, so they have to say what is happening.",
+    "Send is disabled in five of the ten states. Disabled does not say why, so the value text or a nearby message has to.",
+    "Every control is an icon with no label. Each needs a name, and the names differ by state even where the glyph repeats.",
+    "While speaking there is no toolbar and only Stop speaking interrupts it. That control has to be reachable by keyboard."
+  ],
+  "accessibleNames": {
+    "_note": "Taken from the layer names in Figma.",
+    "dictate": "Dictate",
+    "send": "Send",
+    "stop": "Stop",
+    "listening": "Cancel dictation",
+    "transcribing": "Cancel transcription",
+    "recording": "Discard recording",
+    "play": "Play",
+    "recordAgain": "Record again",
+    "delete": "Delete voice message",
+    "stopSpeaking": "Stop speaking"
+  },
+  "layoutTheming": [
+    {
+      "Property": "Size",
+      "Type": "Fixed width, hug height",
+      "Description": "440 wide. Height follows the body region, 130 empty, 146 voice, 168 with an attachment row and 276 speaking."
+    },
+    {
+      "Property": "Padding and gap",
+      "Type": "Fixed",
+      "Description": "space/md on all four sides, space/sm between the body region and the toolbar."
+    },
+    {
+      "Property": "Radius",
+      "Type": "Fixed",
+      "Description": "radius/container on every state."
+    },
+    {
+      "Property": "Surface",
+      "Type": "Per State",
+      "Description": "surface/card with a border/default outline, moving to interactive/neutral/background/disabled and border/disabled when disabled."
+    },
+    {
+      "Property": "Body region",
+      "Type": "One of three",
+      "Description": "Text, Voice or Speaking. Text carries body/medium at 16px."
+    },
+    {
+      "Property": "Toolbar",
+      "Type": "Fixed",
+      "Description": "Tools on the left, Actions on the right. Controls are 36 square, Send and Stop 40."
+    },
+    {
+      "Property": "Voice bar",
+      "Type": "Fixed",
+      "Description": "48 tall on surface/track, holding a 2px bar waveform, a label, a timer and one trailing control."
+    }
+  ],
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6649-196",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6962-798",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7093-2",
+    "variants": {
+      "state": {
+        "empty": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6962-452",
+        "filled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6962-478",
+        "attachment-open": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6962-501",
+        "listening": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6962-558",
+        "transcribing": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6962-599",
+        "dictated": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6962-630",
+        "recording": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6962-662",
+        "playback": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6962-702",
+        "speaking": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6962-760",
+        "disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6962-777"
+      }
+    },
+    "attachment": {
+      "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6683-11946",
+      "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7093-265",
+      "open=false": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6683-11945",
+      "open=true": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6683-11947"
+    }
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "Layout metadata vs Toolbar",
+      "detail": "Metadata says Send and Stop are 40. Every action is an Icon Button at Size=small, bound to control/sm like the other controls."
+    },
+    {
+      "severity": "warn",
+      "source": "Layout metadata vs Voice bar",
+      "detail": "Metadata says the Voice bar sits on surface/track. It is bound to surface/subtle."
+    },
+    {
+      "severity": "warn",
+      "source": "Layout metadata vs measured heights",
+      "detail": "Metadata gives heights of 130, 146, 168 and 276. The variants measure 126, 142, 164 and 272."
+    },
+    {
+      "severity": "warn",
+      "source": "State=transcribing vs metadata",
+      "detail": "Metadata says every control disables. Attachment, the More Tools slot and Cancel transcription stay enabled."
+    },
+    {
+      "severity": "warn",
+      "source": "State=disabled vs metadata",
+      "detail": "Metadata says every control turns off. Attachment stays enabled, because it has no disabled option."
+    },
+    {
+      "severity": "warn",
+      "source": "State=dictated",
+      "detail": "The Dictated chip sits in a plain frame named Attachment Slot, not in the Attachment File Slot. The metadata doesn't mention the chip."
+    },
+    {
+      "severity": "warn",
+      "source": "Speaking caption",
+      "detail": "The caption's first run is foreground/disabled and the rest foreground/primary. The metadata doesn't say what the split means."
+    },
+    {
+      "severity": "warn",
+      "source": "Accessible names",
+      "detail": "The Attachment toggle and its slot controls are all named Icon Button, so they give no name to carry into code."
+    },
+    {
+      "severity": "warn",
+      "source": "Token gaps",
+      "detail": "The orb rings' stroke width and opacity have no token. The Text region's minimum height has no token either."
+    },
+    {
+      "severity": "note",
+      "source": "Dictate disabled",
+      "detail": "Disabled Dictate switches Flavour from subtle to text, unlike Send, which keeps its flavour."
+    },
+    {
+      "severity": "note",
+      "source": "State=playback",
+      "detail": "Dictate is dropped from Actions, leaving Send alone. The metadata doesn't say so."
+    },
+    {
+      "severity": "note",
+      "source": "Voice hint",
+      "detail": "Each voice state has a hint line in body/xsmall at foreground/secondary. The metadata doesn't mention it."
+    },
+    {
+      "severity": "note",
+      "source": "Orb",
+      "detail": "Four of the six rings are hidden. No motion is defined, so any animation of the orb or waveform is the implementer's call."
+    },
+    {
+      "severity": "note",
+      "source": "Token use",
+      "detail": "The recording dot is sized with space/sm and the waveform bars with stroke/thick."
+    },
+    {
+      "severity": "note",
+      "source": "Message value",
+      "detail": "The value text is not a Figma property. The metadata says it comes from the implementation."
+    },
+    {
+      "severity": "note",
+      "source": "Motion",
+      "detail": "No transition is defined for Message Input or Attachment. Each state is a swap."
+    }
+  ]
+}

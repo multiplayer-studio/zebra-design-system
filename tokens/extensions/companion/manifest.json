@@ -11,7 +11,7 @@
     "name": "palette",
     "id": "VariableCollectionId:3:4"
   },
-  "overrideCount": 11,
+  "overrideCount": 41,
   "modeMap": [
     {
       "mode": "Light",
@@ -32,7 +32,9 @@
   ],
   "files": [
     "extensions/companion/palette/light.json",
-    "extensions/companion/palette/dark.json"
+    "extensions/companion/palette/dark.json",
+    "extensions/companion/palette/aaa-light.json",
+    "extensions/companion/palette/aaa-dark.json"
   ],
   "note": "Each file holds ONLY the variables this extension overrides. Read the parent collection first, then layer this on top."
 }

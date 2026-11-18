@@ -69,4 +69,4 @@
 - A checkbox rarely stands alone. Where several belong together, the grouping and its name have to be expressed in the structure around them, because nothing in the control carries it.
 
 ---
-*Generated from `specs/checkbox` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/checkbox` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

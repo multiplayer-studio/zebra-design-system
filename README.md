@@ -82,7 +82,7 @@ Every toolbar has the same three menus, which is how you compare a component acr
 
 | Menu | Options |
 |---|---|
-| Extension | Base, Companion, Target |
+| Extension | Base, Companion |
 | Mode | Light, Dark, AAA Light, AAA Dark |
 | Breakpoint | Desktop, Desktop Compact, Tablet, Mobile |
 
@@ -95,7 +95,7 @@ Theming is CSS only, with no provider and no re-render. Set it on any ancestor a
 | Axis | `web-components` and `react-baseui` | `react-baseui` also accepts | `zeta-web` |
 |---|---|---|---|
 | Colour | `.mode-light`, `.mode-dark`, `.mode-aaa-light`, `.mode-aaa-dark` | `data-theme-mode="light"`, `dark`, `aaa-light`, `aaa-dark` | `data-theme="…"`, same values |
-| Brand | `.ext-companion`, `.ext-target`, `.ext-condensed` | `data-theme-ext="…"`, same values | `data-brand="…"`, same values |
+| Brand | `.ext-companion`, `.ext-condensed` | `data-theme-ext="…"`, same values | `data-brand="…"`, same values |
 | Size | `.bp-desktop-compact`, `.bp-tablet`, `.bp-mobile` | `data-size-mode="compact"`, `tablet`, `mobile` | `data-breakpoint="desktop-compact"`, `tablet`, `mobile` |
 
 ```html

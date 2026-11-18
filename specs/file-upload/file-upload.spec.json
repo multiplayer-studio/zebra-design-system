@@ -1,0 +1,1200 @@
+{
+  "component": {
+    "name": "File Upload",
+    "slug": "file-upload",
+    "source": {
+      "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+      "setId": "8289:840",
+      "key": "bd112d58fbf44ec001432c94a7c420b4740acf56",
+      "page": "File Upload",
+      "pageNodeId": "8286:923",
+      "metadataFrameId": "8426:530",
+      "extractedAt": "2026-11-17",
+      "extractionNote": "Three sets on the page: File Upload (8 variants), File Upload Item (16) and File Indicator (3), plus the File Upload Metadata and File Upload Item Metadata frames. File Indicator has no metadata frame of its own; File Upload Item's metadata describes it."
+    }
+  },
+  "summary": "A drop zone with a Select files button, and the list of chosen files beneath it. The component never uploads anything. It hands the files over and shows whatever state the product sets on each row, while State reports what the zone itself is doing, from resting through a drag to a refusal.",
+  "api": {
+    "state": {
+      "type": "enum",
+      "figmaName": "State",
+      "values": [
+        "default",
+        "dragging",
+        "error",
+        "disabled"
+      ],
+      "default": "default",
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "default": "The resting zone. Leave it here while files upload. The state describes the drop target, not the queue.",
+        "dragging": "Driven by the drag, not by the product. If set it by hand, the zone will look live with nothing over it.",
+        "error": "use for a refusal the zone caused, such as a batch over the count. A single bad file belongs on its own row.",
+        "disabled": "For when files cannot be accepted at all. It blocks drops as well as presses, so do not use it to mean busy."
+      }
+    },
+    "shape": {
+      "type": "enum",
+      "figmaName": "Shape",
+      "values": [
+        "rounded",
+        "sharp"
+      ],
+      "default": "rounded",
+      "controls": [
+        "variant"
+      ],
+      "intent": {
+        "rounded": "The default. Shape reaches the zone and the file rows and everything within.",
+        "sharp": "Match the host surface. All components within are squared throughout."
+      }
+    },
+    "showCaption": {
+      "type": "boolean",
+      "figmaName": "Show Caption#8289:18",
+      "default": true,
+      "controls": [
+        "caption"
+      ],
+      "intent": {
+        "true": "The default. States the accepted types and the size limit before anyone picks, which cuts refusals.",
+        "false": "For when the limits are stated nearby. The product still checks them, so refusals arrive unexplained."
+      }
+    },
+    "caption": {
+      "type": "string",
+      "figmaName": "Caption#8289:9",
+      "default": "Supports PDF, PNG and JPG. Max file size 10 MB.",
+      "controls": [
+        "caption"
+      ]
+    },
+    "files": {
+      "type": "slot",
+      "figmaName": "Files#8289:8",
+      "controls": [
+        "files"
+      ],
+      "accepts": [
+        "File Upload Item"
+      ],
+      "preferred": [],
+      "_note": "No preferred components are set on the slot; File Upload Item is what the metadata and the sample content name."
+    }
+  },
+  "internalVariations": [],
+  "contentInputs": [
+    {
+      "part": "files",
+      "input": "File Upload Item rows",
+      "sampleCount": 3,
+      "from": "File Upload Item",
+      "_note": "default variants hold three sample rows (uploading, complete, error), the others one (uploading)."
+    },
+    {
+      "part": "headline",
+      "input": "label",
+      "sample": "Drop files here to upload / Release to upload",
+      "_note": "Parent owned; follows State."
+    },
+    {
+      "part": "error",
+      "input": "label",
+      "sample": "notes.exe isn't a supported file type.",
+      "_note": "Parent owned; no property."
+    }
+  ],
+  "anatomyNumbering": {
+    "1": "zone",
+    "2": "action",
+    "3": "caption",
+    "4": "files"
+  },
+  "anatomy": [
+    {
+      "id": "root",
+      "kind": "container",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/md",
+        "padding": "none"
+      },
+      "sizing": {
+        "h": "fixed (measured 480Px; fills its container per the metadata)",
+        "v": "hug"
+      }
+    },
+    {
+      "id": "zone",
+      "kind": "container",
+      "role": "The drop target. A dashed outline on border/default over surface/card, with its content centred.",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/sm",
+        "padding": {
+          "block": "space/xl",
+          "inline": "space/lg"
+        },
+        "counterAlign": "center"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      },
+      "paint": {
+        "fill": "surface/card",
+        "stroke": {
+          "color": "border/default",
+          "width": "stroke/thin",
+          "align": "inside",
+          "dash": "4,4 (no token — see issues)"
+        },
+        "radius": "radius/md"
+      }
+    },
+    {
+      "id": "headline",
+      "kind": "text",
+      "parent": "zone",
+      "text": {
+        "style": "title/medium",
+        "color": "foreground/primary",
+        "sample": "Drop files here to upload"
+      }
+    },
+    {
+      "id": "or",
+      "kind": "text",
+      "parent": "zone",
+      "text": {
+        "style": "body/xsmall",
+        "color": "foreground/secondary",
+        "sample": "or"
+      }
+    },
+    {
+      "id": "action",
+      "kind": "instance",
+      "parent": "zone",
+      "ref": "Button",
+      "refVariant": "Size=small, Shape=rounded, Flavour=primary",
+      "label": "Select files",
+      "role": "The title/medium headline, the body/xsmall or, and the primary Select files button that opens the picker."
+    },
+    {
+      "id": "caption",
+      "kind": "text",
+      "parent": "zone",
+      "visibleWhen": "showCaption",
+      "text": {
+        "style": "body/small",
+        "color": "foreground/secondary",
+        "content": "caption"
+      },
+      "role": "The body/small line under the button naming what is accepted. Show Caption turns it off, and the zone tightens to suit."
+    },
+    {
+      "id": "error",
+      "kind": "container",
+      "parent": "zone",
+      "visibleWhen": "state = error",
+      "layout": {
+        "direction": "horizontal",
+        "gap": "space/xs",
+        "counterAlign": "center"
+      },
+      "children": [
+        {
+          "glyph": "error",
+          "iconSize": "Icon Size=small"
+        },
+        {
+          "text": {
+            "style": "body/small",
+            "color": "foreground/error"
+          }
+        }
+      ],
+      "_note": "The error glyph is coloured foreground/error in Figma; a font glyph takes currentColor, so it follows the message."
+    },
+    {
+      "id": "files",
+      "kind": "slot",
+      "role": "The list slot. File Upload Item rows, space/sm apart, starting space/md under the zone.",
+      "layout": {
+        "direction": "vertical",
+        "gap": "space/sm"
+      },
+      "sizing": {
+        "h": "fill",
+        "v": "hug"
+      }
+    }
+  ],
+  "variants": [
+    {
+      "axis": "state",
+      "base": "default",
+      "table": [
+        {
+          "state": "default",
+          "zone.fill": "surface/card",
+          "zone.stroke": "border/default, dashed",
+          "headline": "Drop files here to upload",
+          "text color": "foreground/primary, foreground/secondary"
+        },
+        {
+          "state": "dragging",
+          "zone.fill": "surface/info",
+          "zone.stroke": "border/focus, solid",
+          "headline": "Release to upload"
+        },
+        {
+          "state": "error",
+          "zone.stroke": "border/error, dashed",
+          "error": "shown"
+        },
+        {
+          "state": "disabled",
+          "zone.fill": "surface/subtle",
+          "headline, or, caption color": "foreground/disabled",
+          "action": "Button Disabled=true"
+        }
+      ]
+    },
+    {
+      "axis": "shape",
+      "base": "rounded",
+      "table": [
+        {
+          "shape": "rounded",
+          "zone.radius": "radius/md",
+          "action": "Button Shape=rounded (radius/element-sm)",
+          "files": "File Upload Item Shape=rounded"
+        },
+        {
+          "shape": "sharp",
+          "zone.radius": "radius/none",
+          "action": "Button Shape=sharp (radius/none)",
+          "files": "File Upload Item Shape=sharp"
+        }
+      ]
+    }
+  ],
+  "subcomponents": [
+    {
+      "name": "File Upload Item",
+      "private": false,
+      "setId": "8288:545",
+      "key": "a4fda298150e0af0fdfe54d310008a3542fda7b4",
+      "metadataFrameId": "8426:786",
+      "summary": "One file in a File Upload list: the file indicator with its extension badge, the name and a meta line beside it, and a progress readout. Status is set by the product rather than derived, and Indicator chooses between a bar under the meta line and a ring at the row's end.",
+      "api": {
+        "status": {
+          "type": "enum",
+          "figmaName": "Status",
+          "values": [
+            "waiting",
+            "uploading",
+            "complete",
+            "error"
+          ],
+          "default": "waiting",
+          "controls": [
+            "variant"
+          ],
+          "intent": {
+            "waiting": "Queued, not started. Keeps a cancel in reach.",
+            "uploading": "The only status with progress. Hold it until the transfer is acknowledged, not until the last byte is sent.",
+            "complete": "Confirmed and stored. The trailing control turns to delete, so do not reach it before the file is safe.",
+            "error": "Failed, with a retry offered. Take the row off the list instead when a retry cannot succeed and notify the user using a snack bar."
+          }
+        },
+        "indicator": {
+          "type": "enum",
+          "figmaName": "Indicator",
+          "values": [
+            "bar",
+            "ring"
+          ],
+          "default": "bar",
+          "controls": [
+            "variant"
+          ],
+          "intent": {
+            "bar": "The default. Best for short lists. It makes the row taller, so a long queue pushes the form out of view.",
+            "ring": "Best for long lists. Every row keeps one height at any status, but progress is harder to read."
+          }
+        },
+        "shape": {
+          "type": "enum",
+          "figmaName": "Shape",
+          "values": [
+            "rounded",
+            "sharp"
+          ],
+          "default": "rounded",
+          "controls": [
+            "variant"
+          ],
+          "intent": {
+            "rounded": "Follow the File Upload the row sits in.",
+            "sharp": "Squares the row and the trailing control."
+          }
+        },
+        "showDismiss": {
+          "type": "boolean",
+          "figmaName": "Show Dismiss#8288:34",
+          "default": true,
+          "controls": [
+            "dismiss",
+            "actions (ring rows, both buttons)"
+          ],
+          "intent": {
+            "true": "The default. Cancel while the file is in flight, delete once it has landed.",
+            "false": "For lists that must not be edited. A ring row turns off cancel inside the circle, a bar row loses it."
+          }
+        },
+        "fileName": {
+          "type": "string",
+          "figmaName": "File Name#8288:0",
+          "default": "Delivery manifest.pdf",
+          "controls": [
+            "name"
+          ]
+        },
+        "extension": {
+          "type": "string",
+          "figmaName": "Extension#8288:17",
+          "default": "PDF",
+          "controls": [],
+          "_note": "Bound to nothing; the extension is set on the exposed File Indicator. See issues."
+        }
+      },
+      "anatomyNumbering": {
+        "1": "fileIndicator",
+        "2": "body",
+        "3": "progress",
+        "4": "dismiss"
+      },
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/md",
+            "padding": "space/md",
+            "counterAlign": "start (bar), center (ring)"
+          },
+          "sizing": {
+            "h": "fixed (measured 480Px; fills the list per the metadata)",
+            "v": "hug"
+          },
+          "paint": {
+            "fill": "surface/card",
+            "stroke": {
+              "color": "border/subtle",
+              "width": "stroke/thin",
+              "align": "inside"
+            },
+            "radius": "radius/md"
+          }
+        },
+        {
+          "id": "fileIndicator",
+          "kind": "instance",
+          "ref": "File Indicator",
+          "refVariant": "Type=extension",
+          "exposed": true,
+          "role": "A surface/shade tile at radius/sm carrying the extension badge at body/xsmall on foreground/secondary. It also offers an unknown type and an icon type."
+        },
+        {
+          "id": "body",
+          "kind": "container",
+          "layout": {
+            "direction": "vertical",
+            "gap": "space/xs",
+            "padding": {
+              "top": "space/2xs (bar rows only)"
+            }
+          },
+          "sizing": {
+            "h": "fill",
+            "v": "hug"
+          },
+          "role": "The name at body/small on foreground/primary, then the meta line: the byte count and, where there is one, the status at body/xsmall on foreground/secondary."
+        },
+        {
+          "id": "name",
+          "kind": "text",
+          "parent": "body",
+          "text": {
+            "style": "body/small",
+            "color": "foreground/primary",
+            "content": "fileName",
+            "truncation": "ending, one line"
+          }
+        },
+        {
+          "id": "meta",
+          "kind": "container",
+          "parent": "body",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/sm",
+            "counterAlign": "center"
+          },
+          "children": [
+            {
+              "id": "size",
+              "text": {
+                "style": "body/xsmall",
+                "color": "foreground/secondary"
+              }
+            },
+            {
+              "id": "status",
+              "layout": {
+                "direction": "horizontal",
+                "gap": "space/xs",
+                "padding": {
+                  "start": "space/sm"
+                }
+              },
+              "paint": {
+                "stroke": {
+                  "side": "start",
+                  "color": "border/default",
+                  "width": "stroke/thin"
+                }
+              },
+              "children": [
+                {
+                  "glyph": "per status",
+                  "iconSize": "Icon Size=small"
+                },
+                {
+                  "text": {
+                    "style": "body/xsmall",
+                    "color": "per status"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "progress",
+          "kind": "container",
+          "parent": "body",
+          "visibleWhen": "indicator = bar and status = uploading",
+          "layout": {
+            "direction": "horizontal",
+            "gap": "space/md",
+            "padding": {
+              "top": "space/xs"
+            },
+            "counterAlign": "center"
+          },
+          "sizing": {
+            "h": "fill"
+          },
+          "children": [
+            {
+              "ref": "Progress Bar",
+              "refVariant": "Size=small, Show Label=false",
+              "sizing": "fill"
+            },
+            {
+              "id": "percent",
+              "text": {
+                "style": "body/xsmall",
+                "color": "foreground/primary"
+              }
+            }
+          ],
+          "role": "A Progress Bar with its percentage under the meta line, or on a ring row a Progress Circle at the row's end with cancel inside it."
+        },
+        {
+          "id": "tryAgain",
+          "kind": "instance",
+          "parent": "body",
+          "visibleWhen": "indicator = bar and status = error",
+          "ref": "Button",
+          "refVariant": "Size=small, Flavour=text, Leading Icon=true",
+          "label": "Try again",
+          "glyph": "refresh"
+        },
+        {
+          "id": "progressRing",
+          "kind": "instance",
+          "visibleWhen": "indicator = ring and status = uploading",
+          "ref": "Progress Circle",
+          "refVariant": "Size=medium, Upload=true; _Upload Stop=true",
+          "_note": "Cancel lives inside the ring."
+        },
+        {
+          "id": "dismiss",
+          "kind": "instance",
+          "visibleWhen": "showDismiss",
+          "ref": "Icon Button",
+          "refVariant": "Flavour=subtle; Size=small (bar), Size=large in an Actions group (ring)",
+          "glyph": "close (waiting, uploading), delete-outline (complete, error)",
+          "role": "The trailing subtle Icon Button at small. Close to cancel, delete to remove.",
+          "position": "bar rows: absolute, inset space/sm from the top and end edges; ring rows: in flow",
+          "_note": "On bar rows the body runs full width with space/sm end padding, so the percentage ends at the glyph's edge; the name stops short of the button."
+        },
+        {
+          "id": "retry",
+          "kind": "instance",
+          "visibleWhen": "indicator = ring and status = error (bound to showDismiss)",
+          "ref": "Icon Button",
+          "refVariant": "Size=large, Flavour=subtle",
+          "glyph": "refresh",
+          "_note": "On ring rows Try again is an icon button beside delete, in an Actions group with gap space/2xs."
+        }
+      ],
+      "variants": [
+        {
+          "axis": "status",
+          "base": "waiting",
+          "table": [
+            {
+              "status": "waiting",
+              "status glyph": "schedule",
+              "status label": "Waiting, foreground/tertiary",
+              "dismiss glyph": "close",
+              "measured height (bar / ring)": "74Px / 74Px"
+            },
+            {
+              "status": "uploading",
+              "meta": "bar: byte count only (\"1.9 MB of 3.8 MB\"), no status; ring: \"1.9 MB of 3.8 MB · 50%\"",
+              "progress": "bar: Progress Bar + percent; ring: Progress Circle with cancel",
+              "dismiss glyph": "close (bar); none (ring)",
+              "measured height (bar / ring)": "98Px / 74Px"
+            },
+            {
+              "status": "complete",
+              "status glyph": "check-circle",
+              "status label": "Complete, foreground/success",
+              "progress": "none",
+              "dismiss glyph": "delete-outline",
+              "measured height (bar / ring)": "74Px / 74Px"
+            },
+            {
+              "status": "error",
+              "root.stroke": "border/error",
+              "status glyph": "error",
+              "status label": "Failed, foreground/error",
+              "retry": "bar: Try again text Button; ring: refresh Icon Button",
+              "dismiss glyph": "delete-outline",
+              "measured height (bar / ring)": "112Px / 74Px"
+            }
+          ]
+        },
+        {
+          "axis": "indicator",
+          "base": "bar",
+          "table": [
+            {
+              "indicator": "bar",
+              "root.counterAlign": "start",
+              "body.paddingTop": "space/2xs",
+              "dismiss": "Icon Button Size=small (control/sm)"
+            },
+            {
+              "indicator": "ring",
+              "root.counterAlign": "center",
+              "body.paddingTop": "none",
+              "dismiss": "Icon Button Size=large (control/lg), Shape=full when rounded (radius/pill)"
+            }
+          ]
+        },
+        {
+          "axis": "shape",
+          "base": "rounded",
+          "table": [
+            {
+              "shape": "rounded",
+              "root.radius": "radius/md",
+              "fileIndicator.radius": "radius/sm",
+              "controls": "Shape=rounded (bar), full (ring)"
+            },
+            {
+              "shape": "sharp",
+              "root.radius": "radius/none",
+              "fileIndicator.radius": "radius/none",
+              "controls": "Shape=sharp"
+            }
+          ]
+        }
+      ],
+      "states": [
+        {
+          "State": "cancel",
+          "Trigger": "Close pressed while waiting or uploading",
+          "Duration": "—",
+          "What changes": "Stops the file. The product removes the row or marks it failed. On a ring row the control lives inside the circle."
+        },
+        {
+          "State": "retry",
+          "Trigger": "“Try again” pressed on a failed row",
+          "Duration": "—",
+          "What changes": "The product restarts the upload and the row returns to uploading."
+        },
+        {
+          "State": "remove",
+          "Trigger": "Delete pressed on a complete or failed row",
+          "Duration": "—",
+          "What changes": "Takes the file off the list."
+        },
+        {
+          "State": "announce",
+          "Trigger": "Status changes",
+          "Duration": "—",
+          "What changes": "The row announces its name and status politely, on changes of state rather than on every percent."
+        },
+        {
+          "State": "enter",
+          "Trigger": "The row is added to the list",
+          "Duration": "animations/smooth",
+          "What changes": "The row fades in and settles down from space/xs above. Off under reduced motion."
+        }
+      ],
+      "behavior": [
+        {
+          "Type": "Motion",
+          "Description": "Rows ease in on animations/smooth as they are added, and the border colour eases when a row fails. Colour and position only, with no change of scale."
+        },
+        {
+          "Type": "Progress",
+          "Description": "0 to 100, clamped and rounded. Complete always reads 100 whatever was passed."
+        },
+        {
+          "Type": "Meta line",
+          "Description": "Size first, then status. An uploading bar row drops the status label and shows the byte count alone, while a ring row carries the byte count and the percentage together."
+        },
+        {
+          "Type": "Controls",
+          "Description": "The dismiss control follows the status. Close while waiting or uploading, delete once complete or failed. A failed row also offers Try again."
+        },
+        {
+          "Type": "File indicator",
+          "Description": "The extension badges a surface/shade tile, four letters at most. File Indicator also offers an unknown type showing a question mark, and an icon type carrying a glyph instead."
+        }
+      ],
+      "content": [
+        {
+          "Property": "File Name",
+          "Type": "text property",
+          "Description": "Set through File Name. One line at body/small on foreground/primary, ellipsised when long, with the full name kept available."
+        },
+        {
+          "Property": "Extension",
+          "Type": "text property",
+          "Description": "Set through Extension and surfaced from File Indicator. Four letters at most, at body/xsmall on foreground/secondary."
+        },
+        {
+          "Property": "Size",
+          "Type": "parent owned",
+          "Description": "The byte count on the meta line at body/xsmall. It sits on the node rather than being passed in, and its wording differs per status."
+        },
+        {
+          "Property": "Error reason",
+          "Type": "parent owned",
+          "Description": "The status label on a failed row reads Failed. Replacing it with a reason is done on the node, there is no property for it."
+        },
+        {
+          "Property": "Close/Delete Icon",
+          "Type": "Upload state owned",
+          "Description": "The close [x] icon indicates discarding the action or process, the delete icon [trash] removes the uploaded file."
+        }
+      ],
+      "usage": {
+        "do": [
+          "Give every row a real size, so the meta line and a ring row's byte count read truthfully.",
+          "Put the reason in the error, Connection lost rather than just Failed, and offer Try again."
+        ],
+        "dont": [
+          "Don't leave a finished row uploading. Move it to complete or error as soon as the product knows.",
+          "Don't mix bar and ring rows in one list. They stand at different heights, 98 against 74, so the list loses its rhythm."
+        ]
+      },
+      "accessibility": [
+        "Status changes are announced politely as the name and the status, never each percent. The percentage is the only number on the row, so a ring row needs it on the meta line to stay readable. Failed is carried by the colour and the glyph together, which is what keeps it legible for anyone who cannot rely on hue. The trailing control changes meaning with the status, from cancel to delete, so its accessible name has to change with it rather than staying generic."
+      ],
+      "layoutTheming": [
+        {
+          "Property": "Size",
+          "Type": "Fills width, fixed height",
+          "Description": "The row takes the list's width and the name truncates. A ring row stands 74 tall at every status, while a bar row grows to 98, and to 112 on error."
+        },
+        {
+          "Property": "Padding",
+          "Type": "Fixed",
+          "Description": "space/md around the row and between the indicator, the body and the controls. space/xs between the name and the meta line."
+        },
+        {
+          "Property": "Radius",
+          "Type": "Per Shape",
+          "Description": "radius/md on the row when rounded and radius/none when sharp. The file indicator stays radius/sm and its badge radius/xs in both."
+        },
+        {
+          "Property": "Border",
+          "Type": "Per Status",
+          "Description": "1 wide on border/subtle, turning border/error when the row has failed."
+        },
+        {
+          "Property": "Colour",
+          "Type": "Theming",
+          "Description": "surface/card row on a surface/shade indicator tile. Status reads foreground/tertiary waiting, foreground/success complete and foreground/error failed."
+        },
+        {
+          "Property": "Typography",
+          "Type": "Fixed",
+          "Description": "body/small name, with the meta line, the byte count and the percentage all at body/xsmall."
+        }
+      ]
+    },
+    {
+      "name": "File Indicator",
+      "private": false,
+      "setId": "8416:636",
+      "key": "df9c25a9f01fd14cdc63b7ead8346706cd9db684",
+      "metadataFrameId": null,
+      "summary": null,
+      "_note": "No description and no metadata frame; its intent comes from File Upload Item's metadata.",
+      "api": {
+        "type": {
+          "type": "enum",
+          "figmaName": "Type",
+          "values": [
+            "extension",
+            "unknown",
+            "icon"
+          ],
+          "default": "extension",
+          "controls": [
+            "variant"
+          ]
+        },
+        "extension": {
+          "type": "string",
+          "figmaName": "Extension#8416:0",
+          "default": "PDF",
+          "controls": [
+            "badge.label"
+          ],
+          "_note": "Bound only in Type=extension."
+        }
+      },
+      "internalVariations": [
+        {
+          "part": "badge.icon",
+          "via": "Icon (Name swap)",
+          "options": "any glyph; default video-play",
+          "_note": "Type=icon only."
+        }
+      ],
+      "anatomy": [
+        {
+          "id": "root",
+          "kind": "container",
+          "layout": {
+            "direction": "vertical",
+            "padding": {
+              "block": "3Px (no token — see issues)",
+              "inline": "none"
+            },
+            "align": "center"
+          },
+          "sizing": "fixed, control/lg square",
+          "paint": {
+            "fill": "surface/shade at paint opacity 0.1 (literal — see issues)",
+            "radius": "radius/sm"
+          }
+        },
+        {
+          "id": "badge",
+          "kind": "container",
+          "layout": {
+            "direction": "horizontal",
+            "padding": {
+              "inline": "space/xs"
+            }
+          },
+          "sizing": "hug",
+          "paint": {
+            "radius": "radius/xs"
+          },
+          "children": [
+            {
+              "id": "label",
+              "text": {
+                "style": "body/xsmall",
+                "color": "foreground/secondary",
+                "content": "extension",
+                "align": "center"
+              }
+            }
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "axis": "type",
+          "base": "extension",
+          "table": [
+            {
+              "type": "extension",
+              "badge": "the extension text"
+            },
+            {
+              "type": "unknown",
+              "badge": "\"?\" (not bound to extension)"
+            },
+            {
+              "type": "icon",
+              "badge": "an Icon Size=small glyph instead of text (default video-play)"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    "Button",
+    "Icon Button",
+    "Icon",
+    "Progress Bar",
+    "Progress Circle (with its _Upload part)"
+  ],
+  "tokens": {
+    "source": "tokens/ (see tokens/manifest.json)",
+    "color": [
+      "surface/card",
+      "surface/info",
+      "surface/subtle",
+      "surface/shade",
+      "border/default",
+      "border/subtle",
+      "border/focus",
+      "border/error",
+      "foreground/primary",
+      "foreground/secondary",
+      "foreground/tertiary",
+      "foreground/success",
+      "foreground/error",
+      "foreground/disabled"
+    ],
+    "dimension": [
+      "space/2xs",
+      "space/xs",
+      "space/sm",
+      "space/md",
+      "space/lg",
+      "space/xl",
+      "radius/xs",
+      "radius/sm",
+      "radius/md",
+      "radius/none",
+      "stroke/thin",
+      "control/lg"
+    ],
+    "typography": [
+      "title/medium",
+      "body/small",
+      "body/xsmall"
+    ],
+    "motion": [
+      "animations/smooth"
+    ],
+    "glyphs": [
+      "error",
+      "schedule",
+      "check-circle",
+      "close",
+      "delete-outline",
+      "refresh",
+      "video-play"
+    ],
+    "glyphNote": "All icons are font glyphs (rounded family when Shape=rounded, sharp when sharp) and take currentColor.",
+    "themeAxes": {
+      "palette": [
+        "Light",
+        "Dark",
+        "AAA Light",
+        "AAA Dark"
+      ],
+      "size": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "extensions": "every brand extension in tokens/manifest.json"
+    }
+  },
+  "states": [
+    {
+      "State": "dragging",
+      "Trigger": "Files dragged over the zone",
+      "Duration": "animations/smooth",
+      "What changes": "The border turns solid border/focus and the fill surface/info. The headline swaps to Release to upload."
+    },
+    {
+      "State": "drop",
+      "Trigger": "Files released on the zone",
+      "Duration": "—",
+      "What changes": "Each file is checked against the accepted types, the size limit and the count, in that order. Accepted files join the list, refused ones raise the error."
+    },
+    {
+      "State": "pick",
+      "Trigger": "Select files pressed",
+      "Duration": "—",
+      "What changes": "Opens the system picker, filtered to the accepted types."
+    },
+    {
+      "State": "error",
+      "Trigger": "A refusal, or an error the product sets",
+      "Duration": "—",
+      "What changes": "The border takes border/error and the message row appears under the caption, in foreground/error at body/small."
+    },
+    {
+      "State": "disabled",
+      "Trigger": "Disabled set",
+      "Duration": "—",
+      "What changes": "Drops and picks are ignored. The zone greys to surface/subtle with foreground/disabled text and a disabled button."
+    }
+  ],
+  "behavior": [
+    {
+      "Type": "Motion",
+      "Description": "The zone's border and fill ease as dragging starts and stops. Colour only, with no change of scale or elevation."
+    },
+    {
+      "Type": "Drag tracking",
+      "Description": "Only real files highlight the zone. Dragged text or links are ignored."
+    },
+    {
+      "Type": "Validation",
+      "Description": "Accepted types, maximum size and maximum count are checked per file, in that order. The first failure is what the message reports."
+    },
+    {
+      "Type": "No uploading",
+      "Description": "The component never uploads. It hands the chosen files over and shows whatever state the product sets on each row."
+    },
+    {
+      "Type": "Localisation",
+      "Description": "Every string the component shows or announces is replaceable. Sizes, types and counts are the product's to phrase."
+    }
+  ],
+  "content": [
+    {
+      "Property": "Caption",
+      "Type": "text property",
+      "Description": "Set through Caption and drawn only when Show Caption is on. It names what is accepted, for example Supports PDF, PNG and JPG. Max file size 10 MB."
+    },
+    {
+      "Property": "Headline",
+      "Type": "parent owned",
+      "Description": "Drop files here to upload, swapping to Release to upload while files are over the zone. It follows State and is not exposed as an input."
+    },
+    {
+      "Property": "Error message",
+      "Type": "parent owned",
+      "Description": "Appears on the error state only, in foreground/error at body/small. The wording sits on the node rather than being passed in."
+    },
+    {
+      "Property": "Files",
+      "Type": "slot",
+      "Description": "File Upload Item rows, listed under the zone space/sm apart, in the order they were added."
+    }
+  ],
+  "usage": {
+    "do": [
+      "Say what is accepted in the caption, the types and the size limit, so refusals stay rare.",
+      "Move each row through waiting, uploading and complete yourself, as the upload really progresses."
+    ],
+    "dont": [
+      "Don't rely on drag and drop alone. The Select files button is the accessible path, so keep it visible.",
+      "Don't stack zone errors. The error row shows one message, either the product's error or the first refusal."
+    ]
+  },
+  "accessibility": [
+    "The Select files button is the keyboard path. It is described by the headline and the caption, so both should read as instruction rather than decoration. The zone itself takes no focus, which is why the button has to stay visible and reachable rather than being treated as a fallback. The error message is the only place a refusal is named, so announce it when it appears rather than leaving the border colour to carry it alone."
+  ],
+  "layoutTheming": [
+    {
+      "Property": "Width",
+      "Type": "Fills container",
+      "Description": "The zone and the rows take the container's width. The zone centres its content."
+    },
+    {
+      "Property": "Padding",
+      "Type": "Fixed",
+      "Description": "space/xl above and below and space/lg at the sides inside the zone, with space/sm between its parts. space/md between the zone and the list."
+    },
+    {
+      "Property": "Radius",
+      "Type": "Per Shape",
+      "Description": "radius/md on the zone and the file rows when rounded, radius/none when sharp. The Select files button carries Button's own radius/element-sm."
+    },
+    {
+      "Property": "Border",
+      "Type": "Per State",
+      "Description": "1 wide, dashed on border/default. It turns solid border/focus while dragging, and dashed border/error on error."
+    },
+    {
+      "Property": "Colour",
+      "Type": "Theming",
+      "Description": "surface/card zone, surface/info while dragging, surface/subtle when disabled. Text runs foreground/primary, foreground/secondary and foreground/disabled."
+    },
+    {
+      "Property": "Typography",
+      "Type": "Fixed",
+      "Description": "title/medium headline, body/xsmall or, body/small caption and error message."
+    }
+  ],
+  "visualReference": {
+    "policy": "No images are stored; every node deep-links into Figma so a shot can be pulled on demand and is never stale.",
+    "page": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8286-923",
+    "componentSet": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8289-840",
+    "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8426-530",
+    "variants": {
+      "state": {
+        "default": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8289-238",
+        "dragging": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8289-508",
+        "error": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8289-612",
+        "disabled": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8289-728"
+      },
+      "shape": {
+        "sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8289-373"
+      }
+    },
+    "subcomponents": {
+      "File Upload Item": {
+        "set": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8288-545",
+        "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8426-786",
+        "status (bar)": {
+          "waiting": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8288-59",
+          "uploading": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8288-161",
+          "complete": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8288-295",
+          "error": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8288-405"
+        },
+        "status (ring)": {
+          "waiting": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8288-85",
+          "uploading": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8288-193",
+          "complete": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8288-327",
+          "error": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8288-442"
+        },
+        "shape": {
+          "sharp": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8288-111"
+        }
+      },
+      "File Indicator": {
+        "set": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8416-636",
+        "type": {
+          "extension": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8416-631",
+          "unknown": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8416-637",
+          "icon": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8416-640"
+        }
+      }
+    }
+  },
+  "issues": [
+    {
+      "severity": "warn",
+      "source": "File Upload Item api vs anatomy",
+      "detail": "The Extension property is bound to nothing. The extension is set on the exposed File Indicator instead, so the item's own Extension does nothing."
+    },
+    {
+      "severity": "warn",
+      "source": "File Upload Item, ring error",
+      "detail": "The retry Icon Button is named Dismiss and bound to Show Dismiss. Turning dismiss off also removes retry."
+    },
+    {
+      "severity": "warn",
+      "source": "File Upload Item vs metadata",
+      "detail": "Show Dismiss false says a ring row turns off cancel inside the circle. Show Dismiss is not bound to the ring's cancel, which stays on."
+    },
+    {
+      "severity": "warn",
+      "source": "File Upload Item, Shape=rounded ring rows",
+      "detail": "Complete uses an Icon Button with Shape=sharp, and error uses a sharp delete beside a full retry. Other rounded ring rows use Shape=full."
+    },
+    {
+      "severity": "warn",
+      "source": "File Upload, Files slot",
+      "detail": "The slot has no preferred components. The metadata expects File Upload Item rows."
+    },
+    {
+      "severity": "warn",
+      "source": "gaps",
+      "detail": "The zone border's dash pattern (4, 4) has no token. Default, error and disabled are dashed; dragging is solid."
+    },
+    {
+      "severity": "warn",
+      "source": "gaps",
+      "detail": "File Indicator's vertical padding is a raw 3Px with no token."
+    },
+    {
+      "severity": "warn",
+      "source": "gaps",
+      "detail": "File Indicator's fill is surface/shade at a literal paint opacity of 0.1."
+    },
+    {
+      "severity": "note",
+      "source": "metadata anatomy",
+      "detail": "Dismiss is described as a small Icon Button. Ring rows use a large one (control/lg)."
+    },
+    {
+      "severity": "note",
+      "source": "bindingDrift",
+      "detail": "The body's top padding (space/2xs) is bound in bar rows only. Ring rows have none."
+    },
+    {
+      "severity": "note",
+      "source": "content",
+      "detail": "Headline, error message, byte count and the error reason are parent owned. None is a property."
+    },
+    {
+      "severity": "note",
+      "source": "content",
+      "detail": "Progress is shown at fixed samples (50%, 100%) and the ring row's byte count is sample text. Progress is a 0–100 input."
+    },
+    {
+      "severity": "note",
+      "source": "content",
+      "detail": "Each File Upload Item variant shows the same sample file name, because File Name is one text property with one default."
+    },
+    {
+      "severity": "note",
+      "source": "states",
+      "detail": "drop and pick are behaviours with no variant of their own."
+    },
+    {
+      "severity": "note",
+      "source": "File Indicator",
+      "detail": "No description and no metadata frame. Its intent comes from File Upload Item's metadata."
+    },
+    {
+      "severity": "note",
+      "source": "File Indicator",
+      "detail": "The unknown type shows a fixed \"?\". It is not bound to Extension."
+    },
+    {
+      "severity": "note",
+      "source": "anatomy",
+      "detail": "Status and zone error glyphs carry their status colour in Figma. As font glyphs they take currentColor from the label beside them."
+    },
+    {
+      "severity": "note",
+      "source": "sizing",
+      "detail": "Both components are 480Px wide in Figma. The metadata says they fill their container."
+    }
+  ]
+}

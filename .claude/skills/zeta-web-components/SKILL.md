@@ -124,7 +124,7 @@ Zeta Web themes with **attributes**, not classes:
 
 - `data-theme="light" | "dark"` — and the OS dark preference when no
   `data-theme` is set.
-- `data-brand="companion" | "target" | "condensed"` — the Zebra brand
+- `data-brand="companion" | "condensed"` — the Zebra brand
   extensions.
 - `data-breakpoint="mobile" | "tablet" | "desktop-compact"`.
 

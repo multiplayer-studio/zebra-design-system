@@ -65,7 +65,7 @@ shows the brand's light values; set `data-theme` explicitly with a brand.
 
 ## In Storybook
 
-The toolbar has the same menus as `packages/web-components`: **Extension** (Base, Companion, Target), **Mode**
+The toolbar has the same menus as `packages/web-components`: **Extension** (Base, Companion), **Mode**
 (Light, Dark) and **Breakpoint** (Desktop, Desktop Compact, Tablet, Mobile). A decorator in
 `.storybook/preview.tsx` sets `data-brand`, `data-theme` and `data-breakpoint` on the preview's `<html>`, so check a
 component under each before calling it done. In a URL: `&globals=mode:dark;extension:companion`.

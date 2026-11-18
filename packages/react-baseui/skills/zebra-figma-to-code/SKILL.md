@@ -59,8 +59,8 @@ never overrides them. Then:
   children inherit (see DESIGN.md §Shape inheritance); set shape on a child
   only where the design genuinely departs.
 - **Explicit modes count.** A frame set to Dark gets `mode-dark` on its
-  wrapper (Zeta Web: `data-theme="dark"`); a brand frame gets `ext-companion`
-  / `ext-target`. Remember portals escape a scoped theme class — pass
+  wrapper (Zeta Web: `data-theme="dark"`); a brand frame gets `ext-companion`.
+  Remember portals escape a scoped theme class — pass
   `portalContainer` or scope at `<body>`.
 - **Icons are glyph names.** Match the Figma icon to a name in
   `node_modules/@zebra-design-system/icons/codepoints.json`; if the glyph

@@ -198,6 +198,7 @@ export const zebraIconGlyphs: Record<string, string> = {
   "comms-chat": "\u{e0a4}",
   "comms-chat-new": "\u{e0a5}",
   "comms-chat-unread": "\u{e0a6}",
+  "companion": "\u{e2d4}",
   "contactless-pay": "\u{e198}",
   "contacts": "\u{e0df}",
   "contacts-outline": "\u{e0e0}",

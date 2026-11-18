@@ -71,4 +71,4 @@
 - Icon and label move together between states, so they stay consistent with each other. Check interactive/subtle/foreground/disabled against the surface the bar sits on.
 
 ---
-*Generated from `specs/navigation-item` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/navigation-item` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

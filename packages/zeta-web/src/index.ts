@@ -18,6 +18,14 @@ import { ZetaCardFooter } from "./components/card/card-footer/card-footer.js";
 import { ZetaCardHeader } from "./components/card/card-header/card-header.js";
 import { ZetaCaretIndicator } from "./components/navigation-rail/caret-indicator.js";
 import { ZetaChartCard } from "./components/chart-card/chart-card.js";
+import { ZetaChatAttachment } from "./components/chat-message/chat-media.js";
+import { ZetaChatBubble } from "./components/chat-message/chat-parts.js";
+import { ZetaChatControls } from "./components/chat-message/chat-parts.js";
+import { ZetaChatLoadingIndicator } from "./components/chat-message/chat-parts.js";
+import { ZetaChatMessage } from "./components/chat-message/chat-message.js";
+import { ZetaChatPhotos } from "./components/chat-message/chat-media.js";
+import { ZetaChatThread } from "./components/chat-message/chat-media.js";
+import { ZetaChatTimestamp } from "./components/chat-message/chat-parts.js";
 import { ZetaCheckbox } from "./components/checkbox/checkbox.js";
 import { ZetaCollapsibleMenuItem } from "./components/navigation-rail/collapsible-menu-item.js";
 import { ZetaDialog } from "./components/dialog/dialog.js";
@@ -27,6 +35,7 @@ import { ZetaDropdownMenuItem } from "./components/dropdown/menu-item/dropdown-m
 import { ZetaDroppable } from "./components/dropdown/droppable.js";
 import { ZetaEmptyState } from "./components/empty-state/empty-state.js";
 import { ZetaFab } from "./components/fab/fab.js";
+import { ZetaFileIndicator } from "./components/upload-item/file-indicator.js";
 import { ZetaFileUpload } from "./components/file-upload/file-upload.js";
 import { ZetaFilterChip } from "./components/chips/filter-chip/filter-chip.js";
 import { ZetaGlobalHeader } from "./components/global-header/global-header.js";
@@ -43,6 +52,7 @@ import { ZetaLightbox } from "./components/lightbox/lightbox.js";
 import { ZetaList } from "./components/list/list.js";
 import { ZetaListItem } from "./components/list/list-item/list-item.js";
 import { ZetaLoginPage } from "./components/login-page/login-page.js";
+import { ZetaMessageInput } from "./components/message-input/message-input.js";
 import { ZetaNavigationBar } from "./components/navigation-bar/navigation-bar.js";
 import { ZetaNavigationDrawer } from "./components/navigation-drawer/navigation-drawer.js";
 import { ZetaNavigationDrawerFooter } from "./components/navigation-drawer/navigation-drawer-footer/navigation-drawer-footer.js";
@@ -113,6 +123,14 @@ export {
   ZetaCardHeader,
   ZetaCaretIndicator,
   ZetaChartCard,
+  ZetaChatAttachment,
+  ZetaChatBubble,
+  ZetaChatControls,
+  ZetaChatLoadingIndicator,
+  ZetaChatMessage,
+  ZetaChatPhotos,
+  ZetaChatThread,
+  ZetaChatTimestamp,
   ZetaCheckbox,
   ZetaCollapsibleMenuItem,
   ZetaDialog,
@@ -122,6 +140,7 @@ export {
   ZetaDroppable,
   ZetaEmptyState,
   ZetaFab,
+  ZetaFileIndicator,
   ZetaFileUpload,
   ZetaFilterChip,
   ZetaGlobalHeader,
@@ -138,6 +157,7 @@ export {
   ZetaList,
   ZetaListItem,
   ZetaLoginPage,
+  ZetaMessageInput,
   ZetaNavigationBar,
   ZetaNavigationDrawer,
   ZetaNavigationDrawerFooter,

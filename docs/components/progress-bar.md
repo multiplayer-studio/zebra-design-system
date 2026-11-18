@@ -72,4 +72,4 @@
 - The fill and the track are separated by colour alone. Check foreground/link against surface/track on the surface you place the bar on.
 
 ---
-*Generated from `specs/progress-bar` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/progress-bar` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

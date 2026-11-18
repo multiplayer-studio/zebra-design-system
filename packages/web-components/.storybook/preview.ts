@@ -37,7 +37,6 @@ const preview: Preview = {
         items: [
           { value: "base", title: "Base" },
           { value: "companion", title: "Companion" },
-          { value: "target", title: "Target" },
         ],
         dynamicTitle: true,
       },

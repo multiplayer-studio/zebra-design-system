@@ -103,7 +103,7 @@ function render(spec) {
     parts.push(`## Accessibility\n\n${bullets(spec.accessibility.map(String))}`);
   }
 
-  parts.push(`---\n*Generated from \`specs/${spec.component.slug}\` — do not edit by hand. Theming: put \`mode-dark\`, \`ext-companion\`, \`ext-target\` or \`bp-*\` classes on any ancestor (Zeta Web uses \`data-theme\`/\`data-brand\` attributes instead).*`);
+  parts.push(`---\n*Generated from \`specs/${spec.component.slug}\` — do not edit by hand. Theming: put \`mode-dark\`, \`ext-companion\` or \`bp-*\` classes on any ancestor (Zeta Web uses \`data-theme\`/\`data-brand\` attributes instead).*`);
   return parts.filter(Boolean).join("\n\n") + "\n";
 }
 
@@ -177,7 +177,7 @@ Run \`npx zebra-skills\` once to install this package's Claude Code skills
   \`var(--foreground-primary)\`, \`var(--space-md)\`…). Never hex values, never
   \`--palette-*\`/\`--primitives-*\`.
 - Theme with a class on any ancestor: \`mode-dark\`, \`mode-aaa-light\`,
-  \`ext-companion\`, \`ext-target\`, \`bp-mobile\`. No provider, no JS. Anything
+  \`ext-companion\`, \`bp-mobile\`. No provider, no JS. Anything
   that portals to document.body escapes a scoped theme class — theme
   \`<html>\`/\`<body>\`, or pass the component's \`portalContainer\`.
 - Icons are font glyphs by name (typed \`IconName\`); never inline SVGs for
@@ -209,7 +209,7 @@ Run \`npx zebra-skills\` once to install this package's Claude Code skills
 - Elements are \`<zds-*>\`; attributes/properties are documented in the
   package's custom-elements.json (machine-readable — read it).
 - Theme with a class on any light-DOM ancestor: \`mode-dark\`, \`ext-companion\`,
-  \`ext-target\`, \`bp-mobile\`. Tokens cascade into shadow roots; nothing re-renders.
+  \`bp-mobile\`. Tokens cascade into shadow roots; nothing re-renders.
 - Style with semantic tokens only; never \`--palette-*\`/\`--primitives-*\`, never hex.
 - Icons: \`<zds-icon name="…">\` draws a font glyph; give \`label\` when it is
   not decorative. Check names against @zebra-design-system/icons codepoints.
@@ -226,7 +226,7 @@ ${list}
 
 - \`import "@zebra-design-system/tokens/css"\` gives every token as a CSS
   custom property with class-scoped themes (\`.mode-dark\`, \`.ext-companion\`,
-  \`.ext-target\`, \`.bp-*\`). \`/css-attributes\` is the same layer scoped by
+  \`.bp-*\`). \`/css-attributes\` is the same layer scoped by
   \`[data-theme]\`/\`[data-brand]\`/\`[data-breakpoint]\` for Zeta-style stacks.
 - Build UI against the unprefixed semantic names (\`--surface-default\`,
   \`--foreground-primary\`, \`--interactive-primary-background-default\`,
@@ -268,7 +268,7 @@ For existing Zeta consumers; new builds should prefer the
 - Import \`@zebra-fed/zeta-web\` (registers zeta-* elements) and
   \`@zebra-fed/zeta-web/index.css\`. React wrappers: \`@zebra-fed/zeta-web/react\`.
 - Theme with attributes on an ancestor: \`data-theme="dark"\`,
-  \`data-brand="companion"|"target"|"condensed"\`, \`data-breakpoint\`.
+  \`data-brand="companion"|"condensed"\`, \`data-breakpoint\`.
 - The element API is in custom-elements.json (machine-readable).
 
 ## Spec-refined components

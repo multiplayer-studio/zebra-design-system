@@ -80,4 +80,4 @@
 - Write labels as the verb the user is about to carry out, Save rather than OK, so the action is understandable when read out of context.
 
 ---
-*Generated from `specs/button` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/button` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

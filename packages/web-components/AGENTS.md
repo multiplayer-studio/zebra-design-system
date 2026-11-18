@@ -15,7 +15,7 @@ Run `npx zebra-skills` once to install this package's Claude Code skills
 - Elements are `<zds-*>`; attributes/properties are documented in the
   package's custom-elements.json (machine-readable — read it).
 - Theme with a class on any light-DOM ancestor: `mode-dark`, `ext-companion`,
-  `ext-target`, `bp-mobile`. Tokens cascade into shadow roots; nothing re-renders.
+  `bp-mobile`. Tokens cascade into shadow roots; nothing re-renders.
 - Style with semantic tokens only; never `--palette-*`/`--primitives-*`, never hex.
 - Icons: `<zds-icon name="…">` draws a font glyph; give `label` when it is
   not decorative. Check names against @zebra-design-system/icons codepoints.
@@ -30,10 +30,12 @@ Run `npx zebra-skills` once to install this package's Claude Code skills
 - [Button](https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/button.md): Triggers an action from a text label, with optional icons on either side.
 - [Button Group](https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/button-group.md): A row of related actions sharing one bordered surface, where each carries equal weight rather than one leading.
 - [Card](https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/card.md)
+- [Chat Message](https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/chat-message.md): One message in a chat, from someone else, you or the assistant.
 - [Checkbox](https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/checkbox.md): A square control for turning a single option on or off, with an optional label beside it.
 - [Dialog](https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/dialog.md): A modal message that interrupts the current task until the user responds or dismisses it.
 - [Divider](https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/divider.md): A thin line used to visually separate content into distinct sections or groups, such as list rows, cards, or menu items.
 - [Dropdown](https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/dropdown.md): A pattern rather than a component, pairing a trigger with a Dropdown Menu and placing the menu relative to it.
+- [File Upload](https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/file-upload.md): A drop zone with a Select files button, and the list of chosen files beneath it.
 - [Filter Chip](https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/filter-chip.md): Lets someone narrow a set of content by switching criteria on and off, such as categories in a list of results.
 - [Global Header](https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/global-header.md): The bar across the top of an application, carrying the product’s identity at the leading edge, navigation and search in the middle, and the person’s account at the trailing edge.
 - [Icon](https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/icon.md): Wraps a single glyph from the icon library so it can be sized consistently and embedded in other components.
@@ -42,6 +44,7 @@ Run `npx zebra-skills` once to install this package's Claude Code skills
 - [Input](https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/input.md): The full field assembly, a label above, the field itself and a hint below, stacked and spaced as one unit.
 - [Input Chip](https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/input-chip.md): Represents a person, entity or value someone has entered or picked, such as a recipient on a message, so it can be reviewed and removed without retyping.
 - [Lightbox](https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/lightbox.md): A full-size preview over the page, opened from the item being viewed.
+- [Message Input](https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/message-input.md): A composer for conversational, AI-assisted surfaces: type, attach, dictate, record a voice message, hear the reply.
 - [Navigation Bar](https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/navigation-bar.md): A horizontal bar of top-level destinations, pinned to one edge of a view.
 - [Navigation Drawer](https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/navigation-drawer.md): The app's destinations in a tall panel at the edge of the screen, opened from a menu button.
 - [Navigation Item](https://github.com/zebratechnologies/zebra-design-system/blob/main/docs/components/navigation-item.md): A single destination inside a Navigation Bar, shown as an icon above a label with an optional badge.

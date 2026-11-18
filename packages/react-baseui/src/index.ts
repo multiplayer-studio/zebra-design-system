@@ -80,8 +80,28 @@ export type { InlineBannerProps, InlineBannerStatus, InlineBannerAppearance, Inl
 export { Select } from "./components/select/Select.js";
 export type { SelectProps, SelectOption, SelectFieldState, SelectSize, SelectShape, SelectFlavour, SelectState, SelectLabelType } from "./components/select/Select.js";
 
-/* Spec-less experimental components (Chat, MessageInput) live in
-   ./experimental.ts, outside this entry's SemVer surface. */
+/* Spec-less experimental components live in ./experimental.ts, outside
+   this entry's SemVer surface. */
+
+export {
+  ChatMessage, ChatBubble, ChatControls, ChatLoadingIndicator, ChatTimestamp, ChatThread, ChatPhotos, ChatAttachment,
+  chatMessageStrings,
+} from "./components/chat-message/ChatMessage.js";
+export type {
+  ChatMessageProps, ChatBubbleProps, ChatControlsProps, ChatThreadProps, ChatPhotosProps, ChatAttachmentProps,
+  ChatPlatform, ChatStyle, ChatRole, ChatState, ChatSequence, ChatBubbleStatus, ChatMessageStrings,
+} from "./components/chat-message/ChatMessage.js";
+export { FileUpload, FileUploadItem, FileIndicator, fileUploadStrings, formatFileSize } from "./components/file-upload/FileUpload.js";
+export type {
+  FileUploadProps, FileUploadItemProps, FileIndicatorProps, FileUploadState, FileUploadShape, FileUploadStatus,
+  FileUploadIndicator, FileIndicatorType, FileUploadStrings, FileUploadRejection, FileUploadRejectReason,
+} from "./components/file-upload/FileUpload.js";
+
+export { MessageInput, MessageThumbnail, messageInputStrings, defaultAttachmentColor } from "./components/message-input/MessageInput.js";
+export type {
+  MessageInputProps, MessageInputState, MessageInputAction, MessageInputPreview, MessageInputStrings, MessageThumbnailProps,
+  MessageAttachment, MessageAttachmentKind, MessageVoiceNote, MessageSubmission,
+} from "./components/message-input/MessageInput.js";
 
 export { Lightbox, lightboxStrings, lightboxKindOf } from "./components/lightbox/Lightbox.js";
 export type { LightboxProps, LightboxItem, LightboxKind, LightboxShape, LightboxStrings } from "./components/lightbox/Lightbox.js";

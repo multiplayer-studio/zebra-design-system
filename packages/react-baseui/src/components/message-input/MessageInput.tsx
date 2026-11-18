@@ -97,7 +97,11 @@ const matchesAccept = (f: File, accept?: string) => {
     t.startsWith(".") ? name.endsWith(t) : t.endsWith("/*") ? type.startsWith(t.slice(0, -1)) : type === t);
 };
 
-/** A state to render without touching the microphone — for docs and visual review. */
+/** The spec's State values. Normally derived from what the person does; pass `state` to pin one. */
+export type MessageInputState =
+  | "empty" | "filled" | "attachment-open" | "listening" | "transcribing" | "dictated"
+  | "recording" | "playback" | "speaking" | "disabled";
+/** @deprecated Use `state`. A voice state to render without touching the microphone. */
 export type MessageInputPreview = "listening" | "transcribing" | "recording";
 
 export interface MessageInputProps {
@@ -179,7 +183,27 @@ export interface MessageInputProps {
    * time; with neither, the whole text shows at once.
    */
   speakingCharIndex?: number;
+  /**
+   * Pins one of the spec's states, for docs and visual review, without
+   * touching the microphone. Left unset, the state follows what the person
+   * does. `filled` needs a value; `playback` uses a sample take when there
+   * is no `defaultVoiceNote`.
+   */
+  state?: MessageInputState;
+  /** @deprecated Use `state`. */
   preview?: MessageInputPreview;
+  /**
+   * The Attachment File Slot: extra content above the text, after the
+   * attachments the composer holds itself. Shown on filled and
+   * attachment-open.
+   */
+  attachmentSlot?: React.ReactNode;
+  /**
+   * The More Tools Slot: icon controls beside Attachment, at the toolbar's
+   * size (IconButton, Size small, Shape full, Flavour subtle). Dropped
+   * while the tray is open and while listening.
+   */
+  moreTools?: React.ReactNode;
   disabled?: boolean;
   "aria-label"?: string;
   className?: string;
@@ -216,6 +240,11 @@ let uid = 0;
 const newId = () => `att-${Date.now().toString(36)}-${uid++}`;
 const BARS = 9;
 const SAMPLE_LEVELS = [0.35, 0.7, 0.5, 0.9, 0.6, 0.8, 0.4, 0.65, 0.3];
+/** A silent take for `state="playback"`, so the state renders without a recording. */
+const SAMPLE_NOTE: MessageVoiceNote = {
+  blob: new Blob([], { type: "audio/webm" }), durationMs: 4000,
+  peaks: [0.3, 0.8, 0.35, 0.45, 0.55, 0.85, 0.7, 0.5, 0.35, 0.45, 0.95, 0.4, 0.7, 0.3, 0.65, 0.5, 0.9, 0.55, 0.4, 0.5, 0.6, 0.95, 0.45, 0.5],
+};
 
 /** Bars drawn in currentColor. `progress` 0–1 dims the unplayed part. */
 function Waveform({ levels, progress, className }: { levels: number[]; progress?: number; className?: string }) {
@@ -448,11 +477,10 @@ const resample = (peaks: number[], n: number) =>
     : Array.from({ length: n }, (_, i) => Math.max(...peaks.slice(Math.floor((i * peaks.length) / n), Math.max(Math.floor(((i + 1) * peaks.length) / n), Math.floor((i * peaks.length) / n) + 1))));
 
 /**
- * EXPERIMENTAL — no Figma spec. A message composer for conversational,
- * AI-assisted surfaces: type, attach files, dictate a prompt by voice,
- * record a voice message to send, and ask for the reply to be read aloud.
+ * A composer for conversational, AI-assisted surfaces: type, attach,
+ * dictate, record a voice message, hear the reply.
  *
- * States, from the reference design: empty, filled, attachment tray open,
+ * States, from the spec: empty, filled, attachment-open,
  * listening → transcribing → dictated (voice prompt), recording → playback
  * (voice message), plus speaking when a reply is being read aloud. One bar
  * above the toolbar carries whichever of listening, transcribing, recording
@@ -472,7 +500,12 @@ const resample = (peaks: number[], n: number) =>
  * state or closes the tray. Every string is replaceable through `strings`.
  * Everything visual comes from the token layer via `message-input.css`.
  *
- * @spec none — experimental.
+ * The spec's Attachment subcomponent is the tray toggle plus the tray: the
+ * toggle swaps add for close and takes the pressed surface while open, and
+ * the tray holds the attachment types (file, camera, `extraActions`, voice
+ * message). The read-aloud toggle is an addition the spec does not draw.
+ *
+ * @spec specs/message-input/message-input.spec.json
  */
 export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(function MessageInput(
   {
@@ -483,10 +516,21 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
     attachmentColor = defaultAttachmentColor, onPreviewAttachment, transcribe, lang,
     speakResponse: speakProp, defaultSpeakResponse, onSpeakResponseChange, speaking = false, onStopSpeaking,
     speakingSource = null, speakingLevel, speakingText, speakingCharIndex,
-    preview, disabled = false, "aria-label": ariaLabel = "Message", className,
+    state: pinned, preview: previewProp, attachmentSlot, moreTools,
+    disabled: disabledProp = false, "aria-label": ariaLabel = "Message", className,
   },
   ref,
 ) {
+  // A pinned state stands in for what the microphone, the tray and the
+  // dictation would otherwise have set. Voice states start from it; the rest
+  // seed the matching piece of state.
+  const preview: MessageInputPreview | undefined =
+    pinned === "listening" || pinned === "transcribing" || pinned === "recording" ? pinned : previewProp;
+  const disabled = disabledProp || pinned === "disabled";
+  if (pinned === "playback" && !defaultVoiceNote) defaultVoiceNote = SAMPLE_NOTE;
+  if (pinned === "dictated") defaultDictated = true;
+  if (pinned === "attachment-open") defaultTrayOpen = true;
+  if (pinned === "speaking") speaking = true;
   const [innerText, setInnerText] = React.useState(defaultValue);
   const text = valueProp ?? innerText;
   const setText = (v: string) => { if (valueProp === undefined) setInnerText(v); onValueChange?.(v); };
@@ -791,7 +835,7 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
       {/* The words will land in the field; the preview is visual only. */}
       <span className="zds-message-input__bar-label" data-heard={heard ? "" : undefined} aria-hidden={heard ? true : undefined}>{heardTail || S.listening}</span>
       <span className="zds-message-input__time" aria-hidden="true">{clock(elapsed)}</span>
-      <IconButton flavour="text" shape="full" icon="close" label={S.cancelDictation} onClick={cancelVoice} />
+      <IconButton flavour="subtle" shape="full" icon="close" label={S.cancelDictation} onClick={cancelVoice} />
     </>;
   } else if (mode === "transcribing") {
     hint = S.transcribingHint;
@@ -799,7 +843,7 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
     bar = <>
       <ProgressCircle className="zds-message-input__spinner" value={null} size="xxsmall" label={S.transcribing} />
       <span className="zds-message-input__bar-label">{S.transcribing}</span>
-      <IconButton flavour="text" shape="full" icon="close" label={S.cancelTranscription} onClick={cancelVoice} />
+      <IconButton flavour="subtle" shape="full" icon="close" label={S.cancelTranscription} onClick={cancelVoice} />
     </>;
   } else if (mode === "recording") {
     hint = fmt(S.recordingHint, { time: clock(maxMs) });
@@ -809,7 +853,7 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
       <Waveform levels={levels} />
       <span className="zds-message-input__bar-label">{S.recording}</span>
       <span className="zds-message-input__time" aria-hidden="true">{clock(elapsed)}</span>
-      <IconButton flavour="text" shape="full" icon="close" label={S.discardRecording} onClick={cancelVoice} />
+      <IconButton flavour="subtle" shape="full" icon="close" label={S.discardRecording} onClick={cancelVoice} />
     </>;
   } else if (mode === "playback" && voiceNote) {
     hint = fmt(S.recordingHint, { time: clock(maxMs) });
@@ -818,8 +862,8 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
       <IconButton className="zds-message-input__play" flavour="primary" shape="full" icon={playing ? "pause" : "play"} label={playing ? S.pause : S.play} onClick={togglePlay} />
       <Waveform levels={resample(voiceNote.peaks, 24)} progress={position / Math.max(1, voiceNote.durationMs)} className="zds-message-input__wave--long" />
       <span className="zds-message-input__time">{clock(position)}/{clock(voiceNote.durationMs)}</span>
-      <IconButton flavour="text" shape="full" icon="replay" label={S.recordAgain} onClick={reRecord} />
-      <IconButton flavour="text" shape="full" icon="delete" label={S.deleteVoiceMessage} onClick={discardNote} />
+      <IconButton flavour="subtle" shape="full" icon="replay" label={S.recordAgain} onClick={reRecord} />
+      <IconButton flavour="subtle" shape="full" icon="delete" label={S.deleteVoiceMessage} onClick={discardNote} />
       {noteUrl ? (
         <audio ref={audioRef} src={noteUrl} preload="metadata"
           onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}
@@ -828,7 +872,9 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
       ) : null}
     </>;
   }
-  const state = mode === "compose" ? (speaking ? "speaking" : trayOpen ? "tray" : hasContent ? "filled" : "empty") : mode;
+  const state: MessageInputState = mode === "compose"
+    ? (speaking ? "speaking" : disabled ? "disabled" : trayOpen ? "attachment-open" : dictated ? "dictated" : hasContent ? "filled" : "empty")
+    : mode;
 
   // ---- speaking: the orb ------------------------------------------------------
   // The level goes straight onto the orb as a custom property, every frame,
@@ -869,7 +915,7 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
       className={["zds-message-input", className].filter(Boolean).join(" ")}
       data-state={state} data-disabled={disabled || undefined} data-dragging={dragging || undefined}
       onDragEnter={onDragEnter} onDragOver={onDragOver} onDragLeave={onDragLeave} onDrop={onDrop} onKeyDown={onKeyDown}>
-      {(attachments.length > 0 || dictated) && mode === "compose" ? (
+      {(attachments.length > 0 || dictated || attachmentSlot) && mode === "compose" ? (
         <ul className="zds-message-input__chips" aria-label={S.attached}>
           {dictated ? (
             <li className="zds-message-input__chip" data-kind="dictated">
@@ -883,6 +929,7 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
                 onDiscard={() => setAttachments((list) => list.filter((x) => x.id !== a.id))} />
             </li>
           ))}
+          {attachmentSlot ? <li className="zds-message-input__chip" data-kind="slot">{attachmentSlot}</li> : null}
         </ul>
       ) : null}
 
@@ -910,24 +957,26 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
 
       <div className="zds-message-input__toolbar">
         <div className="zds-message-input__tools">
-          {/* One glyph, turned 45° to read as × when open, so the change can animate. */}
-          <IconButton ref={trayToggleRef} className="zds-message-input__tray-toggle" flavour="text" shape="full"
-            icon="add" label={trayOpen ? S.closeAttachments : S.addAttachments}
+          {/* Attachment's toggle: add closed, close open (spec), on the pressed surface while open. */}
+          <IconButton ref={trayToggleRef} className="zds-message-input__tray-toggle" flavour="subtle" shape="full"
+            icon={trayOpen ? "close" : "add"} label={trayOpen ? S.closeAttachments : S.addAttachments}
             aria-expanded={trayOpen} aria-controls={trayId} data-open={trayOpen || undefined}
             disabled={!canAttach} onClick={() => setTrayOpen((o) => !o)} />
           {/* Always mounted so closing animates too; inert while closed keeps it out of tab order and AT. */}
           <div id={trayId} className="zds-message-input__tray" data-open={trayOpen || undefined} inert={!trayOpen}>
             <div className="zds-message-input__tray-items">
-              <IconButton flavour="text" shape="full" icon="attachment" label={S.attachFile} onClick={() => fileRef.current?.click()} />
-              <IconButton flavour="text" shape="full" icon="camera" label={S.takePhoto} onClick={() => cameraRef.current?.click()} />
-              {extraActions.map((a) => <IconButton key={a.label} flavour="text" shape="full" icon={a.icon} label={a.label} onClick={a.onSelect} />)}
-              {canRecord ? <IconButton flavour="text" shape="full" icon="audio" label={S.recordVoiceMessage} onClick={() => void startVoiceNote()} /> : null}
+              <IconButton flavour="subtle" shape="full" icon="attachment" label={S.attachFile} onClick={() => fileRef.current?.click()} />
+              <IconButton flavour="subtle" shape="full" icon="camera" label={S.takePhoto} onClick={() => cameraRef.current?.click()} />
+              {extraActions.map((a) => <IconButton key={a.label} flavour="subtle" shape="full" icon={a.icon} label={a.label} onClick={a.onSelect} />)}
+              {canRecord ? <IconButton flavour="subtle" shape="full" icon="audio" label={S.recordVoiceMessage} onClick={() => void startVoiceNote()} /> : null}
             </div>
           </div>
+          {/* More Tools: dropped while the tray is open and while listening (spec). */}
+          {moreTools && !trayOpen && mode !== "listening" ? <div className="zds-message-input__more-tools">{moreTools}</div> : null}
         </div>
         <div className="zds-message-input__actions">
           {showSpeakToggle ? (
-            <IconButton className="zds-message-input__speak" flavour="text" shape="full"
+            <IconButton className="zds-message-input__speak" flavour="subtle" shape="full"
               icon={speakOn ? "volume-up" : "volume-off"} label={S.readAloud}
               aria-pressed={speakOn} data-pressed={speakOn || undefined} disabled={disabled} onClick={() => setSpeak(!speakOn)} />
           ) : null}
@@ -936,7 +985,9 @@ export const MessageInput = React.forwardRef<HTMLDivElement, MessageInputProps>(
               label={mode === "listening" ? S.stopAndTranscribe : S.stopRecording}
               onClick={() => void (mode === "listening" ? finishDictation() : finishVoiceNote())} />
           ) : canDictate && mode !== "playback" ? (
-            <IconButton flavour="text" shape="full" icon="microphone" label={S.dictate} disabled={disabled || busy || speaking} onClick={() => void startDictation()} />
+            // Disabled, Dictate drops to the text flavour (spec: transcribing and disabled).
+            <IconButton flavour={disabled || busy || speaking ? "text" : "subtle"} shape="full" icon="microphone" label={S.dictate}
+              disabled={disabled || busy || speaking} onClick={() => void startDictation()} />
           ) : null}
           <IconButton className="zds-message-input__send" flavour="primary" shape="full" icon="send" label={S.send}
             disabled={!canSend} onClick={send} />

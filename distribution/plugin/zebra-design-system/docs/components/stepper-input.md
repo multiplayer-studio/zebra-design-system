@@ -54,4 +54,4 @@
 - Nothing in this file marks the value as a live region or states how it is announced when it changes. Whether screen readers hear the new value, and how the two buttons are labelled, needs confirming outside Figma.
 
 ---
-*Generated from `specs/stepper-input` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/stepper-input` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

@@ -71,4 +71,4 @@
 - The label uses label/medium at 14px and carries the actual value, so it should not be reduced further.
 
 ---
-*Generated from `specs/input-chip` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/input-chip` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

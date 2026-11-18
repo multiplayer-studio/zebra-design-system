@@ -60,4 +60,4 @@
 - Grouping, the relationship that makes exactly one option in a set selectable, is not something Figma represents, it is carried by whatever groups the instances in code. Focus here is the only visual record of keyboard interaction, pair it with a label so the option reads on its own.
 
 ---
-*Generated from `specs/radio-button` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/radio-button` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

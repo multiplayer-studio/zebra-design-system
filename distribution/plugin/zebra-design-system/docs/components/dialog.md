@@ -54,4 +54,4 @@
 - The dialog's own header, body and footer carry no keyboard or focus behaviour beyond what the close icon and the footer's buttons already define on their own. Nothing in this file marks how the dialog traps focus or returns it when it closes, so that behaviour needs confirming outside Figma.
 
 ---
-*Generated from `specs/dialog` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/dialog` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

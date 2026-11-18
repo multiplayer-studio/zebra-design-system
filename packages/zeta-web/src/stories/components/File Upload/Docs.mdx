@@ -1,25 +1,40 @@
 import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
-import * as ZetaFileUpload from "./file-upload.stories.ts";
-import * as ZetaUploadItem from "./upload-item.stories.ts";
+import * as FileUpload from "./file-upload.stories";
+import * as UploadItem from "./upload-item.stories";
 
-<Meta of={ZetaFileUpload} />
+<Meta of={FileUpload} title="File Upload" />
 
 <Title />
-<Canvas of={ZetaFileUpload.FileUpload} />
-
 <Description of="zeta-file-upload" />
-<ArgTypes of={ZetaFileUpload} />
+<Canvas of={FileUpload.FileUpload} />
+<ArgTypes of="zeta-file-upload" />
+
+## Dragging
+
+<Canvas of={FileUpload.Dragging} />
+
+## Error
+
+<Canvas of={FileUpload.Error} />
+
+## Disabled
+
+<Canvas of={FileUpload.Disabled} />
+
+## Sharp
+
+<Canvas of={FileUpload.Sharp} />
 
 # Upload Item
 
-<Canvas of={ZetaUploadItem.UploadItem} />
 <Description of="zeta-upload-item" />
-<ArgTypes of={ZetaUploadItem.UploadItem} />
+<Canvas of={UploadItem.UploadItem} />
+<ArgTypes of="zeta-upload-item" />
 
-## Completed Upload Item
+## Ring
 
-<Canvas of={ZetaUploadItem.Completed} />
+<Canvas of={UploadItem.Ring} />
 
-## Failed Upload Item
+## Failed
 
-<Canvas of={ZetaUploadItem.Error} />
+<Canvas of={UploadItem.Failed} />

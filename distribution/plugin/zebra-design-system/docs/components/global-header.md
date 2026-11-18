@@ -95,4 +95,4 @@
 - Focus is the only state on that control that draws a visible border, which makes the border/focus outline the one thing a keyboard user has to locate it by.
 
 ---
-*Generated from `specs/global-header` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/global-header` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*

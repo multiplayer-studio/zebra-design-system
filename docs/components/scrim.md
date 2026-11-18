@@ -30,4 +30,4 @@
 - overlay/scrim and overlay/modal are semantic tokens, so the barrier holds its role in light, dark and every brand extension.
 
 ---
-*Generated from `specs/scrim` — do not edit by hand. Theming: put `mode-dark`, `ext-companion`, `ext-target` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
+*Generated from `specs/scrim` — do not edit by hand. Theming: put `mode-dark`, `ext-companion` or `bp-*` classes on any ancestor (Zeta Web uses `data-theme`/`data-brand` attributes instead).*
