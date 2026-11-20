@@ -1,0 +1,60 @@
+{
+  "name": "@zebra-design-system/web-components",
+  "version": "0.7.1",
+  "description": "Zebra Design System — web components and the CSS-variable token layer they theme from",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "customElements": "custom-elements.json",
+  "files": [
+    "dist",
+    "custom-elements.json",
+    "AGENTS.md",
+    "llms.txt",
+    "DESIGN.md",
+    "skills",
+    "bin"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./components/*": "./dist/components/*",
+    "./tokens.css": "./dist/tokens/index.css",
+    "./tokens/*": "./dist/tokens/*",
+    "./custom-elements.json": "./custom-elements.json"
+  },
+  "scripts": {
+    "tokens": "node scripts/build-tokens-css.mjs",
+    "analyze": "cem analyze --litelement --globs \"src/**/*.ts\"",
+    "prebuild": "pnpm run tokens && pnpm run analyze",
+    "build": "pnpm run prebuild && tsc && cp -R src/tokens dist/tokens",
+    "storybook": "pnpm run tokens && storybook dev -p 6007",
+    "storybook:build": "pnpm run tokens && storybook build",
+    "typecheck": "tsc --noEmit",
+    "check:theming": "node scripts/check-theming.mjs",
+    "check": "pnpm run tokens && pnpm run typecheck && pnpm run check:theming"
+  },
+  "dependencies": {
+    "@zebra-design-system/icons": "git+https://github.com/multiplayer-studio/zebra-design-system.git#icons-v0.2.1",
+    "@zebra-design-system/patterns": "git+https://github.com/multiplayer-studio/zebra-design-system.git#patterns-v0.2.0",
+    "lit": "^3.3.3"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/multiplayer-studio/zebra-design-system.git",
+    "directory": "packages/web-components"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "zebra-skills": "./bin/install-skills.mjs"
+  },
+  "distChannel": {
+    "type": "git",
+    "repo": "https://github.com/multiplayer-studio/zebra-design-system.git",
+    "tag": "web-components-v0.7.1",
+    "builtFrom": "6c539607"
+  }
+}
