@@ -1,0 +1,165 @@
+/* Navigation Drawer — EXPERIMENTAL, no Figma spec. Every value is a
+   semantic token from the shared token layer, except the default width,
+   named once below. Its items are the Navigation Rail family's, in their
+   wide form; their own styles come from navigation-rail(-item).css. */
+
+/* ---- backdrop (modal) ------------------------------------------------------ */
+/* The Scrim component at tone scrim (specs/scrim) brings the fill; here it
+   only covers the viewport. No z-index token exists, so this matches Dialog. */
+.zds-scrim.zds-navigation-drawer__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+}
+
+/* ---- the drawer -------------------------------------------------------------- */
+.zds-navigation-drawer {
+  border-radius: var(--radius-none);
+  /* No width token exists. 320px by default; `width` overrides it. A modal
+     drawer always leaves a strip of page (control/lg) visible to tap. */
+  --zds-navigation-drawer-inline-size: min(var(--zds-navigation-drawer-width, 320px), 100vw - var(--control-lg));
+  box-sizing: border-box;
+  color: var(--foreground-primary);
+  background: var(--zds-navigation-drawer-surface);
+  outline: none;
+}
+
+.zds-navigation-drawer__panel {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  inline-size: var(--zds-navigation-drawer-inline-size);
+  /* Hugs its content, never shorter than the drawer: nothing inside scrolls
+     on its own. The page (standard) or the drawer as one surface (modal)
+     does the scrolling. */
+  min-block-size: 100%;
+  /* Never shrinks to the drawer, or the sticky header would leave with it. */
+  flex: none;
+  padding: 0 var(--space-md) var(--space-card);
+}
+.zds-navigation-drawer__panel:not(:has(> .zds-navigation-drawer__header)) {
+  padding-block-start: var(--space-card);
+}
+
+/* The header is the only frozen part: it sticks to the top while the menu
+   and footer scroll under it. It carries the drawer's surface so nothing
+   shows through. */
+.zds-navigation-drawer__header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 1;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-md);
+  margin-inline: calc(-1 * var(--space-md));
+  padding: var(--space-card) var(--space-md) var(--space-none);
+  background: var(--zds-navigation-drawer-surface);
+}
+.zds-navigation-drawer__action {
+  inline-size: 100%;
+}
+
+.zds-navigation-drawer__menu,
+.zds-navigation-drawer__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-2xs);
+}
+/* No internal scroll and no frozen footer: the footer follows the menu.
+   When the content is short the menu takes the free height, so the footer
+   sits at the bottom; when it's long, both scroll. */
+.zds-navigation-drawer__menu {
+  flex: 1 0 auto;
+}
+.zds-navigation-drawer__footer {
+  flex: none;
+}
+
+/* ---- modal ------------------------------------------------------------------- */
+/* Raised over the scrim like Dialog: surface/overlay and shadow/large. The
+   drawer itself has no radius in either shape; `shape` only rounds the
+   items, groups and buttons inside (owner decision). */
+.zds-navigation-drawer[data-modal] {
+  position: fixed;
+  inset-block: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  --zds-navigation-drawer-surface: var(--surface-overlay);
+  /* The whole drawer scrolls as one surface, header sticky, with no
+     scrollbar of its own (owner decision). */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  box-shadow: var(--shadow-large-x) var(--shadow-large-y) var(--shadow-large-blur) var(--shadow-soft);
+}
+.zds-navigation-drawer[data-modal][data-side="start"] {
+  inset-inline-start: 0;
+}
+.zds-navigation-drawer[data-modal][data-side="end"] {
+  inset-inline-end: 0;
+}
+.zds-navigation-drawer[data-modal]::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---- standard (in the layout) ----------------------------------------------- */
+/* Sits beside the content on surface/section, the Navigation Rail's surface.
+   Closed, it narrows to nothing; the panel keeps its width and is clipped,
+   so labels never reflow mid-animation. */
+.zds-navigation-drawer:not([data-modal]) {
+  display: flex;
+  flex: none;
+  /* As tall as its content (at least its row): the page scrolls it. clip,
+     not hidden, so it is no scroll container and the header sticks to the
+     page's scroller. */
+  min-block-size: 100%;
+  align-self: stretch;
+  inline-size: var(--zds-navigation-drawer-inline-size);
+  overflow: clip;
+  --zds-navigation-drawer-surface: var(--surface-section);
+}
+.zds-navigation-drawer:not([data-modal])[data-side="end"] {
+  justify-content: flex-end;
+}
+.zds-navigation-drawer:not([data-modal]):not([data-open]) {
+  inline-size: 0;
+  visibility: hidden;
+}
+.zds-navigation-drawer:not([data-modal]) .zds-navigation-drawer__panel {
+  flex: none;
+}
+
+/* ---- motion ------------------------------------------------------------------ */
+/* Code decision (no spec): the modal drawer slides in from its edge, the
+   standard one widens, both on animations/smooth. None under reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .zds-navigation-drawer[data-modal] {
+    transition: translate var(--animations-smooth);
+  }
+  .zds-navigation-drawer[data-modal][data-side="start"]:is([data-starting-style], [data-ending-style]) {
+    translate: -100% 0;
+  }
+  .zds-navigation-drawer[data-modal][data-side="end"]:is([data-starting-style], [data-ending-style]) {
+    translate: 100% 0;
+  }
+  [dir="rtl"] .zds-navigation-drawer[data-modal][data-side="start"]:is([data-starting-style], [data-ending-style]) {
+    translate: 100% 0;
+  }
+  [dir="rtl"] .zds-navigation-drawer[data-modal][data-side="end"]:is([data-starting-style], [data-ending-style]) {
+    translate: -100% 0;
+  }
+  .zds-scrim.zds-navigation-drawer__backdrop {
+    transition: opacity var(--animations-smooth);
+  }
+  .zds-scrim.zds-navigation-drawer__backdrop:is([data-starting-style], [data-ending-style]) {
+    opacity: 0;
+  }
+  .zds-navigation-drawer[data-ready]:not([data-modal]) {
+    transition: inline-size var(--animations-smooth), visibility var(--animations-smooth) allow-discrete;
+  }
+}
