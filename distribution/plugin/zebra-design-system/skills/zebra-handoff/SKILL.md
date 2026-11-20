@@ -56,7 +56,8 @@ it up once:
 1. **Which library the app is built with.** Look in the app's `package.json`
    (this folder, if it's the codebase; else the repo in the context's
    `reference`) for `@zebra-design-system/react-baseui`,
-   `@zebra-design-system/web-components` or `@zebra-fed/zeta-web`.
+   `@zebra-design-system/web-components` or `@zebra-design-system/zeta-web`
+   (older apps have it as `@zebra-fed/zeta-web`).
    - **One:** that's it. Don't ask.
    - **Several:** ask "Which library do <project>'s developers build these
      screens with?", offering the ones found.
@@ -196,7 +197,9 @@ each component's usage doc (linked from that index, or this plugin's
   `@zebra-design-system/react-baseui`, `<zds-button>`, or Zeta web's element;
 - its props by the doc's names and values, written the library's way
   (`flavour="primary"`, `leadingIcon`), with the import the `AGENTS.md` gives;
-- icons by name, from the icons package's names, passed as the library says.
+- icons by name, from the icons package's names, passed as the library says;
+- the theme, mode and shape the way the library sets them. Zeta web uses
+  `data-theme` and `data-contrast` attributes, not mode classes.
 
 A component marked draft or experimental in its doc is tagged as usual and
 marked **draft**: its details may change, so the developer checks its doc.
