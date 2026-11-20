@@ -1,5 +1,19 @@
 # @zebra-design-system/react-baseui
 
+## 0.7.0
+
+### Minor Changes
+
+- Navigation Rail: `showDivider` turns the divider on the rail's trailing edge on or off. It is on by default in react-baseui and web-components, as in Figma, so the rail is 1px wider. In zeta-web it is `show-divider`, off by default.
+  
+  Navigation Rail: the rail is no longer locked to dark. It follows the page's mode by default; `inverse` shows the opposite shade of the page; a new `locked` keeps it dark, or light with `inverse`. AA or AAA follows the page in every case. **Breaking:** a rail on a light page is now light. Add `locked` to keep the old look (`locked inverse` for the old `inverse`).
+  
+  Global Header: `anchored` (default true) and `showProfile` (default true). **Breaking:** a rounded header's bar now has square corners unless `anchored` is false; its controls still round. `showProfile` false hides the account control. A floating header (rounded, not anchored) also takes the medium shadow.
+
+### Patch Changes
+
+- Skills: icons are never imported from Figma. A build uses the icon set's glyph, or the closest one by meaning, and reports the replacement. An illustration is defined as a complex vector picture with several groups, colours and shapes.
+
 ## 0.6.2
 
 ### Patch Changes

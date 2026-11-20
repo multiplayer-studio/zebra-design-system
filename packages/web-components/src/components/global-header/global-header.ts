@@ -53,8 +53,18 @@ export class ZdsGlobalHeader extends LitElement {
   /** Frozen in dark whatever the page mode. Set `light` to override it on this header. */
   @property({ type: String, reflect: true }) mode: GlobalHeaderMode = "dark";
 
-  /** Rounds the bar and every control inside it. */
+  /** Rounds every control inside the bar. The bar's own corners round only when it floats (`anchored` false). */
   @property({ type: Boolean, reflect: true }) rounded = false;
+
+  /**
+   * Locked to the top of the page, with square corners on the bar. Set it to
+   * false for a rounded header that floats with space around it; it has no
+   * effect on a sharp header.
+   */
+  @property({ type: Boolean }) anchored = true;
+
+  /** Keeps the account control. */
+  @property({ type: Boolean, attribute: "show-profile" }) showProfile = true;
 
   /** Keeps the grid button that moves a person between products. */
   @property({ type: Boolean, attribute: "app-switcher" }) appSwitcher = true;
@@ -129,7 +139,7 @@ export class ZdsGlobalHeader extends LitElement {
 
   protected render() {
     return html`
-      <header part="bar" class="bar">
+      <header part="bar" class="bar" data-floating=${this.rounded && !this.anchored ? "" : nothing}>
         <div class="leading">
           <zds-icon-button
             flavour="subtle"
@@ -151,8 +161,8 @@ export class ZdsGlobalHeader extends LitElement {
           ${this.actionMenu ? html`<div class="actions"><slot name="actions" data-shaped @slotchange=${this.#sync}></slot></div>` : nothing}
         </div>
         ${this.dividers ? html`<zds-divider orientation="vertical"></zds-divider>` : nothing}
-        <div class="account-group">
-          <zds-dropdown .rounded=${this.rounded} align="right" @open-change=${(e: CustomEvent<{ open: boolean }>) => (this.accountOpen = e.detail.open)}>
+        ${this.showProfile || this.appSwitcher ? html`<div class="account-group">
+          ${this.showProfile ? html`<zds-dropdown .rounded=${this.rounded} align="right" @open-change=${(e: CustomEvent<{ open: boolean }>) => (this.accountOpen = e.detail.open)}>
             <zds-user-profile
               slot="trigger"
               part="account"
@@ -163,7 +173,7 @@ export class ZdsGlobalHeader extends LitElement {
               .expanded=${this.accountOpen}
             ><slot name="avatar" slot="avatar"></slot></zds-user-profile>
             <slot name="account-menu"></slot>
-          </zds-dropdown>
+          </zds-dropdown>` : nothing}
           ${this.appSwitcher
             ? html`<zds-icon-button
                 flavour="subtle"
@@ -174,7 +184,7 @@ export class ZdsGlobalHeader extends LitElement {
                 @click=${() => this.#emit("zds-app-switcher-click")}
               ></zds-icon-button>`
             : nothing}
-        </div>
+        </div>` : nothing}
       </header>
     `;
   }

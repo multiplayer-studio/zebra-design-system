@@ -17,7 +17,8 @@ const toLength = (v: string | number | undefined) => (v === undefined || v === "
  * Navigation rails allow navigation between sections of an app: a narrow icon rail at the edge of a desktop view,
  * and a sub menu panel beside it for destinations with a second level.
  *
- * The rail is locked to dark mode whatever the page's mode; `inverse` locks it to light. It sets `expanded`,
+ * The rail follows the page's mode. `inverse` shows the opposite shade, and `locked` keeps it dark (light with
+ * `inverse`) whatever the page does; contrast still follows the page. It sets `expanded`,
  * `showLabel` and `rounded` on every rail part inside it. Widening and narrowing run on animations/smooth, never on
  * first render, and are off under reduced motion.
  *
@@ -52,14 +53,20 @@ export class ZetaNavigationRail extends Contourable(LitElement) {
   /** Shows the toggle item that widens and narrows the rail. Off by default, so existing rails keep their layout. */
   @property({ type: Boolean, reflect: true, attribute: "show-toggle-item" }) showToggleItem = false;
 
+  /** Shows the divider down the rail's trailing edge, between the rail and the page. Off by default, so existing rails keep their layout. */
+  @property({ type: Boolean, reflect: true, attribute: "show-divider" }) showDivider = false;
+
   /** The toggle item's label in the narrow rail. */
   @property({ type: String, attribute: "expand-label" }) expandLabel = "Open";
 
   /** The toggle item's label in the wide rail. */
   @property({ type: String, attribute: "collapse-label" }) collapseLabel = "Close";
 
-  /** Shows the rail in light mode instead of its locked dark mode. */
+  /** Shows the rail in the opposite shade of the page's mode: dark on a light page, light on a dark one. Contrast still follows the page. */
   @property({ type: Boolean, reflect: true }) inverse = false;
+
+  /** Keeps the rail in one mode whatever the page's mode: dark, or light with `inverse`. Contrast still follows the page. */
+  @property({ type: Boolean, reflect: true }) locked = false;
 
   /**
    * The wide rail's width: 200px by default (Figma's measure), a CSS length or a number in px set by the project, or
@@ -84,9 +91,14 @@ export class ZetaNavigationRail extends Contourable(LitElement) {
       narrowing, so the shrinking width clips the wide layout instead of every part re-laying itself out mid-way. */
   @state() private wide = false;
   private narrowTimer?: ReturnType<typeof setTimeout>;
+  private themeObserver?: MutationObserver;
+  private themeMedia?: MediaQueryList;
+  /** The `data-theme` this rail set on itself, so one a consumer set is never removed. */
+  private appliedTheme?: "light" | "dark";
 
   connectedCallback() {
     super.connectedCallback?.();
+    if (this.hasUpdated) this.syncTheme();
     requestAnimationFrame(() => (this.ready = true));
   }
 
@@ -96,7 +108,7 @@ export class ZetaNavigationRail extends Contourable(LitElement) {
       if (this.expanded || !this.ready || !this.wide) this.wide = this.expanded;
       else this.narrowTimer = setTimeout(this.narrow, this.transitionMs() + 50);
     }
-    if (changed.has("inverse")) this.setAttribute("data-theme", this.inverse ? "light" : "dark");
+    if (changed.has("inverse") || changed.has("locked")) this.syncTheme();
     const set = (name: string, v?: string | number) => {
       const length = toLength(v);
       if (length) this.style.setProperty(name, length);
@@ -110,7 +122,51 @@ export class ZetaNavigationRail extends Contourable(LitElement) {
   disconnectedCallback() {
     super.disconnectedCallback?.();
     clearTimeout(this.narrowTimer);
+    this.unwatchTheme();
   }
+
+  /** The page's shade around the rail: the nearest ancestor's `data-theme`, else the system preference. */
+  private pageIsDark() {
+    const parentOf = (n: Element): Element | null => n.parentElement ?? ((n.getRootNode() as ShadowRoot).host as Element | undefined) ?? null;
+    for (let n = parentOf(this); n; n = parentOf(n)) {
+      const theme = n.getAttribute("data-theme");
+      if (theme === "dark" || theme === "light") return theme === "dark";
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  }
+
+  private unwatchTheme() {
+    this.themeObserver?.disconnect();
+    this.themeObserver = undefined;
+    this.themeMedia?.removeEventListener("change", this.syncTheme);
+    this.themeMedia = undefined;
+  }
+
+  /**
+   * The rail's mode. By default it sets none and inherits the page's. `inverse` sets the opposite of the page's shade
+   * and follows the page when it changes; `locked` sets dark, or light with `inverse`. Contrast is a separate attribute
+   * on the page, so it carries through either way.
+   */
+  private syncTheme = () => {
+    const owns = this.isConnected && (this.locked || this.inverse);
+    const follows = owns && !this.locked;
+    if (follows && !this.themeObserver) {
+      this.themeObserver = new MutationObserver(this.syncTheme);
+      const parentOf = (n: Element): Element | null => n.parentElement ?? ((n.getRootNode() as ShadowRoot).host as Element | undefined) ?? null;
+      for (let n = parentOf(this); n; n = parentOf(n)) this.themeObserver.observe(n, { attributes: true, attributeFilter: ["data-theme"] });
+      this.themeMedia = window.matchMedia("(prefers-color-scheme: dark)");
+      this.themeMedia.addEventListener("change", this.syncTheme);
+    } else if (!follows) {
+      this.unwatchTheme();
+    }
+    const next = !owns ? undefined : (this.locked ? !this.inverse : !this.pageIsDark()) ? "dark" : "light";
+    if (next) {
+      if (this.getAttribute("data-theme") !== next) this.setAttribute("data-theme", next);
+    } else if (this.appliedTheme && this.getAttribute("data-theme") === this.appliedTheme) {
+      this.removeAttribute("data-theme");
+    }
+    this.appliedTheme = next;
+  };
 
   /** The rail's width transition in ms; 0 under reduced motion. The timer is the fallback for a missed transitionend. */
   private transitionMs() {

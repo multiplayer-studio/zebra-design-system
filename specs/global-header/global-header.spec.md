@@ -2,7 +2,7 @@
 
 The bar across the top of an application, carrying the product’s identity at the leading edge, navigation and search in the middle, and the person’s account at the trailing edge. Most of what it holds is optional: the app switcher, the search bar, the two menu regions and the dividers each turn on independently, so one component covers a bare branded bar and a fully loaded one. Rounded is set once and carries into every control nested inside it.
 
-Source: [Global header page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2356-5644) · component set `2356:5644` · extracted 2026-11-01 · 2 variants · default `Rounded=false`
+Source: [Global header page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2356-5644) · component set `2356:5644` · extracted 2026-11-01, updated 2026-11-20 for Anchored and Show Profile · 3 variants · default `Rounded=false, Anchored=true`
 
 > **No blockers, 6 warnings.** See [Issues](#issues).
 
@@ -11,6 +11,7 @@ Source: [Global header page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5
 | Prop | Type | Values | Default |
 |---|---|---|---|
 | `rounded` | boolean | | `False` |
+| `anchored` | boolean (false only with `rounded`) | | `True` |
 | `appSwitcher` | boolean | | `True` |
 | `searchBar` | boolean | | `True` |
 | `menuItems` | boolean | | `False` |
@@ -21,8 +22,17 @@ Source: [Global header page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5
 | `platformName` | string | | `Platform Name` |
 | `showPlatformName` | boolean | | `True` |
 | `showLogo` | boolean | | `True` |
+| `showProfile` | boolean | | `True` |
 | `logoSlot` | slot | | |
 | `mode` *(code only)* | enum | `dark`, `light` | `dark` |
+
+**anchored**
+- `true`: "Locked to the top of the page."
+- `false`: "Use where the header float with spacing around it sides. Only available in rounded."
+
+**showProfile**
+- `true`: "Keeps the account control at the trailing edge."
+- `false`: "Removes it, for a header with no signed-in person. The app switcher then sits alone."
 
 **mode** *(code only)*
 - `dark`: The default. The header stays dark whatever the page mode.
@@ -84,12 +94,15 @@ Source: [Global header page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5
 
 Cells are token names, except those ending Px, which are measurements of the rendered file.
 
-### rounded
+### rounded × anchored
 
-| rounded | bar.radius | controls.shape | account.radius | figmaNode |
-|---|---|---|---|---|
-| false | radius/none | sharp | radius/none | 2356:5580 |
-| true | radius/element-sm | rounded | radius/sm | 2356:5655 |
+| rounded | anchored | bar.radius | bar.shadow | controls.shape | account.radius | figmaNode |
+|---|---|---|---|---|---|---|
+| false | true | radius/none | none | sharp | radius/none | 2356:5580 |
+| true | true | radius/none | none | rounded | radius/sm | 2356:5655 |
+| true | false | radius/element-sm | Shadow/medium | rounded | radius/sm | 8770:8434 |
+
+An anchored bar squares its own corners even when rounded; only the floating bar takes the radius and the shadow. Shadow/medium is the medium and small shadows (`shadow/medium/*`, `shadow/small/*`) on `shadow/soft`.
 
 ## Subcomponents
 
@@ -198,7 +211,7 @@ Every token resolves in the export.
 
 | Property | Type | Description |
 |---|---|---|
-| Size | Filled width, hug height | 100% wide and 56 tall on both variants, with the content row inside standing at control/md. |
+| Size | Filled width, hug height | 100% wide and 56 tall on every variant, with the content row inside standing at control/md. |
 | Direction | Row | Leading group, middle band and account group on one line, space/gutter apart, with space/sm padding on every side of the bar. |
 | Leading group | Hug | space/gutter between the menu button, the brand mark and the product name. |
 | Middle band | Fill | Takes the width the two end groups leave, spaces its children space/sm apart, and packs them to its trailing edge. |
@@ -207,7 +220,8 @@ Every token resolves in the export.
 | Search | Set to medium | Its shape follows Rounded and its size is held at medium. The header gives it a maximum 280 and no fixed width. Below that it fills the spare width, so it gives way before it can overlap a neighbour. |
 | Account group | Hug | space/gutter between the account control and the app switcher. |
 | Controls | Set per variant | The icon buttons are set to medium and subtle. The account control is control/md tall and hugs its width, padded space/2xs and space/sm with space/2xs between its parts. |
-| Radius | Per Rounded | radius/none throughout when false. When true the bar takes radius/element-sm and every nested control is set to its rounded shape, while the account control takes radius/sm. |
+| Radius | Per Rounded | radius/none throughout when false. When true every nested control is set to its rounded shape and the account control takes radius/sm. The bar itself takes radius/element-sm only when Anchored is false; anchored, it stays radius/none. |
+| Shadow | Per Anchored | None while anchored. When Anchored is false the bar takes the Shadow/medium effect style, the medium and small shadows on shadow/soft. |
 | Surface | Tokenised | surface/section on the bar. The icon buttons are set to the subtle flavour, and the account control carries the neutral interactive backgrounds. |
 | Text | Tokenised | The product name is title/medium in foreground/primary. The username is label/small, dropping to interactive/ghost/foreground/disabled when the account control is disabled. |
 | Account states | Per State | interactive/neutral/background at default, hover, pressed, focused and disabled. focus adds a border/focus stroke at 1 wide, and every other state carries interactive/neutral/border/default at zero weight. |
@@ -217,7 +231,7 @@ Every token resolves in the export.
 ## Visual reference
 
 - [Page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2314-3348) · [Component set](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2356-5644) · [Metadata](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7632-290)
-- [rounded false](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2356-5580) · [rounded true](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2356-5655) · [_User Profile](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2742-885)
+- [rounded false](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2356-5580) · [rounded true, anchored](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2356-5655) · [rounded true, floating](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8770-8434) · [_User Profile](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2742-885)
 
 ## Issues
 

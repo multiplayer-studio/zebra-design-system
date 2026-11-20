@@ -78,7 +78,8 @@ skill, all six steps:
   use them: photos of products, faces and places as their original image
   files, brand logos and illustrations as inline SVG that the build can
   change. Never put an icon, initials or a grey box where the design has a
-  picture;
+  picture. Icons go the other way: never import one from Figma, use the
+  closest glyph in the icon set;
 - where the frame and the system can't both be followed and a reviewer would
   see it, show the designer both in a dialog and let them choose;
 - compare the result with the frame by measurement before handing over.

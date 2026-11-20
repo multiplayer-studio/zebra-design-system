@@ -220,6 +220,8 @@
   },
   "props": {
    "mode": "property theme",
+   "anchored": "property anchored",
+   "showProfile": "property showProfile",
    "appSwitcher": "property appSwitcher",
    "searchBar": "property searchbar",
    "menuItems": "derived: the region shows when menu-items is slotted",
@@ -367,6 +369,8 @@
   },
   "props": {
    "label": "property showLabels",
+   "locked": "property locked",
+   "showDivider": "property showDivider (off by default, so existing rails keep their layout)",
    "showSubMenu": "derived: the panel shows when the sub-menu-header or sub-menu slot is filled",
    "moreRailItems": "slot (default)",
    "moreFooterItems": "slot footer",

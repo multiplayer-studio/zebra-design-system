@@ -15,8 +15,11 @@
 | `showSubMenu` | boolean | `true` |  |  |
 | `moreRailItems` | boolean | `true` |  |  |
 | `moreFooterItems` | boolean | `true` |  |  |
+| `showDivider` | boolean | `true` |  |  |
 | `shape` | enum | `rounded` | `rounded` `sharp` |  |
 | `inverse` | boolean | `false` |  |  |
+| `locked` | boolean | `false` |  |  |
+| `railWidth` | length or fill | `200px` |  |  |
 | `railMaxWidth` | length | `null` |  |  |
 | `subMenuMaxWidth` | length | `null` |  |  |
 | `menuSlot` | slot |  |  |  |
@@ -69,10 +72,10 @@
 | Width | Hug | The narrow rail is 72px and the wide rail 200px; Rail Max Width can cap the wide rail. The sub menu sizes to its content: as wide as its widest top-level row or its header, never narrower than 240px, and all rows share that width. A Collapsible Menu Item never makes it wider. Sub Menu Max Width can cap it. Figma draws the sub menu at a fixed 240px; build it to size to its content. |
 | Height | Fill | Fills its parent, drawn at 991px. The icon rail and the panel both fill it, and the menu list absorbs the space left between the header block and the footer. |
 | Rail padding | Fixed | 12px on all four sides of the icon rail, space/md left and right and space/card top and bottom, with a 12px (space/md) gap between the header, the action, the menu list and the footer. |
-| Item spacing | Fixed | 4px (space/xxs) between items in both the menu list and the footer. The Menu Slot adds 4px (space/xxs) of horizontal padding of its own. |
-| Panel padding | Fixed | The Sub Menu Slot insets its rows by 8px (space/sm) on all four sides, with a 4px (space/xxs) gap between them. |
-| Border | Fixed | A single 1px border on border/default down the leading edge of the sub menu panel, plus a 1px bottom border on the same token under the Sub Menu Header. Nothing else in the component is stroked. |
-| Fill | Theming | The rail always shows in dark mode, whatever the page's mode; Inverse shows it in light mode. It sits on surface/section, and neither the icon rail nor the panel paints a fill of its own. |
+| Item spacing | Fixed | space/2xs between items in both the menu list and the footer. The Menu Slot adds space/2xs of horizontal padding of its own. |
+| Panel padding | Fixed | The Sub Menu Slot insets its rows by space/sm on all four sides, with a space/2xs gap between them. |
+| Border | Fixed | A 1px border on border/default down the leading edge of the sub menu panel, and a 1px bottom border on the same token under the Sub Menu Header. Show Divider adds a 1px Divider down the rail's trailing edge. |
+| Fill | Theming | The Nav rail inherit’s page theme or makes use of the inverse property for inverted light-dark mode fills, or can be locked to a specific light or dark mode using the lock property, in this case it’s stays in the shade mode irrespective of page’s mode (AAA switch is propagates, only the corresponding dark-light are affected) . All internal element follow the rail mode.  |
 | Colour | Theming | The rail binds only its surface and its two borders. Every other colour comes from the items in the slots. |
 
 ## Accessibility

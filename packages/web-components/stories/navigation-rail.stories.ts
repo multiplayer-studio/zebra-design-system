@@ -50,11 +50,11 @@ const subMenu = (open = true, shape = "rounded") => html`
 
 type Shape = "rounded" | "sharp";
 type Opts = {
-  expanded?: boolean; showLabels?: boolean; showToggleItem?: boolean; shape?: Shape; inverse?: boolean; panel?: boolean; open?: boolean;
+  expanded?: boolean; showLabels?: boolean; showToggleItem?: boolean; showDivider?: boolean; shape?: Shape; inverse?: boolean; locked?: boolean; panel?: boolean; open?: boolean;
   railMaxWidth?: string; subMenuMaxWidth?: string; longRow?: boolean;
 };
-const composed = ({ expanded = false, showLabels = false, showToggleItem = true, shape = "rounded", inverse = false, panel = true, open = true, railMaxWidth, subMenuMaxWidth, longRow = false }: Opts = {}) => html`
-  <zds-navigation-rail ?expanded=${expanded} ?show-labels=${showLabels} .showToggleItem=${showToggleItem} shape=${shape} ?inverse=${inverse} action-label="Create"
+const composed = ({ expanded = false, showLabels = false, showToggleItem = true, showDivider = true, shape = "rounded", inverse = false, locked = false, panel = true, open = true, railMaxWidth, subMenuMaxWidth, longRow = false }: Opts = {}) => html`
+  <zds-navigation-rail ?expanded=${expanded} ?show-labels=${showLabels} .showToggleItem=${showToggleItem} .showDivider=${showDivider} shape=${shape} ?inverse=${inverse} ?locked=${locked} action-label="Create"
     rail-max-width=${railMaxWidth || nothing} sub-menu-max-width=${subMenuMaxWidth || nothing}>
     ${header()} ${menu} ${footer} ${panel ? subMenu(open, shape) : nothing}
     ${panel && longRow ? html`<zds-sub-menu-item slot="sub-menu" label="Quarterly inventory reconciliation reports" icon="folder" href="#quarterly"></zds-sub-menu-item>` : nothing}
@@ -64,15 +64,17 @@ const meta: Meta<Opts> = {
   title: "Components/Navigation Rail/Navigation Rail",
   component: "zds-navigation-rail",
   tags: ["autodocs"],
-  args: { expanded: false, showLabels: false, showToggleItem: true, shape: "rounded", inverse: false, panel: true },
+  args: { expanded: false, showLabels: false, showToggleItem: true, showDivider: true, shape: "rounded", inverse: false, locked: false, panel: true },
   argTypes: {
     expanded: { control: "boolean" },
     shape: { control: "inline-radio", options: ["rounded", "sharp"] },
     inverse: { control: "boolean" },
+    locked: { control: "boolean" },
     railMaxWidth: { control: "text", name: "rail-max-width", description: "Caps the wide rail. A CSS length, or a number in px." },
     subMenuMaxWidth: { control: "text", name: "sub-menu-max-width", description: "Caps the hugged sub menu. A CSS length, or a number in px." },
     showLabels: { control: "boolean" },
     showToggleItem: { control: "boolean" },
+    showDivider: { control: "boolean" },
     panel: { control: "boolean", name: "sub menu (fills the sub-menu slots)" },
   },
 };
@@ -118,24 +120,27 @@ export const Shape: Story = {
 };
 
 /**
- * inverse (code-only, owner decision): the rail is locked to dark mode
- * whatever the page's mode; `inverse` locks it to light. Each pane is a page
- * scope — the rail ignores the page's mode but keeps its `.ext-*` brand.
+ * Modes (code-only): the rail follows the page's mode. `inverse` shows the
+ * opposite shade, and `locked` keeps it dark (light with `inverse`) whatever
+ * the page does. Each pane is a page scope; AAA and `.ext-*` carry through.
  */
 export const Inverse: Story = {
   render: () => html`<div style="display:grid;gap:12px;grid-template-columns:repeat(3,max-content)">
     ${(
       [
-        ["light page", "mode-light", false],
-        ["dark page", "mode-dark", false],
-        ["light page, inverse", "mode-light", true],
-        ["dark page, inverse", "mode-dark", true],
-        ["ext-companion light page", "ext-companion mode-light", false],
-        ["ext-companion dark page, inverse", "ext-companion mode-dark", true],
+        ["light page", "mode-light", false, false],
+        ["dark page", "mode-dark", false, false],
+        ["AAA dark page", "mode-aaa-dark", false, false],
+        ["light page, inverse", "mode-light", true, false],
+        ["dark page, inverse", "mode-dark", true, false],
+        ["AAA light page, inverse", "mode-aaa-light", true, false],
+        ["light page, locked", "mode-light", false, true],
+        ["light page, locked + inverse", "mode-light", true, true],
+        ["ext-companion dark page, inverse", "ext-companion mode-dark", true, false],
       ] as const
     ).map(
-      ([t, cls, inv]) => html`<div class=${cls} style="padding:16px;background:var(--surface-page);color:var(--foreground-primary);display:grid;gap:8px">
-        ${cap(t)} ${frame(composed({ inverse: inv }), 600)}
+      ([t, cls, inv, lock]) => html`<div class=${cls} style="padding:16px;background:var(--surface-page);color:var(--foreground-primary);display:grid;gap:8px">
+        ${cap(t)} ${frame(composed({ inverse: inv, locked: lock }), 600)}
       </div>`,
     )}
   </div>`,

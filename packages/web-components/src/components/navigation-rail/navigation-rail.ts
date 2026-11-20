@@ -36,16 +36,32 @@ const hasContent = (slot: HTMLSlotElement) =>
     .assignedNodes({ flatten: true })
     .some((n) => n.nodeType === Node.ELEMENT_NODE || (n.textContent ?? "").trim() !== "");
 
+/** The page's mode around the rail: the nearest ancestor's `mode-*` class, light and AA when there is none. */
+const MODE_CLASS = /(?:^|\s)mode-(aaa-)?(light|dark)(?:\s|$)/;
+const parentOf = (n: Element): Element | null => {
+  if (n.parentElement) return n.parentElement;
+  const root = n.getRootNode();
+  return root instanceof ShadowRoot ? root.host : null;
+};
+const readPageMode = (el: Element): { dark: boolean; aaa: boolean } => {
+  for (let n = parentOf(el); n; n = parentOf(n)) {
+    const m = MODE_CLASS.exec(typeof n.className === "string" ? n.className : "");
+    if (m) return { dark: m[2] === "dark", aaa: Boolean(m[1]) };
+  }
+  return { dark: false, aaa: false };
+};
+
 /**
  * A vertical navigation column for the edge of a desktop view: a narrow icon
  * rail or a wide labelled one, and an optional sub menu panel beside it.
  *
- * Locked to dark mode by default, whatever the page's mode; `inverse` locks
- * it to light (owner decision). The host takes the token layer's `mode-dark`
- * / `mode-light` class (added with `classList`, so a consumer's own classes
- * stay), which re-resolves every token on the host; the shadow tree and the
- * slotted content inherit them from there, and an `.ext-*` ancestor still
- * applies. Nothing in the rail family leaves the tree, so popups stay in mode.
+ * Follows the page's mode by default. `inverse` shows the opposite shade,
+ * and `locked` keeps the rail dark (light with `inverse`) whatever the page
+ * does. For either, the host takes the token layer's `mode-*` class (added
+ * with `classList`, so a consumer's own classes stay), which re-resolves
+ * every token on the host; the shadow tree and the slotted content inherit
+ * them from there, and an `.ext-*` ancestor still applies. Nothing in the
+ * rail family leaves the tree, so popups stay in mode.
  *
  * Regions are slots; the rail sets `expanded` / `show-label` on the
  * zds-navigation-rail-item and zds-navigation-header elements inside it, and
@@ -93,6 +109,12 @@ export class ZdsNavigationRail extends LitElement {
   /** The last footer item, which moves between narrow and wide. */
   @property({ type: Boolean, reflect: true, attribute: "show-toggle-item" }) showToggleItem = true;
 
+  /**
+   * The divider down the rail's trailing edge, between the rail and the
+   * page. Set it to false when the rail's neighbour already draws that edge.
+   */
+  @property({ type: Boolean, reflect: true, attribute: "show-divider" }) showDivider = true;
+
   /** Toggle label in the narrow rail. */
   @property({ type: String, attribute: "expand-label" }) expandLabel = "Open";
 
@@ -109,12 +131,19 @@ export class ZdsNavigationRail extends LitElement {
   @property({ type: String, reflect: true }) shape: NavigationRailShape = "rounded";
 
   /**
-   * The rail is locked to dark mode (`mode-dark` on the host) whatever the
-   * page's mode. `inverse` locks it to light (`mode-light`) instead. Either
-   * way everything inside follows the rail, not the page. Code-only (owner
-   * decision).
+   * The rail follows the page's mode. `inverse` shows it in the opposite
+   * shade instead: dark on a light page, light on a dark one. The contrast
+   * level (AA or AAA) still follows the page, and everything inside follows
+   * the rail. Code-only.
    */
   @property({ type: Boolean, reflect: true }) inverse = false;
+
+  /**
+   * Keeps the rail in one mode whatever the page's mode: dark, or light with
+   * `inverse`. The contrast level (AA or AAA) still follows the page.
+   * Code-only.
+   */
+  @property({ type: Boolean, reflect: true }) locked = false;
 
   /**
    * The wide rail's width. 200px by default (Figma's measure); the project
@@ -176,7 +205,7 @@ export class ZdsNavigationRail extends LitElement {
     const showHeader = this.hasHeader || !!this.actionLabel;
     const showFooter = this.hasFooter || this.showToggleItem;
     const showPanel = this.hasSubMenuHeader || this.hasSubMenu;
-    return html`<nav part="nav" class="root" aria-label=${this.navLabel} data-wide=${this.wide ? "" : nothing} data-ready=${this.ready ? "" : nothing}>
+    return html`<nav part="nav" class="root" aria-label=${this.navLabel} data-wide=${this.wide ? "" : nothing} data-divider=${this.showDivider ? "" : nothing} data-ready=${this.ready ? "" : nothing}>
       <div part="rail" class="rail">
         <div class="header" ?hidden=${!showHeader}>
           <slot name="header" @slotchange=${this.#onSlot}></slot>
@@ -225,6 +254,8 @@ export class ZdsNavigationRail extends LitElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+    this.#modeObserver?.disconnect();
+    this.#modeObserver = undefined;
     if (this.#readyFrame !== undefined) cancelAnimationFrame(this.#readyFrame);
     clearTimeout(this.#latchTimer);
     this.#readyFrame = undefined;
@@ -244,8 +275,8 @@ export class ZdsNavigationRail extends LitElement {
   }
 
   protected willUpdate(changed: PropertyValues<this>) {
-    // Every update, not only when `inverse` changes: a framework that rewrites
-    // the host's class attribute would otherwise drop the mode class.
+    // Every update, not only when `inverse` or `locked` changes: a framework
+    // that rewrites the host's class attribute would otherwise drop the class.
     this.#syncMode();
     if (changed.has("railWidth") || changed.has("railMaxWidth") || changed.has("subMenuMaxWidth")) this.#syncWidths();
     if (changed.has("expanded")) {
@@ -260,14 +291,38 @@ export class ZdsNavigationRail extends LitElement {
     this.#sync();
   }
 
+  #modeObserver?: MutationObserver;
+  #modeClass?: string;
+
   /**
-   * Locked colour mode (owner decision). Only the rail sets it — no part
-   * inside pins a mode of its own, so light and dark rules never meet. The
-   * opposite class is removed, so a stray one can't win on source order.
+   * The rail's mode. By default it sets none and inherits the page's. With
+   * `inverse` or `locked` the host takes a mode class: `inverse` the opposite
+   * of the page's shade, `locked` dark (light with `inverse`), both at the
+   * page's contrast level. The page's mode is read from the ancestors'
+   * classes and followed when they change. Only the class this rail added is
+   * ever removed, so a mode a consumer set on the host stays.
    */
   #syncMode() {
-    this.classList.toggle("mode-dark", !this.inverse);
-    this.classList.toggle("mode-light", this.inverse);
+    const owns = this.isConnected && (this.locked || this.inverse);
+    if (owns && !this.#modeObserver) {
+      this.#modeObserver = new MutationObserver(() => this.#syncMode());
+      for (let n = parentOf(this); n; n = parentOf(n)) this.#modeObserver.observe(n, { attributes: true, attributeFilter: ["class"] });
+    } else if (!owns && this.#modeObserver) {
+      this.#modeObserver.disconnect();
+      this.#modeObserver = undefined;
+    }
+    let next: string | undefined;
+    let dark: boolean | undefined;
+    if (owns) {
+      const page = readPageMode(this);
+      dark = this.locked ? !this.inverse : !page.dark;
+      next = `mode-${page.aaa ? "aaa-" : ""}${dark ? "dark" : "light"}`;
+    }
+    if (this.#modeClass && this.#modeClass !== next) this.classList.remove(this.#modeClass);
+    if (next) this.classList.add(next);
+    this.#modeClass = next;
+    if (dark === undefined) this.removeAttribute("data-mode");
+    else if (this.getAttribute("data-mode") !== (dark ? "dark" : "light")) this.setAttribute("data-mode", dark ? "dark" : "light");
   }
 
   /**

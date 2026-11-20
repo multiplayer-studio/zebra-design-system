@@ -18,8 +18,18 @@ export default css`
     border: var(--stroke-base) solid var(--zebra-border-default);
   }
 
-  :host([rounded]) #header-main {
+  /* Only a floating bar rounds its own corners (rounded and not anchored). An anchored bar stays square, over the
+     contour mixin's radius on the first child. */
+  #header-main:not([data-floating]) {
+    border-radius: var(--radius-none);
+  }
+
+  #header-main[data-floating] {
     border-radius: var(--radius-element-sm);
+    /* The spec's Shadow/medium effect style: the medium and small shadows on shadow/soft. */
+    box-shadow:
+      var(--shadow-medium-x) var(--shadow-medium-y) var(--shadow-medium-blur) var(--shadow-soft),
+      var(--shadow-small-x) var(--shadow-small-y) var(--shadow-small-blur) var(--shadow-soft);
   }
 
   /* The left side keeps its content, so search gives way first and the two never overlap. */

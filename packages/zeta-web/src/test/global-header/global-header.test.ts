@@ -51,6 +51,29 @@ describe("zeta-global-header", () => {
     subject = await createComponent();
   });
 
+  describe("Anchored and Show Profile", () => {
+    it("rounds the bar only when it floats", async () => {
+      const bar = subject.shadowRoot!.querySelector("#header-main") as HTMLElement;
+      await expect(getComputedStyle(bar).borderTopLeftRadius).to.equal("0px");
+      await expect(getComputedStyle(bar).boxShadow).to.equal("none");
+      subject.anchored = false;
+      await elementUpdated(subject);
+      await expect(getComputedStyle(bar).borderTopLeftRadius).to.not.equal("0px");
+      await expect(getComputedStyle(bar).boxShadow).to.not.equal("none");
+      subject.rounded = false;
+      await elementUpdated(subject);
+      await expect(getComputedStyle(bar).borderTopLeftRadius).to.equal("0px");
+    });
+
+    it("hides the account control when showProfile is false", async () => {
+      await expect(subject.shadowRoot!.querySelector("#user-info-button")).to.exist;
+      subject.showProfile = false;
+      await elementUpdated(subject);
+      await expect(subject.shadowRoot!.querySelector("#user-info-button")).to.not.exist;
+      await expect(subject.shadowRoot!.querySelector("#app-switcher")).to.exist;
+    });
+  });
+
   describe("Accessibility", () => {
     it("names the menu button, app switcher and navigation region", async () => {
       subject.menuLabel = "Open menu";

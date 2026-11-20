@@ -10,8 +10,16 @@ import "./global-header.css";
 export type GlobalHeaderMode = "dark" | "light";
 
 export interface GlobalHeaderProps extends Omit<React.ComponentPropsWithoutRef<"header">, "className" | "children"> {
-  /** Rounds the bar and every control inside it. */
+  /** Rounds every control inside the bar. The bar's own corners round only when it floats (`anchored={false}`). */
   rounded?: boolean;
+  /**
+   * Locked to the top of the page, with square corners on the bar. Set it to
+   * false for a rounded header that floats with space around it; it has no
+   * effect on a sharp header.
+   */
+  anchored?: boolean;
+  /** Keeps the account control. */
+  showProfile?: boolean;
   /** Keeps the grid button that moves a person between products. */
   appSwitcher?: boolean;
   /** Keeps search in the middle band. */
@@ -105,7 +113,7 @@ const ZebraLogo = () => (
  */
 export const GlobalHeader = React.forwardRef<HTMLElement, GlobalHeaderProps>(function GlobalHeader(
   {
-    mode = "dark", rounded = false, appSwitcher = true, searchBar = true, menuItems = false, menuItemsSlot, actionMenu = false, actionMenuSlot, dividers = false,
+    mode = "dark", rounded = false, anchored = true, showProfile = true, appSwitcher = true, searchBar = true, menuItems = false, menuItemsSlot, actionMenu = false, actionMenuSlot, dividers = false,
     platformName = "Platform Name", showPlatformName = true, showLogo = true, logoSlot, username = "Username", avatarSrc, initials, avatarProps, accountMenu,
     searchValue, onSearchChange, onMenuClick, onAppSwitcherClick, menuLabel = "Menu", appSwitcherLabel = "Switch app", navigationLabel = "Main",
     portalContainer, className, ...rest
@@ -115,7 +123,7 @@ export const GlobalHeader = React.forwardRef<HTMLElement, GlobalHeaderProps>(fun
   const shape = rounded ? "rounded" : "sharp";
   const [menuHost, setMenuHost] = React.useState<HTMLDivElement | null>(null);
   return (
-    <header ref={ref} {...rest} className={["zds-global-header", `mode-${mode}`, className].filter(Boolean).join(" ")} data-rounded={rounded ? "" : undefined}>
+    <header ref={ref} {...rest} className={["zds-global-header", `mode-${mode}`, className].filter(Boolean).join(" ")} data-rounded={rounded ? "" : undefined} data-floating={rounded && !anchored ? "" : undefined}>
       <div className="zds-global-header__leading">
         <IconButton flavour="subtle" size="medium" shape={shape} icon="hamburger-menu" label={menuLabel} onClick={onMenuClick} />
         {showLogo ? <span className="zds-global-header__logo">{logoSlot ?? <ZebraLogo />}</span> : null}
@@ -128,12 +136,12 @@ export const GlobalHeader = React.forwardRef<HTMLElement, GlobalHeaderProps>(fun
         {actionMenu ? <div className="zds-global-header__actions">{shapeControls(actionMenuSlot, shape)}</div> : null}
       </div>
       {dividers ? <Divider orientation="vertical" /> : null}
-      <div className="zds-global-header__account-group">
-        <Dropdown rounded={rounded} align="right" portalContainer={portalContainer ?? menuHost} trigger={<UserProfile username={username} avatarSrc={avatarSrc} initials={initials} avatarProps={avatarProps} rounded={rounded} />}>
+      {showProfile || appSwitcher ? <div className="zds-global-header__account-group">
+        {showProfile ? <Dropdown rounded={rounded} align="right" portalContainer={portalContainer ?? menuHost} trigger={<UserProfile username={username} avatarSrc={avatarSrc} initials={initials} avatarProps={avatarProps} rounded={rounded} />}>
           {accountMenu}
-        </Dropdown>
+        </Dropdown> : null}
         {appSwitcher ? <IconButton flavour="subtle" size="medium" shape={shape} icon="apps" label={appSwitcherLabel} onClick={onAppSwitcherClick} /> : null}
-      </div>
+      </div> : null}
       <div ref={setMenuHost} className="zds-global-header__menu-host" />
     </header>
   );

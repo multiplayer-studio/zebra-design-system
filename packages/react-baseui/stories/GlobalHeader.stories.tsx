@@ -8,7 +8,7 @@ const meta: Meta<typeof GlobalHeader> = {
   tags: ["autodocs"],
   argTypes: { mode: { control: "inline-radio", options: ["dark", "light"] } },
   args: {
-    mode: "dark", rounded: false, appSwitcher: true, searchBar: true, menuItems: false, actionMenu: false, dividers: false,
+    mode: "dark", rounded: false, anchored: true, showProfile: true, appSwitcher: true, searchBar: true, menuItems: false, actionMenu: false, dividers: false,
     platformName: "Platform Name", showPlatformName: true, showLogo: true, username: "Username", initials: "RK",
     menuItemsSlot: <><IconButton flavour="subtle" size="medium" icon="home" label="Home" /><Button flavour="subtle" size="medium">Nav Item</Button></>,
     actionMenuSlot: <><IconButton flavour="subtle" size="medium" icon="important-notification" label="Notifications" /><IconButton flavour="subtle" size="medium" icon="settings" label="Settings" /></>,
@@ -25,6 +25,9 @@ export const FullyLoaded: Story = { args: { menuItems: true, actionMenu: true, d
 
 /** Rounded carries into every control. */
 export const Rounded: Story = { args: { rounded: true, menuItems: true, actionMenu: true } };
+
+/** Rounded and not anchored: the bar floats, so it rounds its own corners too. */
+export const Floating: Story = { args: { rounded: true, anchored: false, menuItems: true, actionMenu: true } };
 
 /** Frozen in dark by default. This is the override, set on the header itself. */
 export const LightOverride: Story = { args: { mode: "light", menuItems: true, actionMenu: true } };

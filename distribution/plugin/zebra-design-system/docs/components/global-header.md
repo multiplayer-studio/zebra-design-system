@@ -9,6 +9,7 @@
 | Prop | Type | Default | Values | Notes |
 |---|---|---|---|---|
 | `rounded` | boolean | `false` |  |  |
+| `anchored` | boolean | `true` |  |  |
 | `appSwitcher` | boolean | `true` |  |  |
 | `searchBar` | boolean | `true` |  |  |
 | `menuItems` | boolean | `false` |  |  |
@@ -19,6 +20,7 @@
 | `platformName` | string | `Platform Name` |  |  |
 | `showPlatformName` | boolean | `true` |  |  |
 | `showLogo` | boolean | `true` |  |  |
+| `showProfile` | boolean | `true` |  |  |
 | `logoSlot` | slot |  |  |  |
 | `mode` | enum | `dark` |  |  |
 
@@ -71,7 +73,7 @@
 
 | Property | Sizing | Guidance |
 |---|---|---|
-| Size | Filled width, hug height | 100% wide and 56 tall on both variants, with the content row inside standing at control/md. |
+| Size | Filled width, hug height | 100% wide and 56 tall on every variant, with the content row inside standing at control/md. |
 | Direction | Row | Leading group, middle band and account group on one line, space/gutter apart, with space/sm padding on every side of the bar. |
 | Leading group | Hug | space/gutter between the menu button, the brand mark and the product name. |
 | Middle band | Fill | Takes the width the two end groups leave, spaces its children space/sm apart, and packs them to its trailing edge. |
@@ -80,7 +82,8 @@
 | Search | Set to medium | Its shape follows Rounded and its size is held at medium. The header gives it a maximum 280 and no fixed width. Below that it fills the spare width, so it gives way before it can overlap a neighbour. |
 | Account group | Hug | space/gutter between the account control and the app switcher. |
 | Controls | Set per variant | The icon buttons are set to medium and subtle. The account control is control/md tall and hugs its width, padded space/2xs and space/sm with space/2xs between its parts. |
-| Radius | Per Rounded | radius/none throughout when false. When true the bar takes radius/element-sm and every nested control is set to its rounded shape, while the account control takes radius/sm. |
+| Radius | Per Rounded | radius/none throughout when false. When true every nested control is set to its rounded shape and the account control takes radius/sm. The bar itself takes radius/element-sm only when Anchored is false; anchored, it stays radius/none. |
+| Shadow | Per Anchored | None while anchored. When Anchored is false the bar takes the Shadow/medium effect style, the medium and small shadows on shadow/soft. |
 | Surface | Tokenised | surface/section on the bar. The icon buttons are set to the subtle flavour, and the account control carries the neutral interactive backgrounds. |
 | Text | Tokenised | The product name is title/medium in foreground/primary. The username is label/small, dropping to interactive/ghost/foreground/disabled when the account control is disabled. |
 | Account states | Per State | interactive/neutral/background at default, hover, pressed, focused and disabled. focus adds a border/focus stroke at 1 wide, and every other state carries interactive/neutral/border/default at zero weight. |

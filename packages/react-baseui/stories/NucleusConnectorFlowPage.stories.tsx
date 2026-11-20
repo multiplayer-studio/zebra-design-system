@@ -726,7 +726,7 @@ const RAIL_MORE: { label: string; icon: IconName }[] = [
 
 /** Figma's Nucleus Navigation: a light Navigation Rail, 240 wide, with Dark Mode and the version in its footer. */
 const NucleusRail = ({ expanded, onExpandedChange, dark, onDark }: { expanded: boolean; onExpandedChange: (e: boolean) => void; dark: boolean; onDark: (on: boolean) => void }) => (
-  <NavigationRail navLabel="Nucleus Connector" inverse={!dark} railWidth={240} showToggleItem={false} expanded={expanded} onExpandedChange={onExpandedChange}
+  <NavigationRail navLabel="Nucleus Connector" railWidth={240} showToggleItem={false} expanded={expanded} onExpandedChange={onExpandedChange}
     footer={expanded ? (
       <div style={{ display: "grid" }}>
         <Divider />
@@ -881,7 +881,7 @@ function SettingsRail({ page, onPage, onBack, expanded, onExpandedChange, dark, 
   React.useEffect(() => { setConnectivity(page !== "print-quality"); }, [page]);
   const go = (p: SettingsPage) => (e: React.MouseEvent) => { e.preventDefault(); onPage(p); };
   return (
-    <NavigationRail navLabel="Nucleus Connector" inverse={!dark} showToggleItem={false} expanded={expanded} onExpandedChange={onExpandedChange}
+    <NavigationRail navLabel="Nucleus Connector" showToggleItem={false} expanded={expanded} onExpandedChange={onExpandedChange}
       footer={<><Divider /><NavigationRailItem label="Dark Mode" icon="dark-mode" selected={dark} onClick={() => onDark(!dark)} /></>}
       subMenuHeader={<SubMenuHeader type="sub-page" heading="Back" backLabel="Back to the printer" onBack={onBack} />}
       subMenu={<>

@@ -88,8 +88,9 @@ context fill in only what it doesn't draw.
   as their original files, logos and illustrations as inline SVG. Never
   replace one with an icon or a placeholder.
 - **Icons are glyph names.** Match the Figma icon to a name in
-  `node_modules/@zebra-design-system/icons/codepoints.json`; if the glyph
-  does not exist there, report it instead of inlining an SVG.
+  `node_modules/@zebra-design-system/icons/codepoints.json`. Never import an
+  icon from Figma. If the exact glyph isn't there, use the closest one by
+  meaning and report the replacement.
 - **Every divider drawn in Figma is drawn in code** — header bottoms, panel
   splits, list separators — via the Divider component or a scoped border.
 - **Don't change library components** to make a design fit. Work around with

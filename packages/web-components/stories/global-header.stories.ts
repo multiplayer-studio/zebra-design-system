@@ -9,6 +9,8 @@ const header = (a: Record<string, unknown>) => html`<zds-global-header
   mode=${a.mode}
   ?rounded=${a.rounded}
   .appSwitcher=${a.appSwitcher}
+  .anchored=${a.anchored}
+  .showProfile=${a.showProfile}
   .searchBar=${a.searchBar}
   .menuItems=${a.menuItems}
   .actionMenu=${a.actionMenu}
@@ -32,7 +34,7 @@ const meta: Meta = {
   component: "zds-global-header",
   tags: ["autodocs"],
   argTypes: { mode: { control: "inline-radio", options: ["dark", "light"] } },
-  args: { mode: "dark", rounded: false, appSwitcher: true, searchBar: true, menuItems: false, actionMenu: false, dividers: false, platformName: "Platform Name", showPlatformName: true, showLogo: true, username: "Username" },
+  args: { mode: "dark", rounded: false, anchored: true, showProfile: true, appSwitcher: true, searchBar: true, menuItems: false, actionMenu: false, dividers: false, platformName: "Platform Name", showPlatformName: true, showLogo: true, username: "Username" },
   render: (a) => header(a),
 };
 export default meta;

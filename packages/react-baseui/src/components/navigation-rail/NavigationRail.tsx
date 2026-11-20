@@ -33,6 +33,11 @@ export interface NavigationRailProps
    * when something outside the rail controls `expanded`.
    */
   showToggleItem?: boolean;
+  /**
+   * The divider down the rail's trailing edge, between the rail and the
+   * page. Hide it when the rail's neighbour already draws that edge.
+   */
+  showDivider?: boolean;
   /** Toggle label in the narrow rail. */
   expandLabel?: string;
   /** Toggle label in the wide rail. */
@@ -46,13 +51,18 @@ export interface NavigationRailProps
    */
   shape?: NavigationRailShape;
   /**
-   * The rail is locked to dark mode (the token layer's `mode-dark` class on
-   * its root) whatever the page's mode. `inverse` locks it to light
-   * (`mode-light`) instead. Either way everything inside the rail — items,
-   * headers, the sub menu, slotted content — follows the rail, not the page;
-   * an `.ext-*` brand on an ancestor still applies. Code-only (owner decision).
+   * The rail follows the page's mode. `inverse` shows it in the opposite
+   * shade instead: dark on a light page, light on a dark one. The contrast
+   * level (AA or AAA) still follows the page, and everything inside the rail
+   * follows the rail. Code-only.
    */
   inverse?: boolean;
+  /**
+   * Keeps the rail in one mode whatever the page's mode: dark, or light with
+   * `inverse`. The contrast level (AA or AAA) still follows the page.
+   * Code-only.
+   */
+  locked?: boolean;
   /**
    * The wide rail's width. 200px by default (Figma's measure); the project
    * sets its own as a CSS length or a number in px, or `"fill"` to take the
@@ -100,6 +110,23 @@ export interface NavigationRailProps
 }
 
 /** A width prop as CSS: a bare number (`180` or "180") is px, any other string passes through. */
+/** The page's mode around the rail: the nearest ancestor's `mode-*` class, light and AA when there is none. */
+type PageMode = { dark: boolean; aaa: boolean };
+const MODE_CLASS = /(?:^|\s)mode-(aaa-)?(light|dark)(?:\s|$)/;
+const parentOf = (n: Element): Element | null => {
+  if (n.parentElement) return n.parentElement;
+  const root = n.getRootNode();
+  return root instanceof ShadowRoot ? root.host : null;
+};
+const readPageMode = (el: Element): PageMode => {
+  for (let n = parentOf(el); n; n = parentOf(n)) {
+    const m = MODE_CLASS.exec(typeof n.className === "string" ? n.className : "");
+    if (m) return { dark: m[2] === "dark", aaa: Boolean(m[1]) };
+  }
+  return { dark: false, aaa: false };
+};
+const useBrowserLayoutEffect = typeof window === "undefined" ? React.useEffect : React.useLayoutEffect;
+
 const cssLength = (v: number | string | undefined) =>
   v === undefined || v === "" ? undefined : /^\d+(\.\d+)?$/.test(String(v)) ? `${v}px` : String(v);
 
@@ -107,11 +134,12 @@ const cssLength = (v: number | string | undefined) =>
  * A vertical navigation column for the edge of a desktop view: a narrow icon
  * rail or a wide labelled one, and an optional sub menu panel beside it.
  *
- * Locked to dark mode by default, whatever the page's mode; `inverse` locks
- * it to light (owner decision). The root carries the token layer's
- * `mode-dark` / `mode-light` class, so the whole subtree follows it. No part
- * of the rail family portals; a popup you slot in that does can read
- * `useNavigationRailModeClass()` to keep the rail's mode.
+ * Follows the page's mode by default. `inverse` shows the opposite shade,
+ * and `locked` keeps the rail dark (light with `inverse`) whatever the page
+ * does. For either, the root carries the token layer's `mode-*` class, so
+ * the whole subtree follows it. No part of the rail family portals; a popup
+ * you slot in that does can read `useNavigationRailModeClass()` to keep the
+ * rail's mode.
  *
  * Regions are slots (header, menu, footer, sub menu header, sub menu); the
  * rail hands its width form and shape down to the items through context. It owns the
@@ -140,10 +168,12 @@ export const NavigationRail = React.forwardRef<HTMLElement, NavigationRailProps>
     onExpandedChange,
     showLabels = false,
     showToggleItem = true,
+    showDivider = true,
     expandLabel = "Open",
     collapseLabel = "Close",
     shape = "rounded",
     inverse = false,
+    locked = false,
     railWidth,
     railMaxWidth,
     subMenuMaxWidth,
@@ -194,12 +224,38 @@ export const NavigationRail = React.forwardRef<HTMLElement, NavigationRailProps>
     const id = requestAnimationFrame(() => setReady(true));
     return () => cancelAnimationFrame(id);
   }, []);
-  // Locked colour mode (owner decision): the class is the token layer's own,
-  // so the rail's subtree re-resolves every semantic token in that mode, and
-  // an .ext-* ancestor still applies (.ext-companion .mode-dark …). Only the
-  // root sets it — no part inside pins a mode of its own, so light and dark
-  // rules never meet.
-  const modeClass: NavigationRailModeClass = inverse ? "mode-light" : "mode-dark";
+  // The rail's mode. By default it sets none and inherits the page's. With
+  // `inverse` or `locked` it takes the token layer's own mode class, so its
+  // subtree re-resolves every semantic token in that mode and an .ext-*
+  // ancestor still applies. Only the root sets it. The page's mode is read
+  // from the ancestors' classes and followed when they change: `inverse`
+  // needs its shade, and both keep its contrast level (AA or AAA).
+  const rootRef = React.useRef<HTMLElement | null>(null);
+  const setRootRef = React.useCallback(
+    (node: HTMLElement | null) => {
+      rootRef.current = node;
+      if (typeof ref === "function") ref(node);
+      else if (ref) ref.current = node;
+    },
+    [ref],
+  );
+  const [page, setPage] = React.useState<PageMode>({ dark: false, aaa: false });
+  const ownsMode = locked || inverse;
+  useBrowserLayoutEffect(() => {
+    const el = rootRef.current;
+    if (!ownsMode || !el) return;
+    const read = () =>
+      setPage((prev) => {
+        const next = readPageMode(el);
+        return prev.dark === next.dark && prev.aaa === next.aaa ? prev : next;
+      });
+    read();
+    const observer = new MutationObserver(read);
+    for (let n = parentOf(el); n; n = parentOf(n)) observer.observe(n, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, [ownsMode]);
+  const dark = locked ? !inverse : inverse ? !page.dark : null;
+  const modeClass = dark === null ? null : (`mode-${page.aaa ? "aaa-" : ""}${dark ? "dark" : "light"}` as NavigationRailModeClass);
   // Items take the content form (`wide`), not the target, so they hold the
   // wide layout through a collapse.
   const ctx = React.useMemo(() => ({ expanded: wide, showLabels, shape, modeClass }), [wide, showLabels, shape, modeClass]);
@@ -211,7 +267,7 @@ export const NavigationRail = React.forwardRef<HTMLElement, NavigationRailProps>
 
   return (
     <nav
-      ref={ref}
+      ref={setRootRef}
       aria-label={navLabel}
       {...rest}
       className={["zds-navigation-rail", modeClass, className].filter(Boolean).join(" ")}
@@ -221,6 +277,9 @@ export const NavigationRail = React.forwardRef<HTMLElement, NavigationRailProps>
       data-show-labels={showLabels ? "" : undefined}
       data-shape={shape}
       data-inverse={inverse ? "" : undefined}
+      data-locked={locked ? "" : undefined}
+      data-mode={dark === null ? undefined : dark ? "dark" : "light"}
+      data-divider={showDivider ? "" : undefined}
       data-fill={railWidth === "fill" ? "" : undefined}
       style={{
         ...style,

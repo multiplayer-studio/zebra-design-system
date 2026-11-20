@@ -28,8 +28,13 @@ export default css`
     color: var(--foreground-primary);
   }
 
-  :host([rounded]) .bar {
+  /* Only a floating bar rounds its own corners (rounded and not anchored). */
+  .bar[data-floating] {
     border-radius: var(--radius-element-sm);
+    /* Figma's Shadow/medium effect style: the medium and small shadows on shadow/soft. */
+    box-shadow:
+      var(--shadow-medium-x) var(--shadow-medium-y) var(--shadow-medium-blur) var(--shadow-soft),
+      var(--shadow-small-x) var(--shadow-small-y) var(--shadow-small-blur) var(--shadow-soft);
   }
 
   /* The bar's height is auto, so the divider's own 100% has nothing to resolve

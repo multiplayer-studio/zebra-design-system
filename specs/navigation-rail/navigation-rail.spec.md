@@ -2,7 +2,7 @@
 
 A vertical navigation column for the edge of a desktop view, made of a narrow icon rail and a sub menu panel beside it. It is a container rather than a fixed design, three slots hold the destinations and the variant axes control only the rail's width and whether captions show. Fill the slots with Navigation Rail Item and Sub Menu Item instances. It paints no panel of its own, sitting on surface/section and marking the boundary between rail and panel with a single border.
 
-Source: [Navigation Rail page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3182-237) · set 3453:54061 · extracted 2026-10-21
+Source: [Navigation Rail page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3182-237) · set 3453:54061 · extracted 2026-10-21, updated 2026-11-20 for Show Divider, and for modes no longer locked by default
 
 The page has seven public components (43 variants) and three metadata frames, the same sets, node ids and frames as on 2026-10-20 (none added or removed). They are split like this:
 
@@ -29,8 +29,10 @@ The page has seven public components (43 variants) and three metadata frames, th
 | `showSubMenu` | boolean | true, false | `true` | subMenu |
 | `moreRailItems` | boolean | true, false | `true` | menuSlot |
 | `moreFooterItems` | boolean | true, false | `true` | footerSlot |
+| `showDivider` | boolean | true, false | `true` | divider |
 | `shape` | enum (code only, not in Figma) | rounded, sharp | `rounded` | corner shape of every nested component (`radius/sm` / `radius/none`) |
-| `inverse` | boolean (code only, not in Figma) | false, true | `false` | the rail's locked colour mode: dark, or light when true |
+| `inverse` | boolean (code only, not in Figma) | false, true | `false` | the rail's shade: the page's mode, or the opposite shade when true |
+| `locked` | boolean (code only, not in Figma) | false, true | `false` | keeps the default or set mode, whatever the page's mode |
 | `railWidth` | length or `fill` (code only) | CSS length, px number, or `fill` | `200px` | sets the wide rail's width, or fills its container |
 | `railMaxWidth` | length (code only, not in Figma) | CSS length or px number | unset | caps the wide rail (Figma's 200px); the narrow rail is unaffected |
 | `subMenuMaxWidth` | length (code only, not in Figma) | CSS length or px number | unset | caps the hugged sub menu; a cap below 240px lowers the minimum |
@@ -52,9 +54,13 @@ The page has seven public components (43 variants) and three metadata frames, th
 
 **moreFooterItems**: true: "Shows the Footer Slot above the fixed footer items." · false: "Hides the slot along with everything placed in it."
 
+**showDivider**: true: "Shows a divider down the rail's trailing edge, between the rail and the page." · false: "Hides it, for a rail whose neighbour already draws that edge."
+
 **shape** (code only): rounded: "Code only, not drawn in Figma. Gives everything inside the rail rounded corners (radius/sm): rail items, sub menu rows, Collapsible Menu Items, the header action, and the buttons in both headers, including back. The rail's own edges never change." · sharp: "Square corners (radius/none) on everything inside the rail."
 
-**inverse** (code only): false: "Code only. The rail always shows in dark mode, whatever the page's mode. Everything inside it follows the rail, and brand extensions still apply." · true: "Shows the rail in light mode instead, still regardless of the page's mode." Built as the token layer's `mode-dark` / `mode-light` class on the rail's root.
+**inverse** (code only): false: "The rail always shows in whatever the page's mode is. Everything inside it follows the rail, and brand extensions still apply." · true: "Shows the rail in inverted mode of the page's mode. (AA-AAA still propagates)"
+
+**locked** (code only): false: "Adapts the mode to the page’s mode" · true: "Locks the rail mode to the default or set theme-mode on the component, irrespective of the page mode (AAA-AA still propagates)"
 
 **railWidth** (code only): The wide rail's width is tentative; the project sets it, or `fill` takes its container's width. 200px is the default.
 
@@ -82,7 +88,7 @@ Values anywhere in this document are token names. The only literals are inside v
 
 ## Anatomy
 
-Root: horizontal, gap `space/none`, padding `space/none`, fill `surface/section`. Hugs its width (312Px narrow, 440Px wide, min-width 72Px). Its height is drawn fixed at 991Px and should fill in use.
+Root: horizontal, gap `space/none`, padding `space/none`, fill `surface/section`. Hugs its width (313Px narrow, 441Px wide with the divider, min-width 72Px). Its height is drawn fixed at 991Px and should fill in use.
 
 1. **Main Rail**: "The icon column, holding the header, the action, the menu list and the footer. Its width is what changes between the two Expanded variants." Vertical, gap `space/md`, padding `space/card` top/bottom and `space/md` left/right. Fixed width × fill height; clips. It measures 72Px narrow and 200Px wide; the wide width is a default that railWidth changes.
    - **header**: Navigation Header, Type=avatar, Expanded matching the rail.
@@ -99,17 +105,18 @@ Root: horizontal, gap `space/none`, padding `space/none`, fill `surface/section`
    - **footerSlot** (visible when `moreFooterItems`): vertical, gap `space/2xs`, clips. Sample content: a Divider and three items.
    - **Footer Rail Item**: a Navigation Rail Item.
    - **toggleItem** (visible when `showToggleItem`): a Navigation Rail Item showing `left-panel-open` "Open" when narrow and `left-panel-close` "Close" when wide. Code wires it to `expanded`.
-4. **Sub menu** (visible when `showSubMenu`): "The panel beside the rail, holding the Sub Menu Header and the Sub Menu Slot. It carries the only vertical border in the component, on its leading edge." Vertical, gap `space/none`, fixed width (240Px, min 240Px) × fill height. **In code (owner decision): hugs its list, min 240px.** It has a left-edge stroke in `border/default`, with an unbound width (see issues).
+4. **Sub menu** (visible when `showSubMenu`): "The panel beside the rail, holding the Sub Menu Header and the Sub Menu Slot. It carries a vertical border on its leading edge." Vertical, gap `space/none`, fixed width (240Px, min 240Px) × fill height. **In code (owner decision): hugs its list, min 240px.** It has a left-edge stroke in `border/default`, with an unbound width (see issues).
    - **subMenuHeader**: Sub Menu Header, Type=sub page; fill × fixed. Its back button is an Icon Button (`arrow-back`).
    - **subMenuSlot**: vertical, gap `space/2xs`, padding `space/sm`, fill × hug. Sample content: one Collapsible Menu Item and four Sub Menu Items.
+5. **Divider** (visible when `showDivider`): a vertical [Divider](../divider), last child of the root, fixed width × fill height, on `border/default` at `stroke/thin`.
 
 ## Variants
 
 | label | expanded | main rail | root | header action | rail items | menu slot padding-x | toggle | node |
 |---|---|---|---|---|---|---|---|---|
-| false | false | 72Px | 312Px | Icon Button | Expanded=false | `space/2xs` | `left-panel-open` "Open" | 4654:10599 |
-| true | false | 72Px | 312Px | Icon Button | Expanded=false, Show Label=true | `space/2xs` (own slot content) | `left-panel-open` "Open" | 3453:54097 |
-| false | true | 200Px | 440Px | Button "Create" | Expanded=true, fill | `space/none` | `left-panel-close` "Close" | 3453:54121 |
+| false | false | 72Px | 313Px | Icon Button | Expanded=false | `space/2xs` | `left-panel-open` "Open" | 4654:10599 |
+| true | false | 72Px | 313Px | Icon Button | Expanded=false, Show Label=true | `space/2xs` (own slot content) | `left-panel-open` "Open" | 3453:54097 |
+| false | true | 200Px | 441Px | Button "Create" | Expanded=true, fill | `space/none` | `left-panel-close` "Close" | 3453:54121 |
 
 The widths are measured, not tokens. They come from the items (`control/lg`), the rail padding and the panel's fixed width.
 
@@ -297,8 +304,8 @@ All three use `animations/smooth` (ease-in-out, 250ms). Turn motion off under pr
 | Rail padding | Fixed | "12px on all four sides of the icon rail, space/md left and right and space/card top and bottom, with a space/md gap between the header, the action, the menu list and the footer." |
 | Item spacing | Fixed | "space/2xs between items in both the menu list and the footer. The Menu Slot adds space/2xs of horizontal padding of its own." |
 | Panel padding | Fixed | "The Sub Menu Slot insets its rows by space/sm on all four sides, with a space/2xs gap between them." |
-| Border | Fixed | "A single 1px border on border/default down the leading edge of the sub menu panel, plus a 1px bottom border on the same token under the Sub Menu Header. Nothing else in the component is stroked." |
-| Fill | Theming | "The rail always shows in dark mode, whatever the page's mode; Inverse shows it in light mode. It sits on surface/section, and neither the icon rail nor the panel paints a fill of its own." |
+| Border | Fixed | "A 1px border on border/default down the leading edge of the sub menu panel, and a 1px bottom border on the same token under the Sub Menu Header. Show Divider adds a 1px Divider down the rail's trailing edge." |
+| Fill | Theming | "The Nav rail inherit’s page theme or makes use of the inverse property for inverted light-dark mode fills, or can be locked to a specific light or dark mode using the lock property, in this case it’s stays in the shade mode irrespective of page’s mode (AAA switch is propagates, only the corresponding dark-light are affected) . All internal element follow the rail mode." |
 | Colour | Theming | "The rail binds only its surface and its two borders. Every other colour comes from the items in the slots." |
 
 ## Changes in code (not in Figma)
@@ -310,7 +317,8 @@ Owner decisions made after the Figma extraction. Each one overrides or adds to w
 | Property (React / web component) | Values | Default | What it does |
 |---|---|---|---|
 | `shape` / `shape` | `rounded`, `sharp` | `rounded` | Sets the corners of everything inside the rail: rail items, sub menu rows, Collapsible Menu Items, the header action, and the buttons in both headers (including the back button). Rounded uses `radius/sm`, sharp uses `radius/none`. The rail's own edges never change. |
-| `inverse` / `inverse` | true, false | false | The rail always shows in dark mode, whatever the page's mode. `inverse` shows it in light mode instead. Either way, everything inside the rail follows the rail, and brand extensions still apply. |
+| `inverse` / `inverse` | true, false | false | The rail follows the page's mode. `inverse` shows the opposite shade instead: dark on a light page, light on a dark one. AA or AAA still follows the page, and everything inside the rail follows the rail. |
+| `locked` / `locked` | true, false | false | Keeps the rail dark, or light with `inverse`, whatever the page's mode. AA or AAA still follows the page. The metadata doesn't name the default mode or this combination; this is the code's choice, to confirm. |
 | `railWidth` / `rail-width` | a CSS length, a number in px, or `fill` | 200px | Sets the width of the wide rail, or fills its container. The narrow rail is not affected. |
 | `railMaxWidth` / `rail-max-width` | a CSS length, or a number in px | none | Caps the width of the wide rail (normally 200px). The narrow rail is not affected. Labels that no longer fit end in an ellipsis. |
 | `subMenuMaxWidth` / `sub-menu-max-width` | a CSS length, or a number in px | none | Caps the width of the sub menu. Rows that no longer fit end in an ellipsis. A cap below 240px also lowers the 240px minimum. |

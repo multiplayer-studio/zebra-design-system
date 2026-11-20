@@ -23,6 +23,8 @@ import "../../index.css";
  *
  * @property {String} name - The name to show in the header, next to the user icon.
  * @property {String} initials - The initials to display within the user icon.
+ * @property {Boolean} anchored - Locked to the top of the page with a square bar. Make false for a rounded header that floats.
+ * @property {Boolean} showProfile - Shows the account control. Make false to hide it.
  * @property {Boolean} appSwitcher - Shows the app switcher icon. Make true to show the app switcher icon.
  * @property {Boolean} searchbar - Shows the search bar. Make true to show the search bar.
  *
@@ -61,6 +63,12 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
 
   /** The product's name. It does not change as a person navigates. */
   @property({ type: String }) platformName?: string;
+
+  /** Locked to the top of the page, with square corners on the bar. Set it to false for a rounded header that floats with space around it; it has no effect on a sharp header. */
+  @property({ type: Boolean, converter: { fromAttribute: value => value !== "false" } }) anchored: boolean = true;
+
+  /** Keeps the account control. */
+  @property({ type: Boolean, converter: { fromAttribute: value => value !== "false" } }) showProfile: boolean = true;
 
   /** Keeps the product name beside the mark. */
   @property({ type: Boolean, converter: { fromAttribute: value => value !== "false" } }) showPlatformName: boolean = true;
@@ -207,7 +215,7 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
   protected override render() {
     return html`
       <!--Main container - Holds all items-->
-      <header id="header-main">
+      <header id="header-main" ?data-floating=${this.rounded && !this.anchored}>
         <!--Left container - Holds header info and menu items-->
         <div id="header-left">
           <!--Header info container - Holds logo, platform name, and menu items-->
@@ -264,11 +272,15 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
           <!--Account group - Holds the user info button and app switcher-->
           <div id="account-group">
             <!--User info button - Holds user name, avatar and chevron icon-->
-            <zeta-button id="user-info-button" shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle" @click=${this._handleUserInfoClick}>
+            ${
+              this.showProfile
+                ? html`<zeta-button id="user-info-button" shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle" @click=${this._handleUserInfoClick}>
               <span id="name">${this.name}</span>
               <slot id="avatar" name="user-avatar" @slotchange=${this._sizeAvatar}></slot>
               <zeta-icon id="user-info-icon" .rounded=${this.rounded}>expand_more</zeta-icon>
-            </zeta-button>
+            </zeta-button>`
+                : nothing
+            }
             ${
               this.appSwitcher
                 ? html`<zeta-icon-button

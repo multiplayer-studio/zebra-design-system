@@ -18,10 +18,6 @@ export const railStyles = css`
   :host {
     display: flex;
     box-sizing: border-box;
-    /* Locked mode (owner decision): the host carries .mode-dark / .mode-light
-       for the tokens; color-scheme keeps the UA's own parts (the menu's
-       scrollbar) in the same mode. */
-    color-scheme: dark;
     /* Fills its parent's height (spec warn "Height": Figma draws 991px
        fixed). With no definite parent height it hugs its content. */
     height: 100%;
@@ -44,7 +40,13 @@ export const railStyles = css`
        spring everywhere else. */
     --zds-caret-indicator-motion: var(--animations-smooth);
   }
-  :host([inverse]) {
+  /* With inverse or locked the host carries a .mode-* class for the tokens;
+     color-scheme keeps the UA's own parts (the menu's scrollbar) in step.
+     Otherwise the rail inherits both from the page. */
+  :host([data-mode="dark"]) {
+    color-scheme: dark;
+  }
+  :host([data-mode="light"]) {
     color-scheme: light;
   }
   :host([hidden]) {
@@ -52,6 +54,11 @@ export const railStyles = css`
   }
   [hidden] {
     display: none !important;
+  }
+  /* showDivider: Figma's vertical Divider, the root's last child. A border on
+     the trailing edge is the same 1px column. */
+  .root[data-divider] {
+    border-inline-end: var(--stroke-thin) solid var(--border-default);
   }
 
   .root {

@@ -20,7 +20,9 @@ const meta: Meta<ZetaNavigationRail> = {
     showLabels: false,
     showHeaderAction: true,
     showToggleItem: true,
-    inverse: false
+    showDivider: true,
+    inverse: false,
+    locked: false
   },
   parameters: {
     design: {
@@ -79,7 +81,9 @@ export const NavigationRailFull: StoryObj<ZetaNavigationRail> = {
         ?show-labels=${args.showLabels}
         ?show-header-action=${args.showHeaderAction}
         ?show-toggle-item=${args.showToggleItem}
+        ?show-divider=${args.showDivider}
         ?inverse=${args.inverse}
+        ?locked=${args.locked}
       >
         <zeta-navigation-header slot="header" headline="Zebra"><zeta-avatar slot="mark" size="s">ZD</zeta-avatar></zeta-navigation-header>
         <zeta-navigation-rail-item selected><zeta-icon slot="icon">home</zeta-icon>Home</zeta-navigation-rail-item>

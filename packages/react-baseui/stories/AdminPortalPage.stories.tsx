@@ -121,10 +121,9 @@ const NAV: { label: string; icon: IconName }[] = [
 ];
 
 /** The tenant's rail: ACME in the header, the admin areas, and the rail's own collapse toggle. */
-function AdminRail({ active, onSelect, light, expanded, onExpandedChange }: { active: string; onSelect: (label: string) => void; light: boolean; expanded: boolean; onExpandedChange: (expanded: boolean) => void }) {
+function AdminRail({ active, onSelect, expanded, onExpandedChange }: { active: string; onSelect: (label: string) => void; expanded: boolean; onExpandedChange: (expanded: boolean) => void }) {
   return (
-    // The rail locks to a mode (dark, or light with `inverse`); following the page means passing `inverse` on a light page.
-    <NavigationRail navLabel="Admin" shape="rounded" inverse={light} expanded={expanded} onExpandedChange={onExpandedChange}
+    <NavigationRail navLabel="Admin" shape="rounded" expanded={expanded} onExpandedChange={onExpandedChange}
       header={<NavigationHeader type="avatar" heading="ACME" avatarInitials="A" actionLabel="Tenant settings" />}>
       {NAV.map((n) => (
         <NavigationRailItem key={n.label} label={n.label} icon={n.icon} selected={active === n.label}
@@ -462,7 +461,7 @@ function AdminPortal({ theme }: { theme?: "mode-light" | "mode-dark" }) {
       <Divider />
       {/* Below it: the rail on the start side, a divider, and the dashboard filling the rest. */}
       <div style={{ flex: 1, minBlockSize: 0, display: "flex" }}>
-      <AdminRail active={active} onSelect={setActive} light={!dark} expanded={railExpanded} onExpandedChange={setRailExpanded} />
+      <AdminRail active={active} onSelect={setActive} expanded={railExpanded} onExpandedChange={setRailExpanded} />
       <Divider orientation="vertical" />
       <div style={{ flex: 1, minInlineSize: 0, display: "flex", flexDirection: "column" }}>
         <Scrolled tag="main" style={{ padding: "var(--space-lg) var(--space-xl)", display: "grid", gap: "var(--space-md)", alignContent: "start", gridAutoRows: "max-content" }}>

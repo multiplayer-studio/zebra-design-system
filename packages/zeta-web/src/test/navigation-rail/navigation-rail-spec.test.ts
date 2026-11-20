@@ -42,13 +42,45 @@ describe("zeta-navigation-rail (spec)", () => {
       await expect(el).shadowDom.to.be.accessible();
     });
 
-    it("lands the rail in a named nav landmark, locked to dark unless inverse", async () => {
+    it("lands the rail in a named nav landmark and follows the page's mode", async () => {
       const el = await fixture<ZetaNavigationRail>(html`<zeta-navigation-rail nav-label="Primary"></zeta-navigation-rail>`);
       await expect(inner(el, "nav").getAttribute("aria-label")).to.equal("Primary");
+      await expect(el.hasAttribute("data-theme")).to.equal(false);
+    });
+
+    it("shows the opposite shade of the page with inverse, and follows the page when it changes", async () => {
+      const page = await fixture<HTMLDivElement>(html`<div data-theme="light"><zeta-navigation-rail inverse></zeta-navigation-rail></div>`);
+      const el = page.querySelector("zeta-navigation-rail") as ZetaNavigationRail;
+      await elementUpdated(el);
+      await expect(el.getAttribute("data-theme")).to.equal("dark");
+      page.setAttribute("data-theme", "dark");
+      await new Promise(r => setTimeout(r));
+      await expect(el.getAttribute("data-theme")).to.equal("light");
+      el.inverse = false;
+      await elementUpdated(el);
+      await expect(el.hasAttribute("data-theme")).to.equal(false);
+    });
+
+    it("keeps a locked rail dark whatever the page's mode, and light with inverse", async () => {
+      const page = await fixture<HTMLDivElement>(html`<div data-theme="light"><zeta-navigation-rail locked></zeta-navigation-rail></div>`);
+      const el = page.querySelector("zeta-navigation-rail") as ZetaNavigationRail;
+      await elementUpdated(el);
+      await expect(el.getAttribute("data-theme")).to.equal("dark");
+      page.setAttribute("data-theme", "dark");
+      await new Promise(r => setTimeout(r));
       await expect(el.getAttribute("data-theme")).to.equal("dark");
       el.inverse = true;
       await elementUpdated(el);
       await expect(el.getAttribute("data-theme")).to.equal("light");
+    });
+
+    it("draws the trailing divider only when show-divider is set", async () => {
+      const plain = await fixture<ZetaNavigationRail>(html`<zeta-navigation-rail></zeta-navigation-rail>`);
+      await expect(getComputedStyle(inner(plain, ".root")).borderInlineEndWidth).to.equal("0px");
+      const divided = await fixture<ZetaNavigationRail>(html`<zeta-navigation-rail show-divider></zeta-navigation-rail>`);
+      const style = getComputedStyle(inner(divided, ".root"));
+      await expect(style.borderInlineEndWidth).to.equal("1px");
+      await expect(style.borderInlineEndStyle).to.equal("solid");
     });
 
     it("exposes the toggle item and a collapsible group as disclosures", async () => {

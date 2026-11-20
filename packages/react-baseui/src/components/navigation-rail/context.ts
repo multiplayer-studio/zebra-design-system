@@ -10,15 +10,15 @@ import * as React from "react";
 export type NavigationRailShape = "rounded" | "sharp";
 
 /**
- * The token layer's mode class a Navigation Rail locks itself to: `mode-dark`
- * by default, `mode-light` with `inverse` (owner decision).
+ * The token layer's mode class a Navigation Rail takes with `inverse` or
+ * `locked`. It keeps the page's contrast level, so it may be an AAA mode.
  */
-export type NavigationRailModeClass = "mode-dark" | "mode-light";
+export type NavigationRailModeClass = "mode-dark" | "mode-light" | "mode-aaa-dark" | "mode-aaa-light";
 
 /**
  * What a Navigation Rail hands down to the parts placed in its slots: its
  * width form, whether the narrow rail shows captions, its shape and its
- * locked colour mode. `null`
+ * colour mode. `null`
  * outside a rail, where each part's own props apply. Figma ties each item's
  * Expanded / Show Label to the rail's (spec); in code the rail owns them.
  */
@@ -26,7 +26,7 @@ export interface NavigationRailContextValue {
   expanded: boolean;
   showLabels: boolean;
   shape: NavigationRailShape;
-  /** `null` in a Navigation Drawer (experimental), which follows the page's mode. */
+  /** `null` when the rail follows the page's mode, and in a Navigation Drawer (experimental). */
   modeClass: NavigationRailModeClass | null;
 }
 export const NavigationRailContext = React.createContext<NavigationRailContextValue | null>(null);
@@ -41,8 +41,8 @@ export function useNavigationRailShape(): NavigationRailShape | null {
 }
 
 /**
- * The nearest Navigation Rail's mode class (`mode-dark`, or `mode-light` when
- * `inverse`), `null` outside a rail. Everything rendered inside the rail
+ * The nearest Navigation Rail's mode class when it has `inverse` or `locked`,
+ * `null` when it follows the page's mode and outside a rail. Everything rendered inside the rail
  * inherits its mode through the cascade; a popup that portals out of it (a
  * Tooltip or Dropdown in a slot, mounted on `document.body`) does not, so put
  * this class on the popup (`className`) or mount it inside the rail

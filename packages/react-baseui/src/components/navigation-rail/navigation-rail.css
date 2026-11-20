@@ -19,10 +19,6 @@
      With no definite parent height it hugs its content — never zero. */
   height: 100%;
   padding: var(--space-none);
-  /* Locked mode (owner decision): the root carries .mode-dark / .mode-light
-     for the tokens; color-scheme keeps the UA's own parts (the menu's
-     scrollbar) in the same mode. */
-  color-scheme: dark;
   /* The only fill: rail and panel both show this surface through. */
   background: var(--surface-section);
   color: var(--foreground-primary);
@@ -44,7 +40,18 @@
   --zds-caret-indicator-motion: var(--animations-smooth);
 }
 
-.zds-navigation-rail[data-inverse] {
+.zds-navigation-rail[data-divider] {
+  /* showDivider: Figma's vertical Divider, the root's last child. A border
+     on the trailing edge is the same 1px column. */
+  border-inline-end: var(--stroke-thin) solid var(--border-default);
+}
+/* With inverse or locked the root carries a .mode-* class for the tokens;
+   color-scheme keeps the UA's own parts (the menu's scrollbar) in step.
+   Otherwise the rail inherits both from the page. */
+.zds-navigation-rail[data-mode="dark"] {
+  color-scheme: dark;
+}
+.zds-navigation-rail[data-mode="light"] {
   color-scheme: light;
 }
 

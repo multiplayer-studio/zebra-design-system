@@ -88,15 +88,17 @@ const meta: Meta<Args> = {
   title: "Components/Navigation Rail/Navigation Rail",
   component: NavigationRail,
   tags: ["autodocs"],
-  args: { defaultExpanded: false, showLabels: false, showToggleItem: true, shape: "rounded", inverse: false, panel: true },
+  args: { defaultExpanded: false, showLabels: false, showToggleItem: true, showDivider: true, shape: "rounded", inverse: false, locked: false, panel: true },
   argTypes: {
     expanded: { control: "boolean" },
     shape: { control: "inline-radio", options: ["rounded", "sharp"] },
     inverse: { control: "boolean" },
+    locked: { control: "boolean" },
     railMaxWidth: { control: "text", description: "Caps the wide rail. A CSS length, or a number in px." },
     subMenuMaxWidth: { control: "text", description: "Caps the hugged sub menu. A CSS length, or a number in px." },
     showLabels: { control: "boolean" },
     showToggleItem: { control: "boolean" },
+    showDivider: { control: "boolean" },
     panel: { control: "boolean", name: "sub menu (fills the subMenu slots)" },
   },
 };
@@ -184,27 +186,30 @@ export const Shape: Story = {
 };
 
 /**
- * inverse (code-only, owner decision): the rail is locked to dark mode
- * whatever the page's mode; `inverse` locks it to light. Each pane is a page
- * scope — the rail ignores the page's mode but keeps its `.ext-*` brand.
+ * Modes (code-only): the rail follows the page's mode. `inverse` shows the
+ * opposite shade, and `locked` keeps it dark (light with `inverse`) whatever
+ * the page does. Each pane is a page scope; AAA and `.ext-*` carry through.
  */
 export const Inverse: Story = {
   render: () => (
     <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(3, max-content)" }}>
       {(
       [
-        ["light page", "mode-light", false],
-        ["dark page", "mode-dark", false],
-        ["light page, inverse", "mode-light", true],
-        ["dark page, inverse", "mode-dark", true],
-        ["ext-companion light page", "ext-companion mode-light", false],
-        ["ext-companion dark page, inverse", "ext-companion mode-dark", true],
+        ["light page", "mode-light", false, false],
+        ["dark page", "mode-dark", false, false],
+        ["AAA dark page", "mode-aaa-dark", false, false],
+        ["light page, inverse", "mode-light", true, false],
+        ["dark page, inverse", "mode-dark", true, false],
+        ["AAA light page, inverse", "mode-aaa-light", true, false],
+        ["light page, locked", "mode-light", false, true],
+        ["light page, locked + inverse", "mode-light", true, true],
+        ["ext-companion dark page, inverse", "ext-companion mode-dark", true, false],
       ] as const
-      ).map(([cap, cls, inv]) => (
+      ).map(([cap, cls, inv, lock]) => (
         <div key={cap} className={cls} style={{ padding: 16, background: "var(--surface-page)", color: "var(--foreground-primary)", display: "grid", gap: 8 }}>
           <Cap>{cap}</Cap>
           <Frame height={600}>
-            <Composed inverse={inv} />
+            <Composed inverse={inv} locked={lock} />
           </Frame>
         </div>
       ))}

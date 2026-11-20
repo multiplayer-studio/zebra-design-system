@@ -18,6 +18,11 @@ export default css`
     color: var(--foreground-primary);
   }
 
+  /* showDivider: the spec's vertical Divider, the root's last child, as a border on the trailing edge. */
+  :host([show-divider]) .root {
+    border-inline-end: var(--stroke-thin) solid var(--border-default);
+  }
+
   .rail {
     box-sizing: border-box;
     display: flex;

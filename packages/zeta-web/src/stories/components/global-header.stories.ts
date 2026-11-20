@@ -17,6 +17,8 @@ const meta: Meta<ZetaGlobalHeader & { "data-theme": string; customLogo: string; 
     appSwitcher: true,
     searchbar: true,
     rounded: false,
+    anchored: true,
+    showProfile: true,
     showPlatformName: true,
     showLogo: true,
     dividers: false,
@@ -30,6 +32,8 @@ const meta: Meta<ZetaGlobalHeader & { "data-theme": string; customLogo: string; 
     appSwitcher: { control: "boolean" },
     searchbar: { control: "boolean" },
     rounded: { control: "boolean" },
+    anchored: { control: "boolean" },
+    showProfile: { control: "boolean" },
     showPlatformName: { control: "boolean" },
     showLogo: { control: "boolean" },
     dividers: { control: "boolean" },
@@ -67,6 +71,8 @@ export const GlobalHeader: StoryObj = {
         .appSwitcher=${args.appSwitcher}
         .searchbar=${args.searchbar}
         .rounded=${args.rounded}
+        .anchored=${args.anchored}
+        .showProfile=${args.showProfile}
         .showPlatformName=${args.showPlatformName}
         .showLogo=${args.showLogo}
         .dividers=${args.dividers}

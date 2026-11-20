@@ -10,10 +10,10 @@
       "pageNodeId": "2314:3348",
       "metadataFrameId": "7632:290",
       "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2356-5644",
-      "extractedAt": "2026-11-01",
-      "variantCount": 2,
-      "defaultVariant": "Rounded=false",
-      "extractionNote": "Both variants and _User Profile read in full. Instances were entered only to resolve glyphs."
+      "extractedAt": "2026-11-20",
+      "variantCount": 3,
+      "defaultVariant": "Rounded=false, Anchored=true",
+      "extractionNote": "Both variants and _User Profile read in full. Instances were entered only to resolve glyphs. Updated 2026-11-20 for two changes: a new Anchored axis (a third variant, Rounded=true with Anchored=false) and a new Show Profile boolean on the account control. An anchored rounded bar now squares its own corners; only the floating one takes radius/element-sm. _User Profile was not re-read. Also 2026-11-20: the Anchored=false variant gained the Shadow/medium effect style."
     }
   },
   "summary": "The bar across the top of an application, carrying the product’s identity at the leading edge, navigation and search in the middle, and the person’s account at the trailing edge. Most of what it holds is optional: the app switcher, the search bar, the two menu regions and the dividers each turn on independently, so one component covers a bare branded bar and a fully loaded one. Rounded is set once and carries into every control nested inside it.",
@@ -31,6 +31,19 @@
       "intent": {
         "false": "Use where the header meets the viewport edges and reads as part of the chrome. Every control inside squares off with the bar.",
         "true": "The corner carries into every nested control, so nothing stays square. (Use the radius around the header where the header sits inside a padded shell and reads as a floating surface.)"
+      }
+    },
+    "anchored": {
+      "type": "boolean",
+      "figmaName": "Anchored",
+      "default": true,
+      "controls": [
+        "bar"
+      ],
+      "validWhen": "false only with rounded = true",
+      "intent": {
+        "true": "Locked to the top of the page.",
+        "false": "Use where the header float with spacing around it sides. Only available in rounded."
       }
     },
     "appSwitcher": {
@@ -140,6 +153,18 @@
       "controls": [],
       "intent": "Declared on the component and defaulting to true. Nothing in the header is bound to it, so the logo region is present either way and Slot Logo is what varies it."
     },
+    "showProfile": {
+      "type": "boolean",
+      "figmaName": "Show Profile#8045:0",
+      "default": true,
+      "controls": [
+        "accountGroup"
+      ],
+      "intent": {
+        "true": "Keeps the account control at the trailing edge.",
+        "false": "Removes it, for a header with no signed-in person. The app switcher then sits alone."
+      }
+    },
     "logoSlot": {
       "type": "slot",
       "figmaName": "Slot Logo#2797:0",
@@ -246,7 +271,7 @@
       },
       "sizing": "hug",
       "parts": [
-        "account: _User Profile as the Template/Dropdown trigger",
+        "account (visible when showProfile): _User Profile as the Template/Dropdown trigger",
         "appSwitcher: Icon Button, medium, subtle, glyph apps"
       ]
     },
@@ -265,22 +290,35 @@
   "variants": {
     "_note": "Cells are token names, except those ending Px, which are measurements of the rendered file.",
     "rounded": {
-      "axis": "rounded",
-      "base": "false",
+      "axis": "rounded × anchored",
+      "base": "rounded=false, anchored=true",
       "table": [
         {
           "rounded": "false",
+          "anchored": "true",
           "bar.radius": "radius/none",
           "controls.shape": "sharp",
           "account.radius": "radius/none",
-          "figmaNode": "2356:5580"
+          "figmaNode": "2356:5580",
+          "bar.shadow": "none"
         },
         {
           "rounded": "true",
+          "anchored": "true",
+          "bar.radius": "radius/none",
+          "controls.shape": "rounded",
+          "account.radius": "radius/sm",
+          "figmaNode": "2356:5655",
+          "bar.shadow": "none"
+        },
+        {
+          "rounded": "true",
+          "anchored": "false",
           "bar.radius": "radius/element-sm",
           "controls.shape": "rounded",
           "account.radius": "radius/sm",
-          "figmaNode": "2356:5655"
+          "figmaNode": "8770:8434",
+          "bar.shadow": "Shadow/medium"
         }
       ]
     }
@@ -449,19 +487,28 @@
       "interactive/neutral/background/disabled",
       "interactive/neutral/border/default",
       "interactive/neutral/border/disabled",
-      "interactive/ghost/foreground/disabled"
+      "interactive/ghost/foreground/disabled",
+      "shadow/soft"
     ],
     "dimension": [
       "space/{2xs,xxs,sm,gutter}",
       "radius/{none,sm,element-sm}",
       "stroke/{base,thin}",
-      "control/md"
+      "control/md",
+      "shadow/medium/x",
+      "shadow/medium/y",
+      "shadow/medium/blur",
+      "shadow/small/x",
+      "shadow/small/y",
+      "shadow/small/blur"
     ],
     "typography": [
       "title/medium",
       "label/small"
     ],
-    "effect": [],
+    "effect": [
+      "Shadow/medium"
+    ],
     "missingFromExport": [],
     "themeAxes": {
       "palette": [
@@ -608,7 +655,7 @@
     {
       "property": "Size",
       "type": "Filled width, hug height",
-      "description": "100% wide and 56 tall on both variants, with the content row inside standing at control/md."
+      "description": "100% wide and 56 tall on every variant, with the content row inside standing at control/md."
     },
     {
       "property": "Direction",
@@ -653,7 +700,12 @@
     {
       "property": "Radius",
       "type": "Per Rounded",
-      "description": "radius/none throughout when false. When true the bar takes radius/element-sm and every nested control is set to its rounded shape, while the account control takes radius/sm."
+      "description": "radius/none throughout when false. When true every nested control is set to its rounded shape and the account control takes radius/sm. The bar itself takes radius/element-sm only when Anchored is false; anchored, it stays radius/none."
+    },
+    {
+      "property": "Shadow",
+      "type": "Per Anchored",
+      "description": "None while anchored. When Anchored is false the bar takes the Shadow/medium effect style, the medium and small shadows on shadow/soft."
     },
     {
       "property": "Surface",
@@ -687,7 +739,8 @@
     "metadata": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7632-290",
     "perAxis": {
       "rounded false": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2356-5580",
-      "rounded true": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2356-5655",
+      "rounded true, anchored": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2356-5655",
+      "rounded true, floating": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8770-8434",
       "_User Profile": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2742-885"
     }
   },
@@ -736,6 +789,11 @@
       "severity": "note",
       "source": "metadata",
       "detail": "No motion is defined, by the metadata's own statement."
+    },
+    {
+      "severity": "note",
+      "source": "api",
+      "detail": "Anchored=false exists only with Rounded=true. In code it has no effect on a sharp header."
     }
   ],
   "modeLock": {

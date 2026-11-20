@@ -80,7 +80,17 @@ pictures, so call it per section, not once for the page.
 | **Photo** | a product, a face, a place, a screenshot | the original image file, in its own format |
 | **Logo** | a brand or product mark | SVG |
 | **Illustration** | an empty-state drawing, a hero graphic, a diagram | SVG |
-| **Icon** | a glyph that is in the system's icon set | the icon set's glyph, not a file |
+| **Icon** | any small, simple glyph on a control, a row, a tab or a status | a glyph from the system's icon set. Never a file from Figma |
+
+Tell an illustration from an icon by what it is made of, not by its size:
+
+- an **illustration** is a complex vector picture: several groups, several
+  colours and many shapes, drawn as a scene or an object;
+- an **icon** is one simple glyph, in one colour, that stands for an action,
+  an object or a status.
+
+Anything that is one simple glyph is an icon, even when the frame draws it
+large. Only photos, logos and illustrations are fetched.
 
 Save the files in an `assets/` folder beside the page (in an application,
 wherever the project keeps its images). Name each for what it shows:
@@ -124,10 +134,18 @@ Never point the page at a Figma link.
 
 **Icons**
 
-A glyph from the icon set stays a glyph, by name. A small vector that isn't
-in the set is a missing icon: report it. Don't turn a photo, a logo or an
-illustration into an icon, and don't turn a missing icon into an
-illustration.
+Icons are never imported from Figma, as SVG or as a picture. Every icon in
+the frame is a glyph from the system's icon set, by name:
+
+- the same glyph, when the set has it;
+- otherwise the closest one: the same meaning first, then the nearest shape.
+  Keep the frame's size, colour and filled or outlined style.
+
+List each icon that was replaced by a closest match in the report, with the
+Figma name and the glyph used. Ask the designer only when nothing in the set
+carries the meaning.
+
+Don't turn a photo, a logo or an illustration into an icon.
 
 **When a picture can't be fetched**
 
@@ -195,5 +213,7 @@ After the usual report, add:
 - **Decided:** each deviation asked, and the designer's answer;
 - **Pictures:** each file brought over and where it is used, any stand-in,
   and any illustration that isn't editable;
+- **Icons replaced:** each Figma icon with no exact glyph, and the closest
+  glyph used;
 - **As designed, off-system:** each value kept from Figma with no token;
 - **Still different:** anything that doesn't match and why.

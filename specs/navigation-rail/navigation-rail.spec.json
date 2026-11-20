@@ -11,7 +11,7 @@
       "frame": "Navigation Rail (Desktop)",
       "metadataFrameId": "4762:6539",
       "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3182-237",
-      "extractedAt": "2026-10-21",
+      "extractedAt": "2026-11-20",
       "variantCount": {
         "Navigation Rail": 3,
         "Navigation Rail Item": 10,
@@ -22,7 +22,7 @@
         "Collapsible Menu Item": 2
       },
       "defaultVariant": "Label=false, Expanded=false",
-      "extractionNote": "Re-extracted 2026-10-21 after designer updates. Same seven public component sets (43 variants), same node ids and keys, and the same three metadata frames (4762:6539, 4762:6735, 4762:6931); no set or frame was added or removed. Navigation Rail Item and Sub Menu Item have their own metadata frames and are specced at specs/navigation-rail-item/ and specs/sub-menu-item/. Navigation Header, Sub Menu Header, Caret Indicator and Collapsible Menu Item have no metadata of their own and are specced here under subcomponents; Caret Indicator is also used by Accordion (specs/accordion). All seven sets read in full to depth 12, every Icon instance's glyph read through its swap property, all three metadata frames re-parsed. Changes since 2026-10-20: the Navigation Rail Metadata gained a code-only Shape property and a sentence on shape inheritance in the Sub Menu Header content row; Sub Menu Header's Type=sub page now draws its back affordance as an Icon Button rather than a bare Icon, with a tighter icon-to-title gap. The master set and the other subcomponents are structurally unchanged."
+      "extractionNote": "Re-extracted 2026-10-21 after designer updates. Same seven public component sets (43 variants), same node ids and keys, and the same three metadata frames (4762:6539, 4762:6735, 4762:6931); no set or frame was added or removed. Navigation Rail Item and Sub Menu Item have their own metadata frames and are specced at specs/navigation-rail-item/ and specs/sub-menu-item/. Navigation Header, Sub Menu Header, Caret Indicator and Collapsible Menu Item have no metadata of their own and are specced here under subcomponents; Caret Indicator is also used by Accordion (specs/accordion). All seven sets read in full to depth 12, every Icon instance's glyph read through its swap property, all three metadata frames re-parsed. Changes since 2026-10-20: the Navigation Rail Metadata gained a code-only Shape property and a sentence on shape inheritance in the Sub Menu Header content row; Sub Menu Header's Type=sub page now draws its back affordance as an Icon Button rather than a bare Icon, with a tighter icon-to-title gap. The master set and the other subcomponents are structurally unchanged. Updated 2026-11-20 for one change: the master set gained Show Divider (boolean, default true), which shows a vertical Divider as the root's last child in all three variants, making each 1Px wider. Variant counts of all seven sets are unchanged; the subcomponents were not re-read. Metadata re-read 2026-11-20: themes are no longer locked by default. Inverse now means the opposite shade of the page, and a new code-only Locked keeps the mode set on the component."
     }
   },
   "summary": "A vertical navigation column for the edge of a desktop view, made of a narrow icon rail and a sub menu panel beside it. It is a container rather than a fixed design, three slots hold the destinations and the variant axes control only the rail's width and whether captions show. Fill the slots with Navigation Rail Item and Sub Menu Item instances. It paints no panel of its own, sitting on surface/section and marking the boundary between rail and panel with a single border.",
@@ -120,6 +120,18 @@
         "false": "Hides the slot along with everything placed in it."
       }
     },
+    "showDivider": {
+      "type": "boolean",
+      "figmaName": "Show Divider#8768:0",
+      "default": true,
+      "controls": [
+        "divider"
+      ],
+      "intent": {
+        "true": "Shows a divider down the rail's trailing edge, between the rail and the page.",
+        "false": "Hides it, for a rail whose neighbour already draws that edge."
+      }
+    },
     "shape": {
       "type": "enum",
       "figmaName": null,
@@ -149,13 +161,39 @@
       "codeOnly": true,
       "default": false,
       "controls": [
-        "the rail's colour mode: the token layer's mode-dark class on the rail root by default, mode-light when true"
+        "the rail's shade: the page's mode by default, the opposite shade when true; the contrast level (AA or AAA) still follows the page"
       ],
       "intent": {
-        "false": "Code only. The rail always shows in dark mode, whatever the page's mode. Everything inside it follows the rail, and brand extensions still apply.",
-        "true": "Shows the rail in light mode instead, still regardless of the page's mode."
+        "false": "The rail always shows in whatever the page's mode is. Everything inside it follows the rail, and brand extensions still apply.",
+        "true": "Shows the rail in inverted mode of the page's mode. (AA-AAA still propagates)"
       },
-      "ownerDecision": "Locked to dark mode by default; `inverse` locks it to light."
+      "ownerDecision": "Changed 2026-11-20: the rail is no longer locked to dark. It follows the page's mode by default."
+    },
+    "locked": {
+      "type": "boolean",
+      "figmaName": null,
+      "codeOnly": true,
+      "default": false,
+      "controls": [
+        "whether the rail's shade follows the page: when true it keeps its default mode, or the light or dark mode set on the component; the contrast level (AA or AAA) still follows the page"
+      ],
+      "intent": {
+        "false": "Adapts the mode to the page’s mode",
+        "true": "Locks the rail mode to the default or set theme-mode on the component, irrespective of the page mode (AAA-AA still propagates)"
+      }
+    },
+    "railWidth": {
+      "type": "length or fill",
+      "codeOnly": true,
+      "default": "200px",
+      "controls": [
+        "mainRail"
+      ],
+      "intent": {
+        "200px": "Code only. The wide rail's width; Figma's 200px is the default.",
+        "length": "The project sets the wide rail's width.",
+        "fill": "The wide rail takes the width of its container."
+      }
     },
     "railMaxWidth": {
       "type": "length",
@@ -294,12 +332,13 @@
       },
       "measured": {
         "widthPx": {
-          "narrow": 312,
-          "narrowLabel": 312,
-          "wide": 440
+          "narrow": 313,
+          "narrowLabel": 313,
+          "wide": 441
         },
         "heightPx": 991,
-        "minWidthPx": 72
+        "minWidthPx": 72,
+        "widthNote": "Includes the 1Px divider; 1Px less when showDivider is false."
       }
     },
     {
@@ -470,7 +509,7 @@
       "kind": "container",
       "number": 4,
       "visibleWhen": "showSubMenu",
-      "role": "Sub menu — The panel beside the rail, holding the Sub Menu Header and the Sub Menu Slot. It carries the only vertical border in the component, on its leading edge.",
+      "role": "Sub menu — The panel beside the rail, holding the Sub Menu Header and the Sub Menu Slot. It carries a vertical border on its leading edge.",
       "layout": {
         "direction": "vertical",
         "gap": "space/none",
@@ -519,6 +558,22 @@
         "v": "hug"
       },
       "sample": "1 Collapsible Menu Item (Open=false) + 4 Sub Menu Item (Sub Menu=false)"
+    },
+    {
+      "id": "divider",
+      "kind": "instance",
+      "parent": "root",
+      "visibleWhen": "showDivider",
+      "ref": "Divider (specs/divider) Orientation=vertical",
+      "role": "The rail's trailing edge. Last child of the root, after the sub menu.",
+      "sizing": {
+        "h": "fixed",
+        "v": "fill"
+      },
+      "paint": {
+        "stroke": "border/default",
+        "weight": "stroke/thin"
+      }
     }
   ],
   "variants": {
@@ -530,7 +585,7 @@
         "label": "false",
         "expanded": "false",
         "mainRail.widthPx": 72,
-        "root.widthPx": 312,
+        "root.widthPx": 313,
         "header": "Navigation Header Expanded=false",
         "headerAction": "Icon Button",
         "railItems": "Expanded=false, Show Label=false",
@@ -542,7 +597,7 @@
         "label": "true",
         "expanded": "false",
         "mainRail.widthPx": 72,
-        "root.widthPx": 312,
+        "root.widthPx": 313,
         "header": "Navigation Header Expanded=false",
         "headerAction": "Icon Button",
         "railItems": "Expanded=false, Show Label=true",
@@ -555,7 +610,7 @@
         "label": "false",
         "expanded": "true",
         "mainRail.widthPx": 200,
-        "root.widthPx": 440,
+        "root.widthPx": 441,
         "header": "Navigation Header Expanded=true",
         "headerAction": "Button 'Create'",
         "railItems": "Expanded=true (fill width)",
@@ -1194,7 +1249,7 @@
       "key": "d0ebc910e87ef304f62d037c99458a69b9eabf39",
       "remote": false,
       "spec": "specs/divider",
-      "usedAs": "first item in Menu Slot and Footer Slot samples"
+      "usedAs": "first item in Menu Slot and Footer Slot samples; the rail's trailing-edge divider (showDivider)"
     }
   ],
   "tokens": {
@@ -1386,22 +1441,22 @@
     {
       "property": "Item spacing",
       "type": "Fixed",
-      "description": "4px (space/xxs) between items in both the menu list and the footer. The Menu Slot adds 4px (space/xxs) of horizontal padding of its own."
+      "description": "space/2xs between items in both the menu list and the footer. The Menu Slot adds space/2xs of horizontal padding of its own."
     },
     {
       "property": "Panel padding",
       "type": "Fixed",
-      "description": "The Sub Menu Slot insets its rows by 8px (space/sm) on all four sides, with a 4px (space/xxs) gap between them."
+      "description": "The Sub Menu Slot insets its rows by space/sm on all four sides, with a space/2xs gap between them."
     },
     {
       "property": "Border",
       "type": "Fixed",
-      "description": "A single 1px border on border/default down the leading edge of the sub menu panel, plus a 1px bottom border on the same token under the Sub Menu Header. Nothing else in the component is stroked."
+      "description": "A 1px border on border/default down the leading edge of the sub menu panel, and a 1px bottom border on the same token under the Sub Menu Header. Show Divider adds a 1px Divider down the rail's trailing edge."
     },
     {
       "property": "Fill",
       "type": "Theming",
-      "description": "The rail always shows in dark mode, whatever the page's mode; Inverse shows it in light mode. It sits on surface/section, and neither the icon rail nor the panel paints a fill of its own."
+      "description": "The Nav rail inherit’s page theme or makes use of the inverse property for inverted light-dark mode fills, or can be locked to a specific light or dark mode using the lock property, in this case it’s stays in the shade mode irrespective of page’s mode (AAA switch is propagates, only the corresponding dark-light are affected) . All internal element follow the rail mode. "
     },
     {
       "property": "Colour",
@@ -1421,9 +1476,9 @@
       "figma": "Figma models no motion on this page."
     },
     {
-      "decision": "Locked to dark mode by default; `inverse` locks it to light.",
+      "decision": "Follows the page's mode by default. `inverse` shows the opposite shade. `locked` keeps the default or set mode. Replaces the decision that locked the rail to dark.",
       "appliesTo": "Navigation Rail and everything rendered inside it (items, headers, sub menu, slotted content, popups that leave the tree)",
-      "figma": "Figma has no inverse property; code-only. Implemented as the token layer's mode-dark / mode-light class on the rail root, so .ext-* brands still apply."
+      "figma": "Figma has no inverse or locked property; both are code-only. Modes are the token layer's mode-* classes on the rail root, so .ext-* brands still apply."
     },
     {
       "decision": "Shape reaches every nested component.",
@@ -1617,6 +1672,16 @@
       "severity": "note",
       "source": "tokens",
       "detail": "tokens/manifest.json now lists extension collections (companion: palette; target: primitives, palette; condensed: typography, size). The rail binds names only, so it themes under them without change, but the condensed size/typography overrides can move the measured widths recorded here."
+    },
+    {
+      "severity": "note",
+      "source": "api",
+      "detail": "Figma has no inverse or locked property; both are code-only. The metadata changed on 2026-11-20: the rail follows the page's mode by default, where it used to be locked to dark."
+    },
+    {
+      "severity": "note",
+      "source": "metadata",
+      "detail": "The metadata does not say which mode is a locked rail's default, or what a rail shows with both locked and inverse set. In code (2026-11-20, to confirm): a locked rail is dark, and light with inverse."
     }
   ],
   "codeChanges": {
@@ -1640,7 +1705,17 @@
           false
         ],
         "default": false,
-        "does": "The rail always shows in dark mode, whatever the page's mode. inverse shows it in light mode instead. Either way, everything inside the rail follows the rail, and brand extensions still apply."
+        "does": "The rail follows the page's mode. inverse shows the opposite shade instead: dark on a light page, light on a dark one. The contrast level (AA or AAA) still follows the page, and everything inside the rail follows the rail."
+      },
+      {
+        "react": "locked",
+        "webComponent": "locked",
+        "values": [
+          true,
+          false
+        ],
+        "default": false,
+        "does": "Keeps the rail dark, or light with inverse, whatever the page's mode. The contrast level (AA or AAA) still follows the page."
       },
       {
         "react": "railMaxWidth",

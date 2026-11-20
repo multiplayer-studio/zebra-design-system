@@ -197,11 +197,10 @@ type PageMode = "light" | "dark" | "aaa-light" | "aaa-dark";
 
 /**
  * Figma's Admin Navigation Drawer: Navigation Rail, Devices selected. It follows
- * the page's mode: light (inverse) on a light page, dark on a dark one, and the
- * AAA class on top for the AAA modes.
+ * the page's mode, AAA included, with no mode props of its own.
  */
 const AdminDrawer = ({ mode, expanded, onExpandedChange }: { mode: PageMode; expanded: boolean; onExpandedChange: (expanded: boolean) => void }) => (
-  <NavigationRail railWidth={255} navLabel="Admin" inverse={!mode.endsWith("dark")} className={mode.startsWith("aaa-") ? `mode-${mode}` : undefined}
+  <NavigationRail railWidth={255} navLabel="Admin"
     expanded={expanded} onExpandedChange={onExpandedChange} showLabels={false}
     collapseLabel="Collapse" expandLabel="Expand"
     header={<NavigationHeader type="avatar" heading="ACME" avatarSrc={IMG("org")} showIconButton actionIcon="home" actionLabel="Home" />}
