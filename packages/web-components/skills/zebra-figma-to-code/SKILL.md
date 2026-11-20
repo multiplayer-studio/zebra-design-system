@@ -46,7 +46,8 @@ mapping and never overrides them. Then:
    every frame, text node, variant property and bound token. Never build from
    the thumbnail.
 6. Follow `references/FIDELITY.md` in this skill's folder: write the
-   inventory of each frame before any code, raise the obvious deviations
+   inventory of each frame before any code, bring over its photos, logos
+   and illustrations, raise the obvious deviations
    with the designer, and compare the result by measurement.
 
 The design wins on what it draws: the variant of each component, spacing,
@@ -82,6 +83,10 @@ context fill in only what it doesn't draw.
   wrapper (Zeta Web: `data-theme="dark"`); a brand frame gets `ext-companion`.
   Remember portals escape a scoped theme class — pass
   `portalContainer` or scope at `<body>`.
+- **Pictures come from the design.** A photo, logo or illustration in the
+  frame is fetched and used as `references/FIDELITY.md` step 3 says: photos
+  as their original files, logos and illustrations as inline SVG. Never
+  replace one with an icon or a placeholder.
 - **Icons are glyph names.** Match the Figma icon to a name in
   `node_modules/@zebra-design-system/icons/codepoints.json`; if the glyph
   does not exist there, report it instead of inlining an SVG.
@@ -99,7 +104,7 @@ context fill in only what it doesn't draw.
 ## Verify
 
 Render the result in this app (dev server or Storybook) at the frame's width
-and compare it with the Figma frame as `references/FIDELITY.md` step 4 says:
+and compare it with the Figma frame as `references/FIDELITY.md` step 5 says:
 side by side, then by measuring sizes, padding, gaps and text styles in the
 browser. Fix what differs and compare again. Then check light and dark.
 

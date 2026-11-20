@@ -1,5 +1,11 @@
 # @zebra-design-system/web-components
 
+## 0.6.2
+
+### Patch Changes
+
+- Skills: a build from a Figma reference brings the design's pictures with it. Photos of products, faces and places are saved as their original files in the build's assets, brand logos and illustrations come in as inline SVG that can be changed, and none is replaced by an icon or a placeholder.
+
 ## 0.6.1
 
 ### Patch Changes

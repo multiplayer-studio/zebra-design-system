@@ -68,12 +68,17 @@ below. Everything else here still applies.
 Whenever this prototype has a Figma design to follow, from the start dialog,
 a link in the request or the context's `reference`, the design is the look
 to match. Follow `references/FIDELITY.md` in the `zebra-figma-to-code`
-skill, all five steps:
+skill, all six steps:
 
 - the frame decides each component's variant, the spacing and the text style
   of each piece of text. The patterns and the context fill in only what the
   frame doesn't draw;
 - write the inventory of each frame before any markup;
+- bring the frame's pictures into an `assets/` folder beside the page and
+  use them: photos of products, faces and places as their original image
+  files, brand logos and illustrations as inline SVG that the build can
+  change. Never put an icon, initials or a grey box where the design has a
+  picture;
 - where the frame and the system can't both be followed and a reviewer would
   see it, show the designer both in a dialog and let them choose;
 - compare the result with the frame by measurement before handing over.
@@ -154,8 +159,8 @@ Never write theme values into the page. A project that starts from a shipped
 extension puts that extension's class on the root instead.
 
 Publish the HTML with the Artifact tool, mapping `zds.css`, `zds.js`,
-`icons.css`, `theme.css` when there is one, and each `fonts/*.woff2` as
-supporting files. Republish to the
+`icons.css`, `theme.css` when there is one, each `fonts/*.woff2` and each
+image in `assets/` as supporting files. Inline SVG travels in the page. Republish to the
 same artifact URL on every iteration so the shared link stays current.
 
 ## Designing the prototype
@@ -194,6 +199,9 @@ look, and the UX patterns on how screens are composed and behave:
   has no toggle.
 - **Build for the context's surfaces.** Each one is a size mode on the root
   (the patterns' `zebra.md` says which class). Check the prototype in each.
+- **Fake the data, not the pictures.** With a Figma reference, every photo,
+  logo and illustration comes from the design. Without one, use a plain
+  placeholder surface with a label, and never a picture from elsewhere.
 - **Fake the data, not the system.** Placeholder content is fine; off-system
   styling is not. Undesigned paths stay inert.
 - **Light interactivity is welcome** — tab switches, dialogs opening, state
@@ -209,7 +217,7 @@ again until a pass finds nothing. Never skip it because the build rendered
 without errors.
 
 With a Figma reference, first compare the page with each frame at the
-frame's width, as `FIDELITY.md` step 4 says, and fix what differs.
+frame's width, as `FIDELITY.md` step 5 says, and fix what differs.
 
 Open the published page (not just the local file): light and dark, phone
 width and desktop, focus order on anything interactive, no console errors —
