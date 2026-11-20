@@ -1,0 +1,1 @@
+{"version":3,"file":"shimmer.d.ts","sourceRoot":"","sources":["../../../src/components/shimmer/shimmer.ts"],"names":[],"mappings":"AAAA,OAAO,EAAQ,UAAU,EAAE,MAAM,KAAK,CAAC;AAIvC;;;;;;;;;GASG;AACH,qBACa,WAAY,SAAQ,UAAU;cACtB,MAAM;IAIzB,MAAM,CAAC,MAAM,4BAAY;CAC1B;AAED,OAAO,CAAC,MAAM,CAAC;IACb,UAAU,qBAAqB;QAC7B,cAAc,EAAE,WAAW,CAAC;KAC7B;CACF"}
