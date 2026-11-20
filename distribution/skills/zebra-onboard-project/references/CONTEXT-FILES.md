@@ -32,6 +32,9 @@ density: comfortable           # comfortable | compact
 surfaces: [handheld, desktop]  # form factors, from the patterns' devices.md
 special-treatments: [ai-interactions]
 library: none                  # off-system only: name, exact version, the URL it loads from
+handoff:                       # added by zebra-handoff at the project's first handoff
+  library: react-baseui        # what the app is built with: react-baseui | web-components | zeta-web | none
+  app: .                       # the app's codebase: . for this folder, a path, or owner/repo
 ---
 
 # Route Planner

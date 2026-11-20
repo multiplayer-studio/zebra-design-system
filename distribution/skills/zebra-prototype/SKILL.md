@@ -116,9 +116,14 @@ straight from the repo's distribution branches, no registry needed:
 
 ## Bundle the system into the page's assets
 
+Keep the page in `prototypes/<name>/index.html` in the folder the request
+comes from, with its `assets/` beside it, and commit it with `zebra-context/`.
+That is where `zebra-handoff` finds it when the prototype goes to developers.
+
 The artifact is served on claude.ai, so the page cannot reach node_modules at
 view time and the packages are not on a public CDN yet. Bundle the installed
-versions into three files (a scratch folder is fine; they ship with the page):
+versions into three files beside the page (they ship with it, and are rebuilt
+from the installed packages each time, so they needn't be committed):
 
 ```bash
 # the components, with their bare `lit` imports resolved into one ESM file
@@ -241,3 +246,7 @@ Before you finish, update `zebra-context/`:
 
 Tell the user what you added, and anything in the prototype that departs from
 the context.
+
+When the designer says the prototype is ready for developers, use the
+`zebra-handoff` skill. It writes a build spec of what changed since the last
+handoff, into `prototypes/<name>/handoff/`.
