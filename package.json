@@ -1,0 +1,39 @@
+{
+  "name": "@zebra-design-system/patterns",
+  "version": "0.1.0",
+  "description": "Zebra UX patterns: component-agnostic rules for how screens are composed and behave, as plain Markdown and JSON, with the Claude Code skills that apply and audit them",
+  "type": "module",
+  "private": false,
+  "files": [
+    "dist",
+    "skills",
+    "bin",
+    "AGENTS.md",
+    "llms.txt"
+  ],
+  "exports": {
+    "./*": "./dist/*"
+  },
+  "bin": {
+    "zebra-patterns-skills": "./bin/install-skills.mjs"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "node build.mjs --check"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/multiplayer-studio/zebra-design-system.git",
+    "directory": "packages/patterns"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "distChannel": {
+    "type": "git",
+    "repo": "https://github.com/multiplayer-studio/zebra-design-system.git",
+    "tag": "patterns-v0.1.0",
+    "builtFrom": "ca3f8bc0"
+  }
+}
