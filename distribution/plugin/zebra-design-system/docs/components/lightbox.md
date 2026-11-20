@@ -2,7 +2,7 @@
 
 > A full-size preview over the page, opened from the item being viewed. Images, videos and PDFs render themselves; anything else shows a drawn file sheet with the file's glyph and “No preview for this file”. A toolbar names the item and offers open in a new tab, download and close; previous, next and the arrow keys page through the list. Backdrop, focus trap, Escape and scroll lock come from Dialog; everything visual comes from the token layer.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-lightbox>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-lightbox>`)
 
 ## API
 

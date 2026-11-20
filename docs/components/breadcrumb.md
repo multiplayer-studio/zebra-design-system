@@ -2,7 +2,7 @@
 
 > Shows where a page sits in the hierarchy, as a trail of links ending on the current page. Each crumb goes back up a level. A long trail collapses its middle into an overflow menu, so every crumb stays reachable.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-breadcrumb>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-breadcrumb>`)
 
 ## API
 

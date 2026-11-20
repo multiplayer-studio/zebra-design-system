@@ -1,4 +1,4 @@
-<h1 class='sbdocs-title'>@zebra-fed/zeta-web</h1>
+<h1 class='sbdocs-title'>@zebra-design-system/zeta-web</h1>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./documentation/dark-wide.svg">
@@ -27,51 +27,51 @@ Set these on any element, usually `<html>`; everything inside follows:
 | `data-brand` | `companion`, `target`, `condensed` | A Zebra brand extension. Set `data-theme` with it. |
 | `data-breakpoint` | `mobile`, `tablet`, `desktop-compact` | Size and typography mode. Desktop when absent. |
 
-The Zebra tokens are generated from `tokens/` at the repo root with `yarn tokens`. Storybook's toolbar has the same Extension, Mode and Breakpoint menus as `packages/web-components`, setting `data-brand`, `data-theme` and `data-breakpoint`.
+The Zebra tokens are generated from `tokens/` at the repo root with `pnpm run tokens`. Storybook's toolbar has the same Extension, Mode and Breakpoint menus as `packages/web-components`, setting `data-brand`, `data-theme` and `data-breakpoint`.
 
 ## How to Use
 
 Zeta Web Components can be directly used in many web frameworks including Angular and React (from v19).
 
-1. Install `@zebra-fed/zeta-web`
+1. Install `@zebra-design-system/zeta-web`
 
    ```sh
-   # NPM
-   npm install @zebra-fed/zeta-web
-   # YARN
-   yarn add @zebra-fed/zeta-web
+   # Until the package is on npm, install it from the repo's distribution branch
+   npm install "git+https://github.com/multiplayer-studio/zebra-design-system.git#dist/zeta-web"
+   # or pin a version
+   npm install "git+https://github.com/multiplayer-studio/zebra-design-system.git#zeta-web-v0.5.1"
    ```
 
 2. Import the global styles into the main app file
 
    ```js
-   import "@zebra-fed/zeta-web/index.css";
+   import "@zebra-design-system/zeta-web/index.css";
    ```
 
    or in HTML,
 
    ```html
-   <link rel="stylesheet" href="./node_modules/@zebra-fed/zeta-web/dist/style.css" />
+   <link rel="stylesheet" href="./node_modules/@zebra-design-system/zeta-web/dist/style.css" />
    ```
 
 3. Import the desired Zeta Web Component, or the full package into your app:
 
    ```js
    // Individual button component
-   import "@zebra-fed/zeta-web/dist/components/button/button.js";
+   import "@zebra-design-system/zeta-web/dist/components/button/button.js";
 
    // or full package
-   import "@zebra-fed/zeta-web";
+   import "@zebra-design-system/zeta-web";
    ```
 
    or in HTML,
 
    ```html
    <!-- Individual button component -->
-   <script type="module" src="./node_modules/@zebra-fed/zeta-web/dist/components/button/button.js"></script>
+   <script type="module" src="./node_modules/@zebra-design-system/zeta-web/dist/components/button/button.js"></script>
 
    <!-- or full package-->
-   <script type="module" src="./node_modules/@zebra-fed/zeta-web/"></script>
+   <script type="module" src="./node_modules/@zebra-design-system/zeta-web/"></script>
    ```
 
    To reduce bloat, we recommend only importing the components you will actually use into your project.
@@ -98,7 +98,7 @@ To override a theme, you can add `data-theme: light | dark` or `data-contrast: l
 
 ```ts How to inject Zeta index.css in a new custom lit element.
 // Importing styles into Lit
-import * as zeta from "@zebra-fed/zeta-web/index.css?raw";
+import * as zeta from "@zebra-design-system/zeta-web/index.css?raw";
 import { html, LitElement } from "lit";
 
 @customElement("a")
@@ -128,7 +128,7 @@ As of v0.5.3 this issue should no longer occur.
 If you find TypeScript complains that `Property 'zeta-*' does not exist on type 'JSX.IntrinsicElements'`, you need to add the declared zeta components into React's JSX.IntrinsicElements namespace. To do this:
 
 ```ts
-import { CustomElements } from "@zebra-fed/zeta-web/jsx.d.ts";
+import { CustomElements } from "@zebra-design-system/zeta-web/jsx.d.ts";
 
 declare module "react" {
   namespace JSX {
@@ -149,8 +149,8 @@ ts-lit-plugin adds type checking and code completion to lit-html. To install, fi
 # NPM
 npm install ts-lit-plugin -D
 
-# Yarn
-yarn add -D ts-lit-plugin
+# pnpm
+pnpm add -D ts-lit-plugin
 ```
 
 and add the plugin to your tsconfig.json:
@@ -176,8 +176,8 @@ To use this, install it in VSCode, and add the following into .vscode/settings.j
 {
   ...
   "cssVariables.lookupFiles": [
-    "node_modules/@zebra-fed/zeta-web/primitives.css",
-    "node_modules/@zebra-fed/zeta-web/semantics.css",
+    "node_modules/@zebra-design-system/zeta-web/primitives.css",
+    "node_modules/@zebra-design-system/zeta-web/semantics.css",
     // Add other css files here
   ]
 }

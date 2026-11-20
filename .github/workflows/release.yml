@@ -1,9 +1,7 @@
-# Release lane (step 0.10). Two lanes, one workflow:
-# - The five pnpm packages release through Changesets: accumulated changesets
-#   become a "Version Packages" PR; merging it versions, rewrites workspace:*
-#   ranges and publishes.
-# - zeta-web keeps its Conventional-Commits versioning and publishes through
-#   the manual zeta lane below (workflow_dispatch) until its flow is folded in.
+# Release lane (step 0.10). One lane for all six packages, zeta-web included:
+# accumulated changesets become a "Version Packages" PR; merging it versions,
+# rewrites workspace:* ranges and publishes. The three component libraries are
+# a fixed group in .changeset/config.json, so they always share a version.
 #
 # Dormant until step 0.2 lands: publishing needs the NPM_TOKEN secret (or npm
 # trusted publishing once the repo/org decision is made). Without the secret
@@ -15,10 +13,6 @@ on:
     branches: [main]
   workflow_dispatch:
     inputs:
-      zeta:
-        description: "Also publish @zebra-fed/zeta-web"
-        type: boolean
-        default: false
       git_dist:
         description: "Deploy the git distribution branches (dist/<pkg> + version tags)"
         type: boolean
@@ -33,7 +27,7 @@ concurrency: release-${{ github.ref }}
 
 jobs:
   changesets:
-    name: Version or publish pnpm packages
+    name: Version or publish packages
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
@@ -58,26 +52,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  zeta:
-    name: Publish zeta-web (manual)
-    if: github.event_name == 'workflow_dispatch' && inputs.zeta
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: packages/zeta-web
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-      - run: corepack enable
-      - run: yarn install --immutable
-      - run: yarn build
-      - name: Publish
-        env:
-          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: yarn npm publish --access public
-
   # Registry-free channel (DISTRIBUTION.md §Git distribution): packs each
   # package root to an orphan dist/<pkg> branch plus an immutable
   # <pkg>-v<version> tag, installable with npm i "git+<repo>#dist/<pkg>".
@@ -95,7 +69,4 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm -r run build
-      - name: Build zeta-web
-        working-directory: packages/zeta-web
-        run: corepack enable && yarn install --immutable && yarn build
       - run: node scripts/deploy-dist-branches.mjs --push

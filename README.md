@@ -48,7 +48,7 @@ The three libraries share tokens, icons and specs, but no component code.
     ├── patterns/          @zebra-design-system/patterns: a copy of patterns/, packed
     ├── web-components/    @zebra-design-system/web-components, and the token CSS builder
     ├── react-baseui/      @zebra-design-system/react-baseui
-    └── zeta-web/          @zebra-fed/zeta-web, the legacy library
+    └── zeta-web/          @zebra-design-system/zeta-web, the legacy library
 ```
 
 ## Packages
@@ -57,7 +57,7 @@ The three libraries share tokens, icons and specs, but no component code.
 |---|---|---|---|---|
 | `packages/web-components` | Lit custom elements, plus the script that turns tokens into CSS | `zds-*` | pnpm | [localhost:6007](http://localhost:6007) |
 | `packages/react-baseui` | React components. Base UI brings behaviour and accessibility, we bring the visuals. | `<Button>` etc. | pnpm | [localhost:6008](http://localhost:6008) |
-| `packages/zeta-web` | The legacy Zeta Web library, being refined from Zebra specs, tokens and icons in Zeta's own code style | `zeta-*` | Yarn 4 | [localhost:6006](http://localhost:6006) |
+| `packages/zeta-web` | The legacy Zeta Web library, being refined from Zebra specs, tokens and icons in Zeta's own code style | `zeta-*` | pnpm | [localhost:6006](http://localhost:6006) |
 | `packages/icons` | Icon fonts generated from Figma. Icons are font glyphs, never SVGs. | — | pnpm | Open `preview.html` |
 | `packages/patterns` | The UX patterns as plain Markdown, copied from `patterns/`. No code, no dependencies. | — | pnpm | — |
 
@@ -76,14 +76,11 @@ Consumers get the pack with a Zebra library, alone as `@zebra-design-system/patt
 
 You need Node 24 (developed on 24.13.1), Google Chrome for the checks, and Python 3 for token exports.
 
-There is no root `package.json` or workspace, so each package installs on its own.
+Every package is in one pnpm workspace, so one install at the repo root covers all of them.
 
 ```bash
-corepack enable        # once, provides pnpm and the pinned Yarn
-
-(cd packages/web-components && pnpm install)
-(cd packages/react-baseui && pnpm install)
-(cd packages/zeta-web && yarn install)
+corepack enable        # once, provides pnpm
+pnpm install
 ```
 
 ## Running Storybook
@@ -93,10 +90,10 @@ Run each from its package folder. Use one terminal per Storybook, or run them al
 ```bash
 cd packages/web-components && pnpm run storybook   # http://localhost:6007
 cd packages/react-baseui   && pnpm run storybook   # http://localhost:6008
-cd packages/zeta-web       && yarn storybook       # http://localhost:6006
+cd packages/zeta-web       && pnpm run storybook   # http://localhost:6006
 ```
 
-The pnpm Storybooks rebuild token CSS on start. Zeta doesn't, so run `yarn tokens` after a token export.
+The pnpm Storybooks rebuild token CSS on start. Zeta doesn't, so run `pnpm run tokens` after a token export.
 
 Every toolbar has the same three menus, which is how you compare a component across libraries:
 
@@ -171,7 +168,7 @@ Every skill that touches Figma needs the Figma MCP connected, apart from the RES
 ```bash
 cd packages/web-components && pnpm run tokens
 cd packages/react-baseui   && pnpm run tokens
-cd packages/zeta-web       && yarn tokens
+cd packages/zeta-web       && pnpm run tokens
 ```
 
 The same script builds all three with different flags, so they can't drift. Never edit generated CSS or anything in `zeta-web/src/generated/tokens`.
@@ -188,7 +185,7 @@ pnpm run generate:dry    # inventory only, run this first
 pnpm run generate
 ```
 
-Existing codepoints never move. Then run `yarn icons` in `packages/zeta-web`.
+Existing codepoints never move. Then run `pnpm run icons` in `packages/zeta-web`.
 
 **Credentials**
 
@@ -208,7 +205,7 @@ The token needs `file_content:read` for icons and `file_variables:read` for toke
 ```bash
 cd packages/web-components && pnpm run check   # tokens, typecheck, theming assertions
 cd packages/react-baseui   && pnpm run check   # the same
-cd packages/zeta-web       && yarn check       # analyze, lint, lit-analyzer, tests
+cd packages/zeta-web       && pnpm run check   # analyze, lint, lit-analyzer, tests
 ```
 
 **Visual audit.** Renders a component against its spec in four theme panes and checks what only shows once painted. Run from the repo root, then open the screenshot it prints.
@@ -228,7 +225,7 @@ node .claude/skills/zeta-web-components/scripts/api-coverage.mjs button   # or -
 
 ```bash
 cd packages/zeta-web
-yarn storybook --ci -p 6010    # leave running, then in a second terminal:
+pnpm run storybook --ci -p 6010    # leave running, then in a second terminal:
 node ../../.claude/skills/zeta-web-components/scripts/hover-shot.mjs components-accordion--accordion 300,158
 ```
 

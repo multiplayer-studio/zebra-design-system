@@ -2,7 +2,7 @@
 
 > A control for choosing a value along a range by dragging a thumb. State, Stepped and Range are the slider's own properties, and the track, the step indicators and the thumb all take their appearance from them rather than being set individually. Stepped marks the valid stops, and Range adds a second thumb so a span can be chosen instead of a single value.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-slider>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-slider>`)
 
 ## API
 

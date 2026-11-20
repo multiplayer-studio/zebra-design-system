@@ -2,7 +2,7 @@
 
 > A composer for conversational, AI-assisted surfaces: type, attach, dictate, record a voice message, hear the reply.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-message-input>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-message-input>`)
 
 ## API
 

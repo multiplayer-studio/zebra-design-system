@@ -5,6 +5,6 @@
     "@zebra-design-system/patterns": "0.1.0",
     "@zebra-design-system/react-baseui": "0.5.1",
     "@zebra-design-system/web-components": "0.5.1",
-    "@zebra-fed/zeta-web": "1.7.0"
+    "@zebra-design-system/zeta-web": "0.5.1"
   }
 }

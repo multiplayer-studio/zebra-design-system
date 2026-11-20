@@ -2,7 +2,7 @@
 
 > A numeric value with a button on either side to decrease or increase it. The value itself is fixed text rather than a property, the two buttons are locked step controls with no properties of their own reachable from here, and an optional line of hint text can sit below the whole control.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-stepper-input>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-stepper-input>`)
 
 ## API
 

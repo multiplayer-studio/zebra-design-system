@@ -91,7 +91,7 @@ Figma cannot export font files. This downloads each family in `fonts.json` from 
 
 ### 3c. Rebuild the CSS in each package
 
-`packages/web-components/scripts/build-tokens-css.mjs` (run by `pnpm run tokens`, `yarn tokens` in zeta-web, and react-baseui's `tokens`) turns the text styles into one `--text-<group>-<size>` font shorthand each, plus a `.text-<group>-<size>` class that also sets letter spacing, re-declared in every scope where a part changes. `--fonts=self` swaps the Google Fonts import for the fetched files. It writes weights as numbers: a keyword like `Medium` is not valid CSS and the browser drops it.
+`packages/web-components/scripts/build-tokens-css.mjs` (run by `pnpm run tokens`, `pnpm run tokens` in zeta-web, and react-baseui's `tokens`) turns the text styles into one `--text-<group>-<size>` font shorthand each, plus a `.text-<group>-<size>` class that also sets letter spacing, re-declared in every scope where a part changes. `--fonts=self` swaps the Google Fonts import for the fetched files. It writes weights as numbers: a keyword like `Medium` is not valid CSS and the browser drops it.
 
 ### 4. Verify
 

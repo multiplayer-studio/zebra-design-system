@@ -44,7 +44,7 @@ const implementations = (slug) => {
   if (wcImpl.has(slug)) impls.push("`@zebra-design-system/web-components`");
   if (zetaMap[slug]) {
     const el = JSON.stringify(zetaMap[slug]).match(/zeta-[a-z-]+/);
-    impls.push(`\`@zebra-fed/zeta-web\`${el ? ` (\`<${el[0]}>\`)` : ""}`);
+    impls.push(`\`@zebra-design-system/zeta-web\`${el ? ` (\`<${el[0]}>\`)` : ""}`);
   }
   return impls;
 };
@@ -300,15 +300,16 @@ token, so they apply to any component system, Zebra or not.
     has: () => false,
   },
   "zeta-web": {
-    title: "@zebra-fed/zeta-web",
+    title: "@zebra-design-system/zeta-web",
     blurb: "The legacy Zeta Web library: zeta-* Lit custom elements, refined against the Zebra specs.",
-    agents: (list) => `# Using @zebra-fed/zeta-web
+    agents: (list) => `# Using @zebra-design-system/zeta-web
 
-For existing Zeta consumers; new builds should prefer the
-@zebra-design-system packages.
+For existing Zeta consumers; new builds should prefer the React or web
+component library. Until 0.5.1 this package was \`@zebra-fed/zeta-web\`:
+the elements and exports are the same, only the package name changed.
 
-- Import \`@zebra-fed/zeta-web\` (registers zeta-* elements) and
-  \`@zebra-fed/zeta-web/index.css\`. React wrappers: \`@zebra-fed/zeta-web/react\`.
+- Import \`@zebra-design-system/zeta-web\` (registers zeta-* elements) and
+  \`@zebra-design-system/zeta-web/index.css\`. React wrappers: \`@zebra-design-system/zeta-web/react\`.
 - Theme with attributes on an ancestor: \`data-theme="dark"\`,
   \`data-brand="companion"|"condensed"\`, \`data-breakpoint\`.
 - The element API is in custom-elements.json (machine-readable).

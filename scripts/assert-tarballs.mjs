@@ -19,7 +19,7 @@ const DENY = [
   /\.DS_Store$/,
 ];
 
-const PNPM_PACKAGES = ["tokens", "icons", "patterns", "react-baseui", "web-components"];
+const PACKAGES = ["tokens", "icons", "patterns", "react-baseui", "web-components", "zeta-web"];
 let failed = false;
 
 const check = (name, files) => {
@@ -32,7 +32,7 @@ const check = (name, files) => {
   }
 };
 
-for (const p of PNPM_PACKAGES) {
+for (const p of PACKAGES) {
   const dir = join(root, "packages", p);
   // --ignore-scripts keeps prepack logs out of the JSON; require the build
   // to have run first, or the files list would be hollow and pass vacuously.
@@ -44,22 +44,6 @@ for (const p of PNPM_PACKAGES) {
   const out = execSync("npm pack --dry-run --json --ignore-scripts", { cwd: dir, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] });
   const files = JSON.parse(out)[0].files.map((f) => f.path);
   check(`@zebra-design-system/${p}`, files);
-}
-
-// zeta-web packs with Yarn Berry; `yarn pack --dry-run` prints one
-// "➤ YN0000: <path>" line per file. Keep the path-shaped lines.
-{
-  const dir = join(root, "packages", "zeta-web");
-  const out = execSync("yarn pack --dry-run", { cwd: dir, encoding: "utf8" });
-  const listed = out.split("\n")
-    .map((l) => l.replace(/^➤ YN0000:\s*/, "").trim())
-    .filter((l) => l && !l.startsWith("┌") && !l.startsWith("└") && !l.includes("Done") && !l.includes("size") && (l.includes("/") || l.includes(".")));
-  if (listed.length < 10) {
-    failed = true;
-    console.error(`✗ zeta-web: yarn pack output parsed to only ${listed.length} files — format changed?`);
-  } else {
-    check("@zebra-fed/zeta-web", listed);
-  }
 }
 
 if (failed) process.exit(1);

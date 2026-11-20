@@ -2,7 +2,7 @@
 
 > A vertically stacked list of disclosure rows sharing one container, for a page that has more sections than it has room to show at once. Selectable decides whether rows can be ticked as well as opened, and In Card decides whether the list reads as a bounded object. The rows themselves are separate components with their own frames.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-accordion>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-accordion>`)
 
 ## API
 

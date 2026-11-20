@@ -2,7 +2,7 @@
 
 > A single-line input for typing a query, with a magnifier leading it and a trailing control that takes whatever icon and function the implementation passes. State covers the whole typing lifecycle from empty through focus to a committed query, and Flavour decides how much the field asserts itself against the surface behind it. Size and Shape match it to the controls around it.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-search>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-search>`)
 
 ## API
 

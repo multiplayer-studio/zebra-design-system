@@ -279,17 +279,18 @@
 
     <section class="stack footnote" id="distribution" aria-labelledby="distribution-title">
       <h2 id="distribution-title">Distribution</h2>
+      <p class="note">Zeta Web is released with the others now. It was <code>@zebra-fed/zeta-web</code> on its own 1.x line; from 0.5.1 it is <code>@zebra-design-system/zeta-web</code>, always at the same version as the React and web component libraries, in the same pnpm workspace. Existing projects change the package name in installs and imports; the old <code>zeta-web-v1.x</code> tags stay installable.</p>
       <p class="note">Six packages leave this repo. Versioning rules are in <code>VERSIONING.md</code>; the release pipeline is <code>.github/workflows/release.yml</code>; the full plan is the Zebra Distribution Plan artifact.</p>
       <div class="wrap-x">
         <table class="plain">
           <thead><tr><th>Package</th><th>Version</th><th>Where</th></tr></thead>
           <tbody>
-            <tr><td><code>@zebra-design-system/tokens</code></td><td>0.3.0</td><td rowspan="5">Live on the repo's git distribution branches — <code>npm i "git+https://github.com/multiplayer-studio/zebra-design-system.git#dist/tokens"</code> (latest) or <code>#tokens-v0.3.0</code> (pinned); deployed by <code>scripts/deploy-dist-branches.mjs</code>, rules in <code>DISTRIBUTION.md</code>. The git branches are the only pre-npm source. npm publish still waits on the <code>@zebra-design-system</code> org and <code>NPM_TOKEN</code>.</td></tr>
+            <tr><td><code>@zebra-design-system/tokens</code></td><td>0.3.0</td><td rowspan="6">Live on the repo's git distribution branches — <code>npm i "git+https://github.com/multiplayer-studio/zebra-design-system.git#dist/tokens"</code> (latest) or <code>#tokens-v0.3.0</code> (pinned); deployed by <code>scripts/deploy-dist-branches.mjs</code>, rules in <code>DISTRIBUTION.md</code>. The git branches are the only pre-npm source. npm publish still waits on the <code>@zebra-design-system</code> org and <code>NPM_TOKEN</code>.</td></tr>
             <tr><td><code>@zebra-design-system/icons</code></td><td>0.2.0</td></tr>
             <tr><td><code>@zebra-design-system/patterns</code></td><td>0.1.0</td></tr>
             <tr><td><code>@zebra-design-system/react-baseui</code></td><td>0.5.1</td></tr>
             <tr><td><code>@zebra-design-system/web-components</code></td><td>0.5.1</td></tr>
-            <tr><td><code>@zebra-fed/zeta-web</code></td><td>1.7.0</td><td>1.7.0 on <code>dist/zeta-web</code> (npm still carries 1.3.6); the next npm release goes through the manual lane in the Release workflow.</td></tr>
+            <tr><td><code>@zebra-design-system/zeta-web</code></td><td>0.5.1</td></tr>
           </tbody>
         </table>
       </div>
@@ -322,7 +323,7 @@
 <tr><td>Message Input</td><td>Built from <code>specs/message-input</code> in all three packages (17 Nov 2026). React moved out of <code>/experimental</code>. The web component and Zeta Web show image attachments as a file chip, without React's thumbnail.</td></tr>
 <tr><td>Chat Message</td><td>Built from <code>specs/chat-message</code> in all three packages (17 Nov 2026). Figma has no first assistant message in a channel, and the spec lists Figma inconsistencies the builds follow as intended.</td></tr>
 <tr><td>File Upload</td><td>Built from <code>specs/file-upload</code> in all three packages (17 Nov 2026). Zeta Web's refined elements drop <code>active</code>, boolean <code>error</code> and <code>flavor</code> (breaking). Its ring shows the percentage inside the circle.</td></tr>
-            <tr><td>Automatic releases</td><td>Changesets and the Release workflow are in place for the five <code>@zebra-design-system</code> packages; publishing stays dormant until the npm org and <code>NPM_TOKEN</code> exist. <code>CONTRIBUTING.md</code> still describes the old Nx setup for zeta-web.</td></tr>
+            <tr><td>Automatic releases</td><td>Changesets and the Release workflow cover all six packages; publishing to npm stays dormant until the npm org and <code>NPM_TOKEN</code> exist.</td></tr>
             <tr><td>Spec noise</td><td>A 7 November review flagged 43 of 48 specs for noise: extraction diaries, resolved issues kept as changelog, the same prose repeated. Corrections are in <code>specs/spec-noise-corrections.md</code>; new spec writing follows <code>specs/spec-writing-guidance.md</code>. The specs themselves are unchanged.</td></tr>
           </tbody>
         </table>
@@ -551,8 +552,8 @@
       when: "A new laptop, or someone new joining the work.",
       steps: [
         { text: "Install Node 24, Google Chrome, Python 3 and Claude Code." },
-        { text: "Get the repo, stay on <code>main</code>, where all current work happens, and install each library. There is no shared install, so each one runs separately.",
-          run: "git clone https://github.com/multiplayer-studio/zebra-design-system.git\ncd zebra-design-system\ncorepack enable\n(cd packages/web-components && pnpm install)\n(cd packages/react-baseui && pnpm install)\n(cd packages/zeta-web && yarn install)" },
+        { text: "Get the repo, stay on <code>main</code>, where all current work happens, and install. One install at the repo root covers every package.",
+          run: "git clone https://github.com/multiplayer-studio/zebra-design-system.git\ncd zebra-design-system\ncorepack enable\npnpm install" },
         { text: "Connect the Figma MCP in Claude Code. Every Figma skill relies on it." },
         { text: "Ask a developer for a Figma token, and save it in <code>.env</code> at the repo root. Never commit that file.",
           run: "FIGMA_PERSONAL_ACCESS_TOKEN=\nFIGMA_FILE_KEY=hvRmnZZOZrmTW0wf8hbrt5" },
@@ -609,7 +610,7 @@
       steps: [
         { say: "Run the icon font inventory with generate:dry and tell me what's new, changed or rejected." },
         { text: "Review the list. Icons drawn with strokes or several colours can't become glyphs." },
-        { say: "Generate the icon font, then run yarn icons in zeta-web." },
+        { say: "Generate the icon font, then run pnpm run icons in zeta-web." },
         { text: "Open <code>packages/icons/preview.html</code> and find the new icons." }
       ],
       example: "ex-icons",
@@ -735,7 +736,7 @@
       id: "checks", title: "Run quality checks", icon: "contrast", tags: ["Before sign-off", "Claude Code"],
       when: "Before a release, or when someone raises an accessibility or density question.",
       steps: [
-        { say: "Run pnpm check in web-components and react-baseui, and yarn check in zeta-web." },
+        { say: "Run pnpm check in web-components and react-baseui, and pnpm run check in zeta-web." },
         { say: "Run the AAA contrast sweep on all three Storybooks and report each library's clean stories and root causes." },
         { say: "Run the Desktop Compact sweep on all three Storybooks and list anything clipped or overflowing." },
         { text: "Treat a sweep as a list of causes. Many failures usually share a few roots." }
@@ -756,8 +757,8 @@
         { say: "Check I'm on main with nothing uncommitted, then pull the latest from GitHub." },
         { text: "Or in the terminal:", run: "git switch main\ngit pull" },
         { say: "Tell me what changed since my last pull, and whether any library needs a fresh install." },
-        { text: "If a library's lock file changed, reinstall that library before starting its Storybook.",
-          run: "(cd packages/web-components && pnpm install)\n(cd packages/react-baseui && pnpm install)\n(cd packages/zeta-web && yarn install)" },
+        { text: "If the lock file changed, reinstall before starting a Storybook.",
+          run: "pnpm install" },
         { text: "When your own work is ready, save it back with Commit and ship." }
       ],
       example: "ex-repo",

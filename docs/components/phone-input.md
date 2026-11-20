@@ -2,7 +2,7 @@
 
 > Takes a phone number, with a country picker joined to its start. The picker sets the flag and dial code, and the field groups digits as they are typed. The whole number is available in E.164.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-phone-input>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-phone-input>`)
 
 ## API
 

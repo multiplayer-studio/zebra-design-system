@@ -2,7 +2,7 @@
 
 > A full-width message pinned to the top of a mobile screen, carrying a status colour, a title, an optional description and an optional action. Status sets the background, while four toggles decide whether the glyph, the description, the action row and the dismiss control appear. It spans the screen and stays until something clears it, so it suits news a person has to see before carrying on.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-system-banner>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-system-banner>`)
 
 ## API
 

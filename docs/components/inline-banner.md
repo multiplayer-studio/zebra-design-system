@@ -2,7 +2,7 @@
 
 > A status message placed inside the content it is about: a form, a card, a panel. It sits in the flow at its container's width. Status sets the colour and glyph; Appearance sets how loud it is. Solid interrupts, for the one message on a view that must be seen now. Subtle informs, for context and guidance, and several can share a page.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-in-page-banner>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-in-page-banner>`)
 
 ## API
 

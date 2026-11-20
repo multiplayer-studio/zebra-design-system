@@ -2,7 +2,7 @@
 
 > Shows where a person is in a fixed sequence of steps, marking what is finished, what is current and what is still ahead. Two sets: Horizontal Stepper, default for desktop or compact for mobile, and Vertical Stepper, a rail or a column of cards. All stepper variants excluding the horizontal compact variant names only the current step above a segmented bar.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-stepper>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-stepper>`)
 
 ## API
 

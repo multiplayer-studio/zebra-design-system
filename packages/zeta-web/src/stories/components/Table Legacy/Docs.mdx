@@ -22,7 +22,7 @@ A full-featured, highly configurable data table web component.
         <strong>Import</strong>
       </td>
       <td>
-        <code>{'import "@zebra-fed/zeta-web/dist/components/table-legacy/table-legacy.js"'}</code>
+        <code>{'import "@zebra-design-system/zeta-web/dist/components/table-legacy/table-legacy.js"'}</code>
       </td>
     </tr>
     <tr>
@@ -30,7 +30,7 @@ A full-featured, highly configurable data table web component.
         <strong>Styles</strong>
       </td>
       <td>
-        <code>{'import "@zebra-fed/zeta-web/index.css"'}</code>
+        <code>{'import "@zebra-design-system/zeta-web/index.css"'}</code>
       </td>
     </tr>
   </tbody>
@@ -1060,13 +1060,13 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
 ### Installation
 
 ```bash
-npm install @zebra-fed/zeta-web
+npm install @zebra-design-system/zeta-web
 ```
 
 Import global styles once in your app entry:
 
 ```js
-import "@zebra-fed/zeta-web/index.css";
+import "@zebra-design-system/zeta-web/index.css";
 ```
 
 ---
@@ -1078,7 +1078,7 @@ import "@zebra-fed/zeta-web/index.css";
 </zeta-table-legacy>
 
 <script type="module">
-  import "@zebra-fed/zeta-web/dist/components/table-legacy/table-legacy.js";
+  import "@zebra-design-system/zeta-web/dist/components/table-legacy/table-legacy.js";
 
   const table = document.getElementById("demo");
 
@@ -1152,7 +1152,7 @@ table.onRowAction = (actionKey, row, rowIndex) => {
 
 ```tsx
 import { useRef, useEffect } from "react";
-import "@zebra-fed/zeta-web/dist/components/table-legacy/table-legacy.js";
+import "@zebra-design-system/zeta-web/dist/components/table-legacy/table-legacy.js";
 
 const columns = [
   { field: "name", title: "Name", width: 180, sortable: true },
@@ -1198,7 +1198,7 @@ Use `ZetaTableLegacyReact` — a React wrapper that accepts JSX directly as cell
 > You just pass React components as cell values — no `document.createElement` needed.
 
 ```tsx
-import { ZetaTableLegacyReact } from "@zebra-fed/zeta-web/react";
+import { ZetaTableLegacyReact } from "@zebra-design-system/zeta-web/react";
 
 function StatusBadge({ status }: { status: string }) {
   return (
@@ -1272,7 +1272,7 @@ Add `CUSTOM_ELEMENTS_SCHEMA` to your module:
 ```typescript
 // app.module.ts
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
-import "@zebra-fed/zeta-web/dist/components/table-legacy/table-legacy.js";
+import "@zebra-design-system/zeta-web/dist/components/table-legacy/table-legacy.js";
 
 @NgModule({ schemas: [CUSTOM_ELEMENTS_SCHEMA] })
 export class AppModule {}
@@ -1379,8 +1379,8 @@ Use the `.prop` modifier to pass JS objects as properties:
 ```typescript
 // main.ts
 import { createApp } from "vue";
-import "@zebra-fed/zeta-web/index.css";
-import "@zebra-fed/zeta-web/dist/components/table-legacy/table-legacy.js";
+import "@zebra-design-system/zeta-web/index.css";
+import "@zebra-design-system/zeta-web/dist/components/table-legacy/table-legacy.js";
 
 const app = createApp(App);
 app.config.compilerOptions.isCustomElement = tag => tag.startsWith("zeta-");

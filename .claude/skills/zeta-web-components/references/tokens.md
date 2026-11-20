@@ -3,7 +3,7 @@
 Two token sets load side by side in `src/index.css`:
 
 1. **Zebra tokens** — `src/generated/zebra-tokens/`, generated from `tokens/` by
-   `yarn tokens` (the shared `packages/web-components/scripts/build-tokens-css.mjs`
+   `pnpm run tokens` (the shared `packages/web-components/scripts/build-tokens-css.mjs`
    with `--profile=zeta`). This is what spec-built components bind.
 2. **Legacy tokens** — `src/generated/tokens/`, the old `--main-*`, `--state-*`,
    `--spacing-*` vocabulary every unmigrated component still uses.
@@ -40,7 +40,7 @@ using them migrate:
 `--border-warning`, `--radius-none`, `--radius-xl`, `--surface-info`,
 `--surface-warning`
 
-A spec-built component never binds these nine directly: the legacy value would win. `yarn tokens` also emits
+A spec-built component never binds these nine directly: the legacy value would win. `pnpm run tokens` also emits
 each as `--zebra-<name>` (`--zebra-border-info`), declared in every scope the original is, so bind
 `var(--zebra-border-info)`. Unrefined legacy components keep the bare names until the legacy set is retired.
 The list lives in the `--shadowed=` flag of the `tokens` script in package.json; add a name there if the
@@ -49,7 +49,7 @@ legacy set and the Zebra set ever share another. (Legacy `--radius-xl` is also s
 
 ## Scopes
 
-`yarn tokens` writes these scopes into `themes.css`:
+`pnpm run tokens` writes these scopes into `themes.css`:
 
 | Scope | Selector |
 |---|---|
@@ -73,7 +73,7 @@ component under each before calling it done. In a URL: `&globals=mode:dark;exten
 ## Regenerating
 
 ```bash
-cd packages/zeta-web && yarn tokens
+cd packages/zeta-web && pnpm run tokens
 ```
 
 After a fresh `zebra-figma-token-export`, run it and check `git diff

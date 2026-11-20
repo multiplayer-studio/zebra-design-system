@@ -2,7 +2,7 @@
 
 > A single destination inside a Navigation Bar, shown as an icon above a label with an optional badge. It is the content the bar's slots are built around, and the bar sets nothing on it, so every property here is yours to set per instance. Selection is expressed with Active, and exactly one item in a bar should carry it.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-grid-menu-item>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-grid-menu-item>`)
 
 ## API
 

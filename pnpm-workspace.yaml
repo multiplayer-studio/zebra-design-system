@@ -1,11 +1,20 @@
-# The pnpm workspace covers every package except zeta-web, which pins
-# packageManager: yarn@4.17.0 (Yarn Berry) and refuses pnpm outright.
-# zeta-web still rides the same release train: the root scripts and CI
-# shell out to its yarn for build/check/tokens, and the release workflow
-# publishes it alongside the pnpm packages.
+# Every package is in the workspace, zeta-web included: one install, one
+# build, one check and one release for all six.
 packages:
   - "packages/*"
-  - "!packages/zeta-web"
 allowBuilds:
+  "@parcel/watcher": true
+  "@swc/core": true
   esbuild: true
   rs-module-lexer: true
+# One copy of the chai types, as zeta-web's tests were written against: a second,
+# newer copy changes what an assertion is and fails its type-aware lint.
+overrides:
+  "@types/chai": 4.3.20
+  # The browser test runner on the Playwright it was locked to, so tests run on
+  # the same browser build as before the move from Yarn.
+  "@web/test-runner-playwright>playwright": 1.58.1
+  "axe-playwright>playwright": 1.58.1
+  # The accessibility checker zeta-web's tests were passing against. A newer one
+  # adds rules; take it deliberately, with the fixes, not as a side effect.
+  axe-core: 4.11.1

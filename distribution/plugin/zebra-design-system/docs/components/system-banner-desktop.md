@@ -2,7 +2,7 @@
 
 > A full-width message pinned to the top of a desktop view, carrying a status colour, a title, an optional description and an optional action. Status sets the background and the glyph together, while Content Type decides whether the message runs to one line or two. It spans the view and stays until something clears it, so it suits news a person has to see before carrying on.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-system-banner>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-system-banner>`)
 
 ## API
 

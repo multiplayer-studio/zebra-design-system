@@ -2,13 +2,6 @@
 /build
 /dist
 /output
-.yarn/*
-!.yarn/cache
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/
 /docs/*
 custom-elements.json
 zeta-web.code-workspace

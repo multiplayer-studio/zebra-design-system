@@ -35,7 +35,7 @@ Each package's **packed root** — dist built, `files`-filtered, denylist-checke
 | `@zebra-design-system/patterns` | `dist/patterns` | `patterns-v0.1.0` |
 | `@zebra-design-system/react-baseui` | `dist/react-baseui` | `react-baseui-v0.5.1` |
 | `@zebra-design-system/web-components` | `dist/web-components` | `web-components-v0.5.1` |
-| `@zebra-fed/zeta-web` | `dist/zeta-web` | `zeta-web-v1.7.0` |
+| `@zebra-design-system/zeta-web` | `dist/zeta-web` | `zeta-web-v0.5.1` |
 
 Consumers install with plain npm/pnpm/yarn and git access to the repo:
 
@@ -51,7 +51,7 @@ Updates: branches are force-updated to the newest version (re-run `npm update`
 / reinstall to move); tags never move, and every branch commit is tagged, so
 old lockfile SHAs stay fetchable forever.
 
-**Deploying** (after `pnpm run build` and, for zeta, `pnpm run zeta:build`):
+**Deploying** (after `pnpm run build`):
 
 ```bash
 node scripts/deploy-dist-branches.mjs              # all six, local branches/tags only
@@ -134,7 +134,8 @@ range and `npm update` is enough.
 Account work, once, by a manager:
 
 1. Create the `@zebra-design-system` org on npmjs.com; confirm publish rights
-   on `@zebra-fed` (zeta-web already lives there).
+   (zeta-web moved into this scope at 0.5.1; `@zebra-fed/zeta-web` on npm
+   stays at its last 1.x release and is no longer published from here).
 2. `npm login` locally (optional, for manual publishes) and add `NPM_TOKEN`
    to the repo's GitHub Actions secrets — or configure npm trusted publishing
    if the repo goes public, and drop the token.
@@ -144,7 +145,7 @@ Then the flip, in order:
 3. ~~Merge `design/init` → `main`~~ — done 18 Nov 2026; all work and releases
    now go from `main`. With `NPM_TOKEN` set, the Release workflow's
    Changesets job publishes every version the registry lacks (the 0.1.0s),
-   and the manual lane dispatches zeta-web.
+   zeta-web included.
 4. Open `docs/cdn-smoke.html` in a browser — it must say "CDN smoke PASS"
    and theme the dark row. That is the go/no-go for the designer channel.
 5. Consumer projects on the git channel: swap each

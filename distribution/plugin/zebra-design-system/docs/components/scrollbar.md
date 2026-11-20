@@ -2,7 +2,7 @@
 
 > The scroll indicator for a region that clips its content. A padded gutter holds a pill handle whose position and length mirror the scroll offset; hovering raises a track scrim so the grab target reads. Two orientations draw the same bar on either axis, and the scrolling region, not the bar, owns the behaviour.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-scrollbar>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-scrollbar>`)
 
 ## API
 

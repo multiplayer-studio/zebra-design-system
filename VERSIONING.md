@@ -1,8 +1,7 @@
 # Versioning
 
-Six packages leave this repo. Five version through Changesets
-(`pnpm exec changeset` with your PR); zeta-web keeps its
-Conventional-Commits flow. All six follow SemVer with these rules.
+Six packages leave this repo. All six version through Changesets
+(`pnpm exec changeset` with your PR) and follow SemVer with these rules.
 
 ## What counts as what
 
@@ -28,13 +27,16 @@ major — plan removals in batches.
 
 ## Mechanics
 
-- **The five pnpm packages:** every PR that changes a published package adds
+- **All six packages:** every PR that changes a published package adds
   a changeset. CI accumulates them into a "Version Packages" PR; merging it
   versions, rewrites `workspace:*` to real ranges, builds, re-runs the
   tarball denylist and publishes.
-- **zeta-web (`@zebra-fed/zeta-web`):** stays on its 1.x line. `feat` =
-  minor, `fix`/`perf` = patch, `BREAKING CHANGE:` = major (CONTRIBUTING.md
-  table). Publishes through the manual lane in the Release workflow.
+- **The three component libraries share one version.** react-baseui,
+  web-components and zeta-web are a fixed group in `.changeset/config.json`:
+  a changeset for one bumps all three to the same number.
+- **zeta-web (`@zebra-design-system/zeta-web`)** joined this process at
+  0.5.1. It was `@zebra-fed/zeta-web` on its own 1.x line before; the
+  `zeta-web-v1.x` tags stay installable under the old name.
 - **First release:** the 0.1.0 manifests publish as-is — `changeset publish`
   releases any version the registry lacks, so no baseline changeset is
   needed.

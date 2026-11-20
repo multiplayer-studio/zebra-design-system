@@ -2,7 +2,7 @@
 
 > A circular control for choosing exactly one option from a set, with an optional text label beside it. Every option in the set shares a group and exactly one carries Checked at a time. A short, fixed list of mutually exclusive options is what it fits, a long or growing list is better served by a dropdown.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-radio-button>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-radio-button>`)
 
 ## API
 

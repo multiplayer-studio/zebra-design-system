@@ -2,7 +2,7 @@
 
 > A single on or off toggle, a track with a thumb slider that switches between its two ends. Two independent icon slots sit at either end of the track, which can be removed as a pair. Focus adds a border rather than changing the track or thumb colour.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-switch>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-switch>`)
 
 ## API
 

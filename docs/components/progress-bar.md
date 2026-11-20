@@ -2,7 +2,7 @@
 
 > A horizontal track that fills to show how far an ongoing process has got. Progress is a single value that grows from empty to full, with two further modes for when the extent is not known. An optional label above the bar reports the state in words. Nothing here animates, so both the fill's growth and the indeterminate movement belong to the implementation.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-progress-bar>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-progress-bar>`)
 
 ## API
 

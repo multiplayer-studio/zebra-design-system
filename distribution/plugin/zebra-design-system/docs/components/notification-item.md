@@ -2,7 +2,7 @@
 
 > A single entry in a notification list, carrying who or what it came from, a title and message, an optional attachment, and an action. Read is the only variant and decides whether the entry still looks unseen. Everything else is a toggle, so a single component covers the range a real list throws at it.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-notification-item>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-notification-item>`)
 
 ## API
 

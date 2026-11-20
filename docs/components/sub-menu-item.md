@@ -2,7 +2,7 @@
 
 > A row in the Navigation Rail's sub menu panel, with a leading glyph, a label, an optional badge and an optional caret. It is the content the rail's Sub Menu Slot is built around, placed either directly or inside a Collapsible Menu Item. Nesting is a property rather than a layout, indenting the row and quietening its label so one level of hierarchy reads without connector lines.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-sub-menu-item>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-sub-menu-item>`)
 
 ## API
 

@@ -2,7 +2,7 @@
 
 > A modal message that interrupts the current task until the user responds or dismisses it. A header carries the message's flavour and title, a body holds the message itself, and an optional footer offers one to three action buttons or two custom slots. Turning showFooter off removes the footer, leaving an informational dialog with nothing to decide.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-dialog>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-dialog>`)
 
 ## API
 

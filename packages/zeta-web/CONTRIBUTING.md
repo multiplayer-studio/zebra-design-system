@@ -19,7 +19,7 @@ For both Zeta libraries, the process for component creation follows the same ste
 
 4. **Integration and Testing**: The newly developed component should be integrated into the example app (such as Storybook or Widgetbook). This step involves writing comprehensive tests to assess the component’s functionality and quality. It is crucial to address any lint or static analysis issues, rather than ignoring them, to maintain code quality. Additionally, ensure that code lines do not exceed 120 characters to enhance readability and maintainability throughout the project. This practice helps maintain a consistent coding style that is easy for all team members to follow and review.
 
-5. **Commit Guidelines**: When committing changes, adhere to the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#specification) guidelines to ensure accurate release note generation. For a full list of the commit keywords we support, see the `release-please-config.json` file in the repository. We recommend using Git Rebase (rather than merging BASE) to keep your branch updated, facilitating easier merges without complex branching.
+5. **Commit Guidelines**: When committing changes, adhere to the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#specification) guidelines. Versions come from changesets, not from commit keywords (see Releasing). We recommend using Git Rebase (rather than merging BASE) to keep your branch updated, facilitating easier merges without complex branching.
 
 6. **Pull Request submission**: Once the component is ready, submit a PR. This can be done from a fork or a branch within the repository. Ensure your branch is fully up-to-date with the target branch, typically `main`. However, if requested by the authors, you might need to merge into `develop`, especially if the PR includes breaking changes that shouldn’t be released immediately.
 
@@ -108,6 +108,4 @@ When developing components, it’s crucial to ensure that all arguments and argT
 
 ## Releasing {/* #releasing-web */}
 
-Our repositories utilize [Release-Please](https://github.com/googleapis/release-please) to streamline release management. This tool automates the generation of release notes and version bumping, based on keywords in the pull requests that are merged. These keywords are defined in the repository’s `release-please-config.json` file. When code is merged, Release-Please automatically generates pull requests (PRs) that, once merged, will create a release and distribute the updated code.
-
-We follow a flexible release schedule, deploying updates as necessary rather than adhering to a strict timetable. If a pull request includes a bug marked as “urgent” in its body, it will trigger an immediate release upon merging. Should a specific release be required outside of our usual process, contributors are encouraged to tag the authors in the relevant Release-Please PR to expedite the release.
+Zeta Web is versioned and released with the rest of the Zebra Design System, from this repository. With any change that should reach consumers, add a changeset at the repo root (`pnpm exec changeset`). It always carries the same version as the React and web component libraries. The root `CONTRIBUTING.md`, `VERSIONING.md` and `DISTRIBUTION.md` describe the process.

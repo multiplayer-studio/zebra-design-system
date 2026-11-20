@@ -12,7 +12,7 @@ on:
 
 jobs:
   packages:
-    name: pnpm packages — build, check, shape
+    name: packages — build, check, shape
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,12 +22,12 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - name: Build all pnpm packages
+      - name: Build all packages
         run: pnpm -r run build
       - name: Checks (tokens, typecheck, theming assertions)
         env:
           CHROME_PATH: /usr/bin/google-chrome
-        run: pnpm -r run check
+        run: pnpm -r --filter '!@zebra-design-system/zeta-web' run check # zeta-web's browser suite has its own job
       - name: Package shape (publint)
         run: |
           for p in tokens icons patterns react-baseui web-components; do
@@ -44,19 +44,17 @@ jobs:
   zeta-web:
     name: zeta-web — build, lint, test
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: packages/zeta-web
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - run: corepack enable # yarn 4 via the repo's packageManager pin
-      - run: yarn install --immutable
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
       - name: Install test browser
-        run: yarn exec playwright install --with-deps chromium
+        run: pnpm --filter @zebra-design-system/zeta-web exec playwright install --with-deps chromium
       - name: Build
-        run: yarn build
+        run: pnpm --filter @zebra-design-system/zeta-web run build
       - name: Check (analyze, lint, lit-analyzer, tests)
-        run: yarn check
+        run: pnpm --filter @zebra-design-system/zeta-web run check

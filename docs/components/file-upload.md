@@ -2,7 +2,7 @@
 
 > A drop zone with a Select files button, and the list of chosen files beneath it. The component never uploads anything. It hands the files over and shows whatever state the product sets on each row, while State reports what the zone itself is doing, from resting through a drag to a refusal.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-file-upload>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-file-upload>`)
 
 ## API
 

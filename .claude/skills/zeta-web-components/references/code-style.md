@@ -67,7 +67,7 @@ declare global {
   `reflect: true` so styles can key off `:host([status="…"])`.
 - `@figma` points at the component's page in the **Zebra Design System** file
   (`hvRmnZZOZrmTW0wf8hbrt5`), not the old ZDS Components file.
-- Lines under 120 characters; `yarn prettier` formats.
+- Lines under 120 characters; `pnpm run prettier` formats.
 
 ## Spec API → Zeta vocabulary
 
@@ -205,7 +205,7 @@ import * as XItem from "./x-item.stories";
 - `<Description of="zeta-…">` reads the element's TSDoc through
   `custom-elements.json`. That makes the TSDoc summary the page's opening
   text, so write it for a reader rather than a developer, and run
-  `yarn storybook` (it runs `cem analyze`) before checking the page.
+  `pnpm run storybook` (it runs `cem analyze`) before checking the page.
 - Give each named story an `##` heading with its `<Canvas>`.
 - Give each sub-element a `#` section with its own description, canvas and
   argument table.
@@ -235,11 +235,11 @@ token, the surface spans the full width, and every inner button stays
 the child's inner button and the parent surface take their hover tokens. A computed-style check at rest cannot see a hover bug.
 Build the cases with a helper and explicit `it`s: the lint rejects `it`
 inside a loop and a second `describe` with the same name.
-`yarn test:count` reports coverage per group.
+`pnpm run test:count` reports coverage per group.
 
 ## Scaffolding
 
-`yarn create <name> [dir]` fills `scripts/assets/*.template` and appends the
+`pnpm run create <name> [dir]` fills `scripts/assets/*.template` and appends the
 import and export to `src/index.ts`. Two paths in `scripts/makeWebComponentTemplate.js`
 are wrong for the current layout — fix the output rather than the script
 unless asked:

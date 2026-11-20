@@ -2,7 +2,7 @@
 
 > A visual representation of a user or entity, shown as a photo, initials, or icon, with an optional status indicator. Nine sizes step from xxxsmall to xxxlarge with medium as the base, and the badges, ring and glyphs all scale from that step. The status badge carries a distinct glyph per state as well as its colour. Content type isn't an exposed property, swap the nested Avatar Type instance directly to change it. For a notification count on an icon or nav item, use the Notification Indicator component instead, Avatar's own indicator is for presence, not counts.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-avatar>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-avatar>`)
 
 ## API
 

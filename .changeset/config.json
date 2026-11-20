@@ -1,7 +1,13 @@
 {
   "changelog": "@changesets/cli/changelog",
   "commit": false,
-  "fixed": [],
+  "fixed": [
+    [
+      "@zebra-design-system/react-baseui",
+      "@zebra-design-system/web-components",
+      "@zebra-design-system/zeta-web"
+    ]
+  ],
   "linked": [],
   "access": "public",
   "baseBranch": "main",

@@ -1,11 +1,11 @@
 ---
 name: zeta-web-components
-description: Build or refine a component in packages/zeta-web — the legacy Zeta Web library (Lit, zeta-* elements, @zebra-fed/zeta-web) — from a Zebra spec in specs/, the tokens/ export and the icon set, while keeping Zeta Web's own code standard (mixins, .styles.js, TSDoc tags, stories, test groups). Use whenever the work touches packages/zeta-web, a zeta-* element, refining a legacy Zeta component to match a spec, porting a spec to Zeta Web, or wiring the Zebra tokens into it.
+description: Build or refine a component in packages/zeta-web — the legacy Zeta Web library (Lit, zeta-* elements, @zebra-design-system/zeta-web) — from a Zebra spec in specs/, the tokens/ export and the icon set, while keeping Zeta Web's own code standard (mixins, .styles.js, TSDoc tags, stories, test groups). Use whenever the work touches packages/zeta-web, a zeta-* element, refining a legacy Zeta component to match a spec, porting a spec to Zeta Web, or wiring the Zebra tokens into it.
 ---
 
 # Zeta Web components from spec
 
-`packages/zeta-web` is the legacy **Zeta Web** library (`@zebra-fed/zeta-web`):
+`packages/zeta-web` is the legacy **Zeta Web** library (`@zebra-design-system/zeta-web`):
 Lit custom elements named `zeta-*`, its own Storybook, its own test runner,
 its own lint rules. We refine it with the Zebra **specs**, **tokens** and
 **icons**, but the code stays in **Zeta Web's style**, not ours. A component
@@ -21,7 +21,7 @@ single colour.
 |---|---|
 | **Spec** (the contract) | `specs/<component>/<component>.spec.json` + `.spec.md` — written by `zebra-figma-component-spec` |
 | **Tokens (source)** | `tokens/` at the repo root — written by `zebra-figma-token-export` |
-| **Tokens (Zeta format)** | `packages/zeta-web/src/generated/zebra-tokens/*.css` — `yarn tokens`, **never edit by hand** |
+| **Tokens (Zeta format)** | `packages/zeta-web/src/generated/zebra-tokens/*.css` — `pnpm run tokens`, **never edit by hand** |
 | **Legacy tokens** | `src/generated/tokens/*.css` — the old vocabulary every unmigrated component still uses; never edit |
 | **Icons** | `<zeta-icon>` with the `@zebra-fed/zeta-icons` ligature font — see Icons below |
 | **Components** | `src/components/<dir>/<name>.ts` + `<name>.styles.js` |
@@ -36,16 +36,16 @@ single colour.
 
 ```bash
 cd packages/zeta-web
-yarn tokens            # tokens/ -> src/generated/zebra-tokens (zeta profile)
-yarn icons             # packages/icons -> src/generated/zebra-icons (glyphs Zeta's font lacks)
-yarn lint              # eslint, unix formatter
-yarn lint:lit-analyzer # template/type checks across components, stories, tests
-yarn test              # web-test-runner over src/test/**/*.test.ts
-yarn storybook         # cem analyze + storybook on http://localhost:6006
-yarn create <name> [dir]   # scaffold from scripts/assets/*.template (fix its paths, see code-style.md)
+pnpm run tokens            # tokens/ -> src/generated/zebra-tokens (zeta profile)
+pnpm run icons             # packages/icons -> src/generated/zebra-icons (glyphs Zeta's font lacks)
+pnpm run lint              # eslint, unix formatter
+pnpm run lint:lit-analyzer # template/type checks across components, stories, tests
+pnpm run test              # web-test-runner over src/test/**/*.test.ts
+pnpm run storybook         # cem analyze + storybook on http://localhost:6006
+pnpm run create <name> [dir]   # scaffold from scripts/assets/*.template (fix its paths, see code-style.md)
 ```
 
-Yarn is the Berry release in `.yarn/`; Node comes from nvm
+The package is in the repo's pnpm workspace: install once at the repo root with `pnpm install`. Node comes from nvm
 (`export PATH="$HOME/.nvm/versions/node/v24.13.1/bin:$PATH"`).
 
 ## Workflow
@@ -95,7 +95,7 @@ Yarn is the Berry release in `.yarn/`; Node comes from nvm
 9. **Verify**: from the repo root,
    `node .claude/skills/zeta-web-components/scripts/api-coverage.mjs <slug>`
    must print "Every spec property is covered" (`--all` re-checks every
-   mapped component). Then `yarn lint`, `yarn lint:lit-analyzer`, `yarn test`, then
+   mapped component). Then `pnpm run lint`, `pnpm run lint:lit-analyzer`, `pnpm run test`, then
    Storybook. **Open it and look**, in light and `data-theme="dark"`, and
    compare against the `zds-*` story for the same spec — the two should match
    wherever the spec does. A static screenshot never shows hover, so also run
@@ -114,7 +114,7 @@ list renders its own text. Colour comes from `--icon-color`, size from
 `--icon-size`; the family (round / sharp) follows `ContourableThree`.
 
 When Zeta's font lacks a spec glyph (the Avatar presence glyphs), use the
-Zebra font. `yarn icons` copies it into `src/generated/zebra-icons/`. Import
+Zebra font. `pnpm run icons` copies it into `src/generated/zebra-icons/`. Import
 `zebra-icons.css` from the styles file and draw the character from
 `zebraIconGlyphs[name]` (kebab-case) with `font-family: "ZdsIcons-Rounded"`.
 
@@ -136,9 +136,10 @@ depth.
 
 ## Publish readiness
 
-`@zebra-fed/zeta-web` publishes from this repo (VERSIONING.md; the manual
-lane in .github/workflows/release.yml). Before calling work done, `yarn
-build` must pass — tsc is stricter than the dev loop, and dist must carry
+`@zebra-design-system/zeta-web` publishes from this repo with the other packages, at the same version as the
+React and web component libraries (VERSIONING.md). A change that should reach
+consumers needs a changeset: `pnpm exec changeset` at the repo root. Before
+calling work done, `pnpm run build` must pass — tsc is stricter than the dev loop, and dist must carry
 every asset the styles import (the zebra-icons css/woff2 copy lives in
 scripts/build.js). A change to references/api-map.json changes the generated
 component docs: run `pnpm run docs:components` at the repo root and commit

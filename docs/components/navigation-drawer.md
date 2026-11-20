@@ -2,7 +2,7 @@
 
 > The app's destinations in a tall panel at the edge of the screen, opened from a menu button. Modal slides over the page on a Scrim and closes on Escape, a scrim click, the header's close button or a chosen destination. Standard sits in the layout beside the content and pushes it. Built from the Navigation Rail family with no new parts.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-navigation-drawer>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-navigation-drawer>`)
 
 ## API
 

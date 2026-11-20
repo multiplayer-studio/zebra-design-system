@@ -1,4 +1,4 @@
-# @zebra-fed/zeta-web
+# @zebra-design-system/zeta-web
 
 > The legacy Zeta Web library: zeta-* Lit custom elements, refined against the Zebra specs. Part of the Zebra Design System; tokens are the base of the graph and themes are CSS classes/attributes, no JavaScript.
 

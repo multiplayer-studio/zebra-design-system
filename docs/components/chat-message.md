@@ -2,7 +2,7 @@
 
 > One message in a chat, from someone else, you or the assistant. Style sets the setting: channel for group chats, conversation for assistant and one-to-one chats. Platform sets how actions open: hover on desktop, long press on mobile. Sequence separates the first message in a run, which carries the header, from the consecutive messages under it.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-chat-message>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-chat-message>`)
 
 ## API
 

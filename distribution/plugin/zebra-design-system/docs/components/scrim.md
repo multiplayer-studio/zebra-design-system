@@ -2,7 +2,7 @@
 
 > The translucent barrier between a raised surface and the page behind it. Dialog, Lightbox and Bottom Sheet draw it under their panels: it dims everything behind, keeps the page from being read as interactive, and catches the click that dismisses. It is one fill stretched edge to edge — overlay/scrim — with an opaque modal tone (overlay/modal) for a full takeover. It has no content, no shape and no motion of its own; the owning component carries all three.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-scrim>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-scrim>`)
 
 ## API
 

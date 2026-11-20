@@ -2,7 +2,7 @@
 
 > A horizontal bar of page controls, first/previous/next/last jump buttons, a row of page number indicators, and an optional overflow marker for a long page range. Used inside Table Footer and anywhere else a result set needs to be split across pages. If there is only ever one page of results, do not include it at all, an empty or single page pagination bar signals a feature that was not finished.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-pagination>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-pagination>`)
 
 ## API
 

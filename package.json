@@ -6,13 +6,10 @@
     "node": ">=24"
   },
   "scripts": {
-    "tokens": "pnpm -r run tokens && pnpm run zeta:tokens",
-    "build": "pnpm -r run build && pnpm run zeta:build && pnpm run docs:components",
-    "check": "pnpm -r run check && pnpm run zeta:check",
+    "tokens": "pnpm -r run tokens",
+    "build": "pnpm -r run build && pnpm run docs:components",
+    "check": "pnpm -r --filter '!@zebra-design-system/zeta-web' run check && pnpm --filter @zebra-design-system/zeta-web run check",
     "typecheck": "pnpm -r run typecheck",
-    "zeta:tokens": "pnpm --filter @zebra-design-system/tokens run build && cd packages/zeta-web && yarn tokens",
-    "zeta:build": "cd packages/zeta-web && yarn build",
-    "zeta:check": "cd packages/zeta-web && yarn check",
     "playbook:stale": "node docs/guide/stale.mjs",
     "playbook:build": "node docs/guide/build.mjs",
     "changeset": "changeset",
@@ -21,7 +18,7 @@
     "storybook": "pnpm run storybook:react & pnpm run storybook:wc & pnpm run storybook:zeta & wait",
     "storybook:react": "pnpm --filter @zebra-design-system/react-baseui run storybook",
     "storybook:wc": "pnpm --filter @zebra-design-system/web-components run storybook",
-    "storybook:zeta": "cd packages/zeta-web && yarn storybook",
+    "storybook:zeta": "pnpm --filter @zebra-design-system/zeta-web run storybook",
     "docs:components": "node docs/components/generate.mjs"
   },
   "devDependencies": {

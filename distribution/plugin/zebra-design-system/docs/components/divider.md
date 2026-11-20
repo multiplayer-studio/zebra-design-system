@@ -2,7 +2,7 @@
 
 > A thin line used to visually separate content into distinct sections or groups, such as list rows, cards, or menu items. Orientation sets whether the line runs horizontal or vertical. It's a static, non-interactive element with no content of its own, choose the orientation that matches the layout direction it needs to divide.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-divider>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-divider>`)
 
 ## API
 

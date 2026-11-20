@@ -2,7 +2,7 @@
 
 > A single destination in a Navigation Rail, shown as a glyph in a square target or, in the wide form, a glyph and label on one row. It is the content the rail's Menu and Footer slots are built around, and the rail sets nothing on it beyond visibility, so every property here is yours per instance. Selection recolours the glyph and label rather than laying a scrim behind them, which is what keeps it distinct from hover and press.
 
-**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-fed/zeta-web` (`<zeta-navigation-rail-item>`)
+**Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-navigation-rail-item>`)
 
 ## API
 
