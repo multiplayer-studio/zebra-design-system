@@ -1,0 +1,1 @@
+{"version":3,"file":"card-body.d.ts","sourceRoot":"","sources":["../../../src/components/card-body/card-body.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAQ,MAAM,KAAK,CAAC;AAIvC;;;;;GAKG;AACH,qBACa,WAAY,SAAQ,UAAU;IACzC,MAAM,CAAC,MAAM,0BAAU;IAEvB,SAAS,CAAC,MAAM;CAGjB;AAED,OAAO,CAAC,MAAM,CAAC;IACb,UAAU,qBAAqB;QAC7B,eAAe,EAAE,WAAW,CAAC;KAC9B;CACF"}
