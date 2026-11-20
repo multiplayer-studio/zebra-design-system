@@ -4,7 +4,9 @@ import styles from "./avatar.styles.js";
 import "../icon/icon.js";
 import "../badges/indicators/indicators.js";
 import { ZetaCloseEvent } from "../../events.js";
-import { zebraIconGlyphs } from "../../generated/zebra-icons/glyphs.js";
+import { iconGlyphs } from "@zebra-design-system/icons/codepoints.js";
+
+const zebraIconGlyphs: Record<string, string> = iconGlyphs;
 import type { AvatarSize } from "./avatar-size.js";
 
 export type AvatarSwatchColor = "purple" | "blue" | "sea" | "yellow" | "orange" | "green" | "burgundy";
@@ -20,7 +22,7 @@ export type AvatarStatus = "available" | "away" | "busy" | "dnd" | "on-shift" | 
  * and dismiss badge. Nine sizes step from xxxs to xxxl with m as the base; the badges, ring and initials all scale from
  * the avatar's own size. Each presence state carries its own glyph as well as its colour.
  *
- * The presence glyphs come from the Zebra icon font (`yarn icons`), because Zeta's own font has none of them.
+ * The presence glyphs come from the Zebra icon set, `@zebra-design-system/icons`.
  *
  * @cssproperty --avatar-color - Overrides the swatch behind initials or an icon.
  * @cssproperty --avatar-initials-color - The colour of the initials.
@@ -35,7 +37,7 @@ export type AvatarStatus = "available" | "away" | "busy" | "dnd" | "on-shift" | 
  * @event {CustomEvent<ZetaCloseEventDetail>} close - Fired when the dismiss badge is clicked.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4906-1172
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-avatar--docs
+ * @storybook ?path=/docs/components-avatar--docs
  */
 @customElement("zeta-avatar")
 export class ZetaAvatar extends LitElement {

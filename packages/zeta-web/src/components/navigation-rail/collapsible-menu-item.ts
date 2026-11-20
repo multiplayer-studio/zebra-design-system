@@ -17,7 +17,7 @@ import "./sub-menu-item.js";
  * @event toggle - Fired when the header opens or closes the group; `detail.open` is the new state.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54352
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-navigation-rail--docs
+ * @storybook ?path=/docs/components-navigation-rail--docs
  */
 @customElement("zeta-collapsible-menu-item")
 export class ZetaCollapsibleMenuItem extends Contourable(Interactive(LitElement)) {

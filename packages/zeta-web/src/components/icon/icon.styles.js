@@ -1,14 +1,14 @@
 import { css } from "lit";
 
-import "@zebra-fed/zeta-icons/index.css";
+import "@zebra-design-system/icons/icons.css";
 
 export default [
   css`
     :host([rounded]) {
-      --icon-font: "zeta-icons-round";
+      --icon-font: "ZdsIcons-Rounded";
     }
     :host(:not([rounded])) {
-      --icon-font: "zeta-icons-sharp";
+      --icon-font: "ZdsIcons-Sharp";
     }
 
     :host,
@@ -35,7 +35,7 @@ export default [
       color: var(--icon-color, var(--main-default));
       font-size: var(--icon-size, var(--spacing-2xl));
       line-height: var(--icon-size, 1);
-      font-family: var(--icon-font, "zeta-icons-round");
+      font-family: var(--icon-font, "ZdsIcons-Rounded");
       width: var(--icon-size, var(--spacing-2xl));
       height: var(--icon-size, var(--spacing-2xl));
       -webkit-text-stroke-width: var(--icon-border-width, 2px);
@@ -77,6 +77,15 @@ export default [
     :host([framed][size="xsmall"]) {
       width: var(--control-xs);
       height: var(--control-xs);
+    }
+
+    /* A slotted icon name: its glyph is drawn beside it, so the name itself takes no room. */
+    slot.named {
+      position: absolute;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      font-size: 0;
     }
 
     :host ::slotted(svg) {

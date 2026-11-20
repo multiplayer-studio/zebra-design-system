@@ -75,7 +75,7 @@ export const AvatarWithImage: StoryObj<AvatarStory> = {
   },
   render: ({ onclose, ...args }) => {
     return html`<zeta-avatar ${spread(attrs(args))} @close=${onclose}
-      ><img style="filter: invert(1); width: 80%; height: 80%;" src="https://design.zebra.com/img/logo.svg"
+      ><img style="filter: invert(1); width: 80%; height: 80%;" src="zebra-logo-head.svg"
     /></zeta-avatar>`;
   }
 };

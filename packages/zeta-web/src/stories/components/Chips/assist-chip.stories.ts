@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaAssistChip } from "../../../components/chips/assist-chip/assist-chip.js";
 import { html } from "lit";
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ZetaIconNameList } from "../../../icons.js";
 
 const meta: Meta<ZetaAssistChip> = {
   component: "zeta-assist-chip",

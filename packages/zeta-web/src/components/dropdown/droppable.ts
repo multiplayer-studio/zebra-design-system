@@ -9,7 +9,7 @@ import { Contourable } from "../../mixins/mixins.js";
  * `alignment`. `rounded` reaches every row inside it, so panel and rows agree; `compact` tightens the inset.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2364-5903
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-dropdown--docs
+ * @storybook ?path=/docs/components-dropdown--docs
  */
 @customElement("zeta-droppable")
 export class ZetaDroppable extends Contourable(LitElement) {

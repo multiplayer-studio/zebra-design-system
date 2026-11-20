@@ -25,9 +25,9 @@ export const ContourableThree = <T extends Constructor<LitElement>>(superClass: 
      * This will change the border radius and icon font.
      *
      * Possible values are:
-     *  - `sharp`: No border radius, uses "zeta-icons-sharp"
-     * - `rounded`: Minimal border radius, uses "zeta-icons-round"
-     * - `full`: Full border radius, uses "zeta-icons-round"
+     *  - `sharp`: No border radius, uses "ZdsIcons-Sharp"
+     * - `rounded`: Minimal border radius, uses "ZdsIcons-Rounded"
+     * - `full`: Full border radius, uses "ZdsIcons-Rounded"
      *
      * @type {'sharp' | 'rounded' | 'full'}
      * @defaultValue "rounded"
@@ -39,22 +39,22 @@ export const ContourableThree = <T extends Constructor<LitElement>>(superClass: 
       css`
         :host([shape="full"]) {
           --contour: var(--radius-full);
-          --computed-icon-font: "zeta-icons-round";
+          --computed-icon-font: "ZdsIcons-Rounded";
         }
 
         :host([shape="sharp"]) {
           --contour: var(--radius-none);
-          --computed-icon-font: "zeta-icons-sharp";
+          --computed-icon-font: "ZdsIcons-Sharp";
         }
 
         :host([shape="rounded"]) {
           --contour: var(--radius-minimal);
-          --computed-icon-font: "zeta-icons-round";
+          --computed-icon-font: "ZdsIcons-Rounded";
         }
 
         :host > *,
         :host .contourable-target {
-          --icon-font: var(--computed-icon-font, "zeta-icons-round");
+          --icon-font: var(--computed-icon-font, "ZdsIcons-Rounded");
           border-radius: var(--contour, var(--radius-minimal));
         }
       `

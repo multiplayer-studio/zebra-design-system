@@ -3,7 +3,7 @@ import { emulateMedia } from "@web/test-runner-commands";
 import type { ZetaButton } from "../../components/button/button.js";
 import "../../components/button/button.js";
 import "../../index.css";
-import "@zebra-fed/zeta-icons/index.css";
+import "@zebra-design-system/icons/icons.css";
 import { contrastTest } from "../accessibility-utils/accessibility-test-runner.js";
 
 const buttonText = "Button";

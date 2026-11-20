@@ -57,7 +57,7 @@ const fmt = (s: string, vars: Record<string, string | number>) => s.replace(/\{(
  * @cssproperty --lightbox-width - Width of the panel. Defaults to control/lg x 16, capped at the viewport less space/page each side.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8186-337
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-lightbox--docs
+ * @storybook ?path=/docs/components-lightbox--docs
  */
 @customElement("zeta-lightbox")
 export class ZetaLightbox extends Contourable(Popup(LitElement)) {

@@ -2,7 +2,9 @@ import { fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/te
 import { emulateMedia } from "@web/test-runner-commands";
 import type { ZetaIcon } from "../../components/icon/icon.js";
 import "../../components/icon/icon.js";
+import "../../components/button/icon-button/icon-button.js";
 import "../../index.css";
+import { zetaIconGlyph } from "../../icons.js";
 
 /* Resolves a size token to pixels, through a probe's width. */
 const length = (token: string) => {
@@ -35,17 +37,61 @@ describe("zeta-icon", () => {
   });
 
   describe("Content", () => {
-    it("renders the name property as the ligature", async () => {
-      await expect(subject.shadowRoot?.textContent?.trim()).to.equal("star");
+    it("renders the name property as its glyph from the Zebra icon set", async () => {
+      await expect(subject.shadowRoot?.textContent?.trim()).to.equal(zetaIconGlyph("star"));
+    });
+    it("takes a name with underscores or with hyphens", async () => {
+      const underscored = await createComponent(`<zeta-icon name="expand_more"></zeta-icon>`);
+      const hyphenated = await createComponent(`<zeta-icon name="expand-more"></zeta-icon>`);
+      await expect(underscored.shadowRoot?.textContent?.trim()).to.equal(zetaIconGlyph("expand-more"));
+      await expect(hyphenated.shadowRoot?.textContent?.trim()).to.equal(zetaIconGlyph("expand-more"));
+    });
+    it("shows a name the set does not have as written", async () => {
+      const unknown = await createComponent(`<zeta-icon name="not_an_icon"></zeta-icon>`);
+      await expect(unknown.shadowRoot?.textContent?.trim()).to.equal("not_an_icon");
     });
     it("renders the slotted name when no name property is set", async () => {
       const slotted = await createComponent(`<zeta-icon>home</zeta-icon>`);
       expect(slotted.shadowRoot?.querySelector("slot")).to.exist;
       await expect(slotted.textContent?.trim()).to.equal("home");
+      await expect(slotted.shadowRoot?.textContent?.trim()).to.equal(zetaIconGlyph("home"));
+    });
+    it("draws the glyph with the Zebra icon font, in both families", async () => {
+      const glyph = zetaIconGlyph("star") as string;
+      for (const family of ["ZdsIcons-Rounded", "ZdsIcons-Sharp"]) {
+        const loaded = await document.fonts.load(`24px "${family}"`, glyph);
+        expect(loaded.length, `${family} has a face for the glyph`).to.be.greaterThan(0);
+        await expect(document.fonts.check(`24px "${family}"`, glyph)).to.equal(true);
+      }
+    });
+    it("draws a slotted name with underscores, and keeps the name readable", async () => {
+      const slotted = await createComponent(`<zeta-icon>expand_more</zeta-icon>`);
+      await expect(slotted.shadowRoot?.querySelector("span")?.textContent).to.equal(zetaIconGlyph("expand-more"));
+      await expect(slotted.innerText.trim()).to.equal("expand_more");
+      const box = slotted.getBoundingClientRect();
+      await expect(box.width).to.equal(box.height);
+    });
+    it("draws a name forwarded through another component's slot", async () => {
+      const button = await fixture<HTMLElement>(html`<zeta-icon-button>more_vertical</zeta-icon-button>`);
+      const icon = button.shadowRoot?.querySelector("zeta-icon") as ZetaIcon;
+      await elementUpdated(icon);
+      await expect(icon.shadowRoot?.querySelector("span")?.textContent).to.equal(zetaIconGlyph("more-vertical"));
+    });
+    it("follows a slotted name when its text changes", async () => {
+      const slotted = await createComponent(`<zeta-icon>home</zeta-icon>`);
+      (slotted.firstChild as Text).data = "star";
+      await new Promise(resolve => setTimeout(resolve));
+      await elementUpdated(slotted);
+      await expect(slotted.shadowRoot?.querySelector("span")?.textContent).to.equal(zetaIconGlyph("star"));
+    });
+    it("shows a slotted SVG as it is", async () => {
+      const custom = await createComponent(`<zeta-icon><svg viewBox="0 0 24 24"><path d="M0 0h24v24H0z"/></svg></zeta-icon>`);
+      expect(custom.shadowRoot?.querySelector("span")).to.not.exist;
+      expect(custom.querySelector("svg")).to.exist;
     });
     it("prefers the name property over the slot", async () => {
       const both = await createComponent(`<zeta-icon name="star">home</zeta-icon>`);
-      await expect(both.shadowRoot?.textContent?.trim()).to.equal("star");
+      await expect(both.shadowRoot?.textContent?.trim()).to.equal(zetaIconGlyph("star"));
     });
   });
 
@@ -113,12 +159,12 @@ describe("zeta-icon", () => {
     it("uses the sharp family when not rounded", async () => {
       subject.rounded = false;
       await elementUpdated(subject);
-      expect(getComputedStyle(subject).fontFamily).to.contain("zeta-icons-sharp");
+      expect(getComputedStyle(subject).fontFamily).to.contain("ZdsIcons-Sharp");
     });
     it("uses the round family when rounded", async () => {
       subject.rounded = true;
       await elementUpdated(subject);
-      expect(getComputedStyle(subject).fontFamily).to.contain("zeta-icons-round");
+      expect(getComputedStyle(subject).fontFamily).to.contain("ZdsIcons-Rounded");
     });
   });
 

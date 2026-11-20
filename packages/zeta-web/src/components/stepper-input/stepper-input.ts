@@ -15,7 +15,7 @@ import "../icon/icon.js";
  * @event {FocusEvent} blur - Fired when the stepper input loses focus.
  * @event {InputEvent} input - Fired when the value of the stepper input changes.
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5595-122
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-stepper-input--docs
+ * @storybook ?path=/docs/components-stepper-input--docs
  */
 @customElement("zeta-stepper-input")
 export class ZetaStepperInput extends FormField(Contourable(LitElement)) {

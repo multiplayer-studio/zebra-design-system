@@ -16,7 +16,7 @@ const clamp01 = (n: number) => Math.min(1, Math.max(0, n));
  * @cssproperty --scrollbar-length - The bar's length along its axis. Defaults to the drawn sample (200px); set it to the scrolling region's edge.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6057-11947
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-scrollbar--docs
+ * @storybook ?path=/story/components-scrollbar--scrollbar
  */
 @customElement("zeta-scrollbar")
 export class ZetaScrollbar extends LitElement {

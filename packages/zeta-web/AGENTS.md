@@ -8,6 +8,9 @@ the elements and exports are the same, only the package name changed.
   `@zebra-design-system/zeta-web/index.css`. React wrappers: `@zebra-design-system/zeta-web/react`.
 - Theme with attributes on an ancestor: `data-theme="dark"`,
   `data-brand="companion"|"condensed"`, `data-breakpoint`.
+- Icons are the Zebra icon set, `@zebra-design-system/icons`, the same as
+  the other libraries: `<zeta-icon name="check-circle">`. Names with
+  underscores (`check_circle`) still work.
 - The element API is in custom-elements.json (machine-readable).
 
 ## Spec-refined components

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ZetaActionMenuButton } from "../../../components/action-menu/action-menu-button.js";
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ZetaIconNameList } from "../../../icons.js";
 import { ShapeList } from "../../../mixins/contourable-three.js";
 import { spreadGenerator } from "../../utils.js";
 

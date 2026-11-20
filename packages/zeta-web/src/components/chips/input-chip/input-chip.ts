@@ -14,7 +14,7 @@ import { ZetaCloseEvent } from "../../../events.js";
  * @event {CustomEvent<ZetaCloseEventDetail>} close - Fired when the remove control is clicked.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5125-3467
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-chips--docs
+ * @storybook ?path=/docs/components-chips--docs
  */
 @customElement("zeta-input-chip")
 export class ZetaInputChip extends BaseChip {

@@ -5,7 +5,7 @@ import { BaseButton } from "./base-button.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import "../icon/icon.js";
 import styles from "./button.styles.js";
-import type { ZetaIconName } from "@zebra-fed/zeta-icons";
+import type { ZetaIconName } from "../../icons.js";
 
 /** Visual weight of the button. */
 export type ButtonFlavor =
@@ -25,7 +25,7 @@ export type ButtonFlavor =
  * @cssproperty --flavor-disabled-background-color - Overrides the disabled background.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2024-6729
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-buttons--docs
+ * @storybook ?path=/docs/components-buttons--docs
  */
 @customElement("zeta-button")
 export class ZetaButton extends BaseButton {
@@ -62,12 +62,12 @@ export class ZetaButton extends BaseButton {
   @property({ type: String, reflect: true }) flavor: ButtonFlavor = "primary";
 
   /**
-   * Leading icon of button. Full list of icons can be found at {@link https://design.zebra.com/icons | Zeta Icons}.
+   * Leading icon of button. The names are those of the Zebra icon set, `@zebra-design-system/icons`.
    */
   @property({ type: String }) leadingIcon: ZetaIconName | null = null;
 
   /**
-   * Trailing icon of button. Full list of icons can be found at {@link https://design.zebra.com/icons | Zeta Icons}.
+   * Trailing icon of button. The names are those of the Zebra icon set, `@zebra-design-system/icons`.
    */
   @property({ type: String }) trailingIcon: ZetaIconName | null = null;
 

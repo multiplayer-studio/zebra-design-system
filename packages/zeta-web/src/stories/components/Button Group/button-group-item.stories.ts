@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ZetaIconNameList } from "../../../icons.js";
 import { ZetaButtonGroupItem } from "../../../components/button-group/button-group-item/button-group-item.js";
 
 const testFunc = () => console.log("Click");

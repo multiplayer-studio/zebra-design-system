@@ -11,7 +11,7 @@ import { BaseChip } from "../base-chips/base-chip.js";
  * @event {Event} change - Fired when the filter chip is selected/deselected
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5126-3677
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-chips--docs
+ * @storybook ?path=/docs/components-chips--docs
  */
 @customElement("zeta-filter-chip")
 export class ZetaFilterChip extends BaseChip {

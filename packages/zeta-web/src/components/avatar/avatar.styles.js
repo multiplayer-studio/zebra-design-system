@@ -1,5 +1,5 @@
 import { css } from "lit";
-import "../../generated/zebra-icons/zebra-icons.css";
+import "@zebra-design-system/icons/icons.css";
 
 /* Spec: specs/avatar. Only medium is token-bound (control/lg, stroke/thick, label/large font size); every other step
    is the authored Figma value. Badges and initials are a third of the avatar and the ring a 24th, the ratios measured

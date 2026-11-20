@@ -1,7 +1,7 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./indicators.styles.js";
-import { type ZetaIconName } from "@zebra-fed/zeta-icons";
+import { type ZetaIconName } from "../../../icons.js";
 import { Contourable, Size, type SizeType } from "../../../mixins/mixins.js";
 import "../../icon/icon.js";
 
@@ -15,14 +15,14 @@ import "../../icon/icon.js";
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=22000-10045&mode=design&t=6mhOcUUr3tgxxFdd-0
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=22000-10072&mode=design&t=6mhOcUUr3tgxxFdd-0
  *
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-badges--docs
+ * @storybook ?path=/docs/components-badges--docs
  */
 @customElement("zeta-indicator")
 export class ZetaIndicator extends Size(Contourable(LitElement)) {
   /**
    * Icon to be shown on icon type indicator.
    *
-   * Full list of icons can be found at {@link https://design.zebra.com/icons Zeta Icons}.
+   * The names are those of the Zebra icon set, `@zebra-design-system/icons`.
    */
   @property({ type: String }) icon?: ZetaIconName;
 

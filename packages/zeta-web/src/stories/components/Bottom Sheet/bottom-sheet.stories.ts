@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html, type TemplateResult } from "lit";
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ZetaIconNameList } from "../../../icons.js";
 import { action } from "@storybook/addon-actions";
 import { ZetaBottomSheet } from "../../../components/bottom-sheets/bottom-sheet";
 import "../../../components/button/button";

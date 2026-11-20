@@ -15,7 +15,7 @@ import "../icon/icon.js";
  * @cssproperty --option-max-lines - The maximum number of lines to display before truncating with an ellipsis. Default is 2.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-39&m=dev
- * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-select-input--docs
+ * @storybook ?path=/docs/components-select-input--docs
  */
 @customElement("zeta-option")
 export class ZetaOption extends Contourable(Interactive(Size(LitElement))) {

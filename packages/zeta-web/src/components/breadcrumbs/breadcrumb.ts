@@ -25,7 +25,7 @@ import { Interactive } from "../../mixins/interactive.js";
  * @cssproperty --breadcrumb-current-color - The current page's text and icon. Set by `flavor`.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7667-447
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-breadcrumb--docs
+ * @storybook ?path=/docs/components-breadcrumb--docs
  */
 @customElement("zeta-breadcrumb")
 export class ZetaBreadcrumb extends Contourable(Interactive(LitElement)) {

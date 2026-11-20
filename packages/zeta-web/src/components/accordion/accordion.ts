@@ -12,7 +12,7 @@ import type { ZetaAccordionItem } from "./accordion-item/accordion-item.js";
  * @slot - children should be `zeta-accordion-item` elements.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5529-33
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-accordion--docs
+ * @storybook ?path=/docs/components-accordion--docs
  */
 @customElement("zeta-accordion")
 export class ZetaAccordion extends Contourable(LitElement) {

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ZetaFab } from "../../../components/fab/fab.js";
 import "../../../components/icon/icon.js";
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ZetaIconNameList } from "../../../icons.js";
 import { spreadGenerator } from "../../utils.js";
 import { ShapeList } from "../../../mixins/contourable-three.js";
 

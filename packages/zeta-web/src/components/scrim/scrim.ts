@@ -12,7 +12,7 @@ import styles from "./scrim.styles.js";
  * bubbles as a normal `click`, so the owner decides whether to close.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8221-400
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-scrim--docs
+ * @storybook ?path=/story/components-scrim--scrim
  */
 @customElement("zeta-scrim")
 export class ZetaScrim extends LitElement {

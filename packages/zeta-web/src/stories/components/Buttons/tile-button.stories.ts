@@ -4,7 +4,7 @@ import "../../../components/button/base-button.js";
 import { spreadGenerator } from "../../utils.js";
 import { html } from "lit";
 import { fn } from "@storybook/test";
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ZetaIconNameList } from "../../../icons.js";
 import "../../../components/icon/icon.js";
 
 const spread = spreadGenerator(ZetaTileButton);

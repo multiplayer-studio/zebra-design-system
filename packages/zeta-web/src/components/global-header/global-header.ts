@@ -39,7 +39,7 @@ import "../../index.css";
  *
  * @part logo - The container for the logo in the header. By default, this will contain the Zebra logo, but if you use the "logo" slot, your custom logo will be placed here instead.
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2356-5644
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-global-header--docs
+ * @storybook ?path=/docs/components-global-header--docs
  *
  * @example <zeta-global-header
  *  platformName="Platform Name"

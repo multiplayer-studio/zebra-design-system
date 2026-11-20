@@ -38,7 +38,7 @@ onBlur?: (event: FocusEvent) => void;
         const filePath = path.join("dist", "jsx.d.ts");
         if (fs.existsSync(filePath)) {
             const content = fs.readFileSync(filePath, 'utf8');
-            fs.writeFileSync(filePath, 'import { type ZetaIconName } from "@zebra-fed/zeta-icons"' + content, 'utf8');
+            fs.writeFileSync(filePath, 'import { type ZetaIconName } from "./icons.js";\n' + content, 'utf8');
         }
     },
 })

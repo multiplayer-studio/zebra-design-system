@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaIndicator } from "../../../components/badges/indicators/indicators.js";
 import "../../../components/badges/indicators/indicators.js";
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ZetaIconNameList } from "../../../icons.js";
 import { html } from "lit";
 import { spreadGenerator } from "../../utils.js";
 

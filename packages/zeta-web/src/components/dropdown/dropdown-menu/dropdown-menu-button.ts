@@ -9,7 +9,7 @@ import "../../radio-button/radio-button.js";
 import "../../checkbox/checkbox.js";
 import "../menu-item/dropdown-menu-item.js";
 import "./../droppable.js";
-import type { ZetaIconName } from "@zebra-fed/zeta-icons";
+import type { ZetaIconName } from "../../../icons.js";
 import { ZetaDropdownEvent } from "../../../events.js";
 import type { ButtonFlavor } from "../../button/button.js";
 
@@ -38,7 +38,7 @@ export type ZetaDropdownType = Extract<ZetaInputType, "text-dropdown" | "checkbo
  * @event {InputEvent} input - Fired when the dropdown is closed.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2364-5903
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-dropdown--docs
+ * @storybook ?path=/docs/components-dropdown--docs
  */
 @customElement("zeta-dropdown-menu-button")
 export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(LitElement)))) {

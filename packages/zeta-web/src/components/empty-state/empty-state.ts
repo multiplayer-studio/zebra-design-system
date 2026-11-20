@@ -18,7 +18,7 @@ import { Contourable } from "../../mixins/contour.js";
  * @part actions - The container for the action buttons.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=38470-1055
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-empty-state--docs
+ * @storybook ?path=/docs/components-empty-state--docs
  */
 @customElement("zeta-empty-state")
 export class ZetaEmptyState extends Contourable(LitElement) {

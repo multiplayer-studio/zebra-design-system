@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { ZetaIconNameList, type ZetaIconName } from "@zebra-fed/zeta-icons";
+import { ZetaIconNameList, type ZetaIconName } from "../../../icons.js";
 import type { ZetaGridMenuItem } from "../../../components/grid-menu-item/grid-menu-item.js";
 import "../../../components/grid-menu-item/grid-menu-item.js";
 import "../../../components/badges/indicators/indicators.js";

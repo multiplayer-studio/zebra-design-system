@@ -20,7 +20,7 @@ import { ContourableThree } from "../../mixins/contourable-three.js";
  * @event {InputEvent} input - Fired when the search value changes
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2152-8811
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-search--docs
+ * @storybook ?path=/docs/components-search--docs
  *
  * @slot leading - Leading icon
  */

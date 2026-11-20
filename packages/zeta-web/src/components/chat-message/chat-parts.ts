@@ -12,7 +12,7 @@ import "../button/icon-button/icon-button.js";
  *
  * @slot - The message text.
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-19217
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-chat-message--docs
+ * @storybook ?path=/docs/components-chat-message--docs
  */
 @customElement("zeta-chat-bubble")
 export class ZetaChatBubble extends Contourable(LitElement) {
@@ -36,7 +36,7 @@ export class ZetaChatBubble extends Contourable(LitElement) {
  *
  * @slot - The time.
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-24563
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-chat-message--docs
+ * @storybook ?path=/docs/components-chat-message--docs
  */
 @customElement("zeta-chat-timestamp")
 export class ZetaChatTimestamp extends LitElement {
@@ -50,7 +50,7 @@ export class ZetaChatTimestamp extends LitElement {
 /** Stands in while the assistant or someone else produces a reply: three pulsing dots and a short present-tense label.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-19269
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-chat-message--docs
+ * @storybook ?path=/docs/components-chat-message--docs
  */
 @customElement("zeta-chat-loading-indicator")
 export class ZetaChatLoadingIndicator extends Contourable(LitElement) {
@@ -76,7 +76,7 @@ export class ZetaChatLoadingIndicator extends Contourable(LitElement) {
  * @event {CustomEvent} react - React pressed.
  * @event {CustomEvent} more - More pressed.
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-19258
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-chat-message--docs
+ * @storybook ?path=/docs/components-chat-message--docs
  */
 @customElement("zeta-chat-controls")
 export class ZetaChatControls extends Contourable(LitElement) {

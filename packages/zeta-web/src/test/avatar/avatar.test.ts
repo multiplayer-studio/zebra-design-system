@@ -6,7 +6,9 @@ import "../../index.css";
 import type { ZetaIcon } from "../../components/icon/icon.js";
 import type { ZetaIconIndicator } from "../../components/badges/indicators/indicators.js";
 import { getCssVarColorValue, getSlotText } from "../utils.js";
-import { zebraIconGlyphs } from "../../generated/zebra-icons/glyphs.js";
+import { iconGlyphs } from "@zebra-design-system/icons/codepoints.js";
+
+const zebraIconGlyphs: Record<string, string> = iconGlyphs;
 
 const cssVar = (el: Element, name: string) => getComputedStyle(el).getPropertyValue(name).trim();
 

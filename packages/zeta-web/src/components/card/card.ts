@@ -18,7 +18,7 @@ export * from "./card-header/card-header.js";
  * @cssproperty --card-border-line-style The line style of the border
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3007-796
- * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-cards--docs
+ * @storybook ?path=/docs/components-cards--docs
  */
 @customElement("zeta-card")
 export class ZetaCard extends Contourable(LitElement) {

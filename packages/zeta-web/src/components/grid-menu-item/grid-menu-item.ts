@@ -12,10 +12,10 @@ import "../badges/indicators/indicators.js";
  * Item): a square with a larger icon and label, which a `zeta-bottom-sheet` sets on its grid items.
  *
  * @slot - Label to be displayed.
- * @slot {zeta-icon} icon - Icon to be displayed. Full list of icons can be found at https://design.zebra.com/icons.
+ * @slot {zeta-icon} icon - Icon to be displayed. The names are those of the Zebra icon set, `@zebra-design-system/icons`.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2838-3508
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-grid-menu-item--docs
+ * @storybook ?path=/docs/components-grid-menu-item--docs
  */
 @customElement("zeta-grid-menu-item")
 export class ZetaGridMenuItem extends Contourable(LitElement) {

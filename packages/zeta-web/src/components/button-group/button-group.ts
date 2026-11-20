@@ -14,7 +14,7 @@ export * from "./button-group-item/button-group-item.js";
  *
  * @slot - Children must be of type `zeta-button-group-item` otherwise they will not be displayed.
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5763-1251
- * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-button-group--docs
+ * @storybook ?path=/docs/components-button-group--docs
  */
 @customElement("zeta-button-group")
 export class ZetaButtonGroup extends Contourable(LitElement) {

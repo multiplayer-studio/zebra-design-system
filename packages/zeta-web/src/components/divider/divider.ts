@@ -10,7 +10,7 @@ import styles from "./divider.styles.js";
  * margins. Assistive technology hears it as a separator.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2152-8795
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-divider--docs
+ * @storybook ?path=/story/components-divider--divider
  */
 @customElement("zeta-divider")
 export class ZetaDivider extends LitElement {

@@ -1,4 +1,4 @@
-// .storybook/YourTheme.js
+// The Storybook manager theme for Zeta Web, part of the Zebra Design System.
 
 import { create } from "@storybook/theming";
 import logoDark from "./logo-dark.svg";
@@ -10,8 +10,8 @@ const shared = {
 
   inputBorderRadius: 0,
 
-  brandTitle: "Zeta Design System",
-  brandUrl: "https://www.zebra.com",
+  brandTitle: "Zebra Design System · Zeta Web",
+  brandUrl: "https://github.com/multiplayer-studio/zebra-design-system/tree/main/packages/zeta-web",
   brandTarget: "_self",
 };
 

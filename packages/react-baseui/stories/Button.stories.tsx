@@ -72,7 +72,7 @@ export const WithIcons: Story = {
 export const AsLink: Story = {
   render: () => (
     <Row>
-      <Button shape="rounded" render={<a href="https://design.zebra.com" />} trailingIcon="arrow-forward">
+      <Button shape="rounded" render={<a href="https://github.com/multiplayer-studio/zebra-design-system" />} trailingIcon="arrow-forward">
         Renders an anchor
       </Button>
       <Button shape="rounded" flavour="outline" nativeButton={false} render={<div />}>

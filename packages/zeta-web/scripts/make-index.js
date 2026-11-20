@@ -13,7 +13,7 @@ let imports = components.map(
     `import { ${name} } from "${path.replace(/\.ts/, ".js").replace(/^src\//, "./")}";`
 );
 imports.unshift(`import "./index.css";`);
-let exports = `\nexport {\n${components.map(({ name }) => `  ${name}`).join(",\n")}\n};`;
+let exports = `\nexport {\n${components.map(({ name }) => `  ${name}`).join(",\n")}\n};\nexport { ZetaIconNameList, zetaIconGlyph, type ZetaIconName } from "./icons.js";`;
 
 fs.writeFileSync(
   path.join(sourceDir, "index.ts"),

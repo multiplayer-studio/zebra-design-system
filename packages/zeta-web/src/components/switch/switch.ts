@@ -1,7 +1,7 @@
 import { html, type PropertyValues } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./switch.styles.js";
-import { type ZetaIconName } from "@zebra-fed/zeta-icons";
+import { type ZetaIconName } from "../../icons.js";
 import { BaseToggleFormElement } from "../base-toggle-form-element.js";
 import "../icon/icon.js";
 import type { ZetaInputType } from "../../mixins/form-field.js";
@@ -32,7 +32,7 @@ import type { ZetaInputType } from "../../mixins/form-field.js";
  * @event {InputEvent} input - Fired when the checkbox value changes
  *
  * @figma https://www.figma.com/design/IIMfLwyDF9xnwmpKpy8Kj7/switch?node-id=5655-893
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-switch--docs
+ * @storybook ?path=/docs/components-switch--docs
  */
 @customElement("zeta-switch")
 export class ZetaSwitch extends BaseToggleFormElement {

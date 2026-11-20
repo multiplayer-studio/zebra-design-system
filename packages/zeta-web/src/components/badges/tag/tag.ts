@@ -10,7 +10,7 @@ import { ifDefined } from "lit/directives/if-defined.js";
  * @slot - The text to display in the tag.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=22000-13170
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-badges--docs
+ * @storybook ?path=/docs/components-badges--docs
  */
 @customElement("zeta-tag")
 export class ZetaTag extends Contourable(LitElement) {

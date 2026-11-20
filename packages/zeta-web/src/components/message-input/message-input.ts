@@ -7,7 +7,7 @@ import "../icon/icon.js";
 import "../button/icon-button/icon-button.js";
 import "../chips/assist-chip/assist-chip.js";
 import "../progress-indicators/progress-circle/progress-circle.js";
-import type { ZetaIconName } from "@zebra-fed/zeta-icons";
+import type { ZetaIconName } from "../../icons.js";
 
 type IconName = ZetaIconName;
 /** Assist Chip's colours, as `zeta-assist-chip` takes them. */
@@ -185,7 +185,7 @@ const newId = () => `att-${Date.now().toString(36)}-${uid++}`;
  * @part root - The composer surface.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6649-196
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-message-input--docs
+ * @storybook ?path=/docs/components-message-input--docs
  */
 @customElement("zeta-message-input")
 export class ZetaMessageInput extends LitElement {

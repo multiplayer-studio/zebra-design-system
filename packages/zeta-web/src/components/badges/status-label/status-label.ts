@@ -1,7 +1,7 @@
 import { html, LitElement, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./status-label.styles.js";
-import { type ZetaIconName } from "@zebra-fed/zeta-icons";
+import { type ZetaIconName } from "../../../icons.js";
 import { Contourable } from "../../../mixins/mixins.js";
 import { ZetaCloseEvent } from "../../../events.js";
 import "../../icon/icon.js";
@@ -23,7 +23,7 @@ import "../../icon/icon.js";
  * @event {CustomEvent<ZetaCloseEventDetail>} close - Fired when the dismiss button is clicked.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6403-297
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-badges--docs
+ * @storybook ?path=/docs/components-badges--docs
  */
 @customElement("zeta-status-label")
 export class ZetaStatusLabel extends Contourable(LitElement) {

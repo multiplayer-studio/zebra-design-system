@@ -3,7 +3,7 @@ import { customElement, property, queryAssignedElements } from "lit/decorators.j
 import { LitElement, html, nothing } from "lit";
 import styles from "./dialog.styles.js";
 import { ZetaButton } from "../button/button.js";
-import type { ZetaIconName } from "@zebra-fed/zeta-icons";
+import type { ZetaIconName } from "../../icons.js";
 import { Contourable, Popup } from "../../mixins/mixins.js";
 import "../scrim/scrim.js";
 
@@ -43,7 +43,7 @@ export type DialogFlavor = "default" | "info" | "success" | "warning" | "error";
  * @cssproperty --dialog-title-line-height - Line height of the dialog title. Defaults to 1.5rem.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2526-316
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-dialog--docs
+ * @storybook ?path=/docs/components-dialog--docs
  */
 @customElement("zeta-dialog")
 export class ZetaDialog extends Contourable(Popup(LitElement)) {

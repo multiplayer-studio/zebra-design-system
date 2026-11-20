@@ -9,7 +9,7 @@ import styles from "./segmented.item.styles.js";
  * @slot - The content of the item: a `zeta-icon`, a label, or both.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-774
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-segmented-control--docs
+ * @storybook ?path=/docs/components-segmented-control--docs
  */
 @customElement("zeta-segmented-item")
 export class ZetaSegmentedItem extends Contourable(LitElement) {

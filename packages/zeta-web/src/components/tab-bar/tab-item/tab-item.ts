@@ -11,7 +11,7 @@ import "../../badges/indicators/indicators.js";
  * @slot icon - A leading zeta-icon.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3607-237
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-tab-bar--docs
+ * @storybook ?path=/docs/components-tab-bar--docs
  */
 @customElement("zeta-tab-item")
 export class ZetaTabItem extends Contourable(Interactive(LitElement)) {

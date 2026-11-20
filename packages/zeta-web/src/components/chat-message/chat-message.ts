@@ -4,7 +4,9 @@ import { styleMap } from "lit/directives/style-map.js";
 import styles from "./chat-message.styles.js";
 import { Contourable } from "../../mixins/mixins.js";
 import "../avatar/avatar.js";
-import { zebraIconGlyphs } from "../../generated/zebra-icons/glyphs.js";
+import { iconGlyphs } from "@zebra-design-system/icons/codepoints.js";
+
+const zebraIconGlyphs: Record<string, string> = iconGlyphs;
 import "../icon/icon.js";
 import "../button/icon-button/icon-button.js";
 import "../scrim/scrim.js";
@@ -39,7 +41,7 @@ const REACTIONS = ["👍", "❤️", "😂", "😮", "🙏"];
  * @event {CustomEvent<{ reaction: string }>} react - Fired when a reaction is chosen.
  * @event {CustomEvent<{ held: boolean }>} heldchange - Fired when the mobile long press opens or closes.
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-18698
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-chat-message--docs
+ * @storybook ?path=/docs/components-chat-message--docs
  */
 @customElement("zeta-chat-message")
 export class ZetaChatMessage extends Contourable(LitElement) {

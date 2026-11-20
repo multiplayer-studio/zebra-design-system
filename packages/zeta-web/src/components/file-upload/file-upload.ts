@@ -39,7 +39,7 @@ const matchesAccept = (f: File, accept?: string) => {
  * @event {CustomEvent<{ rejections: FileUploadRejection[] }>} filesrejected - Fired with the refused files.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8289-840
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-file-upload--docs
+ * @storybook ?path=/docs/components-file-upload--docs
  */
 @customElement("zeta-file-upload")
 export class ZetaFileUpload extends Contourable(LitElement) {

@@ -1,6 +1,6 @@
 import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
 import * as Icon from "./icon.stories";
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ZetaIconNameList } from "../../../icons.ts";
 import "./styles.css";
 
 <Meta of={Icon} title="Assets" />
@@ -9,11 +9,9 @@ import "./styles.css";
 
 <div className="icon-wrapper">
   {ZetaIconNameList.map(name => (
-    <>
-      <div>
-        <zeta-icon title={name}> {name}</zeta-icon>
-      </div>
-    </>
+    <div key={name}>
+      <zeta-icon title={name}>{name}</zeta-icon>
+    </div>
   ))}
 </div>
 

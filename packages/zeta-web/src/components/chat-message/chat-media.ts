@@ -17,7 +17,7 @@ const LEVELS = [0.3, 0.55, 0.42, 0.85, 0.6, 1, 0.5, 0.72, 0.38, 0.9, 0.62, 0.42,
  * @slot - The Thread Slot: reply messages, each a zeta-chat-message.
  * @event {CustomEvent<{ open: boolean }>} toggle - Fired when the thread opens or closes.
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8440-34713
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-chat-message--docs
+ * @storybook ?path=/docs/components-chat-message--docs
  */
 @customElement("zeta-chat-thread")
 export class ZetaChatThread extends LitElement {
@@ -65,7 +65,7 @@ export class ZetaChatThread extends LitElement {
  *
  * @event {CustomEvent<{ index: number }>} open - Fired when a photo is activated, when `clickable`.
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-19282
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-chat-message--docs
+ * @storybook ?path=/docs/components-chat-message--docs
  */
 @customElement("zeta-chat-photos")
 export class ZetaChatPhotos extends Contourable(LitElement) {
@@ -114,7 +114,7 @@ export class ZetaChatPhotos extends Contourable(LitElement) {
  *
  * @event {CustomEvent} download - Fired when Download is pressed on a file with no `src`.
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8414-19335
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-chat-message--docs
+ * @storybook ?path=/docs/components-chat-message--docs
  */
 @customElement("zeta-chat-attachment")
 export class ZetaChatAttachment extends Contourable(LitElement) {

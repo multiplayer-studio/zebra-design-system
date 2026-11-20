@@ -16,7 +16,7 @@ import "../icon/icon.js";
  * @cssproperty --chart-card-min-height - The minimum height of the card content area
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-10&m=dev
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-chart-card--docs
+ * @storybook ?path=/docs/components-chart-card--docs
  */
 @customElement("zeta-chart-card")
 export class ZetaChartCard extends Contourable(LitElement) {

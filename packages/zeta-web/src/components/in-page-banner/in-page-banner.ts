@@ -5,7 +5,7 @@ import { Contourable } from "../../mixins/mixins.js";
 import "../icon/icon.js";
 import "../button/icon-button/icon-button.js";
 import { ZetaCloseEvent } from "../../events.js";
-import type { ZetaIconName } from "@zebra-fed/zeta-icons";
+import type { ZetaIconName } from "../../icons.js";
 
 /* `default` is the legacy name for neutral. */
 export type ZetaInPageBannerStatus = "neutral" | "info" | "positive" | "warning" | "negative" | "default";
@@ -49,7 +49,7 @@ const DARK_MARK = "data-zeta-banner-dark";
  * @event {CustomEvent<ZetaCloseEventDetail>} close - The dismiss was pressed. The product removes the banner.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8051-4995
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-in-page-banner--docs
+ * @storybook ?path=/docs/components-in-page-banner--docs
  */
 @customElement("zeta-in-page-banner")
 export class ZetaInPageBanner extends Contourable(LitElement) {

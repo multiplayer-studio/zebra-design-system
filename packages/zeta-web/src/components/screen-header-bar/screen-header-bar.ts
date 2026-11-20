@@ -15,7 +15,7 @@ import "../button/icon-button/icon-button.js";
  * @event back - Fired when the back button is clicked.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5712-3566
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-screen-header-bar--docs
+ * @storybook ?path=/story/components-screen-header-bar--screen-header-bar
  */
 @customElement("zeta-screen-header-bar")
 export class ZetaScreenHeaderBar extends Contourable(LitElement) {

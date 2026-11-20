@@ -23,7 +23,7 @@ single colour.
 | **Tokens (source)** | `tokens/` at the repo root — written by `zebra-figma-token-export` |
 | **Tokens (Zeta format)** | `packages/zeta-web/src/generated/zebra-tokens/*.css` — `pnpm run tokens`, **never edit by hand** |
 | **Legacy tokens** | `src/generated/tokens/*.css` — the old vocabulary every unmigrated component still uses; never edit |
-| **Icons** | `<zeta-icon>` with the `@zebra-fed/zeta-icons` ligature font — see Icons below |
+| **Icons** | `<zeta-icon>` with the Zebra icon set, `@zebra-design-system/icons` — see Icons below |
 | **Components** | `src/components/<dir>/<name>.ts` + `<name>.styles.js` |
 | **Mixins** | `src/mixins/` — shape, flavour, size, interaction, form field, navigation, popup |
 | **Stories** | `src/stories/components/<Name>/`: one `<name>.stories.ts` per element, titled `Components/<Name>`, plus a `Docs.mdx` |
@@ -37,7 +37,6 @@ single colour.
 ```bash
 cd packages/zeta-web
 pnpm run tokens            # tokens/ -> src/generated/zebra-tokens (zeta profile)
-pnpm run icons             # packages/icons -> src/generated/zebra-icons (glyphs Zeta's font lacks)
 pnpm run lint              # eslint, unix formatter
 pnpm run lint:lit-analyzer # template/type checks across components, stories, tests
 pnpm run test              # web-test-runner over src/test/**/*.test.ts
@@ -105,18 +104,21 @@ The package is in the repo's pnpm workspace: install once at the repo root with 
 
 ## Icons
 
-`<zeta-icon>` draws a glyph by **ligature name** from `@zebra-fed/zeta-icons`.
-Spec glyph names come from our icon font (`packages/icons/codepoints.json`)
-and are kebab-case; Zeta's are **snake_case**: `check-circle` →
-`check_circle`, `more-horizontal` → `more_horizontal`. Check the converted
-name against `ZetaIconNameList` before using it — a name that is not in the
-list renders its own text. Colour comes from `--icon-color`, size from
-`--icon-size`; the family (round / sharp) follows `ContourableThree`.
+`<zeta-icon>` draws a glyph from the Zebra icon set, `@zebra-design-system/icons`,
+the same package the React and web component libraries use. Zeta Web depends
+on it directly; there is no copy step and no second icon font.
 
-When Zeta's font lacks a spec glyph (the Avatar presence glyphs), use the
-Zebra font. `pnpm run icons` copies it into `src/generated/zebra-icons/`. Import
-`zebra-icons.css` from the styles file and draw the character from
-`zebraIconGlyphs[name]` (kebab-case) with `font-family: "ZdsIcons-Rounded"`.
+- A name is the set's own kebab-case name, as in the spec and in
+  `packages/icons/codepoints.json`: `check-circle`. The same name with
+  underscores, `check_circle`, also works, because older Zeta markup uses it.
+- `ZetaIconName`, `ZetaIconNameList` and `zetaIconGlyph(name)` come from
+  `src/icons.ts`. Import them from there, never from another package.
+- A name the set does not have renders its own text, so a mistake is visible.
+- Colour comes from `--icon-color`, size from `--icon-size`; the family
+  (`ZdsIcons-Rounded` / `ZdsIcons-Sharp`) follows `ContourableThree`.
+- To draw a glyph outside `<zeta-icon>`, import
+  `@zebra-design-system/icons/icons.css` from the styles file and use
+  `zetaIconGlyph(name)` with `font-family: "ZdsIcons-Rounded"`.
 
 ## Theming
 
@@ -140,8 +142,7 @@ depth.
 React and web component libraries (VERSIONING.md). A change that should reach
 consumers needs a changeset: `pnpm exec changeset` at the repo root. Before
 calling work done, `pnpm run build` must pass — tsc is stricter than the dev loop, and dist must carry
-every asset the styles import (the zebra-icons css/woff2 copy lives in
-scripts/build.js). A change to references/api-map.json changes the generated
+every asset the styles import. A change to references/api-map.json changes the generated
 component docs: run `pnpm run docs:components` at the repo root and commit
 the result.
 

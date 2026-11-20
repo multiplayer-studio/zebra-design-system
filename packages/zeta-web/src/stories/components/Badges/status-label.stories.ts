@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ZetaIconNameList } from "../../../icons.js";
 import { html } from "lit";
 import { ZetaStatusLabel } from "../../../components/badges/status-label/status-label.js";
 

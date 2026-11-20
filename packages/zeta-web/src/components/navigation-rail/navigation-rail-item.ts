@@ -18,7 +18,7 @@ import "../badges/indicators/indicators.js";
  * @slot {zeta-icon} icon - The glyph. Figma ships a `star` placeholder; swap it on every item.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54230
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-navigation-rail--docs
+ * @storybook ?path=/docs/components-navigation-rail--docs
  */
 @customElement("zeta-navigation-rail-item")
 export class ZetaNavigationRailItem extends Navigate(Contourable(Interactive(LitElement))) {

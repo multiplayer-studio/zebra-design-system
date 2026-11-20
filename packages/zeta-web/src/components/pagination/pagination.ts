@@ -12,7 +12,7 @@ import "../icon/icon.js";
  *  @event {CustomEvent<ZetaPageEventDetail>} pageChange - Fired when page change. Contains a single value in details: `page: number`.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4489-1925
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-pagination--docs
+ * @storybook ?path=/docs/components-pagination--docs
  */
 
 @customElement("zeta-pagination")

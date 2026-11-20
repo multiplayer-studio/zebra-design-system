@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaSelectInput } from "../../../components/select-input/select-input.js";
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ZetaIconNameList } from "../../../icons.js";
 import { html } from "lit";
 import { spreadGenerator } from "../../utils.js";
 import { fn } from "@storybook/test";

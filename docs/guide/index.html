@@ -279,7 +279,7 @@
 
     <section class="stack footnote" id="distribution" aria-labelledby="distribution-title">
       <h2 id="distribution-title">Distribution</h2>
-      <p class="note">Zeta Web is released with the others now. It was <code>@zebra-fed/zeta-web</code> on its own 1.x line; from 0.5.1 it is <code>@zebra-design-system/zeta-web</code>, always at the same version as the React and web component libraries, in the same pnpm workspace. Existing projects change the package name in installs and imports; the old <code>zeta-web-v1.x</code> tags stay installable.</p>
+      <p class="note">Zeta Web is released with the others now. It was <code>@zebra-fed/zeta-web</code> on its own 1.x line; from 0.5.1 it is <code>@zebra-design-system/zeta-web</code>, always at the same version as the React and web component libraries, in the same pnpm workspace. Existing projects change the package name in installs and imports; the old <code>zeta-web-v1.x</code> tags stay installable. From 0.6.0 it also draws its icons from <code>@zebra-design-system/icons</code> like the other two libraries; names with underscores still work, and there is no icon copy step.</p>
       <p class="note">Six packages leave this repo. Versioning rules are in <code>VERSIONING.md</code>; the release pipeline is <code>.github/workflows/release.yml</code>; the full plan is the Zebra Distribution Plan artifact.</p>
       <div class="wrap-x">
         <table class="plain">
@@ -288,9 +288,9 @@
             <tr><td><code>@zebra-design-system/tokens</code></td><td>0.3.0</td><td rowspan="6">Live on the repo's git distribution branches — <code>npm i "git+https://github.com/multiplayer-studio/zebra-design-system.git#dist/tokens"</code> (latest) or <code>#tokens-v0.3.0</code> (pinned); deployed by <code>scripts/deploy-dist-branches.mjs</code>, rules in <code>DISTRIBUTION.md</code>. The git branches are the only pre-npm source. npm publish still waits on the <code>@zebra-design-system</code> org and <code>NPM_TOKEN</code>.</td></tr>
             <tr><td><code>@zebra-design-system/icons</code></td><td>0.2.0</td></tr>
             <tr><td><code>@zebra-design-system/patterns</code></td><td>0.1.0</td></tr>
-            <tr><td><code>@zebra-design-system/react-baseui</code></td><td>0.5.1</td></tr>
-            <tr><td><code>@zebra-design-system/web-components</code></td><td>0.5.1</td></tr>
-            <tr><td><code>@zebra-design-system/zeta-web</code></td><td>0.5.1</td></tr>
+            <tr><td><code>@zebra-design-system/react-baseui</code></td><td>0.6.0</td></tr>
+            <tr><td><code>@zebra-design-system/web-components</code></td><td>0.6.0</td></tr>
+            <tr><td><code>@zebra-design-system/zeta-web</code></td><td>0.6.0</td></tr>
           </tbody>
         </table>
       </div>
@@ -610,7 +610,7 @@
       steps: [
         { say: "Run the icon font inventory with generate:dry and tell me what's new, changed or rejected." },
         { text: "Review the list. Icons drawn with strokes or several colours can't become glyphs." },
-        { say: "Generate the icon font, then run pnpm run icons in zeta-web." },
+        { say: "Generate the icon font." },
         { text: "Open <code>packages/icons/preview.html</code> and find the new icons." }
       ],
       example: "ex-icons",

@@ -6,7 +6,7 @@ import "../button/button.js";
 import "../button/icon-button/icon-button.js";
 import { Interactive } from "../../mixins/interactive.js";
 import { ContourableThree } from "../../mixins/contourable-three.js";
-import { type ZetaIconName } from "@zebra-fed/zeta-icons";
+import { type ZetaIconName } from "../../icons.js";
 
 export type ZetaSnackbarStatus = "default" | "action" | "positive" | "info" | "warning" | "negative" | "deletion" | "view";
 /** @deprecated Use `ZetaSnackbarStatus`; `error` is now `negative`. */
@@ -47,7 +47,7 @@ const showCloseConverter = {
  * @event close - It closed; `detail.reason` is "dismiss", "timeout" or "action".
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6551-170
- * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-snackbar--docs
+ * @storybook ?path=/docs/components-snackbar--docs
  */
 @customElement("zeta-snackbar")
 export class ZetaSnackbar extends ContourableThree(Interactive(LitElement)) {

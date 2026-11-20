@@ -4,7 +4,7 @@ import { ZetaNavigationDrawerItem } from "../../../components/navigation-drawer/
 import { ifDefined } from "lit/directives/if-defined.js";
 import "../../../components/icon/icon.js";
 import "../../../components/badges/label/label.js";
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ZetaIconNameList } from "../../../icons.js";
 
 const meta: Meta<ZetaNavigationDrawerItem> = {
   component: "zeta-navigation-drawer-item",

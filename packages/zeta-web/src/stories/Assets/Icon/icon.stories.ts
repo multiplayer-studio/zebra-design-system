@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ZetaIconNameList } from "../../../icons.js";
 import { ZetaIcon } from "../../../components/icon/icon.js";
 import { spreadGenerator } from "../../utils.js";
 import { html } from "lit";

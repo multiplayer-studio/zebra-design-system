@@ -10,11 +10,11 @@ import "../../icon/icon.js";
  * hover, pressed, focus and disabled states.
  *
  * @slot - Button label content.
- * @slot {zeta-icon} icon - Icon to display on leading side of button. Full list of icons can be found at https://design.zebra.com/icons
+ * @slot {zeta-icon} icon - Icon to display on leading side of button. The names are those of the Zebra icon set, `@zebra-design-system/icons`.
  * @part button - The button element.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5763-1251
- * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-button-group--docs
+ * @storybook ?path=/docs/components-button-group--docs
  */
 @customElement("zeta-button-group-item")
 export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {

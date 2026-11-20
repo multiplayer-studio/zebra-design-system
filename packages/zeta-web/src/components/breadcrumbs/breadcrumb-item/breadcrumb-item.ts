@@ -13,7 +13,7 @@ import { ifDefined } from "lit/directives/if-defined.js";
  * @slot icon - A `zeta-icon` before the label.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7665-138
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-breadcrumb--docs
+ * @storybook ?path=/docs/components-breadcrumb--docs
  */
 @customElement("zeta-breadcrumb-item")
 export class ZetaBreadcrumbItem extends Contourable(Navigate(LitElement)) {

@@ -21,7 +21,7 @@ type Thumb = "lower" | "upper";
  * @event input - Fired while a thumb is being dragged.
  *
  * @figma https://www.figma.com/design/EScHXxXDQU7qys4ru4ijLg/Slider?node-id=6125-1084
- * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-slider--docs
+ * @storybook ?path=/docs/components-slider--docs
  */
 @customElement("zeta-slider")
 export class ZetaSlider extends Contourable(LitElement) {

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ZetaButton, type ButtonFlavor } from "../../../components/button/button.js";
 import "../../../components/button/base-button.js";
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ZetaIconNameList } from "../../../icons.js";
 import { fn } from "@storybook/test";
 import "../../../components/icon/icon.js";
 import { spreadGenerator } from "../../utils.js";

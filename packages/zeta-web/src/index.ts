@@ -209,3 +209,4 @@ export {
   ZetaTopAppbar,
   ZetaUploadItem
 };
+export { ZetaIconNameList, zetaIconGlyph, type ZetaIconName } from "./icons.js";

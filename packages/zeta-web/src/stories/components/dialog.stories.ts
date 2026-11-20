@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { html, nothing } from "lit";
 import { ZetaDialog } from "../../components/dialog/dialog.js";
 import { fn } from "@storybook/test";
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ZetaIconNameList } from "../../icons.js";
 
 const meta: Meta<
   Omit<ZetaDialog, "icon"> & {
@@ -114,20 +114,20 @@ export const DialogOpen: StoryObj = {
       </style>
       <div class="box">
         <zeta-button
+          leadingIcon="open_in_new_window"
           @click=${() => {
             (document.querySelector("#dialog1") as ZetaDialog)?.hide();
             (document.querySelector("#dialog1") as ZetaDialog)?.showModal();
           }}
-        >
-          <zeta-icon>open</zeta-icon>Open Dialog as Modal</zeta-button
+        >Open Dialog as Modal</zeta-button
         >
         <zeta-button
+          leadingIcon="open_in_new_window"
           @click=${() => {
             (document.querySelector("#dialog1") as ZetaDialog)?.hide();
             (document.querySelector("#dialog1") as ZetaDialog)?.show();
           }}
-        >
-          <zeta-icon>open</zeta-icon>Open Dialog</zeta-button
+        >Open Dialog</zeta-button
         >
         <zeta-dialog
           id="dialog1"

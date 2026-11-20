@@ -12,7 +12,7 @@ import { Contourable } from "../../../mixins/mixins.js";
  *
  * @slot  - Text displayed on the label. If not provided, the `label` property will be used.
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6404-328
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-badges--docs
+ * @storybook ?path=/docs/components-badges--docs
  */
 @customElement("zeta-label")
 export class ZetaLabel extends Contourable(LitElement) {

@@ -185,7 +185,7 @@ pnpm run generate:dry    # inventory only, run this first
 pnpm run generate
 ```
 
-Existing codepoints never move. Then run `pnpm run icons` in `packages/zeta-web`.
+Existing codepoints never move. All three libraries, Zeta Web included, read the icons from this package, so there is nothing to copy.
 
 **Credentials**
 

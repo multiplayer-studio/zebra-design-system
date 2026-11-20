@@ -177,7 +177,7 @@ const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: "bas
  *   `detail.rows` the rows that changed and `detail.selected` whether they were selected or cleared.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4364-1629
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-table--docs
+ * @storybook ?path=/story/components-table--table
  */
 @customElement("zeta-table")
 export class ZetaTable extends Contourable(LitElement) {

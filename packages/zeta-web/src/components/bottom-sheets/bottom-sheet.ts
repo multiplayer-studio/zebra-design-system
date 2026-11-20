@@ -1,7 +1,7 @@
 import { html, LitElement, nothing, type PropertyValues } from "lit";
 import { customElement, property, query, queryAssignedElements, state } from "lit/decorators.js";
 import styles from "./bottom-sheet.styles.js";
-import { type ZetaIconName } from "@zebra-fed/zeta-icons";
+import { type ZetaIconName } from "../../icons.js";
 import { ZetaGridMenuItem } from "../grid-menu-item/grid-menu-item.js";
 import { ZetaListItem } from "../list/list.js";
 import { ZetaDropdownMenuItem } from "../dropdown/menu-item/dropdown-menu-item.js";
@@ -24,7 +24,7 @@ import { ZetaPopupEvent } from "../../events.js";
  * @event open - A modal sheet opened.
  * @event close - A modal sheet closed, by `hide()`, Escape or a scrim click.
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5207-3343
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-bottom-sheet--docs
+ * @storybook ?path=/docs/components-bottom-sheet--docs
  */
 @customElement("zeta-bottom-sheet")
 export class ZetaBottomSheet extends LitElement {

@@ -4,7 +4,7 @@ import { type Shape } from "../../../mixins/contourable-three.js";
 import { Flavored, type Flavor } from "../../../mixins/flavor.js";
 import { BaseButton } from "./../base-button.js";
 import styles from "./tile-button.styles.js";
-import type { ZetaIconName } from "@zebra-fed/zeta-icons";
+import type { ZetaIconName } from "../../../icons.js";
 import "../../icon/icon.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import type { SizeType } from "../../../mixins/size.js";
@@ -25,7 +25,7 @@ export type TileButtonFlavor = Extract<Flavor, "outline-subtle">;
  * @part button - The button element
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23126-110945
- * @storybook https://design.zebra.com/web/storybook/?path=/story/components-buttons--tile-button
+ * @storybook ?path=/story/components-buttons--tile-button
  */
 @customElement("zeta-tile-button")
 export class ZetaTileButton extends Flavored(BaseButton) {
@@ -45,8 +45,8 @@ export class ZetaTileButton extends Flavored(BaseButton) {
    * This will change the border radius and icon font.
    *
    * Possible values are:
-   * - `sharp`: No border radius, uses "zeta-icons-sharp"
-   * - `rounded`: Minimal border radius, uses "zeta-icons-round"
+   * - `sharp`: No border radius, uses "ZdsIcons-Sharp"
+   * - `rounded`: Minimal border radius, uses "ZdsIcons-Rounded"
    *
    * @type {'sharp' | 'rounded'}
    * @defaultValue "rounded"
@@ -54,7 +54,7 @@ export class ZetaTileButton extends Flavored(BaseButton) {
   @property({ type: String, reflect: true }) shape: TileButtonShape = "rounded";
 
   /**
-   * Main icon of button. Full list of icons can be found at {@link https://design.zebra.com/icons | Zeta Icons}.
+   * Main icon of button. The names are those of the Zebra icon set, `@zebra-design-system/icons`.
    */
   @property({ type: String }) icon?: ZetaIconName;
 

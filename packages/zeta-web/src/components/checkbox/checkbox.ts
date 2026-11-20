@@ -23,7 +23,7 @@ import type { ZetaInputType } from "../../mixins/form-field.js";
  * @cssproperty --checkbox-icon-color - Colour of the checkmark or indeterminate icon inside the checkbox
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6382-52
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-checkbox--docs
+ * @storybook ?path=/docs/components-checkbox--docs
  */
 @customElement("zeta-checkbox")
 export class ZetaCheckbox extends BaseToggleFormElement {

@@ -17,7 +17,7 @@ import "../../icon/icon.js";
  * @cssproperty --priority-pill-background-color - Background color of the pill.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6406-410
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-badges--docs
+ * @storybook ?path=/docs/components-badges--docs
  */
 @customElement("zeta-priority-pill")
 export class ZetaPriorityPill extends Contourable(LitElement) {

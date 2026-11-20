@@ -25,7 +25,7 @@ import "../../button/icon-button/icon-button.js";
  * @fires item-selected - Dispatched when the accordion item is selected or deselected.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5529-33
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-accordion--docs
+ * @storybook ?path=/docs/components-accordion--docs
  */
 @customElement("zeta-accordion-item")
 export class ZetaAccordionItem extends Contourable(LitElement) {

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { fn } from "@storybook/test";
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ZetaIconNameList } from "../../../icons.js";
 import type { ZetaInPageBanner } from "../../../components/in-page-banner/in-page-banner.js";
 import "../../../components/in-page-banner/in-page-banner.js";
 import "../../../components/button/button.js";

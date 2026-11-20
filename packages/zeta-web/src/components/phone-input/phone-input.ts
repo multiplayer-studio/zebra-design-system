@@ -80,7 +80,7 @@ const formatNumber = (digits: string, country: PhoneCountry) => {
  * @event {Event} change - Fired when the number changes and is committed.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7682-19850
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-phone-input--docs
+ * @storybook ?path=/docs/components-phone-input--docs
  */
 @customElement("zeta-phone-input")
 export class ZetaPhoneInput extends Size(Contourable(Interactive(LitElement))) {

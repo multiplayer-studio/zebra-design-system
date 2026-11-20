@@ -1,7 +1,7 @@
 import { html, LitElement, nothing } from "lit";
 import styles from "./top-appbar.styles.js";
 import { customElement, property } from "lit/decorators.js";
-import { type ZetaIconName } from "@zebra-fed/zeta-icons";
+import { type ZetaIconName } from "../../icons.js";
 import "../avatar/avatar.js";
 import "../button/button.js";
 import "../button/icon-button/icon-button.js";
@@ -32,7 +32,7 @@ export type ZetaTopAppbarType = "default" | "centered" | "contextual" | "context
  * @event trailing-click - The fixed control on `centered` was activated.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3116-1217
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-top-appbar--docs
+ * @storybook ?path=/docs/components-top-appbar--docs
  */
 @customElement("zeta-top-appbar")
 export class ZetaTopAppbar extends LitElement {

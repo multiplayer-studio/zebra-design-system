@@ -13,7 +13,7 @@ import "../button/icon-button/icon-button.js";
  * @event back - Fired when the back button is clicked (type sub-page).
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54332
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-navigation-rail--docs
+ * @storybook ?path=/docs/components-navigation-rail--docs
  */
 @customElement("zeta-sub-menu-header")
 export class ZetaSubMenuHeader extends Contourable(LitElement) {

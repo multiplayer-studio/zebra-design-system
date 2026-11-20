@@ -1,5 +1,11 @@
 # @zebra-design-system/zeta-web
 
+## 0.6.0
+
+### Minor Changes
+
+- Zeta Web draws its icons from the Zebra icon set. It now depends on `@zebra-design-system/icons`, the package the React and web component libraries use, and no longer on `@zebra-fed/zeta-icons`. Every icon name keeps working: `<zeta-icon>` takes the set's kebab-case names (`expand-more`) and the same names with underscores (`expand_more`). The icon font families are now `ZdsIcons-Rounded` and `ZdsIcons-Sharp`, so glyph outlines follow the Zebra set. `ZetaIconName`, `ZetaIconNameList` and `zetaIconGlyph` are exported from the package. The icon element still loads its own font stylesheet, now `@zebra-design-system/icons/icons.css`, so apps need no extra import.
+
 ## 0.5.1
 
 ### Major Changes

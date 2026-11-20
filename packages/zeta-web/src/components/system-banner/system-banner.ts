@@ -4,7 +4,7 @@ import styles from "./system-banner.styles.js";
 import { Contourable } from "../../mixins/mixins.js";
 import "../icon/icon.js";
 import "../button/icon-button/icon-button.js";
-import type { ZetaIconName } from "@zebra-fed/zeta-icons";
+import type { ZetaIconName } from "../../icons.js";
 
 export type ZetaSystemBannerStatus = "default" | "positive" | "negative" | "warning" | "info";
 
@@ -68,7 +68,7 @@ function slide(banner: HTMLElement, row: HTMLElement, direction: "in" | "out"): 
  * @event close - The dismiss was pressed. The banner plays its exit and hides first.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5255-2146
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-system-banner--docs
+ * @storybook ?path=/docs/components-system-banner--docs
  */
 @customElement("zeta-system-banner")
 export class ZetaSystemBanner extends Contourable(LitElement) {

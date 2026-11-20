@@ -10,7 +10,7 @@ import styles from "./select-input.styles.js";
 
 import type { ZetaOption } from "./option.js";
 import "./option.js";
-import type { ZetaIconName } from "@zebra-fed/zeta-icons";
+import type { ZetaIconName } from "../../icons.js";
 import "../icon/icon.js";
 import type { ZetaOptionClickEventDetail } from "../../events.js";
 
@@ -38,7 +38,7 @@ import type { ZetaOptionClickEventDetail } from "../../events.js";
  * @cssproperty --select-input-options-min-width - The options panel's minimum width; it is otherwise as wide as the field.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6602-712
- * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-select-input--docs
+ * @storybook ?path=/docs/components-select-input--docs
  */
 @customElement("zeta-select-input")
 export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitElement)))) {

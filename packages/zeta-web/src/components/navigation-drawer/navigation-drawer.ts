@@ -66,7 +66,7 @@ const defaultTrue = {
  * @cssproperty --navigation-drawer-width - The drawer's width; 320px by default (no width token exists).
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8255-1584
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-navigation-drawer--docs
+ * @storybook ?path=/docs/components-navigation-drawer--docs
  */
 @customElement("zeta-navigation-drawer")
 export class ZetaNavigationDrawer extends Contourable(Popup(LitElement)) {

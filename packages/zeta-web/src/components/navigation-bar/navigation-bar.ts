@@ -14,7 +14,7 @@ export * from "../grid-menu-item/grid-menu-item.js";
  * @slot action - A single action at the end of the bar, such as a zeta-button.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2835-796
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-navigation-bar--docs
+ * @storybook ?path=/docs/components-navigation-bar--docs
  */
 @customElement("zeta-navigation-bar")
 export class ZetaNavigationBar extends LitElement {

@@ -1,6 +1,6 @@
 {
   "name": "@zebra-design-system/zeta-web",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "files": [
     "dist",
     "custom-elements.json",
@@ -61,7 +61,6 @@
     "storybook": "cem analyze && storybook dev -p 6006",
     "test:count": "npx tsx scripts/test/test_counter.ts",
     "tokens": "node ../tokens/build.mjs && node ../web-components/scripts/build-tokens-css.mjs ../tokens/dist src/generated/zebra-tokens --profile=zeta --shadowed=border-default,border-disabled,border-info,border-subtle,border-warning,radius-none,radius-xl,surface-info,surface-warning",
-    "icons": "node scripts/zebra-icons.mjs ../icons src/generated/zebra-icons",
     "pretest:package": "pnpm pack --pack-destination ./test && cd test && pnpm install && cd ..",
     "test:package": "cd test && pnpm run dev",
     "test:watch": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --watch --config src/test/web-test-runner.config.*",
@@ -147,7 +146,7 @@
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.2.8",
     "@lit/localize": "^0.12.2",
-    "@zebra-fed/zeta-icons": "1.9.6",
+    "@zebra-design-system/icons": "workspace:*",
     "lit": "^3.3.3"
   },
   "typesVersions": {

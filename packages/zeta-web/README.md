@@ -11,9 +11,7 @@ The Zeta Design System includes foundations, components, and best practices that
 
 ## Previewing the components
 
-To view examples of all the components in the library, you can pull this repo and run the Storybook instance.
-
-You can also view the latest release at [Zeta](https://design.zebra.com/) or the latest commits to main [here](https://zeta-web-main.web.app/).
+To view examples of all the components in the library, pull the [Zebra Design System repo](https://github.com/multiplayer-studio/zebra-design-system) and run this package's Storybook: `pnpm install` at the repo root, then `pnpm run storybook` in `packages/zeta-web`. It opens at http://localhost:6006.
 
 
 ## Theming attributes
@@ -39,7 +37,7 @@ Zeta Web Components can be directly used in many web frameworks including Angula
    # Until the package is on npm, install it from the repo's distribution branch
    npm install "git+https://github.com/multiplayer-studio/zebra-design-system.git#dist/zeta-web"
    # or pin a version
-   npm install "git+https://github.com/multiplayer-studio/zebra-design-system.git#zeta-web-v0.5.1"
+   npm install "git+https://github.com/multiplayer-studio/zebra-design-system.git#zeta-web-v0.6.0"
    ```
 
 2. Import the global styles into the main app file
@@ -86,7 +84,7 @@ Zeta Web Components can be directly used in many web frameworks including Angula
 
 Zeta styles are composed of primitives (basic value swatches such as `color-red-10`, `spacing-4`) and semantic tokens (descriptive values like `surface-default`, `spacing-large`, `avatar-purple`). These are imported via `index.css`.
 
-To learn more about Zeta theme, see [tokens](https://design.zebra.com/docs/Theme/tokens).
+The Zebra Design System tokens are described in the repo's `DESIGN.md` (Tokens) and exported in `tokens/`.
 
 If you only need the styles, simply import `index.css`. Importing `index.css` is not necessary if you are using the Zeta components, as they include the styles automatically.
 

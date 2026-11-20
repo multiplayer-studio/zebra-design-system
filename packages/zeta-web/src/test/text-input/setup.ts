@@ -1,5 +1,5 @@
 import { fixture, html } from "@open-wc/testing";
-import type { ZetaIconName } from "@zebra-fed/zeta-icons";
+import type { ZetaIconName } from "../../icons.js";
 import type { ZetaTextInput } from "../../components/text-input/text-input.js";
 import "../../components/text-input/text-input.js";
 import { ifDefined } from "lit/directives/if-defined.js";

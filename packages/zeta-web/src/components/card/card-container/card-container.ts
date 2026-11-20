@@ -16,7 +16,7 @@ import "../../icon/icon.js";
  * @part header - The header area of the card.
  *
  * @figma - https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3007-796
- * @storybook - https://design.zebra.com/web/storybook/index.html/?path=/story/components-cards--container
+ * @storybook ?path=/story/components-cards--container
  */
 @customElement("zeta-card-container")
 export class ZetaCardContainer extends Contourable(LitElement) {

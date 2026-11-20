@@ -10,7 +10,7 @@ import styles from "./shimmer.styles.js";
  * @cssproperty --shimmer-border-radius - The border radius of the shimmer element. Default: 0px
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-shimmer--docs
+ * @storybook ?path=/docs/components-shimmer--docs
  */
 @customElement("zeta-shimmer")
 export class ZetaShimmer extends LitElement {

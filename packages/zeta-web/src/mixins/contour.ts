@@ -31,15 +31,15 @@ export const Contourable = <T extends Constructor<LitElement>>(superClass: T) =>
       css`
         :host([rounded]) {
           --contour: var(--radius-minimal);
-          --computed-icon-font: "zeta-icons-round";
+          --computed-icon-font: "ZdsIcons-Rounded";
         }
         :host([rounded="false"]) {
           --contour: var(--radius-none);
-          --computed-icon-font: "zeta-icons-sharp";
+          --computed-icon-font: "ZdsIcons-Sharp";
         }
         :host > *,
         :host .contourable-target {
-          --icon-font: var(--computed-icon-font, "zeta-icons-sharp");
+          --icon-font: var(--computed-icon-font, "ZdsIcons-Sharp");
           border-radius: var(--contour, var(--radius-none));
         }
       `

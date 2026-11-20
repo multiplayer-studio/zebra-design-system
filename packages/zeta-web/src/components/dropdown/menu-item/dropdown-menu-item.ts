@@ -19,7 +19,7 @@ export type ZetaDropdownMenuItemType = "icon" | "checkbox" | "radio";
  * @slot {zeta-icon} trailing - A `zeta-icon` at the trailing edge, such as a submenu arrow.
  * @event change - A checkbox or radio row's `selected` changed because the row was activated.
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2364-5903
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-dropdown--docs
+ * @storybook ?path=/docs/components-dropdown--docs
  */
 @customElement("zeta-dropdown-menu-item")
 export class ZetaDropdownMenuItem extends Contourable(Size(Interactive(LitElement))) {

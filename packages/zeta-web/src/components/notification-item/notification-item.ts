@@ -18,7 +18,7 @@ import "../icon/icon.js";
  * @slot action - What the entry offers to do, usually one small outline zeta-button.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6020-1488
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-notification-item--docs
+ * @storybook ?path=/story/components-notification-item--notification-item
  */
 @customElement("zeta-notification-item")
 export class ZetaNotificationItem extends LitElement {

@@ -15,7 +15,7 @@ import { styleMap } from "lit/directives/style-map.js";
  * @cssproperty --progress-bar-buffer-color The color of the buffer band.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4275-1997
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-progress--docs
+ * @storybook ?path=/docs/components-progress--docs
  */
 @customElement("zeta-progress-bar")
 export class ZetaProgressBar extends Contourable(LitElement) {

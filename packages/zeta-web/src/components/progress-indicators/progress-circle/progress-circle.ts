@@ -24,7 +24,7 @@ export type ProgressCircleSize = keyof typeof DIAMETERS | 20 | 24 | 36 | 40 | 48
  * @cssproperty --progress-circle-color The color of the arc. Defaults to border/info.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4416-77
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-progress--docs
+ * @storybook ?path=/docs/components-progress--docs
  */
 @customElement("zeta-progress-circle")
 export class ZetaProgressCircle extends Contourable(LitElement) {

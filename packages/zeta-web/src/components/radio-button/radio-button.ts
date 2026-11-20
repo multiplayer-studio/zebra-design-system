@@ -15,7 +15,7 @@ import type { ZetaInputType } from "../../mixins/form-field.js";
  * @event {Event} change - Fired when the radio button becomes checked (but not when unchecked)
  * @event {InputEvent} input - Fired when the radio button value changes
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=4294-3121
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-radio-button--docs
+ * @storybook ?path=/docs/components-radio-button--docs
  */
 @customElement("zeta-radio-button")
 export class ZetaRadioButton extends BaseToggleFormElement {

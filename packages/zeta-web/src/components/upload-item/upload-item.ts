@@ -3,7 +3,7 @@ import { customElement, property, state } from "lit/decorators.js";
 import styles from "./upload-item.styles.js";
 import { Contourable } from "../../mixins/mixins.js";
 import { ZetaCancelUploadEvent } from "../../events.js";
-import type { ZetaIconName } from "@zebra-fed/zeta-icons";
+import type { ZetaIconName } from "../../icons.js";
 import "./file-indicator.js";
 import "../icon/icon.js";
 import "../button/button.js";
@@ -30,7 +30,7 @@ export const formatFileSize = (n: number) => (n >= 1048576 ? `${Math.round((n / 
  * @event {CustomEvent} retry - Fired when Try again is pressed on a failed row.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8288-545
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-file-upload--docs
+ * @storybook ?path=/docs/components-file-upload--docs
  */
 @customElement("zeta-upload-item")
 export class ZetaUploadItem extends Contourable(LitElement) {

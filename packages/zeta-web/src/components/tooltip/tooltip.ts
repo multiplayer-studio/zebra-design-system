@@ -19,7 +19,7 @@ const ENTER_FROM: Record<ZetaTooltip["point"], string> = {
  * @slot - The label: a few words naming the action. A long one wraps.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5470-1664
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-tooltip--docs
+ * @storybook ?path=/docs/components-tooltip--docs
  */
 @customElement("zeta-tooltip")
 export class ZetaTooltip extends Contourable(LitElement) {

@@ -13,9 +13,9 @@ import "../../icon/icon.js";
  * @cssproperty --icon-button-color the color of the button.
  * @cssproperty --icon-button-icon-color the color of the icon.
  * @cssproperty --icon-button-icon-color-disabled the color of the icon when the button is disabled.
- * @slot {ZetaIconName} - The name of the icon. Full list of icons can be found at {@link https://design.zebra.com/icons Zeta Icons}.
+ * @slot {ZetaIconName} - The name of the icon. The names are those of the Zebra icon set, `@zebra-design-system/icons`.
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2338-1763
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-buttons--docs
+ * @storybook ?path=/docs/components-buttons--docs
  */
 @customElement("zeta-icon-button")
 export class ZetaIconButton extends ZetaButton {

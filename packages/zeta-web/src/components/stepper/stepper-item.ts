@@ -41,7 +41,7 @@ const optionalBoolean = { fromAttribute: (v: string | null) => (v === null ? und
  * @event select - The step's text was chosen. Only with `selectable`. `detail.position` is the step's number.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7357-18457
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-stepper--docs
+ * @storybook ?path=/docs/components-stepper--docs
  */
 @customElement("zeta-stepper-item")
 export class ZetaStepperItem extends LitElement {

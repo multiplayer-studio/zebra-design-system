@@ -21,7 +21,7 @@ const TRUNCATION_DELAY = 3000;
  * @slot {zeta-icon} icon - The leading glyph. Figma ships a `verified` placeholder; swap it.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54275
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-navigation-rail--docs
+ * @storybook ?path=/docs/components-navigation-rail--docs
  */
 @customElement("zeta-sub-menu-item")
 export class ZetaSubMenuItem extends Navigate(Contourable(Interactive(LitElement))) {

@@ -12,7 +12,7 @@ import "../button/icon-button/icon-button.js";
  * @event action - Fired when the action is clicked.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54312
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-navigation-rail--docs
+ * @storybook ?path=/docs/components-navigation-rail--docs
  */
 @customElement("zeta-navigation-header")
 export class ZetaNavigationHeader extends Contourable(LitElement) {

@@ -20,7 +20,7 @@ import { styleMap } from "lit/directives/style-map.js";
  * @slot {zeta-segmented-item[]} - The content of the segmented control. Should be a collection of `zeta-segmented-item` elements.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-774
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-segmented-control--docs
+ * @storybook ?path=/docs/components-segmented-control--docs
  */
 @customElement("zeta-segmented-control")
 export class ZetaSegmentedControl extends Contourable(LitElement) {

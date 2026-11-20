@@ -12,7 +12,7 @@ import "../icon/icon.js";
  * @cssproperty --caret-indicator-motion - Duration and easing of the turn. Inside the rail it is animations/smooth.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54347
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-navigation-rail--docs
+ * @storybook ?path=/docs/components-navigation-rail--docs
  */
 @customElement("zeta-caret-indicator")
 export class ZetaCaretIndicator extends Contourable(LitElement) {

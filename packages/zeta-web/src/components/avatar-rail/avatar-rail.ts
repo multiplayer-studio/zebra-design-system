@@ -16,7 +16,7 @@ import type { ZetaAvatar } from "../avatar/avatar.js";
  * @part overflow - The counter circle.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6494-1953
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-avatar-rail--docs
+ * @storybook ?path=/docs/components-avatar-rail--docs
  */
 @customElement("zeta-avatar-rail")
 export class ZetaAvatarRail extends LitElement {

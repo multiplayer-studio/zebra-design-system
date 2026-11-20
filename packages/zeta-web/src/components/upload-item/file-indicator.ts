@@ -2,14 +2,14 @@ import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./file-indicator.styles.js";
 import { Contourable } from "../../mixins/mixins.js";
-import type { ZetaIconName } from "@zebra-fed/zeta-icons";
+import type { ZetaIconName } from "../../icons.js";
 import "../icon/icon.js";
 
 /** The file's badge in an upload item: a surface/shade tile carrying the extension, a "?" for an unknown type, or a
  * glyph. Decorative: the row names the file.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8416-636
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-file-upload--docs
+ * @storybook ?path=/docs/components-file-upload--docs
  */
 @customElement("zeta-file-indicator")
 export class ZetaFileIndicator extends Contourable(LitElement) {

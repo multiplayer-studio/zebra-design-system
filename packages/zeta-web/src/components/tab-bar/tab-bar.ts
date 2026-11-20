@@ -16,7 +16,7 @@ export * from "./tab-item/tab-item.js";
  * @event change - A tab was chosen; `detail.index` is its position and `detail.tab` the element.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3607-237
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-tab-bar--docs
+ * @storybook ?path=/docs/components-tab-bar--docs
  */
 @customElement("zeta-tab-bar")
 export class ZetaTabBar extends LitElement {

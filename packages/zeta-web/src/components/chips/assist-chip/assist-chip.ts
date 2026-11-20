@@ -1,7 +1,7 @@
 import { customElement, property } from "lit/decorators.js";
 import "../../icon/icon.js";
 import { html, nothing } from "lit";
-import type { ZetaIconName } from "@zebra-fed/zeta-icons";
+import type { ZetaIconName } from "../../../icons.js";
 import { BaseChip } from "../base-chips/base-chip.js";
 import { ZetaCloseEvent } from "../../../events.js";
 import chipStyles from "../base-chips/chip.styles.js";
@@ -12,7 +12,7 @@ import styles from "./assist-chip.styles.js";
  * such as an attached file.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5161-4423
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-chips--docs
+ * @storybook ?path=/docs/components-chips--docs
  *
  * @slot - The content of the chip.
  * @cssproperty --assist-chip-foreground - Overrides the label, icon and remove colour.

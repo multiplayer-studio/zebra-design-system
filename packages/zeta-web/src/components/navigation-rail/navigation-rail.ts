@@ -1,7 +1,7 @@
 import { html, LitElement, nothing, type PropertyValues } from "lit";
 import { Contourable } from "../../mixins/contour.js";
 import { customElement, property, state } from "lit/decorators.js";
-import type { ZetaIconName } from "@zebra-fed/zeta-icons";
+import type { ZetaIconName } from "../../icons.js";
 import styles from "./navigation-rail.styles.js";
 import "./navigation-rail-item.js";
 import "../button/button.js";
@@ -30,7 +30,7 @@ const toLength = (v: string | number | undefined) => (v === undefined || v === "
  * @event action - Fired when the header action is clicked.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=3453-54061
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-navigation-rail--docs
+ * @storybook ?path=/docs/components-navigation-rail--docs
  */
 @customElement("zeta-navigation-rail")
 export class ZetaNavigationRail extends Contourable(LitElement) {

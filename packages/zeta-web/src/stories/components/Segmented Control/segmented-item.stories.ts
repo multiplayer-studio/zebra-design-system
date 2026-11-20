@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaSegmentedItem } from "../../../components/segmented-control/segmented-item.js";
 import "../../../components/icon/icon.js";
 import { html } from "lit";
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ZetaIconNameList } from "../../../icons.js";
 
 const meta: Meta<ZetaSegmentedItem> = {
   component: "zeta-segmented-item",

@@ -1,7 +1,7 @@
 import { customElement, property, query } from "lit/decorators.js";
 import { html, LitElement, nothing, type PropertyValues } from "lit";
 import styles from "./text-input.styles.js";
-import { type ZetaIconName } from "@zebra-fed/zeta-icons";
+import { type ZetaIconName } from "../../icons.js";
 import { classMap } from "lit/directives/class-map.js";
 import { Contourable, Interactive, Size } from "../../mixins/mixins.js";
 import "../icon/icon.js";
@@ -26,7 +26,7 @@ import { FormField } from "../../mixins/form-field.js";
  * @part prefix - The prefix text.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6288-997
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-text-input--docs
+ * @storybook ?path=/docs/components-text-input--docs
  */
 @customElement("zeta-text-input")
 export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitElement)))) {

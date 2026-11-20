@@ -18,7 +18,7 @@ import "../button/button.js";
  * @slot - The steps: `zeta-stepper-item`s.
  *
  * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=7357-18457
- * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-stepper--docs
+ * @storybook ?path=/docs/components-stepper--docs
  */
 @customElement("zeta-stepper")
 export class ZetaStepper extends LitElement {
