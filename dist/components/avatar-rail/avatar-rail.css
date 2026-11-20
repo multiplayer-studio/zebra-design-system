@@ -1,0 +1,90 @@
+/* avatar-rail — ported rule for rule from packages/web-components
+   avatar-rail.styles.ts.
+
+   Every size is medium scaled by diameter / 48, the Avatar's own method, so
+   only medium binds tokens (space/neg/xl, control/lg, stroke/thick,
+   label/large) and every other step is the same ratio of the diameter:
+   overlap -1/4, cutout and counter ring 1/24, count text 1/3 with a 1/2
+   line height (spec note "bindingDrift"). The diameter ladder repeats
+   Avatar's so the counter lines up with the avatars beside it.
+
+   Spec: specs/avatar-rail/avatar-rail.spec.json
+*/
+
+.zds-avatar-rail {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  --zds-avatar-rail-gap: calc(var(--zds-avatar-rail-size) / -4);
+  --zds-avatar-rail-stroke: calc(var(--zds-avatar-rail-size) / 24);
+}
+
+.zds-avatar-rail[hidden] {
+  display: none;
+}
+
+.zds-avatar-rail > .zds-avatar,
+.zds-avatar-rail__overflow {
+  position: relative;
+  flex: none;
+}
+
+/* The overlap: each position after the first pulls back a quarter
+   diameter, the counter included. */
+.zds-avatar-rail > * + * {
+  margin-inline-start: var(--zds-avatar-rail-gap);
+}
+
+/* The cutout: a border/inverse ring outside each avatar, so overlapped
+   circles read as separate. The avatar's own ring is off (parent owned). */
+.zds-avatar-rail > .zds-avatar {
+  border-radius: var(--radius-pill);
+  box-shadow: 0 0 0 var(--zds-avatar-rail-stroke) var(--border-inverse);
+}
+
+/* The counter: drawn by the rail, not an Avatar. It keeps a border/default
+   ring inside and takes no cutout, as built in Figma; under end stacking it
+   paints over the last avatar with nothing between them (spec warn
+   "overflow vs avatars", open). */
+.zds-avatar-rail__overflow {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--zds-avatar-rail-size);
+  height: var(--zds-avatar-rail-size);
+  border-radius: var(--radius-pill);
+  background: var(--feedback-neutral-background-subtle);
+  border: var(--zds-avatar-rail-stroke) solid var(--border-default);
+  color: var(--foreground-primary);
+  overflow: hidden;
+}
+
+.zds-avatar-rail__count {
+  font-family: var(--label-large-font-family), system-ui, sans-serif;
+  font-weight: var(--label-large-font-weight);
+  letter-spacing: var(--label-large-letter-spacing);
+  font-size: calc(var(--zds-avatar-rail-size) / 3);
+  line-height: calc(var(--zds-avatar-rail-size) / 2);
+  white-space: nowrap;
+}
+
+/* ---- size --------------------------------------------------------- */
+.zds-avatar-rail,
+.zds-avatar-rail[data-size="xxxsmall"] { --zds-avatar-rail-size: 24px; }
+.zds-avatar-rail[data-size="xxsmall"] { --zds-avatar-rail-size: 32px; }
+.zds-avatar-rail[data-size="xsmall"] { --zds-avatar-rail-size: 36px; }
+.zds-avatar-rail[data-size="small"] { --zds-avatar-rail-size: 40px; }
+.zds-avatar-rail[data-size="medium"] {
+  --zds-avatar-rail-size: var(--control-lg);
+  --zds-avatar-rail-gap: var(--space-neg-xl);
+  --zds-avatar-rail-stroke: var(--stroke-thick);
+}
+.zds-avatar-rail[data-size="medium"] .zds-avatar-rail__count {
+  font-size: var(--label-large-font-size);
+  line-height: var(--label-large-line-height);
+}
+.zds-avatar-rail[data-size="large"] { --zds-avatar-rail-size: 60px; }
+.zds-avatar-rail[data-size="xlarge"] { --zds-avatar-rail-size: 80px; }
+.zds-avatar-rail[data-size="xxlarge"] { --zds-avatar-rail-size: 120px; }
+.zds-avatar-rail[data-size="xxxlarge"] { --zds-avatar-rail-size: 200px; }

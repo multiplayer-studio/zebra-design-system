@@ -1,0 +1,136 @@
+/* Inline Banner — every value is a semantic token. Keyed off data-status,
+   data-appearance and data-shape. Ported rule for rule to packages/web-components
+   inline-banner.styles.ts.
+
+   solid:  strong feedback fill, foreground/on-strong text and glyph.
+   subtle: faint feedback tint, status border, status colour on the glyph,
+           foreground/primary title and description (spec: description is
+           bound to foreground/primary on subtle).
+
+   Spec: specs/inline-banner/inline-banner.spec.md */
+
+.zds-inline-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  box-sizing: border-box;
+  inline-size: 100%;
+  padding: var(--space-md) var(--space-lg);
+  border: var(--stroke-thin) solid var(--zds-inline-banner-border);
+  border-radius: var(--radius-sm);
+  background: var(--zds-inline-banner-bg);
+  color: var(--zds-inline-banner-fg);
+}
+.zds-inline-banner[data-shape="sharp"] { border-radius: var(--radius-none); }
+
+/* ---- subtle --------------------------------------------------------- */
+.zds-inline-banner[data-appearance="subtle"] {
+  --zds-inline-banner-fg: var(--foreground-primary);
+  --zds-inline-banner-muted: var(--foreground-primary);
+}
+.zds-inline-banner[data-appearance="subtle"][data-status="neutral"] {
+  --zds-inline-banner-bg: var(--feedback-neutral-background-subtle);
+  --zds-inline-banner-border: var(--border-default);
+  --zds-inline-banner-glyph: var(--feedback-neutral-foreground);
+}
+.zds-inline-banner[data-appearance="subtle"][data-status="info"] {
+  --zds-inline-banner-bg: var(--feedback-info-background-subtle);
+  --zds-inline-banner-border: var(--border-info);
+  --zds-inline-banner-glyph: var(--feedback-info-foreground);
+}
+.zds-inline-banner[data-appearance="subtle"][data-status="positive"] {
+  --zds-inline-banner-bg: var(--feedback-success-background-subtle);
+  --zds-inline-banner-border: var(--border-success);
+  --zds-inline-banner-glyph: var(--feedback-success-foreground);
+}
+.zds-inline-banner[data-appearance="subtle"][data-status="warning"] {
+  --zds-inline-banner-bg: var(--feedback-warning-background-subtle);
+  --zds-inline-banner-border: var(--border-warning);
+  --zds-inline-banner-glyph: var(--feedback-warning-foreground);
+}
+.zds-inline-banner[data-appearance="subtle"][data-status="negative"] {
+  --zds-inline-banner-bg: var(--feedback-error-background-subtle);
+  --zds-inline-banner-border: var(--border-error);
+  --zds-inline-banner-glyph: var(--feedback-error-foreground);
+}
+
+/* ---- solid: the border takes the fill so both appearances share a size -- */
+.zds-inline-banner[data-appearance="solid"] {
+  --zds-inline-banner-fg: var(--foreground-on-strong);
+  --zds-inline-banner-muted: var(--foreground-on-strong);
+  --zds-inline-banner-glyph: var(--foreground-on-strong);
+  --zds-inline-banner-border: var(--zds-inline-banner-bg);
+}
+.zds-inline-banner[data-appearance="solid"][data-status="neutral"] { --zds-inline-banner-bg: var(--feedback-neutral-background-strong); }
+.zds-inline-banner[data-appearance="solid"][data-status="info"] { --zds-inline-banner-bg: var(--feedback-info-background-strong); }
+.zds-inline-banner[data-appearance="solid"][data-status="positive"] { --zds-inline-banner-bg: var(--feedback-success-background-strong); }
+.zds-inline-banner[data-appearance="solid"][data-status="warning"] { --zds-inline-banner-bg: var(--feedback-warning-background-strong); }
+.zds-inline-banner[data-appearance="solid"][data-status="negative"] { --zds-inline-banner-bg: var(--feedback-error-background-strong); }
+
+/* AAA modes turn the strong fills pale, and solid text is always white, so
+   solid keeps the deep fills (as SystemBanner does). */
+:is(.mode-aaa-light, .mode-aaa-dark, [data-theme-mode^="aaa-"]) .zds-inline-banner[data-appearance="solid"] {
+  --feedback-success-background-strong: var(--primitives-color-system-positive-80);
+  --feedback-error-background-strong: var(--primitives-color-system-negative-80);
+  --feedback-warning-background-strong: var(--primitives-color-system-warning-80);
+  --feedback-info-background-strong: var(--primitives-color-system-info-80);
+}
+
+/* ---- glyph: centred on the title's first line ----------------------- */
+.zds-inline-banner__glyph {
+  display: grid;
+  flex: none;
+  place-items: center;
+  block-size: var(--label-large-line-height);
+  color: var(--zds-inline-banner-glyph);
+}
+
+/* ---- content: text, then actions; actions wrap below when narrow ---- */
+.zds-inline-banner__content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm) var(--space-lg);
+  min-inline-size: 0;
+}
+.zds-inline-banner__text {
+  display: flex;
+  flex: 1 1 16rem;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  min-inline-size: 0;
+}
+.zds-inline-banner__title {
+  font-family: var(--label-large-font-family), system-ui, sans-serif;
+  font-size: var(--label-large-font-size);
+  font-weight: var(--label-large-font-weight);
+  line-height: var(--label-large-line-height);
+  letter-spacing: var(--label-large-letter-spacing);
+}
+.zds-inline-banner__description {
+  color: var(--zds-inline-banner-muted);
+  font-family: var(--body-small-font-family), system-ui, sans-serif;
+  font-size: var(--body-small-font-size);
+  font-weight: var(--body-small-font-weight);
+  line-height: var(--body-small-line-height);
+  letter-spacing: var(--body-small-letter-spacing);
+}
+.zds-inline-banner__actions {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+  /* The Dark island on solid must not paint its own page background. */
+  background: none;
+}
+.zds-inline-banner__dismiss {
+  display: flex;
+  flex: none;
+  /* Sits in the corner with the same space-sm gap above it and to its right:
+     the negative margins eat the banner's own padding down to that gap. */
+  margin-block: calc(var(--space-2xs) * -1);
+  margin-inline-end: calc(var(--space-sm) * -1);
+  background: none;
+}
