@@ -45,6 +45,13 @@ mapping and never overrides them. Then:
 5. Read the Figma selection via the Figma MCP tools before writing any code:
    every frame, text node, variant property and bound token. Never build from
    the thumbnail.
+6. Follow `references/FIDELITY.md` in this skill's folder: write the
+   inventory of each frame before any code, raise the obvious deviations
+   with the designer, and compare the result by measurement.
+
+The design wins on what it draws: the variant of each component, spacing,
+and the text style of each piece of text. The patterns and any project
+context fill in only what it doesn't draw.
 
 ## Mapping rules
 
@@ -62,6 +69,12 @@ mapping and never overrides them. Then:
 - **Text styles exactly as Figma.** Read each text node's actual style and
   size/line-height/weight; use the matching `--text-<group>-<size>` token.
   Never snap to a nearby style; if none matches, keep Figma's values and say so.
+- **Spacing exactly as Figma.** Read each container's padding, gap and
+  sizing, and use the spacing token with that exact value. Never round to a
+  nearby step; a value with no token is kept and reported.
+- **Ask about obvious deviations.** Where the design and the system can't
+  both be followed and a reviewer would see it, show the designer both with
+  the question prompt and let them choose. Never substitute silently.
 - **Shape is set once.** The page declares rounded or sharp at its root and
   children inherit (see DESIGN.md §Shape inheritance); set shape on a child
   only where the design genuinely departs.
@@ -85,13 +98,14 @@ mapping and never overrides them. Then:
 
 ## Verify
 
-Render the result in this app (dev server or Storybook) and look at it next
-to the Figma frame, in light and dark. Check spacing against the spacing
-tokens, not by eye alone.
+Render the result in this app (dev server or Storybook) at the frame's width
+and compare it with the Figma frame as `references/FIDELITY.md` step 4 says:
+side by side, then by measuring sizes, padding, gaps and text styles in the
+browser. Fix what differs and compare again. Then check light and dark.
 
 ## Report
 
-End with: components used, any token or component gaps (with the workaround
+End with: the deviations asked and what the designer chose, components used, any token or component gaps (with the workaround
 taken), any text style that had no match, any undesigned path left inert, and any
 pattern rule the design breaks, by number (`patterns 4.21`).
 These findings are the design system's feedback channel — encourage the user

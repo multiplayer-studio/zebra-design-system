@@ -20,6 +20,7 @@ It is a folder of plain Markdown files. Edit them by hand.
 | [10-data-display.md](10-data-display.md) | Choosing the form, tables, list items, records, status and numbers in data, charts, live data, maps |
 | [terms.md](terms.md) | The pattern words in one place |
 | [devices.md](devices.md) | The Zebra device list |
+| [compositions/](compositions/README.md) | Recipes for whole screens, by the person's job: regions, organisms, spacing and checks |
 | [zebra.md](zebra.md) | Pattern word → Zebra component, token or theme class. Only for projects built with Zebra. |
 
 ## How a file is laid out
@@ -42,7 +43,8 @@ Every file numbers the same way: sections from 1, and rules by file, so `4.21` i
 
 | Task | Read |
 |---|---|
-| Any screen layout | 01, 05 |
+| Any screen layout | 01, 05, and the recipe for its job in compositions |
+| Suggesting how to recompose an existing screen | compositions, then the rules each recipe line names |
 | Navigation, flows, wizards, sign-in | 02, 01 |
 | A form | 03, 04, 07, 01 |
 | Status, errors, loading, empty, offline | 04, 07 |
@@ -63,7 +65,8 @@ Every file numbers the same way: sections from 1, and rules by file, so `4.21` i
 - **Add a pattern:** add a file named with the next two-digit number, and a row to both tables above.
 - **Remove a pattern:** delete the file and its rows.
 - **The manifest:** `manifest.json` is written for you when the patterns are packaged. It lists whatever files are in this folder. Never write or edit it.
-- Keep rule files free of component and token names. Put those in [zebra.md](zebra.md).
+- **Compositions:** [compositions/](compositions/README.md) is the one subfolder. Its own README says how to edit a recipe. `graph.json` is written from it at packaging, like the manifest.
+- Keep rule files and compositions free of component and token names. Put those in [zebra.md](zebra.md).
 
 In the repository, run `pnpm run docs:components` after editing, so the shipped copies match.
 
@@ -78,7 +81,8 @@ Nothing checks the files while you edit. When they are packaged, guard rails run
 | References | A rule that points at a rule number that does not exist, and a skill in the repository that cites one. |
 | Links | A link to a file that is not here; a file the tables above do not list; an outside link in a rule file. |
 | Binding | A token or theme class in zebra.md that the design system no longer has. |
-| Leftovers | Merge markers, notes-to-self and placeholder text, an empty file, a subfolder. |
+| Leftovers | Merge markers, notes-to-self and placeholder text, an empty file, a subfolder other than compositions. |
+| Compositions | A recipe missing a heading, or naming an organism, neighbour, spacing step, focal region or rule that does not exist. |
 
 It warns, without stopping, about a file that is not Markdown and device figures still marked "?".
 

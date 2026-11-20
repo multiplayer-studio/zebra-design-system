@@ -40,7 +40,7 @@ Never put a password, key or token in the context. It is committed.
 The paths differ only in where the answers come from. They fill the same
 files.
 
-| | Net new | Existing Figma | Existing repo |
+| | Free exploration | Figma reference | From a repo |
 |---|---|---|---|
 | Theme | Asked | Read from variables and styles | Read from the theme and what screens use |
 | Architecture | Proposed from the brief | Read from frames | Read from routes and layouts |
@@ -73,8 +73,11 @@ Stop at the first that applies:
 1. A Figma link and a repo: review both.
 2. A Figma link in the request: existing Figma.
 3. The folder is a codebase, or the designer names one: existing repo.
-4. Neither: ask "Does this project already have a design or code to start
-   from?" (**Nothing yet** / **A Figma design** / **A codebase**).
+4. Neither: ask with the question prompt, "How do you want to start?"
+   (**Free exploration** / **Figma reference** / **From a repo**).
+
+When `zebra-prototype` has already asked this, use its answer. Never ask
+twice.
 
 A screenshot is a weak source. It has no variables, styles or library names.
 Review what can be measured from it, mark the rest **assumed**, and ask for
@@ -85,7 +88,7 @@ the Figma file name, else ask. It names the theme.
 
 ### 3. Review
 
-Skip this on the net new path.
+Skip this on the free exploration path.
 
 Review the whole project, not one screen, and read data, not the picture.
 Follow `references/REVIEW-FIGMA.md` or `references/REVIEW-REPO.md` in this
@@ -99,7 +102,7 @@ Draft all the context files before asking anything. Mark every item:
 - **assumed**: your best reading, not confirmed;
 - **to ask**: can't be told from the source and changes how prototypes are built.
 
-On the net new path, the draft is the Zebra defaults with everything that
+On the free exploration path, the draft is the Zebra defaults with everything that
 needs an answer marked **to ask**.
 
 Then choose the level you recommend:
@@ -131,7 +134,15 @@ items marked **to ask**. Ask those with the question prompt, likely answer
 first, and no more than four questions. If there are more, ask the four that
 change the build most and record the rest as **assumed**.
 
-The questions a net new project usually needs:
+Every question here goes through the question prompt (the AskUserQuestion
+tool where there is one), as options to pick. Never type a list of questions
+into the reply.
+
+A free exploration is meant to start fast. Ask its questions in one dialog,
+save the answers and the Zebra defaults as **assumed**, and skip the final
+confirmation. The designer can change the context later by asking.
+
+The questions a free exploration usually needs:
 
 - "Does <project> use Zebra's brand, or its own?" (**Zebra's** / **Its own brand**). Its own brand needs the brand colour, as a hex value or a brand guide to read it from.
 - "What will <project> run on?" Offer the form factors in the patterns' `devices.md` (handheld, tablet, vehicle mount, kiosk, desktop). More than one may apply.

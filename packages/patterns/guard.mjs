@@ -19,6 +19,9 @@
  *              the README links to every file.
  *   binding    Every token and theme class zebra.md names still exists.
  *   leftovers  No merge markers, no TODO or placeholder text, no stray files.
+ *   compositions  The one subfolder. Every recipe has its six headings, and
+ *              every organism, neighbour, spacing step, focal region and
+ *              rule number it names exists (see compositions.mjs).
  *
  * The lists of token and component names are read from tokens/ and specs/
  * each time, so the guard follows the design system without being edited.
@@ -27,6 +30,7 @@
  */
 import { readdirSync, readFileSync, existsSync, statSync } from "node:fs";
 import { join } from "node:path";
+import { readCompositions, DIR as COMPOSITIONS } from "./compositions.mjs";
 
 const walk = (dir) => (existsSync(dir) ? readdirSync(dir, { withFileTypes: true }) : []).flatMap((e) =>
   e.isDirectory() ? walk(join(dir, e.name)) : [join(dir, e.name)]);
@@ -77,13 +81,17 @@ export function guard(source, root) {
 
   const entries = readdirSync(source).filter((f) => !/^[._]/.test(f));
   for (const f of entries) {
-    if (statSync(join(source, f)).isDirectory()) err(f, 0, "is a folder", "keep patterns/ flat: one .md file per pattern");
+    if (statSync(join(source, f)).isDirectory()) { if (f !== COMPOSITIONS) err(f, 0, "is a folder", `keep patterns/ flat: one .md file per pattern. Only ${COMPOSITIONS}/ is a folder`); }
     else if (!f.endsWith(".md")) warn(f, "is not a .md file and will not be packaged");
   }
   const files = entries.filter((f) => f.endsWith(".md"));
   const text = Object.fromEntries(files.map((f) => [f, readFileSync(join(source, f), "utf8")]));
   const patterns = files.filter(isPatternFile);
-  const neutral = [...patterns, ...(text["terms.md"] ? ["terms.md"] : [])];
+  // compositions/ is read as more neutral files, keyed by their path
+  const comp = readCompositions(source);
+  if (comp) for (const f of comp.files) text[`${COMPOSITIONS}/${f}`] = comp.text[f];
+  const compFiles = comp ? comp.files.map((f) => `${COMPOSITIONS}/${f}`) : [];
+  const neutral = [...patterns, ...(text["terms.md"] ? ["terms.md"] : []), ...compFiles];
 
   if (!text["README.md"]) err("README.md", 0, "is missing", "restore patterns/README.md: it tells readers which files a task needs");
   if (!patterns.length) err("patterns/", 0, "has no pattern files", "a pattern file is named NN-name.md, for example 04-states-feedback.md");
@@ -161,6 +169,26 @@ export function guard(source, root) {
     });
   }
 
+  /* ---- compositions: recipes name only things that exist -------------------- */
+  if (comp) {
+    for (const p of comp.problems) err(p.file, 0, p.what, p.fix);
+    for (const c of comp.cited) {
+      const target = ids[Number(c.id.split(".")[0])];
+      if (target && !target.has(c.id)) err(c.file, c.line, `names rule ${c.id}, which does not exist`, "fix the number, or remove it if the rule was deleted");
+    }
+    if (comp.unbound.steps.length) warn("zebra.md", `has no row under "Spacing steps" for: ${comp.unbound.steps.join(", ")}`);
+    if (comp.unbound.organisms.length) warn("zebra.md", `has no row under "Organisms" for: ${comp.unbound.organisms.join(", ")}`);
+    for (const f of compFiles) {
+      text[f].split("\n").forEach((line, i) => {
+        for (const m of line.matchAll(/\]\(([^)\s]+)\)/g)) {
+          const target = m[1].split("#")[0];
+          if (target && !/^[a-z]+:/i.test(target) && !existsSync(join(source, COMPOSITIONS, target))) err(f, i + 1, `links to "${target}", which does not exist`, "fix the link, or remove it");
+        }
+      });
+    }
+    if (text["README.md"] && !text["README.md"].includes(`](${COMPOSITIONS}/README.md)`)) err("README.md", 0, `does not link to ${COMPOSITIONS}/README.md`, "add a row for it to the Files table");
+  }
+
   /* ---- citations: a skill that cites a rule cites one that exists ------------ */
   // Only in the repository, where the skills sit beside the patterns.
   const skillsDir = join(root, "distribution", "skills");
@@ -202,7 +230,7 @@ export function guard(source, root) {
   if (!text["terms.md"]) warn("terms.md", "is missing, so the pattern words have no definitions");
 
   /* ---- leftovers ------------------------------------------------------------- */
-  for (const f of files) {
+  for (const f of [...files, ...compFiles]) {
     if (!text[f].trim()) { err(f, 0, "is empty", "write it or delete it"); continue; }
     text[f].split("\n").forEach((line, i) => {
       if (/^(<{7}|={7}|>{7})( |$)/.test(line)) err(f, i + 1, "has a merge conflict marker", "resolve the conflict");

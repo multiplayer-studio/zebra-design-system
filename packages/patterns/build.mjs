@@ -14,11 +14,15 @@
  *   - any other .md file (except README.md) is a reference;
  *   - title = the first "# " heading, summary = the first paragraph,
  *     sections = the "## " headings, rules = the numbered rule lines.
+ *
+ * graph.json is written the same way from compositions/: the recipes, the
+ * organisms and the spacing steps, with the Zebra binding from zebra.md.
  */
 import { cpSync, rmSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { guard, isPatternFile, fileNumber, RULE } from "./guard.mjs";
+import { readCompositions, DIR as COMPOSITIONS } from "./compositions.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const SOURCE = join(here, "..", "..", "patterns");
@@ -34,7 +38,7 @@ if (errors.length) {
 if (process.argv.includes("--check")) { console.log("✓ patterns pass the guard rails"); process.exit(0); }
 
 rmSync(OUT, { recursive: true, force: true });
-cpSync(SOURCE, OUT, { recursive: true, filter: (src) => src === SOURCE || (src.endsWith(".md") && !/^[._]/.test(src.split("/").pop())) });
+cpSync(SOURCE, OUT, { recursive: true, filter: (src) => src === SOURCE || src === join(SOURCE, COMPOSITIONS) || (src.endsWith(".md") && !/^[._]/.test(src.split("/").pop())) });
 
 const patterns = [];
 const references = [];
@@ -48,11 +52,20 @@ for (const file of readdirSync(OUT).filter((f) => f.endsWith(".md") && f !== "RE
   patterns.push({ file, number: fileNumber(file), title, summary, rules, sections });
 }
 
+const NOTE = "Generated when the patterns are packaged. Do not edit: change the .md files and package again.";
+const comp = readCompositions(SOURCE);
+
 const { name, version } = JSON.parse(readFileSync(join(here, "package.json"), "utf8"));
 writeFileSync(join(OUT, "manifest.json"), JSON.stringify({
   name, version,
-  note: "Generated when the patterns are packaged. Do not edit: change the .md files and package again.",
+  note: NOTE,
   readme: "README.md",
   patterns, references,
+  ...(comp ? { compositions: {
+    readme: `${COMPOSITIONS}/README.md`, graph: "graph.json",
+    recipes: comp.graph.recipes.map(({ id, file, title, summary }) => ({ id, file, title, summary })),
+    organisms: comp.graph.organisms.length, spacingSteps: comp.graph.spacing.length,
+  } } : {}),
 }, null, 2) + "\n");
+if (comp) writeFileSync(join(OUT, "graph.json"), JSON.stringify({ name, version, note: NOTE, ...comp.graph }, null, 2) + "\n");
 console.log(`packaged ${patterns.length} patterns and ${references.length} references to ${OUT}`);

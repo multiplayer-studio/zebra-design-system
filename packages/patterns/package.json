@@ -1,6 +1,6 @@
 {
   "name": "@zebra-design-system/patterns",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Zebra UX patterns: component-agnostic rules for how screens are composed and behave, as plain Markdown and JSON, with the Claude Code skills that apply and audit them",
   "type": "module",
   "private": false,

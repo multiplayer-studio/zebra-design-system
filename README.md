@@ -67,6 +67,7 @@ The three libraries share tokens, icons and specs, but no component code.
 
 - Edit the files in `patterns/` by hand: change, add or delete a rule, or add or delete a file. A new rule takes the next free number; a deleted rule leaves a gap.
 - A new file also needs a row in [patterns/README.md](patterns/README.md).
+- [patterns/compositions/](patterns/compositions/README.md) holds recipes for whole screens, by the person's job. Packaging writes them to `graph.json`, which tools walk to compose a screen or to suggest changes to one.
 - Guard rails run when the patterns are packaged and stop it with the file and line if, for example, a rule file names a token or a Zebra component. [patterns/README.md](patterns/README.md) lists them.
 - Run `pnpm run docs:components` afterwards. It refreshes the copies in the packages and plugins and regenerates each copy's `manifest.json` from the files.
 

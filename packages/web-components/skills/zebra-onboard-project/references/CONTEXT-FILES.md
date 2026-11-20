@@ -64,7 +64,7 @@ library: none                  # off-system only: name, exact version, the URL i
 <the top-level areas, in order, and what each holds>
 
 ## Screen types
-<the kinds of screen the product has, each with its job: find one item, act on one object, work through many, monitor, create step by step, converse, capture>
+<the kinds of screen the product has, each with its job and the recipe it follows in the patterns' compositions folder: find-one, act-on-one, work-through-many, monitor, create-in-steps, converse, capture. A screen with no recipe says what it is composed from>
 
 ## Key flows
 <the main tasks, each as a short list of steps>

@@ -1,6 +1,6 @@
 {
   "name": "@zebra-design-system/patterns",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "note": "Generated when the patterns are packaged. Do not edit: change the .md files and package again.",
   "readme": "README.md",
   "patterns": [
@@ -273,5 +273,55 @@
       "title": "Zebra binding",
       "summary": "Maps each pattern word in [terms.md](terms.md) onto the Zebra Design System. Read it with the pattern files when the project is built with a Zebra library. A project on another system does not need this file."
     }
-  ]
+  ],
+  "compositions": {
+    "readme": "compositions/README.md",
+    "graph": "graph.json",
+    "recipes": [
+      {
+        "id": "act-on-one",
+        "file": "compositions/act-on-one.md",
+        "title": "Act on one object",
+        "summary": "A screen about one thing: what it is, how it is doing, and what can be done to it."
+      },
+      {
+        "id": "capture",
+        "file": "compositions/capture.md",
+        "title": "Capture",
+        "summary": "Taking something in from the world: a scan, a photo, a reading."
+      },
+      {
+        "id": "converse",
+        "file": "compositions/converse.md",
+        "title": "Converse",
+        "summary": "Asking in words and getting an answer, with a person or an AI assistant."
+      },
+      {
+        "id": "create-in-steps",
+        "file": "compositions/create-in-steps.md",
+        "title": "Create in steps",
+        "summary": "Making something new, one step at a time, ending in a review."
+      },
+      {
+        "id": "find-one",
+        "file": "compositions/find-one.md",
+        "title": "Find one item",
+        "summary": "A collection the person searches, filters and scans to reach the one item they came for."
+      },
+      {
+        "id": "monitor",
+        "file": "compositions/monitor.md",
+        "title": "Monitor",
+        "summary": "A screen that shows whether things are all right, and what isn't."
+      },
+      {
+        "id": "work-through-many",
+        "file": "compositions/work-through-many.md",
+        "title": "Work through many",
+        "summary": "A run of items handled one after another, the same way each time."
+      }
+    ],
+    "organisms": 23,
+    "spacingSteps": 8
+  }
 }

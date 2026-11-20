@@ -65,7 +65,25 @@ which states are drawn and which are missing.
 A rule about behaviour over time (loading, focus, offline) cannot be judged
 from a still image. Say it was not assessed.
 
-## 6. Report
+## 6. Compare each screen with its recipe
+
+Read `compositions/README.md` in the patterns folder. For each screen in
+scope:
+
+1. Match it to a recipe by the recipe's signals. Say which, and why. A
+   screen that matches none is noted as composed for its own job.
+2. Compare region by region: an `always` region that is missing, regions out
+   of order, an organism missing a slot marked `always`, a focal region that
+   isn't the most prominent thing, spacing where a weaker relationship gets
+   the smaller step.
+3. Answer the recipe's checks.
+
+A difference that breaks a rule is a finding, under that rule's number. Any
+other difference is a **suggestion**: say what the recipe has, what the
+screen has, and what would change. A product's own established way of
+composing a screen is not a suggestion to change it.
+
+## 7. Report
 
 Write for the person who will fix the product.
 
@@ -77,7 +95,9 @@ Write for the person who will fix the product.
    - where it breaks: screen, state, or file and line;
    - what was seen;
    - what to change, in the product's own components.
-3. **Not assessed:** the rules that could not be judged, and why.
+3. **Composition:** per screen, the recipe it matched, then the suggestions
+   from step 6, most visible first.
+4. **Not assessed:** the rules that could not be judged, and why.
 
 | Severity | Meaning |
 |---|---|

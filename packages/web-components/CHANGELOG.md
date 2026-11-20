@@ -1,5 +1,13 @@
 # @zebra-design-system/web-components
 
+## 0.6.1
+
+### Patch Changes
+
+- Skills: a prototype or build with a Figma reference now matches the design's variants, spacing and text styles, asks the designer about obvious deviations, and is compared by measurement. `zebra-prototype` opens an empty folder with a start dialog: Free exploration, Figma reference or From a repo. A prototype is now composed to a spacing ladder and gets a visual review after the build, for cramped areas, balance, alignment and consistency, with fixes before hand-over. Screens are composed from the patterns' recipes, and an audit compares each screen with its recipe and offers suggestions.
+- Updated dependencies
+  - @zebra-design-system/patterns@0.2.0
+
 ## 0.6.0
 
 No changes in this release.

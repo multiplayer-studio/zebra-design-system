@@ -13,6 +13,11 @@ token, so they apply to any component system, Zebra or not.
 - `dist/terms.md` defines the words the rules use. `dist/zebra.md` maps
   them to Zebra components and tokens: read it only in a project built with
   a Zebra library. `dist/devices.md` lists Zebra devices.
+- `dist/compositions/` holds recipes for whole screens, by the person's
+  job: regions in order, the organisms that fill them, spacing steps,
+  variations and checks. Start at its README. `dist/graph.json` is the
+  same content as data, generated at packaging time: entry, recipes, edges
+  between recipes, organisms, spacing steps and the Zebra binding.
 - Refer to a rule by its number: `patterns 4.21` is rule 21 of file 04.
   Cite only numbers that exist.
 - Run `npx zebra-patterns-skills` once to install the Claude Code skills
