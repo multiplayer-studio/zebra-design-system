@@ -1,9 +1,9 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import {
-  Button, Checkbox, Dialog, Divider, GlobalHeader, Icon, IconButton, Input, InputChip, MenuItem, NavigationHeader, NavigationRail,
+  Button, Checkbox, Dialog, Divider, FileUpload, FileUploadItem, GlobalHeader, Icon, IconButton, Input, InputChip, MenuItem, NavigationHeader, NavigationRail,
   NavigationRailItem, Search, Select, Snackbar,
-  type IconName,
+  type FileUploadStatus, type IconName,
 } from "../src/index.js";
 import { Scrollbar } from "../src/index.js";
 import { ZebraLogo } from "./zebra-logo.js";
@@ -56,9 +56,9 @@ function Scrolled({ tag = "div", enabled = true, outer, scrollRef, style, childr
    (node 39:15209), 1440 × 1020. Every control is a library component; Figma's
    local parts (Admin Top Bar, Admin Navigation Drawer, Devices Toolbar,
    Devices List Header, Device Item, Sheet Header, Sheet Footer, Option Card,
-   Upload Dropzone, File Row, Confirm Dialog, Device Details Panel, Assignment
-   Section, Dashboard Action Bar, Device Type Card) are composed here from those
-   and semantic tokens, each text at its Figma style.
+   Confirm Dialog, Device Details Panel, Assignment Section, Dashboard Action
+   Bar, Device Type Card) are composed here from those and semantic tokens,
+   each text at its Figma style.
 
    Where the page departs from Figma:
    - Text colour: Figma's local components bind palette ink/high and
@@ -69,6 +69,13 @@ function Scrolled({ tag = "div", enabled = true, outer, scrollRef, style, childr
      device"; the page uses the add prompt from screen 05 ("add these 4
      devices?"). Figma's deleted toast says "1 device deleted" after deleting
      three; the page uses the real count.
+   - Import: Figma's local Upload Dropzone and File Row are the library's
+     File Upload and File Upload Item, so the button, caption and rows follow
+     that spec, and the "Files for Import" heading is gone (the rows sit in
+     the component's Files slot). It takes real files, picked or dropped:
+     xls, xlsx, csv or doc, up to 100 MB each. The upload itself is simulated,
+     and Import waits until every file is complete. The confirm step still
+     adds Figma's four devices whatever the files hold.
    - Motion (not in Figma): the side sheet slides in from the right over a
      fading scrim, dialogs and toasts ease in, all reversing on close, on
      animations/smooth. The rail collapses with its own animation (Collapse,
@@ -132,6 +139,7 @@ const PAGE_CSS = [
 type Sheet = null | "add" | "details" | "import" | "assign";
 type Prompt = null | "activate" | "import" | "delete";
 
+interface ImportFile { id: number; file: File; status: FileUploadStatus; progress: number }
 interface Device { id: string; name: string; meta: string; icon: IconName }
 const DEVICES: Device[] = [
   { id: "523907", name: "Device 523907", meta: "Last active user: Johnathon Sanchez", icon: "phone-iphone" },
@@ -404,7 +412,8 @@ function AdminPortalFlowPage({ theme, mode = "light", start = "empty", multiSele
   const [sheet, setSheet] = React.useState<Sheet>(null);
   const [prompt, setPrompt] = React.useState<Prompt>(null);
   const [fields, setFields] = React.useState<Fields>(EMPTY_FIELDS);
-  const [files, setFiles] = React.useState<number[]>([]);
+  const [files, setFiles] = React.useState<ImportFile[]>([]);
+  const fileId = React.useRef(0);
   const [added, setAdded] = React.useState<string[]>([]);
   const [typeFilter, setTypeFilter] = React.useState("all");
   // Screen 09: Filter opens the device-type cards above the list; a card narrows the list to that type.
@@ -414,6 +423,18 @@ function AdminPortalFlowPage({ theme, mode = "light", start = "empty", multiSele
   const [shownSheet, sheetClosing] = useExit(sheet);
   const [shownPrompt, promptClosing] = useExit(prompt);
   const [shownToast, toastClosing] = useExit(toast);
+
+  // The simulated upload: each uploading file gains 10% every 200ms, then completes.
+  const uploading = files.some((f) => f.status === "uploading");
+  React.useEffect(() => {
+    if (!uploading) return;
+    const id = setInterval(() => setFiles((fs) => fs.map((f) => f.status !== "uploading" ? f
+      : f.progress >= 100 ? { ...f, status: "complete" } : { ...f, progress: f.progress + 10 })), 200);
+    return () => clearInterval(id);
+  }, [uploading]);
+  const addFiles = (picked: File[]) => setFiles((fs) => [...fs, ...picked.map((file) => ({ id: ++fileId.current, file, status: "uploading" as const, progress: 0 }))]);
+  const dropFile = (id: number) => setFiles((fs) => fs.filter((f) => f.id !== id));
+  const filesReady = files.length > 0 && files.every((f) => f.status === "complete");
 
   const hasDevices = devices.length > 0;
   const typeIcon = DEVICE_TYPES.find((d) => d.label === typeFilter)?.icon;
@@ -471,32 +492,16 @@ function AdminPortalFlowPage({ theme, mode = "light", start = "empty", multiSele
       };
       case "import": return {
         title: "Import Devices From File", description: "Select the files you want to import.", bodyGap: "var(--space-4xl)", bodyTop: "var(--space-xl)",
-        back: () => setSheet("add"), cancel: close, primary: "Import", primaryDisabled: !files.length, onPrimary: () => { setSheet(null); setPrompt("import"); },
+        back: () => setSheet("add"), cancel: close, primary: "Import", primaryDisabled: !filesReady, onPrimary: () => { setSheet(null); setPrompt("import"); },
         body: <>
           <Tip verb="uploading" end="." />
-          {/* Upload Dropzone */}
-          <div style={{ display: "grid", justifyItems: "center", gap: "var(--space-md)", padding: "var(--space-xl)", border: "var(--stroke-thin) dashed var(--border-strong)", borderRadius: "var(--radius-md)", textAlign: "center" }}>
-            <span style={{ ...t("title-medium"), color: "var(--foreground-primary)" }}>Drop files here to upload</span>
-            <span style={{ ...t("body-small"), color: "var(--foreground-secondary)" }}>or</span>
-            <Button flavour="primary" size="medium" shape="rounded" onClick={() => setFiles([1, 2, 3, 4])}>Select Files</Button>
-            <span style={{ ...t("body-xsmall"), color: "var(--foreground-secondary)" }}>Supports: xls, xlsx, csv, or doc<br />Max file size 100mb</span>
-          </div>
-          <div style={{ display: "grid", gap: "var(--space-gutter)" }}>
-            <h3 style={{ ...t("title-medium"), color: "var(--foreground-primary)" }}>Files for Import</h3>
-            <div>
-              {files.map((f) => (
-                // File Row
-                <div key={f} style={{ display: "flex", alignItems: "center", gap: "var(--space-md)", padding: "var(--space-sm) 0" }}>
-                  <span style={{ inlineSize: 40, blockSize: 40, flex: "none", borderRadius: "var(--radius-md)", background: "var(--surface-subtle)" }} />
-                  <span style={{ flex: 1, display: "grid" }}>
-                    <span style={{ ...t("label-medium"), color: "var(--foreground-primary)" }}>filename.jpg</span>
-                    <span style={{ ...t("body-xsmall"), color: "var(--foreground-secondary)" }}>5.7 MB</span>
-                  </span>
-                  <IconButton flavour="subtle" size="medium" shape="full" icon="close" label="Remove filename.jpg" onClick={() => setFiles((l) => l.filter((x) => x !== f))} />
-                </div>
-              ))}
-            </div>
-          </div>
+          <FileUpload accept=".xls,.xlsx,.csv,.doc" maxFileBytes={100 * 1024 * 1024}
+            caption={<>Supports: xls, xlsx, csv, or doc<br />Max file size 100 MB</>} onFilesSelected={addFiles}>
+            {files.map((f) => (
+              <FileUploadItem key={f.id} indicator="ring" status={f.status} fileName={f.file.name} size={f.file.size} progress={f.progress}
+                onCancel={() => dropFile(f.id)} onRemove={() => dropFile(f.id)} />
+            ))}
+          </FileUpload>
         </>,
       };
       case "assign": return {
@@ -644,7 +649,7 @@ const meta: Meta<typeof AdminPortalFlowPage> = {
   parameters: {
     layout: "fullscreen",
     design: { type: "figma", url: "https://www.figma.com/design/xZIoVHphedpglTcxOBTTbX/Zebra-Design-System-Patterns?node-id=39-15209" },
-    docs: { description: { component: "**Experimental mock flow.** Adding and managing devices in the Admin portal on a 1440 × 1020 desktop. Single device: Add Devices → Add a single device → fill the details → Add → confirm activation → assign more or Done → the dashboard with Device added. Multiple devices: Add multiple devices → Select Files → Import → confirm the four → Done → 4 Devices added. On the dashboard, Shift-, Ctrl- or Cmd-click picks several devices; Delete Device asks first, and the deleted toast can Undo. Composed from Global Header, Divider, Navigation Rail, Search, Button, Icon Button, Checkbox, Input, Select, Input Chip, Dialog, Snackbar and Icon." } },
+    docs: { description: { component: "**Experimental mock flow.** Adding and managing devices in the Admin portal on a 1440 × 1020 desktop. Single device: Add Devices → Add a single device → fill the details → Add → confirm activation → assign more or Done → the dashboard with Device added. Multiple devices: Add multiple devices → pick or drop files (xls, xlsx, csv or doc, up to 100 MB; the upload is simulated) → Import once they complete → confirm the four → Done → 4 Devices added. On the dashboard, Shift-, Ctrl- or Cmd-click picks several devices; Delete Device asks first, and the deleted toast can Undo. Composed from Global Header, Divider, Navigation Rail, Search, Button, Icon Button, Checkbox, Input, Select, Input Chip, File Upload, Dialog, Snackbar and Icon." } },
   },
 };
 export default meta;
