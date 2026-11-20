@@ -1,0 +1,73 @@
+/* Breadcrumb — every value is a semantic token.
+
+   Spec: specs/breadcrumb/breadcrumb.spec.md */
+
+.zds-breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2xs) var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.zds-breadcrumb__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-inline-size: 0;
+}
+
+.zds-breadcrumb__separator {
+  flex: none;
+  color: var(--foreground-primary);
+}
+
+/* ---- crumb -------------------------------------------------------------- */
+.zds-breadcrumb__crumb {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--foreground-secondary);
+  font-family: var(--body-medium-font-family), system-ui, sans-serif;
+  font-size: var(--body-medium-font-size);
+  font-weight: var(--body-medium-font-weight);
+  line-height: var(--body-medium-line-height);
+  letter-spacing: var(--body-medium-letter-spacing);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.zds-breadcrumb__crumb:hover {
+  color: var(--foreground-link);
+}
+
+.zds-breadcrumb__crumb:focus-visible {
+  outline: var(--stroke-thick) solid var(--border-focus);
+  outline-offset: var(--stroke-thick);
+}
+
+.zds-breadcrumb__crumb[aria-current="page"] {
+  color: var(--foreground-primary);
+  cursor: default;
+}
+
+/* The glyph holds its colour through every state, as drawn. */
+.zds-breadcrumb__icon {
+  flex: none;
+  color: var(--foreground-primary);
+}
+
+.zds-breadcrumb[data-flavour="accent"] .zds-breadcrumb__crumb[aria-current="page"],
+.zds-breadcrumb[data-flavour="accent"] [aria-current="page"] .zds-breadcrumb__icon {
+  color: var(--foreground-link);
+}
