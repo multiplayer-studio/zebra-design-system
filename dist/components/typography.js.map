@@ -1,0 +1,1 @@
+{"version":3,"file":"typography.js","sourceRoot":"","sources":["../../src/components/typography.ts"],"names":[],"mappings":"AAAA,OAAO,mCAAmC,CAAC;AAC3C,OAAO,mCAAmC,CAAC","sourcesContent":["import \"@fontsource/ibm-plex-sans/400.css\";\nimport \"@fontsource/ibm-plex-sans/500.css\";\n"]}
