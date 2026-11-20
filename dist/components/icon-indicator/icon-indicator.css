@@ -1,0 +1,40 @@
+/* icon-indicator — ported rule for rule from packages/web-components
+   icon-indicator.styles.ts.
+   Every value is a semantic token. Size: control/icon-sm, -md, -lg circles,
+   the glyph the circle less space/3xs each side (12 / 16 / 24; the outer two
+   have no icon token — spec warn).
+  
+   Spec: specs/badges/icon-indicator.spec.json
+ 
+   */
+
+    .zds-icon-indicator {
+      --zds-indicator-box: var(--control-icon-md);
+      display: inline-flex;
+      vertical-align: middle;
+    }
+    .zds-icon-indicator[hidden] {
+      display: none;
+    }
+    .zds-icon-indicator[data-size="small"] {
+      --zds-indicator-box: var(--control-icon-sm);
+    }
+    .zds-icon-indicator[data-size="large"] {
+      --zds-indicator-box: var(--control-icon-lg);
+    }
+    .zds-icon-indicator__root {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      inline-size: var(--zds-indicator-box);
+      block-size: var(--zds-indicator-box);
+      border-radius: var(--radius-pill);
+      background: var(--zds-icon-indicator-fill, var(--foreground-secondary));
+      color: var(--zds-icon-indicator-foreground, var(--foreground-inverse));
+    }
+    /* The glyph is the box less space/3xs each side (12 / 16 / 24). */
+    .zds-icon-indicator__glyph {
+      --zds-glyph: calc(var(--zds-indicator-box) - 2 * var(--space-3xs));
+    }
+  

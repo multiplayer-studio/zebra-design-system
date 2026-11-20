@@ -1,0 +1,89 @@
+/* Navigation Bar — every value is a semantic token from the shared token
+   layer. Keyed off [data-distribution], which NavigationBar sets. The bar
+   binds only its top border; items, Button and Divider colour themselves.
+
+   Spec: specs/navigation-bar/navigation-bar.spec.md */
+
+.zds-navigation-bar {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  /* Top edge only. Figma draws it outside the bounds with a raw 1px width
+     (spec issue); here it is stroke/thin, inside the box. No fill. */
+  border-top: var(--stroke-thin) solid var(--border-default);
+  background: none;
+}
+
+/* ---- slot (the item row) ------------------------------------------------ */
+.zds-navigation-bar__list {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: stretch;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  gap: var(--space-none);
+  list-style: none;
+}
+
+.zds-navigation-bar__item {
+  display: flex;
+}
+.zds-navigation-bar__item > .zds-navigation-item {
+  flex: 1 1 auto;
+}
+
+/* ---- distribution (Figma: shrinkItems) ---------------------------------- */
+/* start: groups hug and pack; the Spacer takes the free space. */
+.zds-navigation-bar[data-distribution="start"] .zds-navigation-bar__list {
+  justify-content: flex-start;
+}
+.zds-navigation-bar[data-distribution="start"] .zds-navigation-bar__list > .zds-navigation-bar-spacer {
+  flex: 1 1 auto;
+}
+
+/* space-between: the row fills and spreads free space between items; a
+   Spacer becomes one more evenly-placed separator (a combination Figma does
+   not draw — it simply works). */
+.zds-navigation-bar[data-distribution="space-between"] .zds-navigation-bar__list {
+  justify-content: space-between;
+}
+
+/* ---- spacer (subcomponent) ---------------------------------------------- */
+.zds-navigation-bar-spacer {
+  box-sizing: border-box;
+  display: flex;
+  flex: none;
+  justify-content: center;
+  align-self: stretch;
+  /* Figma's Spacer has a raw 50px minimum width (no token); space-2xl is the
+     nearest spacing intent. */
+  min-width: var(--space-2xl);
+  /* The divider is inset from the top and bottom edges (groupDivider). */
+  padding-block: var(--space-sm);
+  list-style: none;
+}
+.zds-navigation-bar__list > .zds-navigation-bar-spacer {
+  /* In the bar, the groups' own padding already separates them. */
+  min-width: var(--space-none);
+}
+
+/* ---- action slot -------------------------------------------------------- */
+.zds-navigation-bar__divider-section {
+  box-sizing: border-box;
+  display: flex;
+  align-self: stretch;
+  padding-block: var(--space-sm);
+}
+
+.zds-navigation-bar__action {
+  display: flex;
+  flex: none;
+  align-items: center;
+  padding-inline: var(--space-lg) var(--space-none);
+  /* Figma's 8px gap is unbound (spec issue): space/sm. */
+  gap: var(--space-sm);
+}
