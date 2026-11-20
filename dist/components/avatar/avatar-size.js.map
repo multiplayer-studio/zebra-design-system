@@ -1,0 +1,1 @@
+{"version":3,"file":"avatar-size.js","sourceRoot":"","sources":["../../../src/components/avatar/avatar-size.ts"],"names":[],"mappings":"","sourcesContent":["export type AvatarSize = \"xxxs\" | \"xxs\" | \"xs\" | \"s\" | \"m\" | \"l\" | \"xl\" | \"xxl\" | \"xxxl\";\n"]}
