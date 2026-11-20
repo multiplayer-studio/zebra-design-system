@@ -1,8 +1,8 @@
 # Versioning
 
-Five packages leave this repo. Four version through Changesets
+Six packages leave this repo. Five version through Changesets
 (`pnpm exec changeset` with your PR); zeta-web keeps its
-Conventional-Commits flow. All five follow SemVer with these rules.
+Conventional-Commits flow. All six follow SemVer with these rules.
 
 ## What counts as what
 
@@ -17,6 +17,9 @@ Conventional-Commits flow. All five follow SemVer with these rules.
 | Anything under an `/experimental` subpath | exempt — may change or vanish in a **minor**; it graduates by landing a spec and moving to the main entry |
 | Icon glyph added | **minor** |
 | Icon glyph removed or renamed | **major** |
+| Pattern wording made clearer, a device added | **patch** |
+| Pattern rule or pattern file added | **minor** |
+| Pattern rule or file removed, renamed or reversed | **major** |
 
 The token rules are the ones that bite: a palette can re-tune in a patch,
 but `surface/menu` disappearing (as it did in export v3) is a major. The
@@ -25,7 +28,7 @@ major — plan removals in batches.
 
 ## Mechanics
 
-- **The four pnpm packages:** every PR that changes a published package adds
+- **The five pnpm packages:** every PR that changes a published package adds
   a changeset. CI accumulates them into a "Version Packages" PR; merging it
   versions, rewrites `workspace:*` to real ranges, builds, re-runs the
   tarball denylist and publishes.
@@ -42,7 +45,7 @@ major — plan removals in batches.
 
 ## While the packages are not yet on npmjs
 
-All five install from the repo's git distribution branches
+All six install from the repo's git distribution branches
 (`DISTRIBUTION.md` §Git distribution): `dist/<pkg>` tracks the latest
 version, and the immutable `<pkg>-v<version>` tags follow the same
 versioning rules as npm releases will.

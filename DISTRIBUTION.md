@@ -9,11 +9,12 @@ rules in `VERSIONING.md`; release mechanics in `.github/workflows/release.yml`.
 
 | Channel | Today | Lives at |
 |---|---|---|
-| **Git distribution ×5 (live, registry-free)** | Orphan branches `dist/<pkg>` + immutable tags `<pkg>-v<version>` on this repo; `npm i "git+https://github.com/multiplayer-studio/zebra-design-system.git#dist/tokens"` | deployed by `scripts/deploy-dist-branches.mjs` (§Git distribution below) |
-| npm packages ×5 | Not on npmjs yet — the git channel above is the only package source. (The local Verdaccio test registry was torn down 10 Nov 2026.) | — |
+| **Git distribution ×6 (live, registry-free)** | Orphan branches `dist/<pkg>` + immutable tags `<pkg>-v<version>` on this repo; `npm i "git+https://github.com/multiplayer-studio/zebra-design-system.git#dist/tokens"` | deployed by `scripts/deploy-dist-branches.mjs` (§Git distribution below) |
+| npm packages ×6 | Not on npmjs yet — the git channel above is the only package source. (The local Verdaccio test registry was torn down 10 Nov 2026.) | — |
 | Consumer projects | Install from the git branches; no `.npmrc` needed | each test project |
 | Claude Code plugin | Installable from this repo as a marketplace, from `main` | `claude plugin marketplace add "https://github.com/multiplayer-studio/zebra-design-system.git#main"` (or a local path to a main checkout), then `claude plugin install zebra-design-system@zebra-design-system` |
-| In-package skills | Already real — ship in the library tarballs | `npx zebra-skills` in the consumer project |
+| UX pattern plugin | Installable from the same marketplace, with no Zebra package needed | `claude plugin install zebra-patterns@zebra-design-system` |
+| In-package skills | Already real — ship in the library tarballs | `npx zebra-skills` in the consumer project (`npx zebra-patterns-skills` where only the patterns package is installed) |
 | CDN | Not live (needs real npm) | `docs/cdn-smoke.html` is armed with pinned jsDelivr URLs |
 | Consumer onboarding | Zebra Quickstart artifact (private; share from its Share menu) | source `docs/start/index.html`, published at <https://claude.ai/artifact/ByQaUbTKkN1EXDyp5bEvg7> |
 
@@ -31,6 +32,7 @@ Each package's **packed root** — dist built, `files`-filtered, denylist-checke
 |---|---|---|
 | `@zebra-design-system/tokens` | `dist/tokens` | `tokens-v0.2.0` |
 | `@zebra-design-system/icons` | `dist/icons` | `icons-v0.2.0` |
+| `@zebra-design-system/patterns` | `dist/patterns` | `patterns-v0.1.0` (not deployed yet) |
 | `@zebra-design-system/react-baseui` | `dist/react-baseui` | `react-baseui-v0.5.0` |
 | `@zebra-design-system/web-components` | `dist/web-components` | `web-components-v0.5.0` |
 | `@zebra-fed/zeta-web` | `dist/zeta-web` | `zeta-web-v1.7.0` |
@@ -52,7 +54,7 @@ old lockfile SHAs stay fetchable forever.
 **Deploying** (after `pnpm run build` and, for zeta, `pnpm run zeta:build`):
 
 ```bash
-node scripts/deploy-dist-branches.mjs              # all five, local branches/tags only
+node scripts/deploy-dist-branches.mjs              # all six, local branches/tags only
 node scripts/deploy-dist-branches.mjs tokens icons # a subset
 node scripts/deploy-dist-branches.mjs --push       # …and push to origin
 ```
@@ -72,6 +74,60 @@ same denylist gates both.
 **Not covered by this channel:** semver ranges (`^0.1.0` can't target one
 package's tags in a shared repo — pin tags or track the branch) and the CDN
 designer channel (jsDelivr's npm endpoint still needs npmjs).
+
+## Project themes
+
+`@zebra-design-system/tokens` ships the token builder (`dist/tools/`) and a
+`zebra-theme` command that runs it against the installed tokens:
+
+```bash
+npx zebra-theme --init route-planner        # writes route-planner.theme.json
+npx zebra-theme --list=brand                # the tokens a theme can change
+npx zebra-theme route-planner.theme.json    # writes route-planner.theme.css
+```
+
+The theme file holds only what the project changes. The builder treats it as
+one more extension, so the CSS re-declares every dependent token for every mode
+and every way `.ext-<name>` and a mode can meet: on the page root, on a
+container, above or below a mode. It refuses a path that is not a token, a raw
+value on a role, and size or type scales, and it reports text contrast the
+theme loses (`--strict` makes that an error). `packages/tokens/test/` checks
+the command on every `pnpm run check`.
+
+## The UX patterns (one source, four wrappers)
+
+The patterns are authored once in `patterns/` and leave the repo four ways.
+`packages/patterns/build.mjs` copies the folder and generates `manifest.json`
+from the files it finds (never hand-written, never in `patterns/`);
+`docs/components/generate.mjs` makes the other copies.
+
+| Consumer | Gets the pack from | Updates by |
+|---|---|---|
+| Project with a Zebra library | `node_modules/@zebra-design-system/patterns`, a dependency of `react-baseui` and `web-components` | updating packages |
+| Project on another component system | the `zebra-patterns` plugin, or the package installed alone from `#dist/patterns` | `claude plugin update`, or reinstalling |
+| Another tool or agent | the `dist/patterns` branch or a `patterns-v<version>` tag: plain Markdown and a generated `manifest.json` under `dist/` | pulling the branch or a new tag |
+| `zebra-design-system` plugin users | the plugin's bundled `patterns/` copy, used when the package is not installed | `claude plugin update` |
+
+Guard rails (`packages/patterns/guard.mjs`) run every time the patterns are
+packaged: by `pnpm run build`, by `pnpm run check`, by the generator, by
+`prepack`, and again by `scripts/deploy-dist-branches.mjs`, which repackages
+the patterns from source before deploying them. A failure stops that step and
+names the file and line. They keep token and component names out of the rule
+files, keep each file's shape, catch a rule number used twice or pointed at
+but missing, catch broken links and unlisted files, check
+that `zebra.md` only names tokens and theme classes that exist, and catch
+leftovers such as TODO text. The token and component lists are read from
+`tokens/` and `specs/` each run. A changed pack under an existing version
+tag is refused by the deploy script, as for every package.
+
+Skills read the generated `manifest.json` for the file list, so a new,
+removed or renamed file reaches every consumer without a skill change. The `zebra-patterns` plugin's version
+is set to the patterns package version by the generator.
+
+On the git channel, a library pins the patterns package to a version tag, so
+a new pack reaches library users with the next library release, or sooner by
+installing `#dist/patterns` directly. On npm the dependency is a semver
+range and `npm update` is enough.
 
 ## Migration to the real registry (gated on step 0.2)
 

@@ -1,0 +1,16 @@
+{
+  "name": "sample",
+  "description": "Fixture for test/theme.check.mjs: one ramp step for every mode, one role in Dark only.",
+  "values": {
+    "primitives": {
+      "color/brand/main/60": "#7a1fa2"
+    }
+  },
+  "modes": {
+    "Dark": {
+      "palette": {
+        "brand/primary/default": "{primitives.color.brand.main.40}"
+      }
+    }
+  }
+}

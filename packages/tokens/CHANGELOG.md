@@ -1,5 +1,11 @@
 # @zebra-design-system/tokens
 
+## 0.3.0
+
+### Minor Changes
+
+- Add `zebra-theme`: build a project's own theme from a small file of overrides. The package now ships the token builder, and `npx zebra-theme <name>.theme.json` emits `.ext-<name>` the way the shipped extensions are emitted, with every dependent token re-declared for every mode, so the theme holds on the page root or any container. `--list` shows the tokens a theme can change and `--init <name>` writes a starter file. The command refuses names that are not tokens and reports text contrast a theme loses.
+
 ## 0.2.0
 
 ### Minor Changes

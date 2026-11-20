@@ -34,6 +34,11 @@ for (const entry of ["base", "extensions", "manifest.json", "fonts.json", "fonts
 execFileSync("node", [BUILDER, SOURCE, join(DIST, "css")], { stdio: "inherit" });
 execFileSync("node", [BUILDER, SOURCE, join(DIST, "css-attributes"), "--attributes"], { stdio: "inherit" });
 
+// 2b. The generator itself, so a consumer can build a project theme against the
+// tokens it has installed (bin/zebra-theme.mjs runs it against this dist).
+mkdirSync(join(DIST, "tools"), { recursive: true });
+cpSync(BUILDER, join(DIST, "tools", "build-tokens-css.mjs"));
+
 // 3. Denylist assert: fail the build rather than ship working data.
 const offenders = [];
 (function walk(dir) {

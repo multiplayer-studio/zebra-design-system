@@ -102,6 +102,7 @@ Put these on any ancestor (they work in both packages and on plain HTML):
 
 - `mode-light` / `mode-dark` switch the palette.
 - `ext-companion` and `ext-condensed` apply a brand or density extension.
+- `ext-<project>` applies a project's own theme. It is generated from a small file of overrides by `npx zebra-theme` (in `@zebra-design-system/tokens`), the same way the shipped extensions are built. A theme changes values, never names.
 - `bp-*` applies a size and typography mode.
 
 ---
@@ -206,7 +207,28 @@ Find these in Storybook under `Experimental/*`. They must not be used in product
 
 ## 5. Patterns
 
-*Coming soon.* Patterns will document how components combine for recurring jobs, such as forms, conversations, empty states and navigation layouts. Each will link to its own file.
+The UX patterns are the rules for how screens are composed and behave. They have the same authority as this file: this file and the specs say what things look like, and the patterns say how screens are put together.
+
+The rules name no component and no token, so a product on any component system can follow them. They ship as `@zebra-design-system/patterns`, which installs with each component library.
+
+| Pattern | Covers |
+|---|---|
+| 01 Screen composition | Composing the screen, the shell, messages, actions, finding things, content, overlays, flows, forms |
+| 02 Navigation and flow | Structure, global and local navigation, back and exit, deep links, wizards, task loops, sign-in |
+| 03 Controls and interaction | Buttons, choices, text entry, dates, selection, menus, saving, undo, gestures, scanning, motion |
+| 04 States, feedback and recovery | Loading, empty, error, success, offline, sync, permissions, sessions, device states, severity |
+| 05 Sizes and devices | Size classes, grids, how components change, overflow, density, form factors, input modes |
+| 06 Accessibility | The floors under every other rule: contrast, targets, focus, names, announcements, reflow, time limits |
+| 07 Content and copy | Voice, labels, messages, errors, terms, numbers, dates and units, translation |
+| 08 Visual foundations and theming | Colour roles, states, themes, type, space, shape, elevation, icons, brand, re-theming |
+| 09 AI in the interface | Where AI is offered, suggestions, marking and sources, confidence, acting for someone, failures |
+| 10 Data display | Choosing the form, tables, lists, records, status and numbers in data, charts, live data, maps |
+
+- Start at the patterns' `README.md`. It says which files a task needs.
+- Each file holds numbered rules. The bold sentence is the rule. Cite one by its number: `patterns 4.21` is rule 21 of file 04.
+- Accessibility minimums come first, then a product's own shell and established patterns, then the more specific rule.
+- A rule that starts "By default" may be overridden by a project.
+- `zebra.md` maps each pattern word to a Zebra component or token.
 
 ---
 
@@ -216,6 +238,7 @@ Find these in Storybook under `Experimental/*`. They must not be used in product
 |---|---|
 | A token's value or modes | `tokens/` and `tokens/manifest.json` |
 | A component's anatomy, props, tokens and known issues | `specs/<name>/<name>.spec.md` |
+| How screens are composed and behave (the UX patterns) | `patterns/` (start at `README.md`) |
 | Building or changing a React component | `.claude/skills/zebra-react-baseui/` |
 | Building or changing a web component | `.claude/skills/zebra-web-components/` |
 | Refining a legacy Zeta Web component | `.claude/skills/zeta-web-components/` |

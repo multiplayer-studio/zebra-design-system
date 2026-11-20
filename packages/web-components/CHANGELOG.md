@@ -1,5 +1,11 @@
 # @zebra-design-system/web-components
 
+## 0.5.1
+
+### Patch Changes
+
+- Ship the UX patterns. The libraries now depend on `@zebra-design-system/patterns`, the component-agnostic rules for how screens are composed and behave, and carry two more skills: `zebra-ux-patterns` (apply) and `zebra-ux-audit` (audit). The three existing skills read the pattern files a task needs, and DESIGN.md §5 indexes the ten patterns. A sixth skill, `zebra-onboard-project`, walks a designer through a short setup and saves the project's context in a committed `zebra-context/` folder; `zebra-prototype` reads it first and `zebra-ux-audit` respects it.
+
 ## 0.5.0
 
 ### Minor Changes

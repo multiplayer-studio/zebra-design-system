@@ -19,7 +19,7 @@ const DENY = [
   /\.DS_Store$/,
 ];
 
-const PNPM_PACKAGES = ["tokens", "icons", "react-baseui", "web-components"];
+const PNPM_PACKAGES = ["tokens", "icons", "patterns", "react-baseui", "web-components"];
 let failed = false;
 
 const check = (name, files) => {

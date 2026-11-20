@@ -119,6 +119,8 @@ importers:
         specifier: ^5.6.0
         version: 5.9.3
 
+  packages/patterns: {}
+
   packages/react-baseui:
     dependencies:
       '@base-ui/react':
@@ -127,6 +129,9 @@ importers:
       '@zebra-design-system/icons':
         specifier: workspace:*
         version: link:../icons
+      '@zebra-design-system/patterns':
+        specifier: workspace:*
+        version: link:../patterns
     devDependencies:
       '@storybook/addon-a11y':
         specifier: ^8.6.18
@@ -187,6 +192,9 @@ importers:
       '@zebra-design-system/icons':
         specifier: workspace:*
         version: link:../icons
+      '@zebra-design-system/patterns':
+        specifier: workspace:*
+        version: link:../patterns
       lit:
         specifier: ^3.3.3
         version: 3.3.3

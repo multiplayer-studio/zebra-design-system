@@ -31,6 +31,34 @@
  * extension and claims the mode it extends inside it, so a component locked to Dark
  * stays in its family.
  *
+ * --theme=file.json builds ONE project theme instead of the token layers. A project
+ * theme is an extension a project writes for itself: a small file of overrides,
+ * emitted exactly as a shipped extension is, with every dependent token re-declared
+ * for every mode and every way the theme and a mode can meet. The second argument
+ * is then the CSS file to write, not a folder:
+ *
+ *     node build-tokens-css.mjs <tokensDir> route-planner.theme.css --theme=route-planner.theme.json
+ *
+ *     {
+ *       "name": "route-planner",
+ *       "extends": "companion",
+ *       "values": {
+ *         "primitives": { "color/brand/main/60": "#7a1fa2" },
+ *         "palette": { "brand/primary/on": "{primitives.color.pure.white}" }
+ *       },
+ *       "modes": {
+ *         "Dark": { "palette": { "brand/primary/default": "{primitives.color.brand.main.40}" } }
+ *       }
+ *     }
+ *
+ * name is the class: .ext-route-planner. extends starts from a shipped extension
+ * (optional). values apply in every mode; modes change the theme collection in one
+ * mode only. A theme changes values, never names: every path must be a token that
+ * exists, a raw value is allowed only where the token already holds one (a
+ * primitive), and everything else is an alias. Size and type scales that vary by
+ * breakpoint are not themed. Text and its background are checked for contrast the
+ * theme loses. --list[=filter] prints the tokens a theme can change.
+ *
  * WHY THIS IS NOT A FLAT DUMP
  * ---------------------------
  * Custom properties substitute at computed-value time on the element that
@@ -66,6 +94,9 @@ const SEL = PROFILE === "zeta"
 if (PROFILE !== "zeta" && PROFILE !== "classes") throw new Error(`unknown --profile "${PROFILE}" (classes | zeta)`);
 const ATTRIBUTES = process.argv.includes("--attributes");
 const OVERRIDES_FILE = (process.argv.find((a) => a.startsWith("--overrides=")) ?? "--overrides=").slice(12);
+const THEME_FILE = (process.argv.find((a) => a.startsWith("--theme=")) ?? "--theme=").slice(8);
+const LIST = process.argv.find((a) => a === "--list" || a.startsWith("--list="));
+const QUIET = Boolean(THEME_FILE || LIST); // one theme or a listing: say only what concerns it
 
 const manifest = JSON.parse(readFileSync(join(TOKENS, "manifest.json"), "utf8"));
 const read = (rel) => JSON.parse(readFileSync(join(TOKENS, rel), "utf8"));
@@ -146,6 +177,66 @@ for (const e of manifest.extensions) {
   extensions.set(e.slug, ext);
 }
 
+// ---------- a project theme ------------------------------------------------
+// One more extension, read from a small file instead of tokens/. Everything is
+// checked before anything is written, and every problem is reported at once.
+let theme = null;
+const themeProblems = [];
+const loadTheme = (themeAxis, bpAxes) => {
+  const raw = JSON.parse(readFileSync(THEME_FILE, "utf8"));
+  const bad = (m) => themeProblems.push(m);
+  const name = String(raw.name ?? "");
+  if (!/^[a-z][a-z0-9-]*$/.test(name)) bad(`"name" must be lowercase letters, digits and hyphens, starting with a letter (it becomes the class .ext-<name>). Got "${name}".`);
+  if (extensions.has(name)) bad(`"name" is "${name}", which is already a shipped extension. Give the project its own name${raw.extends ? "" : `, and use "extends": "${name}" to start from it`}.`);
+  const ext = { slug: name, always: {}, byMode: {}, project: true, own: 0 };
+  if (raw.extends !== undefined) {
+    const base = extensions.get(raw.extends);
+    if (!base) bad(`"extends" names "${raw.extends}", which is not a shipped extension. Shipped: ${[...extensions.keys()].join(", ") || "none"}.`);
+    else {
+      Object.assign(ext.always, base.always);
+      for (const [m, b] of Object.entries(base.byMode)) ext.byMode[m] = { ...b };
+      ext.extends = raw.extends;
+    }
+  }
+  const bpOwned = new Set(bpAxes.map((c) => c.name));
+  const near = (collection, path) => {
+    const tail = path.split("/").pop();
+    const hits = [...tokens.values()].filter((t) => t.collection === collection && t.path.includes(tail)).map((t) => t.path).slice(0, 4);
+    return hits.length ? ` Close: ${hits.join(", ")}.` : "";
+  };
+  const take = (where, collection, path, value, bucket) => {
+    const at = `${where} ${collection} "${path}"`;
+    if (!collectionOf.has(collection)) return bad(`${where}: "${collection}" is not a token collection. Collections: ${[...collectionOf.keys()].join(", ")}.`);
+    if (bpOwned.has(collection)) return bad(`${at}: ${collection} changes with the breakpoint, and a project theme does not change size or type scales.`);
+    const key = K(collection, path);
+    const t = tokens.get(key);
+    if (!t) return bad(`${at}: no such token. A theme changes values, never names.${near(collection, path)}`);
+    const e = expr({ $value: String(value), $type: "" });
+    const baseDecl = t.modes[collectionOf.get(collection).defaultMode] ?? Object.values(t.modes)[0];
+    if (e.ref) {
+      if (!tokens.has(e.ref)) return bad(`${at}: aliases ${value}, which is not a token.`);
+      if (e.ref === key) return bad(`${at}: aliases itself.`);
+    } else if (/^\{.*\}$/.test(String(value))) return bad(`${at}: ${value} is not a token alias. Write {collection.group.name}.`);
+    else if (baseDecl?.literal === undefined) return bad(`${at}: must alias a token, such as {primitives.color.brand.main.60}. Only a token that already holds a raw value (a primitive) takes one.`);
+    bucket[key] = e.ref ? { ...e, opacity: baseDecl?.opacity } : e;
+    ext.own++;
+  };
+  for (const [collection, paths] of Object.entries(raw.values ?? {}))
+    for (const [path, value] of Object.entries(paths)) take('"values"', collection, path, value, ext.always);
+  const modeNamed = (m) => themeAxis?.modes.find((x) => x === m || slug(x) === slug(m));
+  for (const [mode, byCollection] of Object.entries(raw.modes ?? {})) {
+    const real = modeNamed(mode);
+    if (!real) { bad(`"modes": "${mode}" is not a theme mode. Modes: ${themeAxis?.modes.join(", ") ?? "none"}.`); continue; }
+    for (const [collection, paths] of Object.entries(byCollection)) {
+      if (collection !== themeAxis.name) { bad(`"modes" ${mode}: only ${themeAxis.name} changes by mode. Put ${collection} values under "values", and change which of them ${themeAxis.name} points at in this mode.`); continue; }
+      for (const [path, value] of Object.entries(paths)) take(`"modes" ${real}`, collection, path, value, (ext.byMode[real] ??= {}));
+    }
+  }
+  for (const k of Object.keys(raw)) if (!["name", "extends", "values", "modes", "$schema", "description"].includes(k)) bad(`"${k}" is not part of a theme file. Use name, extends, values, modes.`);
+  if (!themeProblems.length && !ext.own && !ext.extends) bad("the theme changes nothing: add at least one value.");
+  return ext;
+};
+
 // ---------- axes ----------------------------------------------------------
 // A collection with >1 mode is an axis. One holding Light and Dark is the theme
 // axis (class `mode-*`), whatever other modes it has; any other is a breakpoint
@@ -154,6 +245,15 @@ const multi = manifest.collections.filter((c) => c.modes.length > 1);
 const isBaseTheme = (m) => ["light", "dark"].includes(slug(m));
 const themeAxis = multi.find((c) => c.modes.filter(isBaseTheme).length === 2) ?? null;
 const bpAxes = multi.filter((c) => c !== themeAxis);
+
+if (THEME_FILE) {
+  theme = loadTheme(themeAxis, bpAxes);
+  if (themeProblems.length) {
+    console.error(`✗ ${THEME_FILE}: ${themeProblems.length} problem(s), nothing written\n\n  ${themeProblems.join("\n  ")}\n`);
+    process.exit(1);
+  }
+  extensions.set(theme.slug, theme);
+}
 
 // ---------- overrides -----------------------------------------------------
 const overrides = OVERRIDES_FILE ? JSON.parse(readFileSync(OVERRIDES_FILE, "utf8")) : {};
@@ -250,10 +350,28 @@ const decls = (key, ctx) => {
   return SHADOWED.has(n.slice(2)) ? [`  ${n}: ${v};`, `  --zebra-${n.slice(2)}: ${v};`] : [`  ${n}: ${v};`];
 };
 
+// ---------- --list: the tokens a project theme can change --------------------
+if (LIST) {
+  const filter = LIST.includes("=") ? LIST.slice(LIST.indexOf("=") + 1).toLowerCase() : "";
+  const bpOwned = new Set(bpAxes.map((c) => c.name));
+  for (const c of manifest.collections.filter((c) => !bpOwned.has(c.name))) {
+    const rows = [...tokens.values()].filter((t) => t.collection === c.name && `${c.name}/${t.path}`.toLowerCase().includes(filter)).sort((a, b) => a.path.localeCompare(b.path, undefined, { numeric: true }));
+    if (!rows.length) continue;
+    console.log(`\n${c.name}${c === themeAxis ? `  (changes by mode: ${c.modes.join(", ")})` : ""}`);
+    for (const t of rows) {
+      const d = t.modes[c.defaultMode] ?? Object.values(t.modes)[0];
+      const v = d.literal !== undefined ? d.literal : `{${parts(d.ref)[0]}.${parts(d.ref)[1].replace(/\//g, ".")}}`;
+      console.log(`  ${t.path.padEnd(44)} ${v}${d.literal !== undefined ? "" : "  = " + baseResolved.get(K(c.name, t.path))}`);
+    }
+  }
+  console.log(`\nshipped extensions: ${[...extensions.keys()].join(", ") || "none"}`);
+  process.exit(0);
+}
+
 // ---------- emit ----------------------------------------------------------
-if (!existsSync(OUT)) mkdirSync(OUT, { recursive: true });
+if (!QUIET && !existsSync(OUT)) mkdirSync(OUT, { recursive: true });
 const written = [];
-const write = (n, body) => { writeFileSync(join(OUT, n), body); written.push(n); };
+const write = (n, body) => { if (QUIET) return; writeFileSync(join(OUT, n), body); written.push(n); };
 const HEAD = (t, note) =>
   `/* ${t}\n   Generated from tokens/ by scripts/build-tokens-css.mjs — do not edit by hand.\n${note ? "   " + note + "\n" : ""}*/\n\n`;
 
@@ -357,6 +475,7 @@ if (ATTRIBUTES) for (const s of scopes) s.selectors = s.selectors.flatMap(withAt
 // An extension that overrode a breakpoint-varying collection would need the
 // cross product of both axes; say so rather than emit something half-right.
 for (const [eslug, e] of extensions) {
+  if (QUIET && !e.project) continue;
   const touched = new Set([...Object.keys(e.always), ...Object.values(e.byMode).flatMap(Object.keys)].map((k) => parts(k)[0]));
   const clash = bpAxes.filter((c) => touched.has(c.name));
   if (clash.length) console.warn(`  WARNING extension "${eslug}" overrides ${clash.map((c) => c.name).join(", ")}, which also varies by breakpoint. Emitted for the default breakpoint only.`);
@@ -388,6 +507,62 @@ if (manifest.textStyles?.file && existsSync(join(TOKENS, manifest.textStyles.fil
     textStyles.map((t) => `.${t.cls} {\n  font: var(${t.name});\n  letter-spacing: ${t.letterSpacing};\n}\n`).join("\n"));
 }
 const stylesIn = (changed) => textStyles.filter((t) => t.keys.some((k) => changed.includes(k)));
+
+// ---------- one project theme ------------------------------------------------
+if (theme) {
+  const mine = scopes.filter((s) => s.ctx.ext === theme.slug);
+  // Contrast the theme loses: text on its own background, by the names the public layer uses. Only a pair
+  // that passes without the theme and fails with it is reported, so the system's own known gaps stay out of it.
+  const lum = (hex) => {
+    const m = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(hex ?? "");
+    if (!m) return null;
+    const h = m[1].length === 3 ? [...m[1]].map((c) => c + c).join("") : m[1];
+    const [r, g, b] = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255).map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  };
+  const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)]; return x === null || y === null ? null : (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
+  const pub = allKeys.filter((k) => !isPrefixed(parts(k)[0])).map((k) => parts(k)[1]);
+  const pubCollection = manifest.collections.find((c) => !isPrefixed(c.name) && !bpAxes.includes(c))?.name;
+  const pairs = [];
+  for (const p of pub) {
+    const m = /^(.*)\/foreground(\/default)?$/.exec(p);
+    if (m && pub.includes(`${m[1]}/background/default`)) pairs.push([p, `${m[1]}/background/default`]);
+    else if (m && pub.includes(`${m[1]}/background/subtle`)) pairs.push([p, `${m[1]}/background/subtle`]);
+  }
+  for (const fg of pub.filter((p) => /^foreground\/(primary|secondary|link)$/.test(p)))
+    for (const bg of pub.filter((p) => /^surface\/(page|card|section)$/.test(p))) pairs.push([fg, bg]);
+  const lost = [];
+  let unchecked = 0;
+  for (const m of themeAxis ? themeAxis.modes : [null]) {
+    const modes = m ? { ...defaultModes, [themeAxis.name]: m } : defaultModes;
+    const floor = m && /aaa/i.test(m) ? 7 : 4.5;
+    for (const [fg, bg] of pairs) {
+      const at = (ext) => ratio(resolve(K(pubCollection, fg), { modes, ext }), resolve(K(pubCollection, bg), { modes, ext }));
+      const before = at(theme.extends ?? null), after = at(theme.slug);
+      if (after === null) { if (before !== null) unchecked++; continue; }
+      if (before !== null && before >= floor && after < floor) lost.push(`${m ?? "base"}: ${fg} on ${bg} is ${after.toFixed(2)}:1, was ${before.toFixed(2)}:1, needs ${floor}:1`);
+    }
+  }
+  const out = ARGS[1] || `${theme.slug}.theme.css`;
+  const count = theme.own;
+  const root = SEL.ext(theme.slug);
+  writeFileSync(out,
+    `/* Project theme "${theme.slug}"${theme.extends ? `, extending ${theme.extends}` : ""}\n` +
+    `   Generated from ${THEME_FILE.split("/").pop()} by the Zebra token builder. Do not edit by hand:\n` +
+    `   change the theme file and generate again.\n` +
+    `   Load it after the Zebra token CSS, and put ${root} on the page root or any container.\n` +
+    (lost.length ? `   CONTRAST LOST (${lost.length}):\n${lost.map((l) => "     " + l).join("\n")}\n` : "") +
+    `*/\n\n` +
+    mine.map(({ selectors, ctx, label, changed }) => {
+      const restyled = stylesIn(changed).map((t) => `  ${t.name}: ${t.value};`);
+      return `/* ${label.replace(/^extension /, "theme ")} — ${changed.length} tokens */\n${selectors.join(",\n")} {\n` +
+        [...changed.flatMap((k) => decls(k, ctx)), ...restyled].join("\n") + `\n}\n`;
+    }).join("\n"));
+  console.log(`✓ ${out}: theme "${theme.slug}" — ${count} override(s)${theme.extends ? ` on ${theme.extends}` : ""}, ${mine.length} scopes, ${mine[0]?.changed.length ?? 0} tokens each`);
+  if (lost.length) console.warn(`  contrast lost in ${lost.length} place(s) — adjust the value, do not ship it:\n    ${lost.join("\n    ")}`);
+  else console.log(`  contrast: no text pair lost its floor (${pairs.length} pairs checked in each mode${unchecked ? `, ${unchecked} not checkable` : ""})`);
+  process.exit(lost.length && process.argv.includes("--strict") ? 1 : 0);
+}
 
 write("themes.css",
   HEAD("Theme scopes",

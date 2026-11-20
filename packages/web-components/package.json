@@ -1,6 +1,6 @@
 {
   "name": "@zebra-design-system/web-components",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Zebra Design System \u2014 web components and the CSS-variable token layer they theme from",
   "type": "module",
   "main": "./dist/index.js",
@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@zebra-design-system/icons": "workspace:*",
+    "@zebra-design-system/patterns": "workspace:*",
     "lit": "^3.3.3"
   },
   "devDependencies": {

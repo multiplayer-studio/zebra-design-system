@@ -15,7 +15,7 @@
  *      registry at all.
  *
  * Usage: node scripts/deploy-dist-branches.mjs [pkg ...] [--push] [--force] [--repo <git url>]
- *   pkg      any of: tokens icons react-baseui web-components zeta-web (default: all)
+ *   pkg      any of: tokens icons patterns react-baseui web-components zeta-web (default: all)
  *   --push   also push the branches and tags to origin
  *   --force  allow moving an existing version tag (otherwise an unchanged
  *            tag is skipped and a changed one is an error — bump instead)
@@ -33,7 +33,7 @@ import { join, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const ALL = ["tokens", "icons", "react-baseui", "web-components", "zeta-web"];
+const ALL = ["tokens", "icons", "patterns", "react-baseui", "web-components", "zeta-web"];
 const DENY = [
   /(^|\/)\.env/i, /(^|\/)_dump(\/|$)/, /(^|\/)_docs(\/|$)/, /\.spec\.json$/,
   /(^|\/)stories(\/|$)/, /\.stories\./, /(^|\/)\.claude(\/|$)/, /\.DS_Store$/,
@@ -64,6 +64,13 @@ for (const p of targets) {
   const meta = JSON.parse(readFileSync(join(dir, "package.json"), "utf8"));
   const tag = `${p}-v${meta.version}`;
   const branch = `dist/${p}`;
+
+  // The patterns are hand-edited, so they are guarded and repackaged from
+  // source here: a stale or unguarded dist/ can never reach a branch.
+  if (p === "patterns") {
+    try { execFileSync(process.execPath, ["build.mjs"], { cwd: dir, stdio: "inherit" }); }
+    catch { console.error("✗ patterns: guard rails failed — nothing deployed for this package"); process.exitCode = 1; continue; }
+  }
 
   if (!existsSync(join(dir, "dist"))) {
     console.error(`✗ ${p}: no dist/ — build first (pnpm run build / pnpm run zeta:build)`);

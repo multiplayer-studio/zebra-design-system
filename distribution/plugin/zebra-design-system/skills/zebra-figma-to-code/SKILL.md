@@ -13,7 +13,7 @@ invention.
 ## Before anything — load the contract into context first
 
 Do not read the Figma design or write any code until you have **read, in
-full**, both of these:
+full**, all of these:
 
 1. **`DESIGN.md`** — resolve it in this order and read the first that exists:
    1. `node_modules/@zebra-design-system/react-baseui/DESIGN.md`
@@ -29,13 +29,20 @@ full**, both of these:
    deps resolve themselves via version tags.
 2. **`AGENTS.md`** beside the same package — the usage contract and the
    component index for the installed version.
+3. **The UX patterns** — how screens are composed and behave. Read
+   `README.md` in `node_modules/@zebra-design-system/patterns/dist/` (it
+   installs with the library; fall back to the `patterns/` folder shipped
+   with this skill's plugin), then `zebra.md` and the pattern files the
+   README names for this task. They
+   cover what Figma does not draw: states, focus, back and close, motion.
+   Where the design breaks a rule, build it as designed and report it.
 
-Those two files are the authority; this skill only adds the Figma mapping and
-never overrides them. Then:
+DESIGN.md and AGENTS.md are the authority; this skill only adds the Figma
+mapping and never overrides them. Then:
 
-3. Confirm the setup imports exist once at the app entry:
+4. Confirm the setup imports exist once at the app entry:
    `@zebra-design-system/tokens/css` and `@zebra-design-system/icons/icons.css`.
-4. Read the Figma selection via the Figma MCP tools before writing any code:
+5. Read the Figma selection via the Figma MCP tools before writing any code:
    every frame, text node, variant property and bound token. Never build from
    the thumbnail.
 
@@ -85,6 +92,7 @@ tokens, not by eye alone.
 ## Report
 
 End with: components used, any token or component gaps (with the workaround
-taken), any text style that had no match, and any undesigned path left inert.
+taken), any text style that had no match, any undesigned path left inert, and any
+pattern rule the design breaks, by number (`patterns 4.21`).
 These findings are the design system's feedback channel — encourage the user
 to pass them to the design system team.

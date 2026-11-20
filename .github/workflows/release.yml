@@ -1,5 +1,5 @@
 # Release lane (step 0.10). Two lanes, one workflow:
-# - The four pnpm packages release through Changesets: accumulated changesets
+# - The five pnpm packages release through Changesets: accumulated changesets
 #   become a "Version Packages" PR; merging it versions, rewrites workspace:*
 #   ranges and publishes.
 # - zeta-web keeps its Conventional-Commits versioning and publishes through

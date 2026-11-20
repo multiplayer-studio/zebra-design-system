@@ -1,7 +1,7 @@
 # Changesets
 
-Versioning for the four pnpm-workspace packages: tokens, icons,
-react-baseui and web-components. zeta-web is not covered here — it sits
+Versioning for the five pnpm-workspace packages: tokens, icons,
+patterns, react-baseui and web-components. zeta-web is not covered here — it sits
 outside the pnpm workspace (Yarn Berry) and versions through its existing
 Conventional-Commits flow, driven by the same CI release workflow.
 

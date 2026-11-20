@@ -36,8 +36,16 @@ The three libraries share tokens, icons and specs, but no component code.
 │   ├── _dump/             Raw export data the token builder reads
 │   └── _docs/             Token changelog, audit and what the Figma Tokens page documents
 ├── specs/<component>/     Component contracts, as .spec.json and .spec.md
+├── patterns/              The UX patterns: how screens are composed and behave. Plain Markdown, edited by hand.
+│   ├── README.md          The list of patterns and which ones a task needs
+│   ├── NN-<pattern>.md    One file per pattern, each holding numbered rules
+│   ├── terms.md           What each pattern word means
+│   ├── devices.md         Zebra devices
+│   └── zebra.md           Pattern word to Zebra component or token
+├── distribution/          Consumer skills and the two Claude Code plugins, generated from the sources above
 └── packages/
     ├── icons/             @zebra-design-system/icons: icon fonts, CSS, glyph names
+    ├── patterns/          @zebra-design-system/patterns: a copy of patterns/, packed
     ├── web-components/    @zebra-design-system/web-components, and the token CSS builder
     ├── react-baseui/      @zebra-design-system/react-baseui
     └── zeta-web/          @zebra-fed/zeta-web, the legacy library
@@ -51,6 +59,18 @@ The three libraries share tokens, icons and specs, but no component code.
 | `packages/react-baseui` | React components. Base UI brings behaviour and accessibility, we bring the visuals. | `<Button>` etc. | pnpm | [localhost:6008](http://localhost:6008) |
 | `packages/zeta-web` | The legacy Zeta Web library, being refined from Zebra specs, tokens and icons in Zeta's own code style | `zeta-*` | Yarn 4 | [localhost:6006](http://localhost:6006) |
 | `packages/icons` | Icon fonts generated from Figma. Icons are font glyphs, never SVGs. | — | pnpm | Open `preview.html` |
+| `packages/patterns` | The UX patterns as plain Markdown, copied from `patterns/`. No code, no dependencies. | — | pnpm | — |
+
+## Patterns
+
+`patterns/` holds the rules for how screens are composed and behave. The rules name no component and no token, so a product on any component system can follow them, and `zebra.md` maps them onto Zebra.
+
+- Edit the files in `patterns/` by hand: change, add or delete a rule, or add or delete a file. A new rule takes the next free number; a deleted rule leaves a gap.
+- A new file also needs a row in [patterns/README.md](patterns/README.md).
+- Guard rails run when the patterns are packaged and stop it with the file and line if, for example, a rule file names a token or a Zebra component. [patterns/README.md](patterns/README.md) lists them.
+- Run `pnpm run docs:components` afterwards. It refreshes the copies in the packages and plugins and regenerates each copy's `manifest.json` from the files.
+
+Consumers get the pack with a Zebra library, alone as `@zebra-design-system/patterns`, or through the `zebra-patterns` plugin. Two skills use it: `zebra-ux-patterns` applies the rules and `zebra-ux-audit` audits a product against them.
 
 ## Getting started
 

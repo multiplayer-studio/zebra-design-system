@@ -9,7 +9,11 @@ import "@zebra-design-system/icons/icons.css"; // @font-face must load in the do
 import "@zebra-design-system/web-components";  // registers every zds-* element
 ```
 Run `npx zebra-skills` once to install this package's Claude Code skills
-(`zebra-figma-to-code`, `zebra-build-ui`, `zebra-prototype`) into the project's .claude/skills.
+(`zebra-figma-to-code`, `zebra-build-ui`, `zebra-prototype`,
+`zebra-onboard-project`, `zebra-ux-patterns`, `zebra-ux-audit`) into the
+project's .claude/skills.
+The UX patterns install with this package as `@zebra-design-system/patterns`:
+read its AGENTS.md before composing a screen.
 
 ## Rules
 - Elements are `<zds-*>`; attributes/properties are documented in the

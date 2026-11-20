@@ -10,7 +10,11 @@ import "@zebra-design-system/icons/icons.css"; // icon font faces
 React 19 is a peer dependency; a bundler is required (components import their
 own CSS as side effects — never import or recreate styles by hand).
 Run `npx zebra-skills` once to install this package's Claude Code skills
-(`zebra-figma-to-code`, `zebra-build-ui`, `zebra-prototype`) into the project's .claude/skills.
+(`zebra-figma-to-code`, `zebra-build-ui`, `zebra-prototype`,
+`zebra-onboard-project`, `zebra-ux-patterns`, `zebra-ux-audit`) into the
+project's .claude/skills.
+The UX patterns install with this package as `@zebra-design-system/patterns`:
+read its AGENTS.md before composing a screen.
 
 ## Rules
 - Import components from `@zebra-design-system/react-baseui`; anything under

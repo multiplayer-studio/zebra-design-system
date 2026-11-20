@@ -175,11 +175,16 @@ claude plugin install zebra-design-system@zebra-design-system</pre></div>
         <li><span class="skill-tag">skill <code>zebra-figma-to-code</code></span> — turns a Figma design into working screens.</li>
         <li><span class="skill-tag">skill <code>zebra-build-ui</code></span> — designs screens from a written brief.</li>
         <li><span class="skill-tag">skill <code>zebra-prototype</code></span> — builds shareable prototypes as claude.ai pages.</li>
+        <li><span class="skill-tag">skill <code>zebra-onboard-project</code></span> — sets a project up once, from nothing, a Figma design or a codebase, and saves its context in a <code>zebra-context</code> folder for every later prototype.</li>
+        <li><span class="skill-tag">skill <code>zebra-ux-patterns</code></span> — applies Zebra's rules for how screens are composed and behave.</li>
+        <li><span class="skill-tag">skill <code>zebra-ux-audit</code></span> — audits any product against those rules, whatever it is built with.</li>
         <li><span class="skill-tag">command <code>/zebra-setup</code></span> — wires any project to the system and fixes what's missing.</li>
         <li><span class="skill-tag">command <code>/zebra-components</code></span> — answers "what exists?" from the official catalog.</li>
       </ul>
       <p class="muted">Every skill reads the system's design contract before touching anything,
          so the output follows Zebra's rules, not Claude's general taste.</p>
+      <p class="muted">Auditing a product that isn't built with Zebra? Install only the rules and the
+         two UX skills: <code>claude plugin install zebra-patterns@zebra-design-system</code>.</p>
     </section>
 
     <section id="prototype" aria-labelledby="t-prototype">

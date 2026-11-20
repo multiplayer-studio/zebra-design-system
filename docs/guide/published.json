@@ -1,13 +1,13 @@
 {
   "url": "https://claude.ai/artifact/FB685boKEuodGJj7Xw3ymX",
-  "publishedAt": "2026-11-18T16:15:58.010Z",
+  "publishedAt": "2026-11-20T01:55:42.316Z",
   "areas": {
     "components": "fc2b07662bfcac8ba4a27653261d59b9cb5f0aa604eeb0a9e8de77d3af68d403",
     "tokens": "bc8906e3289a4d58399a25c5930eb48ea53c37f0ea909a5db1e88eb8e9717fb8",
     "icons": "6c81fb89a1f6a04e4038c575194c40071ade304eb1b9489e7e8605b501706507",
     "specs": "97a206e650daf563393a32cdbf937e72720479ee3a456fec2706297b8c2674ef",
-    "docs": "52cdf9fb13d581c29025c93e3944b1493c7c418b1d4b6880966675582c330b6c",
+    "docs": "67f4cfc5acdc81604e94c16776ef1da10649cdcd38a88c7bd109e008235ca962",
     "skills": "e9f1b134e26d5a1cebae12236c393a25e69bd8e7c5d4f3b36acb7ba2135d6b19",
-    "guide": "b804a44e37c9d4a24daf7a12698b96c1e724098ae2126fe34836d813a12f624d"
+    "guide": "2147c272afe021c767b70a730883acdf7adede3a756adaed5c17a3e052dd74dd"
   }
 }

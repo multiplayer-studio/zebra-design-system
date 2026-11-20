@@ -168,7 +168,11 @@ import "@zebra-design-system/icons/icons.css"; // icon font faces
 React 19 is a peer dependency; a bundler is required (components import their
 own CSS as side effects — never import or recreate styles by hand).
 Run \`npx zebra-skills\` once to install this package's Claude Code skills
-(\`zebra-figma-to-code\`, \`zebra-build-ui\`, \`zebra-prototype\`) into the project's .claude/skills.
+(\`zebra-figma-to-code\`, \`zebra-build-ui\`, \`zebra-prototype\`,
+\`zebra-onboard-project\`, \`zebra-ux-patterns\`, \`zebra-ux-audit\`) into the
+project's .claude/skills.
+The UX patterns install with this package as \`@zebra-design-system/patterns\`:
+read its AGENTS.md before composing a screen.
 
 ## Rules
 - Import components from \`@zebra-design-system/react-baseui\`; anything under
@@ -203,7 +207,11 @@ import "@zebra-design-system/icons/icons.css"; // @font-face must load in the do
 import "@zebra-design-system/web-components";  // registers every zds-* element
 \`\`\`
 Run \`npx zebra-skills\` once to install this package's Claude Code skills
-(\`zebra-figma-to-code\`, \`zebra-build-ui\`, \`zebra-prototype\`) into the project's .claude/skills.
+(\`zebra-figma-to-code\`, \`zebra-build-ui\`, \`zebra-prototype\`,
+\`zebra-onboard-project\`, \`zebra-ux-patterns\`, \`zebra-ux-audit\`) into the
+project's .claude/skills.
+The UX patterns install with this package as \`@zebra-design-system/patterns\`:
+read its AGENTS.md before composing a screen.
 
 ## Rules
 - Elements are \`<zds-*>\`; attributes/properties are documented in the
@@ -235,6 +243,13 @@ ${list}
 - Non-CSS stacks read the DTCG JSON: \`manifest.json\` for collections, modes
   and the extension graph; \`base/*\` per collection mode; \`extensions/*\`
   hold only what each brand overrides.
+- A project's own theme is generated, never hand-written: \`npx zebra-theme
+  <name>.theme.json\` builds \`.ext-<name>\` from a small file of overrides,
+  the way the shipped extensions are built, so it holds in every mode and on
+  any container. \`npx zebra-theme --list\` shows the tokens a theme can
+  change, and \`--init <name>\` writes a starter file. A theme changes values,
+  never names; load its CSS after the token CSS. Read the command's header in
+  \`bin/zebra-theme.mjs\` for the file format.
 - Versioning: a new token is a minor, a removed or renamed token is a major,
   a value change is a patch — themes are allowed to move.
 `,
@@ -254,6 +269,33 @@ ${list}
 - Verify a name exists in \`codepoints.json\` before using it; a missing name
   renders nothing, silently. \`inventory.json\` lists icons rejected from the
   font build.
+`,
+    has: () => false,
+  },
+  "patterns": {
+    title: "@zebra-design-system/patterns",
+    blurb: "The Zebra UX patterns: component-agnostic rules for how screens are composed and behave, as plain Markdown.",
+    agents: () => `# Using @zebra-design-system/patterns
+
+Rules for how screens are composed and behave. They name no component and no
+token, so they apply to any component system, Zebra or not.
+
+- Start at \`dist/manifest.json\`. It is generated at packaging time and
+  lists every pattern file (title, summary, sections, rule count) and every
+  reference file. Never assume a file name: read the list from it.
+- \`dist/README.md\` says which patterns a task needs.
+- Pattern files are named NN-name.md. Each holds numbered rules; the bold
+  sentence is the rule. A rule that starts "By default" may be overridden.
+  Accessibility minimums (06) come before every other rule.
+- \`dist/terms.md\` defines the words the rules use. \`dist/zebra.md\` maps
+  them to Zebra components and tokens: read it only in a project built with
+  a Zebra library. \`dist/devices.md\` lists Zebra devices.
+- Refer to a rule by its number: \`patterns 4.21\` is rule 21 of file 04.
+  Cite only numbers that exist.
+- Run \`npx zebra-patterns-skills\` once to install the Claude Code skills
+  \`zebra-ux-patterns\` (apply) and \`zebra-ux-audit\` (audit) into the
+  project's .claude/skills. A Zebra library's \`npx zebra-skills\` installs
+  them too.
 `,
     has: () => false,
   },
@@ -340,9 +382,40 @@ for (const dir of ["react-baseui", "web-components"]) {
   cpSync(join(SKILLS_SRC, "install-skills.mjs"), join(pkgDir, "bin", "install-skills.mjs"));
 }
 
+/* ---- the pattern pack: its own package and its own plugin -------------------- */
+// The UX patterns are authored once in <repo>/patterns and are useful with no
+// Zebra code at all, so they also leave on their own: the patterns package
+// and the zebra-patterns plugin carry the pack plus only the two UX skills.
+// packages/patterns/build.mjs runs the guard rails, copies that folder and
+// generates manifest.json. A failed guard rail stops this generator.
+const PATTERN_SKILLS = ["zebra-ux-patterns", "zebra-ux-audit"];
+const patternsDir = join(ROOT, "packages", "patterns");
+const patternsVersion = JSON.parse(readFileSync(join(patternsDir, "package.json"), "utf8")).version;
+const buildPack = (out) =>
+  execSync(`"${process.execPath}" build.mjs --quiet --out "${out}"`, { cwd: patternsDir, stdio: ["ignore", "ignore", "inherit"] });
+const copyPatternSkills = (dest) => {
+  rmSync(dest, { recursive: true, force: true });
+  mkdirSync(dest, { recursive: true });
+  for (const s of PATTERN_SKILLS) cpSync(join(SKILLS_SRC, s), join(dest, s), { recursive: true });
+};
+copyPatternSkills(join(patternsDir, "skills"));
+mkdirSync(join(patternsDir, "bin"), { recursive: true });
+cpSync(join(SKILLS_SRC, "install-skills.mjs"), join(patternsDir, "bin", "install-skills.mjs"));
+{
+  const plug = join(ROOT, "distribution", "plugin", "zebra-patterns");
+  copyPatternSkills(join(plug, "skills"));
+  buildPack(join(plug, "patterns"));
+  // The plugin's version is the pack's: Claude Code only offers an update
+  // when plugin.json's version changes.
+  const manifestPath = join(plug, ".claude-plugin", "plugin.json");
+  const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
+  manifest.version = patternsVersion;
+  writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
+}
+
 /* ---- the Claude Code plugin (distribution/plugin) --------------------------- */
 // Same sources, third wrapper: the plugin carries the skills, the component
-// catalog, the consumer DESIGN.md and a versions.json pinning the npm
+// catalog, the consumer DESIGN.md, the pattern pack and a versions.json pinning the npm
 // versions it documents. Regenerated here, so the Changesets version PR
 // (whose script runs this generator) updates the pins automatically.
 {
@@ -360,9 +433,11 @@ for (const dir of ["react-baseui", "web-components"]) {
     if (f.endsWith(".md")) cpSync(join(OUT, f), join(plug, "docs", "components", f));
   }
   writeFileSync(join(plug, "docs", "DESIGN.md"), consumerDesign);
+  // the pattern pack: the skills' fallback when the package is not installed
+  buildPack(join(plug, "patterns"));
   // version pins (step 2.6): which npm versions this plugin documents
   const pins = {};
-  for (const dir of ["tokens", "icons", "react-baseui", "web-components", "zeta-web"]) {
+  for (const dir of ["tokens", "icons", "patterns", "react-baseui", "web-components", "zeta-web"]) {
     const m = JSON.parse(readFileSync(join(ROOT, "packages", dir, "package.json"), "utf8"));
     pins[m.name] = m.version;
   }

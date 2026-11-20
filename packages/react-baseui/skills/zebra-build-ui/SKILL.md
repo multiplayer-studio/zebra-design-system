@@ -12,7 +12,7 @@ way the system would.
 ## Before anything — load the contract into context first
 
 Do not make any design decision or write any code until you have **read, in
-full**, both of these:
+full**, all of these:
 
 1. **`DESIGN.md`** — resolve it in this order and read the first that exists:
    1. `node_modules/@zebra-design-system/react-baseui/DESIGN.md`
@@ -29,11 +29,17 @@ full**, both of these:
 2. **`AGENTS.md`** beside the same package — the usage contract; skim its
    component index before designing, because the control you are about to
    hand-build almost certainly exists.
+3. **The UX patterns** — how screens are composed and behave. Read
+   `README.md` in `node_modules/@zebra-design-system/patterns/dist/` (it
+   installs with the library; fall back to the `patterns/` folder shipped
+   with this skill's plugin), then `zebra.md` and the pattern files the
+   README names for this task. For a new product, read every pattern
+   file. Follow each rule unless it starts "By default".
 
-Principles, shape inheritance and theming live in those files, and they
-override anything here. Then:
+Principles, shape inheritance and theming live in DESIGN.md and AGENTS.md,
+behaviour and layout in the patterns, and they override anything here. Then:
 
-3. Confirm the setup imports exist once at the app entry:
+4. Confirm the setup imports exist once at the app entry:
    `@zebra-design-system/tokens/css` and `@zebra-design-system/icons/icons.css`.
 
 ## Designing on-system
@@ -68,6 +74,6 @@ not verification.
 
 ## Report
 
-End with what you composed from the library, anything you had to hand-build
+End with the pattern rules that shaped the design, by number (`patterns 4.21`), what you composed from the library, anything you had to hand-build
 (and why no component fit), and any token gaps — that list is what the design
 system team needs to hear.
