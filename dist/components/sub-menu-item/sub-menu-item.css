@@ -1,0 +1,134 @@
+/* Sub Menu Item — every value is a semantic token from the shared token
+   layer. Keyed off [data-shape] / [data-nested] / [data-selected] / [data-disabled], which
+   SubMenuItem sets (and CollapsibleMenuItem's header, which reuses the row).
+   Kept rule-for-rule in step with zds-sub-menu-item's styles.
+
+   Spec: specs/sub-menu-item/sub-menu-item.spec.md */
+
+.zds-sub-menu-item {
+  /* reset the <a> / <button> UA styles so both render identically */
+  appearance: none;
+  margin: 0;
+  border: none;
+  font: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+  text-align: start;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  /* --- geometry ------------------------------------------------------- */
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%; /* fills its slot (Figma draws it fixed at 184px) */
+  /* Figma's min width is a raw 48px; control/lg is the same intent. */
+  min-width: var(--control-lg);
+  min-height: var(--control-lg);
+  padding: var(--space-2xs) var(--space-md);
+  /* Shape=rounded (the default); sharp is below. */
+  border-radius: var(--radius-sm);
+
+  /* --- colour: state axis -------------------------------------------- */
+  background: var(--zds-sub-menu-item-bg);
+  color: var(--zds-sub-menu-item-fg);
+  --zds-sub-menu-item-bg: transparent; /* Figma: no fill */
+  --zds-sub-menu-item-fg: var(--foreground-primary);
+}
+
+/* ---- shape: the rail's, code-only (owner decision) ---------------------- */
+.zds-sub-menu-item[data-shape="sharp"] {
+  border-radius: var(--radius-none);
+}
+
+/* ---- nested ------------------------------------------------------------- */
+.zds-sub-menu-item[data-nested] {
+  padding-inline-start: var(--space-xl);
+  --zds-sub-menu-item-fg: var(--foreground-secondary);
+}
+
+/* ---- icon and title ----------------------------------------------------- */
+.zds-sub-menu-item__lead {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--space-md);
+  min-width: 0;
+}
+
+.zds-sub-menu-item__icon {
+  flex: none;
+}
+
+.zds-sub-menu-item__label {
+  /* One line, end-truncated. The metadata says the row "neither truncates
+     nor wraps"; following Figma's single line, truncation is what keeps a
+     long name inside the fixed-width panel. */
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--label-medium-font-family), system-ui, sans-serif;
+  font-size: var(--label-medium-font-size);
+  font-weight: var(--label-medium-font-weight);
+  line-height: var(--label-medium-line-height);
+  letter-spacing: var(--label-medium-letter-spacing);
+}
+.zds-sub-menu-item[data-nested] .zds-sub-menu-item__label {
+  font-family: var(--indicator-medium-font-family), system-ui, sans-serif;
+  font-size: var(--indicator-medium-font-size);
+  font-weight: var(--indicator-medium-font-weight);
+  line-height: var(--indicator-medium-line-height);
+  letter-spacing: var(--indicator-medium-letter-spacing);
+}
+
+/* ---- badge + caret ------------------------------------------------------ */
+.zds-sub-menu-item__badge,
+.zds-sub-menu-item__caret {
+  flex: none;
+}
+
+.zds-sub-menu-item__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- state: hover / active (pressed) — CSS, never props ----------------- */
+/* Ghost tokens alone (spec warn "Double alpha"). */
+.zds-sub-menu-item:hover:not([data-disabled]) {
+  --zds-sub-menu-item-bg: var(--interactive-ghost-background-hover);
+}
+.zds-sub-menu-item:active:not([data-disabled]) {
+  --zds-sub-menu-item-bg: var(--interactive-ghost-background-pressed);
+  /* Pressed is the one state where nested and unnested labels converge. */
+  --zds-sub-menu-item-fg: var(--interactive-neutral-foreground-default);
+}
+
+/* ---- state: selected ---------------------------------------------------- */
+.zds-sub-menu-item[data-selected] {
+  --zds-sub-menu-item-bg: var(--interactive-ghost-background-selected);
+  --zds-sub-menu-item-fg: var(--interactive-ghost-foreground-default);
+}
+
+/* ---- disabled ----------------------------------------------------------- */
+.zds-sub-menu-item[data-disabled] {
+  --zds-sub-menu-item-bg: transparent;
+  --zds-sub-menu-item-fg: var(--foreground-disabled);
+  cursor: default;
+}
+
+/* ---- focus: not modelled in Figma (spec) -------------------------------- */
+.zds-sub-menu-item:focus-visible {
+  outline: var(--stroke-thick) solid var(--border-focus);
+  outline-offset: calc(-1 * var(--stroke-thick));
+}
