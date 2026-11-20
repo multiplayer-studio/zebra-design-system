@@ -31,7 +31,7 @@ AskUserQuestion tool where there is one) and ask one question:
 
 | Option | Its description |
 |---|---|
-| **Free exploration** | Describe an idea and build it straight from the Zebra Design System. Nothing to review first. |
+| **Free exploration** | Describe an idea and build it straight from the Design System. Nothing to review first. |
 | **Figma reference** | Build from a Figma design, matching its variants, spacing and typography. |
 | **From a repo** | Start from an existing codebase: its theme, structure and screens. |
 
@@ -43,8 +43,9 @@ Then get what the path needs, again with the question prompt wherever the
 answer is a choice:
 
 - **Free exploration.** One dialog: what the prototype runs on (more than
-  one may apply), its modes, and Zebra's brand or its own. If the request
-  didn't describe the idea, ask for it in one plain line.
+  one may apply), its modes, and the Design System's colours or its own
+  brand. If the request didn't describe the idea, ask for it in one plain
+  line.
 - **Figma reference.** Ask for the link in one plain line if there isn't
   one. If the link holds more frames than one prototype needs, list them and
   ask which to build.
@@ -56,12 +57,32 @@ Now run the `zebra-onboard-project` skill with that path and those answers.
 It reviews the source, saves the context and comes back here. It doesn't ask
 again what you already asked.
 
+Everything you say to the designer follows Talking with the designer in the
+`zebra-onboard-project` skill: the system is "the Design System", the words
+are plain and short, and a question's summary sits inside its dialog.
+
 ### What the context decides
 
 The context decides how this prototype is built. If its `level` is
 `off-system`, follow `references/OFF-SYSTEM.md` in the
 `zebra-onboard-project` skill instead of the component and token rules
 below. Everything else here still applies.
+
+### A source is matched first
+
+A prototype built from a Figma design or a codebase follows
+`references/SOURCE-PARITY.md` in the `zebra-onboard-project` skill:
+
+- the first build matches the source strictly: its spacing, fonts,
+  components and words. A part the Design System can't match as it comes
+  gets a small style change, or is built in the project, with custom parts
+  kept under 20%;
+- ask only when something can't be matched, or the limit would be passed;
+- don't make up functionality or data. A screen that needs live data you
+  can't reach is the one case to ask about;
+- after the first build, list the parts that were adjusted and ask whether
+  to switch them to the Design System's own versions. If the designer says
+  no, carry on as it is.
 
 ### A Figma reference decides more
 
@@ -80,8 +101,9 @@ skill, all six steps:
   change. Never put an icon, initials or a grey box where the design has a
   picture. Icons go the other way: never import one from Figma, use the
   closest glyph in the icon set;
-- where the frame and the system can't both be followed and a reviewer would
-  see it, show the designer both in a dialog and let them choose;
+- where the frame and the system differ, match the frame, and list it for
+  the question after the first build. Ask before building only when the
+  frame can't be matched;
 - compare the result with the frame by measurement before handing over.
 
 ## Then — load the contract into context

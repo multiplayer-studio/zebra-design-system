@@ -11,8 +11,36 @@ components it uses, and what it runs on. This skill agrees that context with
 the designer once and saves it in the project, so the next prototype, the
 next designer and a later audit all start from the same place.
 
-It is written for designers. Use plain words, show what you found before you
-ask, and ask as little as you can.
+It is written for designers. Show what you found before you ask, and ask as
+little as you can.
+
+## Talking with the designer
+
+These apply to everything you say or show to the designer, in this skill and
+in every build that follows it.
+
+- **Call it the Design System.** In conversation the system is "the Design
+  System", never "Zebra". Package names, class names and file names stay as
+  they are in the files, and stay out of the conversation unless the
+  designer asks.
+- **Plain words, short sentences.** The designer is not a developer. Say
+  what they would see on the screen, not how it is built.
+
+  | Don't say | Say |
+  |---|---|
+  | token, variable | colour, spacing, text size |
+  | override, custom property | a small style change |
+  | component gap | a part the Design System doesn't have |
+  | viewport, breakpoint | screen size |
+  | repo, codebase | the app's code |
+  | level: themed | the Design System with your own colours |
+
+- **Keep it short.** A few lines. Lead with what was done or what you need.
+- **The summary goes inside the dialog.** When you ask a question, what the
+  designer needs in order to answer is in the question prompt itself: the
+  question text, and each option's description. Don't write the summary in
+  the reply and the question in the dialog. One dialog covers one concern,
+  so what is being decided and its choices read as one group.
 
 ## The context folder
 
@@ -46,7 +74,12 @@ files.
 | Architecture | Proposed from the brief | Read from frames | Read from routes and layouts |
 | Patterns | The pattern defaults | Departures seen in frames | Departures seen in screens |
 | Surfaces | Asked | Read from frame sizes | Read from breakpoints |
-| Components | Zebra's | Mapped to Zebra's | Mapped to Zebra's |
+| Companion and AI | Read from the brief | Read from the frames | Read from the screens |
+| Components | Zebra's | Matched to the source | Matched to the source |
+| Functionality and data | Proposed from the brief | Only what the frames show | Only what the screens show |
+
+A project with a source is built to match it first
+(`references/SOURCE-PARITY.md`).
 
 A project with both a Figma design and a repo reviews both. The Figma design
 is the look to aim for and the repo is what ships today. Where they disagree,
@@ -114,7 +147,18 @@ Then choose the level you recommend:
 | **Off-system** | the source's own library | the source's own | offered only when a trigger below applies |
 
 The shipped extensions are listed by `npx zebra-theme --list` (its last
-line). Offer one when the review shows the project already uses it.
+line).
+
+**Companion is read from the source, never asked.** A project uses the
+Companion extension, or marks out an assistant or AI content, when its
+frames or screens show it: the Companion colours, an assistant surface, AI
+content marked out. Record what you saw as **observed**. With no source,
+read it from the brief; when the brief doesn't mention it, record none, as
+**assumed**. The same goes for any other shipped extension.
+
+In conversation the levels are "the Design System", "the Design System with
+your own colours" and "your own library". `PROJECT.md` keeps the `level`
+values as they are.
 
 **Off-system is offered, never assumed,** and only when:
 - the source is built on an established library: a public, documented
@@ -129,10 +173,12 @@ Before a designer chooses off-system, tell them what it gives up
 
 ### 5. Confirm
 
-Show the designer the draft as a short summary: one line per file, then the
-items marked **to ask**. Ask those with the question prompt, likely answer
+Ask the items marked **to ask** with the question prompt, likely answer
 first, and no more than four questions. If there are more, ask the four that
-change the build most and record the rest as **assumed**.
+change the build most and record the rest as **assumed**. Each question
+carries what you found about it, in the question itself, in plain words
+("Your design uses purple for buttons and links. Keep it, or use the Design
+System's blue?").
 
 Every question here goes through the question prompt (the AskUserQuestion
 tool where there is one), as options to pick. Never type a list of questions
@@ -144,10 +190,12 @@ confirmation. The designer can change the context later by asking.
 
 The questions a free exploration usually needs:
 
-- "Does <project> use Zebra's brand, or its own?" (**Zebra's** / **Its own brand**). Its own brand needs the brand colour, as a hex value or a brand guide to read it from.
+- "Does <project> use the Design System's colours, or its own brand?" (**The Design System's** / **Its own brand**). Its own brand needs the brand colour, as a colour value or a brand guide to read it from.
 - "What will <project> run on?" Offer the form factors in the patterns' `devices.md` (handheld, tablet, vehicle mount, kiosk, desktop). More than one may apply.
 - "Which modes does <project> have?" (**Light and dark** / **Light only** / **Dark only**).
-- "Does <project> have any special treatments, such as AI interactions?" (**No** / **Yes**).
+
+Special treatments, Companion and AI are not asked. They come from the brief
+(step 4).
 
 Rules for what is confirmed:
 
@@ -157,7 +205,9 @@ Rules for what is confirmed:
 - **Special treatments.** A treatment is something the product marks out visually, such as AI interactions. Record which the product has. An AI treatment marks AI and nothing else (`patterns 8.95`), and follows the patterns' AI file. A treatment the system doesn't have is never invented: record it under Requests.
 - **Status colours are never themed** (`patterns 8.13`). A brand colour that would read as an error stays out of the action role (`patterns 8.89`).
 
-Then ask the designer to confirm the whole context: **Looks right** /
+Then ask the designer to confirm the whole context in one dialog. The
+summary is in the dialog: one plain line per concern (the look, what it runs
+on, how the product is laid out, the parts it uses), then **Looks right** /
 **Change something**.
 
 ### 6. Save
@@ -171,7 +221,23 @@ Write the files, following `references/CONTEXT-FILES.md`.
 Tell the designer the context is saved in `zebra-context/` and should be
 committed with their work.
 
-### 7. Keep it current
+### 7. The first build from a source
+
+A project with a Figma design or a codebase is first built to match it,
+strictly: follow `references/SOURCE-PARITY.md`. In short:
+
+- match the source's spacing, fonts and components, with the Design System's
+  component where it fits, a small style change where it nearly fits, and a
+  custom component in the project where nothing fits;
+- keep custom components under 20% of the parts on the screen, and ask when
+  the source needs more, or when something can't be matched at all;
+- don't make up functionality or data. Ask before making up data for a
+  screen that fills in from live data;
+- after the first build, tell the designer which parts were adjusted and ask
+  whether to switch them to the Design System's own versions. If they say
+  no, carry on as it is.
+
+### 8. Keep it current
 
 The context is used and updated by every later prototype:
 

@@ -1,5 +1,31 @@
 # @zebra-design-system/react-baseui
 
+## 0.7.1
+
+### Patch Changes
+
+- Onboarding and prototyping from a source. A project that starts from a Figma
+  design or a codebase is first built to match it strictly: its spacing, fonts,
+  components and words, with a style change or a custom component kept in the
+  project where the Design System can't match, and custom components kept under
+  20%. Nothing is made up: no extra functionality or data, and the skill asks
+  before inventing data for a screen that needs live data. After the first
+  build it lists the adjusted parts and asks whether to switch them to the
+  Design System's own versions. Companion and AI use are read from the source,
+  not asked. The skills now speak to designers in plain words, call the system
+  "the Design System", and keep each question's summary inside its dialog.
+- 23f7c6a: New `zebra-handoff` skill, installed by `npx zebra-skills`: hands a finished
+  prototype to developers as a build spec. It compares the page in
+  `prototypes/<name>/` with its last handoff (a copy kept in its `handoff/marks/`),
+  confirms the changes with the designer in one dialog, and writes a spec that
+  names each `zds-*` element as the app's library names it, with its props,
+  semantic tokens (with their value in each mode), states, behaviour, surfaces
+  and copy. The first handoff saves which library the app is built with in
+  `zebra-context/PROJECT.md`. `zebra-prototype` now keeps its page in
+  `prototypes/<name>/` so it can be handed off.
+- Updated dependencies
+  - @zebra-design-system/icons@0.2.1
+
 ## 0.7.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "url": "https://claude.ai/artifact/FB685boKEuodGJj7Xw3ymX",
-  "publishedAt": "2026-11-20T21:37:03.043Z",
+  "publishedAt": "2026-11-20T21:56:03.756Z",
   "areas": {
     "components": "046cb78c840b12d90a5cc7abbfc552bad7c6845e26d478740c9f06da5c735697",
     "tokens": "bc8906e3289a4d58399a25c5930eb48ea53c37f0ea909a5db1e88eb8e9717fb8",
@@ -8,6 +8,6 @@
     "specs": "60c1b38ac34c68759c43d91f89282eaf1db2be7a1aecaf680004c0a3a8a51533",
     "docs": "8da2d11b594da959f42dc7c0404343fb06d68f8dd4e3047db66f79b6fe42591f",
     "skills": "008830155dc118fb5e236585a95a6d2fff723dee17ed9a8421f2b086db519517",
-    "guide": "53d3b3de09aad7796d0e82ef90007afc2698c17fbc1e69b5739044ac75798331"
+    "guide": "119b15cffea7753842638bbf73542d3e79d97fad6647fb5c772335959a3ab194"
   }
 }

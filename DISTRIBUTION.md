@@ -31,11 +31,11 @@ Each package's **packed root** — dist built, `files`-filtered, denylist-checke
 | Package | Latest branch | Pinned tag (current) |
 |---|---|---|
 | `@zebra-design-system/tokens` | `dist/tokens` | `tokens-v0.3.0` |
-| `@zebra-design-system/icons` | `dist/icons` | `icons-v0.2.0` |
+| `@zebra-design-system/icons` | `dist/icons` | `icons-v0.2.1` |
 | `@zebra-design-system/patterns` | `dist/patterns` | `patterns-v0.2.0` |
-| `@zebra-design-system/react-baseui` | `dist/react-baseui` | `react-baseui-v0.7.0` |
-| `@zebra-design-system/web-components` | `dist/web-components` | `web-components-v0.7.0` |
-| `@zebra-design-system/zeta-web` | `dist/zeta-web` | `zeta-web-v0.7.0` |
+| `@zebra-design-system/react-baseui` | `dist/react-baseui` | `react-baseui-v0.7.1` |
+| `@zebra-design-system/web-components` | `dist/web-components` | `web-components-v0.7.1` |
+| `@zebra-design-system/zeta-web` | `dist/zeta-web` | `zeta-web-v0.7.1` |
 
 Consumers install with plain npm/pnpm/yarn and git access to the repo:
 
@@ -46,7 +46,7 @@ npm i "git+https://github.com/multiplayer-studio/zebra-design-system.git#react-b
 
 Internal dependencies resolve themselves: the branch manifests point
 `@zebra-design-system/*` deps at this repo's version tags, so installing
-react-baseui pulls icons from `#icons-v0.2.0` with no registry anywhere.
+react-baseui pulls icons from `#icons-v0.2.1` with no registry anywhere.
 Updates: branches are force-updated to the newest version (re-run `npm update`
 / reinstall to move); tags never move, and every branch commit is tagged, so
 old lockfile SHAs stay fetchable forever.

@@ -1,6 +1,6 @@
 {
   "name": "@zebra-design-system/icons",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Zebra Design System icon fonts, generated from Figma by the zebra-figma-icon-font skill",
   "type": "module",
   "files": [

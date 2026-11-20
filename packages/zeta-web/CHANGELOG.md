@@ -1,5 +1,12 @@
 # @zebra-design-system/zeta-web
 
+## 0.7.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @zebra-design-system/icons@0.2.1
+
 ## 0.7.0
 
 ### Minor Changes

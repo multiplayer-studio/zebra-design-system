@@ -31,6 +31,7 @@ shape-full:                    # the cases that are fully round, if any
 density: comfortable           # comfortable | compact
 surfaces: [handheld, desktop]  # form factors, from the patterns' devices.md
 special-treatments: [ai-interactions]
+adjusted-components: keep      # with a source, the answer after the first build: keep | switch | not asked yet
 library: none                  # off-system only: name, exact version, the URL it loads from
 handoff:                       # added by zebra-handoff at the project's first handoff
   library: react-baseui        # what the app is built with: react-baseui | web-components | zeta-web | none
@@ -142,5 +143,8 @@ all marked kept.
 ```
 
 **Match** is one of: same anatomy, composed (built from Zebra components),
-gap (nothing fits; recorded under Requests in `PROJECT.md`), or hand-built
+adjusted (the Zebra component with a style change kept in the project, to
+match the source; Notes says what changed), custom (built in the project to
+match the source; counted against the 20% limit in `SOURCE-PARITY.md`), gap
+(nothing fits; recorded under Requests in `PROJECT.md`), or hand-built
 (off-system only, with what was guessed).

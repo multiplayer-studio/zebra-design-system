@@ -45,8 +45,9 @@ headings. Read those three sections there.
 Map each component the screens use to the Zebra component with the same
 anatomy. The project's existing components are what ships today, so:
 
-- a prototype at the **Zebra** or **themed** level uses the Zebra component,
-  and `COMPONENTS.md` records what it replaces;
+- a prototype at the **Zebra** or **themed** level matches the project's
+  component first, with the Zebra component as it is, adjusted or custom, as
+  `SOURCE-PARITY.md` says, and `COMPONENTS.md` records which;
 - a prototype at the **off-system** level reproduces the project's component
   as it is;
 - either way, where a Zebra spec would improve the project's component,

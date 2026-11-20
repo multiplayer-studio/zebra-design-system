@@ -1,5 +1,11 @@
 # @zebra-design-system/icons
 
+## 0.2.1
+
+### Patch Changes
+
+- `llms.txt` links point at the repo's current home, multiplayer-studio/zebra-design-system.
+
 ## 0.2.0
 
 ### Minor Changes

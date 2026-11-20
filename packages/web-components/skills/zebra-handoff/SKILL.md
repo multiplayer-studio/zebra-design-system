@@ -62,8 +62,8 @@ it up once:
    - **Several:** ask "Which library do <project>'s developers build these
      screens with?", offering the ones found.
    - **None, or no codebase to read:** ask the same question, offering
-     **React Base UI** / **Web components** / **Zeta web** / **Not on Zebra
-     yet**. Not on Zebra yet means the developers start with `/zebra-setup`;
+     **React Base UI** / **Web components** / **Zeta web** / **Not on the Design
+     System yet**. That means the developers start with `/zebra-setup`;
      the spec then names each component by its doc name.
 2. **Where the app is**, if it isn't this folder: the path or repo, from the
    context's `reference`. Ask only if there is none.

@@ -155,6 +155,13 @@ listed in the report.
 
 ## 4. Raise the obvious deviations before building
 
+**In a prototype, match first.** `zebra-prototype` follows
+`SOURCE-PARITY.md` in the `zebra-onboard-project` skill: each deviation
+below is built as the frame draws it, with a style change or a custom part
+kept in the project, and they are all put to the designer in one question
+after the first build. Ask before building only what can't be matched. The
+rest of this step is for application code.
+
 A deviation is anywhere the build can't be both the frame and the system.
 Collect them from the inventory. One is **obvious** when a reviewer would see
 it without measuring:
