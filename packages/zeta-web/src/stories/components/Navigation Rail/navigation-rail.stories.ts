@@ -131,3 +131,43 @@ export const RailWidthAndHeaderAction: StoryObj<ZetaNavigationRail> = {
     </div>
   `
 };
+
+/**
+ * Modes and the divider. The rail follows the page's mode. `inverse` shows the opposite shade, and `locked` keeps it
+ * dark (light with `inverse`) whatever the page does. `show-divider` draws the divider on the rail's trailing edge.
+ */
+export const ModesAndDivider: StoryObj<ZetaNavigationRail> = {
+  argTypes: {
+    slot: { table: { disable: true } }
+  },
+  render: () => html`
+    <div style="display: grid; grid-template-columns: repeat(4, max-content); gap: 16px;">
+      ${(
+        [
+          ["light page", "light", false, false],
+          ["light page, inverse", "light", true, false],
+          ["light page, locked", "light", false, true],
+          ["light page, locked + inverse", "light", true, true],
+          ["dark page", "dark", false, false],
+          ["dark page, inverse", "dark", true, false],
+          ["dark page, locked", "dark", false, true],
+          ["dark page, locked + inverse", "dark", true, true]
+        ] as const
+      ).map(
+        ([label, theme, inverse, locked]) => html`<div
+          data-theme=${theme}
+          style="display: grid; grid-template-rows: auto 1fr; gap: 8px; padding: 16px; height: 300px; background: var(--surface-page); color: var(--foreground-primary);"
+        >
+          <span>${label}</span>
+          <div style="display: flex; min-height: 0;">
+            <zeta-navigation-rail expanded show-divider ?inverse=${inverse} ?locked=${locked}>
+              <zeta-navigation-header slot="header" headline="ACME"><zeta-avatar slot="mark" size="s">AC</zeta-avatar></zeta-navigation-header>
+              <zeta-navigation-rail-item selected><zeta-icon slot="icon">home</zeta-icon>Home</zeta-navigation-rail-item>
+              <zeta-navigation-rail-item><zeta-icon slot="icon">chart_bar</zeta-icon>Reports</zeta-navigation-rail-item>
+            </zeta-navigation-rail>
+          </div>
+        </div>`
+      )}
+    </div>
+  `
+};

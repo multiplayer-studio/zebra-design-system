@@ -109,3 +109,16 @@ export const GlobalHeader: StoryObj = {
     )}`;
   }
 };
+
+/** Rounded and not anchored: the bar floats, so it rounds its own corners and takes the medium shadow. */
+export const Floating: StoryObj = {
+  ...GlobalHeader,
+  args: { rounded: true, anchored: false },
+  decorators: [story => html`<div style="padding: 24px;">${story()}</div>`]
+};
+
+/** `showProfile` false hides the account control; the app switcher then sits alone. */
+export const WithoutProfile: StoryObj = {
+  ...GlobalHeader,
+  args: { showProfile: false }
+};
