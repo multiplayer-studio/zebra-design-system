@@ -1,0 +1,67 @@
+/* Stepper — Horizontal Stepper and Vertical Stepper. They paint nothing
+   themselves: every colour arrives with the steps they hold (step.css). This
+   file lays the steps out. Keyed off orientation, size and card.
+
+   Spec: specs/stepper/stepper.spec.md */
+
+.zds-stepper {
+  display: flex;
+  box-sizing: border-box;
+  color: var(--foreground-primary);
+}
+.zds-stepper :is(ol, p) { margin: 0; padding: 0; }
+.zds-stepper ol { list-style: none; counter-reset: zds-step; }
+
+/* ---- Horizontal Stepper, size: default ----------------------------------- */
+/* Steps share the width. The last one, with no line, takes only its head. */
+.zds-stepper[data-orientation="horizontal"][data-size="default"] { padding-inline: var(--space-md); }
+.zds-stepper[data-orientation="horizontal"] .zds-stepper__steps {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: flex-start;
+  min-inline-size: 0;
+}
+
+/* ---- Horizontal Stepper, size: compact ----------------------------------- */
+.zds-stepper[data-size="compact"] {
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.zds-stepper__summary,
+.zds-stepper__heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  min-inline-size: 0;
+}
+.zds-stepper__step-info {
+  display: flex;
+  gap: var(--space-2xs);
+  color: var(--foreground-tertiary);
+  font: var(--text-label-medium);
+  letter-spacing: var(--label-medium-letter-spacing);
+  white-space: nowrap;
+}
+.zds-stepper__title {
+  color: var(--foreground-primary);
+  font: var(--text-title-medium);
+  letter-spacing: var(--title-medium-letter-spacing);
+}
+.zds-stepper__subtitle {
+  color: var(--foreground-secondary);
+  font: var(--text-body-small);
+  letter-spacing: var(--body-small-letter-spacing);
+}
+.zds-stepper__segments {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+/* ---- Vertical Stepper: a rail, or a column of cards ---------------------- */
+.zds-stepper[data-orientation="vertical"] .zds-stepper__steps {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+.zds-stepper[data-orientation="vertical"][data-card] .zds-stepper__steps { gap: var(--space-sm); }

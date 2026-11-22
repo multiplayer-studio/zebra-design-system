@@ -1,0 +1,95 @@
+/* TopAppBar — every value is a semantic token. Sharp has no radius token bound
+   in Figma, so it uses radius/none (spec issue).
+
+   Spec: specs/top-app-bar/top-app-bar.spec.md */
+
+/* ---- bar ---------------------------------------------------------------- */
+.zds-top-app-bar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  box-sizing: border-box;
+  padding: var(--space-md) var(--space-sm);
+  background: var(--surface-section);
+  border-radius: var(--radius-none);
+  color: var(--foreground-primary);
+}
+
+.zds-top-app-bar[data-shape="rounded"] {
+  border-radius: var(--radius-element-sm);
+}
+
+.zds-top-app-bar[data-type="extended"] {
+  gap: var(--space-lg);
+}
+
+/* ---- content row -------------------------------------------------------- */
+.zds-top-app-bar__main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.zds-top-app-bar__main--search {
+  justify-content: flex-start;
+  gap: var(--space-md);
+}
+
+.zds-top-app-bar__field {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+}
+
+.zds-top-app-bar__leading {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.zds-top-app-bar__page-header {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.zds-top-app-bar[data-type="centered"] .zds-top-app-bar__page-header {
+  justify-content: center;
+}
+
+.zds-top-app-bar__trailing {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-none);
+}
+
+/* ---- text --------------------------------------------------------------- */
+.zds-top-app-bar__title {
+  margin: 0;
+  font-family: var(--label-large-font-family), system-ui, sans-serif;
+  font-size: var(--label-large-font-size);
+  font-weight: var(--label-large-font-weight);
+  line-height: var(--label-large-line-height);
+  letter-spacing: var(--label-large-letter-spacing);
+}
+
+.zds-top-app-bar[data-type="centered"] .zds-top-app-bar__title,
+.zds-top-app-bar__count {
+  font-family: var(--label-medium-font-family), system-ui, sans-serif;
+  font-size: var(--label-medium-font-size);
+  font-weight: var(--label-medium-font-weight);
+  line-height: var(--label-medium-line-height);
+  letter-spacing: var(--label-medium-letter-spacing);
+}
+
+/* ---- second row --------------------------------------------------------- */
+.zds-top-app-bar__second-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding-inline: var(--space-sm);
+}
