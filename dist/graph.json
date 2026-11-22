@@ -1,0 +1,74 @@
+{
+  "name": "@zebra-design-system/patterns",
+  "version": "0.3.0",
+  "note": "Generated when the patterns are packaged. Do not edit: change the .md files and package again.",
+  "entry": [],
+  "recipes": [],
+  "edges": [],
+  "organisms": [],
+  "spacing": [
+    {
+      "step": "tight",
+      "order": 1,
+      "between": "an icon and its label; a label and its field",
+      "floor": "the component's own gap"
+    },
+    {
+      "step": "related",
+      "order": 2,
+      "between": "items in one group: fields in a section, rows of facts, buttons in a group",
+      "floor": "tight"
+    },
+    {
+      "step": "heading",
+      "order": 3,
+      "between": "a heading and the content it heads",
+      "floor": "tight"
+    },
+    {
+      "step": "inset",
+      "order": 4,
+      "between": "a container's edge and its content",
+      "floor": "related"
+    },
+    {
+      "step": "gutter",
+      "order": 5,
+      "between": "cards or tiles side by side",
+      "floor": "related"
+    },
+    {
+      "step": "group",
+      "order": 6,
+      "between": "groups inside one section",
+      "floor": "inset"
+    },
+    {
+      "step": "section",
+      "order": 7,
+      "between": "sections of a page",
+      "floor": "group"
+    },
+    {
+      "step": "page",
+      "order": 8,
+      "between": "the page's edge and its content",
+      "floor": "inset"
+    }
+  ],
+  "bindings": {
+    "zebra": {
+      "spacing": {
+        "tight": "`--space-2xs` under a label, `--space-xs` beside an icon. Inside a component, its own gap.",
+        "related": "`--space-sm`, or `--space-md` between fields and between rows that are targets",
+        "heading": "`--space-sm`",
+        "inset": "`--space-lg`, or `--space-md` at compact width. Never less than `--space-card`.",
+        "gutter": "`--space-gutter`",
+        "group": "`--space-xl`",
+        "section": "`--space-2xl`. Never less than `--space-section`.",
+        "page": "`--space-page`. The size mode on the root changes its value with width."
+      },
+      "organisms": {}
+    }
+  }
+}
