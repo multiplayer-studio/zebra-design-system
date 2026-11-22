@@ -22,8 +22,8 @@ the frame draws.
 
 Space says how closely things are related. Take every gap from the spacing
 steps in the patterns' `compositions/spacing.md`, with the tokens `zebra.md`
-gives for each step under Spacing steps. The screen's recipe says which step
-goes between its regions. Never use a smaller step for a weaker relationship
+gives for each step under Spacing steps. A composition the screen started from, if there
+is one, suggests which step goes between its regions. Never use a smaller step for a weaker relationship
 than for a stronger one.
 
 Two checks keep the ladder honest:
@@ -152,7 +152,8 @@ be cramped or broken.
 
 Then check by hand, from part 1:
 
-- every check in the screen's recipe answers yes;
+- the checks in the composition the screen started from: a "no" that breaks
+  a rule is fixed, and any other "no" is kept only if it was meant;
 - each gap sits on the ladder, and weaker relationships have the larger gap;
 - the space above each heading is at least twice the space below it;
 - like items share one padding, one gap and one size;

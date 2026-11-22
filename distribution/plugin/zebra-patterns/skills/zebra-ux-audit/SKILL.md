@@ -67,7 +67,12 @@ from a still image. Say it was not assessed.
 
 ## 6. Compare each screen with its recipe
 
-Read `compositions/README.md` in the patterns folder. For each screen in
+Compositions are reference ideas, never rules. A screen is never marked
+down for differing from one. This step looks for ideas worth offering, and
+only the rules decide what is a finding.
+
+Read `compositions/README.md` in the patterns folder. If it lists no
+compositions, skip this step and say so in the report. For each screen in
 scope:
 
 1. Match it to a recipe by the recipe's signals. Say which, and why. A

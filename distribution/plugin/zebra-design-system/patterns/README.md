@@ -2,7 +2,7 @@
 
 Principles for how screens are composed and behave. They describe roles (a filter, a system notification, a primary action), not a particular component, so they hold in any product and any design system: Zebra's, Material 3, or a product's own.
 
-It is a folder of plain Markdown files. Edit them by hand.
+It is a folder of plain Markdown files. In the repository the `zebra-pattern-ingest` skill adds rules and keeps the files organised; they can also be edited by hand.
 
 ## Files
 
@@ -20,7 +20,7 @@ It is a folder of plain Markdown files. Edit them by hand.
 | [10-data-display.md](10-data-display.md) | Choosing the form, tables, list items, records, status and numbers in data, charts, live data, maps |
 | [terms.md](terms.md) | The pattern words in one place |
 | [devices.md](devices.md) | The Zebra device list |
-| [compositions/](compositions/README.md) | Recipes for whole screens, by the person's job: regions, organisms, spacing and checks |
+| [compositions/](compositions/README.md) | Reference ideas, never rules: how a screen or an area can be put together, by the person's job |
 | [zebra.md](zebra.md) | Pattern word → Zebra component, token or theme class. Only for projects built with Zebra. |
 
 ## How a file is laid out
@@ -69,6 +69,8 @@ Every file numbers the same way: sections from 1, and rules by file, so `4.21` i
 - Keep rule files and compositions free of component and token names. Put those in [zebra.md](zebra.md).
 
 In the repository, run `pnpm run docs:components` after editing, so the shipped copies match.
+
+To add a rule with help, ask for it in plain words ("add a rule that…"). The `zebra-pattern-ingest` skill asks which pattern file it belongs in, checks that it contradicts no rule already here, and writes it in this layout.
 
 ## Checks at packaging
 

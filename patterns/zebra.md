@@ -101,29 +101,6 @@ The blocks in [compositions/organisms.md](compositions/organisms.md). Most have 
 
 | Organism | Zebra |
 |---|---|
-| Page header | Screen Header Bar on desktop, Top App Bar on mobile |
-| Identity block | Compose: Avatar or Icon, a title, Status Label, secondary text |
-| Fact grid | Compose: a grid of label and value text. No component. |
-| Section navigator | Tab Bar. Select at compact width with many sections. |
-| Commit bar | Compose: a pinned bar with Button. The commit is `flavour="primary"`. |
-| Search field | Search |
-| Filter bar | Compose: Filter Chip, Dropdown for sort, Input Chip for active filters |
-| Collection row | A Table row, or compose a list row. Card only when items differ in kind. |
-| Selection bar | Top App Bar in its selection state on mobile. Compose on desktop. |
-| Summary tile | Compose: Card with label, value and comparison text |
-| Chart card | Compose: Card. No chart component yet. Report it as a gap. |
-| Exception item | Notification Item, or compose: Icon Indicator, text, Button |
-| Current item | Compose: Card with the item, its facts and its position |
-| Step list | Stepper |
-| Step footer | Compose: a pinned bar with Button. Next is `flavour="primary"`. |
-| Field group | Compose: a heading with Input, Select and the other field components |
-| Review block | Compose: a heading, a fact grid and a text Button for Change |
-| Message list | Chat Message |
-| Composer | Message Input (experimental) |
-| Scan target | Compose: instruction text, the result, and Input for typing instead |
-| Viewfinder | No component. Compose it full screen with Icon Button. |
-| Decision card | Compose: Card. No AI mark yet. Report it as a gap. |
-| State block | Compose: Icon, text and Button. Progress Circle while loading. |
 
 ## Theme
 

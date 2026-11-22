@@ -35,16 +35,26 @@ disagree, the manifest is right.
 - **Any other system:** skip `zebra.md`. Map each pattern word to the
   project's own component by the meaning `terms.md` gives it.
 
-## 3. Compose whole screens from a recipe
+## 3. Start whole screens from a composition
+
+Compositions are reference ideas, never rules. They show one good way to
+put a screen together, and they are there to draw from when there is no
+design to follow. Adapt one, combine two, or leave it, as the product needs.
+Only the numbered rules are meant to be followed, and a rule always wins
+over a composition.
 
 When the task is a whole screen, or a suggestion for one, read
-`compositions/README.md` in the same folder and walk it:
+`compositions/README.md` in the same folder. If it lists no composition for
+the job, compose the screen from the numbered rules and the spacing steps,
+and skip the rest of this step. Otherwise use the composition as a starting
+point:
 
 1. **Job.** Pick the recipe from the person's job, using the README's first
    table and each recipe's "Choose this when". A screen that fits none is
-   composed from `compositions/organisms.md`.
-2. **Regions.** Lay down the recipe's regions in order. Keep every `always`
-   region, and a `when` region only if its condition is true.
+   composed from the numbered rules.
+2. **Regions.** Start from the recipe's regions in order: the `always`
+   regions, and a `when` region if its condition is true. Add, drop or
+   reorder where the product has a reason.
 3. **Variations.** Apply each one whose condition is true for this project's
    widths, data and states.
 4. **Organisms.** Fill each region with its organism and that organism's
@@ -52,15 +62,17 @@ When the task is a whole screen, or a suggestion for one, read
    another system, map each slot to the project's own parts.
 5. **Space.** Use the recipe's spacing steps, from `compositions/spacing.md`.
    On Zebra, `zebra.md` (Spacing steps) gives the tokens.
-6. **Checks.** Answer every check for the finished screen. A "no" is fixed
-   before the work is handed over.
+6. **Checks.** Look the finished screen over with the checks. A "no" that
+   breaks the rule the check names is fixed. Any other "no" is a choice:
+   keep it if it was meant.
 
 `graph.json` holds the same recipes as data, written when the patterns are
 packaged. Use it when a tool needs to walk them. The Markdown is the source.
 
 For an existing screen, don't rebuild it to the recipe. Match it to a recipe
 by its signals, compare region by region, and offer the differences as
-suggestions, each with the recipe line and the rule it comes from.
+ideas, each with the recipe line and the rule it comes from, if any. Never
+call a difference from a composition wrong.
 
 ## 4. Apply
 

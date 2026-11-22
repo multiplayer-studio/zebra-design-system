@@ -2,9 +2,9 @@
   "documents": {
     "@zebra-design-system/tokens": "0.3.0",
     "@zebra-design-system/icons": "0.2.1",
-    "@zebra-design-system/patterns": "0.2.0",
-    "@zebra-design-system/react-baseui": "0.7.1",
-    "@zebra-design-system/web-components": "0.7.1",
-    "@zebra-design-system/zeta-web": "0.7.1"
+    "@zebra-design-system/patterns": "0.3.0",
+    "@zebra-design-system/react-baseui": "0.7.2",
+    "@zebra-design-system/web-components": "0.7.2",
+    "@zebra-design-system/zeta-web": "0.7.2"
   }
 }

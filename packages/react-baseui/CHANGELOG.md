@@ -1,5 +1,14 @@
 # @zebra-design-system/react-baseui
 
+## 0.7.2
+
+### Patch Changes
+
+- Compositions are reference ideas, never rules, and the set starts again from empty. The seven screen recipes and the organisms drafted in 0.2.0 are removed, with their rows in `zebra.md`; `graph.json` ships with no recipes until new compositions are added. The spacing steps stay. The `zebra-ux-patterns`, `zebra-ux-audit` and `zebra-prototype` skills use a composition as a starting point to adapt when there is one, and compose from the numbered rules when there is none. An audit never reports a difference from a composition as a finding.
+- Updated dependencies
+- Updated dependencies
+  - @zebra-design-system/patterns@0.3.0
+
 ## 0.7.1
 
 ### Patch Changes

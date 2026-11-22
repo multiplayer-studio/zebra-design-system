@@ -1,13 +1,13 @@
 {
   "url": "https://claude.ai/artifact/FB685boKEuodGJj7Xw3ymX",
-  "publishedAt": "2026-11-20T22:07:05.286Z",
+  "publishedAt": "2026-11-22T01:27:30.390Z",
   "areas": {
     "components": "046cb78c840b12d90a5cc7abbfc552bad7c6845e26d478740c9f06da5c735697",
     "tokens": "bc8906e3289a4d58399a25c5930eb48ea53c37f0ea909a5db1e88eb8e9717fb8",
     "icons": "6c81fb89a1f6a04e4038c575194c40071ade304eb1b9489e7e8605b501706507",
     "specs": "60c1b38ac34c68759c43d91f89282eaf1db2be7a1aecaf680004c0a3a8a51533",
-    "docs": "8da2d11b594da959f42dc7c0404343fb06d68f8dd4e3047db66f79b6fe42591f",
-    "skills": "008830155dc118fb5e236585a95a6d2fff723dee17ed9a8421f2b086db519517",
-    "guide": "837f00a9d8ea3f1dc686177adec5ab25f017e757615a82e742108d64066187b9"
+    "docs": "e194569fa475b3307b5176b295d38f3264e53ac20a1d7e23bf17c5c3e6ab55b5",
+    "skills": "420083f9cd38954959cd12ebd5ce8f4bac43fb6abd81597fd75c20fdfbf54d70",
+    "guide": "aecf7da7f617abee90f334b408bb4beec236b838eb3b08159b5b087f1a34ddbb"
   }
 }

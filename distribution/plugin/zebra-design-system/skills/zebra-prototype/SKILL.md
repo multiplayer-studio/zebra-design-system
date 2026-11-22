@@ -196,8 +196,10 @@ same artifact URL on every iteration so the shared link stays current.
 The rules are `zebra-build-ui`'s. DESIGN.md is the authority on how things
 look, and the UX patterns on how screens are composed and behave:
 
-- **Start each screen from its recipe.** Read `compositions/README.md` in
-  the patterns folder, pick the recipe for the screen's job, and walk it as
+- **Start each screen from a composition.** Compositions are reference
+  ideas, never rules: a starting point to adapt. Read `compositions/README.md` in
+  the patterns folder. If it has none for the screen's job, compose from the
+  rules. Otherwise pick the recipe for the screen's job, and walk it as
   `zebra-ux-patterns` step 3 says: regions in order, the variations that are
   true, each organism with its slots, the recipe's spacing steps, then its
   checks. `zebra.md` says what each organism and spacing step is in Zebra.

@@ -1,24 +1,19 @@
 # Compositions
 
-How whole screens are put together. The numbered pattern files say what is true of any screen. These files turn those rules into recipes: for one kind of job, which regions a screen has, in what order, what fills each, how it changes, and how to tell it is right.
+Reference ideas for how a screen, or an area of one, can be put together. The numbered pattern files say what is true of any screen. These files show one good way of applying them: for one kind of job, which regions a screen has, in what order, what fills each, how it changes, and questions to look it over with.
 
-They are written to be walked, by a person or by a tool. A screen being built starts at the table below and follows one recipe down. A screen that already exists is matched to a recipe by its signals and compared with it, region by region.
+**A composition is a reference idea, never a rule.** It is a starting point to draw from, adapt or set aside. Only the numbered rules are meant to be followed. A screen that differs from a composition has broken nothing, and where a composition and a rule disagree, the rule is right.
 
-Like the rule files, these are plain Markdown, edited by hand, in pattern words only. When the patterns are packaged, `graph.json` is written from them. Never write or edit it.
+They are written to be walked, by a person or by a tool. A screen being built can start at the table below and follow one recipe down, changing whatever the product needs. A screen that already exists can be matched to a recipe by its signals, to see what ideas it offers.
+
+Like the rule files, these are plain Markdown, in pattern words only. In the repository the `zebra-pattern-ingest` skill adds to them, from a description or from a design; they can also be edited by hand. When the patterns are packaged, `graph.json` is written from them. Never write or edit it.
 
 ## Start from the job
 
 | The person wants to | Recipe |
 |---|---|
-| find one item among many | [find-one.md](find-one.md) |
-| see or change one object | [act-on-one.md](act-on-one.md) |
-| get through a run of items, one after another | [work-through-many.md](work-through-many.md) |
-| know whether things are all right | [monitor.md](monitor.md) |
-| make something new, a step at a time | [create-in-steps.md](create-in-steps.md) |
-| ask, and get an answer | [converse.md](converse.md) |
-| take something in from the world: a scan, a photo, a reading | [capture.md](capture.md) |
 
-A screen that fits none of these is composed for its job (1.5), from the blocks in [organisms.md](organisms.md) and the spacing in [spacing.md](spacing.md).
+There are no compositions yet. Until there are, a screen is composed for its job (1.5) from the numbered rules, with the spacing in [spacing.md](spacing.md).
 
 ## Supporting files
 
@@ -38,7 +33,7 @@ Every recipe has the same six headings, in this order.
 | **Regions** | The screen's regions in order. **Present** is `always`, `optional` or `when` followed by a condition. **Filled by** links to an organism |
 | **Variations** | When a condition is true, what changes |
 | **Space and emphasis** | **Focal** names the region the eye lands on. The table gives the spacing step between regions |
-| **Checks** | Questions with a yes or no answer. A finished screen answers yes to each |
+| **Checks** | Questions with a yes or no answer, to look a screen over with. A "no" is worth a look, not a failure, unless it breaks the rule the check names |
 
 The **Rules** column gives the pattern rules a line comes from. A line with none is this recipe's own, and is marked (suggested) when it sets a number the rules don't.
 

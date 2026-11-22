@@ -36,7 +36,7 @@ The three libraries share tokens, icons and specs, but no component code.
 │   ├── _dump/             Raw export data the token builder reads
 │   └── _docs/             Token changelog, audit and what the Figma Tokens page documents
 ├── specs/<component>/     Component contracts, as .spec.json and .spec.md
-├── patterns/              The UX patterns: how screens are composed and behave. Plain Markdown, edited by hand.
+├── patterns/              The UX patterns: how screens are composed and behave. Plain Markdown, managed with the zebra-pattern-ingest skill.
 │   ├── README.md          The list of patterns and which ones a task needs
 │   ├── NN-<pattern>.md    One file per pattern, each holding numbered rules
 │   ├── terms.md           What each pattern word means
@@ -65,7 +65,7 @@ The three libraries share tokens, icons and specs, but no component code.
 
 `patterns/` holds the rules for how screens are composed and behave. The rules name no component and no token, so a product on any component system can follow them, and `zebra.md` maps them onto Zebra.
 
-- Edit the files in `patterns/` by hand: change, add or delete a rule, or add or delete a file. A new rule takes the next free number; a deleted rule leaves a gap.
+- Add to and organise `patterns/` with the `zebra-pattern-ingest` skill: ask for a rule in plain words, pick the pattern file it goes in, and settle any contradiction it finds. The files can still be edited by hand. A new rule takes the next free number; a deleted rule leaves a gap.
 - A new file also needs a row in [patterns/README.md](patterns/README.md).
 - [patterns/compositions/](patterns/compositions/README.md) holds recipes for whole screens, by the person's job. Packaging writes them to `graph.json`, which tools walk to compose a screen or to suggest changes to one.
 - Guard rails run when the patterns are packaged and stop it with the file and line if, for example, a rule file names a token or a Zebra component. [patterns/README.md](patterns/README.md) lists them.
