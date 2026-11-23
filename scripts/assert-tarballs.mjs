@@ -74,5 +74,26 @@ for (const dir of PLUGIN_PATTERNS) {
   }
 }
 
+// The plugin carries its own copy of the theming tool, so a designer with
+// the plugin and no packages can still theme a project. Check it is there
+// and that it runs.
+{
+  const tool = join(root, "distribution/plugin/zebra-design-system/tools/zebra-theme");
+  const wanted = ["bin/zebra-theme.mjs", "dist/manifest.json", "dist/tools/build-tokens-css.mjs", "dist/base", "dist/extensions"];
+  const missing = wanted.filter((f) => !existsSync(join(tool, f)));
+  if (missing.length) {
+    failed = true;
+    console.error(`✗ the plugin's theming tool is missing — run the build, then pnpm run docs:components:\n  ${missing.join("\n  ")}`);
+  } else {
+    try {
+      execSync(`"${process.execPath}" bin/zebra-theme.mjs --list=brand`, { cwd: tool, stdio: ["ignore", "pipe", "pipe"] });
+      console.log("✓ plugin theming tool: present and runs");
+    } catch (e) {
+      failed = true;
+      console.error(`✗ the plugin's theming tool does not run:\n  ${String(e.stderr || e.message).trim().split("\n")[0]}`);
+    }
+  }
+}
+
 if (failed) process.exit(1);
 console.log("All tarballs clean.");

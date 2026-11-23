@@ -9,9 +9,12 @@ extensions are built, so it holds in every mode and wherever its class is put.
 `patterns 8.86`). It only gives existing tokens new values. Components then
 follow it with no change.
 
-`zebra-theme` ships in `@zebra-design-system/tokens`. If `npx zebra-theme`
-isn't found, the installed tokens package is too old: say so, and ask the
-designer to update the Zebra packages before theming.
+`zebra-theme` ships in `@zebra-design-system/tokens`, and a copy ships with
+the Design System plugin. Find it as the `zebra-theme` skill's step 1 says:
+`npx zebra-theme` when the project has the packages, else the plugin's copy
+at `tools/zebra-theme/bin/zebra-theme.mjs`. Below, `npx zebra-theme` stands
+for whichever was found. Never ask the designer to install anything to get
+it.
 
 ## 1. Work out the ramps
 

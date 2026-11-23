@@ -1,5 +1,11 @@
 # @zebra-design-system/react-baseui
 
+## 0.7.3
+
+### Patch Changes
+
+- New `zebra-theme` skill, installed by `npx zebra-skills`: gives a project its own brand colour, neutrals or font as a generated theme, checked for contrast in every mode. It finds the `zebra-theme` tool in the project's packages, or uses the copy that now ships with the Claude Code plugin, so theming works for someone who has the plugin and no packages installed.
+
 ## 0.7.2
 
 ### Patch Changes

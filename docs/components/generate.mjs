@@ -169,8 +169,8 @@ React 19 is a peer dependency; a bundler is required (components import their
 own CSS as side effects — never import or recreate styles by hand).
 Run \`npx zebra-skills\` once to install this package's Claude Code skills
 (\`zebra-figma-to-code\`, \`zebra-build-ui\`, \`zebra-prototype\`,
-\`zebra-onboard-project\`, \`zebra-handoff\`, \`zebra-ux-patterns\`,
-\`zebra-ux-audit\`) into the project's .claude/skills.
+\`zebra-onboard-project\`, \`zebra-theme\`, \`zebra-handoff\`,
+\`zebra-ux-patterns\`, \`zebra-ux-audit\`) into the project's .claude/skills.
 The UX patterns install with this package as \`@zebra-design-system/patterns\`:
 read its AGENTS.md before composing a screen.
 
@@ -208,8 +208,8 @@ import "@zebra-design-system/web-components";  // registers every zds-* element
 \`\`\`
 Run \`npx zebra-skills\` once to install this package's Claude Code skills
 (\`zebra-figma-to-code\`, \`zebra-build-ui\`, \`zebra-prototype\`,
-\`zebra-onboard-project\`, \`zebra-handoff\`, \`zebra-ux-patterns\`,
-\`zebra-ux-audit\`) into the project's .claude/skills.
+\`zebra-onboard-project\`, \`zebra-theme\`, \`zebra-handoff\`,
+\`zebra-ux-patterns\`, \`zebra-ux-audit\`) into the project's .claude/skills.
 The UX patterns install with this package as \`@zebra-design-system/patterns\`:
 read its AGENTS.md before composing a screen.
 
@@ -445,6 +445,26 @@ cpSync(join(SKILLS_SRC, "install-skills.mjs"), join(patternsDir, "bin", "install
   writeFileSync(join(plug, "docs", "DESIGN.md"), consumerDesign);
   // the pattern pack: the skills' fallback when the package is not installed
   buildPack(join(plug, "patterns"));
+  // the theming tool: zebra-theme and the token data it reads, so the
+  // zebra-theme skill works for someone who has the plugin and no packages.
+  // Same layout as the tokens package (bin/ beside dist/), so the tool finds
+  // its data unchanged. Needs the tokens build; skipped with a note if absent.
+  {
+    const tok = join(ROOT, "packages", "tokens");
+    const tool = join(plug, "tools", "zebra-theme");
+    rmSync(tool, { recursive: true, force: true });
+    if (existsSync(join(tok, "dist", "tools", "build-tokens-css.mjs"))) {
+      mkdirSync(join(tool, "bin"), { recursive: true });
+      cpSync(join(tok, "bin", "zebra-theme.mjs"), join(tool, "bin", "zebra-theme.mjs"));
+      for (const part of ["manifest.json", "fonts.json", "base", "extensions", "tools"]) {
+        if (existsSync(join(tok, "dist", part))) cpSync(join(tok, "dist", part), join(tool, "dist", part), { recursive: true });
+      }
+      const v = JSON.parse(readFileSync(join(tok, "package.json"), "utf8")).version;
+      writeFileSync(join(tool, "README.md"), `# zebra-theme\n\nThe theming tool from \`@zebra-design-system/tokens\` ${v}, with the token data it reads. Generated: never edit. Run it with \`node bin/zebra-theme.mjs\`. The \`zebra-theme\` skill uses it when the packages are not installed in the project.\n`);
+    } else {
+      console.warn("plugin: packages/tokens/dist is not built, so tools/zebra-theme was not written. Run the build first.");
+    }
+  }
   // version pins (step 2.6): which npm versions this plugin documents
   const pins = {};
   for (const dir of ["tokens", "icons", "patterns", "react-baseui", "web-components", "zeta-web"]) {
