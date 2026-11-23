@@ -1,0 +1,1 @@
+import{type ReactiveController}from"lit";import{type ZetaRadioButton}from"./radio-button.js";export declare class RadioButtonController implements ReactiveController{private readonly host;constructor(host:ZetaRadioButton);private rootNode;hostConnected():void;hostDisconnected():void;handleChange():void;get radios():NodeListOf<ZetaRadioButton>|undefined;}
