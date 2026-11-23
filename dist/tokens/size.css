@@ -1,0 +1,68 @@
+/* size — Desktop
+   Generated from tokens/ by scripts/build-tokens-css.mjs — do not edit by hand.
+   Public API; use these names in components.
+*/
+
+:root {
+  --animations-smooth: 250ms ease-in-out;
+  --animations-spring: 250ms cubic-bezier(0.34, 1.36, 0.64, 1);
+  --container-default: var(--primitives-scale-container-3);
+  --control-icon-lg: var(--primitives-scale-10);
+  --control-icon-md: var(--primitives-scale-8);
+  --control-icon-sm: var(--primitives-scale-7);
+  --control-icon-xs: var(--primitives-scale-6);
+  --control-icon-xxs: var(--primitives-scale-5);
+  --control-lg: var(--primitives-scale-15);
+  --control-md: var(--primitives-scale-13);
+  --control-sm: var(--primitives-scale-12);
+  --control-target-min: var(--primitives-scale-13);
+  --control-xs: var(--primitives-scale-9);
+  --radius-container: var(--primitives-scale-6);
+  --radius-element-md: var(--primitives-scale-4);
+  --radius-element-sm: var(--primitives-scale-3);
+  --radius-lg: var(--primitives-scale-6);
+  --radius-md: var(--primitives-scale-5);
+  --radius-none: var(--primitives-scale-0);
+  --radius-pill: 9999px;
+  --radius-sm: var(--primitives-scale-3);
+  --radius-xl: var(--primitives-scale-7);
+  --radius-xs: var(--primitives-scale-2);
+  --shadow-large-blur: var(--primitives-scale-11);
+  --shadow-large-x: var(--primitives-scale-0);
+  --shadow-large-y: var(--primitives-scale-8);
+  --shadow-medium-blur: var(--primitives-scale-7);
+  --shadow-medium-x: var(--primitives-scale-0);
+  --shadow-medium-y: var(--primitives-scale-5);
+  --shadow-small-blur: var(--primitives-scale-4);
+  --shadow-small-x: var(--primitives-scale-0);
+  --shadow-small-y: var(--primitives-scale-2);
+  --shadow-xsmall-blur: var(--primitives-scale-1);
+  --shadow-xsmall-x: var(--primitives-scale-0);
+  --shadow-xsmall-y: var(--primitives-scale-1);
+  --shape: rounded;
+  --space-2xl: var(--primitives-scale-11);
+  --space-2xs: var(--primitives-scale-3);
+  --space-3xl: var(--primitives-scale-13);
+  --space-3xs: var(--primitives-scale-2);
+  --space-4xl: var(--primitives-scale-15);
+  --space-5xl: var(--primitives-scale-17);
+  --space-card: var(--primitives-scale-6);
+  --space-gutter: var(--primitives-scale-7);
+  --space-lg: var(--primitives-scale-7);
+  --space-md: var(--primitives-scale-6);
+  --space-neg-lg: var(--primitives-scale-minus-5);
+  --space-neg-md: var(--primitives-scale-minus-3);
+  --space-neg-sm: var(--primitives-scale-minus-2);
+  --space-neg-xl: var(--primitives-scale-minus-6);
+  --space-neg-xs: var(--primitives-scale-minus-1);
+  --space-none: var(--primitives-scale-0);
+  --space-page: var(--primitives-scale-7);
+  --space-section: var(--primitives-scale-9);
+  --space-sm: var(--primitives-scale-5);
+  --space-xl: var(--primitives-scale-9);
+  --space-xs: var(--primitives-scale-4);
+  --stroke-base: var(--primitives-scale-0);
+  --stroke-heavy: var(--primitives-scale-3);
+  --stroke-thick: var(--primitives-scale-2);
+  --stroke-thin: var(--primitives-scale-1);
+}

@@ -1,0 +1,213 @@
+/* File Upload, File Upload Item and File Indicator — every value is a
+   semantic token. Buttons are Button / IconButton and progress is
+   ProgressBar / ProgressCircle, each themed by its own CSS; this file lays
+   out the zone, the rows and the indicator tile.
+
+   Spec: specs/file-upload/file-upload.spec.json */
+
+/* ---- File Upload: root and zone ----------------------------------------- */
+.zds-file-upload {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  color: var(--foreground-primary);
+}
+.zds-file-upload__zone {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+  background: var(--surface-card);
+  /* Dashed 4/4 has no token (spec issue); the browser's dashed border stands in. */
+  border: var(--stroke-thin) dashed var(--border-default);
+  border-radius: var(--radius-md);
+}
+.zds-file-upload[data-shape="sharp"] .zds-file-upload__zone { border-radius: var(--radius-none); }
+.zds-file-upload__headline {
+  font: var(--text-title-medium);
+  letter-spacing: var(--title-medium-letter-spacing);
+  color: var(--foreground-primary);
+}
+.zds-file-upload__or {
+  font: var(--text-body-xsmall);
+  letter-spacing: var(--body-xsmall-letter-spacing);
+  color: var(--foreground-secondary);
+}
+.zds-file-upload__caption,
+.zds-file-upload__error {
+  font: var(--text-body-small);
+  letter-spacing: var(--body-small-letter-spacing);
+  color: var(--foreground-secondary);
+}
+.zds-file-upload__error {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  /* The glyph takes currentColor from the message (spec note). */
+  color: var(--foreground-error);
+}
+
+/* ---- File Upload: state ------------------------------------------------ */
+.zds-file-upload[data-state="dragging"] .zds-file-upload__zone {
+  background: var(--surface-info);
+  border-style: solid;
+  border-color: var(--border-focus);
+}
+.zds-file-upload[data-state="error"] .zds-file-upload__zone { border-color: var(--border-error); }
+.zds-file-upload[data-state="disabled"] .zds-file-upload__zone { background: var(--surface-subtle); }
+.zds-file-upload[data-state="disabled"] :is(.zds-file-upload__headline, .zds-file-upload__or, .zds-file-upload__caption) {
+  color: var(--foreground-disabled);
+}
+
+/* ---- File Upload: the Files slot --------------------------------------- */
+.zds-file-upload__files {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* ---- File Upload Item -------------------------------------------------- */
+.zds-file-upload-item {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--surface-card);
+  border: var(--stroke-thin) solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+.zds-file-upload-item[data-shape="sharp"] { border-radius: var(--radius-none); }
+.zds-file-upload-item[data-indicator="ring"] { align-items: center; }
+.zds-file-upload-item[data-status="error"] { border-color: var(--border-error); }
+.zds-file-upload-item__body {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-xs);
+}
+/* Bar rows sit their text down space/2xs, beside the 48 tile (spec drift note: ring rows have none). */
+.zds-file-upload-item[data-indicator="bar"] .zds-file-upload-item__body {
+  padding-block-start: var(--space-2xs);
+  padding-inline-end: var(--space-sm);
+}
+/* Bar rows: the dismiss sits a space/sm inset from the top and end edges, out of
+   flow, so the body runs full width and the percentage ends at the glyph's edge.
+   The name stops short of the button. */
+.zds-file-upload-item[data-indicator="bar"] > .zds-file-upload-item__dismiss {
+  position: absolute;
+  inset-block-start: var(--space-sm);
+  inset-inline-end: var(--space-sm);
+}
+.zds-file-upload-item[data-indicator="bar"] .zds-file-upload-item__name {
+  padding-inline-end: calc(var(--control-sm) - var(--space-md));
+}
+.zds-file-upload-item__name {
+  box-sizing: border-box;
+  max-inline-size: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font: var(--text-body-small);
+  letter-spacing: var(--body-small-letter-spacing);
+  color: var(--foreground-primary);
+}
+.zds-file-upload-item__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font: var(--text-body-xsmall);
+  letter-spacing: var(--body-xsmall-letter-spacing);
+  color: var(--foreground-secondary);
+}
+/* The status: a rule on its start edge, then the glyph and label. */
+.zds-file-upload-item__status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding-inline-start: var(--space-sm);
+  border-inline-start: var(--stroke-thin) solid var(--border-default);
+}
+.zds-file-upload-item__size:empty + .zds-file-upload-item__status,
+.zds-file-upload-item__status:first-child { padding-inline-start: 0; border-inline-start: 0; }
+.zds-file-upload-item[data-status="waiting"] .zds-file-upload-item__status { color: var(--foreground-tertiary); }
+.zds-file-upload-item[data-status="complete"] .zds-file-upload-item__status { color: var(--foreground-success); }
+.zds-file-upload-item[data-status="error"] .zds-file-upload-item__status { color: var(--foreground-error); }
+.zds-file-upload-item__progress {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding-block-start: var(--space-xs);
+}
+.zds-file-upload-item__progress > :first-child { flex: 1 1 auto; }
+.zds-file-upload-item__percent {
+  font: var(--text-body-xsmall);
+  letter-spacing: var(--body-xsmall-letter-spacing);
+  color: var(--foreground-primary);
+  font-variant-numeric: tabular-nums;
+}
+/* Try again sits under the meta line, flush with the text (a text button's padding is its own). */
+.zds-file-upload-item__retry { margin-inline-start: calc(-1 * var(--space-sm)); }
+.zds-file-upload-item__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+.zds-file-upload-item__sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .zds-file-upload-item {
+    animation: zds-file-upload-item-enter var(--animations-smooth, 200ms ease-out) both;
+    transition: border-color 200ms ease-out;
+  }
+}
+@keyframes zds-file-upload-item-enter {
+  from { opacity: 0; translate: 0 calc(-1 * var(--space-xs)); }
+}
+
+/* ---- File Indicator ---------------------------------------------------- */
+.zds-file-indicator {
+  position: relative;
+  flex: none;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--control-lg);
+  block-size: var(--control-lg);
+  border-radius: var(--radius-sm);
+  isolation: isolate;
+}
+/* surface/shade at Figma's literal 0.1 paint opacity (spec issue: no token for it). */
+.zds-file-indicator::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--surface-shade);
+  opacity: 0.1;
+}
+.zds-file-indicator[data-shape="sharp"] { border-radius: var(--radius-none); }
+.zds-file-indicator__badge {
+  display: inline-flex;
+  align-items: center;
+  padding-inline: var(--space-xs);
+  border-radius: var(--radius-xs);
+  font: var(--text-body-xsmall);
+  letter-spacing: var(--body-xsmall-letter-spacing);
+  color: var(--foreground-secondary);
+}

@@ -1,0 +1,21 @@
+/* IconButton — colour, border, shape, focus and disabled come from
+   button.css (same .zds-button class and data attributes), as the spec gives
+   Icon Button Button's flavours, shapes and states. Only the geometry is its
+   own: a square bound to control/sm, -md or -lg on both axes, space/xs on all
+   four sides. Mirrors packages/web-components icon-button.styles.ts.
+
+   Spec: specs/icon-button/icon-button.spec.md */
+
+/* ---- size: a fixed square, never hugging its content ------------- */
+.zds-button.zds-icon-button {
+  width: var(--control-sm);
+  padding: var(--space-2xs);
+}
+.zds-button.zds-icon-button[data-size="medium"] {
+  width: var(--control-md);
+  padding: var(--space-2xs);
+}
+.zds-button.zds-icon-button[data-size="large"] {
+  width: var(--control-lg);
+  padding: var(--space-2xs);
+}
