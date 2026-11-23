@@ -158,10 +158,9 @@ listed in the report.
 **In a prototype, match first, when the designer chose to match the
 project's look** (`look: match` in the context). `zebra-prototype` follows
 `SOURCE-PARITY.md` in the `zebra-onboard-project` skill: each deviation
-below is built as the frame draws it, with a style change or a custom part
-kept in the project, and they are all put to the designer in one question
-after the first build. Ask before building only what can't be matched. The
-rest of this step is for application code.
+below is built as the frame draws it, with a style change or a part built
+for the project, and none is put to the designer as a question. They are
+listed in the report. The rest of this step is for application code.
 
 A deviation is anywhere the build can't be both the frame and the system.
 Collect them from the inventory. One is **obvious** when a reviewer would see

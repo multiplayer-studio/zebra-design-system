@@ -1,5 +1,11 @@
 # @zebra-design-system/web-components
 
+## 0.7.5
+
+### Patch Changes
+
+- Matching a source is now one to one and asks nothing on the way. When a designer chooses to match a project's look, the build puts parity with the source, in look and in structure, ahead of using the Design System's parts: a part that doesn't reproduce the source exactly is changed or built for the project, and the 20% limit on custom parts is gone. After building, the skill checks parity against the source, a Figma design or a codebase alike, lists the gaps and fixes them itself until none is left. The setup questions, the final confirmation and the question after the first build no longer follow a choice to match; the build ends with a report instead. The one remaining question is whether to make up data for a screen that needs live data.
+
 ## 0.7.4
 
 ### Patch Changes

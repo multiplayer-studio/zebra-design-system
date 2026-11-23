@@ -1,50 +1,56 @@
-# Building from a source
+# Building to match a source
 
 For a project that starts from a Figma design, a codebase or both, **when
-the designer chose to match its look** (`look: match` in `PROJECT.md`,
-asked after the review in `zebra-onboard-project` step 5). Used by
+the designer chose to match its look** (`look: match` in `PROJECT.md`, asked
+after the review in `zebra-onboard-project` step 5). Used by
 `zebra-onboard-project` and `zebra-prototype`.
 
 It doesn't apply to a free exploration. With `look: design-system`, only
-section 4 applies (don't make anything up): the build uses the Design
+section 5 applies (don't make anything up): the build uses the Design
 System's parts as they come.
 
-The source is what the designer already has. The first build shows it back
-to them as it is, made from the Design System wherever that is possible.
-Moving closer to the Design System is their choice, and it comes after.
+## The goal: the same thing, 1:1
 
-## 1. The first build matches the source
+The build is the source, reproduced. Someone who puts the two side by side
+sees no difference, in how it looks and in how it is put together.
 
-Build the first layout strictly from the source: its spacing, its fonts, its
-components and their variants, its colours and its words. Don't tidy it,
-improve it or bring it into line.
+- **Visual parity:** every colour, font, size, weight, spacing, corner,
+  border, shadow, icon size and state looks the same.
+- **Architectural parity:** the same screens, the same regions in the same
+  order, the same hierarchy and nesting, the same navigation, the same
+  states and the same words.
 
-Match each part with the first of these that works:
+**Parity comes before using the Design System's parts.** A Design System
+part is used only where it reproduces the source exactly. Where it doesn't,
+the source wins, and the part is changed or built to match. There is no
+limit on how many parts are changed or built for the project.
 
-1. **The Design System's component**, set to the variant the source draws.
-2. **The Design System's component with a style change** kept in the
-   project: its spacing, corners, type or colour, through the component's
-   own custom properties and parts. Never edit the library.
-3. **A custom component built in the project**, from the Design System's
-   tokens, to the source's own measurements.
+**No questions on the way.** Once the designer has chosen to match, don't
+stop to ask about choices, deviations, limits or preferences. Decide for
+parity, keep going, and report at the end. The only time to ask is section
+5, where there is nothing to match against.
 
-A font the source uses goes in the project's theme (`THEME.md`). Spacing with
-no exact token keeps the source's value, as `FIDELITY.md` says.
+## 1. Build each part to match
 
-### The look and feel, as closely as possible
+Use the first of these that gives an exact match:
 
-Matching is more than the parts. Compare the build with the source and
-close every difference a person would notice:
+1. **The Design System's component**, set to the variant the source draws,
+   when it then looks and behaves the same.
+2. **The Design System's component with style changes** kept in the
+   project, through the component's own custom properties and parts. Never
+   edit the library.
+3. **A component built in the project**, from the Design System's tokens
+   where their values match and the source's own values where they don't,
+   to the source's measurements.
 
-- colours of surfaces, text, borders and each state;
-- the font, its sizes, weights and line heights;
-- corner rounding, borders, dividers and shadows;
-- spacing inside parts and between them, and how dense the screen feels;
-- the height and width of controls, and icon sizes;
-- hover, focus, pressed and selected looks, where the source shows them.
+Don't settle for step 1 or 2 when the result is only close. Close is a gap.
 
-Colours and the font belong in the theme. Everything else that differs goes
-in the overrides.
+Colours and the font go in the project's theme (`THEME.md`). A value with no
+exact token keeps the source's value, as one named custom property.
+
+Keep a list while you build: every part that needed step 2 (**adjusted**)
+or step 3 (**custom**), and what was different about it. It goes in the
+report and in `COMPONENTS.md`. It is not a question.
 
 ### The overrides file
 
@@ -54,50 +60,96 @@ prototype of the project gets the same look:
 - load it after the Design System's styles and after `theme.css`;
 - scope every rule under the project's class (`.ext-<project>`), so nothing
   leaks into a page that doesn't carry it;
-- change a part through its own custom properties and parts. Never edit the
-  library, and never reach into a part's inside with selectors it doesn't
-  offer;
+- change a part through its own custom properties and parts. Never reach
+  into a part's inside with selectors it doesn't offer: build the part for
+  the project instead (step 3);
 - use a token where one has the value, and the source's own value where
   none does, named as a custom property at the top of the file;
 - put a one-line comment above each rule saying what it matches ("Buttons:
-  shorter, as in the app");
-- an accessibility minimum is never overridden. Where the source's look
-  breaks one, keep the minimum and tell the designer.
+  shorter, as in the app").
 
 A later prototype reuses the file and adds to it. It never starts a second
 one.
 
-Keep a list while you build: every part that needed step 2 (**adjusted**) or
-step 3 (**custom**), and what was different about it.
+## 2. Check parity against the source, and fix the gaps yourself
 
-## 2. Keep custom components under 20%
+Run this after every build that matches a source. It is automatic: find the
+gaps, fix them, check again. Don't ask the designer about a gap you can
+close.
 
-Count the distinct components on the screens you are building. Fewer than
-one in five may be custom (step 3). Adjusted components don't count.
+**What to compare against**
 
-When the source needs more than that, stop before building and ask. Name
-the parts you would swap for the Design System's closest component, least
-noticeable first, until the count is under the limit:
+| Source | The reference is |
+|---|---|
+| Figma | each frame's screenshot, and its node values (sizes, gaps, padding, text styles, fills, strokes, effects), as `FIDELITY.md` steps 1 and 2 read them |
+| Codebase | the app's screens, from the first that exists: a running or deployed address the context names; screenshots kept in the repo; else the values read from its code (theme, styles, layout and markup) |
+| Both | the Figma design for the look, the code for structure and behaviour the design doesn't draw |
 
-- "This design needs <n> parts the Design System doesn't have. I can build
-  <m> of them to match. Which should use the Design System's version
-  instead?" Offer your suggestion first (**Swap the ones you suggest**),
-  then **Let me choose**.
+Never install the project, run its build or start it to get a reference.
+With only the code to go on, compare values, and say in the report that the
+check was by value, not by picture.
 
-## 3. Ask when something can't be matched
+**The loop**
 
-Ask the designer, before building that part, whenever the source can't be
-matched by any of the three steps: a font that can't be loaded, a part that
-can't be read from the source, an effect the browser can't draw, two places
-in the source that disagree. Say what the source has, what you can do
-instead, and let them pick. An accessibility minimum is never a choice:
-build to it and say what changed.
+1. **Render** the build at the reference's width, mode and state. Take a
+   screenshot.
+2. **Compare the structure:** the same regions, in the same order and
+   nesting, with the same parts in each. Anything missing, extra or moved is
+   a gap.
+3. **Compare by measurement,** region by region: read each part's box and
+   computed style in the browser and set it against the reference. Position
+   and size, padding and gaps, font family, size, line height and weight,
+   every colour, corner radius, borders, shadows, icon sizes, and each state
+   the source shows.
+4. **Compare by eye:** put the two pictures side by side and look at each
+   region in turn for what measuring misses: alignment, balance, clipping,
+   an image's crop.
+5. **List every gap** with where it is and by how much.
+6. **Fix every gap,** by the ladder in section 1: a variant, a style change,
+   or a part built to match. Then go back to step 1.
 
-Everything that can be matched is matched without asking.
+Stop when a round finds no gap. Stop after five rounds if gaps remain, and
+report each one that is left with the reason it couldn't be closed.
 
-## 4. Don't make anything up
+A difference of a pixel from text rendering is not a gap. Anything a person
+would notice at normal size is.
 
-Unless the designer asks for it, reproduce only what the source shows:
+Check every screen and state you built, at each width and in each mode the
+source has. Don't invent a mode or a width the source doesn't draw.
+
+## 3. What is decided without asking
+
+| Case | Do this, and report it |
+|---|---|
+| The Design System's part differs from the source | Match the source |
+| Many parts need building for the project | Build them. There is no limit |
+| A value has no token | Keep the source's value |
+| The source departs from a pattern default | Follow the source |
+| Two places in the source disagree | Follow the one the source uses most, and note the other |
+| Something can't be reproduced exactly (a font that won't load, an effect the browser can't draw) | Use the closest thing that can, and say what and why |
+| The source breaks an accessibility minimum | Keep the minimum at the smallest change that meets it, and say what differs |
+
+## 4. Report, don't ask
+
+After the parity check, tell the designer in a few plain lines:
+
+- **Matched:** the screens built, and what each was checked against;
+- **Parity:** how many rounds the check took, and that no gap is left, or
+  each gap that is left and why;
+- **Built for this project:** the parts that were adjusted or custom, one
+  line each ("Filter chips: built for this project, shorter than the Design
+  System's");
+- **Decided for you:** anything from section 3;
+- **Sample data:** anything made up under section 5.
+
+Record each adjusted and custom part in `COMPONENTS.md`. Don't ask whether to
+switch them to the Design System's versions. If the designer later asks for
+that, replace them, remove their rules from `overrides.css`, and set
+`look: design-system`.
+
+## 5. Don't make anything up
+
+Reproduce only what the source shows:
 
 - **No new functionality.** No extra screens, actions, filters, menus,
   states or steps. A control the source draws does what the source shows it
@@ -107,43 +159,11 @@ Unless the designer asks for it, reproduce only what the source shows:
   pictures, in the amounts it shows.
 - **No new words.** Copy is the source's, word for word.
 
-The one exception is a codebase whose screens fill in from live data you
-can't reach. Don't guess. Ask:
+The one question left is a codebase whose screens fill in from live data
+you can't reach. There is nothing to match, so don't guess. Ask:
 
 - "This screen fills in from live data I can't see. Should I make up sample
   data?" (**Make up sample data** / **I'll give you the data** / **Leave it
   empty**)
 
-Made-up data is marked as sample in the hand-over.
-
-## 5. After the first build, offer the Design System
-
-Once the first build is checked against the source, ask one question. Put
-the summary inside the dialog, not in the reply (see Talking with the
-designer in the skill):
-
-- The question: "I matched <the design / the app>. <n> of <total> parts
-  needed changes to do it. Do you want to switch them to the Design System's
-  own versions?"
-- In the dialog, the list: each adjusted or custom part in one plain line,
-  such as "Filter chips: made shorter, 28 instead of 32" or "Date range
-  picker: built for this project, the Design System doesn't have one".
-- The options: **Switch to the Design System** (says what will look
-  different) / **Keep them as they are**.
-
-Then:
-
-- **Switch:** replace every adjusted and custom part with the Design
-  System's component as it comes, take out the style changes, check the
-  build again and show what changed. A part the Design System has nothing
-  for stays custom, and is recorded as a request.
-- **Keep:** go on as it is. Later screens of this project match the source
-  the same way.
-
-On **Switch**, also empty `zebra-context/overrides.css` of the rules for the
-parts that were switched, and set `look: design-system`.
-
-Record the answer in `PROJECT.md` (`adjusted-components`, and a line in
-Decisions), and each part in `COMPONENTS.md` as adjusted or custom. Never
-ask again for this project unless the designer brings it up, or a later
-screen needs a custom part that takes the project over the limit.
+Made-up data is marked as sample in the report.

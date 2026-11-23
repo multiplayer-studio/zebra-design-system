@@ -77,16 +77,17 @@ come, and still make nothing up. With `look: match`, load
 `zebra-context/overrides.css` after `theme.css`, and follow
 `references/SOURCE-PARITY.md` in the `zebra-onboard-project` skill:
 
-- the first build matches the source's look and feel as closely as
-  possible: its colours, fonts, spacing, components and words. A part the Design System can't match as it comes
-  gets a small style change, or is built in the project, with custom parts
-  kept under 20%;
-- ask only when something can't be matched, or the limit would be passed;
-- don't make up functionality or data. A screen that needs live data you
-  can't reach is the one case to ask about;
-- after the first build, list the parts that were adjusted and ask whether
-  to switch them to the Design System's own versions. If the designer says
-  no, carry on as it is.
+- the build reproduces the source one to one, in look and in structure:
+  its colours, fonts, spacing, parts, layout and words. Parity comes ahead
+  of using the Design System's parts: a part that doesn't reproduce the
+  source exactly is changed or built for the project, with no limit on how
+  many;
+- after building, check parity against the source and fix every gap
+  yourself, round after round, until none is left;
+- ask nothing on the way. A screen that needs live data you can't reach is
+  the one case to ask about. Don't make up functionality or data;
+- end with a report of what matched, what was built for the project and any
+  gap left, not with a question.
 
 ### A Figma reference decides more
 

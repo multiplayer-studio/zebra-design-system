@@ -181,9 +181,9 @@ question what you found, in one or two plain lines (its colours, its font,
 how many of its parts the Design System has):
 
 - "Do you want prototypes to match the look of <project> as it is today?"
-  - **Match the project's look:** "Colours, fonts, spacing and parts as
-    close to <the app / the design> as possible. I'll add small style
-    changes where the Design System looks different."
+  - **Match the project's look:** "The same as <the app / the design>, one
+    to one: its look and how it is put together. I'll build whatever it
+    takes to match, and check it against the original myself."
   - **Use the Design System's look:** "Built from the Design System as it
     comes, with your brand colours if you keep them. It will look different
     from <the app / the design> where the two differ."
@@ -192,17 +192,23 @@ Offer no recommendation: it is the designer's call. Record the answer in
 `PROJECT.md` as `look: match` or `look: design-system`, with a line in
 Decisions, and never ask again for this project unless they bring it up.
 
-- **Match:** every prototype of this project follows
-  `references/SOURCE-PARITY.md`. Make it look and feel like the project as
-  closely as you can, and write the style changes it takes into
-  `zebra-context/overrides.css`, so the next prototype starts from the same
-  look.
+- **Match:** this is the last question. Ask nothing else in this step: no
+  setup questions and no final confirmation. Save what the review read as
+  it is, marked **observed** or **assumed**, tell the designer in one line
+  what was saved, and build. Every prototype of this project follows
+  `references/SOURCE-PARITY.md`: one-to-one parity with the source, in look
+  and in structure, ahead of using the Design System's parts, checked
+  against the source and fixed without asking. The style changes it takes
+  go in `zebra-context/overrides.css`, so the next prototype starts from
+  the same look. Off-system is not offered: matching already follows the
+  source.
 - **Design System:** build with the Design System's parts as they come. No
   style changes, no custom parts made to imitate the source, and no question
   after the first build. The source still decides what is on each screen,
   its words and its structure.
 
-Then the rest:
+Then the rest, for a free exploration and for a project that chose the
+Design System's look. A project that chose to match skips it:
 
 Ask the items marked **to ask** with the question prompt, likely answer
 first, and no more than four questions. If there are more, ask the four that
@@ -254,21 +260,22 @@ committed with their work.
 
 ### 7. The first build from a source
 
-When the designer chose to match the project's look (`look: match`), the
-first build matches the source strictly: follow
+When the designer chose to match the project's look (`look: match`), every
+build reproduces the source one to one: follow
 `references/SOURCE-PARITY.md`. In short:
 
-- match the source's spacing, fonts and components, with the Design System's
-  component where it fits, a small style change where it nearly fits (kept
-  in `zebra-context/overrides.css`), and a custom component in the project
-  where nothing fits;
-- keep custom components under 20% of the parts on the screen, and ask when
-  the source needs more, or when something can't be matched at all;
-- don't make up functionality or data. Ask before making up data for a
-  screen that fills in from live data;
-- after the first build, tell the designer which parts were adjusted and ask
-  whether to switch them to the Design System's own versions. If they say
-  no, carry on as it is.
+- parity comes first, in look and in structure. Use the Design System's
+  component only where it reproduces the source exactly; otherwise change it
+  (in `zebra-context/overrides.css`) or build the part for the project.
+  There is no limit on how many;
+- after building, check parity against the source, a Figma design or a
+  codebase alike: compare structure, measurements and pictures, list the
+  gaps, fix them and check again, until none is left;
+- ask nothing on the way. Decide for parity and report what was decided;
+- don't make up functionality or data. A screen that fills in from live
+  data you can't reach is the one thing to ask about;
+- finish with a report, not a question: what matched, what was built for
+  the project, and any gap that couldn't be closed.
 
 ### 8. Keep it current
 
