@@ -1,0 +1,116 @@
+/* Checkbox — every colour and dimension is a semantic token, keyed off Base
+   UI's [data-checked] / [data-indeterminate] / [data-disabled] and our
+   data-size. Kept rule-for-rule in step with packages/web-components
+   checkbox.styles.ts.
+
+   Spec: specs/checkbox/checkbox.spec.md */
+
+.zds-checkbox {
+  /* --- geometry: size axis (large default) ------------------------------- */
+  --zds-checkbox-box: var(--control-xs);
+  --zds-checkbox-radius: var(--radius-element-sm);
+  --zds-checkbox-mark: calc(var(--zds-checkbox-box) - 2 * var(--stroke-thick));
+
+  /* --- colour: checked x state ------------------------------------------ */
+  --zds-checkbox-stroke: var(--interactive-selection-border-default);
+  --zds-checkbox-fill: transparent;
+  /* foreground/on-strong (white in every mode), as Figma binds it. Spec
+     warn: on checked hover in dark mode the fill turns light and the mark
+     measures 1.51:1; fixing it belongs in the tokens, not here. */
+  --zds-checkbox-mark-color: var(--foreground-on-strong);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-none);
+  cursor: pointer;
+}
+
+/* The 40 by 40 touch target the box sits centred in; all of it is pressable. */
+.zds-checkbox__target {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--control-target-min);
+  block-size: var(--control-target-min);
+}
+
+/* 1. Box. */
+.zds-checkbox__box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  inline-size: var(--zds-checkbox-box);
+  block-size: var(--zds-checkbox-box);
+  margin: 0;
+  padding: 0;
+  border: var(--stroke-thick) solid var(--zds-checkbox-stroke);
+  border-radius: var(--zds-checkbox-radius);
+  background: var(--zds-checkbox-fill);
+  color: var(--zds-checkbox-mark-color);
+  cursor: inherit;
+  outline: none;
+}
+
+/* 2. Mark — mounted only when checked or indeterminate; a glyph, so it
+   takes currentColor. check-mark, or remove when indeterminate. */
+.zds-checkbox__mark {
+  display: inline-flex;
+}
+
+/* 3. Label. */
+.zds-checkbox__label {
+  color: var(--foreground-primary);
+  font-family: var(--label-medium-font-family), system-ui, sans-serif;
+  font-size: var(--label-medium-font-size);
+  font-weight: var(--label-medium-font-weight);
+  line-height: var(--label-medium-line-height);
+  letter-spacing: var(--label-medium-letter-spacing);
+}
+
+/* ---- size ---------------------------------------------------------------- */
+.zds-checkbox[data-size="medium"] {
+  --zds-checkbox-box: var(--control-icon-sm);
+  --zds-checkbox-radius: var(--radius-xs);
+}
+
+/* ---- checked / indeterminate: a filled box with a mark ------------------ */
+.zds-checkbox:has(.zds-checkbox__box[data-checked]),
+.zds-checkbox:has(.zds-checkbox__box[data-indeterminate]) {
+  --zds-checkbox-stroke: var(--interactive-selection-border-pressed);
+  --zds-checkbox-fill: var(--interactive-selection-background-pressed);
+}
+
+/* ---- state: hover (pointer over the control, label included) ----------- */
+.zds-checkbox:hover:not(:has([data-disabled])) {
+  --zds-checkbox-stroke: var(--interactive-selection-border-hover);
+}
+.zds-checkbox:hover:not(:has([data-disabled])):has(.zds-checkbox__box[data-checked]),
+.zds-checkbox:hover:not(:has([data-disabled])):has(.zds-checkbox__box[data-indeterminate]) {
+  --zds-checkbox-fill: var(--interactive-selection-background-hover);
+}
+
+/* ---- state: focus ---------------------------------------------------------- */
+/* One border/focus ring at stroke/thick directly outside the box (offset 0). */
+.zds-checkbox__box:focus-visible {
+  outline: var(--stroke-thick) solid var(--border-focus);
+  outline-offset: 0;
+}
+
+/* ---- state: disabled ----------------------------------------------------- */
+/* The mark stays visible, so a disabled checkbox still reports its value. */
+.zds-checkbox:has(.zds-checkbox__box[data-disabled]) {
+  --zds-checkbox-stroke: var(--interactive-selection-border-disabled);
+  --zds-checkbox-mark-color: var(--foreground-disabled);
+  cursor: not-allowed;
+}
+.zds-checkbox:has(.zds-checkbox__box[data-disabled][data-checked]),
+.zds-checkbox:has(.zds-checkbox__box[data-disabled][data-indeterminate]) {
+  --zds-checkbox-fill: var(--interactive-selection-background-disabled);
+}
+.zds-checkbox:has(.zds-checkbox__box[data-disabled]) .zds-checkbox__label {
+  color: var(--foreground-disabled);
+}
+
+/* No transitions: the spec defines no motion. */
