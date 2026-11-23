@@ -1,0 +1,470 @@
+{
+  "fileKey": "hvRmnZZOZrmTW0wf8hbrt5",
+  "extractedAt": "2026-11-17",
+  "source": "Figma Plugin API via use_figma (zebra-figma-token-export skill)",
+  "collections": [
+    {
+      "name": "primitives",
+      "slug": "primitives",
+      "id": "VariableCollectionId:2:2",
+      "modes": [
+        "Value"
+      ],
+      "defaultMode": "Value",
+      "variableCount": 263,
+      "isExtension": false,
+      "hiddenFromPublishing": true,
+      "files": [
+        "base/primitives/value.json"
+      ]
+    },
+    {
+      "name": "semantics",
+      "slug": "semantics",
+      "id": "VariableCollectionId:2:3",
+      "modes": [
+        "Base"
+      ],
+      "defaultMode": "Base",
+      "variableCount": 194,
+      "isExtension": false,
+      "hiddenFromPublishing": false,
+      "files": [
+        "base/semantics/base.json"
+      ]
+    },
+    {
+      "name": "palette",
+      "slug": "palette",
+      "id": "VariableCollectionId:3:4",
+      "modes": [
+        "Light",
+        "Dark",
+        "AAA Light",
+        "AAA Dark"
+      ],
+      "defaultMode": "Light",
+      "variableCount": 103,
+      "isExtension": false,
+      "hiddenFromPublishing": false,
+      "files": [
+        "base/palette/light.json",
+        "base/palette/dark.json",
+        "base/palette/aaa-light.json",
+        "base/palette/aaa-dark.json"
+      ]
+    },
+    {
+      "name": "size",
+      "slug": "size",
+      "id": "VariableCollectionId:2013:6723",
+      "modes": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Desktop Compact"
+      ],
+      "defaultMode": "Desktop",
+      "variableCount": 61,
+      "isExtension": false,
+      "hiddenFromPublishing": false,
+      "files": [
+        "base/size/desktop.json",
+        "base/size/mobile.json",
+        "base/size/tablet.json",
+        "base/size/desktop-compact.json"
+      ]
+    },
+    {
+      "name": "typography",
+      "slug": "typography",
+      "id": "VariableCollectionId:2207:329",
+      "modes": [
+        "Desktop",
+        "Tablet",
+        "Mobile",
+        "Desktop Compact"
+      ],
+      "defaultMode": "Desktop",
+      "variableCount": 90,
+      "isExtension": false,
+      "hiddenFromPublishing": false,
+      "files": [
+        "base/typography/desktop.json",
+        "base/typography/tablet.json",
+        "base/typography/mobile.json",
+        "base/typography/desktop-compact.json"
+      ]
+    }
+  ],
+  "extensions": [
+    {
+      "name": "companion",
+      "slug": "companion",
+      "extends": {
+        "name": "palette",
+        "id": "VariableCollectionId:3:4",
+        "slug": "palette"
+      },
+      "root": {
+        "name": "palette",
+        "id": "VariableCollectionId:3:4"
+      },
+      "overrideCount": 41,
+      "modeMap": [
+        {
+          "mode": "Light",
+          "parentMode": "Light"
+        },
+        {
+          "mode": "Dark",
+          "parentMode": "Dark"
+        },
+        {
+          "mode": "AAA Light",
+          "parentMode": "AAA Light"
+        },
+        {
+          "mode": "AAA Dark",
+          "parentMode": "AAA Dark"
+        }
+      ],
+      "files": [
+        "extensions/companion/palette/light.json",
+        "extensions/companion/palette/dark.json",
+        "extensions/companion/palette/aaa-light.json",
+        "extensions/companion/palette/aaa-dark.json"
+      ]
+    },
+    {
+      "name": "condensed",
+      "slug": "condensed",
+      "extends": {
+        "name": "typography",
+        "id": "VariableCollectionId:2207:329",
+        "slug": "typography"
+      },
+      "root": {
+        "name": "typography",
+        "id": "VariableCollectionId:2207:329"
+      },
+      "overrideCount": 34,
+      "modeMap": [
+        {
+          "mode": "Desktop",
+          "parentMode": "Desktop"
+        },
+        {
+          "mode": "Tablet",
+          "parentMode": "Tablet"
+        },
+        {
+          "mode": "Mobile",
+          "parentMode": "Mobile"
+        },
+        {
+          "mode": "Desktop Compact",
+          "parentMode": "Desktop Compact"
+        }
+      ],
+      "files": [
+        "extensions/condensed/typography/desktop.json",
+        "extensions/condensed/typography/tablet.json",
+        "extensions/condensed/typography/mobile.json",
+        "extensions/condensed/typography/desktop-compact.json"
+      ]
+    },
+    {
+      "name": "condensed",
+      "slug": "condensed",
+      "extends": {
+        "name": "size",
+        "id": "VariableCollectionId:2013:6723",
+        "slug": "size"
+      },
+      "root": {
+        "name": "size",
+        "id": "VariableCollectionId:2013:6723"
+      },
+      "overrideCount": 29,
+      "modeMap": [
+        {
+          "mode": "Desktop",
+          "parentMode": "Desktop"
+        },
+        {
+          "mode": "Mobile",
+          "parentMode": "Mobile"
+        },
+        {
+          "mode": "Tablet",
+          "parentMode": "Tablet"
+        },
+        {
+          "mode": "Desktop Compact",
+          "parentMode": "Desktop Compact"
+        }
+      ],
+      "files": [
+        "extensions/condensed/size/desktop.json"
+      ]
+    }
+  ],
+  "textStyles": {
+    "file": "base/text-styles.json",
+    "count": 18,
+    "fonts": "fonts.json",
+    "note": "Each style aliases the typography variables it binds; resolve them per breakpoint mode."
+  },
+  "orphanModeValues": [
+    "scale/1 @ 2201:1",
+    "scale/10 @ 2201:1",
+    "scale/11 @ 2201:1",
+    "scale/12 @ 2201:1",
+    "scale/13 @ 2201:1",
+    "scale/14 @ 2201:1",
+    "scale/15 @ 2201:1",
+    "scale/16 @ 2201:1",
+    "scale/17 @ 2201:1",
+    "scale/18 @ 2201:1",
+    "scale/19 @ 2201:1",
+    "scale/2 @ 2201:1",
+    "scale/20 @ 2201:1",
+    "scale/21 @ 2201:1",
+    "scale/container/0 @ 2201:1",
+    "scale/container/1 @ 2201:1",
+    "scale/container/2 @ 2201:1",
+    "scale/container/3 @ 2201:1",
+    "scale/3 @ 2201:1",
+    "scale/4 @ 2201:1",
+    "scale/5 @ 2201:1",
+    "scale/6 @ 2201:1",
+    "scale/7 @ 2201:1",
+    "scale/8 @ 2201:1",
+    "scale/9 @ 2201:1",
+    "color/alpha/dark/40 @ 2201:1",
+    "color/alpha/dark/60 @ 2201:1",
+    "color/alpha/dark/80 @ 2201:1",
+    "scale/0 @ 2201:1",
+    "color/neutral/cool/10 @ 2201:1",
+    "color/neutral/cool/20 @ 2201:1",
+    "color/neutral/cool/30 @ 2201:1",
+    "color/neutral/cool/40 @ 2201:1",
+    "color/neutral/cool/50 @ 2201:1",
+    "color/neutral/cool/60 @ 2201:1",
+    "color/neutral/cool/70 @ 2201:1",
+    "color/neutral/cool/80 @ 2201:1",
+    "color/neutral/cool/90 @ 2201:1",
+    "color/neutral/cool/100 @ 2201:1",
+    "color/neutral/warm/10 @ 2201:1",
+    "color/neutral/warm/20 @ 2201:1",
+    "color/neutral/warm/30 @ 2201:1",
+    "color/neutral/warm/40 @ 2201:1",
+    "color/neutral/warm/50 @ 2201:1",
+    "color/neutral/warm/60 @ 2201:1",
+    "color/neutral/warm/70 @ 2201:1",
+    "color/neutral/warm/80 @ 2201:1",
+    "color/neutral/warm/90 @ 2201:1",
+    "color/neutral/warm/100 @ 2201:1",
+    "color/brand/main/10 @ 2201:1",
+    "color/brand/main/20 @ 2201:1",
+    "color/brand/main/30 @ 2201:1",
+    "color/brand/main/40 @ 2201:1",
+    "color/brand/main/50 @ 2201:1",
+    "color/brand/main/60 @ 2201:1",
+    "color/brand/main/70 @ 2201:1",
+    "color/brand/main/80 @ 2201:1",
+    "color/brand/main/90 @ 2201:1",
+    "color/brand/main/100 @ 2201:1",
+    "color/system/positive/10 @ 2201:1",
+    "color/system/positive/20 @ 2201:1",
+    "color/system/positive/30 @ 2201:1",
+    "color/system/positive/40 @ 2201:1",
+    "color/system/positive/50 @ 2201:1",
+    "color/system/positive/60 @ 2201:1",
+    "color/system/positive/70 @ 2201:1",
+    "color/system/positive/80 @ 2201:1",
+    "color/system/positive/90 @ 2201:1",
+    "color/system/positive/100 @ 2201:1",
+    "color/system/negative/10 @ 2201:1",
+    "color/system/negative/20 @ 2201:1",
+    "color/system/negative/30 @ 2201:1",
+    "color/system/negative/40 @ 2201:1",
+    "color/system/negative/50 @ 2201:1",
+    "color/system/negative/60 @ 2201:1",
+    "color/system/negative/70 @ 2201:1",
+    "color/system/negative/80 @ 2201:1",
+    "color/system/negative/90 @ 2201:1",
+    "color/system/negative/100 @ 2201:1",
+    "color/system/warning/10 @ 2201:1",
+    "color/system/warning/20 @ 2201:1",
+    "color/system/warning/30 @ 2201:1",
+    "color/system/warning/40 @ 2201:1",
+    "color/system/warning/50 @ 2201:1",
+    "color/system/warning/60 @ 2201:1",
+    "color/system/warning/70 @ 2201:1",
+    "color/system/warning/80 @ 2201:1",
+    "color/system/warning/90 @ 2201:1",
+    "color/system/warning/100 @ 2201:1",
+    "color/system/info/10 @ 2201:1",
+    "color/system/info/20 @ 2201:1",
+    "color/system/info/30 @ 2201:1",
+    "color/system/info/40 @ 2201:1",
+    "color/system/info/50 @ 2201:1",
+    "color/system/info/60 @ 2201:1",
+    "color/system/info/70 @ 2201:1",
+    "color/system/info/80 @ 2201:1",
+    "color/system/info/90 @ 2201:1",
+    "color/system/info/100 @ 2201:1",
+    "color/accent/1/10 @ 2201:1",
+    "color/accent/1/20 @ 2201:1",
+    "color/accent/1/30 @ 2201:1",
+    "color/accent/1/40 @ 2201:1",
+    "color/accent/1/50 @ 2201:1",
+    "color/accent/1/60 @ 2201:1",
+    "color/accent/1/70 @ 2201:1",
+    "color/accent/1/80 @ 2201:1",
+    "color/accent/1/90 @ 2201:1",
+    "color/accent/1/100 @ 2201:1",
+    "color/accent/2/10 @ 2201:1",
+    "color/accent/2/20 @ 2201:1",
+    "color/accent/2/30 @ 2201:1",
+    "color/accent/2/40 @ 2201:1",
+    "color/accent/2/50 @ 2201:1",
+    "color/accent/2/60 @ 2201:1",
+    "color/accent/2/70 @ 2201:1",
+    "color/accent/2/80 @ 2201:1",
+    "color/accent/2/90 @ 2201:1",
+    "color/accent/2/100 @ 2201:1",
+    "color/accent/3/10 @ 2201:1",
+    "color/accent/3/20 @ 2201:1",
+    "color/accent/3/30 @ 2201:1",
+    "color/accent/3/40 @ 2201:1",
+    "color/accent/3/50 @ 2201:1",
+    "color/accent/3/60 @ 2201:1",
+    "color/accent/3/70 @ 2201:1",
+    "color/accent/3/80 @ 2201:1",
+    "color/accent/3/90 @ 2201:1",
+    "color/accent/3/100 @ 2201:1",
+    "color/accent/4/10 @ 2201:1",
+    "color/accent/4/20 @ 2201:1",
+    "color/accent/4/30 @ 2201:1",
+    "color/accent/4/40 @ 2201:1",
+    "color/accent/4/50 @ 2201:1",
+    "color/accent/4/60 @ 2201:1",
+    "color/accent/4/70 @ 2201:1",
+    "color/accent/4/80 @ 2201:1",
+    "color/accent/4/90 @ 2201:1",
+    "color/accent/4/100 @ 2201:1",
+    "color/alpha/dark/20 @ 2201:1",
+    "color/alpha/dark/10 @ 2201:1",
+    "color/alpha/dark/30 @ 2201:1",
+    "color/alpha/dark/50 @ 2201:1",
+    "color/alpha/dark/90 @ 2201:1",
+    "color/alpha/dark/5 @ 2201:1",
+    "color/alpha/dark/0 @ 2201:1",
+    "color/alpha/light/0 @ 2201:1",
+    "color/alpha/light/5 @ 2201:1",
+    "color/alpha/light/10 @ 2201:1",
+    "color/alpha/light/20 @ 2201:1",
+    "color/alpha/light/30 @ 2201:1",
+    "color/alpha/light/40 @ 2201:1",
+    "color/alpha/light/50 @ 2201:1",
+    "color/alpha/light/60 @ 2201:1",
+    "color/alpha/light/80 @ 2201:1",
+    "color/alpha/light/90 @ 2201:1",
+    "color/brand/alternative/90 @ 2201:1",
+    "color/brand/alternative/100 @ 2201:1",
+    "color/accent/5/10 @ 2201:1",
+    "color/accent/5/20 @ 2201:1",
+    "color/accent/5/30 @ 2201:1",
+    "color/accent/5/40 @ 2201:1",
+    "color/accent/5/50 @ 2201:1",
+    "color/accent/5/60 @ 2201:1",
+    "color/accent/5/70 @ 2201:1",
+    "color/accent/5/80 @ 2201:1",
+    "color/brand/alternative/10 @ 2201:1",
+    "color/accent/5/90 @ 2201:1",
+    "color/accent/5/100 @ 2201:1",
+    "color/extend/1/10 @ 2201:1",
+    "color/extend/1/20 @ 2201:1",
+    "color/extend/1/30 @ 2201:1",
+    "color/extend/1/40 @ 2201:1",
+    "color/extend/1/50 @ 2201:1",
+    "color/extend/1/60 @ 2201:1",
+    "color/extend/1/70 @ 2201:1",
+    "color/extend/1/80 @ 2201:1",
+    "color/brand/alternative/20 @ 2201:1",
+    "color/extend/1/90 @ 2201:1",
+    "color/extend/1/100 @ 2201:1",
+    "color/extend/2/10 @ 2201:1",
+    "color/extend/2/20 @ 2201:1",
+    "color/extend/2/30 @ 2201:1",
+    "color/extend/2/40 @ 2201:1",
+    "color/extend/2/50 @ 2201:1",
+    "color/extend/2/60 @ 2201:1",
+    "color/extend/2/70 @ 2201:1",
+    "color/extend/2/80 @ 2201:1",
+    "color/brand/alternative/30 @ 2201:1",
+    "color/extend/2/90 @ 2201:1",
+    "color/extend/2/100 @ 2201:1",
+    "color/extend/3/10 @ 2201:1",
+    "color/extend/3/20 @ 2201:1",
+    "color/extend/3/30 @ 2201:1",
+    "color/extend/3/40 @ 2201:1",
+    "color/extend/3/50 @ 2201:1",
+    "color/extend/3/60 @ 2201:1",
+    "color/extend/3/70 @ 2201:1",
+    "color/extend/3/80 @ 2201:1",
+    "color/brand/alternative/40 @ 2201:1",
+    "color/extend/3/90 @ 2201:1",
+    "color/extend/3/100 @ 2201:1",
+    "color/extend/4/10 @ 2201:1",
+    "color/extend/4/20 @ 2201:1",
+    "color/extend/4/30 @ 2201:1",
+    "color/extend/4/40 @ 2201:1",
+    "color/extend/4/50 @ 2201:1",
+    "color/extend/4/60 @ 2201:1",
+    "color/extend/4/70 @ 2201:1",
+    "color/extend/4/80 @ 2201:1",
+    "color/brand/alternative/50 @ 2201:1",
+    "color/extend/4/90 @ 2201:1",
+    "color/extend/4/100 @ 2201:1",
+    "color/brand/alternative/60 @ 2201:1",
+    "color/brand/alternative/70 @ 2201:1",
+    "color/brand/alternative/80 @ 2201:1",
+    "scale/-1 @ 2201:1",
+    "scale/-2 @ 2201:1",
+    "scale/-3 @ 2201:1",
+    "color/pure/white @ 2201:1",
+    "color/pure/black @ 2201:1",
+    "scale/-4 @ 2201:1",
+    "scale/-5 @ 2201:1",
+    "scale/-6 @ 2201:1"
+  ],
+  "counts": {
+    "collections": 5,
+    "extensions": 3,
+    "tokens": 1473,
+    "overrideTokens": 195,
+    "textStyles": 18,
+    "files": 27
+  },
+  "conventions": {
+    "alias": "{<collection name>.<dotted variable name>}",
+    "names": "verbatim from Figma, spaces included; sanitise downstream if building CSS",
+    "extensions": "an extension file contains only the variables that extension overrides, never a merged copy of its parent"
+  },
+  "warnings": [
+    "palette/Light name collisions: ['fill/transparent/elevate']",
+    "palette/Dark name collisions: ['fill/transparent/elevate']",
+    "palette/AAA Light name collisions: ['fill/transparent/elevate']",
+    "palette/AAA Dark name collisions: ['fill/transparent/elevate']",
+    "Extension 'condensed' mode 'Mobile' overrides nothing; no file written",
+    "Extension 'condensed' mode 'Tablet' overrides nothing; no file written",
+    "Extension 'condensed' mode 'Desktop Compact' overrides nothing; no file written",
+    "Font families declared by tokens but used by no text style: ['Zebra Sans']",
+    "4 variables deleted from the file but still referenced, not exported: ['color/border/primary', 'surface/menu', 'surface/popover', 'surface/sheet']",
+    "224 values sit on deleted modes ['2201:1'] and were skipped, e.g. ['scale/1 @ 2201:1', 'scale/10 @ 2201:1', 'scale/11 @ 2201:1']"
+  ]
+}

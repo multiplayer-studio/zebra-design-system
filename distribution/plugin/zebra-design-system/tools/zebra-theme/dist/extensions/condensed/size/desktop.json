@@ -1,0 +1,559 @@
+{
+  "space": {
+    "lg": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.6}",
+      "$description": "= 16px, source: scale/6",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:10",
+          "overrides": "size.space.lg",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:6"
+        }
+      }
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.7}",
+      "$description": "= 24px, source: scale/8",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:11",
+          "overrides": "size.space.xl",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:7"
+        }
+      }
+    },
+    "2xl": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.9}",
+      "$description": "= 32px, source: scale/10",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:12",
+          "overrides": "size.space.2xl",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:9"
+        }
+      }
+    },
+    "page": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.5}",
+      "$description": "= 16px, source: scale/6",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:2",
+          "overrides": "size.space.page",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:5"
+        }
+      }
+    },
+    "section": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.7}",
+      "$description": "= 24px, source: scale/8",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:3",
+          "overrides": "size.space.section",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:7"
+        }
+      }
+    },
+    "card": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.5}",
+      "$description": "= 16px, source: scale/6",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:4",
+          "overrides": "size.space.card",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:5"
+        }
+      }
+    },
+    "gutter": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.5}",
+      "$description": "= 16px, source: scale/6",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:5",
+          "overrides": "size.space.gutter",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:5"
+        }
+      }
+    },
+    "3xs": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.1}",
+      "$description": "= 2px, source: scale/1",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:6",
+          "overrides": "size.space.3xs",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:166:9427"
+        }
+      }
+    },
+    "2xs": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.2}",
+      "$description": "= 4px, source: scale/2",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:7",
+          "overrides": "size.space.2xs",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:2"
+        }
+      }
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.4}",
+      "$description": "= 8px, source: scale/4",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:8",
+          "overrides": "size.space.sm",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:4"
+        }
+      }
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.5}",
+      "$description": "= 12px, source: scale/5",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:9",
+          "overrides": "size.space.md",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:5"
+        }
+      }
+    },
+    "none": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.0}",
+      "$description": "= 32px, source: scale/10",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2204:20683",
+          "overrides": "size.space.none",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "GAP"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2058:2"
+        }
+      }
+    }
+  },
+  "control": {
+    "target-min": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.11}",
+      "$description": "= 44px, source: scale/13",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:13",
+          "overrides": "size.control.target-min",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:11"
+        }
+      }
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.10}",
+      "$description": "= 40px, source: scale/12",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:14",
+          "overrides": "size.control.sm",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:10"
+        }
+      }
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.11}",
+      "$description": "= 48px, source: scale/14",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:15",
+          "overrides": "size.control.md",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:11"
+        }
+      }
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.13}",
+      "$description": "= 56px, source: scale/15",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:16",
+          "overrides": "size.control.lg",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:13"
+        }
+      }
+    },
+    "icon-sm": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.5}",
+      "$description": "= 20px, source: scale/7",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:17",
+          "overrides": "size.control.icon-sm",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:5"
+        }
+      }
+    },
+    "icon-md": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.6}",
+      "$description": "= 24px, source: scale/8",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:18",
+          "overrides": "size.control.icon-md",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:6"
+        }
+      }
+    },
+    "icon-lg": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.7}",
+      "$description": "= 32px, source: scale/10",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:19",
+          "overrides": "size.control.icon-lg",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:7"
+        }
+      }
+    },
+    "xs": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.8}",
+      "$description": "= 40px, source: scale/12",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:5278:4182",
+          "overrides": "size.control.xs",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:8"
+        }
+      }
+    },
+    "icon-xxs": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.4}",
+      "$description": "= 20px, source: scale/7",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:5278:4183",
+          "overrides": "size.control.icon-xxs",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:4"
+        }
+      }
+    }
+  },
+  "radius": {
+    "xs": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.1}",
+      "$description": "= 2px, source: scale/1",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:21",
+          "overrides": "size.radius.xs",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "CORNER_RADIUS"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:166:9427"
+        }
+      }
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.2}",
+      "$description": "= 4px, source: scale/2",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:22",
+          "overrides": "size.radius.sm",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "CORNER_RADIUS"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:2"
+        }
+      }
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.3}",
+      "$description": "= 8px, source: scale/4",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:23",
+          "overrides": "size.radius.md",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "CORNER_RADIUS"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:3"
+        }
+      }
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.4}",
+      "$description": "= 12px, source: scale/5",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:24",
+          "overrides": "size.radius.lg",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "CORNER_RADIUS"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:4"
+        }
+      }
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.5}",
+      "$description": "= 16px, source: scale/6",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2016:25",
+          "overrides": "size.radius.xl",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "CORNER_RADIUS"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:5"
+        }
+      }
+    },
+    "container": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.5}",
+      "$description": "= 16px, source: scale/6",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2021:6725",
+          "overrides": "size.radius.container",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "CORNER_RADIUS"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:5"
+        }
+      }
+    },
+    "element-sm": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.2}",
+      "$description": "= 16px, source: scale/6",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2109:6966",
+          "overrides": "size.radius.element-sm",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "CORNER_RADIUS"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:2"
+        }
+      }
+    },
+    "element-md": {
+      "$type": "dimension",
+      "$value": "{primitives.scale.3}",
+      "$description": "= 16px, source: scale/6",
+      "$extensions": {
+        "com.figma": {
+          "id": "VariableID:2109:6967",
+          "overrides": "size.radius.element-md",
+          "extension": "condensed",
+          "mode": "Desktop",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "CORNER_RADIUS"
+          ],
+          "parentMode": "Desktop",
+          "aliasOf": "VariableID:2004:3"
+        }
+      }
+    }
+  }
+}

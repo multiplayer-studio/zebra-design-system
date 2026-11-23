@@ -88,6 +88,16 @@ for (const dir of PLUGIN_PATTERNS) {
     try {
       execSync(`"${process.execPath}" bin/zebra-theme.mjs --list=brand`, { cwd: tool, stdio: ["ignore", "pipe", "pipe"] });
       console.log("✓ plugin theming tool: present and runs");
+      // The plugin is installed from git, so every file of the tool must be
+      // tracked. A folder caught by .gitignore runs here and is missing there.
+      const rel = "distribution/plugin/zebra-design-system/tools/zebra-theme";
+      const ignored = execSync(`git ls-files --others --ignored --exclude-standard -- "${rel}"`, { cwd: root, encoding: "utf8" }).trim();
+      if (ignored) {
+        failed = true;
+        console.error(`✗ the plugin's theming tool has files git ignores, so they would not ship:\n  ${ignored.split("\n").slice(0, 5).join("\n  ")}`);
+      } else {
+        console.log("✓ plugin theming tool: every file is tracked by git");
+      }
     } catch (e) {
       failed = true;
       console.error(`✗ the plugin's theming tool does not run:\n  ${String(e.stderr || e.message).trim().split("\n")[0]}`);

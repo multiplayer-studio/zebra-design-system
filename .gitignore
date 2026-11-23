@@ -1,5 +1,9 @@
 # Build artifacts
 **/dist/
+# The plugin's copy of the theming tool keeps its data in dist/, like the
+# tokens package it is copied from. The plugin is installed from git, so it
+# must be tracked.
+!distribution/plugin/zebra-design-system/tools/zebra-theme/dist/
 **/build/
 **/coverage/
 **/out/
