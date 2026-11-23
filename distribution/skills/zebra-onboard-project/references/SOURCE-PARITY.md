@@ -1,8 +1,13 @@
 # Building from a source
 
-For a project that starts from a Figma design, a codebase or both. Used by
-`zebra-onboard-project` and `zebra-prototype`. It doesn't apply to a free
-exploration.
+For a project that starts from a Figma design, a codebase or both, **when
+the designer chose to match its look** (`look: match` in `PROJECT.md`,
+asked after the review in `zebra-onboard-project` step 5). Used by
+`zebra-onboard-project` and `zebra-prototype`.
+
+It doesn't apply to a free exploration. With `look: design-system`, only
+section 4 applies (don't make anything up): the build uses the Design
+System's parts as they come.
 
 The source is what the designer already has. The first build shows it back
 to them as it is, made from the Design System wherever that is possible.
@@ -25,6 +30,42 @@ Match each part with the first of these that works:
 
 A font the source uses goes in the project's theme (`THEME.md`). Spacing with
 no exact token keeps the source's value, as `FIDELITY.md` says.
+
+### The look and feel, as closely as possible
+
+Matching is more than the parts. Compare the build with the source and
+close every difference a person would notice:
+
+- colours of surfaces, text, borders and each state;
+- the font, its sizes, weights and line heights;
+- corner rounding, borders, dividers and shadows;
+- spacing inside parts and between them, and how dense the screen feels;
+- the height and width of controls, and icon sizes;
+- hover, focus, pressed and selected looks, where the source shows them.
+
+Colours and the font belong in the theme. Everything else that differs goes
+in the overrides.
+
+### The overrides file
+
+Keep every style change in one file, `zebra-context/overrides.css`, so each
+prototype of the project gets the same look:
+
+- load it after the Design System's styles and after `theme.css`;
+- scope every rule under the project's class (`.ext-<project>`), so nothing
+  leaks into a page that doesn't carry it;
+- change a part through its own custom properties and parts. Never edit the
+  library, and never reach into a part's inside with selectors it doesn't
+  offer;
+- use a token where one has the value, and the source's own value where
+  none does, named as a custom property at the top of the file;
+- put a one-line comment above each rule saying what it matches ("Buttons:
+  shorter, as in the app");
+- an accessibility minimum is never overridden. Where the source's look
+  breaks one, keep the minimum and tell the designer.
+
+A later prototype reuses the file and adds to it. It never starts a second
+one.
 
 Keep a list while you build: every part that needed step 2 (**adjusted**) or
 step 3 (**custom**), and what was different about it.
@@ -98,6 +139,9 @@ Then:
   for stays custom, and is recorded as a request.
 - **Keep:** go on as it is. Later screens of this project match the source
   the same way.
+
+On **Switch**, also empty `zebra-context/overrides.css` of the rules for the
+parts that were switched, and set `look: design-system`.
 
 Record the answer in `PROJECT.md` (`adjusted-components`, and a line in
 Decisions), and each part in `COMPONENTS.md` as adjusted or custom. Never

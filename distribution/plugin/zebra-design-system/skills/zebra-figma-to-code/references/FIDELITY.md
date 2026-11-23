@@ -155,7 +155,8 @@ listed in the report.
 
 ## 4. Raise the obvious deviations before building
 
-**In a prototype, match first.** `zebra-prototype` follows
+**In a prototype, match first, when the designer chose to match the
+project's look** (`look: match` in the context). `zebra-prototype` follows
 `SOURCE-PARITY.md` in the `zebra-onboard-project` skill: each deviation
 below is built as the frame draws it, with a style change or a custom part
 kept in the project, and they are all put to the designer in one question

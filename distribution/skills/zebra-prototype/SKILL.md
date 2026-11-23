@@ -68,13 +68,17 @@ The context decides how this prototype is built. If its `level` is
 `zebra-onboard-project` skill instead of the component and token rules
 below. Everything else here still applies.
 
-### A source is matched first
+### A source is matched, when the designer chose that
 
-A prototype built from a Figma design or a codebase follows
+After its review, `zebra-onboard-project` asks whether prototypes should
+match the project's look, and saves the answer as `look` in `PROJECT.md`.
+With `look: design-system`, build from the Design System's parts as they
+come, and still make nothing up. With `look: match`, load
+`zebra-context/overrides.css` after `theme.css`, and follow
 `references/SOURCE-PARITY.md` in the `zebra-onboard-project` skill:
 
-- the first build matches the source strictly: its spacing, fonts,
-  components and words. A part the Design System can't match as it comes
+- the first build matches the source's look and feel as closely as
+  possible: its colours, fonts, spacing, components and words. A part the Design System can't match as it comes
   gets a small style change, or is built in the project, with custom parts
   kept under 20%;
 - ask only when something can't be matched, or the limit would be passed;

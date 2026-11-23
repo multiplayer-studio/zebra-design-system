@@ -31,7 +31,8 @@ shape-full:                    # the cases that are fully round, if any
 density: comfortable           # comfortable | compact
 surfaces: [handheld, desktop]  # form factors, from the patterns' devices.md
 special-treatments: [ai-interactions]
-adjusted-components: keep      # with a source, the answer after the first build: keep | switch | not asked yet
+look: match                    # with a source, asked after the review: match (as close to the source as possible) | design-system
+adjusted-components: keep      # with look: match, the answer after the first build: keep | switch | not asked yet
 library: none                  # off-system only: name, exact version, the URL it loads from
 handoff:                       # added by zebra-handoff at the project's first handoff
   library: react-baseui        # what the app is built with: react-baseui | web-components | zeta-web | none
@@ -129,6 +130,13 @@ How this product departs from or adds to the Zebra UX patterns.
 
 On a project at the Zebra level, the mapping still lists what was compared,
 all marked kept.
+
+## overrides.css
+
+Only with `look: match`. The style changes that make the Design System's
+parts look like the project's, as `SOURCE-PARITY.md` lays out: scoped under
+the project's class, one comment per rule saying what it matches. Loaded by
+every prototype after `theme.css`.
 
 ## COMPONENTS.md
 

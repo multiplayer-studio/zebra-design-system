@@ -1,6 +1,6 @@
 {
   "name": "@zebra-design-system/zeta-web",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "files": [
     "dist",
     "custom-elements.json",

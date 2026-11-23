@@ -55,6 +55,7 @@ the same files, whichever path the project took:
 | `PATTERNS.md` | Where this product departs from or adds to the UX patterns, by rule number, and its terms |
 | `THEME.md` | Each of the project's values and the token it maps to, with contrast results |
 | `<project>.theme.json`, `theme.css` | The project theme and its generated CSS. Only when the project has its own theme |
+| `overrides.css` | The style changes that make the Design System's parts look like the project's. Only when the designer chose to match the project's look |
 | `COMPONENTS.md` | Each component the project uses and what it maps to |
 
 `references/CONTEXT-FILES.md` in this skill's folder has the layout of each
@@ -78,8 +79,9 @@ files.
 | Components | Zebra's | Matched to the source | Matched to the source |
 | Functionality and data | Proposed from the brief | Only what the frames show | Only what the screens show |
 
-A project with a source is built to match it first
-(`references/SOURCE-PARITY.md`).
+A project with a source is asked, after the review, whether its prototypes
+should match the project's look (step 5). When they should, it is built to
+match (`references/SOURCE-PARITY.md`).
 
 A project with both a Figma design and a repo reviews both. The Figma design
 is the look to aim for and the repo is what ships today. Where they disagree,
@@ -173,6 +175,35 @@ Before a designer chooses off-system, tell them what it gives up
 
 ### 5. Confirm
 
+**First, for a project with a source: match its look?** Ask this straight
+after the review, before anything else, in its own dialog. Say in the
+question what you found, in one or two plain lines (its colours, its font,
+how many of its parts the Design System has):
+
+- "Do you want prototypes to match the look of <project> as it is today?"
+  - **Match the project's look:** "Colours, fonts, spacing and parts as
+    close to <the app / the design> as possible. I'll add small style
+    changes where the Design System looks different."
+  - **Use the Design System's look:** "Built from the Design System as it
+    comes, with your brand colours if you keep them. It will look different
+    from <the app / the design> where the two differ."
+
+Offer no recommendation: it is the designer's call. Record the answer in
+`PROJECT.md` as `look: match` or `look: design-system`, with a line in
+Decisions, and never ask again for this project unless they bring it up.
+
+- **Match:** every prototype of this project follows
+  `references/SOURCE-PARITY.md`. Make it look and feel like the project as
+  closely as you can, and write the style changes it takes into
+  `zebra-context/overrides.css`, so the next prototype starts from the same
+  look.
+- **Design System:** build with the Design System's parts as they come. No
+  style changes, no custom parts made to imitate the source, and no question
+  after the first build. The source still decides what is on each screen,
+  its words and its structure.
+
+Then the rest:
+
 Ask the items marked **to ask** with the question prompt, likely answer
 first, and no more than four questions. If there are more, ask the four that
 change the build most and record the rest as **assumed**. Each question
@@ -223,12 +254,14 @@ committed with their work.
 
 ### 7. The first build from a source
 
-A project with a Figma design or a codebase is first built to match it,
-strictly: follow `references/SOURCE-PARITY.md`. In short:
+When the designer chose to match the project's look (`look: match`), the
+first build matches the source strictly: follow
+`references/SOURCE-PARITY.md`. In short:
 
 - match the source's spacing, fonts and components, with the Design System's
-  component where it fits, a small style change where it nearly fits, and a
-  custom component in the project where nothing fits;
+  component where it fits, a small style change where it nearly fits (kept
+  in `zebra-context/overrides.css`), and a custom component in the project
+  where nothing fits;
 - keep custom components under 20% of the parts on the screen, and ask when
   the source needs more, or when something can't be matched at all;
 - don't make up functionality or data. Ask before making up data for a

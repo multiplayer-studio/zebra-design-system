@@ -1,5 +1,11 @@
 # @zebra-design-system/web-components
 
+## 0.7.4
+
+### Patch Changes
+
+- Onboarding from a Figma design or a codebase now asks, straight after the review, whether prototypes should match the look of the project as it is. On yes, the build matches its look and feel as closely as possible and keeps the style changes it takes in `zebra-context/overrides.css`, scoped to the project, so every prototype starts from the same look. On no, it builds from the Design System's parts as they come. The answer is saved as `look` in `PROJECT.md`.
+
 ## 0.7.3
 
 ### Patch Changes
