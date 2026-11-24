@@ -1,0 +1,376 @@
+/* Navigation Rail family — the rail, Navigation Header, Sub Menu Header and
+   Collapsible Menu Item. Every value is a semantic token from the shared
+   token layer, except the three widths and one height Figma measures but
+   never binds (commented where used). Keyed off data attributes the
+   components set. Kept rule-for-rule in step with the zds-* styles.
+
+   Spec: specs/navigation-rail/navigation-rail.spec.md */
+
+/* ======================================================================== */
+/* Navigation Rail                                                           */
+/* ======================================================================== */
+
+.zds-navigation-rail {
+  box-sizing: border-box;
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-none);
+  /* Fills its parent's height (spec warn "Height": Figma draws 991px fixed).
+     With no definite parent height it hugs its content — never zero. */
+  height: 100%;
+  padding: var(--space-none);
+  /* The only fill: rail and panel both show this surface through. */
+  background: var(--surface-section);
+  color: var(--foreground-primary);
+  /* Figma's measured widths; no width tokens exist, so they are literals,
+     named once. Wide rail: 176px items + padding. Panel: hugs its list,
+     never narrower than Figma's 240px minimum. */
+  /* railMaxWidth / subMenuMaxWidth set --zds-navigation-rail-max-width and
+     --zds-navigation-rail-sub-menu-max-width; unset, there is no cap. A cap
+     below a minimum lowers the minimum, so the cap always applies. */
+  /* railWidth sets --zds-navigation-rail-width (Figma's 200px by default). */
+  --zds-navigation-rail-wide-width: min(var(--zds-navigation-rail-width, 200px), var(--zds-navigation-rail-max-width, calc(infinity * 1px)));
+  --zds-navigation-rail-panel-max-width: var(--zds-navigation-rail-sub-menu-max-width, calc(infinity * 1px));
+  --zds-navigation-rail-panel-min-width: min(240px, var(--zds-navigation-rail-panel-max-width));
+  /* Lets the panel animate to and from its content width (width: max-content). */
+  interpolate-size: allow-keywords;
+  /* Every opening and closing in the rail uses animations/smooth (owner
+     decision), the caret included: Caret Indicator reads this hook and
+     keeps its own spring everywhere else. */
+  --zds-caret-indicator-motion: var(--animations-smooth);
+}
+
+.zds-navigation-rail[data-divider] {
+  /* showDivider: Figma's vertical Divider, the root's last child. A border
+     on the trailing edge is the same 1px column. */
+  border-inline-end: var(--stroke-thin) solid var(--border-default);
+}
+/* With inverse or locked the root carries a .mode-* class for the tokens;
+   color-scheme keeps the UA's own parts (the menu's scrollbar) in step.
+   Otherwise the rail inherits both from the page. */
+.zds-navigation-rail[data-mode="dark"] {
+  color-scheme: dark;
+}
+.zds-navigation-rail[data-mode="light"] {
+  color-scheme: light;
+}
+
+/* ---- main rail ---------------------------------------------------------- */
+.zds-navigation-rail__rail {
+  box-sizing: border-box;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-card) var(--space-md);
+  /* Narrow: the 48px (control/lg) items plus space/md either side = Figma's
+     72px. (The Dev Deviation frame records an older 64px collapsed-only
+     build; Figma and the tokens say 72.) */
+  width: calc(var(--control-lg) + 2 * var(--space-md));
+  overflow: hidden; /* clips (spec) */
+  /* Clip at the content edge where supported, so wide content held through
+     a collapse leaves nothing in the padding at the end. */
+  overflow: clip;
+  overflow-clip-margin: content-box;
+}
+.zds-navigation-rail[data-expanded] .zds-navigation-rail__rail {
+  width: var(--zds-navigation-rail-wide-width);
+}
+
+.zds-navigation-rail__header {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+/* The content's form follows [data-wide], not [data-expanded]: the rail
+   holds the wide layout until a collapse has finished. */
+.zds-navigation-rail[data-wide] .zds-navigation-rail__header {
+  align-items: stretch;
+}
+.zds-navigation-rail__action {
+  flex: none;
+}
+.zds-navigation-rail[data-wide] .zds-navigation-rail__action {
+  width: 100%; /* the wide Button fills (spec) */
+}
+
+/* The menu list absorbs the height left between header and footer, so the
+   footer stays pinned. Basis auto (its content), never 0: with no definite
+   rail height a 0 basis would collapse it. It scrolls when a fixed-height
+   rail runs out of room. */
+.zds-navigation-rail__menu,
+.zds-navigation-rail__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+.zds-navigation-rail__menu {
+  flex: 1 1 auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* The Menu Slot's extra space/xs inline padding (narrow only, spec warn
+     "Menu Slot padding") belongs to a Figma-only per-Label slot split; the
+     menu is one list here, so the built-in and slotted items align. */
+}
+.zds-navigation-rail__footer {
+  flex: none;
+}
+.zds-navigation-rail[data-wide] :is(.zds-navigation-rail__menu, .zds-navigation-rail__footer) {
+  align-items: stretch;
+}
+.zds-navigation-rail :is(.zds-navigation-rail__menu, .zds-navigation-rail__footer) > .zds-divider {
+  align-self: stretch;
+}
+/* Wide content is laid out at its final width whatever the rail's current
+   width, so the animating rail clips it (no reflow, no wrapping). */
+.zds-navigation-rail[data-wide] :is(.zds-navigation-rail__header, .zds-navigation-rail__menu, .zds-navigation-rail__footer) {
+  min-width: calc(var(--zds-navigation-rail-wide-width) - 2 * var(--space-md));
+}
+
+/* railWidth="fill": wide, the rail takes its container's width (the sub menu
+   panel, when open, shares it). Wide content then follows the rail rather
+   than a fixed width. */
+.zds-navigation-rail[data-fill][data-expanded] {
+  inline-size: 100%;
+}
+.zds-navigation-rail[data-fill][data-expanded] .zds-navigation-rail__rail {
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+}
+.zds-navigation-rail[data-fill][data-wide] :is(.zds-navigation-rail__header, .zds-navigation-rail__menu, .zds-navigation-rail__footer) {
+  min-width: 0;
+}
+
+/* ---- sub menu panel ----------------------------------------------------- */
+/* Hug: one column as wide as the widest of the header and the rows (at least
+   the 240px minimum), every one stretched to it, so rows share one width.
+   The column keeps that size while the panel's own width animates, so the
+   moving edge clips the content rather than reflowing it. Rows: the header,
+   then the list, which shrinks and scrolls when the rail is short. */
+.zds-navigation-rail__panel {
+  box-sizing: border-box;
+  display: grid;
+  flex: none;
+  grid-template-columns: max-content;
+  grid-template-rows: auto minmax(0, max-content);
+  align-content: start; /* spare height stays below the list, not in the header */
+  gap: var(--space-none);
+  width: max-content;
+  /* The one vertical border, on the leading edge. Figma's width is a raw
+     1px (spec warn "Unbound border widths"): stroke/thin. */
+  border-inline-start: var(--stroke-thin) solid var(--border-default);
+  overflow: hidden;
+}
+/* Closed (no sub menu slot filled): zero-width and out of the
+   accessibility tree, so the overall width follows. Its height is the
+   rail's, never zero. */
+.zds-navigation-rail__panel:not([data-open]) {
+  width: 0;
+  border-inline-start-width: 0;
+  visibility: hidden;
+}
+.zds-navigation-rail__panel > * {
+  grid-row: 1;
+  /* Border-box, so the list's padding sits inside the minimum and the cap. */
+  box-sizing: border-box;
+  min-width: calc(var(--zds-navigation-rail-panel-min-width) - var(--stroke-thin));
+  /* The cap clamps each item's contribution to the hugged column, so the
+     column stops at it and labels truncate rather than being clipped. */
+  max-width: calc(var(--zds-navigation-rail-panel-max-width) - var(--stroke-thin));
+}
+.zds-navigation-rail__panel > .zds-navigation-rail__sub-menu { grid-row: 2; }
+.zds-navigation-rail__sub-menu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding: var(--space-sm);
+  overflow-y: auto;
+}
+
+/* ---- motion: animations/smooth (owner decision) ------------------------- */
+/* Only once the rail has painted ([data-ready]), so nothing animates on the
+   first render; each transition runs once per change, never continuously. */
+.zds-navigation-rail[data-ready] .zds-navigation-rail__rail {
+  transition: width var(--animations-smooth);
+}
+.zds-navigation-rail[data-ready] .zds-navigation-rail__panel {
+  transition:
+    width var(--animations-smooth),
+    border-inline-start-width var(--animations-smooth),
+    visibility var(--animations-smooth);
+}
+@media (prefers-reduced-motion: reduce) {
+  .zds-navigation-rail[data-ready] :is(.zds-navigation-rail__rail, .zds-navigation-rail__panel) {
+    transition: none;
+  }
+}
+
+/* ======================================================================== */
+/* Navigation Header                                                        */
+/* ======================================================================== */
+
+.zds-navigation-header {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-none);
+  padding: var(--space-none);
+  min-width: var(--control-lg);
+  /* Figma's 56px has no token: control/lg plus space/sm is the same value. */
+  min-height: calc(var(--control-lg) + var(--space-sm));
+  color: var(--foreground-primary);
+}
+.zds-navigation-header[data-expanded] {
+  justify-content: space-between;
+  width: 100%;
+}
+.zds-navigation-header__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-width: 0;
+  padding-inline: var(--space-2xs);
+}
+.zds-navigation-header__logo {
+  height: var(--control-target-min);
+}
+/* The mark and the action keep their size; only the title gives way. */
+.zds-navigation-header__brand > :not(.zds-navigation-header__title),
+.zds-navigation-header > .zds-icon-button {
+  flex: none;
+}
+.zds-navigation-header__title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--label-medium-font-family), system-ui, sans-serif;
+  font-size: var(--label-medium-font-size);
+  font-weight: var(--label-medium-font-weight);
+  line-height: var(--label-medium-line-height);
+  letter-spacing: var(--label-medium-letter-spacing);
+}
+
+/* ======================================================================== */
+/* Sub Menu Header                                                          */
+/* ======================================================================== */
+
+.zds-sub-menu-header {
+  box-sizing: border-box;
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding-inline: var(--space-lg);
+  /* Figma fixes it at 72px tall; no token exists. The same sum as the
+     narrow rail: control/lg + 2 × space/md. */
+  min-height: calc(var(--control-lg) + 2 * var(--space-md));
+  /* Raw 1px in Figma (spec warn): stroke/thin. */
+  border-bottom: var(--stroke-thin) solid var(--border-default);
+  color: var(--foreground-primary);
+}
+.zds-sub-menu-header__lead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-width: 0;
+}
+/* Type=sub page: the back Icon Button sits space/sm from the title (spec,
+   changed 2026-10-21); Type=default keeps space/md. */
+.zds-sub-menu-header[data-type="sub-page"] .zds-sub-menu-header__lead {
+  gap: var(--space-sm);
+}
+.zds-sub-menu-header__icon,
+.zds-sub-menu-header__back {
+  flex: none;
+}
+.zds-sub-menu-header__title {
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--label-medium-font-family), system-ui, sans-serif;
+  font-size: var(--label-medium-font-size);
+  font-weight: var(--label-medium-font-weight);
+  line-height: var(--label-medium-line-height);
+  letter-spacing: var(--label-medium-letter-spacing);
+}
+.zds-sub-menu-header__actions {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+/* ======================================================================== */
+/* Collapsible Menu Item                                                    */
+/* ======================================================================== */
+
+.zds-collapsible-menu-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-none);
+  width: 100%;
+  min-width: 0;
+  /* Never widens the sub menu (owner decision): its content does not count
+     toward the panel's hugged width, and it stretches to the width the
+     panel's other content (min 240px) gives it. Its labels truncate. */
+  contain: inline-size;
+  /* Shape=rounded (the default) is radius/sm, sharp radius/none — the rail's
+     shape, code-only (owner decision). One value for the open group's
+     corners, the header's top corners (via the row) and the children's. */
+  --zds-collapsible-menu-item-radius: var(--radius-sm);
+  /* The caret turns on animations/smooth with the rows (owner decision),
+     inside a rail or not. */
+  --zds-caret-indicator-motion: var(--animations-smooth);
+}
+.zds-collapsible-menu-item[data-shape="sharp"] {
+  --zds-collapsible-menu-item-radius: var(--radius-none);
+}
+.zds-collapsible-menu-item[data-open] {
+  border-radius: var(--zds-collapsible-menu-item-radius);
+  overflow: hidden;
+}
+/* Open, the header reads as pressed (Figma State=active) with the radius on
+   its top corners only — the token alone, no extra paint opacity (spec warn
+   "Double alpha"). */
+.zds-collapsible-menu-item[data-open] > .zds-sub-menu-item.zds-collapsible-menu-item__header:not([data-disabled]) {
+  --zds-sub-menu-item-bg: var(--interactive-ghost-background-pressed);
+  border-end-start-radius: var(--radius-none);
+  border-end-end-radius: var(--radius-none);
+}
+/* Open and close: the rows' height on animations/smooth (owner decision).
+   Base UI's Collapsible measures the rows into --collapsible-panel-height
+   (auto at rest), marks the first and last frames with
+   [data-starting-style] / [data-ending-style], and holds `hidden` until the
+   transition ends. It skips the transition on first render. */
+.zds-collapsible-menu-item__panel {
+  height: var(--collapsible-panel-height);
+  overflow: hidden;
+  transition: height var(--animations-smooth);
+}
+.zds-collapsible-menu-item__panel:is([data-starting-style], [data-ending-style]) {
+  height: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .zds-collapsible-menu-item__panel {
+    transition: none;
+  }
+}
+.zds-collapsible-menu-item__children {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding: var(--space-sm);
+  background: var(--surface-subtle);
+  border-end-start-radius: var(--zds-collapsible-menu-item-radius);
+  border-end-end-radius: var(--zds-collapsible-menu-item-radius);
+}
