@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-/* Quick look at a codebase, for designer-project-onboarding step 3.
+/* Quick look at a codebase, for designer-project-onboarding step 3 and
+ * builder-start step 2. The two copies are kept identical.
  *
  * Reads the code and prints, in one run, what the review would otherwise
  * collect file by file: the commit, the interface libraries, the theme files,
@@ -25,7 +26,7 @@ const screenArg = flag("screen");
 const SKIP_DIRS = new Set([
   "node_modules", ".git", "dist", "build", "out", ".next", ".nuxt", ".svelte-kit", ".turbo", ".cache",
   "coverage", "vendor", "target", ".dart_tool", "Pods", ".gradle", "__pycache__", ".venv", "venv",
-  "storybook-static", ".output", "tmp", "zebra-context", "prototypes",
+  "storybook-static", ".output", "tmp", "zebra-context", "zebra-build", "prototypes",
 ]);
 const STYLE = new Set([".css", ".scss", ".sass", ".less", ".styl"]);
 const MARKUP = new Set([".jsx", ".tsx", ".vue", ".svelte", ".html", ".astro"]);

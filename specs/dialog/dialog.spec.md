@@ -36,7 +36,7 @@ Values anywhere in this document are token names. The only literals are inside v
 
 ## Anatomy
 
-Root: vertical, gap `space/none`, padding `space/md`, fill `surface/overlay`, border `border/default` at `stroke/thin` (inside), radius `radius/element-md` (round) or `radius/none` (sharp), no shadow. Its width is tentative in Figma (480×222Px measured, 158Px tall without the footer): in code it follows the page width up to a set max-width, and it hugs its height. *"Outer padding — 12px on every side of the dialog itself, independent of each section’s own padding."*
+Root: vertical, gap `space/none`, padding `space/md`, fill `surface/overlay`, border `border/default` at `stroke/thin` (inside), radius `radius/element-md` (round) or `radius/none` (sharp), no shadow. Its 480Px width is a tentative max width (480×222Px measured, 158Px tall without the footer): in code it follows the page width up to it, a project can set its own, and it hugs its height. *"Outer padding — 12px on every side of the dialog itself, independent of each section’s own padding."*
 
 1. **Header** (`_Dialog Header`, fills the width, both toggles pinned on). *"A single Dialog Header instance, fixed in every variant. Holds the leading icon, the title and the close icon."*
 2. **Body** (the `body` slot): vertical, centred, gap `space/none`, padding `space/md` on top, right and left and `space/section` at the bottom. It fills the width and hugs its height. Inside it, a content box fills and clips. The sample text is `body/medium` in `foreground/primary`. *"An open content area with no fixed structure of its own in this file."*
@@ -115,7 +115,7 @@ There is no States & Triggers section, and nothing on this page models a state. 
 | Dismissal | Implied but not specified. A close glyph appears in every header, and the summary says "until the user responds or dismisses it". Escape, outside click, and whether dismissal is allowed while a decision is pending are not stated. |
 | Stacking | Not modelled: no z-order or nested-dialog guidance. |
 | Elevation | None: no shadow or effect. |
-| Size & placement | The 480Px width is tentative: in code it follows the page width, up to a set max-width. Height hugs. There is no max height, no viewport placement, and no scrolling for long bodies; the body content clips. |
+| Size & placement | 480Px is a tentative max width: in code the width follows the page width up to it, and a project can set its own. Height hugs. There is no max height, no viewport placement, and no scrolling for long bodies; the body content clips. |
 | Dialog vs modal | The Dev Deviation note says Figma split dialog and modal into separate components. Only Dialog is on this page. |
 
 Dev Deviation, verbatim: "Code implementation uses a the same dialog component for both dialogs and modals. We have split them into separate components given they have independent use cases and visual treatments. Code implementation does not allow for the clear icon to be hidden. This has been introduced in the new build. confirmButtonFlavor from code has not been implemented: slots are used, with buttons in actions. Button flavour can be changed at the component level properties. Figma’s dialog component exposes an explicit showFooter boolean."
@@ -144,7 +144,7 @@ Dev Deviation, verbatim: "Code implementation uses a the same dialog component f
 
 | Property | Type | Description |
 |---|---|---|
-| Width | Tentative | "480px in this file is tentative. In code the width follows the page width, up to a set max-width." |
+| Width | Tentative | "480px is a tentative max-width. In code the width follows the page width up to it, and each project can set its own max-width." |
 | Height | Hug | "Hugs the stack of header, body and footer with no gap between them. Shrinks by the footer’s own height, 64px, when showFooter is off." |
 | Padding | Fixed | "12px on every side of the dialog itself. The header, body and footer sit flush against each other inside it." |
 | Header padding and gap | Fixed | "12px on every side, 8px between the leading icon, title and close icon." |
@@ -169,7 +169,7 @@ The stated values agree with the bindings: padding `space/md`, header gap `space
 - **Footer presets aren't exposed.** Dialog pins Actions=3, yet How to use relies on the 1-button and custom presets. Code needs to choose between a prop and composition.
 
 **Note**
-- The 480Px width is tentative. Code follows the page width up to a max width, 480Px by default.
+- 480Px is a tentative max width. Code follows the page width up to it, and each project can set its own.
 - Flavour is glyph-only. The How to use wording ("Every value binds that icon to the same colour token") is accurate but reads as if Flavour recoloured something.
 - The leading glyph is a raw glyph component (24×24Px) with no size token, while the close glyph uses Icon Size=medium (`control/icon-md`), so the two render at different sizes.
 - There is no elevation: `shadow/soft` and `shadow/hard` exist but are unused.

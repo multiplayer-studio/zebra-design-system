@@ -30,9 +30,9 @@ export default css`
     display: flex;
     flex-direction: column;
     gap: var(--space-none);
-    /* Width. Figma's 480px is tentative (spec: root sizing): the dialog follows
-       the page width, less --space-page each side, up to a max width set in
-       code. --zds-dialog-max-width sets it; 480px when unset. The older
+    /* Width. The dialog follows the page width, less --space-page each side,
+       up to a max width. 480px is the tentative default (spec: root sizing);
+       a project sets its own with --zds-dialog-max-width. The older
        --zds-dialog-width still works. */
     inline-size: min(var(--zds-dialog-max-width, var(--zds-dialog-width, 480px)), 100vw - 2 * var(--space-page));
     max-inline-size: none;

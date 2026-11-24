@@ -1,19 +1,32 @@
 ---
 name: builder-figma-to-code
-description: Build a Figma design (frame, flow or screen) in this codebase using the installed Zebra Design System packages — mapping Figma components, tokens and text styles to the real library, exactly as designed. Use whenever someone shares a Figma link and asks to build, implement or convert it, and a @zebra-design-system package is installed.
+description: Build a Figma design (frame, flow or screen) in this codebase exactly as designed and in the repo's own coding style, mapping Figma components, tokens and text styles to what the repo builds with: the installed Zebra Design System packages, the Zebra packages beside old-system ones, or the app's own component library. Use whenever a developer shares a Figma link and asks to build, implement or convert it in a repo.
 ---
 
 # Figma → code with the Zebra Design System
 
-You are in a consumer codebase with Zebra packages installed. The design in
-Figma was built from the same library, so almost every node maps to an
-installed component and every value to a token. Your job is translation, not
-invention.
+You are in a developer's repo. The design in Figma was built from the Zebra
+library, so every node is a known component and every value a known token.
+The repo builds with the Zebra packages, or with its own library that the
+repo's record maps them to. Your job is translation, not invention, and the
+result reads like the rest of the repo's code.
 
 ## Before anything — load the contract into context first
 
 Do not read the Figma design or write any code until you have **read, in
 full**, all of these:
+
+0. **Read `zebra-build/PROJECT.md` and `MAP.md`**, the repo's build record. No
+   `zebra-build` folder: run `builder-start` first. The record says which
+   case this repo is, how it writes code and how to run it. Follow its
+   Conventions and its Rules for this repo throughout: new code looks like
+   the code beside it.
+
+   | Case in the record | What the steps below mean here |
+   |---|---|
+   | `zebra` | as written |
+   | `zebra-plus-legacy` | as written, Zebra first; an old-system part only where `MAP.md` says so |
+   | `own-library` | the Zebra packages are not installed and must not be. Read `DESIGN.md` and the component docs from this skill's plugin to know what each designed component is and does, skip step 4, and build with the repo's own parts through `MAP.md` |
 
 1. **`DESIGN.md`** — resolve it in this order and read the first that exists:
    1. `node_modules/@zebra-design-system/react-baseui/DESIGN.md`
@@ -55,6 +68,13 @@ and the text style of each piece of text. The patterns and any project
 context fill in only what it doesn't draw.
 
 ## Mapping rules
+
+These are written for the Zebra packages. In an `own-library` repo each one
+holds with the repo's own part in place of the library's: the component
+`MAP.md` gives, set to the same variant; the variable `MAP.md` gives for the
+token; the repo's icon with the same meaning. With no match, build the part
+locally in the repo's style from the component's doc, add it to `MAP.md`
+under Built locally, and report it. Add every row you needed to `MAP.md`.
 
 - **Library components only.** A Figma instance of a library component becomes
   the installed component with the same variants (flavour, size, shape,
@@ -104,14 +124,17 @@ context fill in only what it doesn't draw.
 
 ## Verify
 
-Render the result in this app (dev server or Storybook) at the frame's width
-and compare it with the Figma frame as `references/FIDELITY.md` step 5 says:
-side by side, then by measuring sizes, padding, gaps and text styles in the
-browser. Fix what differs and compare again. Then check light and dark.
+Render the result in this app, the way the record says a screen is seen, at
+the frame's width. Then run `builder-design-check` against the frame: it
+saves the frame's values once, measures the build, and lists every gap. Fix
+and rerun until there is none, then look once side by side as
+`references/FIDELITY.md` step 5 says. Check light and dark, then run the
+repo's lint and tests from the record.
 
 ## Report
 
-End with: the deviations asked and what the designer chose, components used, any token or component gaps (with the workaround
+End with: the result of the design check, the deviations asked and what the designer chose, components used,
+any part built locally or taken from the old system and any row added to `MAP.md`, any token or component gaps (with the workaround
 taken), any text style that had no match, any undesigned path left inert, and any
 pattern rule the design breaks, by number (`patterns 4.21`).
 These findings are the design system's feedback channel — encourage the user

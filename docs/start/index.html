@@ -173,8 +173,12 @@
 claude plugin install zebra-design-system@zebra-design-system</pre></div>
       <p>From here on, everything is a conversation with Claude. The plugin gives it:</p>
       <ul>
-        <li><span class="skill-tag">skill <code>builder-figma-to-code</code></span> — turns a Figma design into working screens.</li>
+        <li><span class="skill-tag">skill <code>builder-start</code></span> — where a developer begins in a repo: one short question picks the path, and the repo's coding style is recorded once in a <code>zebra-build</code> folder.</li>
+        <li><span class="skill-tag">skill <code>builder-figma-to-code</code></span> — turns a Figma design into working screens, in a repo on the Zebra packages or one that keeps its own component library.</li>
+        <li><span class="skill-tag">skill <code>builder-handoff-to-code</code></span> — builds a designer's handoff package exactly as specified.</li>
         <li><span class="skill-tag">skill <code>builder-ui</code></span> — designs screens from a written brief.</li>
+        <li><span class="skill-tag">skill <code>builder-migrate</code></span> — moves an existing app onto the system, a screen or a component at a time.</li>
+        <li><span class="skill-tag">skill <code>builder-design-check</code></span> — measures a built screen against its design and lists every difference.</li>
         <li><span class="skill-tag">skill <code>designer-prototype</code></span> — builds shareable prototypes as claude.ai pages.</li>
         <li><span class="skill-tag">skill <code>designer-project-onboarding</code></span> — sets a project up once, from nothing, a Figma design or a codebase, and saves its context in a <code>zebra-context</code> folder for every later prototype.</li>
         <li><span class="skill-tag">skill <code>designer-theme</code></span> — gives a project its own brand colour and font, checked for contrast in every mode. Works with the plugin alone.</li>
@@ -337,7 +341,7 @@ claude plugin install zebra-design-system@zebra-design-system</pre></div>
       <span>Everything — packages, skills, this page's source — lives at
         <code>github.com/multiplayer-studio/zebra-design-system</code>. This page starts
         private; share it from its Share menu.</span>
-      <span>Current versions: tokens 0.3.0, icons 0.2.1, patterns 0.4.0, react-baseui · web-components · zeta-web 0.8.2.</span>
+      <span>Current versions: tokens 0.3.0, icons 0.2.1, patterns 0.4.0, react-baseui · web-components · zeta-web 0.8.3.</span>
     </footer>
 
   </div>

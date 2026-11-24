@@ -1,5 +1,11 @@
 # @zebra-design-system/react-baseui
 
+## 0.8.3
+
+### Patch Changes
+
+- Builder skills for developers working in a repo. `builder-start` is the way in: one short question picks the path, and the first run records how the repo is built in a `zebra-build` folder. New: `builder-handoff-to-code`, `builder-migrate` and `builder-design-check`. `builder-figma-to-code` and `builder-ui` now also work in a repo that keeps its own component library or carries old-system packages. A handoff now includes a copy of the prototype page.
+
 ## 0.8.2
 
 ### Patch Changes

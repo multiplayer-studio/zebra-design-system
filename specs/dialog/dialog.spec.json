@@ -158,7 +158,7 @@
         "align": "start"
       },
       "sizing": {
-        "h": "follows the page width up to a max width set in code (480Px measured in Figma, tentative)",
+        "h": "follows the page width up to a max width; 480Px is the tentative default and a project can set its own",
         "v": "hug"
       },
       "paint": {
@@ -731,7 +731,7 @@
     "dismissal": "Partly implied, not specified. A close glyph sits in every header, and the summary says the dialog stays 'until the user responds or dismisses it'. Escape, outside-click/backdrop dismissal, and whether dismissal is allowed when the footer asks for a decision are not stated. The close control is a bare Icon with no accessible name, hit area or states drawn.",
     "stacking": "Not modelled. Nothing about z-order, nested dialogs, or what happens when a second dialog opens.",
     "elevation": "None. The panel has no drop shadow or effect style; it is separated from the page only by surface/overlay and a stroke/thin border/default border.",
-    "sizingAndPlacement": "The 480Px width in Figma is tentative: in code the width follows the page width, up to a set max-width. Height hugs. No max height, viewport placement, or scroll behaviour for long body content is defined; the body content frame clips.",
+    "sizingAndPlacement": "480Px is a tentative max width. In code the width follows the page width up to it, and a project can set its own max width. Height hugs. No max height, viewport placement, or scroll behaviour for long body content is defined; the body content frame clips.",
     "dialogVsModal": "The Dev Deviation note says code used one component for dialogs and modals and that Figma has split them into separate components. Only Dialog is on this page; no Modal spec exists in specs/."
   },
   "content": [
@@ -768,7 +768,7 @@
     {
       "property": "Width",
       "type": "Tentative",
-      "description": "480px in this file is tentative. In code the width follows the page width, up to a set max-width."
+      "description": "480px is a tentative max-width. In code the width follows the page width up to it, and each project can set its own max-width."
     },
     {
       "property": "Height",
@@ -849,7 +849,7 @@
     {
       "severity": "note",
       "source": "width",
-      "detail": "The 480Px width is tentative (design decision, 24 Nov 2026). Code follows the page width up to a max width, 480Px by default."
+      "detail": "480Px is a tentative max width (design decision, 24 Nov 2026). Code follows the page width up to it, and each project can set its own."
     },
     {
       "severity": "warn",

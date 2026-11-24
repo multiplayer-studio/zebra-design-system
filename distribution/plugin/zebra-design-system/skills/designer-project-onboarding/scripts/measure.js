@@ -1,4 +1,5 @@
-/* Measure the parts of a page, for the parity check (SOURCE-PARITY.md, 2).
+/* Measure the parts of a page, for the parity check (SOURCE-PARITY.md, 2,
+ * and builder-design-check, which keeps an identical copy).
  *
  * Evaluate this whole file in the page. It returns
  *   { width, height, order: [name…], parts: { name: { …values } } }

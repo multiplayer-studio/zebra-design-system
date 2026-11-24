@@ -1,18 +1,30 @@
 ---
 name: builder-ui
-description: Design and build UI from a brief or description using the installed Zebra Design System packages — composing library components with semantic tokens so the result is themed, accessible and on-system. Use when someone asks for a screen, page, form, dashboard or component composition and a @zebra-design-system package is installed, with no Figma design to copy.
+description: Design and build UI from a brief or description in this codebase, with no design to copy, following the Zebra Design System's rules and the repo's own coding style. Composes from what the repo builds with (the installed Zebra packages, the Zebra packages beside old-system ones, or the app's own component library) so the result is themed, accessible and consistent with the rest of the app. Use when a developer asks for a screen, page, form, dashboard or component composition in a repo and there is no Figma design or handoff.
 ---
 
 # Build UI with the Zebra Design System
 
-You are in a consumer codebase with Zebra packages installed and no Figma
-design to translate: you are making the design decisions, so make them the
-way the system would.
+You are in a developer's repo with no design to translate: you are making
+the design decisions, so make them the way the system would, and write the
+code the way the repo does.
 
 ## Before anything — load the contract into context first
 
 Do not make any design decision or write any code until you have **read, in
 full**, all of these:
+
+0. **Read `zebra-build/PROJECT.md` and `MAP.md`**, the repo's build record. No
+   `zebra-build` folder: run `builder-start` first. The record says which
+   case this repo is, how it writes code and how to run it. Follow its
+   Conventions and its Rules for this repo throughout: new code looks like
+   the code beside it.
+
+   | Case in the record | What the steps below mean here |
+   |---|---|
+   | `zebra` | as written |
+   | `zebra-plus-legacy` | as written, Zebra first; an old-system part only where `MAP.md` says so |
+   | `own-library` | the Zebra packages are not installed and must not be. Read `DESIGN.md` and the component docs from this skill's plugin to learn the system's rules, skip step 4, and build with the repo's own parts through `MAP.md` |
 
 1. **`DESIGN.md`** — resolve it in this order and read the first that exists:
    1. `node_modules/@zebra-design-system/react-baseui/DESIGN.md`
@@ -44,6 +56,12 @@ behaviour and layout in the patterns, and they override anything here. Then:
 
 ## Designing on-system
 
+These are written for the Zebra packages. In an `own-library` repo each one
+holds with the repo's own parts and variables in place of the library's, as
+`MAP.md` gives them. Look at two existing screens first and match how they
+are laid out. With no match for a control you need, build it locally in the
+repo's style, add it to `MAP.md` under Built locally, and report it.
+
 - **Library first.** Compose from installed components; write custom markup
   only for layout and for genuinely novel content. A custom control that
   shadows a library one (a hand-made button, chip, input, menu) is a bug.
@@ -68,9 +86,10 @@ behaviour and layout in the patterns, and they override anything here. Then:
 
 ## Verify
 
-Render it, in light and dark, at phone width and desktop. Interact with it:
+Render it the way the record says a screen is seen, in light and dark, at
+phone width and desktop. Interact with it:
 focus order, hover states, empty states. A screenshot of the happy path is
-not verification.
+not verification. Then run the repo's lint and tests from the record.
 
 ## Report
 

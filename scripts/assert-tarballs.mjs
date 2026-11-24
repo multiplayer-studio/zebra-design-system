@@ -150,5 +150,24 @@ for (const dir of PLUGIN_PATTERNS) {
   }
 }
 
+// The survey and measuring scripts ship in a designer skill and a builder
+// skill. The copies must be the same file.
+{
+  const { readFileSync: read } = await import("node:fs");
+  const skills = join(root, "distribution", "skills");
+  const pairs = [
+    ["designer-project-onboarding/scripts/survey-repo.mjs", "builder-start/scripts/survey-repo.mjs"],
+    ["designer-project-onboarding/scripts/parity.mjs", "builder-design-check/scripts/parity.mjs"],
+    ["designer-project-onboarding/scripts/measure.js", "builder-design-check/scripts/measure.js"],
+  ];
+  const differ = pairs.filter(([a, b]) => !existsSync(join(skills, b)) || read(join(skills, a), "utf8") !== read(join(skills, b), "utf8"));
+  if (differ.length) {
+    failed = true;
+    console.error(`✗ shared skill scripts differ:\n  ${differ.map(([a, b]) => `${a} and ${b}`).join("\n  ")}`);
+  } else {
+    console.log("✓ shared skill scripts: the designer and builder copies match");
+  }
+}
+
 if (failed) process.exit(1);
 console.log("All tarballs clean.");

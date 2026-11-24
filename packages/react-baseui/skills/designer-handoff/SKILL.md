@@ -259,9 +259,14 @@ invented.
 ## 7. Deliver and move the mark
 
 Write the handoff to `prototypes/<name>/handoff/<YYYY-MM-DD>-<feature-name>/`:
-`spec.md`, plus `assets/` if there are any. Tell the designer in two lines
-what's in it and where, and that it should be committed with the prototype,
-so the developer gets it with the repo.
+`spec.md`, plus `assets/` if there are any, plus `page/`: a copy of the page
+as it is now, with the files beside it that it loads. The developer's
+assistant opens `page/` to see the design and measures its build against it.
+
+Tell the designer in two lines what's in it and where, and how it reaches the
+developer: committed with the prototype when the prototype lives in the app's
+repo, or the whole handoff folder sent to them when it doesn't. The folder
+stands alone, so nothing else needs to travel with it.
 
 Then record a new mark: copy the page as it is now to the next `marks/NNN/`,
 labelled "<feature name> handed off". The next handoff starts from there.

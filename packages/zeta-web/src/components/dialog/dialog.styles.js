@@ -1,7 +1,7 @@
 import { css } from "lit";
 
 /* Spec: specs/dialog (Dialog, _Dialog Header, _Dialog Footer). A space/md frame around three flush sections; the
-   480px width is tentative in Figma: the dialog follows the page width, up to a max width set in code. Flavour changes only the header glyph, so every glyph stays
+   dialog follows the page width up to a max width; 480px is the tentative default and a project can set its own. Flavour changes only the header glyph, so every glyph stays
    foreground/primary. There is no elevation and no backdrop token yet (spec issues). */
 export default css`
   :host {

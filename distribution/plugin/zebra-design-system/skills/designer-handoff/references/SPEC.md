@@ -13,9 +13,9 @@ Covers: {{SURFACES AND WIDTHS}} · {{MODES}}
 
 ## How to use this
 
-Give this file and the `assets/` folder to your AI assistant in the app's codebase, with this prompt:
+Give this whole folder (this file, `assets/` and `page/`) to your AI assistant in the app's codebase. With the Zebra skills installed, ask it to build the handoff: `builder-handoff-to-code` does the rest. Without them, use this prompt:
 
-> Implement the changes in this spec. This app uses the Zebra Design System: read `DESIGN.md` and `AGENTS.md` beside the installed library in `node_modules/@zebra-design-system/` first. This is a change to an app that already exists: find each anchor named in the spec, reuse every part tagged **Existing** as it is, change only what's listed for **Existing, changed**, use each **Zebra component** from the library with the props given, and build each **New** part exactly as specified from the semantic tokens given. Never use a raw value where the spec gives a token, and never hand-build a component the library has. Cover every state, behaviour, surface, width and mode listed. Deliver it as a change to the existing code, not a parallel copy.
+> Implement the changes in this spec. This app uses the Zebra Design System: read `DESIGN.md` and `AGENTS.md` beside the installed library in `node_modules/@zebra-design-system/` first. This is a change to an app that already exists: find each anchor named in the spec, reuse every part tagged **Existing** as it is, change only what's listed for **Existing, changed**, use each **Zebra component** from the library with the props given, and build each **New** part exactly as specified from the semantic tokens given. Never use a raw value where the spec gives a token, and never hand-build a component the library has. Cover every state, behaviour, surface, width and mode listed. Deliver it as a change to the existing code, not a parallel copy, written the way the rest of the app's code is. If the app keeps its own component library, build each Zebra component with the app's own equivalent, set to look and behave as specified.
 
 The spec is complete: if something isn't in it, it didn't change.
 

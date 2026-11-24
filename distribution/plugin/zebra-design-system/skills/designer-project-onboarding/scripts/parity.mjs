@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-/* The parity check, in one run (SOURCE-PARITY.md, 2).
+/* The parity check, in one run (SOURCE-PARITY.md, 2, and
+ * builder-design-check, which keeps an identical copy).
  *
  * Compares a build with a saved reference of the source and lists every gap:
  * parts missing, extra, moved or nested differently, and every value that
