@@ -1,0 +1,115 @@
+/* Text styles
+   Generated from tokens/ by scripts/build-tokens-css.mjs — do not edit by hand.
+   One font shorthand per Figma text style. Use var(--text-<style>) in a component, or the class in a page.
+*/
+
+:root {
+  --text-body-large: var(--body-large-font-weight) var(--body-large-font-size)/var(--body-large-line-height) var(--body-large-font-family), system-ui, sans-serif;
+  --text-body-medium: var(--body-medium-font-weight) var(--body-medium-font-size)/var(--body-medium-line-height) var(--body-medium-font-family), system-ui, sans-serif;
+  --text-body-small: var(--body-small-font-weight) var(--body-small-font-size)/var(--body-small-line-height) var(--body-small-font-family), system-ui, sans-serif;
+  --text-body-xsmall: var(--body-xsmall-font-weight) var(--body-xsmall-font-size)/var(--body-xsmall-line-height) var(--body-xsmall-font-family), system-ui, sans-serif;
+  --text-display-large: var(--display-large-font-weight) var(--display-large-font-size)/var(--display-large-line-height) var(--display-large-font-family), system-ui, sans-serif;
+  --text-display-medium: var(--display-medium-font-weight) var(--display-medium-font-size)/var(--display-medium-line-height) var(--display-medium-font-family), system-ui, sans-serif;
+  --text-display-small: var(--display-small-font-weight) var(--display-small-font-size)/var(--display-small-line-height) var(--display-small-font-family), system-ui, sans-serif;
+  --text-heading-large: var(--heading-large-font-weight) var(--heading-large-font-size)/var(--heading-large-line-height) var(--heading-large-font-family), system-ui, sans-serif;
+  --text-heading-medium: var(--heading-medium-font-weight) var(--heading-medium-font-size)/var(--heading-medium-line-height) var(--heading-medium-font-family), system-ui, sans-serif;
+  --text-heading-small: var(--heading-small-font-weight) var(--heading-small-font-size)/var(--heading-small-line-height) var(--heading-small-font-family), system-ui, sans-serif;
+  --text-indicator-medium: var(--indicator-medium-font-weight) var(--indicator-medium-font-size)/var(--indicator-medium-line-height) var(--indicator-medium-font-family), system-ui, sans-serif;
+  --text-indicator-small: var(--indicator-small-font-weight) var(--indicator-small-font-size)/var(--indicator-small-line-height) var(--indicator-small-font-family), system-ui, sans-serif;
+  --text-label-large: var(--label-large-font-weight) var(--label-large-font-size)/var(--label-large-line-height) var(--label-large-font-family), system-ui, sans-serif;
+  --text-label-medium: var(--label-medium-font-weight) var(--label-medium-font-size)/var(--label-medium-line-height) var(--label-medium-font-family), system-ui, sans-serif;
+  --text-label-small: var(--label-small-font-weight) var(--label-small-font-size)/var(--label-small-line-height) var(--label-small-font-family), system-ui, sans-serif;
+  --text-title-large: var(--title-large-font-weight) var(--title-large-font-size)/var(--title-large-line-height) var(--title-large-font-family), system-ui, sans-serif;
+  --text-title-medium: var(--title-medium-font-weight) var(--title-medium-font-size)/var(--title-medium-line-height) var(--title-medium-font-family), system-ui, sans-serif;
+  --text-title-small: var(--title-small-font-weight) var(--title-small-font-size)/var(--title-small-line-height) var(--title-small-font-family), system-ui, sans-serif;
+}
+
+.text-body-large {
+  font: var(--text-body-large);
+  letter-spacing: var(--body-large-letter-spacing);
+}
+
+.text-body-medium {
+  font: var(--text-body-medium);
+  letter-spacing: var(--body-medium-letter-spacing);
+}
+
+.text-body-small {
+  font: var(--text-body-small);
+  letter-spacing: var(--body-small-letter-spacing);
+}
+
+.text-body-xsmall {
+  font: var(--text-body-xsmall);
+  letter-spacing: var(--body-xsmall-letter-spacing);
+}
+
+.text-display-large {
+  font: var(--text-display-large);
+  letter-spacing: var(--display-large-letter-spacing);
+}
+
+.text-display-medium {
+  font: var(--text-display-medium);
+  letter-spacing: var(--display-medium-letter-spacing);
+}
+
+.text-display-small {
+  font: var(--text-display-small);
+  letter-spacing: var(--display-small-letter-spacing);
+}
+
+.text-heading-large {
+  font: var(--text-heading-large);
+  letter-spacing: var(--heading-large-letter-spacing);
+}
+
+.text-heading-medium {
+  font: var(--text-heading-medium);
+  letter-spacing: var(--heading-medium-letter-spacing);
+}
+
+.text-heading-small {
+  font: var(--text-heading-small);
+  letter-spacing: var(--heading-small-letter-spacing);
+}
+
+.text-indicator-medium {
+  font: var(--text-indicator-medium);
+  letter-spacing: var(--indicator-medium-letter-spacing);
+}
+
+.text-indicator-small {
+  font: var(--text-indicator-small);
+  letter-spacing: var(--indicator-small-letter-spacing);
+}
+
+.text-label-large {
+  font: var(--text-label-large);
+  letter-spacing: var(--label-large-letter-spacing);
+}
+
+.text-label-medium {
+  font: var(--text-label-medium);
+  letter-spacing: var(--label-medium-letter-spacing);
+}
+
+.text-label-small {
+  font: var(--text-label-small);
+  letter-spacing: var(--label-small-letter-spacing);
+}
+
+.text-title-large {
+  font: var(--text-title-large);
+  letter-spacing: var(--title-large-letter-spacing);
+}
+
+.text-title-medium {
+  font: var(--text-title-medium);
+  letter-spacing: var(--title-medium-letter-spacing);
+}
+
+.text-title-small {
+  font: var(--text-title-small);
+  letter-spacing: var(--title-small-letter-spacing);
+}
