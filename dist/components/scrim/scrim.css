@@ -1,0 +1,23 @@
+/* Scrim — one fill, stretched over its nearest positioned ancestor.
+   Spec: specs/scrim/scrim.spec.md */
+
+.zds-scrim {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  border: none;
+  border-radius: var(--radius-none);
+  box-shadow: none;
+  background: var(--overlay-scrim);
+}
+
+/* ---- tone ---------------------------------------------------------------- */
+/* Spec issue: Figma adds a 0.6 paint opacity over overlay/scrim. The token
+   already carries its alpha, so the token is used alone. */
+.zds-scrim[data-tone="scrim"] {
+  background: var(--overlay-scrim);
+}
+
+.zds-scrim[data-tone="modal"] {
+  background: var(--overlay-modal);
+}

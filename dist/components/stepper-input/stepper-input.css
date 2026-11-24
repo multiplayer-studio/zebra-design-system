@@ -1,0 +1,49 @@
+/* Stepper Input — layout only. The step buttons are IconButton (button.css,
+   icon-button.css), the value box is InputField (input-field.css), the hint
+   is Input Hint (input.css); their tokens and states are theirs. Every value
+   here is a semantic token. Mirrors packages/web-components
+   stepper-input.styles.ts.
+
+   Spec: specs/stepper-input/stepper-input.spec.md */
+
+/* ---- root: column, gap space/sm, start-aligned ---------------------- */
+.zds-stepper-input {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+.zds-stepper-input[hidden] {
+  display: none;
+}
+
+/* ---- control row: decrement · value · increment, gap space/sm -------- */
+.zds-stepper-input__control {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* ---- value ----------------------------------------------------------- */
+/* Figma's fixed 72px has no token (spec warn): the box fits the widest bound
+   (--zds-stepper-input-chars, in ch of the value's own font, plus InputField's
+   padding and border), never narrower than 2 × control/sm (72px at desktop).
+   Height follows size through InputField's data-size (control/md, -lg); the
+   text stays body/medium at both sizes (spec). */
+.zds-input-field.zds-stepper-input__value {
+  flex: none;
+  min-inline-size: 0;
+  font-family: var(--body-medium-font-family), system-ui, sans-serif;
+  font-size: var(--body-medium-font-size);
+  inline-size: max(
+    calc(2 * var(--control-sm)),
+    calc(var(--zds-stepper-input-chars, 3) * 1ch + 2 * var(--space-md) + 2 * var(--space-2xs) + 2 * var(--stroke-thin))
+  );
+}
+.zds-stepper-input__value .zds-input-field__input {
+  inline-size: 100%;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* No transitions: the spec defines no motion. */
