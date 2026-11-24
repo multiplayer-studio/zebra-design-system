@@ -22,6 +22,6 @@ token, so they apply to any component system, Zebra or not.
 - Refer to a rule by its number: `patterns 4.21` is rule 21 of file 04.
   Cite only numbers that exist.
 - Run `npx zebra-patterns-skills` once to install the Claude Code skills
-  `zebra-ux-patterns` (apply) and `zebra-ux-audit` (audit) into the
+  `shared-ux-patterns` (apply) and `shared-ux-audit` (audit) into the
   project's .claude/skills. A Zebra library's `npx zebra-skills` installs
   them too.

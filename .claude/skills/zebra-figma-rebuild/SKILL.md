@@ -1,6 +1,6 @@
 ---
 name: zebra-figma-rebuild
-description: Rebuild an existing Figma design — one screen, a frame of screens, or a whole section — in Figma, using only the Zebra Design System library (components, semantic variables, text and effect styles), composing local pattern components from Zebra parts where the product needs them, so the result looks like the original but is made entirely of the system. Then outline better options and offer to implement them. Use whenever someone shares a Figma frame or section link and asks to rebuild, redesign, migrate, convert, "zebra-fy", modernise or port an old or off-system design to the Zebra library in Figma, or to replace an old library's components with Zebra's. Figma only: it never writes code (for a coded page from Figma, that's zebra-builder-skill).
+description: Rebuild an existing Figma design — one screen, a frame of screens, or a whole section — in Figma, using only the Zebra Design System library (components, semantic variables, text and effect styles), composing local pattern components from Zebra parts where the product needs them, so the result looks like the original but is made entirely of the system. Then outline better options and offer to implement them. Use whenever someone shares a Figma frame or section link and asks to rebuild, redesign, migrate, convert, "zebra-fy", modernise or port an old or off-system design to the Zebra library in Figma, or to replace an old library's components with Zebra's. Figma only: it never writes code (for a coded page from Figma, that's zebra-figma-page-build).
 ---
 
 # Zebra Figma Rebuild
@@ -10,7 +10,7 @@ Zebra Design System: the same screens, layout, content and hierarchy, made only 
 semantic tokens and Zebra text and effect styles. The original stays untouched. After the faithful rebuild,
 it proposes improvements and implements the ones the user picks.
 
-It never touches code. `zebra-builder-skill` goes the other way (Figma → a React story).
+It never touches code. `zebra-figma-page-build` goes the other way (Figma → a React story).
 
 Load **figma-use** and **figma-generate-design** before the first `use_figma` call, and pass
 `skillNames: "figma-use,figma-generate-design"` on every call.
@@ -42,8 +42,8 @@ Load **figma-use** and **figma-generate-design** before the first `use_figma` ca
 |---|---|---|
 | `scripts/catalog.mjs` | node | Zebra's published components, icons, variables and styles with keys (cached a day). `--find <word>`; `--keys "<exact names>"` → the `K` map for build calls (misses print close names, same-named sets resolve from `specs/`); `--api "<names>"` → component APIs (props with `#ids`, variant options, default variant, size, exposed instances) over REST, cached |
 | `scripts/inventory.js` | use_figma, read | What to rebuild: the screens in a frame or section, what each is made of, existing Rebuild sections |
-| `../zebra-builder-skill/scripts/read-screens.js` | use_figma, read | Each screen in detail: layout, tokens, text styles and sizes, instances with variants and props, images |
-| `../zebra-builder-skill/scripts/export-images.mjs` | node | PNGs of source and rebuilt screens (REST) |
+| `../zebra-figma-page-build/scripts/read-screens.js` | use_figma, read | Each screen in detail: layout, tokens, text styles and sizes, instances with variants and props, images |
+| `../zebra-figma-page-build/scripts/export-images.mjs` | node | PNGs of source and rebuilt screens (REST) |
 | `scripts/component-api.js` | use_figma, read | Fallback for `catalog.mjs --api`: same output, read in the target file — only to verify an import that failed |
 | `scripts/place.js` | use_figma, **writes** | Empty target frames beside the source or in a Rebuild section |
 | `scripts/helpers.js` | paste into build calls | `inst`, `iconInto`, `icon`, `mode`, `frame`, `fill`, `stroke`, `gap`, `pad`, `radius`, `effect`, `text`, `imageFrom`, `add` — all take names from `K`, never values |

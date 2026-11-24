@@ -6,7 +6,7 @@
 Writes one image: source | rebuild | difference (amplified, red where they disagree), so a single Read shows
 where the rebuild drifted. Prints the share of pixels that differ noticeably, overall and per band of the
 screen (top/middle/bottom thirds, left/right halves), which points at the region to look at first.
-Export both PNGs at the same scale first (zebra-builder-skill/scripts/export-images.mjs <fileKey> <dir> id=name@1 …).
+Export both PNGs at the same scale first (zebra-figma-page-build/scripts/export-images.mjs <fileKey> <dir> id=name@1 …).
 """
 import sys
 from PIL import Image, ImageChops, ImageDraw, ImageOps

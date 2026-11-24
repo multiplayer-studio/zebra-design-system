@@ -242,7 +242,7 @@ The rules name no component and no token, so a product on any component system c
 | Building or changing a React component | `.claude/skills/zebra-react-baseui/` |
 | Building or changing a web component | `.claude/skills/zebra-web-components/` |
 | Refining a legacy Zeta Web component | `.claude/skills/zeta-web-components/` |
-| Building a Figma flow as a page story | `.claude/skills/zebra-builder-skill/` |
+| Building a Figma flow as a page story | `.claude/skills/zebra-figma-page-build/` |
 | Writing or updating a spec (style rules) | `specs/spec-writing-guidance.md` |
 | Refreshing tokens from Figma | `.claude/skills/zebra-figma-token-export/` |
 | Extracting a spec from Figma | `.claude/skills/zebra-figma-component-spec/` |

@@ -168,9 +168,9 @@ import "@zebra-design-system/icons/icons.css"; // icon font faces
 React 19 is a peer dependency; a bundler is required (components import their
 own CSS as side effects — never import or recreate styles by hand).
 Run \`npx zebra-skills\` once to install this package's Claude Code skills
-(\`zebra-figma-to-code\`, \`zebra-build-ui\`, \`zebra-prototype\`,
-\`zebra-onboard-project\`, \`zebra-theme\`, \`zebra-handoff\`,
-\`zebra-ux-patterns\`, \`zebra-ux-audit\`) into the project's .claude/skills.
+(\`builder-figma-to-code\`, \`builder-ui\`, \`designer-prototype\`,
+\`designer-project-onboarding\`, \`designer-theme\`, \`designer-handoff\`,
+\`shared-ux-patterns\`, \`shared-ux-audit\`) into the project's .claude/skills.
 The UX patterns install with this package as \`@zebra-design-system/patterns\`:
 read its AGENTS.md before composing a screen.
 
@@ -207,9 +207,9 @@ import "@zebra-design-system/icons/icons.css"; // @font-face must load in the do
 import "@zebra-design-system/web-components";  // registers every zds-* element
 \`\`\`
 Run \`npx zebra-skills\` once to install this package's Claude Code skills
-(\`zebra-figma-to-code\`, \`zebra-build-ui\`, \`zebra-prototype\`,
-\`zebra-onboard-project\`, \`zebra-theme\`, \`zebra-handoff\`,
-\`zebra-ux-patterns\`, \`zebra-ux-audit\`) into the project's .claude/skills.
+(\`builder-figma-to-code\`, \`builder-ui\`, \`designer-prototype\`,
+\`designer-project-onboarding\`, \`designer-theme\`, \`designer-handoff\`,
+\`shared-ux-patterns\`, \`shared-ux-audit\`) into the project's .claude/skills.
 The UX patterns install with this package as \`@zebra-design-system/patterns\`:
 read its AGENTS.md before composing a screen.
 
@@ -299,7 +299,7 @@ token, so they apply to any component system, Zebra or not.
 - Refer to a rule by its number: \`patterns 4.21\` is rule 21 of file 04.
   Cite only numbers that exist.
 - Run \`npx zebra-patterns-skills\` once to install the Claude Code skills
-  \`zebra-ux-patterns\` (apply) and \`zebra-ux-audit\` (audit) into the
+  \`shared-ux-patterns\` (apply) and \`shared-ux-audit\` (audit) into the
   project's .claude/skills. A Zebra library's \`npx zebra-skills\` installs
   them too.
 `,
@@ -398,7 +398,7 @@ for (const dir of ["react-baseui", "web-components"]) {
 // and the zebra-patterns plugin carry the pack plus only the two UX skills.
 // packages/patterns/build.mjs runs the guard rails, copies that folder and
 // generates manifest.json. A failed guard rail stops this generator.
-const PATTERN_SKILLS = ["zebra-ux-patterns", "zebra-ux-audit"];
+const PATTERN_SKILLS = ["shared-ux-patterns", "shared-ux-audit"];
 const patternsDir = join(ROOT, "packages", "patterns");
 const patternsVersion = JSON.parse(readFileSync(join(patternsDir, "package.json"), "utf8")).version;
 const buildPack = (out) =>
@@ -446,7 +446,7 @@ cpSync(join(SKILLS_SRC, "install-skills.mjs"), join(patternsDir, "bin", "install
   // the pattern pack: the skills' fallback when the package is not installed
   buildPack(join(plug, "patterns"));
   // the theming tool: zebra-theme and the token data it reads, so the
-  // zebra-theme skill works for someone who has the plugin and no packages.
+  // designer-theme skill works for someone who has the plugin and no packages.
   // Same layout as the tokens package (bin/ beside dist/), so the tool finds
   // its data unchanged. Needs the tokens build; skipped with a note if absent.
   {

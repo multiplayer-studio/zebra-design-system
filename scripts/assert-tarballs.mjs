@@ -105,5 +105,50 @@ for (const dir of PLUGIN_PATTERNS) {
   }
 }
 
+// Shipped skills are named for who they are for: designer-, builder- or
+// shared-. No skill folder may use another prefix, and no shipped skill or
+// AGENTS.md may still point at a name retired in 0.8.0. (`zebra-theme` is left
+// out of the text check: it is still the name of the theming tool.)
+{
+  const { readdirSync, readFileSync, statSync } = await import("node:fs");
+  const RETIRED = /zebra-(prototype|onboard-project|handoff|figma-to-code|build-ui|ux-patterns|ux-audit)\b/;
+  const homes = [
+    ...["patterns", "react-baseui", "web-components", "zeta-web"].map((p) => join(root, "packages", p)),
+    join(root, "distribution", "plugin", "zebra-design-system"),
+    join(root, "distribution", "plugin", "zebra-patterns"),
+  ];
+  const bad = [];
+  const walk = (dir) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      const p = join(dir, e.name);
+      if (e.isDirectory()) walk(p);
+      else if (/\.(md|mjs|js|json)$/.test(e.name) && statSync(p).size < 400_000 && RETIRED.test(readFileSync(p, "utf8"))) bad.push(`${p.slice(root.length + 1)} names a retired skill`);
+    }
+  };
+  for (const home of homes) {
+    const skillsDir = join(home, "skills");
+    if (!existsSync(skillsDir)) continue;
+    for (const e of readdirSync(skillsDir, { withFileTypes: true })) {
+      if (!e.isDirectory()) continue;
+      if (!/^(designer|builder|shared)-/.test(e.name)) bad.push(`${skillsDir.slice(root.length + 1)}/${e.name} is not named designer-, builder- or shared-`);
+      const name = readFileSync(join(skillsDir, e.name, "SKILL.md"), "utf8").match(/^name:\s*(.+)$/m)?.[1]?.trim();
+      if (name !== e.name) bad.push(`${skillsDir.slice(root.length + 1)}/${e.name} has name "${name}" in its SKILL.md`);
+    }
+    walk(skillsDir);
+    for (const f of ["AGENTS.md", "commands"]) {
+      const p = join(home, f);
+      if (!existsSync(p)) continue;
+      if (statSync(p).isDirectory()) walk(p);
+      else if (RETIRED.test(readFileSync(p, "utf8"))) bad.push(`${p.slice(root.length + 1)} names a retired skill`);
+    }
+  }
+  if (bad.length) {
+    failed = true;
+    console.error(`✗ skill names:\n  ${bad.join("\n  ")}`);
+  } else {
+    console.log("✓ skill names: every shipped skill is designer-, builder- or shared-, and no retired name is left");
+  }
+}
+
 if (failed) process.exit(1);
 console.log("All tarballs clean.");

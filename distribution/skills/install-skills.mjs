@@ -7,7 +7,7 @@
  *   npx zebra-skills            install/update into ./.claude/skills
  *   npx zebra-skills --list     show what would be installed
  */
-import { cpSync, readdirSync, existsSync, mkdirSync, readFileSync } from "node:fs";
+import { cpSync, readdirSync, existsSync, mkdirSync, readFileSync, rmSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -24,8 +24,30 @@ if (process.argv.includes("--list")) {
   process.exit(0);
 }
 
+// Skills this package used to ship under another name. From 0.8.0 the names
+// say who a skill is for (designer-, builder-, shared-). An old copy is removed
+// so a project never carries both, but only when it is ours: its SKILL.md
+// still carries the old name.
+const RETIRED = {
+  "zebra-prototype": "designer-prototype",
+  "zebra-onboard-project": "designer-project-onboarding",
+  "zebra-theme": "designer-theme",
+  "zebra-handoff": "designer-handoff",
+  "zebra-figma-to-code": "builder-figma-to-code",
+  "zebra-build-ui": "builder-ui",
+  "zebra-ux-patterns": "shared-ux-patterns",
+  "zebra-ux-audit": "shared-ux-audit",
+};
+
 const dest = join(process.cwd(), ".claude", "skills");
 mkdirSync(dest, { recursive: true });
+for (const [old, now] of Object.entries(RETIRED)) {
+  const dir = join(dest, old);
+  if (!skills.includes(now) || !existsSync(join(dir, "SKILL.md"))) continue;
+  if (!new RegExp(`^name:\\s*${old}\\s*$`, "m").test(readFileSync(join(dir, "SKILL.md"), "utf8"))) continue;
+  rmSync(dir, { recursive: true, force: true });
+  console.log(`removed  .claude/skills/${old} (now ${now})`);
+}
 for (const s of skills) {
   const existed = existsSync(join(dest, s));
   cpSync(join(src, s), join(dest, s), { recursive: true });

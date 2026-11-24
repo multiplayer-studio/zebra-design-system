@@ -1,5 +1,16 @@
 # @zebra-design-system/react-baseui
 
+## 0.8.0
+
+### Minor Changes
+
+- The skills are renamed for who they are for. Designer skills: `designer-prototype`, `designer-project-onboarding`, `designer-theme`, `designer-handoff`. Builder skills: `builder-figma-to-code`, `builder-ui`. Shared skills: `shared-ux-patterns`, `shared-ux-audit`. The old `zebra-*` names no longer work. Running `npx zebra-skills` (or `npx zebra-patterns-skills`) again installs the new names and removes the old copies.
+
+### Patch Changes
+
+- Updated dependencies
+  - @zebra-design-system/patterns@0.4.0
+
 ## 0.7.6
 
 ### Patch Changes

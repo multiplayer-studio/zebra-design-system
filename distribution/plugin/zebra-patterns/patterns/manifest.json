@@ -1,6 +1,6 @@
 {
   "name": "@zebra-design-system/patterns",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "note": "Generated when the patterns are packaged. Do not edit: change the .md files and package again.",
   "readme": "README.md",
   "patterns": [

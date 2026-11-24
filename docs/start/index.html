@@ -173,14 +173,14 @@
 claude plugin install zebra-design-system@zebra-design-system</pre></div>
       <p>From here on, everything is a conversation with Claude. The plugin gives it:</p>
       <ul>
-        <li><span class="skill-tag">skill <code>zebra-figma-to-code</code></span> — turns a Figma design into working screens.</li>
-        <li><span class="skill-tag">skill <code>zebra-build-ui</code></span> — designs screens from a written brief.</li>
-        <li><span class="skill-tag">skill <code>zebra-prototype</code></span> — builds shareable prototypes as claude.ai pages.</li>
-        <li><span class="skill-tag">skill <code>zebra-onboard-project</code></span> — sets a project up once, from nothing, a Figma design or a codebase, and saves its context in a <code>zebra-context</code> folder for every later prototype.</li>
-        <li><span class="skill-tag">skill <code>zebra-theme</code></span> — gives a project its own brand colour and font, checked for contrast in every mode. Works with the plugin alone.</li>
-        <li><span class="skill-tag">skill <code>zebra-handoff</code></span> — turns a finished prototype into a build spec for developers, covering what changed since the last handoff.</li>
-        <li><span class="skill-tag">skill <code>zebra-ux-patterns</code></span> — applies Zebra's rules for how screens are composed and behave.</li>
-        <li><span class="skill-tag">skill <code>zebra-ux-audit</code></span> — audits any product against those rules, whatever it is built with.</li>
+        <li><span class="skill-tag">skill <code>builder-figma-to-code</code></span> — turns a Figma design into working screens.</li>
+        <li><span class="skill-tag">skill <code>builder-ui</code></span> — designs screens from a written brief.</li>
+        <li><span class="skill-tag">skill <code>designer-prototype</code></span> — builds shareable prototypes as claude.ai pages.</li>
+        <li><span class="skill-tag">skill <code>designer-project-onboarding</code></span> — sets a project up once, from nothing, a Figma design or a codebase, and saves its context in a <code>zebra-context</code> folder for every later prototype.</li>
+        <li><span class="skill-tag">skill <code>designer-theme</code></span> — gives a project its own brand colour and font, checked for contrast in every mode. Works with the plugin alone.</li>
+        <li><span class="skill-tag">skill <code>designer-handoff</code></span> — turns a finished prototype into a build spec for developers, covering what changed since the last handoff.</li>
+        <li><span class="skill-tag">skill <code>shared-ux-patterns</code></span> — applies Zebra's rules for how screens are composed and behave.</li>
+        <li><span class="skill-tag">skill <code>shared-ux-audit</code></span> — audits any product against those rules, whatever it is built with.</li>
         <li><span class="skill-tag">command <code>/zebra-setup</code></span> — wires any project to the system and fixes what's missing.</li>
         <li><span class="skill-tag">command <code>/zebra-theme</code></span> — themes the project from a brand colour or font.</li>
         <li><span class="skill-tag">command <code>/zebra-components</code></span> — answers "what exists?" from the official catalog.</li>
@@ -194,7 +194,7 @@ claude plugin install zebra-design-system@zebra-design-system</pre></div>
     <section id="prototype" aria-labelledby="t-prototype">
       <h2 id="t-prototype"><span class="step" aria-hidden="true">2</span>Fastest path: a shareable prototype</h2>
       <p>No app, no setup knowledge needed. Make an empty folder, open Claude Code in it, and
-         describe the idea. The <code>zebra-prototype</code> skill installs what it needs,
+         describe the idea. The <code>designer-prototype</code> skill installs what it needs,
          builds the page from real components, and publishes it as a private claude.ai link
          you can share for review.</p>
       <p class="prompt"><span class="who">You say</span>"Set this folder up for Zebra prototyping,
@@ -265,7 +265,7 @@ claude plugin install zebra-design-system@zebra-design-system</pre></div>
 
     <section id="figma" aria-labelledby="t-figma">
       <h2 id="t-figma"><span class="step" aria-hidden="true">5</span>Build from a Figma design</h2>
-      <p><span class="skill-tag">skill <code>zebra-figma-to-code</code></span></p>
+      <p><span class="skill-tag">skill <code>builder-figma-to-code</code></span></p>
       <p>Zebra's Figma library and its code components are the same system, so a Figma screen
          is a translation job, not a reinvention. Connect Figma once (in Claude Code:
          Settings → Connectors → Figma, or ask Claude "connect Figma for me"), then paste the
@@ -285,7 +285,7 @@ claude plugin install zebra-design-system@zebra-design-system</pre></div>
 
     <section id="vibe" aria-labelledby="t-vibe">
       <h2 id="t-vibe"><span class="step" aria-hidden="true">6</span>Vibe a design from a brief</h2>
-      <p><span class="skill-tag">skill <code>zebra-build-ui</code></span></p>
+      <p><span class="skill-tag">skill <code>builder-ui</code></span></p>
       <p>No design yet? Describe what the screen is for and let the system make it look
          designed. Say as much or as little as you like — the system's design contract fills
          in whatever you don't specify.</p>
@@ -303,7 +303,7 @@ claude plugin install zebra-design-system@zebra-design-system</pre></div>
 
     <section id="sketch" aria-labelledby="t-sketch">
       <h2 id="t-sketch"><span class="step" aria-hidden="true">7</span>From a sketch or screenshot</h2>
-      <p><span class="skill-tag">skill <code>zebra-build-ui</code></span></p>
+      <p><span class="skill-tag">skill <code>builder-ui</code></span></p>
       <p>A whiteboard photo, a napkin sketch, a screenshot of an old tool or another product —
          drag the image into the Claude Code chat and ask for it on-system:</p>
       <p class="prompt"><span class="who">You say</span>"Rebuild this on the Zebra system —
@@ -337,7 +337,7 @@ claude plugin install zebra-design-system@zebra-design-system</pre></div>
       <span>Everything — packages, skills, this page's source — lives at
         <code>github.com/multiplayer-studio/zebra-design-system</code>. This page starts
         private; share it from its Share menu.</span>
-      <span>Current versions: tokens 0.3.0, icons 0.2.1, patterns 0.3.0, react-baseui · web-components · zeta-web 0.7.6.</span>
+      <span>Current versions: tokens 0.3.0, icons 0.2.1, patterns 0.4.0, react-baseui · web-components · zeta-web 0.8.0.</span>
     </footer>
 
   </div>

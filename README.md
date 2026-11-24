@@ -71,7 +71,7 @@ The three libraries share tokens, icons and specs, but no component code.
 - Guard rails run when the patterns are packaged and stop it with the file and line if, for example, a rule file names a token or a Zebra component. [patterns/README.md](patterns/README.md) lists them.
 - Run `pnpm run docs:components` afterwards. It refreshes the copies in the packages and plugins and regenerates each copy's `manifest.json` from the files.
 
-Consumers get the pack with a Zebra library, alone as `@zebra-design-system/patterns`, or through the `zebra-patterns` plugin. Two skills use it: `zebra-ux-patterns` applies the rules and `zebra-ux-audit` audits a product against them.
+Consumers get the pack with a Zebra library, alone as `@zebra-design-system/patterns`, or through the `zebra-patterns` plugin. Two skills use it: `shared-ux-patterns` applies the rules and `shared-ux-audit` audits a product against them.
 
 ## Getting started
 
