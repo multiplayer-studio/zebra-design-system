@@ -1,0 +1,214 @@
+/* Steps — Step / Horizontal, Step / Vertical, Step Card and Step Segment.
+   Every value is a semantic token. Keyed off data attributes the step sets:
+   kind (horizontal / vertical / card), status, line (auto / on / off) and,
+   on cards, shape. Colour runs through one local property per role, set once
+   per status.
+
+   Spec: specs/stepper/stepper.spec.md */
+
+/* ---- status: one set of roles, read by every kind ------------------------ */
+.zds-step {
+  --zds-step-indicator-bg: var(--interactive-neutral-background-default);
+  --zds-step-indicator-border: var(--border-default);
+  --zds-step-indicator-fg: var(--foreground-primary);
+  --zds-step-label: var(--foreground-tertiary);
+  --zds-step-subtitle: var(--foreground-tertiary);
+  --zds-step-line: var(--border-default);
+  --zds-step-card-bg: var(--surface-card);
+  --zds-step-card-border: var(--border-default);
+  /* Partial draws dashed. No token exists for a dash pattern (spec issue). */
+  --zds-step-dash: solid;
+  counter-increment: zds-step;
+  box-sizing: border-box;
+  min-inline-size: 0;
+}
+/* The glyph has no colour in Figma; it draws white on the solid fill, which is the on-primary foreground. */
+.zds-step[data-status="complete"] {
+  --zds-step-indicator-bg: var(--feedback-success-background-strong);
+  --zds-step-indicator-border: var(--feedback-success-background-strong);
+  --zds-step-indicator-fg: var(--interactive-primary-foreground-default);
+  --zds-step-line: var(--border-success);
+  --zds-step-card-bg: var(--feedback-success-background-subtle);
+  --zds-step-card-border: var(--border-success);
+}
+.zds-step[data-status="active"] {
+  --zds-step-indicator-bg: var(--interactive-primary-background-default);
+  --zds-step-indicator-border: var(--interactive-primary-background-default);
+  --zds-step-indicator-fg: var(--interactive-primary-foreground-default);
+  --zds-step-label: var(--foreground-primary);
+  --zds-step-card-bg: var(--surface-brand);
+  --zds-step-card-border: var(--interactive-primary-border-default);
+}
+.zds-step[data-status="partial"] {
+  --zds-step-indicator-bg: var(--feedback-success-background-subtle);
+  --zds-step-indicator-border: var(--border-success);
+  --zds-step-line: var(--border-success);
+  --zds-step-dash: dashed;
+}
+.zds-step[data-status="error"] {
+  --zds-step-indicator-bg: var(--feedback-error-background-strong);
+  --zds-step-indicator-border: var(--feedback-error-background-strong);
+  --zds-step-indicator-fg: var(--interactive-primary-foreground-default);
+  --zds-step-label: var(--foreground-error);
+  --zds-step-card-border: var(--border-error);
+}
+.zds-step[data-status="disabled"] {
+  --zds-step-indicator-bg: var(--border-subtle);
+  --zds-step-indicator-border: var(--border-subtle);
+  --zds-step-indicator-fg: var(--foreground-disabled);
+  --zds-step-label: var(--foreground-disabled);
+  --zds-step-subtitle: var(--foreground-disabled);
+  --zds-step-card-border: var(--border-subtle);
+}
+
+/* ---- indicator: shared by every kind ------------------------------------- */
+.zds-step__indicator {
+  display: grid;
+  flex: none;
+  place-items: center;
+  box-sizing: border-box;
+  inline-size: var(--control-icon-lg);
+  block-size: var(--control-icon-lg);
+  border: var(--stroke-thick) var(--zds-step-dash) var(--zds-step-indicator-border);
+  border-radius: var(--radius-pill);
+  background: var(--zds-step-indicator-bg);
+  color: var(--zds-step-indicator-fg);
+  font: var(--text-label-small);
+  letter-spacing: var(--label-small-letter-spacing);
+}
+.zds-step__number[data-auto]::before { content: counter(zds-step); }
+
+/* ---- text: label, subtitle, and the status in words ---------------------- */
+.zds-step__text {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  padding: var(--space-3xs) 0 0;
+  text-align: start;
+}
+.zds-step__label {
+  color: var(--zds-step-label);
+  font: var(--text-label-large);
+  letter-spacing: var(--label-large-letter-spacing);
+}
+.zds-step__subtitle {
+  color: var(--zds-step-subtitle);
+  font: var(--text-body-small);
+  letter-spacing: var(--body-small-letter-spacing);
+}
+.zds-step__sr {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* With onSelect the text is a button. No hover is designed; focus gets the ring. */
+button.zds-step__text {
+  margin: 0;
+  border: 0;
+  border-radius: var(--radius-xs);
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+button.zds-step__text:focus-visible {
+  outline: var(--stroke-thick) solid var(--border-focus);
+  outline-offset: var(--space-3xs);
+}
+
+/* ---- connector line ------------------------------------------------------ */
+.zds-step__line { display: block; box-sizing: border-box; }
+.zds-step:is([data-line="off"], [data-line="auto"]:last-child) :is(.zds-step__track, .zds-step__line) { display: none; }
+
+/* ---- Step / Horizontal: label centred under the indicator ---------------- */
+.zds-step[data-kind="horizontal"] {
+  display: flex;
+  flex: 1 1 0;
+  padding-block: var(--space-2xs);
+}
+/* The last step has no line, so it takes only its head. */
+.zds-step[data-kind="horizontal"]:is([data-line="off"], [data-line="auto"]:last-child) { flex: none; }
+.zds-step[data-kind="horizontal"] .zds-step__head {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  inline-size: var(--control-icon-lg);
+}
+/* The text is centred on a head as wide as the indicator, and overflows it on both sides by design. */
+.zds-step[data-kind="horizontal"] .zds-step__text {
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+}
+.zds-step[data-kind="horizontal"] .zds-step__track {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  min-inline-size: 0;
+  block-size: var(--control-icon-lg);
+}
+.zds-step[data-kind="horizontal"] .zds-step__line {
+  inline-size: 100%;
+  border-block-start: var(--stroke-thick) var(--zds-step-dash) var(--zds-step-line);
+}
+
+/* ---- Step / Vertical: label beside the indicator, line dropping below ---- */
+.zds-step[data-kind="vertical"] {
+  display: flex;
+  gap: var(--space-xl);
+}
+.zds-step[data-kind="vertical"] .zds-step__rail {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+}
+/* The line carries the height of the step. Its shortest length is space/xl:
+   Figma draws it at a raw 22px with no token (spec issue). */
+.zds-step[data-kind="vertical"] .zds-step__line {
+  flex: 1 0 auto;
+  min-block-size: var(--space-xl);
+  border-inline-start: var(--stroke-thick) var(--zds-step-dash) var(--zds-step-line);
+}
+.zds-step[data-kind="vertical"] .zds-step__text { flex: 1 1 0; }
+
+/* ---- Step Card: a bordered surface, indicator and text side by side ------ */
+/* Cards take a stronger label than the rail steps; active, error and disabled override it above. */
+.zds-step[data-kind="card"]:is([data-status="default"], [data-status="complete"], [data-status="partial"]) { --zds-step-label: var(--foreground-secondary); }
+.zds-step[data-kind="card"] {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border: var(--stroke-thin) solid var(--zds-step-card-border);
+  border-radius: var(--radius-none);
+  background: var(--zds-step-card-bg);
+}
+.zds-step[data-kind="card"][data-shape="rounded"] { border-radius: var(--radius-sm); }
+.zds-step[data-kind="card"] .zds-step__text { flex: 1 1 0; }
+
+/* ---- Step Segment: one division of the compact bar ----------------------- */
+/* Figma splits the segment into Start and End halves only to draw partial;
+   here the two halves are one background with a hard stop at the middle. */
+.zds-step-segment {
+  --zds-step-segment-start: var(--border-subtle);
+  --zds-step-segment-end: var(--border-subtle);
+  flex: 1 1 0;
+  min-inline-size: 0;
+  block-size: var(--space-2xs);
+  border-radius: var(--radius-pill);
+  background: linear-gradient(to right, var(--zds-step-segment-start) 50%, var(--zds-step-segment-end) 50%);
+}
+.zds-step-segment:dir(rtl) { background: linear-gradient(to left, var(--zds-step-segment-start) 50%, var(--zds-step-segment-end) 50%); }
+.zds-step-segment:is([data-status="complete"], [data-status="active"]) {
+  --zds-step-segment-start: var(--interactive-primary-background-default);
+  --zds-step-segment-end: var(--interactive-primary-background-default);
+}
+.zds-step-segment[data-status="partial"] { --zds-step-segment-start: var(--interactive-primary-background-default); }
+.zds-step-segment[data-status="error"] {
+  --zds-step-segment-start: var(--foreground-error);
+  --zds-step-segment-end: var(--foreground-error);
+}
