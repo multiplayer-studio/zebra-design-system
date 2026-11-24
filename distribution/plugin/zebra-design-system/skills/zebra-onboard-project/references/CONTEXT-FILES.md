@@ -2,7 +2,9 @@
 
 The layout of each file in `zebra-context/`. Keep the headings as they are, so
 every project's context reads the same way. Write short, plain sentences. A
-section with nothing in it yet says **Not established**.
+section with nothing in it yet says **Not established**. A destination,
+screen or component the review hasn't reached is listed by name and says
+**Not reviewed yet**: it is reviewed when a prototype first builds it.
 
 Mark what you write: **observed** (read from the source), **assumed** (your
 reading, not confirmed) or **decided** (the designer chose it, with the date).
@@ -31,7 +33,7 @@ shape-full:                    # the cases that are fully round, if any
 density: comfortable           # comfortable | compact
 surfaces: [handheld, desktop]  # form factors, from the patterns' devices.md
 special-treatments: [ai-interactions]
-look: match                    # with a source, asked after the review: match (one to one with the source) | design-system
+look: match                    # with a source, asked after a quick look: match (one to one with the source) | design-system
 library: none                  # off-system only: name, exact version, the URL it loads from
 handoff:                       # added by zebra-handoff at the project's first handoff
   library: react-baseui        # what the app is built with: react-baseui | web-components | zeta-web | none
@@ -136,6 +138,13 @@ Only with `look: match`. The style changes that make the Design System's
 parts look like the project's, as `SOURCE-PARITY.md` lays out: scoped under
 the project's class, one comment per rule saying what it matches. Loaded by
 every prototype after `theme.css`.
+
+## parity/
+
+Only with `look: match`. One file per screen, width and mode,
+`parity/<screen>.json`: the source's measurements, saved once and checked
+against by every build of that screen. `SOURCE-PARITY.md` section 2 has the
+layout. Keep the source's screenshot beside it under the same name.
 
 ## COMPONENTS.md
 

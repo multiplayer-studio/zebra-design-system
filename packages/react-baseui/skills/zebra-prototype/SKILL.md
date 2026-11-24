@@ -82,8 +82,11 @@ come, and still make nothing up. With `look: match`, load
   of using the Design System's parts: a part that doesn't reproduce the
   source exactly is changed or built for the project, with no limit on how
   many;
-- after building, check parity against the source and fix every gap
-  yourself, round after round, until none is left;
+- before building a screen, save the source's measurements once; after
+  building, run the parity check and fix every gap it lists yourself, until
+  none is left;
+- a screen the context marks **Not reviewed yet** is reviewed first, as
+  `zebra-onboard-project` step 3c says, without asking;
 - ask nothing on the way. A screen that needs live data you can't reach is
   the one case to ask about. Don't make up functionality or data;
 - end with a report of what matched, what was built for the project and any

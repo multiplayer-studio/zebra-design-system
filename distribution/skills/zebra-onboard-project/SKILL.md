@@ -59,8 +59,13 @@ the same files, whichever path the project took:
 | `COMPONENTS.md` | Each component the project uses and what it maps to |
 
 `references/CONTEXT-FILES.md` in this skill's folder has the layout of each
-file. A section nobody has established yet says **Not established**. It is
-never left out, so a later reader can tell "not decided" from "not looked at".
+file. A section nobody has established yet says **Not established**, and a
+part of the source the review hasn't reached says **Not reviewed yet**.
+Neither is left out, so a later reader can tell "not decided" from "not
+looked at".
+
+`zebra-context/parity/` holds the saved measurements of the source's
+screens, when the designer chose to match (`references/SOURCE-PARITY.md`).
 
 Never put a password, key or token in the context. It is committed.
 
@@ -79,9 +84,9 @@ files.
 | Components | Zebra's | Matched to the source | Matched to the source |
 | Functionality and data | Proposed from the brief | Only what the frames show | Only what the screens show |
 
-A project with a source is asked, after the review, whether its prototypes
-should match the project's look (step 5). When they should, it is built to
-match (`references/SOURCE-PARITY.md`).
+A project with a source is asked, after a quick look at it, whether its
+prototypes should match the project's look (step 3). When they should, it is
+built to match (`references/SOURCE-PARITY.md`).
 
 A project with both a Figma design and a repo reviews both. The Figma design
 is the look to aim for and the repo is what ships today. Where they disagree,
@@ -125,11 +130,80 @@ the Figma file name, else ask. It names the theme.
 
 Skip this on the free exploration path.
 
-Review the whole project, not one screen, and read data, not the picture.
-Follow `references/REVIEW-FIGMA.md` or `references/REVIEW-REPO.md` in this
-skill's folder. Read only the one for your path.
+Read data, not the picture. Review what the first build needs and no more:
+the rest of the project is reviewed when a later prototype needs it (step
+8). The step has three parts, in this order.
+
+**3a. Take a quick look.** Enough to tell the designer what the project
+looks like, and nothing else yet.
+
+- **A codebase:** run the survey once. Don't collect these by hand.
+
+  ```bash
+  node "<this skill's folder>/scripts/survey-repo.mjs" "<the app's folder>"
+  ```
+
+  One run prints the commit, the interface libraries and their versions, the
+  theme files, the colours, fonts, corners and screen sizes in use with how
+  often each is used, the modes, the routes, the shell files and the
+  components used most. It only reads. Open a file afterwards only to settle
+  something the output leaves unclear.
+- **A Figma design:** read the file's variables and their modes, its text
+  styles, the libraries it uses, and the list of frames with their sizes.
+  Don't open the frames yet.
+
+**3b. Ask whether to match its look.** Ask straight after the quick look,
+in its own dialog. Say in the question what you found, in one or two plain
+lines (its colours, its font, what it is built with):
+
+- "Do you want prototypes to match the look of <project> as it is today?"
+  - **Match the project's look:** "The same as <the app / the design>, one
+    to one: its look and how it is put together. I'll build whatever it
+    takes to match, and check it against the original myself."
+  - **Use the Design System's look:** "Built from the Design System as it
+    comes, with your brand colours if you keep them. It will look different
+    from <the app / the design> where the two differ."
+
+Offer no recommendation: it is the designer's call. Record the answer in
+`PROJECT.md` as `look: match` or `look: design-system`, with a line in
+Decisions, and never ask again for this project unless they bring it up.
+
+**3c. Review what the first build needs.** Follow
+`references/REVIEW-FIGMA.md` or `references/REVIEW-REPO.md` in this skill's
+folder. Read only the one for your path. Cover three things:
+
+- the **theme**: the colours, font, modes, shape and density in use;
+- the **shell**: the header, the navigation and its destinations;
+- the **screens being built** now. When the designer only asked to set the
+  project up, the first destination.
+
+Every other destination is listed by name, from the routes or the frame
+list, and marked **Not reviewed yet**. Don't open it.
+
+What the answer to 3b changes:
+
+- **Match:** this was the last question. Don't map the project's parts to
+  the Design System's up front (they are matched one by one as they are
+  built), don't list where the source departs from the patterns (the build
+  follows the source), and skip steps 4 and 5. The level is `themed` when
+  the quick look found the project's own colours or font, else `zebra`.
+  Off-system is not offered: matching already follows the source. Save what
+  was read, marked **observed** or **assumed**, tell the designer in one
+  line what was saved, and build. Every prototype of this project follows
+  `references/SOURCE-PARITY.md`: one-to-one parity with the source, in look
+  and in structure, ahead of using the Design System's parts, checked
+  against the source and fixed without asking. The style changes it takes
+  go in `zebra-context/overrides.css`, so the next prototype starts from the
+  same look.
+- **Design System:** map the parts the reviewed screens use, and read their
+  departures from the patterns. The build uses the Design System's parts as
+  they come: no style changes, no custom parts made to imitate the source,
+  and no question after the first build. The source still decides what is on
+  each screen, its words and its structure.
 
 ### 4. Propose
+
+A project that chose to match its source skips this step and the next.
 
 Draft all the context files before asking anything. Mark every item:
 
@@ -175,40 +249,8 @@ Before a designer chooses off-system, tell them what it gives up
 
 ### 5. Confirm
 
-**First, for a project with a source: match its look?** Ask this straight
-after the review, before anything else, in its own dialog. Say in the
-question what you found, in one or two plain lines (its colours, its font,
-how many of its parts the Design System has):
-
-- "Do you want prototypes to match the look of <project> as it is today?"
-  - **Match the project's look:** "The same as <the app / the design>, one
-    to one: its look and how it is put together. I'll build whatever it
-    takes to match, and check it against the original myself."
-  - **Use the Design System's look:** "Built from the Design System as it
-    comes, with your brand colours if you keep them. It will look different
-    from <the app / the design> where the two differ."
-
-Offer no recommendation: it is the designer's call. Record the answer in
-`PROJECT.md` as `look: match` or `look: design-system`, with a line in
-Decisions, and never ask again for this project unless they bring it up.
-
-- **Match:** this is the last question. Ask nothing else in this step: no
-  setup questions and no final confirmation. Save what the review read as
-  it is, marked **observed** or **assumed**, tell the designer in one line
-  what was saved, and build. Every prototype of this project follows
-  `references/SOURCE-PARITY.md`: one-to-one parity with the source, in look
-  and in structure, ahead of using the Design System's parts, checked
-  against the source and fixed without asking. The style changes it takes
-  go in `zebra-context/overrides.css`, so the next prototype starts from
-  the same look. Off-system is not offered: matching already follows the
-  source.
-- **Design System:** build with the Design System's parts as they come. No
-  style changes, no custom parts made to imitate the source, and no question
-  after the first build. The source still decides what is on each screen,
-  its words and its structure.
-
-Then the rest, for a free exploration and for a project that chose the
-Design System's look. A project that chose to match skips it:
+For a free exploration, and for a project that chose the Design System's
+look. A project that chose to match was asked its one question in step 3.
 
 Ask the items marked **to ask** with the question prompt, likely answer
 first, and no more than four questions. If there are more, ask the four that
@@ -287,6 +329,9 @@ The context is used and updated by every later prototype:
   date and who made it.
 - A new departure from a pattern is added to `PATTERNS.md`, with its reason.
 - A component the project didn't have before is added to `COMPONENTS.md`.
+- **A screen marked Not reviewed yet is reviewed when it is first built,**
+  as step 3c says, and added to the files. That needs no question. It is
+  not "review again": that is for a source that has moved (step 1).
 - Anything in a prototype that departs from the context is reported, with why.
 
 ## What the patterns say about a project's own ways

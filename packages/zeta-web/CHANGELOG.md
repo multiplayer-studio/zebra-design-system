@@ -1,5 +1,11 @@
 # @zebra-design-system/zeta-web
 
+## 0.7.6
+
+### Patch Changes
+
+- Onboarding from a design or a codebase is faster. A survey script reads a codebase in one run, the match question comes straight after it, and the review covers only the theme, the shell and the screens being built; the rest is reviewed when a prototype first builds it. The parity check saves the source's measurements once and a script lists every gap in one run.
+
 ## 0.7.5
 
 No changes in this release.

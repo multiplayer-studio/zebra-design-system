@@ -2,7 +2,7 @@
 
 For a project that starts from a Figma design, a codebase or both, **when
 the designer chose to match its look** (`look: match` in `PROJECT.md`, asked
-after the review in `zebra-onboard-project` step 5). Used by
+after a quick look at the source in `zebra-onboard-project` step 3). Used by
 `zebra-onboard-project` and `zebra-prototype`.
 
 It doesn't apply to a free exploration. With `look: design-system`, only
@@ -77,45 +77,88 @@ Run this after every build that matches a source. It is automatic: find the
 gaps, fix them, check again. Don't ask the designer about a gap you can
 close.
 
-**What to compare against**
+The source is read **once** and saved. Every check after that is one
+command.
 
-| Source | The reference is |
+### Save the reference, once per screen
+
+Before building a screen, save what the source measures as
+`zebra-context/parity/<screen>.json`, one file per screen, width and mode.
+Name each part of the screen (`header`, `filters`, `orders-table`,
+`new-order`) and give it the values the source has:
+
+```json
+{
+  "source": "<frame link, address or file>",
+  "width": 1440,
+  "scheme": "light",
+  "order": ["header", "title", "new-order", "orders-table"],
+  "parts": {
+    "header": { "parent": null, "height": 64, "paddingLeft": 24, "backgroundColor": "#192222" },
+    "title": { "parent": "header", "fontFamily": "Inter", "fontSize": 20, "fontWeight": 600, "text": "Orders" }
+  }
+}
+```
+
+List only the values the source states. A value left out isn't checked. The
+names of the values are the ones `scripts/measure.js` returns: position and
+size, padding, gaps, font, colours, borders, corners, shadow, and the words.
+
+| Source | Where the values come from |
 |---|---|
-| Figma | each frame's screenshot, and its node values (sizes, gaps, padding, text styles, fills, strokes, effects), as `FIDELITY.md` steps 1 and 2 read them |
-| Codebase | the app's screens, from the first that exists: a running or deployed address the context names; screenshots kept in the repo; else the values read from its code (theme, styles, layout and markup) |
+| Figma | each frame's node values, as `FIDELITY.md` steps 1 and 2 read them. Keep the frame's screenshot beside the file |
+| A codebase running or deployed at an address the context names | measure it: `node "<this skill's folder>/scripts/parity.mjs" --capture --page=<address> --map=<map.json> --out=zebra-context/parity/<screen>.json --shot=<png>`, where the map names each part and its selector |
+| A codebase with only its code | the values read from its theme, styles, layout and markup, written into the file by hand |
 | Both | the Figma design for the look, the code for structure and behaviour the design doesn't draw |
 
 Never install the project, run its build or start it to get a reference.
-With only the code to go on, compare values, and say in the report that the
-check was by value, not by picture.
+With only the code to go on, say in the report that the check was by value,
+not by picture.
 
-**The loop**
+A reference is reused by every later prototype of the same screen. Save it
+again only when the source has moved.
 
-1. **Render** the build at the reference's width, mode and state. Take a
-   screenshot.
-2. **Compare the structure:** the same regions, in the same order and
-   nesting, with the same parts in each. Anything missing, extra or moved is
-   a gap.
-3. **Compare by measurement,** region by region: read each part's box and
-   computed style in the browser and set it against the reference. Position
-   and size, padding and gaps, font family, size, line height and weight,
-   every colour, corner radius, borders, shadows, icon sizes, and each state
-   the source shows.
-4. **Compare by eye:** put the two pictures side by side and look at each
-   region in turn for what measuring misses: alignment, balance, clipping,
-   an image's crop.
-5. **List every gap** with where it is and by how much.
-6. **Fix every gap,** by the ladder in section 1: a variant, a style change,
-   or a part built to match. Then go back to step 1.
+### Mark the parts as you build
 
-Stop when a round finds no gap. Stop after five rounds if gaps remain, and
-report each one that is left with the reason it couldn't be closed.
+Give each part of the build the same name, as `data-parity="<name>"`. On a
+Design System component whose look is drawn inside it, add
+`data-parity-inner="<selector>"` to measure that inner element.
 
-A difference of a pixel from text rendering is not a gap. Anything a person
-would notice at normal size is.
+### The loop
 
-Check every screen and state you built, at each width and in each mode the
-source has. Don't invent a mode or a width the source doesn't draw.
+1. **Run the check.** It renders the build at the reference's width,
+   measures every marked part, takes a screenshot and lists every gap: a
+   part missing, extra, moved or nested differently, and every value that
+   differs, with by how much.
+
+   ```bash
+   node "<this skill's folder>/scripts/parity.mjs" zebra-context/parity/<screen>.json --page=<the build> --shot=<png>
+   ```
+
+   It needs a browser. If it says there is none, evaluate
+   `scripts/measure.js` in the page with the browser tool you have, save
+   what it returns, and pass it as `--measured=<file>`.
+2. **Fix every gap** it lists, all of them in one go, by the ladder in
+   section 1: a variant, a style change, or a part built to match.
+3. **Run the check again.** Repeat until it prints "No gap".
+4. **Then look, once.** Put the build's screenshot beside the source's and
+   look at each region for what measuring misses: alignment, balance,
+   clipping, an image's crop, a part nobody named. Fix what you see, and run
+   the check a last time.
+
+Don't compare by eye before the check is clean, and don't read values out of
+the page by hand: the script does both faster.
+
+Stop after three rounds of fixing if gaps remain, and report each one that
+is left with the reason it couldn't be closed.
+
+A difference of a pixel from text rendering is not a gap, and the check
+allows for it. Anything a person would notice at normal size is.
+
+Get one width and mode clean first. Then run the check once for each other
+width and mode the source has (`--width`, `--scheme=dark`,
+`--attr=data-theme=dark`) and fix what it lists. Do the same for each state
+the source shows. Don't invent a mode or a width the source doesn't draw.
 
 ## 3. What is decided without asking
 
@@ -134,8 +177,7 @@ source has. Don't invent a mode or a width the source doesn't draw.
 After the parity check, tell the designer in a few plain lines:
 
 - **Matched:** the screens built, and what each was checked against;
-- **Parity:** how many rounds the check took, and that no gap is left, or
-  each gap that is left and why;
+- **Parity:** that no gap is left, or each gap that is left and why;
 - **Built for this project:** the parts that were adjusted or custom, one
   line each ("Filter chips: built for this project, shorter than the Design
   System's");

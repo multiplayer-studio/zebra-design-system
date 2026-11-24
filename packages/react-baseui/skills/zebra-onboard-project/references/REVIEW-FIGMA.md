@@ -1,7 +1,10 @@
 # Reviewing a Figma design
 
-Step 3 of `zebra-onboard-project`, for a project that has a Figma design. The
-review is quick and covers the whole project.
+Step 3c of `zebra-onboard-project`, for a project that has a Figma design.
+The review is quick. It covers the theme, the shell and the frames being
+built. Every other frame is listed by name as **Not reviewed yet** and read
+when a prototype first builds it. With `look: match`, leave Departures and
+Components to the build (`SOURCE-PARITY.md`).
 
 ## Read data, not the picture
 
@@ -9,8 +12,8 @@ With the Figma tools, read:
 
 - the file's **variables and their modes**, and its **text styles**;
 - the **libraries** it uses, by name;
-- a few **representative frames**: a form, a list or table, a dialog, the
-  navigation, and one frame per device size the file draws;
+- the **navigation**, and the **frames being built**, at each device size
+  the file draws them;
 - the file's **version**, to record as `source-version`.
 
 If Figma isn't connected, say so and ask the designer to connect it. Don't
@@ -80,4 +83,4 @@ Don't list what the design does the same way as the patterns.
 
 Put the review in your reply as a table: what was read, the project's value,
 Zebra's value, the difference, and what you recommend. It is a report, not a
-question. The questions come in step 5.
+question. Only with `look: design-system`: the questions come in step 5.
