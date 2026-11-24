@@ -1,0 +1,70 @@
+{
+  "name": "@zebra-design-system/react-baseui",
+  "version": "0.8.3",
+  "description": "Zebra Design System React components, built on Base UI primitives and themed with the shared token layer",
+  "type": "module",
+  "private": false,
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./experimental": {
+      "types": "./dist/experimental.d.ts",
+      "default": "./dist/experimental.js"
+    },
+    "./tokens.css": "./dist/tokens/index.css",
+    "./tokens/*": "./dist/tokens/*"
+  },
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "tokens": "node ../web-components/scripts/build-tokens-css.mjs ../../tokens ./src/tokens --attributes",
+    "storybook": "pnpm run tokens && storybook dev -p 6008",
+    "storybook:build": "pnpm run tokens && storybook build",
+    "typecheck": "tsc --noEmit",
+    "check": "pnpm run tokens && pnpm run typecheck && pnpm run check:theming",
+    "check:theming": "node ../web-components/scripts/check-theming.mjs ./src/tokens",
+    "test:aaa": "node scripts/aaa-contrast.mjs",
+    "test:compact": "node scripts/compact-check.mjs",
+    "build": "pnpm run tokens && tsc && node scripts/copy-css.mjs"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.8.0",
+    "@zebra-design-system/icons": "git+https://github.com/multiplayer-studio/zebra-design-system.git#icons-v0.2.1",
+    "@zebra-design-system/patterns": "git+https://github.com/multiplayer-studio/zebra-design-system.git#patterns-v0.4.0"
+  },
+  "license": "MIT",
+  "files": [
+    "dist",
+    "AGENTS.md",
+    "llms.txt",
+    "DESIGN.md",
+    "skills",
+    "bin"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/multiplayer-studio/zebra-design-system.git",
+    "directory": "packages/react-baseui"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "zebra-skills": "./bin/install-skills.mjs"
+  },
+  "distChannel": {
+    "type": "git",
+    "repo": "https://github.com/multiplayer-studio/zebra-design-system.git",
+    "tag": "react-baseui-v0.8.3",
+    "builtFrom": "46f22f62"
+  }
+}
