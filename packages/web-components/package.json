@@ -1,6 +1,6 @@
 {
   "name": "@zebra-design-system/web-components",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Zebra Design System \u2014 web components and the CSS-variable token layer they theme from",
   "type": "module",
   "main": "./dist/index.js",

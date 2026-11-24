@@ -1,7 +1,7 @@
 import { css } from "lit";
 
 /* Spec: specs/dialog (Dialog, _Dialog Header, _Dialog Footer). A space/md frame around three flush sections; the
-   480px content width is raw in Figma. Flavour changes only the header glyph, so every glyph stays
+   480px width is raw in Figma and includes the padding and border. Flavour changes only the header glyph, so every glyph stays
    foreground/primary. There is no elevation and no backdrop token yet (spec issues). */
 export default css`
   :host {
@@ -12,7 +12,7 @@ export default css`
   }
 
   dialog {
-    box-sizing: content-box;
+    box-sizing: border-box;
     flex-direction: column;
     width: var(--_dialog-width);
     min-width: var(--_dialog-width);

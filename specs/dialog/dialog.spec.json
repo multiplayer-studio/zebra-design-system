@@ -10,13 +10,13 @@
       "pageNodeId": "2526:316",
       "metadataFrameId": "6087:317",
       "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2526-316",
-      "extractedAt": "2026-10-20",
+      "extractedAt": "2026-11-24",
       "variantCount": {
         "Dialog": 10,
         "_Dialog Header": 1,
         "_Dialog Footer": 4
       },
-      "extractionNote": "Master (Flavour x Shape, 10 variants) and both private parts extracted to depth 12. Flavour and Shape change nothing at the Dialog's own level except root radius; every visible difference lives in nested-instance overrides (leading glyph, glyph family, footer button Shape), which were read per variant separately. The page also holds a 'Dev Deviation' note on the master board, read verbatim."
+      "extractionNote": "Master (Flavour x Shape, 10 variants) and both private parts extracted to depth 12. Flavour and Shape change nothing at the Dialog's own level except root radius; every visible difference lives in nested-instance overrides (leading glyph, glyph family, footer button Shape). Re-extracted 2026-11-24: the root holds a fixed width, the body is a slot, and the footer fills. The page also holds a 'Dev Deviation' note on the master board, read verbatim."
     }
   },
   "summary": "A modal message that interrupts the current task until the user responds or dismisses it. A header carries the message's flavour and title, a body holds the message itself, and an optional footer offers one to three action buttons or two custom slots. Turning showFooter off removes the footer, leaving an informational dialog with nothing to decide.",
@@ -88,6 +88,15 @@
         "true": "Shows the footer and its action buttons.",
         "false": "Removes the footer entirely, the dialog hugs to the header and body alone. Use it only for a message with nothing for the user to decide."
       }
+    },
+    "body": {
+      "type": "slot",
+      "figmaName": "Dialog Body#7926:37",
+      "controls": [
+        "body"
+      ],
+      "preferredContent": [],
+      "_note": "Not listed in the Property Breakdown; the Content & Slot row 'Body' describes it."
     }
   },
   "internalVariations": [
@@ -129,7 +138,7 @@
     },
     {
       "part": "body",
-      "input": "children (any content)",
+      "input": "body slot (any content)",
       "sample": "one paragraph of placeholder copy"
     },
     {
@@ -149,11 +158,11 @@
         "align": "start"
       },
       "sizing": {
-        "h": "hug",
+        "h": "fixed (480Px measured)",
         "v": "hug"
       },
       "paint": {
-        "fill": "surface/dialog",
+        "fill": "surface/overlay",
         "stroke": {
           "color": "border/default",
           "width": "stroke/thin",
@@ -163,7 +172,7 @@
       },
       "radius": "radius/element-md (round) | radius/none (sharp)",
       "measured": {
-        "widthPx": 506,
+        "widthPx": 480,
         "heightPx": 222,
         "heightWithoutFooterPx": 158
       },
@@ -187,9 +196,9 @@
     {
       "id": "body",
       "number": 2,
-      "kind": "container",
+      "kind": "slot",
       "layout": {
-        "direction": "horizontal",
+        "direction": "vertical",
         "gap": "space/none",
         "padding": {
           "top": "space/md",
@@ -203,11 +212,8 @@
         "h": "fill",
         "v": "hug"
       },
-      "limits": {
-        "minWidthPx": 480,
-        "_note": "raw, no token"
-      },
-      "role": "Body — An open content area with no fixed structure of its own in this file."
+      "role": "Body — An open content area with no fixed structure of its own in this file.",
+      "slot": "body"
     },
     {
       "id": "body.content",
@@ -234,7 +240,7 @@
             "wrap": true
           },
           "sizing": {
-            "h": "fixed (432Px measured, inside a 456Px content box)",
+            "h": "fixed (432Px measured, inside a 430Px content box)",
             "v": "hug"
           },
           "sample": true
@@ -249,11 +255,8 @@
       "refVariant": "Actions=3",
       "visibleWhen": "showFooter",
       "sizing": {
-        "h": "fixed (480Px measured)",
+        "h": "fill",
         "v": "hug"
-      },
-      "limits": {
-        "minWidthPx": 480
       },
       "overrides": {
         "buttons.shape": "follows Dialog shape: round -> Button Shape=rounded, sharp -> Button Shape=sharp"
@@ -454,11 +457,8 @@
             "align": "center"
           },
           "sizing": {
-            "h": "fixed (480Px measured)",
+            "h": "fixed in the master (480Px measured), fill inside Dialog",
             "v": "hug"
-          },
-          "limits": {
-            "minWidthPx": 480
           },
           "paint": "none (transparent)",
           "measured": {
@@ -636,7 +636,7 @@
   "tokens": {
     "source": "tokens/ (see tokens/manifest.json)",
     "color": [
-      "surface/dialog",
+      "surface/overlay",
       "border/default",
       "foreground/primary"
     ],
@@ -677,7 +677,7 @@
       ],
       "dimension": [
         "control/md",
-        "space/xxs",
+        "space/2xs",
         "space/md",
         "radius/element-sm",
         "stroke/base",
@@ -730,8 +730,8 @@
     "focusTrapAndReturn": "Explicitly unspecified: 'Nothing in this file marks how the dialog traps focus or returns it when it closes, so that behaviour needs confirming outside Figma.'",
     "dismissal": "Partly implied, not specified. A close glyph sits in every header, and the summary says the dialog stays 'until the user responds or dismisses it'. Escape, outside-click/backdrop dismissal, and whether dismissal is allowed when the footer asks for a decision are not stated. The close control is a bare Icon with no accessible name, hit area or states drawn.",
     "stacking": "Not modelled. Nothing about z-order, nested dialogs, or what happens when a second dialog opens.",
-    "elevation": "None. The panel has no drop shadow or effect style; it is separated from the page only by surface/dialog and a stroke/thin border/default border.",
-    "sizingAndPlacement": "Hugs its content (506Px wide with the default content). No max width, max height, viewport placement, or scroll behaviour for long body content is defined; the body content frame clips.",
+    "elevation": "None. The panel has no drop shadow or effect style; it is separated from the page only by surface/overlay and a stroke/thin border/default border.",
+    "sizingAndPlacement": "Holds a fixed width (480Px measured) and hugs its height. No max height, viewport placement, or scroll behaviour for long body content is defined; the body content frame clips.",
     "dialogVsModal": "The Dev Deviation note says code used one component for dialogs and modals and that Figma has split them into separate components. Only Dialog is on this page; no Modal spec exists in specs/."
   },
   "content": [
@@ -758,7 +758,7 @@
     ],
     "dont": [
       "Don't rely on Flavour to recolour anything beyond the header icon. Every value binds that icon to the same colour token, so the body and the footer's buttons need their own styling if the message calls for it.",
-      "Don't reach for the custom Actions value for a plain one, two or three button footer. The fixed presets already set each button's role and position, the custom slots exist for content that does not fit them."
+      "Don't use the custom Actions value for a plain one, two or three button footer. The fixed presets already set each button's role and position, the custom slots exist for content that does not fit them."
     ]
   },
   "accessibility": [
@@ -792,8 +792,8 @@
     },
     {
       "property": "Footer",
-      "type": "Fixed width, fixed padding",
-      "description": "Holds its own width fixed at 480px rather than hugging, with 12px padding on every side. Its content is pushed to the two opposite ends rather than spaced evenly."
+      "type": "Inherit width, fixed padding",
+      "description": "Never holds it’s own width and fills the dialog rather than hugging, with 12px padding on every side. Its content is pushed to the two opposite ends rather than spaced evenly."
     },
     {
       "property": "Radius",
@@ -854,7 +854,7 @@
     {
       "severity": "warn",
       "source": "tokens (backdrop)",
-      "detail": "No backdrop token is bound. The obvious candidate overlay/modal ('Semi-transparent dimming layer behind a modal dialog') aliases palette fill/overlay — the same opaque value as surface/dialog (white in Light, neutral cool 80 in Dark) — so using it as a backdrop paints an opaque panel colour. overlay/scrim aliases palette fill/scrim (alpha dark 60, described in palette as 'Backdrop behind modals') but its semantic description scopes it to drawers/sheets. Needs a token decision."
+      "detail": "No backdrop token is bound. The obvious candidate overlay/modal ('Semi-transparent dimming layer behind a modal dialog') aliases palette fill/overlay — the same opaque value as surface/overlay (white in Light, neutral cool 80 in Dark) — so using it as a backdrop paints an opaque panel colour. overlay/scrim aliases palette fill/scrim (alpha dark 60, described in palette as 'Backdrop behind modals') but its semantic description scopes it to drawers/sheets. Needs a token decision."
     },
     {
       "severity": "warn",
@@ -878,8 +878,8 @@
     },
     {
       "severity": "warn",
-      "source": "footer sizing",
-      "detail": "Header and body fill the dialog's width, but the footer holds a fixed width (480Px measured, matching the metadata). Wider body content would leave the footer narrower than the dialog. Body and footer also carry a raw minimum width of 480Px with no token."
+      "source": "metadata vs measured (width)",
+      "detail": "The Width row says the dialog hugs at 506px around 480px sections. The dialog now holds a fixed 480Px width and its header, body and footer measure 454Px. Code follows the measured 480Px."
     },
     {
       "severity": "warn",
@@ -890,11 +890,6 @@
       "severity": "note",
       "source": "metadata wording",
       "detail": "How to use says 'Every value binds that icon to the same colour token' under a Don't about recolouring 'beyond the header icon'; extraction confirms Flavour does not recolour the icon at all (foreground/primary everywhere). Flavour is glyph-only."
-    },
-    {
-      "severity": "note",
-      "source": "metadata vs measured",
-      "detail": "Width 506Px is 12 + 480 + 12 = 504 plus the stroke/thin border on both sides (the stroke is included in layout); the metadata's arithmetic omits the border."
     },
     {
       "severity": "note",
@@ -909,7 +904,7 @@
     {
       "severity": "note",
       "source": "body text",
-      "detail": "The sample body text is fixed width (432Px) inside a 456Px content box that fills; in code the body is free content and should fill its container. The content box clips; long-content scrolling isn't modelled."
+      "detail": "The sample body text is fixed width (432Px) inside a 430Px content box that fills, so it overhangs by 2Px; in code the body is free content and should fill its container. The content box clips; long-content scrolling isn't modelled."
     },
     {
       "severity": "note",
@@ -919,7 +914,7 @@
     {
       "severity": "note",
       "source": "coverage",
-      "detail": "No States & Triggers section; Behavior has only a 'no motion' row (no enter/exit transition). No component has a native Figma description. Title truncation/wrapping for long titles isn't modelled."
+      "detail": "No States & Triggers section; Behavior has only a 'no motion' row (no enter/exit transition). No component has a native Figma description. Title truncation/wrapping for long titles isn't modelled. The body slot is not in the Property Breakdown."
     },
     {
       "severity": "note",

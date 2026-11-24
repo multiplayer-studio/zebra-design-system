@@ -26,12 +26,11 @@ export default css`
 
   /* ---- anatomy: root (the panel) ------------------------------------------ */
   .panel {
-    /* Width. spec issue "Body and footer carry a raw 480Px minimum width with
-       no token": 480px is the spec's measured content width, kept as a
-       literal; the panel adds its own padding and border. Never wider than
-       the viewport less --space-page each side. Override --zds-dialog-width
-       for a wider or narrower dialog. */
-    --zds-dialog-width: calc(480px + 2 * var(--space-md) + 2 * var(--stroke-thin));
+    /* Width. The spec's root holds a fixed width, 480px measured with no
+       token, padding and border included. Never wider than the viewport less
+       --space-page each side. Override --zds-dialog-width for a wider or
+       narrower dialog. */
+    --zds-dialog-width: 480px;
 
     box-sizing: border-box;
     display: flex;
@@ -144,8 +143,7 @@ export default css`
   }
 
   /* ---- anatomy: footer ----------------------------------------------------- */
-  /* spec issue "The footer has a fixed width": it fills the panel like the
-     header and body instead of holding 480px. */
+  /* The footer fills the panel like the header and body (spec: footer). */
   .footer {
     box-sizing: border-box;
     flex: none;

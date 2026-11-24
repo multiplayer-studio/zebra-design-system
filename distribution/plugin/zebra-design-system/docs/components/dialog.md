@@ -11,6 +11,7 @@
 | `flavour` | enum | `default` | `default` `error` `info` `success` `warning` |  |
 | `shape` | enum | `round` | `round` `sharp` |  |
 | `showFooter` | boolean | `true` |  |  |
+| `body` | slot |  |  |  |
 
 ## When and how to use
 
@@ -22,7 +23,7 @@
 ### Don't
 
 - Don't rely on Flavour to recolour anything beyond the header icon. Every value binds that icon to the same colour token, so the body and the footer's buttons need their own styling if the message calls for it.
-- Don't reach for the custom Actions value for a plain one, two or three button footer. The fixed presets already set each button's role and position, the custom slots exist for content that does not fit them.
+- Don't use the custom Actions value for a plain one, two or three button footer. The fixed presets already set each button's role and position, the custom slots exist for content that does not fit them.
 
 ## Behaviour
 
@@ -45,7 +46,7 @@
 | Padding | Fixed | 12px on every side of the dialog itself. The header, body and footer sit flush against each other inside it. |
 | Header padding and gap | Fixed | 12px on every side, 8px between the leading icon, title and close icon. |
 | Body padding | Fixed | 12px on three sides and 24px at the bottom, wider than the others to keep the footer’s buttons clear of the last line of content. |
-| Footer | Fixed width, fixed padding | Holds its own width fixed at 480px rather than hugging, with 12px padding on every side. Its content is pushed to the two opposite ends rather than spaced evenly. |
+| Footer | Inherit width, fixed padding | Never holds it’s own width and fills the dialog rather than hugging, with 12px padding on every side. Its content is pushed to the two opposite ends rather than spaced evenly. |
 | Radius | Fixed per Shape | 0 for sharp, 6px for round. Chosen per dialog rather than inherited, and it sets the corner radius of every button in the footer as well. |
 | Header icon colour | Fixed | Every Flavour value binds the leading icon to the same foreground/primary token. Flavour changes which glyph shows, never its colour. |
 

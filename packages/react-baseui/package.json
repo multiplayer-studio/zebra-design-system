@@ -1,6 +1,6 @@
 {
   "name": "@zebra-design-system/react-baseui",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Zebra Design System React components, built on Base UI primitives and themed with the shared token layer",
   "type": "module",
   "private": false,

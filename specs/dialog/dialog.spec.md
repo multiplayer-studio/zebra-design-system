@@ -2,7 +2,7 @@
 
 A modal message that interrupts the current task until the user responds or dismisses it. A header carries the message's flavour and title, a body holds the message itself, and an optional footer offers one to three action buttons or two custom slots. Turning showFooter off removes the footer, leaving an informational dialog with nothing to decide.
 
-Source: [Dialog page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2526-316) · extracted 2026-10-20
+Source: [Dialog page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=2526-316) · extracted 2026-11-24
 
 ## API
 
@@ -11,6 +11,7 @@ Source: [Dialog page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-
 | `flavour` | enum | default, error, info, success, warning | `default` | header leading glyph |
 | `shape` | enum | round, sharp | `round` | root radius, leading glyph family, footer button shape |
 | `showFooter` | boolean | true, false | `true` | footer |
+| `body` | slot | any content | — | body |
 
 **flavour** — sets only the header's leading glyph: default → `block`, error → `error`, info → `info`, success → `verified`, warning → `warning`. The icon colour stays `foreground/primary` for every value, and nothing else changes.
 - default: "The dialog's neutral baseline, with no severity implied. Use it for confirmations and other messages that are not warning the user about anything."
@@ -31,15 +32,15 @@ Values anywhere in this document are token names. The only literals are inside v
 
 **Header toggles.** `_Dialog Header` has `showLeadingIcon` and `showClose`. Dialog pins both true and exposes neither.
 
-**Content inputs.** The title text (sample "Dialog Title"), the body (any content; the sample is one paragraph) and each footer button's label and action (sample "Button").
+**Content inputs.** The title text (sample "Dialog Title"), the `body` slot (any content; the sample is one paragraph) and each footer button's label and action (sample "Button").
 
 ## Anatomy
 
-Root: vertical, gap `space/none`, padding `space/md`, fill `surface/overlay`, border `border/default` at `stroke/thin` (inside), radius `radius/element-md` (round) or `radius/none` (sharp), no shadow. It hugs its content: 506×222Px measured, and 158Px tall without the footer. *"Outer padding — 12px on every side of the dialog itself, independent of each section’s own padding."*
+Root: vertical, gap `space/none`, padding `space/md`, fill `surface/overlay`, border `border/default` at `stroke/thin` (inside), radius `radius/element-md` (round) or `radius/none` (sharp), no shadow. It holds a fixed width and hugs its height: 480×222Px measured, and 158Px tall without the footer. *"Outer padding — 12px on every side of the dialog itself, independent of each section’s own padding."*
 
 1. **Header** (`_Dialog Header`, fills the width, both toggles pinned on). *"A single Dialog Header instance, fixed in every variant. Holds the leading icon, the title and the close icon."*
-2. **Body**: horizontal, centred, gap `space/none`, padding `space/md` on top, right and left and `space/section` at the bottom. It fills the width and hugs its height, with a raw minimum width of 480Px. Inside it, a content box fills and clips. The sample text is `body/medium` in `foreground/primary`. *"An open content area with no fixed structure of its own in this file."*
-3. **Footer** (`_Dialog Footer` at Actions=3, visible when `showFooter`). It has a fixed width (480Px measured). Dialog overrides each button's Shape to follow `shape` (round → rounded, sharp → sharp). *"A single Dialog Footer instance, hidden entirely when showFooter is off."*
+2. **Body** (the `body` slot): vertical, centred, gap `space/none`, padding `space/md` on top, right and left and `space/section` at the bottom. It fills the width and hugs its height. Inside it, a content box fills and clips. The sample text is `body/medium` in `foreground/primary`. *"An open content area with no fixed structure of its own in this file."*
+3. **Footer** (`_Dialog Footer` at Actions=3, visible when `showFooter`). It fills the width. Dialog overrides each button's Shape to follow `shape` (round → rounded, sharp → sharp). *"A single Dialog Footer instance, hidden entirely when showFooter is off."*
 
 ## Variants
 
@@ -70,7 +71,7 @@ The two axes are independent and every other value is the same in all 10 cells.
 
 ### _Dialog Footer (private, 4 variants)
 - **API:** `actions` enum 1 | 2 | 3 | custom (default 3) · `leftAction` and `rightAction` slots, shown when actions = custom. Preferred content is Button (`specs/button`) and Icon Button (`specs/icon-button`), with no min or max children.
-- **root:** horizontal, centred, padding `space/md`, no fill, fixed width (480Px measured, minimum 480Px), 64Px tall measured.
+- **root:** horizontal, centred, padding `space/md`, no fill, fixed width in the master (480Px measured) and fill inside Dialog, 64Px tall measured.
 - Buttons are pinned to Size=medium, no icons, label "Button". Their paint comes from `specs/button`.
 
 | actions | justify | gap | children |
@@ -114,7 +115,7 @@ There is no States & Triggers section, and nothing on this page models a state. 
 | Dismissal | Implied but not specified. A close glyph appears in every header, and the summary says "until the user responds or dismisses it". Escape, outside click, and whether dismissal is allowed while a decision is pending are not stated. |
 | Stacking | Not modelled: no z-order or nested-dialog guidance. |
 | Elevation | None: no shadow or effect. |
-| Size & placement | Hugs its content. There is no max width or height, no viewport placement, and no scrolling for long bodies; the body content clips. |
+| Size & placement | Holds a fixed width (480Px measured) and hugs its height. There is no max height, no viewport placement, and no scrolling for long bodies; the body content clips. |
 | Dialog vs modal | The Dev Deviation note says Figma split dialog and modal into separate components. Only Dialog is on this page. |
 
 Dev Deviation, verbatim: "Code implementation uses a the same dialog component for both dialogs and modals. We have split them into separate components given they have independent use cases and visual treatments. Code implementation does not allow for the clear icon to be hidden. This has been introduced in the new build. confirmButtonFlavor from code has not been implemented: slots are used, with buttons in actions. Button flavour can be changed at the component level properties. Figma’s dialog component exposes an explicit showFooter boolean."
@@ -133,7 +134,7 @@ Dev Deviation, verbatim: "Code implementation uses a the same dialog component f
 
 **Don't**
 - Don't rely on Flavour to recolour anything beyond the header icon. Every value binds that icon to the same colour token, so the body and the footer's buttons need their own styling if the message calls for it.
-- Don't reach for the custom Actions value for a plain one, two or three button footer. The fixed presets already set each button's role and position, the custom slots exist for content that does not fit them.
+- Don't use the custom Actions value for a plain one, two or three button footer. The fixed presets already set each button's role and position, the custom slots exist for content that does not fit them.
 
 ## Accessibility
 
@@ -148,7 +149,7 @@ Dev Deviation, verbatim: "Code implementation uses a the same dialog component f
 | Padding | Fixed | "12px on every side of the dialog itself. The header, body and footer sit flush against each other inside it." |
 | Header padding and gap | Fixed | "12px on every side, 8px between the leading icon, title and close icon." |
 | Body padding | Fixed | "12px on three sides and 24px at the bottom, wider than the others to keep the footer’s buttons clear of the last line of content." |
-| Footer | Fixed width, fixed padding | "Holds its own width fixed at 480px rather than hugging, with 12px padding on every side. Its content is pushed to the two opposite ends rather than spaced evenly." |
+| Footer | Inherit width, fixed padding | "Never holds it’s own width and fills the dialog rather than hugging, with 12px padding on every side. Its content is pushed to the two opposite ends rather than spaced evenly." |
 | Radius | Fixed per Shape | "0 for sharp, 6px for round. Chosen per dialog rather than inherited, and it sets the corner radius of every button in the footer as well." |
 | Header icon colour | Fixed | "Every Flavour value binds the leading icon to the same foreground/primary token. Flavour changes which glyph shows, never its colour." |
 
@@ -165,15 +166,14 @@ The stated values agree with the bindings: padding `space/md`, header gap `space
 - **Shape misses the close glyph.** Sharp dialogs switch the leading glyph and the buttons to sharp, but the close glyph stays in the rounded family.
 - **The Dev Deviation contradicts the API.** It says hiding the close icon was "introduced in the new build", but Dialog pins `showClose` (and `showLeadingIcon`) on and exposes neither.
 - **`radius/element-md` description drift.** The description says scale/6, but the token resolves to scale/4, which matches the metadata's 6px.
-- **The footer has a fixed width** while the header and body fill. A wider body would leave the footer short. Body and footer also carry a raw 480Px minimum width with no token.
+- **The Width row is out of date.** It says the dialog hugs at 506px around 480px sections. The dialog now holds a fixed 480Px width and its sections measure 454Px. Code follows the measured 480Px.
 - **Footer presets aren't exposed.** Dialog pins Actions=3, yet How to use relies on the 1-button and custom presets. Code needs to choose between a prop and composition.
 
 **Note**
 - Flavour is glyph-only. The How to use wording ("Every value binds that icon to the same colour token") is accurate but reads as if Flavour recoloured something.
-- The 506Px width includes the two `stroke/thin` borders. The metadata's arithmetic (12 + 480 + 12) leaves them out.
 - The leading glyph is a raw glyph component (24×24Px) with no size token, while the close glyph uses Icon Size=medium (`control/icon-md`), so the two render at different sizes.
 - There is no elevation: `shadow/soft` and `shadow/hard` exist but are unused.
-- The sample body text has a fixed width inside a content box that fills. In code the body is free content. Long-content scrolling isn't modelled.
+- The sample body text has a fixed width (432Px) inside a 430Px content box that fills, so it overhangs by 2Px. In code the body is free content. Long-content scrolling isn't modelled.
 - `_Dialog Footer` binding drift: radius is unbound in Actions=3 and gap is unbound in Actions=3 and custom. Neither has a visible effect.
-- There is no States section, Behavior has only "no motion", no native component descriptions are set, and long-title wrapping and truncation aren't modelled.
+- There is no States section, Behavior has only "no motion", no native component descriptions are set, and long-title wrapping and truncation aren't modelled. The body slot is not in the Property Breakdown.
 - Dialog and Modal are split per the Dev Deviation, but there is no Modal on this page and no `specs/modal`.

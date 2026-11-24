@@ -168,6 +168,7 @@
    "_Dialog Footer": "zeta-dialog"
   },
   "props": {
+   "body": "slot (default)",
    "showFooter": "derived: the footer is removed when no action is slotted",
    "_Dialog Footer.actions": "derived: counted from the confirm, cancel and other slots",
    "_Dialog Footer.leftAction": "slot other",

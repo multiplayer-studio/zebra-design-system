@@ -14,7 +14,7 @@ describe("zeta-dialog", () => {
   let subject: ZetaDialog;
   const createComponent = (
     template = `<zeta-dialog id="dialog1" title="Dialog title" flavor="default" initialOpen>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
           <zeta-icon slot="icon">block</zeta-icon>
           <zeta-button slot="confirm">Button</zeta-button>
           <zeta-button slot="cancel">Button</zeta-button>
@@ -35,7 +35,7 @@ describe("zeta-dialog", () => {
     subject.remove();
     await elementUpdated(subject);
     return await createComponent(`<zeta-dialog id="dialog1" title="Dialog title" flavor=${flavor} initialOpen>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
           <zeta-icon slot="icon">block</zeta-icon>
           <zeta-button slot="confirm">Button</zeta-button>
           <zeta-button slot="cancel">Button</zeta-button>
@@ -184,8 +184,8 @@ describe("zeta-dialog", () => {
     it("renders the correct height", async () => {
       const dialog = subject.shadowRoot?.querySelector("dialog");
       expect(dialog).to.exist;
-      // Content box: with the space/md padding and both stroke/thin borders it is Figma's measured 222.
-      await expect(getComputedStyle(dialog!).height).to.equal("196px");
+      // Border box, with Figma's sample text: Figma's measured 222.
+      await expect(getComputedStyle(dialog!).height).to.equal("222px");
     });
 
     it("stays the same width when the title is very long", async () => {

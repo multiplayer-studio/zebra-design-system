@@ -37,7 +37,7 @@ export type DialogFlavor = "default" | "info" | "success" | "warning" | "error";
  * @part footer - Styles the dialog footer
  * @part header - Styles the dialog header
  *
- * @cssproperty --dialog-width - Width of the dialog's content, inside its space/md padding. Defaults to 480px.
+ * @cssproperty --dialog-width - Width of the dialog, padding and border included. Defaults to 480px.
  * @cssproperty --dialog-max-height - Max height of the dialog. Defaults to 80vh.
  * @cssproperty --dialog-title-font-size - Font size of the dialog title. Defaults to 1.25rem.
  * @cssproperty --dialog-title-line-height - Line height of the dialog title. Defaults to 1.5rem.

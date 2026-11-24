@@ -1,5 +1,11 @@
 # @zebra-design-system/react-baseui
 
+## 0.8.1
+
+### Patch Changes
+
+- Dialog follows the updated Figma component: it holds a fixed 480px width with its padding and border included (it was 506px), and the footer fills that width. The spec also records the body as a slot.
+
 ## 0.8.0
 
 ### Minor Changes

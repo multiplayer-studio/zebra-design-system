@@ -33,9 +33,9 @@ Each package's **packed root** — dist built, `files`-filtered, denylist-checke
 | `@zebra-design-system/tokens` | `dist/tokens` | `tokens-v0.3.0` |
 | `@zebra-design-system/icons` | `dist/icons` | `icons-v0.2.1` |
 | `@zebra-design-system/patterns` | `dist/patterns` | `patterns-v0.4.0` |
-| `@zebra-design-system/react-baseui` | `dist/react-baseui` | `react-baseui-v0.8.0` |
-| `@zebra-design-system/web-components` | `dist/web-components` | `web-components-v0.8.0` |
-| `@zebra-design-system/zeta-web` | `dist/zeta-web` | `zeta-web-v0.8.0` |
+| `@zebra-design-system/react-baseui` | `dist/react-baseui` | `react-baseui-v0.8.1` |
+| `@zebra-design-system/web-components` | `dist/web-components` | `web-components-v0.8.1` |
+| `@zebra-design-system/zeta-web` | `dist/zeta-web` | `zeta-web-v0.8.1` |
 
 Consumers install with plain npm/pnpm/yarn and git access to the repo:
 
