@@ -1,5 +1,5 @@
 import { fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/testing";
-import { emulateMedia } from "@web/test-runner-commands";
+import { emulateMedia, sendMouse } from "@web/test-runner-commands";
 import type { ZetaButton } from "../../components/button/button.js";
 import "../../components/button/button.js";
 import "../../index.css";
@@ -169,6 +169,28 @@ describe("zeta-button", () => {
       const buttonEl = subject.shadowRoot?.querySelector("button") as HTMLElement;
       await expect(getComputedStyle(buttonEl).backgroundColor).to.equal(resolve("--interactive-primary-background-disabled"));
       await expect(getComputedStyle(buttonEl).color).to.equal(resolve("--interactive-primary-foreground-disabled", "color"));
+    });
+    it("does not change on hover or press when disabled, in any flavour", async () => {
+      const buttonEl = subject.shadowRoot?.querySelector("button") as HTMLElement;
+      const look = () => {
+        const c = getComputedStyle(buttonEl);
+        return [c.backgroundColor, c.backgroundImage, c.backgroundPosition, c.borderTopColor, c.color, c.cursor].join("|");
+      };
+      subject.disabled = true;
+      for (const flavor of [...flavors, "gradient", "text-gradient"]) {
+        subject.setAttribute("flavor", flavor);
+        await elementUpdated(subject);
+        await sendMouse({ type: "move", position: [0, 0] });
+        const rest = look();
+        const { x, y, width, height } = buttonEl.getBoundingClientRect();
+        const position: [number, number] = [Math.round(x + width / 2), Math.round(y + height / 2)];
+        await sendMouse({ type: "move", position });
+        expect(look(), `${flavor} hover`).to.equal(rest);
+        await sendMouse({ type: "down" });
+        expect(look(), `${flavor} press`).to.equal(rest);
+        await sendMouse({ type: "up" });
+      }
+      await sendMouse({ type: "move", position: [0, 0] });
     });
   });
 

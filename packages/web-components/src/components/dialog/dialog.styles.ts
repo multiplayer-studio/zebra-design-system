@@ -26,17 +26,15 @@ export default css`
 
   /* ---- anatomy: root (the panel) ------------------------------------------ */
   .panel {
-    /* Width. The spec's root holds a fixed width, 480px measured with no
-       token, padding and border included. Never wider than the viewport less
-       --space-page each side. Override --zds-dialog-width for a wider or
-       narrower dialog. */
-    --zds-dialog-width: 480px;
-
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: var(--space-none);
-    inline-size: min(var(--zds-dialog-width), 100vw - 2 * var(--space-page));
+    /* Width. Figma's 480px is tentative (spec: root sizing): the dialog follows
+       the page width, less --space-page each side, up to a max width set in
+       code. --zds-dialog-max-width sets it; 480px when unset. The older
+       --zds-dialog-width still works. */
+    inline-size: min(var(--zds-dialog-max-width, var(--zds-dialog-width, 480px)), 100vw - 2 * var(--space-page));
     max-inline-size: none;
     /* Size & placement are unmodelled in the spec: the panel stops short of
        the viewport and the body scrolls (below) rather than clipping. */

@@ -1,11 +1,11 @@
 import { css } from "lit";
 
 /* Spec: specs/dialog (Dialog, _Dialog Header, _Dialog Footer). A space/md frame around three flush sections; the
-   480px width is raw in Figma and includes the padding and border. Flavour changes only the header glyph, so every glyph stays
+   480px width is tentative in Figma: the dialog follows the page width, up to a max width set in code. Flavour changes only the header glyph, so every glyph stays
    foreground/primary. There is no elevation and no backdrop token yet (spec issues). */
 export default css`
   :host {
-    --_dialog-width: var(--dialog-width, 480px);
+    --_dialog-max-width: var(--dialog-max-width, var(--dialog-width, 480px));
     --_dialog-max-height: var(--dialog-max-height, 80vh);
     --_dialog-title-font-size: var(--dialog-title-font-size, var(--title-large-font-size));
     --_dialog-title-line-height: var(--dialog-title-line-height, var(--title-large-line-height));
@@ -14,9 +14,9 @@ export default css`
   dialog {
     box-sizing: border-box;
     flex-direction: column;
-    width: var(--_dialog-width);
-    min-width: var(--_dialog-width);
-    max-width: var(--_dialog-width);
+    width: min(var(--_dialog-max-width), calc(100vw - 2 * var(--space-page)));
+    min-width: 0;
+    max-width: none;
     max-height: var(--_dialog-max-height);
     overflow: auto;
     padding: var(--space-md);

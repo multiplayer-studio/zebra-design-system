@@ -41,7 +41,7 @@
 
 | Property | Sizing | Guidance |
 |---|---|---|
-| Width | Hug | Hugs its content rather than holding a fixed width. 506px with the default content, from 12px padding on each side plus the 480px wide header, body and footer. |
+| Width | Tentative | 480px in this file is tentative. In code the width follows the page width, up to a set max-width. |
 | Height | Hug | Hugs the stack of header, body and footer with no gap between them. Shrinks by the footer’s own height, 64px, when showFooter is off. |
 | Padding | Fixed | 12px on every side of the dialog itself. The header, body and footer sit flush against each other inside it. |
 | Header padding and gap | Fixed | 12px on every side, 8px between the leading icon, title and close icon. |

@@ -1,5 +1,13 @@
 # @zebra-design-system/web-components
 
+## 0.8.2
+
+### Patch Changes
+
+- Dialog: the 480px width is now a max width. The dialog follows the page width up to it; set `--zds-dialog-max-width` (`--dialog-max-width` in Zeta Web) to change it. The older width names still work. Zeta Web's dialog no longer overflows a narrow page.
+  
+  Button: a disabled `zds-button` no longer takes the hover or pressed look.
+
 ## 0.8.1
 
 ### Patch Changes

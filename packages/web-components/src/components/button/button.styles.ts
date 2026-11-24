@@ -202,90 +202,91 @@ export default css`
   }
 
   /* ---- hover --------------------------------------------------------- */
-  :host([flavour="primary"]) button:hover {
+  /* A disabled button never takes the hover or pressed treatment. */
+  :host([flavour="primary"]) button:hover:not(:disabled) {
     --zds-button-bg: var(--interactive-primary-background-hover);
     --zds-button-border: var(--interactive-primary-border-hover);
   }
-  :host([flavour="positive"]) button:hover {
+  :host([flavour="positive"]) button:hover:not(:disabled) {
     --zds-button-bg: var(--interactive-positive-background-hover);
     --zds-button-border: var(--interactive-positive-border-hover);
   }
-  :host([flavour="negative"]) button:hover {
+  :host([flavour="negative"]) button:hover:not(:disabled) {
     --zds-button-bg: var(--interactive-destructive-background-hover);
     --zds-button-border: var(--interactive-destructive-border-hover);
   }
-  :host([flavour="contrast"]) button:hover {
+  :host([flavour="contrast"]) button:hover:not(:disabled) {
     --zds-button-bg: var(--interactive-inverse-background-hover);
     --zds-button-border: var(--interactive-inverse-border-hover);
   }
   /* outline-contrast steps its border and raises the ghost scrim. The ghost
      tokens carry the scrim in their own alpha, so no extra opacity. */
-  :host([flavour="outline-contrast"]) button:hover {
+  :host([flavour="outline-contrast"]) button:hover:not(:disabled) {
     --zds-button-bg: var(--interactive-ghost-background-hover);
     --zds-button-border: var(--interactive-inverse-border-hover);
   }
   /* outline keeps its border and shifts a neutral background underneath. */
-  :host([flavour="outline"]) button:hover {
+  :host([flavour="outline"]) button:hover:not(:disabled) {
     --zds-button-bg: var(--interactive-neutral-background-hover);
   }
   /* The scrim flavours raise the ghost background from transparent. */
-  :host([flavour="subtle"]) button:hover,
-  :host([flavour="text"]) button:hover,
-  :host([flavour="text-gradient"]) button:hover {
+  :host([flavour="subtle"]) button:hover:not(:disabled),
+  :host([flavour="text"]) button:hover:not(:disabled),
+  :host([flavour="text-gradient"]) button:hover:not(:disabled) {
     --zds-button-bg: var(--interactive-ghost-background-hover);
   }
-  :host([flavour="outline-subtle"]) button:hover {
+  :host([flavour="outline-subtle"]) button:hover:not(:disabled) {
     --zds-button-bg: var(--interactive-ghost-background-hover);
     --zds-button-border: var(--interactive-neutral-border-hover);
   }
   /* Gradient flavours: slide until the end colour covers 100%. */
-  :host([flavour="gradient"]) button:hover {
+  :host([flavour="gradient"]) button:hover:not(:disabled) {
     background-position: 100% 100%;
   }
-  :host([flavour="text-gradient"]) button:hover .label,
-  :host([flavour="text-gradient"]) button:hover .icon {
+  :host([flavour="text-gradient"]) button:hover:not(:disabled) .label,
+  :host([flavour="text-gradient"]) button:hover:not(:disabled) .icon {
     background-position: 100% 0;
   }
 
   /* ---- pressed ------------------------------------------------------- */
-  :host([flavour="primary"]) button:active {
+  :host([flavour="primary"]) button:active:not(:disabled) {
     --zds-button-bg: var(--interactive-primary-background-pressed);
     --zds-button-border: var(--interactive-primary-border-pressed);
   }
-  :host([flavour="positive"]) button:active {
+  :host([flavour="positive"]) button:active:not(:disabled) {
     --zds-button-bg: var(--interactive-positive-background-pressed);
     --zds-button-border: var(--interactive-positive-border-pressed);
   }
-  :host([flavour="negative"]) button:active {
+  :host([flavour="negative"]) button:active:not(:disabled) {
     --zds-button-bg: var(--interactive-destructive-background-pressed);
     --zds-button-border: var(--interactive-destructive-border-pressed);
   }
-  :host([flavour="contrast"]) button:active {
+  :host([flavour="contrast"]) button:active:not(:disabled) {
     --zds-button-bg: var(--interactive-inverse-background-pressed);
     --zds-button-border: var(--interactive-inverse-border-pressed);
   }
-  :host([flavour="outline-contrast"]) button:active {
+  :host([flavour="outline-contrast"]) button:active:not(:disabled) {
     --zds-button-bg: var(--interactive-ghost-background-pressed);
     --zds-button-border: var(--interactive-inverse-border-pressed);
   }
-  :host([flavour="outline"]) button:active {
+  :host([flavour="outline"]) button:active:not(:disabled) {
     --zds-button-bg: var(--interactive-neutral-background-pressed);
   }
-  :host([flavour="subtle"]) button:active,
-  :host([flavour="text"]) button:active,
-  :host([flavour="text-gradient"]) button:active {
+  :host([flavour="subtle"]) button:active:not(:disabled),
+  :host([flavour="text"]) button:active:not(:disabled),
+  :host([flavour="text-gradient"]) button:active:not(:disabled) {
     --zds-button-bg: var(--interactive-ghost-background-pressed);
   }
-  :host([flavour="outline-subtle"]) button:active {
+  :host([flavour="outline-subtle"]) button:active:not(:disabled) {
     --zds-button-bg: var(--interactive-ghost-background-pressed);
     --zds-button-border: var(--interactive-neutral-border-pressed);
   }
   /* Gradient flavours: slide the other way, until the start colour covers 100%. */
-  :host([flavour="gradient"]) button:active {
+  :host([flavour="gradient"]) button:active:not(:disabled) {
     background-position: 0% 0%;
   }
-  :host([flavour="text-gradient"]) button:active .label,
-  :host([flavour="text-gradient"]) button:active .icon {
+  :host([flavour="text-gradient"]) button:active:not(:disabled) .label,
+  :host([flavour="text-gradient"]) button:active:not(:disabled) .icon {
     background-position: 0% 0;
   }
 
