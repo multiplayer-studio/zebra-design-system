@@ -1,0 +1,147 @@
+/* Tooltip — every value is a semantic token from the shared token layer.
+   Keyed off data-shape (ours) and data-side (Base UI's, on the popup and the
+   arrow — the side the bubble actually landed on after collision flipping, so
+   the pointer follows a flip; the static bubble sets it from `point`).
+   Nothing here knows about themes.
+
+   Spec: specs/tooltip/tooltip.spec.md */
+
+/* ---- anatomy: bubble ---------------------------------------------------- */
+.zds-tooltip {
+  /* Pointer geometry. spec issue "Pointer isn't token sized": Figma draws a
+     fixed 8x4 vector; here its depth is --space-2xs (4px, the bubble's own
+     block padding) and its base twice that, so a theme that shrinks the
+     bubble's padding shrinks the pointer with it. It is drawn as a square of
+     side depth*sqrt(2) rotated 45deg and half-buried in the bubble edge. */
+  --zds-tooltip-pointer-depth: var(--space-2xs);
+  --zds-tooltip-pointer-box: calc(var(--zds-tooltip-pointer-depth) * 1.41421);
+  --zds-tooltip-pointer-tip: var(--radius-none);
+
+  position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  background: var(--surface-inverse);
+  color: var(--foreground-inverse);
+
+  /* spec issue "No max width or wrapping": Figma hugs a single line with no
+     limit. Decision: wrap at 32ch of the label's own font (~230px at
+     label/small 12px; it follows the type tokens, so it shrinks with them),
+     never wider than the viewport less --space-sm each side. A long label
+     wraps between words and breaks a word only if it has to. No token covers
+     a max width, hence ch. */
+  max-inline-size: min(32ch, 100vw - 2 * var(--space-sm));
+  /* Size from the label, not from whatever box the portal lands in (a narrow
+     container would otherwise squeeze it to min-content). */
+  inline-size: max-content;
+
+  /* Shadow/medium: two drop shadows on shadow/soft. A filter rather than
+     box-shadow so the pointer and the bubble cast one shadow as one shape —
+     the pointer is outside the box and box-shadow would skip it (or, put on
+     the pointer, would fall across the bubble). */
+  filter:
+    drop-shadow(var(--shadow-medium-x) var(--shadow-medium-y) var(--shadow-medium-blur) var(--shadow-soft))
+    drop-shadow(var(--shadow-small-x) var(--shadow-small-y) var(--shadow-small-blur) var(--shadow-soft));
+}
+
+/* ---- anatomy: label ----------------------------------------------------- */
+.zds-tooltip__label {
+  position: relative; /* paints above the half of the pointer inside the bubble */
+  font-family: var(--label-small-font-family), system-ui, sans-serif;
+  font-size: var(--label-small-font-size);
+  font-weight: var(--label-small-font-weight);
+  line-height: var(--label-small-line-height);
+  letter-spacing: var(--label-small-letter-spacing);
+  white-space: normal;
+  overflow-wrap: break-word;
+  /* Centred per the spec on a single line, where it makes no difference;
+     a wrapped label reads better ranged to the start edge. */
+  text-align: start;
+}
+
+/* ---- anatomy: pointer --------------------------------------------------- */
+.zds-tooltip__pointer {
+  position: absolute;
+  box-sizing: border-box;
+  width: var(--zds-tooltip-pointer-box);
+  height: var(--zds-tooltip-pointer-box);
+  background: var(--surface-inverse);
+  transform: rotate(45deg);
+  /* Centre on the edge by default. Base UI writes an inline left/top for the
+     cross axis (pointing at the trigger after a shift), which wins over these. */
+  left: calc(50% - var(--zds-tooltip-pointer-box) / 2);
+  top: calc(50% - var(--zds-tooltip-pointer-box) / 2);
+}
+
+/* Each side puts the square's centre on the matching bubble edge and names
+   the corner that ends up as the tip after the 45deg turn. */
+.zds-tooltip__pointer[data-side="top"] {          /* bubble above: tip down */
+  top: calc(100% - var(--zds-tooltip-pointer-box) / 2);
+  border-bottom-right-radius: var(--zds-tooltip-pointer-tip);
+}
+.zds-tooltip__pointer[data-side="bottom"] {       /* bubble below: tip up */
+  top: calc(var(--zds-tooltip-pointer-box) / -2);
+  border-top-left-radius: var(--zds-tooltip-pointer-tip);
+}
+.zds-tooltip__pointer[data-side="right"] {        /* bubble right: tip left */
+  left: calc(var(--zds-tooltip-pointer-box) / -2);
+  border-bottom-left-radius: var(--zds-tooltip-pointer-tip);
+}
+.zds-tooltip__pointer[data-side="left"] {         /* bubble left: tip right */
+  left: calc(100% - var(--zds-tooltip-pointer-box) / 2);
+  border-top-right-radius: var(--zds-tooltip-pointer-tip);
+}
+
+/* ---- shape -------------------------------------------------------------- */
+.zds-tooltip[data-shape="rounded"] {
+  border-radius: var(--radius-sm);
+  /* Figma's rounded tip stops 3.586 short of the sharp 4 — exactly what a
+     1px corner radius on the rotated square gives (r * (sqrt2 - 1) = 0.414).
+     No 1px radius token: half of --radius-xs (2px), so it scales with it. */
+  --zds-tooltip-pointer-tip: calc(var(--radius-xs) / 2);
+}
+.zds-tooltip[data-shape="sharp"] {
+  border-radius: var(--radius-none);
+  --zds-tooltip-pointer-tip: var(--radius-none);
+}
+
+/* ---- static bubble (no trigger) ----------------------------------------- */
+.zds-tooltip--static {
+  vertical-align: middle;
+}
+
+/* ---- live: positioner + visibility -------------------------------------- */
+.zds-tooltip__positioner {
+  box-sizing: border-box;
+  /* No z-index in the spec; left to the app / portal stacking context. */
+}
+/* The popup stays mounted while closed (for aria-describedby). */
+.zds-tooltip__positioner[hidden],
+.zds-tooltip[hidden] {
+  display: none;
+}
+
+/* Motion (owner decision; none in Figma): fades in while sliding toward the
+   trigger, from the side away from the tip, and fades out, on
+   animations/smooth. The slide is the pointer's depth (--space-2xs). Base UI
+   marks the first frame open ([data-starting-style]), the closing frames
+   ([data-ending-style]) and the side it placed the bubble on ([data-side]),
+   and waits for the fade before hiding the popup. */
+.zds-tooltip:not(.zds-tooltip--static) {
+  transition: opacity var(--animations-smooth), translate var(--animations-smooth);
+}
+.zds-tooltip:is([data-starting-style], [data-ending-style]) {
+  opacity: 0;
+}
+.zds-tooltip[data-starting-style][data-side="top"] { translate: 0 calc(-1 * var(--space-2xs)); }
+.zds-tooltip[data-starting-style][data-side="bottom"] { translate: 0 var(--space-2xs); }
+.zds-tooltip[data-starting-style][data-side="left"] { translate: calc(-1 * var(--space-2xs)) 0; }
+.zds-tooltip[data-starting-style][data-side="right"] { translate: var(--space-2xs) 0; }
+@media (prefers-reduced-motion: reduce) {
+  .zds-tooltip:not(.zds-tooltip--static) {
+    transition: none;
+  }
+}
