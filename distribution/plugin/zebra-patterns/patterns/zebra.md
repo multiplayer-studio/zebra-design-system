@@ -13,6 +13,7 @@ Component names are the names of the Zebra component specs. Tokens are written a
 | header (screen, mobile) | Top App Bar |
 | pinned bar | No component. Compose it from layout and Button. |
 | primary action | Button with `flavour="primary"` |
+| commit bar | Compose: a pinned bar with Button. The commit is `flavour="primary"`. |
 
 ## Navigation
 
@@ -24,6 +25,8 @@ Component names are the names of the Zebra component specs. Tokens are written a
 | tabs | Tab Bar |
 | breadcrumb | Breadcrumb |
 | stepper | Stepper |
+| peers | No component. The items of one Tab Bar, Navigation Bar, Navigation Rail or Segmented Control, or the items of a sequence. |
+| transition | No component. Each component's own motion where its spec sets one; otherwise compose it from the theme's motion. |
 
 ## Messages
 
@@ -34,6 +37,7 @@ Component names are the names of the Zebra component specs. Tokens are written a
 | toast | Snackbar |
 | dialog | Dialog |
 | tooltip | Tooltip |
+| error summary | No component. Compose it from Inline Banner with `status="negative"`, holding one link per field. |
 
 ## Surfaces
 
@@ -60,6 +64,8 @@ Component names are the names of the Zebra component specs. Tokens are written a
 | composer | Message Input (experimental) |
 | AI mark | No component yet. Report it as a gap. |
 | progress, measured or unmeasured | Progress Bar, Progress Circle |
+| split button | No component. Compose it from Button and an Icon Button that opens a Dropdown, sharing one outer shape. |
+| floating action | No component. Compose it from Icon Button or Button with `flavour="primary"`, raised over the content. |
 
 ## Sizes
 
@@ -101,6 +107,14 @@ The blocks in [compositions/organisms.md](compositions/organisms.md). Most have 
 
 | Organism | Zebra |
 |---|---|
+| Dialog | Dialog |
+| Sheet | Bottom Sheet |
+| Side panel | No component yet. Report it as a gap. |
+| Toast | Snackbar |
+| Notice | Inline Banner |
+| System banner | System Banner (desktop and mobile specs) |
+| Menu | Dropdown with Dropdown Menu and Menu Item |
+| Error summary | No component. Compose it from Inline Banner with `status="negative"`, holding one link per field. |
 
 ## Theme
 

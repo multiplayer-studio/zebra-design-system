@@ -21,6 +21,7 @@ Not covered here: where a message sits, how long it lasts, and its severity.
 7.6. **Interface copy usually leaves out "please" and "sorry".** In an instruction, "please" adds length without meaning, and "sorry" doesn't help anyone fix anything. "Sorry" is right when the product caused a serious failure or lost someone's work. "Please" fits a real request, such as asking someone to wait for a device.
 7.7. **Errors, warnings and instructions prefer spelled-out negatives ("cannot", "do not"),** so "not" isn't missed at a glance. Positive contractions ("it's", "you'll") are fine elsewhere.
 7.8. **No idioms, humour or culture-specific references.** The product is read in many languages and under pressure.
+7.123. **By default, product copy doesn't use emoji, and errors, warnings and safety copy never do.** Where a product's voice uses them (a chat with the assistant, a rare milestone), they add to the words and never replace them, because they translate unevenly and screen readers read them out by name.
 
 ## 2. Case and punctuation
 7.9. **Interface text uses sentence case by default:** titles, headings, labels, buttons, menu items, tabs and notifications. Only the first word and proper nouns are capitalised. A native iOS or macOS product may follow the platform's title case for buttons, alerts and notification titles, consistently. ALL CAPS is never used for emphasis.
@@ -30,6 +31,7 @@ Not covered here: where a message sits, how long it lasts, and its severity.
 7.13. **An ellipsis on a label means "in progress"** ("Saving…"), or that a menu item opens a further step before acting ("Export as…"). It's used for nothing else.
 7.14. **A question keeps its question mark,** including in titles.
 7.15. **Ranges use "to" in sentences ("8 to 10 devices").** An en dash is used only in tables and tight spaces.
+7.124. **By default, copy doesn't use em dashes; a comma, a full stop or a new sentence does the job.** Hyphens never have spaces around them. Em dashes are read aloud inconsistently and punctuated differently across languages.
 
 ## 3. Actions and links
 7.16. **A button label starts with a verb and names exactly what happens, in one to three words.** Articles are dropped, as in "Deploy profile", "Send report" and "Add printer". It never says "OK", "Yes", "Submit" or "Click here".
@@ -95,6 +97,7 @@ Not covered here: where a message sits, how long it lasts, and its severity.
 7.45. **The body names the object and the consequence with specifics** (names, counts, who's affected) and says whether it can be undone.
 7.46. **The confirm button repeats the action verb ("Delete printers"), and the other button is "Cancel".** The body doesn't explain the buttons.
 7.47. **For the rarest and most dangerous actions, the person types the object's name or a stated word to confirm.**
+7.125. **A dialog that proposes nothing has one button.** It's only ever about a condition that blocks work: one that blocks all work, or an operation that Back can't stop (2.27). A message that only informs is never a dialog (1.66). Its button names what happens next where something does ("Back to list"), and is otherwise "Close". Cancel appears only beside an action it would call off.
 
 ## 9. Success and outcomes
 7.48. **A success message names the action and the object in the simple past ("Profile deployed", "3 files added").** It never says "Success!" or "successfully".
@@ -107,6 +110,7 @@ Not covered here: where a message sits, how long it lasts, and its severity.
 7.53. **The product uses the words its users use, not internal feature names.** A branded name, if one has to appear, is accompanied by what it does.
 7.54. **Abbreviations are avoided.** One that the users genuinely say every day (SKU, MAC) is fine. Any other is spelled out on first use.
 7.55. **One perspective per screen.** Possessives ("my", "your") are used sparingly and never mixed on one screen.
+7.126. **A verb phrase is written open and its noun form closed or hyphenated: "Set up the printer", "Printer setup"; "Sign in", "Sign-in failed".** A word that can be a noun or a verb ("Update", "Filter", "Print", "Scan") keeps one sense on a screen, and its string tells translators which sense it is (7.70).
 
 ## 11. Numbers, dates, units
 7.56. **Dates, times, numbers, currency and units are formatted from the person's locale, never written into the text.** Order, separators, 12- or 24-hour time and grouping all come from the formatter.
@@ -121,6 +125,7 @@ Not covered here: where a message sits, how long it lasts, and its severity.
 7.65. **A negative uses a minus sign, not a hyphen.** A plus sign shows only where the direction of change matters.
 7.66. **Currency uses the locale's symbol.** Where several currencies appear together, the currency code is shown.
 7.67. **Values that are missing show what kind of missing:** "Not set", "Unknown" or "Not applicable". A blank or a dash is never used to mean all three.
+7.127. **Serial numbers, years, network addresses, codes and other identifiers are never formatted as numbers.** They get no locale grouping or separators, so a year never reads "2,026". Any grouping for reading by eye follows the code's own format (3.44).
 
 ## 12. Writing for translation
 7.68. **Every message is one complete, translatable sentence with named placeholders.** Sentences are never built by joining fragments, and the same fragment is never reused in different places.
@@ -166,6 +171,7 @@ Not covered here: where a message sits, how long it lasts, and its severity.
 7.96. **The names in one menu are clearly different from each other.** No two overlap in meaning ("Devices" and "Device management"), and the key word comes first in each.
 7.97. **A shipped name is used identically everywhere:** navigation, page title, help, notifications and support material (7.52).
 7.98. **Product and brand names appear only where people need to know which product they're in,** such as when handing off between products. They're never used as labels for features.
+7.128. **By default, a label in a bottom bar, rail or row of tabs is one or two words, a noun for the place it opens.** These labels sit side by side with little room, so they collide first in translation (5.38). A destination whose screen is built around one repeated activity, such as scanning, may be named by it ("Scan").
 
 ## 19. Help and explanation
 7.99. **Help next to a control answers one question:** what it does, or what to enter.
@@ -192,6 +198,7 @@ Not covered here: where a message sits, how long it lasts, and its severity.
 7.112. **Values are inserted into sentences; nouns aren't.** A message that applies to different kinds of object is a separate string for each kind, because gender and case change the words around a noun.
 7.113. **A string never assumes word order, the gender of the person, or that the text reads left to right.**
 7.114. **A translation that won't fit makes the layout give way, or gets a shorter translation written for it.** A translation is never cut off.
+7.129. **A string names its subject rather than pointing outside itself with "it", "this" or "that".** "The printer is offline", not "It's offline". A pronoun is used only when its noun is in the same string, because strings are translated alone and gendered languages need the noun.
 
 ## 24. Notifications sent to devices
 7.115. **The first few words of a notification carry its point, because previews cut the rest.** The title gives the context (the task, the device, the place). The body says what happened in a complete sentence. Neither repeats the product's name.

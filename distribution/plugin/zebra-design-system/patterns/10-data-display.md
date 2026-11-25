@@ -51,6 +51,7 @@ Not covered here: where collections sit and what surrounds them (search, filters
 10.28. **While a table loads, skeleton rows sit under the real header.** Re-sorting or refiltering shows progress on the table, not a reload of the screen.
 10.29. **An empty table keeps its header.** It says which kind of empty it is: nothing yet, nothing matches the filters, or nothing to see without filters set.
 10.30. **People can show, hide and reorder columns, with a way that doesn't need dragging.** The table shows when columns are hidden. The column layout persists between sessions. The setting sits in the table's toolbar.
+10.110. **By default, every row that can be selected shows its checkbox.** Where selecting is secondary on a console used with a pointer, a row's checkbox may appear only on hover and focus. It always shows on touch (3.106), and once anything is selected, every row shows it.
 
 ## 3. List items
 10.31. **A list item has a label and optional leading and trailing slots.** The leading slot holds an icon, image or avatar. The trailing slot holds a short value (a count, a time), a status, an action or a selection control. Nothing sits in the middle of a row.
@@ -58,6 +59,7 @@ Not covered here: where collections sit and what surrounds them (search, filters
 10.33. **List text is short.** Long content opens in the detail.
 10.34. **A trailing chevron means "opens a level deeper". An info control means "shows more about this item", and doesn't open a level.** On iOS, they're never combined with a side index.
 10.35. **Groups in a list have headings and extra space between them.** Items in a contained list are separated by space. Dividers are used only where space isn't enough.
+10.111. **By default, a list item's leading and trailing elements centre on the item, and align with its first line once the item runs to three or more lines,** so an icon or status stays beside the label it belongs to as translation and large text lengthen the item.
 
 ## 4. Key–value records
 10.36. **Each row of a record is a key and its value,** with any action on that value at the row's trailing end. Row dividers tie each action to its row.
@@ -103,7 +105,7 @@ Not covered here: where collections sit and what surrounds them (search, filters
 10.60. **A fixed axis range is used for quantities with real limits,** such as 0 to 100%. A range that fits the data is used otherwise.
 10.61. **A time axis keeps even intervals.** Gaps in the data are shown as gaps, never bridged. A new day, month or year is marked in the labels.
 10.62. **By default, an axis has a few ticks at familiar steps, fewer on small screens.** Gridlines are absent or faint. Rotating labels is the last resort, after shortening them, thinning them and switching to horizontal bars.
-10.63. **By default, the value axis sits at the leading edge.** A compact time series may put it at the trailing edge, next to the latest value. With positive and negative values, the axis line sits at zero.
+10.63. **By default, the value axis sits at the leading edge.** In a right-to-left layout whose time axis keeps left to right (10.112), the value axis sits at the start of the time axis instead. A compact time series may put it at the trailing edge, next to the latest value. With positive and negative values, the axis line sits at zero.
 10.64. **Data is labelled directly.** A legend is used only when direct labels won't fit, sits in the same place on every chart in a set, and is never used for one series.
 10.65. **An explanatory chart's title states its main finding. A monitoring chart's title names the measure, its scope and its period,** because its finding changes with the data. Precise detail goes in the subtitle or notes.
 10.66. **The palette follows the data:**
@@ -122,6 +124,7 @@ Not covered here: where collections sit and what surrounds them (search, filters
 10.75. **By default, a chart's own empty, loading and error states sit inside the chart's frame, with the title kept.** An empty chart says why: no data for the period, or nothing matches.
 10.76. **Small multiples are identical panels on one shared scale,** each showing one category, sorted by a meaningful value. They're used to show each category's shape. One combined chart is used when people compare values at a single point.
 10.77. **A sparkline is a word-sized line, with no axes, beside the number it describes.** Its latest point is marked and tied to the number. It shows the shape of recent history, not values. Sparklines in a column each have their own scale, unless magnitude is being compared.
+10.112. **By default, a chart's time axis runs in the direction the locale uses for charts, which for most right-to-left languages is still left to right.** The value axis stays at the start of the time axis. The title, legend and notes mirror with the layout (5.39), and digits never mirror (5.40). A product whose right-to-left users read charts the other way follows them.
 
 ## 9. Live data
 10.78. **Data that updates by itself can be paused.** On resume, it jumps to the latest data, and says it was paused.

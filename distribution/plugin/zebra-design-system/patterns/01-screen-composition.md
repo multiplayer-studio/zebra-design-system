@@ -166,6 +166,8 @@ A screen is not a set of components placed in a layout. It is built from its job
 1.81. **A destructive action is never the primary or default action.** It sits after the other actions in its group and is styled as destructive. If it can be reversed, it acts at once and offers Undo. If not, it asks first.
 1.82. **A floating action button is used only for a screen's main creating action, and only one per screen.** It sits at the trailing bottom corner, above the bottom navigation. It never carries a destructive or minor action. On expanded screens it moves into the navigation rail or the page header, following the platform.
 1.83. **A content toolbar sits directly above the content it acts on.** It holds only actions for that content: refresh, columns, export, view options. Its height matches the content's density.
+1.148. **By default, actions use three levels of emphasis: the primary, secondary actions that still read as buttons, and minor actions shown as text or an icon with no fill or outline.** A pair of actions is the primary with one lower level, never two primaries. The way out of a task (Cancel, Back, Discard) is secondary or minor, never styled as primary, unless leaving is the screen's main purpose. In a discard confirmation (2.24), keeping the work is the primary and discarding is styled as destructive (1.81).
+1.149. **On compact screens, a pinned commit bar and the bottom bar don't both sit at the bottom edge.** By default, a screen with a pinned commit bar is a task below the top level, and the task covers global navigation (2.10). A top-level screen puts its actions in the header or the content instead, including the actions for a selection.
 
 ## 5. Finding things
 
@@ -194,7 +196,7 @@ A screen is not a set of components placed in a layout. It is built from its job
 1.103. **Card grids change the number of columns with width.** That's one column on compact, then more as space allows. Cards keep a readable width rather than stretching.
 1.104. **A chart is never the only place a value lives.** On compact screens, a chart that can't be read becomes its key figure plus a list.
 1.105. **Tabs within content split one object or topic into parallel views.** They sit directly below the header they belong to. With more tabs than fit, they scroll sideways. On compact screens with many sections, they become a selector. Tabs are never used for steps in a sequence.
-1.106. **Accordions are for long content on compact screens where sections are independent.** They aren't used when people need most of the content, when there's little content, or for anything critical. Accordions and tabs are never used to hide information inside a dialog or panel.
+1.106. **Accordions are for long content on compact screens where sections are independent.** They aren't used when people need most of the content, when there's little content, or for anything critical. Accordions and tabs never hide information inside a dialog or a sheet. By default the same holds in a side panel, except that a side panel showing one object may use tabs for parallel views of it (1.105).
 1.107. **By default, reading text and forms have a capped width.** On expanded screens, extra width stays empty or holds a supporting pane. It's never filled by stretched text or fields.
 1.108. **Read-only details show as label and value pairs,** with the value more prominent than its label. Groups have headings. On compact screens, the label sits above its value.
 1.109. **Activity and history are listed newest first.** Each entry shows what happened, who did it and when. History is a section or tab of the object it belongs to.
@@ -211,6 +213,8 @@ A screen is not a set of components placed in a layout. It is built from its job
 1.117. **An overlay always opens over the screen it came from,** which stays recognisable behind it. It never covers the information the person needs in order to answer it.
 1.118. **A full-screen takeover is used only for work that must hold the whole screen.** Examples: a camera capture, a live call, a guided physical task, a setup flow. It always shows how to leave it, and leaving returns the person to where they were.
 1.119. **Something that must stay available while the person moves around the app floats above all screens as a small, movable element.** An active call or a recording, for example. It expands back to full view in one tap and never covers the primary action of the screen beneath it.
+1.150. **By default, a tap on the scrim closes a menu, a popover or a modal sheet of choices.** A dialog, and any overlay holding entered input, stays open on a tap outside, so a stray touch or a glove brush loses nothing. A product that keeps the input and reopens the overlay in one step may close these too (2.62).
+1.151. **Over a map, camera view or other canvas on compact screens, detail sits in a non-modal sheet from the bottom: no scrim, and the canvas stays usable.** The sheet rests at a height that shows the item's identity and status, and expands on drag or tap (5.18). A camera capture's results follow (1.131).
 
 ## 8. Flows
 

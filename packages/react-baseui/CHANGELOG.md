@@ -1,5 +1,12 @@
 # @zebra-design-system/react-baseui
 
+## 0.8.4
+
+### Patch Changes
+
+- Updated dependencies
+  - @zebra-design-system/patterns@0.5.0
+
 ## 0.8.3
 
 ### Patch Changes

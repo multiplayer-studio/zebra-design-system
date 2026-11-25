@@ -20,6 +20,7 @@ Not covered here: where navigation sits on screen, how it changes with width, wo
 2.4. **Each screen has one home in the structure, however many ways lead to it.** A view needed from several places links to that home, or opens as an overlay over each place. It's never copied into the structure twice.
 2.5. **A product built around one object type (a printer, a device, a site) gives each object its own hub.** The hub opens with the object's identity and current state, then links to that object's local areas. Global navigation is usually not added for one object.
 2.6. **A product with one clear end-to-end job usually has no global navigation.** It leads people through the job, using a task list where the job spans sessions (2.36). Settings, help and sign-out stay reachable from the header.
+2.90. **By default, a product with only two top-level areas keeps them in the bottom bar on compact screens, within thumb reach (5.88).** Tabs at the top are used instead only when the two are parallel views of one thing (1.105), and then they follow the rules for tabs (2.91, 8.117), not the rules for global navigation.
 
 ## 2. Global and local navigation
 2.7. **Global navigation reaches every top-level area, and only top-level areas.** Its entries are equally important peers. Single tasks aren't in it. Settings may close the list where the product has many of them.
@@ -30,6 +31,7 @@ Not covered here: where navigation sits on screen, how it changes with width, wo
 2.12. **Local navigation inside a destination never switches the destination.**
 2.13. **In a layout with several panes, the current selection stays marked in every pane that leads to what's shown.**
 2.14. **By default, navigation doesn't perform actions.** Actions sit with what they affect. A navigation rail may hold the product's one main create action.
+2.91. **Swiping the content never switches global destinations.** By default, tabs switch by tapping. Where swiping between tabs is also supported, the content beneath them holds nothing else that swipes sideways, such as rows with swipe actions (3.100), maps or carousels.
 
 ## 3. Back, up, close and cancel
 2.15. **Back returns to the previous screen exactly as it was left:** scroll position, entries and selection. If that earlier state can no longer be shown, the screen says so on return.

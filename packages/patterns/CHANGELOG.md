@@ -1,5 +1,11 @@
 # @zebra-design-system/patterns
 
+## 0.5.0
+
+### Minor Changes
+
+- 49 new pattern rules across nine packs, including screen transitions (8.115 to 8.119), toasts (4.98 to 4.100) and thumb reach on handhelds (5.88). Eight blocks join the compositions as reference ideas: Dialog, Sheet, Side panel, Toast, Notice, System banner, Menu and Error summary. Rules 1.106, 6.22 and 10.63 each gain an exception for a new rule.
+
 ## 0.4.0
 
 ### Minor Changes

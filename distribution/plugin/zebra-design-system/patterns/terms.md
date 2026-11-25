@@ -13,6 +13,7 @@ What each pattern word means, in one place. Each rule file also defines the term
 | pane | One column of the content area. |
 | pinned bar | A bar fixed to an edge of the screen or of a pane, which stays while content scrolls. |
 | primary action | The one action a screen most wants taken. |
+| commit bar | The bar that holds the actions finishing a task (Save, Submit, Done) and its way out, at the end of what it finishes, and pinned there on long screens. |
 
 ## Navigation
 
@@ -24,6 +25,9 @@ What each pattern word means, in one place. Each rule file also defines the term
 | tabs | A row that switches between views at the same level. |
 | breadcrumb | A trail that shows where a screen sits in the structure and links to each level above. |
 | stepper | A marker of where the person is in a fixed sequence of steps. |
+| Up | Goes to the screen one level higher in the product's structure (its parent), whichever way the person arrived. From a printer's detail screen, Up goes to the printer list even if the person came from a search or a notification. Back and Up are the same when the person got there by moving down the structure. In the header, one control does either job, shown as a back arrow. |
+| peers | Screens or items at the same level of one set, such as tabs, top-level destinations, or the items in a sequence. |
+| transition | The motion that replaces one screen, or one part of a screen, with another. |
 
 ## Messages
 
@@ -34,6 +38,7 @@ What each pattern word means, in one place. Each rule file also defines the term
 | toast | A brief message confirming something the person just did. It carries at most one action and never carries an error. |
 | dialog | A message or small task that blocks the screen until the person answers. |
 | tooltip | A short label that appears on hover or focus and names or describes one control. |
+| error summary | A list at the top of a form of every error that stopped it being submitted. Each item names its field in the words of its error and links to it. |
 
 ## Surfaces
 
@@ -56,6 +61,8 @@ What each pattern word means, in one place. Each rule file also defines the term
 | skeleton | A placeholder in the shape of content that is still loading. |
 | composer | The input where a person writes a message to another person or to an AI assistant. |
 | AI mark | The one mark a product uses to show that content was produced by AI. |
+| split button | One button in two parts: the main part does an action's common form, and an arrow part opens a menu of its variants. |
+| floating action | A button that sits above the content at the trailing bottom corner, apart from any bar, and stays while the content scrolls. A screen has at most one, for its main creating action. |
 
 ## Sizes
 

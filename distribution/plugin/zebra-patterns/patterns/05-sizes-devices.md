@@ -25,6 +25,7 @@ Not covered here: the screen structure that results, movement between places, an
 5.5. **A component is swapped only for one that does the same job.** A button is never swapped for a control with a different job, such as a chip. Overflowing actions may move into a menu (5.23–5.24). A list and cards are swapped only with care, because their roles differ.
 5.6. **Resizing happens live and keeps state.** Rotating, folding, docking, splitting the screen or dragging the window keeps the scroll position, entries, selection, the open overlay and the keyboard.
 5.7. **By default, the narrowest size is designed first.** A desktop-first console or fixed-size product still states how it behaves at its narrowest supported window and at high zoom, because docking, split screen, display scaling and text size will reach it.
+5.83. **By default, when a list and its detail (1.98) go from two panes to one, the selected item's detail shows, with Back to the list.** If nothing was selected, the list shows. When one pane becomes two, both show and the selection stays.
 
 ## 2. Grids and widths
 5.8. **Margins grow with width.** The narrowest size has the smallest margin, and wider sizes step up once or twice. One product uses one set of margins on every screen.
@@ -34,6 +35,7 @@ Not covered here: the screen structure that results, movement between places, an
 5.12. **Reading text keeps a comfortable line length at every width,** by adjusting margins or columns. Lists may run longer lines with more line spacing.
 5.13. **Larger elements stop stretching on wide screens.** Sheets, buttons, fields and dialogs take a maximum width instead of the full width.
 5.14. **For each collection, the product decides whether width brings more items or bigger items.** People comparing many items get more columns of fixed-size items. People reading each item get bigger items in a fixed number of columns.
+5.84. **By default, as the window grows, one pane takes the extra width, and a list or supporting pane keeps its width.** Where people can resize panes, the divider can also be resized or collapsed without dragging (6.83). A width the person sets is kept for them across sessions and window sizes. A supporting pane opened briefly returns to its usual width next time.
 
 ## 3. How components change
 5.15. **Navigation changes form with width:** a bottom bar on narrow screens, a rail from medium, and an expanded rail with labels on the widest. It may collapse again on deep screens, as long as Back reaches the top. Sorting, filtering and local navigation sit in the pane, never in global navigation.
@@ -65,6 +67,7 @@ Not covered here: the screen structure that results, movement between places, an
 5.32. **Short text wraps to a set number of lines before it truncates,** and each component states its number. A table header wraps to two lines.
 5.33. **By default, long content is opened with an explicit "Show more",** not a fade or a scrolling box. An overlay's body is the exception (5.19).
 5.34. **Only content that needs two dimensions may scroll both ways:** tables, maps, diagrams, canvases. It scrolls inside its own region, never the page.
+5.85. **By default, a row of items that scrolls sideways also offers "Show all", which opens every item as a vertical list.** Tile rows on a handheld dashboard and strips of suggestions are the usual case. Chip and tab rows that filter or navigate locally follow their own rules instead (5.22, 5.25).
 5.35. **Text is never cut short to fit.** Only the standard abbreviations from the content rules are used, with their full form available.
 
 ## 5. Text size, translation and direction
@@ -76,6 +79,7 @@ Not covered here: the screen structure that results, movement between places, an
     - by default, linear progress, sliders, steps and icons that show direction. A locale's own convention can keep progress left to right.
 5.40. **Some things never mirror:** the digits of a number, phone, card and serial numbers, email addresses, clocks, circular progress, media controls, logos, the check mark, photographs, and anything that means a real-world direction.
 5.41. **Paragraphs of three or more lines align to their own language. Shorter text follows the interface's direction.** Items in one list share one alignment.
+5.86. **In right-to-left text, a run that reads left to right (a serial number, address, web address, path, model code or email) keeps its own direction and is set apart from the sentence around it,** so its characters and the punctuation next to it stay in order. Text typed into a field takes the direction of its first letter, and the cursor follows it.
 
 ## 6. Orientation
 5.42. **Every screen works in both orientations, unless the device is locked (5.44) or one orientation is essential, and rotating is handled as a size change.** A phone on its side is usually a short window: pinned regions give way, and two panes aren't used.
@@ -96,6 +100,7 @@ Not covered here: the screen structure that results, movement between places, an
 5.53. **A pinned region never fully covers the focused element.**
 5.54. **When the on-screen keyboard opens, the layout shrinks to fit above it rather than being covered.** The focused field stays visible, and a pinned action bar rides on top of the keyboard. Anything shown above the keyboard relates to the current task.
 5.55. **By default on a handheld, where the keyboard takes about half the height, a screen built around typing keeps its field and its commit action together near the keyboard,** and shows only what's needed to type correctly.
+5.87. **Scrolling content ends with enough space that its last item scrolls fully clear of any floating action or pinned bar.** A floating action never covers a control the person can't scroll out from under it.
 
 ## 9. Safe areas and system bars
 5.56. **Backgrounds run edge to edge. Controls and list items sit clear of the system bars, cut-outs, rounded corners and system-gesture areas.** Nothing that swipes sits in a system-gesture area.
@@ -140,6 +145,7 @@ Not covered here: the screen structure that results, movement between places, an
     - Every session starts from the same home and leaves nothing behind.
 5.67. **Large desktop and wall display:** structured content caps its width (5.11). Extra width becomes a second or third pane, or an expanded rail, never stretched content. A wall display read from across a room uses larger type roles and fewer, bigger elements, and shows only what can be read at that distance.
 5.68. **Split screen and resizable windows:** every screen works at any size it's given, keeps updating when not focused, and gives the camera or microphone back to the focused app.
+5.88. **By default, on a handheld used one-handed, frequent controls sit in the lower part of the screen, within the thumb's reach, and the top is kept for what is read.** Controls don't sit hard against the bottom edge or in the system-gesture area (5.56). Search stays at the top of what it searches (1.84). A control that must sit at the top, such as Back, also works from system back or a hardware key (2.18, 2.77).
 
 ## 11. Input modes
 5.69. **Each input gets its own affordances, on the same screen:**
@@ -152,6 +158,7 @@ Not covered here: the screen structure that results, movement between places, an
 
     Switching between inputs never needs a restart.
 5.70. **A product used by touch and pointer meets the touch size,** and adds pointer affordances on top.
+5.89. **With a pointer, scrolling moves the region under the pointer.** By default, a nested region that reaches its end doesn't carry on to scroll the page behind it.
 
 ## 12. Viewing conditions
 5.71. **By default, text and controls are sized for how far away the person will be.** A handheld is close. A vehicle mount is at arm's length. A kiosk is at standing distance. A wall display is across a room. A product used further away uses larger type roles, not a separate design.

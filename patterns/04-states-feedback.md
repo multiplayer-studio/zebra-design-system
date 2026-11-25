@@ -167,6 +167,9 @@ Not covered here: where a message or state sits on screen, and the words.
     - A timed message pauses while it's hovered or focused, and respects the device's accessibility timeout setting.
 4.77. **A validation message clears only when its problem is fixed.** A notice clears when it's resolved or dismissed. A system banner can be dismissed unless it's critical, and returns while its condition remains.
 4.78. **A newer message about the same thing replaces the older one.** The same message isn't sent again if it was ignored. Messages that can be dismissed and messages that can't never share a stack.
+4.98. **A toast carries at most one action, and that action is never the only way to do it.** After the toast has gone, Undo is still reachable from the item or its history, and View from the item itself. While a command is held back for its undo period (3.87), the item it affects offers Undo too, so someone who can't reach the toast in time can still stop it.
+4.99. **By default, a toast times out, and one with an action stays longer than one without.** Every toast stays at least as long as the device's accessibility timeout asks (6.73), pauses while hovered or focused (4.76), and is replaced at once by a newer one (1.63). A product may keep a toast with an action until it's used or dismissed, except on screens worked in a fast loop, such as scanning, where it would sit over the next task.
+4.100. **A toast never fully covers the item that has focus.** When the focused item sits where the toast would appear, the toast appears just above it, and the content doesn't move (4.17).
 
 ## 15. Severity
 4.79. **There are four levels of severity, each with one fixed meaning, colour, icon shape and word, used identically in every component:**
@@ -188,6 +191,7 @@ Not covered here: where a message or state sits on screen, and the words.
 4.83. **Each item makes sense on its own.** It says what happened, to what and when, and links to it.
 4.84. **Items are unread until opened. "Mark all as read" is available.** The badge on the entry point counts items not yet seen, and clears when the centre is opened.
 4.85. **Urgency is represented accurately and sparingly.** Only what needs action now interrupts. Everything else waits in the centre.
+4.101. **By default, people can change which notifications they get from the notification itself and from the notification centre, not only from settings.** The choice says what they'll stop or start receiving. By default, a notification goes only to the people whose role, site or assignment it concerns. Notifications an administrator makes mandatory say so, and can't be turned off.
 
 ## 17. Field and fleet realities
 4.86. **When the product can't tell whether something it sent arrived, the item shows "Checking", not "Failed".** Retrying never creates a duplicate.

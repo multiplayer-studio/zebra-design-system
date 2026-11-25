@@ -24,6 +24,7 @@ Not covered here: where controls sit, the order of buttons in a group, loading t
 3.8. **By default, a toggle button keeps the same label and icon in both states,** and its state shows as filled versus outlined, and as pressed. Where the label changes instead (play and pause, mute and unmute), it names the action it will take, and there's no pressed state.
 3.9. **A button that opens something before acting says so.** On desktop, a trailing ellipsis means the action continues in a window that follows.
 3.10. **An unavailable button stays visible, with its reason beside it.** The short disable while an action runs (3.3) needs no reason.
+3.138. **By default, an action with one common form and a few variants is a split button:** its main part does the common form at once, and its arrow part opens a menu of the variants (Export, with Export as CSV or as PDF). The two parts are separate targets and separate focus stops, each meeting the target size (6.16). The arrow part is named for what it opens ("More export options"), and announces whether it's open (6.48). On compact touch screens, where the arrow part makes a small target for a gloved thumb, a single button that opens a menu of every form, common one first, is used instead.
 
 ## 2. Links and buttons
 3.11. **A link takes the person somewhere. A button does something.** Each looks like what it does.
@@ -42,6 +43,7 @@ Not covered here: where controls sit, the order of buttons in a group, loading t
 3.17. **A value people can type or scan faster is never a list.** A known date or a code is typed. Quantities follow 3.57–3.58.
 3.18. **By default, one list's options don't depend on another's.** Where a hierarchy is natural (site, then building, then zone), the dependent list is unavailable until its parent is chosen, and is cleared, with a message, when the parent changes. Options never silently come and go.
 3.19. **Options are ordered the way people expect to find them.** That means a natural order where one exists (sizes, days, steps), otherwise alphabetical. Order by frequency is usually kept for action menus (3.79).
+3.139. **A chip is a choice, a suggestion or an entered value, never a step in a task.** Moving forward, going back and finishing are buttons (3.12). By default, choice chips come in sets of at least two, a screen's filter chips are either all single-choice or all several-choice, and a filter chip names what it includes, never what it excludes.
 
 ## 4. Switches, checkboxes, radios and segmented controls
 3.20. **A switch acts the moment it's flipped.** It never waits for Save, never asks for confirmation, and never stands in for a button. Anything that needs either is a checkbox in a form, or a button.
@@ -79,6 +81,8 @@ Not covered here: where controls sit, the order of buttons in a group, loading t
 3.48. **A character limit never stops typing.** A count appears as the person nears it, and shows how far over they are.
 3.49. **The field being typed in, and the button that commits it, stay visible above the on-screen keyboard.**
 3.50. **Only one field per screen or overlay is focused on arrival,** and only where entering text is the screen's whole purpose (a search screen, an overlay that asks for one value, a scan step). Elsewhere, nothing opens the keyboard until the person chooses a field.
+3.140. **A field that holds several values (serial numbers, recipients, tags) turns each committed value into its own chip inside the field, with its own remove control.** A value is committed by Enter, a separator or a scan, and a scan here keeps focus in the field instead of moving on (3.112). An invalid value is marked on its own chip, not on the whole field; by default the chips wrap so all stay visible, and a one-line field scrolls and shows the count.
+3.141. **By default, a field for comments or descriptions is visibly taller than one line, so it invites a longer answer.** It grows with its text up to a limit, then scrolls inside itself, and its commit stays visible above the keyboard (3.49). Inside it, Enter starts a new line and never submits.
 
 ## 7. Dates and times
 3.51. **A date can always be typed, whatever else is offered.** A date people know or can look up is typed. A calendar is offered for dates near today, or where the day of the week matters. Separate day, month and year lists are never used.
@@ -100,6 +104,7 @@ Not covered here: where controls sit, the order of buttons in a group, loading t
 3.59. **A slider is for an approximate value whose effect matters more than its number.** It applies as it moves. Where the exact value matters, a linked number field sits beside it, stays in sync, and comes straight after it in focus order.
 3.60. **A slider runs from minimum at the leading end to maximum at the trailing end.** Its labels and current value sit above or beside the track, never below where the finger hides them. The value shows while the thumb is held. A discrete slider snaps to a few visible stops. Tapping the track moves the thumb there.
 3.61. **By default, sliders aren't used where people work on the move or one-handed,** including scanning and gloved work. A stepper, a field or a set of choices is used instead.
+3.142. **By default, a slider for a value set either side of a default (print darkness, label offset) fills from that default and marks it,** and can be reset to it in one action. A range is two thumbs on one track, never two separate sliders, and the thumbs can't pass each other.
 
 ## 9. Applying and saving
 3.62. **Controls that act at once never share a form with controls that wait for Save.** A form with Save uses checkboxes, radios, lists and fields. Switches and sliders sit outside it.
@@ -110,6 +115,7 @@ Not covered here: where controls sit, the order of buttons in a group, loading t
 3.67. **A long edit of a stored object keeps a draft as it goes.** The draft is marked "Draft". Leaving offers to save, keep the draft or discard it. A never-saved object is discarded with "Discard". A saved one is removed with "Delete".
 3.68. **Something that applies at once but can't easily be reversed is never a switch.** It's a button that confirms (3.86).
 3.69. **Pre-filled and detected values show as editable fields, not static text.**
+3.143. **By default, checkboxes and radios sit in a form with Save (3.62).** Where a platform uses a lone checkbox for a setting that applies at once, as desktop platforms do, it behaves like a switch, including pending and failure (3.21). Radios never apply at once, because arrow keys check each option they pass over (6.38). A choice of one that must apply at once is a menu, or a list whose options commit on tap, Enter or Space (3.70).
 
 ## 10. Selection
 3.70. **Focus and selection always look different.** Moving to an item never selects it, unless showing the selection is instant and changes nothing else.
@@ -166,6 +172,7 @@ Not covered here: where controls sit, the order of buttons in a group, loading t
 3.107. **Content shown on hover or focus can be dismissed with Escape, and the pointer can move onto it without it closing.**
 3.108. **Keyboard shortcuts only speed up what's already reachable.** They're few, and kept for the most frequent commands. Standard shortcuts keep their standard meaning (copy, paste, undo, redo, save, find). They avoid the keys the operating system and assistive technology use. A single-key shortcut works only while its area has focus, or can be turned off.
 3.109. **A shortcut is shown beside its command** in menus and in the control's hover name.
+3.144. **By default, Escape closes or steps out, and never deletes what was typed.** Cancelling an inline edit is the exception, because it restores the saved value (3.94), and so is a search field, where Escape may clear the query.
 
 ## 16. Scanning and hardware input
 These assume what the device already does. The scanner reports each read with its own sound, vibration and light. Scanned data arrives as typed keystrokes into the focused field, or is delivered to the product directly without a focused field. Administrators can remap physical keys.

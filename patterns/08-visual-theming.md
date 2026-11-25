@@ -36,6 +36,8 @@ Not covered here: hierarchy on a screen, density and size changes, interaction t
 8.13. **Status colours stay fixed when the brand changes.** A product theme never re-colours error, warning or success.
 8.14. **Priority (urgent, high, normal, low) is a separate scale from status.** It doesn't borrow status colours. Priority is shown by position, a word and an icon, with colour as a quiet extra at most.
 8.15. **Focus has its own colour, used for nothing else.** Selection never uses the focus, link or action colour on its own. It has its own role, plus a non-colour mark (8.19).
+8.111. **By default, each region keeps its surface level at every size.** When navigation changes form (bottom bar, rail, expanded rail; 5.15), it keeps the same surface, and the content area keeps the base surface.
+8.112. **By default, a badge takes the action colour, not a status colour, unless it counts errors.** A count of new or waiting items isn't a failure, and on status-heavy screens a red badge reads as errors. A badge that counts errors takes the error role (10.44).
 
 ## 2. States
 8.16. **States are derived from the resting colour by one fixed relationship across the whole system,** never chosen per component. Hover is the smallest change, pressed is a stronger change, and the same state looks the same on every component.
@@ -46,6 +48,7 @@ Not covered here: hierarchy on a screen, density and size changes, interaction t
 8.21. **By default, only actions, choices and inputs can be unavailable.** Containers never are. An unavailable floating action is removed, not greyed. Steps not yet reachable, and features locked by licence or permission, show as locked, with the reason.
 8.22. **An icon button shows its state on a background behind the icon,** not by recolouring the icon.
 8.23. **No state lowers a control's contrast with its surroundings,** or the contrast of its focus or selection.
+8.113. **Everything that can be tapped or clicked shows pressed the moment input lands:** buttons, chips, checkboxes, and rows or cards that open. Containers that don't act themselves (headers, bars, dialogs, panels) take no hover or pressed state; the controls inside them do. A card or row that opens as a whole is a control, not a container.
 
 ## 3. Themes and modes
 8.24. **A theme changes values, never roles.** Every role has a value in every theme, and components refer only to roles, so they switch without changes.
@@ -123,6 +126,7 @@ Not covered here: hierarchy on a screen, density and size changes, interaction t
 8.68. **Animated icons show change or activity,** such as a pulse for ongoing work or one bounce for "something happened". They aren't decoration, and they stop with reduced motion.
 8.69. **Icons that imply direction flip in right-to-left layouts.**
 8.70. **A device or its parts drawn on screen is drawn in one consistent illustration style, recognisable as the real device.** Where it's an instruction (where to load labels, which button to press), the part in question is highlighted, and the rest is quieter.
+8.114. **By default, within one set of peers (navigation destinations, tabs, a segmented control, a menu), either every item has an icon or none does.** An icon sits before or above its label, the same for every peer.
 
 ## 10. Imagery and illustration
 8.71. **Illustration appears in a few moments: empty states, errors, first use and real milestones.** It never appears in dense working screens, and never as decoration.
@@ -136,6 +140,11 @@ Not covered here: hierarchy on a screen, density and size changes, interaction t
 8.77. **There are two registers of motion.** Quick, quiet motion serves everyday work and is the default. Fuller motion is kept for rare, significant moments.
 8.78. **Constant motion is used only for things that run at a constant rate,** such as an indeterminate spinner.
 8.79. **Motion is part of the theme.** Reduced motion is a mode the theme carries, not a per-component exception.
+8.115. **By default, a transition between screens shows how the two screens relate, and the same kind of move always looks the same.** Global navigation stays still during every transition. Moves people make constantly take the least motion, or a near-instant change (3.123), while each kind of move stays recognisable. With reduced motion, every screen transition becomes a fade or an instant change (6.66). Duration and easing follow (3.121, 3.122).
+8.116. **Going deeper and coming back use the platform's own forward and back transition, and back is always forward reversed.** By default, where the platform has none, as on a web console, the content changes near-instantly and the header's title and way back change with it. A sideways forward and back mirrors in right-to-left layouts (5.39).
+8.117. **By default, moving between peers in one set (tabs, the previous or next item in a sequence) changes the content with a quick fade.** Where people can also swipe between those peers (2.91, 3.97), the content slides along the axis the set runs on, toward the chosen peer, and mirrors in right-to-left layouts (5.39). A slide tells people they can swipe, so it's never used where they can't.
+8.118. **By default, switching between top-level destinations is a quick fade of the content area, or an instant change, never a slide.** Only the selected marker in global navigation moves. A slide would suggest destinations can be swiped between, which clashes with swipes inside them (3.100).
+8.119. **By default, something that expands in place grows out of what was tapped and closes back into it:** a card or row expanding within its list, a control into its menu. Opening an item onto its own screen is going deeper and follows 8.116. Overlays enter from the edge they're anchored to and leave the same way (3.125).
 
 ## 12. Brand inside the product
 8.80. **Brand shows through a few deliberate touches, not by covering surfaces.** Those touches are the action colour on the primary action and the selected navigation marker, the logo where it gives context, and a brand face on headings at most.

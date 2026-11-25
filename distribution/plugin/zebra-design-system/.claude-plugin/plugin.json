@@ -1,6 +1,6 @@
 {
   "name": "zebra-design-system",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "Build product UI with the Zebra Design System: builder-start, builder-figma-to-code, builder-handoff-to-code, builder-ui, builder-migrate, builder-design-check, designer-prototype, designer-project-onboarding, designer-theme, designer-handoff, shared-ux-patterns and shared-ux-audit skills, the UX pattern pack, the per-component usage catalog, the system's design voice, the zebra-theme theming tool, and commands for project setup, theming and component lookup. Expects the @zebra-design-system packages to be installed; docs/versions.json states which package versions this plugin documents.",
   "author": {
     "name": "Zebra Design System team"

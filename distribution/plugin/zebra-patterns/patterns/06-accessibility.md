@@ -42,7 +42,7 @@ Not covered here: wording, where things sit, and how controls respond. This file
 6.21. **Links inside a sentence are exempt from target size. Standalone controls never are.**
 
 ## 4. Focus
-6.22. **Focus follows reading order, and keeps related things together.** The order is fixed by fixing the structure, never by overriding the tab order.
+6.22. **Focus follows reading order, and keeps related things together.** The order is fixed by fixing the structure, never by overriding the tab order. The one deliberate departure from the order on screen is a floating action, which comes straight after the header and global navigation (6.109).
 6.23. **Focus is always visible, and the indicator keeps 3:1 against what's next to it, on every background it can land on.** By default it's at least as large as a 2-pixel outline around the control and changes those pixels by 3:1. The default indicator is only replaced by a stronger one.
 6.24. **Focus and selection look different.** Focus is a single moving point. Selection stays when focus leaves.
 6.25. **The focused item is never fully covered by a pinned header, footer, banner or panel.** Content scrolls so it's clear, together with its context.
@@ -62,6 +62,7 @@ Not covered here: wording, where things sit, and how controls respond. This file
 6.34. **An unavailable control whose existence or reason matters stays focusable, and announces itself as unavailable.** That includes Next and Submit while a form is incomplete, menu items, tabs and toolbar actions. Only controls that can be inferred from their neighbours drop out of the order.
 6.35. **A group such as tabs, a toolbar, a menu, radios, a grid or a tree is one stop.** Arrow keys move inside it. Coming back lands on the selected item (tabs, radios), the last cell used (grids) or the first item (toolbars, menus).
 6.36. **Content that describes one thing is reached and read as one unit.** A row whose image, name and details describe one item has one main action. Any secondary controls inside it are separate stops after it.
+6.109. **By default, a floating action comes in reading and focus order straight after the header and global navigation, before the content it floats over,** so keyboard, D-pad and screen-reader users don't pass every row to reach it. Where it sits in the rail or header on expanded screens, it already has that place.
 
 ## 5. Keyboard and other input
 6.37. **Everything that works by pointer also works by keyboard, and focus never gets stuck.**
@@ -70,6 +71,7 @@ Not covered here: wording, where things sit, and how controls respond. This file
 6.40. **Keyboard shortcuts only speed up what's already reachable.** A single-key shortcut works only while its area has focus, or can be changed or turned off, because voice users fire them by accident.
 6.41. **Devices without touch (hardware keyboards, D-pads, rotary controls) move focus both by Tab and by arrow keys in two dimensions.**
 6.42. **Everything can be reached by voice control and switch access.** Where a control shows text, saying that text operates it.
+6.110. **In a calendar, each date is announced in full, with its weekday and whether it's today, selected or unavailable.** By default, arrow keys move by day, Page Up and Page Down by month, and Home and End to the start and end of the week.
 
 ## 6. Names, roles and structure
 6.43. **Every control has a short name that says what it does, not what it looks like.** The role is never part of the name.
@@ -82,6 +84,9 @@ Not covered here: wording, where things sit, and how controls respond. This file
 6.50. **Every screen and every distinct pane has a unique title that describes it.** Generic titles aren't reused across screens.
 6.51. **Headings are structure, not styling.** One top heading names the screen and matches its title. By default, levels nest without skipping, and every visual section has a heading. On a screen that asks one question, the question is both the heading and the label, so it's heard once.
 6.52. **On web, by default, every part of the screen sits in a landmark:** one header, one main, one footer, plus navigation, search and labelled regions as needed. Landmarks of the same kind have distinct labels that don't repeat the role. Lists are marked as lists, and key–value pairs as description lists.
+6.111. **By default, a control uses the platform's or the design system's standard element for its job,** so its role, states and keys come with it. A custom control is used only where no standard one does the job, and exposes the same role, states and keys the standard one would (6.38, 6.48).
+6.112. **A field's error is part of that field's description, read with its name and hint whenever the field is reached.** By default, an error that appears as the person leaves a field is announced politely (6.54); after a failed submit, the summary takes focus instead (6.32). A group of choices takes its question as its name, and an error about the group sits once on the group, never on each option.
+6.113. **A badge's count is part of its destination's name ("Alerts, 3 new"), and a dot badge adds "new".** The name carries the exact count even where the badge shows a capped one ("99+").
 
 ## 7. Announcements
 6.53. **Status changes are announced without moving focus.** That includes result counts, "Added", "Saved", progress and error counts.
@@ -163,3 +168,4 @@ Not covered here: wording, where things sit, and how controls respond. This file
 6.106. **Two-way voice offers a text equivalent in both directions,** so a person who can't hear or speak can take part.
 6.107. **Recorded video whose pictures carry meaning, such as training video, has audio description or a full text alternative.**
 6.108. **On web, fields that ask about the person declare their purpose, so they can be filled in automatically.**
+6.114. **A unit or symbol shown before or after a value or field is part of what's announced with it.** By default it's spoken in words ("millimetres", "degrees Celsius"), not letter by letter, and an abbreviation that's shown is spoken in full.
