@@ -22,11 +22,12 @@ const meta: Meta = {
   component: "zds-segmented-control",
   tags: ["autodocs"],
   argTypes: {
-    shape: { control: "inline-radio", options: ["rounded", "sharp"] },
+    shape: { control: "inline-radio", options: ["rounded", "sharp", "full"] },
+    inverse: { control: "boolean" },
     flavour: { control: "inline-radio", options: ["default", "text-only", "icon-only"] },
   },
-  args: { value: "day", shape: "rounded", flavour: "default", disabled: false, label: "Calendar range" },
-  render: (a) => html`<zds-segmented-control .options=${VIEWS} value=${a.value} shape=${a.shape} flavour=${a.flavour} ?disabled=${a.disabled} label=${a.label}></zds-segmented-control>`,
+  args: { value: "day", shape: "rounded", inverse: false, flavour: "default", disabled: false, label: "Calendar range" },
+  render: (a) => html`<zds-segmented-control .options=${VIEWS} value=${a.value} shape=${a.shape} ?inverse=${a.inverse} flavour=${a.flavour} ?disabled=${a.disabled} label=${a.label}></zds-segmented-control>`,
 };
 export default meta;
 type Story = StoryObj;
@@ -35,7 +36,15 @@ export const Playground: Story = {};
 
 /** Spec \`shape\`: the track, every segment and the active indicator follow it. The icons stay in the rounded family either way, as Figma pins them. */
 export const Shape: Story = {
-  render: () => stack((["rounded", "sharp"] as const).map((s) => html`${cap(s)}<zds-segmented-control label="Calendar range, ${s}" shape=${s} .options=${VIEWS} value="day"></zds-segmented-control>`)),
+  render: () => stack((["rounded", "sharp", "full"] as const).map((s) => html`${cap(s)}<zds-segmented-control label="Calendar range, ${s}" shape=${s} .options=${VIEWS} value="day"></zds-segmented-control>`)),
+};
+
+/** Spec Flavour=inverse: a dark chosen segment on a lighter, bordered track, for stronger emphasis. Shown in each shape, and with a disabled chosen option. */
+export const Inverse: Story = {
+  render: () => stack(html`
+    ${(["rounded", "sharp", "full"] as const).map((s) => html`${cap(`inverse, ${s}`)}<zds-segmented-control label="Calendar range, ${s}" inverse shape=${s} .options=${VIEWS} value="week"></zds-segmented-control>`)}
+    ${cap("inverse, icon-only")}<zds-segmented-control label="Layout" inverse .options=${LAYOUT} flavour="icon-only"></zds-segmented-control>
+    ${cap("inverse, disabled")}<zds-segmented-control label="Calendar range" inverse .options=${VIEWS} value="week" disabled></zds-segmented-control>`),
 };
 
 /**
@@ -92,6 +101,7 @@ export const ThemingCascade: Story = {
         <zds-segmented-control label="Calendar range" .options=${VIEWS}></zds-segmented-control>
         <zds-segmented-control label="Calendar range" .options=${VIEWS} flavour="text-only" shape="sharp" value="week"></zds-segmented-control>
         <zds-segmented-control label="Layout" .options=${[...LAYOUT.slice(0, 2), { ...LAYOUT[2]!, disabled: true }]} flavour="icon-only"></zds-segmented-control>
+        <zds-segmented-control label="Calendar range" .options=${VIEWS} inverse shape="full" value="week"></zds-segmented-control>
       </div>`)}
   </div>`,
 };

@@ -15,7 +15,7 @@ import { styleMap } from "lit/directives/style-map.js";
  *
  * Exactly one segment is active; the first is chosen when none is. The control is a radio group with one tab stop, and
  * the arrow keys move the choice. A single indicator slides to the active segment on animations/spring, off under
- * reduced motion. `rounded` and `flavor` are set once here and reach every segment.
+ * reduced motion. `rounded`, `shape`, `inverse` and `flavor` are set once here and reach every segment.
  *
  * @slot {zeta-segmented-item[]} - The content of the segmented control. Should be a collection of `zeta-segmented-item` elements.
  *
@@ -28,6 +28,16 @@ export class ZetaSegmentedControl extends Contourable(LitElement) {
 
   /** What every segment shows: icon and label, the label alone, or the icon alone. Sets their padding. */
   @property({ type: String, reflect: true }) flavor: "default" | "text-only" | "icon-only" = "default";
+
+  /**
+   * The corners of the track and every segment: rounded, sharp, or full for a pill. When set it wins over `rounded`.
+   *
+   * @type {'rounded' | 'sharp' | 'full'}
+   */
+  @property({ type: String, reflect: true }) shape?: "rounded" | "sharp" | "full";
+
+  /** Stronger emphasis on the active segment: a dark fill on a lighter, bordered track. */
+  @property({ type: Boolean, reflect: true }) inverse = false;
 
   @state() activeItem?: ZetaSegmentedItem;
   @state() initComplete = false;
@@ -74,6 +84,8 @@ export class ZetaSegmentedControl extends Contourable(LitElement) {
     items.forEach(i => {
       i.active = i === this.activeItem;
       i.rounded = this.rounded;
+      i.shape = this.shape;
+      i.inverse = this.inverse;
       i.flavor = this.flavor;
     });
   };
@@ -83,8 +95,12 @@ export class ZetaSegmentedControl extends Contourable(LitElement) {
     requestAnimationFrame(() => (this.initComplete = true));
   }
 
+  protected willUpdate(changed: PropertyValues<this>) {
+    if (changed.has("shape") && this.shape) this.rounded = this.shape !== "sharp";
+  }
+
   protected updated(changed: PropertyValues<this>) {
-    if (changed.has("rounded") || changed.has("flavor")) this.syncItems();
+    if (changed.has("rounded") || changed.has("flavor") || changed.has("shape") || changed.has("inverse")) this.syncItems();
   }
 
   render() {

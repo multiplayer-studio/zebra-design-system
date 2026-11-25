@@ -41,12 +41,16 @@ describe("zeta-segmented-control (spec)", () => {
   });
 
   describe("Content", () => {
-    it("passes rounded and flavor to every segment", async () => {
+    it("passes rounded, shape, inverse and flavor to every segment", async () => {
       const el = await control();
       el.rounded = false;
       el.flavor = "text-only";
       await elementUpdated(el);
       await expect(el.items.every(i => !i.rounded && i.flavor === "text-only")).to.equal(true);
+      el.shape = "full";
+      el.inverse = true;
+      await elementUpdated(el);
+      await expect(el.items.every(i => i.rounded && i.shape === "full" && i.inverse)).to.equal(true);
     });
   });
 
@@ -76,6 +80,42 @@ describe("zeta-segmented-control (spec)", () => {
       await expect(getComputedStyle(track).backgroundColor).to.equal(colorOf(el, "--interactive-neutral-background-pressed"));
       await expect(Math.round(indicator.getBoundingClientRect().left)).to.equal(Math.round(el.items[1].getBoundingClientRect().left));
       await expect(Math.round(indicator.getBoundingClientRect().width)).to.equal(Math.round(el.items[1].getBoundingClientRect().width));
+    });
+
+    it("takes radius/pill on the track, the indicator and every segment when shape is full", async () => {
+      const el = await control();
+      el.shape = "full";
+      await elementUpdated(el);
+      await elementUpdated(el.items[0]);
+      const pill = v(el, "--radius-pill");
+      const track = el.shadowRoot?.querySelector(".track") as HTMLElement;
+      const indicator = el.shadowRoot?.querySelector(".indicator") as HTMLElement;
+      await expect(getComputedStyle(track).borderTopLeftRadius).to.equal(pill);
+      await expect(getComputedStyle(indicator).borderTopLeftRadius).to.equal(pill);
+      await expect(el.items.every(i => getComputedStyle(i).borderTopLeftRadius === pill)).to.equal(true);
+      el.shape = "sharp";
+      await elementUpdated(el);
+      await expect(el.rounded).to.equal(false);
+      await expect(getComputedStyle(track).borderTopLeftRadius).to.equal("0px");
+    });
+
+    it("inverse: a bordered default track, the inverse focused fill and a foreground/inverse active label", async () => {
+      const el = await control();
+      el.inverse = true;
+      await elementUpdated(el);
+      await elementUpdated(el.items[1]);
+      await new Promise(r => requestAnimationFrame(r));
+      const track = el.shadowRoot?.querySelector(".track") as HTMLElement;
+      const indicator = el.shadowRoot?.querySelector(".indicator") as HTMLElement;
+      await expect(getComputedStyle(track).backgroundColor).to.equal(colorOf(el, "--interactive-neutral-background-default"));
+      await expect(getComputedStyle(track).borderTopColor).to.equal(colorOf(el, "--zebra-border-default"));
+      await expect(getComputedStyle(track).borderTopWidth).to.equal(v(el, "--stroke-thin"));
+      await expect(getComputedStyle(indicator).backgroundColor).to.equal(colorOf(el, "--interactive-inverse-background-focused"));
+      const label = (i: number) => getComputedStyle(el.items[i].shadowRoot?.querySelector(".segment") as HTMLElement).color;
+      await expect(label(1)).to.equal(colorOf(el, "--foreground-inverse"));
+      await expect(label(0)).to.equal(colorOf(el, "--foreground-secondary"));
+      await expect(Math.round(indicator.getBoundingClientRect().left)).to.equal(Math.round(el.items[1].getBoundingClientRect().left));
+      await expect(Math.round(indicator.getBoundingClientRect().top)).to.equal(Math.round(el.items[1].getBoundingClientRect().top));
     });
 
     it("sets labels on foreground/secondary and the active one on foreground/primary", async () => {

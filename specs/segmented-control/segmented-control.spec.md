@@ -1,17 +1,20 @@
 # Segmented Control
 
-A row of mutually exclusive options sharing one track, where exactly one is active at a time. It ships with three segments, two placed directly and a third in a slot, so changing the count means working inside the instance. Reach for Tab Bar when the choice moves between views rather than switching a mode within one.
+A row of mutually exclusive options sharing one track, where exactly one is active at a time. It ships with three segments, two placed directly and a third in a slot, so changing the count means working inside the instance. Use Tab Bar when the choice moves between views rather than switching a mode within one.
 
-Source: [Segmented Control page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5723-658) · extracted 2026-10-21
+Source: [Segmented Control page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5723-658) · extracted 2026-11-25
 
 ## API
 
 | Prop | Type | Values | Default | Controls |
 |---|---|---|---|---|
-| `shape` | enum | rounded, sharp | `rounded` | variant: track radius and every placed segment's Rounded |
+| `shape` | enum | rounded, sharp, full | `rounded` | variant: track radius and every placed segment's Shape |
+| `flavour` | enum | default, inverse | `default` | variant: track fill and border, and the active segment's Style |
 | `moreItems` | slot | `_Segmented item` only | one segment (Item 3) | moreItemsSlot |
 
-**shape** (documented in the metadata as "Rounded" true/false, see issues): rounded: "Match the contour of the surface the control sits on. It reaches the track and every segment placed inside it, so the whole control stays consistent without touching the items." · sharp: "The square-cornered pairing, for surfaces built from sharp controls."
+**shape**: rounded: "Match the contour of the surface the control sits on. It reaches the track and every segment placed inside it, so the whole control stays consistent without touching the items." · sharp: "The square-cornered pairing, for surfaces built from sharp controls." · full: "The pill-shaped pairing, for surfaces built from full-shaped controls."
+
+**flavour** (not the segment's Flavour; it maps to the segment's Style, see issues): default: "Used for lighter emphasis on selected controls. Fill of the selected control subcomponent is a lighter surface on a darker grey surface parent." · inverse: "Used for stronger emphasis on selected controls. Fill of the selected control subcomponent is a darker surface on a lighter grey surface parent. The parent has a default-colored stroke on the border."
 
 **moreItems**: "Holds segments beyond the first two. It hugs its content, so whatever is placed there sets how far the track extends. (Implementation makes use of the segment options)" Accepts `_Segmented item` only (preferred values only), no min or max children, not shown empty by default.
 
@@ -19,26 +22,32 @@ Values anywhere in this document are token names. The only literals are inside v
 
 ## Internal variations & content inputs
 
-**Segments.** The control exposes none of the segment's properties. Label, state (default, active, hover) and flavour (default, text only, icon only) are set inside each nested `_Segmented item`; Rounded follows `shape`. The metadata now gives the production intent: "(Important! In production, the core can set base properties across elements)" and the slot "(Implementation makes use of the segment options)". So in code: an options list (label, optional glyph, value), one selected value, and shape and flavour set once on the control. Sample: three options, Item 1 active; one must always be active.
+**Segments.** The control exposes none of the segment's properties. Label, state (default, active, hover) and flavour (default, text only, icon only) are set inside each nested `_Segmented item`; its Shape follows `shape` and its Style follows `flavour`. The metadata now gives the production intent: "(Important! In production, the core can set base properties across elements)" and the slot "(Implementation makes use of the segment options)". So in code: an options list (label, optional glyph, value), one selected value, and shape, style and content flavour set once on the control. Sample: three options, Item 1 active; one must always be active.
 
 ## Anatomy
 
-1. **Track** (root): horizontal, gap `space/2xs`, padding `space/2xs`, centred; hugs both axes (289×44Px measured with three segments). Fill `interactive/neutral/background/pressed`, no border, no shadow; radius `radius/sm` (rounded) or `radius/none` (sharp). "The outer frame. A horizontal auto-layout hugging its segments, carrying the background and the corner radius."
+1. **Track** (root): horizontal, gap `space/2xs`, padding `space/2xs`, centred; hugs both axes (289×44Px measured with three segments, 280×46Px inverse). Fill `interactive/neutral/background/pressed`, no border (default) or `interactive/neutral/background/default` with a `border/default` border counted in the layout (inverse); no shadow; radius `radius/sm` (rounded), `radius/none` (sharp) or `radius/pill` (full). "The outer frame. A horizontal auto-layout hugging its segments, carrying the background and the corner radius."
 2. **Fixed segments**: two `_Segmented item` instances (Item 1 active, Item 2 default, flavour default). "The first two segments, placed directly in the variant rather than in the slot."
 3. **More items Slot**: horizontal, gap `space/2xs`, no padding, hugs; holds one `_Segmented item` (Item 3) as shipped. "The trailing region holding any further segments. It sits last in the row and hugs its content."
 
-**Active indicator (intent only, not drawn).** The Motion row says the active background "is not tied to the segmented item but bound to the control, so it moves easily across items". On the canvas it is the active segment's own fill, `interactive/neutral/background/focused`, with the segment's radius. Build it as one control-level element that slides to the chosen segment.
+**Active indicator (intent only, not drawn).** The Motion row says the active background "is not tied to the segmented item but bound to the control, so it moves easily across items". On the canvas it is the active segment's own fill, `interactive/neutral/background/focused` (default) or `interactive/inverse/background/focused` (inverse), with the segment's radius. Build it as one control-level element that slides to the chosen segment.
 
 ## Variants
 
 | shape | track radius | segments placed with | segment radius |
 |---|---|---|---|
-| rounded | `radius/sm` | Rounded=true | `radius/sm` |
-| sharp | `radius/none` | Rounded=false | `radius/none` |
+| rounded | `radius/sm` | Shape=rounded | `radius/sm` |
+| sharp | `radius/none` | Shape=sharp | `radius/none` |
+| full | `radius/pill` | Shape=full | `radius/pill` |
 
-Nothing else changes between the two. Segments added to the slot are not reached by `shape`: both sharp page examples hold slot segments at Rounded=true (see issues).
+| flavour | track fill | track border | active fill | active label / icon |
+|---|---|---|---|---|
+| default | `interactive/neutral/background/pressed` | none | `interactive/neutral/background/focused` | `foreground/primary` |
+| inverse | `interactive/neutral/background/default` | `border/default` | `interactive/inverse/background/focused` | `foreground/inverse` |
 
-**Page examples:** a rounded, icon only, four-segment control ([5757:740](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-740)) and a sharp, text only, four-segment control labelled 1 to 4 ([5757:827](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-827)); 5757:853 and 5757:857 duplicate them.
+Nothing else changes. Segments added to the slot are not reached by `shape`: the sharp and full page examples hold slot segments at Shape=rounded (see issues).
+
+**Page examples:** a rounded, icon only, four-segment control ([5757:740](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-740)), a sharp, text only, four-segment control labelled 1 to 4 ([5757:827](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-827)) and a full, icon only, four-segment control ([5757:853](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-853)); 5757:857 duplicates the sharp one.
 
 ## Subcomponent: _Segmented item (private)
 
@@ -49,18 +58,20 @@ Nothing else changes between the two. Segments added to the slot are not reached
 | Prop | Type | Values | Default |
 |---|---|---|---|
 | `label` | string | — | `Item` |
-| `rounded` | enum | true, false | `true` |
+| `shape` | enum | rounded, sharp, full | `rounded` |
 | `state` | enum | default, active, hover | `default` |
 | `flavour` | enum | default, text only, icon only | `default` |
+| `style` | enum | default, inverse | `default` |
 
 - **label**: "The option's name. Keep it to one or two words, because segments hug their labels and a single long option makes the whole row uneven."
-- **rounded**: true: "Follow the parent control rather than deciding here. Each Segmented Control variant already sets a matching value on the segments it places." · false: "The square-cornered pairing, used where the parent is sharp."
+- **shape**: rounded: "Follow the parent control rather than deciding here. Each Segmented Control variant already sets a matching value on the segments it places." · sharp: "The square-cornered pairing, used where the parent is sharp." · full: "The pill-shaped pairing, used where the parent is full-shaped as well."
 - **state**: default: "An unchosen segment. Its label sits a step quieter than the others, which is what lets the chosen one stand out." · active: "The chosen segment. Exactly one in a control should carry it, and nothing in the set enforces that." · hover: "Pointer over an unchosen segment. It changes the label colour and adds no background, so the hover feedback is weaker here than on most controls in this system."
 - **flavour**: default: "Icon and label together, despite the name suggesting the plainest case. Use it when the icons add recognition the words alone do not." · text only: "Labels alone, and the clearest choice whenever the options are not easily iconified." · icon only: "Icons alone, for a control tight on space. Nothing names the options on screen, so the icons have to be unambiguous and the names supplied another way."
+- **style**: default: "The subcomponents for Segment control used within the default style parent component. Active pills have a light fill." · inverse: "The subcomponents for Segment control used within the inverse style parent component. Active pills have a inverse dark fill."
 
 ### Anatomy
 
-1. **Segment** (root): horizontal, centred both ways; block padding `space/2xs`; hugs, min-height `control/sm`; radius `radius/sm` / `radius/none` by `rounded`. "The component frame. A horizontal auto-layout hugging its content, and the surface that carries the fill on the chosen state."
+1. **Segment** (root): horizontal, centred both ways; block padding `space/2xs`; hugs, min-height `control/sm`; radius `radius/sm` / `radius/none` / `radius/pill` by `shape`. "The component frame. A horizontal auto-layout hugging its content, and the surface that carries the fill on the chosen state."
 2. **Icon**: glyph `star`, rounded family, Icon Size=small (16Px measured); colour is currentColor, following the label. Visible on default and icon only. "The leading glyph, present on the default and icon only flavours."
 3. **Label**: text style `label/medium`, content from `label`. Visible on default and text only. "The option's name, present on the default and text only flavours."
 
@@ -74,11 +85,14 @@ Nothing else changes between the two. Segments added to the slot are not reached
 
 ### State table
 
-| state | fill | label / icon |
-|---|---|---|
-| default | none | `foreground/secondary` |
-| hover | none | `foreground/primary` |
-| active | `interactive/neutral/background/focused` | `foreground/primary` |
+| state | style | fill | label / icon |
+|---|---|---|---|
+| default | both | none | `foreground/secondary` |
+| hover | both | none | `foreground/primary` |
+| active | default | `interactive/neutral/background/focused` | `foreground/primary` |
+| active | inverse | `interactive/inverse/background/focused` | `foreground/inverse` |
+
+Style changes the active state only.
 
 | State | Trigger | What changes |
 |---|---|---|
@@ -105,7 +119,7 @@ Nothing else changes between the two. Segments added to the slot are not reached
 
 **Don't**
 - Don't rely on hover to show what is chosen. Hover and active share a label colour, and only the fill tells them apart.
-- Don't reach for icon only without naming the options elsewhere. The glyph is a locked Star in every variant as drawn.
+- Don't use icon only without naming the options elsewhere. The glyph is a locked Star in every variant as drawn.
 
 ### Accessibility
 
@@ -120,9 +134,9 @@ Nothing else changes between the two. Segments added to the slot are not reached
 | Property | Type | Description |
 |---|---|---|
 | Size | Hug width, fixed height | "36 tall in all eighteen variants. Width follows the content, 80 at the default flavour, 64 at text only and 48 at icon only with the shipped label." |
-| Padding | Per Flavour | "space/2xs top and bottom throughout. Horizontally space/md on the default flavour and space/lg on both text only and icon only, so dropping a part widens the padding rather than narrowing the segment." |
-| Gap | Per Flavour | "space/2xs on the default flavour. Text only and icon only declare space/sm, which separates nothing because each has a single child." |
-| Radius | Per Rounded | "radius/sm when true and radius/none when false." |
+| Padding | Per Flavour | "space/xs top and bottom throughout. Horizontally space/md on the default flavour and space/lg on both text only and icon only, so dropping a part widens the padding rather than narrowing the segment." |
+| Gap | Per Flavour | "space/xs on the default flavour. Text only and icon only declare space/sm, which separates nothing because each has a single child." |
+| Radius | Per Shape | "radius/sm when true and radius/none when false." |
 | Fill | Per State | "Only active carries one, interactive/neutral/background/focused. default and hover have no fill at all." |
 | Label | Theming | "label/medium. foreground/secondary at default, foreground/primary on both hover and active." |
 | Icon | Fixed | "Icon at Size=small, 16 square, swapped to Star in every variant that shows one." |
@@ -133,12 +147,12 @@ Nothing else changes between the two. Segments added to the slot are not reached
 
 ## Tokens & theming
 
-- **Colour:** `interactive/neutral/background/{pressed, focused}`, `foreground/{primary, secondary}`.
-- **Dimension:** `space/{xxs, sm, md, lg}`, `radius/{sm, none}`, `control/sm`.
+- **Colour:** `interactive/neutral/background/{pressed, default, focused}`, `interactive/inverse/background/focused`, `foreground/{primary, secondary, inverse}`, `border/default`.
+- **Dimension:** `space/{2xs, sm, md, lg}`, `radius/{sm, none, pill}`, `control/sm`.
 - **Typography:** `label/medium` (bound to `label/medium/{font size, font family, font weight, line height, letter spacing}`). **Glyphs:** `star`.
 - **Theme axes:** palette (Light, Dark); size and typography (Desktop, Mobile, Tablet, Desktop Compact). Extensions (companion, target) are listed in `tokens/manifest.json`.
 
-All 16 bound variable names resolve in `tokens/base/**`; `star` is in the font and not retired. No gaps and no binding drift in the bindings. There are no motion tokens in the export.
+All 21 bound variable names resolve in `tokens/base/**`; `star` is in the font and not retired. One gap: the inverse track's border weight is a raw value (see issues). The export has no duration or easing tokens.
 
 ## States, behavior & motion
 
@@ -184,7 +198,7 @@ No motion token exists in `tokens/`, so the duration and easing above have nothi
 | Property | Type | Description |
 |---|---|---|
 | Size | Hug both axes | "289 by 44 as shipped with three segments. Width follows the segments, so it grows with their labels." |
-| Padding and gap | Fixed | "space/2xs on all four sides of the track, with a space/2xs gap between segments." |
+| Padding and gap | Fixed | "space/xs on all four sides of the track, with a space/xs gap between segments." |
 | Radius | Per Rounded | "radius/sm when true and radius/none when false, on the track and on every segment it places." |
 | Fill | Theming | "interactive/neutral/background/pressed on the track. No border and no shadow." |
 | Segments | Hug | "Each segment hugs its own content, so the track is the sum of the labels rather than an equal-width grid. Segments are not the same width as each other." |
@@ -192,31 +206,37 @@ No motion token exists in `tokens/`, so the duration and easing above have nothi
 
 ## Visual reference
 
-[Component set](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-774) · [rounded](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-230) · [sharp](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-775) · [_Segmented item set](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5723-1813) · [default](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5723-1812) · [active](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5723-1814) · [hover](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-150) · [text only](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5723-1838) · [icon only](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5723-1859) · [example: icon only](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-740) · [example: text only, sharp](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-827) · [control metadata](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5764-159) · [segment metadata](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5764-355)
+[Component set](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-774) · [rounded](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-230) · [sharp](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-775) · [full](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8851-1338) · [rounded, inverse](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8851-1363) · [sharp, inverse](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8851-1368) · [full, inverse](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8851-1373) · [_Segmented item set](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5723-1813) · [default](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5723-1812) · [active](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5723-1814) · [hover](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-150) · [text only](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5723-1838) · [icon only](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5723-1859) · [segment, sharp](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5723-1819) · [segment, full](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8851-1283) · [segment, inverse](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=8851-1550) · [example: icon only](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-740) · [example: text only, sharp](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-827) · [example: icon only, full](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5757-853) · [control metadata](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5764-159) · [segment metadata](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=5764-355)
 
 ## Issues
 
 **Warn**
 - **Moving indicator not modelled.** The control's Motion row asks for an active background bound to the control that slides between segments (0.15s ease-in). On the canvas the fill belongs to the active segment, there is no indicator layer, and there are no prototype reactions.
-- **Motion uses `animations/spring`.** The metadata's 0.15s ease-in has no token; by owner decision the indicator uses the `animations/spring` token (size collection, `250ms cubic-bezier(0.34, 1.36, 0.64, 1)`), the same as Switch.
 - **Control and segment metadata disagree on motion.** The `_Segmented item` frame still says "no transition is authored… a fill appearing, with no movement behind it".
-- **Axis name mismatch.** Figma's axis is `Shape` (rounded | sharp); the metadata documents `Rounded` (true | false), which is the segment's axis name.
 - **Slot missing from Property Breakdown.** More items Slot appears only under Content & Slot.
 - **Padding misstated.** The default flavour's padding is `space/md` at the start and `space/lg` at the end, not `space/md` on both sides as the metadata says.
-- **No focus, pressed or disabled design.** Focus ring, arrow-key movement and any disabled look are left to code with no token guidance.
-- **Icon locked to `star`.** No swap is exposed in any of the 18 variants; in code the glyph is a per-option input.
-- **Shape doesn't reach slot content.** Both sharp page examples hold slot segments at Rounded=true, against "It reaches the track and every segment placed inside it".
+- **Spacing token misstated.** The metadata says `space/xs` for the track's padding and gap and the segment's block padding and default gap; Figma binds `space/2xs`.
+- **Inverse is documented only as a property.** States, Layout & Theming and Accessibility describe the default flavour alone; the inverse values come from the bindings.
+- **Inverse border weight has no token.** It is a raw 1; `stroke/thin` carries the same value.
+- **One segment has the wrong shape.** In Shape=full, Flavour=default the slot's segment is Shape=sharp.
+- **Two properties share the name Flavour.** The control's is default or inverse; the segment's is default, text only or icon only. The control's Flavour corresponds to the segment's Style.
+- **Stale wording in the metadata.** Both Radius rows still read "when true… when false" and name no value for full; the segment's Usage still says "the parent's Rounded"; its text still counts "eighteen variants" where there are 54.
+- **No focus, pressed or disabled design.** Focus ring, arrow-key movement and any disabled look are left to code with no token guidance, in both flavours.
+- **Icon locked to `star`.** No swap is exposed in any of the 54 variants; in code the glyph is a per-option input.
+- **Shape doesn't reach slot content.** The sharp and full page examples hold slot segments at Shape=rounded, against "It reaches the track and every segment placed inside it".
 
 **Note**
-- Selection is now an explicit rule ("there most always be an active segment on", verbatim), but the structure, the Usage Do and the Accessibility text all still say nothing enforces it. Code must keep exactly one active.
-- The fixed-two-plus-slot structure is now marked Figma-only; the slot maps to segment options and the core sets base properties across segments. This settles the options-list API.
+- **Motion uses `animations/spring`.** The metadata's 0.15s ease-in has no token; by owner decision the indicator uses the `animations/spring` token (size collection, `250ms cubic-bezier(0.34, 1.36, 0.64, 1)`), the same as Switch.
+- Selection is an explicit rule ("there most always be an active segment on", verbatim), but the structure, the Usage Do and the Accessibility text all still say nothing enforces it. Code must keep exactly one active.
+- The fixed-two-plus-slot structure is marked Figma-only; the slot maps to segment options and the core sets base properties across segments.
 - "Fixed height" in the metadata is really hug with min-height `control/sm`.
-- The icon family stays rounded even when Rounded=false.
-- Hover and active share the label colour; only the active fill separates them.
+- The icon family stays rounded in every Shape.
+- Hover and active share the label colour in the default style; only the active fill separates them.
 - Text only and icon only bind a gap that has nothing to separate.
 - Label is settable but renders nothing on icon only.
-- Contrast between track and active fill is not verified here.
+- Contrast between track and active fill is not verified here for either flavour.
 - The slot accepts only `_Segmented item` and has no min or max.
 - Icon colour follows the label via the drawn vector; currentColor covers it.
-- The page's four examples are two duplicated pairs; the Component Details card says "Use Tab Bar" where the metadata says "Reach for Tab Bar", and lists Web as pending development.
+- The inverse variants label the first segment "Item", and only Shape=full sets Style=inverse on an unchosen segment; neither changes the look.
+- Of the four page examples, 5757:857 duplicates 5757:827; the Component Details card lists Web as pending development.
 - Neither set has a Figma description.

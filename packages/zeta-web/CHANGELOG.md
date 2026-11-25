@@ -1,5 +1,11 @@
 # @zebra-design-system/zeta-web
 
+## 0.9.0
+
+### Minor Changes
+
+- Segmented Control follows its updated spec: a `full` (pill) shape, and an `inverse` style with a dark chosen segment on a lighter, bordered track. React and web components add `shape="full"` and `inverse`; Zeta Web adds `shape` (rounded, sharp, full) and `inverse` on the control and its items, with `rounded` kept.
+
 ## 0.8.4
 
 No changes in this release.

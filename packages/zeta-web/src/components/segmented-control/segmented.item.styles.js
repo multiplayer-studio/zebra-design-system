@@ -2,7 +2,8 @@ import { css } from "lit";
 
 /* Spec: specs/segmented-control (_Segmented item). At least control/sm tall, space/2xs block padding; space/md to
    space/lg inline with a space/2xs gap for icon and label, space/lg both sides for one of them. label/medium on
-   foreground/secondary, foreground/primary on hover and when active. The active fill is the control's indicator. */
+   foreground/secondary, foreground/primary on hover and when active, foreground/inverse when active in an inverse
+   control. radius/pill when full. The active fill is the control's indicator. */
 export default css`
   :host {
     display: flex;
@@ -13,6 +14,10 @@ export default css`
 
   :host([rounded]) {
     border-radius: var(--radius-sm);
+  }
+
+  :host([shape="full"]) {
+    border-radius: var(--radius-pill);
   }
 
   .segment {
@@ -45,6 +50,10 @@ export default css`
 
   :host([active]) .segment {
     color: var(--foreground-primary);
+  }
+
+  :host([inverse][active]) .segment {
+    color: var(--foreground-inverse);
   }
 
   :host(:focus-visible) .segment {

@@ -4,12 +4,13 @@ import type { IconName } from "@zebra-design-system/icons/names";
 import styles from "./segmented-control.styles.js";
 import "../icon/icon.js";
 
-/** Square-cornered or rounded track and segments. Spec: the `shape` axis (metadata "Rounded" true/false). */
-export type SegmentedControlShape = "rounded" | "sharp";
+/** Rounded, square-cornered or pill-shaped track and segments. Spec: the `shape` axis. */
+export type SegmentedControlShape = "rounded" | "sharp" | "full";
 
 /**
  * What every segment shows, set once on the control (spec: "Pick one Flavour
- * and hold it across every segment"). `default` is icon + label, `text-only`
+ * and hold it across every segment"). This is the segment's Flavour in the
+ * spec; the control's own Flavour (default or inverse) is the `inverse` prop. `default` is icon + label, `text-only`
  * the label alone, `icon-only` the icon alone with the label as its
  * accessible name and tooltip.
  */
@@ -87,8 +88,11 @@ export class ZdsSegmentedControl extends LitElement {
   /** The chosen option's value. One that names no enabled option (or empty) falls back to the first enabled option, so exactly one is always chosen. */
   @property({ type: String }) value = "";
 
-  /** Rounded or sharp corners on the track, every segment and the active indicator. Match the surrounding controls. */
+  /** Rounded, sharp or pill-shaped corners on the track, every segment and the active indicator. Match the surrounding controls. */
   @property({ type: String, reflect: true }) shape: SegmentedControlShape = "rounded";
+
+  /** Stronger emphasis on the chosen option (the spec's control Flavour `inverse`): a dark chosen segment on a lighter, bordered track. */
+  @property({ type: Boolean, reflect: true }) inverse = false;
 
   /**
    * What every segment shows. `default`: icon + label (an option without an
@@ -249,9 +253,9 @@ export class ZdsSegmentedControl extends LitElement {
     const stop =
       this.options.find((o) => o.value === this.value) ??
       this.options.find((o) => !this.isDisabled(o));
-    // The icon family stays rounded even when shape="sharp": Figma pins the
-    // rounded Star in all 18 _Segmented item variants (spec note "The icon
-    // family stays rounded even when Rounded=false"), unlike Button.
+    // The icon family stays rounded in every shape: Figma pins the rounded
+    // Star in all 54 _Segmented item variants (spec note "The icon family
+    // stays rounded in every Shape"), unlike Button.
     return html`<div
       part="track"
       class="zds-segmented-control"
@@ -259,6 +263,7 @@ export class ZdsSegmentedControl extends LitElement {
       aria-label=${this.label ?? nothing}
       aria-disabled=${this.disabled ? "true" : nothing}
       data-shape=${this.shape}
+      data-inverse=${this.inverse ? "" : nothing}
       data-flavour=${this.flavour}
     >
       <span class="zds-segmented-control__indicator" aria-hidden="true"></span>

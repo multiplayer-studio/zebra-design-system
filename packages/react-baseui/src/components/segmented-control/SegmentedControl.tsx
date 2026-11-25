@@ -4,12 +4,13 @@ import { Radio } from "@base-ui/react/radio";
 import { Icon, type IconName } from "../icon/Icon.js";
 import "./segmented-control.css";
 
-/** Square-cornered or rounded track and segments. Spec: the `shape` axis (metadata "Rounded" true/false). */
-export type SegmentedControlShape = "rounded" | "sharp";
+/** Rounded, square-cornered or pill-shaped track and segments. Spec: the `shape` axis. */
+export type SegmentedControlShape = "rounded" | "sharp" | "full";
 
 /**
  * What every segment shows, set once on the control (spec: "Pick one Flavour
- * and hold it across every segment"). `default` is icon + label, `text-only`
+ * and hold it across every segment"). This is the segment's Flavour in the
+ * spec; the control's own Flavour (default or inverse) is the `inverse` prop. `default` is icon + label, `text-only`
  * the label alone, `icon-only` the icon alone with the label as its
  * accessible name and tooltip.
  */
@@ -46,8 +47,13 @@ export interface SegmentedControlProps
   defaultValue?: string;
   /** Called when the user chooses another option. */
   onValueChange?: (value: string, eventDetails: RadioGroup.ChangeEventDetails) => void;
-  /** Rounded or sharp corners on the track, every segment and the active indicator. Match the surrounding controls. */
+  /** Rounded, sharp or pill-shaped corners on the track, every segment and the active indicator. Match the surrounding controls. */
   shape?: SegmentedControlShape;
+  /**
+   * Stronger emphasis on the chosen option (the spec's control Flavour
+   * `inverse`): a dark chosen segment on a lighter, bordered track.
+   */
+  inverse?: boolean;
   /**
    * What every segment shows. `default`: icon + label (an option without an
    * icon shows its label alone). `text-only`: labels only, icons hidden even
@@ -146,6 +152,7 @@ export const SegmentedControl = React.forwardRef<HTMLDivElement, SegmentedContro
       defaultValue,
       onValueChange,
       shape = "rounded",
+      inverse = false,
       flavour = "default",
       className,
       ...rest
@@ -178,7 +185,7 @@ export const SegmentedControl = React.forwardRef<HTMLDivElement, SegmentedContro
       // Only a placement that landed counts (options can arrive after mount).
       if (placeIndicator(track, index, placed.current === undefined ? false : placed.current !== current || undefined))
         placed.current = current;
-    }, [current, index, options, shape, flavour]);
+    }, [current, index, options, shape, flavour, inverse]);
 
     // Segment sizes change without a render (web fonts landing, the track
     // reflowing): re-measure, leaving the sliding state alone.
@@ -191,9 +198,9 @@ export const SegmentedControl = React.forwardRef<HTMLDivElement, SegmentedContro
       return () => ro.disconnect();
     }, [options, flavour]);
 
-    // The icon family stays rounded even when shape="sharp": Figma pins the
-    // rounded Star in all 18 _Segmented item variants (spec note "The icon
-    // family stays rounded even when Rounded=false"), unlike Button.
+    // The icon family stays rounded in every shape: Figma pins the rounded
+    // Star in all 54 _Segmented item variants (spec note "The icon family
+    // stays rounded in every Shape"), unlike Button.
     return (
       <RadioGroup<string>
         ref={setRefs}
@@ -205,6 +212,7 @@ export const SegmentedControl = React.forwardRef<HTMLDivElement, SegmentedContro
         }}
         className={["zds-segmented-control", className].filter(Boolean).join(" ")}
         data-shape={shape}
+        data-inverse={inverse ? "" : undefined}
         data-flavour={flavour}
       >
         <span className="zds-segmented-control__indicator" aria-hidden="true" />

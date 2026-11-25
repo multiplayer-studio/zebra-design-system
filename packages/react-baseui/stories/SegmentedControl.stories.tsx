@@ -19,11 +19,12 @@ const Cap = ({ children }: { children: React.ReactNode }) => <div style={{ font:
 const meta: Meta<typeof SegmentedControl> = {
   title: "Components/Segmented Control", component: SegmentedControl, tags: ["autodocs"],
   argTypes: {
-    shape: { control: "inline-radio", options: ["rounded", "sharp"] },
+    shape: { control: "inline-radio", options: ["rounded", "sharp", "full"] },
+    inverse: { control: "boolean" },
     flavour: { control: "inline-radio", options: ["default", "text-only", "icon-only"] },
     onValueChange: { action: "valueChange" },
   },
-  args: { options: VIEWS, defaultValue: "day", shape: "rounded", flavour: "default", disabled: false, "aria-label": "Calendar range" },
+  args: { options: VIEWS, defaultValue: "day", shape: "rounded", inverse: false, flavour: "default", disabled: false, "aria-label": "Calendar range" },
 };
 export default meta;
 type Story = StoryObj<typeof SegmentedControl>;
@@ -34,9 +35,22 @@ export const Playground: Story = {};
 export const Shape: Story = {
   render: () => (
     <Stack>
-      {(["rounded", "sharp"] as const).map((s) => (
+      {(["rounded", "sharp", "full"] as const).map((s) => (
         <React.Fragment key={s}><Cap>{s}</Cap><SegmentedControl aria-label={`Calendar range, ${s}`} shape={s} options={VIEWS} defaultValue="day" /></React.Fragment>
       ))}
+    </Stack>
+  ),
+};
+
+/** Spec Flavour=inverse: a dark chosen segment on a lighter, bordered track, for stronger emphasis. Shown in each shape, and with a disabled chosen option. */
+export const Inverse: Story = {
+  render: () => (
+    <Stack>
+      {(["rounded", "sharp", "full"] as const).map((s) => (
+        <React.Fragment key={s}><Cap>inverse, {s}</Cap><SegmentedControl aria-label={`Calendar range, ${s}`} inverse shape={s} options={VIEWS} defaultValue="week" /></React.Fragment>
+      ))}
+      <Cap>inverse, icon-only</Cap><SegmentedControl aria-label="Layout" inverse options={LAYOUT} flavour="icon-only" />
+      <Cap>inverse, disabled</Cap><SegmentedControl aria-label="Calendar range" inverse options={VIEWS} defaultValue="week" disabled />
     </Stack>
   ),
 };
@@ -106,6 +120,7 @@ export const ThemingCascade: Story = {
           <SegmentedControl aria-label="Calendar range" options={VIEWS} />
           <SegmentedControl aria-label="Calendar range" options={VIEWS} flavour="text-only" shape="sharp" defaultValue="week" />
           <SegmentedControl aria-label="Layout" options={[...LAYOUT.slice(0, 2), { ...LAYOUT[2]!, disabled: true }]} flavour="icon-only" />
+          <SegmentedControl aria-label="Calendar range" options={VIEWS} inverse shape="full" defaultValue="week" />
         </div>
       ))}
     </div>

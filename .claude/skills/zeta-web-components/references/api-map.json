@@ -517,11 +517,14 @@
    "_Segmented item": "zeta-segmented-item"
   },
   "props": {
-   "shape": "property rounded",
+   "shape": "property shape",
+   "flavour": "property inverse",
    "moreItems": "slot (default)",
    "_Segmented item.label": "slot (default)",
+   "_Segmented item.shape": "property shape",
    "_Segmented item.state": "property active",
-   "_Segmented item.flavour": "property flavor"
+   "_Segmented item.flavour": "property flavor",
+   "_Segmented item.style": "property inverse"
   }
  },
  "select": {

@@ -21,6 +21,16 @@ export class ZetaSegmentedItem extends Contourable(LitElement) {
   /** Set by the control: icon and label, the label alone, or the icon alone. */
   @property({ type: String, reflect: true }) flavor: "default" | "text-only" | "icon-only" = "default";
 
+  /**
+   * Set by the control: rounded, sharp, or full for a pill. When set it wins over `rounded`.
+   *
+   * @type {'rounded' | 'sharp' | 'full'}
+   */
+  @property({ type: String, reflect: true }) shape?: "rounded" | "sharp" | "full";
+
+  /** Set by the control: the active segment sits on a dark fill, so its label takes the inverse foreground. */
+  @property({ type: Boolean, reflect: true }) inverse = false;
+
   connectedCallback() {
     super.connectedCallback?.();
     this.setAttribute("role", "radio");

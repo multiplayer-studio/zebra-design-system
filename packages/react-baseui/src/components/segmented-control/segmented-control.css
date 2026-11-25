@@ -24,6 +24,10 @@
   /* containing block for the indicator */
   position: relative;
 
+  /* The chosen segment's fill and foreground, re-pointed by [data-inverse]. */
+  --zds-seg-active-bg: var(--interactive-neutral-background-focused);
+  --zds-seg-active-fg: var(--foreground-primary);
+
   /* --- motion (the active indicator) ------------------------------------ */
   /* The animations/spring token (size collection): 250ms on
      cubic-bezier(0.34, 1.36, 0.64, 1), shared with Switch. The owner's
@@ -40,6 +44,23 @@
 .zds-segmented-control[data-shape="sharp"] .zds-segmented-control__segment,
 .zds-segmented-control[data-shape="sharp"] .zds-segmented-control__indicator {
   border-radius: var(--radius-none);
+}
+.zds-segmented-control[data-shape="full"],
+.zds-segmented-control[data-shape="full"] .zds-segmented-control__segment,
+.zds-segmented-control[data-shape="full"] .zds-segmented-control__indicator {
+  border-radius: var(--radius-pill);
+}
+
+/* ---- inverse (the spec's control Flavour=inverse) ------------------------ */
+/* A lighter track with a border/default border, and a dark chosen segment
+   with a foreground/inverse label. The border is counted in the size, as in
+   Figma. Its weight is a raw 1 there (spec issue "Inverse border weight has
+   no token"); stroke/thin carries the same value. */
+.zds-segmented-control[data-inverse] {
+  border: var(--stroke-thin) solid var(--border-default);
+  background: var(--interactive-neutral-background-default);
+  --zds-seg-active-bg: var(--interactive-inverse-background-focused);
+  --zds-seg-active-fg: var(--foreground-inverse);
 }
 
 /* ---- 2. segment (the private _Segmented item) --------------------------- */
@@ -92,7 +113,7 @@
   height: var(--zds-seg-indicator-h, 0);
   transform: translate(var(--zds-seg-indicator-x, 0), var(--zds-seg-indicator-y, 0));
   border-radius: var(--radius-sm);
-  background: var(--interactive-neutral-background-focused);
+  background: var(--zds-seg-active-bg);
   pointer-events: none;
 }
 .zds-segmented-control[data-indicator] .zds-segmented-control__indicator {
@@ -134,8 +155,8 @@
 }
 
 /* ---- state -------------------------------------------------------------- */
-/* hover: label to foreground/primary, no fill (as drawn). */
-.zds-segmented-control__segment:hover:not([data-disabled]) {
+/* hover: an unchosen label to foreground/primary, no fill (as drawn). */
+.zds-segmented-control__segment:hover:not([data-disabled]):not([data-checked]) {
   --zds-seg-fg: var(--foreground-primary);
 }
 /* pressed (not designed — spec issue "No focus, pressed or disabled
@@ -149,8 +170,8 @@
 /* active (the chosen segment): label colour; the fill is the track's
    indicator once measured, the segment's own fill before that. */
 .zds-segmented-control__segment[data-checked] {
-  --zds-seg-bg: var(--interactive-neutral-background-focused);
-  --zds-seg-fg: var(--foreground-primary);
+  --zds-seg-bg: var(--zds-seg-active-bg);
+  --zds-seg-fg: var(--zds-seg-active-fg);
   cursor: default;
 }
 .zds-segmented-control[data-indicator] .zds-segmented-control__segment[data-checked] {
@@ -158,17 +179,22 @@
 }
 /* focus (not designed — same spec issue): the library's focus ring, a
    stroke/thick border/focus outline as on Button and Radio. It sits in the
-   track's space/xs gap and padding, so it never overlaps a neighbour. */
+   track's space/2xs gap and padding, so it never overlaps a neighbour. */
 .zds-segmented-control__segment:focus-visible {
   outline: var(--stroke-thick) solid var(--border-focus);
   outline-offset: 0;
 }
 /* disabled (not designed — same spec issue): the neutral disabled
    foreground, as on Chip and Radio. A disabled chosen segment keeps its fill
-   so the control still shows which option is in force. */
+   so the control still shows which option is in force; in inverse that fill
+   is interactive/inverse/background/disabled, so the disabled label stays
+   readable on it. */
 .zds-segmented-control__segment[data-disabled] {
   --zds-seg-fg: var(--interactive-neutral-foreground-disabled);
   cursor: not-allowed;
+}
+.zds-segmented-control[data-inverse]:has(.zds-segmented-control__segment[data-disabled][data-checked]) {
+  --zds-seg-active-bg: var(--interactive-inverse-background-disabled);
 }
 
 @media (forced-colors: active) {
@@ -181,7 +207,7 @@
   }
   .zds-segmented-control .zds-segmented-control__segment[data-checked],
   .zds-segmented-control[data-indicator] .zds-segmented-control__segment[data-checked] {
-    --zds-seg-bg: var(--interactive-neutral-background-focused);
+    --zds-seg-bg: var(--zds-seg-active-bg);
     outline: var(--stroke-thin) solid Highlight;
   }
 }

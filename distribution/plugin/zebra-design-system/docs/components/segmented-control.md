@@ -1,6 +1,6 @@
 # Segmented Control
 
-> A row of mutually exclusive options sharing one track, where exactly one is active at a time. It ships with three segments, two placed directly and a third in a slot, so changing the count means working inside the instance. Reach for Tab Bar when the choice moves between views rather than switching a mode within one.
+> A row of mutually exclusive options sharing one track, where exactly one is active at a time. It ships with three segments, two placed directly and a third in a slot, so changing the count means working inside the instance. Use Tab Bar when the choice moves between views rather than switching a mode within one.
 
 **Implementations:** `@zebra-design-system/react-baseui` · `@zebra-design-system/web-components` · `@zebra-design-system/zeta-web` (`<zeta-segmented-control>`)
 
@@ -8,7 +8,8 @@
 
 | Prop | Type | Default | Values | Notes |
 |---|---|---|---|---|
-| `shape` | enum | `rounded` | `rounded` `sharp` |  |
+| `shape` | enum | `rounded` | `rounded` `sharp` `full` |  |
+| `flavour` | enum | `default` | `default` `inverse` | Not the segment's Flavour (default, text only, icon only): it maps to the segment's Style. The libraries expose it as an inverse switch and keep flavour for what a segment shows. |
 | `moreItems` | slot | `one _Segmented item (Item 3, State=default)` |  |  |
 
 ## When and how to use
@@ -42,7 +43,7 @@
 | Property | Sizing | Guidance |
 |---|---|---|
 | Size | Hug both axes | 289 by 44 as shipped with three segments. Width follows the segments, so it grows with their labels. |
-| Padding and gap | Fixed | space/xxs on all four sides of the track, with a space/xxs gap between segments. |
+| Padding and gap | Fixed | space/xs on all four sides of the track, with a space/xs gap between segments. |
 | Radius | Per Rounded | radius/sm when true and radius/none when false, on the track and on every segment it places. |
 | Fill | Theming | interactive/neutral/background/pressed on the track. No border and no shadow. |
 | Segments | Hug | Each segment hugs its own content, so the track is the sum of the labels rather than an equal-width grid. Segments are not the same width as each other. |

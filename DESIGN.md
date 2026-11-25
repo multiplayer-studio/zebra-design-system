@@ -153,7 +153,7 @@ Interaction states such as hover, pressed and focus are CSS states, never props,
 | Switch | on/off, `hasIcons` | `specs/switch` |
 | Slider | `shape`, `stepped`, `range` | `specs/slider` |
 | Stepper Input | `size`, `rounded`, `disabled`, `showHint` | `specs/stepper-input` |
-| Segmented Control | `shape`, segments | `specs/segmented-control` |
+| Segmented Control | `shape`, `flavour`, segments | `specs/segmented-control` |
 
 ### Containers and content
 
