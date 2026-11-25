@@ -1,0 +1,19 @@
+/* CardBody — every value is a semantic token.
+   Spec: specs/card/card.spec.md */
+
+.zds-card-body {
+  box-sizing: border-box;
+  /* Overridable per axis: Card's own shell has zero padding of its own
+     (spec), so this is the sole source of inset there. CollapsibleCard's
+     body wrapper already carries its own spec-stated left/right/bottom
+     inset, so it zeroes only --zds-card-body-padding-inline on itself —
+     the top/bottom padding here still applies, since the wrapper's own
+     top inset is none. */
+  padding: var(--zds-card-body-padding-block, var(--space-lg)) var(--zds-card-body-padding-inline, var(--space-lg));
+  font-family: var(--body-small-font-family), system-ui, sans-serif;
+  font-size: var(--body-small-font-size);
+  font-weight: var(--body-small-font-weight);
+  line-height: var(--body-small-line-height);
+  letter-spacing: var(--body-small-letter-spacing);
+  color: var(--foreground-secondary);
+}

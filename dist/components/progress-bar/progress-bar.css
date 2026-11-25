@@ -1,0 +1,149 @@
+/* Progress Bar — every colour, dimension and type value is a semantic token
+   from the shared token layer. Keyed off data attributes that ProgressBar sets
+   (data-shape, data-size, data-buffering, data-show-track) plus Base UI's own
+   [data-indeterminate] on the indicator. Nothing here knows about themes.
+
+   Kept in step with packages/web-components progress-bar.styles.ts.
+
+   Spec: specs/progress-bar/progress-bar.spec.md */
+
+/* ---- anatomy: bar (root) ------------------------------------------------- */
+.zds-progress-bar {
+  /* spec issue "Thickness has no token": Figma's 8px / 16px bar heights are
+     unbound. The nearest documented dimensions of the same value are
+     --space-sm (8) and --space-lg (16); both scale with the bp-* modes. */
+  --zds-progress-bar-thickness: var(--space-sm);
+  --zds-progress-bar-radius: var(--radius-sm);
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  /* Figma fixes 408px; the metadata says whoever places the bar decides the
+     width, so it fills its container. */
+  inline-size: 100%;
+  min-inline-size: 0;
+}
+
+/* ---- anatomy: label row -------------------------------------------------- */
+.zds-progress-bar__label-row {
+  display: flex;
+  align-items: center;
+  /* spec issue "Raw gap": the row's 10px gap is unbound in Figma; --space-sm
+     (8) is the nearest step. */
+  gap: var(--space-sm);
+  min-inline-size: 0;
+}
+
+.zds-progress-bar__label {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+  text-align: start;
+  color: var(--foreground-secondary);
+  font-family: var(--label-medium-font-family);
+  font-size: var(--label-medium-font-size);
+  font-weight: var(--label-medium-font-weight);
+  line-height: var(--label-medium-line-height);
+  letter-spacing: var(--label-medium-letter-spacing);
+}
+
+.zds-progress-bar__trailing {
+  /* Same type as the label: the two share the row. */
+  font-family: var(--label-medium-font-family);
+  font-size: var(--label-medium-font-size);
+  font-weight: var(--label-medium-font-weight);
+  line-height: var(--label-medium-line-height);
+  letter-spacing: var(--label-medium-letter-spacing);
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-none);
+  margin-inline-start: auto;
+  color: var(--foreground-secondary);
+}
+
+/* ---- anatomy: indicator group (the progressbar element) ----------------- */
+.zds-progress-bar__bar {
+  position: relative;
+  block-size: var(--zds-progress-bar-thickness);
+  /* Clips the indeterminate segment as it enters and leaves; the radius
+     matches the parts so a full indicator is not cut. */
+  overflow: hidden;
+  border-radius: var(--zds-progress-bar-radius);
+}
+
+.zds-progress-bar__track,
+.zds-progress-bar__buffer,
+.zds-progress-bar__indicator {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  border-radius: var(--zds-progress-bar-radius);
+}
+
+/* Track: follows the bound token, surface/track (spec warn "Track colour":
+   the metadata's border/subtle is not what any variant binds). */
+.zds-progress-bar__track {
+  inset-inline-end: 0;
+  background: var(--surface-track);
+}
+
+/* Buffer band: surface/shade alone (spec warn "Band opacity doubled": Figma's
+   extra 10% paint opacity is not applied). Without a track the band stays:
+   hiding it would leave Buffering looking like a stuck bar (spec issue
+   "Show Track hides Buffering too"). */
+.zds-progress-bar__buffer {
+  background: var(--surface-shade);
+}
+
+/* Indicator: Base UI sets its width from the value. A zero value is a
+   zero-width indicator (spec issue "0% is faked" — no padding hack). */
+.zds-progress-bar__indicator {
+  background: var(--foreground-link);
+  /* tokens/ has no motion collection; Switch's duration with a standard ease. */
+  transition: inline-size 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---- progress: indeterminate --------------------------------------------- */
+/* A segment the length Figma draws (143 of 408px, ~35%) travelling the
+   track. Figma draws it frozen; the spec says it must move. It travels by
+   transform, not by its inset, so the compositor runs the loop without a
+   layout per frame. Translate is a share of the segment's own width: -100%
+   puts it just before the track, 100% / 35% just past its end. */
+.zds-progress-bar__indicator[data-indeterminate] {
+  --zds-progress-bar-dir: 1;
+  inline-size: 35%;
+  animation: zds-progress-bar-slide 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.zds-progress-bar__indicator[data-indeterminate]:dir(rtl) { --zds-progress-bar-dir: -1; }
+
+@keyframes zds-progress-bar-slide {
+  from { transform: translateX(calc(var(--zds-progress-bar-dir) * -100%)); }
+  to { transform: translateX(calc(var(--zds-progress-bar-dir) * 100% / 0.35)); }
+}
+
+/* Reduced motion: no travel and no growth transition. The segment rests where
+   Figma draws it (133 of 408px, ~33%) and fades slowly instead, so it still
+   reads as live; the label must carry the meaning (spec: pair with text). */
+@keyframes zds-progress-bar-pulse {
+  from { opacity: 1; }
+  to { opacity: 0.4; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zds-progress-bar__indicator { transition: none; }
+  .zds-progress-bar__indicator[data-indeterminate] {
+    inset-inline-start: 33%;
+    animation: zds-progress-bar-pulse 1.6s ease-in-out infinite alternate;
+  }
+}
+
+/* ---- shape × size --------------------------------------------------------- */
+.zds-progress-bar[data-size="large"] {
+  --zds-progress-bar-thickness: var(--space-lg);
+  --zds-progress-bar-radius: var(--radius-md);
+}
+.zds-progress-bar[data-shape="sharp"] {
+  --zds-progress-bar-radius: var(--radius-none);
+}

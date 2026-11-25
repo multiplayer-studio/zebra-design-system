@@ -1,0 +1,117 @@
+/* Menu Item — every value is a semantic token from the shared token layer.
+   Keyed off data attributes MenuItem sets, plus Base UI's own
+   [data-highlighted] / [data-disabled] and the native :focus-visible pseudo
+   (Menu.Item is a real focusable element under keyboard navigation, so no
+   hand-rolled focus state is needed). Nothing here knows about themes: an
+   .ext-* / .mode-* class on any ancestor changes what these tokens resolve
+   to.
+
+   Spec: specs/dropdown/dropdown.spec.md (Menu Item subcomponent) */
+
+.zds-menu-item {
+  /* geometry: fixed height, fills the menu's width, never set directly */
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--control-md);
+  padding: var(--space-2xs) var(--space-md);
+  gap: var(--space-sm);
+  border-style: solid;
+  border-width: var(--stroke-thin);
+  border-color: transparent;
+  border-radius: var(--radius-none);
+
+  /* colour: state axis, routed through one local custom property */
+  background: var(--zds-menu-item-bg);
+  color: var(--interactive-neutral-foreground-default);
+
+  cursor: pointer;
+  outline: none;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.zds-menu-item__leading,
+.zds-menu-item__trailing {
+  flex: none;
+  display: inline-flex;
+}
+
+/* The label's own inset separates it from the leading element and reserves
+   room on the trailing side. */
+.zds-menu-item__label {
+  flex: 1 1 auto;
+  padding-inline: var(--space-2xs) var(--space-xl);
+  font-family: var(--label-medium-font-family), system-ui, sans-serif;
+  font-size: var(--label-medium-font-size);
+  font-weight: var(--label-medium-font-weight);
+  line-height: var(--label-medium-line-height);
+  letter-spacing: var(--label-medium-letter-spacing);
+  /* Spec: the label never wraps or truncates — a long one widens the menu. */
+  white-space: nowrap;
+}
+
+/* ---- rounded --------------------------------------------------------- */
+.zds-menu-item[data-rounded="true"] { border-radius: var(--radius-sm); }
+
+/* ---- resting ----------------------------------------------------------
+   Default row, and the fallback every other state's custom property falls
+   back to when it does not apply. */
+.zds-menu-item {
+  --zds-menu-item-bg: var(--interactive-ghost-background-default);
+}
+
+/* ---- type: checkbox / radio ------------------------------------------
+   The real control's own 40px target spaces the label, so the row's gap
+   and leading padding drop to none, which lines the control's box up with an
+   Icon row's glyph. The target overflows the row's 4px padding and stays
+   centred (spec note). The control is drawn for state only: no pointer. */
+.zds-menu-item[data-type="checkbox"],
+.zds-menu-item[data-type="radio"] {
+  gap: var(--space-none);
+  padding-inline-start: var(--space-none);
+}
+.zds-menu-item__control {
+  pointer-events: none;
+}
+
+/* ---- hover / keyboard-highlight ----------------------------------------
+   Base UI drives a single roving "highlighted" item for both pointer-hover
+   and keyboard navigation; the spec's separate "hover" row reads from this
+   hook rather than a hand-rolled :hover, since :hover alone would miss
+   keyboard movement. */
+.zds-menu-item[data-highlighted]:not([data-disabled]) {
+  --zds-menu-item-bg: var(--interactive-ghost-background-hover);
+}
+
+/* ---- selected -------------------------------------------------------
+   A 10% brand tint, stronger than hover. The label moves to
+   foreground/primary, the same colour as the resting label; selected focus
+   keeps it too (spec note: Figma binds neutral there, same value). */
+.zds-menu-item[data-selected]:not([data-disabled]) {
+  --zds-menu-item-bg: var(--interactive-ghost-background-selected);
+  color: var(--foreground-primary);
+}
+
+/* ---- focus ------------------------------------------------------------
+   The only bordered state. Real DOM focus under keyboard navigation, so
+   :focus-visible (not a data attribute) is the correct hook — this only
+   fires for keyboard, matching the spec's "focus ring" intent. */
+.zds-menu-item:focus-visible:not([data-disabled]) {
+  --zds-menu-item-bg: var(--interactive-ghost-background-focused);
+  border-color: var(--border-focus);
+}
+
+/* selected + focus: both at once, so a keyboard user moving across an
+   already-chosen option can tell it apart from a merely-focused one. */
+.zds-menu-item[data-selected]:focus-visible:not([data-disabled]) {
+  --zds-menu-item-bg: var(--interactive-ghost-background-selected);
+}
+
+/* ---- disabled -----------------------------------------------------------
+   Base UI sets [data-disabled]. The label and its icons mute together. */
+.zds-menu-item[data-disabled] {
+  --zds-menu-item-bg: var(--interactive-ghost-background-disabled);
+  color: var(--interactive-neutral-foreground-disabled);
+  cursor: not-allowed;
+}
