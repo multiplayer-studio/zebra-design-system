@@ -1,0 +1,533 @@
+{
+  "name": "@zebra-design-system/patterns",
+  "version": "0.5.0",
+  "note": "Generated when the patterns are packaged. Do not edit: change the .md files and package again.",
+  "entry": [],
+  "recipes": [],
+  "edges": [],
+  "organisms": [
+    {
+      "id": "dialog",
+      "name": "Dialog",
+      "job": "Asks for one decision that must happen now, or a short task of a few inputs, and blocks the screen until it's answered.",
+      "slots": [
+        {
+          "slot": "title",
+          "holds": "the decision; for a confirmation, a question about this specific action",
+          "present": "always"
+        },
+        {
+          "slot": "body",
+          "holds": "what the person needs in order to decide: the object, the consequence, and whether it can be undone",
+          "present": "always"
+        },
+        {
+          "slot": "inputs",
+          "holds": "the few inputs of a short task",
+          "present": "when",
+          "condition": "it holds a task"
+        },
+        {
+          "slot": "check",
+          "holds": "the object's name or a stated word, typed to confirm",
+          "present": "when",
+          "condition": "the action is among the most dangerous"
+        },
+        {
+          "slot": "way out",
+          "holds": "Cancel beside an action it would call off; otherwise Close, or what happens next",
+          "present": "always"
+        },
+        {
+          "slot": "outcomes",
+          "holds": "the confirm, repeating the action's verb, and at most one other outcome of the same decision, at the bottom in the product's button order",
+          "present": "when",
+          "condition": "it proposes an action"
+        }
+      ],
+      "rules": [
+        "1.38",
+        "1.57",
+        "1.66",
+        "1.106",
+        "1.110",
+        "1.111",
+        "1.112",
+        "1.113",
+        "1.117",
+        "1.150",
+        "2.17",
+        "2.23",
+        "2.24",
+        "2.27",
+        "2.62",
+        "3.50",
+        "3.86",
+        "3.88",
+        "3.120",
+        "3.135",
+        "4.66",
+        "4.67",
+        "4.80",
+        "5.6",
+        "5.13",
+        "5.17",
+        "5.19",
+        "5.23",
+        "5.48",
+        "6.28",
+        "6.29",
+        "6.50",
+        "6.72",
+        "7.10",
+        "7.44",
+        "7.45",
+        "7.46",
+        "7.47",
+        "7.125",
+        "8.6",
+        "8.48",
+        "8.54",
+        "8.58",
+        "8.113",
+        "8.119"
+      ]
+    },
+    {
+      "id": "sheet",
+      "name": "Sheet",
+      "job": "Holds short, contextual choices or details, anchored to the bottom edge.",
+      "slots": [
+        {
+          "slot": "close",
+          "holds": "a Close at its top",
+          "present": "when",
+          "condition": "it's pulled to full height"
+        },
+        {
+          "slot": "content",
+          "holds": "the choices or details, opened to their own height, up to about half the screen",
+          "present": "always"
+        },
+        {
+          "slot": "apply",
+          "holds": "Apply, which puts the choices into effect together",
+          "present": "when",
+          "condition": "it holds choices that apply together, such as filters"
+        }
+      ],
+      "rules": [
+        "1.38",
+        "1.87",
+        "1.99",
+        "1.106",
+        "1.110",
+        "1.112",
+        "1.115",
+        "1.117",
+        "1.131",
+        "1.150",
+        "1.151",
+        "2.17",
+        "2.25",
+        "2.62",
+        "3.50",
+        "3.77",
+        "3.120",
+        "5.6",
+        "5.13",
+        "5.17",
+        "5.18",
+        "5.19",
+        "5.25",
+        "5.48",
+        "6.28",
+        "6.29",
+        "6.50",
+        "8.6",
+        "8.48",
+        "8.54",
+        "8.58",
+        "8.119",
+        "9.74"
+      ]
+    },
+    {
+      "id": "side-panel",
+      "name": "Side panel",
+      "job": "Opens from the trailing edge for detail or editing that needs the page behind it visible.",
+      "slots": [
+        {
+          "slot": "title",
+          "holds": "the panel's title, which is also its name",
+          "present": "always"
+        },
+        {
+          "slot": "close",
+          "holds": "a close control at the trailing end of its header",
+          "present": "always"
+        },
+        {
+          "slot": "views",
+          "holds": "tabs for parallel views of one object",
+          "present": "optional"
+        },
+        {
+          "slot": "body",
+          "holds": "the detail or the task; it scrolls while the header and footer stay put",
+          "present": "always"
+        },
+        {
+          "slot": "commit bar",
+          "holds": "the actions that finish what it edits",
+          "present": "when",
+          "condition": "it holds editing"
+        }
+      ],
+      "rules": [
+        "1.22",
+        "1.106",
+        "1.110",
+        "1.114",
+        "1.117",
+        "1.144",
+        "1.150",
+        "2.17",
+        "2.62",
+        "3.50",
+        "3.120",
+        "5.2",
+        "5.6",
+        "5.17",
+        "5.19",
+        "5.21",
+        "5.23",
+        "5.48",
+        "6.25",
+        "6.28",
+        "6.29",
+        "6.50",
+        "8.6",
+        "8.48",
+        "8.54",
+        "8.58",
+        "8.113",
+        "8.119",
+        "9.1",
+        "10.23"
+      ]
+    },
+    {
+      "id": "toast",
+      "name": "Toast",
+      "job": "Confirms something the person just did, briefly, at the bottom of the content area.",
+      "slots": [
+        {
+          "slot": "message",
+          "holds": "what just happened, as the action and the object in the simple past, in one line, two at most on a handheld",
+          "present": "always"
+        },
+        {
+          "slot": "action",
+          "holds": "one action named by a single verb, such as Undo or View, that is never the only way to do it",
+          "present": "optional"
+        }
+      ],
+      "rules": [
+        "1.38",
+        "1.57",
+        "1.63",
+        "3.89",
+        "4.30",
+        "4.31",
+        "4.45",
+        "4.47",
+        "4.76",
+        "4.78",
+        "4.98",
+        "4.99",
+        "4.100",
+        "5.48",
+        "6.25",
+        "6.38",
+        "6.55",
+        "6.73",
+        "7.48",
+        "7.49",
+        "7.84",
+        "8.8",
+        "9.40"
+      ]
+    },
+    {
+      "id": "notice",
+      "name": "Notice",
+      "job": "A message about one page, section or element, at its top, that stays until it's resolved.",
+      "slots": [
+        {
+          "slot": "status mark",
+          "holds": "the severity's icon and word, with its colour as support",
+          "present": "always"
+        },
+        {
+          "slot": "message",
+          "holds": "what happened, then what to do",
+          "present": "always"
+        },
+        {
+          "slot": "action",
+          "holds": "the one next step that fixes the problem or works around it",
+          "present": "when",
+          "condition": "it's an error or a warning"
+        },
+        {
+          "slot": "dismiss",
+          "holds": "a way to dismiss it",
+          "present": "optional"
+        }
+      ],
+      "rules": [
+        "1.39",
+        "1.57",
+        "1.60",
+        "1.61",
+        "1.62",
+        "1.127",
+        "2.61",
+        "2.84",
+        "4.3",
+        "4.17",
+        "4.34",
+        "4.52",
+        "4.55",
+        "4.68",
+        "4.76",
+        "4.77",
+        "4.78",
+        "4.79",
+        "4.80",
+        "5.48",
+        "7.2",
+        "7.3",
+        "7.33",
+        "7.38",
+        "9.80"
+      ]
+    },
+    {
+      "id": "system-banner",
+      "name": "System banner",
+      "job": "A message about a condition that affects the whole product, across the content area directly below the header.",
+      "slots": [
+        {
+          "slot": "status mark",
+          "holds": "the severity's icon and word, with its colour as support",
+          "present": "always"
+        },
+        {
+          "slot": "message",
+          "holds": "the condition, what still works, and what happens to the person's work",
+          "present": "always"
+        },
+        {
+          "slot": "action",
+          "holds": "the one next step that fixes the problem or works around it",
+          "present": "when",
+          "condition": "it's an error or a warning"
+        },
+        {
+          "slot": "dismiss",
+          "holds": "a way to dismiss it; it returns while the condition remains",
+          "present": "when",
+          "condition": "the condition isn't critical"
+        }
+      ],
+      "rules": [
+        "1.57",
+        "1.58",
+        "1.59",
+        "1.61",
+        "1.62",
+        "4.52",
+        "4.55",
+        "4.76",
+        "4.77",
+        "4.78",
+        "4.79",
+        "4.80",
+        "5.48",
+        "6.25",
+        "7.2",
+        "7.3",
+        "7.33",
+        "7.38"
+      ]
+    },
+    {
+      "id": "menu",
+      "name": "Menu",
+      "job": "A short list of actions or options, opened next to the control that opened it.",
+      "slots": [
+        {
+          "slot": "items",
+          "holds": "fewer than about ten, the most used first, nearest where it opens, grouped by dividers",
+          "present": "always"
+        },
+        {
+          "slot": "check",
+          "holds": "a check on each item that can be chosen",
+          "present": "when",
+          "condition": "its items can be chosen"
+        },
+        {
+          "slot": "shortcut",
+          "holds": "the keyboard shortcut beside its command",
+          "present": "when",
+          "condition": "the command has one"
+        },
+        {
+          "slot": "destructive",
+          "holds": "destructive actions, last, after a divider",
+          "present": "when",
+          "condition": "there are any"
+        }
+      ],
+      "rules": [
+        "1.38",
+        "1.43",
+        "1.78",
+        "1.79",
+        "1.110",
+        "1.116",
+        "1.150",
+        "3.9",
+        "3.37",
+        "3.77",
+        "3.78",
+        "3.79",
+        "3.80",
+        "3.81",
+        "3.82",
+        "3.83",
+        "3.84",
+        "3.85",
+        "3.101",
+        "3.106",
+        "3.109",
+        "3.138",
+        "5.17",
+        "5.23",
+        "5.24",
+        "5.48",
+        "6.28",
+        "6.29",
+        "6.30",
+        "6.34",
+        "6.35",
+        "6.38",
+        "7.9",
+        "7.10",
+        "7.13",
+        "7.96",
+        "8.48",
+        "8.54",
+        "8.114",
+        "8.119",
+        "10.24"
+      ]
+    },
+    {
+      "id": "error-summary",
+      "name": "Error summary",
+      "job": "Lists every error that stopped a form being submitted, at the top of the form, and takes focus.",
+      "slots": [
+        {
+          "slot": "items",
+          "holds": "one per error, naming the field in the words of its error and linking to it",
+          "present": "always"
+        }
+      ],
+      "rules": [
+        "1.65",
+        "4.43",
+        "6.32",
+        "6.112",
+        "7.37"
+      ]
+    }
+  ],
+  "spacing": [
+    {
+      "step": "tight",
+      "order": 1,
+      "between": "an icon and its label; a label and its field",
+      "floor": "the component's own gap"
+    },
+    {
+      "step": "related",
+      "order": 2,
+      "between": "items in one group: fields in a section, rows of facts, buttons in a group",
+      "floor": "tight"
+    },
+    {
+      "step": "heading",
+      "order": 3,
+      "between": "a heading and the content it heads",
+      "floor": "tight"
+    },
+    {
+      "step": "inset",
+      "order": 4,
+      "between": "a container's edge and its content",
+      "floor": "related"
+    },
+    {
+      "step": "gutter",
+      "order": 5,
+      "between": "cards or tiles side by side",
+      "floor": "related"
+    },
+    {
+      "step": "group",
+      "order": 6,
+      "between": "groups inside one section",
+      "floor": "inset"
+    },
+    {
+      "step": "section",
+      "order": 7,
+      "between": "sections of a page",
+      "floor": "group"
+    },
+    {
+      "step": "page",
+      "order": 8,
+      "between": "the page's edge and its content",
+      "floor": "inset"
+    }
+  ],
+  "bindings": {
+    "zebra": {
+      "spacing": {
+        "tight": "`--space-2xs` under a label, `--space-xs` beside an icon. Inside a component, its own gap.",
+        "related": "`--space-sm`, or `--space-md` between fields and between rows that are targets",
+        "heading": "`--space-sm`",
+        "inset": "`--space-lg`, or `--space-md` at compact width. Never less than `--space-card`.",
+        "gutter": "`--space-gutter`",
+        "group": "`--space-xl`",
+        "section": "`--space-2xl`. Never less than `--space-section`.",
+        "page": "`--space-page`. The size mode on the root changes its value with width."
+      },
+      "organisms": {
+        "dialog": "Dialog",
+        "sheet": "Bottom Sheet",
+        "side-panel": "No component yet. Report it as a gap.",
+        "toast": "Snackbar",
+        "notice": "Inline Banner",
+        "system-banner": "System Banner (desktop and mobile specs)",
+        "menu": "Dropdown with Dropdown Menu and Menu Item",
+        "error-summary": "No component. Compose it from Inline Banner with `status=\"negative\"`, holding one link per field."
+      }
+    }
+  }
+}
