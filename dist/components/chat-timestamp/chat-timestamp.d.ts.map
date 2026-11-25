@@ -1,0 +1,1 @@
+{"version":3,"file":"chat-timestamp.d.ts","sourceRoot":"","sources":["../../../src/components/chat-timestamp/chat-timestamp.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAQ,MAAM,KAAK,CAAC;AAIvC;;;;;GAKG;AACH,qBACa,gBAAiB,SAAQ,UAAU;IAC9C,MAAM,CAAC,MAAM,0BAAU;IACvB,SAAS,CAAC,MAAM;CACjB;AAED,OAAO,CAAC,MAAM,CAAC;IACb,UAAU,qBAAqB;QAAG,oBAAoB,EAAE,gBAAgB,CAAA;KAAE;CAC3E"}
