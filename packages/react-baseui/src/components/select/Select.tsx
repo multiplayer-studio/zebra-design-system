@@ -73,7 +73,7 @@ export interface SelectProps {
   flavour?: SelectFlavour;
   /** Opens the list on the compact Dropdown Menu: a space/xs inset and no gap between rows, for a cramped spot. */
   compact?: boolean;
-  /** Fills the container's width. Without it the Select starts at 280px and narrows to fit, as Input. */
+  /** Fills the container's width. Without it the Select is a tentative 280px wide and narrows to fit, as Input. */
   block?: boolean;
   /**
    * Where the list mounts. Defaults to the Select's own root, so the list

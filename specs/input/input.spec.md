@@ -20,7 +20,7 @@ Source: [Input page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-D
 | `block` *(code only)* | boolean | | `false` |
 
 - **type:** Chooses which field fills the middle of the stack, from text, number, password, date and time. The choice brings its own placeholder and its own trailing control, so picking the type is most of the work of configuring the field. Input Field Metadata covers what each one carries.
-- **block** `true`: Fills the container's width. `false`: Starts at 280 and narrows to fit its container.
+- **block** `true`: Fills the container's width. `false`: Tentative 280 wide: it narrows to fit its container.
 - **showLabel** `true`: The label sits above the field and names it. Keep it on, because the field carries no name of its own and the placeholder is gone as soon as someone types. `false`: Drops the label from the stack. Only safe where something else nearby already names the field, and the name still has to reach assistive technology some other way.
 - **subLabel:** Figma turns the line on with the nested Label's Show Sub Label. Code takes `subLabel` as text on the assembly, shown under the name when set, and only with a label.
 - **showHint** `true`: Keeps the supporting line below the field. This is where a validation message lands, so leaving it on reserves the space before it is needed. `false`: Drops the line and shortens the stack. A field that can fail validation then has nowhere to put the reason, and turning the line back on later moves everything below it.
@@ -37,7 +37,7 @@ Source: [Input page](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-D
 
 | Part | What it is |
 |---|---|
-| `root` | Vertical stack, gap `space/xs`, no padding. Width starts at 280 and narrows to fit the container, and block fills it. Hugs height. |
+| `root` | Vertical stack, gap `space/xs`, no padding. Width is a tentative 280: it narrows to fit the container, and block fills it. Hugs height. |
 | `label` | Input Label, shown by `showLabel`. The field's name, turned on by Show Label. It carries the required or optional marker and the information icon, and the sub label when set. |
 | `field` | The chosen field set, fills the width. The control, chosen by Type. Its own Size, Shape, State and Flavour are set here rather than on the assembly. |
 | `hint` | Input Hint, shown by `showHint`. The supporting line, turned on by Show Hint. Guidance at rest, and the validation message when its Type is error. |
@@ -108,7 +108,7 @@ Both icon glyphs are swappable through the nested Icon's own Name property, not 
 
 | Part | What it is |
 |---|---|
-| `root` | Horizontal, padding `space/sm` (top, bottom) `space/md` (sides), gap `space/2xs`. Height by size; width starts at 280, narrows to fit the container, and block fills it. Fill, stroke and radius per the tables below. |
+| `root` | Horizontal, padding `space/sm` (top, bottom) `space/md` (sides), gap `space/2xs`. Height by size; width is a tentative 280, narrows to fit the container, and block fills it. Fill, stroke and radius per the tables below. |
 | `leadingIcon` | Icon, shown by `hasLeading` (text, number, password). Off by default, and an Icon at 20 square when hasLeading turns it on. Colour: `foreground/primary`, `foreground/disabled` when disabled. |
 | `text` | Fills the width, padding `0 space/2xs`. The placeholder, and then the value once one is entered. It fills whatever width the icons leave. Holds `placeholder` (`foreground/disabled`), `value` (`foreground/primary`, `foreground/disabled` when disabled) and, at focus/selected/typing, a `cursor` (`|`, `foreground/cursor`). Style `body/medium`, `body/small` at small. |
 | `trailingIcon` | Icon, shown by `hasTrailing` (text: `info`; number: `dialpad`, on by default). `foreground/primary`, `foreground/disabled` when disabled. Hidden while typing. |
@@ -326,7 +326,7 @@ Every token resolves in the export.
 
 | Property | Type | Description |
 |---|---|---|
-| Size | Start width, hug height | Starts 280 wide, with the height hugging whatever is turned on. At the default that is a 20 label, a 40 field and a 16 hint, coming to 84. |
+| Size | Flexible width, hug height | Tentative 280 wide, with the height hugging whatever is turned on. At the default that is a 20 label, a 40 field and a 16 hint, coming to 84. |
 | Gap | Fixed | space/xs (6) between all three parts. That is one step wider than the space/2xs (4) the field uses between its icons and its text. |
 | Label | Hug | 20 tall and hugging its text, with a space/2xs gap between the name, any marker and the information icon. A sub label, when shown, sits space/xs below. |
 | Hint | Hug | 16 tall, body/xsmall, with a space/2xs gap after a 16 square icon. Smaller than the field's own text, which keeps the value the loudest thing in the stack. |
@@ -337,7 +337,7 @@ Every token resolves in the export.
 
 | Property | Type | Description |
 |---|---|---|
-| Size | Start width | Starts 280 wide and narrows to fit its container, and block fills it. Height is bound per size, control/lg at large for 48, control/md at medium for 40 and control/sm at small for 36. |
+| Size | Flexible width | Tentative 280 wide, so the container sets the width rather than the content. Height is bound per size, control/lg at large for 48, control/md at medium for 40 and control/sm at small for 36. |
 | Padding and gap | Fixed | space/sm top and bottom, space/md left and right, with a space/2xs gap between the leading icon, the text and the trailing control. Padding holds across all three sizes, so height alone carries the density. |
 | Radius | Per Shape | radius/none when sharp, radius/sm when rounded and radius/pill when full. The four corners are bound individually rather than as a single value. |
 | Surface | Per Flavour | interactive/neutral/background/default on default and gradient, moving to interactive/neutral/background/disabled when disabled. Ghost carries no surface of its own, so whatever sits behind it shows through. |
@@ -376,7 +376,7 @@ Every token resolves in the export.
 - **Sub label is text on the assembly** (`subLabel`). It shows under the name when set, only with a label, and is tied to the field as its description.
 - **State and part properties live on the assembly in code.** Figma surfaces the subcomponents' own properties; code surfaces them on the assembly, including a general state (`default` / `invalid` / `disabled`) that fans out to label, field and hint.
 - **Default size is medium,** as the metadata and the assembly say. Figma's field sets still default to large; to be fixed in Figma later.
-- **Width is a start width** (280 in Figma). The field narrows to fit its container, and `block` fills it.
+- **280 is a tentative width**, not a minimum or a fixed one. The field narrows to fit its container, and `block` fills it.
 - **Number keeps its dialpad** and clear replaces it while typing (the metadata's "stepper" and grouping are not planned). Acknowledged, no change.
 - **Contrast is acknowledged, no change for now.**
   - Light: the resting border is 1.51:1, the read-only border 1.29:1 and the placeholder 3.02:1.

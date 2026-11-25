@@ -11,6 +11,7 @@
 | `open` | enum | `false` | `false` `true` |  |
 | `showLabel` | boolean | `true` |  |  |
 | `showHint` | boolean | `true` |  |  |
+| `compact` | boolean | `false` |  |  |
 | `_nestedProperties` |  |  |  |  |
 
 ---

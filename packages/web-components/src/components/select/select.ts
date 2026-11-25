@@ -146,7 +146,7 @@ export class ZdsSelect extends LitElement {
   /** Opens the list on the compact Dropdown Menu: a space/xs inset and no gap between rows, for a cramped spot. */
   @property({ type: Boolean, reflect: true }) compact = false;
 
-  /** Fills the container's width. Without it the Select starts at 280px and narrows to fit, as Input. Input's `:host([block])` rule applies. */
+  /** Fills the container's width. Without it the Select is a tentative 280px wide and narrows to fit, as Input. Input's `:host([block])` rule applies. */
   @property({ type: Boolean, reflect: true }) block = false;
 
   /** Glyph at the field's leading edge (hasLeading). A chosen option's own `icon` replaces it. */

@@ -1,5 +1,11 @@
 # @zebra-design-system/react-baseui
 
+## 0.9.1
+
+### Patch Changes
+
+- Input and Select describe their 280 width as a tentative width in the specs, docs and prop descriptions. No behaviour change.
+
 ## 0.9.0
 
 ### Minor Changes

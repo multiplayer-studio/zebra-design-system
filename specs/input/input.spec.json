@@ -11,7 +11,7 @@
       "url": "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/Zebra-Design-System?node-id=6288-997",
       "extractedAt": "2026-11-07",
       "variantCount": { "assembly": 1, "fieldSets": "5 x 243 (Size 3 x Shape 3 x State 9 x Flavour 3, complete)", "inputLabel": 6, "inputHint": 3 },
-      "extractionNote": "Assembly, Input Label and Input Hint read in full; Input / Text sliced (geometry over Size x Shape at enabled/default, states over State x Flavour at medium/rounded); the four other field sets compared at base and found to differ only in their type-specific parts. Intent verbatim from the 2026-11-06 spec.",
+      "extractionNote": "Metadata re-read 2026-11-25: 280 is a tentative width. Assembly, Input Label and Input Hint read in full; Input / Text sliced (geometry over Size x Shape at enabled/default, states over State x Flavour at medium/rounded); the four other field sets compared at base and found to differ only in their type-specific parts. Intent verbatim from the 2026-11-06 spec.",
       "tokenSource": "tokens/"
     }
   },
@@ -72,7 +72,7 @@
       "default": false,
       "intent": {
         "true": "Fills the container's width.",
-        "false": "Starts at 280 and narrows to fit its container."
+        "false": "Tentative 280 wide: it narrows to fit its container."
       }
     }
   },
@@ -88,9 +88,9 @@
     {
       "id": "root",
       "kind": "container",
-      "role": "Vertical stack, no padding. Width starts at 280 and narrows to fit the container, and block fills it. Hugs height.",
+      "role": "Vertical stack, no padding. Width is a tentative 280: it narrows to fit the container, and block fills it. Hugs height.",
       "layout": { "direction": "vertical", "gap": "space/xs", "padding": [0, 0, 0, 0] },
-      "sizing": { "h": "fixed (start width, 280Px as drawn)", "v": "hug" },
+      "sizing": { "h": "flexible (tentative width, 280Px as drawn)", "v": "hug" },
       "measuredStackPx": "label 20 + field 40 + hint 16 + two gaps = 88"
     },
     {
@@ -209,9 +209,9 @@
       {
         "id": "root",
         "kind": "container",
-        "role": "Horizontal row. Height by size; width starts at 280, narrows to fit the container, and block fills it. Fill, stroke and radius per the variants tables.",
+        "role": "Horizontal row. Height by size; width is a tentative 280, narrows to fit the container, and block fills it. Fill, stroke and radius per the variants tables.",
         "layout": { "direction": "horizontal", "gap": "space/2xs", "padding": { "top": "space/sm", "bottom": "space/sm", "left": "space/md", "right": "space/md" } },
-        "sizing": { "h": "fixed (start width)", "v": "fixed", "heightToken": "control/sm | control/md | control/lg per size" }
+        "sizing": { "h": "flexible (tentative width)", "v": "fixed", "heightToken": "control/sm | control/md | control/lg per size" }
       },
       {
         "id": "leadingIcon",
@@ -446,7 +446,7 @@
   ],
   "layoutTheming": {
     "assembly": [
-      { "property": "Size", "type": "Start width, hug height", "description": "Starts 280 wide, with the height hugging whatever is turned on. At the default that is a 20 label, a 40 field and a 16 hint plus two gaps, coming to 88." },
+      { "property": "Size", "type": "Flexible width, hug height", "description": "Tentative 280 wide, with the height hugging whatever is turned on. At the default that is a 20 label, a 40 field and a 16 hint plus two gaps, coming to 88." },
       { "property": "Gap", "type": "Fixed", "description": "space/xs between all three parts. That is one step wider than the space/2xs the field uses between its icons and its text." },
       { "property": "Label", "type": "Hug", "description": "20 tall and hugging its text, with a space/2xs gap between the name, any marker and the information icon. A sub label, when shown, sits space/xs below." },
       { "property": "Hint", "type": "Hug", "description": "16 tall, body/xsmall, with a space/2xs gap after a 16 square icon. Smaller than the field's own text, which keeps the value the loudest thing in the stack." },
@@ -454,7 +454,7 @@
       { "property": "Colour", "type": "Theming", "description": "Each part draws its own tokens. The label runs foreground/primary and drops to foreground/disabled, the required marker holds foreground/error either way, and the hint text moves between foreground/secondary, foreground/error and foreground/disabled." }
     ],
     "field": [
-      { "property": "Size", "type": "Start width", "description": "Starts 280 wide and narrows to fit its container, and block fills it. Height is bound per size, control/lg at large, control/md at medium and control/sm at small." },
+      { "property": "Size", "type": "Flexible width", "description": "Tentative 280 wide, so the container sets the width rather than the content. Height is bound per size, control/lg at large, control/md at medium and control/sm at small." },
       { "property": "Padding and gap", "type": "Fixed", "description": "space/sm top and bottom, space/md left and right, with a space/2xs gap between the leading icon, the text and the trailing control. Padding holds across all three sizes, so height alone carries the density." },
       { "property": "Radius", "type": "Per Shape", "description": "radius/none when sharp, radius/sm when rounded and radius/pill when full. The four corners are bound individually rather than as a single value." },
       { "property": "Surface", "type": "Per Flavour", "description": "interactive/neutral/background/default on default and gradient, moving to interactive/neutral/background/disabled when disabled. Ghost carries no surface of its own, so whatever sits behind it shows through." },
@@ -490,7 +490,7 @@
     { "severity": "note", "source": "decision", "detail": "Sub label is text on the assembly (subLabel). It shows under the name when set, only with a label, and is tied to the field as its description. It has no metadata: no property row, anatomy entry or guidance yet." },
     { "severity": "note", "source": "decision", "detail": "State and part properties live on the assembly in code. Figma surfaces the subcomponents' own properties; code surfaces them on the assembly, including a general state (default / invalid / disabled) that fans out to label, field and hint." },
     { "severity": "note", "source": "extracted 2026-11-07", "detail": "The field sets now default to Size=medium in Figma, matching the metadata and the assembly; the 2026-11-06 spec's 'to be fixed in Figma later' is done." },
-    { "severity": "note", "source": "decision", "detail": "Width is a start width (280 in Figma). The field narrows to fit its container, and block fills it." },
+    { "severity": "note", "source": "decision", "detail": "280 is a tentative width, not a minimum or a fixed one. The field narrows to fit its container, and block fills it." },
     { "severity": "note", "source": "decision", "detail": "Number keeps its dialpad and clear replaces it while typing (the metadata's 'stepper' and grouping are not planned). Acknowledged, no change." },
     { "severity": "note", "source": "contrast", "detail": "Contrast is acknowledged, no change for now. Light: the resting border is 1.51:1, the read-only border 1.29:1 and the placeholder 3.02:1. Dark: the error hint is 3.09:1." },
     { "severity": "note", "source": "metadata", "detail": "Input Label defaults vs placement: the assembly places its label at Type=optional with Show Information off; the set's own defaults are Type=default and Show Information on. When disabled, (optional) stays foreground/secondary and * stays foreground/error (the latter as intended)." },

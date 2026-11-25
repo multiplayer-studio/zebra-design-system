@@ -76,7 +76,7 @@ export class ZdsInput extends LitElement {
   @property({ type: String, reflect: true }) size: InputFieldSize = "medium";
   /** Default rounded: the shape an Input arrives with. */
   @property({ type: String, reflect: true }) shape: InputFieldShape = "rounded";
-  /** Fills the container's width. Without it the field starts at 280 and narrows to fit its container. */
+  /** Fills the container's width. Without it the field is a tentative 280 wide and narrows to fit its container. */
   @property({ type: Boolean, reflect: true }) block = false;
   @property({ type: String, reflect: true }) flavour: InputFieldFlavour = "default";
   @property({ type: String }) value = "";

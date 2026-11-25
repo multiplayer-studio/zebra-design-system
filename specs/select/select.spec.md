@@ -27,7 +27,7 @@ Values anywhere in this document are token names. The only literals are inside v
 
 - **open** — false: "The closed state. The nested Select Field is set to State=enabled and the dropdown menu instance is hidden." · true: "The open state. The nested Select Field switches to State=open and the dropdown menu becomes visible. The menu is absolutely positioned at base . It overlaps the hint region and any content below the element."
 - **subLabel** — Figma turns the line on with the nested Label's Show Sub Label. Code takes `subLabel` as text, as on Input.
-- **block** *(code only)* — true: fills the container's width. false: starts at 280 and narrows to fit, as Input.
+- **block** *(code only)* — true: fills the container's width. false: tentative 280 wide, narrowing to fit, as Input.
 - **showLabel** — true: "The label sits above the field and names it. Keep it on, because the placeholder text disappears the moment a value is selected." · false: "Drops the label from the stack. Only safe where something else nearby already names the field, and the name must still reach assistive technology through another means."
 - **showHint** — true: "Keeps the supporting line below the field. Leaving it on reserves the space before validation is needed and prevents layout shift when an error message appears." · false: "Drops the hint and shortens the stack. A select that can fail validation then has nowhere to put the reason, and turning the line back on later moves everything below it."
 - **compact** — false: "The default menu inset. Use it unless the list has to fit a cramped spot." · true: "Opens the list on the compact Dropdown Menu: a tighter inset and no gap between rows. Set on the nested Dropdown Menu. Use it where room is short, such as a table footer."
@@ -48,14 +48,14 @@ Values anywhere in this document are token names. The only literals are inside v
 
 ### Anatomy
 
-Root: vertical, gap `space/xs`, no padding, start-aligned. It is fixed width and hugs its height (280 × 88 Px measured at the default).
+Root: vertical, gap `space/xs`, no padding, start-aligned. It is drawn at a tentative width and hugs its height (280 × 88 Px measured at the default).
 
 1. **Label** — Input Label, `Type=default, Disabled=false, Show Information=false`; hugs; visible when `showLabel`. "The field's name, turned on by Show Label. Carries the required/optional marker and the information icon."
 2. **Field** — Input / Select; fills the width, with height set by its Size. "The control. Size, Shape, State and Flavour are all set on this nested component, not on the assembly. Trailing chevron always present."
 3. **Hint** — Input Hint, `Type=default, Show Icon=true` (glyph `info`); hugs; visible when `showHint`. "Supporting line, turned on by Show Hint. Guidance at rest; validation message when Type=error on the hint."
 4. **Dropdown Menu** — visible when `open`. "Absolutely positioned 4px below the field's bottom edge. Overlaid and does not determine assembly height. Contains Menu Items via slot. Width is inherited from field width."
    - Instance: `Rounded=true, More Items=true`, absolutely positioned and anchored top-left. It sits 4 Px under the field and covers the hint (measured y 68 Px). That offset is a position, so no token is bound to it.
-   - Size: width fixed to the assembly's (280 Px); height hugs.
+   - Size: width set to the assembly's (a tentative 280 Px); height hugs.
    - Panel: fill `surface/overlay`, effect style Shadow/medium. Gap `space/3xs`, padding `space/card`, radius `radius/element-md`. Compact: padding `space/xs`, gap `space/none`.
    - Rows: Menu Item `Type=Icon, Rounded=true`, with Leading Element and Trailing Icon both off. Row 1 is at `State=hover`, rows 2–4 at `Default`. Two rows are built in and two sit in the Slot Container.
    - Row and panel tokens are in specs/dropdown/.
@@ -116,7 +116,7 @@ Metadata: "The select control on its own, without a label or hint around it. One
 
 | Part | What it is |
 |---|---|
-| `root` | Horizontal, centred on the cross axis. Padding `space/sm` top and bottom, `space/md` at the sides; gap `space/2xs`. Height by size; width 280 Px in Figma and set by the container. Fill, stroke and radius follow the tables below. |
+| `root` | Horizontal, centred on the cross axis. Padding `space/sm` top and bottom, `space/md` at the sides; gap `space/2xs`. Height by size; width a tentative 280 Px in Figma and set by the container. Fill, stroke and radius follow the tables below. |
 | 1 `leadingIcon` | Icon, shown by `hasLeading`; glyph `email` (rounded family) by default, swappable. "Off by default, and an Icon at Size=medium when hasLeading turns it on." Follows the text colour. |
 | 2 `displayText` | Fills the width, padding `0 space/2xs`, clips. "The placeholder, and then the value once one is entered. It fills whatever width the icons leave." The `placeholder` is `foreground/disabled`; the `value` is `foreground/primary`, or `foreground/disabled` when disabled. Style `body/medium`, `body/small` at small. |
 | 3 `chevron` | Icon, always present. `expand-more`, or `expand-less` at open; rounded family. Colour `foreground/primary`, `foreground/disabled` when disabled; in code it inherits the text colour. "Always present, pointing down in all states except open, where it points up." |
@@ -307,7 +307,7 @@ All 46 names resolve in `tokens/base/`. No gaps and no binding drift on either s
 
 | Property | Type | Description |
 |---|---|---|
-| Size | Fixed | 280 wide and fixed, so the container sets the width rather than the content. Height is bound per size, control/lg at large for 48, control/md at medium for 40 and control/sm at small for 36. |
+| Size | Flexible width | Tentative 280 wide, so the container sets the width rather than the content. Height is bound per size, control/lg at large for 48, control/md at medium for 40 and control/sm at small for 36. |
 | Padding and gap | Fixed | space/sm top and bottom, space/md left and right, with a space/2xs gap between the leading icon, the text and the trailing control. Padding holds across all three sizes, so height alone carries the density. |
 | Radius | Per Shape | radius/none when sharp, radius/sm when rounded and radius/pill when full. The four corners are bound individually rather than as a single value. |
 | Surface | Per Flavour | interactive/neutral/background/default on default and gradient, moving to interactive/neutral/background/disabled when disabled. Ghost carries no surface of its own, so whatever sits behind it shows through. |
@@ -365,7 +365,7 @@ All 46 names resolve in `tokens/base/`. No gaps and no binding drift on either s
 ### Note
 
 - **Show Sub Label (fixed in Figma 2026-11-06):** the unwired property was removed from the set. The nested Label's own toggle is the one to use.
-- **Block (code 2026-11-06):** code adds `block`, as on Input. Without it the Select starts at 280 and narrows to fit.
+- **Block (code 2026-11-06):** code adds `block`, as on Input. Without it the Select is a tentative 280 wide and narrows to fit.
 - **Compact (spec addition 2026-10-31):** the Select set has no Compact property. It is the nested Dropdown Menu's Compact axis, exposed on the assembly in every build.
 - **Code: precedence.** The code orders states disabled > open > invalid > read-only > filled > enabled, so an invalid field loses its error border while open. Figma has no combined state to compare against.
 - **Code: focus** comes from `:focus-visible`: an outline in `border/focus` at `stroke/thick`, with the inside border transparent. It never sets `data-state="focus"`. This matches Figma's focus visually.
@@ -377,14 +377,14 @@ All 46 names resolve in `tokens/base/`. No gaps and no binding drift on either s
 
   This is consistent with specs/input/. A chosen option's own icon replaces the leading icon, which Figma does not model.
 - **Code: hover** comes from `input-field.css :hover`, which applies only on enabled and filled. Figma doesn't model hover on invalid or read-only either.
-- **Code: what matches.** Default size, shape and flavour are medium, rounded and default in both. Width fills the container (Figma's 280 is a placeholder). Read-only matches. Keyboard handling is Base UI's listbox select, which settles the metadata contradiction in practice.
+- **Code: what matches.** Default size, shape and flavour are medium, rounded and default in both. Width fills the container (Figma's 280 is a tentative width). Read-only matches. Keyboard handling is Base UI's listbox select, which settles the metadata contradiction in practice.
 - **Details cards:**
   - The Select Field card no longer carries Search's description; it now describes a select. It lists "default, hover, focus, open, disabled, and error states": Figma names these enabled and invalid, and the card leaves out filled and read-only.
   - Both cards' change logs still show "Haashir · Aug 10, 26 · Created" and a Created date of Aug 10, 2026. These look carried over from a template.
 - **Menu:**
-  - Its width is a fixed 280 Px set by hand, not bound to the field (an absolute child cannot fill).
+  - Its width is 280 Px set by hand to match the tentative width, not bound to the field (an absolute child cannot fill).
   - The 4 Px offset is a position, not a token. Its value equals `space/2xs`.
-- **Assembly sizing:** the metadata says "Fill width". The variants are fixed 280 wide and hug their height, because a Figma root cannot fill.
+- **Assembly sizing:** the metadata says "Fill width". The variants are drawn at a tentative 280 wide and hug their height, because a Figma root cannot fill.
 - **Placeholder text:** Input / Select's own text is "Placeholder"; Select overrides it to "Select an option".
 - **Label default:** Select places Input Label with Show Information off, where the label set's own default is on.
 - **Typo:** "These ae the assembly-level state" (verbatim).

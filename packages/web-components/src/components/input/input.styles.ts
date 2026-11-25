@@ -8,7 +8,7 @@ import { css } from "lit";
  */
 export default css`
   :host {
-    /* 280 is a start width, not a fixed one (spec decision): the field never
+    /* 280 is a tentative width, not a minimum or a fixed one (spec decision): the field never
        outgrows its container, and block fills it. */
     display: flex;
     flex-direction: column;

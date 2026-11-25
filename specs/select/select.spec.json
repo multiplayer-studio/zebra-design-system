@@ -18,7 +18,7 @@
         "Select": 2,
         "Input / Select": 216
       },
-      "extractionNote": "The page holds two public sets and two metadata frames, no private subcomponents. Select (2 variants, Open false/true) was extracted in full to depth 12. Input / Select (216 variants = Size 3 x Shape 3 x State 8 x Flavour 3, complete) was extracted with extract-structure.js on a 10-variant sample (all states at medium/rounded/default plus large and small enabled) for anatomy and deltas, then every one of the 216 variants was read in-file for root fill, stroke paint, stroke weight token, stroke align, height and radius tokens, text layers and their colour, and the chevron and leading icon glyph and glyph colour, and tabulated by State x Flavour and by Size x Shape. Each State x Flavour cell was identical at every Size and Shape, and Size and Shape never changed colour, stroke or visibility. Label, Hint and Dropdown Menu are reused from the Input and Dropdown pages and are not re-extracted; see specs/input/ and specs/dropdown/.",
+      "extractionNote": "Metadata re-read 2026-11-25: the field's 280 is a tentative width, and Compact is documented. The page holds two public sets and two metadata frames, no private subcomponents. Select (2 variants, Open false/true) was extracted in full to depth 12. Input / Select (216 variants = Size 3 x Shape 3 x State 8 x Flavour 3, complete) was extracted with extract-structure.js on a 10-variant sample (all states at medium/rounded/default plus large and small enabled) for anatomy and deltas, then every one of the 216 variants was read in-file for root fill, stroke paint, stroke weight token, stroke align, height and radius tokens, text layers and their colour, and the chevron and leading icon glyph and glyph colour, and tabulated by State x Flavour and by Size x Shape. Each State x Flavour cell was identical at every Size and Shape, and Size and Shape never changed colour, stroke or visibility. Label, Hint and Dropdown Menu are reused from the Input and Dropdown pages and are not re-extracted; see specs/input/ and specs/dropdown/.",
       "relatedSpecs": [
         "specs/input/",
         "specs/dropdown/"
@@ -66,6 +66,18 @@
       "intent": {
         "true": "Keeps the supporting line below the field. Leaving it on reserves the space before validation is needed and prevents layout shift when an error message appears.",
         "false": "Drops the hint and shortens the stack. A select that can fail validation then has nowhere to put the reason, and turning the line back on later moves everything below it."
+      }
+    },
+    "compact": {
+      "type": "boolean",
+      "figmaName": "Compact (set on the nested Dropdown Menu)",
+      "default": false,
+      "controls": [
+        "menu"
+      ],
+      "intent": {
+        "false": "The default menu inset. Use it unless the list has to fit a cramped spot.",
+        "true": "Opens the list on the compact Dropdown Menu: a tighter inset and no gap between rows. Set on the nested Dropdown Menu. Use it where room is short, such as a table footer."
       }
     },
     "_nestedProperties": {
@@ -1276,8 +1288,8 @@
     "Input / Select": [
       {
         "Property": "Size",
-        "Type": "Fixed",
-        "Description": "280 wide and fixed, so the container sets the width rather than the content. Height is bound per size, control/lg at large for 48, control/md at medium for 40 and control/sm at small for 36."
+        "Type": "Flexible width",
+        "Description": "Tentative 280 wide, so the container sets the width rather than the content. Height is bound per size, control/lg at large for 48, control/md at medium for 40 and control/sm at small for 36."
       },
       {
         "Property": "Padding and gap",
@@ -1421,7 +1433,7 @@
       "severity": "warn",
       "source": "experimental code vs Figma",
       "topic": "List positioning",
-      "figma": "Dropdown Menu is a child of the assembly, absolutely positioned 4 Px below the field. Its width equals the field's (fixed 280). It overlaps the hint. It always opens below and has no max height or scroll.",
+      "figma": "Dropdown Menu is a child of the assembly, absolutely positioned 4 Px below the field. Its width equals the field's (a tentative 280). It overlaps the hint. It always opens below and has no max height or scroll.",
       "code": "The list is portalled to document.body (or portalContainer) through Base UI's Positioner, with sideOffset = --space-xxs (4 Px fallback) and alignItemWithTrigger=false. Width is min-inline-size: var(--anchor-width), so it is at least as wide as the trigger and can be wider. Height is capped at --available-height and scrolls. Collision flipping can open the list above the field. z-index is 1."
     },
     {
@@ -1458,7 +1470,7 @@
     {
       "severity": "note",
       "source": "structure — dropdown width and shape",
-      "detail": "The menu's width is a fixed 280 Px set to match the assembly. It is not bound to the field, and an absolutely positioned child cannot fill. The metadata's \"flexible width, matching the assembly\" is an intent for code. The menu is always Rounded=true, including under a sharp field."
+      "detail": "The menu's width is 280 Px, set to match the assembly's tentative width. It is not bound to the field, and an absolutely positioned child cannot fill. The metadata's \"flexible width, matching the assembly\" is an intent for code. The menu is always Rounded=true, including under a sharp field."
     },
     {
       "severity": "note",
@@ -1468,7 +1480,7 @@
     {
       "severity": "note",
       "source": "metadata vs structure — assembly sizing",
-      "detail": "Layout says \"Fill width × hug height\". The Select set's variants are fixed 280 wide with hug height. A component root cannot fill in Figma; treat fill as the intent."
+      "detail": "Layout says \"Fill width × hug height\". The Select set's variants are drawn 280 wide with hug height. That is a tentative width: a component root cannot fill in Figma, so treat fill as the intent."
     },
     {
       "severity": "note",
@@ -1560,7 +1572,7 @@
       "severity": "note",
       "source": "experimental code vs Figma",
       "topic": "Width",
-      "figma": "The field is fixed at 280 wide, and the metadata says the container sets it.",
+      "figma": "The field is drawn at a tentative 280 wide, and the metadata says the container sets it.",
       "code": "inline-size: 100% of the container. This matches the intent."
     },
     {
