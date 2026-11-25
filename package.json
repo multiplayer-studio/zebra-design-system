@@ -1,0 +1,111 @@
+{
+  "name": "@zebra-design-system/zeta-web",
+  "version": "0.8.4",
+  "files": [
+    "dist",
+    "custom-elements.json",
+    "assets",
+    "LICENSE-3RD-PARTY",
+    "AGENTS.md",
+    "llms.txt",
+    "DESIGN.md"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "default": "./dist/react/index.js"
+    },
+    "./assets/*": "./assets/*",
+    "./events.js": "./dist/events.js",
+    "./components/*": "./dist/components/*",
+    "./custom-elements.json": "./custom-elements.json",
+    "./index.css": "./dist/index.css",
+    "./jsx.d.ts": "./dist/jsx.d.ts",
+    "./primitives.css": "./dist/primitives.css",
+    "./semantics.css": "./dist/semantics.css"
+  },
+  "description": "Zebra Zeta Design System - Web Components",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/multiplayer-studio/zebra-design-system.git",
+    "directory": "packages/zeta-web"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Zebra Front-end Development Team",
+  "license": "MIT",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "declaration": "true",
+  "declarationMap": "true",
+  "customElements": "custom-elements.json",
+  "scripts": {
+    "analyze": "cem analyze",
+    "build-storybook:with-output-dir": "pnpm run build && storybook build -o ",
+    "build": "pnpm run prebuild && node scripts/build.js",
+    "check": "pnpm run analyze && pnpm run lint && pnpm run lint:lit-analyzer && pnpm run test",
+    "create": "cd scripts && node makeWebComponentTemplate.js",
+    "lint:lit-analyzer": "lit-analyzer src/components/**/* src/stories/**/* src/mixins/**/* src/test/**/* src/utils/**/* --quiet",
+    "lint": "eslint -f unix \"src/**/*.{ts,tsx}\" --config src/eslint.config.*",
+    "localize:build": "lit-localize build --config src/lit-localize.json",
+    "localize:extract": "lit-localize extract --config src/lit-localize.json",
+    "prebuild": "pnpm run analyze && node scripts/make-index.js",
+    "prettier": "prettier src --write --ignore-unknown",
+    "storybook:build": "pnpm run build && storybook build",
+    "storybook:test": "test-storybook",
+    "storybook": "cem analyze && storybook dev -p 6006",
+    "test:count": "npx tsx scripts/test/test_counter.ts",
+    "tokens": "node ../tokens/build.mjs && node ../web-components/scripts/build-tokens-css.mjs ../tokens/dist src/generated/zebra-tokens --profile=zeta --shadowed=border-default,border-disabled,border-info,border-subtle,border-warning,radius-none,radius-xl,surface-info,surface-warning",
+    "pretest:package": "pnpm pack --pack-destination ./test && cd test && pnpm install && cd ..",
+    "test:package": "cd test && pnpm run dev",
+    "test:watch": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --watch --config src/test/web-test-runner.config.*",
+    "test": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --config src/test/web-test-runner.config.*"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-sans": "^5.2.8",
+    "@lit/localize": "^0.12.2",
+    "@zebra-design-system/icons": "git+https://github.com/multiplayer-studio/zebra-design-system.git#icons-v0.2.1",
+    "lit": "^3.3.3"
+  },
+  "typesVersions": {
+    "*": {
+      "react": [
+        "dist/react/index.d.ts"
+      ]
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "distChannel": {
+    "type": "git",
+    "repo": "https://github.com/multiplayer-studio/zebra-design-system.git",
+    "tag": "zeta-web-v0.8.4",
+    "builtFrom": "2d16e82d"
+  }
+}
