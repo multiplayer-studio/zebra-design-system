@@ -1,0 +1,105 @@
+/* Input (assembly) — ported rule for rule from packages/web-components
+   input.styles.ts. Every value is a semantic token.
+
+   Spec: specs/input/input.spec.md */
+
+  .zds-input {
+    /* 280 is a tentative width, not a minimum or a fixed one (spec decision): the field never
+       outgrows its container, and block fills it. */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    inline-size: 280px;
+    max-inline-size: 100%;
+  }
+  .zds-input[data-block] {
+    inline-size: 100%;
+  }
+  .zds-input[hidden] {
+    display: none;
+  }
+
+  /* ---- label (Input Label) --------------------------------------------- */
+  .zds-input__label {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+  }
+  .zds-input__name,
+  .zds-input__required {
+    font-family: var(--label-medium-font-family), system-ui, sans-serif;
+    font-size: var(--label-medium-font-size);
+    font-weight: var(--label-medium-font-weight);
+    line-height: var(--label-medium-line-height);
+    letter-spacing: var(--label-medium-letter-spacing);
+  }
+  .zds-input__name,
+  .zds-input__information {
+    color: var(--foreground-primary);
+  }
+  /* The required marker holds foreground/error, also when disabled (spec). */
+  .zds-input__required {
+    color: var(--foreground-error);
+  }
+  /* "(optional)" keeps foreground/secondary, also when disabled (as built). */
+  .zds-input__optional {
+    color: var(--foreground-secondary);
+    font-family: var(--body-small-font-family), system-ui, sans-serif;
+    font-size: var(--body-small-font-size);
+    font-weight: var(--body-small-font-weight);
+    line-height: var(--body-small-line-height);
+    letter-spacing: var(--body-small-letter-spacing);
+  }
+  /* Input Label's root: the label row, then the sub label, space/xs apart. */
+  .zds-input__label-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+  .zds-input__sub-label {
+    margin: 0;
+    color: var(--foreground-secondary);
+    font-family: var(--body-small-font-family), system-ui, sans-serif;
+    font-size: var(--body-small-font-size);
+    font-weight: var(--body-small-font-weight);
+    line-height: var(--body-small-line-height);
+    letter-spacing: var(--body-small-letter-spacing);
+  }
+  .zds-input[data-state="disabled"] .zds-input__name,
+  .zds-input[data-state="disabled"] .zds-input__information,
+  .zds-input[data-state="disabled"] .zds-input__sub-label {
+    color: var(--foreground-disabled);
+  }
+
+  /* ---- hint (Input Hint) ------------------------------------------------ */
+  .zds-input__hint {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-family: var(--body-xsmall-font-family), system-ui, sans-serif;
+    font-size: var(--body-xsmall-font-size);
+    font-weight: var(--body-xsmall-font-weight);
+    line-height: var(--body-xsmall-line-height);
+    letter-spacing: var(--body-xsmall-letter-spacing);
+  }
+  .zds-input__hint-icon {
+    flex: none;
+  }
+  /* default: message foreground/secondary, icon foreground/primary. */
+  .zds-input__hint[data-type="default"] .zds-input__message {
+    color: var(--foreground-secondary);
+  }
+  .zds-input__hint[data-type="default"] .zds-input__hint-icon {
+    color: var(--foreground-primary);
+  }
+  .zds-input__hint[data-type="error"] {
+    color: var(--foreground-error);
+  }
+  .zds-input__hint[data-type="disabled"] {
+    color: var(--foreground-disabled);
+  }
+
+  /* No transitions: the spec defines no motion. */

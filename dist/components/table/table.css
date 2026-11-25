@@ -1,0 +1,401 @@
+/* Table — every value is a semantic token. Parts in the spec's order:
+   controls bar, content (header cells, data cells), footer; then frozen
+   columns. Mirrors packages/web-components table.styles.ts.
+
+   Spec: specs/table/table.spec.md */
+
+/* ---- root -------------------------------------------------------------- */
+/* The container's width (Figma's 979 is a sample). No gap, no padding: each
+   section carries its own. */
+.zds-table {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  color: var(--foreground-primary);
+}
+
+/* ---- shape --------------------------------------------------------------
+   rounded: the table's outer corners take radius/element-md and clip its
+   content, so the bars and cells follow the curve; they keep square corners
+   of their own. sharp: square (spec gap: Figma leaves it a raw 0,
+   radius/none is the token for it). */
+.zds-table[data-shape="rounded"] {
+  border-radius: var(--radius-element-md);
+  overflow: clip;
+}
+.zds-table[data-shape="sharp"] {
+  border-radius: var(--radius-none);
+}
+
+/* ---- controls bar (Table Controls) ---------------------------------------
+   Hugs its content (spec issue: the 60 is measured, not fixed). */
+.zds-table__controls,
+.zds-table__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--surface-section);
+}
+.zds-table__controls { justify-content: flex-end; }
+/* The selected count (Badge Label, info) holds the bar's start; the search
+   and controls stay at its end. */
+.zds-table__selected-count {
+  display: flex;
+  align-items: center;
+  margin-inline-end: auto;
+}
+.zds-table__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* ---- content (Table Content) ---------------------------------------------- */
+.zds-table__scroller {
+  overflow-x: auto;
+}
+/* verticalScroll (maxHeight): rows scroll under a header that sticks to the
+   top. The header sits above the body, its frozen cells above both. */
+.zds-table__scroller[data-capped] { overflow-y: auto; }
+.zds-table__scroller[data-capped] .zds-table__th {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 3;
+}
+.zds-table__scroller[data-capped] .zds-table__th[data-frozen] { z-index: 4; }
+.zds-table__scroller[data-capped] .zds-table__th[data-frozen]:not([data-frozen-last]) { z-index: 5; }
+/* At least the container's width, wider when the columns need it — so set
+   widths hold and the scroller scrolls instead of squeezing columns (which
+   would also break frozen columns' sticky offsets). */
+.zds-table__table {
+  inline-size: max-content;
+  min-inline-size: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+/* Once a column is resized every column holds its own width and the table
+   their total: a resize only moves width between columns, and fixed layout
+   lands each one exactly. Narrow content clips with an ellipsis; a header
+   clips its contents, not itself, so the resize grip still reaches over the
+   cell's borders. */
+.zds-table__table[data-sized] {
+  min-inline-size: 0;
+  table-layout: fixed;
+}
+.zds-table__table[data-sized] .zds-table__td,
+.zds-table__table[data-sized] .zds-table__header { overflow: hidden; }
+.zds-table__table[data-sized] .zds-table__td { white-space: nowrap; text-overflow: ellipsis; }
+.zds-table__table[data-sized] .zds-table__header,
+.zds-table__table[data-sized] .zds-table__sort,
+.zds-table__table[data-sized] .zds-table__titles,
+.zds-table__table[data-sized] .zds-table__avatar-cell { min-inline-size: 0; max-inline-size: 100%; }
+.zds-table__table[data-sized] .zds-table__text { display: block; }
+.zds-table__table[data-sized] .zds-table__label,
+.zds-table__table[data-sized] .zds-table__text,
+.zds-table__table[data-sized] .zds-table__title,
+.zds-table__table[data-sized] .zds-table__subtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.zds-table__caption {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---- header cell (_Header Cell, _Label, _Sort) ---------------------------- */
+/* Border-box, so a column's set width includes its padding. */
+.zds-table__th,
+.zds-table__td {
+  box-sizing: border-box;
+}
+.zds-table__th {
+  padding: var(--space-md) var(--space-lg);
+  background: var(--zds-table-th-bg, var(--interactive-neutral-background-default));
+  border-block: var(--stroke-thin) solid var(--border-default);
+  /* Drop the UA's bold <th>: the label's weight comes from label/medium.
+     (That token currently emits the word "Medium", which CSS rejects, so
+     the label inherits — the same as in every other component.) */
+  font-weight: normal;
+  text-align: start;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.zds-table__th:hover {
+  --zds-table-th-bg: var(--interactive-neutral-background-hover);
+}
+/* Keyboard focus on the sort or filter control marks the whole cell
+   (spec: focus = focused fill + border/focus at stroke/thick, inside). */
+.zds-table__th:has(:focus-visible) {
+  --zds-table-th-bg: var(--interactive-neutral-background-focused);
+  box-shadow: inset 0 0 0 var(--stroke-thick) var(--border-focus);
+}
+.zds-table__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+.zds-table__label {
+  color: var(--foreground-primary);
+  font-family: var(--label-medium-font-family), system-ui, sans-serif;
+  font-size: var(--label-medium-font-size);
+  font-weight: var(--label-medium-font-weight);
+  line-height: var(--label-medium-line-height);
+  letter-spacing: var(--label-medium-letter-spacing);
+}
+.zds-table__sort,
+.zds-table__filter {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+}
+/* Sort glyph: inactive foreground/tertiary, foreground/secondary on hover;
+   the active direction is foreground/cursor — kept as specced, though the
+   spec flags it as the text-caret colour rather than an interactive one. */
+.zds-table__sort-icon { color: var(--foreground-tertiary); }
+.zds-table__th:hover .zds-table__sort-icon { color: var(--foreground-secondary); }
+.zds-table__th[data-sorted] .zds-table__sort-icon { color: var(--foreground-cursor); }
+/* Filter: shown on hover and focus (spec: the filter glyph appears in the
+   hover and focus states), always in the accessibility tree. */
+.zds-table__filter {
+  color: var(--foreground-secondary);
+  opacity: 0;
+}
+.zds-table__th:hover .zds-table__filter,
+.zds-table__th:focus-within .zds-table__filter,
+.zds-table__filter[data-active],
+.zds-table__filter[data-popup-open] {
+  opacity: 1;
+}
+/* _Label Filtered: a filtered column keeps its glyph, coloured as the active
+   sort glyph is. */
+.zds-table__filter[data-active] { color: var(--foreground-cursor); }
+
+/* ---- resize grip (_Header Cell Resize) ------------------------------------ */
+/* On the trailing edge, over the cell's own borders so it runs the full
+   height. Hover: interactive/neutral/border/hover; it stays while dragging;
+   keyboard focus draws border/focus. */
+.zds-table__th[data-resizable]:not([data-frozen]) { position: relative; }
+.zds-table__resizer {
+  position: absolute;
+  inset-block: calc(-1 * var(--stroke-thin));
+  inset-inline-end: 0;
+  inline-size: var(--space-sm);
+  cursor: col-resize;
+  touch-action: none;
+  outline: none;
+  z-index: 1;
+}
+.zds-table__resizer::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0;
+  inline-size: var(--stroke-thick);
+}
+.zds-table__resizer:hover::after,
+.zds-table__th[data-resizing] .zds-table__resizer::after { background: var(--interactive-neutral-border-hover); }
+.zds-table__resizer:focus-visible::after { background: var(--border-focus); }
+.zds-table:has(.zds-table__th[data-resizing]) { user-select: none; cursor: col-resize; }
+
+/* ---- data cell (_Data Cell) ---------------------------------------------- */
+/* No fixed height (Figma's 60 has no token): padding plus content. */
+.zds-table__td {
+  padding: var(--space-md) var(--space-lg);
+  background: var(--zds-table-td-bg, var(--interactive-neutral-background-default));
+  border-block-end: var(--stroke-thin) solid var(--border-subtle);
+  vertical-align: middle;
+  color: var(--foreground-primary);
+}
+.zds-table__tr:hover:not([aria-disabled]):not(.zds-table__empty) > .zds-table__td {
+  --zds-table-td-bg: var(--interactive-neutral-background-hover);
+}
+.zds-table__tr[aria-selected="true"] > .zds-table__td {
+  --zds-table-td-bg: var(--interactive-neutral-background-selected);
+}
+/* Disabled: one state across the row (spec _Data Cell). Every cell, frozen
+   ones included, keeps the plain fill (a disabled fill would hide the row's
+   disabled checkbox), text turns foreground/disabled, avatars and custom
+   content dim. No opacity token exists, so 0.5 is raw (spec gap). */
+.zds-table__tr[aria-disabled="true"] > .zds-table__td {
+  --zds-table-td-bg: var(--interactive-neutral-background-default);
+  color: var(--foreground-disabled);
+}
+.zds-table__tr[aria-disabled="true"] .zds-avatar,
+.zds-table__tr[aria-disabled="true"] .zds-table__custom {
+  opacity: 0.5;
+  filter: grayscale(1);
+}
+/* Custom content in a disabled row doesn't take the pointer, unless disabled
+   rows are open to selection. */
+.zds-table:not([data-allow-disabled]) .zds-table__tr[aria-disabled="true"] .zds-table__custom { pointer-events: none; }
+.zds-table__custom { display: contents; }
+.zds-table__tr[aria-disabled="true"] .zds-table__title,
+.zds-table__tr[aria-disabled="true"] .zds-table__subtitle,
+.zds-table__tr[aria-disabled="true"] .zds-table__text {
+  color: var(--foreground-disabled);
+}
+.zds-table__tr[data-clickable] { cursor: pointer; }
+
+/* ---- selection and actions columns (_Select Cell, _Actions Cell) ----------- */
+/* Fixed edge columns; the checkbox's or button's own target sets the row
+   height. After a resize they keep the width they were locked at. */
+.zds-table__select-col,
+.zds-table__select { inline-size: var(--zds-table-select-width, calc(var(--control-target-min) + 2 * var(--space-md))); }
+.zds-table__actions-col,
+.zds-table__actions-cell { inline-size: var(--zds-table-actions-width, calc(var(--control-target-min) + 2 * var(--space-md))); }
+.zds-table__th.zds-table__select,
+.zds-table__td.zds-table__select,
+.zds-table__th.zds-table__actions-cell,
+.zds-table__td.zds-table__actions-cell {
+  padding-block: 0;
+  padding-inline: var(--space-md);
+}
+.zds-table__actions-cell { text-align: end; }
+
+/* ---- empty row (_Empty Row) -------------------------------------------------- */
+.zds-table__empty > .zds-table__td {
+  text-align: center;
+  color: var(--foreground-secondary);
+  font-family: var(--body-small-font-family), system-ui, sans-serif;
+  font-size: var(--body-small-font-size);
+  line-height: var(--body-small-line-height);
+}
+
+.zds-table__text,
+.zds-table__title {
+  font-family: var(--body-small-font-family), system-ui, sans-serif;
+  font-size: var(--body-small-font-size);
+  font-weight: var(--body-small-font-weight);
+  line-height: var(--body-small-line-height);
+  letter-spacing: var(--body-small-letter-spacing);
+}
+
+/* ---- avatar and text cell (_Avatar and text) ------------------------------ */
+.zds-table__avatar-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+.zds-table__titles {
+  display: flex;
+  flex-direction: column;
+}
+.zds-table__title { color: var(--foreground-primary); }
+.zds-table__subtitle {
+  color: var(--foreground-secondary);
+  font-family: var(--body-xsmall-font-family), system-ui, sans-serif;
+  font-size: var(--body-xsmall-font-size);
+  font-weight: var(--body-xsmall-font-weight);
+  line-height: var(--body-xsmall-line-height);
+  letter-spacing: var(--body-xsmall-letter-spacing);
+}
+
+/* ---- footer (Table Footer) -------------------------------------------------- */
+.zds-table__footer { justify-content: space-between; }
+/* The footer's start: the summary, then rows per page. */
+.zds-table__footer-start {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  min-inline-size: 0;
+}
+.zds-table__page-size {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+.zds-table__page-size-label {
+  color: var(--foreground-secondary);
+  white-space: nowrap;
+  font-family: var(--body-small-font-family), system-ui, sans-serif;
+  font-size: var(--body-small-font-size);
+  font-weight: var(--body-small-font-weight);
+  line-height: var(--body-small-line-height);
+  letter-spacing: var(--body-small-letter-spacing);
+}
+/* Sized from the widest option (digits, padding, gap, chevron); the list
+   grows to fit its rows. */
+.zds-table__page-size-select {
+  --zds-select-field-min-inline-size: calc(var(--zds-table-digits) * 1ch + 2 * var(--space-md) + var(--space-2xs) + var(--control-icon-sm));
+  --zds-select-list-min-inline-size: max-content;
+  display: block;
+  inline-size: max-content;
+  font-variant-numeric: tabular-nums;
+}
+.zds-table__page-details {
+  color: var(--foreground-secondary);
+  font-family: var(--body-small-font-family), system-ui, sans-serif;
+  font-size: var(--body-small-font-size);
+  font-weight: var(--body-small-font-weight);
+  line-height: var(--body-small-line-height);
+  letter-spacing: var(--body-small-letter-spacing);
+}
+
+/* ---- frozen columns (Table Content, Column Position=frozen) ------------------ */
+.zds-table__th[data-frozen],
+.zds-table__td[data-frozen] {
+  position: sticky;
+  inset-inline-start: var(--zds-table-sticky-start, 0);
+  z-index: 1;
+}
+/* Earlier frozen columns sit above the last one, so its shadow's blur only
+   falls on the scrolling side. */
+.zds-table__th[data-frozen]:not([data-frozen-last]),
+.zds-table__td[data-frozen]:not([data-frozen-last]) {
+  z-index: 2;
+}
+.zds-table__th[data-frozen-last],
+.zds-table__td[data-frozen-last] {
+  border-inline-end: var(--stroke-thin) solid var(--border-default);
+}
+/* Once scrolled, the frozen edge casts a horizontal shadow. x and y are
+   swapped on purpose: Figma's Shadow/medium-horizontal binds the y token to
+   x to turn the shadow sideways (spec issue — no horizontal tokens exist). */
+.zds-table__scroller[data-scrolled] [data-frozen-last] {
+  box-shadow:
+    var(--shadow-medium-y) var(--shadow-medium-x) var(--shadow-medium-blur) var(--shadow-soft),
+    var(--shadow-small-y) var(--shadow-small-x) var(--shadow-small-blur) var(--shadow-soft);
+  /* Each row's cell casts its own shadow; clip to the scrolling side so the
+     blur doesn't smudge the row boundaries above and below. */
+  clip-path: inset(0 -100vw 0 0);
+}
+.zds-table__scroller[data-scrolled] [data-frozen-last]:dir(rtl) {
+  clip-path: inset(0 0 0 -100vw);
+}
+/* ---- menus (_Table Menu) and the truncation tooltip ------------------------- */
+/* Base UI positions the compact menus fixed, so the table's clipping never
+   cuts them off. */
+.zds-table__menu { z-index: 10; outline: none; }
+.zds-table__menu-group {
+  display: flex;
+  flex-direction: column;
+}
+.zds-table__menu-heading {
+  padding: var(--space-xs) var(--space-md) var(--space-2xs);
+  color: var(--foreground-secondary);
+  font-family: var(--label-small-font-family), system-ui, sans-serif;
+  font-size: var(--label-small-font-size);
+  font-weight: var(--label-small-font-weight);
+  line-height: var(--label-small-line-height);
+  letter-spacing: var(--label-small-letter-spacing);
+}
+.zds-table__menu-divider { margin-block: var(--space-xs); }
+.zds-table__tip {
+  position: fixed;
+  z-index: 10;
+  pointer-events: none;
+}
